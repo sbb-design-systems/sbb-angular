@@ -27,6 +27,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     customLaunchers: {
+      // https://www.browserstack.com/automate/capabilities
       bsChromeWindows: {
         base: 'BrowserStack',
         browser: 'Chrome',

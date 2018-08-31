@@ -16,8 +16,8 @@ pipeline {
         withCredentials([
             usernamePassword(
               credentialsId: 'browserstack',
-              passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
-              usernameVariable: 'BROWSERSTACK_USERNAME')
+              passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
+              usernameVariable: 'BROWSER_STACK_USERNAME')
           ]) {
           sh 'npm install'
           sh 'npm test'
@@ -34,8 +34,8 @@ pipeline {
         withCredentials([
             usernamePassword(
               credentialsId: 'browserstack',
-              passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
-              usernameVariable: 'BROWSERSTACK_USERNAME')
+              passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
+              usernameVariable: 'BROWSER_STACK_USERNAME')
           ]) {
           withSonarQubeEnv('Sonar SBB CFF FFS AG') {
             sh 'npm install'
