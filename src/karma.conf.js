@@ -41,7 +41,7 @@ module.exports = function (config) {
         os_version: '10',
       },
     },
-    browsers: process.env.BROWSERSTACK_ACCESS_KEY && process.env.BROWSERSTACK_USERNAME
+    browsers: process.env.BROWSER_STACK_ACCESS_KEY && process.env.BROWSER_STACK_USERNAME
       ? ['bsChromeWindows', 'bsFirefoxWindows'] : ['Chrome'],
     singleRun: false
   });
