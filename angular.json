@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -83,6 +83,12 @@
               "src/favicon.ico",
               "src/assets"
             ]
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "codeCoverage": false
+            }
           }
         },
         "lint": {
@@ -119,6 +125,47 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "sbb-angular": {
+      "root": "projects/sbb-angular",
+      "sourceRoot": "projects/sbb-angular/src",
+      "projectType": "library",
+      "prefix": "sbb",
+      "targets": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-angular/tsconfig.lib.json",
+            "project": "projects/sbb-angular/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-angular/src/test.ts",
+            "tsConfig": "projects/sbb-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-angular/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "codeCoverage": true
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-angular/tsconfig.lib.json",
+              "projects/sbb-angular/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]

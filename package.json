@@ -5,9 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "test": "run-s test:*",
+    "test:showcase": "ng test sbb-angular-showcase -c ci",
+    "test:library": "ng test sbb-angular -c ci",
+    "lint": "runs-s lint:*",
+    "lint:showcase": "ng lint sbb-angular-showcase",
+    "lint:library": "ng lint sbb-angular",
+    "e2e": "ng e2e",
+    "sonar": "sonar-scanner"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +31,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0-rc.0",
+    "@angular-devkit/build-ng-packagr": "~0.8.0-rc.0",
     "@angular/cli": "~6.2.0-rc.1",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",
@@ -36,12 +42,18 @@
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
+    "karma-browserstack-launcher": "^1.3.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^4.1.0",
+    "npm-run-all": "^4.1.3",
     "protractor": "~5.4.0",
+    "sonar-scanner": "^3.1.0",
     "ts-node": "~7.0.0",
+    "tsickle": ">=0.29.0",
+    "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
   }

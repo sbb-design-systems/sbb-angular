@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "sbb-angular": [
+        "dist/sbb-angular"
+      ],
+      "sbb-angular/*": [
+        "dist/sbb-angular/*"
+      ]
+    }
   }
 }
