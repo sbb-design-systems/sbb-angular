@@ -1,5 +1,7 @@
 #!groovy
 
+String cron_string = BRANCH_NAME == 'develop' ? '@midnight' : ''
+
 pipeline {
   agent { label 'nodejs' }
   triggers { cron(cron_string) }
