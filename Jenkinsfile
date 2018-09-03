@@ -19,6 +19,7 @@ pipeline {
               passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
               usernameVariable: 'BROWSER_STACK_USERNAME')
           ]) {
+          sh 'npm die'
           sh 'npm install'
           sh 'npm test'
           sh 'npm run lint'
@@ -56,6 +57,24 @@ pipeline {
           sh 'npm install'
         }
       }
+    }
+  }
+
+  post {
+    regression {
+      emailext(
+        subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+          <p>See output in attachment.</p>""",
+        to: "lukas.spirig@sbb.ch")
+    }
+
+    fixed {
+      emailext(
+        subject: "FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+          <p>See output in attachment.</p>""",
+        to: "lukas.spirig@sbb.ch")
     }
   }
 }
