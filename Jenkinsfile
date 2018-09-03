@@ -66,7 +66,18 @@ pipeline {
         subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
+        attachLog: true,
         to: "lukas.spirig@sbb.ch")
+    }
+
+    failure {
+      emailext(
+        subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+          <p>See output in attachment.</p>""",
+        attachLog: true,
+        recipientProviders: 'culprits'
+      )
     }
 
     fixed {
@@ -74,6 +85,7 @@ pipeline {
         subject: "FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
+        attachLog: true,
         to: "lukas.spirig@sbb.ch")
     }
   }
