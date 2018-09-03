@@ -8,6 +8,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
@@ -28,21 +29,8 @@ module.exports = function (config) {
     autoWatch: true,
     customLaunchers: {
       // https://www.browserstack.com/automate/capabilities
-      bsChromeWindows: {
-        base: 'BrowserStack',
-        browser: 'Chrome',
-        os: 'Windows',
-        os_version: '10',
-      },
-      bsFirefoxWindows: {
-        base: 'BrowserStack',
-        browser: 'Firefox',
-        os: 'Windows',
-        os_version: '10',
-      },
     },
-    browsers: process.env.BROWSER_STACK_ACCESS_KEY && process.env.BROWSER_STACK_USERNAME
-      ? ['bsChromeWindows', 'bsFirefoxWindows'] : ['Chrome'],
+    browsers: process.env.BUILD_NUMBER ? ['ChromeHeadless', 'FirefoxHeadless'] : ['Chrome'],
     singleRun: false
   });
 };
