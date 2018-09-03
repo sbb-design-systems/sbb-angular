@@ -8,7 +8,7 @@
     "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
     "test:library": "ng test sbb-angular -c ci",
-    "lint": "runs-s lint:*",
+    "lint": "run-s lint:*",
     "lint:showcase": "ng lint sbb-angular-showcase",
     "lint:library": "ng lint sbb-angular",
     "e2e": "ng e2e",
