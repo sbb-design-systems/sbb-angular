@@ -19,7 +19,6 @@ pipeline {
               passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
               usernameVariable: 'BROWSER_STACK_USERNAME')
           ]) {
-          sh 'npm die'
           sh 'npm install'
           sh 'npm test'
           sh 'npm run lint'
