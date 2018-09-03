@@ -30,7 +30,7 @@ module.exports = function (config) {
     customLaunchers: {
       // https://www.browserstack.com/automate/capabilities
     },
-    browsers: process.env.BUILD_NUMBER ? ['FirefoxHeadless'] : ['Chrome'],
+    browsers: ['Chrome'],
     singleRun: false
   });
 };
