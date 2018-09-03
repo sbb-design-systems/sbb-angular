@@ -88,7 +88,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": false,
-              "browsers": ["FirefoxHeadless"]
+              "browsers": "FirefoxHeadless"
             }
           }
         },
@@ -157,7 +157,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": ["FirefoxHeadless"]
+              "browsers": "FirefoxHeadless"
             }
           }
         },
