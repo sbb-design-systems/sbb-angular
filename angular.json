@@ -87,7 +87,8 @@
           "configurations": {
             "ci": {
               "watch": false,
-              "codeCoverage": false
+              "codeCoverage": false,
+              "browsers": ["FirefoxHeadless"]
             }
           }
         },
@@ -155,7 +156,8 @@
           "configurations": {
             "ci": {
               "watch": false,
-              "codeCoverage": true
+              "codeCoverage": true,
+              "browsers": ["FirefoxHeadless"]
             }
           }
         },
