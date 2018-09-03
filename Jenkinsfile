@@ -61,22 +61,13 @@ pipeline {
   }
 
   post {
-    regression {
-      emailext(
-        subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-        body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-          <p>See output in attachment.</p>""",
-        attachLog: true,
-        to: "lukas.spirig@sbb.ch")
-    }
-
     failure {
       emailext(
         subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        recipientProviders: 'culprits'
+        to: "lukas.spirig@sbb.ch"
       )
     }
 
