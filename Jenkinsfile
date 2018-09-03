@@ -37,12 +37,9 @@ pipeline {
               passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
               usernameVariable: 'BROWSER_STACK_USERNAME')
           ]) {
-          withSonarQubeEnv('Sonar SBB CFF FFS AG') {
-            sh 'npm install'
-            sh 'npm test'
-            sh 'npm run lint'
-            sh 'npm run sonar'
-          }
+          sh 'npm install'
+          sh 'npm test'
+          sh 'npm run lint'
         }
       }
     }
@@ -66,8 +63,7 @@ pipeline {
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch"
-      )
+        to: "lukas.spirig@sbb.ch")
     }
 
     fixed {
