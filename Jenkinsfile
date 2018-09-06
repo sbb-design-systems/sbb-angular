@@ -72,7 +72,7 @@ pipeline {
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
     }
   }
 }
