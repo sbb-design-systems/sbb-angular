@@ -1,0 +1,35 @@
+.header a .m {
+    font-weight: 700;
+    color: #606060;
+}
+
+.header a .w {
+    font-weight: 400;
+    color: #A7A7A7;
+}
+
+.header a .a {
+    font-weight: 700;
+    color: #444;
+}
+
+.navlist li {
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+ul.navlist {
+    list-style: none;
+    margin: 40px 0 40px 0;
+    padding-left: 0;
+}
+
+.navlist a, .navlist a:visited {
+    color: #444;
+}
+
+h3.navtitle {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 40px 0 10px 0;
+}

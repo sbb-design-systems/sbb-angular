@@ -1,4 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<!--
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -17,5 +18,160 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+-->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 bd-sidebar">
+      <div class="header">
+        <a href="/">
+          <span class="m">made</span>
+          <span class="w">with</span>
+          <span class="a">angular</span>
+        </a>
+      </div>
+      <ul class="navlist">
+          <li>
+              <a target="_blank" rel="noopener" href="https://angular.io/tutorial">About</a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">SBB CFF FFS</a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener" href="https://blog.angular.io/">FINCONS GROUP AG</a>
+            </li>
+      </ul>
+      <h3 class="navtitle">Version</h3>
+      <ul class="navlist">
+        <li>
+            <a target="_blank" rel="noopener" href="https://angular.io/tutorial">Angular</a>
+        </li>
+      </ul>
+      <h3 class="navtitle">Category</h3>
+      <ul class="navlist">
+          <li>
+              <a target="_blank" rel="noopener" href="https://angular.io/tutorial">Button</a>
+          </li>
+          <li>
+              <a target="_blank" rel="noopener" href="https://angular.io/tutorial">Icons</a>
+          </li>
+        </ul>
+    </div>
+   
+    <div class="col-lg-9 main">
+      <div class="category">
+        <div class="heading">
+          <h2>Button</h2>
+        </div>
+        <div class="components row">
+          <div class="col-lg-12">
+              <div class="card">
+                <h3>Button is an extension to standard input element with icons and theming.</h3>
+               
+                  <h3>Button Component</h3>
+                  <h3>Button Directive</h3>
+                
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!--
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Navbar</a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->
+
+<!--
+<div class="ui sidebar inverted vertical menu" [class.visible]="mobileLayout && showSidebar">
+  <a class="item" (click)="toggleSidebar()">
+    Sidebar schließen <i class="angle double left icon"></i>
+  </a>
+  <a class="item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  (click)="toggleSidebar()">
+    <i class="home icon"></i> Home
+  </a>
+  <a class="item" routerLink="/iteration-1" routerLinkActive="active" (click)="toggleSidebar()">
+    I - Komponenten &amp; Template Syntax <i class="angle right icon"></i>
+  </a>
+  <a class="item" routerLink="/iteration-2" routerLinkActive="active" (click)="toggleSidebar()">
+    II - Services &amp; Routing <i class="angle right icon"></i>
+  </a>
+  <a class="item" routerLink="/iteration-3" routerLinkActive="active" (click)="toggleSidebar()">
+    III - HTTP <i class="angle right icon"></i>
+  </a>
+  <a class="item" routerLink="/iteration-4" routerLinkActive="active" (click)="toggleSidebar()">
+    IV - Formularverarbeitung &amp; Validierung <i class="angle right icon"></i>
+  </a>
+  <a class="item" routerLink="/iteration-5" routerLinkActive="active" (click)="toggleSidebar()">
+    V - Pipes &amp; Direktiven <i class="angle right icon"></i>
+  </a>
+  <a class="item" routerLink="/iteration-6" routerLinkActive="active" (click)="toggleSidebar()">
+    VI - Module &amp; forgeschrittenes Routing <i class="angle right icon"></i>
+  </a>
+  <a class="item" routerLink="/iteration-7" routerLinkActive="active" (click)="toggleSidebar()">
+    VII - Internationalisierung (i18n) <i class="angle right icon"></i>
+  </a>
+</div>
+-->
+
+<!--
+<div class="pusher dimmed">
+
+  <div class="ui top fixed inverted pointing menu let-space-for-mobile-top-menu" *ngIf="mobileLayout">
+    <a class="toc item" (click)="toggleSidebar()">
+      <i class="sidebar icon"></i> Hauptmenü
+    </a>
+  </div>
+  
+  <div class="let-space-for-footer">
+    <div class="ui eight steps" *ngIf="!mobileLayout">
+      <a routerLink="/iteration-1" routerLinkActive="active" class="step">
+          <div class="content">
+            <div class="title">Inputs</div>
+            <div class="description">Inputfields</div>
+          </div>
+      </a>
+      <a routerLink="/iteration-1" routerLinkActive="active" class="step">
+        <div class="content">
+          <div class="title">List</div>
+          <div class="description">Listbox</div>
+        </div>
+      </a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+-->
 
 <router-outlet></router-outlet>
