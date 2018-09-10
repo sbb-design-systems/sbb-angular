@@ -4,5 +4,12 @@
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "scripts": {
+    "build-icons": "node scripts/create-svg-icons-components.ts"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.10",
+    "svgo": "^1.0.5"
   }
 }
