@@ -40,4 +40,3 @@ Thumbs.db
 
 # Projects node_modules
 /projects/sbb-angular/node_modules
-/projects/sbb-angular/src/lib/svg-icons-components
