@@ -12,7 +12,8 @@ function createSvgIconsComponent(fileName) {
   const normalizedIconName = normalizeIconNames(fileName.substr(fileName.lastIndexOf('/') + 1));
   const iconSelector = iconSelectorPrefix + normalizedIconName;
   return normalizeSvg(svgIcon).then((optimizedSVG) => {
-    const iconComponentName = 'Icon' + _.capitalize(normalizedIconName) + 'Component';
+    const iconComponentName = 'Icon' + _.capitalize(_.camelCase(normalizedIconName)) + 'Component';
+    console.log(iconComponentName);
     const svgComponent = iconAngularTemplate.getTemplate(iconSelector, optimizedSVG.data, iconComponentName);
     const iconObject = {
       file: svgComponent,
@@ -25,9 +26,7 @@ function createSvgIconsComponent(fileName) {
 function buildIconsLibrary(baseDir, outputPath) {
 
   const files = fs.readdirSync(baseDir);
-  console.log(baseDir, files);
   files.forEach(file => {
-    console.log(file);
     const stats = fs.statSync(baseDir + '/' + file);
     if (stats.isFile()) {
       createSvgIconsComponent(baseDir + '/' + file).then((iconObject) => {
@@ -44,12 +43,13 @@ function buildIconsLibrary(baseDir, outputPath) {
 }
 
 function normalizeIconNames(svgPathWithUnderscores) {
-  return svgPathWithUnderscores
+  const stdIconName = svgPathWithUnderscores
     .substring(svgPathWithUnderscores.lastIndexOf('_') + 1, svgPathWithUnderscores.length - 4)
     .replace(new RegExp('_', 'g'), '-')
     .replace(new RegExp('[0-9]-.*-[0-9]', 'g'), function (a, b, c, d) {
       return '-' + c + '-' + d;
     });
+  return stdIconName;
 }
 
 function normalizeSvg(svgIconSource) {

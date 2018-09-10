@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
           template: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>',
           styles: []
         })
-        export class IconMobile-tabletComponent {
+        export class IconMobiletabletComponent {
           constructor() { }
           // tslint:disable-next-line:eofline
         }
