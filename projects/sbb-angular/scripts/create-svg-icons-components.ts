@@ -9,7 +9,7 @@ const iconSelectorPrefix = 'sbb-icon-';
 function createSvgIconsComponent(fileName) {
   const svgIcon = fs.readFileSync(fileName, 'utf8');
   const normalizedIconName = normalizeIconNames(fileName.substr(fileName.lastIndexOf('/') + 1));
-  const iconSelector = iconSelectorPrefix + normalizedIconName;
+  const iconSelector = iconSelectorPrefix + normalizedIconName.toLowerCase();
   return normalizeSvg(svgIcon).then((optimizedSVG) => {
     const iconComponentName = 'Icon' + _.upperFirst(_.camelCase(normalizedIconName)) + 'Component';
     const svgComponent = iconAngularTemplate.getTemplate(iconSelector, optimizedSVG.data, iconComponentName);
