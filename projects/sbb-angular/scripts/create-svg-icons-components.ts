@@ -7,13 +7,11 @@ const baseOutputPath = 'src/lib/svg-icons-components';
 const iconSelectorPrefix = 'sbb-icon-';
 
 function createSvgIconsComponent(fileName) {
-
   const svgIcon = fs.readFileSync(fileName, 'utf8');
   const normalizedIconName = normalizeIconNames(fileName.substr(fileName.lastIndexOf('/') + 1));
   const iconSelector = iconSelectorPrefix + normalizedIconName;
   return normalizeSvg(svgIcon).then((optimizedSVG) => {
-    const iconComponentName = 'Icon' + _.capitalize(_.camelCase(normalizedIconName)) + 'Component';
-    console.log(iconComponentName);
+    const iconComponentName = 'Icon' + _.upperFirst(_.camelCase(normalizedIconName)) + 'Component';
     const svgComponent = iconAngularTemplate.getTemplate(iconSelector, optimizedSVG.data, iconComponentName);
     const iconObject = {
       file: svgComponent,
@@ -23,8 +21,29 @@ function createSvgIconsComponent(fileName) {
   });
 }
 
-function buildIconsLibrary(baseDir, outputPath) {
+function normalizeIconNames(svgPathWithUnderscores) {
+  const stdIconName = svgPathWithUnderscores
+    // removes ".svg" extension
+    .substring(0, svgPathWithUnderscores.length - 4)
+    .replace(new RegExp('SBB_'), '')
+    .replace(new RegExp('(XX_|[0-9]+_[0-9]+_|[0-9]+_)'), '')
+    .replace(new RegExp('_', 'g'), '-');
+  return stdIconName;
+}
 
+function normalizeSvg(svgIconSource) {
+  return svgoConfiguration.svgo.optimize(svgIconSource);
+}
+
+function writeComponentOnFile(outputPath, iconObject) {
+  fs.writeFileSync(outputPath + '/' + iconObject.fileName, iconObject.file);
+}
+
+function findSecondIndex(svgPathWithUnderscores) {
+  return svgPathWithUnderscores.indexOf('_', (svgPathWithUnderscores.indexOf('_') + 1));
+}
+
+function buildIconsLibrary(baseDir, outputPath) {
   const files = fs.readdirSync(baseDir);
   files.forEach(file => {
     const stats = fs.statSync(baseDir + '/' + file);
@@ -40,24 +59,6 @@ function buildIconsLibrary(baseDir, outputPath) {
     }
   });
 
-}
-
-function normalizeIconNames(svgPathWithUnderscores) {
-  const stdIconName = svgPathWithUnderscores
-    .substring(svgPathWithUnderscores.lastIndexOf('_') + 1, svgPathWithUnderscores.length - 4)
-    .replace(new RegExp('_', 'g'), '-')
-    .replace(new RegExp('[0-9]-.*-[0-9]', 'g'), function (a, b, c, d) {
-      return '-' + c + '-' + d;
-    });
-  return stdIconName;
-}
-
-function normalizeSvg(svgIconSource) {
-  return svgoConfiguration.svgo.optimize(svgIconSource);
-}
-
-function writeComponentOnFile(outputPath, iconObject) {
-  fs.writeFileSync(outputPath + '/' + iconObject.fileName, iconObject.file);
 }
 
 buildIconsLibrary(path, baseOutputPath);
