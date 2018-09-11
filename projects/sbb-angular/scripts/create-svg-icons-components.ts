@@ -44,7 +44,7 @@ function normaliseIconNames(svgPathWithUnderscores) {
 
 /**
  * Normalizes SVG mark-up, optimizing the content for cross-browser compatibility.
- * "svgo" library is used for the scope with configured options findable in svgo-configuration.ts
+ * [svgo](https://github.com/svg/svgo) library is used for the scope with configured options findable in svgo-configuration.ts
  * @param svgIconSource Source SVG mark-up
  * @return normalized SVG mark-up
  **/
