@@ -2,9 +2,7 @@ const fs = require('fs');
 const _ = require('lodash');
 const iconAngularTemplate = require('./component-template.ts');
 const svgoConfiguration = require('./svgo-configuration.ts');
-const path = 'svgs';
-const baseOutputPath = 'src/lib/svg-icons-components';
-const iconSelectorPrefix = 'sbb-icon-';
+
 
 /**
  * Creates a normalized SVG Icon Angular Component starting from a SVG file.
@@ -15,7 +13,7 @@ const iconSelectorPrefix = 'sbb-icon-';
 function createSvgIconsComponent(fileName) {
   const svgIcon = fs.readFileSync(fileName, 'utf8');
   const normalizedIconName = normaliseIconNames(fileName.substr(fileName.lastIndexOf('/') + 1));
-  const iconSelector = iconSelectorPrefix + normalizedIconName.toLowerCase();
+  const iconSelector = scriptConfiguration.iconSelectorPrefix + normalizedIconName.toLowerCase();
   return normaliseSvg(svgIcon).then((optimizedSVG) => {
     const iconComponentName = 'Icon' + _.upperFirst(_.camelCase(normalizedIconName)) + 'Component';
     const svgComponent = iconAngularTemplate.getTemplate(iconSelector, optimizedSVG.data, iconComponentName);
@@ -84,4 +82,32 @@ function buildIconsLibrary(baseDir, outputPath) {
 
 }
 
-buildIconsLibrary(path, baseOutputPath);
+const scriptConfiguration = {
+  path: 'svgs',
+  baseOutputPath: 'src/lib/svg-icons-components',
+  iconSelectorPrefix: 'sbb-icon-',
+};
+
+function init() {
+  process.argv.forEach(function (val, index, array) {
+    if (val) {
+      switch (val.split[0]) {
+        case 'svgPath':
+          scriptConfiguration.path = !!val.split[1] ? val.split[1] : scriptConfiguration.path;
+          break;
+        case 'outputPath':
+          scriptConfiguration.baseOutputPath = !!val.split[1] ? val.split[1] : scriptConfiguration.baseOutputPath;
+          break;
+        case 'iconSelectorPrefix':
+          scriptConfiguration.iconSelectorPrefix = !!val.split[1] ? val.split[1] : scriptConfiguration.iconSelectorPrefix;
+          break;
+        default:
+          break;
+      }
+    }
+  });
+  buildIconsLibrary(scriptConfiguration.path, scriptConfiguration.baseOutputPath);
+}
+
+init();
+
