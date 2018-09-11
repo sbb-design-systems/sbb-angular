@@ -3,6 +3,11 @@ const _ = require('lodash');
 const iconAngularTemplate = require('./component-template.ts');
 const svgoConfiguration = require('./svgo-configuration.ts');
 
+const scriptConfiguration = {
+  path: 'svgs',
+  baseOutputPath: 'src/lib/svg-icons-components',
+  iconSelectorPrefix: 'sbb-icon-',
+};
 
 /**
  * Creates a normalized SVG Icon Angular Component starting from a SVG file.
@@ -82,27 +87,40 @@ function buildIconsLibrary(baseDir, outputPath) {
 
 }
 
-const scriptConfiguration = {
-  path: 'svgs',
-  baseOutputPath: 'src/lib/svg-icons-components',
-  iconSelectorPrefix: 'sbb-icon-',
-};
+
+function checkArgAllowed(actualArg) {
+  const paramKeys = Object.keys(scriptConfiguration);
+  console.log(paramKeys);
+  if (paramKeys.indexOf(actualArg) < 0) {
+    const errorString = actualArg + ' argument is not allowed. Supported list is: ' + paramKeys;
+    throw new Error(errorString);
+  }
+}
 
 function init() {
   process.argv.forEach(function (val, index, array) {
-    if (val) {
-      switch (val.split[0]) {
-        case 'svgPath':
-          scriptConfiguration.path = !!val.split[1] ? val.split[1] : scriptConfiguration.path;
-          break;
-        case 'outputPath':
-          scriptConfiguration.baseOutputPath = !!val.split[1] ? val.split[1] : scriptConfiguration.baseOutputPath;
-          break;
-        case 'iconSelectorPrefix':
-          scriptConfiguration.iconSelectorPrefix = !!val.split[1] ? val.split[1] : scriptConfiguration.iconSelectorPrefix;
-          break;
-        default:
-          break;
+    console.log(val);
+    if (val && !!val.split('=')[1]) {
+      const paramKey = val.split('=')[0];
+      console.log(paramKey);
+      try {
+        checkArgAllowed(paramKey);
+        const paramValue = val.split('=')[1];
+        switch (paramKey) {
+          case 'svgPath':
+            scriptConfiguration.path = paramValue;
+            break;
+          case 'outputPath':
+            scriptConfiguration.baseOutputPath = paramValue;
+            break;
+          case 'iconSelectorPrefix':
+            scriptConfiguration.iconSelectorPrefix = paramValue;
+            break;
+          default:
+            break;
+        }
+      } catch (e) {
+        console.error(e);
       }
     }
   });
