@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'sbb-icon-product-ic-4',
   // tslint:disable-next-line:max-line-length
-  template: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296 100"><path d="M224.4 56v9.8h-7.3V79h-11.3V65.8h-24.1V55l24.7-33.8h10.7V56h7.3zm-18.3.1V34.6l-14.9 21.5h14.9zM46.3 21h20.3L41.4 79H21zM80 21h72.2l-7.5 17.2H93.2L82.9 61.8h51.6L127.1 79H54.8L80 21z"/></svg>',
+  template: '<svg [class]="svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59 20"><path d="M44.886 11.204v1.954h-1.455V15.8h-2.254v-2.642H36.35v-2.167l4.944-6.756h2.136v6.97h1.455zm-3.662.024V6.925l-2.974 4.303h2.974zM9.252 4.2h4.07L8.287 15.8H4.2zM16.002 4.2h14.444L28.95 7.645H18.635l-2.048 4.71h10.32L25.412 15.8H10.968l5.034-11.6z"/></svg>',
   styles: []
 })
 export class IconProductIc4Component {
   constructor() { }
+
+  @Input() svgClass = '';
 }

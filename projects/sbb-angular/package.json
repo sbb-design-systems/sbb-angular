@@ -6,7 +6,7 @@
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
   },
   "scripts": {
-    "build-icons": "node scripts/create-svg-icons-components.ts"
+    "build-icons": "node scripts/create-svg-icons-components.js"
   },
   "devDependencies": {
     "lodash": "^4.17.10",
