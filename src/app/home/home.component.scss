@@ -56,4 +56,6 @@
  .ghost-button:hover, .ghost-button:active {
     color:white;
     background:#1b81d7;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 2px solid rgba(81, 203, 238, 1);
  }
