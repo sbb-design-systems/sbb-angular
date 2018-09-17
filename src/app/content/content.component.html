@@ -1,8 +1,13 @@
 <!-- 1) Introduction -->
 <div class="content-section introduction">
-  <div>
-    <span class="feature-title">{{ uiComponent.title }}</span>
-    <span>{{ uiComponent.subTitle }}</span>
+  <div class="row">
+    <div class="col-10">
+      <span class="feature-title">{{ uiComponent.title }}</span>
+      <span>{{ uiComponent.subTitle }}</span>
+    </div>
+    <div class="col-2 center text-right">
+      <a class="ghost-button" href="javascript:void(0);" style="text-decoration: none; position: absolute; left: 70px; top: 17px;" (click)="navigateHome();">Home</a>
+    </div>
   </div>
 </div>
 
@@ -24,9 +29,7 @@
       <h4>{{ uiComponent.title }} Directive</h4>
       <table class="code table">
         <tbody>
-          <tr>
-            <td><i class="fa fa-file-code-o" aria-hidden="true"></i> Directive goes here ...</td>
-          </tr>
+          <tr><td><i class="fa fa-file-code-o" aria-hidden="true"></i> Directive goes here ...</td></tr>
         </tbody>
       </table>
     </div>

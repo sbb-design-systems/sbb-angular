@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ComponentUiService } from '../services/component-ui.service';
 import { UiComponent } from '../shared/ui-component';
 
@@ -26,7 +26,7 @@ export class ContentComponent implements OnInit {
   codeStyling        = `showCode() {\n //write it out ...\n alert('Styling code goes here ...');\n}`;
   codeDependencies   = `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`;
   
-  constructor(private componentUiService: ComponentUiService, private route: ActivatedRoute) { }
+  constructor(private componentUiService: ComponentUiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -35,6 +35,11 @@ export class ContentComponent implements OnInit {
     this.uiComponent = this.componentUiService.getUiComponentByRouterLink(this.id);
     // write it out ...
     console.log('ui component', this.uiComponent);
+  }
+
+  navigateHome() {
+    // navigate to clicked component ...
+    this.router.navigate(['']);
   }
 
 }

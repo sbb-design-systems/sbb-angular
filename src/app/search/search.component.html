@@ -14,8 +14,11 @@
 -->
 <div class="result" *ngIf="foundUiComponents.length > 0">
   <div *ngFor="let uiComponent of foundUiComponents">
-    <a [routerLink]="['/content/' + uiComponent['routerLink']]" class="result" (click)="reference.value='';navigate('/content/' + uiComponent['routerLink']);">
-      <div class="title">
+    <a [routerLink]="['/content/' + uiComponent['routerLink']]"
+        class="ghost-button"
+        style="text-decoration: none; width: 100%;"
+        (click)="reference.value='';navigate('/content/' + uiComponent['routerLink']);">
+      <div>
          {{ uiComponent['id'] }}
       </div>
       <span style="font-size: 11px;">{{ uiComponent['subTitle'] }}</span>
@@ -33,5 +36,5 @@
     </a>
     <br/>
  </div>
- <span style="font-size: 13px;">Found {{ foundUiComponents.length }} Component(s).</span>
+ <span style="font-size: 13px; color:#1b81d7;">Found {{ foundUiComponents.length }} Component(s).</span>
 </div>

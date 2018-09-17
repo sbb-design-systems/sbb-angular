@@ -14,7 +14,7 @@
 }
 
 .implementation {
-    background-color: #fff;
+    background-color: white;
     overflow: visible;
 }
 
@@ -29,7 +29,7 @@
     border-bottom: 1px solid #dde3e6;
     padding: 30px;
     overflow: hidden;
-    background-color: #f5f7f8;
+    background-color: white;
 }
 
 .content-section.introduction {
@@ -61,7 +61,7 @@
 
 .nav-link.active {
     color: black;
-    background-color: #f3f5f6;
+    background-color: white;
 }
 
 .nav-tabs {
@@ -111,7 +111,7 @@
 }
 
 .card {
-    background-color: #f4f6f7;
+    background-color: white;
 }
 
 #headingImport {
@@ -149,3 +149,23 @@
 #headingDependencies {
     background-image: linear-gradient(to left,#2bc0ec,#1b81d7);
 }
+
+.ghost-button {
+    color: #1b81d7;
+    background: white;
+    border: 2px solid #1b81d7;
+    font-size: 17px;
+    padding: 7px 10px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    /*min-width: 120px;*/ 
+ }
+
+ .ghost-button:hover, .ghost-button:active {
+    color:white;
+    background:#1b81d7;
+ }

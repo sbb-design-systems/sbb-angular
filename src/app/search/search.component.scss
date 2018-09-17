@@ -28,7 +28,7 @@
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 1em;
-    color: rgba(0, 0, 0, 0.85);
+    color: #1b81d7;
 }
 
 .result {
@@ -37,16 +37,38 @@
     overflow: hidden;
     font-size: 1em;
     padding: 0.85714286em 1.14285714em;
-    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
     line-height: 1.33;
-    border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+    border-bottom: 1px solid #1b81d7;
     border-radius: 0.28571429rem;
-    box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
-    border: 1px solid #D4D4D5;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid #1b81d7;
+    /*background-image: linear-gradient(to left,#2bc0ec,#1b81d7);*/ 
     z-index: 998;
 }
 
 input[type=text]:focus, textarea:focus {
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-    border: 2px solid rgba(81, 203, 238, 1);
-  }
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.ghost-button {
+    display: block;
+    color: #1b81d7;
+    background: white;
+    border: 2px solid #1b81d7;
+    font-size: 17px;
+    padding: 7px 12px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    /*min-width: 120px;*/ 
+ }
+
+ .ghost-button:hover, .ghost-button:active {
+    color:white;
+    background:#1b81d7;
+ }

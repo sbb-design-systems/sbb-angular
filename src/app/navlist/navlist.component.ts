@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentUiService } from '../services/component-ui.service';
 import { UiComponent } from '../shared/ui-component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sbb-navlist',
@@ -12,7 +12,7 @@ export class NavlistComponent implements OnInit {
 
   foundUiComponents: UiComponent[] = [];
 
-  constructor(private componentUiService: ComponentUiService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private componentUiService: ComponentUiService, private router: Router) {}
 
   ngOnInit() {
     this.foundUiComponents = this.componentUiService.getAll();
@@ -23,7 +23,7 @@ export class NavlistComponent implements OnInit {
   navigate(path : any) {
     // write it out ...
     console.log(path);
-    // navigate to button ...
+    // navigate to clicked component ...
     this.router.navigate(path);
   }
 }

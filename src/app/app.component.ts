@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
 
   sizeOfUiComponents = 0;
 
-  componentsClicked:boolean = true;
-  iconsClicked: boolean = false;
+  componentsClicked = true;
+  iconsClicked = false;
 
   constructor(private componentUiService : ComponentUiService, private accordionNotificationService : AccordionNotificationService) {
   }
@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
     console.log('Size of UI Component', this.sizeOfUiComponents);
 
     this.accordionNotificationService.openComponent.subscribe(value => {
-          this.componentsClicked = value;
+          this.componentsClicked = !this.componentsClicked;
     });
 
     this.accordionNotificationService.openIcon.subscribe(value => {
-      this.iconsClicked = value;
+      this.iconsClicked = !this.iconsClicked;
     });
   }
 }

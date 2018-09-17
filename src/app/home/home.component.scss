@@ -3,12 +3,12 @@
     border-bottom: 1px solid #dde3e6;
     padding: 30px;
     overflow: hidden;
-    background-color: #f5f7f8;
+    background-color: white;
 }
 
 .content-section.introduction {
     background-image: linear-gradient(to left,#2bc0ec,#1b81d7);
-    color: #fff;
+    color: white;
 }
 
 .feature-title {
@@ -19,7 +19,7 @@
 
 .implementation {
     background-image: url('/assets/favicons/sbb.jpg');
-    background-color: #f5f7f8;
+    background-color: white;
     overflow: visible;
 }
 
@@ -40,10 +40,10 @@
 
 .ghost-button {
     color: #1b81d7;
-    background: #fff;
-    border: 1px solid #1b81d7;
-    font-size: 17px;
-    padding: 7px 12px;
+    background: white;
+    border: 2px solid #1b81d7;
+    font-size: 21px;
+    padding: 7px 20px;
     font-weight: normal;
     margin: 6px 0;
     margin-right: 12px;
@@ -51,9 +51,9 @@
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
     min-width: 120px;
-   }
+ }
 
-   .ghost-button:hover, .ghost-button:active {
-    color:#fff;
+ .ghost-button:hover, .ghost-button:active {
+    color:white;
     background:#1b81d7;
-   }
+ }
