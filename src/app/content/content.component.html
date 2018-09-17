@@ -1,0 +1,286 @@
+<!-- 1) Introduction -->
+<div class="content-section introduction">
+  <div>
+    <span class="feature-title">{{ uiComponent.title }}</span>
+    <span>{{ uiComponent.subTitle }}</span>
+  </div>
+</div>
+
+<!-- 2) Implementation -->
+<div class="content-section implementation">
+  <div class="result" *ngIf="uiComponent.isComponent">
+      <h4>{{ uiComponent.title }} Component</h4>
+      <table class="code table">
+        <tbody>
+          <tr>
+            <td><i class="fa fa-file-code-o" aria-hidden="true"></i> Component goes here ...</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <div *ngIf="uiComponent.isDirective">
+    <hr/>
+    <div class="result">
+      <h4>{{ uiComponent.title }} Directive</h4>
+      <table class="code table">
+        <tbody>
+          <tr>
+            <td><i class="fa fa-file-code-o" aria-hidden="true"></i> Directive goes here ...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 3) Documentation -->
+<div class="content-section documentation">
+  <div class="result">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a [ngClass]="condition ? 'nav-link active' : 'nav-link'"
+           id="doc-tab" 
+           data-toggle="tab" 
+           href="javascript:void(0);" 
+           role="tab" 
+           aria-controls="doc" 
+           aria-selected="true"
+           (click)="condition=!condition;">Documentation</a>
+      </li>
+      <li class="nav-item">
+        <a [ngClass]="condition ? 'nav-link' : 'nav-link active'"
+           id="source-tab" 
+           data-toggle="tab" 
+           href="javascript:void(0);" 
+           role="tab" 
+           aria-controls="source" 
+           aria-selected="false"
+           (click)="condition=!condition;">Source</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div [ngClass]="condition ? 'tab-pane fade show active' : 'tab-pane fade'" 
+            id="doc" 
+            role="tabpanel" 
+            aria-labelledby="doc-tab"
+            *ngIf="condition">
+        <div class="col-lg-12">  
+          <div class="highlight">
+
+            <div id="accordion">
+              <div class="card">
+                <div id="headingImport" (click)="importClicked=!importClicked;">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#import" aria-expanded="importClicked" aria-controls="import">
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <i [ngClass]="importClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm-6" style="font-weight: 500;">
+                        Import
+                      </div> 
+                    </div>
+                  </button>
+                </div>
+                <div id="import" [ngClass]="importClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingImport" data-parent="#accordion">
+                  <div class="card-body">
+                    <p class="text-left">{{ uiComponent.importText }}</p>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeImport"></ngx-monaco-editor>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                  <div id="headingGettingStarted" (click)="gettingStartedClicked=!gettingStartedClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#gettingStarted" aria-expanded="gettingStartedClicked" aria-controls="gettingStarted">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="gettingStartedClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Getting Started
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="gettingStarted" [ngClass]="gettingStartedClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingGettingStarted" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.gettingStartedText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeGettingStarted"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingModelBinding" (click)="modelBindingClicked=!modelBindingClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#modelBinding" aria-expanded="modelBindingClicked" aria-controls="modelBinding">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="modelBindingClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Model Binding
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="modelBinding" [ngClass]="modelBindingClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingModelBinding" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.modelBindingText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeModelBinding"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingIcons" (click)="iconsClicked=!iconsClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#icons" aria-expanded="iconsClicked" aria-controls="icons">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="iconsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Icons
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="icons" [ngClass]="iconsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingIcons" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.iconsText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeIcons"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingAutoResize" (click)="autoResizeClicked=!autoResizeClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#autoResize" aria-expanded="iconsClicked" aria-controls="autoResize">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="autoResizeClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Auto Resize
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="autoResize" [ngClass]="autoResizeClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingAutoResize" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.autoResizeText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeAutoResize"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingProperties" (click)="propertiesClicked=!propertiesClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#properties" aria-expanded="propertiesClicked" aria-controls="properties">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="propertiesClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Properties
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="properties" [ngClass]="propertiesClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingProperties" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.propertiesText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeProperties"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingEvents" (click)="eventsClicked=!eventsClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#events" aria-expanded="eventsClicked" aria-controls="events">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="eventsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Events
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="events" [ngClass]="eventsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingEvents" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.eventsText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeEvents"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingStyling" (click)="stylingClicked=!stylingClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#styling" aria-expanded="stylingClicked" aria-controls="styling">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="stylingClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Styling
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="styling" [ngClass]="stylingClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingStyling" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.stylingText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeStyling"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div id="headingDependencies" (click)="dependenciesClicked=!dependenciesClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#dependencies" aria-expanded="dependenciesClicked" aria-controls="dependencies">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i [ngClass]="dependenciesClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                          Dependencies
+                        </div> 
+                      </div>
+                    </button>
+                  </div>
+                  <div id="dependencies" [ngClass]="dependenciesClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingDependencies" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="text-left">{{ uiComponent.dependenciesText }}</p>
+                      <ngx-monaco-editor [options]="options" [(ngModel)]="codeDependencies"></ngx-monaco-editor>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="condition ? 'tab-pane fade' : 'tab-pane fade show active'" 
+          id="source" 
+          role="tabpanel" 
+          aria-labelledby="source-tab"
+          *ngIf="!condition">
+          <div class="col-lg-12">
+            <div class="highlight">
+              <ngx-monaco-editor [options]="options" [(ngModel)]="codeSource"></ngx-monaco-editor>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4) Footer -->
+<div class="content-section layout-footer">
+  <div class="container text-center">
+    <span class="center">&#169; 2018 Fincons Group AG</span>
+    <div class="footer-links">
+      <a href="https://github.com/">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a href="https://twitter.com/">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+      </a>
+      <a href="https://slack.com/">
+        <i class="fa fa-slack" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div>

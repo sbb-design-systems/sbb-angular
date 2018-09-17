@@ -1,0 +1,37 @@
+<section id="search">
+    <label for="search-input">
+       <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 35px; top: 87px; color: grey;"></i>
+    </label>
+    <input id="search-input" 
+           class="form-control" 
+           type="text" 
+           (input)="onSearchChange($event.target.value)"
+           placeholder="Search components ..."
+           #reference>
+</section>
+<!-- 
+{{ foundUiComponents | json }}
+-->
+<div class="result" *ngIf="foundUiComponents.length > 0">
+  <div *ngFor="let uiComponent of foundUiComponents">
+    <a [routerLink]="['/content/' + uiComponent['routerLink']]" class="result" (click)="reference.value='';navigate('/content/' + uiComponent['routerLink']);">
+      <div class="title">
+         {{ uiComponent['id'] }}
+      </div>
+      <span style="font-size: 11px;">{{ uiComponent['subTitle'] }}</span>
+      <hr/> 
+      <span style="font-size: 11px;">
+        <div class="row">
+          <div class="col-sm-12">
+            <i [ngClass]="uiComponent['isComponent'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Component
+            <div style="float: right;">
+              <i [ngClass]="uiComponent['isDirective'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Directive
+            </div>  
+          </div>
+        </div>
+      </span>
+    </a>
+    <br/>
+ </div>
+ <span style="font-size: 13px;">Found {{ foundUiComponents.length }} Component(s).</span>
+</div>

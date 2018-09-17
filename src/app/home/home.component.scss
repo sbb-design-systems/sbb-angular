@@ -1,0 +1,59 @@
+.content-section {
+    display: block;
+    border-bottom: 1px solid #dde3e6;
+    padding: 30px;
+    overflow: hidden;
+    background-color: #f5f7f8;
+}
+
+.content-section.introduction {
+    background-image: linear-gradient(to left,#2bc0ec,#1b81d7);
+    color: #fff;
+}
+
+.feature-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.implementation {
+    background-image: url('/assets/favicons/sbb.jpg');
+    background-color: #f5f7f8;
+    overflow: visible;
+}
+
+.layout-footer {
+    color: #000;
+    font-weight: 400;
+}
+
+.footer-links {
+    float: right;
+    font-size: 24px;
+}
+
+.layout-footer .footer-links a {
+    color: #000;
+    margin-left: 16px;
+}
+
+.ghost-button {
+    color: #1b81d7;
+    background: #fff;
+    border: 1px solid #1b81d7;
+    font-size: 17px;
+    padding: 7px 12px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    min-width: 120px;
+   }
+
+   .ghost-button:hover, .ghost-button:active {
+    color:#fff;
+    background:#1b81d7;
+   }

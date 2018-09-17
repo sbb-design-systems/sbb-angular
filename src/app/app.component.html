@@ -1,177 +1,175 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<!--
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
--->
-
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-3 bd-sidebar">
+    <div class="col-lg-3 content-section left">
+
+      <div class="result">
+
+      <!--  
       <div class="header">
-        <a href="/">
-          <span class="m">made</span>
-          <span class="w">with</span>
-          <span class="a">angular</span>
+        <a href="javascript:void(0);" style="text-decoration: none;">
+          <span class="m">SBB</span>
+          <span class="w">Angular</span>
+          <span class="a">Component</span>
+          <span class="w">Library</span>
+        </a>
+        <br/>
+        <a href="javascript:void(0);" style="text-decoration: none;">
+          <span class="m">Made</span>
+          <span class="w">With</span>
+          <span class="a">Angular</span>
         </a>
       </div>
-      <ul class="navlist">
-          <li>
-              <a target="_blank" rel="noopener" href="https://angular.io/tutorial">About</a>
-            </li>
-            <li>
-              <a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">SBB CFF FFS</a>
-            </li>
-            <li>
-              <a target="_blank" rel="noopener" href="https://blog.angular.io/">FINCONS GROUP AG</a>
-            </li>
-      </ul>
-      <h3 class="navtitle">Version</h3>
-      <ul class="navlist">
-        <li>
-            <a target="_blank" rel="noopener" href="https://angular.io/tutorial">Angular</a>
-        </li>
-      </ul>
-      <h3 class="navtitle">Category</h3>
-      <ul class="navlist">
-          <li>
-              <a target="_blank" rel="noopener" href="https://angular.io/tutorial">Button</a>
-          </li>
-          <li>
-              <a target="_blank" rel="noopener" href="https://angular.io/tutorial">Icons</a>
-          </li>
-        </ul>
-    </div>
-   
-    <div class="col-lg-9 main">
-      <div class="category">
-        <div class="heading">
-          <h2>Button</h2>
-        </div>
-        <div class="components row">
-          <div class="col-lg-12">
-              <div class="card">
-                <h3>Button is an extension to standard input element with icons and theming.</h3>
+
+      <br/>
+      <br/>
+      -->
+
+      <div id="accordion">
+          <div class="card">
+            <div id="headingComponents" (click)="componentsClicked=!componentsClicked;">
+              
+                <button class="btn btn-link" data-toggle="collapse" data-target="#components" aria-expanded="componentsClicked" aria-controls="components">
+                  <div class="row">
+                     <div class="col-sm-2">
+                        <i [ngClass]="componentsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                     </div>
+                     <div class="col-sm-6" style="font-weight: 500;">
+                        Components <span class="badge badge-pill badge-danger">{{ sizeOfUiComponents }}</span>
+                     </div> 
+                  </div>
+                </button>
                
-                  <h3>Button Component</h3>
-                  <h3>Button Directive</h3>
-                
+            </div>
+            <div id="components" [ngClass]="componentsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingComponents" data-parent="#accordion">
+              <div class="card-body">
+                <sbb-search></sbb-search>
+                <hr/>
+                <sbb-navlist></sbb-navlist>
+                <hr/>
+                <span style="font-size: 13px;">Total {{ sizeOfUiComponents }} Component(s).</span>
               </div>
+            </div>
           </div>
+          <div class="card">
+            <div id="headingIcons" (click)="iconsClicked=!iconsClicked;">
+              
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#icons" aria-expanded="iconsClicked" aria-controls="icons">
+                    <div class="row">
+                        <div class="col-sm-2">
+                           <i [ngClass]="iconsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6" style="font-weight: 500;">
+                           Icons
+                        </div> 
+                     </div>
+                </button>
+              
+            </div>
+            <div id="icons" [ngClass]="iconsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingIcons" data-parent="#accordion">
+              <div class="card-body">
+                <span style="font-size: 13px;">Icons goes here ...</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+              <div id="headingAbout" (click)="aboutClicked=!aboutClicked;">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#about" aria-expanded="aboutClicked" aria-controls="about">
+                      <div class="row">
+                          <div class="col-sm-2">
+                            <i [ngClass]="aboutClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                          </div>
+                          <div class="col-sm-6" style="font-weight: 500;">
+                             About
+                          </div> 
+                       </div>
+                  </button>
+              </div>
+              <div id="about" [ngClass]="aboutClicked ? 'collapse show' : 'collapse'" aria-labelledby="aboutComponents" data-parent="#accordion">
+                <div class="card-body">
+                  <ul class="navlist">
+                    <li>
+                      <a href="https://www.sbb.ch/">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <img src="assets/favicons/sbb.ico" width="24" height="24"/>
+                            </div>
+                            <div class="col-sm-6">
+                                SBB CFF FFS
+                            </div>
+                          </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://www.finconsgroup.com/">
+                        <div class="row">
+                          <div class="col-sm-2">
+                            <img src="assets/favicons/finconsgroup.png" width="24" height="24"/>
+                          </div>
+                          <div class="col-sm-6">
+                            Fincons Group AG
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+                <div id="headingVersion" (click)="versionClicked=!versionClicked;">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#version" aria-expanded="versionClicked" aria-controls="version">
+                        <div class="row">
+                            <div class="col-sm-2">
+                               <i [ngClass]="versionClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-6" style="font-weight: 500;">
+                               Version
+                            </div> 
+                         </div>
+                    </button>
+                </div>
+                <div id="version" [ngClass]="versionClicked ? 'collapse show' : 'collapse'" aria-labelledby="versionComponents" data-parent="#accordion">
+                  <div class="card-body">
+                    <ul class="navlist">
+                      <li>
+                        <a href="javascript:void(0);">
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <img src="assets/favicons/showcase.png" width="24" height="24"/>
+                            </div>
+                            <div class="col-sm-6">
+                                Showcase 1.0.0
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://angular.io/">
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <img src="assets/favicons/angular.ico" width="24" height="24"/>
+                            </div>
+                            <div class="col-sm-6">
+                                Angular 6.1.7
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            
         </div>
+    </div>
+    </div>
+    
+    <div class="col-lg-9 content-section main">
+      <div class="result">
+        <router-outlet></router-outlet>
       </div>
     </div>
 
-
   </div>
 </div>
-
-<!--
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">Navbar</a>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
--->
-
-<!--
-<div class="ui sidebar inverted vertical menu" [class.visible]="mobileLayout && showSidebar">
-  <a class="item" (click)="toggleSidebar()">
-    Sidebar schließen <i class="angle double left icon"></i>
-  </a>
-  <a class="item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  (click)="toggleSidebar()">
-    <i class="home icon"></i> Home
-  </a>
-  <a class="item" routerLink="/iteration-1" routerLinkActive="active" (click)="toggleSidebar()">
-    I - Komponenten &amp; Template Syntax <i class="angle right icon"></i>
-  </a>
-  <a class="item" routerLink="/iteration-2" routerLinkActive="active" (click)="toggleSidebar()">
-    II - Services &amp; Routing <i class="angle right icon"></i>
-  </a>
-  <a class="item" routerLink="/iteration-3" routerLinkActive="active" (click)="toggleSidebar()">
-    III - HTTP <i class="angle right icon"></i>
-  </a>
-  <a class="item" routerLink="/iteration-4" routerLinkActive="active" (click)="toggleSidebar()">
-    IV - Formularverarbeitung &amp; Validierung <i class="angle right icon"></i>
-  </a>
-  <a class="item" routerLink="/iteration-5" routerLinkActive="active" (click)="toggleSidebar()">
-    V - Pipes &amp; Direktiven <i class="angle right icon"></i>
-  </a>
-  <a class="item" routerLink="/iteration-6" routerLinkActive="active" (click)="toggleSidebar()">
-    VI - Module &amp; forgeschrittenes Routing <i class="angle right icon"></i>
-  </a>
-  <a class="item" routerLink="/iteration-7" routerLinkActive="active" (click)="toggleSidebar()">
-    VII - Internationalisierung (i18n) <i class="angle right icon"></i>
-  </a>
-</div>
--->
-
-<!--
-<div class="pusher dimmed">
-
-  <div class="ui top fixed inverted pointing menu let-space-for-mobile-top-menu" *ngIf="mobileLayout">
-    <a class="toc item" (click)="toggleSidebar()">
-      <i class="sidebar icon"></i> Hauptmenü
-    </a>
-  </div>
-  
-  <div class="let-space-for-footer">
-    <div class="ui eight steps" *ngIf="!mobileLayout">
-      <a routerLink="/iteration-1" routerLinkActive="active" class="step">
-          <div class="content">
-            <div class="title">Inputs</div>
-            <div class="description">Inputfields</div>
-          </div>
-      </a>
-      <a routerLink="/iteration-1" routerLinkActive="active" class="step">
-        <div class="content">
-          <div class="title">List</div>
-          <div class="description">Listbox</div>
-        </div>
-      </a>
-    </div>
-    <router-outlet></router-outlet>
-  </div>
-</div>
--->
-
-<router-outlet></router-outlet>

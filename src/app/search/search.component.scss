@@ -1,0 +1,52 @@
+#search #search-input, #search .hint {
+    padding-left: 43px;
+    padding-right: 43px;
+    border-radius: 23px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff; 
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.title {
+    margin: -0.14285714em 0em 0em; 
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.result {
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    font-size: 1em;
+    padding: 0.85714286em 1.14285714em;
+    color: rgba(0, 0, 0, 0.87);
+    line-height: 1.33;
+    border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+    border-radius: 0.28571429rem;
+    box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
+    border: 1px solid #D4D4D5;
+    z-index: 998;
+}
+
+input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 2px solid rgba(81, 203, 238, 1);
+  }
