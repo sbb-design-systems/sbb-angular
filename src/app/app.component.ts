@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ComponentUiService } from './services/component-ui.service';
-import { Router } from '@angular/router';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 
 @Component({
