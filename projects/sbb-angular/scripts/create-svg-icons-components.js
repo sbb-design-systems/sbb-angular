@@ -82,6 +82,13 @@ function isAlreadyExistentModuleName(newModuleName, modules) {
   }));
 }
 
+function isFileExcluded(file, discardedFiles) {
+  if (!!scriptConfiguration.excludeFileWith) {
+    return !!file.match(new RegExp(scriptConfiguration.excludeFileWith));
+  }
+  return false;
+}
+
 /**
  * Recursive function that takes a input SVGs folder and creates Angular Icon Components using the same folder structure
  * @param baseDir source SVGs input directory
@@ -90,41 +97,45 @@ function isAlreadyExistentModuleName(newModuleName, modules) {
 function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
   const files = fs.readdirSync(baseDir);
   files.forEach(file => {
-    const stats = fs.statSync(baseDir + '/' + file);
-    if (stats.isFile()) {
-      outputStats.sourceSVGs.push(file);
-      promises.push(createSvgIconsComponent(baseDir + '/' + file).then((iconObject) => {
-        const alreadyExistentComponent = _.find(outputStats.createdComponents, function (o) {
-          return o.selector === iconObject.selector;
-        });
-        if (_.isUndefined(alreadyExistentComponent)) {
-          writeComponentOnFile(outputPath, iconObject);
-          const splitPath = baseDir.split('/');
-          const lastFolder = splitPath[splitPath.length - 1];
-          if (_.isUndefined(modules[baseDir])) {
+    if (!isFileExcluded(file)) {
+      const stats = fs.statSync(baseDir + '/' + file);
+      if (stats.isFile()) {
+        outputStats.sourceSVGs.push(file);
+        promises.push(createSvgIconsComponent(baseDir + '/' + file).then((iconObject) => {
+          const alreadyExistentComponent = _.find(outputStats.createdComponents, function (o) {
+            return o.selector === iconObject.selector;
+          });
+          if (_.isUndefined(alreadyExistentComponent)) {
+            writeComponentOnFile(outputPath, iconObject);
+            const splitPath = baseDir.split('/');
+            const lastFolder = splitPath[splitPath.length - 1];
+            if (_.isUndefined(modules[baseDir])) {
 
-            let newModuleName = 'Icon' + _.upperFirst(_.camelCase(lastFolder)) + 'Module';
-            if (isAlreadyExistentModuleName(newModuleName, modules)) {
-              newModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
+              let newModuleName = 'Icon' + _.upperFirst(_.camelCase(lastFolder)) + 'Module';
+              if (isAlreadyExistentModuleName(newModuleName, modules)) {
+                newModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
+              }
+              modules[baseDir] = {
+                components: [],
+                path: outputPath,
+                name: newModuleName,
+                fileName: 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts'
+              };
             }
-            modules[baseDir] = {
-              components: [],
-              path: outputPath,
-              name: newModuleName,
-              fileName: 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts'
-            };
+            outputStats.createdComponents.push(iconObject);
+            modules[baseDir].components.push(iconObject);
+          } else {
+            outputStats.discardedComponents.push({ 'discarded': iconObject, 'included': alreadyExistentComponent });
           }
-          outputStats.createdComponents.push(iconObject);
-          modules[baseDir].components.push(iconObject);
-        } else {
-          outputStats.discardedComponents.push({ 'discarded': iconObject, 'included': alreadyExistentComponent });
+        }));
+      } else {
+        if (!fs.existsSync(outputPath + '/' + file)) {
+          fs.mkdirSync(outputPath + '/' + file);
         }
-      }));
-    } else {
-      if (!fs.existsSync(outputPath + '/' + file)) {
-        fs.mkdirSync(outputPath + '/' + file);
+        buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
       }
-      buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
+    } else {
+      outputStats.discardedFiles.push(file);
     }
   });
   return promises;
@@ -155,7 +166,8 @@ const scriptConfiguration = {
   svgBasePath: 'svgs',
   baseOutputPath: 'src/lib/svg-icons-components',
   iconSelectorPrefix: 'sbb-icon-',
-  svgClass: ''
+  svgClass: '',
+  excludeFileWith: ''
 };
 
 function init() {
@@ -167,7 +179,8 @@ function init() {
   const outputStats = {
     'createdComponents': [],
     'discardedComponents': [],
-    'sourceSVGs': []
+    'sourceSVGs': [],
+    'discardedFiles': []
   };
   Promise.all(buildIconsLibrary(scriptConfiguration.svgBasePath, scriptConfiguration.baseOutputPath, modules, promises, outputStats)).then(() => {
     buildLibraryModules(modules);
