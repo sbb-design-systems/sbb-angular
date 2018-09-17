@@ -84,7 +84,7 @@ function isAlreadyExistentModuleName(newModuleName, modules) {
 
 function isFileExcluded(file, discardedFiles) {
   if (!!scriptConfiguration.excludeFileWith) {
-    return !!file.match(new RegExp(scriptConfiguration.excludeFileWith));
+    return !!file.match(new RegExp(scriptConfiguration.excludeFileWith, 'g'));
   }
   return false;
 }
