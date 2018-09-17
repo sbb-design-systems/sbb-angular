@@ -16,6 +16,8 @@ import { IconGcWallbox48Component } from './sbb-icon-gc-wallbox-48.component';
   // tslint:disable-next-line:max-line-length
   declarations: [IconGcEffizienz48Component, IconGcEinfachheit48Component, IconGcElektroauto48Component, IconGcFlexibilitaet48Component, IconGcLetztemeile48Component, IconGcOev48Component, IconGcParking48Component, IconGcPioneering48Component, IconGcSorglos48Component, IconGcUmwelt48Component, IconGcWallbox48Component],
   // tslint:disable-next-line:max-line-length
-  exports: [IconGcEffizienz48Component, IconGcEinfachheit48Component, IconGcElektroauto48Component, IconGcFlexibilitaet48Component, IconGcLetztemeile48Component, IconGcOev48Component, IconGcParking48Component, IconGcPioneering48Component, IconGcSorglos48Component, IconGcUmwelt48Component, IconGcWallbox48Component]
+  exports: [IconGcEffizienz48Component, IconGcEinfachheit48Component, IconGcElektroauto48Component, IconGcFlexibilitaet48Component, IconGcLetztemeile48Component, IconGcOev48Component, IconGcParking48Component, IconGcPioneering48Component, IconGcSorglos48Component, IconGcUmwelt48Component, IconGcWallbox48Component],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [IconGcEffizienz48Component, IconGcEinfachheit48Component, IconGcElektroauto48Component, IconGcFlexibilitaet48Component, IconGcLetztemeile48Component, IconGcOev48Component, IconGcParking48Component, IconGcPioneering48Component, IconGcSorglos48Component, IconGcUmwelt48Component, IconGcWallbox48Component]
 })
 export class IconGreenclassModule { }

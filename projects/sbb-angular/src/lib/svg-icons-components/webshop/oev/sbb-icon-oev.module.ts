@@ -15,6 +15,8 @@ import { IconOevBT29Component } from './sbb-icon-oev-b-t29.component';
   // tslint:disable-next-line:max-line-length
   declarations: [IconOevBT02Component, IconOevBT04Component, IconOevBT06Component, IconOevBT10Component, IconOevBT12Component, IconOevBT21Component, IconOevBT22Component, IconOevBT23Component, IconOevBT25Component, IconOevBT29Component],
   // tslint:disable-next-line:max-line-length
-  exports: [IconOevBT02Component, IconOevBT04Component, IconOevBT06Component, IconOevBT10Component, IconOevBT12Component, IconOevBT21Component, IconOevBT22Component, IconOevBT23Component, IconOevBT25Component, IconOevBT29Component]
+  exports: [IconOevBT02Component, IconOevBT04Component, IconOevBT06Component, IconOevBT10Component, IconOevBT12Component, IconOevBT21Component, IconOevBT22Component, IconOevBT23Component, IconOevBT25Component, IconOevBT29Component],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [IconOevBT02Component, IconOevBT04Component, IconOevBT06Component, IconOevBT10Component, IconOevBT12Component, IconOevBT21Component, IconOevBT22Component, IconOevBT23Component, IconOevBT25Component, IconOevBT29Component]
 })
 export class IconOevModule { }

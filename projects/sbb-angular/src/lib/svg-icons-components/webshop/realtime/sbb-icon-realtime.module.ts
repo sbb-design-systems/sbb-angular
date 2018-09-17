@@ -12,6 +12,8 @@ import { IconRealtimeRerouteComponent } from './sbb-icon-realtime-reroute.compon
   // tslint:disable-next-line:max-line-length
   declarations: [IconRealtimeAddStopComponent, IconRealtimeAlternativeComponent, IconRealtimeCancellationComponent, IconRealtimeDelayComponent, IconRealtimeMissedConnectionComponent, IconRealtimePlatformChangeComponent, IconRealtimeRerouteComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconRealtimeAddStopComponent, IconRealtimeAlternativeComponent, IconRealtimeCancellationComponent, IconRealtimeDelayComponent, IconRealtimeMissedConnectionComponent, IconRealtimePlatformChangeComponent, IconRealtimeRerouteComponent]
+  exports: [IconRealtimeAddStopComponent, IconRealtimeAlternativeComponent, IconRealtimeCancellationComponent, IconRealtimeDelayComponent, IconRealtimeMissedConnectionComponent, IconRealtimePlatformChangeComponent, IconRealtimeRerouteComponent],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [IconRealtimeAddStopComponent, IconRealtimeAlternativeComponent, IconRealtimeCancellationComponent, IconRealtimeDelayComponent, IconRealtimeMissedConnectionComponent, IconRealtimePlatformChangeComponent, IconRealtimeRerouteComponent]
 })
 export class IconRealtimeModule { }

@@ -10,6 +10,8 @@ import { IconZipComponent } from './sbb-icon-zip.component';
   // tslint:disable-next-line:max-line-length
   declarations: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent]
+  exports: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent]
 })
 export class IconDocumentsModule { }

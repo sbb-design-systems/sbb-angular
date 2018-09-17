@@ -9,6 +9,8 @@ import { IconHimReplacementbusComponent } from './sbb-icon-him-replacementbus.co
   // tslint:disable-next-line:max-line-length
   declarations: [IconHimConstructionComponent, IconHimDisruptionComponent, IconHimInfoComponent, IconHimReplacementbusComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconHimConstructionComponent, IconHimDisruptionComponent, IconHimInfoComponent, IconHimReplacementbusComponent]
+  exports: [IconHimConstructionComponent, IconHimDisruptionComponent, IconHimInfoComponent, IconHimReplacementbusComponent],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [IconHimConstructionComponent, IconHimDisruptionComponent, IconHimInfoComponent, IconHimReplacementbusComponent]
 })
 export class IconHimModule { }

@@ -8,6 +8,8 @@ import { IconUtilizationMediumComponent } from './sbb-icon-utilization-medium.co
   // tslint:disable-next-line:max-line-length
   declarations: [IconUtilizationHighComponent, IconUtilizationLowComponent, IconUtilizationMediumComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconUtilizationHighComponent, IconUtilizationLowComponent, IconUtilizationMediumComponent]
+  exports: [IconUtilizationHighComponent, IconUtilizationLowComponent, IconUtilizationMediumComponent],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [IconUtilizationHighComponent, IconUtilizationLowComponent, IconUtilizationMediumComponent]
 })
 export class IconUtilizationModule { }

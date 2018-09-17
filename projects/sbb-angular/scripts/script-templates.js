@@ -29,7 +29,9 @@ ${componentImportsStatement}
   // tslint:disable-next-line:max-line-length
   declarations: [${joinedComponentNames}],
   // tslint:disable-next-line:max-line-length
-  exports: [${joinedComponentNames}]
+  exports: [${joinedComponentNames}],
+  // tslint:disable-next-line:max-line-length
+  entryComponents: [${joinedComponentNames}]
 })
 export class ${moduleName} { }
 `;
