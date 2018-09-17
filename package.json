@@ -11,7 +11,11 @@
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "build:showcase": "ng build sbb-angular-showcase --prod",    
     "test": "run-s test:*",
+    "test:showcase": "",
+    "test:library": "",
     "lint": "run-s lint:*",
+    "lint:showcase": "",
+    "lint:library": "",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner"
   },
