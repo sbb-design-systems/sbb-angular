@@ -9,7 +9,9 @@
     "build:library:ng": "ng build sbb-angular",
     "build:library:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
-    "build:showcase": "ng build sbb-angular-showcase --prod",
+    "build:showcase": "ng build sbb-angular-showcase --prod",    
+    "test": "run-s test:*",
+    "lint": "run-s lint:*",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner"
   },
