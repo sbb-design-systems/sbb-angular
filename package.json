@@ -33,8 +33,10 @@
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
-    "sbb-angular": "file:dist/sbb-angular",
     "zone.js": "~0.8.26"
+  },
+  "optionalDependencies": {
+    "sbb-angular": "file:dist/sbb-angular"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0-rc.0",
