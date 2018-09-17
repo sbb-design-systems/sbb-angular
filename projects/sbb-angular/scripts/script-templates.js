@@ -11,7 +11,8 @@ exports.getTemplate = function (iconSelector, iconTemplate, iconComponentName, s
 export class ${iconComponentName} {
   constructor() { }
 
-  @Input() svgClass = '${svgClass}';
+  @Input() svgClass = '';
+  commonClass = '${svgClass}';
 }\n`;
 };
 
