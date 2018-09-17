@@ -12,7 +12,7 @@ export class ${iconComponentName} {
   constructor() { }
 
   @Input() svgClass = '';
-  commonClass = '${svgClass}';
+  commonClass = ' ${svgClass}';
 }\n`;
 };
 
