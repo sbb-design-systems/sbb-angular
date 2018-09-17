@@ -112,14 +112,14 @@ function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) 
             const lastFolder = splitPath[splitPath.length - 1];
             if (_.isUndefined(modules[baseDir])) {
 
-              let newModuleName = 'Icon' + _.upperFirst(_.camelCase(lastFolder)) + 'Module';
-              if (isAlreadyExistentModuleName(newModuleName, modules)) {
-                newModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
+              let actualModuleName = 'Icon' + _.upperFirst(_.camelCase(lastFolder)) + 'Module';
+              if (isAlreadyExistentModuleName(actualModuleName, modules)) {
+                actualModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
               }
               modules[baseDir] = {
                 components: [],
                 path: outputPath,
-                name: newModuleName,
+                name: actualModuleName,
                 fileName: 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts'
               };
             }
@@ -172,9 +172,23 @@ const scriptConfiguration = {
   excludeFileWith: ''
 };
 
+
+function createPublicApiFile(modules) {
+  const publicApiSourceFile = './src/public_api_icons.ts';
+  let publicApiExports = [];
+  _.forEach(modules, function (module, moduleKey) {
+    publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + module.fileName.replace('.ts', '') + '\';');
+    _.forEach(module.components, function (component) {
+      publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + component.fileName.replace('.ts', '') + '\';');
+    });
+  });
+  let publicApiOutput = publicApiExports.join('\n');
+  publicApiOutput += '\nexport * from \'./lib/svg-icons-components/icon-common.module\';\n';
+  fs.writeFileSync(publicApiSourceFile, publicApiOutput);
+  
+}
+
 function init() {
-
-
   supportLibrary.processArgumentsCheck(scriptConfiguration);
   const modules = {};
   const promises = [];
@@ -188,6 +202,7 @@ function init() {
     buildLibraryModules(modules);
     buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
     supportLibrary.outputStatsPrint(modules, outputStats);
+    createPublicApiFile(modules);
   }).catch(err => {
     console.log(err);
   });
