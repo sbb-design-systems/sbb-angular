@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-checkArgAllowed = (actualArg) => {
+function checkArgAllowed(actualArg) {
     const paramKeys = Object.keys(scriptConfiguration);
     console.log(paramKeys);
     if (paramKeys.indexOf(actualArg) < 0) {
@@ -9,7 +9,16 @@ checkArgAllowed = (actualArg) => {
     }
 }
 
-exports.processArgumentsCheck = () => {
+function printArgs(scriptConfiguration) {
+    console.log('Script arguments: ');
+    console.log('\tSVG input folder path (svgPath): ' + scriptConfiguration.svgBasePath);
+    console.log('\tIcon components output folder path (outputPath): ' + scriptConfiguration.baseOutputPath);
+    console.log('\tIcon Components selector prefix (iconSelectorPrefix): ' + scriptConfiguration.iconSelectorPrefix);
+    console.log('\tSVG class applied for all components (svgClass): ' + scriptConfiguration.svgClass);
+    console.log('\n');
+}
+
+exports.processArgumentsCheck = (scriptConfiguration) => {
     process.argv.forEach(function (val, index, array) {
         if (val && !!val.split('=')[1]) {
             const paramKey = val.split('=')[0];
@@ -37,6 +46,7 @@ exports.processArgumentsCheck = () => {
             }
         }
     });
+    printArgs(scriptConfiguration);
 }
 
 exports.outputStatsPrint = (modules, outputStats) => {
@@ -44,7 +54,7 @@ exports.outputStatsPrint = (modules, outputStats) => {
     console.log('Created components: ' + outputStats.createdComponents.length);
     console.log('Created Modules:');
     _.forEach(modules, (module) => {
-      console.log('Name: ' + _.padEnd(module.name, 40) + ' # Components: ' + module.components.length);
+      console.log('\tName: ' + _.padEnd(module.name, 40) + ' # Components: ' + module.components.length);
     });
     console.log('\nDiscarded components: ' + outputStats.discardedComponents.length);
     console.log('\nDiscarded components details: ');

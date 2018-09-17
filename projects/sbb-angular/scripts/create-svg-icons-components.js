@@ -4,13 +4,6 @@ const angularTemplates = require('./script-templates.js');
 const svgoConfiguration = require('./svgo-configuration.js');
 const supportLibrary = require('./support-libray.js');
 
-const scriptConfiguration = {
-  svgBasePath: 'svgs',
-  baseOutputPath: 'src/lib/svg-icons-components',
-  iconSelectorPrefix: 'sbb-icon-',
-  svgClass: ''
-};
-
 /**
  * Creates a normalized SVG Icon Angular Component starting from a SVG file.
  * Source SVG mark-up is cleaned up making it compatible with most of browsers.
@@ -158,10 +151,17 @@ function buildCommonIconModule(basePath, modules) {
   writeModuleOnFile(basePath + '/icon-common.module.ts', angularTemplates.getCommonModuleTemplate(basePath, modules), basePath);
 }
 
-
+const scriptConfiguration = {
+  svgBasePath: 'svgs',
+  baseOutputPath: 'src/lib/svg-icons-components',
+  iconSelectorPrefix: 'sbb-icon-',
+  svgClass: ''
+};
 
 function init() {
-  supportLibrary.processArgumentsCheck();
+
+
+  supportLibrary.processArgumentsCheck(scriptConfiguration);
   const modules = {};
   const promises = [];
   const outputStats = {
