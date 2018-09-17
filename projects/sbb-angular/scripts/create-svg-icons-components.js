@@ -97,9 +97,10 @@ function isFileExcluded(file, discardedFiles) {
 function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
   const files = fs.readdirSync(baseDir);
   files.forEach(file => {
-    if (!isFileExcluded(file)) {
-      const stats = fs.statSync(baseDir + '/' + file);
-      if (stats.isFile()) {
+
+    const stats = fs.statSync(baseDir + '/' + file);
+    if (stats.isFile()) {
+      if (!isFileExcluded(file)) {
         outputStats.sourceSVGs.push(file);
         promises.push(createSvgIconsComponent(baseDir + '/' + file).then((iconObject) => {
           const alreadyExistentComponent = _.find(outputStats.createdComponents, function (o) {
@@ -129,14 +130,15 @@ function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) 
           }
         }));
       } else {
-        if (!fs.existsSync(outputPath + '/' + file)) {
-          fs.mkdirSync(outputPath + '/' + file);
-        }
-        buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
+        outputStats.discardedFiles.push(file);
       }
     } else {
-      outputStats.discardedFiles.push(file);
+      if (!fs.existsSync(outputPath + '/' + file)) {
+        fs.mkdirSync(outputPath + '/' + file);
+      }
+      buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
     }
+
   });
   return promises;
 }
