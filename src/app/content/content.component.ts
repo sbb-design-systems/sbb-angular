@@ -14,7 +14,7 @@ export class ContentComponent implements OnInit {
 
   uiComponent : UiComponent;
 
-  options = { theme: 'default', language: 'typescript', readOnly: true };
+  options = { theme: 'default', language: 'typescript', readOnly: true, automaticLayout: true };
   codeSource         = `showCode() {\n //write it out ...\n alert('Source code goes here ...');\n}`;
   codeImport         = `showCode() {\n //write it out ...\n alert('Import code goes here ...');\n}`;
   codeGettingStarted = `showCode() {\n //write it out ...\n alert('Getting started code goes here ...');\n}`;
