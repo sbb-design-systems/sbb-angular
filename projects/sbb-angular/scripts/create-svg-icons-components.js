@@ -168,8 +168,10 @@ function createPublicApiFile(modules) {
   const publicApiSourceFile = './src/public_api_icons.ts';
   const publicApiExports = [];
   _.forEach(modules, function (module, moduleKey) {
+    publicApiExports.push('// tslint:disable-next-line:max-line-length');
     publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + module.fileName.replace('.ts', '') + '\';');
     _.forEach(module.components, function (component) {
+      publicApiExports.push('// tslint:disable-next-line:max-line-length');
       publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + component.fileName.replace('.ts', '') + '\';');
     });
   });
