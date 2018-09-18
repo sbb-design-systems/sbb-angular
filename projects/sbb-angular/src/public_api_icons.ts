@@ -355,3 +355,4 @@ export * from './lib/svg-icons-components/webshop/utilization/sbb-icon-utilizati
 export * from './lib/svg-icons-components/webshop/utilization/sbb-icon-utilization-low.component';
 export * from './lib/svg-icons-components/webshop/utilization/sbb-icon-utilization-medium.component';
 export * from './lib/svg-icons-components/icon-common.module';
+export * from './lib/sbb-components-mapping';

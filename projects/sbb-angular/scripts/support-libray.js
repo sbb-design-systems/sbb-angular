@@ -26,10 +26,10 @@ exports.processArgumentsCheck = (scriptConfiguration) => {
                 checkArgAllowed(paramKey, scriptConfiguration);
                 const paramValue = val.split('=')[1];
                 switch (paramKey) {
-                    case 'svgPath':
+                    case 'svgBasePath':
                         scriptConfiguration.svgBasePath = paramValue;
                         break;
-                    case 'outputPath':
+                    case 'baseOutputPath':
                         scriptConfiguration.baseOutputPath = paramValue;
                         break;
                     case 'iconSelectorPrefix':

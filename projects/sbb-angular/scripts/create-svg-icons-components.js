@@ -164,18 +164,9 @@ function buildCommonIconModule(basePath, modules) {
   writeModuleOnFile(basePath + '/icon-common.module.ts', angularTemplates.getCommonModuleTemplate(basePath, modules), basePath);
 }
 
-const scriptConfiguration = {
-  svgBasePath: 'svgs',
-  baseOutputPath: 'src/lib/svg-icons-components',
-  iconSelectorPrefix: 'sbb-icon-',
-  svgClass: '',
-  excludeFileWith: ''
-};
-
-
 function createPublicApiFile(modules) {
   const publicApiSourceFile = './src/public_api_icons.ts';
-  let publicApiExports = [];
+  const publicApiExports = [];
   _.forEach(modules, function (module, moduleKey) {
     publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + module.fileName.replace('.ts', '') + '\';');
     _.forEach(module.components, function (component) {
@@ -184,9 +175,58 @@ function createPublicApiFile(modules) {
   });
   let publicApiOutput = publicApiExports.join('\n');
   publicApiOutput += '\nexport * from \'./lib/svg-icons-components/icon-common.module\';\n';
+  publicApiOutput += `export * from './lib/sbb-components-mapping';\n`; 
   fs.writeFileSync(publicApiSourceFile, publicApiOutput);
-  
+
 }
+
+function createComponentsMappingClass(createdComponents) {
+  const componentsSourceFile = './src/lib/sbb-components-mapping.ts';
+  const exportClassStartStatement = 'export class SBBComponentsMapping {\nconstructor() {}\n';
+  const objectFileStart = 'static icons = [\n';
+  const objectFileEnd = '];\n';
+  const exportClassEndStatement = '}\n';
+  const objectEntries = [];
+  _.forEach(createdComponents, function (component) {
+    const path = _.map(component.sourceFileName.split('/').slice(1, -1), function (tag) {
+      return ' \'' + tag + '\'';
+    });
+    objectEntries.push('{\n\'selector\': \'' + component.selector + '\',\n\'name\': \'' + component.name + '\',\n\'tags\': [' + path + ']\n}');
+  });
+
+  const outputData = exportClassStartStatement + objectFileStart + objectEntries.join(',\n') + objectFileEnd + exportClassEndStatement;
+  fs.writeFileSync(componentsSourceFile, outputData);
+}
+
+function createComponentsExportMap(createdComponents) {
+  const outputFile = './src/components-mapping-export.ts';
+  const startImport = 'import {\n';
+  const endImport = '} from \'./public_api_icons\';\n';
+  const importStatement = startImport + _.map(createdComponents, function (component) {
+    return component.name;
+  }).join(',\n') + endImport;
+
+  const mapStart = 'const map = {\n';
+  const mapStatement = _.map(createdComponents, function (component) {
+    return `'${component.name}': ${component.name}`;
+  }).join(',\n')
+  const mapEnd = '};'
+
+  const map = mapStart + mapStatement + mapEnd;
+  const output = `${importStatement}\n${map}\n export { map };\n`;
+  fs.writeFileSync(outputFile, output);
+
+
+}
+
+const scriptConfiguration = {
+  svgBasePath: 'svgs',
+  baseOutputPath: 'src/lib/svg-icons-components',
+  iconSelectorPrefix: 'sbb-icon-',
+  svgClass: '',
+  excludeFileWith: ''
+};
+
 
 function init() {
   supportLibrary.processArgumentsCheck(scriptConfiguration);
@@ -203,6 +243,8 @@ function init() {
     buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
     supportLibrary.outputStatsPrint(modules, outputStats);
     createPublicApiFile(modules);
+    createComponentsMappingClass(outputStats.createdComponents);
+    createComponentsExportMap(outputStats.createdComponents);
   }).catch(err => {
     console.log(err);
   });
