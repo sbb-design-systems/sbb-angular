@@ -1,5 +1,6 @@
 <ul class="navlist">
     <li *ngFor="let uiComponent of foundUiComponents">
-       <a [routerLink]="['content/' + uiComponent['routerLink']]" (click)="navigate('content/' + uiComponent['routerLink'])">{{ uiComponent['id'] }}</a>    
+       <a [routerLink]="['content', uiComponent['routerLink']]"
+          (click)="navigate('content/' + uiComponent['routerLink'])">{{ uiComponent['id'] }}</a>    
     </li>
 </ul>

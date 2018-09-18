@@ -14,14 +14,12 @@ export class HomeComponent implements OnInit {
   }
   
   openComponents() {
-    // write it out ...
-    console.log('open components ...');
+    // set event ...
     this.accordionNotificationService.setOpenComponent(true);
   }
 
   openIcons() {
-    // write it out ...
-    console.log('open icons ...');
+    // set event ...
     this.accordionNotificationService.setOpenIcon(true);
   }
 

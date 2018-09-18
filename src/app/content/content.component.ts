@@ -30,11 +30,7 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    // write it out ...
-    console.log('id', this.id);
     this.uiComponent = this.componentUiService.getUiComponentByRouterLink(this.id);
-    // write it out ...
-    console.log('ui component', this.uiComponent);
   }
 
   navigateHome() {

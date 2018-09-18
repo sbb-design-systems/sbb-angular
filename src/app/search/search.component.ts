@@ -3,7 +3,7 @@ import { UiComponent } from '../shared/ui-component';
 import { ComponentUiService } from '../services/component-ui.service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sbb-search',
@@ -16,12 +16,10 @@ export class SearchComponent {
 
   foundUiComponents: UiComponent[] = [];
 
-  constructor(private componentUiService: ComponentUiService, private router: Router, private route: ActivatedRoute) {
+  constructor(private componentUiService: ComponentUiService, private router: Router) {
   }
   
   onSearchChange(searchValue: string) {
-    // write it out ...
-    console.log('search value', searchValue);
     this.foundUiComponents = [];
     if (!this.searchChangeObserver) {
          Observable.create(observer => { this.searchChangeObserver = observer })
@@ -36,10 +34,9 @@ export class SearchComponent {
   navigate(path : any) {
     // clean up ...
     this.cleanUp();
-    // write it out ...
-    console.log(path);
-    // navigate to button ...
-    this.router.navigate(path, { relativeTo: this.route });
+    // navigate to clicked component ...
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+    this.router.navigate([path]));
   }
 
   cleanUp() {

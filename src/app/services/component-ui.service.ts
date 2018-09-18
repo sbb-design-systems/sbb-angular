@@ -39,14 +39,10 @@ export class ComponentUiService {
   }
 
   getUiComponentsBySearchValue(searchValue : any) : Array<UiComponent> {
-    // write it out ...
-    console.log('>>> ' + searchValue);
     let foundUiComponents : UiComponent[] = []; 
     if(searchValue.length > 0) {
       foundUiComponents = this.uiComponents.filter(uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
     }
-    // write it out ...
-    console.log(foundUiComponents);
     return foundUiComponents;
   }
 
@@ -57,7 +53,6 @@ export class ComponentUiService {
   getAllAsString() : Array<string> {
     let routerLinks : string[] = [];
     for(let uiComponent of this.uiComponents) {
-        //console.log('>>>' + item.routerLink);
         routerLinks.push(uiComponent['routerLink']);     
     }
     return routerLinks;
