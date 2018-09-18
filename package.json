@@ -11,7 +11,7 @@
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "install:icons": "npm install ./dist/sbb-angular --save-optional",
     "postinstall": "run-s build:icons install:icons",
-    "build:icons": "cd projects/sbb-angular && node scripts/create-svg-icons-components.js",
+    "build:icons": "cd projects/sbb-angular && npm install && node scripts/create-svg-icons-components.js",
     "build:showcase": "ng build sbb-angular-showcase --prod",
     "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
