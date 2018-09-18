@@ -67,7 +67,7 @@ const svgoConf = new svgo({
     }, {
         removeDimensions: true,
     }, {
-        removeAttrs: { attrs: '(stroke|font-family)' },
+        removeAttrs: { attrs: '(font-family)' },
     }]
 });
 
