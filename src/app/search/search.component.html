@@ -15,26 +15,47 @@
 <div class="result" *ngIf="foundUiComponents.length > 0">
   <div *ngFor="let uiComponent of foundUiComponents">
     <a [routerLink]="['/content/' + uiComponent['routerLink']]"
-        class="ghost-button"
-        style="text-decoration: none; width: 100%;"
+        style="text-decoration: none; color: white;"
         (click)="reference.value='';navigate('/content/' + uiComponent['routerLink']);">
-      <div>
-         {{ uiComponent['id'] }}
-      </div>
-      <span style="font-size: 11px;">{{ uiComponent['subTitle'] }}</span>
-      <hr/> 
-      <span style="font-size: 11px;">
-        <div class="row">
-          <div class="col-sm-12">
-            <i [ngClass]="uiComponent['isComponent'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Component
-            <div style="float: right;">
-              <i [ngClass]="uiComponent['isDirective'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Directive
-            </div>  
+      <div id="flip_container">
+        <div id="flip_card" class="shadow">
+          <div class="front face">
+            <div class="row">
+              <div class="col align-self-start">
+                <span style="font-size: 15px;">
+                  {{ uiComponent['id'] }}
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col align-self-start">
+                <span style="font-size: 13px;">{{ (uiComponent['subTitle'].length > 16) ? (uiComponent['subTitle'] | slice:0:16) + '...' : (uiComponent['subTitle']) }}</span>  
+              </div>
+            </div>
+            <hr/> 
+            <div class="row">
+              <div class="col align-self-center" style="font-size: 13px;">
+                <span style="float:left;">
+                  <i [ngClass]="uiComponent['isComponent'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Component
+                </span>
+                <span style="float:right;">
+                  <i [ngClass]="uiComponent['isDirective'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Directive
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="back face center">
+            <div class="col align-self-center">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+              <br/>
+              <span style="font-size: 13px;">
+                This is nice for exposing more information about {{ uiComponent['id'] }}.
+              </span>  
+            </div>
           </div>
         </div>
-      </span>
+      </div>
     </a>
-    <br/>
  </div>
  <span style="font-size: 13px; color:#1b81d7;">Found {{ foundUiComponents.length }} Component(s).</span>
 </div>
