@@ -10,8 +10,8 @@ function checkArgAllowed(actualArg, scriptConfiguration) {
 
 function printArgs(scriptConfiguration) {
     console.log('Script arguments: ');
-    console.log('\tSVG input folder path (svgPath): ' + scriptConfiguration.svgBasePath);
-    console.log('\tIcon components output folder path (outputPath): ' + scriptConfiguration.baseOutputPath);
+    console.log('\tSVG input folder path (svgBasePath): ' + scriptConfiguration.svgBasePath);
+    console.log('\tIcon components output folder path (baseOutputPath): ' + scriptConfiguration.baseOutputPath);
     console.log('\tIcon Components selector prefix (iconSelectorPrefix): ' + scriptConfiguration.iconSelectorPrefix);
     console.log('\tSVG class applied for all components (svgClass): ' + scriptConfiguration.svgClass);
     console.log('\tRegExp excluding files  (excludeFileWith): ' + scriptConfiguration.excludeFileWith);
