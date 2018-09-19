@@ -1,4 +1,4 @@
-import { Thumbnail } from "./thumbnail";
+import { Thumbnail } from './thumbnail';
 
 export class UiComponent {
     constructor(

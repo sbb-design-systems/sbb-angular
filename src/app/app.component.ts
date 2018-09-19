@@ -3,7 +3,7 @@ import { ComponentUiService } from './services/component-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'sbb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

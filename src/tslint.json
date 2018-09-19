@@ -4,13 +4,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "app",
+            "sbb",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "app",
+            "sbb",
             "kebab-case"
         ],
         "typedef-whitespace": [

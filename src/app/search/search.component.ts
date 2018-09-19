@@ -18,11 +18,11 @@ export class SearchComponent {
 
   constructor(private componentUiService: ComponentUiService, private router: Router) {
   }
-  
+
   onSearchChange(searchValue: string) {
     this.foundUiComponents = [];
     if (!this.searchChangeObserver) {
-         Observable.create(observer => { this.searchChangeObserver = observer })
+         Observable.create(observer => { this.searchChangeObserver = observer; })
                    .pipe(debounceTime(500))
                    .pipe(distinctUntilChanged())
                    .pipe(switchMap(searchTerm => this.componentUiService.getUiComponentsBySearchValue(searchTerm)))

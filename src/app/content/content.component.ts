@@ -25,7 +25,7 @@ export class ContentComponent implements OnInit {
   codeEvents         = `showCode() {\n //write it out ...\n alert('Events code goes here ...');\n}`;
   codeStyling        = `showCode() {\n //write it out ...\n alert('Styling code goes here ...');\n}`;
   codeDependencies   = `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`;
-  
+
   constructor(private componentUiService: ComponentUiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

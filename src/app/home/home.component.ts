@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   openComponents() {
     // set event ...
     this.accordionNotificationService.setOpenComponent(true);
