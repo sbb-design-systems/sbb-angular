@@ -10,7 +10,6 @@
     "build:library:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "install:icons": "npm install ./dist/sbb-angular --save-optional",
-    "postinstall": "run-s build:icons build:library install:icons",
     "build:icons": "cd projects/sbb-angular && npm install && node scripts/create-svg-icons-components.js",
     "build:showcase": "ng build sbb-angular-showcase --prod",
     "test": "run-s test:*",

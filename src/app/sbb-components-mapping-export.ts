@@ -337,7 +337,7 @@ IconTrainformationSleepCouchetteComponent,
 IconTrainformationStrollerComponent,
 IconUtilizationHighComponent,
 IconUtilizationLowComponent,
-IconUtilizationMediumComponent} from './public_api_icons';
+IconUtilizationMediumComponent} from 'sbb-angular';
 
 const map = {
 'IconNbcMobileTabletComponent': IconNbcMobileTabletComponent,
