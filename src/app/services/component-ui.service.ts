@@ -43,11 +43,11 @@ export class ComponentUiService {
     if(searchValue.length > 0) {
       foundUiComponents = this.uiComponents.filter(uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
     }
-    return foundUiComponents;
+    return foundUiComponents.sort((a,b) => a.id.localeCompare(b.id));
   }
 
   getAll() : Array<UiComponent> {
-    return this.uiComponents;
+    return this.uiComponents.sort((a,b) => a.id.localeCompare(b.id));
   }
 
   getAllAsString() : Array<string> {
