@@ -93,6 +93,9 @@ function isFileExcluded(file, discardedFiles) {
  * Recursive function that takes a input SVGs folder and creates Angular Icon Components using the same folder structure
  * @param baseDir source SVGs input directory
  * @param outputPath base output path where Angular Icon Components will be written
+ * @param modules will contain all the angular icon modules created in this function
+ * @param promises retains all the promises that will be resolved to get all the components 
+ * @param outputStats will contain information about the components, files, and modules
  */
 function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
   const files = fs.readdirSync(baseDir);
@@ -138,21 +141,22 @@ function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) 
       }
       buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
     }
-
   });
   return promises;
 }
 
 /**
  * Writes the Angular Icon Module into the proper directory, and with the proper filename.
- * @param outputPath base output path
- * @param outputPath icon object containing also the filename
+ * @param modulePath output module path
+ * @param moduleContent angular module template filled with components information
  **/
 function writeModuleOnFile(modulePath, moduleContent) {
   fs.writeFileSync(modulePath, moduleContent);
 }
 
 /**
+ * Writes Angular Modules using the related template
+ * @param modules Angular Icon modules with related components
  **/
 function buildLibraryModules(modules) {
   _.forEach(modules, function (module, folderName) {
@@ -160,22 +164,39 @@ function buildLibraryModules(modules) {
   });
 }
 
+/**
+ * Writes the common angular module that will import all the other specific modules
+ * @param modules Angular Icon modules with related components
+ **/
 function buildCommonIconModule(basePath, modules) {
   writeModuleOnFile(basePath + '/icon-common.module.ts', angularTemplates.getCommonModuleTemplate(basePath, modules), basePath);
 }
 
+/**
+ * Creates and writes a public_api_icons.ts files to export outside the library all the icon components
+ * @param modules Angular Icon modules with related components
+ **/
 function createPublicApiIconsFile(modules) {
   const publicApiSourceFile = './src/public_api_icons.ts';
   fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules));
 
 }
 
+/**
+ * Writes the components mappings of all the icon components created.
+ * This file will be used by the show case to load dinamically those components.
+ * @param createdComponents Components already created to be mapped
+ */
 function createComponentsMappingClass(createdComponents) {
   const componentsSourceFile = '../../src/app/sbb-components-mapping.ts';
-
   fs.writeFileSync(componentsSourceFile, angularTemplates.getComponentMappingTemplate(createdComponents));
 }
 
+/**
+ * This map written by this method is to be used in the showcase to create a service to be used for loading
+ * icon dynamically using an angular Service
+ * @param createdComponents 
+ */
 function createComponentsExportMap(createdComponents) {
   const outputFile = '../../src/app/sbb-components-mapping-export.ts';
   fs.writeFileSync(outputFile, angularTemplates.getComponentsExportMapTemplate(createdComponents));
