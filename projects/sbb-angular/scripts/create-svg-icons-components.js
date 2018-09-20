@@ -2,7 +2,7 @@ const fs = require('fs');
 const _ = require('lodash');
 const angularTemplates = require('./script-templates.js');
 const svgoConfiguration = require('./svgo-configuration.js');
-const supportLibrary = require('./support-libray.js');
+const supportLibrary = require('./support-library.js');
 
 /**
  * Creates a normalized SVG Icon Angular Component starting from a SVG file.
