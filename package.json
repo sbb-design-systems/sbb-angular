@@ -10,7 +10,7 @@
     "build:library:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "install:icons": "npm install ./dist/sbb-angular --save-optional",
-    "build:icons": "cd projects/sbb-angular && npm install && node scripts/create-svg-icons-components.js",
+    "build:icons": "npm install && node ./scripts/create-svg-icons-components.js",
     "build:showcase": "ng build sbb-angular-showcase --prod",
     "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
@@ -64,6 +64,8 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~2.9.2",
+    "lodash": "^4.17.10",
+    "svgo": "^1.0.5"
   }
 }

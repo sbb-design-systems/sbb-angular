@@ -4,6 +4,8 @@ const angularTemplates = require('./script-templates.js');
 const svgoConfiguration = require('./svgo-configuration.js');
 const supportLibrary = require('./support-library.js');
 
+const PROJECT_LIB_PATH = 'projects/sbb-angular/';
+
 /**
  * Creates a normalized SVG Icon Angular Component starting from a SVG file.
  * Source SVG mark-up is cleaned up making it compatible with most of browsers.
@@ -177,8 +179,8 @@ function buildCommonIconModule(basePath, modules) {
  * @param modules Angular Icon modules with related components
  **/
 function createPublicApiIconsFile(modules) {
-  const publicApiSourceFile = './src/public_api_icons.ts';
-  fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules));
+  const publicApiSourceFile = PROJECT_LIB_PATH + 'src/public_api_icons.ts';
+  fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules, PROJECT_LIB_PATH + 'src/'));
 
 }
 
@@ -188,7 +190,7 @@ function createPublicApiIconsFile(modules) {
  * @param createdComponents Components already created to be mapped
  */
 function createComponentsMappingClass(createdComponents) {
-  const componentsSourceFile = '../../src/app/sbb-components-mapping.ts';
+  const componentsSourceFile = './src/app/sbb-components-mapping.ts';
   fs.writeFileSync(componentsSourceFile, angularTemplates.getComponentMappingTemplate(createdComponents));
 }
 
@@ -198,13 +200,13 @@ function createComponentsMappingClass(createdComponents) {
  * @param createdComponents 
  */
 function createComponentsExportMap(createdComponents) {
-  const outputFile = '../../src/app/sbb-components-mapping-export.ts';
+  const outputFile = './src/app/sbb-components-mapping-export.ts';
   fs.writeFileSync(outputFile, angularTemplates.getComponentsExportMapTemplate(createdComponents));
 }
 
 const scriptConfiguration = {
-  svgBasePath: 'svgs',
-  baseOutputPath: 'src/lib/svg-icons-components',
+  svgBasePath: PROJECT_LIB_PATH + 'svgs',
+  baseOutputPath: PROJECT_LIB_PATH + 'src/lib/svg-icons-components',
   iconSelectorPrefix: 'sbb-icon-',
   svgClass: '',
   excludeFileWith: ''
