@@ -189,19 +189,6 @@ const scriptConfiguration = {
   excludeFileWith: ''
 };
 
-function addPublicApiIconsEntryInPublicApi() {
-  const newPublicApi = `/*
-  * Public API Surface of sbb-angular
-  */
- export * from './lib/sbb-angular.service';
- export * from './lib/sbb-angular.component';
- export * from './lib/sbb-angular.module';
- export * from './public_api_icons';\n`;
-
-  fs.writeFileSync('./src/public_api.ts', newPublicApi);
-
-}
-
 function init() {
   supportLibrary.processArgumentsCheck(scriptConfiguration);
   const modules = {};
@@ -218,8 +205,7 @@ function init() {
     supportLibrary.outputStatsPrint(modules, outputStats);
     createPublicApiIconsFile(modules);
     createComponentsMappingClass(outputStats.createdComponents);
-    createComponentsExportMap(outputStats.createdComponents);
-    addPublicApiIconsEntryInPublicApi();
+    createComponentsExportMap(outputStats.createdComponents);    
   }).catch(err => {
     console.log(err);
   });

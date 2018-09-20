@@ -41,3 +41,7 @@ Thumbs.db
 # Projects node_modules
 /projects/sbb-angular/node_modules
 projects/sbb-angular/output.log
+projects/sbb-angular/src/lib/svg-icons-components
+src/app/sbb-components-mapping.ts
+src/app/sbb-components-mapping-export.ts
+projects/sbb-angular/src/public_api_icons.ts
