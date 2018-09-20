@@ -108,8 +108,8 @@ function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) 
       if (!isFileExcluded(file)) {
         outputStats.sourceSVGs.push(file);
         promises.push(createSvgIconsComponent(baseDir + '/' + file).then((iconObject) => {
-          const alreadyExistentComponent = _.find(outputStats.createdComponents, function (o) {
-            return o.selector === iconObject.selector;
+          const alreadyExistentComponent = _.find(outputStats.createdComponents, (component) => {
+            return component.selector === iconObject.selector;
           });
           if (_.isUndefined(alreadyExistentComponent)) {
             writeComponentOnFile(outputPath, iconObject);
@@ -161,7 +161,7 @@ function writeModuleOnFile(modulePath, moduleContent) {
  * @param modules Angular Icon modules with related components
  **/
 function buildLibraryModules(modules) {
-  _.forEach(modules, function (module, folderName) {
+  _.forEach(modules, (module, folderName) => {
     writeModuleOnFile(module.path + '/' + module.fileName, angularTemplates.getModuleTemplate(module.name, module.components));
   });
 }

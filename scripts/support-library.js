@@ -19,7 +19,7 @@ function printArgs(scriptConfiguration) {
 }
 
 exports.processArgumentsCheck = (scriptConfiguration) => {
-    process.argv.forEach(function (val, index, array) {
+    process.argv.forEach((val, index, array) => {
         if (val && !!val.split('=')[1]) {
             const paramKey = val.split('=')[0];
             try {
