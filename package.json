@@ -36,9 +36,6 @@
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
-  "optionalDependencies": {
-    "sbb-angular": "file:dist/sbb-angular"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0-rc.0",
     "@angular-devkit/build-ng-packagr": "~0.8.0-rc.0",
