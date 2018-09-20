@@ -164,61 +164,21 @@ function buildCommonIconModule(basePath, modules) {
   writeModuleOnFile(basePath + '/icon-common.module.ts', angularTemplates.getCommonModuleTemplate(basePath, modules), basePath);
 }
 
-function createPublicApiFile(modules) {
+function createPublicApiIconsFile(modules) {
   const publicApiSourceFile = './src/public_api_icons.ts';
-  const publicApiExports = [];
-  _.forEach(modules, function (module, moduleKey) {
-    publicApiExports.push('// tslint:disable-next-line:max-line-length');
-    publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + module.fileName.replace('.ts', '') + '\';');
-    _.forEach(module.components, function (component) {
-      publicApiExports.push('// tslint:disable-next-line:max-line-length');
-      publicApiExports.push('export * from \'' + module.path.replace('src/', './') + '/' + component.fileName.replace('.ts', '') + '\';');
-    });
-  });
-  let publicApiOutput = publicApiExports.join('\n');
-  publicApiOutput += '\nexport * from \'./lib/svg-icons-components/icon-common.module\';\n';
-  // publicApiOutput += `export * from './lib/sbb-components-mapping';\n`; 
-  fs.writeFileSync(publicApiSourceFile, publicApiOutput);
+  fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules));
 
 }
 
 function createComponentsMappingClass(createdComponents) {
   const componentsSourceFile = '../../src/app/sbb-components-mapping.ts';
-  const exportClassStartStatement = 'export class SBBComponentsMapping {\nconstructor() {}\n';
-  const objectFileStart = 'static icons = [\n';
-  const objectFileEnd = '];\n';
-  const exportClassEndStatement = '}\n';
-  const objectEntries = [];
-  _.forEach(createdComponents, function (component) {
-    const path = _.map(component.sourceFileName.split('/').slice(1, -1), function (tag) {
-      return ' \'' + tag + '\'';
-    });
-    objectEntries.push('{\n\'selector\': \'' + component.selector + '\',\n\'name\': \'' + component.name + '\',\n\'tags\': [' + path + ']\n}');
-  });
 
-  const outputData = exportClassStartStatement + objectFileStart + objectEntries.join(',\n') + objectFileEnd + exportClassEndStatement;
-  fs.writeFileSync(componentsSourceFile, outputData);
+  fs.writeFileSync(componentsSourceFile, angularTemplates.getComponentMappingTemplate(createdComponents));
 }
 
 function createComponentsExportMap(createdComponents) {
   const outputFile = '../../src/app/sbb-components-mapping-export.ts';
-  const startImport = 'import {\n';
-  const endImport = '} from \'sbb-angular\';\n';
-  const importStatement = startImport + _.map(createdComponents, function (component) {
-    return component.name;
-  }).join(',\n') + endImport;
-
-  const mapStart = 'const map = {\n';
-  const mapStatement = _.map(createdComponents, function (component) {
-    return `'${component.name}': ${component.name}`;
-  }).join(',\n')
-  const mapEnd = '};'
-
-  const map = mapStart + mapStatement + mapEnd;
-  const output = `${importStatement}\n${map}\n export { map };\n`;
-  fs.writeFileSync(outputFile, output);
-
-
+  fs.writeFileSync(outputFile, angularTemplates.getComponentsExportMapTemplate(createdComponents));
 }
 
 const scriptConfiguration = {
@@ -229,6 +189,18 @@ const scriptConfiguration = {
   excludeFileWith: ''
 };
 
+function addPublicApiIconsEntryInPublicApi() {
+  const newPublicApi = `/*
+  * Public API Surface of sbb-angular
+  */
+ export * from './lib/sbb-angular.service';
+ export * from './lib/sbb-angular.component';
+ export * from './lib/sbb-angular.module';
+ export * from './public_api_icons';\n`;
+
+  fs.writeFileSync('./src/public_api.ts', newPublicApi);
+
+}
 
 function init() {
   supportLibrary.processArgumentsCheck(scriptConfiguration);
@@ -244,9 +216,10 @@ function init() {
     buildLibraryModules(modules);
     buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
     supportLibrary.outputStatsPrint(modules, outputStats);
-    createPublicApiFile(modules);
+    createPublicApiIconsFile(modules);
     createComponentsMappingClass(outputStats.createdComponents);
     createComponentsExportMap(outputStats.createdComponents);
+    addPublicApiIconsEntryInPublicApi();
   }).catch(err => {
     console.log(err);
   });
