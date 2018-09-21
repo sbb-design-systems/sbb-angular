@@ -96,7 +96,7 @@ function isFileExcluded(file, discardedFiles) {
  * @param baseDir source SVGs input directory
  * @param outputPath base output path where Angular Icon Components will be written
  * @param modules will contain all the angular icon modules created in this function
- * @param promises retains all the promises that will be resolved to get all the components 
+ * @param promises retains all the promises that will be resolved to get all the components
  * @param outputStats will contain information about the components, files, and modules
  */
 function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
@@ -179,8 +179,8 @@ function buildCommonIconModule(basePath, modules) {
  * @param modules Angular Icon modules with related components
  **/
 function createPublicApiIconsFile(modules) {
-  const publicApiSourceFile = PROJECT_LIB_PATH + 'src/public_api_icons.ts';
-  fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules, PROJECT_LIB_PATH + 'src/'));
+  const publicApiSourceFile = scriptConfiguration.baseOutputPath + '/index.ts';
+  fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules, PROJECT_LIB_PATH + 'src/lib/svg-icons-components/'));
 
 }
 
@@ -197,7 +197,7 @@ function createComponentsMappingClass(createdComponents) {
 /**
  * This map written by this method is to be used in the showcase to create a service to be used for loading
  * icon dynamically using an angular Service
- * @param createdComponents 
+ * @param createdComponents
  */
 function createComponentsExportMap(createdComponents) {
   const outputFile = './src/app/sbb-components-mapping-export.ts';
@@ -228,7 +228,7 @@ function init() {
     supportLibrary.outputStatsPrint(modules, outputStats);
     createPublicApiIconsFile(modules);
     createComponentsMappingClass(outputStats.createdComponents);
-    createComponentsExportMap(outputStats.createdComponents);    
+    createComponentsExportMap(outputStats.createdComponents);
   }).catch(err => {
     console.log(err);
   });

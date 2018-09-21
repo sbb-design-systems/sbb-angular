@@ -82,7 +82,7 @@ exports.getPublicApiIconsFileTemplate = (modules, pathToExclude) => {
       publicApiExports.push(`export * from '${module.path.replace(pathToExclude, './')}/${component.fileName.replace('.ts', '')}';`);
     });
   });
-  return publicApiExports.join('\n').concat(`\nexport * from './lib/svg-icons-components/icon-common.module';\n`);
+  return publicApiExports.join('\n').concat(`\nexport * from './icon-common.module';\n`);
 
 }
 
