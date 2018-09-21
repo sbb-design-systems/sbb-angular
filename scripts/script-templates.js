@@ -94,8 +94,8 @@ function getIconsArray(createdComponents, pathToExclude) {
     });
     objectEntries.push(
       `  {
-    'selector': ' ${component.selector}',
-    'name': ' ${component.name} ',
+    'selector': '${component.selector}',
+    'name': '${component.name}',
     'tags': [${path}]
   }`);
   });
