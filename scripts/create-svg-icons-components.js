@@ -12,26 +12,25 @@ const PROJECT_LIB_PATH = 'projects/sbb-angular/';
  * @param fileName File name of the source SVG
  * @return Icon Object containing the new SVG Angular Component itself and the relative filename
  **/
-function createSvgIconsComponent(fileName) {
+async function createSvgIconsComponent(fileName) {
 
   const svgIcon = fs.readFileSync(fileName, 'utf8');
   const normalizedIconName = normaliseIconNames(fileName.substr(fileName.lastIndexOf('/') + 1));
   const iconSelector = scriptConfiguration.iconSelectorPrefix + normalizedIconName.toLowerCase();
-  return normaliseSvg(svgIcon).then((optimizedSVG) => {
-    const optimizedSvgAngularTemplate = decorateSvgWithAttrs(optimizedSVG.data);
-    const iconComponentName = 'Icon' + _.upperFirst(_.camelCase(normalizedIconName)) + 'Component';
-    const svgComponent = angularTemplates
-      .getTemplate(iconSelector, optimizedSvgAngularTemplate, iconComponentName, scriptConfiguration.svgClass);
-    const iconObject = {
-      content: svgComponent,
-      fileName: iconSelector + '.component.ts',
-      name: iconComponentName,
-      selector: iconSelector,
-      svgTemplate: optimizedSvgAngularTemplate,
-      sourceFileName: fileName
-    };
-    return iconObject;
-  });
+  const optimizedSVG = await normaliseSvg(svgIcon);
+  const optimizedSvgAngularTemplate = decorateSvgWithAttrs(optimizedSVG.data);
+  const iconComponentName = 'Icon' + _.upperFirst(_.camelCase(normalizedIconName)) + 'Component';
+  const svgComponent = angularTemplates
+    .getTemplate(iconSelector, optimizedSvgAngularTemplate, iconComponentName, scriptConfiguration.svgClass);
+  const iconObject = {
+    content: svgComponent,
+    fileName: iconSelector + '.component.ts',
+    name: iconComponentName,
+    selector: iconSelector,
+    svgTemplate: optimizedSvgAngularTemplate,
+    sourceFileName: fileName
+  };
+  return iconObject;
 }
 
 /**
@@ -65,8 +64,8 @@ function normaliseIconNames(svgPathWithUnderscores) {
  * @param svgIconSource Source SVG mark-up
  * @return normalized SVG mark-up
  **/
-function normaliseSvg(svgIconSource) {
-  return svgoConfiguration.svgo.optimize(svgIconSource);
+async function normaliseSvg(svgIconSource) {
+  return await svgoConfiguration.svgo.optimize(svgIconSource);
 }
 
 /**
@@ -101,39 +100,39 @@ function isFileExcluded(file, discardedFiles) {
  */
 async function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
   const files = fs.readdirSync(baseDir);
-  files.forEach(file => {
-
+  for (fileIndex in files) {
+    const file = files[fileIndex];
     const stats = fs.statSync(baseDir + '/' + file);
     if (stats.isFile()) {
       if (!isFileExcluded(file)) {
         outputStats.sourceSVGs.push(file);
-        promises.push(createSvgIconsComponent(baseDir + '/' + file).then((iconObject) => {
-          const alreadyExistentComponent = _.find(outputStats.createdComponents, (component) => {
-            return component.selector === iconObject.selector;
-          });
-          if (_.isUndefined(alreadyExistentComponent)) {
-            writeComponentOnFile(outputPath, iconObject);
-            const splitPath = baseDir.split('/');
-            const lastFolder = splitPath[splitPath.length - 1];
-            if (_.isUndefined(modules[baseDir])) {
+        const iconObject = await createSvgIconsComponent(baseDir + '/' + file);
+        const alreadyExistentComponent = _.find(outputStats.createdComponents, (component) => {
+          return component.selector === iconObject.selector;
+        });
+        if (_.isUndefined(alreadyExistentComponent)) {
+          writeComponentOnFile(outputPath, iconObject);
+          const splitPath = baseDir.split('/');
+          const lastFolder = splitPath[splitPath.length - 1];
+          if (_.isUndefined(modules[baseDir])) {
 
-              let actualModuleName = 'Icon' + _.upperFirst(_.camelCase(lastFolder)) + 'Module';
-              if (isAlreadyExistentModuleName(actualModuleName, modules)) {
-                actualModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
-              }
-              modules[baseDir] = {
-                components: [],
-                path: outputPath,
-                name: actualModuleName,
-                fileName: 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts'
-              };
+            let actualModuleName = 'Icon' + _.upperFirst(_.camelCase(lastFolder)) + 'Module';
+            if (isAlreadyExistentModuleName(actualModuleName, modules)) {
+              actualModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
             }
-            outputStats.createdComponents.push(iconObject);
-            modules[baseDir].components.push(iconObject);
-          } else {
-            outputStats.discardedComponents.push({ 'discarded': iconObject, 'included': alreadyExistentComponent });
+            modules[baseDir] = {
+              components: [],
+              path: outputPath,
+              name: actualModuleName,
+              fileName: 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts'
+            };
           }
-        }));
+          outputStats.createdComponents.push(iconObject);
+          modules[baseDir].components.push(iconObject);
+        } else {
+          outputStats.discardedComponents.push({ 'discarded': iconObject, 'included': alreadyExistentComponent });
+        }
+
       } else {
         outputStats.discardedFiles.push(file);
       }
@@ -141,10 +140,10 @@ async function buildIconsLibrary(baseDir, outputPath, modules, promises, outputS
       if (!fs.existsSync(outputPath + '/' + file)) {
         fs.mkdirSync(outputPath + '/' + file);
       }
-      buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
+      await buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
     }
-  });
-  return promises;
+  }
+  //);
 }
 
 /**
