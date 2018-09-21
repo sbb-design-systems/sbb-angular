@@ -99,7 +99,7 @@ function isFileExcluded(file, discardedFiles) {
  * @param promises retains all the promises that will be resolved to get all the components
  * @param outputStats will contain information about the components, files, and modules
  */
-function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
+async function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
   const files = fs.readdirSync(baseDir);
   files.forEach(file => {
 
@@ -212,7 +212,7 @@ const scriptConfiguration = {
   excludeFileWith: ''
 };
 
-function init() {
+async function init() {
   supportLibrary.processArgumentsCheck(scriptConfiguration);
   const modules = {};
   const promises = [];
@@ -222,16 +222,13 @@ function init() {
     'sourceSVGs': [],
     'discardedFiles': []
   };
-  Promise.all(buildIconsLibrary(scriptConfiguration.svgBasePath, scriptConfiguration.baseOutputPath, modules, promises, outputStats)).then(() => {
-    buildLibraryModules(modules);
-    buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
-    supportLibrary.outputStatsPrint(modules, outputStats);
-    createPublicApiIconsFile(modules);
-    createComponentsMappingClass(outputStats.createdComponents);
-    createComponentsExportMap(outputStats.createdComponents);
-  }).catch(err => {
-    console.log(err);
-  });
+  await buildIconsLibrary(scriptConfiguration.svgBasePath, scriptConfiguration.baseOutputPath, modules, promises, outputStats);
+  buildLibraryModules(modules);
+  buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
+  supportLibrary.outputStatsPrint(modules, outputStats);
+  createPublicApiIconsFile(modules);
+  createComponentsMappingClass(outputStats.createdComponents);
+  createComponentsExportMap(outputStats.createdComponents);
 }
 
 init();
