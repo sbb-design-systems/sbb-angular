@@ -84,6 +84,25 @@
     overflow: hidden;
 }
 
+.ghost-button {
+    color: #1b81d7;
+    background: white;
+    border: 2px solid #1b81d7;
+    font-size: 17px;
+    padding: 7px 10px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ghost-button:hover, .ghost-button:active {
+    color:white;
+    background:#1b81d7;
+}
+
 .code.table {
     box-sizing: border-box;
     width: 100%;
@@ -149,23 +168,3 @@
 #headingDependencies {
     background-image: linear-gradient(to left,#2bc0ec,#1b81d7);
 }
-
-.ghost-button {
-    color: #1b81d7;
-    background: white;
-    border: 2px solid #1b81d7;
-    font-size: 17px;
-    padding: 7px 10px;
-    font-weight: normal;
-    margin: 6px 0;
-    margin-right: 12px;
-    display: inline-block;
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
-    /*min-width: 120px;*/ 
- }
-
- .ghost-button:hover, .ghost-button:active {
-    color:white;
-    background:#1b81d7;
- }
