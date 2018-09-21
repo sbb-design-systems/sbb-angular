@@ -39,7 +39,7 @@ function createSvgIconsComponent(fileName) {
  * @param optimizedSVGTemplate source SVG template
  */
 function decorateSvgWithAttrs(optimizedSVGTemplate) {
-  return optimizedSVGTemplate.replace('<svg', '<svg [attr.class]="svgClass + commonClass"');
+  return optimizedSVGTemplate.replace('<svg', '<svg [ngClass]="[svgClass, commonClass]"');
 }
 
 /**
