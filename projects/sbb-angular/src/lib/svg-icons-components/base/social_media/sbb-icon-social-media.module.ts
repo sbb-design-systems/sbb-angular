@@ -19,8 +19,6 @@ import { IconXingComponent } from './sbb-icon-xing.component';
   // tslint:disable-next-line:max-line-length
   declarations: [IconTwitterComponent, IconFacebookComponent, IconInstagramComponent, IconGoogleplusComponent, IconYoutubeComponent, IconLinkedinComponent, IconPinterestComponent, IconXingComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconTwitterComponent, IconFacebookComponent, IconInstagramComponent, IconGoogleplusComponent, IconYoutubeComponent, IconLinkedinComponent, IconPinterestComponent, IconXingComponent],
-  // tslint:disable-next-line:max-line-length
-  entryComponents: [IconTwitterComponent, IconFacebookComponent, IconInstagramComponent, IconGoogleplusComponent, IconYoutubeComponent, IconLinkedinComponent, IconPinterestComponent, IconXingComponent]
+  exports: [IconTwitterComponent, IconFacebookComponent, IconInstagramComponent, IconGoogleplusComponent, IconYoutubeComponent, IconLinkedinComponent, IconPinterestComponent, IconXingComponent]
 })
 export class IconSocialMediaModule { }

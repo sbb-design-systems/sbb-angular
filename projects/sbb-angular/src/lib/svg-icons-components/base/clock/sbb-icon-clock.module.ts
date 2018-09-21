@@ -15,8 +15,6 @@ import { IconClockSecondsComponent } from './sbb-icon-clock-seconds.component';
   // tslint:disable-next-line:max-line-length
   declarations: [IconClockFaceComponent, IconClockHoursComponent, IconClockMinutesComponent, IconClockSecondsComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconClockFaceComponent, IconClockHoursComponent, IconClockMinutesComponent, IconClockSecondsComponent],
-  // tslint:disable-next-line:max-line-length
-  entryComponents: [IconClockFaceComponent, IconClockHoursComponent, IconClockMinutesComponent, IconClockSecondsComponent]
+  exports: [IconClockFaceComponent, IconClockHoursComponent, IconClockMinutesComponent, IconClockSecondsComponent]
 })
 export class IconClockModule { }

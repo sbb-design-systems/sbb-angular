@@ -14,8 +14,6 @@ import { IconEnvironmentcalculatorTimeComponent } from './sbb-icon-environmentca
   // tslint:disable-next-line:max-line-length
   declarations: [IconEnvironmentcalculatorCo2Component, IconEnvironmentcalculatorPetrolComponent, IconEnvironmentcalculatorTimeComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconEnvironmentcalculatorCo2Component, IconEnvironmentcalculatorPetrolComponent, IconEnvironmentcalculatorTimeComponent],
-  // tslint:disable-next-line:max-line-length
-  entryComponents: [IconEnvironmentcalculatorCo2Component, IconEnvironmentcalculatorPetrolComponent, IconEnvironmentcalculatorTimeComponent]
+  exports: [IconEnvironmentcalculatorCo2Component, IconEnvironmentcalculatorPetrolComponent, IconEnvironmentcalculatorTimeComponent]
 })
 export class IconEnvironmentcalculatorModule { }

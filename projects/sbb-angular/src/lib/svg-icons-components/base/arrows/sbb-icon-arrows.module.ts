@@ -22,8 +22,6 @@ import { IconCircleComponent } from './sbb-icon-circle.component';
   // tslint:disable-next-line:max-line-length
   declarations: [IconNbcMobileTabletComponent, IconFUndFFilterComponent, IconRoundTripComponent, IconArrowSmallDownComponent, IconArrowSmallLeftComponent, IconArrowSmallRightComponent, IconDownloadComponent, IconUploadComponent, IconPlayButtonComponent, IconArrowTinyDownComponent, IconCircleComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconNbcMobileTabletComponent, IconFUndFFilterComponent, IconRoundTripComponent, IconArrowSmallDownComponent, IconArrowSmallLeftComponent, IconArrowSmallRightComponent, IconDownloadComponent, IconUploadComponent, IconPlayButtonComponent, IconArrowTinyDownComponent, IconCircleComponent],
-  // tslint:disable-next-line:max-line-length
-  entryComponents: [IconNbcMobileTabletComponent, IconFUndFFilterComponent, IconRoundTripComponent, IconArrowSmallDownComponent, IconArrowSmallLeftComponent, IconArrowSmallRightComponent, IconDownloadComponent, IconUploadComponent, IconPlayButtonComponent, IconArrowTinyDownComponent, IconCircleComponent]
+  exports: [IconNbcMobileTabletComponent, IconFUndFFilterComponent, IconRoundTripComponent, IconArrowSmallDownComponent, IconArrowSmallLeftComponent, IconArrowSmallRightComponent, IconDownloadComponent, IconUploadComponent, IconPlayButtonComponent, IconArrowTinyDownComponent, IconCircleComponent]
 })
 export class IconArrowsModule { }

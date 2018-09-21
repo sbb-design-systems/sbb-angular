@@ -12,8 +12,6 @@ import { IconArrowRightBoldComponent } from './sbb-icon-arrow-right-bold.compone
   // tslint:disable-next-line:max-line-length
   declarations: [IconArrowRightBoldComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconArrowRightBoldComponent],
-  // tslint:disable-next-line:max-line-length
-  entryComponents: [IconArrowRightBoldComponent]
+  exports: [IconArrowRightBoldComponent]
 })
 export class IconWebshopArrowsModule { }
