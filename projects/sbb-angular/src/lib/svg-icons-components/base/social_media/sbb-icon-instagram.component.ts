@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconInstagramComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

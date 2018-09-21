@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconLhInterrailComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconGewitterBeiNachtComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

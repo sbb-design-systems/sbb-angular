@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconGoogleplusComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

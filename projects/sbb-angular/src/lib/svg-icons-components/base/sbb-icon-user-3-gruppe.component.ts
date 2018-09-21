@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconUser3GruppeComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

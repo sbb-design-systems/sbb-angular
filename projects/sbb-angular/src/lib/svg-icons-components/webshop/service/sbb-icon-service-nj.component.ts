@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconServiceNjComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

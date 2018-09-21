@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconEnvironmentcalculatorCo2Component {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

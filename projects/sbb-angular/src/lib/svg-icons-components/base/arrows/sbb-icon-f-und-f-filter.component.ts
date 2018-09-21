@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconFUndFFilterComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';

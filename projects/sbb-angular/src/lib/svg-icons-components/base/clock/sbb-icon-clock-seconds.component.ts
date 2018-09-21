@@ -10,7 +10,6 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class IconClockSecondsComponent {
-  constructor() { }
 
   @Input() svgClass = '';
   commonClass = ' ';
