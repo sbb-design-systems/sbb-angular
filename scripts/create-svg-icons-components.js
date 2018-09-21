@@ -183,9 +183,9 @@ function createPublicApiIconsFile(modules) {
  * This file will be used by the show case to load dinamically those components.
  * @param createdComponents Components already created to be mapped
  */
-function createComponentsMappingClass(createdComponents) {
+function createComponentsMappingClass(createdComponents, pathToExclude) {
   const componentsSourceFile = './src/app/sbb-components-mapping.ts';
-  fs.writeFileSync(componentsSourceFile, angularTemplates.getComponentMappingTemplate(createdComponents));
+  fs.writeFileSync(componentsSourceFile, angularTemplates.getComponentMappingTemplate(createdComponents, pathToExclude));
 }
 
 /**
@@ -221,7 +221,7 @@ async function init() {
   buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
   supportLibrary.outputStatsPrint(modules, outputStats);
   createPublicApiIconsFile(modules);
-  createComponentsMappingClass(outputStats.createdComponents);
+  createComponentsMappingClass(outputStats.createdComponents, scriptConfiguration.svgBasePath);
   createComponentsExportMap(outputStats.createdComponents);
 }
 
