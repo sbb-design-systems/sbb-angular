@@ -3,6 +3,9 @@ const _ = require('lodash');
 const angularTemplates = require('./script-templates.js');
 const svgoConfiguration = require('./svgo-configuration.js');
 const supportLibrary = require('./support-library.js');
+const supportClasses = require('./support-classes.js');
+const IconComponentInfo = supportClasses.IconComponentInfo;
+const IconModuleInfo = supportClasses.IconModuleInfo;
 
 const PROJECT_LIB_PATH = 'projects/sbb-angular/';
 
@@ -22,15 +25,12 @@ async function createSvgIconsComponent(fileName) {
   const iconComponentName = 'Icon' + _.upperFirst(_.camelCase(normalizedIconName)) + 'Component';
   const svgComponent = angularTemplates
     .getTemplate(iconSelector, optimizedSvgAngularTemplate, iconComponentName, scriptConfiguration.svgClass);
-  const iconObject = {
-    content: svgComponent,
-    fileName: iconSelector + '.component.ts',
-    name: iconComponentName,
-    selector: iconSelector,
-    svgTemplate: optimizedSvgAngularTemplate,
-    sourceFileName: fileName
-  };
-  return iconObject;
+  return new IconComponentInfo(svgComponent,
+    iconSelector + '.component.ts',
+    iconComponentName,
+    iconSelector,
+    optimizedSvgAngularTemplate,
+    fileName);
 }
 
 /**
@@ -120,12 +120,7 @@ async function buildIconsLibrary(baseDir, outputPath, modules, promises, outputS
             if (isAlreadyExistentModuleName(actualModuleName, modules)) {
               actualModuleName = 'Icon' + _.upperFirst(_.camelCase(splitPath[splitPath.length - 2] + '_' + lastFolder)) + 'Module';
             }
-            modules[baseDir] = {
-              components: [],
-              path: outputPath,
-              name: actualModuleName,
-              fileName: 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts'
-            };
+            modules[baseDir] = new IconModuleInfo([], outputPath, actualModuleName, 'sbb-icon-' + _.kebabCase(lastFolder) + '.module.ts');
           }
           outputStats.createdComponents.push(iconObject);
           modules[baseDir].components.push(iconObject);
