@@ -63,11 +63,6 @@ RUN easy_install supervisor \
   && mkdir -p /etc/supervisor/conf.d
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-# Fix permissions file-permission error
-RUN chmod -R 777 /usr/local/nginx \
-  && chmod -R 777 /usr/share/nginx \
-  && chmod -R 777 /usr/share/app
-
 # Set internal registry
 RUN npm config set registry https://bin.sbb.ch/artifactory/api/npm/npm/ -g
 RUN npm install -g yarn
@@ -75,6 +70,11 @@ COPY package.json /usr/share/app/package.json
 RUN cd /usr/share/app && yarn install --production=true --non-interactive
 COPY index.pug /usr/share/app/index.pug
 COPY app.js /usr/share/app/app.js
+
+# Fix permissions file-permission error
+RUN chmod -R 777 /usr/local/nginx \
+  && chmod -R 777 /usr/share/nginx \
+  && chmod -R 777 /usr/share/app
 
 EXPOSE 8080
 
