@@ -13,16 +13,9 @@ pipeline {
         not { branch 'master' }
       }
       steps {
-        withCredentials([
-            usernamePassword(
-              credentialsId: 'browserstack',
-              passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
-              usernameVariable: 'BROWSER_STACK_USERNAME')
-          ]) {
-          sh 'npm install'
-          sh 'npm test'
-          sh 'npm run lint'
-        }
+        sh 'npm install'
+        sh 'npm test'
+        sh 'npm run lint'
       }
     }
 
@@ -31,15 +24,16 @@ pipeline {
         branch 'develop'
       }
       steps {
+        sh 'npm install'
+        sh 'npm test'
+        sh 'npm run lint'
+        sh 'npm run build'
         withCredentials([
-            usernamePassword(
-              credentialsId: 'browserstack',
-              passwordVariable: 'BROWSER_STACK_ACCESS_KEY',
-              usernameVariable: 'BROWSER_STACK_USERNAME')
-          ]) {
-          sh 'npm install'
-          sh 'npm test'
-          sh 'npm run lint'
+          usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
+        ]) {
+          sh "curl -k -u $NPM_CREDENTIALS https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc"
+          sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
+          sh 'npm sbb:publish:develop-showcase'
         }
       }
     }
@@ -49,8 +43,16 @@ pipeline {
         branch 'master'
       }
       steps {
-        script {
-          sh 'npm install'
+        sh 'npm install'
+        sh 'npm test'
+        sh 'npm run lint'
+        sh 'npm run build'
+        withCredentials([
+          usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
+        ]) {
+          sh "curl -k -u $NPM_CREDENTIALS https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc"
+          sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
+          sh 'npm sbb:publish'
         }
       }
     }
