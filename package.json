@@ -16,8 +16,9 @@
     "lint": "run-s lint:*",
     "lint:showcase": "ng lint sbb-angular-showcase",
     "lint:library": "ng lint sbb-angular",
-    "e2e": "ng e2e",
-    "sonar": "sonar-scanner"
+    "sbb:publish": "node scripts/publish.js",
+    "sbb:publish:develop-showcase": "node scripts/publish.js develop-showcase",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
