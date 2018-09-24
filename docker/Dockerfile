@@ -66,6 +66,7 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 # Fix permissions file-permission error
 RUN chmod -R 777 /usr/local/nginx \
   && chmod -R 777 /usr/share/nginx
+  && chmod -R 777 /usr/share/app
 
 # Set internal registry
 RUN npm config set registry https://bin.sbb.ch/artifactory/api/npm/npm/ -g
