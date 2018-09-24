@@ -1,6 +1,6 @@
 <section id="search">
     <label for="search-input">
-       <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 35px; top: 87px; color: grey;"></i>
+       <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 35px; top: 88px; color: grey;"></i>
     </label>
     <input id="search-input" 
            class="form-control" 
@@ -35,10 +35,10 @@
             <hr/> 
             <div class="row">
               <div class="col align-self-center" style="font-size: 13px;">
-                <span style="float:left;">
+                <span style="float:left;" class="badge badge-secondary">
                   <i [ngClass]="uiComponent['isComponent'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Component
                 </span>
-                <span style="float:right;">
+                <span style="float:right;" class="badge badge-secondary">
                   <i [ngClass]="uiComponent['isDirective'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Directive
                 </span>
               </div>
@@ -49,7 +49,7 @@
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <br/>
               <span style="font-size: 13px;">
-                This is nice for exposing more information about {{ uiComponent['id'] }}.
+                More information about {{ uiComponent['id'] }}.
               </span>  
             </div>
           </div>

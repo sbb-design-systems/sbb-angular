@@ -1,0 +1,17 @@
+<ul class="navlist">
+    <li *ngFor="let uiIcon of foundUiIcons">
+       <a [routerLink]="['content', uiIcon['name']]"
+          (click)="navigate('content/' + uiIcon['name'])">
+          <div class="row">
+            <div class="col-lg-2" style="float:right;">
+              <div class="icon-flex-container">
+                <ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="single"></ng-template>
+              </div>
+            </div>
+            <div class="col-lg-10">
+              {{ uiIcon['name'].substring(4, uiIcon['name'].length-9) }}
+            </div>
+          </div>
+        </a>    
+    </li>
+</ul>

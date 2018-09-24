@@ -7,6 +7,9 @@ ul.navlist {
     list-style: none;
     margin: 20px 0 20px 0; 
     padding-left: 0;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    height:330px;
 }
 
 .navlist a, .navlist a:visited {

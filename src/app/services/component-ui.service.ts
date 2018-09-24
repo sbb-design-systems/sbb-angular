@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
+import { UiIcon } from '../shared/ui-icon';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class ComponentUiService {
   getUiComponentsBySearchValue(searchValue : any) : Array<UiComponent> {
     let foundUiComponents : UiComponent[] = [];
     if(searchValue.length > 0) {
-      foundUiComponents = this.uiComponents.filter(uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
+       foundUiComponents = this.uiComponents.filter(uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
     }
     return foundUiComponents.sort((a,b) => a.id.localeCompare(b.id));
   }

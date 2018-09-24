@@ -168,3 +168,39 @@
 #headingDependencies {
     background-image: linear-gradient(to left,#2bc0ec,#1b81d7);
 }
+
+.icon-flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    align-content: space-around;
+}
+  
+:host ::ng-deep .icon-flex-column {
+    flex-grow: 1;
+}
+  
+:host ::ng-deep .icon-sm {
+    width: .875em;
+}
+  
+:host ::ng-deep .icon-lg {
+    width: 1.33em;
+}
+  
+:host ::ng-deep .icon-2x {
+    width: 2em;
+}
+  
+:host ::ng-deep .icon-3x {
+    width: 3em;
+}
+  
+:host ::ng-deep .icon-5x {
+    width: 5em;
+}
+  
+:host ::ng-deep .icon-7x {
+    width: 7em;
+}

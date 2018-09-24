@@ -2,7 +2,10 @@
 <div class="content-section introduction">
   <div class="row">
     <div class="col-10">
-      <span class="feature-title">{{ uiComponent.title }}</span>
+      <span class="feature-title">
+        <div *ngIf="uiIcon;else other">{{ uiIcon['name'].substring(4, uiIcon['name'].length-9) }}</div>
+        <ng-template #other>{{ uiComponent.title }}</ng-template>
+      </span>
       <span>{{ uiComponent.subTitle }}</span>
     </div>
     <div class="col-2 center text-right">
@@ -13,12 +16,22 @@
 
 <!-- 2) Implementation -->
 <div class="content-section implementation">
-  <div class="result" *ngIf="uiComponent.isComponent">
-      <h4>{{ uiComponent.title }} Component</h4>
+  <div class="result" *ngIf="uiComponent.isComponent || uiIcon">
+      <div *ngIf="uiIcon;else other">
+        <h4>{{ uiIcon['name'].substring(4, uiIcon['name'].length-9) }} Icons</h4>
+      </div>
+      <ng-template #other><h4>{{ uiComponent.title }} Component</h4></ng-template>
       <table class="code table">
         <tbody>
           <tr>
-            <td><i class="fa fa-file-code-o" aria-hidden="true"></i> Component goes here ...</td>
+            <td>
+              <div *ngIf="!uiIcon">
+                <i class="fa fa-file-code-o" aria-hidden="true"></i> Component goes here ...
+              </div>
+              <div class="icon-flex-container" *ngIf="uiIcon">
+                <ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="multiple" style="float: right;"></ng-template>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -35,7 +35,7 @@
                         <i [ngClass]="componentsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
                      </div>
                      <div class="col-sm-6" style="font-weight: 500;">
-                        Components <span class="badge badge-pill badge-danger">{{ sizeOfUiComponents }}</span>
+                        Components <span class="badge badge-pill badge-secondary">{{ sizeOfUiComponents }}</span>
                      </div> 
                   </div>
                 </button>
@@ -60,7 +60,7 @@
                            <i [ngClass]="iconsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
                         </div>
                         <div class="col-sm-6" style="font-weight: 500;">
-                           Icons
+                           Icons <span class="badge badge-pill badge-secondary">{{ sizeOfUiIcons }}</span>
                         </div> 
                      </div>
                 </button>
@@ -68,7 +68,11 @@
             </div>
             <div id="icons" [ngClass]="iconsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingIcons" data-parent="#accordion">
               <div class="card-body">
-                <span style="font-size: 13px;">Icons goes here ...</span>
+                <sbb-search-icon></sbb-search-icon>
+                <hr/>
+                <sbb-navlist-icon></sbb-navlist-icon>
+                <hr/>
+                <span style="font-size: 13px;">Total {{ sizeOfUiIcons }} Icon(s).</span>
               </div>
             </div>
           </div>
