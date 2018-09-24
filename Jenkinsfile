@@ -20,16 +20,6 @@ pipeline {
       }
     }
 
-    stage('TESTING') {
-      when {
-        branch 'feature/deployment'
-      }
-      steps {
-        sh 'npm run build'
-        sh 'npm run sbb:publish:develop-showcase'
-      }
-    }
-
     stage('When on develop, create develop showcase release') {
       when {
         branch 'develop'
@@ -37,6 +27,11 @@ pipeline {
       steps {
         sh 'npm run build'
         sh 'npm run sbb:publish:develop-showcase'
+        cloud_callDeploy(
+          cluster: 'aws',
+          project: 'sbb-angular-showcase',
+          dc: 'sbb-angular',
+          credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
       }
     }
 
@@ -47,10 +42,15 @@ pipeline {
       steps {
         sh 'npm run build'
         sh 'npm run sbb:publish'
+        cloud_callDeploy(
+          cluster: 'aws',
+          project: 'sbb-angular-showcase',
+          dc: 'sbb-angular',
+          credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
       }
     }
   }
-/*
+
   post {
     failure {
       emailext(
@@ -70,5 +70,4 @@ pipeline {
         to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
     }
   }
-*/
 }
