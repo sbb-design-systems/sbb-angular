@@ -65,7 +65,7 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # Fix permissions file-permission error
 RUN chmod -R 777 /usr/local/nginx \
-  && chmod -R 777 /usr/share/nginx
+  && chmod -R 777 /usr/share/nginx \
   && chmod -R 777 /usr/share/app
 
 # Set internal registry
