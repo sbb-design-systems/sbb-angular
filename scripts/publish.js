@@ -87,7 +87,9 @@ class Publish {
 
   async publishLibrary() {
     if (!this.dryRun) {
-      await execAsync('npm publish', { cwd: this.libraryPath });
+      await execAsync(
+        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        { cwd: this.libraryPath });
       console.log('Published library');
     } else {
       await execAsync('npm pack', { cwd: this.libraryPath });
@@ -97,7 +99,9 @@ class Publish {
 
   async publishShowcase() {
     if (!this.dryRun) {
-      await execAsync('npm publish', { cwd: this.showcasePath });
+      await execAsync(
+        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        { cwd: this.showcasePath });
       console.log('Published showcase');
     } else {
       await execAsync('npm pack', { cwd: this.showcasePath });
@@ -112,12 +116,13 @@ class Publish {
       await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/${project}/${repo}`);
       await execAsync('git remote set-branches origin "*" && git fetch');
       await execAsync('git clean -f && git checkout master && git reset --hard origin/master');
-      await execAsync(`git commit -a -m "Releasing stable version ${params.releaseVersion}\" && git tag ${params.releaseVersion}`)
+      await execAsync(
+        `git commit -a -m "Releasing stable version ${params.releaseVersion}\" && git tag ${params.releaseVersion}`);
     } else {
       console.log('Skipping git tag in dry run');
     }
   }
 }
 
-new Publish(process.env.npm_package_version, process.argv[2], !process.env.NPM_CREDENTIALS)
+new Publish(process.env.npm_package_version, process.argv[2], !process.env.BUILD_NUMBER)
   .run();

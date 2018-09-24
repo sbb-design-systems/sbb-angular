@@ -7,34 +7,36 @@ pipeline {
   triggers { cron(cron_string) }
 
   stages {
-    stage('Unit Tests') {
-      when {
-        not { branch 'develop' }
-        not { branch 'master' }
-      }
+    stage('Installation') {
       steps {
         sh 'npm install'
+      }
+    }
+
+    stage('Unit Tests') {
+      steps {
         sh 'npm test'
         sh 'npm run lint'
       }
     }
 
-    stage('When on develop, analyze for sonar') {
+    stage('TESTING') {
+      when {
+        branch 'feature/deployment'
+      }
+      steps {
+        sh 'npm run build'
+        sh 'npm sbb:publish:develop-showcase'
+      }
+    }
+
+    stage('When on develop, create develop showcase release') {
       when {
         branch 'develop'
       }
       steps {
-        sh 'npm install'
-        sh 'npm test'
-        sh 'npm run lint'
         sh 'npm run build'
-        withCredentials([
-          usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
-        ]) {
-          sh "curl -k -u $NPM_CREDENTIALS https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc"
-          sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
-          sh 'npm sbb:publish:develop-showcase'
-        }
+        sh 'npm sbb:publish:develop-showcase'
       }
     }
 
@@ -43,21 +45,12 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'npm install'
-        sh 'npm test'
-        sh 'npm run lint'
         sh 'npm run build'
-        withCredentials([
-          usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
-        ]) {
-          sh "curl -k -u $NPM_CREDENTIALS https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc"
-          sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
-          sh 'npm sbb:publish'
-        }
+        sh 'npm sbb:publish'
       }
     }
   }
-
+/*
   post {
     failure {
       emailext(
@@ -77,4 +70,5 @@ pipeline {
         to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
     }
   }
+*/
 }
