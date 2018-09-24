@@ -31,7 +31,6 @@ pipeline {
         withCredentials([
           usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
         ]) {
-          sh "curl -k -u $NPM_CREDENTIALS https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc"
           sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
           sh 'npm sbb:publish:develop-showcase'
         }
@@ -50,7 +49,6 @@ pipeline {
         withCredentials([
           usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
         ]) {
-          sh "curl -k -u $NPM_CREDENTIALS https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc"
           sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
           sh 'npm sbb:publish'
         }
