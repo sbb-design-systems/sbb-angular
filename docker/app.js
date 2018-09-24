@@ -26,12 +26,16 @@ class ShowcasePackage {
     const indexFile = join(this.targetDir, 'index.html');
     const indexHtml = await readFile(indexFile, 'utf-8');
     await writeFile(
-      indexFile, indexHtml.replace(/<base[^>]+>/g, `<base href="/${this.target}/">`), 'utf-8');
+      indexFile,
+      indexHtml.replace(
+        /<base[^>]+>/g,
+        `<base href="/${this.target}/"><meta name="robots" content="noindex, nofollow">`),
+      'utf-8');
   }
 
   toString() {
-    return this.version !== this.actualVersion
-      ? `${this.target} (${this.actualVersion})` : this.target;
+    return this.target === 'develop' || this.version === this.actualVersion
+      ? this.target : `${this.target} (${this.actualVersion})`;
   }
 
   toLocaleDatetime() {
