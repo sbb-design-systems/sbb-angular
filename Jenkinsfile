@@ -7,13 +7,14 @@ pipeline {
   triggers { cron(cron_string) }
 
   stages {
-    stage('Unit Tests') {
-      when {
-        not { branch 'develop' }
-        not { branch 'master' }
-      }
+    stage('Installation') {
       steps {
         sh 'npm install'
+      }
+    }
+
+    stage('Unit Tests') {
+      steps {
         sh 'npm test'
         sh 'npm run lint'
       }
@@ -24,16 +25,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        sh 'npm install'
-        sh 'npm test'
-        sh 'npm run lint'
         sh 'npm run build'
-        withCredentials([
-          usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
-        ]) {
-          sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
-          sh 'npm sbb:publish:develop-showcase'
-        }
       }
     }
 
@@ -42,16 +34,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'npm install'
-        sh 'npm test'
-        sh 'npm run lint'
         sh 'npm run build'
-        withCredentials([
-          usernameColonPassword(credentialsId: 'bin.sbb.ch', variable: 'NPM_CREDENTIALS')
-        ]) {
-          sh 'npm config set registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/'
-          sh 'npm sbb:publish'
-        }
       }
     }
   }
@@ -76,3 +59,4 @@ pipeline {
     }
   }
 }
+
