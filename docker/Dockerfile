@@ -71,6 +71,7 @@ RUN chmod -R 777 /usr/local/nginx \
 RUN curl -k -u $ARTIFACTORY_USER:$ARTIFACTORY_PW https://bin.sbb.ch/artifactory/api/npm/auth > ~/.npmrc
 RUN npm config set registry https://bin.sbb.ch/artifactory/api/npm/npm/
 COPY package.json /usr/share/app/package.json
+RUN npm install -g yarn
 RUN cd /usr/share/app && yarn install --production=true --non-interactive
 COPY index.pug /usr/share/app/index.pug
 COPY app.js /usr/share/app/app.js
