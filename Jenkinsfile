@@ -26,7 +26,7 @@ pipeline {
       }
       steps {
         sh 'npm run build'
-        sh 'npm sbb:publish:develop-showcase'
+        sh 'npm run sbb:publish:develop-showcase'
       }
     }
 
@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         sh 'npm run build'
-        sh 'npm sbb:publish:develop-showcase'
+        sh 'npm run sbb:publish:develop-showcase'
       }
     }
 
@@ -46,7 +46,7 @@ pipeline {
       }
       steps {
         sh 'npm run build'
-        sh 'npm sbb:publish'
+        sh 'npm run sbb:publish'
       }
     }
   }
