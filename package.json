@@ -9,6 +9,8 @@
     "build:library:ng": "ng build sbb-angular",
     "build:library:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
+    "install:icons": "npm install ./dist/sbb-angular --save-optional",
+    "build:icons": "npm install && node ./scripts/create-svg-icons-components.js",
     "build:showcase": "ng build sbb-angular-showcase --prod",
     "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci || true",
@@ -16,8 +18,9 @@
     "lint": "run-s lint:*",
     "lint:showcase": "ng lint sbb-angular-showcase",
     "lint:library": "ng lint sbb-angular",
-    "e2e": "ng e2e",
-    "sonar": "sonar-scanner"
+    "sbb:publish": "node scripts/publish.js",
+    "sbb:publish:develop-showcase": "node scripts/publish.js develop-showcase",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -68,6 +71,8 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~2.9.2",
+    "lodash": "^4.17.10",
+    "svgo": "^1.0.5"
   }
 }
