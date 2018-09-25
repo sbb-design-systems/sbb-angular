@@ -39,7 +39,6 @@
     "font-awesome": "^4.7.0",
     "ngx-monaco-editor": "^6.0.0",
     "rxjs": "~6.2.0",
-    "sbb-angular": "file:dist/sbb-angular-0.0.1.tgz",
     "util": "^0.10.4",
     "zone.js": "~0.8.26"
   },
