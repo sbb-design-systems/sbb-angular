@@ -24,6 +24,7 @@ export class IconUiService {
   }
 
   getUiIconsBySearchValue(searchValue : any) {
+
     let foundUiIcons : UiIcon[] = [];
     if(searchValue.length > 0) {
        foundUiIcons = SBBComponentsMapping.icons.filter(
@@ -32,7 +33,24 @@ export class IconUiService {
                    uiIcon.tags.find(tag => tag.toLowerCase().indexOf(searchValue.toLowerCase()) > -1)
        );
     }
-    return foundUiIcons.sort((a,b) => a.name.localeCompare(b.name));
+
+    const newFoundUIIcons : UiIcon[] = [];
+    foundUiIcons.forEach(function(item) {
+      newFoundUIIcons.push(new UiIcon(item.name, item.selector, item.tags));
+    });
+
+    for(const uiIcon of newFoundUIIcons) {
+        if(uiIcon.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
+           const index = uiIcon.name.toLowerCase().indexOf(searchValue.toLowerCase());
+           const preFix = uiIcon.name.substring(0, index);
+           const sufFix = uiIcon.name.substring(index + searchValue.length);
+           const searchText = uiIcon.name.substring(index, index + searchValue.length);
+           const newName = preFix + '<b>' + searchText + '</b>' + sufFix;
+           uiIcon.name = newName;
+        }
+    }
+
+    return newFoundUIIcons.sort((a,b) => a.name.localeCompare(b.name));
   }
 
   getAll() : Array<UiIcon> {

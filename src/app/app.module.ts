@@ -24,6 +24,7 @@ import { IconViewerDirective } from './directives/icon-viewer.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { map } from './shared/sbb-components-mapping-export';
+import { ReplacePipe } from './shared/replace.pipe';
 
 const entryComponents = Object.values(map);
 
@@ -36,7 +37,8 @@ const entryComponents = Object.values(map);
     HomeComponent,
     IconViewerDirective,
     NavlistIconComponent,
-    SearchIconComponent
+    SearchIconComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,

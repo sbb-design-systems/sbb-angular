@@ -9,9 +9,6 @@
            placeholder="Search components ..."
            #reference>
 </section>
-<!-- 
-{{ foundUiComponents | json }}
--->
 <div class="result" *ngIf="foundUiComponents.length > 0">
   <div *ngFor="let uiComponent of foundUiComponents">
     <a [routerLink]="['/content/' + uiComponent['routerLink']]"
@@ -22,8 +19,7 @@
           <div class="front face">
             <div class="row">
               <div class="col align-self-start">
-                <span style="font-size: 15px;">
-                  {{ uiComponent['id'] }}
+                <span style="font-size: 15px;" [innerHTML]="uiComponent['id']">
                 </span>
               </div>
             </div>
@@ -49,7 +45,7 @@
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <br/>
               <span style="font-size: 13px;">
-                More information about {{ uiComponent['id'] }}.
+                More information about {{ uiComponent['id'] | replacePipe:'b':'' }}.
               </span>  
             </div>
           </div>

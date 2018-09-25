@@ -9,21 +9,17 @@
            placeholder="Search icons ..."
            #reference>
 </section>
-<!-- 
-{{ foundUiIcons | json }}
--->
 <div class="result" *ngIf="foundUiIcons.length > 0">
   <div *ngFor="let uiIcon of foundUiIcons">
-    <a [routerLink]="['/content/' + uiIcon['name']]"
+    <a [routerLink]="['/content/' + uiIcon['name'].replace('<b>', '').replace('</b>', '')]"
         style="text-decoration: none; color: white;"
-        (click)="reference.value='';navigate('/content/' + uiIcon['name']);">
+        (click)="reference.value='';navigate('/content/' + uiIcon['name'].replace('<b>', '').replace('</b>', ''));">
       <div id="flip_container">
         <div id="flip_card" class="shadow">
           <div class="front face">
             <div class="row">
               <div class="col align-self-start">
-                <span style="font-size: 15px;">
-                    {{ uiIcon['name'].substring(4, uiIcon['name'].length-9) }}
+                <span style="font-size: 15px;" [innerHTML]="uiIcon['name'].substring(4, uiIcon['name'].length-9)">
                 </span>
               </div>
             </div>
@@ -51,7 +47,7 @@
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <br/>
               <span style="font-size: 13px;">
-                More information about {{ uiIcon['name'].substring(4, uiIcon['name'].length-9) }}.
+                More information about {{ uiIcon['name'].substring(4, uiIcon['name'].length-9) | replacePipe:'b':'' }}.
               </span>  
             </div>
           </div>
@@ -61,36 +57,3 @@
  </div>
  <span style="font-size: 13px; color:#1b81d7;">Found {{ foundUiIcons.length }} Component(s).</span>
 </div>
-
-<!--
-<input type="text" #iconFilter (keyup)="search(iconFilter.value)">
-<div class="container">
-  <ng-container *ngIf="icons">
-      <div class="row mt-3" *ngFor="let icon of icons; index as i">
-        <div class="col-lg-12">
-          <div class="card border-info">
-            <div class="card-header bg-info text-white">
-              <div>
-                <b>{{i + 1}}.</b> {{icon.name}} <small>({{icon.selector}})</small>
-                <div class="float-right">
-                  <span *ngFor="let tag of icon.tags" class="badge badge-secondary mr-1">{{tag | titlecase}}</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-title">
-                <h4>Selector</h4>
-                <code>&lt;{{icon.selector}} svgClass="..."&gt;&lt;/{{icon.selector}}&gt;</code>
-              </div>
-              <hr>
-              <h4>Examples</h4>
-              <div class="icon-flex-container">
-                <ng-template [sbbIconViewer]="icon"></ng-template>  
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-</div>
--->

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
-import { UiIcon } from '../shared/ui-icon';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +39,29 @@ export class ComponentUiService {
   }
 
   getUiComponentsBySearchValue(searchValue : any) : Array<UiComponent> {
+
     let foundUiComponents : UiComponent[] = [];
     if(searchValue.length > 0) {
        foundUiComponents = this.uiComponents.filter(uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
     }
-    return foundUiComponents.sort((a,b) => a.id.localeCompare(b.id));
+
+    const newFoundUiComponents: UiComponent[] = [];
+    foundUiComponents.forEach(function(item) {
+      newFoundUiComponents.push(new UiComponent(item.id,item.routerLink,item.title,item.subTitle,item.isComponent,item.isDirective,item.authors,item.description,item.source,item.importText,item.gettingStartedText,item.modelBindingText,item.iconsText,item.autoResizeText,item.propertiesText,item.eventsText,item.stylingText,item.dependenciesText));
+    });
+
+    for(const uiComponent of newFoundUiComponents) {
+        if(uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
+           const index = uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase());
+           const preFix = uiComponent.id.substring(0, index);
+           const sufFix = uiComponent.id.substring(index + searchValue.length);
+           const searchText = uiComponent.id.substring(index, index + searchValue.length);
+           const newId = preFix + '<b>' + searchText + '</b>' + sufFix;
+           uiComponent.id = newId;
+        }
+    }
+
+    return newFoundUiComponents.sort((a,b) => a.id.localeCompare(b.id));
   }
 
   getAll() : Array<UiComponent> {
