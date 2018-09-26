@@ -60,9 +60,10 @@ input[type=text]:focus, textarea:focus {
 
 #uiIconSelector {
     font-size: 13px;
+    display:inline-block;
     white-space: nowrap; 
-    width: 50px; 
-    overflow: hidden;
+    width: 180px; 
+    overflow: hidden !important;
     text-overflow: ellipsis;
 }
 

@@ -90,6 +90,11 @@ input[type=text]:focus, textarea:focus {
 
 #uiComponentSubTitle {
     font-size: 13px;
+    display:inline-block;
+    white-space: nowrap; 
+    width: 180px; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
   
 .face {
