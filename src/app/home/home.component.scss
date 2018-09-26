@@ -10,16 +10,37 @@
     color: white;
 }
 
+.mod_header_logo {
+    text-decoration: none; 
+    position: absolute; 
+    left: 40px; 
+    top: 40px;
+}
+
+.mod_header_logo_content {
+    width: 100%; 
+    height: 30px;
+}
+
 .feature-title {
     font-size: 30px;
     margin-bottom: 20px;
     display: block;
 }
 
+#title {
+    font-size: 30px;
+}
+
+#subTitle {
+    font-size: 24px;
+}
+
 .implementation {
     background-image: url('/assets/favicons/sbb.jpg');
     background-color: white;
     overflow: visible; 
+    text-decoration: none;
 }
 
 .layout-footer {

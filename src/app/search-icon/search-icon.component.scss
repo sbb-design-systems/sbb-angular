@@ -4,6 +4,13 @@
     border-radius: 23px;
 }
 
+#searchInputLabel {
+    position: absolute; 
+    left: 35px; 
+    top: 67px; 
+    color: grey;
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -51,6 +58,18 @@ input[type=text]:focus, textarea:focus {
     border: 1px solid rgba(81, 203, 238, 1);
 }
 
+#uiIconSelector {
+    font-size: 13px;
+    white-space: nowrap; 
+    width: 50px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#uiIconName {
+    font-size: 15px;
+}
+
 #flip_container {
     position: relative;
     margin: 10px auto;
@@ -92,4 +111,10 @@ input[type=text]:focus, textarea:focus {
     display: block;
     transform: rotateY(180deg);
     box-sizing: border-box;
+    font-size: 13px;
+}
+
+#foundUiIconsTotal {
+    font-size: 13px; 
+    color:#1b81d7;
 }

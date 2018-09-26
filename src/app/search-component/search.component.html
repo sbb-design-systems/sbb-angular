@@ -1,6 +1,6 @@
 <section id="search">
-    <label for="search-input">
-       <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 35px; top: 85px; color: grey;"></i>
+    <label for="search-input" id="searchInputLabel">
+       <i class="fa fa-search" aria-hidden="true"></i>
     </label>
     <input id="search-input" 
            class="form-control" 
@@ -14,20 +14,19 @@
 <div class="result" *ngIf="foundUiComponents.length > 0">
   <div *ngFor="let uiComponent of foundUiComponents">
     <a [routerLink]="['/content/' + uiComponent['routerLink']]"
-        style="text-decoration: none; color: white;"
         (click)="navigate('/content/' + uiComponent['routerLink']);">
       <div id="flip_container">
         <div id="flip_card" class="shadow">
           <div class="front face">
             <div class="row">
               <div class="col align-self-start">
-                <span style="font-size: 15px;" [innerHTML]="uiComponent['id']">
+                <span id="uiComponentId" [innerHTML]="uiComponent['id']">
                 </span>
               </div>
             </div>
             <div class="row">
               <div class="col align-self-start">
-                <span style="font-size: 13px;">{{ (uiComponent['subTitle'].length > 16) ? (uiComponent['subTitle'] | slice:0:16) + '...' : (uiComponent['subTitle']) }}</span>  
+                <span id="uiComponentSubTitle">{{ (uiComponent['subTitle'].length > 16) ? (uiComponent['subTitle'] | slice:0:16) + '...' : (uiComponent['subTitle']) }}</span>  
               </div>
             </div>
             <hr/> 
@@ -46,14 +45,12 @@
             <div class="col align-self-center">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
               <br/>
-              <span style="font-size: 13px;">
-                More information about {{ uiComponent['id'] | replacePipe:'b':'' }}.
-              </span>  
+              More information about {{ uiComponent['id'] | replacePipe:'b':'' }}.  
             </div>
           </div>
         </div>
       </div>
     </a>
  </div>
- <span style="font-size: 13px; color:#1b81d7;">Found {{ foundUiComponents.length }} Component(s).</span>
+ <span id="foundUiComponentsTotal">Found {{ foundUiComponents.length }} Component(s).</span>
 </div>

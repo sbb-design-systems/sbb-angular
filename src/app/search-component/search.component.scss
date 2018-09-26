@@ -4,6 +4,13 @@
     border-radius: 23px;
 }
 
+#searchInputLabel {
+    position: absolute; 
+    left: 35px; 
+    top: 67px; 
+    color: grey;
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -44,6 +51,8 @@
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     border: 1px solid #1b81d7;
     z-index: 998;
+    text-decoration: none; 
+    color: white;
 }
 
 input[type=text]:focus, textarea:focus {
@@ -74,6 +83,14 @@ input[type=text]:focus, textarea:focus {
     transform: rotateY(180deg);
     box-shadow: -5px 5px 5px #aaa;
 }
+
+#uiComponentId {
+    font-size: 15px;
+}
+
+#uiComponentSubTitle {
+    font-size: 13px;
+}
   
 .face {
     position: absolute;
@@ -92,4 +109,10 @@ input[type=text]:focus, textarea:focus {
     display: block;
     transform: rotateY(180deg);
     box-sizing: border-box;
+    font-size: 13px;
+}
+
+#foundUiComponentsTotal {
+    font-size: 13px; 
+    color:#1b81d7;
 }
