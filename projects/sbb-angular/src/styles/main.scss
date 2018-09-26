@@ -1,4 +1,13 @@
-@import './globals/variables';
-@import './globals/functions';
-@import './globals/mediaqueries';
-@import './globals/mixins';
+@import 'globals/variables';
+@import 'globals/functions';
+@import 'globals/mediaqueries';
+@import 'globals/mixins';
+
+button,
+input[type=submit],
+input[type=button] {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  @include primary-button-icon;
+}

@@ -2,7 +2,7 @@
 // Generic Classes
 // ----------------------------------------------------------------------------------------------------
 
-@import './mixins';
+@import 'mixins';
 
 .visuallyhidden {
 	@include visuallyhidden;

@@ -2,64 +2,64 @@
 // Functions
 // ----------------------------------------------------------------------------------------------------
 
-@import './variables';
+@import 'variables';
 
 // Helper Functions
 // ----------------------------------------------------------------------------------------------------
 
-@function pxToEm($px, $ref: $sizeFontBase) {
-	@return toEm(toPx($px) / toPx($ref));
+@function px-to-em($px, $ref: $size-font-base) {
+	@return to-em(to-px($px) / to-px($ref));
 }
 
-@function pxToRem($px) {
-	@return toRem(toPx($px) / toPx($sizeFontBase));
+@function px-to-rem($px) {
+	@return to-rem(to-px($px) / to-px($size-font-base));
 }
 
-@function pxToPc($px, $ref: $sizeWidthContent) {
-	@return (toPx($px) / toPx($ref) * 100%);
+@function px-to-pc($px, $ref: $sizeWidthContent) {
+	@return (to-px($px) / to-px($ref) * 100%);
 }
 
-@function toEm($val) {
+@function to-em($val) {
 	@return ($val + 0em);
 }
 
-@function toRem($val) {
+@function to-rem($val) {
 	@return ($val + 0rem);
 }
 
-@function toPx($val) {
+@function to-px($val) {
 	@return ($val + 0px);
 }
 
 // Spacings
 // ----------------------------------------------------------------------------------------------------
 
-@function paragraphSpacing($fontSize: $sizeFontDefault) {
-	@return toEm($gutterHeight/$fontSize); // 8px
+@function paragraph-spacing($font-size: $size-font-default) {
+	@return to-em($gutter-height/$font-size); // 8px
 }
 
-@function innerComponentSpacing($fontSize: $sizeFontDefault) {
-	@return toEm(($gutterHeight * 3)/$fontSize); // 24px
+@function inner-component-spacing($font-size: $size-font-default) {
+	@return to-em(($gutter-height * 3)/$font-size); // 24px
 }
 
-@function innerComponentBottomSpacingSmall($fontSize: $sizeFontDefault) {
-	@return toEm(($gutterHeight * 4.5)/$fontSize); // 36px
+@function inner-component-bottom-spacing-small($font-size: $size-font-default) {
+	@return to-em(($gutter-height * 4.5)/$font-size); // 36px
 }
 
-@function interComponentSpacingTiny($fontSize: $sizeFontDefault) {
-	@return toEm(($gutterHeight * 3)/$fontSize); // 24px
+@function inter-component-spacing-tiny($font-size: $size-font-default) {
+	@return to-em(($gutter-height * 3)/$font-size); // 24px
 }
 
-@function interComponentSpacingSmall($fontSize: $sizeFontDefault) {
-	@return toEm(($gutterHeight * 6)/$fontSize); // 48px
+@function inter-component-spacing-small($font-size: $size-font-default) {
+	@return to-em(($gutter-height * 6)/$font-size); // 48px
 }
 
-@function interComponentSpacingTablet($fontSize: $sizeFontDefault) {
-	@return toEm(($gutterHeight * 7)/$fontSize); // 56px
+@function inter-component-spacing-tablet($font-size: $size-font-default) {
+	@return to-em(($gutter-height * 7)/$font-size); // 56px
 }
 
-@function interComponentSpacing($fontSize: $sizeFontDefault) {
-	@return toEm(($gutterHeight * 10)/$fontSize); // 80px
+@function inter-component-spacing($font-size: $size-font-default) {
+	@return to-em(($gutter-height * 10)/$font-size); // 80px
 }
 
 // Arithmetic functions

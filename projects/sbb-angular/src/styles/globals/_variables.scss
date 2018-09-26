@@ -8,196 +8,205 @@ $sizeLineHeightBase: 1.7; // In the Sketch files everything is annotated as 1.5 
 /**
  * Font Families
  */
-$fontFamilyBase: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$fontSbbRoman: 'SBBWeb Roman', $fontFamilyBase;
-$fontSbbBold: 'SBBWeb Bold', $fontFamilyBase;
-$fontSbbUltralight: 'SBBWeb Ultralight', $fontFamilyBase;
-$fontSbbLight: 'SBBWeb Light', $fontFamilyBase;
-$fontSbbThin: 'SBBWeb Thin', $fontFamilyBase;
+$font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-sbb-roman: 'SBBWeb Roman', $font-family-base;
+$font-sbb-bold: 'SBBWeb Bold', $font-family-base;
+$font-sbb-ultralight: 'SBBWeb Ultralight', $font-family-base;
+$font-sbb-light: 'SBBWeb Light', $font-family-base;
+$font-sbb-thin: 'SBBWeb Thin', $font-family-base;
 
 /**
  * Breakpoints
  */
-$sizeBreakpointMobilePortrait: 321px;
-$sizeBreakpointMobileLandscape: 421px;
-$sizeBreakpointTabletPortrait: 643px;
-$sizeBreakpointTabletLandscape: 769px;
-$sizeBreakpointDesktop: 1025px;
-$sizeBreakpointDesktopLarge: 1281px;
-$sizeBreakpointDesktopLargePlus: 1441px; // used for checkout column change from 2:1 to 3:1.
-$sizeBreakpointDesktopMaxWidth: 1921px; // maxWidthDesktop + (2 x 8.5%)
-$sizeBreakpointDesktop4k: 2561px;
-$sizeBreakpointDesktop5k: 3841px;
+$size-breakpoint-mobile-portrait: 321px;
+$size-breakpoint-mobile-landscape: 421px;
+$size-breakpoint-tablet-portrait: 643px;
+$size-breakpoint-tablet-landscape: 769px;
+$size-breakpoint-desktop: 1025px;
+$size-breakpoint-desktop-large: 1281px;
+$size-breakpoint-desktop-large-plus: 1441px; // used for checkout column change from 2:1 to 3:1.
+$size-breakpoint-desktop-max-width: 1921px; // maxWidthDesktop + (2 x 8.5%)
+$size-breakpoint-desktop4k: 2561px;
+$size-breakpoint-desktop5k: 3841px;
 
-$sizeWidthContent: 960px;
-$maxWidthContentDesktop: 1594px;
-$maxWidthContentDesktop5k: 2656px;
+$size-width-content: 960px;
+$max-width-content-desktop: 1594px;
+$max-width-content-desktop-5k: 2656px;
 
 /**
  * Offsets
  */
-$offset5k: 19%;
-$offsetLarge: 8.5%;
-$offsetPreLarge: 5.5%;
-$offsetMedium: 24;
-$offsetSmall: 12;
+$offset-5k: 19%;
+$offset-large: 8.5%;
+$offset-pre-large: 5.5%;
+$offset-medium: 24;
+$offset-small: 12;
 
 /**
  * Scaling Factors
  */
-$scalingFactorDefault: 1;
-$scalingFactor4k: 1.25;
-$scalingFactor5k: 1.5;
+$scaling-factor-default: 1;
+$scaling-factor-4k: 1.5;
+$scaling-factor-5k: 2;
 
 /**
  * Header variables
  */
-$headerHeightMobileLandscape: 49;
-$headerHeightTabletPortrait: 65;
-$headerHeightTabletLandscape: $headerHeightTabletPortrait;
-$headerHeightDesktop: 130;
-$headerHeightDesktop4k: $headerHeightDesktop * $scalingFactor4k;
-$headerHeightDesktop5k: $headerHeightDesktop * $scalingFactor5k;
-$headerHeightDesktopRolledUp: 64;
-$headerHeightDesktop4kRolledUp: $headerHeightDesktopRolledUp * $scalingFactor4k;
-$headerHeightDesktop5kRolledUp:  $headerHeightDesktopRolledUp * $scalingFactor5k;
+$header-height-mobile-landscape: 49;
+$header-height-tablet-portrait: 65;
+$header-height-tablet-landscape: $header-height-tablet-portrait;
+$header-height-desktop: 130;
+$header-height-desktop-4k: $header-height-desktop * $scaling-factor-4k;
+$header-height-desktop-5k: $header-height-desktop * $scaling-factor-5k;
+$header-height-desktop-rolled-up: 64;
+$header-height-desktop4k-rolled-up: $header-height-desktop-rolled-up * $scaling-factor-4k;
+$header-height-desktop5k-rolled-up:  $header-height-desktop-rolled-up * $scaling-factor-5k;
 
 /**
  * Grid
  */
-$gutterMobile: 12;
-$gutterTablet: 24;
-$gutterDesktop: 16;
-$gutterDesktop4k: 26;
-$gutterDesktop5k: 32;
+$gutter-mobile: 12;
+$gutter-tablet: 24;
+$gutter-desktop: 16;
+$gutter-desktop-4k: 26;
+$gutter-desktop-5k: 32;
 
 /* Vertical Spacings */
-$gutterHeight: 8;
-$innerComponentSpacing: 24;
-$interComponentSpacing: 80;
-$interComponentSpacingSmall: 40;
+$gutter-height: 8;
+$inner-component-spacing: 24;
+$inter-component-spacing: 80;
+$inter-component-spacing-small: 40;
 
 // Design Colors
 
-$colorBlack: #000000;
-$colorWhite: #FFFFFF;
-$colorGreyLight: #DCDCDC;
-$colorGreySilver: #CDCDCD;
-$colorGrey: #666666;
-$colorRed100: #EB0000;
-$colorRed125: #C60018;
-$colorRed150: #A20013;
-$colorBlack5: #F6F6F6;
-$colorBlack10: #E5E5E5;
-$colorBlack20: #D2D2D2;
-$colorBlack30: #BDBDBD;
-$colorBlack40: #A8A8A8;
-$colorBlack60: #767676;
-$colorBlack70: #686868;
-$colorBlack72: #b7b7b7;
-$colorBlack80: #5A5A5A;
-$colorBlack90: #444444;
-$colorBlack100: #1E1E1E;
-$colorBlue: #003399;
+$color-black: #000000;
+$color-white: #FFFFFF;
+$color-grey-light: #DCDCDC;
+$color-grey-silver: #CDCDCD;
+$color-grey: #666666;
+$color-red-100: #EB0000;
+$color-red-125: #C60018;
+$color-red-150: #A20013;
+$color-black-5: #F6F6F6;
+$color-black-10: #E5E5E5;
+$color-black-20: #D2D2D2;
+$color-black-30: #BDBDBD;
+$color-black-40: #A8A8A8;
+$color-black-60: #767676;
+$color-black-70: #686868;
+$color-black-72: #b7b7b7;
+$color-black-80: #5A5A5A;
+$color-black-90: #444444;
+$color-black-100: #1E1E1E;
+$color-blue: #003399;
 
 /**
  * Custom colors
  */
-$colorBg: $colorWhite;
-$colorCallToAction: $colorRed100;
-$colorCallToActionHover: $colorRed125;
-$colorContentBg: $colorWhite;
-$colorFallbackButton: $colorBlack90;
-$colorFocusOutline: $colorGrey;
-$colorHeadline: $colorBlack;
-$colorMenuBorder: $colorBlack10;
-$colorNavigation: $colorBlue;
-$colorSecondaryButton: $colorBlack20;
-$colorSeparationBorder: $colorBlack10;
-$colorText: $colorBlack;
-$colorMetanav: $colorBlack60;
+$color-bg: $color-white;
+$color-call-to-action: $color-red-100;
+$color-call-to-action-hover: $color-red125;
+$color-content-bg: $color-white;
+$color-fallback-button: $color-black90;
+$color-focus-outline: $color-grey;
+$color-headline: $color-black;
+$color-menu-border: $color-black-10;
+$color-navigation: $colorBlue;
+$color-secondary-button: $color-black-20;
+$color-separation-border: $color-black-10;
+$color-text: $color-black;
+$color-metanav: $color-black-60;
 
 /**
  * Typo
  */
-$sizeFontDefault: 15;
-$sizeFontDefault4k: $sizeFontDefault * $scalingFactor4k;
-$sizeFontDefault5k: $sizeFontDefault * $scalingFactor5k;
+$size-font-default: 15;
+$size-font-default-4k: $size-font-default * $scaling-factor-4k;
+$size-font-default-5k: $size-font-default * $scaling-factor-5k;
 
-$fontSizeHeaderDefault: 14;
-$fontSizeHeaderDesktop4k: $fontSizeHeaderDefault * $scalingFactor4k;
-$fontSizeHeaderDesktop5k: $fontSizeHeaderDefault * $scalingFactor5k;
+$font-size-header-default: 14;
+$font-size-header-desktop-4k: $font-size-header-default * $scaling-factor-4k;
+$font-size-header-desktop-5k: $font-size-header-default * $scaling-factor-5k;
 
-$sizeFontH1Mobile: 28;
-$sizeFontH1Tablet: 30;
-$sizeFontH1Default: 40;
-$sizeFontH1Default4k: $sizeFontH1Default * $scalingFactor4k;
-$sizeFontH1Default5k: $sizeFontH1Default * $scalingFactor5k;
+$size-font-h1-default: 40;
+$size-font-h1-tablet: 30;
+$size-font-h1-mobile: 28;
+$size-font-h1-default4k: $size-font-h1-default * $scaling-factor-4k;
+$size-font-h1-default5k: $size-font-h1-default * $scaling-factor-5k;
 
-$sizeFontH2Default: 32;
-$sizeFontH2Default4k: $sizeFontH2Default * $scalingFactor4k;
-$sizeFontH2Default5k: $sizeFontH2Default * $scalingFactor5k;
+$size-font-h2-default: 32;
+$size-font-h2-tablet: 24;
+$size-font-h2-mobile: $size-font-h2-tablet;
+$size-font-h2-default-4k: $size-font-h2-default * $scaling-factor-4k;
+$size-font-h2-default-5k: $size-font-h2-default * $scaling-factor-5k;
 
-$sizeFontH3Default: 21;
-$sizeFontH3Default4k: $sizeFontH3Default * $scalingFactor4k;
-$sizeFontH3Default5k: $sizeFontH3Default * $scalingFactor5k;
+$size-font-h3-default: 21;
+$size-font-h3-tablet: $size-font-h3-default;
+$size-font-h3-mobile: 20;
+$size-font-h3-default4k: $size-font-h3-default * $scaling-factor-4k;
+$size-font-h3-default5k: $size-font-h3-default * $scaling-factor-5k;
 
-$sizeFontH4Default: $sizeFontDefault;
-$sizeFontH4Default4k: $sizeFontH4Default * $scalingFactor4k;
-$sizeFontH4Default5k: $sizeFontH4Default * $scalingFactor5k;
+$size-font-h4-default: $size-font-default-;
+$size-font-h4-default-4k: $size-font-h4-default * $scaling-factor-4k;
+$size-font-h4-default-5k: $size-font-h4-default * $scaling-factor-5k;
 
-$fontSizeFooterBottomContainerDefault: 12;
-$fontSizeFooterDefault: $fontSizeHeaderDefault;
-
+$size-font-additional-info-default: 13;
+$size-font-additional-info-default-4k: $size-font-additional-info-default * $scaling-factor-4k;
+$size-font-additional-info-default-5k: $size-font-additional-info-default * $scaling-factor-5k;
 
 /* lead text font sizes */
-$sizeFontLeadTextDefault: 20;
-$sizeFontLeadTextTablet: 21;
+$size-font-lead-text-default: 21;
+$sizeFontLeadTextTablet: $size-font-lead-text-default;
+$sizeFontLeadTextMobile: 20;
+$size-font-lead-text-default-4k: $size-font-lead-text-default * $scaling-factor-4k;
+$size-font-lead-text-default-5k: 40;
+
+$font-size-footer-bottom-container-default: 12;
+$font-size-footer-default: $font-size-header-default;
 
 /* form element sizing */
-$formElementMaxWidth: 320;
-$formElementMinWidth: 240;
-$formElementSpacing: $gutterDesktop/2;
-
+$form-element-max-width: 320;
+$form-element-min-width: 240;
+$form-element-spacing: $gutter-desktop/2;
 
 /**
  * Animation-Stuff
  */
-$defaultTransitionDuration: 300ms;
-$shortDistanceTransitionDuration: 225ms;
+$default-transition-duration: 300ms;
+$short-distance-transition-duration: 225ms;
 
-$defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+$default-link-icon-transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-$linkiconAnimationDuration: $defaultTransitionDuration;
-$linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
+$linkicon-animation-duration: $default-transition-duration;
+$linkicon-animation: $linkicon-animation-duration $default-link-icon-transition-timing-function;
 
-$imageLazyloadFadeAnimation: opacity .35s ease-in;
-$imageLazyloadFadeAnimationTablet: opacity .45s ease-in;
+$image-lazyload-fade-animation: opacity .35s ease-in;
+$image-lazyload-fade-animation-tablet: opacity .45s ease-in;
 
 /**
  * Layers
  */
 
-$zIndexFocusedElement: 999;
+$z-index-focused-element: 999;
 
 /**
  * Footer
  */
-$colorFooterText: $colorGrey;
-$footerAnimation: .3s;  // This has to match the delay in the corresponding JS
-$fontSizeFooterSectionTitleDefault: 16;
+$color-footer-text: $color-grey;
+$footer-animation: .3s;  // This has to match the delay in the corresponding JS
+$font-size-footer-section-title-default: 16;
 
 
 /**
  * Timetable Breakpoints
  */
-$sizeBreakpointTimetableMobile: 960px;
+$size-breakpoint-timetable-mobile: 960px;
 
 /**
  * Timetable Cells
  */
-$cellSmall: 52;
-$cellCtaSmall: 72;
-$cellCtaSmallMedium: 96;
-$cellCTAMedium: 160;
-$cellCTALarge: 332;
+$cell-small: 52;
+$cell-cta-small: 72;
+$cell-cta-small-medium: 96;
+$cell-cta-medium: 160;
+$cell-cta-large: 332;
