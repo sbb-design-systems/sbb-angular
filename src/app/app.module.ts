@@ -25,7 +25,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { map } from './shared/sbb-components-mapping-export';
 import { ReplacePipe } from './shared/replace.pipe';
-import { APP_BASE_HREF } from '@angular/common';
 
 const entryComponents = Object.values(map);
 
