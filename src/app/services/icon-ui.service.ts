@@ -46,12 +46,7 @@ export class IconUiService {
         .map(item => new UiIcon(item.name, item.selector, item.tags))
         .map(uiIcon => {
           if (new RegExp(searchValue, 'ig').test(uiIcon.name)) {
-            const index = uiIcon.name.toLowerCase().indexOf(searchValue.toLowerCase());
-            const preFix = uiIcon.name.substring(0, index);
-            const sufFix = uiIcon.name.substring(index + searchValue.length);
-            const searchText = uiIcon.name.substring(index, index + searchValue.length);
-            const newName = `${preFix}<b>${searchText}</b>${sufFix}`;
-            uiIcon.name = newName;
+            uiIcon.name = uiIcon.name.replace(new RegExp(searchValue, 'ig'), m => `<b>${m}</b>`);
           }
           return uiIcon;
         })

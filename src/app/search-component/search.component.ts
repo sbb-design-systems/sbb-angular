@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { ComponentUiService } from '../services/component-ui.service';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent {
 
-  searchChangeObserver;
+  searchChangeObserver: Subject<string>;
 
   inputValue: string;
 
@@ -24,21 +24,22 @@ export class SearchComponent {
   onSearchChange(searchValue: string) {
     this.foundUiComponents = [];
     if (!this.searchChangeObserver) {
-         Observable.create(observer => { this.searchChangeObserver = observer; })
-                   .pipe(debounceTime(500))
-                   .pipe(distinctUntilChanged())
-                   .pipe(switchMap(searchTerm => this.componentUiService.getUiComponentsBySearchValue(searchTerm)))
-                   .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
+      this.searchChangeObserver = new Subject<string>();
+      this.searchChangeObserver
+        .pipe(debounceTime(500))
+        .pipe(distinctUntilChanged())
+        .pipe(switchMap(searchTerm => this.componentUiService.getUiComponentsBySearchValue(searchTerm)))
+        .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
     }
     this.searchChangeObserver.next(searchValue);
   }
 
-  async navigate(path : any) {
+  async navigate(path: any) {
     this.foundUiComponents = [];
     this.inputValue = '';
     // navigate to clicked component ...
-    await this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-     this.router.navigate([path])
+    await this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([path])
     );
   }
 }
