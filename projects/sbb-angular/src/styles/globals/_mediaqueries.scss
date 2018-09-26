@@ -2,8 +2,8 @@
 // Mediaqueries
 // ----------------------------------------------------------------------------------------------------
 
-@import 'variables';
-@import 'functions';
+@import './variables';
+@import './functions';
 
 /**
  * Inspired from https://github.com/guardian/sass-mq.git
@@ -11,48 +11,48 @@
 
 /**
  * // To enable support for browsers that do not support @media queries,
- * (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
+ * (IE <= 8, Firefox <= 3, Opera <= 9) set $mqResponsive to false
  * Create a separate stylesheet served exclusively to these browsers,
  * meaning @media queries will be rasterized, relying on the cascade itself
  */
-$mq-responsive: true;
+$mqResponsive: true;
 
 /**
  * Name your breakpoints in a way that creates a ubiquitous language
  * across team members. It will improve communication between
  * stakeholders, designers, developers, and testers.
  */
-$mq-breakpoints: (
-	mobilePortrait: $size-breakpoint-mobile-portrait,
-	mobileLandscape: $size-breakpoint-mobile-landscape,
-	tabletPortrait: $size-breakpoint-tablet-portrait,
-	tabletLandscape: $size-breakpoint-tablet-landscape,
-	desktop: $size-breakpoint-desktop,	
-	desktopLarge: $size-breakpoint-desktop-large,
-	desktopLargePlus: $size-breakpoint-desktop-large-plus,
-	desktopMaxWidth: $size-breakpoint-desktop-max-width,
-	desktop4k: $size-breakpoint-desktop-4k,
-	desktop5k: $size-breakpoint-desktop-5k
+$mqBreakpoints: (
+	mobilePortrait: $sizeBreakpointMobilePortrait,
+	mobileLandscape: $sizeBreakpointMobileLandscape,
+	tabletPortrait: $sizeBreakpointTabletPortrait,
+	tabletLandscape: $sizeBreakpointTabletLandscape,
+	desktop: $sizeBreakpointDesktop,
+	desktopLarge: $sizeBreakpointDesktopLarge,
+	desktopLargePlus: $sizeBreakpointDesktopLargePlus,
+	desktopMaxWidth: $sizeBreakpointDesktopMaxWidth,
+	desktop4k: $sizeBreakpointDesktop4k,
+	desktop5k: $sizeBreakpointDesktop5k
 );
 
 /**
- * Define the breakpoint from the $mq-breakpoints list that should
+ * Define the breakpoint from the $mqBreakpoints list that should
  * be used as the target width when outputting a static stylesheet
- * (i.e. when $mq-responsive is set to 'false').
+ * (i.e. when $mqResponsive is set to 'false').
  */
-$mq-static-breakpoint: mobile-landscape;
+$mqStaticBreakpoint: mobileLandscape;
 
 /**
  * If you want to display the currently active breakpoint in the top
  * right corner of your site during development, add the breakpoints
  * to this list, ordered by width, e.g. (mobile, tablet, desktop).
  */
-$mq-show-breakpoints: (mobile-landscape, tablet-portrait, tablet-landscape, desktop, desktop-plus, desktop-4k, desktop-5k);
+$mqShowBreakpoints: (mobileLandscape, tabletPortrait, tabletLandscape, desktop, desktopPlus, desktop4k, desktop5k);
 
 
-@function mq-get-breakpoint-width($name) {
-	@if(map-has-key($mq-breakpoints, $name)) {
-		@return map-get($mq-breakpoints, $name);
+@function mqGetBreakpointWidth($name) {
+	@if(map-has-key($mqBreakpoints, $name)) {
+		@return map-get($mqBreakpoints, $name);
 	} @else {
 		@warn "Breakpoint #{$name} does not exist";
 	}
@@ -83,54 +83,54 @@ $mq-show-breakpoints: (mobile-landscape, tablet-portrait, tablet-landscape, desk
 @mixin mq($from: false, $to: false, $and: false, $height: false) {
 
 	// Initialize variables
-	$min-size: 0;
-	$max-size: 0;
-	$media-query: '';
+	$minSize: 0;
+	$maxSize: 0;
+	$mediaQuery: '';
 	$axis: if($height, 'height', 'width');
 
 	// From: this breakpoint (inclusive)
 	@if $from {
 		@if type-of($from) == number {
-			$min-size: px-to-em($from, 16);
+			$minSize: pxToEm($from, 16);
 		} @else {
-			$min-size: px-to-em(mq-get-breakpoint-width($from), 16);
+			$minSize: pxToEm(mqGetBreakpointWidth($from), 16);
 		}
 	}
 
 	// To: that breakpoint (exclusive)
 	@if $to {
 		@if type-of($to) == number {
-			$max-size: px-to-em($to, 16) - .01em;
+			$maxSize: pxToEm($to, 16) - .01em;
 		} @else {
-			$max-size: px-to-em(mq-get-breakpoint-width($to), 16) - .01em;
+			$maxSize: pxToEm(mqGetBreakpointWidth($to), 16) - .01em;
 		}
 	}
 
 	// Responsive support is disabled, rasterize the output outside @media blocks
 	// The browser will rely on the cascade itself.
-	@if ($mq-responsive == false) {
-		$static-breakpoint-width: mq-get-breakpoint-width($mq-static-breakpoint);
-		@if type-of($static-breakpoint-width) == number {
-			$target-width: px-to-em($static-breakpoint-width, 16);
+	@if ($mqResponsive == false) {
+		$staticBreakpointWidth: mqGetBreakpointWidth($mqStaticBreakpoint);
+		@if type-of($staticBreakpointWidth) == number {
+			$targetWidth: pxToEm($staticBreakpointWidth, 16);
 			// Output only rules that start at or span our target width
-			@if ($and == false and ($min-size <= $target-width) and (($to == false) or ($max-size >= $target-width))) {
+			@if ($and == false and ($minSize <= $targetWidth) and (($to == false) or ($maxSize >= $targetWidth))) {
 				@content;
 			}
 		} @else {
-			// Throw a warning if $mq-static-breakpoint is not in the $mq-breakpoints list
-			@warn "No static styles will be output: #{$static-breakpoint-width}";
+			// Throw a warning if $mqStaticBreakpoint is not in the $mqBreakpoints list
+			@warn "No static styles will be output: #{$staticBreakpointWidth}";
 		}
 	}
 
 		// Responsive support is enabled, output rules inside @media queries
 	@else {
-		@if $min-size != 0 { $media-query: '#{$media-query} and (min-#{$axis}: #{$min-size})'; }
-		@if $max-size != 0 { $media-query: '#{$media-query} and (max-#{$axis}: #{$max-size})'; }
-		@if $and { $media-query: '#{$media-query} and #{$and}'; }
+		@if $minSize != 0 { $mediaQuery: '#{$mediaQuery} and (min-#{$axis}: #{$minSize})'; }
+		@if $maxSize != 0 { $mediaQuery: '#{$mediaQuery} and (max-#{$axis}: #{$maxSize})'; }
+		@if $and { $mediaQuery: '#{$mediaQuery} and #{$and}'; }
 
-		$media-query: unquote(#{$media-query});
+		$mediaQuery: unquote(#{$mediaQuery});
 
-		@media #{all + $media-query} {
+		@media #{all + $mediaQuery} {
 			@content;
 		}
 	}
@@ -138,17 +138,17 @@ $mq-show-breakpoints: (mobile-landscape, tablet-portrait, tablet-landscape, desk
 
 /**
  * Add a breakpoint
- * Usage: $mq-breakpoints: mqAddBreakpoint(tvscreen, 1920px);
+ * Usage: $mqBreakpoints: mqAddBreakpoint(tvscreen, 1920px);
  */
-@function mq-add-breakpoint($name, $breakpoint) {
-	$new-breakpoint: ($name: $breakpoint);
-	@return map-merge($mq-breakpoints, $new-breakpoint);
+@function mqAddBreakpoint($name, $breakpoint) {
+	$newBreakpoint: ($name: $breakpoint);
+	@return map-merge($mqBreakpoints, $newBreakpoint);
 }
 
 /**
  * Create JSON string of map of breakpoints
  */
-@function mq-get-breakpoints-json($breakpoints: $mq-breakpoints) {
+@function mqGetBreakpointsJSON($breakpoints: $mqBreakpoints) {
 	$JSON: '';
 
 	@each $name in map-keys($breakpoints) {
@@ -167,6 +167,6 @@ $mq-show-breakpoints: (mobile-landscape, tablet-portrait, tablet-landscape, desk
 /**
  * Create JSON string of single breakpoint
  */
-@function mq-get-breakpoint-json($name, $value) {
+@function mqGetBreakpointJSON($name, $value) {
 	@return \{\"name\"\:\"#{$name}\"\,\"value\"\:\"#{$value}\"\};
 }

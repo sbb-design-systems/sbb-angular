@@ -2,48 +2,218 @@
 // Typography Styles
 // ----------------------------------------------------------------------------------------------------
 
-@import 'variables';
-@import 'functions';
-@import 'mediaqueries';
-@import 'mixins';
+@import './variables';
+@import './functions';
+@import './mediaqueries';
+@import './mixins';
+
+
+@include inlinelinks;
+
+table {
+	th,
+	td {
+		color: $colorHeadline;
+		font-size: pxToEm($sizeFontDefault);
+		line-height: 1.5;
+		margin: 0.75em 0 0; // paragraph as default
+	}
+
+	th {
+		font-family: $fontSbbBold;
+	}
+}
 
 h1,
-.text-headline1 {
+.text_headline1 {
 	@include headline1;
 }
 
 h2,
-.text-headline2 {
+.text_headline2 {
 	@include headline2;
 }
 
 h3,
-.text-headline3 {
+.text_headline3 {
 	@include headline3;
 }
 
 h4,
-.text-headline4 {
+.text_headline4 {
 	@include headline4;
 }
 
-.text-lead {
+.text_lead {
 	@include lead;
 }
 
 p,
-.text-copy {
+.text_copy {
 	@include copy;
 }
 
-ol {
-  @include ordered-lists;
+a {
+	text-decoration-skip: ink; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
 }
 
-ul {
-  @include unordered-lists;
+a:focus,
+a:hover {
+	@media screen and (-ms-high-contrast: active) {
+		color: windowText;
+
+		&:before,
+		&:after {
+			border-color: windowText;
+		}
+
+	}
 }
 
-.text-additional-info {
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=text],
+input[type=number],
+input[type=tel],
+input[type=time],
+input[type=url] {
+	@include inputfields;
+	@include disabledinputfields;
+	@include placeholder;
+}
+
+input[placeholder] {
+	text-overflow: ellipsis;
+}
+
+input[type=number],
+input[type=time] {
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button,
+	&::-webkit-clear-button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		margin: 0;
+		width: 0;
+		padding: 0;
+		background: transparent;
+	}
+}
+
+// fix for placeholder color in firefox. As of now, there is still a bug in
+// current version of firefox, so that the placeholder won't be shown at
+// full opacity
+input[type=number] {
+	color: $colorGrey;
+	opacity: 1;
+}
+
+select {
+	max-width: 100%;
+	-webkit-appearance: none;
+	@include disabledinputfields;
+
+	&::-ms-expand {
+		display: none;
+	}
+}
+
+textarea {
+	@include inputfields;
+	@include disabledinputfields;
+}
+
+button {
+	&,
+	abbr[title] {
+		border: 0;
+	}
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+input[type=button],
+input[type=submit] {
+	@include primaryButton;
+
+	&.var_iconbutton {
+		@include iconbutton;
+	}
+}
+
+input[type=reset] {
+	@include secondaryButton;
+}
+
+button.text__primarybutton,
+.text__primarybutton {
+	@include primaryButton;
+	@include primaryIconButton;
+
+	&.var_form_inline {
+		@include mq($from: tabletPortrait) {
+			margin-top: pxToEm(20);
+			margin-right: pxToEm(8);
+		}
+	}
+}
+
+button.text__primarybutton_arrowless,
+.text__primarybutton_arrowless {
+	@include primaryButtonArrowless;
+}
+
+.text__secondarybutton {
+	@include secondaryButton;
+	@include secondaryIconButton;
+}
+
+.text__ghostbutton {
+	@include primaryButton;
+	@include ghostButtonPositive;
+}
+
+.text__ghostbutton_negative {
+	@include primaryButton;
+	@include ghostButtonNegative
+}
+
+.text__ghostbutton.var_nbc {
+	margin-top: innerComponentSpacing($sizeFontDefault);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+}
+
+.text__iconbutton_simple {
+	@include iconbuttonSimple;
+}
+
+.text__actionlink {
+	@include actionlink;
+}
+
+.text__additional_info {
 	@include additionalinfo;
+}
+
+hr {
+	height: 1px;
+	background: $colorSeparationBorder;
+	border: none;
+}
+
+.mod_module_title {
+	@include moduleTitle();
+
+	.page_centered & {
+		text-align: center;
+	}
+
 }
