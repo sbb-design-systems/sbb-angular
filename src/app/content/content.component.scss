@@ -85,6 +85,10 @@
 }
 
 .ghost-button {
+    text-decoration: none; 
+    position: absolute; 
+    left: 70px; 
+    top: 17px;
     color: #1b81d7;
     background: white;
     border: 2px solid #1b81d7;
@@ -176,7 +180,7 @@
     align-items: flex-end;
     align-content: space-around;
 }
-  
+
 :host ::ng-deep .icon-flex-column {
     flex-grow: 1;
 }

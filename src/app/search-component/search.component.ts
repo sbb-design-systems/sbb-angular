@@ -14,6 +14,8 @@ export class SearchComponent {
 
   searchChangeObserver;
 
+  inputValue: string;
+
   foundUiComponents: UiComponent[] = [];
 
   constructor(private componentUiService: ComponentUiService, private router: Router) {
@@ -31,15 +33,12 @@ export class SearchComponent {
     this.searchChangeObserver.next(searchValue);
   }
 
-  navigate(path : any) {
-    // clean up ...
-    this.cleanUp();
-    // navigate to clicked component ...
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate([path]));
-  }
-
-  cleanUp() {
+  async navigate(path : any) {
     this.foundUiComponents = [];
+    this.inputValue = '';
+    // navigate to clicked component ...
+    await this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+     this.router.navigate([path])
+    );
   }
 }

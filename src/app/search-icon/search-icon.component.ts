@@ -14,6 +14,8 @@ export class SearchIconComponent {
 
   searchChangeObserver;
 
+  inputValue: string;
+
   foundUiIcons: UiIcon[] = [];
 
   constructor(private iconUiService: IconUiService, private router: Router) {
@@ -32,14 +34,10 @@ export class SearchIconComponent {
   }
 
   navigate(path : any) {
-    // clean up ...
-    this.cleanUp();
+    this.foundUiIcons = [];
+    this.inputValue = '';
     // navigate to clicked component ...
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
     this.router.navigate([path]));
-  }
-
-  cleanUp() {
-    this.foundUiIcons = [];
   }
 }

@@ -8,18 +8,14 @@ import { UiComponent } from '../shared/ui-component';
 })
 export class IconUiService {
 
-  constructor() {
-  }
-
   getUiIconByRouterLink(name: any) : UiIcon {
-    let foundUiIcons : UiIcon[] = [];
-    foundUiIcons = SBBComponentsMapping.icons.filter(uiIcon => uiIcon.name.toLowerCase().indexOf(name.toLowerCase()) > -1);
-    return foundUiIcons[0];
+    return SBBComponentsMapping.icons.filter(uiIcon => uiIcon.name.toLowerCase().indexOf(name.toLowerCase()) > -1)[0];
   }
 
   getUiComponentByRouterLink(name: any) : UiComponent {
     let foundUiIcons : UiIcon[] = [];
     foundUiIcons = SBBComponentsMapping.icons.filter(uiIcon => uiIcon.name.toLowerCase().indexOf(name.toLowerCase()) > -1);
+    // tslint:disable-next-line
     return new UiComponent(foundUiIcons[0]['name'],foundUiIcons[0]['name'],foundUiIcons[0]['name'],'Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...',foundUiIcons[0]['selector'],'Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.');
   }
 
@@ -32,12 +28,11 @@ export class IconUiService {
                    uiIcon.selector.toLowerCase().indexOf(searchValue.toLowerCase()) > -1 ||
                    uiIcon.tags.find(tag => tag.toLowerCase().indexOf(searchValue.toLowerCase()) > -1)
        );
+    } else {
+      return foundUiIcons;
     }
 
-    const newFoundUIIcons : UiIcon[] = [];
-    foundUiIcons.forEach(function(item) {
-      newFoundUIIcons.push(new UiIcon(item.name, item.selector, item.tags));
-    });
+    const newFoundUIIcons : UiIcon[] = foundUiIcons.map(item => new UiIcon(item.name, item.selector, item.tags));
 
     for(const uiIcon of newFoundUIIcons) {
         if(uiIcon.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {

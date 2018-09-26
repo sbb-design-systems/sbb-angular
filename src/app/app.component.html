@@ -5,36 +5,16 @@
 
       <div class="result">
 
-      <!--  
-      <div class="header">
-        <a href="javascript:void(0);" style="text-decoration: none;">
-          <span class="m">SBB</span>
-          <span class="w">Angular</span>
-          <span class="a">Component</span>
-          <span class="w">Library</span>
-        </a>
-        <br/>
-        <a href="javascript:void(0);" style="text-decoration: none;">
-          <span class="m">Made</span>
-          <span class="w">With</span>
-          <span class="a">Angular</span>
-        </a>
-      </div>
-
-      <br/>
-      <br/>
-      -->
-
       <div id="accordion">
           <div class="card">
-            <div id="headingComponents" (click)="componentsClicked=!componentsClicked;">
+            <div id="headingComponents" (click)="componentsClicked=!componentsClicked">
               
                 <button class="btn btn-link" data-toggle="collapse" data-target="#components" aria-expanded="componentsClicked" aria-controls="components">
                   <div class="row">
                      <div class="col-sm-2">
                         <i [ngClass]="componentsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
                      </div>
-                     <div class="col-sm-6" style="font-weight: 500;">
+                     <div class="col-sm-6">
                         Components <span class="badge badge-pill badge-secondary">{{ sizeOfUiComponents }}</span>
                      </div> 
                   </div>
@@ -47,19 +27,19 @@
                 <hr/>
                 <sbb-navlist></sbb-navlist>
                 <hr/>
-                <span style="font-size: 13px;">Total {{ sizeOfUiComponents }} Component(s).</span>
+                <span>Total {{ sizeOfUiComponents }} Component(s).</span>
               </div>
             </div>
           </div>
           <div class="card">
-            <div id="headingIcons" (click)="iconsClicked=!iconsClicked;">
+            <div id="headingIcons" (click)="iconsClicked=!iconsClicked">
               
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#icons" aria-expanded="iconsClicked" aria-controls="icons">
                     <div class="row">
                         <div class="col-sm-2">
                            <i [ngClass]="iconsClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
                         </div>
-                        <div class="col-sm-6" style="font-weight: 500;">
+                        <div class="col-sm-6">
                            Icons <span class="badge badge-pill badge-secondary">{{ sizeOfUiIcons }}</span>
                         </div> 
                      </div>
@@ -72,7 +52,7 @@
                 <hr/>
                 <sbb-navlist-icon></sbb-navlist-icon>
                 <hr/>
-                <span style="font-size: 13px;">Total {{ sizeOfUiIcons }} Icon(s).</span>
+                <span>Total {{ sizeOfUiIcons }} Icon(s).</span>
               </div>
             </div>
           </div>
@@ -83,7 +63,7 @@
                           <div class="col-sm-2">
                             <i [ngClass]="aboutClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
                           </div>
-                          <div class="col-sm-6" style="font-weight: 500;">
+                          <div class="col-sm-6">
                              About
                           </div> 
                        </div>
@@ -121,13 +101,13 @@
               </div>
             </div>
             <div class="card">
-                <div id="headingVersion" (click)="versionClicked=!versionClicked;">
+                <div id="headingVersion" (click)="versionClicked=!versionClicked">
                     <button class="btn btn-link" data-toggle="collapse" data-target="#version" aria-expanded="versionClicked" aria-controls="version">
                         <div class="row">
                             <div class="col-sm-2">
                                <i [ngClass]="versionClicked ? 'fa fa-chevron-down' : 'fa fa-chevron-right'" aria-hidden="true"></i>
                             </div>
-                            <div class="col-sm-6" style="font-weight: 500;">
+                            <div class="col-sm-6">
                                Version
                             </div> 
                          </div>

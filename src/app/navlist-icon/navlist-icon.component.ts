@@ -18,10 +18,10 @@ export class NavlistIconComponent implements OnInit {
     this.foundUiIcons = this.iconUiServive.getAll();
   }
 
-  navigate(path : any) {
+  async navigate(path : any) {
     // navigate to clicked component ...
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate([path]));
+    await this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+     this.router.navigate([path]));
   }
 
 }

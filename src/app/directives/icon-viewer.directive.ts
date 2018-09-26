@@ -29,7 +29,7 @@ export class IconViewerDirective implements OnInit {
     if (!this.sbbIconViewer || !this.singleOrMultiple) {
          console.error('The input parameter sbbIconViewer or singleOrMultiple is required');
     } else {
-      const componentFactory = this.resolver.resolveComponentFactory(map[this.sbbIconViewer['name']]);
+      const componentFactory = this.resolver.resolveComponentFactory(map[this.sbbIconViewer.name]);
       if(this.singleOrMultiple.toLocaleLowerCase().startsWith('single')) {
          const componentRef = this.viewContainer.createComponent(componentFactory);
          componentRef.instance['svgClass'] = 'icon-flex-column icon-lg';

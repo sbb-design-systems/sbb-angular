@@ -1,6 +1,6 @@
 <section id="search">
     <label for="search-input">
-       <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 35px; top: 88px; color: grey;"></i>
+       <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 35px; top: 85px; color: grey;"></i>
     </label>
     <input id="search-input" 
            class="form-control" 
@@ -8,13 +8,14 @@
            (input)="onSearchChange($event.target.value)"
            placeholder="Search icons ..."
            spellcheck="false"
+           [(ngModel)]="inputValue"
            #reference>
 </section>
 <div class="result" *ngIf="foundUiIcons.length > 0">
   <div *ngFor="let uiIcon of foundUiIcons">
     <a [routerLink]="['/content/' + uiIcon['name'].replace('<b>', '').replace('</b>', '')]"
         style="text-decoration: none; color: white;"
-        (click)="reference.value='';navigate('/content/' + uiIcon['name'].replace('<b>', '').replace('</b>', ''));">
+        (click)="navigate('/content/' + uiIcon['name'].replace('<b>', '').replace('</b>', ''));">
       <div id="flip_container">
         <div id="flip_card" class="shadow">
           <div class="front face">
