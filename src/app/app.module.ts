@@ -51,7 +51,7 @@ const entryComponents = Object.values(map);
   ],
   entryComponents: entryComponents,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ComponentUiService, IconUiService, AccordionNotificationService, {provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [ComponentUiService, IconUiService, AccordionNotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
