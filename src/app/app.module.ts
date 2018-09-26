@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { map } from './shared/sbb-components-mapping-export';
 import { ReplacePipe } from './shared/replace.pipe';
+import { APP_BASE_HREF } from '@angular/common';
 
 const entryComponents = Object.values(map);
 
@@ -41,16 +42,16 @@ const entryComponents = Object.values(map);
     ReplacePipe
   ],
   imports: [
+    IconCommonModule,
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    MonacoEditorModule.forRoot(),
     NgbModule,
-    IconCommonModule
+    MonacoEditorModule.forRoot(),
+    AppRoutingModule,
   ],
   entryComponents: entryComponents,
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [ComponentUiService, IconUiService, AccordionNotificationService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ComponentUiService, IconUiService, AccordionNotificationService, {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
