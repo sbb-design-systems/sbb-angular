@@ -95,10 +95,9 @@ function isFileExcluded(file, discardedFiles) {
  * @param baseDir source SVGs input directory
  * @param outputPath base output path where Angular Icon Components will be written
  * @param modules will contain all the angular icon modules created in this function
- * @param promises retains all the promises that will be resolved to get all the components
  * @param outputStats will contain information about the components, files, and modules
  */
-async function buildIconsLibrary(baseDir, outputPath, modules, promises, outputStats) {
+async function buildIconsLibrary(baseDir, outputPath, modules, outputStats) {
   const files = fs.readdirSync(baseDir);
   for (fileIndex in files) {
     const file = files[fileIndex];
@@ -135,7 +134,7 @@ async function buildIconsLibrary(baseDir, outputPath, modules, promises, outputS
       if (!fs.existsSync(outputPath + '/' + file)) {
         fs.mkdirSync(outputPath + '/' + file);
       }
-      await buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, promises, outputStats);
+      await buildIconsLibrary(baseDir + '/' + file, outputPath + '/' + file, modules, outputStats);
     }
   }
   //);
@@ -209,14 +208,13 @@ const scriptConfiguration = {
 async function init() {
   supportLibrary.processArgumentsCheck(scriptConfiguration);
   const modules = {};
-  const promises = [];
   const outputStats = {
     'createdComponents': [],
     'discardedComponents': [],
     'sourceSVGs': [],
     'discardedFiles': []
   };
-  await buildIconsLibrary(scriptConfiguration.svgBasePath, scriptConfiguration.baseOutputPath, modules, promises, outputStats);
+  await buildIconsLibrary(scriptConfiguration.svgBasePath, scriptConfiguration.baseOutputPath, modules, outputStats);
   buildLibraryModules(modules);
   buildCommonIconModule(scriptConfiguration.baseOutputPath, modules);
   supportLibrary.outputStatsPrint(modules, outputStats);

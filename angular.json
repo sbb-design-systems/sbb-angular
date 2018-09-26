@@ -180,7 +180,8 @@
             "ci": {
               "watch": false,
               "codeCoverage": false,
-              "browsers": "FirefoxHeadless"
+              "browsers": "FirefoxHeadless",
+              "preserveSymlinks": false
             }
           }
         },

@@ -25,26 +25,26 @@ table {
 }
 
 h1,
-.text_headline1 {
+.text-headline1 {
 	@include headline1;
 }
 
 h2,
-.text_headline2 {
+.text-headline2 {
 	@include headline2;
 }
 
 h3,
-.text_headline3 {
+.text-headline3 {
 	@include headline3;
 }
 
 h4,
-.text_headline4 {
+.text-headline4 {
 	@include headline4;
 }
 
-.text_lead {
+.text-lead {
 	@include lead;
 }
 
@@ -141,7 +141,7 @@ input[type=button],
 input[type=submit] {
 	@include primaryButton;
 
-	&.var_iconbutton {
+	&.var-iconbutton {
 		@include iconbutton;
 	}
 }
@@ -155,7 +155,7 @@ button.text__primarybutton,
 	@include primaryButton;
 	@include primaryIconButton;
 
-	&.var_form_inline {
+	&.var-form-inline {
 		@include mq($from: tabletPortrait) {
 			margin-top: pxToEm(20);
 			margin-right: pxToEm(8);
@@ -163,8 +163,8 @@ button.text__primarybutton,
 	}
 }
 
-button.text__primarybutton_arrowless,
-.text__primarybutton_arrowless {
+button.text__primarybutton-arrowless,
+.text__primarybutton-arrowless {
 	@include primaryButtonArrowless;
 }
 
@@ -178,12 +178,12 @@ button.text__primarybutton_arrowless,
 	@include ghostButtonPositive;
 }
 
-.text__ghostbutton_negative {
+.text__ghostbutton-negative {
 	@include primaryButton;
 	@include ghostButtonNegative
 }
 
-.text__ghostbutton.var_nbc {
+.text__ghostbutton.var-nbc {
 	margin-top: innerComponentSpacing($sizeFontDefault);
 	white-space: nowrap;
 	overflow: hidden;
@@ -191,7 +191,7 @@ button.text__primarybutton_arrowless,
 	width: 100%;
 }
 
-.text__iconbutton_simple {
+.text__iconbutton-simple {
 	@include iconbuttonSimple;
 }
 
@@ -199,7 +199,7 @@ button.text__primarybutton_arrowless,
 	@include actionlink;
 }
 
-.text__additional_info {
+.text__additional-info {
 	@include additionalinfo;
 }
 
@@ -209,10 +209,10 @@ hr {
 	border: none;
 }
 
-.mod_module_title {
+.mod-module-title {
 	@include moduleTitle();
 
-	.page_centered & {
+	.page-centered & {
 		text-align: center;
 	}
 
