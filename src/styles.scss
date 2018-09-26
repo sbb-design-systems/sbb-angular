@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+.icon-flex-column {
+    flex-grow: 1;
+    &.icon-sm {
+      width: 0.875em;
+    }
+  
+    &.icon-lg {
+      width: 1.33em;
+    }
+  
+    &.icon-2x {
+      width: 2em;
+    }
+  
+    &.icon-3x {
+      width: 3em;
+    }
+  
+    &.icon-5x {
+      width: 5em;
+    }
+  
+    &.icon-7x {
+      width: 7em;
+    }
+  }
+  
