@@ -7,6 +7,7 @@
            type="text" 
            (input)="onSearchChange($event.target.value)"
            placeholder="Search components ..."
+           spellcheck="false"
            #reference>
 </section>
 <div class="result" *ngIf="foundUiComponents.length > 0">
