@@ -7,6 +7,8 @@
 
 # dependencies
 /node_modules
+/docker/node_modules
+/docker/yarn.lock
 
 # IDEs and editors
 /.idea
@@ -33,7 +35,12 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+docker/browser
 
 # System Files
 .DS_Store
 Thumbs.db
+
+# Projects node_modules
+/projects/sbb-angular/node_modules
+projects/sbb-angular/output.log
