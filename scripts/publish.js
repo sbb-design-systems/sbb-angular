@@ -1,5 +1,5 @@
 
-const semver = require('semver');
+const { inc, major, minor, patch, prerelease, valid } = require('semver');
 const { writeFileSync } = require('fs');
 const { join } = require('path');
 const { exec } = require('child_process');
@@ -7,13 +7,13 @@ const execAsync = require('util').promisify(exec);
 
 class Publish {
   constructor(version, mode, dryRun) {
-    if (!semver.valid(version)) {
+    if (!valid(version)) {
       throw new Error(`${this.version} is not a valid semver version!`);
     }
 
     this.version = version;
     this.mode = mode;
-    this.isPrerealese = !!semver.prerelease(this.version);
+    this.isPrerealese = !!prerelease(this.version);
     this.tag = this.isPrerealese ? 'next' : 'latest';
     this.dryRun = dryRun;
     const dist = join(__dirname, '..', 'dist');
@@ -44,14 +44,16 @@ class Publish {
   }
 
   async nextDevelopShowcaseVersion() {
+    const stableVersion = `${major(this.version)}.${minor(this.version)}.${patch(this.version)}`;
     const versions = await this.findVersions('sbb-angular-showcase-develop');
-    if (versions.length === 0) {
-      return `${this.version}-0`;
-    }
-
-    const subVersions = versions.filter(v => v.startsWith(this.version))
-      .map(v => parseInt(v.split('-')[1]) + 1);
-    return `${this.version}-${subVersions.length ? Math.max(...subVersions) : 0}`;
+    const subVersions = versions
+      .filter(v => v.startsWith(stableVersion))
+      .map(v => prerelease(v))
+      .filter(v => !!v)
+      .map(v => v[0])
+      .sort()
+      .reverse();
+    return `${stableVersion}-${subVersions.length ? Math.max(...subVersions) + 1 : 0}`;
   }
 
   async versionAvailable() {
@@ -109,7 +111,7 @@ class Publish {
       await execAsync('git clean -f && git checkout master && git reset --hard origin/master');
       await execAsync(`git commit -a -m "Releasing version ${this.version}" && git tag v${this.version}`);
       await execAsync('git clean -f && git checkout -B develop origin/develop && git merge master -Xtheirs');
-      const newVersion = semver.inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
+      const newVersion = inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
       this.updateVersionInPackageJson(join(__dirname, '..', 'package.json'), newVersion);
       await execAsync(
         `git commit -a -m "[pipeline-helper] Set next dev version ${newVersion}" --allow-empty`);
