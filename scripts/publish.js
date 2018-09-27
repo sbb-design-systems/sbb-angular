@@ -31,15 +31,15 @@ class Publish {
     if (this.mode === 'develop-showcase') {
       const version = await this.nextDevelopShowcaseVersion();
       this.createShowcasePackageJson('sbb-angular-showcase-develop', version);
-      this.publishShowcase();
+      await this.publishShowcase();
     } else if (await this.versionAvailable()) {
       this.createShowcasePackageJson();
       this.updateLibraryPackageJson();
-      this.publishLibrary();
-      this.publishShowcase();
-      this.gitflowRelease();
+      await this.publishLibrary();
+      await this.publishShowcase();
+      await this.gitflowRelease();
     } else {
-      throw new Error(`Version ${this.version} has already been published!`);
+      console.log(`Version ${this.version} has already been published! Skipping publishing.`)
     }
   }
 
@@ -115,6 +115,7 @@ class Publish {
         `git commit -a -m "[pipeline-helper] Set next dev version ${newVersion}" --allow-empty`);
       await execAsync('git push origin --all --force && git push origin --tags --force');
       await execAsync('git clean -f && git checkout master');
+      console.log(`Tagged version ${this.version}`);
     } else {
       console.log('Skipping gitflow release in dry run');
     }
@@ -132,4 +133,5 @@ class Publish {
 }
 
 new Publish(process.env.npm_package_version, process.argv[2], !process.env.BUILD_NUMBER)
-  .run();
+  .run()
+  .catch(e => console.log(`Publish failed\n--------------\n${e}`));
