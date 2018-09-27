@@ -42,11 +42,6 @@ pipeline {
       steps {
         sh 'npm run build'
         sh 'npm run sbb:publish'
-        cloud_callDeploy(
-          cluster: 'aws',
-          project: 'sbb-angular-showcase',
-          dc: 'sbb-angular',
-          credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
       }
     }
   }
