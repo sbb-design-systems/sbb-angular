@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UiIcon } from '../shared/ui-icon';
 import { IconUiService } from '../services/icon-ui.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SearchIconComponent {
 
-  searchChangeObserver;
+  searchChangeObserver: Subject<string>;
 
   inputValue: string;
 
@@ -24,20 +24,20 @@ export class SearchIconComponent {
   onSearchChange(searchValue: string) {
     this.foundUiIcons = [];
     if (!this.searchChangeObserver) {
-         Observable.create(observer => { this.searchChangeObserver = observer; })
-                   .pipe(debounceTime(500))
-                   .pipe(distinctUntilChanged())
-                   .pipe(switchMap(searchTerm => this.iconUiService.getUiIconsBySearchValue(searchTerm)))
-                   .subscribe(uiComponents => this.foundUiIcons.push(uiComponents));
+         this.searchChangeObserver = new Subject<string>();
+         this.searchChangeObserver.pipe(debounceTime(500))
+                                  .pipe(distinctUntilChanged())
+                                  .pipe(switchMap(searchTerm => this.iconUiService.getUiIconsBySearchValue(searchTerm)))
+                                  .subscribe(uiComponents => this.foundUiIcons.push(uiComponents));
     }
     this.searchChangeObserver.next(searchValue);
   }
 
-  navigate(path : any) {
+  async navigate(path : any) {
     this.foundUiIcons = [];
     this.inputValue = '';
     // navigate to clicked component ...
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate([path]));
+    await this.router.navigateByUrl('/', {skipLocationChange: true});
+    this.router.navigate([path]);
   }
 }
