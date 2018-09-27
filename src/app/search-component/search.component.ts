@@ -38,8 +38,7 @@ export class SearchComponent {
     this.foundUiComponents = [];
     this.inputValue = '';
     // navigate to clicked component ...
-    await this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
-      this.router.navigate([path])
-    );
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    this.router.navigate([path]);
   }
 }

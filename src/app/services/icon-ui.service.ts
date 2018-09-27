@@ -51,9 +51,9 @@ export class IconUiService {
           return uiIcon;
         })
         .sort((a, b) => a.name.localeCompare(b.name));
-    } else {
-      return [];
     }
+    return [];
+
   }
 
   getAll(): Array<UiIcon> {
