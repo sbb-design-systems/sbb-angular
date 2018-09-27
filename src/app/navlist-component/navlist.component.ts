@@ -18,9 +18,9 @@ export class NavlistComponent implements OnInit {
     this.foundUiComponents = this.componentUiService.getAll();
   }
 
-  navigate(path : any) {
+  async navigate(path : any) {
     // navigate to clicked component ...
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate([path]));
+    await this.router.navigateByUrl('/', {skipLocationChange: true});
+    this.router.navigate([path]);
   }
 }
