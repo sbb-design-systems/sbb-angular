@@ -109,7 +109,8 @@ class Publish {
       await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/kd_esta/sbb-angular`);
       await execAsync('git remote set-branches origin "*" && git fetch');
       await execAsync('git clean -f && git checkout master && git reset --hard origin/master');
-      await execAsync(`git commit -a -m "Releasing version ${this.version}" && git tag v${this.version}`);
+      await execAsync(
+        `git commit -a -m "[pipeline-helper] Releasing version ${this.version}" --allow-empty && git tag v${this.version}`);
       await execAsync('git clean -f && git checkout -B develop origin/develop && git merge master -Xtheirs');
       const newVersion = inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
       this.updateVersionInPackageJson(join(__dirname, '..', 'package.json'), newVersion);
