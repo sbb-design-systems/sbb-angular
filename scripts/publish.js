@@ -83,7 +83,7 @@ class Publish {
   async publishLibrary() {
     if (!this.dryRun) {
       await execAsync(
-        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        'npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
         { cwd: this.libraryPath });
       console.log('Published library');
     } else {
@@ -95,7 +95,7 @@ class Publish {
   async publishShowcase() {
     if (!this.dryRun) {
       await execAsync(
-        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        'npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
         { cwd: this.showcasePath });
       console.log('Published showcase');
     } else {
