@@ -13,7 +13,8 @@ class Publish {
 
     this.version = version;
     this.mode = mode;
-    this.tag = semver.prerelease(this.version) ? 'next' : 'latest';
+    this.isPrerealese = !!semver.prerelease(this.version);
+    this.tag = this.isPrerealese ? 'next' : 'latest';
     this.dryRun = dryRun;
     const dist = join(__dirname, '..', 'dist');
     this.showcasePath = join(dist, 'sbb-angular-showcase');
@@ -36,7 +37,7 @@ class Publish {
       this.updateLibraryPackageJson();
       this.publishLibrary();
       this.publishShowcase();
-      this.tagReleaseInGit();
+      this.gitflowRelease();
     } else {
       throw new Error(`Version ${this.version} has already been published!`);
     }
@@ -68,20 +69,12 @@ class Publish {
   }
 
   createShowcasePackageJson(name = 'sbb-angular-showcase', version = this.version) {
-    const packageJson = { name, version };
-    writeFileSync(
-      join(this.showcasePath, 'package.json'),
-      JSON.stringify(packageJson, null, 2));
+    this.savePackageJson(join(this.showcasePath, 'package.json'), { name, version });
     console.log(`Created package.json for showcase with version ${version} and name ${name}`);
   }
 
   updateLibraryPackageJson() {
-    const libraryPackageJsonPath = join(this.libraryPath, 'package.json');
-    const packageJson = require(libraryPackageJsonPath);
-    packageJson.version = this.version;
-    writeFileSync(
-      libraryPackageJsonPath,
-      JSON.stringify(packageJson, null, 2));
+    this.updateVersionInPackageJson(join(this.libraryPath, 'package.json'), this.version);
     console.log(`Updated package.json for library with version ${this.version}`);
   }
 
@@ -109,18 +102,32 @@ class Publish {
     }
   }
 
-  async tagReleaseInGit() {
+  async gitflowRelease() {
     if (!this.dryRun) {
-      const { stdout } = await execAsync(`git remote -v | head -n1 | awk '{print \$2}'`);
-      const [repo, project] = stdout.split('/').reverse();
-      await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/${project}/${repo}`);
+      await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/kd_esta/sbb-angular`);
       await execAsync('git remote set-branches origin "*" && git fetch');
       await execAsync('git clean -f && git checkout master && git reset --hard origin/master');
+      await execAsync(`git commit -a -m "Releasing version ${this.version}" && git tag v${this.version}`);
+      await execAsync('git clean -f && git checkout -B develop origin/develop && git merge master -Xtheirs');
+      const newVersion = semver.inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
+      this.updateVersionInPackageJson(join(__dirname, '..', 'package.json'), newVersion);
       await execAsync(
-        `git commit -a -m "Releasing stable version ${params.releaseVersion}\" && git tag ${params.releaseVersion}`);
+        `git commit -a -m "[pipeline-helper] Set next dev version ${newVersion}" --allow-empty`);
+      await execAsync('git push origin --all --force && git push origin --tags --force');
+      await execAsync('git clean -f && git checkout master');
     } else {
-      console.log('Skipping git tag in dry run');
+      console.log('Skipping gitflow release in dry run');
     }
+  }
+
+  updateVersionInPackageJson(file, version) {
+    const packageJson = require(file);
+    packageJson.version = version;
+    this.savePackageJson(file, packageJson);
+  }
+
+  savePackageJson(file, content) {
+    writeFileSync(file, JSON.stringify(content, null, 2));
   }
 }
 
