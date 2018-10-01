@@ -82,7 +82,7 @@ exports.getPublicApiIconsFileTemplate = (modules, pathToExclude) => {
       publicApiExports.push(`export * from '${module.path.replace(pathToExclude, './')}/${component.fileName.replace('.ts', '')}';`);
     });
   });
-  return publicApiExports.push(`export * from './icon-common.module\n';`).join('\n');
+  return publicApiExports.join('\n').concat(`\nexport * from './icon-common.module';\n`);
 
 }
 
