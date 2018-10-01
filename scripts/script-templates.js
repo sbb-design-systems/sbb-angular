@@ -16,7 +16,7 @@ exports.getTemplate = (iconSelector, iconTemplate, iconComponentName, svgClass) 
 export class ${iconComponentName} {
 
   @Input() svgClass = '';
-  commonClass = ' ${svgClass}';
+  commonClass = '${svgClass}';
 }\n`;
 };
 

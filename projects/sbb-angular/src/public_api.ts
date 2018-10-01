@@ -4,4 +4,4 @@
  export * from './lib/sbb-angular.service';
  export * from './lib/sbb-angular.component';
  export * from './lib/sbb-angular.module';
- export * from './lib/svg-icons-components';
+ export * from './lib/svg-icons-components/index';

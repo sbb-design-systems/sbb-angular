@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
 
   componentsClicked = true;
   iconsClicked = false;
+  aboutClicked: boolean;
+  versionClicked: boolean;
+  isSourceTabClicked: boolean;
 
   constructor(private componentUiService : ComponentUiService,
               private iconUiService : IconUiService,
