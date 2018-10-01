@@ -103,10 +103,10 @@
  *
  * Usage:
  *
- * .var_dark_on_light {
+ * .var-dark-on-light {
  * 	@include fontSmoothing;
  * }
- * .var_light_on_dark {
+ * .var-light-on-dark {
  * 	@include fontSmoothingReset;
  * }
  */
@@ -182,7 +182,7 @@
 }
 
 @mixin moduleBleedTillTablet {
-	.layout_center & {
+	.layout-center & {
 		margin-left: pxToRem(-$offsetMedium);
 		margin-right: pxToRem(-$offsetMedium);
 
@@ -499,11 +499,11 @@
 		line-height: 1.1875;
 	}
 
-	.page_centered & {
+	.page-centered & {
 		text-align: center;
 	}
 
-	.page_centered .mod_accordion & {
+	.page-centered .mod-accordion & {
 		text-align: left;
 	}
 
@@ -694,21 +694,21 @@
 	padding-right: pxToEm(40, $sizeFontDefault);
 	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
 	}
 
-	.mod_svgsprite_icon:first-of-type {
+	.mod-svgsprite-icon:first-of-type {
 		opacity: 1;
 		transform: translateX(0);
 	}
 
-	.mod_svgsprite_icon:last-of-type {
+	.mod-svgsprite-icon:last-of-type {
 		opacity: 0;
 		transform: translateX(pxToEm(26));
 	}
 
-	&.var_center {
+	&.var-center {
 		padding-right: 0;
 	}
 }
@@ -741,7 +741,7 @@
 		font-size: pxToRem($sizeFontDefault5k);
 	}
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		position: absolute;
 		width: pxToEm(24, $sizeFontDefault);
 		height: pxToEm(24, $sizeFontDefault);
@@ -753,13 +753,13 @@
 		pointer-events: none;
 	}
 
-	.mod_svgsprite_icon:first-of-type {
+	.mod-svgsprite-icon:first-of-type {
 		margin-left: pxToEm(-30, $sizeFontDefault);
 		opacity: 0;
 		transform: translateX(pxToEm(-26, $sizeFontDefault));
 	}
 
-	.mod_svgsprite_icon:last-of-type {
+	.mod-svgsprite-icon:last-of-type {
 		margin-left: pxToEm(6, $sizeFontDefault);
 		opacity: 1;
 		transform: translateX(0px);
@@ -778,7 +778,7 @@
 	}
 
 
-	&.var_center {
+	&.var-center {
 		text-align: center;
 		padding-right: 0;
 	}
@@ -786,12 +786,12 @@
 
 @mixin arrowButtonsForLinks {
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		top: pxToEm(-0.5);
 		margin-top: 0;
 	}
 
-	.mod_svgsprite_icon:last-of-type {
+	.mod-svgsprite-icon:last-of-type {
 		top: auto;
 		bottom: pxToEm(-0.5);
 	}
@@ -810,7 +810,7 @@
 			background-color: $colorCallToActionHover;
 			color: $colorWhite;
 
-			.mod_svgsprite_icon {
+			.mod-svgsprite-icon {
 				fill: $colorWhite;
 			}
 		}
@@ -841,7 +841,7 @@
 	@include primaryButton;
 	@include arrowbuttons;
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		margin-top: pxToEm(-12, $sizeFontDefault);
 	}
 }
@@ -850,14 +850,14 @@
 	@include secondaryButton;
 	@include arrowbuttons;
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		margin-top: pxToEm(-12, $sizeFontDefault);
 		fill: $colorBlack90;
 	}
 
 	&:hover,
 	&:focus {
-		.mod_svgsprite_icon {
+		.mod-svgsprite-icon {
 			fill: $colorBlack90;
 		}
 	}
@@ -885,7 +885,7 @@
 			background-color: transparent;
 			border-color: currentColor;
 
-			.mod_svgsprite_icon {
+			.mod-svgsprite-icon {
 				fill: currentColor;
 			}
 		}
@@ -930,7 +930,7 @@
 	text-decoration: none;
 	hyphens: auto;
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		fill: $colorCallToAction;
 	}
 
@@ -946,15 +946,15 @@
 		}
 	}
 
-	&.var_form {
+	&.var-form {
 		color: $colorGrey;
-		.mod_svgsprite_icon {
+		.mod-svgsprite-icon {
 			fill: $colorGrey;
 		}
 		&:hover,
 		&:focus {
 			color: $colorCallToActionHover;
-			.mod_svgsprite_icon {
+			.mod-svgsprite-icon {
 				fill: $colorCallToActionHover;
 			}
 		}
@@ -964,7 +964,7 @@
 @mixin iconbutton {
 	@include primaryButton;
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		fill: $colorWhite;
 		margin-top: pxToRem(-5px);
 		margin-right: pxToRem(5px);
@@ -973,7 +973,7 @@
 	@include mq($to: desktop) {
 		min-width: 0;
 
-		.text__button_text {
+		.text__button-text {
 			@include visuallyhidden;
 		}
 	}
@@ -999,7 +999,7 @@
 		margin: 0 !important;
 	}
 
-	.mod_svgsprite_icon {
+	.mod-svgsprite-icon {
 		float: right;
 		margin-left: toEm(8/$sizeFontDefault);
 		fill: $colorBlack60;
@@ -1011,7 +1011,7 @@
 	&:hover {
 		color: $colorCallToActionHover;
 
-		.mod_svgsprite_icon {
+		.mod-svgsprite-icon {
 			fill: $colorCallToActionHover;
 			transform: rotateZ(180deg);
 		}
@@ -1299,7 +1299,7 @@
 	// c) triangle with light grey box shadow from the tooltip
 
 	// c)
-	&_arrow {
+	&-arrow {
 		position: absolute;
 		bottom: pxToEm(-23.25);
 		left: calc(50% - #{pxToEm(13)}); // by default, place the arrow in the
@@ -1310,7 +1310,7 @@
 		border-right: pxToEm(13) solid transparent;
 		border-top: pxToEm(13) solid rgba($colorBlack, .15);
 
-		.mod_tooltip.var_below & {
+		.mod_tooltip.var-below & {
 			bottom: auto;
 			top: pxToEm(-23.25);
 			border-color: transparent;
@@ -1319,8 +1319,8 @@
 	}
 
 	// a) & b)
-	&_arrow:before,
-	&_arrow:after {
+	&-arrow:before,
+	&-arrow:after {
 		position: absolute;
 		content: '';
 		width: 0;
@@ -1328,7 +1328,7 @@
 	}
 
 	// b)
-	&_arrow:before {
+	&-arrow:before {
 		top: pxToEm(-23);
 		left: pxToEm(-14);
 		border-left: pxToEm(14) solid transparent;
@@ -1337,7 +1337,7 @@
 	}
 
 	// a)
-	&_arrow:after {
+	&-arrow:after {
 		top: pxToEm(-23);
 		left: pxToEm(-11);
 		border-left: pxToEm(11) solid transparent;
