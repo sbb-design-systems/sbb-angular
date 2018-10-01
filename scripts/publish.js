@@ -1,5 +1,5 @@
 
-const semver = require('semver');
+const { inc, major, minor, patch, prerelease, valid } = require('semver');
 const { writeFileSync } = require('fs');
 const { join } = require('path');
 const { exec } = require('child_process');
@@ -7,13 +7,14 @@ const execAsync = require('util').promisify(exec);
 
 class Publish {
   constructor(version, mode, dryRun) {
-    if (!semver.valid(version)) {
+    if (!valid(version)) {
       throw new Error(`${this.version} is not a valid semver version!`);
     }
 
     this.version = version;
     this.mode = mode;
-    this.tag = semver.prerelease(this.version) ? 'next' : 'latest';
+    this.isPrerealese = !!prerelease(this.version);
+    this.tag = this.isPrerealese ? 'next' : 'latest';
     this.dryRun = dryRun;
     const dist = join(__dirname, '..', 'dist');
     this.showcasePath = join(dist, 'sbb-angular-showcase');
@@ -30,27 +31,29 @@ class Publish {
     if (this.mode === 'develop-showcase') {
       const version = await this.nextDevelopShowcaseVersion();
       this.createShowcasePackageJson('sbb-angular-showcase-develop', version);
-      this.publishShowcase();
+      await this.publishShowcase();
     } else if (await this.versionAvailable()) {
       this.createShowcasePackageJson();
       this.updateLibraryPackageJson();
-      this.publishLibrary();
-      this.publishShowcase();
-      this.tagReleaseInGit();
+      await this.publishLibrary();
+      await this.publishShowcase();
+      await this.gitflowRelease();
     } else {
-      throw new Error(`Version ${this.version} has already been published!`);
+      console.log(`Version ${this.version} has already been published! Skipping publishing.`)
     }
   }
 
   async nextDevelopShowcaseVersion() {
+    const stableVersion = `${major(this.version)}.${minor(this.version)}.${patch(this.version)}`;
     const versions = await this.findVersions('sbb-angular-showcase-develop');
-    if (versions.length === 0) {
-      return `${this.version}-0`;
-    }
-
-    const subVersions = versions.filter(v => v.startsWith(this.version))
-      .map(v => parseInt(v.split('-')[1]) + 1);
-    return `${this.version}-${subVersions.length ? Math.max(...subVersions) : 0}`;
+    const subVersions = versions
+      .filter(v => v.startsWith(stableVersion))
+      .map(v => prerelease(v))
+      .filter(v => !!v)
+      .map(v => v[0])
+      .sort()
+      .reverse();
+    return `${stableVersion}-${subVersions.length ? Math.max(...subVersions) + 1 : 0}`;
   }
 
   async versionAvailable() {
@@ -68,27 +71,19 @@ class Publish {
   }
 
   createShowcasePackageJson(name = 'sbb-angular-showcase', version = this.version) {
-    const packageJson = { name, version };
-    writeFileSync(
-      join(this.showcasePath, 'package.json'),
-      JSON.stringify(packageJson, null, 2));
+    this.savePackageJson(join(this.showcasePath, 'package.json'), { name, version });
     console.log(`Created package.json for showcase with version ${version} and name ${name}`);
   }
 
   updateLibraryPackageJson() {
-    const libraryPackageJsonPath = join(this.libraryPath, 'package.json');
-    const packageJson = require(libraryPackageJsonPath);
-    packageJson.version = this.version;
-    writeFileSync(
-      libraryPackageJsonPath,
-      JSON.stringify(packageJson, null, 2));
+    this.updateVersionInPackageJson(join(this.libraryPath, 'package.json'), this.version);
     console.log(`Updated package.json for library with version ${this.version}`);
   }
 
   async publishLibrary() {
     if (!this.dryRun) {
       await execAsync(
-        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        'npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
         { cwd: this.libraryPath });
       console.log('Published library');
     } else {
@@ -100,7 +95,7 @@ class Publish {
   async publishShowcase() {
     if (!this.dryRun) {
       await execAsync(
-        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        'npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
         { cwd: this.showcasePath });
       console.log('Published showcase');
     } else {
@@ -109,20 +104,37 @@ class Publish {
     }
   }
 
-  async tagReleaseInGit() {
+  async gitflowRelease() {
     if (!this.dryRun) {
-      const { stdout } = await execAsync(`git remote -v | head -n1 | awk '{print \$2}'`);
-      const [repo, project] = stdout.split('/').reverse();
-      await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/${project}/${repo}`);
+      await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/kd_esta/sbb-angular`);
       await execAsync('git remote set-branches origin "*" && git fetch');
       await execAsync('git clean -f && git checkout master && git reset --hard origin/master');
       await execAsync(
-        `git commit -a -m "Releasing stable version ${params.releaseVersion}\" && git tag ${params.releaseVersion}`);
+        `git commit -a -m "[pipeline-helper] Releasing version ${this.version}" --allow-empty && git tag v${this.version}`);
+      await execAsync('git clean -f && git checkout -B develop origin/develop && git merge master -Xtheirs');
+      const newVersion = inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
+      this.updateVersionInPackageJson(join(__dirname, '..', 'package.json'), newVersion);
+      await execAsync(
+        `git commit -a -m "[pipeline-helper] Set next dev version ${newVersion}" --allow-empty`);
+      await execAsync('git push origin --all --force && git push origin --tags --force');
+      await execAsync('git clean -f && git checkout master');
+      console.log(`Tagged version ${this.version}`);
     } else {
-      console.log('Skipping git tag in dry run');
+      console.log('Skipping gitflow release in dry run');
     }
+  }
+
+  updateVersionInPackageJson(file, version) {
+    const packageJson = require(file);
+    packageJson.version = version;
+    this.savePackageJson(file, packageJson);
+  }
+
+  savePackageJson(file, content) {
+    writeFileSync(file, JSON.stringify(content, null, 2));
   }
 }
 
 new Publish(process.env.npm_package_version, process.argv[2], !process.env.BUILD_NUMBER)
-  .run();
+  .run()
+  .catch(e => console.log(`Publish failed\n--------------\n${e}`));

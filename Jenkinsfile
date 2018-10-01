@@ -42,11 +42,6 @@ pipeline {
       steps {
         sh 'npm run build'
         sh 'npm run sbb:publish'
-        cloud_callDeploy(
-          cluster: 'aws',
-          project: 'sbb-angular-showcase',
-          dc: 'sbb-angular',
-          credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
       }
     }
   }
@@ -58,7 +53,7 @@ pipeline {
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,dario.doronzo@finconsgroup.com")
     }
 
     fixed {
@@ -67,7 +62,7 @@ pipeline {
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,dario.doronzo@finconsgroup.com")
     }
   }
 }
