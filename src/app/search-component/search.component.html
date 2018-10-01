@@ -1,0 +1,56 @@
+<section id="search">
+    <label for="search-input" id="searchInputLabel">
+       <i class="fa fa-search" aria-hidden="true"></i>
+    </label>
+    <input id="search-input" 
+           class="form-control" 
+           type="text" 
+           (input)="onSearchChange($event.target.value)"
+           placeholder="Search components ..."
+           spellcheck="false"
+           [(ngModel)]="inputValue"
+           #reference>
+</section>
+<div class="result" *ngIf="foundUiComponents.length > 0">
+  <div *ngFor="let uiComponent of foundUiComponents">
+    <a [routerLink]="['/content/' + uiComponent['routerLink']]"
+        (click)="navigate('/content/' + uiComponent['routerLink']);">
+      <div id="flip_container">
+        <div id="flip_card" class="shadow">
+          <div class="front face">
+            <div class="row">
+              <div class="col align-self-start">
+                <span id="uiComponentId" [innerHTML]="uiComponent['id']">
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col align-self-start">
+                <span id="uiComponentSubTitle">{{ uiComponent['subTitle'] }}</span>  
+              </div>
+            </div>
+            <hr/> 
+            <div class="row">
+              <div class="col align-self-center" style="font-size: 13px;">
+                <span style="float:left;" class="badge badge-secondary">
+                  <i [ngClass]="uiComponent['isComponent'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Component
+                </span>
+                <span style="float:right;" class="badge badge-secondary">
+                  <i [ngClass]="uiComponent['isDirective'] ? 'fa fa-check-circle' : 'fa fa-circle-o'" aria-hidden="true"></i> Directive
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="back face center">
+            <div class="col align-self-center">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+              <br/>
+              More information about {{ uiComponent['id'] | replacePipe:'b':'' }}.  
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+ </div>
+ <span id="foundUiComponentsTotal">Found {{ foundUiComponents.length }} Component(s).</span>
+</div>

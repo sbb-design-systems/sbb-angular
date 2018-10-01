@@ -4,14 +4,39 @@
         "directive-selector": [
             true,
             "attribute",
-            "app",
+            "sbb",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "app",
+            "sbb",
             "kebab-case"
+        ],
+        "typedef-whitespace": [
+            false,
+            {
+              "call-signature": "nospace",
+              "index-signature": "nospace",
+              "parameter": "nospace",
+              "property-declaration": "nospace",
+              "variable-declaration": "nospace"
+            },
+            {
+              "call-signature": "onespace",
+              "index-signature": "onespace",
+              "parameter": "onespace",
+              "property-declaration": "nospace",
+              "variable-declaration": "onespace"
+            }
+        ],
+        "whitespace": [
+            false,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
         ]
     }
 }
