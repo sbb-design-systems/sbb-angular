@@ -29,6 +29,7 @@ class Publish {
     }
 
     if (this.mode === 'develop-showcase') {
+      this.tag = 'latest';
       const version = await this.nextDevelopShowcaseVersion();
       this.createShowcasePackageJson('sbb-angular-showcase-develop', version);
       await this.publishShowcase();
