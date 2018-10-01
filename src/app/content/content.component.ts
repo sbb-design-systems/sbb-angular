@@ -16,6 +16,7 @@ export class ContentComponent implements OnInit {
 
   uiComponent: UiComponent;
   uiIcon: UiIcon;
+  isSourceTabClicked: boolean;
 
   options = { theme: 'default', language: 'typescript', readOnly: true, automaticLayout: true };
   codeSource         = `showCode() {\n //write it out ...\n alert('Source code goes here ...');\n}`;

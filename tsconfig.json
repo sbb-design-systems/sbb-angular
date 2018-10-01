@@ -25,5 +25,11 @@
         "dist/sbb-angular/*"
       ]
     }
+  },
+  "exclude": [
+    "./dist"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit" : true
   }
 }

@@ -16,7 +16,7 @@ exports.getTemplate = (iconSelector, iconTemplate, iconComponentName, svgClass) 
 export class ${iconComponentName} {
 
   @Input() svgClass = '';
-  commonClass = ' ${svgClass}';
+  commonClass = '${svgClass}';
 }\n`;
 };
 
@@ -82,7 +82,7 @@ exports.getPublicApiIconsFileTemplate = (modules, pathToExclude) => {
       publicApiExports.push(`export * from '${module.path.replace(pathToExclude, './')}/${component.fileName.replace('.ts', '')}';`);
     });
   });
-  return publicApiExports.join('\n').concat(`\nexport * from './icon-common.module';\n`);
+  return publicApiExports.push(`export * from './icon-common.module\n';`).join('\n');
 
 }
 
