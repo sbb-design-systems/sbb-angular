@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconTimetabletouchComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }
