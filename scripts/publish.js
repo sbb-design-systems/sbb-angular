@@ -51,9 +51,9 @@ class Publish {
       .map(v => prerelease(v))
       .filter(v => !!v)
       .map(v => v[0])
-      .sort()
-      .reverse();
-    return `${stableVersion}-${subVersions.length ? Math.max(...subVersions) + 1 : 0}`;
+      .filter(v => Number.isInteger(v))
+      .sort((a, b) => b - a);
+    return `${stableVersion}-${subVersions.length ? subVersions[0] + 1 : 0}`;
   }
 
   async versionAvailable() {
