@@ -1,6 +1,6 @@
 import { Directive, ViewContainerRef, OnInit, Input, ComponentFactoryResolver } from '@angular/core';
-import { map } from '../shared/sbb-components-mapping-export';
 import { UiIcon } from '../shared/ui-icon';
+import { IconComponents } from '../sbb-components-mapping-export';
 
 @Directive({
   selector: '[sbbIconViewer]'
@@ -10,7 +10,7 @@ export class IconViewerDirective implements OnInit {
   @Input() sbbIconViewer: UiIcon;
   @Input() singleOrMultiple: string;
 
-  private iconClasses = [
+  iconClasses = [
     'icon-sm',
     'icon-lg',
     'icon-2x',
@@ -19,17 +19,17 @@ export class IconViewerDirective implements OnInit {
     'icon-7x'
   ];
 
-  constructor(private viewContainer: ViewContainerRef,private resolver: ComponentFactoryResolver) {}
+  constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) {}
 
   ngOnInit() {
     this.loadIconComponent();
   }
 
-  private loadIconComponent(): void {
+  loadIconComponent(): void {
     if (!this.sbbIconViewer || !this.singleOrMultiple) {
          console.error('The input parameter sbbIconViewer or singleOrMultiple is required');
     } else {
-      const componentFactory = this.resolver.resolveComponentFactory(map[this.sbbIconViewer.name]);
+      const componentFactory = this.resolver.resolveComponentFactory(IconComponents.map[this.sbbIconViewer.name]);
       if(this.singleOrMultiple.toLocaleLowerCase().startsWith('single')) {
          const componentRef = this.viewContainer.createComponent(componentFactory);
          componentRef.instance['svgClass'] = 'icon-flex-column icon-lg';

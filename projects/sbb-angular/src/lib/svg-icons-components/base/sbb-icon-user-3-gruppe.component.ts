@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconUser3GruppeComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

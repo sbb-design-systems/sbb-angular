@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconCalendarComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }
