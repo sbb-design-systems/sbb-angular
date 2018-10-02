@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconArrowSmallLeftComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconWheelchairPartialComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

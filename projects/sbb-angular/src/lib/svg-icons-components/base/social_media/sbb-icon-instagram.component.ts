@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconInstagramComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

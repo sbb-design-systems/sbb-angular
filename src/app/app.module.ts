@@ -17,16 +17,15 @@ import { IconUiService } from './services/icon-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { IconCommonModule } from 'sbb-angular';
+import { IconCommonModule, IconArrowDownAndBackComponent } from 'sbb-angular';
 
 import { IconViewerDirective } from './directives/icon-viewer.directive';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { map } from './shared/sbb-components-mapping-export';
 import { ReplacePipe } from './shared/replace.pipe';
+import { IconComponents } from './sbb-components-mapping-export';
 
-const entryComponents = Object.values(map);
 
 @NgModule({
   declarations: [
@@ -41,15 +40,13 @@ const entryComponents = Object.values(map);
     ReplacePipe
   ],
   imports: [
-    IconCommonModule,
     BrowserModule,
     FormsModule,
     NgbModule,
     MonacoEditorModule.forRoot(),
     AppRoutingModule,
+    IconCommonModule.withComponents(IconComponents.types),
   ],
-  entryComponents: entryComponents,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
   bootstrap: [AppComponent]
 })

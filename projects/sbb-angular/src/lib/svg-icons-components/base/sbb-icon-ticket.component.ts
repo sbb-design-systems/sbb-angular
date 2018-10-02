@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconTicketComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconClockHoursComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }
