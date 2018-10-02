@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconGcLetztemeile48Component {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

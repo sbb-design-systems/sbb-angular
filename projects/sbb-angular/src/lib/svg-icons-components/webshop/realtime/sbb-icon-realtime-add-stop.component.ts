@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconRealtimeAddStopComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

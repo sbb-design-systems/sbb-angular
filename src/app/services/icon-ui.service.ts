@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SBBComponentsMapping } from '../shared/sbb-components-mapping';
 import { UiIcon } from '../shared/ui-icon';
 import { UiComponent } from '../shared/ui-component';
+import { SBBComponentsMapping } from '../sbb-components-mapping';
 
 @Injectable({
   providedIn: 'root'

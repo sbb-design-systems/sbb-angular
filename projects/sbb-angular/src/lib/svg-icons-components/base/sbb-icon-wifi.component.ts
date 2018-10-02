@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconWifiComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }
