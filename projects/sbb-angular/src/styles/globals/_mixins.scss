@@ -1425,3 +1425,29 @@
 			transform: translate3d(0, 0, 0);
 	}
 }
+
+// Links mixins
+// ----------------------------------------------------------------------------------------------------
+
+@mixin standardLink {
+  font-family: $fontSbbRoman;
+  font-size: pxToRem($sizeFontDefault);
+  color: $colorBlack;
+  line-height: pxToEm(23px);
+  text-decoration: underline;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem($sizeFontDefault4k);
+    line-height: pxToEm(35px);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem($sizeFontDefault5k);
+    line-height: pxToEm(45px);
+  }
+
+  &:hover,
+  &:link {
+    color: $colorRed125;
+  }
+}
