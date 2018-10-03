@@ -1,7 +1,0 @@
-@import '../../../styles/globals/mixins';
-
-:host :host-context(svg) {
-  fill: $colorRed125;
-  width: pxToEm(24, $sizeFontDefault);
-  height: pxToEm(24, $sizeFontDefault);
-}

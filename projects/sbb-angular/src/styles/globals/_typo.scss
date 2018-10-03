@@ -196,10 +196,6 @@ button.text__primarybutton-arrowless,
 	@include iconbuttonSimple;
 }
 
-.text__actionlink {
-	@include actionlink;
-}
-
 .text__additional-info {
 	@include additionalinfo;
 }

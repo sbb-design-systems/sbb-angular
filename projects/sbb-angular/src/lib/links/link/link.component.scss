@@ -1,0 +1,115 @@
+@import '../../../styles/globals/mixins';
+
+:host {
+  @include actionlink;
+}
+
+@mixin actionlink {
+	display: block;
+	margin: 1em 0 2em;
+	padding-left: 0;
+  hyphens: auto;
+
+  // START arrowbuttons
+	position: relative;
+	padding-right: toEm(70/$sizeFontDefault);
+	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+
+  .mod-svgsprite-icon {
+    position: absolute;
+
+    //4k: 36x36 5k: 48x48
+		width: pxToEm(24, $sizeFontDefault);
+    height: pxToEm(24, $sizeFontDefault);
+
+    top: auto;
+		bottom: pxToEm(-0.5);
+
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
+		backface-visibility: hidden;
+		fill: $colorCallToAction;
+    pointer-events: none;
+
+		margin-left: pxToEm(6, $sizeFontDefault);
+		opacity: 1;
+		transform: translateX(0px);
+  }
+
+  // START ANIMATIONS
+	.mod-svgsprite-icon:first-of-type {
+		margin-left: pxToEm(-30, $sizeFontDefault);
+		opacity: 0;
+		transform: translateX(pxToEm(-26, $sizeFontDefault));
+    top: pxToEm(-0.5);
+    margin-top: 0;
+	}
+  // END ANIMATIONS
+
+	&.var-center {
+		text-align: center;
+		padding-right: 0;
+	}
+
+  // END arrowbuttons
+
+	&:not(:disabled) {
+		&:hover {
+			.no-touchevents & {
+				@include actionlinkArrowHover;
+			}
+		}
+
+		&:focus {
+			@include actionlinkArrowHover;
+		}
+	}
+
+	&.var-form {
+		color: $colorGrey;
+		.mod-svgsprite-icon {
+			fill: $colorGrey;
+		}
+		&:hover,
+		&:focus {
+			color: $colorCallToActionHover;
+			.mod-svgsprite-icon {
+				fill: $colorCallToActionHover;
+			}
+		}
+  }
+
+  &.var-stretch {
+		.mod-svgsprite-icon {
+      margin: auto;
+      top: 0;
+    }
+
+		&:hover,
+		&:focus {
+			color: $colorCallToActionHover;
+			.mod-svgsprite-icon {
+				fill: $colorCallToActionHover;
+			}
+		}
+	}
+}
+
+@mixin actionlinkArrowHover {
+
+  padding-left: pxToEm(30, $sizeFontDefault);
+	padding-right: pxToEm(40, $sizeFontDefault);
+
+	.mod-svgsprite-icon:first-of-type {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	.mod-svgsprite-icon:last-of-type {
+		opacity: 0;
+		transform: translateX(pxToEm(26));
+	}
+
+	&.var-center {
+		padding-right: 0;
+	}
+}

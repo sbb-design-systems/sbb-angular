@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { IconCommonModule } from '../svg-icons-components';
 
-import { IconLinkComponent } from './icon-link/icon-link.component';
+import { LinkComponent } from './link/link.component';
 import { SocialLinkComponent } from './social-link/social-link.component';
 
 @NgModule({
@@ -11,8 +11,12 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     CommonModule,
     IconCommonModule
   ],
+  exports: [
+    LinkComponent,
+    SocialLinkComponent
+  ],
   declarations: [
-    IconLinkComponent,
+    LinkComponent,
     SocialLinkComponent
   ]
 })

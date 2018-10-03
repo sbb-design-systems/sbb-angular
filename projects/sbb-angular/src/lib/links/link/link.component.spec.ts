@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconLinkComponent } from './icon-link.component';
+import { LinkComponent } from './link.component';
 
 describe('IconLinkComponent', () => {
-  let component: IconLinkComponent;
-  let fixture: ComponentFixture<IconLinkComponent>;
+  let component: LinkComponent;
+  let fixture: ComponentFixture<LinkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IconLinkComponent ]
+      declarations: [ LinkComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IconLinkComponent);
+    fixture = TestBed.createComponent(LinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
