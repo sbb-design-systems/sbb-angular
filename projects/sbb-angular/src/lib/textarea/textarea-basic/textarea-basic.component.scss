@@ -1,0 +1,10 @@
+@import "../../../styles/globals/mixins";
+
+:host textarea {
+  @include inputfields;
+  @include disabledinputfields;
+
+  border-color: $colorBlack72;
+  border-style: 2px;
+
+}

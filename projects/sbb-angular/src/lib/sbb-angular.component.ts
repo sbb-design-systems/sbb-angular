@@ -11,8 +11,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SbbAngularComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit() {
   }
 
