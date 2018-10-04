@@ -1,10 +1,14 @@
-<sbb-icon-arrow-down *ngIf="mode !== 'stretch' && icon === 'arrow'" class="mod-svgsprite-icon"></sbb-icon-arrow-down>
-<sbb-icon-download *ngIf="mode !== 'stretch' && icon === 'download'" class="mod-svgsprite-icon"></sbb-icon-download>
+<ng-container *ngIf="mode !== 'stretch'" [ngSwitch]="icon">
+    <sbb-icon-arrow-down *ngSwitchCase="'arrow'" class="mod-svgsprite-icon"></sbb-icon-arrow-down>
+    <sbb-icon-download *ngSwitchCase="'download'" class="mod-svgsprite-icon"></sbb-icon-download>
+</ng-container>
 
 <ng-content></ng-content>
 
-<sbb-icon-arrow-down *ngIf="icon === 'arrow'" class="mod-svgsprite-icon"></sbb-icon-arrow-down>
-<sbb-icon-download *ngIf="icon === 'download'" class="mod-svgsprite-icon"></sbb-icon-download>
+<ng-container [ngSwitch]="icon">
+    <sbb-icon-arrow-down *ngSwitchCase="'arrow'" class="mod-svgsprite-icon"></sbb-icon-arrow-down>
+    <sbb-icon-download *ngSwitchCase="'download'" class="mod-svgsprite-icon"></sbb-icon-download>
+</ng-container>
 
 
 

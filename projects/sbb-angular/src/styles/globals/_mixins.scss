@@ -1406,26 +1406,20 @@
 	padding-left: 0;
   hyphens: auto;
 
-  // START arrowbuttons
 	position: relative;
 	padding-right: toEm(70/$sizeFontDefault);
 	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
 
   .mod-svgsprite-icon {
     position: absolute;
-
-    //4k: 36x36 5k: 48x48
 		width: pxToEm(24, $sizeFontDefault);
     height: pxToEm(24, $sizeFontDefault);
-
     top: auto;
 		bottom: pxToEm(-0.5);
-
     transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
 		backface-visibility: hidden;
 		fill: $colorCallToAction;
     pointer-events: none;
-
 		margin-left: pxToEm(6, $sizeFontDefault);
 		opacity: 1;
 		transform: translateX(0px);
@@ -1435,8 +1429,6 @@
 		text-align: center;
 		padding-right: 0;
 	}
-
-  // END arrowbuttons
 
   &:not(.var-stretch) {
     .mod-svgsprite-icon:first-of-type {
@@ -1510,3 +1502,30 @@
 		padding-right: 0;
 	}
 }
+
+@mixin sociallink {
+	display: block;
+	position: relative;
+  transition: $linksocialAnimation;
+  width: pxToEm(40px);
+  height: pxToEm(40px);
+  background-color: $colorGrey;
+  border-radius: 50%;
+
+  .mod-svgsprite-icon {
+    position: absolute;
+		width: pxToEm(24, $sizeFontDefault);
+    height: pxToEm(24, $sizeFontDefault);
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    fill: $colorWhite;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $colorRed125;
+  }
+}
+

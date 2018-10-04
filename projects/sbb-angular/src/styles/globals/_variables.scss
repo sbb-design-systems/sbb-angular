@@ -170,9 +170,13 @@ $defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86)
 
 $linkiconAnimationDuration: $defaultTransitionDuration;
 $linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
+$linksocialAnimation: background $defaultTransitionDuration ease-in;
 
 $imageLazyloadFadeAnimation: opacity .35s ease-in;
 $imageLazyloadFadeAnimationTablet: opacity .45s ease-in;
+
+
+
 
 /**
  * Layers
