@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkComponent } from './link.component';
+import { Component, Input } from '@angular/core';
 
 describe('IconLinkComponent', () => {
   let component: LinkComponent;
@@ -8,7 +9,13 @@ describe('IconLinkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LinkComponent ]
+      declarations: [
+        LinkComponent,
+
+        // mock components
+        IconArrowDownComponent,
+        IconDownloadComponent
+      ]
     })
     .compileComponents();
   }));
@@ -23,3 +30,15 @@ describe('IconLinkComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Component({
+  selector: 'sbb-icon-arrow-down',
+  template: ''
+})
+class IconArrowDownComponent { }
+
+@Component({
+  selector: 'sbb-icon-download',
+  template: ''
+})
+class IconDownloadComponent { }
