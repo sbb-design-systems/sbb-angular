@@ -1,18 +1,5 @@
 @import "../../../styles/globals/mixins";
 
-@mixin sbbTextarea($borderColor) {
-  border-color: $borderColor;
-  @include inputfields;
-  @include disabledinputfields;
-  letter-spacing: 0;
-  line-height: 23px;
-  border-style: solid;
-  border-width: 2px;
-  outline: 0px;
-  resize: none;
-  opacity: 1;
-}
-
 :host {
   textarea {
     @include sbbTextarea($colorBlack72);
