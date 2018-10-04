@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextareaBasicComponent } from './textarea-basic.component';
+import { TextareaComponent } from './textarea.component';
 
 describe('TextAreaBasicComponent', () => {
-  let component: TextareaBasicComponent;
-  let fixture: ComponentFixture<TextareaBasicComponent>;
+  let component: TextareaComponent;
+  let fixture: ComponentFixture<TextareaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextareaBasicComponent ]
+      declarations: [ TextareaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextareaBasicComponent);
+    fixture = TestBed.createComponent(TextareaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

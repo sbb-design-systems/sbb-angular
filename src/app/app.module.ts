@@ -24,11 +24,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ReplacePipe } from './shared/replace.pipe';
 import { IconComponents } from './sbb-components-mapping-export';
-import { SbbAngularModule } from 'projects/sbb-angular/src/public_api';
-import { ComponentViewerDirective } from './directives/component-viewer.directive';
-
-import { ExamplesModule } from './examples/examples.module';
 import { IconCommonModule } from 'sbb-angular';
+import { ComponentViewerDirective } from './directives/component-viewer.directive';
+import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 
 
@@ -52,7 +50,6 @@ import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea
     MonacoEditorModule.forRoot(),
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
-    SbbAngularModule,
     ExamplesModule
   ],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],

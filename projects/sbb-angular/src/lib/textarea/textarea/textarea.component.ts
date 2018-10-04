@@ -1,31 +1,30 @@
-import { Component, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sbb-textarea',
-  templateUrl: './textarea-basic.component.html',
-  styleUrls: ['./textarea-basic.component.scss'],
+  templateUrl: './textarea.component.html',
+  styleUrls: ['./textarea.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextareaBasicComponent),
+      useExisting: forwardRef(() => TextareaComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaBasicComponent implements ControlValueAccessor {
+export class TextareaComponent implements ControlValueAccessor {
 
   textContent: string;
+  disabled: boolean;
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
   writeValue(textContent: any): void {
-    if (textContent) {
-      this.textContent = textContent;
-      this.onChange(textContent);
-    }
+    this.textContent = textContent || '';
+    this.onChange(textContent);
   }
 
   registerOnChange(fn: any): void {
@@ -39,5 +38,9 @@ export class TextareaBasicComponent implements ControlValueAccessor {
   change($event) {
     this.onChange($event.target.value);
     this.onTouched($event.target.value);
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 }

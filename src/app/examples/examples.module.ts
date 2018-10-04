@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { SbbAngularModule } from 'projects/sbb-angular/src/public_api';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
+import { TextareaModule } from 'sbb-angular';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
     declarations: [TextareaShowcaseComponent],
     imports: [
-        SbbAngularModule
+        TextareaModule,
+        FormsModule
     ],
     providers: [],
     exports: [TextareaShowcaseComponent]
