@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
+import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class ComponentUiService {
       // tslint:disable-next-line
       new UiComponent('Autocompletion','autocompletion','Autocompletion','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line
-      new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextareaShowcaseComponent),
       // tslint:disable-next-line
       new UiComponent('Select','select','Select','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line

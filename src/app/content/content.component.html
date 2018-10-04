@@ -28,7 +28,7 @@
         <tr>
           <td>
             <div *ngIf="!uiIcon">
-              <i class="fa fa-file-code-o" aria-hidden="true"></i> Component goes here ...
+              <ng-template [sbbComponentViewer]="uiComponent"></ng-template>
             </div>
             <div class="icon-flex-container" *ngIf="uiIcon">
               <ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="multiple" style="float: right;"></ng-template>
