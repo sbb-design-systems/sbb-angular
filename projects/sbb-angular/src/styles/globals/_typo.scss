@@ -123,11 +123,6 @@ select {
 	}
 }
 
-textarea {
-	@include inputfields;
-	@include disabledinputfields;
-}
-
 button {
 	&,
 	abbr[title] {

@@ -98,7 +98,7 @@ describe('IconLinkComponent', () => {
 
     const iconStyle = getComputedStyle(icon.nativeElement);
 
-    // #666666 == rgb(255,255,255)
+    // #666666 == rgb(102, 102, 102)
     expect(iconStyle.getPropertyValue('fill')).toBe('rgb(102, 102, 102)');
   });
 

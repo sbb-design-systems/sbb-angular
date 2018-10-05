@@ -1,10 +1,11 @@
 import { Thumbnail } from './thumbnail';
+import { Type } from '@angular/core';
 
 export class UiComponent {
     constructor(
         public id: string,
         public routerLink: string,
-        public title:string,
+        public title: string,
         public subTitle: string,
         public isComponent: Boolean,
         public isDirective: Boolean,
@@ -20,6 +21,8 @@ export class UiComponent {
         public eventsText: string,
         public stylingText: string,
         public dependenciesText: string,
-        public thumbnails?: Thumbnail[]
-    ) {}
+        public component?: Type<{}>,
+        public thumbnails?: Thumbnail[],
+
+    ) { }
 }
