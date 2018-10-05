@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SbbAngularComponent } from './sbb-angular.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  imports: [
-  ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   declarations: [SbbAngularComponent],
-  exports: [SbbAngularComponent]
+  exports: [SbbAngularComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SbbAngularModule { }

@@ -28,7 +28,37 @@
         <tr>
           <td>
             <div *ngIf="!uiIcon">
-              <i class="fa fa-file-code-o" aria-hidden="true"></i> Component goes here ...
+              <div class="conatiner">
+                  <div class="row justify-content-between">  
+
+                  <div *ngIf="uiComponent.title != 'Input Field'">
+                    <i class="fa fa-file-code-o" aria-hidden="true"></i> Component goes here ...  
+                  </div>
+
+                  <div class="col-6">
+                    <h6>1. Password Input Field</h6> 
+                    <hr/>
+                    <sbb-input-field inputType="password"
+                                     label="Label"
+                                     pattern="TEST"
+                                     optional="Optional"
+                                     placeholder="Placeholder"
+                                     toolTip="Text for toolTip goes here ..."></sbb-input-field>
+                  </div>
+
+                  <div class="col-6">
+                    <h6>2. Text Input Field</h6> 
+                    <hr/>
+                    <sbb-input-field inputType="text"
+                                     label="Label" 
+                                     optional="Optional" 
+                                     placeholder="Placeholder"
+                                     toolTip="Text for toolTip goes here ..." 
+                                     *ngIf="uiComponent.title == 'Input Field'"></sbb-input-field>
+                  </div>
+
+                </div>
+              </div>
             </div>
             <div class="icon-flex-container" *ngIf="uiIcon">
               <ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="multiple" style="float: right;"></ng-template>

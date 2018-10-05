@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,6 +18,7 @@ import { AccordionNotificationService } from './services/accordion-notification.
 
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { IconCommonModule } from 'sbb-angular';
+import { TextInputModule } from 'sbb-angular';
 
 import { IconViewerDirective } from './directives/icon-viewer.directive';
 
@@ -42,8 +43,10 @@ const entryComponents = Object.values(map);
   ],
   imports: [
     IconCommonModule,
+    TextInputModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     MonacoEditorModule.forRoot(),
     AppRoutingModule,
