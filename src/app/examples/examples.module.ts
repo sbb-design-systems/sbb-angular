@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
-import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
-import { TextareaModule } from 'sbb-angular';
 import { FormsModule } from '@angular/forms';
 
+import { TextareaModule, LinksModule } from 'sbb-angular';
 
+import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
+import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-    declarations: [TextareaShowcaseComponent],
-    imports: [
-        TextareaModule,
-        FormsModule
-    ],
-    providers: [],
-    exports: [TextareaShowcaseComponent]
+  declarations: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TextareaModule,
+    LinksModule
+  ],
+  providers: [],
+  exports: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent
+  ]
 })
 export class ExamplesModule { }
