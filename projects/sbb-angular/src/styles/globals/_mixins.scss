@@ -1401,28 +1401,40 @@
 }
 
 @mixin actionlink {
-	display: block;
+  display: block;
+	position: relative;
 	margin: 1em 0 2em;
 	padding-left: 0;
-  hyphens: auto;
-
-	position: relative;
 	padding-right: toEm(70/$sizeFontDefault);
+  hyphens: auto;
 	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
 
   .mod-svgsprite-icon {
     position: absolute;
-		width: pxToEm(24, $sizeFontDefault);
-    height: pxToEm(24, $sizeFontDefault);
-    top: auto;
-		bottom: pxToEm(-0.5);
-    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
+		width: toPx(24);
+    height: toPx(24);
+		margin-left: toPx(8) !important;
 		backface-visibility: hidden;
-		fill: $colorCallToAction;
     pointer-events: none;
-		margin-left: pxToEm(6, $sizeFontDefault);
+		fill: $colorCallToAction;
 		opacity: 1;
-		transform: translateX(0px);
+    top: 50%;
+    transform: translate(0px, -50%);
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
+
+    @include mq($from: desktop4k) {
+      width: toPx(24 * $scalingFactor4k);
+      height: toPx(24 * $scalingFactor4k);
+      margin-left: toPx(8 * $scalingFactor4k) !important;
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx(24 * $scalingFactor5k);
+      height: toPx(24 * $scalingFactor5k);
+      top: 25%;
+      transform: translate(0px, -25%);
+      margin-left: toPx(8 * $scalingFactor5k) !important;
+    }
   }
 
 	&.var-center {
@@ -1432,23 +1444,23 @@
 
   &:not(.var-stretch) {
     .mod-svgsprite-icon:first-of-type {
-      margin-left: pxToEm(-30, $sizeFontDefault);
+      margin-left: pxToEm(-30, $sizeFontDefault) !important;
       opacity: 0;
-      transform: translateX(pxToEm(-26, $sizeFontDefault));
-      top: pxToEm(-0.5);
-      margin-top: 0;
+      transform: translate(pxToEm(-26, $sizeFontDefault), -50%);
+
+      @include mq($from: desktop5k) {
+        transform: translate(pxToEm(-26, $sizeFontDefault), -25%);
+      }
     }
 
-    &:not(:disabled) {
-      &:hover {
-        .no-touchevents & {
-          @include actionlinkArrowHover;
-        }
-      }
-
-      &:focus {
+    &:hover {
+      .no-touchevents & {
         @include actionlinkArrowHover;
       }
+    }
+
+    &:focus {
+      @include actionlinkArrowHover;
     }
   }
 
@@ -1468,8 +1480,6 @@
 
   &.var-stretch {
 		.mod-svgsprite-icon {
-      margin: auto;
-      top: 0;
       right: 0;
     }
 
@@ -1489,13 +1499,21 @@
 	padding-right: pxToEm(40, $sizeFontDefault);
 
 	.mod-svgsprite-icon:first-of-type {
-		opacity: 1;
-		transform: translateX(0);
+    opacity: 1;
+    margin-right: toPx(8);
+    transform: translate(0, -50%);
+
+    @include mq($from: desktop5k) {
+      transform: translate(0, -25%);
+    }
 	}
 
 	.mod-svgsprite-icon:last-of-type {
 		opacity: 0;
-		transform: translateX(pxToEm(26));
+		transform: translateX(pxToEm(26), -50%);
+    @include mq($from: desktop5k) {
+      transform: translateX(pxToEm(26), -50%);
+    }
 	}
 
 	&.var-center {
@@ -1507,20 +1525,42 @@
 	display: block;
 	position: relative;
   transition: $linksocialAnimation;
-  width: pxToEm(40px);
-  height: pxToEm(40px);
+  width: toPx(40);
+  height: toPx(40);
   background-color: $colorGrey;
   border-radius: 50%;
 
+  @include mq($from: desktop4k) {
+    width: toPx(40 * $scalingFactor4k);
+    height: toPx(40 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(40 * $scalingFactor5k);
+    height: toPx(40 * $scalingFactor5k);
+  }
+
   .mod-svgsprite-icon {
     position: absolute;
-		width: pxToEm(24, $sizeFontDefault);
-    height: pxToEm(24, $sizeFontDefault);
-    top: 50%;
-    left: 50%;
+		width: toPx(24);
+    height: toPx(24);
     opacity: 1;
     fill: $colorWhite;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+
+    @include mq($from: desktop4k) {
+      width: toPx(24 * $scalingFactor4k);
+      height: toPx(24 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx(24 * $scalingFactor5k);
+      height: toPx(24 * $scalingFactor5k);
+      top: 25%;
+      transform: translate(-50%, -25%);
+    }
   }
 
   &:hover,

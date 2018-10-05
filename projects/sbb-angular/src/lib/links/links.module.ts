@@ -11,11 +11,11 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     CommonModule,
     IconCommonModule
   ],
-  exports: [
+  declarations: [
     LinkComponent,
     SocialLinkComponent
   ],
-  declarations: [
+  exports: [
     LinkComponent,
     SocialLinkComponent
   ]
