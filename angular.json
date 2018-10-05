@@ -32,6 +32,8 @@
               }
             ],
             "styles": [
+              "dist/sbb-angular/styles.scss",
+              "dist/sbb-angular/typography.css",
               "src/styles.css"
             ],
             "scripts": []

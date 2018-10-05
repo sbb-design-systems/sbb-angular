@@ -1,1 +1,2 @@
-<textarea [value]="textContent" (input)="change($event)" [disabled]="disabled"></textarea>
+<textarea [value]="textContent" (input)="onChange($event)" [disabled]="disabled" [attr.maxlength]="maxlength"></textarea>
+<div #digitscounter></div>

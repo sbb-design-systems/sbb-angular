@@ -1,6 +1,7 @@
 @import "../../../styles/globals/mixins";
 
 :host {
+  position: relative;
   textarea {
     @include sbbTextarea($colorBlack72);
     &:focus {
@@ -12,11 +13,21 @@
       opacity: 1;
     }
   }
-}
 
-:host.ng-invalid {
-  textarea {
-    @include sbbTextarea($colorCallToAction);
-    color: $colorCallToAction;
+  &.ng-invalid {
+    textarea {
+      @include sbbTextarea($colorCallToAction);
+      color: $colorCallToAction;
+    }
+  }
+  div {
+    position: absolute;
+    bottom: 20%;
+    left: 60%;
+    background: transparent;
+    color: $colorBlack;
+    letter-spacing: 0;
+    line-height: 13px;
+    font-size: 13px;
   }
 }

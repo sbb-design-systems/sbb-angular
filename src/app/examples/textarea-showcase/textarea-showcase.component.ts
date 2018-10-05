@@ -12,6 +12,10 @@ export class TextareaShowcaseComponent implements OnInit {
   textArea2 = 'SBB';
   textArea3 = 'SBB';
 
+  minlength: number;
+  maxlength: number;
+  required: boolean;
+
   ngOnInit() {
   }
 
