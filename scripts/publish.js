@@ -29,6 +29,7 @@ class Publish {
     }
 
     if (this.mode === 'develop-showcase') {
+      this.tag = 'latest';
       const version = await this.nextDevelopShowcaseVersion();
       this.createShowcasePackageJson('sbb-angular-showcase-develop', version);
       await this.publishShowcase();
@@ -51,9 +52,9 @@ class Publish {
       .map(v => prerelease(v))
       .filter(v => !!v)
       .map(v => v[0])
-      .sort()
-      .reverse();
-    return `${stableVersion}-${subVersions.length ? Math.max(...subVersions) + 1 : 0}`;
+      .filter(v => Number.isInteger(v))
+      .sort((a, b) => b - a);
+    return `${stableVersion}-${subVersions.length ? subVersions[0] + 1 : 0}`;
   }
 
   async versionAvailable() {
@@ -83,7 +84,7 @@ class Publish {
   async publishLibrary() {
     if (!this.dryRun) {
       await execAsync(
-        'npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        `npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/`,
         { cwd: this.libraryPath });
       console.log('Published library');
     } else {
@@ -95,7 +96,7 @@ class Publish {
   async publishShowcase() {
     if (!this.dryRun) {
       await execAsync(
-        'npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+        `npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/`,
         { cwd: this.showcasePath });
       console.log('Published showcase');
     } else {

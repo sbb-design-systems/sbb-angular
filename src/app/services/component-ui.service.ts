@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
+import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
+import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +23,11 @@ export class ComponentUiService {
       // tslint:disable-next-line
       new UiComponent('Loading Indicator','loadingIndicator','Loading Indicator','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line
-      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', InputFieldShowcaseComponent),
       // tslint:disable-next-line
       new UiComponent('Autocompletion','autocompletion','Autocompletion','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line
-      new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextareaShowcaseComponent),
       // tslint:disable-next-line
       new UiComponent('Select','select','Select','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line

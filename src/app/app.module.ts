@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -18,16 +17,16 @@ import { AccordionNotificationService } from './services/accordion-notification.
 
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { IconCommonModule } from 'sbb-angular';
-import { TextInputModule } from 'sbb-angular';
-
 import { IconViewerDirective } from './directives/icon-viewer.directive';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { map } from './shared/sbb-components-mapping-export';
 import { ReplacePipe } from './shared/replace.pipe';
-
-const entryComponents = Object.values(map);
+import { IconComponents } from './sbb-components-mapping-export';
+import { ComponentViewerDirective } from './directives/component-viewer.directive';
+import { ExamplesModule } from './examples/examples.module';
+import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
+import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
 
 @NgModule({
   declarations: [
@@ -37,23 +36,24 @@ const entryComponents = Object.values(map);
     ContentComponent,
     HomeComponent,
     IconViewerDirective,
+    ComponentViewerDirective,
     NavlistIconComponent,
     SearchIconComponent,
     ReplacePipe
   ],
   imports: [
-    IconCommonModule,
-    TextInputModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
     MonacoEditorModule.forRoot(),
     AppRoutingModule,
+    IconCommonModule.withComponents(IconComponents.types),
+    ExamplesModule
   ],
-  entryComponents: entryComponents,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
+  entryComponents: [TextareaShowcaseComponent, InputFieldShowcaseComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

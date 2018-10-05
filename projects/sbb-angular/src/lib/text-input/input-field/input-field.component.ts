@@ -1,50 +1,40 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sbb-input-field',
   templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.scss']
+  styleUrls: ['./input-field.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputFieldComponent),
+      multi: true
+    }
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit, ControlValueAccessor {
 
-  inputForm: FormGroup;
-
+  @Input() inputType: string;
   @Input() placeholder: string;
-  @Input() label: string;
-  @Input() optional?: string;
-  @Input() toolTip?: string;
   @Input() maxLength?: string;
   @Input() size?: string;
-  @Input() inputType: string;
   @Input() pattern?: string;
+  @Input() disabled?: boolean;
 
   value: string;
 
-  model: any = {};
-
   isPasswordInputField: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit() {
 
-    this.inputForm = this.formBuilder.group({
-      input:['', Validators.required]
-    });
-
     this.value = '';
 
-    if(!this.label) {
-        this.label = 'Label is missing.';
-    }
-
-    if(this.optional) {
-       this.optional = '"' + this.optional + '"';
-    }
-
     if(!this.maxLength) {
-      this.maxLength = '25';
+        this.maxLength = '25';
     }
 
     if(!this.size) {
@@ -55,12 +45,6 @@ export class InputFieldComponent implements OnInit {
        this.isPasswordInputField = true;
     }
 
-    console.log('pattern', this.pattern);
-
-  }
-
-  onMouseEnter(value : string) {
-    console.log('value', value);
   }
 
   onFocusIn(event) {
@@ -68,11 +52,36 @@ export class InputFieldComponent implements OnInit {
   }
 
   onFocusOut(event) {
-    this.value = event.target.value;
+    this.value  = event.target.value;
     const value = event.target.value;
-    const size = event.target.size;
+    const size  = event.target.size;
     if(event.target.value.length > event.target.size) {
        event.target.value = value.substring(0, size-3) + '...';
     }
+  }
+
+  onChange = (obj: any) => { };
+  onTouched = (_: any) => { };
+
+  writeValue(value: any): void {
+    this.value = value || '';
+    this.onChange(value);
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  change($event) {
+    this.onChange($event.target.value);
+    this.onTouched($event.target.value);
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SbbAngularComponent } from './sbb-angular.component';
+import { TextareaComponent } from './textarea.component';
 
-describe('SbbAngularComponent', () => {
-  let component: SbbAngularComponent;
-  let fixture: ComponentFixture<SbbAngularComponent>;
+describe('TextAreaBasicComponent', () => {
+  let component: TextareaComponent;
+  let fixture: ComponentFixture<TextareaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SbbAngularComponent ]
+      declarations: [ TextareaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SbbAngularComponent);
+    fixture = TestBed.createComponent(TextareaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
