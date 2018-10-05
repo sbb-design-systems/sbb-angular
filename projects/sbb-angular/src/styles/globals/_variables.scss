@@ -46,8 +46,8 @@ $offsetSmall: 12;
  * Scaling Factors
  */
 $scalingFactorDefault: 1;
-$scalingFactor4k: 1.25;
-$scalingFactor5k: 1.5;
+$scalingFactor4k: 1.5;
+$scalingFactor5k: 2;
 
 /**
  * Header variables
@@ -170,9 +170,13 @@ $defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86)
 
 $linkiconAnimationDuration: $defaultTransitionDuration;
 $linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
+$linksocialAnimation: background $defaultTransitionDuration ease-in;
 
 $imageLazyloadFadeAnimation: opacity .35s ease-in;
 $imageLazyloadFadeAnimationTablet: opacity .45s ease-in;
+
+
+
 
 /**
  * Layers
