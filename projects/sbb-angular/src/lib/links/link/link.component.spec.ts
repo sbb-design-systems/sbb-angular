@@ -1,20 +1,9 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LinkComponent } from './link.component';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({
-  selector: 'sbb-icon-arrow-down',
-  template: ''
-})
-class IconArrowDownComponent { }
-
-@Component({
-  selector: 'sbb-icon-download',
-  template: ''
-})
-class IconDownloadComponent { }
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
+import { LinkComponent } from './link.component';
 
 describe('IconLinkComponent', () => {
   let component: LinkComponent;
@@ -22,12 +11,11 @@ describe('IconLinkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        IconCommonModule
+      ],
       declarations: [
-        LinkComponent,
-
-        // mock components
-        IconArrowDownComponent,
-        IconDownloadComponent
+        LinkComponent
       ]
     })
     .overrideComponent(LinkComponent, {

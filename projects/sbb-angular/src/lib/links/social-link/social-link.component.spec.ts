@@ -1,57 +1,9 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SocialLinkComponent } from './social-link.component';
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({
-  selector: 'sbb-icon-facebook',
-  template: '{{icon}}'
-})
-class IconFacebookComponent { }
-
-@Component({
-  selector: 'sbb-icon-googleplus',
-  template: ''
-})
-class IconGoogleplusComponent { }
-
-@Component({
-  selector: 'sbb-icon-instagram',
-  template: ''
-})
-class IconInstagramComponent { }
-
-@Component({
-  selector: 'sbb-icon-pinterest',
-  template: ''
-})
-class IconPinterestComponent { }
-
-@Component({
-  selector: 'sbb-icon-twitter',
-  template: ''
-})
-class IconTwitterComponent { }
-
-@Component({
-  selector: 'sbb-icon-xing',
-  template: ''
-})
-class IconXingComponent { }
-
-@Component({
-  selector: 'sbb-icon-youtube',
-  template: ''
-})
-class IconYoutubeComponent { }
-
-@Component({
-  selector: 'sbb-icon-linkedin',
-  template: ''
-})
-class IconLinkedinComponent { }
-
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
+import { SocialLinkComponent } from './social-link.component';
 
 describe('SocialLinkComponent', () => {
   let component: SocialLinkComponent;
@@ -60,17 +12,10 @@ describe('SocialLinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SocialLinkComponent,
-
-        // mocks
-        IconFacebookComponent,
-        IconGoogleplusComponent,
-        IconInstagramComponent,
-        IconLinkedinComponent,
-        IconPinterestComponent,
-        IconTwitterComponent,
-        IconXingComponent,
-        IconYoutubeComponent
+        SocialLinkComponent
+      ],
+      imports: [
+        IconCommonModule
       ]
     })
     .overrideComponent(SocialLinkComponent, {
