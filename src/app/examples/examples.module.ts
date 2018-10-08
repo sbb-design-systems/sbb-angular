@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
 import { TextareaModule, LinksModule } from 'sbb-angular';
 
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
