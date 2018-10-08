@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
-import { TextFieldShowcaseComponent } from '../examples/text-field-showcase/text-field-showcase.component';
 
 @Injectable({
   providedIn: 'root'

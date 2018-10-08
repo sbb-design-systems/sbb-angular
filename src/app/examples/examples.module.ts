@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { InputFieldShowcaseComponent } from './input-field-showcase/input-field-showcase.component';
-import { TextFieldShowcaseComponent } from './text-field-showcase/text-field-showcase.component';
 import { TextareaModule, TextInputModule } from 'sbb-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-    declarations: [TextareaShowcaseComponent, InputFieldShowcaseComponent, TextFieldShowcaseComponent],
+    declarations: [TextareaShowcaseComponent, InputFieldShowcaseComponent],
     imports: [
-        BrowserModule,
-        CommonModule,
         TextareaModule,
         TextInputModule,
-        FormsModule,
-        ReactiveFormsModule
+        FormsModule
     ],
     providers: [],
-    exports: [TextareaShowcaseComponent, InputFieldShowcaseComponent, TextFieldShowcaseComponent]
+    exports: [TextareaShowcaseComponent, InputFieldShowcaseComponent]
 })
 export class ExamplesModule { }

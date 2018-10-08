@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,7 +27,6 @@ import { ComponentViewerDirective } from './directives/component-viewer.directiv
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
-import { TextFieldShowcaseComponent } from './examples/text-field-showcase/text-field-showcase.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +43,6 @@ import { TextFieldShowcaseComponent } from './examples/text-field-showcase/text-
   ],
   imports: [
     BrowserModule,
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
@@ -56,7 +53,7 @@ import { TextFieldShowcaseComponent } from './examples/text-field-showcase/text-
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
-  entryComponents: [TextareaShowcaseComponent, InputFieldShowcaseComponent, TextFieldShowcaseComponent],
+  entryComponents: [TextareaShowcaseComponent, InputFieldShowcaseComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
