@@ -12,10 +12,6 @@ import { SearchIconComponent } from './search-icon/search-icon.component';
 import { NavlistIconComponent } from './navlist-icon/navlist-icon.component';
 import { ContentComponent } from './content/content.component';
 
-import { ComponentUiService } from './services/component-ui.service';
-import { IconUiService } from './services/icon-ui.service';
-import { AccordionNotificationService } from './services/accordion-notification.service';
-
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { IconViewerDirective } from './directives/icon-viewer.directive';
