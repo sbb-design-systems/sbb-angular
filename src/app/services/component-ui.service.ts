@@ -30,7 +30,7 @@ export class ComponentUiService {
       // tslint:disable-next-line
       new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextareaShowcaseComponent),
       // tslint:disable-next-line
-      new UiComponent('Text Field','textField','Text Field','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextFieldShowcaseComponent),
+      new UiComponent('Text Field','textField','Text Field','Text Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextFieldShowcaseComponent),
       // tslint:disable-next-line
       new UiComponent('Select','select','Select','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line
