@@ -1,59 +1,9 @@
-<!--
-<label for="input">{{ label }} {{ optional ? optional : '' }} <i class="fa fa-question-circle-o" aria-hidden="true" *ngIf="toolTip"><div class="tooltip">Hover over me<span class="tooltiptext">{{ toolTip }}</span></div></i></label>
-<br/>
-<div *ngIf="isPasswordInputField; else normalInputField">
-    <input type="password"
-           name="input"
-           pattern="pattern"
-           placeholder="{{ placeholder }}" 
-           spellcheck="false" 
-           (focusout)="onFocusOut($event)" 
-           (focusin)="onFocusIn($event)"
-           maxlength="maxLength" 
-           size="size"
-           required>
-           <div *ngIf="inputForm.get('input').errors && inputForm.get('input').dirty && inputForm.get('input').errors.required">
-               Password is required.
-           </div>
-</div>
-<ng-template #normalInputField>
-    <input type="text"
-           name="input"
-           pattern="pattern"
-           placeholder="{{ placeholder }}" 
-           spellcheck="false" 
-           (focusout)="onFocusOut($event)" 
-           (focusin)="onFocusIn($event)"
-           maxlength="maxLength" 
-           size="size"
-           required>
-           <div *ngIf="inputForm.get('input').errors && inputForm.get('input').dirty && inputForm.get('input').errors.required">
-               Text is required.
-           </div>
-</ng-template>
--->
-
-<div *ngIf="isPasswordInputField; else normalInputField">
-    <input type="password"
-           name="input"
-           spellcheck="false" 
-           [disabled]="disabled" 
-           placeholder="{{ placeholder }}"
-           maxlength="maxLength" 
-           size="size"
-           (input)="change($event)"
-           (focusout)="onFocusOut($event)" 
-           (focusin)="onFocusIn($event)">
-</div>
-<ng-template #normalInputField>
-    <input type="text"
-           name="input"
-           spellcheck="false" 
-           [disabled]="disabled"
-           placeholder="{{ placeholder }}"
-           maxlength="maxLength" 
-           size="size"
-           (input)="change($event)"
-           (focusout)="onFocusOut($event)" 
-           (focusin)="onFocusIn($event)">
-</ng-template>
+<input [type]="inputType"
+       [spellcheck]="false" 
+       [disabled]="disabled"
+       [placeholder]="placeholder"
+       maxlength="maxLength" 
+       size="size"
+       (input)="change($event)"
+       (focusout)="onFocusOut($event)" 
+       (focusin)="onFocusIn($event)">
