@@ -18,25 +18,40 @@ import { take } from 'rxjs/operators';
 })
 export class TextareaComponent implements ControlValueAccessor, OnInit {
 
-  disabled: boolean;
-  @Input()
-  maxlength: number;
-  @ViewChild('digitscounter')
-  digitsCounter: ElementRef;
   textContent: string;
   matTextareaAutosize = true;
-  @Input() minHeight: number;
-  @HostBinding('style.min-height') heightStyle: string;
-  @ViewChild('autosize') autosize: CdkTextareaAutosize;
+
+  @Input()
+  disabled: boolean;
+
+  @Input()
+  readonly: boolean;
+
+  @Input()
+  maxlength: number;
+
+  @Input()
+  minHeight: number;
+
+  @ViewChild('digitscounter')
+  digitsCounter: ElementRef;
+
+  @ViewChild('autosize')
+  autosize: CdkTextareaAutosize;
+
+  @HostBinding('style.min-height')
+  heightStyle: string;
+
+  @HostBinding('class.disabled')
+  disabledClass: boolean;
+
+  constructor(private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.heightStyle = this.minHeight + 'px';
   }
 
-  constructor(private ngZone: NgZone) { }
-
   triggerResize() {
-    // Wait for changes to be applied, then trigger textarea resize.
     this.ngZone.onStable.pipe(take(1))
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
@@ -54,6 +69,7 @@ export class TextareaComponent implements ControlValueAccessor, OnInit {
   registerOnChange(fn) {
     this.propagateChange = fn;
   }
+
   registerOnTouched(fn: () => void): void { }
 
   onChange(event) {
@@ -61,9 +77,9 @@ export class TextareaComponent implements ControlValueAccessor, OnInit {
     this.updateDigitsCounter(event.target.value);
   }
 
-
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.disabledClass = disabled;
   }
 
   updateDigitsCounter(newValue) {

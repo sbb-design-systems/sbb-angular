@@ -9,12 +9,12 @@ export class TextareaShowcaseComponent {
 
   textArea1 = 'SBB';
   disabled: boolean;
-  minHeight = 400;
-
+  minHeight: number;
   minlength: number;
   maxlength: number;
   required: boolean;
   isVisible = true;
+  readonly: boolean;
 
   reRender() {
     this.isVisible = false;

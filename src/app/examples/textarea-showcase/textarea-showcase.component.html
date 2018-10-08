@@ -3,7 +3,7 @@
     <div class="col-lg-6">
       <fieldset>
         <sbb-textarea *ngIf="isVisible" [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"
-          [required]="required" [minHeight]="minHeight"></sbb-textarea>
+          [required]="required" [minHeight]="minHeight" [readonly]="readonly" [disabled]="disabled"></sbb-textarea>
       </fieldset>
       <h6>Model:</h6>
       <pre>{{ textArea1 | json }}</pre>
@@ -30,8 +30,12 @@
             <label class="form-check-label" for="requiredCheck">Required</label>
           </div>
           <div class="form-check">
-            <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
-            <label class="form-check-label" for="requiredCheck">Disabled</label>
+            <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
+            <label class="form-check-label" for="disabled">Disabled</label>
+          </div>
+          <div class="form-check">
+            <input id="readonly" class="form-check-input" type="checkbox" [(ngModel)]="readonly">
+            <label class="form-check-label" for="readonly">Readonly</label>
           </div>
         </div>
       </fieldset>

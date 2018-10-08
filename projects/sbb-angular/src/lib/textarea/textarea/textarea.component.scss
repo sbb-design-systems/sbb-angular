@@ -45,11 +45,16 @@
     overflow: hidden;
     color: $colorGrey;
     min-height: inherit;
+    &:disabled {
+      background-color: $colorBlack5;
+      border-color: $colorBlack20;
+      opacity: 1;
+    }
   }
   &:focus {
     border-color: $colorGrey;
   }
-  &:disabled {
+  &.disabled {
     background-color: $colorBlack5;
     border-color: $colorBlack20;
     opacity: 1;
