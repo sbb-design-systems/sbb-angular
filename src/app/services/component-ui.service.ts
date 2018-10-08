@@ -655,7 +655,6 @@ export class ComponentUiService {
 
     const newFoundUiComponents: UiComponent[] = [];
     foundUiComponents.forEach(function(item) {
-      // tslint:disable-next-line
       newFoundUiComponents.push(
         new UiComponent(
           item.id,
