@@ -28,6 +28,7 @@ import { IconCommonModule } from 'sbb-angular';
 import { ComponentViewerDirective } from './directives/component-viewer.directive';
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
+import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
 
 
 @NgModule({
@@ -52,8 +53,10 @@ import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule
   ],
-  providers: [ComponentUiService, IconUiService, AccordionNotificationService],
-  entryComponents: [TextareaShowcaseComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent
+  ]
 })
 export class AppModule { }

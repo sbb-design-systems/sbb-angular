@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
+import { LinksShowcaseComponent } from '../examples/links-showcase/links-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class ComponentUiService {
       // tslint:disable-next-line
       new UiComponent('Table','table','Table','Table is the successor of p-dataTable with a lightning fast performance (at least 10x faster) and excellent level of control over the presentation. p-table is called as TurboTable in order to differantiate if from the deprecated p-dataTable.',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line
-      new UiComponent('Link','link','Link','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Link','link','Link','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili, Dario D\'Oronzo'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', LinksShowcaseComponent),
       // tslint:disable-next-line
       new UiComponent('Loading Indicator','loadingIndicator','Loading Indicator','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
       // tslint:disable-next-line

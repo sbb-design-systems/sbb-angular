@@ -701,11 +701,6 @@
   }
 }
 
-@mixin actionlinkArrowHover {
-  @include buttonArrowHover;
-  padding-left: pxToEm(30);
-}
-
 @mixin arrowbuttons {
   position: relative;
   padding-left: toEm(40 / $sizeFontDefault);
@@ -897,52 +892,6 @@
       background-color: rgba(0, 0, 0, 0.5);
       color: $colorWhite;
       transition: background-color $linkiconAnimation;
-    }
-  }
-}
-
-@mixin actionlink {
-  @include arrowbuttons;
-  @include arrowButtonsForLinks;
-  position: relative;
-  display: block;
-  margin: 1em 0 2em;
-  padding-left: 0;
-  font-weight: normal;
-  font-size: pxToRem($sizeFontDefault);
-  background-color: transparent;
-  color: $colorBlack;
-  line-height: 1.5;
-  text-decoration: none;
-  hyphens: auto;
-
-  .mod-svgsprite-icon {
-    fill: $colorCallToAction;
-  }
-
-  &:not(:disabled) {
-    &:hover {
-      .no-touchevents & {
-        @include actionlinkArrowHover;
-      }
-    }
-
-    &:focus {
-      @include actionlinkArrowHover;
-    }
-  }
-
-  &.var-form {
-    color: $colorGrey;
-    .mod-svgsprite-icon {
-      fill: $colorGrey;
-    }
-    &:hover,
-    &:focus {
-      color: $colorCallToActionHover;
-      .mod-svgsprite-icon {
-        fill: $colorCallToActionHover;
-      }
     }
   }
 }
@@ -1406,3 +1355,26 @@
   }
 }
 
+// Links mixins
+// ----------------------------------------------------------------------------------------------------
+
+@mixin standardLink {
+  color: $colorBlack;
+  line-height: pxToEm(23px);
+  text-decoration: underline;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem($sizeFontDefault4k);
+    line-height: pxToEm(35px);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem($sizeFontDefault5k);
+    line-height: pxToEm(45px);
+  }
+
+  &:hover,
+  &:link {
+    color: $colorRed125;
+  }
+}

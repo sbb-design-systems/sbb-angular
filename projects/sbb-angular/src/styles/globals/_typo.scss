@@ -54,20 +54,21 @@ p,
 }
 
 a {
-	text-decoration-skip: ink; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-}
+  @include standardLink;
+  text-decoration-skip: ink; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
 
-a:focus,
-a:hover {
-	@media screen and (-ms-high-contrast: active) {
-		color: windowText;
+  &:focus,
+  &:hover {
+    @media screen and (-ms-high-contrast: active) {
+      color: windowText;
 
-		&:before,
-		&:after {
-			border-color: windowText;
-		}
+      &:before,
+      &:after {
+        border-color: windowText;
+      }
 
-	}
+    }
+  }
 }
 
 input[type=email],
@@ -188,10 +189,6 @@ button.text__primarybutton-arrowless,
 
 .text__iconbutton-simple {
 	@include iconbuttonSimple;
-}
-
-.text__actionlink {
-	@include actionlink;
 }
 
 .text__additional-info {
