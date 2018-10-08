@@ -73,7 +73,7 @@
           <div class="highlight">
 
             <div id="accordion">
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showImport">
                 <div id="headingImport" (click)="importClicked=!importClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#import" aria-expanded="importClicked"
                     aria-controls="import">
@@ -91,11 +91,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.importText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeImport"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.importCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showGettingStarted">
                 <div id="headingGettingStarted" (click)="gettingStartedClicked=!gettingStartedClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#gettingStarted" aria-expanded="gettingStartedClicked"
                     aria-controls="gettingStarted">
@@ -113,11 +113,11 @@
                   aria-labelledby="headingGettingStarted" data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.gettingStartedText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeGettingStarted"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.gettingStartedCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showModelBinding">
                 <div id="headingModelBinding" (click)="modelBindingClicked=!modelBindingClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#modelBinding" aria-expanded="modelBindingClicked"
                     aria-controls="modelBinding">
@@ -135,11 +135,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.modelBindingText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeModelBinding"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.modelBindingCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showIcons">
                 <div id="headingIcons" (click)="iconsClicked=!iconsClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#icons" aria-expanded="iconsClicked"
                     aria-controls="icons">
@@ -157,11 +157,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.iconsText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeIcons"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.iconsCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showAutoResize">
                 <div id="headingAutoResize" (click)="autoResizeClicked=!autoResizeClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#autoResize" aria-expanded="iconsClicked"
                     aria-controls="autoResize">
@@ -179,11 +179,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.autoResizeText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeAutoResize"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.autoResizeCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showProperties">
                 <div id="headingProperties" (click)="propertiesClicked=!propertiesClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#properties" aria-expanded="propertiesClicked"
                     aria-controls="properties">
@@ -201,11 +201,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.propertiesText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeProperties"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.propertiesCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showEvents">
                 <div id="headingEvents" (click)="eventsClicked=!eventsClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#events" aria-expanded="eventsClicked"
                     aria-controls="events">
@@ -223,11 +223,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.eventsText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeEvents"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.eventsCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showStyling">
                 <div id="headingStyling" (click)="stylingClicked=!stylingClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#styling" aria-expanded="stylingClicked"
                     aria-controls="styling">
@@ -245,11 +245,11 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.stylingText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeStyling"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.stylingCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent.showDependencies">
                 <div id="headingDependencies" (click)="dependenciesClicked=!dependenciesClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#dependencies" aria-expanded="dependenciesClicked"
                     aria-controls="dependencies">
@@ -267,7 +267,7 @@
                   data-parent="#accordion">
                   <div class="card-body">
                     <p class="text-left">{{ uiComponent.dependenciesText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeDependencies"></ngx-monaco-editor>
+                    <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.dependenciesCode"></ngx-monaco-editor>
                   </div>
                 </div>
               </div>
@@ -280,7 +280,7 @@
       aria-labelledby="source-tab" *ngIf="!isSourceTabClicked">
       <div class="col-lg-12">
         <div class="highlight">
-          <ngx-monaco-editor [options]="options" [(ngModel)]="codeSource"></ngx-monaco-editor>
+          <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.source"></ngx-monaco-editor>
         </div>
       </div>
     </div>
