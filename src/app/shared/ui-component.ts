@@ -21,8 +21,25 @@ export class UiComponent {
         public eventsText: string,
         public stylingText: string,
         public dependenciesText: string,
+        public importCode: string,
+        public gettingStartedCode: string,
+        public modelBindingCode: string,
+        public iconsCode: string,
+        public autoResizeCode: string,
+        public propertiesCode: string,
+        public eventsCode: string,
+        public stylingCode: string,
+        public dependenciesCode: string,
         public component?: Type<{}>,
         public thumbnails?: Thumbnail[],
-
+        public showImport: boolean = true,
+        public showGettingStarted: boolean = true,
+        public showModelBinding: boolean = true,
+        public showIcons: boolean = true,
+        public showAutoResize: boolean = true,
+        public showProperties: boolean = true,
+        public showEvents: boolean = true,
+        public showStyling: boolean = true,
+        public showDependencies: boolean = true
     ) { }
 }

@@ -33,7 +33,16 @@ export class IconUiService {
       'Properties text.',
       'Events text.',
       'Styling text.',
-      'Dependencies text.');
+      'Dependencies text.',
+      'Import Code',
+      'Getting started code.',
+      'Model binding code.',
+      'Icon code.',
+      'Auto resize code.',
+      'Properties code.',
+      'Events code.',
+      'Styling code.',
+      'Dependencies code.');
   }
 
   getUiIconsBySearchValue(searchValue: any) {
