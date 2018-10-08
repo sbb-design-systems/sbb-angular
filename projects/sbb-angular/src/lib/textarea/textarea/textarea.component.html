@@ -1,2 +1,3 @@
-<textarea [value]="textContent" (input)="onChange($event)" [disabled]="disabled" [attr.maxlength]="maxlength"></textarea>
+<textarea [value]="textContent" (input)="onChange($event)" [disabled]="disabled" [attr.maxlength]="maxlength"
+    cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
 <div #digitscounter></div>

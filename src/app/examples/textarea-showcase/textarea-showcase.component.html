@@ -1,26 +1,40 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6">
-      <h6>Rendered Component</h6>
-      <sbb-textarea [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength" [required]="required"></sbb-textarea>
+      <fieldset>
+        <sbb-textarea *ngIf="isVisible" [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"
+          [required]="required" [minHeight]="minHeight"></sbb-textarea>
+      </fieldset>
       <h6>Model:</h6>
       <pre>{{ textArea1 | json }}</pre>
+
     </div>
     <div class="col-lg-6">
-      <div>
-        <div class="form-group">
-          <label>Max Length</label>
-          <input class="form-control" [(ngModel)]="maxlength" type="number">
+      <legend>Properties</legend>
+      <fieldset>
+        <div>
+          <div class="form-group">
+            <label>Max Length</label>
+            <input class="form-control" [(ngModel)]="maxlength" type="number">
+          </div>
+          <div class="form-group">
+            <label>Min Length</label>
+            <input class="form-control" [(ngModel)]="minlength" type="number">
+          </div>
+          <div class="form-group">
+            <label>Starting Height</label>
+            <input class="form-control" [(ngModel)]="minHeight" type="number" (change)="reRender()">
+          </div>
+          <div class="form-check">
+            <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="required">
+            <label class="form-check-label" for="requiredCheck">Required</label>
+          </div>
+          <div class="form-check">
+            <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
+            <label class="form-check-label" for="requiredCheck">Disabled</label>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Min Length</label>
-          <input class="form-control" [(ngModel)]="minlength" type="number">
-        </div>
-        <div class="form-check">
-          <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="required">
-          <label class="form-check-label" for="requiredCheck">Required</label>
-        </div>
-      </div>
+      </fieldset>
     </div>
   </div>
 </div>

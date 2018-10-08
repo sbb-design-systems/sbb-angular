@@ -32,9 +32,9 @@
               }
             ],
             "styles": [
+              "src/styles.css",
               "dist/sbb-angular/styles.scss",
-              "dist/sbb-angular/typography.css",
-              "src/styles.css"
+              "dist/sbb-angular/typography.css"
             ],
             "scripts": []
           },
@@ -121,7 +121,9 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "node_modules/font-awesome/css/font-awesome.css",
+              "dist/sbb-angular/styles.scss",
+              "dist/sbb-angular/typography.css"
             ],
             "scripts": []
           },

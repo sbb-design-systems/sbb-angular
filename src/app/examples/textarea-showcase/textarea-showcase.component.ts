@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-textarea-showcase',
   templateUrl: './textarea-showcase.component.html',
   styleUrls: ['./textarea-showcase.component.scss']
 })
-export class TextareaShowcaseComponent implements OnInit {
-
+export class TextareaShowcaseComponent {
 
   textArea1 = 'SBB';
-  textArea2 = 'SBB';
-  textArea3 = 'SBB';
+  disabled: boolean;
+  minHeight = 400;
 
   minlength: number;
   maxlength: number;
   required: boolean;
+  isVisible = true;
 
-  ngOnInit() {
+  reRender() {
+    this.isVisible = false;
+    this.textArea1 = '';
+    setTimeout(() => {
+      this.isVisible = true;
+    });
+
   }
 
 }
