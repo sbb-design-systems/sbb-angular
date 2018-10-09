@@ -1,7 +1,7 @@
 import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, ElementRef, NgZone, HostBinding, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take } from 'rxjs/operators';
+import { take, first } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-textarea',
@@ -16,7 +16,7 @@ import { take } from 'rxjs/operators';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaComponent implements ControlValueAccessor, OnInit {
+export class TextareaComponent implements ControlValueAccessor {
 
   textContent: string;
   matTextareaAutosize = true;
@@ -30,29 +30,19 @@ export class TextareaComponent implements ControlValueAccessor, OnInit {
   @Input()
   maxlength: number;
 
-  @Input()
-  minHeight: number;
-
   @ViewChild('digitscounter')
   digitsCounter: ElementRef;
 
   @ViewChild('autosize')
   autosize: CdkTextareaAutosize;
 
-  @HostBinding('style.min-height')
-  heightStyle: string;
-
   @HostBinding('class.disabled')
   disabledClass: boolean;
 
   constructor(private ngZone: NgZone) { }
 
-  ngOnInit(): void {
-    this.heightStyle = this.minHeight + 'px';
-  }
-
   triggerResize() {
-    this.ngZone.onStable.pipe(take(1))
+    this.ngZone.onStable.pipe(first())
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 

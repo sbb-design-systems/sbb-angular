@@ -9,7 +9,6 @@ export class TextareaShowcaseComponent {
 
   textArea1 = 'SBB';
   disabled: boolean;
-  minHeight: number;
   minlength: number;
   maxlength: number;
   required: boolean;
