@@ -1,8 +1,7 @@
 @import '../../../styles/main';
 
-
-@mixin sociallink {
-	display: block;
+:host {
+  display: block;
 	position: relative;
   transition: $linksocialAnimation;
   width: toPx(40);
@@ -47,8 +46,4 @@
   &:focus {
     background-color: $colorRed125;
   }
-}
-
-:host {
-  @include sociallink;
 }

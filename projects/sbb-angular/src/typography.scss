@@ -46,20 +46,6 @@ p,
 
 a {
   @include standardLink;
-  text-decoration-skip: ink; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-
-  &:focus,
-  &:hover {
-    @media screen and (-ms-high-contrast: active) {
-      color: windowText;
-
-      &:before,
-      &:after {
-        border-color: windowText;
-      }
-
-    }
-  }
 }
 
 .visuallyhidden {
