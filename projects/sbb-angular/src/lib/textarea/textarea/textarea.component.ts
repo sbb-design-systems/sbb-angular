@@ -1,5 +1,8 @@
-import { Component, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { first } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-textarea',
@@ -17,30 +20,59 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class TextareaComponent implements ControlValueAccessor {
 
   textContent: string;
+  matTextareaAutosize = true;
+  counterObserver$: Subject<number> = new Subject<number>();
+
+  @Input()
   disabled: boolean;
 
-  onChange = (obj: any) => { };
-  onTouched = (_: any) => { };
+  @Input()
+  readonly: boolean;
 
-  writeValue(textContent: any): void {
-    this.textContent = textContent || '';
-    this.onChange(textContent);
+  @Input()
+  maxlength: number;
+
+
+  @ViewChild('autosize')
+  autosize: CdkTextareaAutosize;
+
+  @HostBinding('class.disabled')
+  disabledClass: boolean;
+
+  constructor(private ngZone: NgZone) { }
+
+  triggerResize() {
+    this.ngZone.onStable.pipe(first())
+      .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
+  propagateChange: any = () => { };
+
+  writeValue(newValue: any) {
+    if (newValue) {
+      this.textContent = newValue;
+      this.propagateChange(newValue);
+      this.updateDigitsCounter(newValue);
+    }
   }
 
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+  registerOnChange(fn) {
+    this.propagateChange = fn;
   }
 
-  change($event) {
-    this.onChange($event.target.value);
-    this.onTouched($event.target.value);
+  registerOnTouched(fn: () => void): void { }
+
+  onChange(event) {
+    this.propagateChange(event.target.value);
+    this.updateDigitsCounter(event.target.value);
   }
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.disabledClass = disabled;
+  }
+
+  updateDigitsCounter(newValue) {
+    this.counterObserver$.next(this.maxlength - newValue.length);
   }
 }
