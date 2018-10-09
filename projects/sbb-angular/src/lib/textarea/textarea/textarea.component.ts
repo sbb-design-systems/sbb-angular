@@ -1,7 +1,8 @@
-import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, ElementRef, NgZone, HostBinding, OnInit } from '@angular/core';
+import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take, first } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-textarea',
@@ -20,6 +21,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   textContent: string;
   matTextareaAutosize = true;
+  counterObserver$: Subject<number> = new Subject<number>();
 
   @Input()
   disabled: boolean;
@@ -30,8 +32,6 @@ export class TextareaComponent implements ControlValueAccessor {
   @Input()
   maxlength: number;
 
-  @ViewChild('digitscounter')
-  digitsCounter: ElementRef;
 
   @ViewChild('autosize')
   autosize: CdkTextareaAutosize;
@@ -73,10 +73,6 @@ export class TextareaComponent implements ControlValueAccessor {
   }
 
   updateDigitsCounter(newValue) {
-    if (this.maxlength) {
-      this.digitsCounter.nativeElement.innerText = `Remaining ${this.maxlength - newValue.length} digits`;
-    } else {
-      this.digitsCounter.nativeElement.innerText = '';
-    }
+    this.counterObserver$.next(this.maxlength - newValue.length);
   }
 }
