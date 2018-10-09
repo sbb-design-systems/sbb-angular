@@ -73,7 +73,7 @@
           <div class="highlight">
 
             <div id="accordion">
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationImportComponent">
                 <div id="headingImport" (click)="importClicked=!importClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#import" aria-expanded="importClicked"
                     aria-controls="import">
@@ -90,12 +90,19 @@
                 <div id="import" [ngClass]="importClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingImport"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.importText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeImport"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="import"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>  
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationGettingStartedComponent">
                 <div id="headingGettingStarted" (click)="gettingStartedClicked=!gettingStartedClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#gettingStarted" aria-expanded="gettingStartedClicked"
                     aria-controls="gettingStarted">
@@ -112,12 +119,19 @@
                 <div id="gettingStarted" [ngClass]="gettingStartedClicked ? 'collapse show' : 'collapse'"
                   aria-labelledby="headingGettingStarted" data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.gettingStartedText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeGettingStarted"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="gettingStarted"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationModelBindingComponent">
                 <div id="headingModelBinding" (click)="modelBindingClicked=!modelBindingClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#modelBinding" aria-expanded="modelBindingClicked"
                     aria-controls="modelBinding">
@@ -134,12 +148,19 @@
                 <div id="modelBinding" [ngClass]="modelBindingClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingModelBinding"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.modelBindingText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeModelBinding"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="modelBinding"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationIconsComponent">
                 <div id="headingIcons" (click)="iconsClicked=!iconsClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#icons" aria-expanded="iconsClicked"
                     aria-controls="icons">
@@ -156,12 +177,19 @@
                 <div id="icons" [ngClass]="iconsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingIcons"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.iconsText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeIcons"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="icons"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationAutoResizeComponent">
                 <div id="headingAutoResize" (click)="autoResizeClicked=!autoResizeClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#autoResize" aria-expanded="iconsClicked"
                     aria-controls="autoResize">
@@ -178,12 +206,19 @@
                 <div id="autoResize" [ngClass]="autoResizeClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingAutoResize"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.autoResizeText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeAutoResize"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="autoResize"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationPropertiesComponent">
                 <div id="headingProperties" (click)="propertiesClicked=!propertiesClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#properties" aria-expanded="propertiesClicked"
                     aria-controls="properties">
@@ -200,12 +235,19 @@
                 <div id="properties" [ngClass]="propertiesClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingProperties"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.propertiesText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeProperties"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="properties"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationEventsComponent">
                 <div id="headingEvents" (click)="eventsClicked=!eventsClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#events" aria-expanded="eventsClicked"
                     aria-controls="events">
@@ -222,12 +264,19 @@
                 <div id="events" [ngClass]="eventsClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingEvents"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.eventsText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeEvents"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="events"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationStylingComponent">
                 <div id="headingStyling" (click)="stylingClicked=!stylingClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#styling" aria-expanded="stylingClicked"
                     aria-controls="styling">
@@ -244,12 +293,19 @@
                 <div id="styling" [ngClass]="stylingClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingStyling"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.stylingText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeStyling"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="styling"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" *ngIf="uiComponent?.documentationDependenciesComponent">
                 <div id="headingDependencies" (click)="dependenciesClicked=!dependenciesClicked">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#dependencies" aria-expanded="dependenciesClicked"
                     aria-controls="dependencies">
@@ -266,8 +322,15 @@
                 <div id="dependencies" [ngClass]="dependenciesClicked ? 'collapse show' : 'collapse'" aria-labelledby="headingDependencies"
                   data-parent="#accordion">
                   <div class="card-body">
-                    <p class="text-left">{{ uiComponent.dependenciesText }}</p>
-                    <ngx-monaco-editor [options]="options" [(ngModel)]="codeDependencies"></ngx-monaco-editor>
+                    <table class="code table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ng-template [sbbComponentViewer]="uiComponent" documentationPart="dependencies"></ng-template>
+                          </td>
+                        </tr>
+                      </tbody>  
+                    </table>
                   </div>
                 </div>
               </div>
@@ -277,10 +340,18 @@
       </div>
     </div>
     <div [ngClass]="isSourceTabClicked ? 'tab-pane fade' : 'tab-pane fade show active'" id="source" role="tabpanel"
-      aria-labelledby="source-tab" *ngIf="!isSourceTabClicked">
+      aria-labelledby="source-tab" *ngIf="!isSourceTabClicked && uiComponent?.documentationSourceComponent">
       <div class="col-lg-12">
         <div class="highlight">
-          <ngx-monaco-editor [options]="options" [(ngModel)]="codeSource"></ngx-monaco-editor>
+          <table class="code table">
+            <tbody>
+              <tr>
+                <td>
+                  <ng-template [sbbComponentViewer]="uiComponent" documentationPart="source"></ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

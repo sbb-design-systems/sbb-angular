@@ -28,7 +28,11 @@ import { ComponentViewerDirective } from './directives/component-viewer.directiv
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
-import { TextFieldShowcaseComponent } from './examples/text-field-showcase/text-field-showcase.component';
+
+import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
+import { DocumentationImportSbbFieldComponent } from './examples/sbb-field-showcase/documentation/import/documentation-import-sbb-field.component';
+import { DocumentationSourceSbbFieldComponent } from './examples/sbb-field-showcase/documentation/source/documentation-source-sbb-field.component';
+import { DocumentationGettingStartedSbbFieldComponent } from './examples/sbb-field-showcase/documentation/gettingStarted/documentation-gettingStarted-sbb-field.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,12 @@ import { TextFieldShowcaseComponent } from './examples/text-field-showcase/text-
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
-  entryComponents: [TextareaShowcaseComponent, InputFieldShowcaseComponent, TextFieldShowcaseComponent],
+  entryComponents: [TextareaShowcaseComponent, 
+                    InputFieldShowcaseComponent, 
+                    SbbFieldShowcaseComponent,
+                    DocumentationImportSbbFieldComponent,
+                    DocumentationSourceSbbFieldComponent,
+                    DocumentationGettingStartedSbbFieldComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

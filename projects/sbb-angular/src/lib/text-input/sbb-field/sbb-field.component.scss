@@ -1,6 +1,6 @@
 @import "../../../styles/globals/mixins";
 
-@mixin sbbTextField($borderColor) {
+@mixin sbbField($borderColor) {
   border-color: $borderColor;
   letter-spacing: 0;
   line-height: 23px;
@@ -13,7 +13,7 @@
 
 :host {
   input {
-    @include sbbTextField($colorBlack72);
+    @include sbbField($colorBlack72);
     &:focus {
       border-color: $colorGrey;
     }
@@ -27,7 +27,7 @@
 
 :host.ng-invalid {
   input {
-    @include sbbTextField($colorCallToAction);
+    @include sbbField($colorCallToAction);
     color: $colorCallToAction;
   }
 }

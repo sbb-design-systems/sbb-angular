@@ -3,18 +3,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'sbb-field',
-  templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss'],
+  templateUrl: './sbb-field.component.html',
+  styleUrls: ['./sbb-field.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextFieldComponent),
+      useExisting: forwardRef(() => SbbFieldComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextFieldComponent implements OnInit, ControlValueAccessor {
+export class SbbFieldComponent implements OnInit, ControlValueAccessor {
 
   @Input() label: string;
   @Input() for?: string;

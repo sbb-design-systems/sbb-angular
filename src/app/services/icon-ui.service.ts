@@ -23,17 +23,7 @@ export class IconUiService {
       true,
       false,
       ['Davide Aresta', 'Stefan Meili'],
-      'Description goes here ...',
-      foundUiIcon.selector,
-      'Import text.',
-      'Getting started text.',
-      'Model binding text.',
-      'Icon text.',
-      'Auto resize text.',
-      'Properties text.',
-      'Events text.',
-      'Styling text.',
-      'Dependencies text.');
+      'Description goes here ...');
   }
 
   getUiIconsBySearchValue(searchValue: any) {

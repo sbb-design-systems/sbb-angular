@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
-import { TextFieldShowcaseComponent } from '../examples/text-field-showcase/text-field-showcase.component';
+
+import { SbbFieldShowcaseComponent } from '../examples/sbb-field-showcase/sbb-field-showcase.component';
+import { DocumentationImportSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/import/documentation-import-sbb-field.component';
+import { DocumentationSourceSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/source/documentation-source-sbb-field.component';
+import { DocumentationGettingStartedSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/gettingStarted/documentation-gettingStarted-sbb-field.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,49 +18,49 @@ export class ComponentUiService {
   constructor() {
     this.uiComponents = [
       // tslint:disable-next-line
-      new UiComponent('Button','button','Button','Button is an extension to standard input element with icons and theming.',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Button','button','Button','Button is an extension to standard input element with icons and theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('List','list','List','Listbox is used to select one or more values from a list of items.',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('List','list','List','Listbox is used to select one or more values from a list of items.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Table','table','Table','Table is the successor of p-dataTable with a lightning fast performance (at least 10x faster) and excellent level of control over the presentation. p-table is called as TurboTable in order to differantiate if from the deprecated p-dataTable.',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Table','table','Table','Table is the successor of p-dataTable with a lightning fast performance (at least 10x faster) and excellent level of control over the presentation. p-table is called as TurboTable in order to differantiate if from the deprecated p-dataTable.',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Link','link','Link','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Link','link','Link','Subtitel goes here ...',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Loading Indicator','loadingIndicator','Loading Indicator','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Loading Indicator','loadingIndicator','Loading Indicator','Subtitel goes here ...',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', InputFieldShowcaseComponent),
+      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', InputFieldShowcaseComponent),
       // tslint:disable-next-line
-      new UiComponent('Autocompletion','autocompletion','Autocompletion','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Autocompletion','autocompletion','Autocompletion','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextareaShowcaseComponent),
+      new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', TextareaShowcaseComponent),
       // tslint:disable-next-line
-      new UiComponent('Text Field','textField','Text Field','Text Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.', TextFieldShowcaseComponent),
+      new UiComponent('SBB Field','sbbField','SBB Field','SBB Field is a wrapper to standard sbb-label, input and sbb-form-error with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', SbbFieldShowcaseComponent, DocumentationImportSbbFieldComponent, DocumentationSourceSbbFieldComponent, DocumentationGettingStartedSbbFieldComponent),
       // tslint:disable-next-line
-      new UiComponent('Select','select','Select','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Select','select','Select','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Date Picker','datePicker','Date Picker','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Date Picker','datePicker','Date Picker','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Time Chooser','timeChooser','Time Chooser','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Time Chooser','timeChooser','Time Chooser','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Radio Button','radioButton','Radio Button','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Radio Button','radioButton','Radio Button','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Check Box','checkBox','Check Box','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Check Box','checkBox','Check Box','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Tab','tab','Tab','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Tab','tab','Tab','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Accordion','accordion','Accordion','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Accordion','accordion','Accordion','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Section (Fieldset)','section','Section (Fieldset)','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Section (Fieldset)','section','Section (Fieldset)','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Light Box','lightBox','Light Box','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Light Box','lightBox','Light Box','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Notification','notification','Notification','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Notification','notification','Notification','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Process Flow','processFlow','Process Flow','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Process Flow','processFlow','Process Flow','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Option Chooser (simple)','optionChooserSimple','Option Chooser (simple)','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.'),
+      new UiComponent('Option Chooser (simple)','optionChooserSimple','Option Chooser (simple)','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Option Chooser (multiple)','optionChooserMultiple','Option Chooser (multiple)','Subtitel goes here ...',true,true,['Davide Aresta', 'Stefan Meili'],'Description goes here ...','Source goes here ...','Import text.','Getting started text.','Model binding text.','Icon text.','Auto resize text.','Properties text.','Events text.','Styling text.','Dependencies text.')
+      new UiComponent('Option Chooser (multiple)','optionChooserMultiple','Option Chooser (multiple)','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...')
     ];
   }
 
@@ -76,7 +80,7 @@ export class ComponentUiService {
     const newFoundUiComponents: UiComponent[] = [];
     foundUiComponents.forEach(function(item) {
       // tslint:disable-next-line
-      newFoundUiComponents.push(new UiComponent(item.id,item.routerLink,item.title,item.subTitle,item.isComponent,item.isDirective,item.authors,item.description,item.source,item.importText,item.gettingStartedText,item.modelBindingText,item.iconsText,item.autoResizeText,item.propertiesText,item.eventsText,item.stylingText,item.dependenciesText));
+      newFoundUiComponents.push(new UiComponent(item.id,item.routerLink,item.title,item.subTitle,item.isComponent,item.isDirective,item.authors,item.description));
     });
 
     for(const uiComponent of newFoundUiComponents) {

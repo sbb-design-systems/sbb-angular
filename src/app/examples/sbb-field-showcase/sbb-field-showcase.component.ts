@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sbb-field-showcase',
-  templateUrl: './text-field-showcase.component.html',
-  styleUrls: ['./text-field-showcase.component.scss']
+  templateUrl: './sbb-field-showcase.component.html',
+  styleUrls: ['./sbb-field-showcase.component.scss']
 })
-export class TextFieldShowcaseComponent implements OnInit {
+export class SbbFieldShowcaseComponent implements OnInit {
 
   valueFromInput1 = '';
   valueFromInput2 = '';
@@ -18,6 +18,7 @@ export class TextFieldShowcaseComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.myForm1 = this.formBuilder.group({
       name1: ['', Validators.required]
     });
