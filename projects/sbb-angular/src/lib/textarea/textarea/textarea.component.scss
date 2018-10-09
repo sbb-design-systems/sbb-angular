@@ -1,4 +1,4 @@
-@import "../../../styles/globals/mixins";
+@import '../../../styles/main';
 
 @mixin sbbTextarea($borderColor) {
   border-color: $borderColor;

@@ -2,9 +2,9 @@
 // Mixins
 // ----------------------------------------------------------------------------------------------------
 
-@import './mediaqueries';
-@import './variables';
-@import './functions';
+@import '../mediaqueries';
+@import '../variables';
+@import '../functions';
 
 /**
  * Hide visually
@@ -1374,28 +1374,4 @@
 			opacity: 1;
 			transform: translate3d(0, 0, 0);
 	}
-}
-
-// Links mixins
-// ----------------------------------------------------------------------------------------------------
-
-@mixin standardLink {
-  color: $colorBlack;
-  line-height: pxToEm(23px);
-  text-decoration: underline;
-
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontDefault4k);
-    line-height: pxToEm(35px);
-  }
-
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontDefault5k);
-    line-height: pxToEm(45px);
-  }
-
-  &:hover,
-  &:link {
-    color: $colorRed125;
-  }
 }

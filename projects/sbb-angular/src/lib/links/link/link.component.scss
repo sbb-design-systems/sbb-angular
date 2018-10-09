@@ -1,8 +1,34 @@
-@import '../../../styles/globals/mediaqueries';
-@import '../../../styles/globals/variables';
-@import '../../../styles/globals/functions';
+@import '../../../styles/main';
 
-@mixin actionlink {
+@mixin actionlinkArrowHover {
+
+  padding-left: pxToEm(30, $sizeFontDefault);
+	padding-right: pxToEm(40, $sizeFontDefault);
+
+	.mod-svgsprite-icon:first-of-type {
+    opacity: 1;
+    margin-right: toPx(8);
+    transform: translate(0, -50%);
+
+    @include mq($from: desktop5k) {
+      transform: translate(0, -25%);
+    }
+	}
+
+	.mod-svgsprite-icon:last-of-type {
+		opacity: 0;
+		transform: translateX(pxToEm(26), -50%);
+    @include mq($from: desktop5k) {
+      transform: translateX(pxToEm(26), -50%);
+    }
+	}
+
+	&.var-center {
+		padding-right: 0;
+	}
+}
+
+:host {
   display: block;
 	position: relative;
 	margin: 1em 0 2em;
@@ -55,12 +81,7 @@
       }
     }
 
-    &:hover {
-      .no-touchevents & {
-        @include actionlinkArrowHover;
-      }
-    }
-
+    &:hover,
     &:focus {
       @include actionlinkArrowHover;
     }
@@ -93,36 +114,4 @@
 			}
 		}
 	}
-}
-
-@mixin actionlinkArrowHover {
-
-  padding-left: pxToEm(30, $sizeFontDefault);
-	padding-right: pxToEm(40, $sizeFontDefault);
-
-	.mod-svgsprite-icon:first-of-type {
-    opacity: 1;
-    margin-right: toPx(8);
-    transform: translate(0, -50%);
-
-    @include mq($from: desktop5k) {
-      transform: translate(0, -25%);
-    }
-	}
-
-	.mod-svgsprite-icon:last-of-type {
-		opacity: 0;
-		transform: translateX(pxToEm(26), -50%);
-    @include mq($from: desktop5k) {
-      transform: translateX(pxToEm(26), -50%);
-    }
-	}
-
-	&.var-center {
-		padding-right: 0;
-	}
-}
-
-:host {
-  @include actionlink;
 }

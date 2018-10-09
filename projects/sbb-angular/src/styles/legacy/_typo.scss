@@ -2,74 +2,10 @@
 // Typography Styles
 // ----------------------------------------------------------------------------------------------------
 
-@import './variables';
-@import './functions';
-@import './mediaqueries';
+@import '../variables';
+@import '../functions';
+@import '../mediaqueries';
 @import './mixins';
-
-
-@include inlinelinks;
-
-table {
-	th,
-	td {
-		color: $colorHeadline;
-		font-size: pxToEm($sizeFontDefault);
-		line-height: 1.5;
-		margin: 0.75em 0 0; // paragraph as default
-	}
-
-	th {
-		font-family: $fontSbbBold;
-	}
-}
-
-h1,
-.text-headline1 {
-	@include headline1;
-}
-
-h2,
-.text-headline2 {
-	@include headline2;
-}
-
-h3,
-.text-headline3 {
-	@include headline3;
-}
-
-h4,
-.text-headline4 {
-	@include headline4;
-}
-
-.text-lead {
-	@include lead;
-}
-
-p,
-.text-copy {
-	@include copy;
-}
-
-a {
-  @include standardLink;
-  text-decoration-skip: ink; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
-
-  &:focus,
-  &:hover {
-    @media screen and (-ms-high-contrast: active) {
-      color: windowText;
-
-      &:before,
-      &:after {
-        border-color: windowText;
-      }
-
-    }
-  }
-}
 
 input[type=email],
 input[type=password],
