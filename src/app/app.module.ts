@@ -44,7 +44,7 @@ import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase
     BrowserModule,
     FormsModule,
     NgbModule,
-    MonacoEditorModule.forRoot(),
+    MonacoEditorModule.forRoot({baseUrl: './assets'}),
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule
