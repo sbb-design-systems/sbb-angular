@@ -9,6 +9,20 @@ import { DocumentationImportInputFieldComponent } from '../examples/input-field-
 import { DocumentationSourceInputFieldComponent } from '../examples/input-field-showcase/documentation/source/documentation-source-input-field.component';
 // tslint:disable-next-line
 import { DocumentationGettingStartedInputFieldComponent } from '../examples/input-field-showcase/documentation/getting-started/documentation-getting-started-input-field.component';
+// tslint:disable-next-line
+import { DocumentationPropertiesInputFieldComponent } from '../examples/input-field-showcase/documentation/properties/documentation-properties-input-field.component';
+// tslint:disable-next-line
+import { DocumentationModelBindingInputFieldComponent } from '../examples/input-field-showcase/documentation/model-binding/documentation-model-binding-input-field.component';
+// tslint:disable-next-line
+import { DocumentationStylingInputFieldComponent } from '../examples/input-field-showcase/documentation/styling/documentation-styling-input-field.component'; 
+// tslint:disable-next-line
+import { DocumentationDependenciesInputFieldComponent } from '../examples/input-field-showcase/documentation/dependencies/documentation-dependencies-input-field.component';
+// tslint:disable-next-line
+import { DocumentationEventsInputFieldComponent } from '../examples/input-field-showcase/documentation/events/documentation-events-input-field.component';
+// tslint:disable-next-line
+import { DocumentationAutoResizeInputFieldComponent } from '../examples/input-field-showcase/documentation/auto-resize/documentation-auto-resize-input-field.component';
+// tslint:disable-next-line
+import { DocumentationIconsInputFieldComponent } from '../examples/input-field-showcase/documentation/icons/documentation-icons-input-field.component';
 
 import { SbbFieldShowcaseComponent } from '../examples/sbb-field-showcase/sbb-field-showcase.component';
 // tslint:disable-next-line
@@ -17,6 +31,20 @@ import { DocumentationImportSbbFieldComponent } from '../examples/sbb-field-show
 import { DocumentationSourceSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/source/documentation-source-sbb-field.component';
 // tslint:disable-next-line
 import { DocumentationGettingStartedSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/getting-started/documentation-getting-started-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationPropertiesSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/properties/documentation-properties-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationModelBindingSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/model-binding/documentation-model-binding-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationStylingSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/styling/documentation-styling-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationDependenciesSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/dependencies/documentation-dependencies-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationEventsSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/events/documentation-events-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationAutoResizeSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/auto-resize/documentation-auto-resize-sbb-input-field.component';
+// tslint:disable-next-line
+import { DocumentationIconsSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/icons/documentation-icons-sbb-field.component';
 
 @Injectable({
   providedIn: 'root'
@@ -38,13 +66,13 @@ export class ComponentUiService {
       // tslint:disable-next-line
       new UiComponent('Loading Indicator','loadingIndicator','Loading Indicator','Subtitel goes here ...',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', InputFieldShowcaseComponent, DocumentationImportInputFieldComponent, DocumentationSourceInputFieldComponent, DocumentationGettingStartedInputFieldComponent),
+      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', InputFieldShowcaseComponent, DocumentationImportInputFieldComponent, DocumentationSourceInputFieldComponent, DocumentationGettingStartedInputFieldComponent, DocumentationPropertiesInputFieldComponent, DocumentationModelBindingInputFieldComponent, DocumentationStylingInputFieldComponent, DocumentationDependenciesInputFieldComponent, DocumentationEventsInputFieldComponent, DocumentationAutoResizeInputFieldComponent, DocumentationIconsInputFieldComponent),
       // tslint:disable-next-line
       new UiComponent('Autocompletion','autocompletion','Autocompletion','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
       new UiComponent('Text Area','textArea','Text Area','Subtitel goes here ...',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', TextareaShowcaseComponent),
       // tslint:disable-next-line
-      new UiComponent('SBB Field','sbbField','SBB Field','SBB Field is a wrapper to standard sbb-label, input and sbb-form-error with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', SbbFieldShowcaseComponent, DocumentationImportSbbFieldComponent, DocumentationSourceSbbFieldComponent, DocumentationGettingStartedSbbFieldComponent),
+      new UiComponent('SBB Field','sbbField','SBB Field','SBB Field is a wrapper to standard sbb-label, input and sbb-form-error with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', SbbFieldShowcaseComponent, DocumentationImportSbbFieldComponent, DocumentationSourceSbbFieldComponent, DocumentationGettingStartedSbbFieldComponent, DocumentationPropertiesSbbFieldComponent, DocumentationModelBindingSbbFieldComponent, DocumentationStylingSbbFieldComponent, DocumentationDependenciesSbbFieldComponent, DocumentationEventsSbbFieldComponent, DocumentationAutoResizeSbbFieldComponent, DocumentationIconsSbbFieldComponent),
       // tslint:disable-next-line
       new UiComponent('Select','select','Select','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line

@@ -15,13 +15,13 @@ export class UiComponent {
         public documentationImportComponent?: Type<{}>,
         public documentationSourceComponent?: Type<{}>,
         public documentationGettingStartedComponent?: Type<{}>,
-        public documentationModelBindingComponent?: Type<{}>,
-        public documentationIconsComponent?: Type<{}>,
-        public documentationAutoResizeComponent?: Type<{}>,
         public documentationPropertiesComponent?: Type<{}>,
-        public documentationEventsComponent?: Type<{}>,
+        public documentationModelBindingComponent?: Type<{}>,
         public documentationStylingComponent?: Type<{}>,
         public documentationDependenciesComponent?: Type<{}>,
+        public documentationEventsComponent?: Type<{}>,
+        public documentationAutoResizeComponent?: Type<{}>,
+        public documentationIconsComponent?: Type<{}>,
         public thumbnails?: Thumbnail[]
     ) { }
 }
