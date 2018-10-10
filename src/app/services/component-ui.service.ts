@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
+
 import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
+import { DocumentationImportInputFieldComponent } from '../examples/input-field-showcase/documentation/import/documentation-import-input-field.component';
+import { DocumentationSourceInputFieldComponent } from '../examples/input-field-showcase/documentation/source/documentation-source-input-field.component';
+import { DocumentationGettingStartedInputFieldComponent } from '../examples/input-field-showcase/documentation/gettingStarted/documentation-gettingStarted-input-field.component';
 
 import { SbbFieldShowcaseComponent } from '../examples/sbb-field-showcase/sbb-field-showcase.component';
 import { DocumentationImportSbbFieldComponent } from '../examples/sbb-field-showcase/documentation/import/documentation-import-sbb-field.component';
@@ -28,7 +32,7 @@ export class ComponentUiService {
       // tslint:disable-next-line
       new UiComponent('Loading Indicator','loadingIndicator','Loading Indicator','Subtitel goes here ...',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line
-      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', InputFieldShowcaseComponent),
+      new UiComponent('Input Field','inputField','Input Field','Input Field is an extension to standard input element with theming.',true,false,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...', InputFieldShowcaseComponent, DocumentationImportInputFieldComponent, DocumentationSourceInputFieldComponent, DocumentationGettingStartedInputFieldComponent),
       // tslint:disable-next-line
       new UiComponent('Autocompletion','autocompletion','Autocompletion','Subtitel goes here ...',true,true,['Davide Aresta', 'Dario D\'Oronzo', 'Stefan Meili'],'Description goes here ...'),
       // tslint:disable-next-line

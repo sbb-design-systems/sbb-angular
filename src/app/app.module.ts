@@ -27,7 +27,11 @@ import { IconComponents } from './sbb-components-mapping-export';
 import { ComponentViewerDirective } from './directives/component-viewer.directive';
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
+
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
+import { DocumentationSourceInputFieldComponent } from './examples/input-field-showcase/documentation/source/documentation-source-input-field.component';
+import { DocumentationImportInputFieldComponent } from './examples/input-field-showcase/documentation/import/documentation-import-input-field.component';
+import { DocumentationGettingStartedInputFieldComponent } from './examples/input-field-showcase/documentation/gettingStarted/documentation-gettingStarted-input-field.component';
 
 import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
 import { DocumentationImportSbbFieldComponent } from './examples/sbb-field-showcase/documentation/import/documentation-import-sbb-field.component';
@@ -61,7 +65,10 @@ import { DocumentationGettingStartedSbbFieldComponent } from './examples/sbb-fie
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
   entryComponents: [TextareaShowcaseComponent, 
-                    InputFieldShowcaseComponent, 
+                    InputFieldShowcaseComponent,
+                    DocumentationImportInputFieldComponent,
+                    DocumentationSourceInputFieldComponent,
+                    DocumentationGettingStartedInputFieldComponent,
                     SbbFieldShowcaseComponent,
                     DocumentationImportSbbFieldComponent,
                     DocumentationSourceSbbFieldComponent,

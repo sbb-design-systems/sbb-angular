@@ -4,7 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
+
 import { InputFieldShowcaseComponent } from './input-field-showcase/input-field-showcase.component';
+import { DocumentationImportInputFieldComponent } from './input-field-showcase/documentation/import/documentation-import-input-field.component';
+import { DocumentationSourceInputFieldComponent } from './input-field-showcase/documentation/source/documentation-source-input-field.component';
+import { DocumentationGettingStartedInputFieldComponent } from './input-field-showcase/documentation/gettingStarted/documentation-gettingStarted-input-field.component';
 
 import { SbbFieldShowcaseComponent } from './sbb-field-showcase/sbb-field-showcase.component';
 import { DocumentationImportSbbFieldComponent } from './sbb-field-showcase/documentation/import/documentation-import-sbb-field.component';
@@ -16,7 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [TextareaShowcaseComponent, 
-                   InputFieldShowcaseComponent, 
+                   InputFieldShowcaseComponent,
+                   DocumentationImportInputFieldComponent,
+                   DocumentationSourceInputFieldComponent,
+                   DocumentationGettingStartedInputFieldComponent,
                    SbbFieldShowcaseComponent,
                    DocumentationImportSbbFieldComponent,
                    DocumentationSourceSbbFieldComponent,
@@ -32,7 +39,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ],
     providers: [],
     exports: [TextareaShowcaseComponent, 
-              InputFieldShowcaseComponent, 
+              InputFieldShowcaseComponent,
+              DocumentationImportInputFieldComponent,
+              DocumentationSourceInputFieldComponent,
+              DocumentationGettingStartedInputFieldComponent,
               SbbFieldShowcaseComponent,
               DocumentationImportSbbFieldComponent,
               DocumentationSourceSbbFieldComponent,
