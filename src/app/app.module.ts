@@ -29,14 +29,20 @@ import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
+// tslint:disable-next-line
 import { DocumentationSourceInputFieldComponent } from './examples/input-field-showcase/documentation/source/documentation-source-input-field.component';
+// tslint:disable-next-line
 import { DocumentationImportInputFieldComponent } from './examples/input-field-showcase/documentation/import/documentation-import-input-field.component';
-import { DocumentationGettingStartedInputFieldComponent } from './examples/input-field-showcase/documentation/gettingStarted/documentation-gettingStarted-input-field.component';
+// tslint:disable-next-line
+import { DocumentationGettingStartedInputFieldComponent } from './examples/input-field-showcase/documentation/getting-started/documentation-getting-started-input-field.component';
 
 import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
+// tslint:disable-next-line
 import { DocumentationImportSbbFieldComponent } from './examples/sbb-field-showcase/documentation/import/documentation-import-sbb-field.component';
+// tslint:disable-next-line
 import { DocumentationSourceSbbFieldComponent } from './examples/sbb-field-showcase/documentation/source/documentation-source-sbb-field.component';
-import { DocumentationGettingStartedSbbFieldComponent } from './examples/sbb-field-showcase/documentation/gettingStarted/documentation-gettingStarted-sbb-field.component';
+// tslint:disable-next-line
+import { DocumentationGettingStartedSbbFieldComponent } from './examples/sbb-field-showcase/documentation/getting-started/documentation-getting-started-sbb-field.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +70,7 @@ import { DocumentationGettingStartedSbbFieldComponent } from './examples/sbb-fie
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
-  entryComponents: [TextareaShowcaseComponent, 
+  entryComponents: [TextareaShowcaseComponent,
                     InputFieldShowcaseComponent,
                     DocumentationImportInputFieldComponent,
                     DocumentationSourceInputFieldComponent,

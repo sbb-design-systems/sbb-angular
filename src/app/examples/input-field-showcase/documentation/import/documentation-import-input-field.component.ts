@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'input-field-showcase-documentation-import',
+  selector: 'sbb-input-field-showcase-documentation-import',
   templateUrl: './documentation-import-input-field.component.html',
   styleUrls: ['./documentation-import-input-field.component.scss']
 })
