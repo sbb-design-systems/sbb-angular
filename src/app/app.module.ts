@@ -45,7 +45,7 @@ import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/r
     BrowserModule,
     FormsModule,
     NgbModule,
-    MonacoEditorModule.forRoot(),
+    MonacoEditorModule.forRoot({baseUrl: './assets'}),
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule

@@ -35,7 +35,8 @@
 	padding-left: 0;
 	padding-right: toEm(70/$sizeFontDefault);
   hyphens: auto;
-	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+  transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+  text-decoration: none !important;
 
   .mod-svgsprite-icon {
     position: absolute;
