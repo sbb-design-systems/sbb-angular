@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'sbb-radio-button',
   templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.css'],
+  styleUrls: ['./radio-button.component.scss'],
   providers: [ {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => RadioButtonComponent),
