@@ -19,6 +19,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input() inputId: string;
   @Input() name: string;
   @Input() inputValue: string;
+  @Input() checked: boolean;
 
   disabled: boolean;
 
@@ -28,7 +29,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   constructor(private renderer: Renderer2) {}
 
   writeValue(value: any): void {
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this.inputValue === value);
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', !this.checked && this.inputValue === value);
   }
 
   registerOnChange(fn: any): void {
@@ -46,7 +47,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   }
 
   setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'disabled', disabled);
   }
 
 }

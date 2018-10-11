@@ -8,13 +8,13 @@ import { RadioButtonComponent } from './radio-button.component';
 
 @Component({
   selector: 'sbb-radio-button-test',
-  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" inputValue="1">' +
+  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" inputValue="1" disabled="true">' +
             '</sbb-radio-button>' +
             '<label for="test-radio-1">Test radio button 1</label>' +
+            '<hr>' +
             '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" inputValue="2">' +
             '</sbb-radio-button>' +
-            '<label for="test-radio-2">Test radio button 2</label>' +
-            '<input type="text" [(ngModel)]="testValue">'
+            '<label for="test-radio-2">Test radio button 2</label>'
 })
 class RadioButtonTestComponent {
   testValue = '2';
@@ -94,7 +94,7 @@ describe('RadioButtonComponent', () => {
     expect(radioButtonChecked.length).toBe(1);
   });
 
-  it('should check if model is equal to value', () => {
+  fit('should check if model is equal to value', () => {
     const radiobuttonLabel = mockComponentFixture.debugElement.query(By.css('label[for="test-radio-1"]'));
     expect(radiobuttonLabel).toBeTruthy();
 

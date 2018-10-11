@@ -55,3 +55,11 @@ a {
 .clearfix {
 	@include clearfix;
 }
+
+sbb-radio-button + label {
+  position: relative;
+  display: table-cell;
+  padding-top: .16667em;
+  color: #666;
+  transition: color .3s cubic-bezier(.785,.135,.15,.86);
+}

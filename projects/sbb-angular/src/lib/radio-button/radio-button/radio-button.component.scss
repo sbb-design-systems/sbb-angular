@@ -1,11 +1,19 @@
+:host {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+}
+
 input[type="radio"] {
   position: absolute;
-  left: 0;
-  opacity: 0;
-  z-index: 1;
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
   top: .36667em;
-  width: 1.33333em;
-  height: 1.33333em;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
 
   &:checked,
   &[checked] {
@@ -14,34 +22,39 @@ input[type="radio"] {
     }
   }
 
+  &:disabled + .test {
+    border-color: #D2D2D2;
+    background-color: #F6F6F6;
+
+    &::after {
+      background-color: #666666;
+    }
+  }
 }
 
 :host .test {
+  box-sizing: border-box;
   position: relative;
   display: inline-block;
   float: left;
   z-index: 0;
   vertical-align: middle;
-  width: 1.33333em;
-  height: 1.33333em;
-  margin-top: .3em;
+  width: 20px;
+  height: 20px;
   margin-right: .66667em;
   background-color: #fff;
-  border: .13333em solid #b7b7b7;
+  border: 2px solid #b7b7b7;
   border-radius: 50%;
 
   &::after {
     content: "";
     display: block;
     position: absolute;
-    top: 50%;
-    left: 50%;
     opacity: 0;
     transition: opacity .3s cubic-bezier(.785,.135,.15,.86);
-    width: .8em;
-    height: .8em;
-    margin-top: -.4em;
-    margin-left: -.4em;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.7);
     background-color: #c60018;
     border-radius: 50%;
 }
