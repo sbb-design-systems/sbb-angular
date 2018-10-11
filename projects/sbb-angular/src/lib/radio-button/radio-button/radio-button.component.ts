@@ -1,46 +1,54 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, forwardRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+const provider = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => RadioButtonComponent),
+  multi: true,
+};
 
 @Component({
   selector: 'sbb-radio-button',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.css'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => RadioButtonComponent),
-    multi: true,
-  }],
+  providers: [ provider ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent implements OnInit, ControlValueAccessor {
+export class RadioButtonComponent implements ControlValueAccessor {
 
-  @Input() id: string;
+  @ViewChild('inputRadio') inputRadio: ElementRef<HTMLElement>;
+
+  @Input() inputId: string;
   @Input() name: string;
-  @Input() value: string;
-  @Input() checked: boolean;
+  @Input() inputValue: string;
 
+  disabled: boolean;
 
-  ngOnInit(): void {
-    console.log('ngOnInit: Method not implemented.');
-  }
+  onChange = (obj: any) => { };
+  onTouched = (_: any) => { };
 
-  writeValue(newValue: any): void {
-    console.log('writeValue: Method not implemented.');
-    if(newValue) {
-      this.value = newValue;
-    }
+  constructor(private renderer: Renderer2) {}
+
+  writeValue(value: any): void {
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this.inputValue === value);
   }
 
   registerOnChange(fn: any): void {
-    console.log('registerOnChange: Method not implemented.');
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    console.log('registerOnTouched: Method not implemented.');
+    this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-    console.log('setDisabledState: Method not implemented.');
+  click($event) {
+    this.onChange($event.target.value);
+    this.onTouched($event.target.value);
+    this.writeValue($event.target.value);
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 
 }

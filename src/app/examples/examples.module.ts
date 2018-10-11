@@ -6,22 +6,27 @@ import { TextareaModule, LinksModule } from 'sbb-angular';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { CommonModule } from '@angular/common';
+import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
+import { RadioButtonModule } from 'projects/sbb-angular/src/public_api';
 
 @NgModule({
   declarations: [
     TextareaShowcaseComponent,
-    LinksShowcaseComponent
+    LinksShowcaseComponent,
+    RadioButtonShowcaseComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     TextareaModule,
-    LinksModule
+    LinksModule,
+    RadioButtonModule
   ],
   providers: [],
   exports: [
     TextareaShowcaseComponent,
-    LinksShowcaseComponent
+    LinksShowcaseComponent,
+    RadioButtonShowcaseComponent
   ]
 })
 export class ExamplesModule { }
