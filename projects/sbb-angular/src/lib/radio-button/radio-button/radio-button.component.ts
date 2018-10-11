@@ -1,17 +1,15 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, forwardRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-const provider = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => RadioButtonComponent),
-  multi: true,
-};
-
 @Component({
   selector: 'sbb-radio-button',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.css'],
-  providers: [ provider ],
+  providers: [ {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => RadioButtonComponent),
+    multi: true,
+  } ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent implements ControlValueAccessor {

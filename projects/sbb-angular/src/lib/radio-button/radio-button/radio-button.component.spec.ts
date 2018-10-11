@@ -20,7 +20,7 @@ class RadioButtonTestComponent {
   testValue = '2';
 }
 
-fdescribe('RadioButtonComponent', () => {
+describe('RadioButtonComponent', () => {
   let component: RadioButtonComponent;
   let mockComponent: RadioButtonTestComponent;
   let fixture: ComponentFixture<RadioButtonComponent>;
@@ -94,7 +94,7 @@ fdescribe('RadioButtonComponent', () => {
     expect(radioButtonChecked.length).toBe(1);
   });
 
-  fit('should check if model is equal to value', () => {
+  it('should check if model is equal to value', () => {
     const radiobuttonLabel = mockComponentFixture.debugElement.query(By.css('label[for="test-radio-1"]'));
     expect(radiobuttonLabel).toBeTruthy();
 
