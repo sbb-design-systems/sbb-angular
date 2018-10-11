@@ -8,7 +8,7 @@ import { RadioButtonComponent } from './radio-button.component';
 
 @Component({
   selector: 'sbb-radio-button-test',
-  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" inputValue="1" disabled="true">' +
+  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" inputValue="1">' +
             '</sbb-radio-button>' +
             '<label for="test-radio-1">Test radio button 1</label>' +
             '<hr>' +

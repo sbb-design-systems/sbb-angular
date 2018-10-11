@@ -1,26 +1,34 @@
+@import '../../../styles/main';
+
 :host {
   position: relative;
-  display: block;
-  box-sizing: border-box;
+  display: inline-block;
+
+  &.sbb-radio-checked .radio-circle-checked {
+    opacity: 1 !important;
+  }
+
+  &.sbb-radio-disabled {
+    .radio-circle-container {
+      border-color: #D2D2D2;
+      background-color: #F6F6F6;
+
+      .radio-circle-checked {
+        background-color: #666666;
+      }
+    }
+  }
 }
 
 input[type="radio"] {
   position: absolute;
   padding: 0;
   margin: 0;
-  width: 20px;
-  height: 20px;
-  top: .36667em;
+  width: toPx(20);
+  height: toPx(20);
   left: 0;
   z-index: 1;
   opacity: 0;
-
-  &:checked,
-  &[checked] {
-    & + .test::after {
-      opacity: 1;
-    }
-  }
 
   &:disabled + .test {
     border-color: #D2D2D2;
@@ -30,33 +38,53 @@ input[type="radio"] {
       background-color: #666666;
     }
   }
+
+  @include mq($from: desktop4k) {
+    width: toPx(20 * $scalingFactor4k);
+    height: toPx(20 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(20 * $scalingFactor5k);
+    height: toPx(20 * $scalingFactor5k);
+  }
 }
 
-:host .test {
-  box-sizing: border-box;
+.radio-circle-container {
   position: relative;
-  display: inline-block;
-  float: left;
-  z-index: 0;
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
-  margin-right: .66667em;
+  width: toPx(20);
+  height: toPx(20);
   background-color: #fff;
-  border: 2px solid #b7b7b7;
+  border: toPx(2) solid #b7b7b7;
   border-radius: 50%;
+  margin-right: toPx(8);
 
-  &::after {
-    content: "";
-    display: block;
+  @include mq($from: desktop4k) {
+    width: toPx(20 * $scalingFactor4k);
+    height: toPx(20 * $scalingFactor4k);
+    border: toPx(2 * $scalingFactor4k) solid #b7b7b7;
+    margin-right: toPx(8 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(20 * $scalingFactor5k);
+    height: toPx(20 * $scalingFactor5k);
+    border: toPx(2 * $scalingFactor5k) solid #b7b7b7;
+    margin-right: toPx(8 * $scalingFactor5k);
+  }
+
+  .radio-circle-checked {
     position: absolute;
-    opacity: 0;
-    transition: opacity .3s cubic-bezier(.785,.135,.15,.86);
-    width: 100%;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
     height: 100%;
-    transform: scale(0.7);
+    width: 100%;
     background-color: #c60018;
     border-radius: 50%;
-}
+    transform: scale(.65);
+    transition: opacity .3s cubic-bezier(.785,.135,.15,.86);
+    opacity: 0;
+  }
 
 }

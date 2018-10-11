@@ -1,9 +1,12 @@
+<div class="radio-circle-container">
+  <div class="radio-circle-checked"></div>
+</div>
+
 <input
   type="radio"
   #inputRadio
   [id]="inputId"
   [name]="name"
   [value]="inputValue"
-  [disabled]="disabled"
-  (click)="click($event)" />
-<span class="test"></span>
+  [required]="required"
+  (click)="click($event)"/>

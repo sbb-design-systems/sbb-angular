@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, forwardRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, forwardRef, ViewChild, ElementRef, Renderer2, HostBinding } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -18,10 +18,11 @@ export class RadioButtonComponent implements ControlValueAccessor {
 
   @Input() inputId: string;
   @Input() name: string;
-  @Input() inputValue: string;
-  @Input() checked: boolean;
+  @Input() inputValue: any;
+  @Input() required: boolean;
+  @HostBinding('class.sbb-radio-checked') @Input() checked: boolean;
+  @HostBinding('class.sbb-radio-disabled') disabled: boolean;
 
-  disabled: boolean;
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
@@ -29,7 +30,8 @@ export class RadioButtonComponent implements ControlValueAccessor {
   constructor(private renderer: Renderer2) {}
 
   writeValue(value: any): void {
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', !this.checked && this.inputValue === value);
+    this.checked = !this.checked && this.inputValue === value;
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this.checked);
   }
 
   registerOnChange(fn: any): void {
