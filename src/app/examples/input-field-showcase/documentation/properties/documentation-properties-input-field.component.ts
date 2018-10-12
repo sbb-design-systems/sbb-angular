@@ -7,7 +7,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class DocumentationPropertiesInputFieldComponent implements OnInit {
 
-  propertiesText = 'Below are the properties for the component :';
+  propertiesText = 'Below are the attributes for the input :';
 
   constructor() {
   }

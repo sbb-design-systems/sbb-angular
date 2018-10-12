@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentationGettingStartedInputFieldComponent implements OnInit {
 
-  gettingStartedText = '<b>sbb-input-field</b> is used as follows :';
+  gettingStartedText = '<b>input</b> is used as follows :';
 
   options = { theme: 'default', language: 'html', readOnly: true, automaticLayout: true };
 
-  codeGettingStarted = `<sbb-input-field inputType="text" placeholder="Placeholder" pattern="myPatternGoesHere"></sbb-input-field>`;
+  codeGettingStarted = `<input type="..." placeholder="Placeholder" disabled="true|false" autocomplete="on|off" ...>`;
 
   constructor() {
   }

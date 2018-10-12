@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,10 +22,6 @@ import { ReplacePipe } from './shared/replace.pipe';
 import { IconComponents } from './sbb-components-mapping-export';
 import { ComponentViewerDirective } from './directives/component-viewer.directive';
 import { ExamplesModule } from './examples/examples.module';
-
-import { ComponentUiService } from './services/component-ui.service';
-import { IconUiService } from './services/icon-ui.service';
-import { AccordionNotificationService } from './services/accordion-notification.service';
 
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
@@ -98,8 +94,8 @@ import { DocumentationIconsSbbFieldComponent } from './examples/sbb-field-showca
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ComponentUiService, IconUiService, AccordionNotificationService],
+  schemas: [],
+  providers: [],
   entryComponents: [TextareaShowcaseComponent,
                     LinksShowcaseComponent,
                     InputFieldShowcaseComponent,

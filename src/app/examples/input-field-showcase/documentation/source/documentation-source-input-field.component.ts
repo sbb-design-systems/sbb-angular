@@ -14,16 +14,16 @@ export class DocumentationSourceInputFieldComponent implements OnInit {
      <div class="col-6">
         <h6>1. Password Input Field</h6>
         <hr/>
-        <sbb-input-field inputType="password"
-                         pattern="myPatternGoesHere"
-                         placeholder="Placeholder"></sbb-input-field>
+        <sbb-input-field>
+          <input type="password" placeholder="Placeholder" autocomplete="off">
+        </sbb-input-field>
      </div>
      <div class="col-6">
         <h6>2. Text Input Field</h6>
         <hr/>
-        <sbb-input-field inputType="text"
-                         placeholder="Placeholder"
-                         pattern="myPatternGoesHere"></sbb-input-field>
+        <sbb-input-field>
+          <input type="text" placeholder="Placeholder" autocomplete="off">
+        </sbb-input-field>
      </div>
   </div>
   <hr/>
@@ -31,18 +31,16 @@ export class DocumentationSourceInputFieldComponent implements OnInit {
       <div class="col-6">
          <h6>3. Password Input Field (disabled)</h6>
          <hr/>
-         <sbb-input-field inputType="password"
-                          pattern="myPatternGoesHere"
-                          placeholder="Placeholder"
-                          disabled="true"></sbb-input-field>
+         <sbb-input-field>
+           <input type="password" placeholder="Placeholder" disabled="true" autocomplete="off">
+         </sbb-input-field>
       </div>
       <div class="col-6">
          <h6>4. Text Input Field (disabled)</h6>
          <hr/>
-         <sbb-input-field inputType="text"
-                          placeholder="Placeholder"
-                          pattern="myPatternGoesHere"
-                          disabled="true"></sbb-input-field>
+         <sbb-input-field>
+           <input type="text" placeholder="Placeholder" disabled="true" autocomplete="off">
+         </sbb-input-field>
       </div>
    </div>
 </div>`;

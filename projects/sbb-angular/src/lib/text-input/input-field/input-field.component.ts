@@ -16,55 +16,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputFieldComponent implements OnInit, ControlValueAccessor {
 
-  @Input() inputType: string;
-  @Input() placeholder: string;
-  @Input() maxLength?: string;
-  @Input() size?: string;
-  @Input() pattern?: string;
-  @Input() disabled?: boolean;
-
-  value: string;
-
-  isPasswordInputField: boolean;
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-
-    this.value = '';
-
-    if(!this.maxLength) {
-        this.maxLength = '25';
-    }
-
-    if(!this.size) {
-        this.size = '25';
-    }
-
-    if(new RegExp('password', 'ig').test(this.inputType)) {
-       this.isPasswordInputField = true;
-    }
-
-  }
-
-  onFocusIn(event) {
-    event.target.value = this.value;
-  }
-
-  onFocusOut(event) {
-    this.value  = event.target.value;
-    const value = event.target.value;
-    const size  = event.target.size;
-    if(event.target.value.length > event.target.size) {
-       event.target.value = value.substring(0, size-3) + '...';
-    }
   }
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
   writeValue(value: any): void {
-    this.value = value || '';
     this.onChange(value);
   }
 
@@ -79,9 +39,5 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   change($event) {
     this.onChange($event.target.value);
     this.onTouched($event.target.value);
-  }
-
-  setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
   }
 }
