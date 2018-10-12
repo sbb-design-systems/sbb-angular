@@ -4,8 +4,6 @@
 @mixin radioButtonLabel {
   & + label {
     position: relative;
-    display: table-cell;
-    vertical-align: middle;
     color: $colorGrey;
     transition: color .3s cubic-bezier(.785,.135,.15,.86);
   }

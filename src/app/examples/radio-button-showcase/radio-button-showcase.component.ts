@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-radio-button-showcase',
   templateUrl: './radio-button-showcase.component.html',
   styleUrls: ['./radio-button-showcase.component.scss']
 })
-export class RadioButtonShowcaseComponent implements OnInit {
+export class RadioButtonShowcaseComponent {
 
-  testValue = '1';
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+  required: boolean;
+  disabled: boolean;
+  checked: boolean;
 
 }

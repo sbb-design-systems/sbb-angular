@@ -2,7 +2,7 @@ import { Component, Input, ChangeDetectionStrategy, forwardRef, ViewChild, Eleme
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-radio-button',
+  selector: 'sbb-radio-button[inputValue]',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
   providers: [ {
@@ -14,24 +14,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class RadioButtonComponent implements ControlValueAccessor {
 
-  @ViewChild('inputRadio') inputRadio: ElementRef<HTMLElement>;
-
   @Input() inputId: string;
   @Input() name: string;
   @Input() inputValue: any;
   @Input() required: boolean;
   @HostBinding('class.sbb-radio-checked') @Input() checked: boolean;
-  @HostBinding('class.sbb-radio-disabled') disabled: boolean;
+  @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
 
+  _value: string;
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
-  constructor(private renderer: Renderer2) {}
-
   writeValue(value: any): void {
-    this.checked = !this.checked && this.inputValue === value;
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this.checked);
+    console.log(value);
+    if(!this.checked) {
+      this.checked = this.inputValue === value;
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -43,13 +42,13 @@ export class RadioButtonComponent implements ControlValueAccessor {
   }
 
   click($event) {
-    this.onChange($event.target.value);
-    this.onTouched($event.target.value);
-    this.writeValue($event.target.value);
+    this.onChange(this.inputValue);
+    this.onTouched(this.inputValue);
+    this.writeValue(this.inputValue);
   }
 
   setDisabledState(disabled: boolean) {
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'disabled', disabled);
+    this.disabled = disabled;
   }
 
 }

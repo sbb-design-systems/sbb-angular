@@ -3,6 +3,7 @@
 :host {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 
   &.sbb-radio-checked .radio-circle-checked {
     opacity: 1 !important;
@@ -71,7 +72,7 @@ input[type="radio"] {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-    background-color: $colorRed125;
+    background-color: $colorRed100;
     border-radius: 50%;
     transform: scale(.65);
     transition: opacity .3s cubic-bezier(.785,.135,.15,.86);
