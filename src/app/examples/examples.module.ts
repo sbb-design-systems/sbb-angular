@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
+import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 
 import { InputFieldShowcaseComponent } from './input-field-showcase/input-field-showcase.component';
@@ -49,11 +50,13 @@ import { DocumentationAutoResizeSbbFieldComponent } from './sbb-field-showcase/d
 // tslint:disable-next-line
 import { DocumentationIconsSbbFieldComponent } from './sbb-field-showcase/documentation/icons/documentation-icons-sbb-field.component';
 
-import { TextareaModule, TextInputModule } from 'sbb-angular';
+import { TextareaModule, TextInputModule, LinksModule } from 'sbb-angular';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [TextareaShowcaseComponent,
+                   LinksShowcaseComponent,
                    InputFieldShowcaseComponent,
                    DocumentationImportInputFieldComponent,
                    DocumentationSourceInputFieldComponent,
@@ -81,12 +84,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CommonModule,
         TextareaModule,
         TextInputModule,
+        LinksModule,
         FormsModule,
         ReactiveFormsModule,
         MonacoEditorModule.forRoot()
     ],
     providers: [],
     exports: [TextareaShowcaseComponent,
+              LinksShowcaseComponent,
               InputFieldShowcaseComponent,
               DocumentationImportInputFieldComponent,
               DocumentationSourceInputFieldComponent,

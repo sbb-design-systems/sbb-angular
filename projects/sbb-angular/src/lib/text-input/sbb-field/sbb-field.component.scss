@@ -1,4 +1,4 @@
-@import "../../../styles/globals/mixins";
+@import '../../../styles/main.scss';
 
 @mixin sbbField($borderColor) {
   border-color: $borderColor;

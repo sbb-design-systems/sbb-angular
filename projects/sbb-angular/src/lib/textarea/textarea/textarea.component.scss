@@ -1,35 +1,82 @@
-@import "../../../styles/globals/mixins";
+@import '../../../styles/main.scss';
 
 @mixin sbbTextarea($borderColor) {
-  border-color: $borderColor;
   @include inputfields;
   @include disabledinputfields;
+
+  display: inline-block;
   letter-spacing: 0;
   line-height: 23px;
-  border-style: solid;
-  border-width: 2px;
+  border: 2px solid $borderColor;
+  border-radius: 2px;
   outline: 0px;
-  resize: none;
   opacity: 1;
+  font-size: pxToRem(15);
+  width: pxToRem(320);
+  @include mq($from: mobilePortrait) {
+    width: pxToRem(327);
+  }
+  @include mq($from: desktop4k) {
+    border-width: 3px;
+    border-radius: 3px;
+    font-size: pxToRem(23);
+    width: pxToRem(480);
+  }
+  @include mq($from: desktop5k) {
+    border-radius: 4px;
+    border-width: 4px;
+    font-size: pxToRem(30);
+    width: pxToRem(640);
+  }
+  font-family: $fontSbbRoman;
 }
 
 :host {
+  @include sbbTextarea($colorBlack72);
   textarea {
-    @include sbbTextarea($colorBlack72);
-    &:focus {
-      border-color: $colorGrey;
-    }
+    outline: 0px;
+    border: none;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    color: $colorGrey;
+    min-height: inherit;
     &:disabled {
       background-color: $colorBlack5;
       border-color: $colorBlack20;
       opacity: 1;
     }
   }
-}
-
-:host.ng-invalid {
-  textarea {
+  &:focus {
+    border-color: $colorGrey;
+  }
+  &.disabled {
+    background-color: $colorBlack5;
+    border-color: $colorBlack20;
+    opacity: 1;
+  }
+  &.ng-dirty.ng-invalid {
     @include sbbTextarea($colorCallToAction);
-    color: $colorCallToAction;
+    textarea {
+      color: $colorCallToAction;
+    }
+  }
+  div {
+    position: relative;
+    float: right;
+    background: transparent;
+    color: $colorBlack;
+    letter-spacing: 0;
+    line-height: pxToRem(13);
+    font-size: pxToRem(13);
+    font-family: $fontSbbRoman;
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(13);
+    }
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(13);
+    }
   }
 }

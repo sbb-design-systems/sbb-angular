@@ -12,10 +12,6 @@ import { SearchIconComponent } from './search-icon/search-icon.component';
 import { NavlistIconComponent } from './navlist-icon/navlist-icon.component';
 import { ContentComponent } from './content/content.component';
 
-import { ComponentUiService } from './services/component-ui.service';
-import { IconUiService } from './services/icon-ui.service';
-import { AccordionNotificationService } from './services/accordion-notification.service';
-
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { IconCommonModule } from 'sbb-angular';
 import { IconViewerDirective } from './directives/icon-viewer.directive';
@@ -26,7 +22,13 @@ import { ReplacePipe } from './shared/replace.pipe';
 import { IconComponents } from './sbb-components-mapping-export';
 import { ComponentViewerDirective } from './directives/component-viewer.directive';
 import { ExamplesModule } from './examples/examples.module';
+
+import { ComponentUiService } from './services/component-ui.service';
+import { IconUiService } from './services/icon-ui.service';
+import { AccordionNotificationService } from './services/accordion-notification.service';
+
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
+import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
 
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
 // tslint:disable-next-line
@@ -91,7 +93,7 @@ import { DocumentationIconsSbbFieldComponent } from './examples/sbb-field-showca
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    MonacoEditorModule.forRoot(),
+    MonacoEditorModule.forRoot({baseUrl: './assets'}),
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule
@@ -99,6 +101,7 @@ import { DocumentationIconsSbbFieldComponent } from './examples/sbb-field-showca
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [ComponentUiService, IconUiService, AccordionNotificationService],
   entryComponents: [TextareaShowcaseComponent,
+                    LinksShowcaseComponent,
                     InputFieldShowcaseComponent,
                     DocumentationImportInputFieldComponent,
                     DocumentationSourceInputFieldComponent,

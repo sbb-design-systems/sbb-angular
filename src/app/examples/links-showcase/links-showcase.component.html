@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <h3>Icon Links</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Example</legend>
+      <fieldset>
+        <ng-container [ngSwitch]="linkMode">
+          <a *ngSwitchCase="'stretch'" href="#" sbbLink mode="stretch" [icon]="linkIcon">Bezeichnung</a>
+          <a *ngSwitchCase="'form'" href="#" sbbLink mode="form" [icon]="linkIcon">Bezeichnung</a>
+          <a *ngSwitchDefault href="#" sbbLink mode="normal" [icon]="linkIcon">Bezeichnung</a>
+        </ng-container>
+      </fieldset>
+    </div>
+    <div class="col-lg-6">
+      <legend>Properties</legend>
+      <fieldset>
+        <div>
+          <div class="form-group">
+            <label>Mode</label>
+            <select [(ngModel)]="linkMode" class="form-control">
+              <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Icon</label>
+            <select [(ngModel)]="linkIcon" class="form-control">
+              <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <h3>Social Links</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Example</legend>
+      <fieldset>
+        <a sbbSocialLink [icon]="socialLinkIcon">Bezeichnung</a>
+      </fieldset>
+    </div>
+    <div class="col-lg-6">
+      <legend>Properties</legend>
+      <fieldset>
+        <div>
+          <div class="form-group">
+            <label>Icon</label>
+            <select [(ngModel)]="socialLinkIcon" class="form-control">
+              <option *ngFor="let social of socials" [ngValue]="social">{{ social }}</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

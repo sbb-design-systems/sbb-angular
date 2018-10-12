@@ -18,8 +18,10 @@ export class ContentComponent implements OnInit {
   isSourceTabClicked: boolean;
 
   constructor(private componentUiService: ComponentUiService,
-    private iconUiService: IconUiService,
-    private route: ActivatedRoute, private router: Router) { }
+              private iconUiService: IconUiService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
