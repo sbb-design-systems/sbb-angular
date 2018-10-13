@@ -7,7 +7,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputFieldShowcaseComponent implements OnInit {
 
+  inputText = '';
+  disabled: boolean;
+  required: boolean;
+  isVisible = true;
+  readonly: boolean;
+  inputType = 'text';
+  placeholder = 'Please enter your text ...';
+  types = [
+    'text',
+    'password',
+    'number',
+    'file',
+    'email',
+    'datetime',
+    'datetime-local'
+  ];
+
   ngOnInit() {
+  }
+
+  onChange(event) {
+    if(event === 'text') {
+       this.placeholder = 'Please enter your text ...';
+    }
+    if(event === 'password') {
+       this.placeholder = 'Please enter a password ...';
+    }
+    if(event === 'number') {
+       this.placeholder = 'Please enter a number ...';
+    }
+    if(event === 'email') {
+      this.placeholder = 'Please enter a email ...';
+    }
+    if(event === 'datetime') {
+      this.placeholder = 'Please enter a datetime ...';
+    }
   }
 
 }

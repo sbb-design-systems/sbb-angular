@@ -12,37 +12,45 @@ export class DocumentationSourceInputFieldComponent implements OnInit {
   sourceHTML = `<div class="conatiner">
   <div class="row justify-content-between">
      <div class="col-6">
-        <h6>1. Password Input Field</h6>
-        <hr/>
-        <sbb-input-field>
-          <input type="password" placeholder="Placeholder" autocomplete="off">
-        </sbb-input-field>
+      <legend>Input Field</legend>
+      <fieldset>
+        <div class="form-group">
+          <sbb-input-field>
+            <input [type]="inputType"
+                   [placeholder]="placeholder"
+                    autocomplete="off"
+                   [readonly]="readonly"
+                   [disabled]="disabled"
+                   [(ngModel)]="inputText"
+                   style="width : 100%">
+          </sbb-input-field>
+        </div>
+        <div class="form-group">
+          <h6>Model:</h6>
+          <pre>{{ inputText | json }}</pre>
+        </div>
+      </fieldset>
      </div>
-     <div class="col-6">
-        <h6>2. Text Input Field</h6>
-        <hr/>
-        <sbb-input-field>
-          <input type="text" placeholder="Placeholder" autocomplete="off">
-        </sbb-input-field>
+     <div class="col-lg-6">
+      <legend>Properties</legend>
+      <fieldset>
+        <div class="form-group">
+          <label>Bitte wählen Sie :</label>
+          <select [(ngModel)]="inputType" class="form-control" (ngModelChange)="onChange($event)">
+            <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
+          </select>
+        </div>
+        <div class="form-check">
+          <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
+          <label class="form-check-label" for="disabled">Disabled</label>
+        </div>
+        <div class="form-check" *ngIf="inputType !== 'file'">
+          <input id="readonly" class="form-check-input" type="checkbox" [(ngModel)]="readonly">
+          <label class="form-check-label" for="readonly">Readonly</label>
+        </div>
+      </fieldset>
      </div>
   </div>
-  <hr/>
-  <div class="row justify-content-between">
-      <div class="col-6">
-         <h6>3. Password Input Field (disabled)</h6>
-         <hr/>
-         <sbb-input-field>
-           <input type="password" placeholder="Placeholder" disabled="true" autocomplete="off">
-         </sbb-input-field>
-      </div>
-      <div class="col-6">
-         <h6>4. Text Input Field (disabled)</h6>
-         <hr/>
-         <sbb-input-field>
-           <input type="text" placeholder="Placeholder" disabled="true" autocomplete="off">
-         </sbb-input-field>
-      </div>
-   </div>
 </div>`;
 
   sourceTSHeader = '2. Source Code of <b>InputFieldShowcase</b> in TypeScript as follows :';
@@ -56,7 +64,42 @@ export class DocumentationSourceInputFieldComponent implements OnInit {
   })
   export class InputFieldShowcaseComponent implements OnInit {
 
+    inputText = '';
+    disabled: boolean;
+    required: boolean;
+    isVisible = true;
+    readonly: boolean;
+    inputType = 'text';
+    placeholder = 'Ihre Eingabe ...';
+    types = [
+      'text',
+      'password',
+      'number',
+      'file',
+      'email',
+      'datetime',
+      'datetime-local'
+    ];
+
     ngOnInit() {
+    }
+
+    onChange(event) {
+      if(event == 'text') {
+         this.placeholder = 'Ihre Eingabe ...';
+      }
+      if(event == 'password') {
+         this.placeholder = 'Ihr Passwort ...';
+      }
+      if(event == 'number') {
+         this.placeholder = 'Ihre Number ...';
+      }
+      if(event == 'email') {
+        this.placeholder = 'Ihre eMail ...';
+      }
+      if(event == 'datetime') {
+        this.placeholder = 'Ihre Datum ...';
+      }
     }
 
   }`;

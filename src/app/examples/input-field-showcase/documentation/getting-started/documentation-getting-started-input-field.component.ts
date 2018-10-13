@@ -11,7 +11,8 @@ export class DocumentationGettingStartedInputFieldComponent implements OnInit {
 
   options = { theme: 'default', language: 'html', readOnly: true, automaticLayout: true };
 
-  codeGettingStarted = `<input type="..." placeholder="Placeholder" disabled="true|false" autocomplete="on|off" ...>`;
+  // tslint:disable-next-line
+  codeGettingStarted = `<input type="text|password|number|file|email|datetime|datetime-local" placeholder="Placeholder" disabled="true|false" autocomplete="on|off" ...>`;
 
   constructor() {
   }
