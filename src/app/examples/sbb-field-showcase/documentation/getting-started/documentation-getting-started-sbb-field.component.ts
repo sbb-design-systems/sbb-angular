@@ -12,8 +12,26 @@ export class DocumentationGettingStartedSbbFieldComponent implements OnInit {
   options = { theme: 'default', language: 'html', readOnly: true, automaticLayout: true };
 
   codeGettingStarted = `
-  <sbb-field for="name" label="Name"></sbb-field>
-  <input type="text" formControlName="name" required placeholder="Please enter your name ..." id="name" spellcheck="false">`;
+<form autocomplete="off" [formGroup]="myForm">
+  <sbb-field>
+    <div class="form-group">
+      <sbb-label for="name" label="Name"></sbb-label>
+      <input type="text"
+             formControlName="name"
+             required
+             (keyup)="onKeyEnter1($event)"
+             class="form-control"
+             placeholder="Please enter your name ..."
+             id="name"
+             spellcheck="false">
+    </div>
+    <div class="form-group">
+      <h6>Model:</h6>
+      <pre>{{ valueFromInput | json }}</pre>
+      <sbb-form-error *ngIf="myForm.get('name').errors?.required" errorMsg="Name is required!"></sbb-form-error>
+    </div>
+  </sbb-field>
+</form>`;
 
   constructor() {
   }

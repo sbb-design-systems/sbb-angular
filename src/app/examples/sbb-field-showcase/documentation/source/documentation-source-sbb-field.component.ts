@@ -12,48 +12,57 @@ export class DocumentationSourceSbbFieldComponent implements OnInit {
   sourceHTML = `<div class="conatiner">
   <div class="row justify-content-between">
      <div class="col-6">
-        <h6>1. Label with Input</h6>
-        <hr/>
-        <form autocomplete="off" [formGroup]="myForm1">
-          <div class="form-group">
-            <sbb-field for="name1" label="Name"></sbb-field>
-            <input type="text"
-                   formControlName="name1"
-                   required (keyup)="onKeyEnter1($event)"
-                   class="form-control"
-                   placeholder="Please enter your name ..."
-                   id="name1"
-                   spellcheck="false">
-          </div>
-          <div class="form-group">Chars : {{ valueFromInput1 }}</div>
-          <div class="form-group">
-              <sbb-form-error *ngIf="myForm1.get('name1').errors?.required" errorMsg="Name is required!">
-              </sbb-form-error>
-          </div>
-        </form>
+        <legend>1. Label with Input</legend>
+        <fieldset>
+          <form autocomplete="off" [formGroup]="myForm1">
+            <sbb-field>
+              <div class="form-group">
+                <sbb-label for="name1" label="Name"></sbb-label>
+                <input type="text"
+                       formControlName="name1"
+                       required
+                       (keyup)="onKeyEnter1($event)"
+                       class="form-control"
+                       placeholder="Please enter your name ..."
+                       id="name1"
+                       spellcheck="false">
+              </div>
+              <div class="form-group">
+                <h6>Model:</h6>
+                <pre>{{ valueFromInput1 | json }}</pre>
+                <sbb-form-error *ngIf="myForm1.get('name1').errors?.required" errorMsg="Name is required!"></sbb-form-error>
+              </div>
+            </sbb-field>
+          </form>
+        </fieldset>
      </div>
      <div class="col-6">
-        <h6>2. Label with optional Text, Tooltip and Input</h6>
-        <hr/>
-        <form autocomplete="off" [formGroup]="myForm2">
-          <div class="form-group">
-            <sbb-field for="name2" label="Name" optional="With optional Text" toolTip="Here comes the Tooltip"></sbb-field>
-            <input type="text" formControlName="name2"
-                   (keyup)="onKeyEnter2($event)"
-                   class="form-control"
-                   placeholder="Please enter your name ..."
-                   id="name2"
-                   spellcheck="false"
-                   required minlength="3">
-          </div>
-          <div class="form-group">Chars : {{ valueFromInput2 }}</div>
-          <div class="form-group">
-              <sbb-form-error *ngIf="myForm2.get('name2').errors?.required" errorMsg="Name is required!">
-              </sbb-form-error>
-              <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength" errorMsg="Name must contain at least 3 characters!">
-              </sbb-form-error>
-          </div>
-        </form>
+        <legend>2. Label with opt. Text, Tooltip and Input</legend>
+        <fieldset>
+          <form autocomplete="off" [formGroup]="myForm2">
+            <sbb-field>
+              <div class="form-group">
+                <sbb-label for="name2" label="Name" optional="With optional Text" toolTip="Here comes the Tooltip"></sbb-label>
+                <input type="text"
+                       formControlName="name2"
+                       (keyup)="onKeyEnter2($event)"
+                       class="form-control"
+                       placeholder="Please enter your name ..."
+                       id="name2"
+                       spellcheck="false"
+                       required minlength="3">
+              </div>
+              <div class="form-group">
+                <h6>Model:</h6>
+                <pre>{{ valueFromInput2 | json }}</pre>
+                <sbb-form-error *ngIf="myForm2.get('name2').errors?.required"
+                                errorMsg="Name is required!"></sbb-form-error>
+                <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength"
+                                errorMsg="Name must contain at least 3 characters!"></sbb-form-error>
+              </div>
+            </sbb-field>
+          </form>
+        </fieldset>
       </div>
   </div>
 </div>`;
@@ -65,10 +74,10 @@ export class DocumentationSourceSbbFieldComponent implements OnInit {
 
   @Component({
     selector: 'sbb-field-showcase',
-    templateUrl: './text-field-showcase.component.html',
-    styleUrls: ['./text-field-showcase.component.scss']
+    templateUrl: './sbb-field-showcase.component.html',
+    styleUrls: ['./sbb-field-showcase.component.scss']
   })
-  export class TextFieldShowcaseComponent implements OnInit {
+  export class SbbFieldShowcaseComponent implements OnInit {
 
     valueFromInput1 = '';
     valueFromInput2 = '';

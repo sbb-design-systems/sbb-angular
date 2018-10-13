@@ -2,23 +2,31 @@ import { Component, Input, OnInit, forwardRef, ChangeDetectionStrategy } from '@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-field',
-  templateUrl: './sbb-field.component.html',
-  styleUrls: ['./sbb-field.component.scss'],
+  selector: 'sbb-label',
+  templateUrl: './sbb-label.component.html',
+  styleUrls: ['./sbb-label.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SbbFieldComponent),
+      useExisting: forwardRef(() => SbbLabelComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SbbFieldComponent implements OnInit, ControlValueAccessor {
+export class SbbLabelComponent implements OnInit, ControlValueAccessor {
+
+  @Input() label: string;
+  @Input() for?: string;
+  @Input() optional?: string;
+  @Input() toolTip?:string;
 
   constructor() { }
 
   ngOnInit() {
+    if(this.optional) {
+       this.optional = '"' + this.optional + '"';
+    }
   }
 
   onChange = (obj: any) => { };

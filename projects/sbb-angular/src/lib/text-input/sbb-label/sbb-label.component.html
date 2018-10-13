@@ -1,0 +1,5 @@
+<label [for]="for">{{ label }} {{ optional ? optional : '' }} 
+ <i class="fa fa-question-circle-o" aria-hidden="true" *ngIf="toolTip"> 
+   <div class="tooltip">Hover over me<span class="tooltiptext">{{ toolTip }}</span></div>
+ </i>
+</label>
