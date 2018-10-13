@@ -16,7 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class SbbLabelComponent implements OnInit, ControlValueAccessor {
 
-  @Input() label: string;
+  @Input() label?: string;
   @Input() for?: string;
   @Input() optional?: string;
   @Input() toolTip?:string;

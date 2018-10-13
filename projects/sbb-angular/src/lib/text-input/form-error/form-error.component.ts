@@ -16,14 +16,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class FormErrorComponent implements OnInit, ControlValueAccessor {
 
-  @Input() errorMsg: string;
-
-  msg:string;
-
   constructor() { }
 
   ngOnInit() {
-    this.msg = this.errorMsg;
   }
 
   onFocusIn(event) {

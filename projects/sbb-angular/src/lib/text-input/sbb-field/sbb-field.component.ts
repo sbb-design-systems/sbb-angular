@@ -16,6 +16,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class SbbFieldComponent implements OnInit, ControlValueAccessor {
 
+  @Input() label?: string;
+  @Input() for?: string;
+
   constructor() { }
 
   ngOnInit() {

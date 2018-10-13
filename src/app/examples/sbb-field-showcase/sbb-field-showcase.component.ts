@@ -10,9 +10,11 @@ export class SbbFieldShowcaseComponent implements OnInit {
 
   valueFromInput1 = '';
   valueFromInput2 = '';
+  valueFromInput3 = '';
 
   myForm1: FormGroup;
   myForm2: FormGroup;
+  myForm3: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
   }
@@ -25,6 +27,9 @@ export class SbbFieldShowcaseComponent implements OnInit {
     this.myForm2 = this.formBuilder.group({
       name2: ['', [Validators.required, Validators.minLength(3)]]
     });
+    this.myForm3 = this.formBuilder.group({
+      name3: ['', Validators.required]
+    });
   }
 
   onKeyEnter1(event: any) {
@@ -33,6 +38,10 @@ export class SbbFieldShowcaseComponent implements OnInit {
 
   onKeyEnter2(event: any) {
     this.valueFromInput2 = event.target.value;
+  }
+
+  onKeyEnter3(event: any) {
+    this.valueFromInput3 = event.target.value;
   }
 
 }
