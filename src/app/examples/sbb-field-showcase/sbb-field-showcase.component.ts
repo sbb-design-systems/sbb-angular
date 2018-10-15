@@ -16,6 +16,17 @@ export class SbbFieldShowcaseComponent implements OnInit {
   myForm2: FormGroup;
   myForm3: FormGroup;
 
+  header1 = '1. SBB-Label with Input';
+  header2 = '2. SBB-Label with opt. Text, Tooltip and Input';
+  header3 = '3. SBB-Field with Label and Input';
+
+  inputType = this.header1;
+  types = [
+    this.header1,
+    this.header2,
+    this.header3
+  ];
+
   constructor(private formBuilder: FormBuilder) {
   }
 
