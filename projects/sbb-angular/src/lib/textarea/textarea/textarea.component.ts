@@ -51,7 +51,7 @@ export class TextareaComponent implements ControlValueAccessor {
   propagateChange: any = () => { };
 
   writeValue(newValue: any) {
-    if (newValue) {
+    if (newValue !== undefined) {
       this.textContent = newValue;
       this.propagateChange(newValue);
       this.updateDigitsCounter(newValue);
@@ -75,6 +75,9 @@ export class TextareaComponent implements ControlValueAccessor {
   }
 
   updateDigitsCounter(newValue) {
-    this.counterObserver$.next(this.maxlength - newValue.length);
+    if (!!this.maxlength) {
+      this.counterObserver$.next(this.maxlength - newValue.length);
+
+    }
   }
 }
