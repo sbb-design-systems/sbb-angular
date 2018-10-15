@@ -8,6 +8,7 @@
   border: 2px solid $borderColor;
   border-radius: 2px;
   letter-spacing: 0;
+  font-size: 15px;
   line-height: 23px;
   border-style: solid;
   border-width: 2px;
@@ -27,6 +28,13 @@
       background-color: $colorBlack5;
       border-color: $colorBlack20;
       opacity: 1;
+    }
+    &.ng-pristine.ng-invalid {
+      @include sbbInputField($colorCallToAction);
+      ::placeholder {
+        color: $colorCallToAction;
+      }
+      color: $colorCallToAction;
     }
     &.ng-dirty.ng-invalid {
       @include sbbInputField($colorCallToAction);
