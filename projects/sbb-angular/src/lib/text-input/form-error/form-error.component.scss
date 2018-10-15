@@ -5,6 +5,7 @@
     outline: 0px;
     resize: none;
     opacity: 1;
+    font-family: $fontSbbRoman;
 }
 
 :host /deep/ {
@@ -14,6 +15,8 @@
         border-color: $colorBlack20;
         opacity: 1;
       }
-      color: red;
+      @include sbbFormError($colorCallToAction);
+      color: $colorCallToAction;
+      font-family: $fontSbbRoman;
     }
 }

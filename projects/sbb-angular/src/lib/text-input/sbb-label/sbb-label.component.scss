@@ -6,11 +6,13 @@
   resize: none;
   opacity: 1;
   background-color: transparent;
+  font-family: $fontSbbRoman;
 }
 
 :host /deep/ {
   label {
     @include sbbLabel($colorBlack72);
+    font-family: $fontSbbRoman;
     &:disabled {
       background-color: $colorBlack5;
       opacity: 1;

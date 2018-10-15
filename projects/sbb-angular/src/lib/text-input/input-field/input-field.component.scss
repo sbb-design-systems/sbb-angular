@@ -1,10 +1,12 @@
 @import '../../../styles/main.scss';
 
 @mixin sbbInputField($borderColor) {
-  border-color: $borderColor;
   @include inputfields;
   @include disabledinputfields;
   @include ellipsis;
+  border-color: $borderColor;
+  border: 2px solid $borderColor;
+  border-radius: 2px;
   letter-spacing: 0;
   line-height: 23px;
   border-style: solid;
@@ -12,11 +14,24 @@
   outline: 0px;
   resize: none;
   opacity: 1;
+  font-family: $fontSbbRoman;
 }
 
 :host /deep/ {
   input {
     @include sbbInputField($colorBlack72);
+    outline: 0px;
+    border: none;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    color: $colorGrey;
+    min-height: inherit;
+    &:disabled {
+      background-color: $colorBlack5;
+      border-color: $colorBlack20;
+      opacity: 1;
+    }
     &:focus {
       border-color: $colorGrey;
     }
