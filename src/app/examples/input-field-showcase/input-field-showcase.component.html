@@ -9,6 +9,7 @@
             <input [type]="inputType" 
                    [placeholder]="placeholder" 
                     autocomplete="off"
+                    spellcheck="false"
                    [readonly]="readonly"
                    [disabled]="disabled" 
                    [(ngModel)]="inputText"
@@ -18,6 +19,9 @@
         <div class="form-group">
           <sbb-label>Model:</sbb-label>
           <sbb-label>{{ inputText | json }}</sbb-label>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="inputText=''">Reset</button>
         </div>
       </fieldset>
      </div>

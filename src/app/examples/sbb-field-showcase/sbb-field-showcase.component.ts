@@ -18,7 +18,7 @@ export class SbbFieldShowcaseComponent implements OnInit {
 
   header1 = '1. SBB-Label with Input';
   header2 = '2. SBB-Label with opt. Text, Tooltip and Input';
-  header3 = '3. SBB-Field with Label and Input';
+  header3 = '3. SBB-Field with Label';
 
   inputType = this.header1;
   types = [
@@ -41,6 +41,21 @@ export class SbbFieldShowcaseComponent implements OnInit {
     this.myForm3 = this.formBuilder.group({
       name3: ['', Validators.required]
     });
+  }
+
+  reset1() {
+    this.myForm1.reset();
+    this.valueFromInput1 = '';
+  }
+
+  reset2() {
+    this.myForm2.reset();
+    this.valueFromInput2 = '';
+  }
+
+  reset3() {
+    this.myForm3.reset();
+    this.valueFromInput3 = '';
   }
 
   onKeyEnter1(event: any) {

@@ -6,13 +6,29 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm1">
               <sbb-field>
+                <div class="form-group">
                 <sbb-input-field>
                   <sbb-label for="name1">Name</sbb-label>
-                  <input type="text" formControlName="name1" required (keyup)="onKeyEnter1($event)" class="form-control" placeholder="Please enter your name ..." id="name1" spellcheck="false">
+                  <input type="text"
+                         formControlName="name1"
+                         required 
+                         (keyup)="onKeyEnter1($event)"
+                         class="form-control"
+                         placeholder="Please enter your name ..."
+                         id="name1"
+                         spellcheck="false">
                 </sbb-input-field>
-                <sbb-label>Model:</sbb-label>
-                <sbb-label>{{ valueFromInput1 | json }}</sbb-label>
-                <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
+                </div>
+                <div class="form-group">
+                  <sbb-label>Model:</sbb-label>
+                  <sbb-label>{{ valueFromInput1 | json }}</sbb-label>
+                </div>
+                <div class="form-group">
+                  <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
+                </div>
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary" (click)="reset1()">Reset</button>  
+                </div>
               </sbb-field>
             </form>
           </fieldset>
@@ -22,15 +38,24 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm2">
               <sbb-field>
-                <sbb-input-field>
-                  <sbb-label for="name2" optional="With optional Text" toolTip="Here comes the Tooltip">Name</sbb-label>
-                  <input type="text" formControlName="name2" (keyup)="onKeyEnter2($event)" class="form-control" placeholder="Please enter your name ..." id="name2" spellcheck="false" required minlength="3">
-                </sbb-input-field>
-                <sbb-label>Model:</sbb-label>
-                <sbb-label>{{ valueFromInput2 | json }}</sbb-label>
-                <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
-                <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
-              </sbb-field>
+                <div class="form-group">
+                  <sbb-input-field>
+                    <sbb-label for="name2" optional="With optional Text" toolTip="Here comes the Tooltip">Name</sbb-label>
+                    <input type="text" formControlName="name2" (keyup)="onKeyEnter2($event)" class="form-control" placeholder="Please enter your name ..." id="name2" spellcheck="false" required minlength="3">
+                  </sbb-input-field>
+                </div>
+                <div class="form-group">
+                  <sbb-label>Model:</sbb-label>
+                  <sbb-label>{{ valueFromInput2 | json }}</sbb-label>
+                </div>
+                <div class="form-group">
+                  <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
+                  <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
+                </div>
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary" (click)="reset2()">Reset</button>  
+                </div>
+                </sbb-field>
             </form>
           </fieldset>
         </div>
@@ -39,12 +64,21 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm3">
               <sbb-field label="Name" for="name3">
-                <sbb-input-field>
-                  <input type="text" formControlName="name3" required (keyup)="onKeyEnter3($event)" class="form-control" placeholder="Please enter your name ..." id="name3" spellcheck="false">
-                </sbb-input-field>  
-                <sbb-label>Model:</sbb-label>
-                <sbb-label>{{ valueFromInput3 | json }}</sbb-label>
-                <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
+                <div class="form-group">
+                  <sbb-input-field>
+                    <input type="text" formControlName="name3" required (keyup)="onKeyEnter3($event)" class="form-control" placeholder="Please enter your name ..." id="name3" spellcheck="false">
+                  </sbb-input-field>
+                </div>  
+                <div class="form-group">
+                  <sbb-label>Model:</sbb-label>
+                  <sbb-label>{{ valueFromInput3 | json }}</sbb-label>
+                </div>
+                <div class="form-group">
+                  <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
+                </div>
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary" (click)="reset3()">Reset</button> 
+                </div>
               </sbb-field>
             </form>
           </fieldset>

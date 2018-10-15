@@ -27,6 +27,10 @@ export class InputFieldShowcaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  clearInput() {
+    this.inputText = null;
+  }
+
   onChange(event) {
     if(event === 'text') {
        this.placeholder = 'Please enter your text ...';
