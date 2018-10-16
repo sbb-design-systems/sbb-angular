@@ -1,6 +1,45 @@
-import { Component, Input, ChangeDetectionStrategy, forwardRef, HostBinding, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  forwardRef,
+  HostBinding,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  Injectable,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { By } from '@angular/platform-browser';
+
+@Injectable()
+export class RadioControlRegistry {
+  private _accessors = {};
+
+  add(accessor: RadioButtonComponent) {
+    if(!this._accessors[accessor.name]) {
+      this._accessors[accessor.name] = [];
+    }
+    this._accessors[accessor.name].push(accessor);
+  }
+
+  remove(accessor: RadioButtonComponent) {
+    if(this._accessors[accessor.name]) {
+      this._accessors[accessor.name] = this._accessors[accessor.name].filter((obj) => {
+        return obj.inputId !== accessor.inputId;
+    });
+    }
+  }
+
+  select(accessor: RadioButtonComponent) {
+    this._accessors[accessor.name].forEach((c) => {
+      if (c !== accessor) {
+        c.uncheck(accessor.inputValue);
+      }
+    });
+  }
+}
 
 @Component({
   selector: 'sbb-radio-button[inputValue]',
@@ -13,7 +52,7 @@ import { By } from '@angular/platform-browser';
   } ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent implements ControlValueAccessor {
+export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDestroy {
 
   @Input() inputId: string;
   @Input() name: string;
@@ -28,22 +67,28 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input()
   set checked(value: boolean) {
     this._checked = value;
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this.checked);
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'aria-checked', this.checked);
-  }
-
-  get checked(): boolean {
-    return this._checked || !!this.hostElement.nativeElement.querySelector('input:checked');
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this._checked);
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'aria-checked', this._checked);
+    if(this._checked) {
+      this.registry.select(this);
+    }
   }
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
-  constructor(private hostElement: ElementRef, private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private registry: RadioControlRegistry) {}
+
+  ngOnInit(): void {
+    this.registry.add(this);
+  }
+
+  ngOnDestroy(): void {
+    this.registry.remove(this);
+  }
 
   writeValue(value: any): void {
     this.checked = this.inputValue === value;
-    console.log(this.inputId, this.name, this.inputValue, value);
   }
 
   registerOnChange(fn: any): void {
@@ -58,11 +103,15 @@ export class RadioButtonComponent implements ControlValueAccessor {
     const value = $event.target.value;
     this.onChange(value);
     this.onTouched(value);
-    this.checked = this.inputValue === value;
+    this.writeValue(value);
   }
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+  }
+
+  uncheck(value: string) {
+    this.writeValue(value);
   }
 
 }
