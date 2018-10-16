@@ -74,7 +74,7 @@ describe('TextareaComponent behaviour', () => {
     innerComponent.componentInstance.writeValue('');
     fixture.detectChanges();
     expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
-    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderColor).toBe('rgb(235, 0, 0)');
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor).toBe('rgb(235, 0, 0)');
 
   });
 
@@ -91,7 +91,7 @@ describe('TextareaComponent behaviour', () => {
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeTruthy();
-    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderColor).toBe('rgb(210, 210, 210)');
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderTopColor).toBe('rgb(210, 210, 210)');
   });
 
   it('should have a min length attribute', () => {
@@ -100,7 +100,7 @@ describe('TextareaComponent behaviour', () => {
     fixture.detectChanges();
     expect(innerComponent.attributes['minlength']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
-    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderColor).toBe('rgb(235, 0, 0)');
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor).toBe('rgb(235, 0, 0)');
   });
 });
 
