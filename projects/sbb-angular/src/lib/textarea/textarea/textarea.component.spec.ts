@@ -2,8 +2,24 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextareaComponent } from './textarea.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+
+@Component({
+  selector: 'sbb-textarea-test',
+  template: '<sbb-textarea [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"' +
+    '[required]="required" [readonly]="readonly" [disabled]="disabled"></sbb-textarea>'
+})
+class TextareaTestComponent {
+  required: boolean;
+  readonly: boolean;
+  disabled: boolean;
+  minlength: number;
+  maxlength: number;
+  textArea1: string;
+}
 
 describe('TextareaComponent', () => {
   let component: TextareaComponent;
@@ -17,10 +33,6 @@ describe('TextareaComponent', () => {
       set: { changeDetection: ChangeDetectionStrategy.Default }
     })
       .compileComponents();
-    fixture = TestBed.createComponent(TextareaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
   }));
 
   beforeEach(() => {
@@ -33,16 +45,67 @@ describe('TextareaComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be required', () => {
-    component.required = true;
+});
+
+describe('TextareaComponent behaviour', () => {
+  let component: TextareaTestComponent;
+  let fixture: ComponentFixture<TextareaTestComponent>;
+  let innerComponent: DebugElement;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [TextFieldModule, FormsModule],
+      declarations: [TextareaTestComponent, TextareaComponent]
+    }).overrideComponent(TextareaComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TextareaTestComponent);
+    component = fixture.componentInstance;
+    innerComponent = fixture.debugElement.query(By.directive(TextareaComponent));
     fixture.detectChanges();
-    const counterDiv = fixture.debugElement.query(By.css('.ng-invalid'));
   });
 
+  it('should be required', () => {
+    component.required = true;
+    innerComponent.componentInstance.writeValue('');
+    fixture.detectChanges();
+    expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderColor).toBe('rgb(235, 0, 0)');
+
+  });
+
+  it('should be readonly attribute', () => {
+    component.readonly = true;
+    fixture.detectChanges();
+    expect(innerComponent.attributes['ng-reflect-readonly']).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('[readonly]')).toBeTruthy();
+
+  });
+
+  it('should be disabled', () => {
+    component.disabled = true;
+    fixture.detectChanges();
+    expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeTruthy();
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderColor).toBe('rgb(210, 210, 210)');
+  });
+
+  it('should have a min length attribute', () => {
+    component.minlength = 20;
+    innerComponent.componentInstance.writeValue('SBB');
+    fixture.detectChanges();
+    expect(innerComponent.attributes['minlength']).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderColor).toBe('rgb(235, 0, 0)');
+  });
 });
 
 
-fdescribe('TextareaComponent digits counter', () => {
+describe('TextareaComponent digits counter', () => {
   let component: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
 
@@ -65,18 +128,12 @@ fdescribe('TextareaComponent digits counter', () => {
     fixture.detectChanges();
   });
 
-  it('should have a digits counter on the bottom right', () => {
-    component.maxlength = 20;
-    component.textContent = 'SBB';
-    fixture.detectChanges();
+  it('should appear on the bottom right', () => {
     const counterDiv = fixture.debugElement.query(By.css('div'));
     expect(counterDiv).toBeTruthy();
   });
 
-  it('should have a 17 value', async () => {
-    component.maxlength = 20;
-    component.writeValue('SBB');
-    fixture.detectChanges();
+  it('should have a 16 value', async () => {
     component.writeValue(component.textContent + ' ');
     fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
