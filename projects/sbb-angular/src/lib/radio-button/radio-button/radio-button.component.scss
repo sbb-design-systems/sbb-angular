@@ -5,10 +5,6 @@
   display: inline-block;
   vertical-align: middle;
 
-  &.sbb-radio-checked .radio-circle-checked {
-    opacity: 1 !important;
-  }
-
   &.sbb-radio-disabled {
     .radio-circle-container {
       border-color: $colorBlack20;
@@ -40,7 +36,15 @@ input[type="radio"] {
     width: toPx(20 * $scalingFactor5k);
     height: toPx(20 * $scalingFactor5k);
   }
+
+  &:checked + .radio-circle-container,
+  &[checked] + .radio-circle-container {
+    .radio-circle-checked {
+      opacity: 1 !important;
+    }
+  }
 }
+
 
 .radio-circle-container {
   position: relative;

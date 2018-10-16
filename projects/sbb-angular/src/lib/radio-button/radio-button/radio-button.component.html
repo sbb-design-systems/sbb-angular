@@ -5,7 +5,9 @@
   [name]="name"
   [value]="inputValue"
   [required]="required"
-  [checked]="checked"
+  [attr.aria-checked]="checked"
+  [attr.aria-labelledby]="inputId"
+  [attr.tabindex]="inputTabindex"
   [disabled]="disabled"
   (click)="click($event)"/>
 

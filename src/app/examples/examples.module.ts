@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextareaModule, LinksModule } from 'sbb-angular';
 
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
@@ -17,6 +17,7 @@ import { RadioButtonModule } from 'projects/sbb-angular/src/public_api';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     TextareaModule,
     LinksModule,
     RadioButtonModule

@@ -1,5 +1,6 @@
-import { Component, Input, ChangeDetectionStrategy, forwardRef, ViewChild, ElementRef, Renderer2, HostBinding } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, forwardRef, HostBinding, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 @Component({
   selector: 'sbb-radio-button[inputValue]',
@@ -18,19 +19,31 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input() name: string;
   @Input() inputValue: any;
   @Input() required: boolean;
-  @HostBinding('class.sbb-radio-checked') @Input() checked: boolean;
+  @Input() inputTabindex = -1;
+  @HostBinding('class.sbb-radio-checked') _checked = false;
   @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
 
-  _value: string;
+  @ViewChild('inputRadio') inputRadio: ElementRef<HTMLElement>;
+
+  @Input()
+  set checked(value: boolean) {
+    this._checked = value;
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this.checked);
+    this.renderer.setProperty(this.inputRadio.nativeElement, 'aria-checked', this.checked);
+  }
+
+  get checked(): boolean {
+    return this._checked || !!this.hostElement.nativeElement.querySelector('input:checked');
+  }
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
+  constructor(private hostElement: ElementRef, private renderer: Renderer2) {}
+
   writeValue(value: any): void {
-    console.log(value);
-    if(!this.checked) {
-      this.checked = this.inputValue === value;
-    }
+    this.checked = this.inputValue === value;
+    console.log(this.inputId, this.name, this.inputValue, value);
   }
 
   registerOnChange(fn: any): void {
@@ -42,9 +55,10 @@ export class RadioButtonComponent implements ControlValueAccessor {
   }
 
   click($event) {
-    this.onChange(this.inputValue);
-    this.onTouched(this.inputValue);
-    this.writeValue(this.inputValue);
+    const value = $event.target.value;
+    this.onChange(value);
+    this.onTouched(value);
+    this.checked = this.inputValue === value;
   }
 
   setDisabledState(disabled: boolean) {
