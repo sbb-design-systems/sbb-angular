@@ -7,39 +7,12 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  Injectable,
   OnInit,
   OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-@Injectable()
-export class RadioControlRegistry {
-  private _accessors = {};
-
-  add(accessor: RadioButtonComponent) {
-    if(!this._accessors[accessor.name]) {
-      this._accessors[accessor.name] = [];
-    }
-    this._accessors[accessor.name].push(accessor);
-  }
-
-  remove(accessor: RadioButtonComponent) {
-    if(this._accessors[accessor.name]) {
-      this._accessors[accessor.name] = this._accessors[accessor.name].filter((obj) => {
-        return obj.inputId !== accessor.inputId;
-    });
-    }
-  }
-
-  select(accessor: RadioButtonComponent) {
-    this._accessors[accessor.name].forEach((c) => {
-      if (c !== accessor) {
-        c.uncheck(accessor.inputValue);
-      }
-    });
-  }
-}
+import { RadioButtonRegistryService } from './radio-button-registry.service';
 
 @Component({
   selector: 'sbb-radio-button[inputValue]',
@@ -56,6 +29,7 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
 
   @Input() inputId: string;
   @Input() name: string;
+  @Input() formControlName: string;
   @Input() inputValue: any;
   @Input() required: boolean;
   @Input() inputTabindex = -1;
@@ -67,8 +41,11 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
   @Input()
   set checked(value: boolean) {
     this._checked = value;
+
+    // I don't like Renderer2 :( See here: https://github.com/angular/angular/issues/14988
     this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this._checked);
     this.renderer.setProperty(this.inputRadio.nativeElement, 'aria-checked', this._checked);
+
     if(this._checked) {
       this.registry.select(this);
     }
@@ -77,9 +54,10 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
-  constructor(private renderer: Renderer2, private registry: RadioControlRegistry) {}
+  constructor(private renderer: Renderer2, private registry: RadioButtonRegistryService) {}
 
   ngOnInit(): void {
+    this.checkName();
     this.registry.add(this);
   }
 
@@ -112,6 +90,20 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
 
   uncheck(value: string) {
     this.writeValue(value);
+  }
+
+  private checkName(): void {
+    if (this.name && this.formControlName && this.name !== this.formControlName) {
+      this.throwNameError();
+    }
+    if (!this.name && this.formControlName) { this.name = this.formControlName; }
+  }
+
+  private throwNameError(): void {
+    throw new Error(`
+      If you define both a name and a formControlName attribute on your radio button, their values
+      must match. Ex: <sbb-radio-button formControlName="food" name="food"></sbb-radio-button>
+    `);
   }
 
 }
