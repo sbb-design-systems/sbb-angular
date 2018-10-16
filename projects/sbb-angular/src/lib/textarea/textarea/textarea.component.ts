@@ -33,7 +33,13 @@ export class TextareaComponent implements ControlValueAccessor {
   maxlength: number;
 
   @Input()
+  minlength: number;
+
+  @Input()
   required: boolean;
+
+  @Input()
+  inputId: string;
 
   @ViewChild('autosize')
   autosize: CdkTextareaAutosize;

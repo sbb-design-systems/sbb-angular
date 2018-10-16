@@ -1,3 +1,3 @@
-<textarea tabindex="0" role="textbox" [value]="textContent" (input)="onChange($event)" [disabled]="disabled" [readonly]="readonly" [attr.maxlength]="maxlength"
-    cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
+<textarea [id]="inputId" [value]="textContent" (input)="onChange($event)" [disabled]="disabled" [readonly]="readonly" [attr.maxlength]="maxlength"
+    [attr.minlength]="minlength" cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
 <div i18n *ngIf="maxlength">Noch {{ counterObserver$ | async }} Zeichen</div>
