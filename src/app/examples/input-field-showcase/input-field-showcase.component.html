@@ -2,27 +2,28 @@
   <div class="row justify-content-between">  
      <div class="col-6">
       <h5>Input Field</h5>
-      <fieldset>
-        <div class="form-group">
-          <sbb-input-field>
-            <sbb-label>Label</sbb-label>
-            <input [type]="inputType" 
-                   [placeholder]="placeholder" 
-                    autocomplete="off"
-                    spellcheck="false"
-                   [readonly]="readonly"
-                   [disabled]="disabled" 
-                   [(ngModel)]="inputText"
-                   style="width : 100%">
-          </sbb-input-field>
-        </div>
-        <div class="form-group">
-          <sbb-label>Model:</sbb-label>
-          <sbb-label>{{ inputText | json }}</sbb-label>
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" (click)="inputText=''">Reset</button>
-        </div>
+      <fieldset>      
+          <div class="form-group">
+            <sbb-input-field>
+              <sbb-label for="simpleInput">Name</sbb-label>
+              <br/>
+              <input [type]="inputType"
+                     [placeholder]="placeholder"
+                      autocomplete="off"
+                      spellcheck="false"
+                     [readonly]="readonly"
+                     [disabled]="disabled" 
+                     [(ngModel)]="inputText"
+                     id="simpleInput">
+            </sbb-input-field>
+          </div>
+          <div class="form-group">
+            <sbb-label>Model:</sbb-label>
+            <sbb-label>{{ inputText | json }}</sbb-label>
+          </div>
+          <div class="form-group">
+            <button type="button" (click)="inputText=''">Reset</button>
+          </div>
       </fieldset>
      </div>
      <div class="col-lg-6">
@@ -30,7 +31,7 @@
       <fieldset>
         <div class="form-group">
           <sbb-label>Please choose :</sbb-label>
-          <select [(ngModel)]="inputType" class="form-control" (ngModelChange)="onChange($event)">
+          <select [(ngModel)]="inputType" class="form-control" (ngModelChange)="onChange($event)" id="dropdown">
             <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
           </select>
         </div>

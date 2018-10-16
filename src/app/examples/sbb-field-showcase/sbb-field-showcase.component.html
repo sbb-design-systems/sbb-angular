@@ -7,17 +7,17 @@
             <form autocomplete="off" [formGroup]="myForm1">
               <sbb-field>
                 <div class="form-group">
-                <sbb-input-field>
-                  <sbb-label for="name1">Name</sbb-label>
-                  <input type="text"
-                         formControlName="name1"
-                         required 
-                         (keyup)="onKeyEnter1($event)"
-                         class="form-control"
-                         placeholder="Please enter your name ..."
-                         id="name1"
-                         spellcheck="false">
-                </sbb-input-field>
+                  <sbb-input-field>
+                      <sbb-label for="name1">Name</sbb-label>
+                      <input type="text"
+                             formControlName="name1"
+                             required
+                             (keyup)="onKeyEnter1($event)"
+                             class="form-control"
+                             placeholder="Please enter your name ..."
+                             id="name1"
+                             spellcheck="false">
+                  </sbb-input-field>
                 </div>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
@@ -27,7 +27,7 @@
                   <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <button type="button" class="btn btn-primary" (click)="reset1()">Reset</button>  
+                  <button type="button" (click)="reset1()">Reset</button>  
                 </div>
               </sbb-field>
             </form>
@@ -53,9 +53,9 @@
                   <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <button type="button" class="btn btn-primary" (click)="reset2()">Reset</button>  
+                  <button type="button" (click)="reset2()">Reset</button>  
                 </div>
-                </sbb-field>
+              </sbb-field>
             </form>
           </fieldset>
         </div>
@@ -77,7 +77,7 @@
                   <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <button type="button" class="btn btn-primary" (click)="reset3()">Reset</button> 
+                  <button type="button" (click)="reset3()">Reset</button> 
                 </div>
               </sbb-field>
             </form>

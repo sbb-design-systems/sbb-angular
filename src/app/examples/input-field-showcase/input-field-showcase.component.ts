@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputFieldShowcaseComponent implements OnInit {
 
+  placeholderText = 'Please enter your text ...';
+  placeholderPassword = 'Please enter a password ...';
+  placeholderNumber = 'Please enter a number ...';
+  placeholderEmail = 'Please enter a email ...';
+  placeholderDatetime = 'Please enter a datetime ...';
+
   inputText = '';
   disabled: boolean;
   required: boolean;
@@ -33,19 +39,19 @@ export class InputFieldShowcaseComponent implements OnInit {
 
   onChange(event) {
     if(event === 'text') {
-       this.placeholder = 'Please enter your text ...';
+       this.placeholder = this.placeholderText;
     }
     if(event === 'password') {
-       this.placeholder = 'Please enter a password ...';
+       this.placeholder = this.placeholderPassword;
     }
     if(event === 'number') {
-       this.placeholder = 'Please enter a number ...';
+       this.placeholder = this.placeholderNumber;
     }
     if(event === 'email') {
-      this.placeholder = 'Please enter a email ...';
+      this.placeholder = this.placeholderEmail;
     }
     if(event === 'datetime') {
-      this.placeholder = 'Please enter a datetime ...';
+      this.placeholder = this.placeholderDatetime;
     }
   }
 
