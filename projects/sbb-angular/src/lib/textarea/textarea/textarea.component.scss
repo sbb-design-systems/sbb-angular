@@ -12,21 +12,16 @@
   outline: 0px;
   opacity: 1;
   font-size: pxToRem(15);
-  width: pxToRem(320);
-  @include mq($from: mobilePortrait) {
-    width: pxToRem(327);
-  }
+  width: 100%;
   @include mq($from: desktop4k) {
     border-width: 3px;
     border-radius: 3px;
     font-size: pxToRem(23);
-    width: pxToRem(480);
   }
   @include mq($from: desktop5k) {
     border-radius: 4px;
     border-width: 4px;
     font-size: pxToRem(30);
-    width: pxToRem(640);
   }
   font-family: $fontSbbRoman;
 }
