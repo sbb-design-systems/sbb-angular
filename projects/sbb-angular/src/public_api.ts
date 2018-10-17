@@ -4,3 +4,5 @@
 export * from './lib/svg-icons-components/index';
 export * from './lib/textarea/index';
 export * from './lib/links/index';
+export * from './lib/button/index';
+

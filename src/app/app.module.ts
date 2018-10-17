@@ -25,6 +25,7 @@ import { ComponentViewerDirective } from './directives/component-viewer.directiv
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
+import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,
-    LinksShowcaseComponent
+    LinksShowcaseComponent,
+    ButtonShowcaseComponent
   ]
 })
 export class AppModule { }

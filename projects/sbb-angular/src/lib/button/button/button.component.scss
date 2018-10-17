@@ -1,0 +1,8 @@
+@import '../../../styles/main';
+@import './scss-partials/button-base';
+@import './scss-partials/button-theme';
+
+:host {
+    @include buttonReset();
+    color: $text-color;
+}
