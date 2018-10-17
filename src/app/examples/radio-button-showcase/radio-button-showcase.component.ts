@@ -10,17 +10,17 @@ export class RadioButtonShowcaseComponent {
   required: boolean;
   disabled: boolean;
   checked: boolean;
-  modelValue = 'pizza';
+  modelValue = 'value1';
 
   radioOptions = [{
-    'name': 'Pizza',
-    'value': 'pizza'
+    'name': 'Radio 1',
+    'value': 'value1'
   }, {
-    'name': 'Pasta',
-    'value': 'pasta'
+    'name': 'Radio 2',
+    'value': 'value2'
   }, {
-    'name': 'Mandolino',
-    'value': 'mandolino'
+    'name': 'Radio 3',
+    'value': 'value3'
   }];
 
 }
