@@ -20,7 +20,7 @@ class ModelRadioButtonTestComponent {
   testValue = '2';
 }
 
-fdescribe('RadioButtonComponent', () => {
+describe('RadioButtonComponent', () => {
   let component: RadioButtonComponent;
   let fixture: ComponentFixture<RadioButtonComponent>;
 
@@ -48,7 +48,7 @@ fdescribe('RadioButtonComponent', () => {
   });
 });
 
-fdescribe('RadioButtonComponent using FormsModule', () => {
+describe('RadioButtonComponent using mock component', () => {
   let modelComponent: ModelRadioButtonTestComponent;
   let modelComponentFixture: ComponentFixture<ModelRadioButtonTestComponent>;
 
