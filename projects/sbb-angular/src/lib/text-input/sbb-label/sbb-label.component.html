@@ -2,7 +2,7 @@
   <ng-content></ng-content>
 </label>
 <ng-template #withOptionalText>
-    <label [for]="for"><ng-content *ngIf="!label"></ng-content>{{ label }} {{ optional ? optional : '' }} 
+    <label [for]="for"><ng-content *ngIf="!label"></ng-content>{{ label ? label : '' }} {{ optional ? optional : '' }} 
         <i class="fa fa-question-circle-o" aria-hidden="true" *ngIf="toolTip"> 
             <div class="tooltip">Hover over me<span class="tooltiptext">{{ toolTip }}</span></div>
         </i>

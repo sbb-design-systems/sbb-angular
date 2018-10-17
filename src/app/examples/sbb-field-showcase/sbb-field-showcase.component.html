@@ -9,25 +9,30 @@
                 <div class="form-group">
                   <sbb-input-field>
                       <sbb-label for="name1">Name</sbb-label>
-                      <input type="text"
-                             formControlName="name1"
-                             required
-                             (keyup)="onKeyEnter1($event)"
-                             class="form-control"
-                             placeholder="Please enter your name ..."
-                             id="name1"
-                             spellcheck="false">
+                      <div *ngIf="disabled; else enabled">
+                          <sbb-label>{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
+                      </div>
+                      <ng-template #enabled>
+                         <input type="text"
+                                formControlName="name1"
+                                autocomplete="off"
+                                class="form-control"
+                                [placeholder]="placeholder"
+                                id="name1"
+                                spellcheck="false"
+                                [(ngModel)]="inputText1">
+                      </ng-template>
                   </sbb-input-field>
                 </div>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ valueFromInput1 | json }}</sbb-label>
+                  <sbb-label>{{ inputText1 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <button type="button" (click)="reset1()">Reset</button>  
+                  <button type="button" (click)="reset1()" [disabled]="disabled">Reset</button>  
                 </div>
               </sbb-field>
             </form>
@@ -41,19 +46,33 @@
                 <div class="form-group">
                   <sbb-input-field>
                     <sbb-label for="name2" optional="With optional Text" toolTip="Here comes the Tooltip">Name</sbb-label>
-                    <input type="text" formControlName="name2" (keyup)="onKeyEnter2($event)" class="form-control" placeholder="Please enter your name ..." id="name2" spellcheck="false" required minlength="3">
+                    <div *ngIf="disabled; else enabled">
+                        <sbb-label>{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
+                    </div>
+                    <ng-template #enabled>
+                      <input type="text"
+                             formControlName="name2"
+                             autocomplete="off"
+                             class="form-control"
+                             [placeholder]="placeholder"
+                             id="name2"
+                             spellcheck="false"
+                             required
+                             minlength="3"
+                             [(ngModel)]="inputText2">
+                    </ng-template>
                   </sbb-input-field>
                 </div>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ valueFromInput2 | json }}</sbb-label>
+                  <sbb-label>{{ inputText2 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
                   <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <button type="button" (click)="reset2()">Reset</button>  
+                  <button type="button" (click)="reset2()" [disabled]="disabled">Reset</button>  
                 </div>
               </sbb-field>
             </form>
@@ -66,18 +85,31 @@
               <sbb-field label="Name" for="name3">
                 <div class="form-group">
                   <sbb-input-field>
-                    <input type="text" formControlName="name3" required (keyup)="onKeyEnter3($event)" class="form-control" placeholder="Please enter your name ..." id="name3" spellcheck="false">
+                    <div *ngIf="disabled; else enabled">
+                      <sbb-label>{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
+                    </div>
+                    <ng-template #enabled>
+                      <input type="text"
+                             formControlName="name3"
+                             autocomplete="off"
+                             required
+                             class="form-control"
+                             [placeholder]="placeholder"
+                             id="name3"
+                             spellcheck="false"
+                             [(ngModel)]="inputText3">
+                    </ng-template>
                   </sbb-input-field>
                 </div>  
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ valueFromInput3 | json }}</sbb-label>
+                  <sbb-label>{{ inputType3 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <button type="button" (click)="reset3()">Reset</button> 
+                  <button type="button" (click)="reset3()" [disabled]="disabled">Reset</button> 
                 </div>
               </sbb-field>
             </form>
@@ -93,6 +125,16 @@
             <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
           </select>
         </div>
+        <div class="form-check">
+          <input id="disabled" class="form-check-input" type="checkbox" (click)="disableForms()" [(ngModel)]="disabled">
+          <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
+        </div>
+        <!--
+        <div class="form-check">
+          <input id="readonly" class="form-check-input" type="checkbox" (click)="enableForms()" disabled>
+          <sbb-label class="form-check-label" for="readonly">Readonly</sbb-label>
+        </div>
+        -->
       </fieldset>
     </div>
   </div>

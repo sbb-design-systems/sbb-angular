@@ -7,14 +7,19 @@
             <sbb-input-field>
               <sbb-label for="simpleInput">Name</sbb-label>
               <br/>
-              <input [type]="inputType"
-                     [placeholder]="placeholder"
-                      autocomplete="off"
-                      spellcheck="false"
-                     [readonly]="readonly"
-                     [disabled]="disabled" 
-                     [(ngModel)]="inputText"
-                     id="simpleInput">
+              <div *ngIf="disabled; else enabled">
+                  <sbb-label>{{ inputText ? inputText : placeholder }}</sbb-label> 
+              </div>
+              <ng-template #enabled>
+                  <input [type]="inputType"
+                         [placeholder]="placeholder"
+                          autocomplete="off"
+                          spellcheck="false"
+                         [readonly]="readonly"
+                         [disabled]="disabled"
+                         [(ngModel)]="inputText"
+                         id="simpleInput">
+              </ng-template>
             </sbb-input-field>
           </div>
           <div class="form-group">
@@ -22,7 +27,7 @@
             <sbb-label>{{ inputText | json }}</sbb-label>
           </div>
           <div class="form-group">
-            <button type="button" (click)="inputText=''">Reset</button>
+            <button type="button" (click)="inputText=''" [disabled]="disabled || readonly">Reset</button>
           </div>
       </fieldset>
      </div>
