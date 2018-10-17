@@ -167,6 +167,12 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "FirefoxHeadless"
+            },
+            "local": {
+              "watch": true,
+              "codeCoverage": true,
+              "browsers": "Firefox",
+              "sourceMap": true
             }
           }
         },
