@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 
 
-fdescribe('RadioButtonRegistryService', () => {
+describe('RadioButtonRegistryService', () => {
 
   let service: RadioButtonRegistryService;
 
