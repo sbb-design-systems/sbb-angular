@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-radio-button-showcase',
   templateUrl: './radio-button-showcase.component.html',
   styleUrls: ['./radio-button-showcase.component.scss']
 })
-export class RadioButtonShowcaseComponent implements OnInit {
+export class RadioButtonShowcaseComponent {
 
   required: boolean;
   disabled: boolean;
   checked: boolean;
-  modelValue: string;
+  modelValue = 'pizza';
 
   radioOptions = [{
     'name': 'Pizza',
@@ -23,18 +22,5 @@ export class RadioButtonShowcaseComponent implements OnInit {
     'name': 'Mandolino',
     'value': 'mandolino'
   }];
-
-  reactiveForm = new FormGroup({
-    reactiveValue: new FormControl('pizza')
-  });
-
-  ngOnInit(): void {
-    this.modelValue = 'pizza';
-   // throw new Error("Method not implemented.");
-  }
-
-  change(optionValue) {
-    this.modelValue = optionValue;
-  }
 
 }
