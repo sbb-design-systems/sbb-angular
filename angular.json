@@ -171,7 +171,8 @@
             "local": {
               "watch": true,
               "codeCoverage": true,
-              "browsers": "Firefox"
+              "browsers": "Firefox",
+              "sourceMap": true
             }
           }
         },
