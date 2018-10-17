@@ -11,7 +11,7 @@ export class SbbFieldShowcaseComponent implements OnInit {
   inputText1 = '';
   inputText2 = '';
   inputText3 = '';
-  
+
   disabled: boolean;
 
   myForm1: FormGroup;
@@ -49,7 +49,7 @@ export class SbbFieldShowcaseComponent implements OnInit {
     this.myForm1.reset();
     this.myForm2.reset();
     this.myForm3.reset();
-    
+
   }
 
   disableForms() {
