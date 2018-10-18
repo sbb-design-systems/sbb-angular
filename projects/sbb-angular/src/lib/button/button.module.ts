@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ButtonComponent } from './button/button.component';
-
 import { IconCommonModule } from '../svg-icons-components/icon-common.module';
-
-import { IconDownloadComponent } from '../svg-icons-components/base/arrows/sbb-icon-download.component';
+import { ButtonIconDirective } from './button/button-icon.directive';
 
 @NgModule({
   imports: [
@@ -12,7 +11,8 @@ import { IconDownloadComponent } from '../svg-icons-components/base/arrows/sbb-i
     IconCommonModule
   ],
   declarations: [
-    ButtonComponent
+    ButtonComponent,
+    ButtonIconDirective
   ],
   exports: [
     ButtonComponent

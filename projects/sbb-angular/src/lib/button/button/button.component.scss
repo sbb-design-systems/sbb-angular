@@ -1,8 +1,22 @@
 @import '../../../styles/main';
-@import './scss-partials/button-base';
-@import './scss-partials/button-theme';
+@import './_button-scss/button';
 
 :host {
     @include buttonReset();
-    color: $text-color;
+
+    &.sbb-button--primary {
+        @include primaryButton;
+    }
+
+    &.sbb-button--secondary {
+        @include secondaryButton;
+    }
+
+    &.sbb-button--ghost {
+        @include ghostButtonPositive;
+    }
+
+    &.sbb-button--frameless {
+        @include ghostButtonNegative;
+    }
 }

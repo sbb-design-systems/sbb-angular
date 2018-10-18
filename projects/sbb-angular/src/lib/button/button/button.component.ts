@@ -3,12 +3,6 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input, HostBinding,
-  ViewContainerRef,
-  ViewChild,
-  ComponentFactoryResolver,
-  ComponentFactory,
-  ComponentRef,
-  OnDestroy,
   Type
 } from '@angular/core';
 
@@ -19,31 +13,16 @@ import {
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent implements OnInit, OnDestroy {
+export class ButtonComponent implements OnInit {
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
   @Input() icon: Type<{}>;
-  @ViewChild('iconContainer', { read: ViewContainerRef }) iconContainer;
-
-  componentRef: ComponentRef<any>;
-  constructor(private resolver: ComponentFactoryResolver) { }
 
   @HostBinding('class') buttonModeClass: string;
 
+  constructor() { }
+
   ngOnInit() {
     this.buttonModeClass = `sbb-button--${this.mode}`;
-
-    this.createComponent();
-  }
-
-  ngOnDestroy() {
-    this.componentRef.destroy();
-  }
-
-  createComponent() {
-    this.iconContainer.clear();
-    console.log('createComponent', this.icon);
-    const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.icon);
-    this.componentRef = this.iconContainer.createComponent(factory);
   }
 
 }

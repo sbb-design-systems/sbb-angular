@@ -1,15 +1,16 @@
 import { Component, OnInit, Type } from '@angular/core';
-import { IconDownloadComponent } from 'sbb-angular';
+import { IconPlusComponent, IconArrowDownComponent } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-button-showcase',
   templateUrl: './button-showcase.component.html',
   styleUrls: ['./button-showcase.component.scss'],
-  entryComponents: [IconDownloadComponent]
+  entryComponents: [IconPlusComponent, IconArrowDownComponent]
 })
 export class ButtonShowcaseComponent implements OnInit {
 
-  icoDownload: Type<{}> = IconDownloadComponent;
+  icoPlus: Type<{}> = IconPlusComponent;
+  icoArrowDown: Type<{}> = IconArrowDownComponent;
 
   constructor() { }
 
