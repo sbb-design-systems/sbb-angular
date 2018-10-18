@@ -20,9 +20,9 @@ export class SbbFieldShowcaseComponent implements OnInit {
 
   placeholder = 'Please enter your name ...';
 
-  header1 = '1. SBB-Label with Input';
-  header2 = '2. SBB-Label with opt. Text, Tooltip and Input';
-  header3 = '3. SBB-Field with Label';
+  header1 = '1. SBB-Field without Attribute Label';
+  header2 = '2. SBB-Field with SBB-Label and Text, Tooltip and Input';
+  header3 = '3. SBB-Field with Attribute Label';
 
   inputType = this.header1;
   types = [

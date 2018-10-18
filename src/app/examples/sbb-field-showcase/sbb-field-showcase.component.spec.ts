@@ -35,7 +35,7 @@ describe('SbbFieldShowcaseComponent', () => {
     // first round of change detection ...
     fixture.detectChanges();
     // tslint:disable-next-line
-    expect(component.types).toEqual(['1. SBB-Label with Input', '2. SBB-Label with opt. Text, Tooltip and Input', '3. SBB-Field with Label']);
+    expect(component.types).toEqual(['1. SBB-Field without Attribute Label', '2. SBB-Field with SBB-Label and Text, Tooltip and Input', '3. SBB-Field with Attribute Label']);
   });
 
   it('form invalid when empty', () => {

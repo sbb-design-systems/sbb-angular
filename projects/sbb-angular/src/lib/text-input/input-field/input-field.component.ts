@@ -16,9 +16,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputFieldComponent implements OnInit, ControlValueAccessor {
 
-  @Input() disabled?: boolean;
-  @Input() formControlName?: string;
-
   constructor() {}
 
   ngOnInit() {
