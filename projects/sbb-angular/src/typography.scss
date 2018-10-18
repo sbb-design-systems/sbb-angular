@@ -55,3 +55,7 @@ a {
 .clearfix {
 	@include clearfix;
 }
+
+sbb-checkbox {
+  @include checkboxLabel;
+}

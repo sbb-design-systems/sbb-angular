@@ -1,0 +1,15 @@
+<input
+  type="checkbox"
+  #inputCheck
+  [id]="inputId"
+  [name]="name"
+  [value]="inputValue"
+  [required]="required"
+  [attr.aria-checked]="checked"
+  [attr.aria-labelledby]="inputId"
+  [disabled]="disabled"
+  (click)="click($event)"/>
+
+<div class="checkbox-placeholder-container">
+  <sbb-icon-check class="checkbox-placeholder-checked"></sbb-icon-check>
+</div>
