@@ -5,7 +5,7 @@
 	color: $colorWhite;
 	background-color: $colorCallToAction;
 
-	&:not([disabled]) {
+	&:not(:disabled) {
 		&:hover,
 		&:focus {
 			background-color: $colorCallToActionHover;
@@ -18,18 +18,13 @@
 	}
 }
 
-@mixin primaryButtonArrowless {
-	@include primaryButton;
-	transition: background-color $linkiconAnimation;
-}
-
 @mixin secondaryButton {
 	@include buttons;
 
 	color: $colorBlack90;
 	background-color: $colorGreyLight;
 
-	&:not([disabled]) {
+	&:not(:disabled) {
 		&:hover,
 		&:focus {
 			background-color: $colorGreySilver;
@@ -41,10 +36,6 @@
 @mixin primaryIconButton {
 	@include primaryButton;
 	@include arrowbuttons;
-
-	.mod-svgsprite-icon {
-		margin-top: pxToEm(-12, $sizeFontDefault);
-	}
 }
 
 @mixin secondaryIconButton {
@@ -52,7 +43,6 @@
 	@include arrowbuttons;
 
 	.mod-svgsprite-icon {
-		margin-top: pxToEm(-12, $sizeFontDefault);
 		fill: $colorBlack90;
 	}
 
@@ -78,7 +68,7 @@
 		border: pxToEm(1) solid currentColor;
 	}
 
-	&:not([disabled]) {
+	&:not(:disabled) {
 		&:hover,
 		&:focus {
 			box-shadow: 0px 0px 0px 1px currentColor inset;
@@ -91,27 +81,93 @@
 			}
 		}
 	}
-
-	p & {
-		margin-top: toEm(14/$fontSize);
-	}
 }
 
-@mixin ghostButtonNegative ($fontSize: $sizeFontDefault) {
-	@include buttons($fontSize);
 
-	background-color: rgba(0,0,0,0.25);
-	box-shadow: 0px 0px 0px 1px $colorWhite inset;
-	color: $colorWhite;
+@mixin ghostIconButtonPositive {
+	@include ghostButtonPositive;
+	@include arrowbuttons;
 
-	transition: background-color $linkiconAnimation;
+	.mod-svgsprite-icon {
+		fill: $colorBlack90;
+	}
 
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			background-color: rgba(0,0,0,0.5);
-			color: $colorWhite;
-			transition: background-color $linkiconAnimation;
+	&:hover,
+	&:focus {
+		.mod-svgsprite-icon {
+			fill: $colorBlack90;
 		}
 	}
 }
+
+@mixin framelessButton ($fontSize: $sizeFontDefault) {
+	@include buttons;
+
+	background-color: transparent;
+	color: $colorGrey;
+	transition: color $linkiconAnimation;
+
+	&:not(:disabled) {
+		&:hover,
+		&:focus {
+			color: $colorRed125;
+			background-color: transparent;
+			border-color: transparent;
+		}
+	}
+}
+
+@mixin framelessIconButton ($fontSize: $sizeFontDefault) {
+	@include buttons;
+	@include arrowbuttons;
+	@include framelessButton;
+
+	.mod-svgsprite-icon {
+		fill: $colorGrey;
+	}
+
+	&:hover,
+	&:focus {
+		.mod-svgsprite-icon {
+			fill: $colorRed125;
+		}
+	}
+}
+
+@mixin disabledButton {
+	@include ghostButtonPositive;
+	text-decoration: line-through;
+
+	.mod-svgsprite-icon {
+		display: none;
+	}
+}
+
+
+/*********************************** 
+*** LEGACY APPARENTLY NOT USEFUL ***
+************************************/
+
+// @mixin primaryButtonArrowless {
+// 	@include primaryButton;
+// 	transition: background-color $linkiconAnimation;
+// }
+
+// @mixin ghostButtonNegative ($fontSize: $sizeFontDefault) {
+// 	@include buttons($fontSize);
+
+// 	background-color: rgba(0,0,0,0.25);
+// 	box-shadow: 0px 0px 0px 1px $colorWhite inset;
+// 	color: $colorWhite;
+
+// 	transition: background-color $linkiconAnimation;
+
+// 	&:not(:disabled) {
+// 		&:hover,
+// 		&:focus {
+// 			background-color: rgba(0,0,0,0.5);
+// 			color: $colorWhite;
+// 			transition: background-color $linkiconAnimation;
+// 		}
+// 	}
+// }

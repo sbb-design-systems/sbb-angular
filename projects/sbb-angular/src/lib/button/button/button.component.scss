@@ -4,19 +4,43 @@
 :host {
     @include buttonReset();
 
-    &.sbb-button--primary {
-        @include primaryButton;
+    &:not(:disabled) {
+        &.sbb-button {
+            &--primary.sbb-button--has-icon {
+                @include primaryIconButton;
+            }
+    
+            &--primary:not(.sbb-button--has-icon) {
+                @include primaryButton;
+            }
+    
+            &--secondary.sbb-button--has-icon {
+                @include secondaryIconButton;
+            }
+    
+            &--secondary:not(.sbb-button--has-icon) {
+                @include secondaryButton;
+            }
+    
+            &--ghost.sbb-button--has-icon {
+                @include ghostIconButtonPositive;
+            }
+    
+            &--ghost:not(.sbb-button--has-icon) {
+                @include ghostButtonPositive;
+            }
+    
+            &--frameless.sbb-button--has-icon {
+                @include framelessIconButton;
+            }
+    
+            &--frameless:not(.sbb-button--has-icon) {
+                @include framelessButton;
+            }
+        }
     }
 
-    &.sbb-button--secondary {
-        @include secondaryButton;
-    }
-
-    &.sbb-button--ghost {
-        @include ghostButtonPositive;
-    }
-
-    &.sbb-button--frameless {
-        @include ghostButtonNegative;
+    &:disabled {
+        @include disabledButton;
     }
 }

@@ -31,6 +31,5 @@ export class ButtonIconDirective implements OnInit, OnDestroy {
   loadIconComponent() {
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.sbbButtonIcon);
     this.componentRef = this.viewContainer.createComponent(factory);
-    this.componentRef.instance['svgClass'] = 'mod-svgsprite-icon';
   }
 }

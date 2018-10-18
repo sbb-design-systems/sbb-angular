@@ -18,7 +18,7 @@
 	display: inline-block;
 	text-align: center;
 	font-size: pxToRem($fontSize);
-	line-height: 1.5;
+	line-height: 1;
 	border: none;
 	border-radius: toEm(2/$fontSize);
 	color: $colorWhite;
@@ -43,14 +43,11 @@
 		font-size: pxToRem($fontSize * $scalingFactor5k);
 	}
 
-	&:not([disabled]) {
+	&:not(:disabled) {
 		&:hover,
 		&:focus {
 			cursor: pointer;
 		}
-	}
-	&:disabled {
-		opacity: 0.5;
 	}
 }
 
@@ -127,9 +124,7 @@
 
 	&:not(:disabled) {
 		&:hover {
-			.no-touchevents & {
-				@include buttonArrowHover;
-			}
+			@include buttonArrowHover;
 		}
 
 		&:focus {
@@ -138,77 +133,82 @@
 	}
 
 
-	&.var-center {
-		text-align: center;
-		padding-right: 0;
-	}
+	// &.var-center {
+	// 	text-align: center;
+	// 	padding-right: 0;
+	// }
 }
 
-@mixin arrowButtonsForLinks {
 
-	.mod-svgsprite-icon {
-		top: pxToEm(-0.5);
-		margin-top: 0;
-	}
+/*********************************** 
+*** LEGACY APPARENTLY NOT USEFUL ***
+************************************/
 
-	.mod-svgsprite-icon:last-of-type {
-		top: auto;
-		bottom: pxToEm(-0.5);
-	}
+// @mixin arrowButtonsForLinks {
 
-}
+// 	.mod-svgsprite-icon {
+// 		top: pxToEm(-0.5);
+// 		margin-top: 0;
+// 	}
 
-@mixin iconbutton {
-	@include primaryButton;
+// 	.mod-svgsprite-icon:last-of-type {
+// 		top: auto;
+// 		bottom: pxToEm(-0.5);
+// 	}
 
-	.mod-svgsprite-icon {
-		fill: $colorWhite;
-		margin-top: pxToRem(-5px);
-		margin-right: pxToRem(5px);
-	}
+// }
 
-	@include mq($to: desktop) {
-		min-width: 0;
+// @mixin iconbutton {
+// 	@include primaryButton;
 
-		.text__button-text {
-			@include visuallyhidden;
-		}
-	}
-}
+// 	.mod-svgsprite-icon {
+// 		fill: $colorWhite;
+// 		margin-top: pxToRem(-5px);
+// 		margin-right: pxToRem(5px);
+// 	}
 
-@mixin iconbuttonSimple($fontSize: $sizeFontDefault) {
-	@include buttons($fontSize);
+// 	@include mq($to: desktop) {
+// 		min-width: 0;
 
-	overflow: visible;
-	white-space: normal;
-	text-overflow: clip;
-	padding: toEm(12.5/$fontSize) 0 toEm(15.5/$fontSize) 0;
-	text-align: center;
-	color: $colorGrey;
-	background-color: transparent;
-	transition: color $linkiconAnimation;
+// 		.text__button-text {
+// 			@include visuallyhidden;
+// 		}
+// 	}
+// }
 
-	width: auto !important;
-	margin: 0 auto toEm(16/$fontSize) auto !important;
+// @mixin iconbuttonSimple($fontSize: $sizeFontDefault) {
+// 	@include buttons($fontSize);
 
-	@include mq($from: tabletPortrait) {
-		text-align: left;
-		margin: 0 !important;
-	}
+// 	overflow: visible;
+// 	white-space: normal;
+// 	text-overflow: clip;
+// 	padding: toEm(12.5/$fontSize) 0 toEm(15.5/$fontSize) 0;
+// 	text-align: center;
+// 	color: $colorGrey;
+// 	background-color: transparent;
+// 	transition: color $linkiconAnimation;
 
-	.mod-svgsprite-icon {
-		float: right;
-		margin-left: toEm(8/$sizeFontDefault);
-		fill: $colorBlack60;
-		transition: fill $linkiconAnimation, transform $linkiconAnimation;
-	}
+// 	width: auto !important;
+// 	margin: 0 auto toEm(16/$fontSize) auto !important;
 
-	&:hover {
-		color: $colorCallToActionHover;
+// 	@include mq($from: tabletPortrait) {
+// 		text-align: left;
+// 		margin: 0 !important;
+// 	}
 
-		.mod-svgsprite-icon {
-			fill: $colorCallToActionHover;
-			transform: rotateZ(180deg);
-		}
-	}
-}
+// 	.mod-svgsprite-icon {
+// 		float: right;
+// 		margin-left: toEm(8/$sizeFontDefault);
+// 		fill: $colorBlack60;
+// 		transition: fill $linkiconAnimation, transform $linkiconAnimation;
+// 	}
+
+// 	&:hover {
+// 		color: $colorCallToActionHover;
+
+// 		.mod-svgsprite-icon {
+// 			fill: $colorCallToActionHover;
+// 			transform: rotateZ(180deg);
+// 		}
+// 	}
+// }
