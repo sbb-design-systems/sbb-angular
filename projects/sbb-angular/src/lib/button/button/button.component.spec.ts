@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
+import { ButtonIconDirective } from './button-icon.directive';
 
 describe('ButtonComponent', () => {
   let component: ButtonComponent;
@@ -8,7 +9,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ButtonComponent ]
+      declarations: [ ButtonComponent, ButtonIconDirective ]
     })
     .compileComponents();
   }));
