@@ -6,20 +6,21 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm1">
               <sbb-field>
-                <div class="form-group">
+                <div class="form-class">
                   <sbb-input-field>
-                      <sbb-label for="name1">Name</sbb-label>
+                      <sbb-label for="name1" class="my-1 mr-2">Name</sbb-label>
                       <div *ngIf="disabled; else enabled">
-                          <sbb-label>{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
+                          <sbb-label class="my-1 mr-2">{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
                       </div>
                       <ng-template #enabled>
+                         <br/>
                          <input type="text"
                                 formControlName="name1"
                                 autocomplete="off"
-                                class="form-control"
                                 [placeholder]="placeholder"
                                 id="name1"
                                 spellcheck="false"
+                                class="my-1 mr-sm-2"
                                 [(ngModel)]="inputText1">
                       </ng-template>
                   </sbb-input-field>
@@ -43,22 +44,23 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm2">
               <sbb-field>
-                <div class="form-group">
+                <div class="form-class">
                   <sbb-input-field>
-                    <sbb-label for="name2" optional="With optional Text" toolTip="Here comes the Tooltip">Name</sbb-label>
+                    <sbb-label class="my-1 mr-2" for="name2" optional="With optional Text" toolTip="Here comes the Tooltip">Name</sbb-label>
                     <div *ngIf="disabled; else enabled">
-                        <sbb-label>{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
+                        <sbb-label class="my-1 mr-2">{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
                     </div>
                     <ng-template #enabled>
+                      <br/>
                       <input type="text"
                              formControlName="name2"
                              autocomplete="off"
-                             class="form-control"
                              [placeholder]="placeholder"
                              id="name2"
                              spellcheck="false"
                              required
                              minlength="3"
+                             class="my-1 mr-2"
                              [(ngModel)]="inputText2">
                     </ng-template>
                   </sbb-input-field>
@@ -82,28 +84,28 @@
           <h5>{{ header3 }}</h5>
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm3">
+              <div class="form-class">
               <sbb-field label="Name" for="name3">
-                <div class="form-group">
-                  <sbb-input-field>
+                <sbb-input-field>
                     <div *ngIf="disabled; else enabled">
-                      <sbb-label>{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
+                      <sbb-label class="my-1 mr-2">{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
                     </div>
                     <ng-template #enabled>
+                      <br/>
                       <input type="text"
                              formControlName="name3"
                              autocomplete="off"
                              required
-                             class="form-control"
                              [placeholder]="placeholder"
                              id="name3"
                              spellcheck="false"
+                             class="my-1 mr-2"
                              [(ngModel)]="inputText3">
                     </ng-template>
-                  </sbb-input-field>
-                </div>  
+                </sbb-input-field>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputType3 | json }}</sbb-label>
+                  <sbb-label>{{ inputText3 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
@@ -112,6 +114,7 @@
                   <button type="button" (click)="reset3()" [disabled]="disabled">Reset</button> 
                 </div>
               </sbb-field>
+             </div>
             </form>
           </fieldset>
         </div>

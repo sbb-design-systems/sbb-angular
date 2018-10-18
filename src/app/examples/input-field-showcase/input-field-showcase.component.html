@@ -3,12 +3,12 @@
      <div class="col-6">
       <h5>Input Field</h5>
       <fieldset>      
-          <div class="form-group">
+          <div class="form-class">
             <sbb-input-field>
-              <sbb-label for="simpleInput">Name</sbb-label>
+              <sbb-label class="my-1 mr-2" for="simpleInput">Name</sbb-label>
               <br/>
               <div *ngIf="disabled; else enabled">
-                  <sbb-label>{{ inputText ? inputText : placeholder }}</sbb-label> 
+                  <sbb-label class="my-1 mr-2">{{ inputText ? inputText : placeholder }}</sbb-label> 
               </div>
               <ng-template #enabled>
                   <input [type]="inputType"
@@ -18,7 +18,8 @@
                          [readonly]="readonly"
                          [disabled]="disabled"
                          [(ngModel)]="inputText"
-                         id="simpleInput">
+                         id="simpleInput"
+                         class="my-1 mr-2">
               </ng-template>
             </sbb-input-field>
           </div>
