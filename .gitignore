@@ -44,4 +44,5 @@ Thumbs.db
 # Projects node_modules
 /projects/sbb-angular/node_modules
 projects/sbb-angular/output.log
+
 .history/
