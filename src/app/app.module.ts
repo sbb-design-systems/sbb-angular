@@ -87,7 +87,7 @@ import { DocumentationIconsSbbFieldComponent } from './examples/sbb-field-showca
     BrowserModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     NgbModule,
     MonacoEditorModule.forRoot({baseUrl: './assets'}),
     AppRoutingModule,
