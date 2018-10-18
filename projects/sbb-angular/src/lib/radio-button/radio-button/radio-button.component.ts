@@ -32,7 +32,6 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
   @Input() formControlName: string;
   @Input() inputValue: any;
   @Input() required: boolean;
-  @Input() inputTabindex = -1;
   @HostBinding('class.sbb-radio-checked') _checked = false;
   @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
 
