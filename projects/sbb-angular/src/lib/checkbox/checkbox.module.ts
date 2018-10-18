@@ -9,6 +9,9 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     CommonModule,
     IconCommonModule
   ],
-  declarations: [CheckboxComponent]
+  declarations: [CheckboxComponent],
+  exports: [
+    CheckboxComponent
+  ]
 })
 export class CheckboxModule { }

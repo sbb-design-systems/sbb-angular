@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   forwardRef,
   ChangeDetectionStrategy,
   Input,
@@ -22,7 +21,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   } ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent implements OnInit, ControlValueAccessor {
+export class CheckboxComponent implements ControlValueAccessor {
 
   @Input() inputId: string;
   @Input() name: string;
@@ -33,7 +32,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @HostBinding('class.sbb-checkbox-disabled') @Input() disabled: boolean;
 
   @Input()
-  set checked(value: boolean) {
+  set checked(value: any) {
     this._checked = value;
 
     // I don't like Renderer2 :( See here: https://github.com/angular/angular/issues/14988
@@ -45,48 +44,25 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
 
   constructor(private renderer: Renderer2) {}
 
-  onChange = (obj: any) => { };
-  onTouched = (_: any) => { };
-
-  ngOnInit(): void {
-    this.checkName();
-  }
+  onChange = (_: any) => {};
+  onTouched = () => {};
 
   writeValue(value: any): void {
-    this.checked = this.inputValue === value;
+    this.checked = value;
   }
 
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
+  registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
+  registerOnTouched(fn: () => {}): void { this.onTouched = fn; }
 
   click($event) {
-    const value = $event.target.value;
+    const value = $event.target.checked;
     this.onChange(value);
-    this.onTouched(value);
+    this.onTouched();
     this.writeValue(value);
   }
 
   setDisabledState?(disabled: boolean): void {
     this.disabled = disabled;
-  }
-
-  private checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this.throwNameError();
-    }
-    if (!this.name && this.formControlName) { this.name = this.formControlName; }
-  }
-
-  private throwNameError(): void {
-    throw new Error(`
-      If you define both a name and a formControlName attribute on your radio button, their values
-      must match. Ex: <sbb-checkbox formControlName="food" name="food"></sbb-checkbox>
-    `);
   }
 
 }

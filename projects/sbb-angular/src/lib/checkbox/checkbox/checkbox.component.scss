@@ -69,6 +69,7 @@ input[type="checkbox"] {
   }
 
   .checkbox-placeholder-checked {
+    line-height: 0;
     position: absolute;
     left: 0;
     top: 0;
@@ -77,6 +78,7 @@ input[type="checkbox"] {
     width: 100%;
     fill: $colorRed100;
     border-radius: toPx(2);
+    transform: scale(1.3);
     transition: opacity .3s cubic-bezier(.785,.135,.15,.86);
     opacity: 0;
   }
