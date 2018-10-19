@@ -13,7 +13,7 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
   value: any;
   disabled: boolean;
 
-  @ViewChild('sbb-autocomplete-options-list')
+  @ViewChild('optionsList')
   optionsList: AutocompleteOptionListComponent;
 
   @Input()
