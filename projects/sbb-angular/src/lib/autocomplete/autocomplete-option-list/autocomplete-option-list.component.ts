@@ -9,9 +9,11 @@ import {
   ViewChildren,
   QueryList
 } from '@angular/core';
-import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Subject } from 'rxjs';
+
+import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
 
 export class SbbAutocompleteSelectedEvent {
   constructor(
@@ -41,7 +43,7 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   filterBy: string;
 
   @Input()
-  options?: any = [];
+  options?: Array<any> = [];
 
   @Input()
   staticOptionsId;

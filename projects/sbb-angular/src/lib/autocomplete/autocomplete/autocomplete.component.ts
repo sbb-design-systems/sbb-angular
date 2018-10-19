@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-autocomplete',
@@ -8,43 +9,24 @@ import { ControlValueAccessor } from '@angular/forms';
 })
 export class AutocompleteComponent implements ControlValueAccessor {
 
-  @Input()
-  textContent: string;
-
-  // Object property on which filtering the options
-  @Input()
-  filterBy: string;
-
-  @Input()
+  filter: string;
   value: any;
+  disabled: boolean;
 
   @Input()
   staticOptions?: Array<any>;
 
   @Input()
-  options: Array<any> = [{
-    name: 'Davide',
-    lastname: 'Aresta'
-  }, {
-    name: 'Dario',
-    lastname: 'D\'Oronzo'
-  },
-  {
-    name: 'Marco',
-    lastname: 'Sut'
-  }, {
-    name: 'Stefan',
-    lastname: 'Milei'
-  }
-  ];
+  options?: Array<any> = [];
 
-  disabled: boolean;
+  @Output()
+  inputedText: EventEmitter<string> = new EventEmitter<string>();
 
   propagateChange: any = () => { };
 
   writeValue(newValue: any): void {
     if (newValue) {
-      this.textContent = newValue;
+      this.value = newValue;
       this.propagateChange(newValue);
     }
   }
@@ -60,6 +42,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   onInput($event) {
-   this.textContent = $event.target.value;
+    this.filter = $event.target.value;
+    this.inputedText.emit(this.filter);
   }
 }
