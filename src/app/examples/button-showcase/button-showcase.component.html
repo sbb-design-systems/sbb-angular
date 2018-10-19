@@ -1,4 +1,45 @@
-<button sbbButton mode="primary" [icon]="icoArrowDown">Test primary ico-arrow</button><br /><br />
+<form [formGroup]="buttonForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <article>
+                    <h3>Example</h3>
+                    <div *ngIf="showButton">
+                        <button sbbButton [mode]="buttonMode" [icon]="buttonIcon">Bezeichnung</button>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-6">
+                <article>
+                    <h3>Properties</h3>
+                    <div>
+                        <div class="form-group">
+                            <label for="buttonMode">Mode</label>
+                            <select formControlName="mode" class="form-control" id="buttonMode">
+                                <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="buttonIcon">Icon</label>
+                            <select formControlName="icon" class="form-control" id="buttonIcon">
+                                <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+<!-- <button sbbButton mode="primary" [icon]="icoArrowDown">Test primary ico-arrow</button><br /><br />
 <button sbbButton mode="secondary" [icon]="icoArrowDown">Test secondary ico-arrow</button><br /><br />
 <button sbbButton mode="ghost" [icon]="icoArrowDown">Test primary ico-arrow</button><br /><br />
 <button sbbButton mode="frameless" [icon]="icoArrowDown">Test secondary ico-arrow</button><br /><br />
@@ -19,4 +60,4 @@
 <button sbbButton mode="secondary" [icon]="icoPlus" disabled>Test secondary ico-plus</button><br /><br />
 <br />
 <button sbbButton mode="primary" disabled>Test primary no-icon</button><br /><br />
-<button sbbButton mode="secondary" disabled>Test secondary no-icon</button><br /><br />
+<button sbbButton mode="secondary" disabled>Test secondary no-icon</button><br /><br /> -->

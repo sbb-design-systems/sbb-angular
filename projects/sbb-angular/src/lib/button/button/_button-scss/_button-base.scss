@@ -1,3 +1,6 @@
+/*** 
+* BUTTON BASIC STRUCTURAL MIXINS AND PLACEHOLDERS
+***/
 
 @mixin buttonReset() {
 	background: none;
@@ -7,13 +10,16 @@
 	margin: 0;
 }
 
-@mixin buttons($fontSize: $sizeFontDefault) {
+/*** KICKSTART BASIC BUTTON ***/
+@mixin buttons($fontSize: $buttonSizeFontDefault) {
+	@include buttonReset();
 	@include ellipsis;
+
 	box-sizing: border-box;
 	width: 100%;
 	height: toEm(48/$fontSize);
 	padding: toEm(12.5/$fontSize) toEm(40/$fontSize) toEm(15.5/$fontSize) toEm(40/$fontSize);
-	background-color: $colorCallToAction;
+	background-color: $buttonDefaultBgColor;
 	text-decoration: none;
 	display: inline-block;
 	text-align: center;
@@ -21,13 +27,13 @@
 	line-height: 1;
 	border: none;
 	border-radius: toEm(2/$fontSize);
-	color: $colorWhite;
+	color: $buttonDefaultColor;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 
 	@include mq($from: tabletPortrait) {
 		font-size: pxToRem($fontSize);
 		width: auto;
-		min-width: toEm(160/$fontSize);
+		min-width: toEm(60/$fontSize);
 		max-width: toEm(400/$fontSize);
 	}
 
@@ -51,9 +57,10 @@
 	}
 }
 
+/*** UTILITY MIXIN FOR %arrowbuttons PLACEHOLDER ***/
 @mixin buttonArrowHover {
-	padding-left: pxToEm(70, $sizeFontDefault);
-	padding-right: pxToEm(40, $sizeFontDefault);
+	padding-left: pxToEm(70, $buttonSizeFontDefault);
+	padding-right: pxToEm(40, $buttonSizeFontDefault);
 	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
 
 	.mod-svgsprite-icon {
@@ -69,26 +76,18 @@
 		opacity: 0;
 		transform: translateX(pxToEm(26));
 	}
-
-	&.var-center {
-		padding-right: 0;
-	}
 }
 
-@mixin arrowbuttons {
+/*** 
+* BUTTON WITH ARROWS PLACEHOLDER 
+* - Used placeholder instead mixin to improve compiled output size
+***/
+%arrowbuttons {
 	position: relative;
-	padding-left: toEm(40/$sizeFontDefault);
-	padding-right: toEm(70/$sizeFontDefault);
+	padding-left: toEm(40/$buttonSizeFontDefault);
+	padding-right: toEm(70/$buttonSizeFontDefault);
 	transition: height $linkiconAnimation, padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
-	font-size: pxToRem($sizeFontDefault);
-
-	@include mq($from: tabletPortrait) {
-		font-size: pxToRem($sizeFontDefault);
-	}
-
-	@include mq($from: desktop) {
-		font-size: pxToRem($sizeFontDefault);
-	}
+	font-size: pxToRem($buttonSizeFontDefault);
 
 	@include mq($from: desktop4k) {
 		font-size: pxToRem($sizeFontDefault4k);
@@ -100,115 +99,31 @@
 
 	.mod-svgsprite-icon {
 		position: absolute;
-		width: pxToEm(24, $sizeFontDefault);
-		height: pxToEm(24, $sizeFontDefault);
+		width: pxToEm(24, $buttonSizeFontDefault);
+		height: pxToEm(24, $buttonSizeFontDefault);
 		top: 50%;
-		margin-top: pxToEm(-11.5, $sizeFontDefault);
+		margin-top: pxToEm(-12.5, $buttonSizeFontDefault);
 		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
 		backface-visibility: hidden;
-		fill: $colorWhite;
+		fill: $buttonDefaultColor;
 		pointer-events: none;
 	}
 
 	.mod-svgsprite-icon:first-of-type {
-		margin-left: pxToEm(-30, $sizeFontDefault);
+		margin-left: pxToEm(-30, $buttonSizeFontDefault);
 		opacity: 0;
-		transform: translateX(pxToEm(-26, $sizeFontDefault));
+		transform: translateX(pxToEm(-26, $buttonSizeFontDefault));
 	}
 
 	.mod-svgsprite-icon:last-of-type {
-		margin-left: pxToEm(6, $sizeFontDefault);
+		margin-left: pxToEm(6, $buttonSizeFontDefault);
 		opacity: 1;
 		transform: translateX(0px);
 	}
 
 	&:not(:disabled) {
-		&:hover {
-			@include buttonArrowHover;
-		}
-
-		&:focus {
+		&:hover, &:focus {
 			@include buttonArrowHover;
 		}
 	}
-
-
-	// &.var-center {
-	// 	text-align: center;
-	// 	padding-right: 0;
-	// }
 }
-
-
-/*********************************** 
-*** LEGACY APPARENTLY NOT USEFUL ***
-************************************/
-
-// @mixin arrowButtonsForLinks {
-
-// 	.mod-svgsprite-icon {
-// 		top: pxToEm(-0.5);
-// 		margin-top: 0;
-// 	}
-
-// 	.mod-svgsprite-icon:last-of-type {
-// 		top: auto;
-// 		bottom: pxToEm(-0.5);
-// 	}
-
-// }
-
-// @mixin iconbutton {
-// 	@include primaryButton;
-
-// 	.mod-svgsprite-icon {
-// 		fill: $colorWhite;
-// 		margin-top: pxToRem(-5px);
-// 		margin-right: pxToRem(5px);
-// 	}
-
-// 	@include mq($to: desktop) {
-// 		min-width: 0;
-
-// 		.text__button-text {
-// 			@include visuallyhidden;
-// 		}
-// 	}
-// }
-
-// @mixin iconbuttonSimple($fontSize: $sizeFontDefault) {
-// 	@include buttons($fontSize);
-
-// 	overflow: visible;
-// 	white-space: normal;
-// 	text-overflow: clip;
-// 	padding: toEm(12.5/$fontSize) 0 toEm(15.5/$fontSize) 0;
-// 	text-align: center;
-// 	color: $colorGrey;
-// 	background-color: transparent;
-// 	transition: color $linkiconAnimation;
-
-// 	width: auto !important;
-// 	margin: 0 auto toEm(16/$fontSize) auto !important;
-
-// 	@include mq($from: tabletPortrait) {
-// 		text-align: left;
-// 		margin: 0 !important;
-// 	}
-
-// 	.mod-svgsprite-icon {
-// 		float: right;
-// 		margin-left: toEm(8/$sizeFontDefault);
-// 		fill: $colorBlack60;
-// 		transition: fill $linkiconAnimation, transform $linkiconAnimation;
-// 	}
-
-// 	&:hover {
-// 		color: $colorCallToActionHover;
-
-// 		.mod-svgsprite-icon {
-// 			fill: $colorCallToActionHover;
-// 			transform: rotateZ(180deg);
-// 		}
-// 	}
-// }

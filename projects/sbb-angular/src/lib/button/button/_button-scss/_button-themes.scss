@@ -1,68 +1,87 @@
+/*** 
+* BUTTON THEMES MIXINS AND PLACEHOLDERS
+***/
 
+/*** PRIMARY BUTTON ***/
 @mixin primaryButton {
-	@include buttons;
-
-	color: $colorWhite;
-	background-color: $colorCallToAction;
+	color: $buttonDefaultColor;
+	background-color: $buttonDefaultBgColor;
 
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
-			background-color: $colorCallToActionHover;
-			color: $colorWhite;
+			background-color: $buttonDefaultBgColorHover;
+			color: $buttonDefaultColor;
 
 			.mod-svgsprite-icon {
-				fill: $colorWhite;
+				fill: $buttonDefaultColor;
 			}
 		}
 	}
 }
 
-@mixin secondaryButton {
-	@include buttons;
+/*** 
+* PRIMARY BUTTON PLACEHOLDER 
+* - Include primary mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%primaryButton {
+	@include primaryButton();
+}
 
-	color: $colorBlack90;
-	background-color: $colorGreyLight;
+/*** PRIMARY BUTTON WITH ICON ***/
+@mixin primaryIconButton {
+	@extend %primaryButton;
+	@extend %arrowbuttons;
+}
+
+/*** SECONDARY BUTTON ***/
+@mixin secondaryButton {
+	color: $buttonSecondaryColor;
+	background-color: $buttonSecondaryBgColor;
 
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
-			background-color: $colorGreySilver;
-			color: $colorBlack90;
+			background-color: $buttonSecondaryBgColorHover;
+			color: $buttonSecondaryColor;
 		}
 	}
 }
 
-@mixin primaryIconButton {
-	@include primaryButton;
-	@include arrowbuttons;
+/*** 
+* SECONDARY BUTTON PLACEHOLDER 
+* - Include secondary mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%secondaryButton {
+	@include secondaryButton;
 }
 
+/*** SECONDARY BUTTON WITH ICON ***/
 @mixin secondaryIconButton {
-	@include secondaryButton;
-	@include arrowbuttons;
+	@extend %secondaryButton;
+	@extend %arrowbuttons;
 
 	.mod-svgsprite-icon {
-		fill: $colorBlack90;
+		fill: $buttonSecondaryColor;
 	}
 
 	&:hover,
 	&:focus {
 		.mod-svgsprite-icon {
-			fill: $colorBlack90;
+			fill: $buttonSecondaryColor;
 		}
 	}
 
 }
 
-@mixin ghostButtonPositive ($fontSize: $sizeFontDefault) {
-	@include buttons;
-
+/*** GHOST BUTTON ***/
+@mixin ghostButtonPositive($fontSize: $buttonSizeFontDefault) {
 	background-color: transparent;
-	box-shadow: 0px 0px 0px 1px $colorBlack40 inset;
-	color: $colorGrey;
-
-	transition: box-shadow $linkiconAnimation, color $linkiconAnimation;
+	box-shadow: $buttonGhostShadow;
+	color: $buttonGhostColor;
+	transition: box-shadow $linkiconAnimation, height $linkiconAnimation, padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
 
 	@media screen and (-ms-high-contrast: active) {
 		border: pxToEm(1) solid currentColor;
@@ -71,8 +90,8 @@
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
-			box-shadow: 0px 0px 0px 1px currentColor inset;
-			color: $colorBlack90;
+			box-shadow: $buttonGhostShadowHover;
+			color: $buttonGhostColorHover;
 			background-color: transparent;
 			border-color: currentColor;
 
@@ -83,29 +102,36 @@
 	}
 }
 
-
-@mixin ghostIconButtonPositive {
+/*** 
+* GHOST BUTTON PLACEHOLDER 
+* - Include ghost mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%ghostButtonPositive {
 	@include ghostButtonPositive;
-	@include arrowbuttons;
+}
+
+/*** GHOST BUTTON WITH ICON ***/
+@mixin ghostIconButtonPositive {
+	@extend %ghostButtonPositive;
+	@extend %arrowbuttons;
 
 	.mod-svgsprite-icon {
-		fill: $colorBlack90;
+		fill: $buttonGhostColorHover;
 	}
 
 	&:hover,
 	&:focus {
 		.mod-svgsprite-icon {
-			fill: $colorBlack90;
+			fill: $buttonGhostColorHover;
 		}
 	}
 }
 
-@mixin framelessButton ($fontSize: $sizeFontDefault) {
-	@include buttons;
-
+/*** FRAMELESS BUTTON ***/
+@mixin framelessButton($fontSize: $buttonSizeFontDefault) {
 	background-color: transparent;
-	color: $colorGrey;
-	transition: color $linkiconAnimation;
+	color: $buttonFramelessColor;
 
 	&:not(:disabled) {
 		&:hover,
@@ -117,57 +143,39 @@
 	}
 }
 
-@mixin framelessIconButton ($fontSize: $sizeFontDefault) {
-	@include buttons;
-	@include arrowbuttons;
+/*** 
+* FRAMELESS BUTTON PLACEHOLDER 
+* - Include frameless mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%framelessButton {
 	@include framelessButton;
+}
+
+/*** FRAMELESS BUTTON WITH ICON ***/
+@mixin framelessIconButton ($fontSize: $sizeFontDefault) {
+	@extend %framelessButton;
+	@extend %arrowbuttons;
 
 	.mod-svgsprite-icon {
-		fill: $colorGrey;
+		fill: $buttonFramelessColor;
 	}
 
 	&:hover,
 	&:focus {
 		.mod-svgsprite-icon {
-			fill: $colorRed125;
+			fill: $buttonFramelessColorHover;
 		}
 	}
 }
 
+/*** DISABLED BUTTON ***/
 @mixin disabledButton {
-	@include ghostButtonPositive;
+	@extend %ghostButtonPositive;
+
 	text-decoration: line-through;
 
 	.mod-svgsprite-icon {
 		display: none;
 	}
 }
-
-
-/*********************************** 
-*** LEGACY APPARENTLY NOT USEFUL ***
-************************************/
-
-// @mixin primaryButtonArrowless {
-// 	@include primaryButton;
-// 	transition: background-color $linkiconAnimation;
-// }
-
-// @mixin ghostButtonNegative ($fontSize: $sizeFontDefault) {
-// 	@include buttons($fontSize);
-
-// 	background-color: rgba(0,0,0,0.25);
-// 	box-shadow: 0px 0px 0px 1px $colorWhite inset;
-// 	color: $colorWhite;
-
-// 	transition: background-color $linkiconAnimation;
-
-// 	&:not(:disabled) {
-// 		&:hover,
-// 		&:focus {
-// 			background-color: rgba(0,0,0,0.5);
-// 			color: $colorWhite;
-// 			transition: background-color $linkiconAnimation;
-// 		}
-// 	}
-// }
