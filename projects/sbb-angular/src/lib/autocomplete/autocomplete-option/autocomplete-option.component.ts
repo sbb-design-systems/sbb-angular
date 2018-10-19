@@ -1,6 +1,6 @@
 import { Component, Input, HostBinding } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
-import { Option } from './option.model';
+import { Option } from '../option.model';
 
 @Component({
   selector: 'sbb-autocomplete-option',
@@ -10,12 +10,7 @@ import { Option } from './option.model';
 export class AutocompleteOptionComponent implements Highlightable {
 
   @Input() item: Option;
-
-  _filter: string;
-
-  @Input() set filter(value: string) {
-
-  }
+  @Input() filter: string;
 
   @HostBinding('class.selected') selected: boolean;
 

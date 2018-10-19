@@ -7,13 +7,14 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { AutocompleteOptionComponent } from './autocomplete-option/autocomplete-option.component';
 import { AutocompleteOptionListComponent } from './autocomplete-option-list/autocomplete-option-list.component';
 import { FilterPipe } from './autocomplete-option-list/autocomplete-filter.pipe';
+import { HighlightPipe } from './autocomplete-option/highlight.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     A11yModule
   ],
-  declarations: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent, FilterPipe],
+  declarations: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent, FilterPipe, HighlightPipe],
   exports: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent, FilterPipe]
 })
 export class AutocompleteModule { }
