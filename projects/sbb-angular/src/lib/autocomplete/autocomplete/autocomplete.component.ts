@@ -8,9 +8,12 @@ import { ControlValueAccessor } from '@angular/forms';
 })
 export class AutocompleteComponent implements ControlValueAccessor {
 
-
   @Input()
   textContent: string;
+
+  // Object property on which filtering the options
+  @Input()
+  filterBy: string;
 
   @Input()
   value: any;
@@ -19,7 +22,21 @@ export class AutocompleteComponent implements ControlValueAccessor {
   staticOptions?: Array<any>;
 
   @Input()
-  options: Array<any> = new Array();
+  options: Array<any> = [{
+    name: 'Davide',
+    lastname: 'Aresta'
+  }, {
+    name: 'Dario',
+    lastname: 'D\'Oronzo'
+  },
+  {
+    name: 'Marco',
+    lastname: 'Sut'
+  }, {
+    name: 'Stefan',
+    lastname: 'Milei'
+  }
+  ];
 
   disabled: boolean;
 
@@ -42,4 +59,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
+  onInput($event) {
+   this.textContent = $event.target.value;
+  }
 }

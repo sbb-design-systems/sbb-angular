@@ -24,7 +24,7 @@ export class AutocompleteOptionComponent implements Highlightable {
   }
 
   getLabel?(): string {
-    throw new Error('Method not implemented.');
+    return this.item;
   }
 
 }

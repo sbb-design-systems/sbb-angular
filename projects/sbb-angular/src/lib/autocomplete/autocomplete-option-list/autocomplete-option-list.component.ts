@@ -5,12 +5,13 @@ import {
   EventEmitter,
   AfterContentInit,
   ChangeDetectorRef,
-  Input
+  Input,
+  ViewChildren,
+  QueryList
 } from '@angular/core';
 import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
 
 export class SbbAutocompleteSelectedEvent {
   constructor(
@@ -24,18 +25,23 @@ export class SbbAutocompleteSelectedEvent {
   selector: 'sbb-autocomplete-option-list',
   templateUrl: './autocomplete-option-list.component.html',
   styleUrls: ['./autocomplete-option-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteOptionListComponent implements AfterContentInit {
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
-  @Input()
-  options: Array<any> = new Array();
+  @ViewChildren(AutocompleteOptionComponent)
+  items: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
   @Input()
-  staticOptions?: Array<any>;
+  textContent: string;
+
+  @Input()
+  filterBy: string;
+
+  @Input()
+  options?: any = [];
 
   @Input()
   staticOptionsId;
@@ -75,7 +81,7 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
 
   ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.options).withWrap();
+    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items).withWrap().withTypeAhead();
     // Set the initial visibility state.
     this._setVisibility();
   }
