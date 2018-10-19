@@ -40,9 +40,6 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   textContent: string;
 
   @Input()
-  filterBy: string;
-
-  @Input()
   options?: Array<any> = [];
 
   @Input()
@@ -83,7 +80,9 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
 
   ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items).withWrap().withTypeAhead();
+    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items)
+      .withWrap()
+      .withTypeAhead();
     // Set the initial visibility state.
     this._setVisibility();
   }
@@ -93,4 +92,6 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
     this.showPanel = !!this.options.length;
     this._changeDetectorRef.markForCheck();
   }
+
+
 }
