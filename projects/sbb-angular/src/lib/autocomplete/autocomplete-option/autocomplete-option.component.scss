@@ -1,0 +1,27 @@
+@import '../../../styles/main';
+
+:host {
+  @include ellipsis;
+
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  padding: toPx(14) toPx(16) toPx(18);
+
+  @include mq($from: desktop4k) {
+    padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k) toPx(18 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
+  }
+
+  .selected {
+    color: $colorRed100
+  }
+
+  .highligthed {
+    font-family: $fontSbbBold;
+    color: $colorBlack;
+  }
+}

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
+import { Option } from './option.model';
 
 @Component({
   selector: 'sbb-autocomplete-option',
@@ -8,23 +9,26 @@ import { Highlightable } from '@angular/cdk/a11y';
 })
 export class AutocompleteOptionComponent implements Highlightable {
 
-  @Input()
-  item?: any;
+  @Input() item: Option;
 
-  @Input()
-  inputId: string;
+  _filter: string;
 
-  disabled?: boolean;
+  @Input() set filter(value: string) {
+    
+  }
+
+  @HostBinding('class.selected') selected: boolean;
 
   setActiveStyles(): void {
-    throw new Error('Method not implemented.');
+    this.selected = true;
   }
+
   setInactiveStyles(): void {
-    throw new Error('Method not implemented.');
+    this.selected = false;
   }
 
   getLabel?(): string {
-    throw new Error('Method not implemented.');
+    return this.item.name;
   }
 
 }
