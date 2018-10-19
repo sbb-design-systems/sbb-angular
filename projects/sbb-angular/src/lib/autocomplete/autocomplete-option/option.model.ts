@@ -1,8 +1,6 @@
-export class Option {
+export interface Option {
 
-  constructor(
-    public name: string,
-    public value: string
-  ) {}
+  getLabel(): string;
+  getValue(): any;
 
 }

@@ -1,2 +1,2 @@
-<input type="text" [value]="textContent">
-<sbb-autocomplete-option-list [options]="options" [staticOptions]="staticOptions"></sbb-autocomplete-option-list>
+<input type="text" [value]="textContent" (input)="onInput($event)" >
+<sbb-autocomplete-option-list [options]="options"></sbb-autocomplete-option-list>

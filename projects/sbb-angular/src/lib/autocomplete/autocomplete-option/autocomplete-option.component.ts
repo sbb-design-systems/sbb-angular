@@ -14,7 +14,7 @@ export class AutocompleteOptionComponent implements Highlightable {
   _filter: string;
 
   @Input() set filter(value: string) {
-    
+
   }
 
   @HostBinding('class.selected') selected: boolean;
@@ -28,7 +28,7 @@ export class AutocompleteOptionComponent implements Highlightable {
   }
 
   getLabel?(): string {
-    return this.item.name;
+    return this.item.getLabel();
   }
 
 }

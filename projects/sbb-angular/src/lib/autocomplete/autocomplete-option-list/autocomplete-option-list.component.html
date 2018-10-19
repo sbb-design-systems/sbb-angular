@@ -1,8 +1,3 @@
-<ng-template>
-  <div *ngFor="let option of options">
-    <sbb-autocomplete-option  [item]="option" [id]="optionsId"></sbb-autocomplete-option>
-  </div>
-  <div *ngFor="let staticOption of staticOptions">
-    <sbb-autocomplete-option  [item]="staticOption" [id]="staticOptionsId"></sbb-autocomplete-option>
-  </div>
-</ng-template>
+<div *ngFor="let option of options | filter: filterBy : textContent; index as index">
+  <sbb-autocomplete-option [item]="option" [id]="optionsId"></sbb-autocomplete-option>
+</div>
