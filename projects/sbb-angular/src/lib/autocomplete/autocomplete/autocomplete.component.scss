@@ -1,0 +1,11 @@
+@import '../../../styles/main';
+
+:host {
+  position: relative;
+}
+
+input {
+	@include inputfields;
+	@include disabledinputfields;
+	@include placeholder;
+}
