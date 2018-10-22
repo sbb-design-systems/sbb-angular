@@ -9,8 +9,10 @@ import { ShowcaseOption } from './showcase-option.model';
 export class AutocompleteShowcaseComponent {
 
   optionList: Array<ShowcaseOption> = [];
-
-  staticOptions: Array<ShowcaseOption> = [];
+  staticOptions: Array<ShowcaseOption> = [
+    new ShowcaseOption('static test 1', 'test1')
+  ];
+  testValue = 'Te';
 
   constructor() {
     this.optionList.push(new ShowcaseOption('Test 1', 'test1'));

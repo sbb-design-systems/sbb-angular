@@ -2,7 +2,10 @@ import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ChangeDetect
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 
-import { AutocompleteOptionListComponent, SbbAutocompleteSelectedEvent } from '../autocomplete-option-list/autocomplete-option-list.component';
+import {
+  AutocompleteOptionListComponent,
+  SbbAutocompleteSelectedEvent
+} from '../autocomplete-option-list/autocomplete-option-list.component';
 import { AutocompleteOptionComponent } from '..';
 
 /**

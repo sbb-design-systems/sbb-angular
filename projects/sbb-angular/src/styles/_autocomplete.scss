@@ -1,0 +1,13 @@
+// Textarea mixins
+// ----------------------------------------------------------------------------------------------------
+
+@mixin highlight {
+
+  .highlight {
+    font-family: $fontSbbBold;
+  }
+
+  &:not(:hover):not(.selected) .highlight {
+    color: $colorBlack;
+  }
+}
