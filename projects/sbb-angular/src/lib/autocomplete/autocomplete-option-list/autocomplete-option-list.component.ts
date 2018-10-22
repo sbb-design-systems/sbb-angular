@@ -6,12 +6,11 @@ import {
   AfterContentInit,
   ChangeDetectorRef,
   Input,
-  ViewChildren,
-  QueryList
+  QueryList,
+  ContentChildren
 } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Subject } from 'rxjs';
 
 import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
 
@@ -33,7 +32,7 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
-  @ViewChildren(AutocompleteOptionComponent)
+  @ContentChildren(AutocompleteOptionComponent)
   items: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
   @Input()
@@ -41,12 +40,6 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
   @Input()
   options?: Array<any> = [];
-
-  @Input()
-  staticOptionsId;
-
-  @Input()
-  optionsId;
 
   @Input()
   get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }
@@ -68,12 +61,8 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   _keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
   showPanel = false;
 
-  /** Whether the autocomplete panel is open. */
-  get isOpen(): boolean { return this._isOpen && this.showPanel; }
-  _isOpen = false;
-
   /** Emits the `select` event. */
-  _emitSelectEvent(option: AutocompleteOptionComponent): void {
+  emitSelectEvent(option: AutocompleteOptionComponent): void {
     const event = new SbbAutocompleteSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }
@@ -84,11 +73,11 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
       .withWrap()
       .withTypeAhead();
     // Set the initial visibility state.
-    this._setVisibility();
+    this.setVisibility();
   }
 
   /** Panel should hide itself when the option list is empty. */
-  _setVisibility() {
+  setVisibility() {
     this.showPanel = !!this.options.length;
     this._changeDetectorRef.markForCheck();
   }

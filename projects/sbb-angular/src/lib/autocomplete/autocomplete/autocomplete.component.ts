@@ -8,7 +8,7 @@ import { AutocompleteOptionListComponent } from '../autocomplete-option-list/aut
   styleUrls: ['./autocomplete.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AutocompleteComponent implements ControlValueAccessor, OnInit {
+export class AutocompleteComponent implements ControlValueAccessor {
 
   filter: string;
   value: any;
@@ -29,9 +29,8 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
   @Output()
   inputedText: EventEmitter<string> = new EventEmitter<string>();
 
-  ngOnInit(): void {
-  }
-
+  isFocused = false;
+  get showOptions() { return this.isFocused && !!this.options.length; }
 
   propagateChange: any = () => { };
 
@@ -52,16 +51,19 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
     this.disabled = isDisabled;
   }
 
+  setVisibility() {
+    this.isFocused = this.filter.length >= this.minDigitsTrigger;
+  }
+
   onInput($event) {
     this.filter = $event.target.value;
     console.log('input', $event.target.value);
-    if (this.filter.length >= this.minDigitsTrigger) {
-      this.inputedText.emit(this.filter);
-    }
+    this.setVisibility();
+    this.inputedText.emit(this.filter);
   }
 
   onBlur($event) {
-    this.optionsList.showPanel = false;
+    this.isFocused = false;
   }
 
 }
