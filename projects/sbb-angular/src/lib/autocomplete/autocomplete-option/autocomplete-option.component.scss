@@ -6,14 +6,14 @@
   cursor: pointer;
   display: block;
   text-decoration: none;
-  padding: toPx(14) toPx(16) toPx(18);
+  padding: toPx(4) 0;
 
   @include mq($from: desktop4k) {
-    padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k) toPx(18 * $scalingFactor4k);
+    padding: toPx(4 * $scalingFactor4k) 0;
   }
 
   @include mq($from: desktop5k) {
-    padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
+    padding: toPx(4 * $scalingFactor5k) 0;
   }
 
   &:hover,
