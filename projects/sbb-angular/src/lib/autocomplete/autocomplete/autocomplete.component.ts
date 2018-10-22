@@ -53,16 +53,14 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
 
   onInput($event) {
     this.filter = $event.target.value;
+    console.log('input', $event.target.value);
     if (this.filter.length >= this.minDigitsTrigger) {
       this.inputedText.emit(this.filter);
-      this.optionsList._isOpen = true;
-      this.optionsList._setVisibility();
     }
   }
 
   onBlur($event) {
-    this.optionsList._isOpen = false;
-    this.optionsList._setVisibility();
+    this.optionsList.showPanel = false;
   }
 
 }
