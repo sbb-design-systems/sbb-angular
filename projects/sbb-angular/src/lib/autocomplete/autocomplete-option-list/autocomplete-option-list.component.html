@@ -1,7 +1,8 @@
 <div>
-  <div #panel>
-    <sbb-autocomplete-option [filter]="filter" *ngFor="let option of options" [item]="option" (onSelectionChange)="emitSelectEvent($event)"></sbb-autocomplete-option>
-  </div>
+  <sbb-autocomplete-option [filter]="filter" *ngFor="let option of options" [item]="option" (onSelectionChange)="emitSelectEvent($event)"></sbb-autocomplete-option>
+  <!-- <div #panel>
+
+  </div> -->
   <div #panelStatic>
     <sbb-autocomplete-option [filter]="filter" *ngFor="let staticOption of staticOptions" [item]="staticOption" (onSelectionChange)="emitSelectEvent($event)"></sbb-autocomplete-option>
   </div>

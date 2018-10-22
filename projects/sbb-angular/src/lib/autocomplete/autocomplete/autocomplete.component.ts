@@ -45,8 +45,7 @@ const AUTOCOMPLETE_PANEL_HEIGHT = 30;
       useExisting: forwardRef(() => AutocompleteComponent),
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class AutocompleteComponent implements ControlValueAccessor {
 
@@ -75,8 +74,8 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   /** The currently active option, coerced to MatOption type. */
   get activeOption(): AutocompleteOptionComponent | null {
-    if (this.optionsList && this.optionsList._keyManager) {
-      return this.optionsList._keyManager.activeItem;
+    if (this.optionsList && this.optionsList.keyManager) {
+      return this.optionsList.keyManager.activeItem;
     }
 
     return null;
@@ -117,13 +116,13 @@ export class AutocompleteComponent implements ControlValueAccessor {
    * correct options, or to 0 if the consumer opted into it.
    */
   private _resetActiveItem(): void {
-    this.optionsList._keyManager.setActiveItem(this.optionsList.autoActiveFirstOption ? 0 : -1);
+    this.optionsList.keyManager.setActiveItem(this.optionsList.autoActiveFirstOption ? 0 : -1);
   }
 
 
 
   private _scrollToOption(): void {
-    const index = this.optionsList._keyManager.activeItemIndex || 0;
+    const index = this.optionsList.keyManager.activeItemIndex || 0;
     /* const labelCount = _countGroupLabelsBeforeOption(index,
         this.optionsList.options, this.optionsList.optionGroups); */
 
@@ -150,31 +149,33 @@ export class AutocompleteComponent implements ControlValueAccessor {
     // in line with other browsers. By default, pressing escape on IE will cause it to revert
     // the input value to the one that it had on focus, however it won't dispatch any events
     // which means that the model value will be out of sync with the view.
-    if (keyCode === ESCAPE) {
-      event.preventDefault();
-    }
-    console.log('scrollOptions activeOption', this.activeOption);
+    // if (keyCode === ESCAPE) {
+    //   event.preventDefault();
+    // }
+    // console.log('scrollOptions activeOption', this.activeOption);
 
-    if (this.activeOption && keyCode === ENTER && this.showOptions) {
-      this.activeOption._selectViaInteraction();
-      this._resetActiveItem();
-      event.preventDefault();
-    } else if (this.optionsList) {
-      const prevActiveItem = this.optionsList._keyManager.activeItem;
-      const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-      console.log('scrollOptions prevActiveItem', prevActiveItem);
+    // if (this.activeOption && keyCode === ENTER && this.showOptions) {
+    //   this.activeOption._selectViaInteraction();
+    //   this._resetActiveItem();
+    //   event.preventDefault();
+    // } else if (this.optionsList) {
+    //   const prevActiveItem = this.optionsList.keyManager.activeItem;
+    //   const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
+    //   console.log('scrollOptions prevActiveItem', prevActiveItem);
 
-      if (this.showOptions || keyCode === TAB) {
-        this.optionsList._keyManager.onKeydown($event);
-      } else if (isArrowKey) {
-        console.log('isArrowKey', isArrowKey);
+    //   if (this.showOptions || keyCode === TAB) {
+    //     this.optionsList.keyManager.onKeydown($event);
+    //   } else if (isArrowKey) {
+    //     console.log('isArrowKey', isArrowKey);
 
-        this.setVisibility();
-      }
+    //     this.setVisibility();
+    //   }
 
-      if (isArrowKey || this.optionsList._keyManager.activeItem !== prevActiveItem) {
-        this._scrollToOption();
-      }
-    }
+    //   if (isArrowKey || this.optionsList.keyManager.activeItem !== prevActiveItem) {
+    //     this._scrollToOption();
+    //   }
+    // }
+
+    this.optionsList.onKeydown($event);
   }
 }

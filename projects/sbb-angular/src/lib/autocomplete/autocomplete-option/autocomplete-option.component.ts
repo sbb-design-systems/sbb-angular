@@ -13,8 +13,7 @@ export class AutocompleteOptionSelectionChange {
 @Component({
   selector: 'sbb-autocomplete-option',
   templateUrl: './autocomplete-option.component.html',
-  styleUrls: ['./autocomplete-option.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./autocomplete-option.component.scss']
 })
 export class AutocompleteOptionComponent implements Highlightable {
 
@@ -26,18 +25,23 @@ export class AutocompleteOptionComponent implements Highlightable {
   @Input() item: Option;
   @Input() filter: string;
 
-  @HostBinding('class.selected') selected: boolean;
+  @HostBinding('class.selected') get selected() {
+    return this._selected;
+  }
+
   // tslint:disable-next-line:no-output-on-prefix
   @Output() readonly onSelectionChange = new EventEmitter<AutocompleteOptionSelectionChange>();
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
   setActiveStyles(): void {
-    this.selected = true;
+    this._selected = true;
+    console.log(this.item, this._selected);
   }
 
   setInactiveStyles(): void {
-    this.selected = false;
+    this._selected = false;
+    console.log(this.item, this._selected);
   }
 
   getLabel?(): string {

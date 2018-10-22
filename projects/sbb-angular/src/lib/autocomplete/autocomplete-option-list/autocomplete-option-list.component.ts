@@ -9,12 +9,15 @@ import {
   QueryList,
   ContentChildren,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ViewChildren,
+  AfterViewInit
 } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { AutocompleteOptionComponent, AutocompleteOptionSelectionChange } from '../autocomplete-option/autocomplete-option.component';
+import { ENTER } from '@angular/cdk/keycodes';
 
 export class SbbAutocompleteSelectedEvent {
   constructor(
@@ -27,10 +30,9 @@ export class SbbAutocompleteSelectedEvent {
 @Component({
   selector: 'sbb-autocomplete-option-list',
   templateUrl: './autocomplete-option-list.component.html',
-  styleUrls: ['./autocomplete-option-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./autocomplete-option-list.component.scss']
 })
-export class AutocompleteOptionListComponent implements AfterContentInit {
+export class AutocompleteOptionListComponent implements AfterViewInit {
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
@@ -38,11 +40,11 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
   @ViewChild('panelStatic') panelStatic: ElementRef;
 
-  @ContentChildren(AutocompleteOptionComponent, { descendants: true })
-  items: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
+  @ViewChildren(AutocompleteOptionComponent)
+  items: QueryList<AutocompleteOptionComponent>;
 
-  @ContentChildren(AutocompleteOptionComponent)
-  staticItems: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
+  // @ContentChildren(AutocompleteOptionComponent)
+  // staticItems: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
   @Input()
   filter: string;
@@ -70,21 +72,30 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   @Output()
   readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
-  _keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
+  keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
   showPanel = false;
 
   /** Emits the `select` event. */
   emitSelectEvent(option: AutocompleteOptionSelectionChange): void {
     const event = new SbbAutocompleteSelectedEvent(this, option.source);
+    // option.source.selected = true;
     this.optionSelected.emit(event);
   }
 
-  ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items)
+  ngAfterViewInit() {
+    this.keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items)
       .withWrap()
       .withTypeAhead();
     // Set the initial visibility state.
     this.setVisibility();
+  }
+
+  onKeydown(event) {
+    if (event.keyCode === ENTER) {
+      this.emitSelectEvent(new AutocompleteOptionSelectionChange(this.keyManager.activeItem, true));
+    } else {
+      this.keyManager.onKeydown(event);
+    }
   }
 
   /** Panel should hide itself when the option list is empty. */

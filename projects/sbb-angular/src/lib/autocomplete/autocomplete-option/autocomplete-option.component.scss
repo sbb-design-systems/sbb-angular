@@ -22,7 +22,7 @@
   }
 
   &:hover,
-  .selected {
+  &.selected {
     color: $colorRed100 !important;
   }
 }
