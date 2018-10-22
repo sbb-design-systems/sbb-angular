@@ -7,12 +7,14 @@ import {
   ChangeDetectorRef,
   Input,
   QueryList,
-  ContentChildren
+  ContentChildren,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
+import { AutocompleteOptionComponent, AutocompleteOptionSelectionChange } from '../autocomplete-option/autocomplete-option.component';
 
 export class SbbAutocompleteSelectedEvent {
   constructor(
@@ -32,7 +34,9 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
-  @ContentChildren(AutocompleteOptionComponent)
+  @ViewChild('panel') panel: ElementRef;
+
+  @ContentChildren(AutocompleteOptionComponent, { descendants: true })
   items: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
   @ContentChildren(AutocompleteOptionComponent)
@@ -68,11 +72,10 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   showPanel = false;
 
   /** Emits the `select` event. */
-  emitSelectEvent(option: AutocompleteOptionComponent): void {
-    const event = new SbbAutocompleteSelectedEvent(this, option);
+  emitSelectEvent(option: AutocompleteOptionSelectionChange): void {
+    const event = new SbbAutocompleteSelectedEvent(this, option.source);
     this.optionSelected.emit(event);
   }
-
 
   ngAfterContentInit() {
     this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items)
@@ -88,5 +91,14 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
     this._changeDetectorRef.markForCheck();
   }
 
+  /** Returns the panel's scrollTop. */
+  _getScrollTop(): number {
+    return this.panel ? this.panel.nativeElement.scrollTop : 0;
+  }
 
+  _setScrollTop(scrollTop: number): void {
+    if (this.panel) {
+      this.panel.nativeElement.scrollTop = scrollTop;
+    }
+  }
 }

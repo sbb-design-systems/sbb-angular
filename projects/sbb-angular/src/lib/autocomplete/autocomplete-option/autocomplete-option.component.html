@@ -1,1 +1,3 @@
-{{ item?.getLabel() | highlight: filter }}
+<div (click)="selectOption($event)">
+    {{ item?.getLabel() | highlight: filter }}
+</div>
