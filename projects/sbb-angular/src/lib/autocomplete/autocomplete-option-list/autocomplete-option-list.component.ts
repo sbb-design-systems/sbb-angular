@@ -35,11 +35,17 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   @ContentChildren(AutocompleteOptionComponent)
   items: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
+  @ContentChildren(AutocompleteOptionComponent)
+  staticItems: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
+
   @Input()
   textContent: string;
 
   @Input()
   options?: Array<any> = [];
+
+  @Input()
+  staticOptions?: Array<any>;
 
   @Input()
   get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }

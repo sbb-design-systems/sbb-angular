@@ -1,11 +1,18 @@
-import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutocompleteOptionListComponent } from '../autocomplete-option-list/autocomplete-option-list.component';
 
 @Component({
   selector: 'sbb-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AutocompleteComponent),
+      multi: true
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteComponent implements ControlValueAccessor {
@@ -52,7 +59,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   setVisibility() {
-    this.isFocused = this.filter.length >= this.minDigitsTrigger;
+    this.isFocused = (this.filter.length >= this.minDigitsTrigger) || (this.staticOptions && !!this.staticOptions.length) ;
   }
 
   onInput($event) {
