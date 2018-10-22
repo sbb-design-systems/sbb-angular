@@ -37,7 +37,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
   inputedText: EventEmitter<string> = new EventEmitter<string>();
 
   isFocused = false;
-  get showOptions() { return this.isFocused && !!this.options.length; }
+  get showOptions() { return true; }
 
   propagateChange: any = () => { };
 

@@ -1,2 +1,2 @@
 <input type="text" [value]="filter" (input)="onInput($event)" (blur)="onBlur($event)">
-<sbb-autocomplete-option-list #optionsList [options]="options" [staticOptions]="staticOptions" *ngIf="showOptions"></sbb-autocomplete-option-list>
+<sbb-autocomplete-option-list #optionsList [filter]="filter" [options]="options" [staticOptions]="staticOptions" *ngIf="showOptions"></sbb-autocomplete-option-list>

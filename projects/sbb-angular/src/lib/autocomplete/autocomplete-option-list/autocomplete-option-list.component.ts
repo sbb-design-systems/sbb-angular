@@ -39,7 +39,7 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
   staticItems: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
   @Input()
-  textContent: string;
+  filter: string;
 
   @Input()
   options?: Array<any> = [];

@@ -1,4 +1,4 @@
-@import '../../../styles/main';
+@import "../../../styles/main";
 
 :host {
   @include ellipsis;
@@ -16,13 +16,13 @@
     padding: toPx(4 * $scalingFactor5k) 0;
   }
 
-  &:hover,
-  .selected {
-    color: $colorRed100
-  }
-
-  .highligthed {
+  span.highlight {
     font-family: $fontSbbBold;
     color: $colorBlack;
+  }
+
+  &:hover,
+  .selected {
+    color: $colorRed100 !important;
   }
 }

@@ -8,17 +8,15 @@ export class HighlightPipe implements PipeTransform {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  transform(value: any, args?: any): any {
-    // TODO: remove this please...........
-    if (!args || !value) {
-      return value;
-    }
-    const re = new RegExp(args, 'gi');
-    const match = value.match(re);
+  private escape(regex: string = '') {
+    return regex.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  }
 
+  transform(value: any, args?: any): any {
     let result = value;
-    if (match) {
-      result = result.replace(re, `<span class='highlight'>${match[0]}</span>` );
+    if(value) {
+      const re = new RegExp(this.escape(args), 'gi');
+      result = value.replace(re, m => `<span #highlight class='highlight'>${m}</span>` );
     }
 
     return this.sanitizer.bypassSecurityTrustHtml(result);
