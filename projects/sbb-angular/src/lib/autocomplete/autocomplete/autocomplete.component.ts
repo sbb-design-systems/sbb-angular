@@ -1,11 +1,12 @@
-import { Component, Input, EventEmitter, Output, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { AutocompleteOptionListComponent } from '../autocomplete-option-list/autocomplete-option-list.component';
 
 @Component({
   selector: 'sbb-autocomplete',
   templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss']
+  styleUrls: ['./autocomplete.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteComponent implements ControlValueAccessor, OnInit {
 

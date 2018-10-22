@@ -1,11 +1,12 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
 import { Option } from '../option.model';
 
 @Component({
   selector: 'sbb-autocomplete-option',
   templateUrl: './autocomplete-option.component.html',
-  styleUrls: ['./autocomplete-option.component.scss']
+  styleUrls: ['./autocomplete-option.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteOptionComponent implements Highlightable {
 

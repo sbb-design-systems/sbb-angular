@@ -16,11 +16,11 @@
     padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
   }
 
+  &:hover,
   .selected {
     color: $colorRed100
   }
 
-  &:hover,
   .highligthed {
     font-family: $fontSbbBold;
     color: $colorBlack;
