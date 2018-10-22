@@ -2,14 +2,16 @@
 
 :host {
   position: absolute;
-  top: toPx(2);
+  top: toPx(34);
   left: 0;
   right: 0;
   z-index: 3;
   overflow: hidden;
   background: $colorWhite;
   border: toPx(2 * $scalingFactor4k) solid $colorGrey;
-  border-top: 0;
+  border-bottom-left-radius: toPx(2);
+  border-bottom-right-radius: toPx(2);
+  border-top: toPx(1) solid $colorBlack10;
   box-shadow: 0 toPx(8) 0 rgba(0,0,0,.15);
   transition: height .25s cubic-bezier(.4,0,.2,1),
               opacity .25s cubic-bezier(.4,0,.2,1);
@@ -20,6 +22,7 @@
     border: toPx(2 * $scalingFactor4k) solid $colorGrey;
     padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k) toPx(18 * $scalingFactor4k);
     box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0,0,0,.15);
+    border-top: toPx(2) solid $colorBlack10;
   }
 
   @include mq($from: desktop5k) {
