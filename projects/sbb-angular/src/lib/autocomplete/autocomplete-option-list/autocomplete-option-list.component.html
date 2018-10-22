@@ -1,16 +1,8 @@
 <div>
-<<<<<<< HEAD
-  <div #panel role="listbox" tabindex="1">
-    <sbb-autocomplete-option *ngFor="let option of options" [item]="option" (onSelectionChange)="emitSelectEvent($event)"></sbb-autocomplete-option>
+  <div #panel>
+    <sbb-autocomplete-option [filter]="filter" *ngFor="let option of options" [item]="option" (onSelectionChange)="emitSelectEvent($event)"></sbb-autocomplete-option>
   </div>
-  <div>
-    <sbb-autocomplete-option *ngFor="let staticOption of staticOptions" [item]="staticOption"></sbb-autocomplete-option>
-=======
-  <div *ngFor="let option of options">
-    <sbb-autocomplete-option [filter]="filter" [item]="option"></sbb-autocomplete-option>
-  </div>
-  <div *ngFor="let staticOption of staticOptions">
-    <sbb-autocomplete-option [filter]="filter" [item]="staticOption"></sbb-autocomplete-option>
->>>>>>> b99f1b2f6d7764b680dbf7011a7e8d5690582752
+  <div #panelStatic>
+    <sbb-autocomplete-option [filter]="filter" *ngFor="let staticOption of staticOptions" [item]="staticOption" (onSelectionChange)="emitSelectEvent($event)"></sbb-autocomplete-option>
   </div>
 </div>

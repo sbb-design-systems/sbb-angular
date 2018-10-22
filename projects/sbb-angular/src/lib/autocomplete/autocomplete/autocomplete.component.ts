@@ -112,12 +112,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
     this.inputedText.emit(this.filter);
   }
 
-  /*   onBlur($event) {
-      const keycode = $event.keyCode;
-      ofthis.showOptions || keyCode === TAB
-      this.isFocused = false;
-    }
-   */
   /**
    * Resets the active item to -1 so arrow events will activate the
    * correct options, or to 0 if the consumer opted into it.

@@ -36,6 +36,8 @@ export class AutocompleteOptionListComponent implements AfterContentInit {
 
   @ViewChild('panel') panel: ElementRef;
 
+  @ViewChild('panelStatic') panelStatic: ElementRef;
+
   @ContentChildren(AutocompleteOptionComponent, { descendants: true })
   items: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
