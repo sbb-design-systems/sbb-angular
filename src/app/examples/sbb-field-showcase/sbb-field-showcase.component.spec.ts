@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SbbFieldShowcaseComponent } from './sbb-field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TextInputModule } from 'sbb-angular';
+import { FieldModule } from 'sbb-angular';
 
 describe('SbbFieldShowcaseComponent', () => {
 
@@ -12,7 +12,7 @@ describe('SbbFieldShowcaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, TextInputModule],
+      imports: [FormsModule, ReactiveFormsModule, FieldModule],
       declarations: [SbbFieldShowcaseComponent]
     })
     .overrideComponent(SbbFieldShowcaseComponent, {
@@ -35,7 +35,7 @@ describe('SbbFieldShowcaseComponent', () => {
     // first round of change detection ...
     fixture.detectChanges();
     // tslint:disable-next-line
-    expect(component.types).toEqual(['1. SBB-Field without Attribute Label', '2. SBB-Field with SBB-Label and Text, Tooltip and Input', '3. SBB-Field with Attribute Label']);
+    expect(component.types).toEqual(['1. SBB-Field without Attribute Label', '2. SBB-Field with SBB-Label, Text and Input', '3. SBB-Field with Attribute Label']);
   });
 
   it('form invalid when empty', () => {

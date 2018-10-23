@@ -1,10 +1,10 @@
 <div class="conatiner">
   <div class="row justify-content-between">  
      <div class="col-6">
-      <h5>Input Field</h5>
+      <h5>Input Field (Within SBB-Field)</h5>
       <fieldset>      
           <div class="form-class">
-            <sbb-input-field>
+            <sbb-field>
               <sbb-label class="my-1 mr-2" for="simpleInput">Name</sbb-label>
               <br/>
               <div *ngIf="disabled; else enabled">
@@ -21,7 +21,7 @@
                          id="simpleInput"
                          class="my-1 mr-2">
               </ng-template>
-            </sbb-input-field>
+            </sbb-field>
           </div>
           <div class="form-group">
             <sbb-label>Model:</sbb-label>

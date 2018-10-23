@@ -19,8 +19,8 @@
   font-family: $fontSbbRoman;
 }
 
-:host /deep/ {
-  input {
+:host {
+  ::ng-deep input {
     @include sbbInputField($colorBlack72);
     &:focus {
       border-color: $colorGrey;
@@ -29,6 +29,13 @@
       background-color: $colorBlack5;
       border-color: $colorBlack20;
       opacity: 1;
+    }
+    &.ng-untouched.ng-pristine.ng-invalid {
+      @include sbbInputField($colorCallToAction);
+      ::placeholder {
+        color: $colorCallToAction;
+      }
+      color: $colorCallToAction;
     }
     &.ng-pristine.ng-invalid {
       @include sbbInputField($colorCallToAction);

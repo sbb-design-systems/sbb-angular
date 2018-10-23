@@ -21,7 +21,7 @@ export class SbbFieldShowcaseComponent implements OnInit {
   placeholder = 'Please enter your name ...';
 
   header1 = '1. SBB-Field without Attribute Label';
-  header2 = '2. SBB-Field with SBB-Label and Text, Tooltip and Input';
+  header2 = '2. SBB-Field with SBB-Label, Text and Input';
   header3 = '3. SBB-Field with Attribute Label';
 
   inputType = this.header1;
@@ -62,19 +62,6 @@ export class SbbFieldShowcaseComponent implements OnInit {
     const control3 = this.myForm3.get('name3');
     control3.disabled ? control3.enable() : control3.disable();
   }
-
-  /*
-  enableForms() {
-    const control1 = this.myForm1.get('name1');
-    control1.enabled ? control1.disable() : control1.enable();
-
-    const control2 = this.myForm1.get('name2');
-    control2.enabled ? control2.disable() : control2.enable();
-
-    const control3 = this.myForm3.get('name3');
-    control3.enabled ? control3.disable() : control3.enable();
-  }
-  */
 
   reset1() {
     this.myForm1.reset();

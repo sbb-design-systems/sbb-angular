@@ -7,23 +7,21 @@
             <form autocomplete="off" [formGroup]="myForm1">
               <sbb-field>
                 <div class="form-class">
-                  <sbb-input-field>
-                      <sbb-label for="name1" class="my-1 mr-2">Name</sbb-label>
-                      <div *ngIf="disabled; else enabled">
-                          <sbb-label class="my-1 mr-2">{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
-                      </div>
-                      <ng-template #enabled>
-                         <br/>
-                         <input type="text"
-                                formControlName="name1"
-                                autocomplete="off"
-                                [placeholder]="placeholder"
-                                id="name1"
-                                spellcheck="false"
-                                class="my-1 mr-sm-2"
-                                [(ngModel)]="inputText1">
-                      </ng-template>
-                  </sbb-input-field>
+                  <sbb-label for="name1" class="my-1 mr-2">Name</sbb-label>
+                  <div *ngIf="disabled; else enabled">
+                    <sbb-label class="my-1 mr-2">{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
+                  </div>
+                  <ng-template #enabled>
+                    <br/>
+                    <input type="text"
+                           formControlName="name1"
+                           autocomplete="off"
+                           [placeholder]="placeholder"
+                           id="name1"
+                           spellcheck="false"
+                           class="my-1 mr-sm-2"
+                           [(ngModel)]="inputText1">
+                  </ng-template>
                 </div>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
@@ -45,25 +43,23 @@
             <form autocomplete="off" [formGroup]="myForm2">
               <sbb-field>
                 <div class="form-class">
-                  <sbb-input-field>
-                    <sbb-label class="my-1 mr-2" for="name2" optional="With optional Text" toolTip="Here comes the Tooltip">Name</sbb-label>
-                    <div *ngIf="disabled; else enabled">
-                        <sbb-label class="my-1 mr-2">{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
-                    </div>
-                    <ng-template #enabled>
-                      <br/>
-                      <input type="text"
-                             formControlName="name2"
-                             autocomplete="off"
-                             [placeholder]="placeholder"
-                             id="name2"
-                             spellcheck="false"
-                             required
-                             minlength="3"
-                             class="my-1 mr-2"
-                             [(ngModel)]="inputText2">
-                    </ng-template>
-                  </sbb-input-field>
+                  <sbb-label class="my-1 mr-2" for="name2" optional="With optional Text">Name</sbb-label>
+                  <div *ngIf="disabled; else enabled">
+                    <sbb-label class="my-1 mr-2">{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
+                  </div>
+                  <ng-template #enabled>
+                    <br/>
+                    <input type="text"
+                           formControlName="name2"
+                           autocomplete="off"
+                           [placeholder]="placeholder"
+                           id="name2"
+                           spellcheck="false"
+                           required
+                           minlength="3"
+                           class="my-1 mr-2"
+                           [(ngModel)]="inputText2">
+                  </ng-template>
                 </div>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
@@ -86,23 +82,21 @@
             <form autocomplete="off" [formGroup]="myForm3">
               <div class="form-class">
               <sbb-field label="Name" for="name3">
-                <sbb-input-field>
-                    <div *ngIf="disabled; else enabled">
-                      <sbb-label class="my-1 mr-2">{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
-                    </div>
-                    <ng-template #enabled>
-                      <br/>
-                      <input type="text"
-                             formControlName="name3"
-                             autocomplete="off"
-                             required
-                             [placeholder]="placeholder"
-                             id="name3"
-                             spellcheck="false"
-                             class="my-1 mr-2"
-                             [(ngModel)]="inputText3">
-                    </ng-template>
-                </sbb-input-field>
+                <div *ngIf="disabled; else enabled">
+                  <sbb-label class="my-1 mr-2">{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
+                </div>
+                <ng-template #enabled>
+                  <br/>
+                  <input type="text"
+                         formControlName="name3"
+                         autocomplete="off"
+                         required
+                         [placeholder]="placeholder"
+                         id="name3"
+                         spellcheck="false"
+                         class="my-1 mr-2"
+                         [(ngModel)]="inputText3">
+                </ng-template>
                 <div class="form-group">
                   <sbb-label>Model:</sbb-label>
                   <sbb-label>{{ inputText3 | json }}</sbb-label>

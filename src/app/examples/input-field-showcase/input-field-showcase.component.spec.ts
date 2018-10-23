@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { InputFieldShowcaseComponent } from './input-field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TextInputModule } from 'sbb-angular';
+import { FieldModule } from 'sbb-angular';
 
 describe('InputFieldShowcaseComponent', () => {
 
@@ -13,7 +13,7 @@ describe('InputFieldShowcaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, TextInputModule],
+      imports: [FormsModule, ReactiveFormsModule, FieldModule],
       declarations: [InputFieldShowcaseComponent]
     })
     .overrideComponent(InputFieldShowcaseComponent, {

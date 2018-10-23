@@ -1,0 +1,12 @@
+@import '../../../styles/main.scss';
+
+:host {
+    @include formError($colorCallToAction);
+    color: $colorCallToAction;
+    font-family: $fontSbbRoman;
+    &.disabled {
+        background-color: $colorBlack5;
+        border-color: $colorBlack20;
+        opacity: 1;
+    }
+}

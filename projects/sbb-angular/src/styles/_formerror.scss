@@ -1,0 +1,9 @@
+@mixin formError($borderColor) {
+    letter-spacing: 0;
+    outline: 0px;
+    resize: none;
+    opacity: 1;
+    font-family: $fontSbbRoman;
+    font-size: 14px;
+    line-height: 21px;
+}

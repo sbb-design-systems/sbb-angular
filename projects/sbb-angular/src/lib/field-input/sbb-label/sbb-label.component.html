@@ -1,0 +1,6 @@
+<label [for]="for" *ngIf="optional === 'undefined'; else withOptionalText">
+  <ng-content></ng-content>
+</label>
+<ng-template #withOptionalText>
+    <label [for]="for"><ng-content *ngIf="!label"></ng-content>{{ label ? label : '' }} {{ optional ? optional : '' }}</label>
+</ng-template>

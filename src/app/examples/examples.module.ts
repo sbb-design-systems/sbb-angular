@@ -50,7 +50,7 @@ import { DocumentationAutoResizeSbbFieldComponent } from './sbb-field-showcase/d
 // tslint:disable-next-line
 import { DocumentationIconsSbbFieldComponent } from './sbb-field-showcase/documentation/icons/documentation-icons-sbb-field.component';
 
-import { TextareaModule, TextInputModule, LinksModule } from 'sbb-angular';
+import { TextareaModule, FieldModule, LinksModule } from 'sbb-angular';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -83,7 +83,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         BrowserModule,
         CommonModule,
         TextareaModule,
-        TextInputModule,
+        FieldModule,
         LinksModule,
         FormsModule,
         ReactiveFormsModule,
