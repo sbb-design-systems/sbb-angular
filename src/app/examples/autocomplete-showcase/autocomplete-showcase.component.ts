@@ -10,7 +10,7 @@ export class AutocompleteShowcaseComponent {
 
   optionList: Array<ShowcaseOption> = [];
   staticOptions: Array<ShowcaseOption> = [
-    new ShowcaseOption('static test 1', 'test1')
+   // new ShowcaseOption('static test 1', 'test1')
   ];
   testValue = 'Te';
 

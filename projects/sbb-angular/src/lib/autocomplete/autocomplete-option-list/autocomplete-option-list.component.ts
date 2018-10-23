@@ -36,15 +36,8 @@ export class AutocompleteOptionListComponent implements AfterViewInit {
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
-  @ViewChild('panel') panel: ElementRef;
-
-  @ViewChild('panelStatic') panelStatic: ElementRef;
-
   @ViewChildren(AutocompleteOptionComponent)
   items: QueryList<AutocompleteOptionComponent>;
-
-  // @ContentChildren(AutocompleteOptionComponent)
-  // staticItems: QueryList<AutocompleteOptionComponent> = new QueryList<AutocompleteOptionComponent>();
 
   @Input()
   filter: string;
@@ -73,7 +66,6 @@ export class AutocompleteOptionListComponent implements AfterViewInit {
   readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
   keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
-  showPanel = false;
 
   /** Emits the `select` event. */
   emitSelectEvent(option: AutocompleteOptionSelectionChange): void {
@@ -86,32 +78,8 @@ export class AutocompleteOptionListComponent implements AfterViewInit {
     this.keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items)
       .withWrap()
       .withTypeAhead();
-    // Set the initial visibility state.
-    this.setVisibility();
+
   }
 
-  onKeydown(event) {
-    if (event.keyCode === ENTER) {
-      this.emitSelectEvent(new AutocompleteOptionSelectionChange(this.keyManager.activeItem, true));
-    } else {
-      this.keyManager.onKeydown(event);
-    }
-  }
 
-  /** Panel should hide itself when the option list is empty. */
-  setVisibility() {
-    this.showPanel = !!this.options.length;
-    this._changeDetectorRef.markForCheck();
-  }
-
-  /** Returns the panel's scrollTop. */
-  _getScrollTop(): number {
-    return this.panel ? this.panel.nativeElement.scrollTop : 0;
-  }
-
-  _setScrollTop(scrollTop: number): void {
-    if (this.panel) {
-      this.panel.nativeElement.scrollTop = scrollTop;
-    }
-  }
 }
