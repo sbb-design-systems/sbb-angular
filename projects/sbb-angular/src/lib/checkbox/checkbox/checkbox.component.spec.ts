@@ -10,10 +10,10 @@ import { CheckboxComponent } from './checkbox.component';
 
 @Component({
   selector: 'sbb-model-checkbox-test',
-  template: '<sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" name="test-check" inputValue="1">' +
+  template: '<sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" value="1">' +
             '</sbb-checkbox>' +
             '<label for="test-check-1">Test check 1</label>' +
-            '<sbb-checkbox [(ngModel)]="checkValue2" inputId="test-check-2" name="test-check" inputValue="2">' +
+            '<sbb-checkbox [(ngModel)]="checkValue2" inputId="test-check-2" value="2">' +
             '</sbb-checkbox>' +
             '<label for="test-check-2">Test check button 2</label>'
 })
@@ -46,6 +46,10 @@ describe('CheckboxComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a generated id if not provided', () => {
+    expect(component.inputId).toBe('sbb-checkbox-1');
   });
 });
 

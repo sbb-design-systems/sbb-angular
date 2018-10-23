@@ -4,11 +4,11 @@ import {
   ChangeDetectionStrategy,
   Input,
   HostBinding,
-  ElementRef,
-  ViewChild,
   ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+let counter = 0;
 
 @Component({
   selector: 'sbb-checkbox',
@@ -23,10 +23,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CheckboxComponent implements ControlValueAccessor {
 
-  @Input() inputId: string;
-  @Input() name: string;
-  @Input() formControlName: string;
-  @Input() inputValue: any;
+  @Input() inputId = `sbb-checkbox-${counter++}`;
+  @Input() value: any;
   @Input() required: boolean;
   @HostBinding('class.sbb-checkbox-checked') _checked = false;
   @HostBinding('class.sbb-checkbox-disabled') @Input() disabled: boolean;
