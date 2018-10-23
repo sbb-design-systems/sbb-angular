@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { TextareaModule, LinksModule, CheckboxModule } from 'sbb-angular';
@@ -17,6 +17,7 @@ import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     TextareaModule,
     LinksModule,
     CheckboxModule
