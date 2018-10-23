@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from '../examples/links-showcase/links-showcase.component';
+import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -351,9 +352,9 @@ export class ComponentUiService {
         'Radio Button',
         'radioButton',
         'Radio Button',
-        'Subtitel goes here ...',
+        null,
         true,
-        true,
+        false,
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
@@ -374,7 +375,8 @@ export class ComponentUiService {
         'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
+        RadioButtonShowcaseComponent
       ),
       new UiComponent(
         'Check Box',

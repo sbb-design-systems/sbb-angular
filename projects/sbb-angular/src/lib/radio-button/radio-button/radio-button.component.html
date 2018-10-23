@@ -1,0 +1,15 @@
+<input
+  type="radio"
+  [id]="inputId"
+  [name]="name"
+  [value]="value"
+  [required]="required"
+  [checked]="checked"
+  [attr.aria-checked]="checked"
+  [attr.aria-labelledby]="inputId"
+  [disabled]="disabled"
+  (click)="click($event)"/>
+
+<div class="radio-circle-container">
+  <div class="radio-circle-checked"></div>
+</div>

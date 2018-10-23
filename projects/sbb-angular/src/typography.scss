@@ -55,3 +55,7 @@ a {
 .clearfix {
 	@include clearfix;
 }
+
+sbb-radio-button {
+  @include radioButtonLabel;
+}
