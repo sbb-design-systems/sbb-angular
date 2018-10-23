@@ -149,33 +149,34 @@ export class AutocompleteComponent implements ControlValueAccessor {
     // in line with other browsers. By default, pressing escape on IE will cause it to revert
     // the input value to the one that it had on focus, however it won't dispatch any events
     // which means that the model value will be out of sync with the view.
-    // if (keyCode === ESCAPE) {
-    //   event.preventDefault();
-    // }
-    // console.log('scrollOptions activeOption', this.activeOption);
+    if (keyCode === ESCAPE) {
+      event.preventDefault();
+    }
+    console.log('scrollOptions activeOption', this.activeOption);
 
-    // if (this.activeOption && keyCode === ENTER && this.showOptions) {
-    //   this.activeOption._selectViaInteraction();
-    //   this._resetActiveItem();
-    //   event.preventDefault();
-    // } else if (this.optionsList) {
-    //   const prevActiveItem = this.optionsList.keyManager.activeItem;
-    //   const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-    //   console.log('scrollOptions prevActiveItem', prevActiveItem);
+    if (this.activeOption && keyCode === ENTER && this.showOptions) {
+      this.activeOption._selectViaInteraction();
+      this._resetActiveItem();
+      event.preventDefault();
+    } else if (this.optionsList) {
+      this.isFocused = true;
+      const prevActiveItem = this.optionsList.keyManager.activeItem;
+      const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
+      console.log('scrollOptions prevActiveItem', prevActiveItem);
 
-    //   if (this.showOptions || keyCode === TAB) {
-    //     this.optionsList.keyManager.onKeydown($event);
-    //   } else if (isArrowKey) {
-    //     console.log('isArrowKey', isArrowKey);
+      if (this.showOptions || keyCode === TAB) {
+        this.optionsList.keyManager.onKeydown($event);
+      } else if (isArrowKey) {
+        console.log('isArrowKey', isArrowKey);
 
-    //     this.setVisibility();
-    //   }
+        this.setVisibility();
+      }
 
-    //   if (isArrowKey || this.optionsList.keyManager.activeItem !== prevActiveItem) {
-    //     this._scrollToOption();
-    //   }
-    // }
+      if (isArrowKey || this.optionsList.keyManager.activeItem !== prevActiveItem) {
+        this._scrollToOption();
+      }
+    }
 
-    this.optionsList.onKeydown($event);
+    // this.optionsList.onKeydown($event);
   }
 }
