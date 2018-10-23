@@ -162,21 +162,21 @@ export class AutocompleteComponent implements ControlValueAccessor {
       this.isFocused = true;
       const prevActiveItem = this.optionsList.keyManager.activeItem;
       const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-      console.log('scrollOptions prevActiveItem', prevActiveItem);
-
-      if (this.showOptions || keyCode === TAB) {
+      if (this.showOptions) {
         this.optionsList.keyManager.onKeydown($event);
+        if (keyCode === TAB) {
+          this.writeValue(this.optionsList.keyManager.activeItem.item);
+          this.filter = this.optionsList.keyManager.activeItem.item.getLabel();
+          this.isFocused = false;
+        }
       } else if (isArrowKey) {
-        console.log('isArrowKey', isArrowKey);
-
         this.setVisibility();
       }
 
       if (isArrowKey || this.optionsList.keyManager.activeItem !== prevActiveItem) {
+        console.log('Scroll what?');
         this._scrollToOption();
       }
     }
-
-    // this.optionsList.onKeydown($event);
   }
 }

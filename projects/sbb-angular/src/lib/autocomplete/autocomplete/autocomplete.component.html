@@ -1,2 +1,2 @@
-<input type="text" [value]="filter" (input)="onInput($event)" (keyup)="scrollOptions($event)">
+<input type="text" [value]="filter" (input)="onInput($event)" (keydown)="scrollOptions($event)" (keydown.Tab)="scrollOptions($event)" >
 <sbb-autocomplete-option-list #optionsList [options]="options" [filter]="filter" [staticOptions]="staticOptions" (optionSelected)="onOptionSelected($event)" [hidden]="!showOptions"></sbb-autocomplete-option-list>
