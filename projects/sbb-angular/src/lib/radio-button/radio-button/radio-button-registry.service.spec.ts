@@ -1,12 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
-import { RadioButtonComponent } from './radio-button.component';
-
 
 describe('RadioButtonRegistryService', () => {
 
-  let service: RadioButtonRegistryService<RadioButtonComponent>;
+  let service: RadioButtonRegistryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

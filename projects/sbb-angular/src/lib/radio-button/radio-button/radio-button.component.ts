@@ -11,15 +11,9 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
+import { RadioButton } from './radio-button.model';
 
 let counter = 0;
-
-export abstract class RadioButton {
-  @Input() name: string;
-  @Input() value: any;
-
-  abstract uncheck();
-}
 
 @Component({
   selector: 'sbb-radio-button[value]',
@@ -59,7 +53,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
-  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService<RadioButtonComponent>) {
+  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
     super();
   }
 
