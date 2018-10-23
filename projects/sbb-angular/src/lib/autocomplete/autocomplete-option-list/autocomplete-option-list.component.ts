@@ -3,13 +3,9 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
-  AfterContentInit,
   ChangeDetectorRef,
   Input,
   QueryList,
-  ContentChildren,
-  ViewChild,
-  ElementRef,
   ViewChildren,
   AfterViewInit
 } from '@angular/core';
@@ -17,7 +13,6 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { AutocompleteOptionComponent, AutocompleteOptionSelectionChange } from '../autocomplete-option/autocomplete-option.component';
-import { ENTER } from '@angular/cdk/keycodes';
 
 export class SbbAutocompleteSelectedEvent {
   constructor(
@@ -30,7 +25,8 @@ export class SbbAutocompleteSelectedEvent {
 @Component({
   selector: 'sbb-autocomplete-option-list',
   templateUrl: './autocomplete-option-list.component.html',
-  styleUrls: ['./autocomplete-option-list.component.scss']
+  styleUrls: ['./autocomplete-option-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteOptionListComponent implements AfterViewInit {
 
@@ -78,8 +74,6 @@ export class AutocompleteOptionListComponent implements AfterViewInit {
     this.keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.items)
       .withWrap()
       .withTypeAhead();
-
   }
-
 
 }

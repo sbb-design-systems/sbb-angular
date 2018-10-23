@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit, ViewChild, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ChangeDetectionStrategy, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 
@@ -6,7 +6,7 @@ import {
   AutocompleteOptionListComponent,
   SbbAutocompleteSelectedEvent
 } from '../autocomplete-option-list/autocomplete-option-list.component';
-import { AutocompleteOptionComponent } from '..';
+import { AutocompleteOptionComponent, Option } from '..';
 
 @Component({
   selector: 'sbb-autocomplete',
@@ -45,8 +45,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
   isFocused = false;
   get showOptions() { return this.isFocused && !!this.options.length; }
 
-
-  /** The currently active option, coerced to MatOption type. */
   get activeOption(): AutocompleteOptionComponent | null {
     if (this.optionsList && this.optionsList.keyManager) {
       return this.optionsList.keyManager.activeItem;
@@ -57,9 +55,11 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   propagateChange: any = () => { };
 
-  writeValue(newValue: any): void {
+  writeValue(newValue: Option): void {
+    console.log('writeValue', newValue);
     if (newValue) {
       this.value = newValue;
+      this.filter = newValue.getLabel();
       this.propagateChange(newValue);
     }
   }
@@ -94,14 +94,29 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   onOptionSelected(selectedOption: SbbAutocompleteSelectedEvent) {
-    this.filter = selectedOption.option.item.getLabel();
-    this.writeValue(selectedOption.option);
+    this.writeValue(selectedOption.option.item);
     this.isFocused = false;
+  }
+
+  tabSelection($event) {
+    const keyCode = $event.keyCode;
+    console.log('tabSelection', keyCode);
+    if (!!this.optionsList.keyManager.activeItem) {
+
+      this.writeValue(this.optionsList.keyManager.activeItem.item);
+    }
+    this.isFocused = false;
+
+
   }
 
   scrollOptions($event) {
     const keyCode = $event.keyCode;
     console.log('scrollOptions keycode', keyCode);
+
+    if (keyCode === 8) {
+      return;
+    }
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
     // in line with other browsers. By default, pressing escape on IE will cause it to revert
     // the input value to the one that it had on focus, however it won't dispatch any events
@@ -120,11 +135,8 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
       if (this.showOptions) {
         this.optionsList.keyManager.onKeydown($event);
-        this.filter = this.optionsList.keyManager.activeItem.item.getLabel();
-        if (keyCode === TAB) {
-          this.writeValue(this.optionsList.keyManager.activeItem.item);
-          //  this.filter = this.optionsList.keyManager.activeItem.item.getLabel();
-          this.isFocused = false;
+        if (!this.optionsList.keyManager.activeItem) {
+          this.optionsList.keyManager.setPreviousItemActive();
         }
       } else if (isArrowKey) {
         this.setVisibility();

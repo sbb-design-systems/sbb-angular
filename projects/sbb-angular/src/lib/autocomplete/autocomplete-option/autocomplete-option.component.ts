@@ -13,7 +13,8 @@ export class AutocompleteOptionSelectionChange {
 @Component({
   selector: 'sbb-autocomplete-option',
   templateUrl: './autocomplete-option.component.html',
-  styleUrls: ['./autocomplete-option.component.scss']
+  styleUrls: ['./autocomplete-option.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteOptionComponent implements Highlightable {
 

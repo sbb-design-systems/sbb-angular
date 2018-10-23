@@ -6,6 +6,7 @@
       <fieldset>
         <sbb-autocomplete [(ngModel)]="testValue" [options]="optionList" [staticOptions]="staticOptions"></sbb-autocomplete>
       </fieldset>
+      <pre>{{ testValue | json }}</pre>
     </div>
   </div>
 </div>
