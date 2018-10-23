@@ -4,7 +4,7 @@
     <div class="col-lg-6">
       <legend>Example</legend>
       <fieldset>
-        <sbb-radio-button inputId="single-radio" name="single-radio" inputValue="single-radio"
+        <sbb-radio-button inputId="single-radio" name="single-radio" value="single-radio"
           [disabled]="disabled" [required]="required" [checked]="checked"></sbb-radio-button>
         <label for="single-radio">Test label</label>
       </fieldset>
@@ -36,7 +36,7 @@
       <legend>Example</legend>
       <fieldset>
         <ng-container *ngFor="let option of radioOptions; index as i">
-          <sbb-radio-button [(ngModel)]="modelValue" inputId="model-radio-{{i}}" name="model-radio" [inputValue]="option.value"></sbb-radio-button>
+          <sbb-radio-button [(ngModel)]="modelValue" inputId="model-radio-{{i}}" name="model-radio" [value]="option.value"></sbb-radio-button>
           <label for="model-radio-{{i}}">{{option.name}}</label>
         </ng-container>
       </fieldset>

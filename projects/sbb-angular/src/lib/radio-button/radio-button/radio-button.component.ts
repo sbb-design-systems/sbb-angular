@@ -12,8 +12,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 
+let counter = 0;
+
+export abstract class RadioButton {
+  @Input() name: string;
+  @Input() value: any;
+
+  abstract uncheck();
+}
+
 @Component({
-  selector: 'sbb-radio-button[inputValue]',
+  selector: 'sbb-radio-button[value]',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
   providers: [ {
@@ -23,13 +32,12 @@ import { RadioButtonRegistryService } from './radio-button-registry.service';
   } ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class RadioButtonComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
 
-  @Input() inputId: string;
-  @Input() name: string;
+  @Input() inputId = `sbb-radio-button-${counter++}`;
   @Input() formControlName: string;
-  @Input() inputValue: any;
   @Input() required: boolean;
+
   @HostBinding('class.sbb-radio-checked') _checked = false;
   @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
 
@@ -51,7 +59,9 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
-  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {}
+  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService<RadioButtonComponent>) {
+    super();
+  }
 
   ngOnInit(): void {
     this.checkName();
@@ -63,7 +73,7 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
   }
 
   writeValue(value: any): void {
-    this.checked = this.inputValue === value;
+    this.checked = this.value === value;
   }
 
   registerOnChange(fn: any): void {
@@ -85,8 +95,8 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
     this.disabled = disabled;
   }
 
-  uncheck(value: string) {
-    this.writeValue(value);
+  uncheck() {
+    this.checked = false;
   }
 
   private checkName(): void {

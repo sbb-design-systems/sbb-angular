@@ -9,10 +9,10 @@ import { RadioButtonRegistryService } from './radio-button-registry.service';
 
 @Component({
   selector: 'sbb-model-radio-button-test',
-  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" inputValue="1">' +
+  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">' +
             '</sbb-radio-button>' +
             '<label for="test-radio-1">Test radio button 1</label>' +
-            '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" inputValue="2">' +
+            '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">' +
             '</sbb-radio-button>' +
             '<label for="test-radio-2">Test radio button 2</label>'
 })
@@ -45,6 +45,10 @@ describe('RadioButtonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a generated id if not provided', () => {
+    expect(component.inputId).toBe('sbb-radio-button-1');
   });
 });
 
@@ -130,6 +134,6 @@ describe('RadioButtonComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
     expect(components[1].componentInstance._checked).toBe(true);
-    expect(modelComponent.testValue).toBe(components[1].componentInstance.inputValue);
+    expect(modelComponent.testValue).toBe(components[1].componentInstance.value);
   });
 });

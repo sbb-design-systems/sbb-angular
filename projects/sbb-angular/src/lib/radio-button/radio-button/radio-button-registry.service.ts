@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { RadioButtonComponent } from './radio-button.component';
+import { RadioButton } from './radio-button.component';
 
 @Injectable()
-export class RadioButtonRegistryService {
+export class RadioButtonRegistryService<T extends RadioButton> {
 
   private _accessors = {};
 
@@ -10,25 +10,25 @@ export class RadioButtonRegistryService {
     return this._accessors;
   }
 
-  add(accessor: RadioButtonComponent) {
+  add(accessor: T) {
     if(!this._accessors[accessor.name]) {
       this._accessors[accessor.name] = [];
     }
     this._accessors[accessor.name].push(accessor);
   }
 
-  remove(accessor: RadioButtonComponent) {
+  remove(accessor: T) {
     if(this._accessors[accessor.name]) {
       this._accessors[accessor.name] = this._accessors[accessor.name].filter((obj) => {
-        return obj.inputId !== accessor.inputId;
+        return obj !== accessor;
     });
     }
   }
 
-  select(accessor: RadioButtonComponent) {
-    this._accessors[accessor.name].forEach((c) => {
+  select(accessor: T) {
+    this._accessors[accessor.name].forEach((c: T) => {
       if (c !== accessor) {
-        c.uncheck(accessor.inputValue);
+        c.uncheck();
       }
     });
   }
