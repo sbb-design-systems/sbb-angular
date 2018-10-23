@@ -1,13 +1,14 @@
 <div class="container-fluid">
+  <h3>Textarea</h3>
   <div class="row">
     <div class="col-lg-6">
+      <legend>Example</legend>
       <fieldset>
         <sbb-textarea *ngIf="isVisible" [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"
           [required]="required" [readonly]="readonly" [disabled]="disabled"></sbb-textarea>
       </fieldset>
       <h6>Model:</h6>
       <pre>{{ textArea1 | json }}</pre>
-
     </div>
     <div class="col-lg-6">
       <legend>Properties</legend>

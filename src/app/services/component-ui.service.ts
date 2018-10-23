@@ -236,7 +236,7 @@ export class ComponentUiService {
         'Text Area',
         'Subtitel goes here ...',
         true,
-        true,
+        false,
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
