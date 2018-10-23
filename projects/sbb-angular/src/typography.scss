@@ -56,6 +56,10 @@ a {
 	@include clearfix;
 }
 
+sbb-radio-button {
+  @include radioButtonLabel;
+}
+
 sbb-checkbox {
   @include checkboxLabel;
 }

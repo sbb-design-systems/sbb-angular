@@ -24,6 +24,7 @@ import { ComponentViewerDirective } from './directives/component-viewer.directiv
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
+import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
 
 
@@ -53,6 +54,7 @@ import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox
   entryComponents: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
+    RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent
   ]
 })
