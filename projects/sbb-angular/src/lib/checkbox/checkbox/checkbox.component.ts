@@ -6,7 +6,7 @@ import {
   HostBinding,
   ElementRef,
   ViewChild,
-  Renderer2
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -35,14 +35,14 @@ export class CheckboxComponent implements ControlValueAccessor {
   set checked(value: any) {
     this._checked = value;
 
-    // I don't like Renderer2 :( See here: https://github.com/angular/angular/issues/14988
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this._checked);
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'aria-checked', this._checked);
+    this.changeDetector.markForCheck();
   }
 
-  @ViewChild('inputCheck') inputRadio: ElementRef<HTMLElement>;
+  get checked(): any {
+    return this._checked;
+  }
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   onChange = (_: any) => {};
   onTouched = () => {};
@@ -61,7 +61,7 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.writeValue(value);
   }
 
-  setDisabledState?(disabled: boolean): void {
+  setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
   }
 
