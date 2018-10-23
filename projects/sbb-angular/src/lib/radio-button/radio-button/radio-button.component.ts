@@ -6,9 +6,9 @@ import {
   HostBinding,
   ViewChild,
   ElementRef,
-  Renderer2,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -35,25 +35,25 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit, OnDes
   @HostBinding('class.sbb-radio-checked') _checked = false;
   @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
 
-  @ViewChild('inputRadio') inputRadio: ElementRef<HTMLElement>;
-
   @Input()
   set checked(value: boolean) {
     this._checked = value;
 
-    // I don't like Renderer2 :( See here: https://github.com/angular/angular/issues/14988
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'checked', this._checked);
-    this.renderer.setProperty(this.inputRadio.nativeElement, 'aria-checked', this._checked);
-
     if(this._checked) {
       this.registry.select(this);
     }
+
+    this.changeDetector.markForCheck();
+  }
+
+  get checked(): boolean {
+    return this._checked;
   }
 
   onChange = (obj: any) => { };
   onTouched = (_: any) => { };
 
-  constructor(private renderer: Renderer2, private registry: RadioButtonRegistryService) {}
+  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {}
 
   ngOnInit(): void {
     this.checkName();
