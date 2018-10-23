@@ -1,63 +1,37 @@
-<form [formGroup]="buttonForm">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <article>
-                    <h3>Example</h3>
-                    <div *ngIf="showButton">
-                        <button sbbButton [mode]="buttonMode" [icon]="buttonIcon">Bezeichnung</button>
+<div class="container-fluid pb-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <article>
+                <h3 class="mb-2">Example</h3>
+                <div *ngIf="showButton">
+                    <button sbbButton [mode]="buttonMode" [icon]="buttonIcon" [disabled]="buttonDisabled">Bezeichnung</button>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-6">
+            <article [formGroup]="buttonForm">
+                <h3 class="mb-2">Properties</h3>
+                <div>
+                    <div class="form-group">
+                        <label for="buttonMode">Mode</label>
+                        <select formControlName="mode" class="form-control" id="buttonMode">
+                            <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+                        </select>
                     </div>
-                </article>
-            </div>
-            <div class="col-lg-6">
-                <article>
-                    <h3>Properties</h3>
-                    <div>
-                        <div class="form-group">
-                            <label for="buttonMode">Mode</label>
-                            <select formControlName="mode" class="form-control" id="buttonMode">
-                                <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="buttonIcon">Icon</label>
-                            <select formControlName="icon" class="form-control" id="buttonIcon">
-                                <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon.name }}</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="buttonIcon">Icon</label>
+                        <select formControlName="icon" class="form-control" id="buttonIcon">
+                            <option [ngValue]="null">No Icon</option>
+                            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon.name }}</option>
+                        </select>
+                        <small class="font-italic">* All icons allowed, in this example are loaded only three as sample icons</small>
                     </div>
-                </article>
-            </div>
+                    <div class="form-check">
+                        <input formControlName="disabled" type="checkbox" class="form-check-input" id="buttonDisabled">
+                        <label for="buttonDisabled" class="form-check-label">Disabled button</label>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
-</form>
-
-
-
-
-
-
-
-
-<!-- <button sbbButton mode="primary" [icon]="icoArrowDown">Test primary ico-arrow</button><br /><br />
-<button sbbButton mode="secondary" [icon]="icoArrowDown">Test secondary ico-arrow</button><br /><br />
-<button sbbButton mode="ghost" [icon]="icoArrowDown">Test primary ico-arrow</button><br /><br />
-<button sbbButton mode="frameless" [icon]="icoArrowDown">Test secondary ico-arrow</button><br /><br />
-<br />
-<button sbbButton mode="primary" [icon]="icoPlus">Test primary ico-plus</button><br /><br />
-<button sbbButton mode="secondary" [icon]="icoPlus">Test secondary ico-plus</button><br /><br />
-<button sbbButton mode="ghost" [icon]="icoPlus">Test ghost ico-plus</button><br /><br />
-<button sbbButton mode="frameless" [icon]="icoPlus">Test frameless ico-plus</button><br /><br />
-<br />
-<button sbbButton mode="primary">Test primary no-icon</button><br /><br />
-<button sbbButton mode="secondary">Test secondary no-icon</button><br /><br />
-<button sbbButton mode="ghost">Test ghost no-icon</button><br /><br />
-<button sbbButton mode="frameless">Test frameless no-icon</button><br /><br />
-
-<h3>DISABLED</h3>
-<br />
-<button sbbButton mode="primary" [icon]="icoPlus" disabled>Test primary ico-plus</button><br /><br />
-<button sbbButton mode="secondary" [icon]="icoPlus" disabled>Test secondary ico-plus</button><br /><br />
-<br />
-<button sbbButton mode="primary" disabled>Test primary no-icon</button><br /><br />
-<button sbbButton mode="secondary" disabled>Test secondary no-icon</button><br /><br /> -->
+</div>
