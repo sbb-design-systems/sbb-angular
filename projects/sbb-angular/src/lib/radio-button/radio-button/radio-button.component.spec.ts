@@ -99,12 +99,12 @@ describe('RadioButtonComponent using mock component', () => {
 
   it('should be mutual exclusive', () => {
     const radioButtons = modelComponentFixture.debugElement.queryAll(By.directive(RadioButtonComponent));
-    radioButtons[0].componentInstance.inputRadio.nativeElement.click();
+    radioButtons[0].query(By.css('input[type="radio"]')).nativeElement.click();
 
     let radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
     expect(radioButtonChecked.length).toBe(1);
 
-    radioButtons[1].componentInstance.inputRadio.nativeElement.click();
+    radioButtons[1].query(By.css('input[type="radio"]')).nativeElement.click();
 
     radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
     expect(radioButtonChecked.length).toBe(1);
