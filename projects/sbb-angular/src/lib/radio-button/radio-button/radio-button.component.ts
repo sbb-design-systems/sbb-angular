@@ -4,8 +4,6 @@ import {
   ChangeDetectionStrategy,
   forwardRef,
   HostBinding,
-  ViewChild,
-  ElementRef,
   OnInit,
   OnDestroy,
   ChangeDetectorRef
