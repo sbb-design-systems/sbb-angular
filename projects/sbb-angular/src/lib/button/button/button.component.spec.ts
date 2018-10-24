@@ -17,9 +17,7 @@ export class ButtonTestComponent {
   mode: string;
   disabled: boolean;
 
-  testClick() {
-    console.log('clicked');
-  }
+  testClick() { }
 }
 
 describe('ButtonComponent', () => {
@@ -33,10 +31,7 @@ describe('ButtonComponent', () => {
       ],
       declarations: [ButtonComponent, ButtonTestComponent, ButtonIconDirective]
     })
-      .overrideComponent(ButtonComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -59,7 +54,7 @@ describe('ButtonComponent', () => {
     expect(icons.length).toBe(2);
   });
 
-  describe('Primary Buttons', () => {
+  describe('Primary Button', () => {
     let sbbButton: DebugElement;
     let sbbButtonStyle: CSSStyleDeclaration;
     let sbbButtonIcon: DebugElement;
@@ -91,7 +86,7 @@ describe('ButtonComponent', () => {
 
   });
 
-  describe('Secondary Buttons', () => {
+  describe('Secondary Button', () => {
     let sbbButton: DebugElement;
     let sbbButtonStyle: CSSStyleDeclaration;
     let sbbButtonIcon: DebugElement;
@@ -123,7 +118,7 @@ describe('ButtonComponent', () => {
 
   });
 
-  describe('Ghost Buttons', () => {
+  describe('Ghost Button', () => {
     let sbbButton: DebugElement;
     let sbbButtonStyle: CSSStyleDeclaration;
 
@@ -150,7 +145,7 @@ describe('ButtonComponent', () => {
 
   });
 
-  describe('Frameless Buttons', () => {
+  describe('Frameless Button', () => {
     let sbbButton: DebugElement;
     let sbbButtonStyle: CSSStyleDeclaration;
     let sbbButtonIcon: DebugElement;
@@ -186,16 +181,16 @@ describe('ButtonComponent', () => {
 
     it('should not have borders', () => {
       expect(
-        sbbButtonStyle.getPropertyValue('border-top-width') &&
-        sbbButtonStyle.getPropertyValue('border-right-width') &&
-        sbbButtonStyle.getPropertyValue('border-bottom-width') &&
-        sbbButtonStyle.getPropertyValue('border-left-width')
+           sbbButtonStyle.getPropertyValue('border-top-width')
+        && sbbButtonStyle.getPropertyValue('border-right-width')
+        && sbbButtonStyle.getPropertyValue('border-bottom-width')
+        && sbbButtonStyle.getPropertyValue('border-left-width')
       ).toBe('0px');
     });
 
   });
 
-  describe('Disabled Buttons', () => {
+  describe('Disabled Button', () => {
     let sbbButton: DebugElement;
     let sbbButtonStyle: CSSStyleDeclaration;
     let sbbButtonIconWrapper: DebugElement;
@@ -227,7 +222,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should have a line-through text decoration', () => {
-      expect(sbbButtonStyle.getPropertyValue('text-decoration')).toBe('line-through');
+      expect(sbbButtonStyle.getPropertyValue('text-decoration')).toContain('line-through');
     });
 
     it('should not the icons be diplayed', () => {

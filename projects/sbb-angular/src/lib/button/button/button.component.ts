@@ -19,8 +19,6 @@ export class ButtonComponent implements OnInit {
 
   @HostBinding('class') buttonModeClass: string;
 
-  constructor() { }
-
   ngOnInit() {
     const hasIconClass = this.icon ? 'sbb-button--has-icon': '';
     this.buttonModeClass = `sbb-button--${this.mode} ${hasIconClass}`;
