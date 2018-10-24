@@ -17,11 +17,13 @@ export class ButtonComponent implements OnInit {
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
   @Input() icon: Type<{}>;
 
+  // tslint:disable-next-line:no-input-rename
+  @Input('class') cssClassList = '';
   @HostBinding('class') buttonModeClass: string;
 
   ngOnInit() {
     const hasIconClass = this.icon ? 'sbb-button--has-icon': '';
-    this.buttonModeClass = `sbb-button--${this.mode} ${hasIconClass}`;
+    this.buttonModeClass = this.cssClassList + ` sbb-button--${this.mode} ${hasIconClass}`;
   }
 
 }
