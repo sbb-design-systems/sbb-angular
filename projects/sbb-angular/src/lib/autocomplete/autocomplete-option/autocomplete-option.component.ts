@@ -36,17 +36,17 @@ export class AutocompleteOptionComponent implements Highlightable {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() readonly onSelectionChange = new EventEmitter<AutocompleteOptionSelectionChange>();
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   setActiveStyles(): void {
     this._selected = true;
-    this._changeDetectorRef.markForCheck();
+    this.changeDetectorRef.markForCheck();
     console.log(this.item, this._selected);
   }
 
   setInactiveStyles(): void {
     this._selected = false;
-    this._changeDetectorRef.markForCheck();
+    this.changeDetectorRef.markForCheck();
     console.log(this.item, this._selected);
   }
 
@@ -55,24 +55,24 @@ export class AutocompleteOptionComponent implements Highlightable {
   }
 
   selectOption($event) {
-    this._emitSelectionChangeEvent(true);
+    this.emitSelectionChangeEvent(true);
   }
 
   /** Emits the selection change event. */
-  private _emitSelectionChangeEvent(isUserInput = false): void {
+  private emitSelectionChangeEvent(isUserInput = false): void {
     this.onSelectionChange.emit(new AutocompleteOptionSelectionChange(this, isUserInput));
   }
 
 
   /**
- * `Selects the option while indicating the selection came from the user. Used to
- * determine if the select's view -> model callback should be invoked.`
- */
-  _selectViaInteraction(): void {
+   * `Selects the option while indicating the selection came from the user. Used to
+   * determine if the select's view -> model callback should be invoked.`
+   */
+  selectViaInteraction(): void {
     if (!this._disabled) {
       this._selected = !this._selected;
-      this._changeDetectorRef.markForCheck();
-      this._emitSelectionChangeEvent(true);
+      this.changeDetectorRef.markForCheck();
+      this.emitSelectionChangeEvent(true);
     }
   }
 

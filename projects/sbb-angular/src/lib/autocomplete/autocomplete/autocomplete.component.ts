@@ -35,6 +35,9 @@ export class AutocompleteComponent implements ControlValueAccessor {
   minDigitsTrigger = 3;
 
   @Input()
+  maxOptionsLimit = 10;
+
+  @Input()
   staticOptions?: Array<any>;
 
   @Input()
@@ -60,7 +63,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
   propagateChange: any = () => { };
 
   writeValue(newValue: Option): void {
-    console.log('writeValue', newValue);
     if (newValue) {
       this.value = newValue;
       this.label = newValue.getLabel();
@@ -86,7 +88,6 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   onInput($event) {
     this.textContent = $event.target.value;
-    console.log('input', $event.target.value);
     this.setVisibility();
     this.inputedText.emit(this.textContent);
   }
@@ -106,9 +107,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   tabSelection($event) {
     const keyCode = $event.keyCode;
-    console.log('tabSelection', keyCode);
     if (!!this.optionsList.keyManager.activeItem) {
-
       this.writeValue(this.optionsList.keyManager.activeItem.item);
     }
     this.isFocused = false;
@@ -116,10 +115,9 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   scrollOptions($event) {
     const keyCode = $event.keyCode;
-    console.log('scrollOptions keycode', keyCode);
 
     if (this.activeOption && keyCode === ENTER && this.showOptions) {
-      this.activeOption._selectViaInteraction();
+      this.activeOption.selectViaInteraction();
       this.resetActiveItem();
       this.changeDetectorRef.markForCheck();
       event.preventDefault();
