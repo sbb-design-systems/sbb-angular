@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <h3>Single Checkbox</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Example</legend>
+      <fieldset>
+        <sbb-checkbox inputId="single-checkbox" value="single-checkbox"
+          [disabled]="disabled" [required]="required" [checked]="checked"></sbb-checkbox>
+        <label for="single-checkbox">Test label</label>
+      </fieldset>
+    </div>
+    <div class="col-lg-6">
+      <legend>Properties</legend>
+      <fieldset>
+        <div>
+          <div class="form-check">
+            <input id="checkedCheck" class="form-check-input" type="checkbox" [(ngModel)]="checked">
+            <label class="form-check-label" for="checkedCheck">Checked</label>
+          </div>
+          <div class="form-check">
+            <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="required">
+            <label class="form-check-label" for="requiredCheck">Required</label>
+          </div>
+          <div class="form-check">
+            <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
+            <label class="form-check-label" for="disabled">Disabled</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <h3>Checkboxes Group</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Example</legend>
+      <fieldset>
+        <ng-container *ngFor="let option of checkboxOptions; index as i">
+          <sbb-checkbox [(ngModel)]="option.selected" inputId="model-checkbox-{{i}}" [value]="option.value"></sbb-checkbox>
+          <label for="model-checkbox-{{i}}">{{option.name}}</label>
+        </ng-container>
+      </fieldset>
+    </div>
+    <div class="col-lg-6">
+      <legend>Model</legend>
+      <fieldset>
+        <div>
+          <div class="form-group">
+            <pre>{{ checkboxOptions | json }}</pre>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

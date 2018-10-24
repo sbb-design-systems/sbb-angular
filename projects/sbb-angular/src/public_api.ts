@@ -5,4 +5,5 @@ export * from './lib/svg-icons-components/index';
 export * from './lib/textarea/index';
 export * from './lib/links/index';
 export * from './lib/button/index';
-
+export * from './lib/radio-button/index';
+export * from './lib/checkbox/index';

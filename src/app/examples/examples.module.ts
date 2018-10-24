@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { TextareaModule, LinksModule, ButtonModule } from 'sbb-angular';
 
+import { TextareaModule, LinksModule, RadioButtonModule, CheckboxModule, ButtonModule } from 'sbb-angular';
+import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
-import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
+import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
+import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase.component';
 
 @NgModule({
   declarations: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
-    ButtonShowcaseComponent
+    ButtonShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent
   ],
   imports: [
     CommonModule,
@@ -19,13 +23,17 @@ import { ButtonShowcaseComponent } from './button-showcase/button-showcase.compo
     ReactiveFormsModule,
     TextareaModule,
     LinksModule,
-    ButtonModule
+    ButtonModule,
+    RadioButtonModule,
+    CheckboxModule
   ],
   providers: [],
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
-    ButtonShowcaseComponent
+    ButtonShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent
   ]
 })
 export class ExamplesModule { }
