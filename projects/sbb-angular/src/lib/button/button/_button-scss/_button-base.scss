@@ -24,7 +24,7 @@
 	display: inline-block;
 	text-align: center;
 	font-size: pxToRem($fontSize);
-	line-height: 1;
+	line-height: 1.4;
 	border: none;
 	border-radius: toEm(2/$fontSize);
 	color: $buttonDefaultColor;
