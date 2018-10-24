@@ -6,7 +6,6 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { AutocompleteOptionComponent } from './autocomplete-option/autocomplete-option.component';
 import { AutocompleteOptionListComponent } from './autocomplete-option-list/autocomplete-option-list.component';
-import { FilterPipe } from './autocomplete-option-list/autocomplete-filter.pipe';
 import { HighlightPipe } from './autocomplete-option/highlight.pipe';
 
 @NgModule({
@@ -14,7 +13,7 @@ import { HighlightPipe } from './autocomplete-option/highlight.pipe';
     CommonModule,
     A11yModule
   ],
-  declarations: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent, FilterPipe, HighlightPipe],
-  exports: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent, FilterPipe]
+  declarations: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent, HighlightPipe],
+  exports: [AutocompleteComponent, AutocompleteOptionComponent, AutocompleteOptionListComponent]
 })
 export class AutocompleteModule { }

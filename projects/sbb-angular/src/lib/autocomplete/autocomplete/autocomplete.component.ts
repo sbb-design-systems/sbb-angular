@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, ViewChild, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 
@@ -23,7 +23,8 @@ import { AutocompleteOptionComponent, Option } from '..';
 })
 export class AutocompleteComponent implements ControlValueAccessor {
 
-  filter: string;
+  label: string;
+  textContent: string;
   value: any;
   disabled: boolean;
 
@@ -43,6 +44,9 @@ export class AutocompleteComponent implements ControlValueAccessor {
   inputedText: EventEmitter<string> = new EventEmitter<string>();
 
   isFocused = false;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+
   get showOptions() { return this.isFocused && !!this.options.length; }
 
   get activeOption(): AutocompleteOptionComponent | null {
@@ -59,7 +63,8 @@ export class AutocompleteComponent implements ControlValueAccessor {
     console.log('writeValue', newValue);
     if (newValue) {
       this.value = newValue;
-      this.filter = newValue.getLabel();
+      this.label = newValue.getLabel();
+      this.textContent = newValue.getLabel();
       this.propagateChange(newValue);
     }
   }
@@ -75,14 +80,15 @@ export class AutocompleteComponent implements ControlValueAccessor {
   }
 
   setVisibility() {
-    this.isFocused = (this.filter.length >= this.minDigitsTrigger) || (this.staticOptions && !!this.staticOptions.length);
+    this.isFocused = (this.textContent.length >= this.minDigitsTrigger) || (this.staticOptions && !!this.staticOptions.length);
+    this.changeDetectorRef.markForCheck();
   }
 
   onInput($event) {
-    this.filter = $event.target.value;
+    this.textContent = $event.target.value;
     console.log('input', $event.target.value);
     this.setVisibility();
-    this.inputedText.emit(this.filter);
+    this.inputedText.emit(this.textContent);
   }
 
   /**
@@ -106,40 +112,24 @@ export class AutocompleteComponent implements ControlValueAccessor {
       this.writeValue(this.optionsList.keyManager.activeItem.item);
     }
     this.isFocused = false;
-
-
   }
 
   scrollOptions($event) {
     const keyCode = $event.keyCode;
     console.log('scrollOptions keycode', keyCode);
 
-    if (keyCode === 8) {
-      return;
-    }
-    // Prevent the default action on all escape key presses. This is here primarily to bring IE
-    // in line with other browsers. By default, pressing escape on IE will cause it to revert
-    // the input value to the one that it had on focus, however it won't dispatch any events
-    // which means that the model value will be out of sync with the view.
-    if (keyCode === ESCAPE) {
-      event.preventDefault();
-    }
-
     if (this.activeOption && keyCode === ENTER && this.showOptions) {
       this.activeOption._selectViaInteraction();
       this.resetActiveItem();
+      this.changeDetectorRef.markForCheck();
       event.preventDefault();
     } else if (this.optionsList) {
-      this.isFocused = true;
       const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-
-      if (this.showOptions) {
-        this.optionsList.keyManager.onKeydown($event);
-        if (!this.optionsList.keyManager.activeItem) {
-          this.optionsList.keyManager.setPreviousItemActive();
-        }
-      } else if (isArrowKey) {
+      if (isArrowKey) {
         this.setVisibility();
+        if (this.showOptions) {
+          this.optionsList.keyManager.onKeydown($event);
+        }
       }
     }
   }

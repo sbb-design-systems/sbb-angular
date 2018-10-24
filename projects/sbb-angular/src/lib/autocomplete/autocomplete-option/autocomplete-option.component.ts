@@ -10,6 +10,9 @@ export class AutocompleteOptionSelectionChange {
     public isUserInput = false) { }
 }
 
+
+let OPTION_ID_COUNTER = 0;
+
 @Component({
   selector: 'sbb-autocomplete-option',
   templateUrl: './autocomplete-option.component.html',
@@ -19,12 +22,12 @@ export class AutocompleteOptionSelectionChange {
 export class AutocompleteOptionComponent implements Highlightable {
 
   private _selected = false;
-  private _active = false;
   private _disabled = false;
-  private _mostRecentViewValue = '';
 
   @Input() item: Option;
   @Input() filter: string;
+
+  id = `sbb-option-${OPTION_ID_COUNTER++}`;
 
   @HostBinding('class.selected') get selected() {
     return this._selected;
@@ -37,11 +40,13 @@ export class AutocompleteOptionComponent implements Highlightable {
 
   setActiveStyles(): void {
     this._selected = true;
+    this._changeDetectorRef.markForCheck();
     console.log(this.item, this._selected);
   }
 
   setInactiveStyles(): void {
     this._selected = false;
+    this._changeDetectorRef.markForCheck();
     console.log(this.item, this._selected);
   }
 

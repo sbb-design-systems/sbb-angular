@@ -55,18 +55,11 @@ export class AutocompleteOptionListComponent implements AfterViewInit {
   @Output() readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> =
     new EventEmitter<SbbAutocompleteSelectedEvent>();
 
-  @Output()
-  readonly opened: EventEmitter<void> = new EventEmitter<void>();
-
-  @Output()
-  readonly closed: EventEmitter<void> = new EventEmitter<void>();
-
   keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
 
   /** Emits the `select` event. */
   emitSelectEvent(option: AutocompleteOptionSelectionChange): void {
     const event = new SbbAutocompleteSelectedEvent(this, option.source);
-    // option.source.selected = true;
     this.optionSelected.emit(event);
   }
 
