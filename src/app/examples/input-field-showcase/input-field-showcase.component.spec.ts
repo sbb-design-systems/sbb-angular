@@ -67,7 +67,7 @@ describe('InputFieldShowcaseComponent', () => {
     expect(input).toBeNull();
   });
   */
-  
+
   it('should be readonly attribute', () => {
      component.readonly = true;
      // first round of change detection ...
