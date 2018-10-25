@@ -3,6 +3,8 @@ import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from '../examples/links-showcase/links-showcase.component';
 import { AutocompleteShowcaseComponent } from '../examples/autocomplete-showcase/autocomplete-showcase.component';
+import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
+import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -353,9 +355,9 @@ export class ComponentUiService {
         'Radio Button',
         'radioButton',
         'Radio Button',
-        'Subtitel goes here ...',
+        null,
         true,
-        true,
+        false,
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
@@ -376,7 +378,8 @@ export class ComponentUiService {
         'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
+        RadioButtonShowcaseComponent
       ),
       new UiComponent(
         'Check Box',
@@ -384,8 +387,8 @@ export class ComponentUiService {
         'Check Box',
         'Subtitel goes here ...',
         true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
+        false,
+        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -405,7 +408,8 @@ export class ComponentUiService {
         'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
+        CheckboxShowcaseComponent
       ),
       new UiComponent(
         'Tab',

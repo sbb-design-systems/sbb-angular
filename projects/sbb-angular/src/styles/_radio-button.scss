@@ -1,0 +1,19 @@
+// Radio button mixins
+// ----------------------------------------------------------------------------------------------------
+
+@mixin radioButtonLabel {
+  & + label {
+    position: relative;
+    color: $colorGrey;
+    transition: color .3s cubic-bezier(.785,.135,.15,.86);
+  }
+
+  &.sbb-radio-checked + label {
+    color: $colorBlack;
+  }
+
+  &.sbb-radio-disabled + label {
+    color: $colorGrey;
+  }
+
+}
