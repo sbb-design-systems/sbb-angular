@@ -24,11 +24,11 @@
                   </ng-template>
                 </div>
                 <div class="form-group">
-                  <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputText1 | json }}</sbb-label>
+                  <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
+                  <sbb-label>Model:</sbb-label>
+                  <sbb-label>{{ inputText1 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <button type="button" (click)="reset1()" [disabled]="disabled">Reset</button>  
@@ -62,12 +62,12 @@
                   </ng-template>
                 </div>
                 <div class="form-group">
-                  <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputText2 | json }}</sbb-label>
-                </div>
-                <div class="form-group">
                   <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
                   <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
+                </div>
+                <div class="form-group">
+                  <sbb-label>Model:</sbb-label>
+                  <sbb-label>{{ inputText2 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <button type="button" (click)="reset2()" [disabled]="disabled">Reset</button>  
@@ -98,11 +98,11 @@
                          [(ngModel)]="inputText3">
                 </ng-template>
                 <div class="form-group">
-                  <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputText3 | json }}</sbb-label>
+                  <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
                 </div>
                 <div class="form-group">
-                  <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
+                  <sbb-label>Model:</sbb-label>
+                  <sbb-label>{{ inputText3 | json }}</sbb-label>
                 </div>
                 <div class="form-group">
                   <button type="button" (click)="reset3()" [disabled]="disabled">Reset</button> 

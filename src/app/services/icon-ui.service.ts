@@ -23,7 +23,26 @@ export class IconUiService {
       true,
       false,
       ['Davide Aresta', 'Stefan Meili'],
-      'Description goes here ...');
+      'Description goes here ...',
+      'Source goes here ...',
+      'Import text.',
+      'Getting started text.',
+      'Model binding text.',
+      'Icon text.',
+      'Auto resize text.',
+      'Properties text.',
+      'Events text.',
+      'Styling text.',
+      'Dependencies text.',
+      'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}');
   }
 
   getUiIconsBySearchValue(searchValue: any) {

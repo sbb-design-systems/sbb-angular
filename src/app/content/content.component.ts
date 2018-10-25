@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ComponentUiService } from '../services/component-ui.service';
 import { UiComponent } from '../shared/ui-component';
@@ -13,15 +13,16 @@ import { UiIcon } from '../shared/ui-icon';
 export class ContentComponent implements OnInit {
 
   id: string;
+
   uiComponent: UiComponent;
   uiIcon: UiIcon;
   isSourceTabClicked: boolean;
 
+  options = { theme: 'default', language: 'typescript', readOnly: true, automaticLayout: true };
+
   constructor(private componentUiService: ComponentUiService,
-              private iconUiService: IconUiService,
-              private route: ActivatedRoute,
-              private router: Router) {
-  }
+    private iconUiService: IconUiService,
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -30,6 +31,7 @@ export class ContentComponent implements OnInit {
       if (!this.uiComponent) {
         this.uiComponent = this.iconUiService.getUiComponentByRouterLink(this.id);
         this.uiIcon = this.iconUiService.getUiIconByRouterLink(this.id);
+        this.uiComponent.source = '<' + this.uiIcon.selector + ' svgClass="..."></' + this.uiIcon.selector + '>';
       }
     });
   }

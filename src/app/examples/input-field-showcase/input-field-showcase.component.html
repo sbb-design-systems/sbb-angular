@@ -18,8 +18,10 @@
                 id="simpleInput"
                 name="simpleInput"
                 #simpleInput="ngModel">
-                <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is required!</sbb-form-error>
             </sbb-field>
+          </div>
+          <div class="form-group">
+            <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is required!</sbb-form-error>           
           </div>
           <div class="form-group">
             <sbb-label>Model:</sbb-label>

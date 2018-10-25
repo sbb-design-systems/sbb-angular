@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'sbb-textarea-showcase',
@@ -15,13 +16,12 @@ export class TextareaShowcaseComponent {
   isVisible = true;
   readonly: boolean;
 
-  reRender() {
-    this.isVisible = false;
-    this.textArea1 = '';
-    setTimeout(() => {
-      this.isVisible = true;
-    });
+  formGroup: FormGroup = new FormGroup({
+    textarea: new FormControl('SBB')
+  });
 
+  setValue($event) {
+    this.formGroup.controls['textarea'].setValue($event.target.value);
   }
 
 }
