@@ -41,38 +41,38 @@ export class ButtonShowcaseComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-    this.buttonForm = new FormGroup({
-      mode: new FormControl(this.buttonMode),
-      icon: new FormControl(this.buttonIcon),
-      disabled: new FormControl(this.buttonDisabled)
-    });
+    // this.buttonForm = new FormGroup({
+    //   mode: new FormControl(this.buttonMode),
+    //   icon: new FormControl(this.buttonIcon),
+    //   disabled: new FormControl(this.buttonDisabled)
+    // });
 
-    this.onModeChange = this.buttonForm.get('mode').valueChanges.subscribe(
-      (value) => {
-        this.buttonMode = value;
-        this.reRender();
-      }
-    );
+    // this.onModeChange = this.buttonForm.get('mode').valueChanges.subscribe(
+    //   (value) => {
+    //     this.buttonMode = value;
+    //     this.reRender();
+    //   }
+    // );
 
-    this.onIconChange = this.buttonForm.get('icon').valueChanges.subscribe(
-      (value) => {
-        this.buttonIcon = value;
-        this.reRender();
-      }
-    );
+    // this.onIconChange = this.buttonForm.get('icon').valueChanges.subscribe(
+    //   (value) => {
+    //     this.buttonIcon = value;
+    //     this.reRender();
+    //   }
+    // );
 
-    this.onDisabledChange = this.buttonForm.get('disabled').valueChanges.subscribe(
-      (value) => {
-        this.buttonDisabled = value;
-        this.reRender();
-      }
-    );
+    // this.onDisabledChange = this.buttonForm.get('disabled').valueChanges.subscribe(
+    //   (value) => {
+    //     this.buttonDisabled = value;
+    //     this.reRender();
+    //   }
+    // );
   }
 
   ngOnDestroy() {
-    this.onModeChange.unsubscribe();
-    this.onIconChange.unsubscribe();
-    this.onDisabledChange.unsubscribe();
+    // this.onModeChange.unsubscribe();
+    // this.onIconChange.unsubscribe();
+    // this.onDisabledChange.unsubscribe();
   }
 
   reRender() {

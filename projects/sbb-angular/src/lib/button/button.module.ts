@@ -15,7 +15,8 @@ import { ButtonIconDirective } from './button/button-icon.directive';
     ButtonIconDirective
   ],
   exports: [
-    ButtonComponent
+    ButtonComponent,
+    ButtonIconDirective
   ],
   entryComponents: [ ]
 })

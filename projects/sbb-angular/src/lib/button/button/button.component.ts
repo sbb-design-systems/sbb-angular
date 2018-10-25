@@ -3,8 +3,11 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input, HostBinding,
-  Type
+  TemplateRef,
+  ContentChild
 } from '@angular/core';
+
+import { ButtonIconDirective } from './button-icon.directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,15 +18,14 @@ import {
 })
 export class ButtonComponent implements OnInit {
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
-  @Input() icon: Type<{}>;
+  @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('class') cssClassList = '';
+  @Input() class = '';
   @HostBinding('class') buttonModeClass: string;
 
   ngOnInit() {
     const hasIconClass = this.icon ? 'sbb-button--has-icon': '';
-    this.buttonModeClass = this.cssClassList + ` sbb-button--${this.mode} ${hasIconClass}`;
+    this.buttonModeClass = `${this.class} sbb-button--${this.mode} ${hasIconClass}`;
   }
 
 }

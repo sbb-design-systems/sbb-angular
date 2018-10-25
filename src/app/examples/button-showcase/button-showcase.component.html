@@ -1,4 +1,4 @@
-<div class="container-fluid pb-5">
+<!-- <div class="container-fluid pb-5">
     <div class="row">
         <div class="col-lg-6">
             <article>
@@ -34,4 +34,26 @@
             </article>
         </div>
     </div>
-</div>
+</div> -->
+
+<button type="button" sbbButton>
+    Test Button<sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+</button>
+
+<br><br>
+
+<button type="button" sbbButton>
+    test 2
+</button>
+
+<br><br>
+
+<button type="button" sbbButton [icon]="icon" class="pippo pluto paper">
+    Test Button
+</button>
+
+<br><br>
+
+<ng-template #icon>
+    <sbb-icon-arrow-down></sbb-icon-arrow-down>
+</ng-template>
