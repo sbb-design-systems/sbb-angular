@@ -1,7 +1,6 @@
 @import '../../../styles/main';
 
 @mixin actionlinkArrowHover {
-
   padding-left: pxToEm(30, $sizeFontDefault);
 	padding-right: pxToEm(40, $sizeFontDefault);
 
@@ -23,12 +22,13 @@
     }
 	}
 
-	&.var-center {
+	&.sbb-link-center {
 		padding-right: 0;
 	}
 }
 
 :host {
+  word-break: break-word;
   display: block;
 	position: relative;
 	margin: 1em 0 2em;
@@ -39,6 +39,7 @@
   text-decoration: none !important;
 
   .mod-svgsprite-icon {
+    line-height: 1.25;
     position: absolute;
 		width: toPx(24);
     height: toPx(24);
@@ -66,12 +67,12 @@
     }
   }
 
-	&.var-center {
+	&.sbb-link-center {
 		text-align: center;
 		padding-right: 0;
 	}
 
-  &:not(.var-stretch) {
+  &:not(.sbb-link-stretch) {
     .mod-svgsprite-icon:first-of-type {
       margin-left: pxToEm(-30, $sizeFontDefault) !important;
       opacity: 0;
@@ -88,7 +89,7 @@
     }
   }
 
-	&.var-form {
+	&.sbb-link-form {
 		color: $colorGrey;
 		.mod-svgsprite-icon {
 			fill: $colorGrey;
@@ -102,7 +103,7 @@
 		}
   }
 
-  &.var-stretch {
+  &.sbb-link-stretch {
 		.mod-svgsprite-icon {
       right: 0;
     }
