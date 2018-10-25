@@ -1,41 +1,12 @@
-import { Component, forwardRef, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sbb-field',
   templateUrl: './sbb-field.component.html',
-  styleUrls: ['./sbb-field.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SbbFieldComponent),
-      multi: true
-    }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sbb-field.component.scss']
 })
-export class SbbFieldComponent implements ControlValueAccessor {
+export class SbbFieldComponent {
 
   @Input() label?: string;
   @Input() for?: string;
-
-  onChange = (obj: any) => { };
-  onTouched = (_: any) => { };
-
-  writeValue(value: any): void {
-    this.onChange(value);
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  change($event) {
-    this.onChange($event.target.value);
-    this.onTouched($event.target.value);
-  }
 }
