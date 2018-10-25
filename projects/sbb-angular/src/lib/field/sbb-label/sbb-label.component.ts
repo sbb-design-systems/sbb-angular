@@ -11,8 +11,6 @@ export class SbbLabelComponent implements OnInit {
   @Input() for?: string;
   @Input() optional?: string;
 
-  constructor() { }
-
   ngOnInit() {
     if(this.optional) {
        this.optional = '"' + this.optional + '"';

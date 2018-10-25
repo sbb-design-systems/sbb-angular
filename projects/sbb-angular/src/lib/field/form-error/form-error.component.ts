@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./form-error.component.scss']
 })
 export class FormErrorComponent {
-
-  constructor() { }
 }

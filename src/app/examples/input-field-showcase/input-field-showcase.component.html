@@ -6,6 +6,7 @@
           <div class="form-class">
             <sbb-field>
               <sbb-label for="simpleInput">Name</sbb-label>
+              <br/>
               <input [type]="inputType"
                 [placeholder]="placeholder"
                 autocomplete="off"
@@ -17,8 +18,8 @@
                 id="simpleInput"
                 name="simpleInput"
                 #simpleInput="ngModel">
+                <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is required!</sbb-form-error>
             </sbb-field>
-            <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is required!</sbb-form-error>
           </div>
           <div class="form-group">
             <sbb-label>Model:</sbb-label>

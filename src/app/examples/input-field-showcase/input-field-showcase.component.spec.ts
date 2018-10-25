@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { InputFieldShowcaseComponent } from './input-field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldModule } from 'sbb-angular';
+import { equal } from 'assert';
 
 describe('InputFieldShowcaseComponent', () => {
 
@@ -54,6 +55,24 @@ describe('InputFieldShowcaseComponent', () => {
       // do the comparison ...
       expect(inputElement.type).toBe('text');
       expect(component.inputType).toBe('text');
+  });
+
+  /*
+  it('input should be disappeared', () => {
+    component.disabled = true;
+    // first round of change detection ...
+    fixture.detectChanges();
+    // get the input element ...
+    const input = debugElement.query(By.css('#simpleInput'));
+    expect(input).toBeNull();
+  });
+  */
+  
+  it('should be readonly attribute', () => {
+     component.readonly = true;
+     // first round of change detection ...
+     fixture.detectChanges();
+     expect(fixture.debugElement.nativeElement.querySelector('[readonly]')).toBeTruthy();
   });
 
   it('should have at least 7 types of input type', () => {

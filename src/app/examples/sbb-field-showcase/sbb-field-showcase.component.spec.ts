@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { SbbFieldShowcaseComponent } from './sbb-field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldModule } from 'sbb-angular';
