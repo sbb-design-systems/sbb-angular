@@ -46,7 +46,7 @@ export class AutocompleteShowcaseComponent {
 
   private filterByText(inputedText: string) {
     return this.optionList.filter((value) => {
-      return value.getLabel().indexOf(inputedText) > -1;
+      return value.getLabel().toLocaleLowerCase().indexOf(inputedText.toLocaleLowerCase()) > -1;
     });
   }
 

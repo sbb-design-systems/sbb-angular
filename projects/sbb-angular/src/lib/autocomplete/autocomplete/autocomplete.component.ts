@@ -32,7 +32,7 @@ import { Observable } from '../../../../../../node_modules/rxjs';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AutocompleteComponent implements ControlValueAccessor, OnInit {
+export class AutocompleteComponent implements ControlValueAccessor {
 
   label: string;
   textContent: string;
@@ -51,23 +51,12 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
   @Input()
   options?: Array<any> = [];
 
-  @Input()
-  observable?: Observable<string>;
-
   @Output()
   inputedText: EventEmitter<string> = new EventEmitter<string>();
 
   isFocused = false;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
-
-  ngOnInit(): void {
-    if (this.observable) {
-      this.observable.subscribe(() => {
-        this.changeDetectorRef.markForCheck();
-      });
-    }
-  }
 
   get showOptions() { return this.isFocused && !!this.options.length; }
 
@@ -125,7 +114,6 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
   }
 
   tabSelection($event) {
-    const keyCode = $event.keyCode;
     if (!!this.optionsList.keyManager.activeItem) {
       this.writeValue(this.optionsList.keyManager.activeItem.item);
     }
