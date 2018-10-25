@@ -1,24 +1,23 @@
 @import '../../../styles/main.scss';
 
-@mixin sbbLabel($borderColor) {
-  letter-spacing: 0;
-  outline: 0px;
-  resize: none;
-  opacity: 1;
-  background-color: transparent;
-  font-family: $fontSbbRoman;
-  font-size: 13px;
-  color: #666666;
-  line-height: 20px;
+@mixin sbbLabel {
+  display:block;
+  margin-bottom: toPx(5);
+  padding-left: toPx(10);
+
+  label {
+    letter-spacing: 0;
+    outline: 0px;
+    resize: none;
+    background-color: transparent;
+    font-family: $fontSbbRoman;
+    font-size: 13px;
+    color: $colorGrey;
+    line-height: 20px;
+    display: block;
+  }
 }
 
-:host /deep/ {
-  label {
-    @include sbbLabel($colorBlack72);
-    font-family: $fontSbbRoman;
-    &:disabled {
-      background-color: $colorBlack5;
-      opacity: 1;
-    }
-  }
+:host {
+  @include sbbLabel;
 }

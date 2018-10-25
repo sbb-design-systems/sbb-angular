@@ -1,27 +1,24 @@
 <div class="conatiner">
-  <div class="row justify-content-between">  
+  <div class="row justify-content-between">
      <div class="col-6">
       <h5>Input Field (Within SBB-Field)</h5>
-      <fieldset>      
+      <fieldset>
           <div class="form-class">
             <sbb-field>
-              <sbb-label class="my-1 mr-2" for="simpleInput">Name</sbb-label>
-              <br/>
-              <div *ngIf="disabled; else enabled">
-                  <sbb-label class="my-1 mr-2">{{ inputText ? inputText : placeholder }}</sbb-label> 
-              </div>
-              <ng-template #enabled>
-                  <input [type]="inputType"
-                         [placeholder]="placeholder"
-                          autocomplete="off"
-                          spellcheck="false"
-                         [readonly]="readonly"
-                         [disabled]="disabled"
-                         [(ngModel)]="inputText"
-                         id="simpleInput"
-                         class="my-1 mr-2">
-              </ng-template>
+              <sbb-label for="simpleInput">Name</sbb-label>
+              <input [type]="inputType"
+                [placeholder]="placeholder"
+                autocomplete="off"
+                spellcheck="false"
+                [readonly]="readonly"
+                [disabled]="disabled"
+                [required]="required"
+                [(ngModel)]="inputText"
+                id="simpleInput"
+                name="simpleInput"
+                #simpleInput="ngModel">
             </sbb-field>
+            <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is required!</sbb-form-error>
           </div>
           <div class="form-group">
             <sbb-label>Model:</sbb-label>
@@ -45,6 +42,10 @@
           <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
           <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
         </div>
+        <div class="form-check">
+            <input id="required" class="form-check-input" type="checkbox" [(ngModel)]="required">
+            <sbb-label class="form-check-label" for="required">Required</sbb-label>
+          </div>
         <div class="form-check" *ngIf="inputType !== 'file'">
           <input id="readonly" class="form-check-input" type="checkbox" [(ngModel)]="readonly">
           <sbb-label class="form-check-label" for="readonly">Readonly</sbb-label>
