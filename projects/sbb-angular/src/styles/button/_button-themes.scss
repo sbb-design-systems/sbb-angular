@@ -63,13 +63,13 @@
 	@extend %secondaryButton;
 	@extend %arrowbuttons;
 
-	.mod-svgsprite-icon {
+	.sbb-svgsprite-icon {
 		fill: $buttonSecondaryColor;
 	}
 
 	&:hover,
 	&:focus {
-		.mod-svgsprite-icon {
+		.sbb-svgsprite-icon {
 			fill: $buttonSecondaryColor;
 		}
 	}
@@ -95,7 +95,7 @@
 			background-color: transparent;
 			border-color: currentColor;
 
-			.mod-svgsprite-icon {
+			.sbb-svgsprite-icon {
 				fill: currentColor;
 			}
 		}
@@ -116,13 +116,13 @@
 	@extend %ghostButtonPositive;
 	@extend %arrowbuttons;
 
-	.mod-svgsprite-icon {
+	.sbb-svgsprite-icon {
 		fill: $buttonGhostColorHover;
 	}
 
 	&:hover,
 	&:focus {
-		.mod-svgsprite-icon {
+		.sbb-svgsprite-icon {
 			fill: $buttonGhostColorHover;
 		}
 	}
@@ -157,13 +157,13 @@
 	@extend %framelessButton;
 	@extend %arrowbuttons;
 
-	.mod-svgsprite-icon {
+	.sbb-svgsprite-icon {
 		fill: $buttonFramelessColor;
 	}
 
 	&:hover,
 	&:focus {
-		.mod-svgsprite-icon {
+		.sbb-svgsprite-icon {
 			fill: $buttonFramelessColorHover;
 		}
 	}
@@ -175,7 +175,7 @@
 
 	text-decoration: line-through;
 
-	.mod-svgsprite-icon {
+	.sbb-svgsprite-icon {
 		display: none;
 	}
 }

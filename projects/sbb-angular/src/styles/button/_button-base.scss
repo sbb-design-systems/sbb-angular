@@ -63,16 +63,16 @@
 	padding-right: pxToEm(40, $buttonSizeFontDefault);
 	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
 
-	.mod-svgsprite-icon {
+	.sbb-svgsprite-icon {
 		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
 	}
 
-	.mod-svgsprite-icon:first-of-type {
+	.sbb-svgsprite-icon:first-of-type {
 		opacity: 1;
 		transform: translateX(0);
 	}
 
-	.mod-svgsprite-icon:last-of-type {
+	.sbb-svgsprite-icon:last-of-type {
 		opacity: 0;
 		transform: translateX(pxToEm(26));
 	}
@@ -97,7 +97,7 @@
 		font-size: pxToRem($sizeFontDefault5k);
 	}
 
-	.mod-svgsprite-icon {
+	.sbb-svgsprite-icon {
 		position: absolute;
 		width: pxToEm(24, $buttonSizeFontDefault);
 		height: pxToEm(24, $buttonSizeFontDefault);
@@ -109,13 +109,13 @@
 		pointer-events: none;
 	}
 
-	.mod-svgsprite-icon:first-of-type {
+	.sbb-svgsprite-icon:first-of-type {
 		margin-left: pxToEm(-30, $buttonSizeFontDefault);
 		opacity: 0;
 		transform: translateX(pxToEm(-26, $buttonSizeFontDefault));
 	}
 
-	.mod-svgsprite-icon:last-of-type {
+	.sbb-svgsprite-icon:last-of-type {
 		margin-left: pxToEm(6, $buttonSizeFontDefault);
 		opacity: 1;
 		transform: translateX(0px);

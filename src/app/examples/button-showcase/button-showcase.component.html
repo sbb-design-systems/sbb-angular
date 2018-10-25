@@ -1,10 +1,20 @@
-<!-- <div class="container-fluid pb-5">
+<div class="container-fluid pb-5">
     <div class="row">
         <div class="col-lg-6">
             <article>
                 <h3 class="mb-2">Example</h3>
                 <div *ngIf="showButton">
-                    <button sbbButton [mode]="buttonMode" [icon]="buttonIcon" [disabled]="buttonDisabled">Bezeichnung</button>
+                    <button sbbButton [mode]="buttonMode" [disabled]="buttonDisabled" *ngIf="buttonIcon === 'noIcon'">
+                        Bezeichnung
+                    </button>
+                    <button sbbButton [mode]="buttonMode" [disabled]="buttonDisabled" [icon]="icon" *ngIf="buttonIcon !== 'noIcon'">
+                        Bezeichnung
+                    </button>
+                    <ng-template #icon>
+                        <sbb-icon-arrow-down *ngIf="buttonIcon === 'arrow'"></sbb-icon-arrow-down>
+                        <sbb-icon-plus *ngIf="buttonIcon === 'plus'"></sbb-icon-plus>
+                        <sbb-icon-download *ngIf="buttonIcon === 'download'"></sbb-icon-download>
+                    </ng-template>
                 </div>
             </article>
         </div>
@@ -21,8 +31,8 @@
                     <div class="form-group">
                         <label for="buttonIcon">Icon</label>
                         <select formControlName="icon" class="form-control" id="buttonIcon">
-                            <option [ngValue]="null">No Icon</option>
-                            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon.name }}</option>
+                            <option [ngValue]="'noIcon'">No Icon</option>
+                            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
                         </select>
                         <small class="font-italic">* All icons allowed, in this example are loaded only three as sample icons</small>
                     </div>
@@ -34,26 +44,4 @@
             </article>
         </div>
     </div>
-</div> -->
-
-<button type="button" sbbButton>
-    Test Button<sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
-</button>
-
-<br><br>
-
-<button type="button" sbbButton>
-    test 2
-</button>
-
-<br><br>
-
-<button type="button" sbbButton [icon]="icon" class="pippo pluto paper">
-    Test Button
-</button>
-
-<br><br>
-
-<ng-template #icon>
-    <sbb-icon-arrow-down></sbb-icon-arrow-down>
-</ng-template>
+</div>

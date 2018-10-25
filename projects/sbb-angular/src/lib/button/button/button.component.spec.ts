@@ -206,7 +206,7 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIconWrapper = fixture.debugElement.query(By.css('.mod-svgsprite-icon'));
+      sbbButtonIconWrapper = fixture.debugElement.query(By.css('.sbb-svgsprite-icon'));
       sbbButtonIconWrapperStyle = getComputedStyle(sbbButtonIconWrapper.nativeElement);
     });
 
