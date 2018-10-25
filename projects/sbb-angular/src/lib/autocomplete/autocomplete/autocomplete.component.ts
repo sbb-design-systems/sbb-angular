@@ -1,4 +1,14 @@
-import { Component, Input, EventEmitter, Output, ViewChild, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  ViewChild,
+  ChangeDetectionStrategy,
+  forwardRef,
+  ChangeDetectorRef,
+  OnInit
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 
@@ -7,6 +17,7 @@ import {
   SbbAutocompleteSelectedEvent
 } from '../autocomplete-option-list/autocomplete-option-list.component';
 import { AutocompleteOptionComponent, Option } from '..';
+import { Observable } from '../../../../../../node_modules/rxjs';
 
 @Component({
   selector: 'sbb-autocomplete',
@@ -21,7 +32,7 @@ import { AutocompleteOptionComponent, Option } from '..';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AutocompleteComponent implements ControlValueAccessor {
+export class AutocompleteComponent implements ControlValueAccessor, OnInit {
 
   label: string;
   textContent: string;
@@ -35,13 +46,13 @@ export class AutocompleteComponent implements ControlValueAccessor {
   minDigitsTrigger = 3;
 
   @Input()
-  maxOptionsLimit = 10;
-
-  @Input()
   staticOptions?: Array<any>;
 
   @Input()
   options?: Array<any> = [];
+
+  @Input()
+  observable?: Observable<string>;
 
   @Output()
   inputedText: EventEmitter<string> = new EventEmitter<string>();
@@ -49,6 +60,14 @@ export class AutocompleteComponent implements ControlValueAccessor {
   isFocused = false;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
+
+  ngOnInit(): void {
+    if (this.observable) {
+      this.observable.subscribe(() => {
+        this.changeDetectorRef.markForCheck();
+      });
+    }
+  }
 
   get showOptions() { return this.isFocused && !!this.options.length; }
 
@@ -77,7 +96,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void { }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 

@@ -2,9 +2,20 @@
   <h3>Autocomplete</h3>
   <div class="row">
     <div class="col-lg-12">
-      <legend>Example</legend>
+      <legend>Sync Example</legend>
       <fieldset>
-        <sbb-autocomplete [(ngModel)]="testValue" [options]="optionList" [staticOptions]="staticOptions"></sbb-autocomplete>
+        <sbb-autocomplete (inputedText)="filterSync($event)" [(ngModel)]="testValue" [options]="filteredList"
+          [staticOptions]="staticOptions"></sbb-autocomplete>
+      </fieldset>
+      <pre>{{ testValue | json }}</pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <legend>Async Example</legend>
+      <fieldset>
+        <sbb-autocomplete (inputedText)="filterAsync($event)" [(ngModel)]="testValue" [options]="asyncFilteredList" [observable]="search$"
+          [staticOptions]="staticOptions"></sbb-autocomplete>
       </fieldset>
       <pre>{{ testValue | json }}</pre>
     </div>

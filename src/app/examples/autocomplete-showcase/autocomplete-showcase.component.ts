@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { ShowcaseOption } from './showcase-option.model';
+import { Subject, Observable, from, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-autocomplete-showcase',
@@ -10,11 +12,15 @@ export class AutocompleteShowcaseComponent {
 
   optionList: Array<ShowcaseOption> = [];
   staticOptions: Array<ShowcaseOption> = [
-     new ShowcaseOption('static test 1', 'test1')
+    new ShowcaseOption('static test 1', 'test1')
   ];
   testValue: ShowcaseOption = new ShowcaseOption('Test 2', 'test2');
+  filteredList: ShowcaseOption[];
 
-  constructor() {
+  search$: Subject<string>;
+  asyncFilteredList: ShowcaseOption[];
+
+  constructor(private changeDetectionRef: ChangeDetectorRef) {
     this.optionList.push(new ShowcaseOption('Test 1', 'test1'));
     this.optionList.push(new ShowcaseOption('Test 2', 'test2'));
     this.optionList.push(new ShowcaseOption('Test 3', 'test3'));
@@ -32,8 +38,34 @@ export class AutocompleteShowcaseComponent {
     this.optionList.push(new ShowcaseOption('Test 15', 'test15'));
     this.optionList.push(new ShowcaseOption('Test 16', 'test16'));
     this.optionList.push(new ShowcaseOption('Test 17', 'test17'));
+    this.filteredList = new Array().concat(this.optionList);
+    this.asyncFilteredList = this.optionList;
 
   }
 
+
+  private filterByText(inputedText: string) {
+    return this.optionList.filter((value) => {
+      return value.getLabel().indexOf(inputedText) > -1;
+    });
+  }
+
+  filterSync(inputedText: string) {
+    this.filteredList = this.filterByText(inputedText);
+  }
+
+  filterAsync(inputedText: string) {
+    this.asyncFilteredList = [];
+    if (!this.search$) {
+      this.search$ = new Subject<string>();
+      this.search$.pipe(debounceTime(500))
+        .pipe(distinctUntilChanged())
+        .pipe(switchMap(searchTerm => this.filterByText(searchTerm)))
+        .subscribe(result => {
+          this.asyncFilteredList.push(result);
+        });
+    }
+    this.search$.next(inputedText);
+  }
 
 }
