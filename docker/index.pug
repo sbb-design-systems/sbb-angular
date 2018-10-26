@@ -13,9 +13,19 @@ html
     div(class="container")
       div(class="row")
         h1 SBB Angular Component Library Versions
-        table(class="table")
-          each version in showcaseVersions
-            tr
-              td
-                a(href='/' + version.target)= version
-              td= version.toLocaleDatetime()
+        div(class="col")
+          h2 Releases
+          table(class="table")
+            each version in releasedVersions
+              tr
+                td
+                  a(href='/' + version.tag)= version
+                td= version.toLocaleDatetime()
+        div(class="col")
+          h2 Development (Showcase Only)
+          table(class="table")
+            each version in devVersions
+              tr
+                td
+                  a(href='/' + version.tag)= version
+                td= version.toLocaleDatetime()
