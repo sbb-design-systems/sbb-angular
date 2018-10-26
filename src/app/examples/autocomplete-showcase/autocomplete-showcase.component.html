@@ -6,10 +6,12 @@
       <fieldset>
         <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
         <sbb-autocomplete #auto="sbbAutocomplete">
-          <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>
+          <sbb-option *ngFor="let option of options" [value]="option">
+            <span [innerHTML]="option | highlight: filter"></span>
+          </sbb-option>
         </sbb-autocomplete>
       </fieldset>
-      <pre>{{ myControl | json }}</pre>
+      <pre>{{ myControl.value | json }}</pre>
     </div>
   </div>
 </div>

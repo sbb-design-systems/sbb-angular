@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,9 +6,15 @@ import { FormControl } from '@angular/forms';
   templateUrl: './autocomplete-showcase.component.html',
   styleUrls: ['./autocomplete-showcase.component.scss']
 })
-export class AutocompleteShowcaseComponent {
+export class AutocompleteShowcaseComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
+  filter: '';
 
+  ngOnInit() {
+    this.myControl.valueChanges.subscribe((newValue) => {
+      this.filter = newValue;
+    });
+  }
 }

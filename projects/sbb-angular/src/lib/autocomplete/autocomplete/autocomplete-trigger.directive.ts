@@ -5,8 +5,7 @@ import {
   Overlay,
   OverlayConfig,
   OverlayRef,
-  PositionStrategy,
-  ScrollStrategy,
+  PositionStrategy
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -23,7 +22,7 @@ import {
   Optional,
   ViewContainerRef,
   HostBinding,
-  HostListener,
+  HostListener
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -33,7 +32,10 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
-import { SbbOptionSelectionChange, AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
+import {
+  SbbOptionSelectionChange,
+  AutocompleteOptionComponent
+} from '../autocomplete-option/autocomplete-option.component';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
@@ -60,7 +62,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private _portal: TemplatePortal;
   private _componentDestroyed = false;
   private _autocompleteDisabled = false;
-  // private _scrollStrategy: () => ScrollStrategy;
 
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private _previousValue: string | number | null;
@@ -128,10 +129,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
-  @HostListener('focusin', ['$event'])
-  onFocusin() {
-    this._handleFocus();
-  }
+
+
 
   @HostListener('blur', ['$event'])
   onBlur() {
@@ -148,11 +147,11 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this._handleKeydown($event);
   }
 
-  @HostBinding('attr.aria-expanded') isAriaExpanded() {
+  @HostBinding('attr.aria-expanded') get ariaExpanded() {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
-  @HostBinding('attr.aria-owns') getAriaOwns() {
+  @HostBinding('attr.aria-owns') get ariaOwns() {
     return (this.autocompleteDisabled || !this.panelOpen) ? null : this.autocomplete.id;
   }
 
@@ -192,7 +191,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() private _dir: Directionality,
     @Optional() @Inject(DOCUMENT) private _document: any,
-    // @breaking-change 8.0.0 Make `_viewportRuler` required.
     private _viewportRuler?: ViewportRuler) {
 
     if (typeof window !== 'undefined') {
@@ -226,6 +224,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Closes the autocomplete suggestion panel. */
   closePanel(): void {
+    this._resetLabel();
+
     if (!this._overlayAttached) {
       return;
     }
@@ -284,8 +284,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
 
-  @HostBinding('attr.aria-activedescendant') getActiveOptionId() {
-    return this.activeOption.id;
+  @HostBinding('attr.aria-activedescendant') get activeOptionId() {
+    return this.activeOption ? this.activeOption.id : null;
   }
 
   /** The currently active option, coerced to MatOption type. */
@@ -339,6 +339,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   _handleKeydown(event: KeyboardEvent): void {
+    console.log(event.keyCode);
     const keyCode = event.keyCode;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
@@ -356,12 +357,12 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     } else if (this.autocomplete) {
       const prevActiveItem = this.autocomplete._keyManager.activeItem;
       const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-
       if (this.panelOpen || keyCode === TAB) {
         this.autocomplete._keyManager.onKeydown(event);
       } else if (isArrowKey && this._canOpen()) {
         this.openPanel();
       }
+
     }
   }
 
@@ -389,12 +390,20 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     }
   }
 
+  @HostListener('focusin')
   _handleFocus(): void {
     if (!this._canOpenOnNextFocus) {
       this._canOpenOnNextFocus = true;
     } else if (this._canOpen()) {
       this._previousValue = this._element.nativeElement.value;
       this._attachOverlay();
+    }
+  }
+
+  /** If the label has been manually elevated, return it to its normal state. */
+  private _resetLabel(): void {
+    if (this._manuallyFloatingLabel) {
+      this._manuallyFloatingLabel = false;
     }
   }
 
@@ -491,11 +500,11 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (!this.autocomplete) {
       throw getSbbAutocompleteMissingPanelError();
     }
-
+    console.log(this._overlayRef);
     if (!this._overlayRef) {
       this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef);
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
-
+      console.log('createdOveraly', this._overlayRef);
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
       this._overlayRef.keydownEvents().subscribe(event => {
@@ -539,7 +548,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private _getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this._getOverlayPosition(),
-    //  scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
       direction: this._dir
     });
@@ -562,11 +570,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           originY: 'top',
           overlayX: 'start',
           overlayY: 'bottom',
-
-          // The overlay edge connected to the trigger should have squared corners, while
-          // the opposite end has rounded corners. We apply a CSS class to swap the
-          // border-radius based on the overlay position.
-        //  panelClass: 'sbb-autocomplete-panel-above'
         }
       ]);
 

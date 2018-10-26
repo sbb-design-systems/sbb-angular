@@ -25,7 +25,7 @@ import {
   HostBinding,
   forwardRef,
 } from '@angular/core';
-import { AutocompleteOptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../autocomplete-option/autocomplete-option.component';
+import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -55,8 +55,7 @@ export interface SbbAutocompleteDefaultOptions {
   templateUrl: 'autocomplete.component.html',
   styleUrls: ['autocomplete.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent }]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutocompleteComponent implements AfterContentInit {
 
@@ -135,7 +134,7 @@ export class AutocompleteComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.options).withWrap();
+    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.options).withWrap().withTypeAhead();
     // Set the initial visibility state.
     this._setVisibility();
   }

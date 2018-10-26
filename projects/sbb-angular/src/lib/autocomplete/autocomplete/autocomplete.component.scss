@@ -1,8 +1,8 @@
-@import '../../../styles/main';
+@import "../../../styles/main";
+@import '~@angular/cdk/overlay-prebuilt.css';
 
-:host {
+.sbb-autocomplete-panel {
   position: absolute;
-  top: toPx(34);
   left: 0;
   right: 0;
   z-index: 3;
@@ -17,6 +17,13 @@
               opacity .25s cubic-bezier(.4,0,.2,1);
   color: $colorGrey;
   padding: toPx(14) toPx(16) toPx(18);
+  &.sbb-autocomplete-visible {
+    visibility: visible;
+  }
+
+  &.sbb-autocomplete-hidden {
+    visibility: hidden;
+  }
 
   @include mq($from: desktop4k) {
     border: toPx(2 * $scalingFactor4k) solid $colorGrey;
@@ -30,4 +37,37 @@
     padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
     box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0,0,0,.15);
   }
+} 
+
+/* .sbb-autocomplete-panel {
+  min-width: 112px;
+  max-width: 280px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  visibility: hidden;
+  max-width: none;
+  max-height: 256px;
+  position: relative;
+  width: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
+.sbb-autocomplete-panel.sbb-autocomplete-visible {
+  visibility: visible;
+}
+.sbb-autocomplete-panel.sbb-autocomplete-hidden {
+  visibility: hidden;
+}
+.sbb-autocomplete-panel-above .sbb-autocomplete-panel {
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.sbb-autocomplete-panel .sbb-divider-horizontal {
+  margin-top: -1px;
+}
+@media screen and (-ms-high-contrast: active) {
+  .sbb-autocomplete-panel {
+    outline: solid 1px;
+  }
+} */
