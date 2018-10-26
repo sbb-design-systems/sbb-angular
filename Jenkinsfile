@@ -57,21 +57,24 @@ pipeline {
         }
       }
       steps {
-        try {
-          cloud_callDeploy(
-            cluster: 'aws',
-            project: 'sbb-angular-showcase',
-            dc: 'sbb-angular',
-            credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
-        } catch (e) {
-          sleep(90)
+        script {
           try {
             cloud_callDeploy(
               cluster: 'aws',
               project: 'sbb-angular-showcase',
               dc: 'sbb-angular',
               credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
-          } catch (ex) {
+          } catch (e) {
+            sleep(90)
+            try {
+              cloud_callDeploy(
+                cluster: 'aws',
+                project: 'sbb-angular-showcase',
+                dc: 'sbb-angular',
+                credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
+            } catch (ex) {
+              echo 'Failed to deploy'
+            }
           }
         }
       }
