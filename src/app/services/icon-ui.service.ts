@@ -24,7 +24,7 @@ export class IconUiService {
       false,
       ['Davide Aresta', 'Stefan Meili'],
       'Description goes here ...',
-      foundUiIcon.selector,
+      'Source goes here ...',
       'Import text.',
       'Getting started text.',
       'Model binding text.',
@@ -34,15 +34,15 @@ export class IconUiService {
       'Events text.',
       'Styling text.',
       'Dependencies text.',
-      'Import Code',
-      'Getting started code.',
-      'Model binding code.',
-      'Icon code.',
-      'Auto resize code.',
-      'Properties code.',
-      'Events code.',
-      'Styling code.',
-      'Dependencies code.');
+      'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
+      'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}');
   }
 
   getUiIconsBySearchValue(searchValue: any) {

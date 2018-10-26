@@ -4,6 +4,8 @@ import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textare
 import { LinksShowcaseComponent } from '../examples/links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
+import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
+import { SbbFieldShowcaseComponent } from '../examples/sbb-field-showcase/sbb-field-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -180,7 +182,7 @@ export class ComponentUiService {
         'Input Field',
         'Input Field is an extension to standard input element with theming.',
         true,
-        true,
+        false,
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
@@ -201,7 +203,38 @@ export class ComponentUiService {
         'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
+        InputFieldShowcaseComponent
+      ),
+      new UiComponent(
+        'SBB Field',
+        'sbbField',
+        'SBB Field',
+        'SBB Field is an extension to standard input element with theming.',
+        true,
+        false,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        'Getting started text.',
+        'Model binding text.',
+        'Icon text.',
+        'Auto resize text.',
+        'Properties text.',
+        'Events text.',
+        'Styling text.',
+        'Dependencies text.',
+        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
+        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
+        SbbFieldShowcaseComponent
       ),
       new UiComponent(
         'Autocompletion',
