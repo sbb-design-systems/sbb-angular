@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HighlightPipe } from './highlight.pipe';
 import { AutocompleteOptionComponent } from './autocomplete-option.component';
 
 describe('AutocompleteOptionComponent', () => {
@@ -9,7 +8,7 @@ describe('AutocompleteOptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AutocompleteOptionComponent, HighlightPipe]
+      declarations: [AutocompleteOptionComponent]
     })
       .compileComponents();
   }));

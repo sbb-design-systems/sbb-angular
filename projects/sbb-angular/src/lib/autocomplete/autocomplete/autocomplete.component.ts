@@ -26,8 +26,6 @@ import {
   forwardRef,
 } from '@angular/core';
 import { AutocompleteOptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../autocomplete-option/autocomplete-option.component';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
