@@ -1,0 +1,46 @@
+// Form Styles
+// ----------------------------------------------------------------------------------------------------
+@mixin inputfields {
+  @include ellipsis;
+  @include placeholder($colorBlack40);
+  @include disabledinputfields;
+
+  outline: none;
+  padding: toPx(11) toPx(14);
+	background: $colorWhite;
+  border: toPx(2) solid $colorBlack72;
+  border-radius: toPx(2);
+	color: $colorGrey;
+	line-height: 1.5;
+	font-size: pxToRem(15);
+	-webkit-appearance: none;
+	&::-ms-clear {
+		display: none;
+	}
+
+	@include mq($from: desktop4k) {
+		margin-top: pxToEm(15);
+		padding: toPx(11) toPx(14);
+  }
+
+  &:focus {
+    border-color: $colorGrey;
+  }
+
+  &.ng-dirty.ng-invalid {
+    color: $colorRed100;
+    border-color: $colorRed100;
+  }
+}
+
+@mixin disabledinputfields {
+  &:disabled {
+    background: $colorBlack5;
+    border-color: $colorBlack20;
+  }
+}
+
+@mixin formlabel {
+	color: $colorGrey;
+	font-size: pxToEm(13);
+}

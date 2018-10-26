@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -27,6 +25,8 @@ import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase
 import { AutocompleteShowcaseComponent } from './examples/autocomplete-showcase/autocomplete-showcase.component';
 import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
+import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
+import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox
     MonacoEditorModule.forRoot({baseUrl: './assets'}),
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
-    ExamplesModule
+    ExamplesModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -57,7 +58,9 @@ import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox
     LinksShowcaseComponent,
     AutocompleteShowcaseComponent,
     RadioButtonShowcaseComponent,
-    CheckboxShowcaseComponent
+    CheckboxShowcaseComponent,
+    InputFieldShowcaseComponent,
+    SbbFieldShowcaseComponent
   ]
 })
 export class AppModule { }

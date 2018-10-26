@@ -47,6 +47,17 @@ export class TextareaComponent implements ControlValueAccessor {
   @HostBinding('class.disabled')
   disabledClass: boolean;
 
+  @HostBinding('class.focused')
+  focusedClass: boolean;
+
+  onFocus() {
+    this.focusedClass = true;
+  }
+
+  onBlur() {
+    this.focusedClass = false;
+  }
+
   constructor(private ngZone: NgZone) { }
 
   triggerResize() {

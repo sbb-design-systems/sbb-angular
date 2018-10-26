@@ -126,19 +126,20 @@
 /**
  * Placeholder in input fields
  */
-@mixin placeholder($color: $colorGrey) {
+
+@mixin placeholder() {
 
 	&::-webkit-input-placeholder {
-		color: $color;
+		color: $colorGrey;
 	}
 
 	&::-moz-placeholder { // Firefox 19+
-		color: $color;
+		color: $colorGrey;
 		opacity: 1;
 	}
 
 	&:-ms-input-placeholder {
-		color: $color;
+		color: $colorGrey;
 	}
 
 }
@@ -586,6 +587,58 @@
 		}
 	}
 
+}
+
+
+// Form Styles
+// ----------------------------------------------------------------------------------------------------
+@mixin inputfields {
+	margin-top: pxToEm(15,16);
+	padding: pxToEm(10,16) pxToEm(12,16);
+	background: $colorWhite;
+	border: none;
+	border-radius: pxToEm(2,16);
+	color: $colorGrey;
+	line-height: 1.5;
+	font-size: pxToRem(16);
+	-webkit-appearance: none;
+	&::-ms-clear {
+		display: none;
+	}
+
+	@include mq($from: tabletPortrait) {
+		margin-top: pxToEm(15);
+		border-radius: pxToEm(2);
+		font-size: 1em;
+		padding: pxToEm(11) pxToEm(14);
+	}
+}
+
+@mixin disabledelement {
+	opacity: 0.5;
+}
+
+@mixin readonlyelement {
+	background: $colorBlack5;
+	border-color: $colorBlack20;
+}
+
+@mixin disabledinputfields {
+	&:disabled {
+		@include disabledelement;
+	}
+}
+
+@mixin readonlyinputfields {
+	&[readonly],
+	&:read-only {
+		@include readonlyelement;
+	}
+}
+
+@mixin formlabel {
+	color: $colorGrey;
+	font-size: pxToEm(13);
 }
 
 // Button Styles
