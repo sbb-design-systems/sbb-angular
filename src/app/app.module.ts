@@ -22,6 +22,7 @@ import { ComponentViewerDirective } from './directives/component-viewer.directiv
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
+import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
@@ -55,6 +56,7 @@ import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-fie
   entryComponents: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
+    ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
