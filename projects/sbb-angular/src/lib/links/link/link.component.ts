@@ -11,9 +11,10 @@ export class LinkComponent implements OnInit {
   @Input() mode: 'normal' | 'stretch' | 'form' = 'normal';
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
+  @Input() class = '';
   @HostBinding('class') linkModeClass: string;
 
   ngOnInit(): void {
-    this.linkModeClass = `var-${this.mode}`;
+    this.linkModeClass =  `${this.class} sbb-link-${this.mode}`;
   }
 }
