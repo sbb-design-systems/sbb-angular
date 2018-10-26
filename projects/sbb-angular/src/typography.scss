@@ -56,10 +56,53 @@ a {
 	@include clearfix;
 }
 
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=text],
+input[type=number],
+input[type=tel],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local],
+input[type=url] {
+	@include inputfields;
+}
+
+input[placeholder] {
+	text-overflow: ellipsis;
+}
+
+input[type=number],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local] {
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button,
+	&::-webkit-clear-button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		margin: 0;
+		width: 0;
+		padding: 0;
+		background: transparent;
+	}
+}
+
+// fix for placeholder color in firefox. As of now, there is still a bug in
+// current version of firefox, so that the placeholder won't be shown at
+// full opacity
+input[type=number] {
+	color: $colorGrey;
+	opacity: 1;
 sbb-radio-button {
   @include radioButtonLabel;
 }
 
 sbb-checkbox {
   @include checkboxLabel;
+}
 }
