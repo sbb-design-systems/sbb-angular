@@ -5,15 +5,6 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './sbb-label.component.html',
   styleUrls: ['./sbb-label.component.scss']
 })
-export class SbbLabelComponent implements OnInit {
-
-  @Input() label?: string;
+export class SbbLabelComponent {
   @Input() for?: string;
-  @Input() optional?: string;
-
-  ngOnInit() {
-    if(this.optional) {
-       this.optional = '"' + this.optional + '"';
-    }
-  }
 }

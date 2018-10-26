@@ -12,7 +12,6 @@
                     <sbb-label class="my-1 mr-2">{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
                   </div>
                   <ng-template #enabled>
-                    <br/>
                     <input type="text"
                            formControlName="name1"
                            autocomplete="off"
@@ -43,12 +42,11 @@
             <form autocomplete="off" [formGroup]="myForm2">
               <sbb-field>
                 <div class="form-class">
-                  <sbb-label class="my-1 mr-2" for="name2" optional="With optional Text">Name</sbb-label>
+                  <sbb-label class="my-1 mr-2" for="name2">Name</sbb-label>
                   <div *ngIf="disabled; else enabled">
                     <sbb-label class="my-1 mr-2">{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
                   </div>
                   <ng-template #enabled>
-                    <br/>
                     <input type="text"
                            formControlName="name2"
                            autocomplete="off"
@@ -86,7 +84,6 @@
                   <sbb-label class="my-1 mr-2">{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
                 </div>
                 <ng-template #enabled>
-                  <br/>
                   <input type="text"
                          formControlName="name3"
                          autocomplete="off"
