@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -12,11 +15,7 @@ import { SearchIconComponent } from './search-icon/search-icon.component';
 import { NavlistIconComponent } from './navlist-icon/navlist-icon.component';
 import { ContentComponent } from './content/content.component';
 
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-
 import { IconViewerDirective } from './directives/icon-viewer.directive';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ReplacePipe } from './shared/replace.pipe';
 import { IconComponents } from './sbb-components-mapping-export';
@@ -25,6 +24,8 @@ import { ComponentViewerDirective } from './directives/component-viewer.directiv
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
+import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
+import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
 
 
 @NgModule({
@@ -52,7 +53,9 @@ import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,
-    LinksShowcaseComponent
+    LinksShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent
   ]
 })
 export class AppModule { }
