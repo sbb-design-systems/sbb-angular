@@ -42,7 +42,7 @@
       opacity: 1;
     }
   }
-  &:focus {
+  &.focused {
     border-color: $colorGrey;
   }
   &.disabled {
