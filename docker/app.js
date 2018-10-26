@@ -70,7 +70,7 @@ class Setup {
     const showcaseInfo = await this.info(this.showcasePackage);
     return Object.keys(showcaseInfo['dist-tags'])
       .map(t => new ShowcasePackage(showcaseInfo, t))
-      .filter(s => s.isObsolete());
+      .filter(s => !s.isObsolete());
   }
 
   async info(packageName) {
