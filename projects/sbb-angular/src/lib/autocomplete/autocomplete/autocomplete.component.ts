@@ -1,141 +1,174 @@
-import {
-  Component,
-  Input,
-  EventEmitter,
-  Output,
-  ViewChild,
-  ChangeDetectionStrategy,
-  forwardRef,
-  ChangeDetectorRef,
-  OnInit
-} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AutocompleteOptionListComponent,
-  SbbAutocompleteSelectedEvent
-} from '../autocomplete-option-list/autocomplete-option-list.component';
-import { AutocompleteOptionComponent, Option } from '..';
-import { Observable } from '../../../../../../node_modules/rxjs';
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  HostBinding,
+  forwardRef,
+} from '@angular/core';
+import { AutocompleteOptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../autocomplete-option/autocomplete-option.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
+
+/**
+ * Autocomplete IDs need to be unique across components, so this counter exists outside of
+ * the component definition.
+ */
+let _uniqueAutocompleteIdCounter = 0;
+
+/** Event object that is emitted when an autocomplete option is selected. */
+export class SbbAutocompleteSelectedEvent {
+  constructor(
+    /** Reference to the autocomplete panel that emitted the event. */
+    public source: AutocompleteComponent,
+    /** Option that was selected. */
+    public option: AutocompleteOptionComponent) { }
+}
+
+
+/** Default `sbb-autocomplete` options that can be overridden. */
+export interface SbbAutocompleteDefaultOptions {
+  /** Whether the first option should be highlighted when an autocomplete panel is opened. */
+  autoActiveFirstOption?: boolean;
+}
 
 @Component({
   selector: 'sbb-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AutocompleteComponent),
-      multi: true
-    }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  exportAs: 'sbbAutocomplete',
+  templateUrl: 'autocomplete.component.html',
+  styleUrls: ['autocomplete.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent }]
 })
-export class AutocompleteComponent implements ControlValueAccessor {
+export class AutocompleteComponent implements AfterContentInit {
 
-  label: string;
-  textContent: string;
-  value: any;
-  disabled: boolean;
 
-  @ViewChild('optionsList')
-  optionsList: AutocompleteOptionListComponent;
+  /** Manages active item in option list based on key events. */
+  _keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
 
+  /** Whether the autocomplete panel should be visible, depending on option length. */
+  showPanel = false;
+
+  /** Whether the autocomplete panel is open. */
+  get isOpen(): boolean { return this._isOpen && this.showPanel; }
+  _isOpen = false;
+
+  @HostBinding('class.sbb-autocomplete') sbbAutocomplete = false;
+
+  /** @docs-private */
+  @ViewChild(TemplateRef) template: TemplateRef<any>;
+
+  /** Element for the panel containing the autocomplete options. */
+  @ViewChild('panel') panel: ElementRef;
+
+  /** @docs-private */
+  @ContentChildren(AutocompleteOptionComponent, { descendants: true }) options: QueryList<AutocompleteOptionComponent>;
+
+  /** Function that maps an option's control value to its display value in the trigger. */
+  @Input() displayWith: ((value: any) => string) | null = null;
+
+  /**
+   * Whether the first option should be highlighted when the autocomplete panel is opened.
+   */
   @Input()
-  minDigitsTrigger = 3;
+  get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }
+  set autoActiveFirstOption(value: boolean) {
+    this._autoActiveFirstOption = coerceBooleanProperty(value);
+  }
+  private _autoActiveFirstOption: boolean;
 
-  @Input()
-  staticOptions?: Array<any>;
+  /**
+   * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
+   * match the width of its host.
+   */
+  @Input() panelWidth: string | number;
 
-  @Input()
-  options?: Array<any> = [];
+  /** Event that is emitted whenever an option from the list is selected. */
+  @Output() readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> =
+    new EventEmitter<SbbAutocompleteSelectedEvent>();
 
-  @Output()
-  inputedText: EventEmitter<string> = new EventEmitter<string>();
+  /** Event that is emitted when the autocomplete panel is opened. */
+  @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
 
-  isFocused = false;
+  /** Event that is emitted when the autocomplete panel is closed. */
+  @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
-
-  get showOptions() { return this.isFocused && !!this.options.length; }
-
-  get activeOption(): AutocompleteOptionComponent | null {
-    if (this.optionsList && this.optionsList.keyManager) {
-      return this.optionsList.keyManager.activeItem;
+  /**
+   * Takes classes set on the host sbb-autocomplete element and applies them to the panel
+   * inside the overlay container to allow for easy styling.
+   */
+  @Input('class')
+  set classList(value: string) {
+    if (value && value.length) {
+      value.split(' ').forEach(className => this._classList[className.trim()] = true);
+      this._elementRef.nativeElement.className = '';
     }
+  }
+  _classList: { [key: string]: boolean } = {};
 
-    return null;
+  /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
+  id = `sbb-autocomplete-${_uniqueAutocompleteIdCounter++}`;
+
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>) {
+
+
   }
 
-  propagateChange: any = () => { };
-
-  writeValue(newValue: Option): void {
-    if (newValue) {
-      this.value = newValue;
-      this.label = newValue.getLabel();
-      this.textContent = newValue.getLabel();
-      this.propagateChange(newValue);
-    }
-  }
-
-  registerOnChange(fn) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void { }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  setVisibility() {
-    this.isFocused = (this.textContent.length >= this.minDigitsTrigger) || (this.staticOptions && !!this.staticOptions.length);
-    this.changeDetectorRef.markForCheck();
-  }
-
-  onInput($event) {
-    this.textContent = $event.target.value;
-    this.setVisibility();
-    this.inputedText.emit(this.textContent);
+  ngAfterContentInit() {
+    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.options).withWrap();
+    // Set the initial visibility state.
+    this._setVisibility();
   }
 
   /**
-   * Resets the active item to -1 so arrow events will activate the
-   * correct options, or to 0 if the consumer opted into it.
+   * Sets the panel scrollTop. This allows us to manually scroll to display options
+   * above or below the fold, as they are not actually being focused when active.
    */
-  private resetActiveItem(): void {
-    this.optionsList.keyManager.setActiveItem(this.optionsList.autoActiveFirstOption ? 0 : -1);
-  }
-
-  onOptionSelected(selectedOption: SbbAutocompleteSelectedEvent) {
-    this.writeValue(selectedOption.option.item);
-    this.isFocused = false;
-  }
-
-  tabSelection($event) {
-    if (!!this.optionsList.keyManager.activeItem) {
-      this.writeValue(this.optionsList.keyManager.activeItem.item);
+  _setScrollTop(scrollTop: number): void {
+    if (this.panel) {
+      this.panel.nativeElement.scrollTop = scrollTop;
     }
-    this.isFocused = false;
   }
 
-  scrollOptions($event) {
-    const keyCode = $event.keyCode;
+  /** Returns the panel's scrollTop. */
+  _getScrollTop(): number {
+    return this.panel ? this.panel.nativeElement.scrollTop : 0;
+  }
 
-    if (this.activeOption && keyCode === ENTER && this.showOptions) {
-      this.activeOption.selectViaInteraction();
-      this.resetActiveItem();
-      this.changeDetectorRef.markForCheck();
-      event.preventDefault();
-    } else if (this.optionsList) {
-      const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-      if (isArrowKey) {
-        this.setVisibility();
-        if (this.showOptions) {
-          this.optionsList.keyManager.onKeydown($event);
-        }
-      }
-    }
+  /** Panel should hide itself when the option list is empty. */
+  _setVisibility() {
+    this.showPanel = !!this.options.length;
+    this._classList['sbb-autocomplete-visible'] = this.showPanel;
+    this._classList['sbb-autocomplete-hidden'] = !this.showPanel;
+    this._changeDetectorRef.markForCheck();
+  }
+
+  /** Emits the `select` event. */
+  _emitSelectEvent(option: AutocompleteOptionComponent): void {
+    const event = new SbbAutocompleteSelectedEvent(this, option);
+    this.optionSelected.emit(event);
   }
 }
+

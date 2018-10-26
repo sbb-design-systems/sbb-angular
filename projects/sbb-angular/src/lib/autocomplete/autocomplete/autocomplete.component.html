@@ -1,2 +1,5 @@
-<input type="text" [value]="label" (input)="onInput($event)" (keydown)="scrollOptions($event)" (keydown.Tab)="tabSelection($event)" >
-<sbb-autocomplete-option-list #optionsList [options]="options" [filter]="textContent" [staticOptions]="staticOptions" (optionSelected)="onOptionSelected($event)" [hidden]="!showOptions"></sbb-autocomplete-option-list>
+<ng-template>
+  <div class="mat-autocomplete-panel" role="listbox" [id]="id" [ngClass]="_classList" #panel>
+    <ng-content></ng-content>
+  </div>
+</ng-template>

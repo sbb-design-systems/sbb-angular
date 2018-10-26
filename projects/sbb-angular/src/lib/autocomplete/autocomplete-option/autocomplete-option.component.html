@@ -1,1 +1,1 @@
-<div [id]="id" (click)="selectOption($event)" [innerHtml]="item?.getLabel() | highlight: filter"></div>
+<div [id]="id" class="sbb-option" role="option" (click)="_selectViaInteraction()" (keydown)="_handleKeydown($event)"></div>

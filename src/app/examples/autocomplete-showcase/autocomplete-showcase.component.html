@@ -4,10 +4,12 @@
     <div class="col-lg-12">
       <legend>Example</legend>
       <fieldset>
-        <sbb-autocomplete (inputedText)="filterSync($event)" [(ngModel)]="testValue" [options]="filteredList"
-          [staticOptions]="staticOptions"></sbb-autocomplete>
+        <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
+        <sbb-autocomplete #auto="sbbAutocomplete">
+          <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>
+        </sbb-autocomplete>
       </fieldset>
-      <pre>{{ testValue | json }}</pre>
+      <pre>{{ myControl | json }}</pre>
     </div>
   </div>
 </div>

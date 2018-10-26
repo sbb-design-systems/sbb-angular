@@ -1,11 +1,10 @@
-import { Option } from 'sbb-angular';
 
-export class ShowcaseOption implements Option {
+export class ShowcaseOption {
 
   constructor(
     private label: string,
     private value: string
-  ) {}
+  ) { }
 
   getLabel(): string {
     return this.label;
