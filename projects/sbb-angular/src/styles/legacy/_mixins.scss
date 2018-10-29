@@ -588,331 +588,55 @@
 
 }
 
-// Button Styles
+// Form Styles
 // ----------------------------------------------------------------------------------------------------
-@mixin buttons($fontSize: $sizeFontDefault) {
-	@include ellipsis;
-	box-sizing: border-box;
-	width: 100%;
-	height: toEm(48/$fontSize);
-	padding: toEm(12.5/$fontSize) toEm(40/$fontSize) toEm(15.5/$fontSize) toEm(40/$fontSize);
-	background-color: $colorCallToAction;
-	text-decoration: none;
-	display: inline-block;
-	text-align: center;
-	font-size: pxToRem($fontSize);
-	line-height: 1.5;
+@mixin inputfields {
+	margin-top: pxToEm(15,16);
+	padding: pxToEm(10,16) pxToEm(12,16);
+	background: $colorWhite;
 	border: none;
-	border-radius: toEm(2/$fontSize);
-	color: $colorWhite;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	border-radius: pxToEm(2,16);
+	color: $colorGrey;
+	line-height: 1.5;
+	font-size: pxToRem(16);
+	-webkit-appearance: none;
+	&::-ms-clear {
+		display: none;
+	}
 
 	@include mq($from: tabletPortrait) {
-		font-size: pxToRem($fontSize);
-		width: auto;
-		min-width: toEm(160/$fontSize);
-		max-width: toEm(400/$fontSize);
+		margin-top: pxToEm(15);
+		border-radius: pxToEm(2);
+		font-size: 1em;
+		padding: pxToEm(11) pxToEm(14);
 	}
+}
 
-	@include mq($from: desktop) {
-		font-size: pxToRem($fontSize);
-	}
+@mixin disabledelement {
+	opacity: 0.5;
+}
 
-	@include mq($from: desktop4k) {
-		font-size: pxToRem($fontSize * $scalingFactor4k);
-	}
+@mixin readonlyelement {
+	background: $colorBlack5;
+	border-color: $colorBlack20;
+}
 
-	@include mq($from: desktop5k) {
-		font-size: pxToRem($fontSize * $scalingFactor5k);
-	}
-
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			cursor: pointer;
-		}
-	}
+@mixin disabledinputfields {
 	&:disabled {
-		opacity: 0.5;
+		@include disabledelement;
 	}
 }
 
-@mixin buttonArrowHover {
-	padding-left: pxToEm(70, $sizeFontDefault);
-	padding-right: pxToEm(40, $sizeFontDefault);
-	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
-
-	.mod-svgsprite-icon {
-		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
-	}
-
-	.mod-svgsprite-icon:first-of-type {
-		opacity: 1;
-		transform: translateX(0);
-	}
-
-	.mod-svgsprite-icon:last-of-type {
-		opacity: 0;
-		transform: translateX(pxToEm(26));
-	}
-
-	&.var-center {
-		padding-right: 0;
+@mixin readonlyinputfields {
+	&[readonly],
+	&:read-only {
+		@include readonlyelement;
 	}
 }
 
-@mixin arrowbuttons {
-	position: relative;
-	padding-left: toEm(40/$sizeFontDefault);
-	padding-right: toEm(70/$sizeFontDefault);
-	transition: height $linkiconAnimation, padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
-	font-size: pxToRem($sizeFontDefault);
-
-	@include mq($from: tabletPortrait) {
-		font-size: pxToRem($sizeFontDefault);
-	}
-
-	@include mq($from: desktop) {
-		font-size: pxToRem($sizeFontDefault);
-	}
-
-	@include mq($from: desktop4k) {
-		font-size: pxToRem($sizeFontDefault4k);
-	}
-
-	@include mq($from: desktop5k) {
-		font-size: pxToRem($sizeFontDefault5k);
-	}
-
-	.mod-svgsprite-icon {
-		position: absolute;
-		width: pxToEm(24, $sizeFontDefault);
-		height: pxToEm(24, $sizeFontDefault);
-		top: 50%;
-		margin-top: pxToEm(-11.5, $sizeFontDefault);
-		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
-		backface-visibility: hidden;
-		fill: $colorWhite;
-		pointer-events: none;
-	}
-
-	.mod-svgsprite-icon:first-of-type {
-		margin-left: pxToEm(-30, $sizeFontDefault);
-		opacity: 0;
-		transform: translateX(pxToEm(-26, $sizeFontDefault));
-	}
-
-	.mod-svgsprite-icon:last-of-type {
-		margin-left: pxToEm(6, $sizeFontDefault);
-		opacity: 1;
-		transform: translateX(0px);
-	}
-
-	&:not(:disabled) {
-		&:hover {
-			.no-touchevents & {
-				@include buttonArrowHover;
-			}
-		}
-
-		&:focus {
-			@include buttonArrowHover;
-		}
-	}
-
-
-	&.var-center {
-		text-align: center;
-		padding-right: 0;
-	}
-}
-
-@mixin arrowButtonsForLinks {
-
-	.mod-svgsprite-icon {
-		top: pxToEm(-0.5);
-		margin-top: 0;
-	}
-
-	.mod-svgsprite-icon:last-of-type {
-		top: auto;
-		bottom: pxToEm(-0.5);
-	}
-
-}
-
-@mixin primaryButton {
-	@include buttons;
-
-	color: $colorWhite;
-	background-color: $colorCallToAction;
-
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			background-color: $colorCallToActionHover;
-			color: $colorWhite;
-
-			.mod-svgsprite-icon {
-				fill: $colorWhite;
-			}
-		}
-	}
-}
-
-@mixin primaryButtonArrowless {
-	@include primaryButton;
-	transition: background-color $linkiconAnimation;
-}
-
-@mixin secondaryButton {
-	@include buttons;
-
-	color: $colorBlack90;
-	background-color: $colorGreyLight;
-
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			background-color: $colorGreySilver;
-			color: $colorBlack90;
-		}
-	}
-}
-
-@mixin primaryIconButton {
-	@include primaryButton;
-	@include arrowbuttons;
-
-	.mod-svgsprite-icon {
-		margin-top: pxToEm(-12, $sizeFontDefault);
-	}
-}
-
-@mixin secondaryIconButton {
-	@include secondaryButton;
-	@include arrowbuttons;
-
-	.mod-svgsprite-icon {
-		margin-top: pxToEm(-12, $sizeFontDefault);
-		fill: $colorBlack90;
-	}
-
-	&:hover,
-	&:focus {
-		.mod-svgsprite-icon {
-			fill: $colorBlack90;
-		}
-	}
-
-}
-
-@mixin ghostButtonPositive ($fontSize: $sizeFontDefault) {
-	@include buttons;
-
-	background-color: transparent;
-	box-shadow: 0px 0px 0px 1px $colorBlack40 inset;
+@mixin formlabel {
 	color: $colorGrey;
-
-	transition: box-shadow $linkiconAnimation, color $linkiconAnimation;
-
-	@media screen and (-ms-high-contrast: active) {
-		border: pxToEm(1) solid currentColor;
-	}
-
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			box-shadow: 0px 0px 0px 1px currentColor inset;
-			color: $colorBlack90;
-			background-color: transparent;
-			border-color: currentColor;
-
-			.mod-svgsprite-icon {
-				fill: currentColor;
-			}
-		}
-	}
-
-	p & {
-		margin-top: toEm(14/$fontSize);
-	}
-}
-
-@mixin ghostButtonNegative ($fontSize: $sizeFontDefault) {
-	@include buttons($fontSize);
-
-	background-color: rgba(0,0,0,0.25);
-	box-shadow: 0px 0px 0px 1px $colorWhite inset;
-	color: $colorWhite;
-
-	transition: background-color $linkiconAnimation;
-
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			background-color: rgba(0,0,0,0.5);
-			color: $colorWhite;
-			transition: background-color $linkiconAnimation;
-		}
-	}
-}
-
-@mixin iconbutton {
-	@include primaryButton;
-
-	.mod-svgsprite-icon {
-		fill: $colorWhite;
-		margin-top: pxToRem(-5px);
-		margin-right: pxToRem(5px);
-	}
-
-	@include mq($to: desktop) {
-		min-width: 0;
-
-		.text__button-text {
-			@include visuallyhidden;
-		}
-	}
-}
-
-@mixin iconbuttonSimple($fontSize: $sizeFontDefault) {
-	@include buttons($fontSize);
-
-	overflow: visible;
-	white-space: normal;
-	text-overflow: clip;
-	padding: toEm(12.5/$fontSize) 0 toEm(15.5/$fontSize) 0;
-	text-align: center;
-	color: $colorGrey;
-	background-color: transparent;
-	transition: color $linkiconAnimation;
-
-	width: auto !important;
-	margin: 0 auto toEm(16/$fontSize) auto !important;
-
-	@include mq($from: tabletPortrait) {
-		text-align: left;
-		margin: 0 !important;
-	}
-
-	.mod-svgsprite-icon {
-		float: right;
-		margin-left: toEm(8/$sizeFontDefault);
-		fill: $colorBlack60;
-		transition: fill $linkiconAnimation, transform $linkiconAnimation;
-	}
-
-
-
-	&:hover {
-		color: $colorCallToActionHover;
-
-		.mod-svgsprite-icon {
-			fill: $colorCallToActionHover;
-			transform: rotateZ(180deg);
-		}
-	}
+	font-size: pxToEm(13);
 }
 
 @mixin breakOutOfCenterAndGoFullBleed() {

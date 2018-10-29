@@ -3,6 +3,7 @@ import { UiComponent } from '../shared/ui-component';
 import { TextareaShowcaseComponent } from '../examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from '../examples/links-showcase/links-showcase.component';
 import { AutocompleteShowcaseComponent } from '../examples/autocomplete-showcase/autocomplete-showcase.component';
+import { ButtonShowcaseComponent } from '../examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
@@ -44,7 +45,8 @@ export class ComponentUiService {
         `showCode() {\n //write it out ...\n alert('Properties code goes here ...');\n}`,
         `showCode() {\n //write it out ...\n alert('Events code goes here ...');\n}`,
         `showCode() {\n //write it out ...\n alert('Styling code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`
+        `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`,
+        ButtonShowcaseComponent
       ),
       new UiComponent(
         'List',

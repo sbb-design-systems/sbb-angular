@@ -1,0 +1,47 @@
+<div class="container-fluid pb-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <article>
+                <h3 class="mb-2">Example</h3> 
+                <div *ngIf="showButton">
+                    <button sbbButton [mode]="buttonMode" [disabled]="buttonDisabled" *ngIf="buttonIcon === 'noIcon'">
+                        Bezeichnung
+                    </button>
+                    <button sbbButton [mode]="buttonMode" [disabled]="buttonDisabled" [icon]="icon" *ngIf="buttonIcon !== 'noIcon'">
+                        Bezeichnung
+                    </button>
+                    <ng-template #icon>
+                        <sbb-icon-arrow-down *ngIf="buttonIcon === 'arrow'"></sbb-icon-arrow-down>
+                        <sbb-icon-plus *ngIf="buttonIcon === 'plus'"></sbb-icon-plus>
+                        <sbb-icon-download *ngIf="buttonIcon === 'download'"></sbb-icon-download>
+                    </ng-template>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-6">
+            <article [formGroup]="buttonForm">
+                <h3 class="mb-2">Properties</h3>
+                <div>
+                    <div class="form-group">
+                        <label for="buttonMode">Mode</label>
+                        <select formControlName="mode" class="form-control" id="buttonMode">
+                            <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="buttonIcon">Icon</label>
+                        <select formControlName="icon" class="form-control" id="buttonIcon">
+                            <option [ngValue]="'noIcon'">No Icon</option>
+                            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+                        </select>
+                        <small class="font-italic">* All icons allowed, in this example are loaded only three as sample icons</small>
+                    </div>
+                    <div class="form-check">
+                        <input formControlName="disabled" type="checkbox" class="form-check-input" id="buttonDisabled">
+                        <label for="buttonDisabled" class="form-check-label">Disabled button</label>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

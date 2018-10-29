@@ -23,6 +23,7 @@ import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
 import { LinksShowcaseComponent } from './examples/links-showcase/links-showcase.component';
 import { AutocompleteShowcaseComponent } from './examples/autocomplete-showcase/autocomplete-showcase.component';
+import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
@@ -46,17 +47,18 @@ import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-fie
     BrowserModule,
     FormsModule,
     NgbModule,
-    MonacoEditorModule.forRoot({baseUrl: './assets'}),
+    MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' })
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
     AutocompleteShowcaseComponent,
+    ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,

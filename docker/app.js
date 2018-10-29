@@ -2,22 +2,19 @@ const { exec } = require('child_process');
 const express = require('express');
 const { copy, readFile, writeFile, existsSync } = require('fs-extra');
 const { join } = require('path');
-const { prerelease, major, gt } = require('semver');
+const { DateTime, Duration } = require('luxon');
 const execAsync = require('util').promisify(exec);
 
 class ShowcasePackage {
-  constructor(packageInfo, version = 'latest', target = undefined) {
+  constructor(packageInfo, tag) {
     this.name = packageInfo.name;
-    this.version = version;
-    this.actualVersion = this.version in packageInfo['dist-tags']
-      ? packageInfo['dist-tags'][this.version] : this.version;
-    this.publishDatetime = packageInfo.time[this.actualVersion];
-    this.target = target || this.version;
-    this.targetDir = join(__dirname, 'browser', this.target);
-    this.installName = this.version === 'latest'
-      ? this.name : `${this.name}-${this.version}@npm:${this.name}@${this.version}`;
-    this.location = join(
-      __dirname, 'node_modules', this.version === 'latest' ? this.name : `${this.name}-${this.version}`);
+    this.tag = tag;
+    this.version = packageInfo['dist-tags'][this.tag];
+    this.dateTime = DateTime.fromISO(
+      packageInfo.time[this.version], { locale: 'de', zone: 'Europe/Zurich' });
+    this.targetDir = join(__dirname, 'browser', this.tag);
+    this.installName = `sbb-angular-showcase-${this.tag}@npm:sbb-angular-showcase@${this.tag}`;
+    this.location = join(__dirname, 'node_modules', `sbb-angular-showcase-${this.tag}`);
   }
 
   async install() {
@@ -29,23 +26,24 @@ class ShowcasePackage {
       indexFile,
       indexHtml.replace(
         /<base[^>]+>/g,
-        `<base href="/${this.target}/"><meta name="robots" content="noindex, nofollow">`),
+        `<base href="/${this.tag}/"><meta name="robots" content="noindex, nofollow">`),
       'utf-8');
   }
 
+  isReleased() {
+    return this.tag !== 'develop' && !this.tag.startsWith('feature-');
+  }
+
+  isObsolete() {
+    return this.tag.startsWith('feature-') && this.dateTime.diffNow('month').toObject().months < -1;
+  }
+
   toString() {
-    return this.target === 'develop' || this.version === this.actualVersion
-      ? this.target : `${this.target} (${this.actualVersion})`;
+    return this.isReleased() ? `${this.tag} (${this.version})` : this.tag;
   }
 
   toLocaleDatetime() {
-    const date = new Date(this.publishDatetime);
-    const paddedJoin = (parts, glue) => parts
-      .map(n => n < 10 ? `0${n}` : n.toString())
-      .join(glue);
-    const dateString = paddedJoin([date.getDate(), date.getMonth() + 1, date.getFullYear()], '.');
-    const timeString = paddedJoin([date.getHours(), date.getMinutes(), date.getSeconds()], ':');
-    return `${dateString} ${timeString}`;
+    return this.dateTime.toFormat('dd.MM.yyyy HH:mm:ss');
   }
 }
 
@@ -53,12 +51,13 @@ class Setup {
   constructor() {
     this.ready = false;
     this.showcasePackage = 'sbb-angular-showcase';
-    this.developShowcasePackage = `${this.showcasePackage}-develop`;
   }
 
   async run() {
-    this.showcaseVersions = await this.resolveShowcaseVersions();
-    for (const installable of this.showcaseVersions) {
+    const showcaseVersions = await this.resolveShowcaseVersions();
+    this.releasedVersions = showcaseVersions.filter(s => s.isReleased());
+    this.devVersions = showcaseVersions.filter(s => !s.isReleased());
+    for (const installable of showcaseVersions) {
       console.log(`Installing ${installable.name}@${installable.version}`);
       await installable.install();
     }
@@ -68,26 +67,10 @@ class Setup {
   }
 
   async resolveShowcaseVersions() {
-    const developShowcaseInfo = await this.info(this.developShowcasePackage);
     const showcaseInfo = await this.info(this.showcasePackage);
-    return [
-      new ShowcasePackage(developShowcaseInfo, 'latest', 'develop'),
-      new ShowcasePackage(showcaseInfo),
-      new ShowcasePackage(showcaseInfo, 'next'),
-      ...await this.resolveLatestShowcaseMajorVersions(showcaseInfo),
-    ];
-  }
-
-  async resolveLatestShowcaseMajorVersions(showcaseInfo) {
-    const versions = showcaseInfo.versions
-      .reduce((current, next) => {
-        if (!prerelease(next) && (!current.has(major(next)) || gt(next, current.get(major(next))))) {
-          current.set(major(next), next);
-        }
-        return current;
-      }, new Map());
-    return Array.from(versions)
-      .map(([, version]) => new ShowcasePackage(showcaseInfo, version));
+    return Object.keys(showcaseInfo['dist-tags'])
+      .map(t => new ShowcasePackage(showcaseInfo, t))
+      .filter(s => !s.isObsolete());
   }
 
   async info(packageName) {
@@ -113,7 +96,7 @@ app.get('*.*', express.static(BROWSER_ROOT));
 app.get('/ready', (req, res) => res.sendStatus(setup.ready ? 200 : 503));
 app.get('/', (req, res) => {
   if (setup.ready) {
-    res.render('index', { showcaseVersions: setup.showcaseVersions });
+    res.render('index', setup);
   } else {
     res.sendStatus(503);
   }
