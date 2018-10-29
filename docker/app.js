@@ -11,7 +11,7 @@ class ShowcasePackage {
     this.tag = tag;
     this.version = packageInfo['dist-tags'][this.tag];
     this.dateTime = DateTime.fromISO(
-      packageInfo.time[this.version], { locale: 'de-CH', zone: 'Europe/Zurich' });
+      packageInfo.time[this.version], { locale: 'de', zone: 'Europe/Zurich' });
     this.targetDir = join(__dirname, 'browser', this.tag);
     this.installName = `sbb-angular-showcase-${this.tag}@npm:sbb-angular-showcase@${this.tag}`;
     this.location = join(__dirname, 'node_modules', `sbb-angular-showcase-${this.tag}`);
@@ -26,7 +26,7 @@ class ShowcasePackage {
       indexFile,
       indexHtml.replace(
         /<base[^>]+>/g,
-        `<base href="/${this.target}/"><meta name="robots" content="noindex, nofollow">`),
+        `<base href="/${this.tag}/"><meta name="robots" content="noindex, nofollow">`),
       'utf-8');
   }
 
@@ -43,7 +43,7 @@ class ShowcasePackage {
   }
 
   toLocaleDatetime() {
-    return this.dateTime.toLocaleString();
+    return this.dateTime.toFormat('dd.MM.yyyy HH:mm:ss');
   }
 }
 
