@@ -1,6 +1,26 @@
 @import './styles/main';
 @import './styles/fonts';
 
+[sbbButton], 
+[sbbLink],
+[sbbSocialLink],
+sbb-radio-button,
+sbb-checkbox, 
+sbb-label,
+sbb-field,
+sbb-form-error,
+sbb-textarea {
+	*,
+	*::before,
+	*::after {
+	  box-sizing: border-box;
+	}
+
+	article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+		display: block;
+	}
+}
+
 table {
 	th,
 	td {
@@ -98,11 +118,12 @@ input[type=datetime-local] {
 input[type=number] {
 	color: $colorGrey;
 	opacity: 1;
-sbb-radio-button {
-  @include radioButtonLabel;
-}
 
-sbb-checkbox {
-  @include checkboxLabel;
-}
+	sbb-radio-button {
+		@include radioButtonLabel;
+	}
+
+	sbb-checkbox {
+		@include checkboxLabel;
+	}
 }

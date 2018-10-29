@@ -15,7 +15,6 @@
 	@include buttonReset();
 	@include ellipsis;
 
-	box-sizing: border-box;
 	width: 100%;
 	height: toEm(48/$fontSize);
 	padding: toEm(12.5/$fontSize) toEm(40/$fontSize) toEm(15.5/$fontSize) toEm(40/$fontSize);
