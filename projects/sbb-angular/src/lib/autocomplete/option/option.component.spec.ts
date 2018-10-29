@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AutocompleteOptionComponent } from './autocomplete-option.component';
+import { OptionComponent } from './option.component';
 
 describe('AutocompleteOptionComponent', () => {
-  let component: AutocompleteOptionComponent;
-  let fixture: ComponentFixture<AutocompleteOptionComponent>;
+  let component: OptionComponent;
+  let fixture: ComponentFixture<OptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AutocompleteOptionComponent]
+      declarations: [OptionComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AutocompleteOptionComponent);
+    fixture = TestBed.createComponent(OptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

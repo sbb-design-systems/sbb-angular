@@ -25,7 +25,7 @@ import {
   HostBinding,
   forwardRef,
 } from '@angular/core';
-import { AutocompleteOptionComponent } from '../autocomplete-option/autocomplete-option.component';
+import { OptionComponent } from '../option/option.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -39,7 +39,7 @@ export class SbbAutocompleteSelectedEvent {
     /** Reference to the autocomplete panel that emitted the event. */
     public source: AutocompleteComponent,
     /** Option that was selected. */
-    public option: AutocompleteOptionComponent) { }
+    public option: OptionComponent) { }
 }
 
 
@@ -61,7 +61,7 @@ export class AutocompleteComponent implements AfterContentInit {
 
 
   /** Manages active item in option list based on key events. */
-  _keyManager: ActiveDescendantKeyManager<AutocompleteOptionComponent>;
+  _keyManager: ActiveDescendantKeyManager<OptionComponent>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel = false;
@@ -79,7 +79,7 @@ export class AutocompleteComponent implements AfterContentInit {
   @ViewChild('panel') panel: ElementRef;
 
   /** @docs-private */
-  @ContentChildren(AutocompleteOptionComponent, { descendants: true }) options: QueryList<AutocompleteOptionComponent>;
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -134,7 +134,7 @@ export class AutocompleteComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<AutocompleteOptionComponent>(this.options).withWrap().withTypeAhead();
+    this._keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap().withTypeAhead();
     // Set the initial visibility state.
     this._setVisibility();
   }
@@ -163,7 +163,7 @@ export class AutocompleteComponent implements AfterContentInit {
   }
 
   /** Emits the `select` event. */
-  _emitSelectEvent(option: AutocompleteOptionComponent): void {
+  _emitSelectEvent(option: OptionComponent): void {
     const event = new SbbAutocompleteSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }

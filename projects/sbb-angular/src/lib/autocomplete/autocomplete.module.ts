@@ -5,12 +5,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { AutocompleteOptionComponent } from './autocomplete-option/autocomplete-option.component';
+import { OptionComponent } from './option/option.component';
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {
   AutocompleteTriggerDirective
 } from './autocomplete/autocomplete-trigger.directive';
-import { HighlightPipe } from './autocomplete-option/highlight.pipe';
+import { HighlightPipe } from './option/highlight.pipe';
 
 @NgModule({
   imports: [
@@ -20,14 +20,14 @@ import { HighlightPipe } from './autocomplete-option/highlight.pipe';
   ],
   declarations: [
     AutocompleteComponent,
-    AutocompleteOptionComponent,
+    OptionComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
     HighlightPipe
   ],
   exports: [
     AutocompleteComponent,
-    AutocompleteOptionComponent,
+    OptionComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
     OverlayModule,

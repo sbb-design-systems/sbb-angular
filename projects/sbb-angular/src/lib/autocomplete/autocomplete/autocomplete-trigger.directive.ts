@@ -33,9 +33,9 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
 import {
-  SbbOptionSelectionChange,
-  AutocompleteOptionComponent
-} from '../autocomplete-option/autocomplete-option.component';
+  SBBOptionSelectionChange,
+  OptionComponent
+} from '../option/option.component';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
@@ -117,7 +117,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SbbOptionSelectionChange> = defer(() => {
+  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
     }
@@ -268,7 +268,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
    * A stream of actions that should close the autocomplete panel, including
    * when an option is selected, on blur, and when TAB is pressed.
    */
-  get panelClosingActions(): Observable<SbbOptionSelectionChange | null> {
+  get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
       this.autocomplete._keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
@@ -279,7 +279,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => event instanceof SbbOptionSelectionChange ? event : null)
+      map(event => event instanceof SBBOptionSelectionChange ? event : null)
     );
   }
 
@@ -289,7 +289,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   /** The currently active option, coerced to MatOption type. */
-  get activeOption(): AutocompleteOptionComponent | null {
+  get activeOption(): OptionComponent | null {
     if (this.autocomplete && this.autocomplete._keyManager) {
       return this.autocomplete._keyManager.activeItem;
     }
@@ -472,7 +472,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
    */
-  private _setValueAndClose(event: SbbOptionSelectionChange | null): void {
+  private _setValueAndClose(event: SBBOptionSelectionChange | null): void {
     if (event && event.source) {
       this._clearPreviousSelectedOption(event.source);
       this._setTriggerValue(event.source.value);
@@ -487,7 +487,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private _clearPreviousSelectedOption(skip: AutocompleteOptionComponent) {
+  private _clearPreviousSelectedOption(skip: OptionComponent) {
     this.autocomplete.options.forEach(option => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {
