@@ -25,22 +25,22 @@ import { Highlightable } from '@angular/cdk/a11y';
 let _uniqueIdCounter = 0;
 
 /** Event object emitted by AutocompleteOptionComponent when selected or deselected. */
-export class SbbOptionSelectionChange {
+export class SBBOptionSelectionChange {
   constructor(
     /** Reference to the option that emitted the event. */
-    public source: AutocompleteOptionComponent,
+    public source: OptionComponent,
     /** Whether the change in the option's value was a result of a user action. */
     public isUserInput = false) { }
 }
 
 @Component({
   selector: 'sbb-option',
-  styleUrls: ['autocomplete-option.component.scss'],
-  templateUrl: 'autocomplete-option.component.html',
+  styleUrls: ['option.component.scss'],
+  templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteOptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
+export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
   private _selected = false;
   private _active = false;
   private _disabled = false;
@@ -74,7 +74,7 @@ export class AutocompleteOptionComponent implements AfterViewChecked, OnDestroy,
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output()
-  readonly onSelectionChange = new EventEmitter<SbbOptionSelectionChange>();
+  readonly onSelectionChange = new EventEmitter<SBBOptionSelectionChange>();
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly _stateChanges = new Subject<void>();
@@ -178,6 +178,6 @@ export class AutocompleteOptionComponent implements AfterViewChecked, OnDestroy,
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SbbOptionSelectionChange(this, isUserInput));
+    this.onSelectionChange.emit(new SBBOptionSelectionChange(this, isUserInput));
   }
 }
