@@ -156,7 +156,7 @@ class DevShowcasePublisher extends Publisher {
 
 const version = process.env.npm_package_version;
 const type = (process.argv[2] || '')
-  .replace('/', '-')
+  .replace(/[^a-zA-Z0-9\-]/g, '-')
   .toLowerCase();
 const dryRun = !process.env.BUILD_NUMBER;
 const publisher = type
