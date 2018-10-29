@@ -1,33 +1,5 @@
 @import "../../../styles/main";
 
-/* .sbb-option {
-  @include ellipsis;
-
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-  padding: toPx(4) 0;
-
-  @include mq($from: desktop4k) {
-    padding: toPx(4 * $scalingFactor4k) 0;
-  }
-
-  @include mq($from: desktop5k) {
-    padding: toPx(4 * $scalingFactor5k) 0;
-  }
-
-  span.highlight {
-    font-family: $fontSbbBold;
-    color: $colorBlack;
-  }
-
-  &:hover,
-  &.sbb-selected {
-    color: $colorRed100 !important;
-  }
-}
- */
-
 sbb-option {
   @include ellipsis;
   @include mq($from: desktop4k) {
@@ -36,6 +8,13 @@ sbb-option {
 
   @include mq($from: desktop5k) {
     padding: toPx(4 * $scalingFactor5k) 0;
+  }
+
+  .sbb-option-text {
+    display: inline-block;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   cursor: pointer;
@@ -66,31 +45,4 @@ sbb-option[disabled] {
 sbb-option[aria-disabled="true"] {
   user-select: none;
   cursor: default;
-}
-
-.sbb-option-text {
-  display: inline-block;
-  flex-grow: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-sbb-option .sbb-option-ripple {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  pointer-events: none;
-}
-@media screen and (-ms-high-contrast: active) {
-  sbb-option .sbb-option-ripple {
-    opacity: 0.5;
-  }
-}
-.sbb-option-pseudo-checkbox {
-  margin-right: 8px;
-}
-[dir="rtl"] .sbb-option-pseudo-checkbox {
-  margin-left: 8px;
-  margin-right: 0;
 }

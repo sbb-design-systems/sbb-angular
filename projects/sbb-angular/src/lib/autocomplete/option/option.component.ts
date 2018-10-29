@@ -12,7 +12,8 @@ import {
   Output,
   HostBinding,
   ViewEncapsulation,
-  HostListener
+  HostListener,
+  Host
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Highlightable } from '@angular/cdk/a11y';
@@ -65,6 +66,8 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   @HostBinding('class.sbb-active')
   get active(): boolean { return this._active; }
+
+  @HostBinding('class.sbb-option-text') baseClass = true;
 
   @Input()
   value: any;
