@@ -2,6 +2,7 @@
 
 sbb-option {
   @include ellipsis;
+
   @include mq($from: desktop4k) {
     padding: toPx(4 * $scalingFactor4k) 0;
   }
@@ -27,15 +28,16 @@ sbb-option {
   cursor: pointer;
   outline: 0;
   font-family: $fontSbbRoman;
-  &.sbb-active {
-    color: $colorRed100 !important;
+  
+  &.sbb-active, &:hover, &:focus {
+    color: $colorRed100;
   }
 
-  span.highlight {
+  .highlight {
     font-family: $fontSbbBold;
   }
 
-  &:not(.sbb-active) span.highlight {
+  &:not(.sbb-active) .highlight {
     color: $colorBlack;
   }
 }

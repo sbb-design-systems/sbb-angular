@@ -1,5 +1,7 @@
 @import "./styles/main";
 @import "./styles/fonts";
+@import "~@angular/cdk/a11y-prebuilt.css";
+@import "~@angular/cdk/overlay-prebuilt.css";
 
 [sbbButton], 
 [sbbLink],
@@ -19,6 +21,22 @@ sbb-textarea {
 	article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 		display: block;
 	}
+}
+
+html {
+  background: $colorBg;
+  color: $colorText;
+  font-family: $fontSbbRoman;
+  font-size: $sizeFontBase / 16px * 100%;
+  line-height: $sizeLineHeightBase;
+  @include fontSmoothing;
+ 
+  b,
+  strong,
+  optgroup[label="*"] {
+    font-family: $fontSbbBold;
+    font-weight: normal;
+  }
 }
 
 table {
