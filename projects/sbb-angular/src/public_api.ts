@@ -8,3 +8,4 @@ export * from './lib/links/index';
 export * from './lib/button/index';
 export * from './lib/radio-button/index';
 export * from './lib/checkbox/index';
+export * from './lib/tabs/index';

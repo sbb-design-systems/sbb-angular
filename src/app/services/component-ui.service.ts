@@ -7,6 +7,7 @@ import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
 import { SbbFieldShowcaseComponent } from '../examples/sbb-field-showcase/sbb-field-showcase.component';
+import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -445,13 +446,13 @@ export class ComponentUiService {
         CheckboxShowcaseComponent
       ),
       new UiComponent(
-        'Tab',
-        'tab',
-        'Tab',
-        'Subtitel goes here ...',
+        'Tabs',
+        'tabs',
+        'Tabs',
+        'Tabs is a container component to group content with tabs.',
         true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
+        false,
+        ['Davide Aresta', 'Marco Sut', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -471,7 +472,8 @@ export class ComponentUiService {
         'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
         'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
+        TabsShowcaseComponent
       ),
       new UiComponent(
         'Accordion',

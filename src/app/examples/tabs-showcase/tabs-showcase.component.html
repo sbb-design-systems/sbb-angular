@@ -1,0 +1,33 @@
+<div class="conatiner">
+  <div class="row justify-content-between">  
+     
+    <sbb-tabs>
+      <sbb-tab [tabTitle]="'Tab 1'">
+        <div class="form-group">
+          <br/>
+          <h5>Content 1</h5>
+          <p>Here comes the content for tab 1 ...</p>
+        </div>
+      </sbb-tab>
+      <sbb-tab [tabTitle]="'Tab 2'">
+        <div class="form-group">
+          <br/>
+          <h5>Content 2</h5>
+          <p>Here comes the content for tab 2 ...</p>
+        </div>
+      </sbb-tab>
+      <sbb-tab [tabTitle]="'Person'" [badgePill]="getCountOfPerson()">
+        <div class="form-group">
+          <br/>
+          <h5>List of Persons</h5>
+          <person-list [person]="person" (addPerson)="onAddPerson()" (editPerson)="onEditPerson($event)"></person-list>
+        </div>
+      </sbb-tab>
+    </sbb-tabs>
+  
+    <ng-template let-person="person" #personEdit>
+      <person-edit [person]="person" (savePerson)="onPersonFormSubmit($event)"></person-edit>
+    </ng-template>
+
+  </div>
+</div>

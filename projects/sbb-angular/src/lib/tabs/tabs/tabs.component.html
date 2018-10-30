@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+  <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active" class="nav-item">
+      <a href="javascript:void(0);">{{ tab.tabTitle }} <span *ngIf="tab.badgePill" class="badge badge-pill badge-secondary">{{ tab.badgePill }}</span></a>
+  </li>
+  <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" [class.active]="tab.active" class="nav-item">
+      <a href="javascript:void(0);">{{ tab.tabTitle }} <span *ngIf="tab.badgePill" class="badge badge-pill badge-secondary">{{ tab.badgePill }}</span> <span *ngIf="tab.isCloseable" class="tab-close" (click)="closeTab(tab)">x</span></a>
+  </li>
+</ul>
+<ng-content></ng-content>
+<ng-template dynamic-tabs #container></ng-template>
