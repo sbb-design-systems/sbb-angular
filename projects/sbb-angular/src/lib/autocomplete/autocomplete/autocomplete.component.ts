@@ -15,7 +15,6 @@ import {
   ViewChild,
   ViewEncapsulation,
   HostBinding,
-  forwardRef,
 } from '@angular/core';
 import { OptionComponent } from '../option/option.component';
 
@@ -126,7 +125,7 @@ export class AutocompleteComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap().withTypeAhead();
+    this._keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap();
     // Set the initial visibility state.
     this._setVisibility();
   }

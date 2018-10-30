@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import {
@@ -13,10 +14,11 @@ import {
   HostBinding,
   ViewEncapsulation,
   HostListener,
-  Host
+  ViewChild
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Highlightable } from '@angular/cdk/a11y';
+import { HighlightPipe } from './highlight.pipe';
 
 
 /**
@@ -40,6 +42,7 @@ export class SBBOptionSelectionChange {
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [HighlightPipe]
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
   private _selected = false;
@@ -75,16 +78,23 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @Input()
   id = `sbb-option-${_uniqueIdCounter++}`;
 
+  @Input()
+  filter: number | string | null;
+
   // tslint:disable-next-line:no-output-on-prefix
   @Output()
   readonly onSelectionChange = new EventEmitter<SBBOptionSelectionChange>();
+
+  @ViewChild('highlight') highlightedText: ElementRef;
+  @ViewChild('normal') normalText: ElementRef;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly _stateChanges = new Subject<void>();
 
   constructor(
     private _element: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _sanitizer: DomSanitizer
   ) { }
 
   @HostListener('keydown', ['$event'])
@@ -166,9 +176,9 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     // we have to check for changes in the DOM ourselves and dispatch an event. These checks are
     // relatively cheap, however we still limit them only to selected options in order to avoid
     // hitting the DOM too often.
+    this._getHostElement().innerHTML = new HighlightPipe().transform(this._getHostElement().textContent, this.filter);
     if (this._selected) {
       const viewValue = this.viewValue;
-
       if (viewValue !== this._mostRecentViewValue) {
         this._mostRecentViewValue = viewValue;
         this._stateChanges.next();

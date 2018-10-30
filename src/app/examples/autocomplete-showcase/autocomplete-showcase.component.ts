@@ -11,10 +11,11 @@ export class AutocompleteShowcaseComponent implements OnInit {
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filter: '';
+  filteredOptions = [];
 
   ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
-      this.filter = newValue;
+      this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
   }
 }

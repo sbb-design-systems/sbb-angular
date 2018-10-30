@@ -6,8 +6,8 @@
       <fieldset>
         <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
         <sbb-autocomplete #auto="sbbAutocomplete">
-          <sbb-option *ngFor="let option of options" [value]="option">
-            <span [innerHTML]="option | highlight: filter"></span>
+          <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+            <span [innerHTML]="option"></span>
           </sbb-option>
         </sbb-autocomplete>
       </fieldset>
