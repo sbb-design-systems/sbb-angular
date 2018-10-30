@@ -9,15 +9,12 @@ describe('AppComponent', () => {
     let component: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [AppRoutingModule, AppModule],
             providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
         })
             .compileComponents();
-    }));
-
-    beforeEach(() => {
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();

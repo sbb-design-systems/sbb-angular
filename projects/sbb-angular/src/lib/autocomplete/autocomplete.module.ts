@@ -8,7 +8,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { OptionComponent } from './option/option.component';
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {
-  AutocompleteTriggerDirective
+  AutocompleteTriggerDirective, SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './autocomplete/autocomplete-trigger.directive';
 import { HighlightPipe } from './option/highlight.pipe';
 
@@ -32,6 +32,7 @@ import { HighlightPipe } from './option/highlight.pipe';
     AutocompleteTriggerDirective,
     OverlayModule,
     HighlightPipe
-  ]
+  ],
+  providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
 export class AutocompleteModule { }

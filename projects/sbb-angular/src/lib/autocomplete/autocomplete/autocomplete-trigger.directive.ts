@@ -5,7 +5,8 @@ import {
   Overlay,
   OverlayConfig,
   OverlayRef,
-  PositionStrategy
+  PositionStrategy,
+  ScrollStrategy
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -22,7 +23,8 @@ import {
   Optional,
   ViewContainerRef,
   HostBinding,
-  HostListener
+  HostListener,
+  InjectionToken
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -34,7 +36,9 @@ import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
 import {
   SBBOptionSelectionChange,
-  OptionComponent
+  OptionComponent,
+  getOptionScrollPosition,
+  countGroupLabelsBeforeOption
 } from '../option/option.component';
 
 /**
@@ -47,6 +51,26 @@ export function getSbbAutocompleteMissingPanelError(): Error {
     'you\'re attempting to open it after the ngAfterContentInit hook.');
 }
 
+/** Injection token that determines the scroll handling while the autocomplete panel is open. */
+export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY =
+  new InjectionToken<() => ScrollStrategy>('sbb-autocomplete-scroll-strategy');
+
+/** @docs-private */
+export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
+  return () => overlay.scrollStrategies.reposition();
+}
+
+/** The height of each autocomplete option. */
+export const AUTOCOMPLETE_OPTION_HEIGHT = 48;
+
+/** The total height of the autocomplete panel. */
+export const AUTOCOMPLETE_PANEL_HEIGHT = 256;
+
+export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
+  provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
+  deps: [Overlay],
+  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY,
+};
 
 @Directive({
   selector: `input[sbbAutocomplete]`,
@@ -88,6 +112,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   /** Stream of keyboard events that can close the panel. */
   private readonly closeKeyEventStream = new Subject<void>();
   private overlayAttached = false;
+  private scrollStrategy: () => ScrollStrategy;
 
   @HostBinding('attr.role') get role() {
     return this.autocompleteAttribute ? null : 'combobox';
@@ -104,7 +129,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocompleteConnectedTo') connectedTo: AutocompleteOriginDirective;
 
-
   /**
    * `autocomplete` attribute to be set on the input element.
    * @docs-private
@@ -113,8 +137,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   @Input('autocomplete')
   @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
-
-
 
   /** Stream of autocomplete option selections. */
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
@@ -191,6 +213,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     private viewContainerRef: ViewContainerRef,
     private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() private _dir: Directionality,
     @Optional() @Inject(DOCUMENT) private _document: any,
     private viewportRuler?: ViewportRuler
@@ -202,6 +225,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       });
     }
 
+    this.scrollStrategy = scrollStrategy;
   }
 
   ngOnDestroy() {
@@ -342,7 +366,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   handleKeydown(event: KeyboardEvent): void {
-    console.log(event.keyCode);
     const keyCode = event.keyCode;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
@@ -365,8 +388,25 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       } else if (isArrowKey && this.canOpen()) {
         this.openPanel();
       }
-
+      if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
+        this.scrollToOption();
+      }
     }
+  }
+
+  scrollToOption(): void {
+    const index = this.autocomplete.keyManager.activeItemIndex || 0;
+    const labelCount = countGroupLabelsBeforeOption(index,
+      this.autocomplete.options);
+
+    const newScrollPosition = getOptionScrollPosition(
+      index + labelCount,
+      AUTOCOMPLETE_OPTION_HEIGHT,
+      this.autocomplete.getScrollTop(),
+      AUTOCOMPLETE_PANEL_HEIGHT
+    );
+
+    this.autocomplete.setScrollTop(newScrollPosition);
   }
 
   handleInput(event: KeyboardEvent): void {
@@ -503,11 +543,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (!this.autocomplete) {
       throw getSbbAutocompleteMissingPanelError();
     }
-    console.log(this.overlayRef);
     if (!this.overlayRef) {
       this.portal = new TemplatePortal(this.autocomplete.template, this.viewContainerRef);
       this.overlayRef = this.overlay.create(this.getOverlayConfig());
-      console.log('createdOveraly', this.overlayRef);
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
       this.overlayRef.keydownEvents().subscribe(event => {
@@ -551,6 +589,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this.getOverlayPosition(),
+      scrollStrategy: this.scrollStrategy(),
       width: this.getPanelWidth(),
       direction: this._dir
     });
