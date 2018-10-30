@@ -78,7 +78,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @Input()
   id = `sbb-option-${_uniqueIdCounter++}`;
 
-  @Input()
+  /** Used for highlighting the textContent */
   filter: number | string | null;
 
   // tslint:disable-next-line:no-output-on-prefix
