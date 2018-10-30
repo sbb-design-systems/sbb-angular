@@ -112,18 +112,11 @@ input[type=datetime-local] {
 	}
 }
 
-// fix for placeholder color in firefox. As of now, there is still a bug in
-// current version of firefox, so that the placeholder won't be shown at
-// full opacity
-input[type=number] {
-	color: $colorGrey;
-	opacity: 1;
-
-	sbb-radio-button {
-		@include radioButtonLabel;
-	}
-
-	sbb-checkbox {
-		@include checkboxLabel;
-	}
+sbb-radio-button {
+	@include radioButtonLabel;
 }
+
+sbb-checkbox {
+	@include checkboxLabel;
+}
+
