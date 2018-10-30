@@ -1,6 +1,26 @@
 @import './styles/main';
 @import './styles/fonts';
 
+[sbbButton], 
+[sbbLink],
+[sbbSocialLink],
+sbb-radio-button,
+sbb-checkbox, 
+sbb-label,
+sbb-field,
+sbb-form-error,
+sbb-textarea {
+	*,
+	*::before,
+	*::after {
+	  box-sizing: border-box;
+	}
+
+	article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+		display: block;
+	}
+}
+
 table {
 	th,
 	td {
@@ -92,17 +112,11 @@ input[type=datetime-local] {
 	}
 }
 
-// fix for placeholder color in firefox. As of now, there is still a bug in
-// current version of firefox, so that the placeholder won't be shown at
-// full opacity
-input[type=number] {
-	color: $colorGrey;
-	opacity: 1;
 sbb-radio-button {
-  @include radioButtonLabel;
+	@include radioButtonLabel;
 }
 
 sbb-checkbox {
-  @include checkboxLabel;
+	@include checkboxLabel;
 }
-}
+
