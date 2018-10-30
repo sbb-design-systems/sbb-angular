@@ -1,12 +1,13 @@
-@import './variables';
-@import './functions';
-@import './mediaqueries';
+@import './common/variables';
+@import './common/functions';
+@import './common/mediaqueries';
+@import './common/mixins';
 @import './legacy/mixins';
 @import './link';
-@import './autocomplete';
-@import './input-field';
-@import './formerror';
-@import './radio-button';
-@import './checkbox';
-@import './button/button';
+@import './components/link/link';
+@import './components/fields/fields';
+@import './components/radio-button';
+@import './components/checkbox';
+@import './components/button/button';
+@import './components/textarea';
 

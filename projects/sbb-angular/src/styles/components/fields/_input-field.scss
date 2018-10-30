@@ -44,3 +44,21 @@
 	color: $colorGrey;
 	font-size: pxToEm(13);
 }
+
+@mixin sbbLabel {
+  display:block;
+  margin-bottom: toPx(5);
+  padding-left: toPx(10);
+
+  label {
+    letter-spacing: 0;
+    outline: 0px;
+    resize: none;
+    background-color: transparent;
+    font-family: $fontSbbRoman;
+    font-size: 13px;
+    color: $colorGrey;
+    line-height: 20px;
+    display: block;
+  }
+}
