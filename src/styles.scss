@@ -1,6 +1,9 @@
+@import 'bootstrap';
+
 /* You can add global styles to this file, and also import other style files */
 .icon-flex-column {
   flex-grow: 1;
+  
   &.icon-sm {
     width: 0.875em;
   }
