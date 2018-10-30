@@ -100,7 +100,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
-      this._selectViaInteraction();
+      this.selectViaInteraction();
 
       // Prevent the page from scrolling down and form submits.
       event.preventDefault();
@@ -108,7 +108,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   @HostListener('click')
-  _selectViaInteraction(): void {
+  selectViaInteraction(): void {
     if (!this.disabled) {
       this._selected = true;
       this._changeDetectorRef.markForCheck();

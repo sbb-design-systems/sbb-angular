@@ -52,7 +52,7 @@ export class AutocompleteComponent implements AfterContentInit {
 
 
   /** Manages active item in option list based on key events. */
-  _keyManager: ActiveDescendantKeyManager<OptionComponent>;
+  keyManager: ActiveDescendantKeyManager<OptionComponent>;
 
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel = false;
@@ -109,7 +109,7 @@ export class AutocompleteComponent implements AfterContentInit {
   set classList(value: string) {
     if (value && value.length) {
       value.split(' ').forEach(className => this._classList[className.trim()] = true);
-      this._elementRef.nativeElement.className = '';
+      this.elementRef.nativeElement.className = '';
     }
   }
   _classList: { [key: string]: boolean } = {};
@@ -118,43 +118,43 @@ export class AutocompleteComponent implements AfterContentInit {
   id = `sbb-autocomplete-${_uniqueAutocompleteIdCounter++}`;
 
   constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>) {
+    private changeDetectorRef: ChangeDetectorRef,
+    private elementRef: ElementRef<HTMLElement>) {
 
 
   }
 
   ngAfterContentInit() {
-    this._keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap();
     // Set the initial visibility state.
-    this._setVisibility();
+    this.setVisibility();
   }
 
   /**
    * Sets the panel scrollTop. This allows us to manually scroll to display options
    * above or below the fold, as they are not actually being focused when active.
    */
-  _setScrollTop(scrollTop: number): void {
+  setScrollTop(scrollTop: number): void {
     if (this.panel) {
       this.panel.nativeElement.scrollTop = scrollTop;
     }
   }
 
   /** Returns the panel's scrollTop. */
-  _getScrollTop(): number {
+  getScrollTop(): number {
     return this.panel ? this.panel.nativeElement.scrollTop : 0;
   }
 
   /** Panel should hide itself when the option list is empty. */
-  _setVisibility() {
+  setVisibility() {
     this.showPanel = !!this.options.length;
     this._classList['sbb-autocomplete-visible'] = this.showPanel;
     this._classList['sbb-autocomplete-hidden'] = !this.showPanel;
-    this._changeDetectorRef.markForCheck();
+    this.changeDetectorRef.markForCheck();
   }
 
   /** Emits the `select` event. */
-  _emitSelectEvent(option: OptionComponent): void {
+  emitSelectEvent(option: OptionComponent): void {
     const event = new SbbAutocompleteSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }
