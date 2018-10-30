@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class AutocompleteShowcaseComponent implements OnInit {
 
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filter: '';
   filteredOptions = this.options.slice(0);
 

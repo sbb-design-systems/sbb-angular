@@ -1,49 +1,13 @@
 @import "../../../styles/main";
 
 sbb-option {
-  @include ellipsis;
-
-  @include mq($from: desktop4k) {
-    padding: toPx(4 * $scalingFactor4k) 0;
-  }
-
-  @include mq($from: desktop5k) {
-    padding: toPx(4 * $scalingFactor5k) 0;
-  }
-
-  .sbb-option-text {
-    display: inline-block;
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-  padding: toPx(4) 0;
-  text-align: left;
-  max-width: 100%;
-  position: relative;
-  cursor: pointer;
-  outline: 0;
-  font-family: $fontSbbRoman;
-  
-  &.sbb-active, &:hover, &:focus {
-    color: $colorRed100;
-  }
-
-  .highlight {
-    font-family: $fontSbbBold;
-  }
-
-  &:not(.sbb-active) .highlight {
-    color: $colorBlack;
-  }
+  @include optionBase();
 }
+
 sbb-option[disabled] {
   cursor: default;
 }
+
 sbb-option[aria-disabled="true"] {
   user-select: none;
   cursor: default;
