@@ -8,10 +8,10 @@ import { FormControl } from '@angular/forms';
 })
 export class AutocompleteShowcaseComponent implements OnInit {
 
-  myControl = new FormControl();
+  myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filter: '';
-  filteredOptions = [];
+  filteredOptions = this.options.slice(0);
 
   ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
