@@ -3,24 +3,14 @@
 @import "~@angular/cdk/a11y-prebuilt.css";
 @import "~@angular/cdk/overlay-prebuilt.css";
 
-[sbbButton], 
-[sbbLink],
-[sbbSocialLink],
-sbb-radio-button,
-sbb-checkbox, 
-sbb-label,
-sbb-field,
-sbb-form-error,
-sbb-textarea {
-	*,
-	*::before,
-	*::after {
-	  box-sizing: border-box;
-	}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-	article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-		display: block;
-	}
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
 }
 
 html {
@@ -92,12 +82,6 @@ a {
 
 .clearfix {
   @include clearfix;
-}
-
-sbb-autocomplete {
-  sbb-autocomplete-option {
-    @include highlight;
-  }
 }
 
 input[type=email],

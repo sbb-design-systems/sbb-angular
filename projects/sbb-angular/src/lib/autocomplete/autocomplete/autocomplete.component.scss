@@ -3,3 +3,7 @@
 .sbb-autocomplete-panel {
   @include autocompleteBase();
 } 
+
+input[aria-expanded="true"]:focus {
+  @include autocompleteInputActive();
+}

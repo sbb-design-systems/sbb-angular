@@ -1,13 +1,4 @@
 
-@mixin highlight {
-    .highlight {
-        font-family: $autocompleteHighlightTexBold;
-    }
-    &:not(:hover):not(.selected) .highlight {
-        color: $autocompleteHoverColor;
-    }
-}
-
 @mixin autocompleteBase() {
     position: absolute;
     left: 0;
@@ -23,7 +14,7 @@
     transition: $autocompleteTransition;
     color: $autocompleteColor;
     padding: $autocompletePadding;
-    margin-top: toPx(-2);
+    margin-top: toPx(-1);
 
     &.sbb-autocomplete-visible {
         visibility: visible;
@@ -37,7 +28,7 @@
         border: toPx(2 * $scalingFactor4k) solid $colorGrey;
         padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k) toPx(18 * $scalingFactor4k);
         box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, .15);
-        border-top: toPx(2) solid $colorBlack10;
+        border-top: $autocompleteBorderTop;
     }
 
     @include mq($from: desktop5k) {
@@ -45,4 +36,8 @@
         padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
         box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, .15);
     }
+}
+
+@mixin autocompleteInputActive() {
+    border-bottom-color: $autocompleteInputActiveBorderBottomColor;
 }
