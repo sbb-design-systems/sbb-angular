@@ -7,7 +7,7 @@
         <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
         <sbb-autocomplete #auto="sbbAutocomplete">
           <sbb-option *ngFor="let option of filteredOptions" [value]="option">
-            <span [innerHTML]="option"></span>
+            {{ option }}
           </sbb-option>
         </sbb-autocomplete>
       </fieldset>
