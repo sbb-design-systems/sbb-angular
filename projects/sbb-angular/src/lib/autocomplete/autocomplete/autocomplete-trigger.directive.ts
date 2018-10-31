@@ -654,6 +654,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return !element.readOnly &&
       !element.disabled &&
       !this.autocompleteDisabled &&
-      this.previousValue.toString().length > this.autocomplete.minDigitsBeforePanelOpening;
+      this.previousValue.toString().length >= this.autocomplete.minDigitsBeforePanelOpening;
   }
 }

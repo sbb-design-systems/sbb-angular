@@ -5,7 +5,7 @@
       <legend>Example</legend>
       <fieldset>
         <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
-        <sbb-autocomplete #auto="sbbAutocomplete">
+        <sbb-autocomplete #auto="sbbAutocomplete"  [minDigitsBeforePanelOpening]="0">
           <sbb-option *ngFor="let option of filteredOptions" [value]="option">
             {{ option }}
           </sbb-option>

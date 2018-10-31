@@ -24,7 +24,7 @@ import { OptionComponent } from '../option/option.component';
  */
 let _uniqueAutocompleteIdCounter = 0;
 
-const SBB_AUTOCOMPLETE_MIN_DIGITS_REQUIRED = 2;
+const SBB_AUTOCOMPLETE_MIN_DIGITS_REQUIRED = 3;
 
 /** Event object that is emitted when an autocomplete option is selected. */
 export class SbbAutocompleteSelectedEvent {
