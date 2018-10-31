@@ -4,6 +4,6 @@
   @include autocompleteBase();
 } 
 
-input[aria-expanded="true"]:focus {
+input[aria-expanded="true"] {
   @include autocompleteInputActive();
 }
