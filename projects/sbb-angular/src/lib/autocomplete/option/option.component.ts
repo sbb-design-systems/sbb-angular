@@ -49,7 +49,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
-  selected: boolean;
+  selected = false;
 
   @HostBinding('attr.aria-selected')
   get selectedString(): string { return this.selected.toString(); }
@@ -66,7 +66,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   get _getTabIndex(): string { return this.disabled ? '-1' : '0'; }
 
   @HostBinding('class.sbb-active')
-  active: boolean;
+  active = false;
 
   @HostBinding('class.sbb-option-text') baseClass = true;
 
