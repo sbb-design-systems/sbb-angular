@@ -430,6 +430,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
       if (this.canOpen()) {
         this.openPanel();
+      } else {
+        this.closePanel();
       }
 
     }
