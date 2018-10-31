@@ -16,6 +16,18 @@
     padding: $autocompletePadding;
     margin-top: toPx(-1);
 
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 0;
+        border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+
     &.sbb-autocomplete-visible {
         visibility: visible;
     }
@@ -39,5 +51,7 @@
 }
 
 @mixin autocompleteInputActive() {
-    border-bottom-color: $autocompleteInputActiveBorderBottomColor;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
