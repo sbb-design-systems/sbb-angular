@@ -75,6 +75,8 @@ export class AutocompleteComponent implements AfterContentInit {
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
 
+  @Input() minDigitsBeforePanelOpening = 2;
+
   /**
    * Whether the first option should be highlighted when the autocomplete panel is opened.
    */

@@ -61,10 +61,10 @@ export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () =
 }
 
 /** The height of each autocomplete option. */
-export const AUTOCOMPLETE_OPTION_HEIGHT = 48;
+export const AUTOCOMPLETE_OPTION_HEIGHT = 30;
 
 /** The total height of the autocomplete panel. */
-export const AUTOCOMPLETE_PANEL_HEIGHT = 256;
+export const AUTOCOMPLETE_PANEL_HEIGHT = 300;
 
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
@@ -156,7 +156,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   @HostListener('blur', ['$event'])
   onBlur() {
-    this._onTouched();
+    this.onTouched();
   }
 
   @HostListener('input', ['$event'])
@@ -194,7 +194,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   onChange: (value: any) => void = () => { };
 
   /** `View -> model callback called when autocomplete has been touched` */
-  _onTouched = () => { };
+  onTouched = () => { };
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will
@@ -357,7 +357,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   // Implemented as part of ControlValueAccessor.
   registerOnTouched(fn: () => {}) {
-    this._onTouched = fn;
+    this.onTouched = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -387,6 +387,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.autocomplete.keyManager.onKeydown(event);
       } else if (isArrowKey && this.canOpen()) {
         this.openPanel();
+
       }
       if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
         this.scrollToOption();
@@ -430,6 +431,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       if (this.canOpen()) {
         this.openPanel();
       }
+
     }
   }
 
@@ -645,7 +647,11 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Determines whether the panel can be opened. */
   private canOpen(): boolean {
+
     const element = this.element.nativeElement;
-    return !element.readOnly && !element.disabled && !this.autocompleteDisabled;
+    return !element.readOnly &&
+      !element.disabled &&
+      !this.autocompleteDisabled &&
+      this.previousValue.toString().length > this.autocomplete.minDigitsBeforePanelOpening;
   }
 }
