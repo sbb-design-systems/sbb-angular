@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <h3>Autocomplete</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Example</legend>
+      <fieldset>
+        <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
+        <sbb-autocomplete #auto="sbbAutocomplete"  [minDigitsBeforePanelOpening]="minDigitsBeforePanelOpening">
+          <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+            {{ option }}
+          </sbb-option>
+        </sbb-autocomplete>
+      </fieldset>
+      <pre>{{ myControl.value | json }}</pre>
+    </div>
+    <div class="col-lg-6">
+      <legend>Properties</legend>
+      <fieldset>
+        <div>
+          <div class="form-group">
+            <label>Minimum digits before panel opening</label>
+            <input class="form-control" [(ngModel)]="minDigitsBeforePanelOpening" type="number">
+          </div>          
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

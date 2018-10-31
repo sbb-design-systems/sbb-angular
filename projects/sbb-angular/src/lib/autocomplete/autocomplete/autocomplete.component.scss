@@ -1,0 +1,9 @@
+@import "../../../styles/main";
+
+.sbb-autocomplete-panel {
+  @include autocompleteBase();
+} 
+
+input[aria-expanded="true"] {
+  @include autocompleteInputActive();
+}
