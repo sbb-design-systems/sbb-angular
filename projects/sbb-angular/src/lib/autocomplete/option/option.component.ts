@@ -1,4 +1,3 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import {
@@ -26,7 +25,7 @@ import { HighlightPipe } from './highlight.pipe';
  * Option IDs need to be unique across components, so this counter exists outside of
  * the component definition.
  */
-let _uniqueIdCounter = 0;
+let uniqueIdCounter = 0;
 
 /** Event object emitted by AutocompleteOptionComponent when selected or deselected. */
 export class SBBOptionSelectionChange {
@@ -46,16 +45,14 @@ export class SBBOptionSelectionChange {
   providers: [HighlightPipe]
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
-  private _selected = false;
-  private _active = false;
-  private _disabled = false;
-  private _mostRecentViewValue = '';
+  _disabled = false;
+  mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
-  get selected(): boolean { return this._selected; }
+  selected: boolean;
 
   @HostBinding('attr.aria-selected')
-  get selectedString(): string { return this._selected.toString(); }
+  get selectedString(): string { return this.selected.toString(); }
 
   @HostBinding('attr.aria-disabled')
   get disabledString(): string { return this._disabled.toString(); }
@@ -69,7 +66,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   get _getTabIndex(): string { return this.disabled ? '-1' : '0'; }
 
   @HostBinding('class.sbb-active')
-  get active(): boolean { return this._active; }
+  active: boolean;
 
   @HostBinding('class.sbb-option-text') baseClass = true;
 
@@ -77,7 +74,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   value: any;
 
   @Input()
-  id = `sbb-option-${_uniqueIdCounter++}`;
+  id = `sbb-option-${uniqueIdCounter++}`;
 
   /** Used for highlighting the textContent */
   filter: number | string | null;
@@ -90,12 +87,11 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @ViewChild('normal') normalText: ElementRef;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
-  readonly _stateChanges = new Subject<void>();
+  readonly stateChanges = new Subject<void>();
 
   constructor(
-    private _element: ElementRef<HTMLElement>,
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _sanitizer: DomSanitizer
+    private element: ElementRef<HTMLElement>,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   @HostListener('keydown', ['$event'])
@@ -111,8 +107,8 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @HostListener('click')
   selectViaInteraction(): void {
     if (!this.disabled) {
-      this._selected = true;
-      this._changeDetectorRef.markForCheck();
+      this.selected = true;
+      this.changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent(true);
     }
   }
@@ -124,17 +120,17 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
 
   select(): void {
-    if (!this._selected) {
-      this._selected = true;
-      this._changeDetectorRef.markForCheck();
+    if (!this.selected) {
+      this.selected = true;
+      this.changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent();
     }
   }
 
   deselect(): void {
-    if (this._selected) {
-      this._selected = false;
-      this._changeDetectorRef.markForCheck();
+    if (this.selected) {
+      this.selected = false;
+      this.changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent();
     }
   }
@@ -148,16 +144,16 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   setActiveStyles(): void {
-    if (!this._active) {
-      this._active = true;
-      this._changeDetectorRef.markForCheck();
+    if (!this.active) {
+      this.active = true;
+      this.changeDetectorRef.markForCheck();
     }
   }
 
   setInactiveStyles(): void {
-    if (this._active) {
-      this._active = false;
-      this._changeDetectorRef.markForCheck();
+    if (this.active) {
+      this.active = false;
+      this.changeDetectorRef.markForCheck();
     }
   }
 
@@ -167,7 +163,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
 
   _getHostElement(): HTMLElement {
-    return this._element.nativeElement;
+    return this.element.nativeElement;
   }
 
 
@@ -178,17 +174,17 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     // relatively cheap, however we still limit them only to selected options in order to avoid
     // hitting the DOM too often.
     this._getHostElement().innerHTML = new HighlightPipe().transform(this._getHostElement().textContent, this.filter);
-    if (this._selected) {
+    if (this.selected) {
       const viewValue = this.viewValue;
-      if (viewValue !== this._mostRecentViewValue) {
-        this._mostRecentViewValue = viewValue;
-        this._stateChanges.next();
+      if (viewValue !== this.mostRecentViewValue) {
+        this.mostRecentViewValue = viewValue;
+        this.stateChanges.next();
       }
     }
   }
 
   ngOnDestroy() {
-    this._stateChanges.complete();
+    this.stateChanges.complete();
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {
@@ -229,19 +225,19 @@ export function getOptionScrollPosition(optionIndex: number, optionHeight: numbe
  */
 export function countGroupLabelsBeforeOption(optionIndex: number, options: QueryList<OptionComponent>): number {
 
-/*   if (optionGroups.length) {
-    const optionsArray = options.toArray();
-    const groups = optionGroups.toArray();
-    let groupCounter = 0;
+  /*   if (optionGroups.length) {
+      const optionsArray = options.toArray();
+      const groups = optionGroups.toArray();
+      let groupCounter = 0;
 
-    for (let i = 0; i < optionIndex + 1; i++) {
-      if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
-        groupCounter++;
+      for (let i = 0; i < optionIndex + 1; i++) {
+        if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
+          groupCounter++;
+        }
       }
-    }
 
-    return groupCounter;
-  }
- */
+      return groupCounter;
+    }
+   */
   return 0;
 }
