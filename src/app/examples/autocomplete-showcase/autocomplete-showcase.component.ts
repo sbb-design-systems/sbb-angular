@@ -12,6 +12,7 @@ export class AutocompleteShowcaseComponent implements OnInit {
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filter: '';
   filteredOptions = this.options.slice(0);
+  minDigitsBeforePanelOpening = 1;
 
   ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
