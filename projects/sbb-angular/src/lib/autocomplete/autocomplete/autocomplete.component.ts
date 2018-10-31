@@ -24,6 +24,8 @@ import { OptionComponent } from '../option/option.component';
  */
 let _uniqueAutocompleteIdCounter = 0;
 
+const SBB_AUTOCOMPLETE_MIN_DIGITS_REQUIRED = 2;
+
 /** Event object that is emitted when an autocomplete option is selected. */
 export class SbbAutocompleteSelectedEvent {
   constructor(
@@ -74,6 +76,8 @@ export class AutocompleteComponent implements AfterContentInit {
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
+
+  @Input() minDigitsBeforePanelOpening = SBB_AUTOCOMPLETE_MIN_DIGITS_REQUIRED;
 
   /**
    * Whether the first option should be highlighted when the autocomplete panel is opened.
