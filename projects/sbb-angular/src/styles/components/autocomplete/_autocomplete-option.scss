@@ -1,0 +1,47 @@
+@mixin optionBase() {
+    @include ellipsis;
+
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding: toPx(4) 0;
+    text-align: left;
+    max-width: 100%;
+    cursor: pointer;
+    outline: 0;
+
+    .highlight {
+        font-family: $autocompleteHighlightTexBold;
+    }
+
+    &:not(.sbb-active) .highlight {
+        color: $autocompleteHoverColor;
+    }
+
+    &.sbb-active,
+    &:hover,
+    &:focus,
+    &:hover .highlight,
+    &:focus .highlight {
+        color: $autocompleteOptionHoverColor;
+    }
+
+    @include mq($from: desktop4k) {
+        padding: toPx(4 * $scalingFactor4k) 0;
+    }
+
+    @include mq($from: desktop5k) {
+        padding: toPx(4 * $scalingFactor5k) 0;
+    }
+
+    .sbb-option-text {
+        @include optionText();
+    }
+}
+
+@mixin optionText() {
+    display: inline-block;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
