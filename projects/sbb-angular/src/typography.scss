@@ -1,67 +1,75 @@
 @import './styles/main';
 @import './styles/fonts';
 
-[sbbButton], 
-[sbbLink],
-[sbbSocialLink],
-sbb-radio-button,
-sbb-checkbox, 
-sbb-label,
-sbb-field,
-sbb-form-error,
-sbb-textarea {
-	*,
-	*::before,
-	*::after {
-	  box-sizing: border-box;
-	}
 
-	article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-		display: block;
-	}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+html {
+  background: $colorBg;
+  color: $colorText;
+  font-family: $fontSbbRoman;
+  font-size: $sizeFontBase / 16px * 100%;
+  line-height: $sizeLineHeightBase;
+  @include fontSmoothing;
+ 
+  b,
+  strong,
+  optgroup[label="*"] {
+    font-family: $fontSbbBold;
+    font-weight: normal;
+  }
 }
 
 table {
-	th,
-	td {
-		color: $colorHeadline;
-		font-size: pxToEm($sizeFontDefault);
-		line-height: 1.5;
-		margin: 0.75em 0 0; // paragraph as default
-	}
+  th,
+  td {
+    color: $colorHeadline;
+    font-size: pxToEm($sizeFontDefault);
+    line-height: 1.5;
+    margin: 0.75em 0 0; // paragraph as default
+  }
 
-	th {
-		font-family: $fontSbbBold;
-	}
+  th {
+    font-family: $fontSbbBold;
+  }
 }
 
 h1,
 .text-headline1 {
-	@include headline1;
+  @include headline1;
 }
 
 h2,
 .text-headline2 {
-	@include headline2;
+  @include headline2;
 }
 
 h3,
 .text-headline3 {
-	@include headline3;
+  @include headline3;
 }
 
 h4,
 .text-headline4 {
-	@include headline4;
+  @include headline4;
 }
 
 .text-lead {
-	@include lead;
+  @include lead;
 }
 
 p,
 .text-copy {
-	@include copy;
+  @include copy;
 }
 
 a {
@@ -69,11 +77,11 @@ a {
 }
 
 .visuallyhidden {
-	@include visuallyhidden;
+  @include visuallyhidden;
 }
 
 .clearfix {
-	@include clearfix;
+  @include clearfix;
 }
 
 input[type=email],
@@ -119,4 +127,3 @@ sbb-radio-button {
 sbb-checkbox {
 	@include checkboxLabel;
 }
-
