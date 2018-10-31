@@ -1,0 +1,60 @@
+
+@mixin autocompleteBase() {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    overflow: hidden;
+    background-color: $autocompleteBg;
+    border: $autocompleteBorder;
+    border-bottom-left-radius: toPx(2);
+    border-bottom-right-radius: toPx(2);
+    border-top: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadow;
+    transition: $autocompleteTransition;
+    color: $autocompleteColor;
+    padding: $autocompletePadding;
+    margin-top: toPx(-1);
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 0;
+        border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+
+    &.sbb-autocomplete-visible {
+        visibility: visible;
+    }
+
+    &.sbb-autocomplete-hidden {
+        visibility: hidden;
+    }
+
+    @include mq($from: desktop4k) {
+        border: toPx(2 * $scalingFactor4k) solid $colorGrey;
+        padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k) toPx(18 * $scalingFactor4k);
+        box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, .15);
+        border-top: $autocompleteBorderTop;
+    }
+
+    @include mq($from: desktop5k) {
+        border: toPx(2 * $scalingFactor5k) solid $colorGrey;
+        padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
+        box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, .15);
+        border-top: $autocompleteBorderTop;
+    }
+}
+
+@mixin autocompleteInputActive() {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: $colorGrey;
+    border-bottom: none;
+    margin-bottom: toPx(2);
+}

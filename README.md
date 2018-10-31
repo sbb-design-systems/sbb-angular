@@ -48,3 +48,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   	
 5. Create a index.js path into the base module path and export the module and the component(s) created
 6. Augment the projects/sbb-angular/src/public_api.ts with the index.js export declaration
+
+## Stylesheets
+
+1. Folder structure:
+    /styles
+        /common
+        /components
+        /legacy
+
+    - In common folder we have all the global common variables, functions and mixins.
+    - In components folder we have the component specific file/files. Every component should have a    corresponding scss mixin bundle in this folder. The scss file in the effective angular component should only call methods from this files or the common ones.
+    - Legacy folder should be removed sooner or later. It's a place where to take pieces of code and moved either in component specific scss files or common files
+
+2. Style naming convention.
+
+    - We should follow this kebab case pattern:
+        prefix-component-block-modifier
+    ex: .sbb-button-icon-disabled

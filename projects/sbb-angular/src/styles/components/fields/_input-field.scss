@@ -20,7 +20,13 @@
 
 	@include mq($from: desktop4k) {
 		margin-top: pxToEm(15);
-		padding: toPx(11) toPx(14);
+    padding: toPx(11) toPx(14);
+    border-width: toPx(2 * $scalingFactor4k);
+  }
+
+
+  @include mq($from: desktop5k) {
+    border-width: toPx(2 * $scalingFactor5k);
   }
 
   &:focus {
