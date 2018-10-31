@@ -14,11 +14,13 @@ import {
   ViewEncapsulation,
   HostListener,
   ViewChild,
-  QueryList
+  QueryList,
+  Optional
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Highlightable } from '@angular/cdk/a11y';
 import { HighlightPipe } from './highlight.pipe';
+import { OptionGroupComponent } from '../option-group/option-group.component';
 
 
 /**
@@ -59,7 +61,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   @Input()
   @HostBinding('class.sbb-option-disabled')
-  get disabled() { return this._disabled; }
+  get disabled() { return (this.group && this.group.disabled) || this._disabled; }
   set disabled(value: any) { this._disabled = coerceBooleanProperty(value); }
 
   @HostBinding('attr.tabIndex')
@@ -91,7 +93,8 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   constructor(
     private element: ElementRef<HTMLElement>,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    @Optional() readonly group: OptionGroupComponent
   ) { }
 
   @HostListener('keydown', ['$event'])
@@ -115,7 +118,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
 
   get viewValue(): string {
-    return (this._getHostElement().textContent || '').trim();
+    return (this.getHostElement().textContent || '').trim();
   }
 
 
@@ -136,7 +139,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   focus(): void {
-    const element = this._getHostElement();
+    const element = this.getHostElement();
 
     if (typeof element.focus === 'function') {
       element.focus();
@@ -162,7 +165,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
 
-  _getHostElement(): HTMLElement {
+  getHostElement(): HTMLElement {
     return this.element.nativeElement;
   }
 
@@ -173,7 +176,6 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     // we have to check for changes in the DOM ourselves and dispatch an event. These checks are
     // relatively cheap, however we still limit them only to selected options in order to avoid
     // hitting the DOM too often.
-    this._getHostElement().innerHTML = new HighlightPipe().transform(this._getHostElement().textContent, this.filter);
     if (this.selected) {
       const viewValue = this.viewValue;
       if (viewValue !== this.mostRecentViewValue) {
@@ -223,21 +225,25 @@ export function getOptionScrollPosition(optionIndex: number, optionHeight: numbe
  * @param optionGroups Flat list of all of the option groups.
  * @docs-private
  */
-export function countGroupLabelsBeforeOption(optionIndex: number, options: QueryList<OptionComponent>): number {
+export function countGroupLabelsBeforeOption(
+  optionIndex: number,
+  options: QueryList<OptionComponent>,
+  optionGroups: QueryList<OptionGroupComponent>
+): number {
 
-  /*   if (optionGroups.length) {
-      const optionsArray = options.toArray();
-      const groups = optionGroups.toArray();
-      let groupCounter = 0;
+  if (optionGroups.length) {
+    const optionsArray = options.toArray();
+    const groups = optionGroups.toArray();
+    let groupCounter = 0;
 
-      for (let i = 0; i < optionIndex + 1; i++) {
-        if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
-          groupCounter++;
-        }
+    for (let i = 0; i < optionIndex + 1; i++) {
+      if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
+        groupCounter++;
       }
-
-      return groupCounter;
     }
-   */
+
+    return groupCounter;
+  }
+
   return 0;
 }

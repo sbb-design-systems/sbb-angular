@@ -1,5 +1,7 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-autocomplete-showcase',
@@ -9,14 +11,34 @@ import { FormControl } from '@angular/forms';
 export class AutocompleteShowcaseComponent implements OnInit {
 
   myControl = new FormControl('');
+  myControlStatic = new FormControl('');
+
+  options$: Subject<string[]>;
+  searchNumbers: Subject<string>;
+
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filter: '';
   filteredOptions = this.options.slice(0);
-  minDigitsBeforePanelOpening = 1;
+  staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
 
   ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
       this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
+
+    this.options$ = new Subject<string[]>();
+    this.options$
+      .pipe(debounceTime(1500))
+      .pipe(distinctUntilChanged());
+
+    this.myControlStatic.valueChanges.subscribe((newValue) => {
+      if (newValue.length > 2) {
+        this.options$.next(this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
+      } else {
+        this.options$.next([]);
+      }
+    });
+
   }
+
 }

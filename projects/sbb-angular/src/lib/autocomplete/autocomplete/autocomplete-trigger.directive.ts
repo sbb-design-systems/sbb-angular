@@ -40,6 +40,7 @@ import {
   getOptionScrollPosition,
   countGroupLabelsBeforeOption
 } from '../option/option.component';
+import { HighlightPipe } from '../option/highlight.pipe';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
@@ -398,7 +399,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(index,
-      this.autocomplete.options);
+      this.autocomplete.options, this.autocomplete.optionGroups);
 
     const newScrollPosition = getOptionScrollPosition(
       index + labelCount,
@@ -410,6 +411,16 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
+  highlightOptionsByInput(value: number | string) {
+
+    // TODO: put this again into option AfterOnInit
+    this.autocomplete.options
+      .filter(option => !option.group)
+      .forEach(option => {
+        option.getHostElement().innerHTML = new HighlightPipe().transform(option.getHostElement().textContent, value);
+      });
+  }
+
   handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
@@ -418,7 +429,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (target.type === 'number') {
       value = value === '' ? null : parseFloat(value);
     }
-    this.autocomplete.options.forEach(option => option.filter = value);
+    this.highlightOptionsByInput(value);
+
     // If the input has a placeholder, IE will fire the `input` event on page load,
     // focus and blur, in addition to when the user actually changed the value. To
     // filter out all of the extra events, we save the value on focus and between
@@ -653,7 +665,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     const element = this.element.nativeElement;
     return !element.readOnly &&
       !element.disabled &&
-      !this.autocompleteDisabled &&
-      this.previousValue.toString().length >= this.autocomplete.minDigitsBeforePanelOpening;
+      !this.autocompleteDisabled;
   }
 }
