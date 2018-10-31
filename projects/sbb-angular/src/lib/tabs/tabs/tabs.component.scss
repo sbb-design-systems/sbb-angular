@@ -27,7 +27,17 @@ ul {
 			display: block;
             line-height: 26px;
             text-align: center;
-            text-decoration: none;
+			text-decoration: none;
+			a:focus {
+				color: $colorBlack72;
+				display: block;
+			    position: absolute;
+			    bottom: 0;
+			    width: 0;
+			    left: 50%;
+			    height: 1px;
+			    border-bottom: 1px solid $colorBlack72;
+			}
 			//margin-top: $linkmargin;
 			//margin-bottom: $linkmargin;
 			//padding-left: $linkmargin;

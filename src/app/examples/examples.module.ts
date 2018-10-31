@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { TextareaModule, FieldModule, LinksModule, RadioButtonModule, CheckboxModule, ButtonModule, IconCommonModule, TabsModule } from 'sbb-angular';
+import { TextareaModule,
+         FieldModule,
+         LinksModule,
+         RadioButtonModule,
+         CheckboxModule,
+         ButtonModule,
+         IconCommonModule,
+         TabsModule } from 'sbb-angular';
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { BrowserModule } from '@angular/platform-browser';

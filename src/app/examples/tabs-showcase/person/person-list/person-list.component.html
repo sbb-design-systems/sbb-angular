@@ -9,11 +9,11 @@
       <tr *ngFor="let p of person">
         <td>{{ p.name }}</td>
         <td>{{ p.surname }}</td>
-        <td><button sbbButton mode="secondary" class="small-btn" (click)="editPerson.emit(p)">Edit</button></td>
+        <td><button sbbButton mode="primary" (click)="editPerson.emit(p)">Edit</button></td>
       </tr>
     </tbody>
   </table>
 </div>
 <div class="form-group">
-  <button sbbButton mode="secondary" (click)="addPerson.emit()">Add new person</button>
+  <button sbbButton mode="primary" (click)="addPerson.emit()">Add new person</button>
 </div>

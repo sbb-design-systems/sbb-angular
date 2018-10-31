@@ -15,7 +15,7 @@ import { TabComponent } from '../tab/tab.component';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements AfterContentInit {
-  
+
   dynamicTabs: TabComponent[] = [];
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
@@ -34,6 +34,7 @@ export class TabsComponent implements AfterContentInit {
   openTab(tabTitle: string, template, data, isCloseable = false, badgePill: string) {
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TabComponent);
+    // tslint:disable-next-line
     let viewContainerRef = this.dynamicTabPlaceholder;
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
@@ -50,7 +51,9 @@ export class TabsComponent implements AfterContentInit {
   }
 
   selectTab(tab: TabComponent) {
+    // tslint:disable-next-line
     this.tabs.toArray().forEach(tab => (tab.active = false));
+    // tslint:disable-next-line
     this.dynamicTabs.forEach(tab => (tab.active = false));
     tab.active = true;
   }
@@ -59,6 +62,7 @@ export class TabsComponent implements AfterContentInit {
     for (let i = 0; i < this.dynamicTabs.length; i++) {
          if (this.dynamicTabs[i] === tab) {
              this.dynamicTabs.splice(i, 1);
+             // tslint:disable-next-line
              let viewContainerRef = this.dynamicTabPlaceholder;
              viewContainerRef.remove(i);
              this.selectTab(this.tabs.last);

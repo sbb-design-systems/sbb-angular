@@ -2,12 +2,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'person-edit',
   templateUrl: './person-edit.component.html',
   styleUrls: ['./person-edit.component.scss']
 })
 export class PersonEditComponent implements OnInit {
-  
+
   personForm: FormGroup;
 
   @Input() person;
@@ -30,7 +31,7 @@ export class PersonEditComponent implements OnInit {
   }
 
   onPersonFormSubmit() {
-    let dataModel = this.personForm.value;
+    const dataModel = this.personForm.value;
     this.savePerson.emit(dataModel);
   }
 }

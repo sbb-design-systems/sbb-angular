@@ -26,6 +26,16 @@ ul {
 		margin-left: 30px;
 		margin-top: 0;
 		&:first-child{margin-left: 0;}
+		.active {
+			content: '';
+    		display: block;
+    		position: absolute;
+            bottom: 0;
+    		width: 0;
+    		left: 50%;
+    		height: 1px;
+			border-bottom: 1px solid currentColor;
+		}
 		a {
 			display: block;
             line-height: 26px;
