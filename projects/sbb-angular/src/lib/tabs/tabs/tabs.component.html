@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs">
-  <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active" class="nav-item">
-      <a href="javascript:void(0);">{{ tab.tabTitle }} <sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></a>
+  <li *ngFor="let tab of tabs" (click)="selectTab(tab)" class="nav-item" [id]="tab.tabId" [class.sbb-tab-disabled]="tab.disabled">
+      <a href="javascript:void(0);" [class.active]="tab.active">{{ tab.tabTitle }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span></a>
   </li>
-  <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" [class.active]="tab.active" class="nav-item">
-      <a href="javascript:void(0);">{{ tab.tabTitle }} <sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill> <sbb-icon-close svgClass="icon-flex-column icon-sm" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></sbb-icon-close></a>
+  <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" class="nav-item" [id]="tab.tabId" [class.sbb-tab-disabled]="tab.disabled">
+      <a href="javascript:void(0);" [class.active]="tab.active">{{ tab.tabTitle }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span> <span><sbb-icon-close svgClass="icon-flex-column icon-sm" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></sbb-icon-close></span></a>
   </li>
 </ul>
 <ng-content></ng-content>

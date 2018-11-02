@@ -4,7 +4,7 @@
     <h5>Tabs</h5>
     <fieldset>
     <sbb-tabs>
-      <sbb-tab [tabTitle]="'Tab 1'">
+      <sbb-tab [tabTitle]="'Tab 1'" [tabId]="1">
         <div class="card">
           <div class="container">
              <br/>
@@ -15,7 +15,7 @@
           </div> 
         </div>
       </sbb-tab>
-      <sbb-tab [tabTitle]="'Tab 2'">
+      <sbb-tab [tabTitle]="'Tab 2'" [tabId]="2">
         <div class="card">
           <div class="container">
             <br/>
@@ -26,7 +26,7 @@
           </div>  
         </div>
       </sbb-tab>
-      <sbb-tab [tabTitle]="'Person'" [badgePill]="getCountOfPerson()">
+      <sbb-tab [tabTitle]="'Persons'" [tabId]="3" [badgePill]="getCountOfPerson()" [disabled]="disabled" *ngIf="withDynamicTabs">
         <div class="card">
           <div class="container">
             <br/>
@@ -47,11 +47,11 @@
       <fieldset>
           <div class="form-group">
             <sbb-label>Please choose :</sbb-label>
-            <select [(ngModel)]="tabType" class="form-control" (ngModelChange)="onChangeOfType($event)">
+            <select [(ngModel)]="tabType" class="form-control" (ngModelChange)="onChangeOfType()">
               <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
             </select>
           </div>
-          <div class="form-group">
+          <div *ngIf="withDynamicTabs" class="form-group">
               <sbb-label>Please set data set for dynamic tabs content :</sbb-label>
               <select [(ngModel)]="dataSet" class="form-control" (ngModelChange)="onChangeOfDataSet($event)">
                 <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>

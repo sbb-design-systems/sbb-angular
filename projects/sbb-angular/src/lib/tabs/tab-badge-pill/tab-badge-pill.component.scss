@@ -1,24 +1,21 @@
-span /deep/ {
-  position: relative;
-  right: 0.81818em;
+@import '../../../styles/main';
+
+@mixin sbbTabBadgePill {
   min-width: 1.63636em;
   border-radius: 1.36364em;
-  display: inline-block;
-  padding-right: .6em;
-  padding-left: .6em;
-  border-radius: 10rem;
-  background: #767676;
-  color: #FFFFFF;
-  font-family: "SBBWeb Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0.27273em 0.45455em 0.36364em;
+  background: $colorBlack60;
+  color: $colorWhite;
+  font-family: $fontSbbBold;
   line-height: 1em;
   font-size: 0.42308em;
   text-align: center;
-  background-color: #EB0000;
-  padding: .25em .4em;
-  font-size: 75%;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: 6px;
+  top: 0em;
+  right: -2.36364em;
+  background-color: $colorRed100;
+  vertical-align: 15px;
+}
+
+:host {
+  @include sbbTabBadgePill;
 }

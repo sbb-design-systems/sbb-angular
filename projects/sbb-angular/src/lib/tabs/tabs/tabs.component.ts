@@ -6,7 +6,6 @@ import { Component,
          ComponentFactoryResolver,
          ViewContainerRef
 } from '@angular/core';
-
 import { TabComponent } from '../tab/tab.component';
 
 @Component({
@@ -31,7 +30,14 @@ export class TabsComponent implements AfterContentInit {
     }
   }
 
-  openTab(tabTitle: string, template, data, isCloseable = false, badgePill: string) {
+  openFirstTab() {
+    this.selectTab(this.tabs.first);
+  }
+
+  openTab(tabTitle: string,
+          template,
+          data,
+          isCloseable = false) {
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TabComponent);
     // tslint:disable-next-line
@@ -39,11 +45,10 @@ export class TabsComponent implements AfterContentInit {
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
     const instance: TabComponent = componentRef.instance as TabComponent;
-    instance.tabTitle = tabTitle;
-    instance.template = template;
+    instance.tabTitle    = tabTitle;
+    instance.template    = template;
     instance.dataContext = data;
     instance.isCloseable = isCloseable;
-    instance.badgePill = badgePill;
 
     this.dynamicTabs.push(componentRef.instance as TabComponent);
 

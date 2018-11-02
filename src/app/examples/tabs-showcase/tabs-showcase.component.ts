@@ -12,6 +12,7 @@ export class TabsShowcaseComponent implements OnInit {
   @ViewChild(TabsComponent) tabsComponent;
 
   disabled: boolean;
+  withDynamicTabs = true;
   tabType = 'with dynamic tabs';
   types = [
     'with dynamic tabs',
@@ -25,23 +26,55 @@ export class TabsShowcaseComponent implements OnInit {
     '1000'
   ];
 
-  person = [
-    {
-      id: 1,
-      name: 'Peter',
-      surname: 'Muster'
-    }
+  personInitialLoad = {id: 1, name: 'Max', surname: 'Muster'};
+
+  person = [];
+
+  personList = [
+    { name: 'Peter', surname: 'Hahn' },
+    { name: 'Andreas', surname: 'Hofstetter' },
+    { name: 'Paul', surname: 'Walker' },
+    { name: 'Urs', surname: 'Fischer' },
+    { name: 'Antonio', surname: 'Conte' },
+    { name: 'Miriam', surname: 'Höller' },
+    { name: 'Veronika', surname: 'Schmidt' },
+    { name: 'Petra', surname: 'Ivanov' },
+    { name: 'Alexandra', surname: 'Maurer' },
+    { name: 'Adriana', surname: 'Lima' },
   ];
 
   ngOnInit() {
+    this.person.push(this.personInitialLoad);
   }
 
-  onChangeOfType(event) {
-    console.log('event', event);
+  onChangeOfType() {
+    this.withDynamicTabs = !this.withDynamicTabs;
+    this.tabsComponent.openFirstTab();
   }
 
   onChangeOfDataSet(event) {
-    console.log('event', event);
+    this.person = [];
+    if(event.startsWith('default')) {
+       this.person.push(this.personInitialLoad);
+    }
+    if(event.startsWith('500')) {
+       let counter = 0;
+       while(counter < 500) {
+             for(const item of this.personList) {
+                 counter++;
+                 this.person.push({id: counter, name: item.name, surname: item.surname});
+             }
+       }
+    }
+    if(event.startsWith('1000')) {
+       let counter = 0;
+       while(counter < 1000) {
+             for(const item of this.personList) {
+                 counter++;
+                 this.person.push({id: counter, name: item.name, surname: item.surname});
+             }
+       }
+    }
   }
 
   getCountOfPerson() {
@@ -71,7 +104,7 @@ export class TabsShowcaseComponent implements OnInit {
         }
       });
     } else {
-      dataModel.id = Math.round(Math.random() * 100);
+      dataModel.id = this.person.length + 1;
       this.person.push(dataModel);
     }
     this.tabsComponent.closeActiveTab();

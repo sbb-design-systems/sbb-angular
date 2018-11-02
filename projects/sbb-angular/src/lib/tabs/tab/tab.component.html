@@ -1,4 +1,4 @@
-<div [hidden]="!active" class="pane">
+<div [hidden]="!active" class="pane" *ngIf="!disabled">
     <ng-content></ng-content>
     <ng-container *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ person : dataContext }"></ng-container>
 </div>
