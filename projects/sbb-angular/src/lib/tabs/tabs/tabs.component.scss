@@ -1,46 +1,65 @@
 @import '../../../styles/main';
 
 @mixin sbbTabs {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
   font-family: SBBWeb-Light;
   font-size: 26px;
   line-height: 26px;
-  color: $colorBlack;
-  -webkit-appearance: none;
-  ul {
-	 margin: 0 0 0 0;
-	 margin-left: 0;
-	 padding-left: 0;
-	 text-indent: 0;
-	 li {
-		display: inline-block;
-		margin-left: 30px;
-		margin-top: 0;
-		&:first-child {
-		  margin-left: 0;
-		}
-		a {
-		  display: block;
-		  text-align: center;
-		  text-decoration: none;
-		  padding: 10px 10px;
-		}
-	 }
-  }
+	color: $colorBlack;
+	ul {
+	   margin: 0 0 0 0;
+	   margin-left: 0;
+	   padding-left: 0;
+	   text-indent: 0;
+		 li {
+		    display: inline-block;
+		    margin-left: 30px;
+				margin-top: 0;
+	      &:first-child {
+		      margin-left: 0;
+		    }
+		    a {
+		      display: block;
+		      text-align: center;
+		      text-decoration: none;
+		      padding: 10px 10px;
+		    }
+	   }
+	}
 }
 
 :host {
-   @include sbbTabs;
-   a.active {
+	 @include sbbTabs;
+	 ul.nav.nav-tabs {
+		overflow-x: auto !important;
+		white-space: nowrap !important;
+		padding-bottom: 21px;
+	 }
+	 a.active {
 	  color: $colorBlack;
 	  border-bottom: 1px solid $colorBlack;
-   }
-   a:after {
-	  transition: width 0.3s ease, left 0.3s ease;		
-   }
-   a:hover {
+	 }
+	 /*
+	 a.active:after {
+		width: 100%;
+    left: 0;
+	 }
+	 */
+	 a:hover {
 	  color: $colorRed125;
 	  border-bottom: 1px solid $colorRed125;
-   }
+	 }
+   a:after {
+	  transition: width 0.3s ease, left 0.3s ease;	
+	 }
+	 /*
+	 a:hover:after {
+		left: 0;
+    width: 100%;
+	 }
+	 */
    .sbb-tab-disabled {
 	  opacity:0.6;
 	  pointer-events: none;

@@ -1,0 +1,18 @@
+// TabBadgePill mixins
+// ----------------------------------------------------------------------------------------------------
+
+@mixin sbbTabBadgePill {
+    min-width: 1.63636em;
+    border-radius: 1.36364em;
+    padding: 0.27273em 0.45455em 0.36364em;
+    background: $colorBlack60;
+    color: $colorWhite;
+    font-family: $fontSbbBold;
+    line-height: 1em;
+    font-size: 0.42308em;
+    text-align: center;
+    top: 0em;
+    right: -2.36364em;
+    background-color: $colorRed100;
+    vertical-align: 15px;
+}
