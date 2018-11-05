@@ -27,6 +27,6 @@ export class OptionGroupComponent {
 
   @Input() label: string;
 
-  private labelId = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
+  labelId = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
 
 }
