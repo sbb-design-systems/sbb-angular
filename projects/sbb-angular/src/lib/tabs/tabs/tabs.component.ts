@@ -24,10 +24,20 @@ export class TabsComponent implements AfterContentInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterContentInit() {
+    // 1) check the number of tabs ...
+    this.checkNumberOfTabs();
+    // 2) check the number of badge pills per tab ...
     this.checkNumberOfBadgePillsPerTab();
     const activeTabs = this.tabs.filter(tab => tab.active);
     if (activeTabs.length === 0) {
         this.selectTab(this.tabs.first);
+    }
+  }
+
+  private checkNumberOfTabs() : void {
+    const counter = this.tabs.length + this.dynamicTabs.length;
+    if(counter < 2) {
+       throw new Error(`The number of tabs must be at least 2`);
     }
   }
 
