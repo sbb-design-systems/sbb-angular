@@ -19,7 +19,6 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Highlightable } from '@angular/cdk/a11y';
-import { HighlightPipe } from './highlight.pipe';
 import { OptionGroupComponent } from '../option-group/option-group.component';
 
 
@@ -44,7 +43,7 @@ export class SBBOptionSelectionChange {
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HighlightPipe]
+  providers: []
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
   _disabled = false;
