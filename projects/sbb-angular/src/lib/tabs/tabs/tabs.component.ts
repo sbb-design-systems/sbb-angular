@@ -39,8 +39,7 @@ export class TabsComponent implements AfterContentInit {
   }
 
   private checkNumberOfTabModules() : void {
-    console.log('number', this.tabModules.length);
-    if(this.tabModules.length > 0) {
+    if(this.tabModules.length > 1) {
        throw new Error(`
           Another tab module within a register is not allowed.
           Ex: <sbb-tabs><sbb-tab><sbb-tabs> ... </sbb-tabs></sbb-tab></sbb-tabs>
