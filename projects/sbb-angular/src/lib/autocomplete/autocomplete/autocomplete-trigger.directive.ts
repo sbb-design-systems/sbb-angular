@@ -10,7 +10,7 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
-import { filter, take, switchMap, delay, tap, map } from 'rxjs/operators';
+import { filter, take, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
   ChangeDetectorRef,
   Directive,
@@ -24,7 +24,9 @@ import {
   ViewContainerRef,
   HostBinding,
   HostListener,
-  InjectionToken
+  InjectionToken,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -153,8 +155,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   });
 
 
-
-
   @HostListener('blur', ['$event'])
   onBlur() {
     this.onTouched();
@@ -228,6 +228,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
     this.scrollStrategy = scrollStrategy;
   }
+
+
 
   ngOnDestroy() {
     if (typeof window !== 'undefined') {
@@ -348,7 +350,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   // Implemented as part of ControlValueAccessor.
   writeValue(value: any): void {
-    Promise.resolve(null).then(() => this.setTriggerValue(value));
+    Promise.resolve(null).then(() => {
+      this.setTriggerValue(value);
+    });
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -394,6 +398,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.scrollToOption();
       }
     }
+    this.zone.onStable.asObservable().pipe().subscribe(() => {
+      this.highlightOptionsByInput(this.element.nativeElement.value);
+    });
+
   }
 
   scrollToOption(): void {
@@ -471,7 +479,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
  * stream every time the option list changes.
  */
   private subscribeToClosingActions(): Subscription {
-    const firstStable = this.zone.onStable.asObservable().pipe(take(1));
+    const firstStable = this.zone.onStable.asObservable().pipe(first());
     const optionChanges = this.autocomplete.options.changes.pipe(
       tap(() => this.positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
@@ -496,7 +504,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           return this.panelClosingActions;
         }),
         // when the first closing event occurs...
-        take(1)
+        first()
       )
       // set the value, close the panel, and complete.
       .subscribe(event => this.setValueAndClose(event));
