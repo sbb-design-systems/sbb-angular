@@ -33,7 +33,7 @@ export class AutocompleteShowcaseComponent implements OnInit {
       .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
       .subscribe((newValue) => {
-        if (newValue.length > 2) {
+        if (newValue.length >= 2) {
           this.options$
             .next(this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
         } else {

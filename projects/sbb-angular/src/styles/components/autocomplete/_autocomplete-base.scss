@@ -3,7 +3,6 @@
   left: 0;
   right: 0;
   z-index: 3;
-  overflow: hidden;
   background-color: $autocompleteBg;
   border: $autocompleteBorder;
   border-bottom-left-radius: toPx(2);
@@ -12,7 +11,6 @@
   box-shadow: $autocompleteShadow;
   transition: $autocompleteTransition;
   color: $autocompleteColor;
-  padding: $autocompletePadding;
   margin-top: toPx(-1);
 
   &::after {
@@ -37,23 +35,52 @@
 
   @include mq($from: desktop4k) {
     border: toPx(2 * $scalingFactor4k) solid $colorGrey;
-    padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k)
-      toPx(18 * $scalingFactor4k);
     box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
+    &::after {
+      border-bottom-width: toPx(1px * $scalingFactor4k);
+    }
   }
 
   @include mq($from: desktop5k) {
     border: toPx(2 * $scalingFactor5k) solid $colorGrey;
-    padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k)
-      toPx(18 * $scalingFactor5k);
     box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
+    &::after {
+      border-bottom-width: toPx(1px * $scalingFactor5k);
+    }
   }
 
   sbb-option-group {
+    position: relative;
+    border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+    display: block;
+    @include mq($from: desktop4k) {
+      border-top-width: toPx(1px * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      border-top-width: toPx(1px * $scalingFactor5k);
+    }
+
+    sbb-option {
+      &:first-of-type {
+        padding-top: 0;
+      }
+    }
     .sbb-optgroup-label {
+      padding-left: $autocompletePaddingX;
+      padding-right: $autocompletePaddingX;
+      padding-top: $autocompletePaddingTop;
+      @include mq($from: desktop4k) {
+        font-size: toPx(10 * $scalingFactor4k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: toPx(10 * $scalingFactor5k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+      }
       @include label;
+      color: $colorMetanav;
     }
   }
 }
