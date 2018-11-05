@@ -116,6 +116,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private readonly closeKeyEventStream = new Subject<void>();
   private overlayAttached = false;
   private scrollStrategy: () => ScrollStrategy;
+  private highlightPipe = new HighlightPipe();
 
   @HostBinding('attr.role') get role() {
     return this.autocompleteAttribute ? null : 'combobox';
@@ -154,7 +155,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
-
   @HostListener('blur', ['$event'])
   onBlur() {
     this.onTouched();
@@ -189,7 +189,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.canOpenOnNextFocus =
       document.activeElement !== this.element.nativeElement || this.panelOpen;
   }
-
 
   /** `View -> model callback called when value changes` */
   onChange: (value: any) => void = () => { };
@@ -228,8 +227,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
     this.scrollStrategy = scrollStrategy;
   }
-
-
 
   ngOnDestroy() {
     if (typeof window !== 'undefined') {
@@ -313,7 +310,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     );
   }
 
-
   @HostBinding('attr.aria-activedescendant') get activeOptionId() {
     return this.activeOption ? this.activeOption.id : null;
   }
@@ -350,9 +346,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   // Implemented as part of ControlValueAccessor.
   writeValue(value: any): void {
-    Promise.resolve(null).then(() => {
-      this.setTriggerValue(value);
-    });
+    Promise.resolve(null).then(() => this.setTriggerValue(value));
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -401,7 +395,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.zone.onStable.asObservable().pipe().subscribe(() => {
       this.highlightOptionsByInput(this.element.nativeElement.value);
     });
-
   }
 
   scrollToOption(): void {
@@ -420,12 +413,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   highlightOptionsByInput(value: number | string) {
-
-    // TODO: put this again into option AfterOnInit
     this.autocomplete.options
       .filter(option => !option.group)
       .forEach(option => {
-        option.getHostElement().innerHTML = new HighlightPipe().transform(option.getHostElement().textContent, value);
+        option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
       });
   }
 
@@ -669,7 +660,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Determines whether the panel can be opened. */
   private canOpen(): boolean {
-
     const element = this.element.nativeElement;
     return !element.readOnly &&
       !element.disabled &&

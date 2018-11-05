@@ -42,8 +42,7 @@ export class SBBOptionSelectionChange {
   styleUrls: ['option.component.scss'],
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: []
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
   _disabled = false;
@@ -76,9 +75,6 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   @Input()
   id = `sbb-option-${uniqueIdCounter++}`;
-
-  /** Used for highlighting the textContent */
-  filter: number | string | null;
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output()
@@ -115,11 +111,9 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     }
   }
 
-
   get viewValue(): string {
     return (this.getHostElement().textContent || '').trim();
   }
-
 
   select(): void {
     if (!this.selected) {
@@ -163,11 +157,9 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     return this.viewValue;
   }
 
-
   getHostElement(): HTMLElement {
     return this.element.nativeElement;
   }
-
 
   ngAfterViewChecked() {
     // Since parent components could be using the option's label to display the selected values
@@ -215,7 +207,6 @@ export function getOptionScrollPosition(optionIndex: number, optionHeight: numbe
 
   return currentScrollPosition;
 }
-
 
 /**
  * Counts the amount of option group labels that precede the specified option.
