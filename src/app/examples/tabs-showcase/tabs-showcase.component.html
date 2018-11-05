@@ -4,6 +4,22 @@
     <h5>Tabs</h5>
     <fieldset>
     <sbb-tabs>
+        <sbb-tab [tabTitle]="'Test'" [tabId]="0">
+            <sbb-tabs>
+                <sbb-tab [tabTitle]="'Tab 1'" [tabId]="1">
+                  <div class="card">
+                    <div class="container">
+                      <br/>
+                      <h5>Content 1</h5>
+                      <hr/>
+                      <p>Here comes the content for tab 1 ...</p>
+                      <br/>
+                    </div> 
+                  </div>
+                </sbb-tab>        
+            </sbb-tabs>
+          </sbb-tab>
+      <!-- First tab (required) -->
       <sbb-tab [tabTitle]="'Tab 1'" [tabId]="1">
         <div class="card">
           <div class="container">
@@ -15,6 +31,7 @@
           </div> 
         </div>
       </sbb-tab>
+      <!-- Second tab (required) -->
       <sbb-tab [tabTitle]="'Tab 2'" [tabId]="2">
         <div class="card">
           <div class="container">
@@ -26,6 +43,7 @@
           </div>  
         </div>
       </sbb-tab>
+      <!-- Third tab with the possibility of dynamic tabs if any -->
       <sbb-tab [tabTitle]="'Persons'" [tabId]="3" [badgePill]="getCountOfPersons()" [disabled]="disabled" *ngIf="withDynamicTabs">
         <div class="card">
           <div class="container">

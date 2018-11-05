@@ -19,18 +19,32 @@ export class TabsComponent implements AfterContentInit {
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
+  @ContentChildren(TabsComponent) tabModules: QueryList<TabsComponent>;
+
   @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterContentInit() {
-    // 1) check the number of tabs ...
+    // 1) check the number of tab modules ...
+    this.checkNumberOfTabModules();
+    // 2) check the number of tabs ...
     this.checkNumberOfTabs();
-    // 2) check the number of badge pills per tab ...
+    // 3) check the number of badge pills per tab ...
     this.checkNumberOfBadgePillsPerTab();
     const activeTabs = this.tabs.filter(tab => tab.active);
     if (activeTabs.length === 0) {
         this.selectTab(this.tabs.first);
+    }
+  }
+
+  private checkNumberOfTabModules() : void {
+    console.log('number', this.tabModules.length);
+    if(this.tabModules.length > 0) {
+       throw new Error(`
+          Another tab module within a register is not allowed.
+          Ex: <sbb-tabs><sbb-tab><sbb-tabs> ... </sbb-tabs></sbb-tab></sbb-tabs>
+       `);
     }
   }
 
