@@ -24,10 +24,26 @@ export class TabsComponent implements AfterContentInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterContentInit() {
+    this.checkNumberOfBadgePillsPerTab();
     const activeTabs = this.tabs.filter(tab => tab.active);
     if (activeTabs.length === 0) {
         this.selectTab(this.tabs.first);
     }
+  }
+
+  private checkNumberOfBadgePillsPerTab() : void {
+    const tabsWithBadgePills = this.tabs.filter(tab => tab.badgePill < 0 || tab.badgePill > 999);
+    if (tabsWithBadgePills.length > 0) {
+        this.throwBadgePillsError();
+    }
+    const dynamicsTabsWithBadgePills = this.dynamicTabs.filter(tab => tab.badgePill < 0 || tab.badgePill > 999);
+    if (dynamicsTabsWithBadgePills.length > 0) {
+        this.throwBadgePillsError();
+    }
+  }
+
+  private throwBadgePillsError(): void {
+    throw new Error(`The quantity indicator should contains only numbers with a maximum of 3 digits (0-999)`);
   }
 
   openFirstTab() {

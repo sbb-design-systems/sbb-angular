@@ -14,7 +14,7 @@ export class TabComponent {
   @Input() isCloseable = false;
   @Input() template;
   @Input() dataContext;
-  @Input() badgePill?: string;
+  @Input() badgePill?: number;
 
   @HostBinding('class.sbb-tab-disabled')
   @Input() disabled: boolean;

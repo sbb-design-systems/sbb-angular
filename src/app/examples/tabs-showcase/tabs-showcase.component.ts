@@ -52,32 +52,30 @@ export class TabsShowcaseComponent implements OnInit {
     this.tabsComponent.openFirstTab();
   }
 
+  private initialPersonArrayByAmount(amount: number) : void {
+    let counter = 0;
+    while(counter < amount) {
+          for(const item of this.personList) {
+              counter++;
+              this.person.push({id: counter, name: item.name, surname: item.surname});
+          }
+    }
+  }
+
   onChangeOfDataSet(event) {
     this.person = [];
     if(event.startsWith('default')) {
        this.person.push(this.personInitialLoad);
     }
     if(event.startsWith('500')) {
-       let counter = 0;
-       while(counter < 500) {
-             for(const item of this.personList) {
-                 counter++;
-                 this.person.push({id: counter, name: item.name, surname: item.surname});
-             }
-       }
+       this.initialPersonArrayByAmount(500);
     }
     if(event.startsWith('1000')) {
-       let counter = 0;
-       while(counter < 1000) {
-             for(const item of this.personList) {
-                 counter++;
-                 this.person.push({id: counter, name: item.name, surname: item.surname});
-             }
-       }
+       this.initialPersonArrayByAmount(1000);
     }
   }
 
-  getCountOfPerson() {
+  getCountOfPersons() : number {
     return Object.keys(this.person).length;
   }
 
