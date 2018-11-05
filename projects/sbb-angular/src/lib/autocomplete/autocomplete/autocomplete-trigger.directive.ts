@@ -392,9 +392,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.scrollToOption();
       }
     }
-    this.zone.onStable.asObservable().pipe().subscribe(() => {
-      this.highlightOptionsByInput(this.element.nativeElement.value);
-    });
+    this.zone.onStable
+      .asObservable()
+      .pipe()
+      .subscribe(() => this.highlightOptionsByInput(this.element.nativeElement.value));
   }
 
   scrollToOption(): void {
