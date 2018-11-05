@@ -27,17 +27,19 @@ export class AutocompleteShowcaseComponent implements OnInit {
     });
 
     this.options$ = new Subject<string[]>();
-    this.options$
-      .pipe(debounceTime(1500))
-      .pipe(distinctUntilChanged());
 
-    this.myControlStatic.valueChanges.subscribe((newValue) => {
-      if (newValue.length > 2) {
-        this.options$.next(this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
-      } else {
-        this.options$.next([]);
-      }
-    });
+
+    this.myControlStatic.valueChanges
+      .pipe(debounceTime(500))
+      .pipe(distinctUntilChanged())
+      .subscribe((newValue) => {
+        if (newValue.length > 2) {
+          this.options$
+            .next(this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
+        } else {
+          this.options$.next([]);
+        }
+      });
 
   }
 
