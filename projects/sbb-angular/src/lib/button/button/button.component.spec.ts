@@ -136,12 +136,17 @@ describe('ButtonComponent', () => {
       expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
     });
 
-    it('should have a grey text of color rgb(68, 68, 68)/#444444', () => {
-      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(68, 68, 68)');
+    it('should have a grey text of color rgb(102, 102, 102)/#666666', () => {
+      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
     });
 
-    it('should have a grey box shadow of color rgb(168, 168, 168)/#A8A8A8', () => {
-      expect(sbbButtonStyle.getPropertyValue('box-shadow')).toBe('rgb(168, 168, 168) 0px 0px 0px 1px inset');
+    it('should have a grey border color of rgb(168, 168, 168)/#A8A8A8', () => {
+      expect(
+            sbbButtonStyle.getPropertyValue('border-top-color')
+         && sbbButtonStyle.getPropertyValue('border-right-color')
+         && sbbButtonStyle.getPropertyValue('border-bottom-color')
+         && sbbButtonStyle.getPropertyValue('border-left-color')
+      ).toBe('rgb(168, 168, 168)');
     });
 
   });
@@ -214,12 +219,17 @@ describe('ButtonComponent', () => {
       expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
     });
 
-    it('should have a grey text of color rgb(68, 68, 68)/#444444', () => {
-      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(68, 68, 68)');
+    it('should have a grey text of color rgb(102, 102, 102)/#666666', () => {
+      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
     });
 
-    it('should have a grey box shadow of color rgb(168, 168, 168)/#A8A8A8', () => {
-      expect(sbbButtonStyle.getPropertyValue('box-shadow')).toBe('rgb(168, 168, 168) 0px 0px 0px 1px inset');
+    it('should have a grey border color of rgb(151, 151, 151)/#979797', () => {
+      expect(
+            sbbButtonStyle.getPropertyValue('border-top-color')
+         && sbbButtonStyle.getPropertyValue('border-right-color')
+         && sbbButtonStyle.getPropertyValue('border-bottom-color')
+         && sbbButtonStyle.getPropertyValue('border-left-color')
+      ).toBe('rgb(151, 151, 151)');
     });
 
     it('should have a line-through text decoration', () => {

@@ -1,0 +1,14 @@
+$autocompleteTransition:                    height .25s cubic-bezier(.4, 0, .2, 1), opacity .25s cubic-bezier(.4, 0, .2, 1);
+$autocompleteHighlightTexBold:              $fontSbbBold;
+$autocompleteHoverColor:                    $colorBlack;
+$autocompleteBg:                            $colorWhite;
+$autocompleteBorder:                        toPx(2) solid $colorGrey;
+$autocompleteBorderTop:                     none;
+$autocompleteShadow:                        0 toPx(8) 0 rgba(0, 0, 0, .15);
+$autocompleteColor:                         $colorGrey;
+$autocompletePaddingTop:                    toPx(14);
+$autocompletePaddingX:                      toPx(16);
+$autocompletePaddingBottom:                 toPx(18);
+$autocompletePadding:                       $autocompletePaddingTop $autocompletePaddingX $autocompletePaddingBottom;
+$autocompleteOptionHoverColor:              $colorRed100;
+$autocompleteInputActiveBorderBottomColor:  $colorBlack10;

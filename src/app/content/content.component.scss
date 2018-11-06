@@ -28,7 +28,7 @@
   display: block;
   border-bottom: 1px solid #dde3e6;
   padding: 30px;
-  overflow: hidden;
+  // overflow: hidden;
   background-color: white;
 }
 
@@ -43,7 +43,7 @@
 
 .result {
   display: block;
-  overflow: hidden;
+  // overflow: hidden;
   font-size: 1em;
   padding: 0.85714286em 1.14285714em;
   color: rgba(0, 0, 0, 0.87);
@@ -110,7 +110,6 @@
 }
 
 .code.table {
-  box-sizing: border-box;
   width: 100%;
   display: table;
   margin: 0 0 20px;

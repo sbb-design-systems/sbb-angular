@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <h3>Autocomplete</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Basic Example</legend>
+      <fieldset>
+        <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
+        <sbb-autocomplete #auto="sbbAutocomplete">
+          <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+            {{ option }}
+          </sbb-option>
+        </sbb-autocomplete>
+      </fieldset>
+      <pre>{{ myControl.value | json }}</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <legend>Static Options and async call Example</legend>
+      <fieldset>
+        <input type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic">
+        <sbb-autocomplete #autoStatic="sbbAutocomplete">
+          <sbb-option *ngFor="let option of options$ | async" [value]="option">
+            {{ option }}
+          </sbb-option>
+          <sbb-option-group label="Oft gesucht:">
+            <sbb-option *ngFor="let option of staticOptions" [value]="option">
+              {{ option }}
+            </sbb-option>
+          </sbb-option-group>
+        </sbb-autocomplete>
+      </fieldset>
+      <pre>{{ myControlStatic.value | json }}</pre>
+    </div>
+    <div class="col-lg-6">
+      <legend>Properties</legend>
+      <p>
+        The async call is emulated by a 500ms delay.<br>
+        Two digits are needed at least to trigger the async function call.
+      </p>
+    </div>
+  </div>
+</div>

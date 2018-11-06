@@ -1,24 +1,31 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextareaModule,
-         FieldModule,
-         LinksModule,
-         RadioButtonModule,
-         CheckboxModule,
-         ButtonModule,
-         IconCommonModule,
-         TabsModule } from 'sbb-angular';
-import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
-import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+
+import {
+  IconCommonModule,
+  TextareaModule,
+  FieldModule,
+  LinksModule,
+  RadioButtonModule,
+  CheckboxModule,
+  AutocompleteModule,
+  ButtonModule,
+  TabsModule
+} from 'sbb-angular';
+
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { InputFieldShowcaseComponent } from './input-field-showcase/input-field-showcase.component';
 import { SbbFieldShowcaseComponent } from './sbb-field-showcase/sbb-field-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase.component';
+import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
+import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
+import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { IconComponents } from '../sbb-components-mapping-export';
 import { PersonEditComponent } from './tabs-showcase/person/person-edit/person-edit.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
@@ -27,6 +34,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
   declarations: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
+    AutocompleteShowcaseComponent,
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
@@ -42,6 +50,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     TextareaModule,
     FieldModule,
     LinksModule,
+    AutocompleteModule,
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -55,6 +64,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
+    AutocompleteShowcaseComponent,
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,

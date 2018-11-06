@@ -15,7 +15,6 @@
 	@include buttonReset();
 	@include ellipsis;
 
-	box-sizing: border-box;
 	width: 100%;
 	height: toEm(48/$fontSize);
 	padding: toEm(12.5/$fontSize) toEm(40/$fontSize) toEm(15.5/$fontSize) toEm(40/$fontSize);
@@ -25,7 +24,8 @@
 	text-align: center;
 	font-size: pxToRem($fontSize);
 	line-height: 1.4;
-	border: none;
+	border-style: solid;
+	border-width: pxToRem(2);
 	border-radius: toEm(2/$fontSize);
 	color: $buttonDefaultColor;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -43,10 +43,12 @@
 
 	@include mq($from: desktop4k) {
 		font-size: pxToRem($fontSize * $scalingFactor4k);
+		border-width: pxToRem(2 * $scalingFactor4k);
 	}
 
 	@include mq($from: desktop5k) {
 		font-size: pxToRem($fontSize * $scalingFactor5k);
+		border-width: pxToRem(2 * $scalingFactor5k);
 	}
 
 	&:not(:disabled) {
@@ -61,7 +63,7 @@
 @mixin buttonArrowHover {
 	padding-left: pxToEm(70, $buttonSizeFontDefault);
 	padding-right: pxToEm(40, $buttonSizeFontDefault);
-	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+	transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation, border-color $linkiconAnimation;
 
 	.sbb-svgsprite-icon {
 		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
