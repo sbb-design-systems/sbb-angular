@@ -10,7 +10,7 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
-import { filter, take, switchMap, delay, tap, map } from 'rxjs/operators';
+import { filter, take, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
   ChangeDetectorRef,
   Directive,
@@ -24,7 +24,9 @@ import {
   ViewContainerRef,
   HostBinding,
   HostListener,
-  InjectionToken
+  InjectionToken,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -40,6 +42,7 @@ import {
   getOptionScrollPosition,
   countGroupLabelsBeforeOption
 } from '../option/option.component';
+import { HighlightPipe } from '../option/highlight.pipe';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
@@ -113,6 +116,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private readonly closeKeyEventStream = new Subject<void>();
   private overlayAttached = false;
   private scrollStrategy: () => ScrollStrategy;
+  private highlightPipe = new HighlightPipe();
 
   @HostBinding('attr.role') get role() {
     return this.autocompleteAttribute ? null : 'combobox';
@@ -151,9 +155,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
-
-
-
   @HostListener('blur', ['$event'])
   onBlur() {
     this.onTouched();
@@ -188,7 +189,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.canOpenOnNextFocus =
       document.activeElement !== this.element.nativeElement || this.panelOpen;
   }
-
 
   /** `View -> model callback called when value changes` */
   onChange: (value: any) => void = () => { };
@@ -310,7 +310,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     );
   }
 
-
   @HostBinding('attr.aria-activedescendant') get activeOptionId() {
     return this.activeOption ? this.activeOption.id : null;
   }
@@ -393,12 +392,16 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.scrollToOption();
       }
     }
+    this.zone.onStable
+      .asObservable()
+      .pipe()
+      .subscribe(() => this.highlightOptionsByInput(this.element.nativeElement.value));
   }
 
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(index,
-      this.autocomplete.options);
+      this.autocomplete.options, this.autocomplete.optionGroups);
 
     const newScrollPosition = getOptionScrollPosition(
       index + labelCount,
@@ -410,6 +413,14 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
+  highlightOptionsByInput(value: number | string) {
+    this.autocomplete.options
+      .filter(option => !option.group)
+      .forEach(option => {
+        option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
+      });
+  }
+
   handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
@@ -418,7 +429,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (target.type === 'number') {
       value = value === '' ? null : parseFloat(value);
     }
-    this.autocomplete.options.forEach(option => option.filter = value);
+    this.highlightOptionsByInput(value);
+
     // If the input has a placeholder, IE will fire the `input` event on page load,
     // focus and blur, in addition to when the user actually changed the value. To
     // filter out all of the extra events, we save the value on focus and between
@@ -459,7 +471,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
  * stream every time the option list changes.
  */
   private subscribeToClosingActions(): Subscription {
-    const firstStable = this.zone.onStable.asObservable().pipe(take(1));
+    const firstStable = this.zone.onStable.asObservable().pipe(first());
     const optionChanges = this.autocomplete.options.changes.pipe(
       tap(() => this.positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
@@ -484,7 +496,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           return this.panelClosingActions;
         }),
         // when the first closing event occurs...
-        take(1)
+        first()
       )
       // set the value, close the panel, and complete.
       .subscribe(event => this.setValueAndClose(event));
@@ -649,11 +661,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Determines whether the panel can be opened. */
   private canOpen(): boolean {
-
     const element = this.element.nativeElement;
     return !element.readOnly &&
       !element.disabled &&
-      !this.autocompleteDisabled &&
-      this.previousValue.toString().length >= this.autocomplete.minDigitsBeforePanelOpening;
+      !this.autocompleteDisabled;
   }
 }
