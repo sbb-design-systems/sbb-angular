@@ -1,13 +1,13 @@
 <div class="form-group">
   <table class="table table-striped scroll">
     <tbody>
-      <tr *ngFor="let p of person">
+      <tr *ngFor="let p of person; let i = index">
         <td>{{ p.id }}.</td>
         <td>{{ p.name }}</td>
         <td>{{ p.surname }}</td>
-        <td><button sbbButton mode="primary" (click)="editPerson.emit(p)">Edit</button></td>
+        <td><button sbbButton mode="primary" (click)="editPerson.emit(p)" id="sbb-edit-button-{{ i }}">Edit</button></td>
       </tr>
     </tbody>
   </table>
-  <button sbbButton mode="primary" (click)="addPerson.emit()">Add new person</button>
+  <button sbbButton mode="primary" (click)="addPerson.emit()" id="addNewPersonButton">Add new person</button>
 </div>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { TabsShowcaseComponent } from './tabs-showcase.component';
 import { PersonEditComponent } from './person/person-edit/person-edit.component';
 import { PersonListComponent } from './person/person-list/person-list.component';
@@ -70,4 +71,41 @@ describe('TabsShowcaseComponent', () => {
     expect(component.tabsComponent.tabs.last.tabId).toBe(3);
     expect(component.tabsComponent.tabs.last.active).toBe(false);
   });
+
+  it('person tab should have 1 edit button', () => {
+     // first round of change detection ...
+     fixture.detectChanges();
+     // switch over to our dynamic tab ...
+     component.tabsComponent.selectTab(component.tabsComponent.tabs.last);
+     expect(component.tabsComponent.tabs.last.active).toBe(true);
+     // get edit button ...
+     const editButton = debugElement.query(By.css('#sbb-edit-button-0')).nativeElement;
+     expect(editButton).toBeTruthy();
+     expect(editButton.textContent).toBe('Edit');
+  });
+
+  it('person tab should have 1 add new person button', () => {
+     // first round of change detection ...
+     fixture.detectChanges();
+     // switch over to our dynamic tab ...
+     component.tabsComponent.selectTab(component.tabsComponent.tabs.last);
+     expect(component.tabsComponent.tabs.last.active).toBe(true);
+     // get add new person button ...
+     const addNewPersonButton = debugElement.query(By.css('#addNewPersonButton')).nativeElement;
+     expect(addNewPersonButton).toBeTruthy();
+     expect(addNewPersonButton.textContent).toBe('Add new person');
+  });
+
+  it('person tab should have 1 tag pill / quantity indicator with the value 1', () => {
+    // first round of change detection ...
+    fixture.detectChanges();
+    // switch over to our dynamic tab ...
+    component.tabsComponent.selectTab(component.tabsComponent.tabs.last);
+    expect(component.tabsComponent.tabs.last.active).toBe(true);
+    // get add new person button ...
+    const tabBadgePill = debugElement.query(By.css('sbb-tab-badge-pill')).nativeElement;
+    expect(tabBadgePill).toBeTruthy();
+    expect(tabBadgePill.textContent).toBe('1');
+ });
+
 });
