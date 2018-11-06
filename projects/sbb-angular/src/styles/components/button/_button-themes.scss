@@ -137,6 +137,8 @@
 	background-color: transparent;
 	border: none;
 	color: $buttonFramelessColor;
+	padding: 0;
+	height: auto;
 
 	&:not(:disabled) {
 		&:hover,
@@ -162,12 +164,8 @@
 	@extend %framelessButton;
 	@extend %arrowbuttons;
 
-	padding-top: 0;
-	padding-bottom: 0;
-	padding-left: 0;
 	padding-right: toEm(30/$fontSize);
-	height: auto;
-
+	
 	.sbb-svgsprite-icon {
 		fill: $buttonFramelessColor;
 	}
