@@ -1,60 +1,94 @@
-
 @mixin autocompleteBase() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background-color: $autocompleteBg;
+  border: $autocompleteBorder;
+  border-bottom-left-radius: toPx(2);
+  border-bottom-right-radius: toPx(2);
+  border-top: $autocompleteBorderTop;
+  box-shadow: $autocompleteShadow;
+  transition: $autocompleteTransition;
+  color: $autocompleteColor;
+  margin-top: toPx(-1);
+
+  &::after {
+    content: "";
+    display: block;
     position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    overflow: hidden;
-    background-color: $autocompleteBg;
-    border: $autocompleteBorder;
-    border-bottom-left-radius: toPx(2);
-    border-bottom-right-radius: toPx(2);
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+  }
+
+  &.sbb-autocomplete-visible {
+    visibility: visible;
+  }
+
+  &.sbb-autocomplete-hidden {
+    visibility: hidden;
+  }
+
+  @include mq($from: desktop4k) {
+    border: toPx(2 * $scalingFactor4k) solid $colorGrey;
+    box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
-    box-shadow: $autocompleteShadow;
-    transition: $autocompleteTransition;
-    color: $autocompleteColor;
-    padding: $autocompletePadding;
-    margin-top: toPx(-1);
-
     &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
-        width: 100%;
-        height: 0;
-        border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+      border-bottom-width: toPx(1px * $scalingFactor4k);
     }
+  }
 
-    &.sbb-autocomplete-visible {
-        visibility: visible;
+  @include mq($from: desktop5k) {
+    border: toPx(2 * $scalingFactor5k) solid $colorGrey;
+    box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
+    border-top: $autocompleteBorderTop;
+    &::after {
+      border-bottom-width: toPx(1px * $scalingFactor5k);
     }
+  }
 
-    &.sbb-autocomplete-hidden {
-        visibility: hidden;
-    }
-
+  sbb-option-group {
+    position: relative;
+    border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+    display: block;
     @include mq($from: desktop4k) {
-        border: toPx(2 * $scalingFactor4k) solid $colorGrey;
-        padding: toPx(14 * $scalingFactor4k) toPx(16 * $scalingFactor4k) toPx(18 * $scalingFactor4k);
-        box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, .15);
-        border-top: $autocompleteBorderTop;
+      border-top-width: toPx(1px * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      border-top-width: toPx(1px * $scalingFactor5k);
     }
 
-    @include mq($from: desktop5k) {
-        border: toPx(2 * $scalingFactor5k) solid $colorGrey;
-        padding: toPx(14 * $scalingFactor5k) toPx(16 * $scalingFactor5k) toPx(18 * $scalingFactor5k);
-        box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, .15);
-        border-top: $autocompleteBorderTop;
+    sbb-option {
+      &:first-of-type {
+        padding-top: 0;
+      }
     }
+    .sbb-optgroup-label {
+      padding-left: $autocompletePaddingX;
+      padding-right: $autocompletePaddingX;
+      padding-top: $autocompletePaddingTop;
+      @include mq($from: desktop4k) {
+        font-size: toPx(10 * $scalingFactor4k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: toPx(10 * $scalingFactor5k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+      }
+      @include label;
+      color: $colorMetanav;
+    }
+  }
 }
 
 @mixin autocompleteInputActive() {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-color: $colorGrey;
-    border-bottom: none;
-    margin-bottom: toPx(2);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: $colorGrey;
+  border-bottom: none;
+  margin-bottom: toPx(2);
 }

@@ -11,6 +11,7 @@ import {
   AutocompleteTriggerDirective, SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './autocomplete/autocomplete-trigger.directive';
 import { HighlightPipe } from './option/highlight.pipe';
+import { OptionGroupComponent } from './option-group/option-group.component';
 
 @NgModule({
   imports: [
@@ -23,11 +24,13 @@ import { HighlightPipe } from './option/highlight.pipe';
     OptionComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    HighlightPipe
+    HighlightPipe,
+    OptionGroupComponent
   ],
   exports: [
     AutocompleteComponent,
     OptionComponent,
+    OptionGroupComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
     OverlayModule,

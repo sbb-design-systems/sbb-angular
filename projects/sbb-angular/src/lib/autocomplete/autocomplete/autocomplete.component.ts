@@ -17,14 +17,13 @@ import {
   HostBinding,
 } from '@angular/core';
 import { OptionComponent } from '../option/option.component';
+import { OptionGroupComponent } from '../option-group/option-group.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
  * the component definition.
  */
 let _uniqueAutocompleteIdCounter = 0;
-
-const SBB_AUTOCOMPLETE_MIN_DIGITS_REQUIRED = 3;
 
 /** Event object that is emitted when an autocomplete option is selected. */
 export class SbbAutocompleteSelectedEvent {
@@ -74,10 +73,12 @@ export class AutocompleteComponent implements AfterContentInit {
   /** @docs-private */
   @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
 
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
+
+
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
 
-  @Input() minDigitsBeforePanelOpening = SBB_AUTOCOMPLETE_MIN_DIGITS_REQUIRED;
 
   /**
    * Whether the first option should be highlighted when the autocomplete panel is opened.
