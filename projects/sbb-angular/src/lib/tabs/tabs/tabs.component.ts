@@ -4,25 +4,16 @@ import { Component,
          AfterContentInit,
          ViewChild,
          ComponentFactoryResolver,
-         ViewContainerRef,
-         ChangeDetectionStrategy,
-         forwardRef
+         ViewContainerRef
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TabComponent } from '../tab/tab.component';
 
 @Component({
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss'],
-  providers: [ {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TabsComponent),
-    multi: true,
-  } ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./tabs.component.scss']
 })
-export class TabsComponent implements AfterContentInit, ControlValueAccessor {
+export class TabsComponent implements AfterContentInit {
 
   dynamicTabs: TabComponent[] = [];
 
@@ -33,19 +24,6 @@ export class TabsComponent implements AfterContentInit, ControlValueAccessor {
   @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
-
-  onChange = (obj: any) => { };
-  onTouched = (_: any) => { };
-
-  writeValue(value: any) { }
-
-  registerOnChange(fn: any) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
 
   ngAfterContentInit() {
     // 1) check the number of tabs ...
