@@ -5,12 +5,14 @@
 /*** PRIMARY BUTTON ***/
 @mixin primaryButton {
 	color: $buttonDefaultColor;
+	border: none;
 	background-color: $buttonDefaultBgColor;
 
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
 			background-color: $buttonDefaultBgColorHover;
+			border: none;
 			color: $buttonDefaultColor;
 
 			.mod-svgsprite-icon {
@@ -39,11 +41,13 @@
 @mixin secondaryButton {
 	color: $buttonSecondaryColor;
 	background-color: $buttonSecondaryBgColor;
+	border: none;
 
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
 			background-color: $buttonSecondaryBgColorHover;
+			border: none;
 			color: $buttonSecondaryColor;
 		}
 	}
@@ -79,9 +83,10 @@
 /*** GHOST BUTTON ***/
 @mixin ghostButtonPositive($fontSize: $buttonSizeFontDefault) {
 	background-color: transparent;
-	box-shadow: $buttonGhostShadow;
+	border-color: $buttonGhostBorderColor;
 	color: $buttonGhostColor;
-	transition: box-shadow $linkiconAnimation, height $linkiconAnimation, padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+	transition: border-color $linkiconAnimation, height $linkiconAnimation, padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+	line-height: 1.1;
 
 	@media screen and (-ms-high-contrast: active) {
 		border: pxToEm(1) solid currentColor;
@@ -90,13 +95,12 @@
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
-			box-shadow: $buttonGhostShadowHover;
 			color: $buttonGhostColorHover;
 			background-color: transparent;
-			border-color: currentColor;
+			border-color: $buttonGhostBorderColorHover;
 
 			.sbb-svgsprite-icon {
-				fill: currentColor;
+				fill: $buttonGhostColorHover;
 			}
 		}
 	}
@@ -131,14 +135,17 @@
 /*** FRAMELESS BUTTON ***/
 @mixin framelessButton($fontSize: $buttonSizeFontDefault) {
 	background-color: transparent;
+	border: none;
 	color: $buttonFramelessColor;
+	padding: 0;
+	height: auto;
 
 	&:not(:disabled) {
 		&:hover,
 		&:focus {
-			color: $colorRed125;
+			color: $buttonFramelessColorHover;
 			background-color: transparent;
-			border-color: transparent;
+			border: none;
 		}
 	}
 }
@@ -157,12 +164,16 @@
 	@extend %framelessButton;
 	@extend %arrowbuttons;
 
+	padding-right: toEm(30/$fontSize);
+	
 	.sbb-svgsprite-icon {
 		fill: $buttonFramelessColor;
 	}
 
 	&:hover,
 	&:focus {
+		padding-left: toEm(30/$fontSize);
+
 		.sbb-svgsprite-icon {
 			fill: $buttonFramelessColorHover;
 		}
@@ -172,7 +183,8 @@
 /*** DISABLED BUTTON ***/
 @mixin disabledButton {
 	@extend %ghostButtonPositive;
-
+	
+	border-color: $buttonDisabledBorderColor;
 	text-decoration: line-through;
 
 	.sbb-svgsprite-icon {

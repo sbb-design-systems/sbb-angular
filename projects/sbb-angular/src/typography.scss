@@ -9,7 +9,16 @@
   box-sizing: border-box;
 }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
   display: block;
 }
 
@@ -19,14 +28,23 @@ html {
   font-family: $fontSbbRoman;
   font-size: $sizeFontBase / 16px * 100%;
   line-height: $sizeLineHeightBase;
+  
   @include fontSmoothing;
- 
+  
   b,
   strong,
   optgroup[label="*"] {
     font-family: $fontSbbBold;
     font-weight: normal;
   }
+}
+
+input,
+textarea,
+select,
+button,
+body {
+  font-family: inherit;
 }
 
 table {
@@ -37,7 +55,6 @@ table {
     line-height: 1.5;
     margin: 0.75em 0 0; // paragraph as default
   }
-
   th {
     font-family: $fontSbbBold;
   }
@@ -84,47 +101,45 @@ a {
   @include clearfix;
 }
 
-input[type=email],
-input[type=password],
-input[type=search],
-input[type=text],
-input[type=number],
-input[type=tel],
-input[type=time],
-input[type=datetime],
-input[type=datetime-local],
-input[type=url] {
-	@include inputfields;
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="url"] {
+  @include inputfields;
 }
 
 input[placeholder] {
-	text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
-input[type=number],
-input[type=time],
-input[type=datetime],
-input[type=datetime-local] {
-	-moz-appearance: textfield;
-
-	&::-webkit-inner-spin-button,
-	&::-webkit-outer-spin-button,
-	&::-webkit-clear-button {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		margin: 0;
-		width: 0;
-		padding: 0;
-		background: transparent;
-	}
+input[type="number"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"] {
+  -moz-appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button,
+  &::-webkit-clear-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+    width: 0;
+    padding: 0;
+    background: transparent;
+  }
 }
 
 sbb-radio-button {
-	@include radioButtonLabel;
+  @include radioButtonLabel;
 }
 
 sbb-checkbox {
-	@include checkboxLabel;
+  @include checkboxLabel;
 }
-
