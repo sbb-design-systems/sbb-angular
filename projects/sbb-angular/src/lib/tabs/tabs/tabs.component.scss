@@ -24,7 +24,6 @@
 					display: inline-block;
 		      text-align: center;
 					text-decoration: none;
-					/*position: relative;*/
 					vertical-align: middle;
 					-webkit-transform: translateZ(0);
           transform: translateZ(0);
@@ -44,6 +43,12 @@
 		white-space: nowrap !important;
 		padding-bottom: 21px;
 	 }
+	 a.active {
+		display: block;
+    content: '';
+		color: $colorBlack;
+		border-bottom: 1px solid $colorBlack; 
+	 }
 	 a:after {
     display: block;
     content: '';
@@ -51,19 +56,16 @@
     transform: scaleX(0);
 		transition: transform 0.3s ease-in-out;
 	 }
-	 a:hover:after {
-		transform: scaleX(1);
-	 }
-	 a.active {
-		display: block;
-    content: '';
-		color: $colorBlack;
-		border-bottom: 1px solid $colorBlack; 
-	 }
 	 a:hover {
 		display: block;
 		content: '';
 		color: $colorRed125;
+	 }
+	 a:hover:after {
+		display: block;
+		content: '';
+		color: $colorRed125;
+		transform: scaleX(1);
 	 }
 	 .sbb-tab-disabled {
 	  opacity:0.6;
