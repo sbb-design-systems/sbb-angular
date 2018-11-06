@@ -60,6 +60,7 @@
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-sourcemap-loader": "^0.3.7",
     "lodash": "^4.17.11",
     "ng-packagr": "^4.2.0",
     "node-sass": "^4.9.3",
