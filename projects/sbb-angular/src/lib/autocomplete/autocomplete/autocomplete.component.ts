@@ -64,7 +64,7 @@ export class AutocompleteComponent implements AfterContentInit {
 
   @HostBinding('class.sbb-autocomplete') sbbAutocomplete = false;
 
-    /** @docs-private */
+  /** @docs-private */
   @ViewChild(TemplateRef) template: TemplateRef<any>;
 
   /** Element for the panel containing the autocomplete options. */
