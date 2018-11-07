@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentUiService } from './services/component-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 import { IconUiService } from './services/icon-ui.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sbb-root',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
 
   constructor(private componentUiService : ComponentUiService,
               private iconUiService : IconUiService,
-              private accordionNotificationService : AccordionNotificationService) {
+              private accordionNotificationService : AccordionNotificationService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -44,5 +46,10 @@ export class AppComponent implements OnInit {
   skipLink(evt) {
     evt.preventDefault();
     this.maincontent.nativeElement.focus();
+  }
+
+  navigateHome(evt) {
+    evt.preventDefault();
+    this.router.navigate(['']);
   }
 }

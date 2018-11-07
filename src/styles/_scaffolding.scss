@@ -27,7 +27,7 @@
 }
 
 body {
-  padding-top: 48px;
+  padding-top: $headerHeight;
 }
 
 .sbbsc-brand-header {
@@ -38,12 +38,12 @@ body {
   right: 0;
   left: 0;
   top: 0;
-  height: 48px;
+  height: $headerHeight;
   border-bottom: solid 1px #ccc;
   z-index: 2000;
 
   .sbbsc-home {
-    height: 48px;
+    height: $headerHeight;
     display: block;
     float: right;
     padding: 14px 50px;
@@ -62,5 +62,21 @@ body {
     width: 40px;
     height: 40px;
     z-index: 3000;
+  }
+}
+
+perfect-scrollbar.sbbsc-perfect-scrollbar {
+  max-height: calc(100vh - #{$headerHeight});
+}
+
+.sbbsc-content-section-left, .sbbsc-nav {
+  @include mq($from: tabletLandscape) {
+    max-width: $left-nav-width;
+  }
+}
+
+.sbbsc-content-section-main {
+  @include mq($from: tabletLandscape) {
+    min-width: calc(100% - #{$left-nav-width});
   }
 }
