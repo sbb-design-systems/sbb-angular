@@ -21,3 +21,46 @@
     white-space: normal;
   }
 }
+
+@-ms-viewport{
+  width: device-width;
+}
+
+body {
+  padding-top: 48px;
+}
+
+.sbbsc-brand-header {
+  padding: 0;
+  width: inherit;
+  background-color: #fff;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 48px;
+  border-bottom: solid 1px #ccc;
+  z-index: 2000;
+
+  .sbbsc-home {
+    height: 48px;
+    display: block;
+    float: right;
+    padding: 14px 50px;
+    
+    svg {
+      width: 178px;
+      height: 20px;
+      display: block;
+    }
+  }
+
+  .sbbsc-beta {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 3000;
+  }
+}

@@ -29,6 +29,8 @@ import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
 import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-fie
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' })
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    PerfectScrollbarModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [

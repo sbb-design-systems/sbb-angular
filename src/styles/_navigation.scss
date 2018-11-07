@@ -1,0 +1,52 @@
+.sbbsc-navlist {
+  padding-left: 1em;
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: $sizeLineHeightBase;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.sbbsc-nav {
+  height: calc(100vh - 48px);
+  width: 100%;
+  padding-top: 30px;
+  border-right: solid 1px #ccc;
+
+  &-card {
+    padding: 0.25em pxToEm(30);
+  
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-tab {
+    text-decoration: none;
+    font-family: $fontSbbBold;
+    font-size: $sizeFontBase - 1px;
+    padding: 0.5em 0.25em;
+  
+    .fa {
+      font-size: 0.75em;
+      line-height: 1;
+      vertical-align: middle;
+      float: right;
+      position: relative;
+      top: 0.6em;
+      right: 0.5em;
+    }
+  }
+}
+
+.sbbsc-content-section-left {
+  @include mq($from: tabletLandscape) {
+		max-width: pxToRem(340px);
+  }
+  
+  perfect-scrollbar {
+    max-height: calc(100vh - 48px);
+  }
+}
