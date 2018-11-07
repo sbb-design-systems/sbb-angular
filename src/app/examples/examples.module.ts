@@ -14,13 +14,15 @@ import {
   CheckboxModule,
   AutocompleteModule,
   ButtonModule,
-  TabsModule
+  TabsModule,
+  TabsNewModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { InputFieldShowcaseComponent } from './input-field-showcase/input-field-showcase.component';
 import { SbbFieldShowcaseComponent } from './sbb-field-showcase/sbb-field-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import { TabsShowcaseNewComponent } from './tabs-new-showcase/tabs-showcase-new.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase.component';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
@@ -29,6 +31,8 @@ import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocompl
 import { IconComponents } from '../sbb-components-mapping-export';
 import { PersonEditComponent } from './tabs-showcase/person/person-edit/person-edit.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { PersonEditNewComponent } from './tabs-new-showcase/person-new/person-edit-new/person-edit-new.component';
+import { PersonListNewComponent } from './tabs-new-showcase/person-new/person-list-new/person-list-new.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonEditComponent,
-    PersonListComponent
+    PersonListComponent,
+    TabsShowcaseNewComponent,
+    PersonEditNewComponent,
+    PersonListNewComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     RadioButtonModule,
     CheckboxModule,
     IconCommonModule.withComponents(IconComponents.types),
-    TabsModule
+    TabsModule,
+    TabsNewModule
   ],
   providers: [],
   exports: [
@@ -72,7 +80,10 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonEditComponent,
-    PersonListComponent
+    PersonListComponent,
+    TabsShowcaseNewComponent,
+    PersonEditNewComponent,
+    PersonListNewComponent
   ]
 })
 export class ExamplesModule { }

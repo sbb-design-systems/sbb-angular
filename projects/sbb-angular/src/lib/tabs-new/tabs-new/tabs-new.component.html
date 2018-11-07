@@ -1,0 +1,21 @@
+<div class="tabs">
+  <div role="tablist"
+       [attr.aria-label]="nameOfTabList">
+    <button *ngFor="let tab of tabs"
+            (click)="selectTab(tab)"
+            [attr.role]="'tab'"
+            [attr.aria-selected]="tab.active"
+            [attr.aria-controls]="tab.id"
+            [id]="getPrefixFromId(tab.id)"
+            [class.sbb-tab-disabled]="tab.disabled">{{ tab.title }} <span><sbb-tab-badge-pill-new *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill-new></span></button>
+    <button *ngFor="let tab of dynamicTabs"
+            (click)="selectTab(tab)"
+            [attr.role]="'tab'"
+            [attr.aria-selected]="tab.active"
+            [attr.aria-controls]="tab.id"
+            [id]="getPrefixFromId(tab.id)"
+            [class.sbb-tab-disabled]="tab.disabled">{{ tab.title }} <span><sbb-tab-badge-pill-new *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill-new></span> <span><sbb-icon-close svgClass="icon-flex-column icon-sm" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></sbb-icon-close></span></button>
+  </div>
+</div>
+<ng-content></ng-content>
+<ng-template dynamic-tabs #container></ng-template>

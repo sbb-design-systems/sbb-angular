@@ -1,0 +1,39 @@
+$fontFamilyBase: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fontSbbLight: 'SBBWeb Light', $fontFamilyBase;
+
+table.scroll {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.scroll th, 
+table.scroll td {
+    text-align: center; 
+    vertical-align: middle;
+}
+
+table.scroll tr td {
+    font-size: 18px;
+    font-family: $fontSbbLight;
+    line-height: 18px;
+    color: black;
+}
+
+table.scroll tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+button {
+    font-family: $fontSbbLight;
+}
+
+table.scroll tbody,
+table.scroll thead { 
+    display: block; 
+}
+
+table.scroll tbody {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

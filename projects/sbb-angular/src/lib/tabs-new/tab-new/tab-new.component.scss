@@ -1,0 +1,37 @@
+@import '../../../styles/main.scss';
+
+[role="tabpanel"] {
+    position: relative;
+    z-index: 2;
+    padding: .5em .5em .7em;
+    border: 1px solid hsl(219, 1%, 72%);
+    border-radius: 0 .2em .2em .2em;
+    box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+    background: hsl(220, 43%, 99%);
+}
+  
+[role="tabpanel"]:focus {
+    border-color: $colorRed125;
+    box-shadow: 0 0 .2em hsl(20, 96%, 48%);
+    outline: 0;
+}
+  
+[role="tabpanel"]:focus::after {
+    position: absolute;
+    bottom: 0;
+    right: -1px;
+    left: -1px;
+    /*
+    border-bottom: 1px solid $colorRed125;
+    border-radius: 0 0 0.2em 0.2em;
+    */
+    content: '';
+}
+  
+[role="tabpanel"] p {
+    margin: 0;
+}
+  
+[role="tabpanel"] * + p {
+    margin-top: 1em;
+}
