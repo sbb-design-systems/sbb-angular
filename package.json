@@ -52,6 +52,8 @@
     "@types/jasminewd2": "^2.0.4",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.3.0",
+    "dgeni": "^0.4.10",
+    "dgeni-packages": "^0.26.12",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
