@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentUiService } from './services/component-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 import { IconUiService } from './services/icon-ui.service';
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
   versionClicked: boolean;
   isSourceTabClicked: boolean;
 
+  @ViewChild('maincontent') maincontent: ElementRef;
+
   constructor(private componentUiService : ComponentUiService,
               private iconUiService : IconUiService,
               private accordionNotificationService : AccordionNotificationService) {
@@ -37,5 +39,10 @@ export class AppComponent implements OnInit {
     this.accordionNotificationService.openIcon.subscribe(value => {
       this.iconsClicked = !this.iconsClicked;
     });
+  }
+
+  skipLink(evt) {
+    evt.preventDefault();
+    this.maincontent.nativeElement.focus();
   }
 }
