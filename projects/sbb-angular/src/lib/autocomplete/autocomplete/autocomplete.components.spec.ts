@@ -42,7 +42,299 @@ import { HighlightPipe } from '../option/highlight.pipe';
 import { SbbFieldComponent } from '../../field/sbb-field/sbb-field.component';
 import { FieldModule } from '../../field';
 
-fdescribe('AutocompleteComponent', () => {
+
+@Component({
+    template: `
+     <input
+        placeholder="Number"
+        [sbbAutocomplete]="auto"
+        [sbbAutocompleteDisabled]="autocompleteDisabled"
+        [formControl]="numberCtrl">
+    <sbb-autocomplete class="class-one class-two" #auto="sbbAutocomplete" [displayWith]="displayFn"
+     (opened)="openedSpy()" (closed)="closedSpy()">
+      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
+        <span>{{ num.code }}: {{ num.name }}</span>
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class SimpleAutocompleteComponent implements OnDestroy {
+    numberCtrl = new FormControl();
+    filteredNumbers: any[];
+    valueSub: Subscription;
+    floatLabel = 'auto';
+    width: number;
+    autocompleteDisabled = false;
+    openedSpy = jasmine.createSpy('autocomplete opened spy');
+    closedSpy = jasmine.createSpy('autocomplete closed spy');
+
+    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
+    @ViewChild(AutocompleteComponent) panel: AutocompleteComponent;
+    @ViewChild(SbbFieldComponent) formField: SbbFieldComponent;
+    @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
+
+    numbers = [
+        { code: '1', name: 'Eins' },
+        { code: '2', name: 'Zwei' },
+        { code: '3', name: 'Drei' },
+        { code: '4', name: 'Vier' },
+        { code: '5', name: 'Funf' },
+        { code: '6', name: 'Sechs' },
+        { code: '7', name: 'Sieben' },
+        { code: '8', name: 'Acht' },
+        { code: '9', name: 'Neun' },
+        { code: '10', name: 'Zehn' },
+    ];
+
+
+    constructor() {
+        this.filteredNumbers = this.numbers;
+        this.valueSub = this.numberCtrl.valueChanges.subscribe(val => {
+            this.filteredNumbers = val ? this.numbers.filter((s) => s.name.match(new RegExp(val, 'gi')))
+                : this.numbers;
+        });
+    }
+
+    displayFn(value: any): string {
+        return value ? value.name : value;
+    }
+
+    ngOnDestroy() {
+        this.valueSub.unsubscribe();
+    }
+
+}
+
+@Component({
+    template: `
+    <sbb-field *ngIf="isVisible">
+      <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
+         {{option}}
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class NgIfAutocompleteComponent {
+    optionCtrl = new FormControl();
+    filteredOptions: Observable<any>;
+    isVisible = true;
+    options = ['One', 'Two', 'Three'];
+
+    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
+    @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
+
+    constructor() {
+        this.filteredOptions = this.optionCtrl.valueChanges.pipe(
+            startWith(null),
+            map((val: string) => {
+                return val ? this.options.filter(option => new RegExp(val, 'gi').test(option))
+                    : this.options.slice();
+            }));
+    }
+}
+
+@Component({
+    template: `
+    <sbb-field>
+      <input placeholder="Number" [sbbAutocomplete]="auto"
+      (input)="onInput($event.target?.value)">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
+        <span> {{ num }}  </span>
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithoutFormsComponent {
+    filteredNumbers: any[];
+    numbers = ['Eins', 'Zwei', 'Drei'];
+
+    constructor() {
+        this.filteredNumbers = this.numbers.slice();
+    }
+
+    onInput(value: any) {
+        this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
+    }
+}
+
+@Component({
+    template: `
+    <sbb-field>
+      <input   placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber"
+      (ngModelChange)="onInput($event)">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
+        <span>{{ num }}</span>
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithNgModelComponent {
+    filteredNumbers: any[];
+    selectedNumber: string;
+    numbers = ['Eins', 'Zwei', 'Drei'];
+
+    constructor() {
+        this.filteredNumbers = this.numbers.slice();
+    }
+
+    onInput(value: any) {
+        this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
+    }
+}
+
+@Component({
+    template: `
+    <sbb-field>
+      <input   placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let number of numbers" [value]="number">
+        <span>{{ number }}</span>
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithNumbersComponent {
+    selectedNumber: number;
+    numbers = [0, 1, 2];
+}
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
+    <sbb-field>
+      <input type="text" [sbbAutocomplete]="auto">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithOnPushDelayComponent implements OnInit {
+    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
+    options: string[];
+
+    ngOnInit() {
+        setTimeout(() => {
+            this.options = ['One'];
+        }, 1000);
+    }
+}
+
+@Component({
+    template: `
+    <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl">
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
+         {{option}}
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithNativeInputComponent {
+    optionCtrl = new FormControl();
+    filteredOptions: Observable<any>;
+    options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
+
+    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
+    @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
+
+    constructor() {
+        this.filteredOptions = this.optionCtrl.valueChanges.pipe(
+            startWith(null),
+            map((val: string) => {
+                return val ? this.options.filter(option => new RegExp(val, 'gi').test(option))
+                    : this.options.slice();
+            }));
+    }
+}
+
+@Component({
+    template: `<input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control">`
+})
+class AutocompleteWithoutPanelComponent {
+    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
+    control = new FormControl();
+}
+
+@Component({
+    template: `
+    <sbb-field>
+      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
+      <sbb-option *ngFor="let num of numbers" [value]="num">
+        <span>{{ num }}</span>
+      </sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithSelectEventComponent {
+    selectedNumber: string;
+    numbers = ['Eins', 'Zwei', 'Drei'];
+    optionSelected = jasmine.createSpy('optionSelected callback');
+
+    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
+    @ViewChild(AutocompleteComponent) autocomplete: AutocompleteComponent;
+}
+
+@Component({
+    template: `
+    <input [formControl]="formControl" [sbbAutocomplete]="auto"/>
+    <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
+  `
+})
+class PlainAutocompleteInputWithFormControlComponent {
+    formControl = new FormControl();
+}
+
+@Component({
+    template: `
+    <sbb-field>
+      <input type="number" [sbbAutocomplete]="auto" [(ngModel)]="selectedValue">
+    </sbb-field>
+
+    <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-option *ngFor="let value of values" [value]="value">{{value}}</sbb-option>
+    </sbb-autocomplete>
+  `
+})
+class AutocompleteWithNumberInputAndNgModelComponent {
+    selectedValue: number;
+    values = [1, 2, 3];
+}
+
+@Component({
+    template: `
+    <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto"/>
+    <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
+  `
+})
+class AutocompleteWithNativeAutocompleteAttributeComponent {
+    value: string;
+}
+
+@Component({
+    template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>'
+})
+class InputWithoutAutocompleteAndDisabledComponent {
+}
+
+describe('AutocompleteComponent', () => {
     let overlayContainer: OverlayContainer;
     let overlayContainerElement: HTMLElement;
     let zone: MockNgZone;
@@ -1533,294 +1825,3 @@ fdescribe('AutocompleteComponent', () => {
     }));
 
 });
-
-@Component({
-    template: `
-     <input
-        placeholder="Number"
-        [sbbAutocomplete]="auto"
-        [sbbAutocompleteDisabled]="autocompleteDisabled"
-        [formControl]="numberCtrl">
-    <sbb-autocomplete class="class-one class-two" #auto="sbbAutocomplete" [displayWith]="displayFn"
-     (opened)="openedSpy()" (closed)="closedSpy()">
-      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
-        <span>{{ num.code }}: {{ num.name }}</span>
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class SimpleAutocompleteComponent implements OnDestroy {
-    numberCtrl = new FormControl();
-    filteredNumbers: any[];
-    valueSub: Subscription;
-    floatLabel = 'auto';
-    width: number;
-    autocompleteDisabled = false;
-    openedSpy = jasmine.createSpy('autocomplete opened spy');
-    closedSpy = jasmine.createSpy('autocomplete closed spy');
-
-    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
-    @ViewChild(AutocompleteComponent) panel: AutocompleteComponent;
-    @ViewChild(SbbFieldComponent) formField: SbbFieldComponent;
-    @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
-
-    numbers = [
-        { code: '1', name: 'Eins' },
-        { code: '2', name: 'Zwei' },
-        { code: '3', name: 'Drei' },
-        { code: '4', name: 'Vier' },
-        { code: '5', name: 'Funf' },
-        { code: '6', name: 'Sechs' },
-        { code: '7', name: 'Sieben' },
-        { code: '8', name: 'Acht' },
-        { code: '9', name: 'Neun' },
-        { code: '10', name: 'Zehn' },
-    ];
-
-
-    constructor() {
-        this.filteredNumbers = this.numbers;
-        this.valueSub = this.numberCtrl.valueChanges.subscribe(val => {
-            this.filteredNumbers = val ? this.numbers.filter((s) => s.name.match(new RegExp(val, 'gi')))
-                : this.numbers;
-        });
-    }
-
-    displayFn(value: any): string {
-        return value ? value.name : value;
-    }
-
-    ngOnDestroy() {
-        this.valueSub.unsubscribe();
-    }
-
-}
-
-@Component({
-    template: `
-    <sbb-field *ngIf="isVisible">
-      <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
-         {{option}}
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class NgIfAutocompleteComponent {
-    optionCtrl = new FormControl();
-    filteredOptions: Observable<any>;
-    isVisible = true;
-    options = ['One', 'Two', 'Three'];
-
-    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
-    @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
-
-    constructor() {
-        this.filteredOptions = this.optionCtrl.valueChanges.pipe(
-            startWith(null),
-            map((val: string) => {
-                return val ? this.options.filter(option => new RegExp(val, 'gi').test(option))
-                    : this.options.slice();
-            }));
-    }
-}
-
-@Component({
-    template: `
-    <sbb-field>
-      <input placeholder="Number" [sbbAutocomplete]="auto"
-      (input)="onInput($event.target?.value)">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
-        <span> {{ num }}  </span>
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithoutFormsComponent {
-    filteredNumbers: any[];
-    numbers = ['Eins', 'Zwei', 'Drei'];
-
-    constructor() {
-        this.filteredNumbers = this.numbers.slice();
-    }
-
-    onInput(value: any) {
-        this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
-    }
-}
-
-@Component({
-    template: `
-    <sbb-field>
-      <input   placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber"
-      (ngModelChange)="onInput($event)">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let num of filteredNumbers" [value]="num">
-        <span>{{ num }}</span>
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithNgModelComponent {
-    filteredNumbers: any[];
-    selectedNumber: string;
-    numbers = ['Eins', 'Zwei', 'Drei'];
-
-    constructor() {
-        this.filteredNumbers = this.numbers.slice();
-    }
-
-    onInput(value: any) {
-        this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
-    }
-}
-
-@Component({
-    template: `
-    <sbb-field>
-      <input   placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let number of numbers" [value]="number">
-        <span>{{ number }}</span>
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithNumbersComponent {
-    selectedNumber: number;
-    numbers = [0, 1, 2];
-}
-
-@Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
-    <sbb-field>
-      <input type="text" [sbbAutocomplete]="auto">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithOnPushDelayComponent implements OnInit {
-    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
-    options: string[];
-
-    ngOnInit() {
-        setTimeout(() => {
-            this.options = ['One'];
-        }, 1000);
-    }
-}
-
-@Component({
-    template: `
-    <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl">
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
-         {{option}}
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithNativeInputComponent {
-    optionCtrl = new FormControl();
-    filteredOptions: Observable<any>;
-    options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
-
-    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
-    @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
-
-    constructor() {
-        this.filteredOptions = this.optionCtrl.valueChanges.pipe(
-            startWith(null),
-            map((val: string) => {
-                return val ? this.options.filter(option => new RegExp(val, 'gi').test(option))
-                    : this.options.slice();
-            }));
-    }
-}
-
-@Component({
-    template: `<input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control">`
-})
-class AutocompleteWithoutPanelComponent {
-    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
-    control = new FormControl();
-}
-
-@Component({
-    template: `
-    <sbb-field>
-      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
-      <sbb-option *ngFor="let num of numbers" [value]="num">
-        <span>{{ num }}</span>
-      </sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithSelectEventComponent {
-    selectedNumber: string;
-    numbers = ['Eins', 'Zwei', 'Drei'];
-    optionSelected = jasmine.createSpy('optionSelected callback');
-
-    @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
-    @ViewChild(AutocompleteComponent) autocomplete: AutocompleteComponent;
-}
-
-@Component({
-    template: `
-    <input [formControl]="formControl" [sbbAutocomplete]="auto"/>
-    <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
-  `
-})
-class PlainAutocompleteInputWithFormControlComponent {
-    formControl = new FormControl();
-}
-
-@Component({
-    template: `
-    <sbb-field>
-      <input type="number" [sbbAutocomplete]="auto" [(ngModel)]="selectedValue">
-    </sbb-field>
-
-    <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let value of values" [value]="value">{{value}}</sbb-option>
-    </sbb-autocomplete>
-  `
-})
-class AutocompleteWithNumberInputAndNgModelComponent {
-    selectedValue: number;
-    values = [1, 2, 3];
-}
-
-@Component({
-    template: `
-    <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto"/>
-    <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
-  `
-})
-class AutocompleteWithNativeAutocompleteAttributeComponent {
-    value: string;
-}
-
-@Component({
-    template: '<input [sbbAutocomplete]="null" sbbAutocompleteDisabled>'
-})
-class InputWithoutAutocompleteAndDisabledComponent {
-}
