@@ -24,6 +24,11 @@
 * Showcase specific imports
 ***/
 
+// local vars
+
+$headerHeight: pxToRem(48);
+$left-nav-width: pxToRem(340);
+
 @import './typo';
 @import './scaffolding';
 @import './themes';
