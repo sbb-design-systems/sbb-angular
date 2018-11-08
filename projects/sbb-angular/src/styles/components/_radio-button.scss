@@ -21,6 +21,10 @@
     height: toPx(20 * $scalingFactor5k);
   }
 
+  &:focus + .radio-circle-container {
+    border-color: $colorGrey;
+  }
+
   &:checked + .radio-circle-container,
   &[checked] + .radio-circle-container {
     .radio-circle-checked {
