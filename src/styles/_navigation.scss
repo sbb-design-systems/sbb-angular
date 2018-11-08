@@ -2,7 +2,11 @@
   padding-left: 1em;
   list-style: none;
   margin-top: 0.5em;
-  margin-bottom: $sizeLineHeightBase;
+  margin-left: 0;
+
+  li {
+    padding-left: 0;
+  }
 
   a {
     text-decoration: none;
@@ -35,7 +39,7 @@
   
     .fa {
       font-size: 0.75em;
-      line-height: 1;
+      line-height: 1.3;
       vertical-align: middle;
       float: right;
       position: relative;

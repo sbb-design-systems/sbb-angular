@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './home/home.component';
+import { ComponentsListComponent } from './components-list/components-list.component';
+import { IconsListComponent } from './icons-list/icons-list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,16 @@ const routes: Routes = [
   {
     path: 'content/:id',
     component: ContentComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'components-list',
+    component: ComponentsListComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'icons-list',
+    component: IconsListComponent,
     pathMatch: 'full'
   },
   {

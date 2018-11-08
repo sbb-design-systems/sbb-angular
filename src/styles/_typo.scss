@@ -1,8 +1,44 @@
 
 .sbbsc-main-content {
-  h1 {
+  .sbbsc-content-title {
     margin-top: 0;
+    margin-bottom: 0.5em;
     color: $colorRed100;
     font-size: pxToRem(24);
+
+    &-text {
+      padding-right: 0.5em;
+      position: relative;
+      display: inline-block;
+
+
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   -webkit-transform: translateY(-50%);
+      //   transform: translateY(-50%);
+      //   width: 0;
+      //   height: 100%;
+      //   right: 0;
+      //   border-right: 1px solid $colorGreyLight;
+      // } 
+    }
+
+    sbb-icon-arrow-left {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      vertical-align: middle;
+
+      svg {
+        fill: $colorGreyLight;
+      }
+    }
+
+    &-button {
+      margin-left: 0.5em;
+      vertical-align: middle;
+    }
   }
 }

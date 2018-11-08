@@ -1,0 +1,23 @@
+<h2 class="sbbsc-content-title">
+  <span class="sbbsc-content-title-text">SBB Angular Components</span>
+  <sbb-icon-arrow-left></sbb-icon-arrow-left>
+  <button sbbButton mode="frameless" 
+          routerLink="/icons-list" 
+          routerLinkActive="router-link-active"
+          class="sbbsc-content-title-button">
+    SBB Angular Icons
+    <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+  </button>
+</h2>
+
+<nav class="sbbsc-cards">
+  <ul class="sbbsc-cards-list">
+    <li class="sbbsc-cards-card" *ngFor="let uiComponent of foundUiComponents">
+      <a [routerLink]="['content', uiComponent.routerLink]" (click)="navigate('content/' + uiComponent.routerLink)">
+        <div class="sbbsc-cards-card-hero">
+        </div>
+        <h3 class="sbbsc-cards-card-title">{{ uiComponent.id }}</h3>
+      </a>
+    </li>
+  </ul>
+</nav>
