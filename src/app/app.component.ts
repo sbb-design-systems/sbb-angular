@@ -47,9 +47,4 @@ export class AppComponent implements OnInit {
     evt.preventDefault();
     this.maincontent.nativeElement.focus();
   }
-
-  navigateHome(evt) {
-    evt.preventDefault();
-    this.router.navigate(['']);
-  }
 }

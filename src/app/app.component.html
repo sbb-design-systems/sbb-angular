@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid sbbsc-no-padding">
   <header class="sbbsc-brand-header">
-    <a href="#" class="sbbsc-home" (click)="navigateHome($event)">
+    <a class="sbbsc-home" routerLink="/home">
       <img class="sbbsc-beta" alt="beta" src="/assets/images/beta.svg">
       <h1 class="sbbsc-sr-only">SBB Angular Component And Icons Library</h1>
       <svg viewBox="0 0 187 21" xmlns="http://www.w3.org/2000/svg">
@@ -98,13 +98,15 @@
         </perfect-scrollbar>
       </nav>
     </div>
+
     <div class="col-md-8 sbbsc-content-section-main">
       <a #maincontent tabindex="-1" class="sbbsc-sr-only">Main</a>
-      <main class="sbbsc-main-content">
-        <perfect-scrollbar class="sbbsc-perfect-scrollbar">
+      <perfect-scrollbar class="sbbsc-perfect-scrollbar">
+        <main class="sbbsc-main-content">
           <router-outlet></router-outlet>
-        </perfect-scrollbar>
-      </main>
+        </main>
+      </perfect-scrollbar>
     </div>
+
   </div>
 </div>

@@ -23,12 +23,8 @@
 /***
 * Showcase specific imports
 ***/
-
-// local vars
-
-$headerHeight: pxToRem(48);
-$left-nav-width: pxToRem(340);
-
+@import './common/variable';
+@import './common/mixins';
 @import './typo';
 @import './scaffolding';
 @import './themes';

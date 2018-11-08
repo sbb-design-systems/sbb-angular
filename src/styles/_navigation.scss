@@ -13,7 +13,7 @@
 .sbbsc-nav {
   height: calc(100vh - #{$headerHeight});
   width: 100%;
-  padding-top: 30px;
+  padding-top: pxToRem(30);
   
   @include mq($from: tabletLandscape) {
     border-right: solid 1px #ccc;
