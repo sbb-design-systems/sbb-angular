@@ -6,33 +6,26 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm1">
               <sbb-field>
-                <div class="form-class">
-                  <sbb-label for="name1" class="my-1 mr-2">Name</sbb-label>
-                  <div *ngIf="disabled; else enabled">
-                    <sbb-label class="my-1 mr-2">{{ inputText1 ? inputText1 : placeholder }}</sbb-label> 
-                  </div>
-                  <ng-template #enabled>
-                    <input type="text"
-                           formControlName="name1"
-                           autocomplete="off"
-                           [placeholder]="placeholder"
-                           id="name1"
-                           spellcheck="false"
-                           class="my-1 mr-sm-2"
-                           [(ngModel)]="inputText1">
-                  </ng-template>
-                </div>
-                <div class="form-group">
-                  <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
-                </div>
-                <div class="form-group">
-                  <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputText1 | json }}</sbb-label>
-                </div>
-                <div class="form-group">
-                  <button type="button" (click)="reset1()" [disabled]="disabled">Reset</button>  
-                </div>
+                <sbb-label for="name1">Name</sbb-label>
+                <span *ngIf="disabled">{{ myForm1.get('name1').value ? myForm1.get('name1').value : placeholder }}</span>
+                <input *ngIf="!disabled"
+                       type="text"
+                       formControlName="name1"
+                       autocomplete="off"
+                       [placeholder]="placeholder"
+                       id="name1"
+                       spellcheck="false">
+                <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
               </sbb-field>
+              <div class="form-group">
+                <span>Model:</span>
+                <span>{{ myForm1.get('name1').value | json }}</span>
+              </div>
+              <div class="form-group">
+                <button type="button"
+                        (click)="reset1()"
+                        [disabled]="disabled">Reset</button>
+              </div>
             </form>
           </fieldset>
         </div>
@@ -41,36 +34,29 @@
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm2">
               <sbb-field>
-                <div class="form-class">
-                  <sbb-label class="my-1 mr-2" for="name2">Name</sbb-label>
-                  <div *ngIf="disabled; else enabled">
-                    <sbb-label class="my-1 mr-2">{{ inputText2 ? inputText2 : placeholder }}</sbb-label> 
-                  </div>
-                  <ng-template #enabled>
-                    <input type="text"
-                           formControlName="name2"
-                           autocomplete="off"
-                           [placeholder]="placeholder"
-                           id="name2"
-                           spellcheck="false"
-                           required
-                           minlength="3"
-                           class="my-1 mr-2"
-                           [(ngModel)]="inputText2">
-                  </ng-template>
-                </div>
-                <div class="form-group">
-                  <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
-                  <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
-                </div>
-                <div class="form-group">
-                  <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputText2 | json }}</sbb-label>
-                </div>
-                <div class="form-group">
-                  <button type="button" (click)="reset2()" [disabled]="disabled">Reset</button>  
-                </div>
+                <sbb-label for="name2">Name</sbb-label>
+                <span *ngIf="disabled">{{ myForm2.get('name2').value ? myForm2.get('name2').value : placeholder }}</span>
+                <input *ngIf="!disabled"
+                       type="text"
+                       formControlName="name2"
+                       autocomplete="off"
+                       [placeholder]="placeholder"
+                       id="name2"
+                       spellcheck="false"
+                       required
+                       minlength="3">
+                <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
+                <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
               </sbb-field>
+              <div class="form-group">
+                <span>Model:</span>
+                <span>{{ myForm2.get('name2').value | json }}</span>
+              </div>
+              <div class="form-group">
+                <button type="button"
+                        (click)="reset2()"
+                        [disabled]="disabled">Reset</button>
+              </div>
             </form>
           </fieldset>
         </div>
@@ -78,34 +64,28 @@
           <h5>{{ header3 }}</h5>
           <fieldset>
             <form autocomplete="off" [formGroup]="myForm3">
-              <div class="form-class">
-              <sbb-field label="Name" for="name3">
-                <div *ngIf="disabled; else enabled">
-                  <sbb-label class="my-1 mr-2">{{ inputText3 ? inputText3 : placeholder }}</sbb-label> 
-                </div>
-                <ng-template #enabled>
-                  <input type="text"
-                         formControlName="name3"
-                         autocomplete="off"
-                         required
-                         [placeholder]="placeholder"
-                         id="name3"
-                         spellcheck="false"
-                         class="my-1 mr-2"
-                         [(ngModel)]="inputText3">
-                </ng-template>
-                <div class="form-group">
-                  <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
-                </div>
-                <div class="form-group">
-                  <sbb-label>Model:</sbb-label>
-                  <sbb-label>{{ inputText3 | json }}</sbb-label>
-                </div>
-                <div class="form-group">
-                  <button type="button" (click)="reset3()" [disabled]="disabled">Reset</button> 
-                </div>
+              <sbb-field label="Name"
+                        for="name3">
+                <span *ngIf="disabled">{{ myForm3.get('name3').value ? myForm3.get('name3').value : placeholder }}</span>
+                <input *ngIf="!disabled"
+                      type="text"
+                      formControlName="name3"
+                      autocomplete="off"
+                      required
+                      [placeholder]="placeholder"
+                      id="name3"
+                      spellcheck="false">
+                <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
               </sbb-field>
-             </div>
+              <div class="form-group">
+                <span>Model:</span>
+                <span>{{ myForm3.get('name3').value | json }}</span>
+              </div>
+              <div class="form-group">
+                <button type="button"
+                        (click)="reset3()"
+                        [disabled]="disabled">Reset</button>
+              </div>
             </form>
           </fieldset>
         </div>

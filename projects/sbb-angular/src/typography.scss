@@ -60,6 +60,8 @@ table {
   }
 }
 
+@include lists;
+
 h1,
 .text-headline1 {
   @include headline1;
