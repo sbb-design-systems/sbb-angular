@@ -1,8 +1,25 @@
 // Radio button mixins
 // ----------------------------------------------------------------------------------------------------
 
-@mixin radioButtonBase() {  
-  @include visuallyhidden();
+@mixin radioButtonBase() {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: toPx(20);
+  height: toPx(20);
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+
+  @include mq($from: desktop4k) {
+    width: toPx(20 * $scalingFactor4k);
+    height: toPx(20 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(20 * $scalingFactor5k);
+    height: toPx(20 * $scalingFactor5k);
+  }
 
   &:focus + .radio-circle-container {
     border-color: $colorGrey;
