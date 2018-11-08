@@ -4,11 +4,19 @@ import { Component,
          AfterContentInit,
          ViewChild,
          ComponentFactoryResolver,
-         ViewContainerRef
+         ViewContainerRef,
+         HostListener
 } from '@angular/core';
 import { TabNewComponent } from '../tab-new/tab-new.component';
 
 let counter = 0;
+
+export enum KEY_CODE {
+  UP_ARROW = 38,
+  DOWN_ARROW = 40,
+  RIGHT_ARROW = 39,
+  LEFT_ARROW = 37
+}
 
 @Component({
   selector: 'sbb-tabs-new',
@@ -27,6 +35,20 @@ export class TabsNewComponent implements AfterContentInit {
 
   @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
 
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    // tslint:disable-next-line
+    if(event.keyCode === KEY_CODE.RIGHT_ARROW || event.keyCode === KEY_CODE.DOWN_ARROW) {
+       console.log(event);
+       this.selectNextTabRight();
+    }
+    // tslint:disable-next-line
+    if(event.keyCode === KEY_CODE.LEFT_ARROW || event.keyCode === KEY_CODE.UP_ARROW) {
+       console.log(event);
+       this.selectNextTabLeft();
+    }
+  }
+
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterContentInit() {
@@ -39,16 +61,7 @@ export class TabsNewComponent implements AfterContentInit {
     const activeTabs = this.tabs.filter(tab => tab.active);
     if (activeTabs.length === 0) {
         this.selectTab(this.tabs.first);
-    }    
-    let counter = 1;
-    this.tabs.forEach(tab => {
-        console.log('tab ' + (counter++));
-        console.log('---');
-        console.log('tab.id', tab.id);
-        console.log('tab.title', tab.title);
-        console.log('tab.index', tab.index);
-        console.log('tab.ariaLabelledby', tab.ariaLabelledby);
-    });
+    }
   }
 
   private checkNumberOfTabModules() : void {
@@ -61,8 +74,8 @@ export class TabsNewComponent implements AfterContentInit {
   }
 
   private checkNumberOfTabs() : void {
-    const counter = this.tabs.length + this.dynamicTabs.length;
-    if(counter < 2) {
+    const sizeOfTabs = this.tabs.length + this.dynamicTabs.length;
+    if(sizeOfTabs < 2) {
        throw new Error(`The number of tabs must be at least 2`);
     }
   }
@@ -82,7 +95,7 @@ export class TabsNewComponent implements AfterContentInit {
     throw new Error(`The quantity indicator should contains only numbers with a maximum of 3 digits (0-999)`);
   }
 
-  getPrefixFromId(id : string) : string{
+  getPrefixFromId(id : string) : string {
     return id.substring(0, id.indexOf('-'));
   }
 
@@ -101,14 +114,56 @@ export class TabsNewComponent implements AfterContentInit {
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
     const instance: TabNewComponent = componentRef.instance as TabNewComponent;
-    instance.title       = title;
-    instance.template    = template;
+    instance.title = title;
+    instance.template = template;
     instance.dataContext = data;
     instance.isCloseable = isCloseable;
+    instance.id = 'dynamic-tab';
+    instance.index = 0;
+    instance.ariaLabelledby = 'dynamic';
 
     this.dynamicTabs.push(componentRef.instance as TabNewComponent);
 
     this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
+  }
+
+  selectNextTabLeft() {
+    for(let index = 0; index < this.tabs.toArray().length; index++) {
+        let tab = this.tabs.toArray()[index];
+        if(tab.active) {
+           tab.active = false;
+           if(index === 0) {
+              tab = this.tabs.last;
+              tab.active = true;
+              break;
+           }
+           this.tabs.toArray()[index-1].active = true;
+           break;
+        }
+        console.log('Tab ' + index, this.tabs.toArray()[index]);
+    }
+  }
+
+  selectNextTabRight() {
+    let found = false;
+    const sizeOfTabs = this.tabs.toArray().length;
+    for(let index = 0; index < sizeOfTabs; index++) {
+        let tab = this.tabs.toArray()[index];
+        if(found) {
+           tab.active = true;
+           break;
+        }
+        if(tab.active) {
+           tab.active = false;
+           if(sizeOfTabs-1 === index) {
+              tab = this.tabs.first;
+              tab.active = true;
+              break;
+           }
+           found = true;
+        }
+        console.log('Tab ' + index, this.tabs.toArray()[index]);
+    }
   }
 
   selectTab(tab: TabNewComponent) {

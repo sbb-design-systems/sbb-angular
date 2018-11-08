@@ -20,8 +20,6 @@
 [role="tab"] {
   position: relative;
   margin: 0;
-	padding: .3em .5em .4em;
-	/*padding-bottom: 21px;*/
 	background-color: Transparent;
 	background-repeat: no-repeat;
 	border: none;
@@ -31,11 +29,6 @@
 	font-family: inherit;
 	font-size: inherit;
 	color: $colorBlack;
-	display: inline-block;
-	[aria-selected="true"] {
-		color: $colorBlack;
-		border-bottom: 1px solid $colorBlack;
-	}
 }
 
 /*
@@ -84,20 +77,33 @@
 */
 
 [role="tab"][aria-selected="true"] {
+	content: '';
 	color: $colorBlack;
 	border-bottom: 1px solid $colorBlack;
 }
 [role="tab"]:after {
-	border-bottom: 1px solid $colorRed125;
+  content: '';
+  display: block;
+  border-bottom: 1px solid $colorRed125;
 	transform: scaleX(0);
 	transition: transform 0.3s ease-in-out;
-	content: '';
-	display: block;
+	padding-bottom: 21px;
 }
 [role="tab"]:hover {
+	content: '';
 	color: $colorRed125;
 }
 [role="tab"]:hover:after {
 	color: $colorRed125;
 	transform: scaleX(1);
 }
+/*
+[role="tab"][aria-selected="false"]:not(:focus):not(:hover)::after {
+	left: 0;
+	width: 100%;
+}
+[role="tab"][aria-selected="true"]:after {
+	width: 100%;
+	left: 0; 
+}
+*/

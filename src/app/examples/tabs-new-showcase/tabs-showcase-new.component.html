@@ -8,7 +8,7 @@
       <sbb-tab-new [title]="'Tab 1'" 
                    [id]="'content1-tab'"
                    [index]="0"
-                   [attr.aria-labelledby]="'content1'">
+                   [ariaLabelledby]="'content1'">
           <br/>
           <h5>Content 1</h5>
           <hr/>
@@ -19,7 +19,7 @@
       <sbb-tab-new [title]="'Tab 2'" 
                    [id]="'content2-tab'"
                    [index]="0"
-                   [attr.aria-labelledby]="'content2'">
+                   [ariaLabelledby]="'content2'">
           <br/>
           <h5>Content 2</h5>
           <hr/>
@@ -30,7 +30,7 @@
       <sbb-tab-new [title]="'Persons'"
                    [id]="'persons-tab'"
                    [index]="0"
-                   [attr.aria-labelledby]="'persons'"
+                   [ariaLabelledby]="'persons'"
                    [badgePill]="getCountOfPersons()" 
                    [disabled]="disabled" 
                    *ngIf="withDynamicTabs">
@@ -44,6 +44,7 @@
       <person-edit-new [person]="person" (savePerson)="onPersonFormSubmit($event)"></person-edit-new>
     </ng-template>
     </fieldset>
+    <small class="font-italic">* Navigate with Tab, &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
     </div>
     <div class="col-lg-6">
       <h5>Properties</h5>
