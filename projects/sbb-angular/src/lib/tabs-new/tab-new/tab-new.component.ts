@@ -11,12 +11,6 @@ export class TabNewComponent {
   @HostBinding('attr.id')
   @Input() id: string;
 
-  @HostBinding('attr.tabindex')
-  @Input() index: number;
-
-  @HostBinding('attr.aria-labelledby')
-  @Input() ariaLabelledby: string;
-
   @HostBinding('class.sbb-tab-disabled')
   @Input() disabled: boolean;
 

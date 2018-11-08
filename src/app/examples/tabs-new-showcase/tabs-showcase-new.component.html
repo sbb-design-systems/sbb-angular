@@ -6,9 +6,7 @@
     <sbb-tabs-new>
       <!-- First tab (required) -->
       <sbb-tab-new [title]="'Tab 1'" 
-                   [id]="'content1-tab'"
-                   [index]="0"
-                   [ariaLabelledby]="'content1'">
+                   [id]="'content1-tab'">
           <br/>
           <h5>Content 1</h5>
           <hr/>
@@ -17,9 +15,7 @@
       </sbb-tab-new>
       <!-- Second tab (required) -->
       <sbb-tab-new [title]="'Tab 2'" 
-                   [id]="'content2-tab'"
-                   [index]="0"
-                   [ariaLabelledby]="'content2'">
+                   [id]="'content2-tab'">
           <br/>
           <h5>Content 2</h5>
           <hr/>
@@ -29,8 +25,6 @@
       <!-- Third tab with the possibility of dynamic tabs if any -->
       <sbb-tab-new [title]="'Persons'"
                    [id]="'persons-tab'"
-                   [index]="0"
-                   [ariaLabelledby]="'persons'"
                    [badgePill]="getCountOfPersons()" 
                    [disabled]="disabled" 
                    *ngIf="withDynamicTabs">

@@ -12,7 +12,7 @@
   
 [role="tabpanel"]:focus {
     border-color: $colorRed125;
-    box-shadow: 0 0 .2em hsl(20, 96%, 48%);
+    box-shadow: 0 0 .2em $colorRed125;
     outline: 0;
 }
   
@@ -21,10 +21,6 @@
     bottom: 0;
     right: -1px;
     left: -1px;
-    /*
-    border-bottom: 1px solid $colorRed125;
-    border-radius: 0 0 0.2em 0.2em;
-    */
     content: '';
 }
   
@@ -34,4 +30,19 @@
   
 [role="tabpanel"] * + p {
     margin-top: 1em;
+}
+
+.sbb_tabs_tabpanel {
+    opacity: 0; 
+}
+.sbb_tabs:not(.has_no_animation) .mod_tabs_tabpanel {
+    transition: opacity 0.5s ease;
+}
+.sbb_tabs_tabpanel.is_hidden:not(.display_for_init) {
+    display: none;
+}
+.sbb_tabs_tabpanel.is_active,
+.no-js .sbb_tabs_tabpanel {
+    display: block;
+    opacity: 1;
 }

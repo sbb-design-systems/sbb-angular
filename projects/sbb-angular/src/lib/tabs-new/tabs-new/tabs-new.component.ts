@@ -15,7 +15,8 @@ export enum KEY_CODE {
   UP_ARROW = 38,
   DOWN_ARROW = 40,
   RIGHT_ARROW = 39,
-  LEFT_ARROW = 37
+  LEFT_ARROW = 37,
+  ENTER = 13
 }
 
 @Component({
@@ -26,6 +27,8 @@ export enum KEY_CODE {
 export class TabsNewComponent implements AfterContentInit {
 
   nameOfTabList = `sbb-tabs-new-${counter++}`;
+
+  tabListIndex = 0;
 
   dynamicTabs: TabNewComponent[] = [];
 
@@ -46,6 +49,11 @@ export class TabsNewComponent implements AfterContentInit {
     if(event.keyCode === KEY_CODE.LEFT_ARROW || event.keyCode === KEY_CODE.UP_ARROW) {
        console.log(event);
        this.selectNextTabLeft();
+    }
+    // tslint:disable-next-line
+    if(event.keyCode === KEY_CODE.ENTER) {
+       console.log(event);
+       this.selectTabByEnter();
     }
   }
 
@@ -119,29 +127,39 @@ export class TabsNewComponent implements AfterContentInit {
     instance.dataContext = data;
     instance.isCloseable = isCloseable;
     instance.id = 'dynamic-tab';
-    instance.index = 0;
-    instance.ariaLabelledby = 'dynamic';
 
     this.dynamicTabs.push(componentRef.instance as TabNewComponent);
 
     this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
   }
 
+  selectTabByEnter() {
+    // tslint:disable-next-line
+    this.tabs.toArray().forEach(tab => (tab.active = false));
+    // tslint:disable-next-line
+    this.dynamicTabs.forEach(tab => (tab.active = false));
+    this.tabs.toArray()[this.tabListIndex].active = true;
+    // console.debug('Tab ' + this.tabListIndex + ' selected.');
+  }
+
   selectNextTabLeft() {
-    for(let index = 0; index < this.tabs.toArray().length; index++) {
+    const sizeOfTabs = this.tabs.toArray().length;
+    for(let index = 0; index < sizeOfTabs; index++) {
         let tab = this.tabs.toArray()[index];
         if(tab.active) {
-           tab.active = false;
+           // tab.active = false;
            if(index === 0) {
               tab = this.tabs.last;
-              tab.active = true;
+              this.tabListIndex = sizeOfTabs-1;
+              // tab.active = true;
               break;
            }
-           this.tabs.toArray()[index-1].active = true;
+           // this.tabs.toArray()[index-1].active = true;
+           this.tabListIndex = index-1;
            break;
         }
-        console.log('Tab ' + index, this.tabs.toArray()[index]);
     }
+    // console.debug('Tab ' + this.tabListIndex + ' selected.');
   }
 
   selectNextTabRight() {
@@ -150,20 +168,22 @@ export class TabsNewComponent implements AfterContentInit {
     for(let index = 0; index < sizeOfTabs; index++) {
         let tab = this.tabs.toArray()[index];
         if(found) {
-           tab.active = true;
+           // tab.active = true;
+           this.tabListIndex = index;
            break;
         }
         if(tab.active) {
-           tab.active = false;
+           // tab.active = false;
            if(sizeOfTabs-1 === index) {
               tab = this.tabs.first;
-              tab.active = true;
+              // tab.active = true;
+              this.tabListIndex = 0;
               break;
            }
            found = true;
         }
-        console.log('Tab ' + index, this.tabs.toArray()[index]);
     }
+    // console.debug('Tab ' + this.tabListIndex + ' selected.');
   }
 
   selectTab(tab: TabNewComponent) {

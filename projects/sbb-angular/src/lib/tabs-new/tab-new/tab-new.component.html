@@ -1,9 +1,10 @@
 <div [hidden]="!active" 
      *ngIf="!disabled"
-     [attr.tabindex]="index"
+     [attr.tabindex]="!active ? -1 : 0"
      [attr.role]="'tabpanel'"
      [attr.id]="id"
-     [attr.aria-labelledby]="ariaLabelledby">
+     [attr.aria-labelledby]="id"
+     class="!active ? 'sbb_tabs_tabpanel is_hidden' : 'sbb_tabs_tabpanel'">
   <ng-content></ng-content>
   <ng-container *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ person : dataContext }"></ng-container>
 </div>
