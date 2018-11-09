@@ -22,6 +22,10 @@
   }
 }
 
+.sbbsc-no-padding {
+  padding: 0;
+}
+
 @-ms-viewport{
   width: device-width;
 }
@@ -79,4 +83,8 @@ perfect-scrollbar.sbbsc-perfect-scrollbar {
   @include mq($from: tabletLandscape) {
     min-width: calc(100% - #{$left-nav-width});
   }
+}
+
+.sbbsc-main-content {
+  padding: $main-content-padding;
 }

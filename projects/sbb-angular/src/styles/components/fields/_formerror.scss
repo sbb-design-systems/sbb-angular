@@ -1,4 +1,5 @@
 @mixin formError($borderColor) {
+    display: block;
     letter-spacing: 0;
     outline: 0px;
     resize: none;

@@ -43,6 +43,10 @@
     height: toPx(20 * $scalingFactor5k);
   }
 
+  &:focus + .checkbox-placeholder-container {
+    border-color: $colorGrey;
+  }
+
   &:checked + .checkbox-placeholder-container,
   &[checked] + .checkbox-placeholder-container {
     .checkbox-placeholder-checked {

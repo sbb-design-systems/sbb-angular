@@ -1,0 +1,9 @@
+@import '../../../dist/sbb-angular/styles.scss';
+
+.sbbsc-cards-card-hero {
+  height: pxToRem(50);
+  background-color: $colorGreyLight;
+}
+.sbbsc-cards-card-title {
+  font-size: pxToRem(20);
+}

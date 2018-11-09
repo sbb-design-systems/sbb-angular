@@ -30,6 +30,8 @@ import { InputFieldShowcaseComponent } from './examples/input-field-showcase/inp
 import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { ComponentsListComponent } from './components-list/components-list.component';
+import { IconsListComponent } from './icons-list/icons-list.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     ComponentViewerDirective,
     NavlistIconComponent,
     SearchIconComponent,
-    ReplacePipe
+    ReplacePipe,
+    ComponentsListComponent,
+    IconsListComponent
   ],
   imports: [
     BrowserModule,

@@ -61,7 +61,8 @@ import { IconComponents } from '../sbb-components-mapping-export';
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent
+    SbbFieldShowcaseComponent,
+    ButtonModule
   ]
 })
 export class ExamplesModule { }
