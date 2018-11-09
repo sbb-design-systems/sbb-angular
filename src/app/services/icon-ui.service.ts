@@ -10,11 +10,13 @@ export class IconUiService {
 
   getUiIconByRouterLink(name: any): UiIcon {
     return SBBComponentsMapping.icons
+      .map(item => new UiIcon(item.name, item.selector, item.tags))
       .find((uiIcon) => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
   }
 
   getUiComponentByRouterLink(name: any): UiComponent {
     const foundUiIcon: UiIcon = SBBComponentsMapping.icons
+      .map(item => new UiIcon(item.name, item.selector, item.tags))
       .find(uiIcon => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
     return new UiComponent(foundUiIcon.name,
       foundUiIcon.name,
