@@ -1,7 +1,6 @@
-<form class="form">
-  <input id="search-input-icon" type="text" placeholder="Search icons" spellcheck="false" [formControl]="inputValue"
-    #reference>
-</form>
+
+<input class="search-input-icon" type="text" placeholder="Search icons" spellcheck="false" [formControl]="inputValue"
+  #reference>
 
 <p i18n *ngIf="!(foundUiIcons | async)?.length;">No Icons found</p>
 

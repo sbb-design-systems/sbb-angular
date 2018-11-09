@@ -8,3 +8,7 @@
 .sbbsc-cards-card-title {
   @include landingSearchResultCardTitle();
 }
+
+.search-input-component {
+  min-width: 300px;
+}

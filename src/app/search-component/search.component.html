@@ -1,4 +1,4 @@
-<input id="search-input-component" type="text" (input)="onSearchChange($event.target.value)" placeholder="Search components"
+<input class="search-input-component" type="text" (input)="onSearchChange($event.target.value)" placeholder="Search components"
   spellcheck="false" [(ngModel)]="inputValue" #reference>
 
 <nav class="sbbsc-cards" *ngIf="foundUiComponents.length > 0">

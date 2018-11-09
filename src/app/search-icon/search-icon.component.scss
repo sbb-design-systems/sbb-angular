@@ -2,6 +2,10 @@
 @import '../../styles/common/variable';
 @import '../../styles/common/mixins';
 
+.search-input-icon {
+  min-width: 300px;
+}
+
 .sbbsc-search-icon-context {
   .sbbsc-cards-card {
     &-hero {
@@ -15,6 +19,9 @@
     }
 
     &-icon-selector {
+      display: block;
+      text-align: center;
+
       &::before {
         content: '<';
       }
