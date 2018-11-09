@@ -1,0 +1,13 @@
+@mixin landingComponentsListHero() {
+  height: pxToRem(50);
+  background-color: $colorGreyLight;
+  color: $colorRed100;
+  line-height: 4;
+  font-size: pxToRem(12);
+  margin: 0;
+  font-family: $fontSbbRoman;
+}
+
+@mixin landingComponentsCardTitle() {
+  font-size: pxToRem(20);
+}

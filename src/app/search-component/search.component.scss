@@ -1,3 +1,14 @@
+@import '../../../dist/sbb-angular/styles.scss';
+@import '../../styles/common/variable';
+@import '../../styles/common/mixins';
+
+.sbbsc-cards-card-hero {
+  @include landingComponentsListHero();
+}
+.sbbsc-cards-card-title {
+  @include landingComponentsCardTitle();
+}
+
 // #search #search-input-component, #search .hint {
 //     padding-left: 43px;
 //     padding-right: 43px;

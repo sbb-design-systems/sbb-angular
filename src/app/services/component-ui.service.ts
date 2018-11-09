@@ -692,6 +692,8 @@ export class ComponentUiService {
        foundUiComponents = this.uiComponents.filter(
          uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
        );
+    } else {
+      foundUiComponents = this.uiComponents;
     }
 
     const newFoundUiComponents: UiComponent[] = [];
