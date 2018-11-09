@@ -1,16 +1,32 @@
-<section id="search">
-    <label for="search-input-icon" id="searchInputLabel">
-       <i class="fa fa-search" aria-hidden="true"></i>
-    </label>
-    <input id="search-input-icon" 
-           class="form-control" 
-           type="text" 
-           (input)="onSearchChange($event.target.value)"
-           placeholder="Search icons ..."
-           spellcheck="false"
-           [(ngModel)]="inputValue"
-           #reference>
-</section>
+
+<input class="search-input-icon" type="text" placeholder="Search icons" spellcheck="false" [formControl]="inputValue"
+  #reference>
+
+<p i18n *ngIf="!(foundUiIcons | async)?.length;">No Icons found</p>
+
+<nav class="sbbsc-cards">
+  <ul class="sbbsc-cards-list">
+    <li class="sbbsc-cards-card sbbsc-search-icon-context" *ngFor="let uiIcon of foundUiIcons | async">
+      <a [routerLink]="['/content/' + uiIcon['name']]">
+        <h4 class="sbbsc-cards-card-hero">
+          <ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="single"></ng-template>
+        </h4>
+        <h3 class="sbbsc-cards-card-title" [innerHTML]="uiIcon['label']">
+        </h3>
+        <small class="sbbsc-cards-card-icon-selector">{{ (uiIcon['selector']) }}</small>
+        <div *ngFor="let tag of uiIcon['tags']">
+          <span>{{ tag }} </span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+
+<!-- 
 <div class="result" *ngIf="foundUiIcons.length > 0">
   <div *ngFor="let uiIcon of foundUiIcons">
     <a [routerLink]="['/content/' + uiIcon['name'].replace('<b>', '').replace('</b>', '')]"
@@ -56,4 +72,4 @@
     </a>
  </div>
  <span id="foundUiIconsTotal">Found {{ foundUiIcons.length }} Component(s).</span>
-</div>
+</div> -->
