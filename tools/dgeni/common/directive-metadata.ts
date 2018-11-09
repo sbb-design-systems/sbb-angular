@@ -1,4 +1,4 @@
-import {CategorizedClassDoc} from './dgeni-definitions';
+import { CategorizedClassDoc } from './dgeni-definitions';
 import {
   ArrayLiteralExpression,
   CallExpression,
@@ -31,7 +31,6 @@ export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string,
 
   const directiveDecorator = declaration.decorators
     .filter(decorator => decorator.expression)
-    // TODO(devversion): fix this cast
     .filter(decorator => (decorator.expression.kind as any) === SyntaxKind.CallExpression)
     .find(decorator => (decorator.expression as any).expression.getText() === 'Component' ||
                        (decorator.expression as any).expression.getText() === 'Directive');

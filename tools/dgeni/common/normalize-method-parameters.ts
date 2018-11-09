@@ -1,4 +1,4 @@
-import {MethodMemberDoc} from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
+import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
 
 export class NormalizedMethodMemberDoc extends MethodMemberDoc {
   params?: MethodParameterInfo[];
@@ -23,6 +23,7 @@ export interface MethodParameterInfo {
 export function normalizeMethodParameters(method: NormalizedMethodMemberDoc) {
   if (method.parameters) {
     method.parameters.forEach(parameter => {
+      // tslint:disable-next-line:prefer-const
       let [parameterName, parameterType] = parameter.split(':');
 
       // If the parameter is optional, the name here will contain a '?'. We store whether the
@@ -43,7 +44,7 @@ export function normalizeMethodParameters(method: NormalizedMethodMemberDoc) {
         return;
       }
 
-      const existingParameterInfo = method.params.find(p => p.name == parameterName);
+      const existingParameterInfo = method.params.find(p => p.name === parameterName);
 
       if (!existingParameterInfo) {
         method.params.push({

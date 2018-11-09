@@ -1,5 +1,5 @@
-import {PropertyMemberDoc} from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
-import {hasMemberDecorator} from './decorators';
+import { PropertyMemberDoc } from 'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc';
+import { hasMemberDecorator } from './decorators';
 
 /** Interface that describes an Angular property binding. Can be either an input or output. */
 export interface PropertyBinding {
@@ -12,7 +12,7 @@ export interface PropertyBinding {
  * alias and input name will be returned.
  */
 export function getInputBindingData(doc: PropertyMemberDoc, metadata: Map<string, any>)
-    : PropertyBinding | undefined {
+  : PropertyBinding | undefined {
   return getBindingPropertyData(doc, metadata, 'inputs', 'Input');
 }
 
@@ -21,7 +21,7 @@ export function getInputBindingData(doc: PropertyMemberDoc, metadata: Map<string
  * alias and output name will be returned.
  */
 export function getOutputBindingData(doc: PropertyMemberDoc, metadata: Map<string, any>)
-    : PropertyBinding | undefined {
+  : PropertyBinding | undefined {
   return getBindingPropertyData(doc, metadata, 'outputs', 'Output');
 }
 
@@ -30,7 +30,7 @@ export function getOutputBindingData(doc: PropertyMemberDoc, metadata: Map<strin
  * the directive metadata or from the associated decorator on the property.
  */
 function getBindingPropertyData(doc: PropertyMemberDoc, metadata: Map<string, any>,
-                                propertyName: string, decoratorName: string) {
+  propertyName: string, decoratorName: string) {
 
   if (metadata) {
     const metadataValues: string[] = metadata.get(propertyName) || [];
@@ -47,7 +47,8 @@ function getBindingPropertyData(doc: PropertyMemberDoc, metadata: Map<string, an
   if (hasMemberDecorator(doc, decoratorName)) {
     return {
       name: doc.name,
-      alias: doc.decorators!.find(d => d.name == decoratorName)!.arguments![0]
+      // tslint:disable-next-line:no-non-null-assertion
+      alias: doc.decorators!.find(d => d.name === decoratorName)!.arguments![0]
     };
   }
 }

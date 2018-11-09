@@ -1,6 +1,6 @@
-import {DocCollection, Processor} from 'dgeni';
-import {MethodMemberDoc} from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
-import {getDirectiveMetadata} from '../common/directive-metadata';
+import { DocCollection, Processor } from 'dgeni';
+import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
+import { getDirectiveMetadata } from '../common/directive-metadata';
 import {
   decorateDeprecatedDoc, getDirectiveSelectors, isDirective, isMethod, isNgModule, isProperty,
   isService
@@ -9,9 +9,9 @@ import {
   CategorizedClassDoc, CategorizedClassLikeDoc, CategorizedMethodMemberDoc,
   CategorizedPropertyMemberDoc
 } from '../common/dgeni-definitions';
-import {normalizeMethodParameters} from '../common/normalize-method-parameters';
-import {getInputBindingData, getOutputBindingData} from '../common/property-bindings';
-import {sortCategorizedMembers} from '../common/sort-members';
+import { normalizeMethodParameters } from '../common/normalize-method-parameters';
+import { getInputBindingData, getOutputBindingData } from '../common/property-bindings';
+import { sortCategorizedMembers } from '../common/sort-members';
 
 
 /**
@@ -72,6 +72,7 @@ export class Categorizer implements Processor {
     // Classes can only extend a single class. This means that there can't be multiple extend
     // clauses for the Dgeni document. To make the template syntax simpler and more readable,
     // store the extended class in a variable.
+    // tslint:disable-next-line:no-non-null-assertion
     classDoc.extendedDoc = classDoc.extendsClauses[0] ? classDoc.extendsClauses[0].doc! : null;
     classDoc.directiveMetadata = getDirectiveMetadata(classDoc);
 
@@ -85,6 +86,7 @@ export class Categorizer implements Processor {
     } else if (isNgModule(classDoc)) {
       classDoc.isNgModule = true;
     }
+
   }
 
   /**
@@ -107,7 +109,7 @@ export class Categorizer implements Processor {
     decorateDeprecatedDoc(propertyDoc);
 
     const metadata = propertyDoc.containerDoc.docType === 'class' ?
-        (propertyDoc.containerDoc as CategorizedClassDoc).directiveMetadata : null;
+      (propertyDoc.containerDoc as CategorizedClassDoc).directiveMetadata : null;
 
     const inputMetadata = metadata ? getInputBindingData(propertyDoc, metadata) : null;
     const outputMetadata = metadata ? getOutputBindingData(propertyDoc, metadata) : null;

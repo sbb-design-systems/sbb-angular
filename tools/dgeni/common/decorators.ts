@@ -11,7 +11,6 @@ import { CategorizedClassDoc, DeprecationDoc, HasDecoratorsDoc } from './dgeni-d
 const SELECTOR_BLACKLIST = new Set([
   '[portal]',
   '[portalHost]',
-  'textarea[mat-autosize]',
   '[overlay-origin]',
   '[connected-overlay]',
 ]);

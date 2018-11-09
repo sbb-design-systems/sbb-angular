@@ -28,7 +28,7 @@ let counter = 0;
 })
 export class RadioButtonComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
 
-  @Input() inputId = `sbb-radio-button-${counter++}`;
+  @Input() inputId: string = `sbb-radio-button-${counter++}`;
   @Input() formControlName: string;
   @Input() required: boolean;
 

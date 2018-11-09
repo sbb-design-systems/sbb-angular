@@ -4,20 +4,6 @@ import { ExportDoc } from 'dgeni-packages/typescript/api-doc-types/ExportDoc';
 /**
  * Processor to filter out Dgeni documents that are exported multiple times. This is necessary
  * to avoid that API entries are showing up multiple times in the docs.
- *
- * ```ts
- *   // Some file in @angular/cdk/scrolling
- *   export {ScrollDispatcher} from './scroll-dispatcher';
- *
- *   // Other file in @angular/cdk/overlay
- *   export {ScrollDispatcher} from '@angular/cdk/scrolling';
- *
- *   // Re-export of the same export with a different name (alias).
- *   export {ScrollDispatcher as X} from './scroll-dispatcher';
- * ```
- *
- * This issue occurs sometimes in the Angular Material repository, because some imports are
- * re-exported with a different name (for deprecation), or from a different secondary entry-point.
  */
 export class FilterDuplicateExports implements Processor {
   name = 'filter-duplicate-exports';

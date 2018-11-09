@@ -19,7 +19,7 @@ export class ComponentGroup {
   /** Module import path for the component group. */
   moduleImportPath: string;
 
-  /** Name of the package, either material or cdk */
+  /** Name of the package */
   packageName: string;
 
   /** Display name of the package. */
@@ -56,7 +56,7 @@ export class ComponentGroup {
 }
 
 /**
- * Processor to group docs into top-level "Components" WRT material design, e.g., "Button", "Tabs",
+ * Processor to group docs into top-level "Components", e.g., "Button", "Tabs",
  * where each group may conists of several directives and services.
  */
 export class ComponentGrouper implements Processor {
@@ -71,9 +71,9 @@ export class ComponentGrouper implements Processor {
       const documentInfo = getDocumentPackageInfo(doc);
 
       const packageName = documentInfo.packageName;
-      const packageDisplayName = documentInfo.packageName === 'cdk' ? 'CDK' : 'Material';
+      const packageDisplayName = 'SACL';
 
-      const moduleImportPath = `@angular/${packageName}/${documentInfo.entryPointName}`;
+      const moduleImportPath = `${packageName}/${documentInfo.entryPointName}`;
       const groupName = packageName + '-' + documentInfo.name;
 
       // Get the group for this doc, or, if one does not exist, create it.
@@ -120,17 +120,11 @@ function getDocumentPackageInfo(doc: Document) {
   // All of the component documentation is under either `src/lib` or `src/cdk`.
   // We group the docs up by the directory immediately under that root.
   const pathSegments = path.relative(basePath, filePath).split(path.sep);
-  let groupName = pathSegments[1];
-
-  // For the ripples there should be a component group in the docs. Even it's not a
-  // secondary-entry point it can be still documented with its own `material-ripple.html` file.
-  if (pathSegments[1] === 'core' && pathSegments[2] === 'ripple') {
-    groupName = 'ripple';
-  }
+  const groupName = pathSegments[1];
 
   return {
     name: groupName,
-    packageName: pathSegments[0] === 'lib' ? 'material' : pathSegments[0],
+    packageName: pathSegments[0] === 'lib' ? 'sbb-angular' : pathSegments[0],
     entryPointName: pathSegments[1],
   };
 }

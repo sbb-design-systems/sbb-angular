@@ -28,7 +28,7 @@ const INTERNAL_METHODS = [
 ];
 
 /**
- * Processor to filter out symbols that should not be shown in the Material docs.
+ * Processor to filter out symbols that should not be shown in the SACL docs.
  */
 export class DocsPrivateFilter implements Processor {
   name = 'docs-private-filter';

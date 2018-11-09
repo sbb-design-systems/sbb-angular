@@ -45,11 +45,11 @@ export class SBBOptionSelectionChange {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
-  _disabled = false;
-  mostRecentViewValue = '';
+  _disabled: boolean = false;
+  mostRecentViewValue: string = '';
 
   @HostBinding('class.sbb-selected')
-  selected = false;
+  selected: boolean = false;
 
   @HostBinding('attr.aria-selected')
   get selectedString(): string { return this.selected.toString(); }
@@ -66,7 +66,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   get _getTabIndex(): string { return this.disabled ? '-1' : '0'; }
 
   @HostBinding('class.sbb-active')
-  active = false;
+  active: boolean = false;
 
   @HostBinding('class.sbb-option-text') baseClass = true;
 
@@ -74,14 +74,11 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   value: any;
 
   @Input()
-  id = `sbb-option-${uniqueIdCounter++}`;
+  id: string = `sbb-option-${uniqueIdCounter++}`;
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output()
   readonly onSelectionChange = new EventEmitter<SBBOptionSelectionChange>();
-
-  @ViewChild('highlight') highlightedText: ElementRef;
-  @ViewChild('normal') normalText: ElementRef;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();

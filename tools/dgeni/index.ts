@@ -1,49 +1,37 @@
-import {Package} from 'dgeni';
-import {patchLogService} from './patch-log-service';
-import {DocsPrivateFilter} from './processors/docs-private-filter';
-import {Categorizer} from './processors/categorizer';
-import {FilterDuplicateExports} from './processors/filter-duplicate-exports';
-import {MergeInheritedProperties} from './processors/merge-inherited-properties';
-import {ComponentGrouper} from './processors/component-grouper';
-import {ReadTypeScriptModules} from 'dgeni-packages/typescript/processors/readTypeScriptModules';
-import {TsParser} from 'dgeni-packages/typescript/services/TsParser';
-import {sync as globSync} from 'glob';
+import { Package } from 'dgeni';
+/* import { patchLogService } from './patch-log-service';
+ */
+import { DocsPrivateFilter } from './processors/docs-private-filter';
+import { Categorizer } from './processors/categorizer';
+import { FilterDuplicateExports } from './processors/filter-duplicate-exports';
+import { MergeInheritedProperties } from './processors/merge-inherited-properties';
+import { ComponentGrouper } from './processors/component-grouper';
+import { ReadTypeScriptModules } from 'dgeni-packages/typescript/processors/readTypeScriptModules';
+import { TsParser } from 'dgeni-packages/typescript/services/TsParser';
+import { sync as globSync } from 'glob';
 import * as path from 'path';
 
-// Dgeni packages that the Material docs package depends on.
+// Dgeni packages that the SACL docs package depends on.
 const jsdocPackage = require('dgeni-packages/jsdoc');
 const nunjucksPackage = require('dgeni-packages/nunjucks');
 const typescriptPackage = require('dgeni-packages/typescript');
 
 // Project configuration.
-const projectRootDir = path.resolve(__dirname, '../..');
+const projectRootDir = path.resolve(__dirname, '../../projects/sbb-angular');
 const sourceDir = path.resolve(projectRootDir, 'src');
-const outputDir = path.resolve(projectRootDir, 'dist/docs/api');
+const outputDir = path.resolve(__dirname, '../../docs/api');
 const templateDir = path.resolve(__dirname, './templates');
 
-/** List of CDK packages that need to be documented. */
-const cdkPackages = globSync(path.join(sourceDir, 'cdk', '*/'))
-  .filter(packagePath => !packagePath.endsWith('testing/'))
-  .map(packagePath => path.basename(packagePath));
 
-/** List of Material packages that need to be documented. */
-const materialPackages = globSync(path.join(sourceDir, 'lib', '*/'))
+/** List of SACL packages that need to be documented. */
+const saclPackages = globSync(path.join(sourceDir, 'lib', '*/'))
   .map(packagePath => path.basename(packagePath));
 
 /**
- * Dgeni package for the Angular Material docs. This just defines the package, but doesn't
+ * Dgeni package for the SACL docs. This just defines the package, but doesn't
  * generate the docs yet.
- *
- * Dgeni packages are very similar to AngularJS modules. Those can contain:
- *
- *  - Services that can be injected
- *  - Templates that are used to convert the data into HTML output.
- *  - Processors that can modify the doc items (like a build pipeline).
- *
- * Similar to AngularJS, there is also a `config` lifecycle hook, that can be used to
- * configure specific processors, services before the procession begins.
  */
-export const apiDocsPackage = new Package('material2-api-docs', [
+export const apiDocsPackage = new Package('sacl-api-docs', [
   jsdocPackage,
   nunjucksPackage,
   typescriptPackage,
@@ -75,8 +63,8 @@ apiDocsPackage.config((readFilesProcessor: any, writeFilesProcessor: any) => {
   writeFilesProcessor.outputFolder = outputDir;
 });
 
-// Patches Dgeni's log service to not print warnings about unresolved mixin base symbols.
-apiDocsPackage.config((log: any) => patchLogService(log));
+/* // Patches Dgeni's log service to not print warnings about unresolved mixin base symbols.
+apiDocsPackage.config((log: any) => patchLogService(log)); */
 
 // Configure the output path for written files (i.e., file names).
 apiDocsPackage.config((computePathsProcessor: any) => {
@@ -90,8 +78,8 @@ apiDocsPackage.config((computePathsProcessor: any) => {
 // Configure custom JsDoc tags.
 apiDocsPackage.config((parseTagsProcessor: any) => {
   parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([
-    {name: 'docs-private'},
-    {name: 'breaking-change'}
+    { name: 'docs-private' },
+    { name: 'breaking-change' }
   ]);
 });
 
@@ -103,12 +91,8 @@ apiDocsPackage.config((readTypeScriptModules: ReadTypeScriptModules, tsParser: T
 
   const typescriptPathMap: any = {};
 
-  cdkPackages.forEach(packageName => {
-    typescriptPathMap[`@angular/cdk/${packageName}`] = [`./cdk/${packageName}/index.ts`];
-  });
-
-  materialPackages.forEach(packageName => {
-    typescriptPathMap[`@angular/material/${packageName}`] = [`./lib/${packageName}/index.ts`];
+  saclPackages.forEach(packageName => {
+    typescriptPathMap[`sbb-angular/${packageName}`] = [`./lib/${packageName}/index.ts`];
   });
 
   // Add proper path mappings to the TSParser service of Dgeni. This ensures that properties
@@ -119,8 +103,7 @@ apiDocsPackage.config((readTypeScriptModules: ReadTypeScriptModules, tsParser: T
   // Entry points for docs generation. All publicly exported symbols found through these
   // files will have docs generated.
   readTypeScriptModules.sourceFiles = [
-    ...cdkPackages.map(packageName => `./cdk/${packageName}/index.ts`),
-    ...materialPackages.map(packageName => `./lib/${packageName}/index.ts`)
+    ...saclPackages.map(packageName => `./lib/${packageName}/index.ts`)
   ];
 });
 
