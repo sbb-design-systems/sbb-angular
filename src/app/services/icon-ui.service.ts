@@ -55,17 +55,20 @@ export class IconUiService {
         .map(item => new UiIcon(item.name, item.selector, item.tags))
         .map(uiIcon => {
           if (new RegExp(searchValue, 'ig').test(uiIcon.name)) {
-            uiIcon.name = uiIcon.name.replace(new RegExp(searchValue, 'ig'), m => `<b>${m}</b>`);
+            uiIcon.label = uiIcon.label.replace(new RegExp(searchValue, 'ig'), m => `<b>${m}</b>`);
           }
           return uiIcon;
         })
         .sort((a, b) => a.name.localeCompare(b.name));
     }
-    return [];
+
+    return this.getAll();
 
   }
 
   getAll(): Array<UiIcon> {
-    return SBBComponentsMapping.icons.sort((a, b) => a.name.localeCompare(b.name));
+    return SBBComponentsMapping.icons
+      .map(item => new UiIcon(item.name, item.selector, item.tags))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 }

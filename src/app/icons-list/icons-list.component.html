@@ -1,3 +1,12 @@
-<p>
-  icons-list works!
-</p>
+<h2 class="sbbsc-content-title">
+  <span i18n class="sbbsc-content-title-text">SBB Angular Icons</span>
+  <sbb-icon-arrow-left></sbb-icon-arrow-left>
+  <button i18n sbbButton mode="frameless" routerLink="/components-list" class="sbbsc-content-title-button">
+    SBB Angular Components
+    <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+  </button>
+</h2>
+
+<div role="presentation" class="sbbsc-separator"></div>
+
+<sbb-search-icon [allUiIcons]="foundUiIcons"></sbb-search-icon>
