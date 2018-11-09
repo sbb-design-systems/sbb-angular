@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 import { ComponentUiService } from '../services/component-ui.service';
 import { Subject } from 'rxjs';
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
+  @Input() allUiComponents;
 
   searchChangeObserver: Subject<string>;
 
@@ -21,14 +22,20 @@ export class SearchComponent {
   constructor(private componentUiService: ComponentUiService, private router: Router) {
   }
 
+  ngOnInit() {
+    this.foundUiComponents = this.allUiComponents;
+  }
+
   onSearchChange(searchValue: string) {
-    this.foundUiComponents = [];
     if (!this.searchChangeObserver) {
       this.searchChangeObserver = new Subject<string>();
       this.searchChangeObserver
-        .pipe(debounceTime(500))
+        .pipe(debounceTime(250))
         .pipe(distinctUntilChanged())
-        .pipe(switchMap(searchTerm => this.componentUiService.getUiComponentsBySearchValue(searchTerm)))
+        .pipe(switchMap(searchTerm => {
+          this.foundUiComponents = [];
+          return this.componentUiService.getUiComponentsBySearchValue(searchTerm);
+        }))
         .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
     }
     this.searchChangeObserver.next(searchValue);
