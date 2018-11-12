@@ -17,7 +17,7 @@ import { IconViewerDirective } from './directives/icon-viewer.directive';
 
 import { ReplacePipe } from './shared/replace.pipe';
 import { IconComponents } from './sbb-components-mapping-export';
-import { IconCommonModule } from 'sbb-angular';
+import { IconCommonModule } from 'sbb-angular/sbb-angular';
 import { ComponentViewerDirective } from './directives/component-viewer.directive';
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
@@ -32,6 +32,7 @@ import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-fie
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ComponentsListComponent } from './components-list/components-list.component';
 import { IconsListComponent } from './icons-list/icons-list.component';
+import { ApiDocComponent } from './shared/api-doc/api-doc.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { IconsListComponent } from './icons-list/icons-list.component';
     SearchIconComponent,
     ReplacePipe,
     ComponentsListComponent,
-    IconsListComponent
+    IconsListComponent,
+    ApiDocComponent
   ],
   imports: [
     BrowserModule,

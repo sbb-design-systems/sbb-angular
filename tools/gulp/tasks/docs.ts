@@ -23,10 +23,6 @@ export function sequenceTask(...args: any[]) {
     };
 }
 
-const outputDir = '../';
-
-const DIST_DOCS = path.join(outputDir, 'docs');
-
 // Our docs contain comments of the form `<!-- example(...) -->` which serve as placeholders where
 // example code should be inserted. We replace these comments with divs that have a
 // `material-docs-example` attribute which can be used to locate the divs and initialize the example
@@ -59,14 +55,6 @@ const MARKDOWN_TAGS_TO_CLASS_ALIAS = [
     'pre',
     'code',
 ];
-
-// Options for the html-minifier that minifies the generated HTML files.
-const htmlMinifierOptions = {
-    collapseWhitespace: true,
-    removeComments: true,
-    caseSensitive: true,
-    removeAttributeQuotes: false
-};
 
 const markdownOptions = {
     // Add syntax highlight using highlight.js
@@ -130,7 +118,7 @@ task('build-highlighted-examples', () => {
         .pipe(flatten())
         .pipe(rename(renameFile))
         .pipe(highlight())
-        .pipe(dest('docs/examples'));
+        .pipe(dest('dist/docs/examples'));
 });
 
 /** Generates API docs from the source JsDoc using dgeni. */
