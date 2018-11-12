@@ -28,17 +28,18 @@ export class ContentComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.uiComponent = this.componentUiService.getUiComponentByRouterLink(this.id);
+
       if (!this.uiComponent) {
         this.uiComponent = this.iconUiService.getUiComponentByRouterLink(this.id);
         this.uiIcon = this.iconUiService.getUiIconByRouterLink(this.id);
         this.uiComponent.source = '<' + this.uiIcon.selector + ' svgClass="..."></' + this.uiIcon.selector + '>';
       }
+
     });
   }
 
-  navigateHome() {
-    // navigate to clicked component ...
-    this.router.navigate(['']);
+  cambiatoTab(evt) {
+    console.log('CAMBIATO TAB', evt);
   }
 
 }
