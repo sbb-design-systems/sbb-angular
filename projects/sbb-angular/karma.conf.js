@@ -12,6 +12,7 @@ module.exports = function (config) {
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -21,6 +22,9 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, '../../coverage'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
+    },
+    preprocessors: {
+      'dist/packages/**/*.js': ['sourcemap']
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

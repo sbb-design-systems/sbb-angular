@@ -24,9 +24,7 @@ import {
   ViewContainerRef,
   HostBinding,
   HostListener,
-  InjectionToken,
-  OnChanges,
-  SimpleChanges
+  InjectionToken
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -119,7 +117,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   private highlightPipe = new HighlightPipe();
 
   @HostBinding('attr.role') get role() {
-    return this.autocompleteAttribute ? null : 'combobox';
+    return this._autocompleteDisabled ? null : 'combobox';
   }
 
   /** The autocomplete panel to be attached to this trigger. */
@@ -201,11 +199,13 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
    * act as a regular input and the user won't be able to open the panel.
    */
   @Input('sbbAutocompleteDisabled')
-  @HostBinding('attr.aria-autocomplete')
   get autocompleteDisabled(): boolean { return this._autocompleteDisabled; }
   set autocompleteDisabled(value: boolean) {
-    this.autocompleteDisabled = coerceBooleanProperty(value);
+    this._autocompleteDisabled = coerceBooleanProperty(value);
   }
+
+  @HostBinding('attr.aria-autocomplete')
+  get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list';}
 
   constructor(
     private element: ElementRef<HTMLInputElement>,
