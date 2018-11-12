@@ -241,7 +241,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Autocompletion',
-        'autocompletion',
+        'autocomplete',
         'Autocompletion',
         'Subtitel goes here ...',
         true,

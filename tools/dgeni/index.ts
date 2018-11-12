@@ -19,7 +19,7 @@ const typescriptPackage = require('dgeni-packages/typescript');
 // Project configuration.
 const projectRootDir = path.resolve(__dirname, '../../projects/sbb-angular');
 const sourceDir = path.resolve(projectRootDir, 'src');
-const outputDir = path.resolve(__dirname, '../../dist/docs/api');
+const outputDir = path.resolve(__dirname, '../../src/docs/api');
 const templateDir = path.resolve(__dirname, './templates');
 
 

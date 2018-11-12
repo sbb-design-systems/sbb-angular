@@ -24,14 +24,13 @@ import {
  */
 export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string, any> | null {
   const declaration = classDoc.symbol.valueDeclaration;
-
   if (!declaration || !declaration.decorators) {
     return null;
   }
 
   const directiveDecorator = declaration.decorators
     .filter(decorator => decorator.expression)
-    .filter(decorator => (decorator.expression.kind as any) === SyntaxKind.CallExpression)
+   // .filter(decorator => (decorator.expression.kind as any) === SyntaxKind.CallExpression)
     .find(decorator => (decorator.expression as any).expression.getText() === 'Component' ||
                        (decorator.expression as any).expression.getText() === 'Directive');
 

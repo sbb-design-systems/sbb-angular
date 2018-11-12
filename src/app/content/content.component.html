@@ -54,39 +54,9 @@
 </div>
 
 <!-- 3) Documentation -->
-<div class="content-section documentation">
-  <div class="result">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a [ngClass]="isSourceTabClicked ? 'nav-link active' : 'nav-link'" id="doc-tab" data-toggle="tab" href="javascript:void(0);"
-          role="tab" aria-controls="doc" aria-selected="true" (click)="isSourceTabClicked=!isSourceTabClicked">Documentation</a>
-      </li>
-      <li class="nav-item">
-        <a [ngClass]="isSourceTabClicked ? 'nav-link' : 'nav-link active'" id="source-tab" data-toggle="tab" href="javascript:void(0);"
-          role="tab" aria-controls="source" aria-selected="false" (click)="isSourceTabClicked=!isSourceTabClicked">Source</a>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div [ngClass]="isSourceTabClicked ? 'tab-pane fade show active' : 'tab-pane fade'" id="doc" role="tabpanel"
-        aria-labelledby="doc-tab" *ngIf="isSourceTabClicked">
-        <div class="col-lg-12">
-          <sbb-api-doc></sbb-api-doc>
-        </div>
-      </div>
-    </div>
-    <div [ngClass]="isSourceTabClicked ? 'tab-pane fade' : 'tab-pane fade show active'" id="source" role="tabpanel"
-      aria-labelledby="source-tab" *ngIf="!isSourceTabClicked">
-      <div class="col-lg-12">
-        <div class="highlight">
-          <ngx-monaco-editor [options]="options" [(ngModel)]="uiComponent.source"></ngx-monaco-editor>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<br />
-<br />
+<div [sbbDoc]="uiComponent"></div>
+<sbb-source-tab-doc [component]="uiComponent"></sbb-source-tab-doc>
 
 <!-- 4) Footer -->
 <div class="layout-footer">

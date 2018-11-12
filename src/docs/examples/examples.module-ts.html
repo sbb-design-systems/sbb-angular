@@ -1,0 +1,68 @@
+<span class="hljs-keyword">import</span> { CommonModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+<span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormsModule, ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+
+<span class="hljs-keyword">import</span> { MonacoEditorModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'ngx-monaco-editor'</span>;
+
+<span class="hljs-keyword">import</span> {
+  IconCommonModule,
+  TextareaModule,
+  FieldModule,
+  LinksModule,
+  RadioButtonModule,
+  CheckboxModule,
+  AutocompleteModule,
+  ButtonModule
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
+
+<span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { InputFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./input-field-showcase/input-field-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SbbFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./sbb-field-showcase/sbb-field-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { RadioButtonShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./radio-button-showcase/radio-button-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { CheckboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-showcase/checkbox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextareaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textarea-showcase/textarea-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { ButtonShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./button-showcase/button-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { AutocompleteShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./autocomplete-showcase/autocomplete-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { IconComponents } <span class="hljs-keyword">from</span> <span class="hljs-string">'../sbb-components-mapping-export'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  declarations: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent,
+    AutocompleteShowcaseComponent,
+    ButtonShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent,
+    InputFieldShowcaseComponent,
+    SbbFieldShowcaseComponent
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    TextareaModule,
+    FieldModule,
+    LinksModule,
+    AutocompleteModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MonacoEditorModule.forRoot(),
+    RadioButtonModule,
+    CheckboxModule,
+    IconCommonModule.withComponents(IconComponents.types)
+  ],
+  providers: [],
+  exports: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent,
+    AutocompleteShowcaseComponent,
+    ButtonShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent,
+    InputFieldShowcaseComponent,
+    SbbFieldShowcaseComponent,
+    ButtonModule
+  ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExamplesModule { }

@@ -25,12 +25,12 @@ export function sequenceTask(...args: any[]) {
 
 // Our docs contain comments of the form `<!-- example(...) -->` which serve as placeholders where
 // example code should be inserted. We replace these comments with divs that have a
-// `material-docs-example` attribute which can be used to locate the divs and initialize the example
+// `sbb-angular-docs-example` attribute which can be used to locate the divs and initialize the example
 // viewer.
 const EXAMPLE_PATTERN = /<!--\W*example\(([^)]+)\)\W*-->/g;
 
 // Markdown files can contain links to other markdown files.
-// Most of those links don't work in the Material docs, because the paths are invalid in the
+// Most of those links don't work in the docs, because the paths are invalid in the
 // documentation page. Using a RegExp to rewrite links in HTML files to work in the docs.
 const LINK_PATTERN = /(<a[^>]*) href="([^"]*)"/g;
 
@@ -78,8 +78,8 @@ task('docs', sequenceTask(
 
 ));
 
-/** Generates html files from the markdown overviews and guides for material. */
-task('markdown-docs-material', () => {
+/** Generates html files from the markdown overviews and guides. */
+task('markdown-docs-sbb-angular', () => {
     // Extend the renderer for custom heading anchor rendering
     markdown.marked.Renderer.prototype.heading = (text: string, level: number): string => {
         if (level === 3 || level === 4) {
@@ -95,12 +95,12 @@ task('markdown-docs-material', () => {
         }
     };
 
-    return src(['src/lib/**/!(README).md', 'guides/*.md'])
-        .pipe(rename({ prefix: 'material-' }))
+    return src(['src/lib/**/!(README).md'])
+        .pipe(rename({ prefix: 'sbb-angular-' }))
         .pipe(markdown(markdownOptions))
         .pipe(transform(transformMarkdownFiles))
         .pipe(dom(createTagNameAliaser('docs-markdown')))
-        .pipe(dest('dist/docs/markdown'));
+        .pipe(dest('src/docs/markdown'));
 });
 
 /**
@@ -118,7 +118,7 @@ task('build-highlighted-examples', () => {
         .pipe(flatten())
         .pipe(rename(renameFile))
         .pipe(highlight())
-        .pipe(dest('dist/docs/examples'));
+        .pipe(dest('src/docs/examples'));
 });
 
 /** Generates API docs from the source JsDoc using dgeni. */
@@ -133,7 +133,7 @@ function transformMarkdownFiles(buffer: Buffer, file: any): string {
 
     // Replace <!-- example(..) --> comments with HTML elements.
     content = content.replace(EXAMPLE_PATTERN, (_match: string, name: string) =>
-        `<div material-docs-example="${name}"></div>`
+        `<div sbb-angular-docs-example="${name}"></div>`
     );
 
     // Replace the URL in anchor elements inside of compiled markdown files.
@@ -148,7 +148,6 @@ function transformMarkdownFiles(buffer: Buffer, file: any): string {
     return `<div class="docs-markdown">${content}</div>`;
 }
 
-/** Fixes paths in the markdown files to work in the material-docs-io. */
 function fixMarkdownDocLinks(link: string, filePath: string): string {
     // As for now, only markdown links that are relative and inside of the guides/ directory
     // will be rewritten.
@@ -159,7 +158,7 @@ function fixMarkdownDocLinks(link: string, filePath: string): string {
     const baseName = path.basename(link, path.extname(link));
 
     // Temporary link the file to the /guide URL because that's the route where the
-    // guides can be loaded in the Material docs.
+    // guides can be loaded in the docs.
     return `guide/${baseName}`;
 }
 

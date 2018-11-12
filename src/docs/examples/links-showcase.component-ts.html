@@ -1,0 +1,31 @@
+<span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-links-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./links-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./links-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LinksShowcaseComponent {
+  linkMode = <span class="hljs-string">'normal'</span>;
+  linkIcon = <span class="hljs-string">'arrow'</span>;
+  socialLinkIcon = <span class="hljs-string">'facebook'</span>;
+  modes = [
+    <span class="hljs-string">'normal'</span>,
+    <span class="hljs-string">'form'</span>,
+    <span class="hljs-string">'stretch'</span>
+  ];
+  icons = [
+    <span class="hljs-string">'arrow'</span>,
+    <span class="hljs-string">'download'</span>
+  ];
+  socials = [
+    <span class="hljs-string">'facebook'</span>,
+    <span class="hljs-string">'youtube'</span>,
+    <span class="hljs-string">'xing'</span>,
+    <span class="hljs-string">'linkedin'</span>,
+    <span class="hljs-string">'google-plus'</span>,
+    <span class="hljs-string">'pinterest'</span>,
+    <span class="hljs-string">'twitter'</span>,
+    <span class="hljs-string">'instagram'</span>
+  ];
+}

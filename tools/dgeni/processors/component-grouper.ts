@@ -57,7 +57,7 @@ export class ComponentGroup {
 
 /**
  * Processor to group docs into top-level "Components", e.g., "Button", "Tabs",
- * where each group may conists of several directives and services.
+ * where each group may consists of several directives and services.
  */
 export class ComponentGrouper implements Processor {
   name = 'component-grouper';
@@ -69,7 +69,6 @@ export class ComponentGrouper implements Processor {
 
     docs.forEach(doc => {
       const documentInfo = getDocumentPackageInfo(doc);
-
       const packageName = documentInfo.packageName;
       const packageDisplayName = 'SACL';
 
@@ -85,7 +84,6 @@ export class ComponentGrouper implements Processor {
         group = new ComponentGroup(groupName);
         groups.set(groupName, group);
       }
-
       group.displayName = documentInfo.name;
       group.moduleImportPath = moduleImportPath;
       group.packageName = packageName;
