@@ -1,5 +1,40 @@
+<h2 class="sbbsc-content-title">
+  <span i18n class="sbbsc-content-title-text">{{ uiComponent.title }}</span>
+  <sbb-icon-arrow-left></sbb-icon-arrow-left>
+  <button *ngIf="!uiIcon" i18n sbbButton mode="frameless" routerLink="/components-list" class="sbbsc-content-title-button">
+    All Components
+    <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+  </button>
+  <button *ngIf="uiIcon" i18n sbbButton mode="frameless" routerLink="/icons-list" class="sbbsc-content-title-button">
+    All Icons
+    <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+  </button>
+</h2>
+
+<div role="presentation" class="sbbsc-separator"></div>
+
+<!-- TO UPDATE WITH SBB TABS WHEN READY -->
+<ngb-tabset (tabChange)="cambiatoTab($event)">
+  <ngb-tab title="Overview" id="sbbsc-overview-tab">
+    <ng-template ngbTabContent>
+      <p>OVERVIEW...</p>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Api" id="sbbsc-api-tab">
+    <ng-template ngbTabContent>
+      <p>API...</p>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Examples" id="sbbsc-example-tab">
+    <ng-template ngbTabContent>
+      <ng-template *ngIf="!uiIcon" [sbbComponentViewer]="uiComponent"></ng-template>
+      <ng-template *ngIf="uiIcon" [sbbIconViewer]="uiIcon" singleOrMultiple="multiple"></ng-template>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
 <!-- 1) Introduction -->
-<div class="content-section introduction">
+<!-- <div class="content-section introduction">
   <div class="row">
     <div class="col-10">
       <span class="feature-title">
@@ -12,10 +47,10 @@
       <div class="ghost-button" (click)="navigateHome()">Home</div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- 2) Implementation -->
-<div class="content-section implementation">
+<!-- <div class="content-section implementation">
   <div class="result" *ngIf="uiComponent.isComponent || uiIcon">
     <div *ngIf="uiIcon;else other">
       <h4>{{ uiIcon.name.substring(4, uiIcon.name.length - 9) }} Icons</h4>
@@ -51,10 +86,10 @@
       </table>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- 3) Documentation -->
-<div class="content-section documentation">
+<!-- <div class="content-section documentation">
   <div class="result">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
@@ -83,13 +118,10 @@
       </div>
     </div>
   </div>
-</div>
-
-<br />
-<br />
+</div> -->
 
 <!-- 4) Footer -->
-<div class="layout-footer">
+<!-- <div class="layout-footer">
   <div class="container text-center">
     <span class="center">&#169; 2018 Fincons Group AG</span>
     <div class="footer-links">
@@ -104,7 +136,4 @@
       </a>
     </div>
   </div>
-</div>
-
-<br />
-<br />
+</div> -->
