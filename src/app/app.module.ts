@@ -32,11 +32,7 @@ import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.co
 import { PersonEditComponent } from './examples/tabs-showcase/person/person-edit/person-edit.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 
-import { TabsShowcaseNewComponent } from './examples/tabs-new-showcase/tabs-showcase-new.component';
-import { PersonEditNewComponent } from './examples/tabs-new-showcase/person-new/person-edit-new/person-edit-new.component';
-import { PersonListNewComponent } from './examples/tabs-new-showcase/person-new/person-list-new/person-list-new.component';
-
-import { TabsComponent, TabComponent, TabsNewComponent, TabNewComponent } from 'sbb-angular';
+import { TabsComponent, TabComponent } from 'sbb-angular';
 
 @NgModule({
   declarations: [
@@ -75,12 +71,7 @@ import { TabsComponent, TabComponent, TabsNewComponent, TabNewComponent } from '
     PersonEditComponent,
     PersonListComponent,
     TabsComponent,
-    TabComponent,
-    TabsShowcaseNewComponent,
-    PersonEditNewComponent,
-    PersonListNewComponent,
-    TabsNewComponent,
-    TabNewComponent
+    TabComponent
   ]
 })
 export class AppModule { }

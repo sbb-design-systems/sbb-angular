@@ -12,11 +12,15 @@ table.scroll td {
     vertical-align: middle;
 }
 
-table.scroll tr td { 
+table.scroll tr td {
     font-size: 18px;
     font-family: $fontSbbLight;
     line-height: 18px;
     color: black;
+}
+
+table.scroll tr:nth-child(even) {
+  background-color: #f2f2f2
 }
 
 button {

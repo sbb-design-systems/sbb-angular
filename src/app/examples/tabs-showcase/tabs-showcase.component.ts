@@ -12,6 +12,7 @@ export class TabsShowcaseComponent implements OnInit {
   @ViewChild(TabsComponent) tabsComponent;
 
   disabled: boolean;
+
   withDynamicTabs = true;
   tabType = 'with dynamic tabs';
   types = [
@@ -59,6 +60,12 @@ export class TabsShowcaseComponent implements OnInit {
               counter++;
               this.person.push({id: counter, name: item.name, surname: item.surname});
           }
+    }
+  }
+
+  setFirstTabIfDisabled() {
+    if(this.disabled) {
+       this.tabsComponent.openFirstTab();
     }
   }
 

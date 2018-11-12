@@ -8,12 +8,16 @@ import { Component,
 } from '@angular/core';
 import { TabComponent } from '../tab/tab.component';
 
+let counter = 0;
+
 @Component({
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements AfterContentInit {
+
+  nameOfTabList = `sbb-tabs-${counter++}`;
 
   dynamicTabs: TabComponent[] = [];
 
@@ -23,7 +27,7 @@ export class TabsComponent implements AfterContentInit {
 
   @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(public componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterContentInit() {
     // 1) check the number of tabs ...
@@ -48,8 +52,8 @@ export class TabsComponent implements AfterContentInit {
   }
 
   private checkNumberOfTabs() : void {
-    const counter = this.tabs.length + this.dynamicTabs.length;
-    if(counter < 2) {
+    const sizeOfTabs = this.tabs.length + this.dynamicTabs.length;
+    if(sizeOfTabs < 2) {
        throw new Error(`The number of tabs must be at least 2`);
     }
   }
@@ -69,11 +73,15 @@ export class TabsComponent implements AfterContentInit {
     throw new Error(`The quantity indicator should contains only numbers with a maximum of 3 digits (0-999)`);
   }
 
+  getPrefixFromId(id : string) : string {
+    return id.substring(0, id.indexOf('-'));
+  }
+
   openFirstTab() {
     this.selectTab(this.tabs.first);
   }
 
-  openTab(tabTitle: string,
+  openTab(title: string,
           template,
           data,
           isCloseable = false) {
@@ -84,10 +92,11 @@ export class TabsComponent implements AfterContentInit {
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
     const instance: TabComponent = componentRef.instance as TabComponent;
-    instance.tabTitle    = tabTitle;
-    instance.template    = template;
+    instance.title = title;
+    instance.template = template;
     instance.dataContext = data;
     instance.isCloseable = isCloseable;
+    instance.id = 'dynamic-tab';
 
     this.dynamicTabs.push(componentRef.instance as TabComponent);
 

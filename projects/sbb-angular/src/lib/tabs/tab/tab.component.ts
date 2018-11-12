@@ -8,15 +8,14 @@ import { Component,
 })
 export class TabComponent {
 
-  @Input() tabId: string;
-  @Input() tabTitle: string;
+  @HostBinding('attr.id')
+  @Input() id: string;
+  @Input() disabled: boolean;
+  @Input() title: string;
   @Input() active = false;
   @Input() isCloseable = false;
   @Input() template;
   @Input() dataContext;
   @Input() badgePill?: number;
-
-  @HostBinding('class.sbb-tab-disabled')
-  @Input() disabled: boolean;
 
 }

@@ -1,33 +1,29 @@
-<div class="card">
-    <div class="container">
-       <br>
-       <sbb-field>
-         <form [formGroup]="personForm" (ngSubmit)="onPersonFormSubmit()">
-           <input type="hidden" formControlName="id">
-             <div class="form-group">
-               <sbb-label for="firstname">Firstname</sbb-label>
-               <input type="text" 
-                      class="form-control" 
-                      id="firstname" 
-                      placeholder="Firstname" 
-                      formControlName="name"
-                      autocomplete="off"
-                      spellcheck="false">
-             </div>
-             <div class="form-group">
-               <sbb-label for="surname">Surname</sbb-label>
-               <input type="text" 
-                      class="form-control" 
-                      id="surname" 
-                      placeholder="Surname" 
-                      formControlName="surname"
-                      autocomplete="off"
-                      spellcheck="false">
-             </div>
-             <div class="form-group">
-               <button sbbButton mode="primary" type="submit">Save</button>
-             </div>
-         </form>
-     </sbb-field>
-   </div>
-</div>
+<br>
+<sbb-field>
+  <form [formGroup]="personForm" (ngSubmit)="onPersonFormSubmit()">
+    <input type="hidden" formControlName="id">
+    <div class="form-group">
+      <sbb-label for="firstname">Firstname</sbb-label>
+      <input type="text" 
+             class="form-control" 
+             id="firstname" 
+             placeholder="Firstname" 
+             formControlName="name"
+             autocomplete="off"
+             spellcheck="false">
+    </div>
+    <div class="form-group">
+      <sbb-label for="surname">Surname</sbb-label>
+      <input type="text" 
+             class="form-control" 
+             id="surname" 
+             placeholder="Surname" 
+             formControlName="surname"
+             autocomplete="off"
+             spellcheck="false">
+    </div>
+    <div class="form-group">
+      <button sbbButton mode="primary" type="submit">Save</button>
+    </div>
+  </form>
+</sbb-field>

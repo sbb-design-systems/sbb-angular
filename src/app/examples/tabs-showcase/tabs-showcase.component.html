@@ -5,45 +5,46 @@
     <fieldset>
     <sbb-tabs>
       <!-- First tab (required) -->
-      <sbb-tab [tabTitle]="'Tab 1'" [tabId]="1">
-        <div class="card">
-          <div class="container">
-             <br/>
-             <h5>Content 1</h5>
-             <hr/>
-             <p>Here comes the content for tab 1 ...</p>
-             <br/>
-          </div>
-        </div>
+      <sbb-tab [title]="'Tab 1'" [id]="'content1-tab'">
+          <br/>
+          <h5>Content 1</h5>
+          <hr/>
+          <p>Here comes the content for tab 1 ...</p>
+          <br/>
       </sbb-tab>
       <!-- Second tab (required) -->
-      <sbb-tab [tabTitle]="'Tab 2'" [tabId]="2">
-        <div class="card">
-          <div class="container">
-            <br/>
-            <h5>Content 2</h5>
-            <hr/>
-            <p>Here comes the content for tab 2 ...</p>
-            <br/>
-          </div>  
-        </div>
+      <sbb-tab [title]="'Tab 2'" [id]="'content2-tab'">
+          <br/>
+          <h5>Content 2</h5>
+          <hr/>
+          <p>Here comes the content for tab 2 ...</p>
+          <br/>
       </sbb-tab>
-      <!-- Third tab with the possibility of dynamic tabs if any -->
-      <sbb-tab [tabTitle]="'Persons'" [tabId]="3" [badgePill]="getCountOfPersons()" [disabled]="disabled" *ngIf="withDynamicTabs">
-        <div class="card">
-          <div class="container">
-            <br/>
-            <h5>List of Persons</h5>
-            <hr/>
-            <person-list [person]="person" (addPerson)="onAddPerson()" (editPerson)="onEditPerson($event)"></person-list>
-          </div>
-        </div>
+      <!-- Third tab (required) -->
+      <sbb-tab [title]="'Tab 3'" [id]="'content3-tab'">
+        <br/>
+        <h5>Content 3</h5>
+        <hr/>
+        <p>Here comes the content for tab 3 ...</p>
+        <br/>
+      </sbb-tab>
+      <!-- Fourth tab with the possibility of dynamic tabs if any -->
+      <sbb-tab [title]="'Persons'"
+               [id]="'persons-tab'"
+               [badgePill]="getCountOfPersons()" 
+               [disabled]="disabled" 
+               *ngIf="withDynamicTabs">
+        <br/>
+        <h5>List of Persons</h5>
+        <hr/>
+        <person-list [person]="person" (addPerson)="onAddPerson()" (editPerson)="onEditPerson($event)"></person-list>
       </sbb-tab>
     </sbb-tabs>
     <ng-template let-person="person" #personEdit>
       <person-edit [person]="person" (savePerson)="onPersonFormSubmit($event)"></person-edit>
     </ng-template>
     </fieldset>
+    <small class="font-italic">* Navigate with Tab, &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
     </div>
     <div class="col-lg-6">
       <h5>Properties</h5>
@@ -61,7 +62,7 @@
               </select>
           </div>
           <div class="form-check">
-            <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
+            <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled" (change)="setFirstTabIfDisabled()">
             <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
           </div>
       </fieldset>
