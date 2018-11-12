@@ -4,7 +4,7 @@
      [attr.role]="'tabpanel'"
      [attr.id]="id"
      [attr.aria-labelledby]="id"
-     class="!active ? 'sbb_tabs-tabpanel is-hidden' : 'sbb-tabs-tabpanel'">
+     [ngClass]="!active ? 'sbb-tabs-tabpanel is-hidden' : 'sbb-tabs-tabpanel'">
   <ng-content></ng-content>
   <ng-container *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ person : dataContext }"></ng-container>
 </div>
