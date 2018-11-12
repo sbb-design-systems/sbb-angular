@@ -1,6 +1,7 @@
 import { Component,
          Input,
          HostBinding } from '@angular/core';
+
 @Component({
   selector: 'sbb-tab',
   templateUrl: './tab.component.html',
@@ -11,7 +12,8 @@ export class TabComponent {
   @HostBinding('attr.id')
   @Input() id: string;
   @Input() disabled: boolean;
-  @Input() title: string;
+  @Input() label: string;
+  @Input() labelId: string;
   @Input() active = false;
   @Input() isCloseable = false;
   @Input() template;

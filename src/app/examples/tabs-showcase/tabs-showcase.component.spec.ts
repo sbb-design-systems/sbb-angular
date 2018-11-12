@@ -56,18 +56,18 @@ describe('TabsShowcaseComponent', () => {
     expect(component.tabsComponent.tabModules.length).toBe(1);
   });
 
-  it('tab 1 should have title "Tab 1", tab id "1" and also should be "active" per default', () => {
+  it('tab 1 should have label "Tab 1", tab id "1" and also should be "active" per default', () => {
      // first round of change detection ...
      fixture.detectChanges();
-     expect(component.tabsComponent.tabs.first.title).toBe('Tab 1');
+     expect(component.tabsComponent.tabs.first.label).toBe('Tab 1');
      expect(component.tabsComponent.tabs.first.id).toBe('content1-tab');
      expect(component.tabsComponent.tabs.first.active).toBe(true);
   });
 
-  it('tab 3 should have title "Persons", tab id "3" and should not be "active" per default', () => {
+  it('tab 3 should have label "Persons", tab id "3" and should not be "active" per default', () => {
     // first round of change detection ...
     fixture.detectChanges();
-    expect(component.tabsComponent.tabs.last.title).toBe('Persons');
+    expect(component.tabsComponent.tabs.last.label).toBe('Persons');
     expect(component.tabsComponent.tabs.last.id).toBe('persons-tab');
     expect(component.tabsComponent.tabs.last.active).toBe(false);
   });

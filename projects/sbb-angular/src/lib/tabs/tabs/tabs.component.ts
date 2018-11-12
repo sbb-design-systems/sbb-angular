@@ -73,15 +73,11 @@ export class TabsComponent implements AfterContentInit {
     throw new Error(`The quantity indicator should contains only numbers with a maximum of 3 digits (0-999)`);
   }
 
-  getPrefixFromId(id : string) : string {
-    return id.substring(0, id.indexOf('-'));
-  }
-
   openFirstTab() {
     this.selectTab(this.tabs.first);
   }
 
-  openTab(title: string,
+  openTab(label: string,
           template,
           data,
           isCloseable = false) {
@@ -92,7 +88,7 @@ export class TabsComponent implements AfterContentInit {
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
     const instance: TabComponent = componentRef.instance as TabComponent;
-    instance.title = title;
+    instance.label = label;
     instance.template = template;
     instance.dataContext = data;
     instance.isCloseable = isCloseable;

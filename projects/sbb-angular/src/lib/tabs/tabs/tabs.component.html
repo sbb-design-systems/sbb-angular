@@ -7,15 +7,19 @@
             [attr.role]="'tab'"
             [attr.aria-selected]="tab.active"
             [attr.aria-controls]="tab.id"
-            [id]="getPrefixFromId(tab.id)"
-            [ngClass]="tab.active ? 'sbb-tabs-tablistitem is-active' : tab.disabled ? 'sbb-tabs-tablistitem is-disabled' : 'sbb-tabs-tablistitem'">{{ tab.title }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span></button>
+            [id]="tab.labelId"
+            class="sbb-tabs-tablistitem"
+            [class.is-active]="tab.active"
+            [disabled]="tab.disabled">{{ tab.label }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span></button>
     <button *ngFor="let tab of dynamicTabs"
             (click)="selectTab(tab)"
             [attr.role]="'tab'"
             [attr.aria-selected]="tab.active"
             [attr.aria-controls]="tab.id"
-            [id]="getPrefixFromId(tab.id)"
-            [ngClass]="tab.active ? 'sbb-tabs-tablistitem is-active' : tab.disabled ? 'sbb-tabs-tablistitem is-disabled' : 'sbb-tabs-tablistitem'">{{ tab.title }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span> <span><sbb-icon-close svgClass="icon-flex-column icon-sm" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></sbb-icon-close></span></button>
+            [id]="tab.labelId"
+            [class.is-active]="tab.active"
+            class="sbb-tabs-tablistitem"
+            [disabled]="tab.disabled">{{ tab.label }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span> <span><sbb-icon-close svgClass="icon-flex-column icon-sm" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></sbb-icon-close></span></button>
 </div>
 </div>
 <ng-content></ng-content>

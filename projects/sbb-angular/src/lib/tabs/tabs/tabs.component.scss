@@ -1,58 +1,7 @@
 @import '../../../styles/main';
 
-.sbb-tabs-wrapper {
-  position: relative;
-  z-index: 0;
-	min-height: 3.86667em; 
-}
-.no-touchevents .sbb-tabs-wrapper {
-	min-height: 4.93333em; 
-}
-@media all and (min-width: 40.1875em) {
-  .sbb-tabs-wrapper {
-		min-height: 5.4em; 
-	}
-  .no-touchevents .sbb-tabs-wrapper {
-		min-height: 5.4em; 
-	} 
-}
-.sbb-tabs-wrapper.is-scrolling:after, 
-.sbb-tabs-wrapper.is-scrolling:before {
-    position: absolute;
-    top: 0;
-    content: '';
-    z-index: 1;
-    width: 0.8em;
-    height: calc(100% - 0.5rem);
-    transition: -webkit-transform .25s ease;
-    transition: transform .25s ease;
-		transition: transform .25s ease, -webkit-transform .25s ease; 
-}
-@media all and (min-width: 40.1875em) {
-		.sbb-tabs-wrapper.is-scrolling:after, 
-		.sbb-tabs-wrapper.is-scrolling:before {
-				width: 1.6em; 
-		} 
-}
-.sbb-tabs-wrapper.is-scrolling:before {
-    left: 0;
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-		background: linear-gradient(to left, rgba(255, 255, 255, 0.37) 0%, white 100%); 
-}
-.sbb-tabs-wrapper.is-scrolling:after {
-    right: 0;
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-		background: linear-gradient(to right, rgba(255, 255, 255, 0.37) 0%, white 100%); 
-}
-.sbb-tabs-wrapper.is-scrolling-end:after {
-    -webkit-transform: translateX(100%);
-		transform: translateX(100%);
-}
-.sbb-tabs-wrapper.is-scrolling-start:before {
-    -webkit-transform: translateX(-100%);
-		transform: translateX(-100%); 
+:host {
+  @include sbbTabsWrapper;
 }
 
 .sbb-tabs-tablist {
@@ -133,12 +82,12 @@
 .sbb-tabs-tablistitem:after {
 		transition: width 0.3s ease, left 0.3s ease; 
 }
-.sbb-tabs-tablistitem:not(.is-active):not(.is-disabled):focus, 
-.sbb-tabs-tablistitem:not(.is-active):not(.is-disabled):hover {
+.sbb-tabs-tablistitem:not(.is-active):not(:disabled):focus, 
+.sbb-tabs-tablistitem:not(.is-active):not(:disabled):hover {
 		color: $colorRed125;
 }
-.sbb-tabs-tablistitem:not(.is-active):not(.is-disabled):focus:after, 
-.sbb-tabs-tablistitem:not(.is-active):not(.is-disabled):hover:after {
+.sbb-tabs-tablistitem:not(.is-active):not(:disabled):focus:after, 
+.sbb-tabs-tablistitem:not(.is-active):not(:disabled):hover:after {
     left: 0;
 		width: 100%;
 }
@@ -149,7 +98,7 @@
     width: 100%;
 		left: 0; 
 }
-.sbb-tabs-tablistitem.is-disabled {
+.sbb-tabs-tablistitem:disabled {
 	  opacity:0.6;
-	  pointer-events: none; 
+	  pointer-events: none;
 }

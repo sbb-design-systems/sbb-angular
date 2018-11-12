@@ -5,7 +5,9 @@
     <fieldset>
     <sbb-tabs>
       <!-- First tab (required) -->
-      <sbb-tab [title]="'Tab 1'" [id]="'content1-tab'">
+      <sbb-tab [label]="'Tab 1'" 
+               [id]="'content1-tab'"
+               [labelId]="'content1'">
           <br/>
           <h5>Content 1</h5>
           <hr/>
@@ -13,7 +15,9 @@
           <br/>
       </sbb-tab>
       <!-- Second tab (required) -->
-      <sbb-tab [title]="'Tab 2'" [id]="'content2-tab'">
+      <sbb-tab [label]="'Tab 2'" 
+               [id]="'content2-tab'"
+               [labelId]="'content2'">
           <br/>
           <h5>Content 2</h5>
           <hr/>
@@ -21,7 +25,9 @@
           <br/>
       </sbb-tab>
       <!-- Third tab (required) -->
-      <sbb-tab [title]="'Tab 3'" [id]="'content3-tab'">
+      <sbb-tab [label]="'Tab 3'" 
+               [id]="'content3-tab'"
+               [labelId]="'content3'">
         <br/>
         <h5>Content 3</h5>
         <hr/>
@@ -29,8 +35,9 @@
         <br/>
       </sbb-tab>
       <!-- Fourth tab with the possibility of dynamic tabs if any -->
-      <sbb-tab [title]="'Persons'"
+      <sbb-tab [label]="'Persons'"
                [id]="'persons-tab'"
+               [labelId]="'persons'"
                [badgePill]="getCountOfPersons()" 
                [disabled]="disabled" 
                *ngIf="withDynamicTabs">
