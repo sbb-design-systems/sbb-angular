@@ -3,8 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { InputFieldShowcaseComponent } from './input-field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldModule } from 'sbb-angular/sbb-angular';
-import { equal } from 'assert';
+import { FieldModule } from 'sbb-angular';
 
 describe('InputFieldShowcaseComponent', () => {
 
