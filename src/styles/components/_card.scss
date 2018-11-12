@@ -70,5 +70,24 @@
       font-size: pxToRem(18);
       padding-bottom: 2em;
     }
+
+    &-badge-wrapper {
+      text-align: right;
+      margin: 1em 0 0.5em;
+    }
+
+    &-badge {
+      display: inline-block;
+      background-color: $colorRed100;
+      color: $colorWhite;
+      padding: 0 0.5em;
+      border-radius: 1em;
+      font-size: $fontSizeBagde;
+      margin-right: 0.5em
+    }
+
+    &-icon-selector {
+      color: $colorBlue;
+    }
   }
 }

@@ -4,7 +4,7 @@
 <nav class="sbbsc-cards" *ngIf="foundUiComponents.length > 0">
   <ul class="sbbsc-cards-list">
     <li class="sbbsc-cards-card" *ngFor="let uiComponent of foundUiComponents">
-      <a [routerLink]="['/content/' + uiComponent['routerLink']]" (click)="navigate('/content/' + uiComponent['routerLink']);">
+      <a [routerLink]="['/content/' + uiComponent['routerLink']]">
         <h4 class="sbbsc-cards-card-hero">
           <span *ngIf="uiComponent['isComponent']">Component</span>
           <span *ngIf="uiComponent['isComponent'] && uiComponent['isDirective']"> / </span>

@@ -3,7 +3,6 @@ import { UiComponent } from '../shared/ui-component';
 import { ComponentUiService } from '../services/component-ui.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'sbb-search',
@@ -19,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   foundUiComponents: UiComponent[] = [];
 
-  constructor(private componentUiService: ComponentUiService, private router: Router) {
+  constructor(private componentUiService: ComponentUiService) {
   }
 
   ngOnInit() {
@@ -39,13 +38,5 @@ export class SearchComponent implements OnInit {
         .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
     }
     this.searchChangeObserver.next(searchValue);
-  }
-
-  async navigate(path: any) {
-    this.foundUiComponents = [];
-    this.inputValue = '';
-    // navigate to clicked component ...
-    await this.router.navigateByUrl('/', { skipLocationChange: true });
-    this.router.navigate([path]);
   }
 }
