@@ -8,9 +8,10 @@ import { UiComponent } from '../ui-component';
 })
 export class ComponentViewerComponent implements OnInit {
 
+  toggleSrcVisible = false;
+
   @Input() component: UiComponent;
 
   ngOnInit() {
   }
-
 }

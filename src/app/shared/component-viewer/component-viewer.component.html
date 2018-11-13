@@ -1,2 +1,14 @@
-<sbb-source-tab-doc [component]="component"></sbb-source-tab-doc>
-<ng-template [sbbComponentViewer]="component"></ng-template>
+<section class="sbbsc-comp-viewer">
+  <header class="sbbsc-comp-viewer-header">
+    <h3 class="sbbsc-comp-viewer-title">{{ component.title }}</h3>
+    <button sbbButton mode="frameless" class="sbbsc-comp-viewer-code-icon" (click)="toggleSrcVisible = !toggleSrcVisible">
+      <i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i>
+    </button>
+  </header>
+  <div class="sbbsc-comp-viewer-body">
+    <article class="sbbsc-comp-viewer-src" *ngIf="toggleSrcVisible">
+      <sbb-source-tab-doc [component]="component"></sbb-source-tab-doc>
+    </article>
+    <article [sbbComponentViewer]="component" class="sbbsc-comp-viewer-instance"></article>
+  </div>
+</section>

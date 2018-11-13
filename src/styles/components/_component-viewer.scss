@@ -1,0 +1,47 @@
+.sbbsc-comp-viewer {
+  border: 1px solid rgba(0,0,0,.03);
+  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+  margin: 4px;
+
+  &-header {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 12px 20px;
+    background-color: rgba($colorGreyLight, 0.5);
+  }
+
+  &-title {
+    flex: 1 1 auto;
+    margin-top: 0;
+  }
+
+  &-code-icon {
+    flex-shrink: 0;
+
+    .fa {
+      font-size: 2em;
+    }
+
+    .fa-angle-right {
+      margin-left: 0.25em;
+    }
+  }
+
+  &-body {
+    padding: 0.25em 1em;
+    
+    .nav-link {
+      font-size: 90%;
+    }
+  }
+
+  &-src {
+
+  }
+
+  &-instance {
+
+  }
+}
