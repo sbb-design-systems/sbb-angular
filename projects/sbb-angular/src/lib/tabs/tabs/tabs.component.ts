@@ -1,6 +1,5 @@
 import { Component,
          ContentChildren,
-         ViewChildren,
          QueryList,
          AfterContentInit,
          ComponentFactoryResolver,
