@@ -1,8 +1,11 @@
 import { Component,
          ContentChildren,
+         ViewChildren,
          QueryList,
          AfterContentInit,
-         ComponentFactoryResolver } from '@angular/core';
+         ComponentFactoryResolver,
+         ElementRef } from '@angular/core';
+import { ENTER, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB } from '@angular/cdk/keycodes';
 import { TabComponent } from '../tab/tab.component';
 
 let counter = 0;
@@ -16,11 +19,13 @@ export class TabsComponent implements AfterContentInit {
 
   nameOfTabList = `sbb-tabs-${counter++}`;
 
+  tabListIndex = 0;
+
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
   @ContentChildren(TabsComponent) tabModules: QueryList<TabsComponent>;
 
-  constructor(public componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(public componentFactoryResolver: ComponentFactoryResolver, public elementRef: ElementRef) {}
 
   ngAfterContentInit() {
     // 1) check the number of tabs ...
@@ -32,6 +37,35 @@ export class TabsComponent implements AfterContentInit {
     const activeTabs = this.tabs.filter(tab => tab.active);
     if (activeTabs.length === 0) {
         this.selectTab(this.tabs.first);
+    }
+  }
+
+  onKeydown(event) {
+    if(event.keyCode === ENTER) {
+       /* do nothing */
+    }
+    if(event.keyCode === TAB) {
+       /* do nothing */
+    }
+    if(event.keyCode === LEFT_ARROW || event.keyCode === UP_ARROW) {
+       if(this.tabListIndex === 0) {
+          /* do nothing */
+       } else {
+          this.tabListIndex--;
+       }
+       const tab     = this.tabs.toArray()[this.tabListIndex];
+       const element = document.getElementById(tab.labelId) as HTMLElement;
+       element.focus();
+    }
+    if(event.keyCode === RIGHT_ARROW || event.keyCode === DOWN_ARROW) {
+       if(this.tabListIndex === this.tabs.length-1) {
+          /* do nothing */
+       } else {
+          this.tabListIndex++;
+       }
+       const tab     = this.tabs.toArray()[this.tabListIndex];
+       const element = document.getElementById(tab.labelId) as HTMLElement;
+       element.focus();
     }
   }
 
@@ -58,6 +92,7 @@ export class TabsComponent implements AfterContentInit {
   }
 
   openFirstTab() {
+    this.tabListIndex = 0;
     this.selectTab(this.tabs.first);
   }
 
@@ -65,5 +100,11 @@ export class TabsComponent implements AfterContentInit {
     // tslint:disable-next-line
     this.tabs.toArray().forEach(tab => (tab.active = false));
     tab.active = true;
+    for(let i = 0; i < this.tabs.toArray().length; i++) {
+        const _tab = this.tabs.toArray()[i];
+        if(_tab.labelId === tab.labelId) {
+           this.tabListIndex = i;
+       }
+    }
   }
 }
