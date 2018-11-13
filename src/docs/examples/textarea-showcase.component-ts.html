@@ -1,1 +1,27 @@
-<span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>; <span class="hljs-keyword">import</span> { FormGroup, FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>; <span class="hljs-meta">@Component</span>({ selector: <span class="hljs-string">'sbb-textarea-showcase'</span>, templateUrl: <span class="hljs-string">'./textarea-showcase.component.html'</span>, styleUrls: [<span class="hljs-string">'./textarea-showcase.component.scss'</span>] }) <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TextareaShowcaseComponent { textArea1 = <span class="hljs-string">'SBB'</span>; disabled: <span class="hljs-built_in">boolean</span>; minlength: <span class="hljs-built_in">number</span>; maxlength: <span class="hljs-built_in">number</span>; required: <span class="hljs-built_in">boolean</span>; isVisible = <span class="hljs-literal">true</span>; readonly: <span class="hljs-built_in">boolean</span>; formGroup: FormGroup = <span class="hljs-keyword">new</span> FormGroup({ textarea: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-string">'SBB'</span>) }); setValue($event) { <span class="hljs-keyword">this</span>.formGroup.controls[<span class="hljs-string">'textarea'</span>].setValue($event.target.value); } }
+<span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormGroup, FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-textarea-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./textarea-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./textarea-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TextareaShowcaseComponent {
+
+  textArea1 = <span class="hljs-string">'SBB'</span>;
+  disabled: <span class="hljs-built_in">boolean</span>;
+  minlength: <span class="hljs-built_in">number</span>;
+  maxlength: <span class="hljs-built_in">number</span>;
+  required: <span class="hljs-built_in">boolean</span>;
+  isVisible = <span class="hljs-literal">true</span>;
+  readonly: <span class="hljs-built_in">boolean</span>;
+
+  formGroup: FormGroup = <span class="hljs-keyword">new</span> FormGroup({
+    textarea: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-string">'SBB'</span>)
+  });
+
+  setValue($event) {
+    <span class="hljs-keyword">this</span>.formGroup.controls[<span class="hljs-string">'textarea'</span>].setValue($event.target.value);
+  }
+
+}
