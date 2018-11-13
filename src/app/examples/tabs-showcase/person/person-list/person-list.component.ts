@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,6 +8,4 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PersonListComponent {
   @Input() person;
-  @Output() addPerson = new EventEmitter<any>();
-  @Output() editPerson = new EventEmitter<any>();
 }

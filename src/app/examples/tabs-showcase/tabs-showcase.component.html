@@ -39,17 +39,13 @@
                [id]="'persons-tab'"
                [labelId]="'persons'"
                [badgePill]="getCountOfPersons()" 
-               [disabled]="disabled" 
-               *ngIf="withDynamicTabs">
+               [disabled]="disabled">
         <br/>
         <h5>List of Persons</h5>
         <hr/>
-        <person-list [person]="person" (addPerson)="onAddPerson()" (editPerson)="onEditPerson($event)"></person-list>
+        <person-list [person]="person"></person-list>
       </sbb-tab>
     </sbb-tabs>
-    <ng-template let-person="person" #personEdit>
-      <person-edit [person]="person" (savePerson)="onPersonFormSubmit($event)"></person-edit>
-    </ng-template>
     </fieldset>
     <small class="font-italic">* Navigate with Tab, &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
     </div>
@@ -57,13 +53,7 @@
       <h5>Properties</h5>
       <fieldset>
           <div class="form-group">
-            <sbb-label>Please choose :</sbb-label>
-            <select [(ngModel)]="tabType" class="form-control" (ngModelChange)="onChangeOfType()">
-              <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
-            </select>
-          </div>
-          <div *ngIf="withDynamicTabs" class="form-group">
-              <sbb-label>Please set data set for dynamic tabs content :</sbb-label>
+              <sbb-label>Please set data-set for tabs content / tab pill :</sbb-label>
               <select [(ngModel)]="dataSet" class="form-control" (ngModelChange)="onChangeOfDataSet($event)">
                 <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
               </select>

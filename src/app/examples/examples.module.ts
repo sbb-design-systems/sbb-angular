@@ -27,7 +27,6 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { IconComponents } from '../sbb-components-mapping-export';
-import { PersonEditComponent } from './tabs-showcase/person/person-edit/person-edit.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
 @NgModule({
@@ -41,7 +40,6 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
-    PersonEditComponent,
     PersonListComponent
   ],
   imports: [
@@ -71,7 +69,6 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
-    PersonEditComponent,
     PersonListComponent
   ]
 })

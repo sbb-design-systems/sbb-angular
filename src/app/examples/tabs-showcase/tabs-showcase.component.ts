@@ -13,13 +13,6 @@ export class TabsShowcaseComponent implements OnInit {
 
   disabled: boolean;
 
-  withDynamicTabs = true;
-  tabType = 'with dynamic tabs';
-  types = [
-    'with dynamic tabs',
-    'without dynamic tabs'
-  ];
-
   dataSet = 'default (add data manually)';
   data = [
     'default (add data manually)',
@@ -46,11 +39,6 @@ export class TabsShowcaseComponent implements OnInit {
 
   ngOnInit() {
     this.person.push(this.personInitialLoad);
-  }
-
-  onChangeOfType() {
-    this.withDynamicTabs = !this.withDynamicTabs;
-    this.tabsComponent.openFirstTab();
   }
 
   private initialPersonArrayByAmount(amount: number) : void {
@@ -84,34 +72,5 @@ export class TabsShowcaseComponent implements OnInit {
 
   getCountOfPersons() : number {
     return Object.keys(this.person).length;
-  }
-
-  onEditPerson(person) {
-    this.tabsComponent.openTab(
-      `Editing ${person.name}`,
-      this.editPersonTemplate,
-      person,
-      true
-    );
-  }
-
-  onAddPerson() {
-    this.tabsComponent.openTab('New Person', this.editPersonTemplate, {}, true);
-  }
-
-  onPersonFormSubmit(dataModel) {
-    if (dataModel.id > 0) {
-      this.person = this.person.map(person => {
-        if (person.id === dataModel.id) {
-            return dataModel;
-        } else {
-            return person;
-        }
-      });
-    } else {
-      dataModel.id = this.person.length + 1;
-      this.person.push(dataModel);
-    }
-    this.tabsComponent.closeActiveTab();
   }
 }

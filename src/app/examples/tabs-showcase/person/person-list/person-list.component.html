@@ -4,8 +4,6 @@
       <td>{{ p.id }}.</td>
       <td>{{ p.name }}</td>
       <td>{{ p.surname }}</td>
-      <td><button sbbButton mode="primary" (click)="editPerson.emit(p)" id="sbb-edit-button-{{ i }}">Edit</button></td>
     </tr>
   </tbody>
 </table>
-<button sbbButton mode="primary" (click)="addPerson.emit()" id="addNewPersonButton">Add new person</button>

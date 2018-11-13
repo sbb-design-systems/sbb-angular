@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TabsShowcaseComponent } from './tabs-showcase.component';
-import { PersonEditComponent } from './person/person-edit/person-edit.component';
 import { PersonListComponent } from './person/person-list/person-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabsModule, FieldModule } from 'sbb-angular';
@@ -19,7 +18,7 @@ describe('TabsShowcaseComponent', () => {
                 ReactiveFormsModule,
                 TabsModule,
                 FieldModule],
-      declarations: [TabsShowcaseComponent, PersonEditComponent, PersonListComponent]
+      declarations: [TabsShowcaseComponent, PersonListComponent]
     })
     .overrideComponent(TabsShowcaseComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }

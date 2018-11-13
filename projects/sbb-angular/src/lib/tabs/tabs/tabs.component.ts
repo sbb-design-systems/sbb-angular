@@ -2,10 +2,7 @@ import { Component,
          ContentChildren,
          QueryList,
          AfterContentInit,
-         ViewChild,
-         ComponentFactoryResolver,
-         ViewContainerRef
-} from '@angular/core';
+         ComponentFactoryResolver } from '@angular/core';
 import { TabComponent } from '../tab/tab.component';
 
 let counter = 0;
@@ -19,13 +16,9 @@ export class TabsComponent implements AfterContentInit {
 
   nameOfTabList = `sbb-tabs-${counter++}`;
 
-  dynamicTabs: TabComponent[] = [];
-
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
   @ContentChildren(TabsComponent) tabModules: QueryList<TabsComponent>;
-
-  @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
 
   constructor(public componentFactoryResolver: ComponentFactoryResolver) {}
 
@@ -52,8 +45,7 @@ export class TabsComponent implements AfterContentInit {
   }
 
   private checkNumberOfTabs() : void {
-    const sizeOfTabs = this.tabs.length + this.dynamicTabs.length;
-    if(sizeOfTabs < 2) {
+    if(this.tabs.length < 2) {
        throw new Error(`The number of tabs must be at least 2`);
     }
   }
@@ -61,69 +53,17 @@ export class TabsComponent implements AfterContentInit {
   private checkNumberOfBadgePillsPerTab() : void {
     const tabsWithBadgePills = this.tabs.filter(tab => tab.badgePill < 0 || tab.badgePill > 999);
     if (tabsWithBadgePills.length > 0) {
-        this.throwBadgePillsError();
+        throw new Error(`The quantity indicator should contains only numbers with a maximum of 3 digits (0-999)`);
     }
-    const dynamicsTabsWithBadgePills = this.dynamicTabs.filter(tab => tab.badgePill < 0 || tab.badgePill > 999);
-    if (dynamicsTabsWithBadgePills.length > 0) {
-        this.throwBadgePillsError();
-    }
-  }
-
-  private throwBadgePillsError(): void {
-    throw new Error(`The quantity indicator should contains only numbers with a maximum of 3 digits (0-999)`);
   }
 
   openFirstTab() {
     this.selectTab(this.tabs.first);
   }
 
-  openTab(label: string,
-          template,
-          data,
-          isCloseable = false) {
-
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TabComponent);
-    // tslint:disable-next-line
-    let viewContainerRef = this.dynamicTabPlaceholder;
-    const componentRef = viewContainerRef.createComponent(componentFactory);
-
-    const instance: TabComponent = componentRef.instance as TabComponent;
-    instance.label = label;
-    instance.template = template;
-    instance.dataContext = data;
-    instance.isCloseable = isCloseable;
-    instance.id = 'dynamic-tab';
-
-    this.dynamicTabs.push(componentRef.instance as TabComponent);
-
-    this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
-  }
-
   selectTab(tab: TabComponent) {
     // tslint:disable-next-line
     this.tabs.toArray().forEach(tab => (tab.active = false));
-    // tslint:disable-next-line
-    this.dynamicTabs.forEach(tab => (tab.active = false));
     tab.active = true;
-  }
-
-  closeTab(tab: TabComponent) {
-    for (let i = 0; i < this.dynamicTabs.length; i++) {
-         if (this.dynamicTabs[i] === tab) {
-             this.dynamicTabs.splice(i, 1);
-             // tslint:disable-next-line
-             let viewContainerRef = this.dynamicTabPlaceholder;
-             viewContainerRef.remove(i);
-             this.selectTab(this.tabs.last);
-             break;
-         }
-    }
-  }
-
-  closeActiveTab() {
-    const activeTabs = this.dynamicTabs.filter(tab => tab.active);
-    if (activeTabs.length > 0) {
-        this.closeTab(activeTabs[0]);
-    }
   }
 }

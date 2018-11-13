@@ -29,7 +29,6 @@ import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox
 import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
 import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
-import { PersonEditComponent } from './examples/tabs-showcase/person/person-edit/person-edit.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 
 import { TabsComponent, TabComponent } from 'sbb-angular';
@@ -68,7 +67,6 @@ import { TabsComponent, TabComponent } from 'sbb-angular';
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
-    PersonEditComponent,
     PersonListComponent,
     TabsComponent,
     TabComponent
