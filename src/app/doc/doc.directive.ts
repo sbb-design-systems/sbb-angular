@@ -1,12 +1,13 @@
 import { Directive, Input, ElementRef, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UiComponent } from '../ui-component';
+import { HttpClient } from '@angular/common/http';
+import { UiComponent } from '../shared/ui-component';
+
 
 @Directive({
   selector: '[sbbDoc]',
 
 })
-export class SbbDocDirective implements OnInit {
+export class DocDirective implements OnInit {
 
   private hostElement: HTMLElement;
 

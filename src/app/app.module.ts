@@ -33,9 +33,9 @@ import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-fie
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ComponentsListComponent } from './components-list/components-list.component';
 import { IconsListComponent } from './icons-list/icons-list.component';
-import { SbbDocDirective } from './shared/sbb-doc/sbb-doc.directive';
-import { SourceTabDocComponent } from './shared/source-tab-doc/source-tab-doc.component';
-
+import { DocDirective } from './doc/doc.directive';
+import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-doc.component';
+import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +51,9 @@ import { SourceTabDocComponent } from './shared/source-tab-doc/source-tab-doc.co
     ReplacePipe,
     ComponentsListComponent,
     IconsListComponent,
-    SbbDocDirective,
-    SourceTabDocComponent
+    DocDirective,
+    ExamplesTabDocComponent,
+    ExamplesIconDocComponent
   ],
   imports: [
     BrowserModule,
