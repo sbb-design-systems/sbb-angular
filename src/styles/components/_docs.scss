@@ -171,15 +171,12 @@
     font-size: pxToRem(34);
     font-weight: 400;
     padding: 5px;
-    margin-top: 0;
   }
   &-markdown-h2 {
     font-size: pxToRem(24);
-    margin-top: 0;
   }
   &-markdown-h3 {
     font-size: pxToRem(20);
-    margin-top: 0;
   }
   &-markdown-h2,
   &-markdown-h4 {
@@ -188,6 +185,13 @@
   &-markdown-h5 {
     font-size: pxToRem(18);
   }
+
+  &-markdown-h1, &-markdown-h2, &-markdown-h3, &-markdown-h4 {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
   &-markdown-ol,
   &-markdown-p,
   &-markdown-ul {

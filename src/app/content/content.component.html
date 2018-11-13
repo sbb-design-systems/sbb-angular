@@ -14,7 +14,7 @@
 <div role="presentation" class="sbbsc-separator"></div>
 
 <!-- TO UPDATE WITH SBB TABS WHEN READY -->
-<div [@fadeAnimation]>
+
   <ngb-tabset *ngIf="!uiIcon">
     <ngb-tab title="Overview" id="sbbsc-overview-tab">
       <ng-template ngbTabContent>
@@ -38,5 +38,6 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-  <sbb-examples-icon-doc *ngIf="uiIcon" [uiIcon]="uiIcon"></sbb-examples-icon-doc>
-</div>
+  <div [@fadeAnimation]>
+    <sbb-examples-icon-doc *ngIf="uiIcon" [uiIcon]="uiIcon"></sbb-examples-icon-doc>
+  </div>

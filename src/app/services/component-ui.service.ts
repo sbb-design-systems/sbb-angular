@@ -189,7 +189,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Check Box',
-        'check-box',
+        'checkbox',
         'Check Box',
         'Subtitel goes here ...',
         true,
