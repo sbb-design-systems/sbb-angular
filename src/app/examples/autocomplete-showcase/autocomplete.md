@@ -13,37 +13,37 @@ If you are unfamiliar with using reactive forms, you can read more about the sub
 
 *my-comp.html*
 ```html
-<mat-form-field>
+<sbb-form-field>
   <input type="text" matInput [formControl]="myControl">
-</mat-form-field>
+</sbb-form-field>
 ```
 
 Next, create the autocomplete panel and the options displayed inside it. Each option should be
-defined by a `mat-option` tag. Set each option's value property to whatever you'd like the value
+defined by a `sbb-option` tag. Set each option's value property to whatever you'd like the value
 of the text input to be upon that option's selection.
 
 *my-comp.html*
 ```html
-<mat-autocomplete>
-  <mat-option *ngFor="let option of options" [value]="option">
+<sbb-autocomplete>
+  <sbb-option *ngFor="let option of options" [value]="option">
     {{ option }}
-  </mat-option>
-</mat-autocomplete>
+  </sbb-option>
+</sbb-autocomplete>
 ```
 
 Now we'll need to link the text input to its panel. We can do this by exporting the autocomplete
 panel instance into a local template variable (here we called it "auto"), and binding that variable
-to the input's `matAutocomplete` property.
+to the input's `sbbAutocomplete` property.
 
 *my-comp.html*
 ```html
-<mat-form-field>
-  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-</mat-form-field>
+<sbb-form-field>
+  <input type="text" matInput [formControl]="myControl" [sbbAutocomplete]="auto">
+</sbb-form-field>
 
-<mat-autocomplete #auto="matAutocomplete">
-  <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
-</mat-autocomplete>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>
+</sbb-autocomplete>
 ```
 
 <!-- example(autocomplete-simple) -->
@@ -84,7 +84,7 @@ desired display value. Then bind it to the autocomplete's `displayWith` property
 ### Automatically highlighting the first option
 
 If your use case requires for the first autocomplete option to be highlighted when the user opens
-the panel, you can do so by setting the `autoActiveFirstOption` input on the `mat-autocomplete`
+the panel, you can do so by setting the `autoActiveFirstOption` input on the `sbb-autocomplete`
 component. This behavior can be configured globally using the `MAT_AUTOCOMPLETE_DEFAULT_OPTIONS`
 injection token.
 
@@ -94,21 +94,21 @@ injection token.
 
 By default the autocomplete panel will be attached to your input element, however in some cases you
 may want it to attach to a different container element. You can change the element that the
-autocomplete is attached to using the `matAutocompleteOrigin` directive together with the
-`matAutocompleteConnectedTo` input:
+autocomplete is attached to using the `sbbAutocompleteOrigin` directive together with the
+`sbbAutocompleteConnectedTo` input:
 
 ```html
-<div class="custom-wrapper-example" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+<div class="custom-wrapper-example" sbbAutocompleteOrigin #origin="sbbAutocompleteOrigin">
   <input
     matInput
     [formControl]="myControl"
-    [matAutocomplete]="auto"
-    [matAutocompleteConnectedTo]="origin">
+    [sbbAutocomplete]="auto"
+    [sbbAutocompleteConnectedTo]="origin">
 </div>
 
-<mat-autocomplete #auto="matAutocomplete">
-  <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
-</mat-autocomplete>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of options" [value]="option">{{option}}</sbb-option>
+</sbb-autocomplete>
 ```
 
 ### Keyboard interaction
@@ -117,18 +117,18 @@ autocomplete is attached to using the `matAutocompleteOrigin` directive together
 - <kbd>ENTER</kbd>: Select currently active item.
 
 ### Option groups
-`mat-option` can be collected into groups using the `mat-optgroup` element:
+`sbb-option` can be collected into groups using the `sbb-option-group` element:
 <!-- example(autocomplete-optgroup) -->
 
 
 ```html
-<mat-autocomplete #auto="matAutocomplete">
-  <mat-optgroup *ngFor="let group of filteredGroups | async" [label]="group.name">
-    <mat-option *ngFor="let option of group.options" [value]="option">
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option-group *ngFor="let group of filteredGroups | async" [label]="group.name">
+    <sbb-option *ngFor="let option of group.options" [value]="option">
       {{option.name}}
-    </mat-option>
-  </mat-optgroup>
-</mat-autocomplete>
+    </sbb-option>
+  </sbb-option-group>
+</sbb-autocomplete>
 ```
 
 ### Accessibility
