@@ -42,13 +42,6 @@ describe('TabsShowcaseComponent', () => {
      expect(component.tabsComponent.tabs.length).toBe(4);
   });
 
-  it('tab module should have 3 tabs and 1 dynamic tab inside', () => {
-     // first round of change detection ...
-     fixture.detectChanges();
-     const counter = component.tabsComponent.tabs.length + component.tabsComponent.dynamicTabs.length;
-     expect(counter).toBe(4);
-  });
-
   it('tab module should have no more tab modules inside', () => {
     // first round of change detection ...
     fixture.detectChanges();
@@ -69,30 +62,6 @@ describe('TabsShowcaseComponent', () => {
     expect(component.tabsComponent.tabs.last.label).toBe('Persons');
     expect(component.tabsComponent.tabs.last.id).toBe('persons-tab');
     expect(component.tabsComponent.tabs.last.active).toBe(false);
-  });
-
-  it('person tab should have 1 edit button', () => {
-     // first round of change detection ...
-     fixture.detectChanges();
-     // switch over to our dynamic tab ...
-     component.tabsComponent.selectTab(component.tabsComponent.tabs.last);
-     expect(component.tabsComponent.tabs.last.active).toBe(true);
-     // get edit button ...
-     const editButton = debugElement.query(By.css('#sbb-edit-button-0')).nativeElement;
-     expect(editButton).toBeTruthy();
-     expect(editButton.textContent).toBe('Edit');
-  });
-
-  it('person tab should have 1 add new person button', () => {
-     // first round of change detection ...
-     fixture.detectChanges();
-     // switch over to our dynamic tab ...
-     component.tabsComponent.selectTab(component.tabsComponent.tabs.last);
-     expect(component.tabsComponent.tabs.last.active).toBe(true);
-     // get add new person button ...
-     const addNewPersonButton = debugElement.query(By.css('#addNewPersonButton')).nativeElement;
-     expect(addNewPersonButton).toBeTruthy();
-     expect(addNewPersonButton.textContent).toBe('Add new person');
   });
 
   it('person tab should have 1 tag pill / quantity indicator with the value 1', () => {
