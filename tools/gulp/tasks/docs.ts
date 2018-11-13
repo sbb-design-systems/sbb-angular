@@ -1,6 +1,5 @@
 import { task, src, dest } from 'gulp';
 import { Dgeni } from 'dgeni';
-import * as path from 'path';
 import { apiDocsPackage } from '../../dgeni/index';
 
 // There are no type definitions available for these imports.

@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
 @Component({
   selector: 'sbb-field-showcase',
-  templateUrl: './sbb-field-showcase.component.html',
-  styleUrls: ['./sbb-field-showcase.component.scss']
+  templateUrl: './field-showcase.component.html',
+  styleUrls: ['./field-showcase.component.scss']
 })
 export class SbbFieldShowcaseComponent implements OnInit {
 

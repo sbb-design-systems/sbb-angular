@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SbbFieldShowcaseComponent } from './sbb-field-showcase.component';
+import { SbbFieldShowcaseComponent } from './field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldModule } from 'sbb-angular';
+import { FieldModule } from 'sbb-angular/sbb-angular';
 
 describe('SbbFieldShowcaseComponent', () => {
 
