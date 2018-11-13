@@ -17,7 +17,7 @@
 <ngb-tabset (tabChange)="cambiatoTab($event)">
   <ngb-tab title="Overview" id="sbbsc-overview-tab">
     <ng-template ngbTabContent>
-      <p>OVERVIEW...</p>
+      <div [sbbDoc]="uiComponent" type="md"></div>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Api" id="sbbsc-api-tab">

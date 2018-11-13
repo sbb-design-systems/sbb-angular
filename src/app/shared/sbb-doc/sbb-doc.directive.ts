@@ -44,6 +44,9 @@ export class SbbDocDirective implements OnInit {
       case 'scss':
         docsUrl += 'examples/' + this.sbbDoc.routerLink + '-showcase.' + this.componentType + '-scss';
         break;
+      case 'md':
+        docsUrl += 'markdown/' + this.sbbDoc.routerLink + '-showcase/sbb-angular-' + this.sbbDoc.routerLink;
+        break;
       default:
         docsUrl += 'api/sbb-angular-' + this.sbbDoc.routerLink;
 
