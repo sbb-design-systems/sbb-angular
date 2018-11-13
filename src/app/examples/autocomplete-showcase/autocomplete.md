@@ -2,7 +2,7 @@ The autocomplete is a normal text input enhanced by a panel of suggested options
 
 ### Simple autocomplete
 
-Start by adding a regular `matInput` to your template. Let's assume you're using the `formControl`
+Let's assume you're using the `formControl`
 directive from `ReactiveFormsModule` to track the value of the input.
 
 > Note: It is possible to use template-driven forms instead, if you prefer. We use reactive forms
@@ -14,7 +14,7 @@ If you are unfamiliar with using reactive forms, you can read more about the sub
 *my-comp.html*
 ```html
 <sbb-form-field>
-  <input type="text" matInput [formControl]="myControl">
+  <input type="text" [formControl]="myControl">
 </sbb-form-field>
 ```
 
@@ -38,7 +38,7 @@ to the input's `sbbAutocomplete` property.
 *my-comp.html*
 ```html
 <sbb-form-field>
-  <input type="text" matInput [formControl]="myControl" [sbbAutocomplete]="auto">
+  <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
 </sbb-form-field>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
@@ -100,7 +100,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 ```html
 <div class="custom-wrapper-example" sbbAutocompleteOrigin #origin="sbbAutocompleteOrigin">
   <input
-    matInput
+     
     [formControl]="myControl"
     [sbbAutocomplete]="auto"
     [sbbAutocompleteConnectedTo]="origin">
