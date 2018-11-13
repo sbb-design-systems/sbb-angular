@@ -95,7 +95,7 @@ task('markdown-docs-sbb-angular', () => {
         }
     };
 
-    return src(['src/lib/**/!(README).md'])
+    return src(['src/app/examples/**/!(README).md'])
         .pipe(rename({ prefix: 'sbb-angular-' }))
         .pipe(markdown(markdownOptions))
         .pipe(transform(transformMarkdownFiles))
