@@ -32,16 +32,26 @@
   &-body {
     padding: 0.25em 1em;
     
-    .nav-link {
-      font-size: 90%;
+    ngb-tabset .nav-tabs .nav-item .nav-link {
+      font-size: pxToRem(22);
     }
   }
 
   &-src {
-
+    border-bottom: 1px solid rgba($colorGreyLight, 0.5);
+    min-height: 300px;
   }
 
   &-instance {
+    h2, h3, h4 {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
 
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
   }
 }

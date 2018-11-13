@@ -9,6 +9,8 @@
     <article class="sbbsc-comp-viewer-src" *ngIf="toggleSrcVisible">
       <sbb-examples-tab-doc [component]="component"></sbb-examples-tab-doc>
     </article>
-    <article [sbbComponentViewer]="component" class="sbbsc-comp-viewer-instance"></article>
+    <article class="sbbsc-comp-viewer-instance">
+      <ng-template [sbbComponentViewer]="component"></ng-template>
+    </article>
   </div>
 </section>

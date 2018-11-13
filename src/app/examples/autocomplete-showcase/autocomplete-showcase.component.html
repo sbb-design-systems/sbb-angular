@@ -1,8 +1,7 @@
 <div class="container-fluid">
-  <h3>Autocomplete</h3>
   <div class="row">
     <div class="col-lg-6">
-      <legend>Basic Example</legend>
+      <h4>Basic Example</h4>
       <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
       <sbb-autocomplete #auto="sbbAutocomplete">
         <sbb-option *ngFor="let option of filteredOptions" [value]="option">
@@ -13,9 +12,11 @@
     </div>
   </div>
 
+  <div role="presentation" class="sbbsc-separator"></div>
+
   <div class="row">
     <div class="col-lg-6">
-      <legend>Static Options and async call Example</legend>
+      <h4>Basic Example</h4>
       <input type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic">
       <sbb-autocomplete #autoStatic="sbbAutocomplete">
         <sbb-option *ngFor="let option of options$ | async" [value]="option">
@@ -30,7 +31,7 @@
       <pre>{{ myControlStatic.value | json }}</pre>
     </div>
     <div class="col-lg-6">
-      <legend>Properties</legend>
+      <h4>Properties</h4>
       <p>
         The async call is emulated by a 500ms delay.<br>
         Two digits are needed at least to trigger the async function call.

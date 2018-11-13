@@ -79,7 +79,8 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent
+    SbbFieldShowcaseComponent,
+    ComponentViewerComponent
   ]
 })
 export class AppModule { }
