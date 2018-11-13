@@ -69,13 +69,23 @@ const markdownOptions = {
     }
 };
 
+
+// Options for the html-minifier that minifies the generated HTML files.
+const htmlMinifierOptions = {
+    collapseWhitespace: true,
+    removeComments: true,
+    caseSensitive: true,
+    removeAttributeQuotes: false
+};
+
 /** Generate all docs content. */
 task('docs', sequenceTask(
     [
+        'markdown-docs-sbb-angular',
         'build-highlighted-examples',
         'api-docs',
     ],
-
+    'minify-html-files'
 ));
 
 /** Generates html files from the markdown overviews and guides. */
@@ -95,10 +105,13 @@ task('markdown-docs-sbb-angular', () => {
         }
     };
 
-    return src(['src/app/examples/**/!(README).md'])
-        .pipe(rename({ prefix: 'sbb-angular-' }))
+    return src(['src/app/examples/**/*.+(md)'])
+        .pipe(rename({
+            prefix: 'sbb-angular-',
+            extname: '.html'
+        }))
         .pipe(markdown(markdownOptions))
-        .pipe(transform(transformMarkdownFiles))
+        //  .pipe(transform(transformMarkdownFiles))
         .pipe(dom(createTagNameAliaser('docs-markdown')))
         .pipe(dest('src/docs/markdown'));
 });
@@ -127,40 +140,15 @@ task('api-docs', () => {
     return docs.generate();
 });
 
-/** Updates the markdown file's content to work inside of the docs app. */
-function transformMarkdownFiles(buffer: Buffer, file: any): string {
-    let content = buffer.toString('utf-8');
-
-    // Replace <!-- example(..) --> comments with HTML elements.
-    content = content.replace(EXAMPLE_PATTERN, (_match: string, name: string) =>
-        `<div sbb-angular-docs-example="${name}"></div>`
-    );
-
-    // Replace the URL in anchor elements inside of compiled markdown files.
-    content = content.replace(LINK_PATTERN, (_match: string, head: string, link: string) =>
-        // The head is the first match of the RegExp and is necessary to ensure that the RegExp matches
-        // an anchor element. The head will be then used to re-create the existing anchor element.
-        // If the head is not prepended to the replaced value, then the first match will be lost.
-        `${head} href="${fixMarkdownDocLinks(link, file.path)}"`
-    );
-
-    // Finally, wrap the entire generated in a doc in a div with a specific class.
-    return `<div class="docs-markdown">${content}</div>`;
-}
-
-function fixMarkdownDocLinks(link: string, filePath: string): string {
-    // As for now, only markdown links that are relative and inside of the guides/ directory
-    // will be rewritten.
-    if (!filePath.includes(path.normalize('guides/')) || link.startsWith('http')) {
-        return link;
-    }
-
-    const baseName = path.basename(link, path.extname(link));
-
-    // Temporary link the file to the /guide URL because that's the route where the
-    // guides can be loaded in the docs.
-    return `guide/${baseName}`;
-}
+/**
+ * Minifies all HTML files that have been generated. The HTML files for the
+ * highlighted examples can be skipped, because it won't have any effect.
+ */
+task('minify-html-files', () => {
+    return src('src/docs/+(api|markdown)/**/*.html')
+        .pipe(htmlmin(htmlMinifierOptions))
+        .pipe(dest('src/docs'));
+});
 
 /**
  * Returns a function to be called with an HTML document as its context that aliases HTML tags by
