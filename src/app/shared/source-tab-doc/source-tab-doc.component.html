@@ -1,3 +1,17 @@
-<pre [sbbDoc]="component" type="ts"></pre> 
-<pre [sbbDoc]="component" type="html"></pre>
-<pre [sbbDoc]="component" type="scss"></pre>
+<ngb-tabset>
+  <ngb-tab title="HTML">
+    <ng-template ngbTabContent>
+      <pre [sbbDoc]="component" type="html" [@slideAnimation]></pre>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="TS">
+    <ng-template ngbTabContent>
+      <pre [sbbDoc]="component" type="ts" [@slideAnimation]></pre>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="SCSS">
+    <ng-template ngbTabContent>
+      <pre [sbbDoc]="component" type="scss" [@slideAnimation]></pre>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

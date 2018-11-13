@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,7 @@ import { ComponentsListComponent } from './components-list/components-list.compo
 import { IconsListComponent } from './icons-list/icons-list.component';
 import { SbbDocDirective } from './shared/sbb-doc/sbb-doc.directive';
 import { SourceTabDocComponent } from './shared/source-tab-doc/source-tab-doc.component';
+import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { SourceTabDocComponent } from './shared/source-tab-doc/source-tab-doc.co
     ComponentsListComponent,
     IconsListComponent,
     SbbDocDirective,
-    SourceTabDocComponent
+    SourceTabDocComponent,
+    ComponentViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { SourceTabDocComponent } from './shared/source-tab-doc/source-tab-doc.co
     ExamplesModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
-    HttpClientModule],
+    HttpClientModule,
+    BrowserAnimationsModule],
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,

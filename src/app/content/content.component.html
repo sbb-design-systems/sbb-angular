@@ -1,3 +1,4 @@
+
 <h2 class="sbbsc-content-title">
   <span i18n class="sbbsc-content-title-text">{{ uiComponent.title }}</span>
   <sbb-icon-arrow-left></sbb-icon-arrow-left>
@@ -14,7 +15,7 @@
 <div role="presentation" class="sbbsc-separator"></div>
 
 <!-- TO UPDATE WITH SBB TABS WHEN READY -->
-<ngb-tabset (tabChange)="cambiatoTab($event)">
+<ngb-tabset *ngIf="!uiIcon">
   <ngb-tab title="Overview" id="sbbsc-overview-tab">
     <ng-template ngbTabContent>
       <p>OVERVIEW...</p>
@@ -27,15 +28,14 @@
   </ngb-tab>
   <ngb-tab title="Examples" id="sbbsc-example-tab">
     <ng-template ngbTabContent>
-      <sbb-source-tab-doc [component]="uiComponent"></sbb-source-tab-doc>
-      <ng-template *ngIf="!uiIcon" [sbbComponentViewer]="uiComponent"></ng-template>
-      <ng-template *ngIf="uiIcon" [sbbIconViewer]="uiIcon" singleOrMultiple="multiple"></ng-template>
+      <sbb-component-viewer [component]="uiComponent"></sbb-component-viewer>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
 
 
-
+<!-- <ng-template *ngIf="!uiIcon" [sbbComponentViewer]="uiComponent"></ng-template>
+<ng-template *ngIf="uiIcon" [sbbIconViewer]="uiIcon" singleOrMultiple="multiple"></ng-template> -->
 
 
 <!-- 1) Introduction -->

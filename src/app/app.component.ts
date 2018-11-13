@@ -2,12 +2,15 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentUiService } from './services/component-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 import { IconUiService } from './services/icon-ui.service';
-import { Router } from '@angular/router';
+import { fadeAnimation } from './shared/animations';
 
 @Component({
   selector: 'sbb-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    fadeAnimation
+  ]
 })
 export class AppComponent implements OnInit {
 
@@ -26,8 +29,7 @@ export class AppComponent implements OnInit {
 
   constructor(private componentUiService : ComponentUiService,
               private iconUiService : IconUiService,
-              private accordionNotificationService : AccordionNotificationService,
-              private router: Router) {
+              private accordionNotificationService : AccordionNotificationService) {
   }
 
   ngOnInit() {
@@ -47,4 +49,5 @@ export class AppComponent implements OnInit {
     evt.preventDefault();
     this.maincontent.nativeElement.focus();
   }
+
 }

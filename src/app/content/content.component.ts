@@ -4,11 +4,15 @@ import { ComponentUiService } from '../services/component-ui.service';
 import { UiComponent } from '../shared/ui-component';
 import { IconUiService } from '../services/icon-ui.service';
 import { UiIcon } from '../shared/ui-icon';
+import { slideAnimation } from '../shared/animations';
 
 @Component({
   selector: 'sbb-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  styleUrls: ['./content.component.scss'],
+  animations: [
+    slideAnimation
+  ]
 })
 export class ContentComponent implements OnInit {
 
@@ -36,10 +40,6 @@ export class ContentComponent implements OnInit {
       }
 
     });
-  }
-
-  cambiatoTab(evt) {
-    console.log('CAMBIATO TAB', evt);
   }
 
 }

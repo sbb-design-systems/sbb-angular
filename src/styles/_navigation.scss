@@ -11,6 +11,10 @@
   a {
     text-decoration: none;
     vertical-align: top;
+
+    &.sbbsc-active {
+      color: $colorRed125;
+    }
   }
 }
 
