@@ -145,7 +145,7 @@ task('api-docs', () => {
  * highlighted examples can be skipped, because it won't have any effect.
  */
 task('minify-html-files', () => {
-    return src('src/docs/+(api|markdown|examples)/**/*.html')
+    return src('src/docs/+(api|markdown)/**/*.html')
         .pipe(htmlmin(htmlMinifierOptions))
         .pipe(dest('src/docs'));
 });
