@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { InputFieldShowcaseComponent } from './input-field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldModule } from 'sbb-angular';
+import { InputFieldShowcaseComponent } from './text-input-showcase.component';
 
 describe('InputFieldShowcaseComponent', () => {
 

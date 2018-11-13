@@ -6,8 +6,9 @@ import { AutocompleteShowcaseComponent } from '../examples/autocomplete-showcase
 import { ButtonShowcaseComponent } from '../examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
-import { InputFieldShowcaseComponent } from '../examples/input-field-showcase/input-field-showcase.component';
-import { SbbFieldShowcaseComponent } from '../examples/sbb-field-showcase/sbb-field-showcase.component';
+import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
+import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Link',
-        'link',
+        'links',
         'Link',
         null,
         true,
@@ -86,7 +87,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Input Field',
-        'inputField',
+        'text-input',
         'Input Field',
         'Input Field is an extension to standard input element with theming.',
         true,
@@ -99,7 +100,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'SBB Field',
-        'sbbField',
+        'field',
         'SBB Field',
         'SBB Field is an extension to standard input element with theming.',
         true,
@@ -125,7 +126,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Text Area',
-        'textArea',
+        'textarea',
         'Text Area',
         'Subtitel goes here ...',
         true,
@@ -175,7 +176,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Radio Button',
-        'radioButton',
+        'radio-button',
         'Radio Button',
         null,
         true,
@@ -188,7 +189,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Check Box',
-        'checkBox',
+        'check-box',
         'Check Box',
         'Subtitel goes here ...',
         true,
@@ -201,7 +202,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Tab',
-        'tab',
+        'tabs',
         'Tab',
         'Subtitel goes here ...',
         true,
