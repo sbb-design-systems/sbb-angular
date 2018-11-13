@@ -22,13 +22,6 @@ export class SbbDocDirective implements OnInit {
 
   ngOnInit(): void {
     this.componentType = this.sbbDoc.isComponent ? 'component' : 'directive';
-
-  /*   const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'text/html',
-        'Accept': 'text/html'
-      })
-    }; */
     this.http
       .get(this.apiDocHTMLName, { responseType: 'text' })
       .subscribe((html: any) => this.templateHtml = html);
@@ -58,6 +51,5 @@ export class SbbDocDirective implements OnInit {
     }
     return docsUrl + '.html';
   }
-
 
 }

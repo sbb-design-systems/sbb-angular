@@ -29,23 +29,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        `showCode() {\n //write it out ...\n alert('Import code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Getting started code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Model binding code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Icons code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Auto resize code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Properties code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Events code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Styling code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`,
         ButtonShowcaseComponent
       ),
       new UiComponent(
@@ -58,24 +41,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        `showCode() {\n //write it out ...\n alert('Import code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Getting started code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Model binding code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Icons code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Auto resize code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Properties code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Events code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Styling code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`
+        'Import text.'
       ),
       new UiComponent(
         'Table',
@@ -89,24 +55,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        `showCode() {\n //write it out ...\n alert('Import code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Getting started code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Model binding code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Icons code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Auto resize code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Properties code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Events code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Styling code goes here ...');\n}`,
-        `showCode() {\n //write it out ...\n alert('Dependencies code goes here ...');\n}`
+        'Import text.'
       ),
       new UiComponent(
         'Link',
@@ -118,37 +67,10 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili, Dario D\'Oronzo'],
         null,
         '<a href="#" sbbLink mode="normal" icon="arrow">Bezeichnung</a>\n<a href="#" sbbSocialLink icon="facebook">Bezeichnung</a>',
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         'import { LinksModule } from \'sbb-angular\';\n\n' +
         '@NgModule({\n  declarations: [\n    ...\n  ],\n  imports: [\n    ...\n    LinksModule\n  ]\n})\n' +
         'export class ExamplesModule { }',
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        LinksShowcaseComponent,
-        [],
-        true,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
+        LinksShowcaseComponent
       ),
       new UiComponent(
         'Loading Indicator',
@@ -160,24 +82,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Input Field',
@@ -190,23 +95,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
         InputFieldShowcaseComponent
       ),
       new UiComponent(
@@ -220,23 +108,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
         SbbFieldShowcaseComponent
       ),
       new UiComponent(
@@ -250,23 +121,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
         AutocompleteShowcaseComponent
       ),
       new UiComponent(
@@ -280,23 +134,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
         TextareaShowcaseComponent
       ),
       new UiComponent(
@@ -309,24 +146,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Date Picker',
@@ -338,24 +158,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Time Chooser',
@@ -367,24 +170,8 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
+
       ),
       new UiComponent(
         'Radio Button',
@@ -397,23 +184,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
         RadioButtonShowcaseComponent
       ),
       new UiComponent(
@@ -427,23 +197,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}',
         CheckboxShowcaseComponent
       ),
       new UiComponent(
@@ -456,24 +209,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Accordion',
@@ -485,24 +221,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Section (Fieldset)',
@@ -514,24 +233,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Light Box',
@@ -543,24 +245,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Notification',
@@ -572,24 +257,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Process Flow',
@@ -601,24 +269,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Option Chooser (simple)',
@@ -630,24 +281,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       ),
       new UiComponent(
         'Option Chooser (multiple)',
@@ -659,24 +293,7 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.',
-        'Getting started text.',
-        'Model binding text.',
-        'Icon text.',
-        'Auto resize text.',
-        'Properties text.',
-        'Events text.',
-        'Styling text.',
-        'Dependencies text.',
-        'showCode() {\n //write it out ...\n alert(\'Import code goes here ...\');\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Getting started code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Model binding code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Icons code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Auto resize code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Properties code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Events code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Styling code goes here ...\';)\n;}',
-        'showCode() {\n //write it out ...\n alert(\'Dependencies code goes here ...\';)\n;}'
+        'Import text.'
       )
     ];
   }
@@ -685,19 +302,19 @@ export class ComponentUiService {
     return this.uiComponents.find(uiComponent => uiComponent.routerLink === name);
   }
 
-  getUiComponentsBySearchValue(searchValue : any): Array<UiComponent> {
+  getUiComponentsBySearchValue(searchValue: any): Array<UiComponent> {
 
-    let foundUiComponents : UiComponent[] = [];
-    if(searchValue.length > 0) {
-       foundUiComponents = this.uiComponents.filter(
-         uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
-       );
+    let foundUiComponents: UiComponent[] = [];
+    if (searchValue.length > 0) {
+      foundUiComponents = this.uiComponents.filter(
+        uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+      );
     } else {
       foundUiComponents = this.uiComponents;
     }
 
     const newFoundUiComponents: UiComponent[] = [];
-    foundUiComponents.forEach(function(item) {
+    foundUiComponents.forEach(function (item) {
       newFoundUiComponents.push(
         new UiComponent(
           item.id,
@@ -709,50 +326,33 @@ export class ComponentUiService {
           item.authors,
           item.description,
           item.source,
-          item.importText,
-          item.gettingStartedText,
-          item.modelBindingText,
-          item.iconsText,
-          item.autoResizeText,
-          item.propertiesText,
-          item.eventsText,
-          item.stylingText,
-          item.dependenciesText,
-          item.importCode,
-          item.gettingStartedCode,
-          item.modelBindingCode,
-          item.iconsCode,
-          item.autoResizeCode,
-          item.propertiesCode,
-          item.eventsCode,
-          item.stylingCode,
-          item.dependenciesCode
+          item.importText
         )
       );
     });
 
-    for(const uiComponent of newFoundUiComponents) {
-        if(uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
-           const index = uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase());
-           const preFix = uiComponent.id.substring(0, index);
-           const sufFix = uiComponent.id.substring(index + searchValue.length);
-           const searchText = uiComponent.id.substring(index, index + searchValue.length);
-           const newId = preFix + '<b>' + searchText + '</b>' + sufFix;
-           uiComponent.id = newId;
-        }
+    for (const uiComponent of newFoundUiComponents) {
+      if (uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
+        const index = uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase());
+        const preFix = uiComponent.id.substring(0, index);
+        const sufFix = uiComponent.id.substring(index + searchValue.length);
+        const searchText = uiComponent.id.substring(index, index + searchValue.length);
+        const newId = preFix + '<b>' + searchText + '</b>' + sufFix;
+        uiComponent.id = newId;
+      }
     }
 
-    return newFoundUiComponents.sort((a,b) => a.id.localeCompare(b.id));
+    return newFoundUiComponents.sort((a, b) => a.id.localeCompare(b.id));
   }
 
   getAll(): Array<UiComponent> {
-    return this.uiComponents.sort((a,b) => a.id.localeCompare(b.id));
+    return this.uiComponents.sort((a, b) => a.id.localeCompare(b.id));
   }
 
   getAllAsString(): Array<string> {
-    const routerLinks : string[] = [];
-    for(const uiComponent of this.uiComponents) {
-        routerLinks.push(uiComponent['routerLink']);
+    const routerLinks: string[] = [];
+    for (const uiComponent of this.uiComponents) {
+      routerLinks.push(uiComponent['routerLink']);
     }
     return routerLinks;
   }
