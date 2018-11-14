@@ -4,7 +4,7 @@ import { RadioButton } from './radio-button.model';
 @Injectable()
 export class RadioButtonRegistryService {
 
-  private _accessors = {};
+  private _accessors: any = {};
 
   get accessors(): {} {
     return this._accessors;

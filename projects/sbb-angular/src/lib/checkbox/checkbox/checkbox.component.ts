@@ -14,11 +14,11 @@ let counter = 0;
   selector: 'sbb-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  providers: [ {
+  providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => CheckboxComponent),
     multi: true,
-  } ],
+  }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
@@ -40,10 +40,10 @@ export class CheckboxComponent implements ControlValueAccessor {
     return this._checked;
   }
 
-  constructor(private changeDetector: ChangeDetectorRef) {}
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
-  onChange = (_: any) => {};
-  onTouched = () => {};
+  onChange = (_: any) => { };
+  onTouched = () => { };
 
   writeValue(value: any): void {
     this.checked = value;
@@ -52,8 +52,8 @@ export class CheckboxComponent implements ControlValueAccessor {
   registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
   registerOnTouched(fn: () => {}): void { this.onTouched = fn; }
 
-  click($event) {
-    const value = $event.target.checked;
+  click($event: Event) {
+    const value = (<HTMLInputElement>$event.target).checked;
     this.onChange(value);
     this.onTouched();
     this.writeValue(value);

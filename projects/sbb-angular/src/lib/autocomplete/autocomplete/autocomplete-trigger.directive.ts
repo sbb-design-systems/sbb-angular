@@ -151,26 +151,26 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
-  @HostListener('blur', ['$event'])
+  @HostListener('blur')
   onBlur() {
     this.onTouched();
   }
 
   @HostListener('input', ['$event'])
-  onInput($event) {
+  onInput($event: KeyboardEvent) {
     this.handleInput($event);
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown($event) {
+  onKeydown($event: KeyboardEvent) {
     this.handleKeydown($event);
   }
 
-  @HostBinding('attr.aria-expanded') get ariaExpanded() {
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
-  @HostBinding('attr.aria-owns') get ariaOwns() {
+  @HostBinding('attr.aria-owns') get ariaOwns(): string {
     return (this.autocompleteDisabled || !this.panelOpen) ? null : this.autocomplete.id;
   }
 

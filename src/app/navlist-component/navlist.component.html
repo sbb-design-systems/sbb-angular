@@ -1,6 +1,7 @@
-<ul class="navlist">
+<ul class="sbbsc-navlist">
     <li *ngFor="let uiComponent of foundUiComponents">
        <a [routerLink]="['content', uiComponent.routerLink]"
+          routerLinkActive="sbbsc-active"
           (click)="navigate('content/' + uiComponent.routerLink)">{{ uiComponent.id }}</a>    
     </li>
 </ul>

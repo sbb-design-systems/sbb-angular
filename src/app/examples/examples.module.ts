@@ -17,14 +17,14 @@ import {
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
-import { InputFieldShowcaseComponent } from './input-field-showcase/input-field-showcase.component';
-import { SbbFieldShowcaseComponent } from './sbb-field-showcase/sbb-field-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase.component';
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { IconComponents } from '../sbb-components-mapping-export';
+import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
+import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import { IconComponents } from '../sbb-components-mapping-export';
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent
+    SbbFieldShowcaseComponent,
+    ButtonModule
   ]
 })
 export class ExamplesModule { }

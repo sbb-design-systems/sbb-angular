@@ -39,12 +39,28 @@ html {
   }
 }
 
-input,
-textarea,
-select,
-button,
 body {
+  margin: 0;
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+  outline: 0 !important;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0; // Remove the margin in Firefox and Safari
   font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 table {

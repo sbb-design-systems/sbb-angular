@@ -29,11 +29,11 @@
                 "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
                 "output": "/assets/monaco"
-              }
+              },
+              "src/docs"
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/sbb-angular/src/typography.scss"
             ],
