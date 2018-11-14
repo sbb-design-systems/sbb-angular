@@ -1,0 +1,86 @@
+<span class="hljs-keyword">import</span> { ChangeDetectionStrategy, DebugElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-keyword">async</span>, ComponentFixture, TestBed } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/testing'</span>;
+<span class="hljs-keyword">import</span> { SbbFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./sbb-field-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { FormsModule, ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { FieldModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
+
+describe(<span class="hljs-string">'SbbFieldShowcaseComponent'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+
+  <span class="hljs-keyword">let</span> component: SbbFieldShowcaseComponent;
+  <span class="hljs-keyword">let</span> fixture: ComponentFixture&lt;SbbFieldShowcaseComponent&gt;;
+
+  beforeEach(<span class="hljs-keyword">async</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule, FieldModule],
+      declarations: [SbbFieldShowcaseComponent]
+    })
+    .overrideComponent(SbbFieldShowcaseComponent, {
+      <span class="hljs-keyword">set</span>: { changeDetection: ChangeDetectionStrategy.Default }
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    fixture = TestBed.createComponent(SbbFieldShowcaseComponent);
+    component = fixture.componentInstance;
+    component.ngOnInit();
+  });
+
+  it(<span class="hljs-string">'should create'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    expect(component).toBeTruthy();
+  });
+
+  it(<span class="hljs-string">'should have at least 3 types of input text forms'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// first round of change detection ...</span>
+    fixture.detectChanges();
+    <span class="hljs-comment">// tslint:disable-next-line</span>
+    expect(component.types).toEqual([<span class="hljs-string">'1. SBB-Field without Attribute Label'</span>, <span class="hljs-string">'2. SBB-Field with SBB-Label, Text and Input'</span>, <span class="hljs-string">'3. SBB-Field with Attribute Label'</span>]);
+  });
+
+  it(<span class="hljs-string">'form invalid when empty'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+     expect(component.myForm1.valid).toBeFalsy();
+     expect(component.myForm2.valid).toBeFalsy();
+     expect(component.myForm3.valid).toBeFalsy();
+  });
+
+  it(<span class="hljs-string">'name1 field validity'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">const</span> name1 = component.myForm1.controls[<span class="hljs-string">'name1'</span>];
+      <span class="hljs-keyword">const</span> errors = name1.errors || {};
+      expect(errors[<span class="hljs-string">'required'</span>]).toBeTruthy();
+  });
+
+  it(<span class="hljs-string">'name2 field validity'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">const</span> name2 = component.myForm2.controls[<span class="hljs-string">'name2'</span>];
+      <span class="hljs-keyword">const</span> errors = name2.errors || {};
+      expect(errors[<span class="hljs-string">'required'</span>]).toBeTruthy();
+  });
+
+  it(<span class="hljs-string">'name3 field validity'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">const</span> name3 = component.myForm3.controls[<span class="hljs-string">'name3'</span>];
+      <span class="hljs-keyword">const</span> errors = name3.errors || {};
+      expect(errors[<span class="hljs-string">'required'</span>]).toBeTruthy();
+  });
+
+  it(<span class="hljs-string">'name1 field validity after setting a value'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> name1 = component.myForm1.controls[<span class="hljs-string">'name1'</span>];
+    name1.setValue(<span class="hljs-string">'My Name'</span>);
+    <span class="hljs-keyword">const</span> errors = name1.errors || {};
+    expect(errors[<span class="hljs-string">'required'</span>]).toBeFalsy();
+  });
+
+  it(<span class="hljs-string">'name2 field validity after setting a value'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+   <span class="hljs-keyword">const</span> name2 = component.myForm2.controls[<span class="hljs-string">'name2'</span>];
+   name2.setValue(<span class="hljs-string">'My Name'</span>);
+   <span class="hljs-keyword">const</span> errors = name2.errors || {};
+   expect(errors[<span class="hljs-string">'required'</span>]).toBeFalsy();
+   expect(errors[<span class="hljs-string">'minlength'</span>]).toBeFalsy();
+  });
+
+  it(<span class="hljs-string">'name3 field validity after setting a value'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+   <span class="hljs-keyword">const</span> name3 = component.myForm3.controls[<span class="hljs-string">'name3'</span>];
+   name3.setValue(<span class="hljs-string">'My Name'</span>);
+   <span class="hljs-keyword">const</span> errors = name3.errors || {};
+   expect(errors[<span class="hljs-string">'required'</span>]).toBeFalsy();
+  });
+
+});

@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentUiService } from './services/component-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 import { IconUiService } from './services/icon-ui.service';
+import { routeAnimation } from './shared/animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'sbb-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    routeAnimation
+  ]
 })
 export class AppComponent implements OnInit {
 
@@ -20,6 +25,8 @@ export class AppComponent implements OnInit {
   aboutClicked: boolean;
   versionClicked: boolean;
   isSourceTabClicked: boolean;
+
+  @ViewChild('maincontent') maincontent: ElementRef;
 
   constructor(private componentUiService : ComponentUiService,
               private iconUiService : IconUiService,
@@ -37,5 +44,14 @@ export class AppComponent implements OnInit {
     this.accordionNotificationService.openIcon.subscribe(value => {
       this.iconsClicked = !this.iconsClicked;
     });
+  }
+
+  skipLink(evt) {
+    evt.preventDefault();
+    this.maincontent.nativeElement.focus();
+  }
+
+  getPage(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['page'];
   }
 }

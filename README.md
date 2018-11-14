@@ -47,8 +47,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         component path: projects/sbb-angular/src/lib/textarea/textarea  
     (you may have more components per module)  
 
-5. Create a index.js path into the base module path and export the module and the component(s) created
-6. Augment the projects/sbb-angular/src/public_api.ts with the index.js export declaration
+5. Create a index.ts path into the base module path and export the module and the component(s) created
+6. Augment the projects/sbb-angular/src/public_api.ts with the index.ts export declaration
 
 ## Stylesheets
 

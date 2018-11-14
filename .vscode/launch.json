@@ -7,12 +7,18 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\projects\\sbb-angular\\build-icons",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/dist/out-tsc/**/*.js"
+            "name": "Gulp task",
+            "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+            "args": [
+                "docs"
             ]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceRoot}"
         }
     ]
 }
