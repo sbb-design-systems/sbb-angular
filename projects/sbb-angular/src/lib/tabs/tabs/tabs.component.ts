@@ -3,16 +3,20 @@ import { Component,
          QueryList,
          AfterContentInit,
          ComponentFactoryResolver,
-         ElementRef } from '@angular/core';
+         ElementRef,
+         ChangeDetectionStrategy } from '@angular/core';
 import { ENTER, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB } from '@angular/cdk/keycodes';
 import { TabComponent } from '../tab/tab.component';
+import { Observable, merge, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 let counter = 0;
 
 @Component({
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+  styleUrls: ['./tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit {
 
@@ -21,12 +25,28 @@ export class TabsComponent implements AfterContentInit {
   tabListIndex = 0;
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
+  _tabs: Observable<string[]>;
 
   @ContentChildren(TabsComponent) tabModules: QueryList<TabsComponent>;
 
   constructor(public componentFactoryResolver: ComponentFactoryResolver, public elementRef: ElementRef) {}
 
+  getTabsAfterFlagging() {
+    this._tabs.forEach(items => {
+      items.forEach(item => {
+        for(let index = 0; index < this.tabs.toArray().length; index++) {
+            const tab = this.tabs.toArray()[index];
+            if(tab.labelId === item) {
+               tab.isShown = true;
+            }
+        }
+      });
+    });
+    return this.tabs;
+  }
+
   ngAfterContentInit() {
+    this._tabs = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes).pipe(map(tabs => tabs.map(tab => tab.labelId)));
     // 1) check the number of tabs ...
     this.checkNumberOfTabs();
     // 2) check the number of badge pills per tab ...
@@ -41,7 +61,9 @@ export class TabsComponent implements AfterContentInit {
 
   onKeydown(event) {
     if(event.keyCode === ENTER) {
-       /* do nothing */
+       console.log('tabListIndex', this.tabListIndex);
+       const tab     = this.tabs.toArray()[this.tabListIndex];
+       this.selectTab(tab);
     }
     if(event.keyCode === TAB) {
        /* do nothing */

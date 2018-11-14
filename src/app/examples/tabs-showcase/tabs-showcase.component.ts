@@ -11,7 +11,8 @@ export class TabsShowcaseComponent implements OnInit {
   @ViewChild('personEdit') editPersonTemplate;
   @ViewChild(TabsComponent) tabsComponent;
 
-  disabled: boolean;
+  disabled = false;
+  removed = false;
 
   dataSet = 'default (add data manually)';
   data = [
@@ -67,6 +68,12 @@ export class TabsShowcaseComponent implements OnInit {
     }
     if(event.startsWith('1000')) {
        this.initialPersonArrayByAmount(1000);
+    }
+  }
+
+  checkValueForRemoveLastTab() {
+    if(this.removed) {
+       this.tabsComponent.openFirstTab();
     }
   }
 

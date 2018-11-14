@@ -1,17 +1,18 @@
+<div *ngFor="let _tab of _tabs | async" style="display: none;">{{ _tab }}</div>
 <div class="sbb-tabs-wrapper">
 <div role="tablist"
      class="sbb-tabs-tablist"
      [attr.aria-label]="nameOfTabList">
-     <button *ngFor="let tab of tabs"
-              (click)="selectTab(tab)"
-              (keyup)="onKeydown($event)"
-              role="tab"
-              [attr.aria-selected]="tab.active"
-              [attr.aria-controls]="tab.id"
-              [id]="tab.labelId"
-              class="sbb-tabs-tablistitem"
-              [class.is-active]="tab.active"
-              [disabled]="tab.disabled">{{ tab.label }} <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span>
+     <button *ngFor="let tab of getTabsAfterFlagging()"
+             (click)="selectTab(tab)"
+             (keyup)="onKeydown($event)"
+             role="tab"
+             [attr.aria-selected]="tab.active"
+             [attr.aria-controls]="tab.id"
+             [id]="tab.labelId"
+             class="sbb-tabs-tablistitem"
+             [class.is-active]="tab.active"
+             [disabled]="tab.disabled">{{ tab.label }}<span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span>
      </button>
 </div>
 </div>

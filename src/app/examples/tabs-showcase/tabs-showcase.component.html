@@ -39,7 +39,8 @@
                [id]="'persons-tab'"
                [labelId]="'persons'"
                [badgePill]="getCountOfPersons()" 
-               [disabled]="disabled">
+               [disabled]="disabled"
+               *ngIf="!removed">
         <br/>
         <h5>List of Persons</h5>
         <hr/>
@@ -61,6 +62,10 @@
           <div class="form-check">
             <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled" (change)="setFirstTabIfDisabled()">
             <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
+          </div>
+          <div class="form-check">
+            <input id="removed" class="form-check-input" type="checkbox" [(ngModel)]="removed" (change)="checkValueForRemoveLastTab()">
+            <sbb-label class="form-check-label" for="removed">Remove last tab in the tabs module</sbb-label>
           </div>
       </fieldset>
     </div>

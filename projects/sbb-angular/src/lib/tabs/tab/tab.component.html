@@ -1,6 +1,5 @@
-<div *ngIf="active"
+<div *ngIf="active || !disabled"
      [hidden]="!active"
-     [attr.role]="role"
-     class="sbb-tabs-tabpanel">
+     [attr.role]="role">
   <ng-content></ng-content>
 </div>

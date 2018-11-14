@@ -1,6 +1,7 @@
 import { Component,
          Input,
-         HostBinding } from '@angular/core';
+         HostBinding,
+         OnInit } from '@angular/core';
 
 let counter = 0;
 
@@ -9,16 +10,13 @@ let counter = 0;
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss']
 })
-export class TabComponent {
-
-  generatedId = `content${counter++}-tab`;
-  generatedLabelId = `content${counter++}`;
+export class TabComponent implements OnInit {
 
   @HostBinding('attr.id')
-  @Input() id: string = this.generatedId;
+  @Input() id: string;
 
   @HostBinding('attr.aria-labelledby')
-  @Input() labelId: string = this.generatedLabelId;
+  @Input() labelId: string;
 
   @HostBinding('attr.tabindex')
   tabindex = 0;
@@ -33,5 +31,15 @@ export class TabComponent {
   @Input() label: string;
   @Input() active = false;
   @Input() badgePill?: number;
+  @Input() isShown = false;
+
+  ngOnInit() {
+    if(!this.id) {
+        this.id = `content${counter++}-tab`;
+    }
+    if(!this.labelId) {
+        this.labelId = `content${counter++}`;
+    }
+  }
 
 }
