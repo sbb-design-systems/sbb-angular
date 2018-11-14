@@ -1,47 +1,43 @@
 <div class="container-fluid">
-  <h3>Single Radio Button</h3>
   <div class="row">
-    <div class="col-lg-6">
-      <legend>Example</legend>
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Single Radio Button</h4>
       <sbb-radio-button inputId="single-radio" name="single-radio" value="single-radio" [disabled]="disabled"
         [required]="required" [checked]="checked"></sbb-radio-button>
       <label for="single-radio">Test label</label>
     </div>
     <div class="col-lg-6">
-      <legend>Properties</legend>
-      <div>
-        <div class="form-check">
-          <input id="checkedCheck" class="form-check-input" type="checkbox" [(ngModel)]="checked">
-          <label class="form-check-label" for="checkedCheck">Checked</label>
-        </div>
-        <div class="form-check">
-          <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="required">
-          <label class="form-check-label" for="requiredCheck">Required</label>
-        </div>
-        <div class="form-check">
-          <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
-          <label class="form-check-label" for="disabled">Disabled</label>
-        </div>
+      <h4>Properties</h4>
+      <div class="sbbsc-block">
+        <input id="checkedCheck" type="checkbox" [(ngModel)]="checked">&nbsp;
+        <label for="checkedCheck">Checked</label>
+      </div>
+      <div class="sbbsc-block">
+        <input id="requiredCheck" type="checkbox" [(ngModel)]="required">&nbsp;
+        <label for="requiredCheck">Required</label>
+      </div>
+      <div class="sbbsc-block">
+        <input id="disabled" type="checkbox" [(ngModel)]="disabled">&nbsp;
+        <label for="disabled">Disabled</label>
       </div>
     </div>
   </div>
 
-  <h3>Radio buttons</h3>
+  <div role="presentation" class="sbbsc-separator"></div>
+
   <div class="row">
-    <div class="col-lg-6">
-      <legend>Example</legend>
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Radio buttons</h4>
       <ng-container *ngFor="let option of radioOptions; index as i">
-        <sbb-radio-button [(ngModel)]="modelValue" inputId="model-radio-{{i}}" name="model-radio" [value]="option.value"></sbb-radio-button>
-        <label for="model-radio-{{i}}">{{option.name}}</label>
+        <div class="sbbsc-block">
+          <sbb-radio-button [(ngModel)]="modelValue" inputId="model-radio-{{i}}" name="model-radio" [value]="option.value"></sbb-radio-button>
+          <label for="model-radio-{{i}}">{{option.name}}</label>
+        </div>
       </ng-container>
     </div>
     <div class="col-lg-6">
-      <legend>Model</legend>
-      <div>
-        <div class="form-group">
-          <pre>{{ modelValue }}</pre>
-        </div>
-      </div>
+      <h4>Model</h4>
+      <pre>{{ modelValue }}</pre>
     </div>
   </div>
 </div>

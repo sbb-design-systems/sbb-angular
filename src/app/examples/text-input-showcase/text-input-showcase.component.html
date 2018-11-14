@@ -1,46 +1,38 @@
-<div class="conatiner">
-  <div class="row justify-content-between">
-    <div class="col-6">
-      <h5>Input Field (Within SBB-Field)</h5>
-      <div class="form-class">
-        <sbb-field>
-          <sbb-label for="simpleInput">Name</sbb-label>
-          <input [type]="inputType" [placeholder]="placeholder" autocomplete="off" spellcheck="false" [readonly]="readonly"
-            [disabled]="disabled" [required]="required" [(ngModel)]="inputText" id="simpleInput" name="simpleInput"
-            #simpleInput="ngModel">
-        </sbb-field>
-      </div>
-      <div class="form-group">
-        <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is
-          required!</sbb-form-error>
-      </div>
-      <div class="form-group">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Input Field (Within SBB-Field)</h4>
+      <sbb-field>
+        <sbb-label for="simpleInput">Name</sbb-label>
+        <input [type]="inputType" [placeholder]="placeholder" autocomplete="off" spellcheck="false" [readonly]="readonly"
+          [disabled]="disabled" [required]="required" [(ngModel)]="inputText" id="simpleInput" name="simpleInput"
+          #simpleInput="ngModel">
+      </sbb-field>
+      <sbb-form-error *ngIf="simpleInput.invalid && simpleInput.dirty && simpleInput.errors.required">The input is
+        required!</sbb-form-error>
+      <p>
         <sbb-label>Model:</sbb-label>
         <sbb-label>{{ inputText | json }}</sbb-label>
-      </div>
-      <div class="form-group">
-        <button type="button" (click)="inputText=''" [disabled]="disabled || readonly">Reset</button>
-      </div>
+      </p>
+      <button sbbButton type="button" (click)="inputText=''" [disabled]="disabled || readonly">Reset</button>
     </div>
     <div class="col-lg-6">
-      <h5>Properties</h5>
-      <div class="form-group">
-        <sbb-label>Please choose :</sbb-label>
-        <select [(ngModel)]="inputType" class="form-control" (ngModelChange)="onChange($event)" id="dropdown">
-          <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
-        </select>
+      <h4>Properties</h4>
+      <sbb-label>Please choose :</sbb-label>
+      <select [(ngModel)]="inputType" class="form-control" (ngModelChange)="onChange($event)" id="dropdown">
+        <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
+      </select>
+      <div class="sbbsc-block">
+        <input id="disabled" type="checkbox" [(ngModel)]="disabled">&nbsp;
+        <label for="disabled">Disabled</label>
       </div>
-      <div class="form-check">
-        <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">
-        <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
+      <div class="sbbsc-block">
+        <input id="required" type="checkbox" [(ngModel)]="required">&nbsp;
+        <label for="required">Required</label>
       </div>
-      <div class="form-check">
-        <input id="required" class="form-check-input" type="checkbox" [(ngModel)]="required">
-        <sbb-label class="form-check-label" for="required">Required</sbb-label>
-      </div>
-      <div class="form-check" *ngIf="inputType !== 'file'">
-        <input id="readonly" class="form-check-input" type="checkbox" [(ngModel)]="readonly">
-        <sbb-label class="form-check-label" for="readonly">Readonly</sbb-label>
+      <div class="sbbsc-block" *ngIf="inputType !== 'file'">
+        <input id="readonly" type="checkbox" [(ngModel)]="readonly">&nbsp;
+        <label for="readonly">Readonly</label>
       </div>
     </div>
   </div>

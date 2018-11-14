@@ -13,26 +13,31 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    data: { page: 'home' }
   },
   {
     path: 'content/:id',
     component: ContentComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { page: 'content' }
   },
   {
     path: 'components-list',
     component: ComponentsListComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { page: 'component-list' }
   },
   {
     path: 'icons-list',
     component: IconsListComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { page: 'icons-list' }
   },
   {
     path: '**',
-    component: HomeComponent
+    component: HomeComponent,
+    data: { page: 'home' }
   }
 ];
 

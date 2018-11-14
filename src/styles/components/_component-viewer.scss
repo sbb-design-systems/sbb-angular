@@ -2,7 +2,8 @@
   border: 1px solid rgba(0,0,0,.03);
   box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
   margin: 4px;
-
+  padding-bottom: 1em;
+  
   &-header {
     align-content: center;
     align-items: center;
@@ -52,6 +53,12 @@
       margin: 0;
       padding: 0;
       border: none;
+    }
+
+    label, input, select, sbb-checkbox, sbb-radio-button {
+      margin-bottom: 1em;
+      vertical-align: middle;
+      display: inline-block;
     }
   }
 }

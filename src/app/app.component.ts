@@ -2,14 +2,15 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ComponentUiService } from './services/component-ui.service';
 import { AccordionNotificationService } from './services/accordion-notification.service';
 import { IconUiService } from './services/icon-ui.service';
-import { fadeAnimation } from './shared/animations';
+import { routeAnimation } from './shared/animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'sbb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    fadeAnimation
+    routeAnimation
   ]
 })
 export class AppComponent implements OnInit {
@@ -50,4 +51,7 @@ export class AppComponent implements OnInit {
     this.maincontent.nativeElement.focus();
   }
 
+  getPage(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['page'];
+  }
 }

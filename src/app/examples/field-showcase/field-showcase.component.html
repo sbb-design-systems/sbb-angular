@@ -1,8 +1,8 @@
-<div class="conatiner">
-  <div class="row justify-content-between">
-    <div class="col-6">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
       <div *ngIf="inputType === header1">
-        <h5>{{ header1 }}</h5>
+        <h4>{{ header1 }}</h4>
         <form autocomplete="off" [formGroup]="myForm1">
           <sbb-field>
             <sbb-label for="name1">Name</sbb-label>
@@ -11,17 +11,12 @@
               id="name1" spellcheck="false">
             <sbb-form-error *ngIf="myForm1.get('name1').errors?.required">Name is required!</sbb-form-error>
           </sbb-field>
-          <div class="form-group">
-            <span>Model:</span>
-            <span>{{ myForm1.get('name1').value | json }}</span>
-          </div>
-          <div class="form-group">
-            <button type="button" (click)="reset1()" [disabled]="disabled">Reset</button>
-          </div>
+          <p>Model: {{ myForm1.get('name1').value | json }}</p>
+          <button sbbButton type="button" (click)="reset1()" [disabled]="disabled">Reset</button>
         </form>
       </div>
       <div *ngIf="inputType === header2">
-        <h5>{{ header2 }}</h5>
+        <h4>{{ header2 }}</h4>
         <form autocomplete="off" [formGroup]="myForm2">
           <sbb-field>
             <sbb-label for="name2">Name</sbb-label>
@@ -31,18 +26,12 @@
             <sbb-form-error *ngIf="myForm2.get('name2').errors?.required">Name is required!</sbb-form-error>
             <sbb-form-error *ngIf="myForm2.get('name2').errors?.minlength">Name must contain at least 3 characters!</sbb-form-error>
           </sbb-field>
-          <div class="form-group">
-            <span>Model:</span>
-            <span>{{ myForm2.get('name2').value | json }}</span>
-          </div>
-          <div class="form-group">
-            <button type="button" (click)="reset2()" [disabled]="disabled">Reset</button>
-          </div>
+          <p>Model: {{ myForm2.get('name2').value | json }}</p>
+          <button sbbButton type="button" (click)="reset2()" [disabled]="disabled">Reset</button>
         </form>
       </div>
       <div *ngIf="inputType === header3">
-        <h5>{{ header3 }}</h5>
-
+        <h4>{{ header3 }}</h4>
         <form autocomplete="off" [formGroup]="myForm3">
           <sbb-field label="Name" for="name3">
             <span *ngIf="disabled">{{ myForm3.get('name3').value ? myForm3.get('name3').value : placeholder }}</span>
@@ -50,28 +39,21 @@
               id="name3" spellcheck="false">
             <sbb-form-error *ngIf="myForm3.get('name3').errors?.required">Name is required!</sbb-form-error>
           </sbb-field>
-          <div class="form-group">
-            <span>Model:</span>
-            <span>{{ myForm3.get('name3').value | json }}</span>
-          </div>
-          <div class="form-group">
-            <button type="button" (click)="reset3()" [disabled]="disabled">Reset</button>
-          </div>
+          <p>Model: {{ myForm3.get('name3').value | json }}</p>
+          <button sbbButton type="button" (click)="reset3()" [disabled]="disabled">Reset</button>
         </form>
       </div>
     </div>
-    <div class="col-6">
-      <h5>Properties</h5>
-      <div class="form-group">
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <div class="sbbsc-block">
         <sbb-label>Please choose :</sbb-label>
-        <select [(ngModel)]="inputType" class="form-control">
+        <select [(ngModel)]="inputType">
           <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
         </select>
       </div>
-      <div class="form-check">
-        <input id="disabled" class="form-check-input" type="checkbox" (click)="disableForms()" [(ngModel)]="disabled">
-        <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
-      </div>
+      <input id="disabled" type="checkbox" (click)="disableForms()" [(ngModel)]="disabled">&nbsp;
+      <label for="disabled">Disabled</label>
     </div>
   </div>
 </div>
