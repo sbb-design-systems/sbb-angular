@@ -1,4 +1,3 @@
-import { Directionality } from '@angular/cdk/bidi';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
@@ -62,10 +61,10 @@ export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () =
 }
 
 /** The height of each autocomplete option. */
-export const AUTOCOMPLETE_OPTION_HEIGHT = 30;
+export const AUTOCOMPLETE_OPTION_HEIGHT = 40;
 
 /** The total height of the autocomplete panel. */
-export const AUTOCOMPLETE_PANEL_HEIGHT = 300;
+export const AUTOCOMPLETE_PANEL_HEIGHT = 404;
 
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
@@ -113,7 +112,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   /** Stream of keyboard events that can close the panel. */
   private readonly closeKeyEventStream = new Subject<void>();
   private overlayAttached = false;
-  private scrollStrategy: () => ScrollStrategy;
   private highlightPipe = new HighlightPipe();
 
   @HostBinding('attr.role') get role() {
@@ -205,7 +203,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   @HostBinding('attr.aria-autocomplete')
-  get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list';}
+  get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
 
   constructor(
     private element: ElementRef<HTMLInputElement>,
@@ -213,8 +211,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     private viewContainerRef: ViewContainerRef,
     private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) scrollStrategy: any,
-    @Optional() private _dir: Directionality,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
     @Optional() @Inject(DOCUMENT) private _document: any,
     private viewportRuler?: ViewportRuler
   ) {
@@ -224,8 +221,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         window.addEventListener('blur', this.windowBlurHandler);
       });
     }
-
-    this.scrollStrategy = scrollStrategy;
   }
 
   ngOnDestroy() {
@@ -277,17 +272,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       // This ensures that the label is reset when the
       // user clicks outside.
       this.changeDetectorRef.detectChanges();
-    }
-  }
-
-  /**
-   * Updates the position of the autocomplete suggestion panel to ensure that it fits all options
-   * within the viewport.
-   */
-  updatePosition(): void {
-    if (this.overlayAttached) {
-      // tslint:disable-next-line:no-non-null-assertion
-      this.overlayRef!.updatePosition();
     }
   }
 
@@ -606,8 +590,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return new OverlayConfig({
       positionStrategy: this.getOverlayPosition(),
       scrollStrategy: this.scrollStrategy(),
-      width: this.getPanelWidth(),
-      direction: this._dir
+      width: this.getPanelWidth()
     });
   }
 
@@ -627,10 +610,16 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
-          overlayY: 'bottom',
+          overlayY: 'bottom'
         }
       ]);
 
+    this.positionStrategy.positionChanges.subscribe(position => {
+
+      position.connectionPair.originY === 'top' ?
+        this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above') :
+        this.autocomplete.panel.nativeElement.classList.remove('sbb-autocomplete-panel-above');
+    });
     return this.positionStrategy;
   }
 
