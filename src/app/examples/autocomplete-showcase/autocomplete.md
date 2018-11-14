@@ -85,7 +85,7 @@ desired display value. Then bind it to the autocomplete's `displayWith` property
 
 If your use case requires for the first autocomplete option to be highlighted when the user opens
 the panel, you can do so by setting the `autoActiveFirstOption` input on the `sbb-autocomplete`
-component. This behavior can be configured globally using the `MAT_AUTOCOMPLETE_DEFAULT_OPTIONS`
+component. This behavior can be configured globally using the `SBB_AUTOCOMPLETE_DEFAULT_OPTIONS`
 injection token.
 
 <!-- example(autocomplete-auto-active-first-option) -->

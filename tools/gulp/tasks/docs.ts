@@ -12,6 +12,7 @@ const htmlmin = require('gulp-htmlmin');
 const hljs = require('highlight.js');
 const dom = require('gulp-dom');
 const gulpRunSequence = require('run-sequence');
+const htmlbeautify = require('gulp-html-beautify');
 
 export function sequenceTask(...args: any[]) {
     return (done: any) => {
@@ -84,7 +85,7 @@ task('docs', sequenceTask(
         'build-highlighted-examples',
         'api-docs',
     ],
-    'minify-html-files'
+    'beautify-html-files'
 ));
 
 /** Generates html files from the markdown overviews and guides. */
@@ -146,6 +147,16 @@ task('api-docs', () => {
 task('minify-html-files', () => {
     return src('src/docs/+(api|markdown)/**/*.html')
         .pipe(htmlmin(htmlMinifierOptions))
+        .pipe(dest('src/docs'));
+});
+
+task('beautify-html-files', () => {
+
+    return src('src/docs/+(api|markdown)/**/*.html')
+        .pipe(htmlbeautify({
+            preserve_newlines: false,
+            indent_size: 2
+        }))
         .pipe(dest('src/docs'));
 });
 

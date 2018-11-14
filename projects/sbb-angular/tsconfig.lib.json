@@ -28,8 +28,6 @@
   
   "exclude": [
     "src/test.ts",
-    "**/*.spec.ts",
-    "src/lib/_common",
-    "src/lib/svg-icons-components"
+    "**/*.spec.ts"
   ]
 }

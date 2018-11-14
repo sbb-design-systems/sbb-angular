@@ -66,6 +66,7 @@
     "gulp-dom": "^1.0.0",
     "gulp-flatten": "^0.4.0",
     "gulp-highlight-files": "^0.0.6",
+    "gulp-html-beautify": "^1.0.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^2.0.2",
     "gulp-markdown": "^3.0.0",
