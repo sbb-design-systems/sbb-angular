@@ -20,7 +20,7 @@ export class ButtonComponent implements OnInit {
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
   @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
-  @Input() class: string = '';
+  @Input() class = '';
   @HostBinding('class') buttonModeClass: string;
 
   ngOnInit() {

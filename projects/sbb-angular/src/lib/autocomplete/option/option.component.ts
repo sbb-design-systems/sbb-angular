@@ -45,11 +45,11 @@ export class SBBOptionSelectionChange {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
-  _disabled: boolean = false;
-  mostRecentViewValue: string = '';
+  _disabled = false;
+  mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
-  selected: boolean = false;
+  selected = false;
 
   @HostBinding('attr.aria-selected')
   get selectedString(): string { return this.selected.toString(); }
@@ -66,7 +66,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   get _getTabIndex(): string { return this.disabled ? '-1' : '0'; }
 
   @HostBinding('class.sbb-active')
-  active: boolean = false;
+  active = false;
 
   @HostBinding('class.sbb-option-text') baseClass = true;
 
@@ -74,7 +74,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   value: any;
 
   @Input()
-  id: string = `sbb-option-${uniqueIdCounter++}`;
+  id = `sbb-option-${uniqueIdCounter++}`;
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output()

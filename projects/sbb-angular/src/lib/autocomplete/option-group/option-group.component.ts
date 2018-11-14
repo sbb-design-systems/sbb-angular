@@ -11,13 +11,13 @@ let uniqueOptgroupIdCounter = 0;
 export class OptionGroupComponent {
 
   @HostBinding('class.sbb-optgroup')
-  optGroupClass: boolean = true;
+  optGroupClass = true;
 
   @HostBinding('attr.role')
-  role: string = 'group';
+  role = 'group';
 
   @HostBinding('class.sbb-optgroup-disabled')
-  disabled: boolean = false;
+  disabled = false;
 
   @HostBinding('attr.aria-disabled')
   get isDisabled() { return this.disabled; }
@@ -27,6 +27,6 @@ export class OptionGroupComponent {
 
   @Input() label: string;
 
-  labelId: string = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
+  labelId = `sbb-optgroup-label-${uniqueOptgroupIdCounter++}`;
 
 }

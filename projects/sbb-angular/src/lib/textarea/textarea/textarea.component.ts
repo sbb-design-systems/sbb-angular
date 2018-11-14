@@ -20,7 +20,7 @@ import { Subject } from 'rxjs';
 export class TextareaComponent implements ControlValueAccessor {
 
   textContent: string;
-  matTextareaAutosize: boolean = true;
+  matTextareaAutosize = true;
   counterObserver$: Subject<number> = new Subject<number>();
 
   @Input()

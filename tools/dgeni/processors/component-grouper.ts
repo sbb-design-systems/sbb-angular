@@ -72,7 +72,7 @@ export class ComponentGrouper implements Processor {
       const packageName = documentInfo.packageName;
       const packageDisplayName = 'SACL';
 
-      const moduleImportPath = `${packageName}/${documentInfo.entryPointName}`;
+      const moduleImportPath = `${packageName}`;
       const groupName = packageName + '-' + documentInfo.name;
 
       // Get the group for this doc, or, if one does not exist, create it.
