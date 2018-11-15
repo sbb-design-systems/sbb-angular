@@ -13,7 +13,8 @@ import {
   RadioButtonModule,
   CheckboxModule,
   ButtonModule,
-  AutocompleteModule
+  AutocompleteModule,
+  TimeInputModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -23,6 +24,7 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { IconComponents } from '../sbb-components-mapping-export';
+import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 
@@ -35,7 +37,8 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent
+    SbbFieldShowcaseComponent,
+    TimeInputShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
+    TimeInputModule,
     IconCommonModule.withComponents(IconComponents.types)
   ],
   providers: [],
@@ -62,6 +66,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
+    TimeInputShowcaseComponent,
     ButtonModule
   ]
 })

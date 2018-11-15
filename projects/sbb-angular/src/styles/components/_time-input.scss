@@ -1,0 +1,22 @@
+@mixin timeInputBase {
+
+  $width: 70;
+  $height: 48;
+  width: ($width) * 1px;
+  height: ($height) * 1px;
+
+  text-align: center;
+
+  @include mq($from: desktop4k) {
+    width: pxToRem($width * $scalingFactor4k);
+    height: pxToRem($height * $scalingFactor4k);
+
+  }
+
+  @include mq($from: desktop5k) {
+    width: pxToRem($width * $scalingFactor5k);
+    height: pxToRem($height * $scalingFactor5k);
+
+  }
+
+}

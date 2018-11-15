@@ -161,3 +161,7 @@ sbb-radio-button {
 sbb-checkbox {
   @include checkboxLabel;
 }
+
+input[sbbTimeInput].ssb-time-input {
+  @include timeInputBase;
+}
