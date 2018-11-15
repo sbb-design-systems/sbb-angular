@@ -102,10 +102,12 @@
 
     @include mq($from: desktop4k) {
       border-bottom-left-radius: toPx(2 * $scalingFactor4k);
+      margin-top: toPx(-2 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
       border-bottom-left-radius: toPx(2 * $scalingFactor5k);
+      margin-top: toPx(-2 * $scalingFactor5k);
     }
 
     &::after {
@@ -140,11 +142,13 @@
     @include mq($from: desktop4k) {
       border-top-left-radius: toPx(2 * $scalingFactor4k);
       border-top-width: toPx(2 * $scalingFactor4k);
+      margin-bottom: toPx(-2 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
       border-top-left-radius: toPx(2 * $scalingFactor5k);
       border-top-width: toPx(2 * $scalingFactor5k);
+      margin-bottom: toPx(-2 * $scalingFactor5k);
     }
 
     &::after {
