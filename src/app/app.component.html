@@ -100,11 +100,9 @@
 
     <div class="col-md-8 sbbsc-content-section-main">
       <a #maincontent tabindex="-1" class="sbbsc-sr-only">Main</a>
-      <perfect-scrollbar class="sbbsc-perfect-scrollbar">
-        <main class="sbbsc-main-content" [@animRoutes]="getPage(appOutlet)">
-          <router-outlet #appOutlet="outlet"></router-outlet>
-        </main>
-      </perfect-scrollbar>
+      <main class="sbbsc-main-content" [@animRoutes]="getPage(appOutlet)">
+        <router-outlet #appOutlet="outlet"></router-outlet>
+      </main>
     </div>
 
   </div>
