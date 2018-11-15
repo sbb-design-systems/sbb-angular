@@ -23,7 +23,8 @@ import {
   ViewContainerRef,
   HostBinding,
   HostListener,
-  InjectionToken
+  InjectionToken,
+  OnInit
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -101,7 +102,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Subscription to viewport size changes. */
   private viewportSubscription = Subscription.EMPTY;
-
+  private positionSubscription = Subscription.EMPTY;
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
    * closed autocomplete from being reopened if the user switches to another browser tab and then
@@ -229,6 +230,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     }
 
     this.viewportSubscription.unsubscribe();
+    this.positionSubscription.unsubscribe();
     this.componentDestroyed = true;
     this.destroyPanel();
     this.closeKeyEventStream.complete();
@@ -546,6 +548,22 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (!this.overlayRef) {
       this.portal = new TemplatePortal(this.autocomplete.template, this.viewContainerRef);
       this.overlayRef = this.overlay.create(this.getOverlayConfig());
+
+      if (this.positionStrategy) {
+        this.positionSubscription = this.positionStrategy.positionChanges.subscribe(position => {
+          if (this.autocomplete.panel) {
+            if (position.connectionPair.originY === 'top') {
+              this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+              this.getConnectedElement().nativeElement.classList.add('sbb-autocomplete-input-above');
+            } else {
+              this.autocomplete.panel.nativeElement.classList.remove('sbb-autocomplete-panel-above');
+              this.getConnectedElement().nativeElement.classList.remove('sbb-autocomplete-input-above');
+            }
+          }
+
+        });
+      }
+
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
       this.overlayRef.keydownEvents().subscribe(event => {
@@ -614,16 +632,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         }
       ]);
 
-    this.positionStrategy.positionChanges.subscribe(position => {
-      if (position.connectionPair.originY === 'top') {
-        this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
-        this.getConnectedElement().nativeElement.classList.add('sbb-autocomplete-input-above');
-      } else {
-        this.autocomplete.panel.nativeElement.classList.remove('sbb-autocomplete-panel-above');
-        this.getConnectedElement().nativeElement.classList.remove('sbb-autocomplete-input-above');
-      }
-
-    });
     return this.positionStrategy;
   }
 
