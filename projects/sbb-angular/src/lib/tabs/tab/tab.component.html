@@ -1,5 +1,1 @@
-<div *ngIf="active || !disabled"
-     [hidden]="!active"
-     [attr.role]="role">
-  <ng-content></ng-content>
-</div>
+<ng-content *ngIf="active && !disabled"></ng-content>

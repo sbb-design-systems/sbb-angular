@@ -12,16 +12,11 @@ export class NavlistIconComponent implements OnInit {
 
   foundUiIcons: UiIcon[] = [];
 
-  constructor(private iconUiServive: IconUiService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private iconUiService: IconUiService) { }
 
   ngOnInit() {
-    this.foundUiIcons = this.iconUiServive.getAll();
-  }
+    this.foundUiIcons = this.iconUiService.getAll();
 
-  async navigate(path: any) {
-    // navigate to clicked component ...
-    await this.router.navigateByUrl('/', { skipLocationChange: true });
-    this.router.navigate([path]);
   }
 
 }

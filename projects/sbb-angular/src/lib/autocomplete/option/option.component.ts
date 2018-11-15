@@ -80,9 +80,6 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @Output()
   readonly onSelectionChange = new EventEmitter<SBBOptionSelectionChange>();
 
-  @ViewChild('highlight') highlightedText: ElementRef;
-  @ViewChild('normal') normalText: ElementRef;
-
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 

@@ -1,18 +1,19 @@
-<div class="container">
-  <div class="row justify-content-between">  
-    <div class="col-6"> 
-    <h5>Tabs</h5>
-    <fieldset>
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-9 sbbsc-v-sep"> 
+    <h4>Basic Example</h4>
     <sbb-tabs>
       <!-- First tab (required) -->
       <sbb-tab [label]="'Tab 1'" 
                [id]="'content1-tab'"
                [labelId]="'content1'">
+               <div class="sbb-tabs-tabpanel">
           <br/>
           <h5>Content 1</h5>
           <hr/>
           <p>Here comes the content for tab 1 ...</p>
           <br/>
+        </div>
       </sbb-tab>
       <!-- Second tab (required) -->
       <sbb-tab [label]="'Tab 2'" 
@@ -47,27 +48,24 @@
         <person-list [person]="person"></person-list>
       </sbb-tab>
     </sbb-tabs>
-    </fieldset>
     <small class="font-italic">* Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
     </div>
-    <div class="col-lg-6">
-      <h5>Properties</h5>
-      <fieldset>
-          <div class="form-group">
-              <sbb-label>Please set data-set for tabs content / tab pill :</sbb-label>
-              <select [(ngModel)]="dataSet" class="form-control" (ngModelChange)="onChangeOfDataSet($event)">
-                <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
-              </select>
-          </div>
-          <div class="form-check">
-            <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled" (change)="setFirstTabIfDisabled()">
-            <sbb-label class="form-check-label" for="disabled">Disabled</sbb-label>
-          </div>
-          <div class="form-check">
-            <input id="removed" class="form-check-input" type="checkbox" [(ngModel)]="removed" (change)="checkValueForRemoveLastTab()">
-            <sbb-label class="form-check-label" for="removed">Remove last tab in the tabs module</sbb-label>
-          </div>
-      </fieldset>
+    <div class="col-lg-3">
+      <h4>Properties</h4>
+      <div class="sbbsc-block">
+        <label>Please set data-set for tabs content / tab pill :</label>
+        <select [(ngModel)]="dataSet" class="form-control" (ngModelChange)="onChangeOfDataSet($event)">
+          <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
+        </select>
+      </div>
+      <div class="sbbsc-block">
+        <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled" (change)="setFirstTabIfDisabled()">
+        <label class="form-check-label" for="disabled">Disabled</label>
+      </div>
+      <div class="sbbsc-block">
+        <input id="removed" class="form-check-input" type="checkbox" [(ngModel)]="removed" (change)="checkValueForRemoveLastTab()">
+        <label class="form-check-label" for="removed">Remove last tab in the tabs module</label>
+      </div>
     </div>
   </div>
-</div>
+</article>

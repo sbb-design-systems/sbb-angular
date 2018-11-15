@@ -5,7 +5,7 @@ import { Component,
          ComponentFactoryResolver,
          ElementRef,
          ChangeDetectionStrategy } from '@angular/core';
-import { ENTER, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB } from '@angular/cdk/keycodes';
+import { ENTER, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
 import { TabComponent } from '../tab/tab.component';
 import { Observable, merge, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -25,28 +25,14 @@ export class TabsComponent implements AfterContentInit {
   tabListIndex = 0;
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
-  _tabs: Observable<string[]>;
+  tabs$: Observable<TabComponent[]>;
 
   @ContentChildren(TabsComponent) tabModules: QueryList<TabsComponent>;
 
   constructor(public componentFactoryResolver: ComponentFactoryResolver, public elementRef: ElementRef) {}
 
-  getTabsAfterFlagging() {
-    this._tabs.forEach(items => {
-      items.forEach(item => {
-        for(let index = 0; index < this.tabs.toArray().length; index++) {
-            const tab = this.tabs.toArray()[index];
-            if(tab.labelId === item) {
-               tab.isShown = true;
-            }
-        }
-      });
-    });
-    return this.tabs;
-  }
-
   ngAfterContentInit() {
-    this._tabs = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes).pipe(map(tabs => tabs.map(tab => tab.labelId)));
+    this.tabs$ = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes).pipe(map(tabs => tabs.map(tab => tab)));
     // 1) check the number of tabs ...
     this.checkNumberOfTabs();
     // 2) check the number of badge pills per tab ...
@@ -61,30 +47,22 @@ export class TabsComponent implements AfterContentInit {
 
   onKeydown(event) {
     if(event.keyCode === ENTER) {
-       console.log('tabListIndex', this.tabListIndex);
-       const tab     = this.tabs.toArray()[this.tabListIndex];
+       const tab = this.tabs.toArray()[this.tabListIndex];
        this.selectTab(tab);
     }
-    if(event.keyCode === TAB) {
-       /* do nothing */
-    }
     if(event.keyCode === LEFT_ARROW || event.keyCode === UP_ARROW) {
-       if(this.tabListIndex === 0) {
-          /* do nothing */
-       } else {
+       if(this.tabListIndex !== 0) {
           this.tabListIndex--;
        }
-       const tab     = this.tabs.toArray()[this.tabListIndex];
+       const tab = this.tabs.toArray()[this.tabListIndex];
        const element = document.getElementById(tab.labelId) as HTMLElement;
        element.focus();
     }
     if(event.keyCode === RIGHT_ARROW || event.keyCode === DOWN_ARROW) {
-       if(this.tabListIndex === this.tabs.length-1) {
-          /* do nothing */
-       } else {
+       if(this.tabListIndex !== this.tabs.length-1) {
           this.tabListIndex++;
        }
-       const tab     = this.tabs.toArray()[this.tabListIndex];
+       const tab = this.tabs.toArray()[this.tabListIndex];
        const element = document.getElementById(tab.labelId) as HTMLElement;
        element.focus();
     }
@@ -121,11 +99,11 @@ export class TabsComponent implements AfterContentInit {
     // tslint:disable-next-line
     this.tabs.toArray().forEach(tab => (tab.active = false));
     tab.active = true;
-    for(let i = 0; i < this.tabs.toArray().length; i++) {
-        const _tab = this.tabs.toArray()[i];
-        if(_tab.labelId === tab.labelId) {
-           this.tabListIndex = i;
-       }
-    }
+    tab.tabindex = 0;
+    this.tabs.forEach((_tab, index) => {
+      if(_tab.labelId === tab.labelId) {
+         this.tabListIndex = index;
+      }
+    });
   }
 }

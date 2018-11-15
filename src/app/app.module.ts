@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,12 +28,18 @@ import { AutocompleteShowcaseComponent } from './examples/autocomplete-showcase/
 import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
-import { InputFieldShowcaseComponent } from './examples/input-field-showcase/input-field-showcase.component';
-import { SbbFieldShowcaseComponent } from './examples/sbb-field-showcase/sbb-field-showcase.component';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { ComponentsListComponent } from './components-list/components-list.component';
+import { IconsListComponent } from './icons-list/icons-list.component';
+import { DocDirective } from './doc/doc.directive';
+import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-doc.component';
+import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.component';
+import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text-input-showcase.component';
+import { SbbFieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
+import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
-
-import { TabsComponent, TabComponent } from 'sbb-angular';
 
 @NgModule({
   declarations: [
@@ -44,7 +52,13 @@ import { TabsComponent, TabComponent } from 'sbb-angular';
     ComponentViewerDirective,
     NavlistIconComponent,
     SearchIconComponent,
-    ReplacePipe
+    ReplacePipe,
+    ComponentsListComponent,
+    IconsListComponent,
+    DocDirective,
+    ExamplesTabDocComponent,
+    ExamplesIconDocComponent,
+    ComponentViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +68,10 @@ import { TabsComponent, TabComponent } from 'sbb-angular';
     AppRoutingModule,
     IconCommonModule.withComponents(IconComponents.types),
     ExamplesModule,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' })
-  ],
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    PerfectScrollbarModule,
+    HttpClientModule,
+    BrowserAnimationsModule],
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,
@@ -68,8 +84,7 @@ import { TabsComponent, TabComponent } from 'sbb-angular';
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
-    TabsComponent,
-    TabComponent
+    ComponentViewerComponent
   ]
 })
 export class AppModule { }

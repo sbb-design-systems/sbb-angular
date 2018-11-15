@@ -1,0 +1,58 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-input-field-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./text-input-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./text-input-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> InputFieldShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
+
+  placeholderText = <span class="hljs-string">'Please enter your text ...'</span>;
+  placeholderPassword = <span class="hljs-string">'Please enter a password ...'</span>;
+  placeholderNumber = <span class="hljs-string">'Please enter a number ...'</span>;
+  placeholderEmail = <span class="hljs-string">'Please enter a email ...'</span>;
+  placeholderDatetime = <span class="hljs-string">'Please enter a datetime ...'</span>;
+
+  inputText = <span class="hljs-string">''</span>;
+  disabled: <span class="hljs-built_in">boolean</span>;
+  required: <span class="hljs-built_in">boolean</span>;
+  isVisible = <span class="hljs-literal">true</span>;
+  readonly: <span class="hljs-built_in">boolean</span>;
+  inputType = <span class="hljs-string">'text'</span>;
+  placeholder = <span class="hljs-string">'Please enter your text ...'</span>;
+  types = [
+    <span class="hljs-string">'text'</span>,
+    <span class="hljs-string">'password'</span>,
+    <span class="hljs-string">'number'</span>,
+    <span class="hljs-string">'file'</span>,
+    <span class="hljs-string">'email'</span>,
+    <span class="hljs-string">'datetime'</span>,
+    <span class="hljs-string">'datetime-local'</span>
+  ];
+
+  ngOnInit() {
+  }
+
+  clearInput() {
+    <span class="hljs-keyword">this</span>.inputText = <span class="hljs-literal">null</span>;
+  }
+
+  onChange(event) {
+    <span class="hljs-keyword">if</span>(event === <span class="hljs-string">'text'</span>) {
+       <span class="hljs-keyword">this</span>.placeholder = <span class="hljs-keyword">this</span>.placeholderText;
+    }
+    <span class="hljs-keyword">if</span>(event === <span class="hljs-string">'password'</span>) {
+       <span class="hljs-keyword">this</span>.placeholder = <span class="hljs-keyword">this</span>.placeholderPassword;
+    }
+    <span class="hljs-keyword">if</span>(event === <span class="hljs-string">'number'</span>) {
+       <span class="hljs-keyword">this</span>.placeholder = <span class="hljs-keyword">this</span>.placeholderNumber;
+    }
+    <span class="hljs-keyword">if</span>(event === <span class="hljs-string">'email'</span>) {
+      <span class="hljs-keyword">this</span>.placeholder = <span class="hljs-keyword">this</span>.placeholderEmail;
+    }
+    <span class="hljs-keyword">if</span>(event === <span class="hljs-string">'datetime'</span>) {
+      <span class="hljs-keyword">this</span>.placeholder = <span class="hljs-keyword">this</span>.placeholderDatetime;
+    }
+  }
+
+}

@@ -1,7 +1,5 @@
 @import '../../../styles/main.scss';
 
-:host {
-
 [role="tabpanel"] {
   @include sbbTabpanel;
   position: relative;
@@ -38,6 +36,4 @@
 .sbb-tabs-tabpanel.is-active {
   display: block;
   opacity: 1;
-}
-
 }

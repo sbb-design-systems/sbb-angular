@@ -42,7 +42,7 @@
 	font-family: $fontSbbLight;
   font-size: 1.33333em;
   line-height: 26px;
-	color: $colorBlack;
+  color: $colorBlack;
 }
 .sbb-tabs-tablistitem.has-counter {
 	margin-right: 1.6em;
@@ -71,35 +71,35 @@
 	} 
 }
 .sbb-tabs-tablistitem:after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    left: 50%;
-    height: 1px;
-		border-bottom: 1px solid currentColor; 
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  left: 50%;
+  height: 1px;
+	border-bottom: 1px solid currentColor; 
 }
 .sbb-tabs-tablistitem:after {
-		transition: width 0.3s ease, left 0.3s ease; 
+  transition: width 0.3s ease, left 0.3s ease; 
 }
 .sbb-tabs-tablistitem:not(.is-active):not(:disabled):focus, 
 .sbb-tabs-tablistitem:not(.is-active):not(:disabled):hover {
-		color: $colorRed125;
+  color: $colorRed125;
 }
 .sbb-tabs-tablistitem:not(.is-active):not(:disabled):focus:after, 
 .sbb-tabs-tablistitem:not(.is-active):not(:disabled):hover:after {
-    left: 0;
-		width: 100%;
+  left: 0;
+	width: 100%;
 }
 .sbb-tabs-tablistitem.is-active {
-		color: $colorBlack; 
+	color: $colorBlack; 
 }
 .sbb-tabs-tablistitem.is-active:after {
-    width: 100%;
-		left: 0; 
+  width: 100%;
+	left: 0; 
 }
 .sbb-tabs-tablistitem:disabled {
-	  opacity:0.6;
-	  pointer-events: none;
+	opacity:0.6;
+	pointer-events: none;
 }

@@ -19,7 +19,7 @@ export class TabComponent implements OnInit {
   @Input() labelId: string;
 
   @HostBinding('attr.tabindex')
-  tabindex = 0;
+  @Input() tabindex = 0;
 
   @HostBinding('attr.role')
   role = 'tabpanel';
@@ -31,7 +31,6 @@ export class TabComponent implements OnInit {
   @Input() label: string;
   @Input() active = false;
   @Input() badgePill?: number;
-  @Input() isShown = false;
 
   ngOnInit() {
     if(!this.id) {
@@ -41,5 +40,4 @@ export class TabComponent implements OnInit {
         this.labelId = `content${counter++}`;
     }
   }
-
 }

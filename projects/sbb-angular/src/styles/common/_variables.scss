@@ -50,19 +50,6 @@ $scalingFactor4k: 1.5;
 $scalingFactor5k: 2;
 
 /**
- * Header variables
- */
-$headerHeightMobileLandscape: 49;
-$headerHeightTabletPortrait: 65;
-$headerHeightTabletLandscape: $headerHeightTabletPortrait;
-$headerHeightDesktop: 130;
-$headerHeightDesktop4k: $headerHeightDesktop * $scalingFactor4k;
-$headerHeightDesktop5k: $headerHeightDesktop * $scalingFactor5k;
-$headerHeightDesktopRolledUp: 64;
-$headerHeightDesktop4kRolledUp: $headerHeightDesktopRolledUp * $scalingFactor4k;
-$headerHeightDesktop5kRolledUp:  $headerHeightDesktopRolledUp * $scalingFactor5k;
-
-/**
  * Grid
  */
 $gutterMobile: 12;

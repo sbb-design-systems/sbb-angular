@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './home/home.component';
+import { ComponentsListComponent } from './components-list/components-list.component';
+import { IconsListComponent } from './icons-list/icons-list.component';
 
 const routes: Routes = [
   {
@@ -11,16 +13,31 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    data: { page: 'home' }
   },
   {
     path: 'content/:id',
     component: ContentComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { page: 'content' }
+  },
+  {
+    path: 'components-list',
+    component: ComponentsListComponent,
+    pathMatch: 'full',
+    data: { page: 'component-list' }
+  },
+  {
+    path: 'icons-list',
+    component: IconsListComponent,
+    pathMatch: 'full',
+    data: { page: 'icons-list' }
   },
   {
     path: '**',
-    component: HomeComponent
+    component: HomeComponent,
+    data: { page: 'home' }
   }
 ];
 

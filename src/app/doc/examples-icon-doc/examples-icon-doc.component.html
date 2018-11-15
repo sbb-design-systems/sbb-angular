@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Selector:</th>
+    <td><code class="sbbsc-cards-card-icon-selector">{{ getSelector(uiIcon.selector) }}</code></td>
+  </tr>
+  <tr>
+    <th>Categories:</th>
+    <td>
+      <div class="sbbsc-cards-card-badge" *ngFor="let tag of uiIcon['tags']">
+        <span>{{ tag }} </span>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Inputs:</th>
+    <td><code>svgClass: CSS classes to change the underlying SVG style</code></td>
+  </tr>
+</table>
+<ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="multiple"></ng-template>

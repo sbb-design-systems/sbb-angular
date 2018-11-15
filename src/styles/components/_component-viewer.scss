@@ -1,0 +1,64 @@
+.sbbsc-comp-viewer {
+  border: 1px solid rgba(0,0,0,.03);
+  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+  margin: 4px;
+  padding-bottom: 1em;
+  
+  &-header {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 12px 20px;
+    background-color: rgba($colorGreyLight, 0.5);
+  }
+
+  &-title {
+    flex: 1 1 auto;
+    margin-top: 0;
+  }
+
+  &-code-icon {
+    flex-shrink: 0;
+
+    .fa {
+      font-size: 2em;
+    }
+
+    .fa-angle-right {
+      margin-left: 0.25em;
+    }
+  }
+
+  &-body {
+    padding: 0.25em 1em;
+    
+    ngb-tabset .nav-tabs .nav-item .nav-link {
+      font-size: pxToRem(22);
+    }
+  }
+
+  &-src {
+    border-bottom: 1px solid rgba($colorGreyLight, 0.5);
+    min-height: 300px;
+  }
+
+  &-instance {
+    h2, h3, h4 {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
+    label, input, select, sbb-checkbox, sbb-radio-button {
+      margin-bottom: 1em;
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+}
