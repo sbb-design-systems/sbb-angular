@@ -1,14 +1,16 @@
 import { Component,
          Input,
          HostBinding,
-         OnInit } from '@angular/core';
+         OnInit,
+         ViewEncapsulation } from '@angular/core';
 
 let counter = 0;
 
 @Component({
   selector: 'sbb-tab',
   templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.scss']
+  styleUrls: ['./tab.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TabComponent implements OnInit {
 
@@ -25,7 +27,10 @@ export class TabComponent implements OnInit {
   role = 'tabpanel';
 
   @HostBinding('class')
-  class = 'sbb-tabs-tabpanel';
+  get hostClasses(): string { return ['sbb-tabs-tabpanel',
+    this.active ? '' : 'is-hidden',
+    this.disabled ? 'is-disabled' : ''].join(' ');
+  }
 
   @Input() disabled: boolean;
   @Input() label: string;

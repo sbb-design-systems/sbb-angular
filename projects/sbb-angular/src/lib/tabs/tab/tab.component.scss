@@ -1,19 +1,27 @@
 @import '../../../styles/main.scss';
 
-[role="tabpanel"] {
+.sbb-tabs-tabpanel {
   @include sbbTabpanel;
   position: relative;
   z-index: 2;
   padding: .5em .5em .7em;
+  display: block;
+  opacity: 1;
 }
-        
-[role="tabpanel"]:focus {
+
+.sbb-tabs-tabpanel.is-hidden,
+.sbb-tabs-tabpanel.is-disabled {
+  visibility: hidden;
+  display: none;
+}
+
+.sbb-tabs-tabpanel:focus {
   border-color: $colorRed125;
   box-shadow: 0 0 .2em $colorRed125;
   outline: 0;
 }
         
-[role="tabpanel"]:focus::after {
+.sbb-tabs-tabpanel:focus::after {
   position: absolute;
   bottom: 0;
   right: -1px;
@@ -21,19 +29,14 @@
   content: '';
 }
         
-[role="tabpanel"] p {
+.sbb-tabs-tabpanel p {
   margin: 0;
 }
         
-[role="tabpanel"] * + p {
+.sbb-tabs-tabpanel * + p {
   margin-top: 1em;
 }
 
 .sbb-tabs:not(.has-no-animation) .sbb-tabs-tabpanel {
   transition: opacity 0.5s ease;
-}
-    
-.sbb-tabs-tabpanel.is-active {
-  display: block;
-  opacity: 1;
 }

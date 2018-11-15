@@ -7,43 +7,28 @@
       <sbb-tab [label]="'Tab 1'" 
                [id]="'content1-tab'"
                [labelId]="'content1'">
-               <div class="sbb-tabs-tabpanel">
-          <br/>
-          <h5>Content 1</h5>
+          <h4>Content 1</h4>
           <hr/>
           <p>Here comes the content for tab 1 ...</p>
           <br/>
-        </div>
       </sbb-tab>
       <!-- Second tab (required) -->
       <sbb-tab [label]="'Tab 2'" 
                [id]="'content2-tab'"
                [labelId]="'content2'">
-          <br/>
-          <h5>Content 2</h5>
+          <h4>Content 2</h4>
           <hr/>
           <p>Here comes the content for tab 2 ...</p>
           <br/>
       </sbb-tab>
-      <!-- Third tab (required) -->
-      <sbb-tab [label]="'Tab 3'" 
-               [id]="'content3-tab'"
-               [labelId]="'content3'">
-        <br/>
-        <h5>Content 3</h5>
-        <hr/>
-        <p>Here comes the content for tab 3 ...</p>
-        <br/>
-      </sbb-tab>
-      <!-- Fourth tab with the possibility of dynamic tabs if any -->
+      <!-- Third tab with the possibility of dynamic tabs if any -->
       <sbb-tab [label]="'Persons'"
                [id]="'persons-tab'"
                [labelId]="'persons'"
                [badgePill]="getCountOfPersons()" 
                [disabled]="disabled"
                *ngIf="!removed">
-        <br/>
-        <h5>List of Persons</h5>
+        <h4>List of Persons</h4>
         <hr/>
         <person-list [person]="person"></person-list>
       </sbb-tab>

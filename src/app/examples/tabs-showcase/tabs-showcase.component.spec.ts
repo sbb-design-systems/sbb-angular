@@ -39,7 +39,7 @@ describe('TabsShowcaseComponent', () => {
   it('tab module should have 3 tabs inside, at least 2', () => {
      // first round of change detection ...
      fixture.detectChanges();
-     expect(component.tabsComponent.tabs.length).toBe(4);
+     expect(component.tabsComponent.tabs.length).toBe(3);
   });
 
   it('tab module should have no more tab modules inside', () => {
