@@ -12,8 +12,8 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
-  ButtonModule
+  ButtonModule,
+  AutocompleteModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
