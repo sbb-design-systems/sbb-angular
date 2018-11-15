@@ -615,10 +615,14 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       ]);
 
     this.positionStrategy.positionChanges.subscribe(position => {
-
-      position.connectionPair.originY === 'top' ?
-        this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above') :
+      if (position.connectionPair.originY === 'top') {
+        this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+        this.getConnectedElement().nativeElement.classList.add('sbb-autocomplete-input-above');
+      } else {
         this.autocomplete.panel.nativeElement.classList.remove('sbb-autocomplete-panel-above');
+        this.getConnectedElement().nativeElement.classList.remove('sbb-autocomplete-input-above');
+      }
+
     });
     return this.positionStrategy;
   }

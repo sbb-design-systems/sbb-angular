@@ -1,24 +1,16 @@
 @mixin autocompleteBase() {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 3;
+  position: relative;
+  width: 100%;
   background-color: $autocompleteBg;
   border: $autocompleteBorder;
-  border-bottom-left-radius: toPx(2);
-  border-bottom-right-radius: toPx(2);
-  border-top: $autocompleteBorderTop;
-  box-shadow: $autocompleteShadow;
   transition: $autocompleteTransition;
   color: $autocompleteColor;
-  margin-top: toPx(-1);
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: 50%;
-    top: 0;
     transform: translateX(-50%);
     width: 100%;
     height: 0;
@@ -37,8 +29,9 @@
     border: toPx(2 * $scalingFactor4k) solid $colorGrey;
     box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
+
     &::after {
-      border-bottom-width: toPx(1px * $scalingFactor4k);
+      border-bottom-width: toPx(1 * $scalingFactor4k);
     }
   }
 
@@ -47,19 +40,20 @@
     box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
     &::after {
-      border-bottom-width: toPx(1px * $scalingFactor5k);
+      border-bottom-width: toPx(1 * $scalingFactor5k);
     }
   }
 
   sbb-option-group {
     position: relative;
-    border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
     display: block;
+
     @include mq($from: desktop4k) {
-      border-top-width: toPx(1px * $scalingFactor4k);
+      border-top-width: toPx(1 * $scalingFactor4k);
     }
+
     @include mq($from: desktop5k) {
-      border-top-width: toPx(1px * $scalingFactor5k);
+      border-top-width: toPx(1 * $scalingFactor5k);
     }
 
     sbb-option {
@@ -71,24 +65,99 @@
       padding-left: $autocompletePaddingX;
       padding-right: $autocompletePaddingX;
       padding-top: $autocompletePaddingTop;
+
       @include mq($from: desktop4k) {
         font-size: toPx(10 * $scalingFactor4k);
         padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
       }
+
       @include mq($from: desktop5k) {
         font-size: toPx(10 * $scalingFactor5k);
         padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
       }
+
       @include label;
       color: $colorMetanav;
     }
   }
 }
 
-@mixin autocompleteInputActive() {
+@mixin autocompleteDirectionalRules($mode: default) {
+  @if $mode == default {
+
+    border-bottom-left-radius: toPx(2);
+    border-bottom-right-radius: toPx(2);
+    border-top: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadow;
+    margin-top: -2px;
+
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+
+    sbb-option-group {
+      border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+
+  } @else if $mode == reverse {
+
+    border-top-left-radius: toPx(2);
+    border-top-right-radius: toPx(2);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top: $autocompleteBorderTopReverse;
+    border-bottom: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadowReverse;
+    margin-top: 2px;
+
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+
+    sbb-option-group {
+      border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+
+  }
+}
+
+@mixin autocompleteInputActive($mode: default) {
+
+  @if $mode == default {
+
+    @include autocompleteInputActiveDefault();
+
+  } @else if $mode == reverse {
+
+    @include autocompleteInputActiveReverse();
+
+  }
+  
+}
+
+@mixin autocompleteInputActiveDefault() {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-color: $colorGrey;
-  border-bottom: none;
-  margin-bottom: toPx(2);
+  border-bottom-color: transparent;
+
+  &:hover, &:focus {
+    border-bottom-color: transparent;
+  }
+}
+
+@mixin autocompleteInputActiveReverse() {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: toPx(2);
+  border-bottom-right-radius: toPx(2);
+  border-color: $colorGrey;
+  border-top-color: transparent;
+  border-bottom: toPx(2) solid $colorGrey;
+
+  &:hover, &:focus {
+    border-top-color: transparent;
+  }
 }

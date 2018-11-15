@@ -12,7 +12,6 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule
 } from 'sbb-angular';
 
@@ -25,6 +24,7 @@ import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocompl
 import { IconComponents } from '../sbb-components-mapping-export';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { AutocompleteModule } from 'projects/sbb-angular/src/lib/autocomplete/autocomplete.module';
 
 @NgModule({
   declarations: [
