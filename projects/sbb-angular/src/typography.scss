@@ -162,6 +162,6 @@ sbb-checkbox {
   @include checkboxLabel;
 }
 
-input[sbbTimeInput].ssb-time-input {
+input.ssb-time-input {
   @include timeInputBase;
 }

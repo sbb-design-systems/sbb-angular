@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: 'input[sbbTimeInput]'
@@ -9,7 +9,7 @@ export class TimeInputDirective {
   private REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
   private REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
   }
 
   @HostBinding('attr.type') type = 'text';
@@ -21,10 +21,11 @@ export class TimeInputDirective {
   @HostListener('blur')
   onBlur() {
     const regGroups = this.inputValidate(this.el.nativeElement.value);
+
     if (regGroups && regGroups.length > 2) {
       const hours = regGroups[1];
       const mins = regGroups[2];
-      this.el.nativeElement.value = `${hours}:${mins}`;
+      this.renderer.setProperty(this.el.nativeElement, 'value', `${hours}:${mins}`);
     }
   }
 
