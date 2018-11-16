@@ -6,7 +6,7 @@
   @include disabledinputfields;
 
   outline: none;
-  padding: toPx(11) toPx(14);
+  padding: 10px 14px 12px;
   background: $colorWhite;
   border: toPx(2) solid $colorBlack72;
   border-radius: toPx(2);
@@ -14,18 +14,24 @@
   line-height: 1.5;
   font-size: pxToRem(15);
   -webkit-appearance: none;
+
   &::-ms-clear {
     display: none;
   }
 
   @include mq($from: desktop4k) {
     margin-top: pxToEm(15);
-    padding: toPx(11) toPx(14);
     border-width: toPx(2 * $scalingFactor4k);
+    border-radius: toPx(2 * $scalingFactor4k);
+    font-size: pxToRem(15 * $scalingFactor4k);
+    padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k) toPx(12 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
     border-width: toPx(2 * $scalingFactor5k);
+    border-radius: toPx(2 * $scalingFactor5k);
+    font-size: pxToRem(15 * $scalingFactor4k);
+    padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k) toPx(12 * $scalingFactor5k);
   }
 
   &:focus {
@@ -66,5 +72,6 @@
   display: block;
   margin-bottom: toPx(5);
   padding-left: toPx(10);
+
   @include label;
 }

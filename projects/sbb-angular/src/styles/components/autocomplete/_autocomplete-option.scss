@@ -20,9 +20,11 @@
   @include mq($from: desktop4k) {
     font-size: toPx($sizeFontDefault * $scalingFactor4k);
     padding: toPx(4 * $scalingFactor4k) toPx($autocompletePaddingX * $scalingFactor4k);
+
     &:first-of-type {
       padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
     }
+    
     &:last-of-type {
       padding-bottom: toPx($autocompletePaddingBottom * $scalingFactor4k);
     }
