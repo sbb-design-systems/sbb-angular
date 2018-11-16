@@ -5,9 +5,9 @@ import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core'
 })
 export class TimeInputDirective {
 
-  private REGEX_PATTERN = /[0-9]{3,4}/; // /^([01]?[0-9]|2[0-3])([0-5][0-9])$/;
-  private REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/; // /^([01]?[0-9]|2[0-3])[.:,\-;_hH]?([0-5][0-9])$/;
-  private REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/; // /^([01]?[0-9]|2[0-3])([0-5][0-9])$/; //
+  private REGEX_PATTERN = /[0-9]{3,4}/;
+  private REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
+  private REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
 
   constructor(private el: ElementRef) {
   }

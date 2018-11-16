@@ -1,8 +1,15 @@
 import { TimeInputDirective } from './time-input.directive';
+import { Component } from '@angular/core';
+
+@Component({
+  template: `<input type="text" sbbTimeInput>`
+})
+class TimeInputTestComponent {
+}
 
 describe('TimeInputDirective', () => {
   it('should create an instance', () => {
-    const directive = new TimeInputDirective();
-    expect(directive).toBeTruthy();
+    const component = new TimeInputTestComponent();
+    expect(component).toBeTruthy();
   });
 });

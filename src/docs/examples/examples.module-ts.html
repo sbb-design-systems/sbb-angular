@@ -12,8 +12,9 @@
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
+  ButtonModule,
   AutocompleteModule,
-  ButtonModule
+  TimeInputModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
@@ -23,6 +24,7 @@
 <span class="hljs-keyword">import</span> { ButtonShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./button-showcase/button-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AutocompleteShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./autocomplete-showcase/autocomplete-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { IconComponents } <span class="hljs-keyword">from</span> <span class="hljs-string">'../sbb-components-mapping-export'</span>;
+<span class="hljs-keyword">import</span> { TimeInputShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./time-input-showcase/time-input-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { InputFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./text-input-showcase/text-input-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SbbFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./field-showcase/field-showcase.component'</span>;
 
@@ -35,7 +37,8 @@
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent
+    SbbFieldShowcaseComponent,
+    TimeInputShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
+    TimeInputModule,
     IconCommonModule.withComponents(IconComponents.types)
   ],
   providers: [],
@@ -62,6 +66,7 @@
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
+    TimeInputShowcaseComponent,
     ButtonModule
   ]
 })
