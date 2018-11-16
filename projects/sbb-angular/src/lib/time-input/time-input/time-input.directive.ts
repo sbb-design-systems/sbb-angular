@@ -18,13 +18,13 @@ export class TimeInputDirective {
   @HostBinding('class.ssb-time-input') ssbTimeInput = true;
 
 
-  @HostListener('blur')
-  onBlur() {
-    const regGroups = this.inputValidate(this.el.nativeElement.value);
+  @HostListener('blur', ['$event.target.value'])
+  onBlur(value) {
+    const regGroups = this.inputValidate(value);
 
     if (regGroups && regGroups.length > 2) {
       const hours = regGroups[1];
-      const mins = regGroups[2];
+      const mins = regGroups[2] || '00';
       this.renderer.setProperty(this.el.nativeElement, 'value', `${hours}:${mins}`);
     }
   }
