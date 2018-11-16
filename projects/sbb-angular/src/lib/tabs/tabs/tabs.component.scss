@@ -15,16 +15,22 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+  height: 3.73333em;
+  padding-bottom: 15px;
 }
 
-@media all and (min-width: 40.1875em) {
-  .sbb-tabs-tablist {
-		height: 3.73333em; 
-	}
+@include mq($from: desktop4k) {
+  font-size: pxToRem(39);
+  line-height: pxToRem(39);
+}
+
+@include mq($from: desktop5k) {
+  font-size: pxToRem(52);
+  line-height: pxToRem(52);
 }
 
 .sbb-tabs-tablistitem {
-	-webkit-box-flex: 0;
+  -webkit-box-flex: 0;
 	-ms-flex: 0 0 auto;
   flex: 0 0 auto;
   position: relative;
@@ -33,7 +39,6 @@
   padding: 0 0 0.4em 0;
   cursor: pointer;
   -webkit-tap-highlight-color: $colorBlack;
-  font-size: 1.33333em;
   text-decoration: none;
 	background-color: Transparent;
 	background-repeat: no-repeat;
@@ -43,9 +48,9 @@
   font-size: 1.33333em;
   line-height: 26px;
   color: $colorBlack;
-}
-.sbb-tabs-tablistitem.has-counter {
-	margin-right: 1.6em;
+  margin: 0 1.61538em 0 0;
+  padding-bottom: 0.46154em;
+	font-size: 1.73333em;
 }
 .sbb_tabs-tablistitem.is-not-clickable {
 	cursor: default;
@@ -55,20 +60,6 @@
 }
 .sbb-tabs-tablistitem:not(.has-counter):last-child {
 	margin-right: 0;
-}
-@media all and (min-width: 40.1875em) {
-  .sbb-tabs-tablistitem {
-    margin: 0 1.75em 0 0;
-    padding-bottom: 0.625em;
-		font-size: 1.6em; 
-	}
-}
-@media all and (min-width: 64.0625em) {
-  .sbb-tabs-tablistitem {
-    margin: 0 1.61538em 0 0;
-    padding-bottom: 0.46154em;
-		font-size: 1.73333em; 
-	} 
 }
 .sbb-tabs-tablistitem:after {
   content: '';

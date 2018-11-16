@@ -16,4 +16,12 @@
   top: 0;
   background-color: $colorRed100;
   vertical-align: 15px;
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(17);
+    line-height: pxToRem(17);
+  }  
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(22);
+    line-height: pxToRem(22);
+  }
 }
