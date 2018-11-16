@@ -8,6 +8,8 @@ import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/datepicker-showcase.component';
+
 
 
 @Injectable({
@@ -151,7 +153,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Date Picker',
-        'datePicker',
+        'datepicker',
         'Date Picker',
         'Subtitel goes here ...',
         true,
@@ -159,7 +161,8 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
+        'Import text.',
+        DatepickerShowcaseComponent
       ),
       new UiComponent(
         'Time Chooser',

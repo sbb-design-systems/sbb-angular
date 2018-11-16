@@ -38,6 +38,7 @@ import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.com
 import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
+import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/datepicker-showcase.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
-    ComponentViewerComponent
+    ComponentViewerComponent,
+    DatepickerShowcaseComponent
   ]
 })
 export class AppModule { }

@@ -25,6 +25,8 @@ import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocompl
 import { IconComponents } from '../sbb-components-mapping-export';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
+import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent
+    SbbFieldShowcaseComponent,
+    DatepickerShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
+    DatepickerModule,
     IconCommonModule.withComponents(IconComponents.types)
   ],
   providers: [],
@@ -62,6 +66,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
+    DatepickerShowcaseComponent,
     ButtonModule
   ]
 })
