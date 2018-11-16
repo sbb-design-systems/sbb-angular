@@ -17,7 +17,15 @@ import { ButtonIconDirective } from './button-icon.directive';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit {
+
+  /** 
+   * Button modes available for different purposes.
+   */
   @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
+
+   /** 
+   * Template that will contain icons.
+   */
   @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
   @Input() class = '';
