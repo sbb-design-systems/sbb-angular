@@ -15,8 +15,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements AfterContentInit {
 
