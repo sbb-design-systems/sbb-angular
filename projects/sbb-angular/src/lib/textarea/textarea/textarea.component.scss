@@ -1,0 +1,48 @@
+@import '../../../styles/main.scss';
+
+:host {
+  @include sbbTextarea($colorBlack72);
+
+  textarea {
+    @include textareaBase();
+  }
+
+  &.focused {
+    border-color: $colorGrey;
+  }
+
+  &.disabled {
+    background-color: $colorBlack5;
+    border-color: $colorBlack20;
+    opacity: 1;
+  }
+
+  &.ng-dirty.ng-invalid {
+    @include sbbTextarea($colorCallToAction);
+
+    textarea {
+      color: $colorCallToAction;
+    }
+  }
+
+  div {
+    position: relative;
+    float: right;
+    background: transparent;
+    color: $colorBlack;
+    letter-spacing: 0;
+    line-height: pxToRem(13);
+    font-size: pxToRem(13);
+    font-family: $fontSbbRoman;
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(20);
+      line-height: pxToRem(13);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(26);
+      line-height: pxToRem(13);
+    }
+  }
+}

@@ -13,7 +13,7 @@
           "styleext": "scss"
         }
       },
-      "targets": {
+      "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -24,10 +24,18 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "/assets/monaco"
+              },
+              "src/docs"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "projects/sbb-angular/src/typography.scss"
             ],
             "scripts": []
           },
@@ -88,7 +96,8 @@
             "ci": {
               "watch": false,
               "codeCoverage": false,
-              "browsers": "FirefoxHeadless"
+              "browsers": "FirefoxHeadless",
+              "preserveSymlinks": false
             }
           }
         },
@@ -109,7 +118,7 @@
     "sbb-angular-showcase-e2e": {
       "root": "e2e/",
       "projectType": "application",
-      "targets": {
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -138,7 +147,7 @@
       "sourceRoot": "projects/sbb-angular/src",
       "projectType": "library",
       "prefix": "sbb",
-      "targets": {
+      "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
@@ -158,6 +167,12 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "FirefoxHeadless"
+            },
+            "local": {
+              "watch": true,
+              "codeCoverage": true,
+              "browsers": "Firefox",
+              "sourceMap": true
             }
           }
         },

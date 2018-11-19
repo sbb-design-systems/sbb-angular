@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconSearchComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

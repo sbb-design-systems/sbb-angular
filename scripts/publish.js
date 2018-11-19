@@ -1,126 +1,84 @@
 
-const { inc, major, minor, patch, prerelease, valid } = require('semver');
+const { inc, prerelease, valid } = require('semver');
 const { writeFileSync } = require('fs');
 const { join } = require('path');
-const { exec } = require('child_process');
-const execAsync = require('util').promisify(exec);
+const { execSync } = require('child_process');
 
-class Publish {
-  constructor(version, mode, dryRun) {
+class Publisher {
+  constructor(version, tag, dryRun) {
     if (!valid(version)) {
-      throw new Error(`${this.version} is not a valid semver version!`);
+      throw new Error(`${version} is not a valid semver version!`);
     }
 
     this.version = version;
-    this.mode = mode;
-    this.isPrerealese = !!prerelease(this.version);
-    this.tag = this.isPrerealese ? 'next' : 'latest';
+    this.tag = tag;
     this.dryRun = dryRun;
     const dist = join(__dirname, '..', 'dist');
     this.showcasePath = join(dist, 'sbb-angular-showcase');
     this.libraryPath = join(dist, 'sbb-angular');
   }
 
-  async run() {
-    if (!this.dryRun) {
-      console.log(`Publishing version ${this.version} with tag ${this.tag}`);
-    } else {
-      console.log(`Packing version ${this.version}`);
-    }
-
-    if (this.mode === 'develop-showcase') {
-      const version = await this.nextDevelopShowcaseVersion();
-      this.createShowcasePackageJson('sbb-angular-showcase-develop', version);
-      await this.publishShowcase();
-    } else if (await this.versionAvailable()) {
-      this.createShowcasePackageJson();
-      this.updateLibraryPackageJson();
-      await this.publishLibrary();
-      await this.publishShowcase();
-      await this.gitflowRelease();
-    } else {
-      console.log(`Version ${this.version} has already been published! Skipping publishing.`)
-    }
-  }
-
-  async nextDevelopShowcaseVersion() {
-    const stableVersion = `${major(this.version)}.${minor(this.version)}.${patch(this.version)}`;
-    const versions = await this.findVersions('sbb-angular-showcase-develop');
-    const subVersions = versions
-      .filter(v => v.startsWith(stableVersion))
-      .map(v => prerelease(v))
-      .filter(v => !!v)
-      .map(v => v[0])
-      .sort()
-      .reverse();
-    return `${stableVersion}-${subVersions.length ? Math.max(...subVersions) + 1 : 0}`;
-  }
-
-  async versionAvailable() {
-    const versions = await this.findVersions('sbb-angular');
-    return !versions.includes(this.version);
-  }
-
-  async findVersions(packageName) {
+  static findVersions(packageName) {
     try {
-      const { stdout } = await execAsync(`npm view ${packageName} versions --json`);
+      const stdout = execSync(`npm view ${packageName} versions --json`)
+        .toString();
       return JSON.parse(stdout);
     } catch (e) {
       return [];
     }
   }
 
-  createShowcasePackageJson(name = 'sbb-angular-showcase', version = this.version) {
-    this.savePackageJson(join(this.showcasePath, 'package.json'), { name, version });
-    console.log(`Created package.json for showcase with version ${version} and name ${name}`);
+  static generateDevVersion(version, type) {
+    const pattern = `${version}-${type}.`;
+    const subVersions = Publisher.findVersions('sbb-angular-showcase')
+      .filter(v => v.startsWith(pattern))
+      .map(v => parseInt(v.split(pattern)[1]))
+      .filter(v => Number.isInteger(v))
+      .sort((a, b) => b - a);
+    return `${pattern}${subVersions.length ? subVersions[0] + 1 : 0}`;
   }
 
-  updateLibraryPackageJson() {
-    this.updateVersionInPackageJson(join(this.libraryPath, 'package.json'), this.version);
-    console.log(`Updated package.json for library with version ${this.version}`);
+  tryPublish() {
+    try {
+      console.log(`${this.dryRun ? 'Packing' : 'Publishing'} version ${this.version} with tag ${this.tag}`);
+      this.publish();
+    } catch (e) {
+      console.log(`Publish failed\n--------------\n${e}`)
+    }
   }
 
-  async publishLibrary() {
+  publish() {
+    throw new Error('Not implemented!');
+  }
+
+  createShowcasePackageJson(version = this.version) {
+    this.savePackageJson(
+      join(this.showcasePath, 'package.json'),
+      { name: 'sbb-angular-showcase', version });
+    console.log(`Created package.json for showcase with version ${version}`);
+  }
+
+  publishLibrary() {
     if (!this.dryRun) {
-      await execAsync(
-        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+      execSync(
+        `npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/`,
         { cwd: this.libraryPath });
       console.log('Published library');
     } else {
-      await execAsync('npm pack', { cwd: this.libraryPath });
+      execSync('npm pack', { cwd: this.libraryPath });
       console.log('Packaged library');
     }
   }
 
-  async publishShowcase() {
+  publishShowcase() {
     if (!this.dryRun) {
-      await execAsync(
-        'npm publish --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/',
+      execSync(
+        `npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/`,
         { cwd: this.showcasePath });
       console.log('Published showcase');
     } else {
-      await execAsync('npm pack', { cwd: this.showcasePath });
+      execSync('npm pack', { cwd: this.showcasePath });
       console.log('Packaged showcase');
-    }
-  }
-
-  async gitflowRelease() {
-    if (!this.dryRun) {
-      await execAsync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/kd_esta/sbb-angular`);
-      await execAsync('git remote set-branches origin "*" && git fetch');
-      await execAsync('git clean -f && git checkout master && git reset --hard origin/master');
-      await execAsync(
-        `git commit -a -m "[pipeline-helper] Releasing version ${this.version}" --allow-empty && git tag v${this.version}`);
-      await execAsync('git clean -f && git checkout -B develop origin/develop && git merge master -Xtheirs');
-      const newVersion = inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
-      this.updateVersionInPackageJson(join(__dirname, '..', 'package.json'), newVersion);
-      await execAsync(
-        `git commit -a -m "[pipeline-helper] Set next dev version ${newVersion}" --allow-empty`);
-      await execAsync('git push origin --all --force && git push origin --tags --force');
-      await execAsync('git clean -f && git checkout master');
-      console.log(`Tagged version ${this.version}`);
-    } else {
-      console.log('Skipping gitflow release in dry run');
     }
   }
 
@@ -135,6 +93,73 @@ class Publish {
   }
 }
 
-new Publish(process.env.npm_package_version, process.argv[2], !process.env.BUILD_NUMBER)
-  .run()
-  .catch(e => console.log(`Publish failed\n--------------\n${e}`));
+class LibraryAndShowcasePublisher extends Publisher {
+  constructor(version, dryRun) {
+    super(version, prerelease(version) ? 'next' : 'latest', dryRun);
+    this.isPrerealese = !!prerelease(this.version);
+  }
+
+  publish() {
+    if (this.versionAvailable()) {
+      console.log(`Publishing library and showcase with version ${this.version}`);
+      this.createShowcasePackageJson();
+      this.updateLibraryPackageJson();
+      this.publishLibrary();
+      this.publishShowcase();
+      this.gitflowRelease();
+    } else {
+      console.log(`Version ${this.version} has already been published! Skipping publishing.`)
+    }
+  }
+
+  versionAvailable() {
+    const versions = Publisher.findVersions('sbb-angular');
+    return !versions.includes(this.version);
+  }
+
+  updateLibraryPackageJson() {
+    this.updateVersionInPackageJson(join(this.libraryPath, 'package.json'), this.version);
+    console.log(`Updated package.json for library with version ${this.version}`);
+  }
+
+  gitflowRelease() {
+    if (!this.dryRun) {
+      execSync(`git remote set-url origin ssh://git@code-ext.sbb.ch:7999/kd_esta/sbb-angular`);
+      execSync('git remote set-branches origin "*" && git fetch');
+      execSync('git clean -f && git checkout master && git reset --hard origin/master');
+      execSync(
+        `git commit -a -m "[pipeline-helper] Releasing version ${this.version}" --allow-empty && git tag v${this.version}`);
+      execSync('git clean -f && git checkout -B develop origin/develop && git merge master -Xtheirs');
+      const newVersion = inc(this.version, this.isPrerealese ? 'prerelease' : 'minor');
+      this.updateVersionInPackageJson(join(__dirname, '..', 'package.json'), newVersion);
+      execSync(
+        `git commit -a -m "[pipeline-helper] Set next dev version ${newVersion}" --allow-empty`);
+      execSync('git push origin --all --force && git push origin --tags --force');
+      execSync('git clean -f && git checkout master');
+      console.log(`Tagged version ${this.version}`);
+    } else {
+      console.log('Skipping gitflow release in dry run');
+    }
+  }
+}
+
+class DevShowcasePublisher extends Publisher {
+  constructor(version, type, dryRun) {
+    super(Publisher.generateDevVersion(version, type), type, dryRun);
+  }
+
+  publish() {
+    this.createShowcasePackageJson();
+    this.publishShowcase();
+  }
+}
+
+const version = process.env.npm_package_version;
+const type = (process.argv[2] || '')
+  .replace(/[^a-zA-Z0-9\-]/g, '-')
+  .toLowerCase();
+const dryRun = !process.env.BUILD_NUMBER;
+const publisher = type
+  ? new DevShowcasePublisher(version, type, dryRun)
+  : new LibraryAndShowcasePublisher(version, dryRun);
+publisher.tryPublish();

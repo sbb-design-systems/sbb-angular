@@ -1,0 +1,211 @@
+@mixin autocompleteBase() {
+  position: relative;
+  width: 100%;
+  background-color: $autocompleteBg;
+  border: $autocompleteBorder;
+  transition: $autocompleteTransition;
+  color: $autocompleteColor;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+    @include mq($from: desktop4k) {
+      border-bottom-width: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-bottom-width: toPx(1 * $scalingFactor5k);
+    }
+  }
+
+  &.sbb-autocomplete-visible {
+    visibility: visible;
+  }
+
+  &.sbb-autocomplete-hidden {
+    visibility: hidden;
+  }
+
+  @include mq($from: desktop4k) {
+    border: toPx(2 * $scalingFactor4k) solid $colorGrey;
+    box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
+    border-top: $autocompleteBorderTop;
+
+    &::after {
+      border-bottom-width: toPx(1 * $scalingFactor4k);
+    }
+  }
+
+  @include mq($from: desktop5k) {
+    border: toPx(2 * $scalingFactor5k) solid $colorGrey;
+    box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
+    border-top: $autocompleteBorderTop;
+    &::after {
+      border-bottom-width: toPx(1 * $scalingFactor5k);
+    }
+  }
+
+  sbb-option-group {
+    position: relative;
+    display: block;
+    color: $colorMetanav;
+
+    @include mq($from: desktop4k) {
+      border-top-width: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-width: toPx(1 * $scalingFactor5k);
+    }
+
+    sbb-option {
+      &:first-of-type {
+        padding-top: 0;
+      }
+    }
+    .sbb-optgroup-label {
+      padding-left: $autocompletePaddingX;
+      padding-right: $autocompletePaddingX;
+      padding-top: $autocompletePaddingTop;
+
+      @include mq($from: desktop4k) {
+        font-size: toPx(10 * $scalingFactor4k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        font-size: toPx(10 * $scalingFactor5k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+      }
+
+      @include label;
+      
+    }
+  }
+}
+
+@mixin autocompleteDirectionalRules($mode: default) {
+  @if $mode == default {
+
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadow;
+    margin-top: -2px;
+
+    @include mq($from: desktop4k) {
+      border-bottom-left-radius: toPx(2 * $scalingFactor4k);
+      margin-top: toPx(-2 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-bottom-left-radius: toPx(2 * $scalingFactor5k);
+      margin-top: toPx(-2 * $scalingFactor5k);
+    }
+
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+
+    sbb-option-group {
+      border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+      @include mq($from: desktop4k) {
+        border-top-width: toPx(1 * $scalingFactor4k);
+      }
+  
+      @include mq($from: desktop5k) {
+        border-top-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+
+  } @else if $mode == reverse {
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top: $autocompleteBorderTopReverse;
+    border-bottom: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadowReverse;
+    margin-top: auto;
+    margin-bottom: -2px;
+
+    @include mq($from: desktop4k) {
+      border-top-left-radius: toPx(2 * $scalingFactor4k);
+      border-top-width: toPx(2 * $scalingFactor4k);
+      margin-bottom: toPx(-2 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-left-radius: toPx(2 * $scalingFactor5k);
+      border-top-width: toPx(2 * $scalingFactor5k);
+      margin-bottom: toPx(-2 * $scalingFactor5k);
+    }
+
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+
+    sbb-option-group {
+      border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+      @include mq($from: desktop4k) {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
+  
+      @include mq($from: desktop5k) {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+
+  }
+}
+
+@mixin autocompleteInputActive($mode: default) {
+
+  @if $mode == default {
+
+    @include autocompleteInputActiveDefault();
+
+  } @else if $mode == reverse {
+
+    @include autocompleteInputActiveReverse();
+
+  }
+  
+}
+
+@mixin autocompleteInputActiveDefault() {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: $colorGrey;
+  border-bottom-color: transparent;
+
+  &:hover, &:focus {
+    border-bottom-color: transparent;
+  }
+}
+
+@mixin autocompleteInputActiveReverse() {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-color: $colorGrey;
+  border-top-color: transparent;
+  border-bottom: 2px solid $colorGrey;
+
+  &:hover, &:focus {
+    border-top-color: transparent;
+  }
+}

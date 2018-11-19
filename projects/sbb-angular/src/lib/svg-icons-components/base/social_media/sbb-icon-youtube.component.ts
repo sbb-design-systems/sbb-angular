@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconYoutubeComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

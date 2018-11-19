@@ -1,0 +1,34 @@
+@import '../../../dist/sbb-angular/styles.scss';
+@import '../../styles/common/variable';
+@import '../../styles/common/mixins';
+
+.search-input-icon {
+  min-width: 300px;
+}
+
+.sbbsc-search-icon-context {
+  .sbbsc-cards-card {
+    &-hero {
+      @include landingSearchResultListHero();
+      @include landingIconSearchResultListHero();
+    }
+
+    &-title {
+      @include landingSearchResultCardTitle();
+      @include landingIconSearchResultCardTitle();
+    }
+
+    &-icon-selector {
+      display: block;
+      text-align: center;
+
+      &::before {
+        content: '<';
+      }
+      &::after {
+        content: '>';
+      }
+    }
+  }
+}
+

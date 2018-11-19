@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 export class IconPdfComponent {
 
   @Input() svgClass = '';
-  commonClass = ' ';
+  commonClass = '';
 }

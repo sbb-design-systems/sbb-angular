@@ -17,6 +17,16 @@ pipeline {
       steps {
         sh 'npm test'
         sh 'npm run lint'
+        sh 'npm run build'
+      }
+    }
+
+    stage('When on feature branch, create feature branch showcase release') {
+      when {
+        branch 'feature/*'
+      }
+      steps {
+        sh "npm run sbb:publish -- $BRANCH_NAME"
       }
     }
 
@@ -25,13 +35,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        sh 'npm run build'
-        sh 'npm run sbb:publish:develop-showcase'
-        cloud_callDeploy(
-          cluster: 'aws',
-          project: 'sbb-angular-showcase',
-          dc: 'sbb-angular',
-          credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
+        sh 'npm run sbb:publish -- develop'
       }
     }
 
@@ -40,13 +44,39 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'npm run build'
         sh 'npm run sbb:publish'
-        cloud_callDeploy(
-          cluster: 'aws',
-          project: 'sbb-angular-showcase',
-          dc: 'sbb-angular',
-          credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
+      }
+    }
+
+    stage('Deploy') {
+      when {
+        anyOf {
+          branch 'feature/*'
+          branch 'develop'
+          branch 'master'
+        }
+      }
+      steps {
+        script {
+          try {
+            cloud_callDeploy(
+              cluster: 'aws',
+              project: 'sbb-angular-showcase',
+              dc: 'sbb-angular',
+              credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
+          } catch (e) {
+            sleep(90)
+            try {
+              cloud_callDeploy(
+                cluster: 'aws',
+                project: 'sbb-angular-showcase',
+                dc: 'sbb-angular',
+                credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
+            } catch (ex) {
+              echo 'Failed to deploy'
+            }
+          }
+        }
       }
     }
   }
@@ -58,7 +88,7 @@ pipeline {
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
     }
 
     fixed {
@@ -67,7 +97,7 @@ pipeline {
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
     }
   }
 }

@@ -1,0 +1,8 @@
+<ul class="sbbsc-navlist">
+  <li *ngFor="let uiIcon of foundUiIcons">
+    <a [routerLink]="['content', uiIcon['name']]" routerLinkActive="sbbsc-active">
+      <ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="single"></ng-template> 
+      {{ uiIcon['name'].substring(4, uiIcon['name'].length-9) }}
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,24 @@
+@import '../../../styles/main';
+
+:host {
+  @include checkBoxBase();
+
+  &.sbb-checkbox-disabled {
+    .checkbox-placeholder-container {
+      border-color: $colorBlack20;
+      background-color: $colorBlack5;
+
+      .checkbox-placeholder-checked {
+        fill: $colorGrey;
+      }
+    }
+  }
+}
+
+input[type="checkbox"] {
+  @include checkboxInput();
+}
+
+.checkbox-placeholder-container {
+  @include checkboxPlaceholderContainer();
+}

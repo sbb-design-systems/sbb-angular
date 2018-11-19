@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Single Checkbox</h4>
+      <sbb-checkbox inputId="single-checkbox" value="single-checkbox" [disabled]="disabled" [required]="required"
+        [checked]="checked"></sbb-checkbox>
+      <label for="single-checkbox"> Test label</label>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <div class="sbbsc-block">
+        <input id="checkedCheck" type="checkbox" [(ngModel)]="checked">&nbsp;
+        <label for="checkedCheck">Checked</label>
+      </div>
+      <div class="sbbsc-block">
+        <input id="requiredCheck" type="checkbox" [(ngModel)]="required">&nbsp;
+        <label for="requiredCheck">Required</label>
+      </div>
+      <div class="sbbsc-block">
+        <input id="disabled" type="checkbox" [(ngModel)]="disabled">&nbsp;
+        <label for="disabled">Disabled</label>
+      </div>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Checkboxes Group</h4>
+      <ng-container *ngFor="let option of checkboxOptions; index as i">
+        <div class="sbbsc-block">
+          <sbb-checkbox [(ngModel)]="option.selected" inputId="model-checkbox-{{i}}" [value]="option.value"></sbb-checkbox>
+          <label for="model-checkbox-{{i}}"> {{option.name}}</label>
+        </div>
+      </ng-container>
+    </div>
+    <div class="col-lg-6">
+      <h4>Model</h4>
+      <pre>{{ checkboxOptions | json }}</pre>
+    </div>
+  </div>
+</div>

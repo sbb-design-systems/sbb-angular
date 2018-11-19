@@ -1,0 +1,18 @@
+@import "../../../styles/main";
+
+.sbb-autocomplete-panel {
+  @include autocompleteBase();
+  @include autocompleteDirectionalRules();
+
+  &.sbb-autocomplete-panel-above {
+    @include autocompleteDirectionalRules($mode: reverse);
+  }
+} 
+
+input[aria-expanded="true"] {
+  @include autocompleteInputActive();
+
+  &.sbb-autocomplete-input-above {
+    @include autocompleteInputActive($mode: reverse);
+  }
+}

@@ -1,0 +1,27 @@
+@import '../../../styles/main';
+
+:host {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  &.sbb-radio-disabled {
+    .radio-circle-container {
+      border-color: $colorBlack20;
+      background-color: $colorBlack5;
+
+      .radio-circle-checked {
+        background-color: $colorGrey;
+      }
+    }
+  }
+}
+
+input[type="radio"] {
+  @include radioButtonBase();
+}
+
+
+.radio-circle-container {
+  @include radioButtonCircle();
+}

@@ -8,7 +8,8 @@ ARG ARTIFACTORY_PW
 ARG VERSION
 
 ENV NGINX_VERSION=1.14.0
-ENV NODE_ENV production
+ENV NODE_ENV=production
+ENV TZ=Europe/Bern
 
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 RUN INSTALL_PKGS="gcc gcc-c++ make openssl-devel git pcre-devel zlib-devel python python-setuptools nodejs" \
