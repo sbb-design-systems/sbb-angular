@@ -23,8 +23,8 @@ export class TimeInputDirective {
     const regGroups = this.inputValidate(value);
 
     if (regGroups && regGroups.length > 2) {
-      const hours = regGroups[1];
-      const mins = regGroups[2] || '00';
+      const hours = this.parseHour(regGroups[1]);
+      const mins = this.parseMinute(regGroups[2]);
       this.renderer.setProperty(this.el.nativeElement, 'value', `${hours}:${mins}`);
     }
   }
@@ -36,6 +36,14 @@ export class TimeInputDirective {
     } else if (value) {
       return value.match(this.REGEX_GROUPS_WITH_COLON);
     }
+  }
 
+  private parseHour(regGroupHours) {
+    return regGroupHours.length > 1 ? regGroupHours : '0' + regGroupHours;
+  }
+
+  private parseMinute(regGroupMin) {
+    regGroupMin = regGroupMin || '00';
+    return regGroupMin.length > 1 ? regGroupMin : '0' + regGroupMin;
   }
 }
