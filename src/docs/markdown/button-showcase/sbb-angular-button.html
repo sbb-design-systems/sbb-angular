@@ -4,11 +4,16 @@
 
 <body>
   <h1 class="docs-markdown-h1">Button Overview</h1>
-  <p class="docs-markdown-p">Buttons have two main properties:</p>
-  <ul class="docs-markdown-ul">
-    <li class="docs-markdown-li">mode</li>
-    <li class="docs-markdown-li">icons</li>
-  </ul>
+  <p class="docs-markdown-p">Import button module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> {
+  IconCommonModule,
+  ButtonModule
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and for example you can use the basic primary mode how in the example</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"primary"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-thick</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-thick</span>&gt;</span>
+      Bezeichnung
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
 </body>
 
 </html>
