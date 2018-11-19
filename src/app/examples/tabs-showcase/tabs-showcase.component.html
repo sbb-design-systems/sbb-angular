@@ -1,41 +1,33 @@
 <article class="container-fluid">
   <div class="row">
-    <div class="col-lg-9 sbbsc-v-sep"> 
-    <h4>Basic Example</h4>
-    <sbb-tabs>
-      <!-- First tab (required) -->
-      <sbb-tab [label]="'Tab 1'" 
-               [id]="'content1-tab'"
-               [labelId]="'content1'">
+    <div class="col-lg-7 sbbsc-v-sep no-fix-width">
+      <h4>Basic Example</h4>
+      <sbb-tabs>
+        <!-- First tab (required) -->
+        <sbb-tab [label]="'Tab 1'" [id]="'content1-tab'" [labelId]="'content1'">
           <h4>Content 1</h4>
-          <hr/>
+          <hr />
           <p>Here comes the content for tab 1 ...</p>
-          <br/>
-      </sbb-tab>
-      <!-- Second tab (required) -->
-      <sbb-tab [label]="'Tab 2'" 
-               [id]="'content2-tab'"
-               [labelId]="'content2'">
+          <br />
+        </sbb-tab>
+        <!-- Second tab (required) -->
+        <sbb-tab [label]="'Tab 2'" [id]="'content2-tab'" [labelId]="'content2'">
           <h4>Content 2</h4>
-          <hr/>
+          <hr />
           <p>Here comes the content for tab 2 ...</p>
-          <br/>
-      </sbb-tab>
-      <!-- Third tab with the possibility of dynamic tabs if any -->
-      <sbb-tab [label]="'Persons'"
-               [id]="'persons-tab'"
-               [labelId]="'persons'"
-               [badgePill]="getCountOfPersons()" 
-               [disabled]="disabled"
-               *ngIf="!removed">
-        <h4>List of Persons</h4>
-        <hr/>
-        <person-list [person]="person"></person-list>
-      </sbb-tab>
-    </sbb-tabs>
-    <small class="font-italic">* Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
+          <br />
+        </sbb-tab>
+        <!-- Third tab with the possibility of dynamic tabs if any -->
+        <sbb-tab [label]="'Persons'" [id]="'persons-tab'" [labelId]="'persons'" [badgePill]="getCountOfPersons()"
+          [disabled]="disabled" *ngIf="!removed">
+          <h4>List of Persons</h4>
+          <hr />
+          <person-list [person]="person"></person-list>
+        </sbb-tab>
+      </sbb-tabs>
+      <small class="font-italic">* Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-5">
       <h4>Properties</h4>
       <div class="sbbsc-block">
         <label>Please set data-set for tabs content / tab pill :</label>

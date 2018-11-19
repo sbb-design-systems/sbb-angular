@@ -14,7 +14,8 @@ import {
   CheckboxModule,
   AutocompleteModule,
   ButtonModule,
-  TabsModule
+  TabsModule,
+  TimeInputModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -24,6 +25,7 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { IconComponents } from '../sbb-components-mapping-export';
+import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
@@ -40,7 +42,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
-    PersonListComponent
+    PersonListComponent,
+    TimeInputShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     RadioButtonModule,
     CheckboxModule,
     IconCommonModule.withComponents(IconComponents.types),
-    TabsModule
+    TabsModule,
+    TimeInputModule
   ],
   providers: [],
   exports: [
@@ -69,7 +73,9 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     TabsShowcaseComponent,
-    PersonListComponent
+    PersonListComponent,
+    TimeInputShowcaseComponent,
+    ButtonModule
   ]
 })
 export class ExamplesModule { }
