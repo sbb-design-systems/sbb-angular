@@ -65,7 +65,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   onChange = (_: any) => { };
   /**
-   * Property that describes if a checkbox is pressed or not
+   * Property that describes an updating of checkbox
    */
   onTouched = () => { };
 
