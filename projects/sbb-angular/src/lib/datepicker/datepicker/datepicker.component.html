@@ -1,3 +1,10 @@
-<p>
-  datepicker works!
-</p>
+<button *ngIf="withScroll" class="sbb-icon-wrapper sbb-icon-wrapper-before">
+  <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+</button>
+<button class="sbb-icon-wrapper sbb-icon-wrapper-before">
+  <sbb-icon-calendar></sbb-icon-calendar>
+</button>
+<input #datepickerInput type="text" autocomplete="off" spellcheck="false" class="sbb-datepicker-input">
+<button *ngIf="withScroll" class="sbb-icon-wrapper sbb-icon-wrapper-after">
+  <sbb-icon-arrow-small-right *ngIf="withScroll"></sbb-icon-arrow-small-right>
+</button>

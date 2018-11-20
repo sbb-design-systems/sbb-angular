@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { UiComponent } from '../../shared/ui-component';
-import { slideAnimation } from 'src/app/shared/animations';
+import { slideAnimation } from '../../shared/animations';
 
 @Component({
   selector: 'sbb-examples-tab-doc',

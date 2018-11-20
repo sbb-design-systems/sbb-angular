@@ -26,7 +26,9 @@ import { IconComponents } from '../sbb-components-mapping-export';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
-import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
+import { DatepickerModule, DateAdapter, SBB_DATE_FORMATS } from 'projects/sbb-angular/src/public_api';
+import { DateFnsAdapter } from 'projects/sbb-angular/src/lib/datepicker/date-fns-adapter';
+import { SBB_SIMPLE_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker/simple-date-formats';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     DatepickerModule,
     IconCommonModule.withComponents(IconComponents.types)
   ],
-  providers: [],
+  providers: [{ provide: DateAdapter, useClass: DateFnsAdapter },
+    {provide: SBB_DATE_FORMATS, useValue: SBB_SIMPLE_DATE_FORMATS}
+  ],
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
@@ -68,6 +72,7 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     SbbFieldShowcaseComponent,
     DatepickerShowcaseComponent,
     ButtonModule
-  ]
+  ],
+
 })
 export class ExamplesModule { }

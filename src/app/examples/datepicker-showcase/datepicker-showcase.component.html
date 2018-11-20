@@ -1,4 +1,15 @@
-<p>
-  datepicker-showcase works!
-</p>
-<sbb-datepicker></sbb-datepicker>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Simple Datepicker</h4>
+    
+        <input [sbbDatepickerInput]="picker" placeholder="Choose a date">
+        <sbb-datepicker-toggle [for]="picker"></sbb-datepicker-toggle>
+        <sbb-datepicker #picker></sbb-datepicker>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+
+    </div>
+  </div>
+</div>

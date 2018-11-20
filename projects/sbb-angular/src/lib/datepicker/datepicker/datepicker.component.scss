@@ -1,0 +1,5 @@
+@import "../../../styles/main";
+
+sbb-datepicker {
+  @include datepicker();
+}

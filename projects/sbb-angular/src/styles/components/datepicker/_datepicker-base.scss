@@ -1,3 +1,19 @@
 @mixin datepicker {
-    
+  width: 100%;
+  position: relative;
+  vertical-align: middle;
+  margin-bottom: toPx(15);
+  .sbb-datepicker-input {
+    padding-left: toPx(30);
+  }
+  .sbb-icon-wrapper {
+    @include buttonReset();
+    border: none;
+    position: absolute;
+    height: toPx(24);
+    width: toPx(24);
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: toPx(12);
+  }
 }
