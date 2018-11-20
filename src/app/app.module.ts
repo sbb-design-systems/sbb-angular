@@ -65,7 +65,7 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     NgbModule,
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     AppRoutingModule,
-    IconCommonModule.withComponents(IconComponents.types),
+    IconCommonModule,
     ExamplesModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
@@ -82,7 +82,8 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     ComponentViewerComponent,
-    TimeInputShowcaseComponent
+    TimeInputShowcaseComponent,
+    ...IconComponents.types
   ]
 })
 export class AppModule { }
