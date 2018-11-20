@@ -168,10 +168,10 @@ export class MonthViewComponent<D> implements AfterContentInit {
 
     switch (event.keyCode) {
       case LEFT_ARROW:
-        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, 1);
+        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, -1);
         break;
       case RIGHT_ARROW:
-        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, -1);
+        this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, 1);
         break;
       case UP_ARROW:
         this.activeDate = this._dateAdapter.addCalendarDays(this._activeDate, -7);

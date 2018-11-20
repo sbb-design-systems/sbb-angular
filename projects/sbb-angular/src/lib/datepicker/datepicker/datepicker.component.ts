@@ -193,6 +193,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
+    this._dateAdapter.setLocale('it');
   }
 
   ngOnDestroy() {

@@ -1,3 +1,16 @@
-<p>
-  month-view works!
-</p>
+<table class="sbb-calendar-table">
+  <thead class="sbb-calendar-table-header">
+    <tr><th *ngFor="let day of _weekdays" [attr.aria-label]="day.long">{{day.narrow}}</th></tr>
+    <tr><th class="sbb-calendar-table-header-divider" colspan="7" aria-hidden="true"></th></tr>
+  </thead>
+  <tbody sbb-calendar-body
+         [label]="_monthLabel"
+         [rows]="_weeks"
+         [todayValue]="_todayDate"
+         [selectedValue]="_selectedDate"
+         [labelMinRequiredCells]="3"
+         [activeCell]="_dateAdapter.getDate(activeDate) - 1"
+         (selectedValueChange)="_dateSelected($event)"
+         (keydown)="_handleCalendarBodyKeydown($event)">
+  </tbody>
+</table>

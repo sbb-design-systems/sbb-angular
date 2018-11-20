@@ -6,10 +6,12 @@ export interface DateFormats {
         dateInput: any
     };
     display: {
+        monthLabel: any,
         dateInput: any,
-        monthYearLabel: any,
+        yearLabel: any,
         dateA11yLabel: any,
-        monthYearA11yLabel: any,
+        monthA11yLabel: any,
+        yearA11yLabel: any
     };
 }
 

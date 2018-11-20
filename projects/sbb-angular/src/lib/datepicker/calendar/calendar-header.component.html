@@ -1,23 +1,29 @@
 <div class="sbb-calendar-header">
-  <div class="sbb-calendar-controls">
-    <button sbbButton type="button" class="sbb-calendar-period-button"
-            (click)="currentPeriodClicked()" [attr.aria-label]="periodButtonLabel"
-            cdkAriaLive="polite">
-      {{periodButtonText}}
-      <div class="sbb-calendar-arrow"
-           [class.sbb-calendar-invert]="calendar.currentView != 'month'"></div>
-    </button>
+        <div class="sbb-calendar-controls">
+                <button sbbButton mode="frameless" [disabled]="!previousMonthEnabled()" (click)="previousMonthClicked()"
+                        [attr.aria-label]="prevButtonLabel">
+                        <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+                </button>
+                <span [attr.aria-label]="monthText" cdkAriaLive="polite">{{ monthText }}</span>
+                <button sbbButton mode="frameless" [disabled]="!nextMonthEnabled()" (click)="nextMonthClicked()"
+                        [attr.aria-label]="nextButtonLabel">
+                        <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+                </button>
 
-    <div class="sbb-calendar-spacer"></div>
+                <div class="sbb-calendar-spacer"></div>
 
-    <button type="button" class="sbb-calendar-previous-button"
-            [disabled]="!previousEnabled()" (click)="previousClicked()"
-            [attr.aria-label]="prevButtonLabel">
-    </button>
+                <button sbbButton mode="frameless" [disabled]="!previousYearEnabled()" (click)="previousYearClicked()"
+                        [attr.aria-label]="prevButtonLabel">
+                        <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+                </button>
+                <span [attr.aria-label]="yearText" cdkAriaLive="polite">{{ yearText }}</span>
+                <button sbbButton mode="frameless" [disabled]="!nextYearEnabled()" (click)="nextYearClicked()"
+                        [attr.aria-label]="nextButtonLabel">
+                        <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+                </button>
 
-    <button type="button" class="sbb-calendar-next-button"
-            [disabled]="!nextEnabled()" (click)="nextClicked()"
-            [attr.aria-label]="nextButtonLabel">
-    </button>
-  </div>
+                <div class="sbb-calendar-spacer"></div>
+
+
+        </div>
 </div>

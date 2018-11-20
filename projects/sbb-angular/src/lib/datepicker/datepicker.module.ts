@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatepickerComponent, SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER } from './datepicker/datepicker.component';
-import { IconCommonModule } from '../svg-icons-components';
+import {
+  IconCommonModule,
+  IconArrowSmallRightComponent,
+  IconArrowSmallLeftComponent,
+  IconCalendarComponent
+} from '../svg-icons-components';
 import { ButtonModule } from '../button';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
@@ -12,6 +17,8 @@ import { DatepickerInputDirective } from './datepicker-input/datepicker-input.di
 import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
+import { DatepickerIntlService } from './datepicker-intl.service';
+
 
 @NgModule({
   imports: [
@@ -30,7 +37,8 @@ import { A11yModule } from '@angular/cdk/a11y';
     CalendarHeaderComponent,
     MonthViewComponent,
     CalendarBodyComponent,
-    DatepickerInputDirective
+    DatepickerInputDirective,
+
   ],
   exports: [
     DatepickerComponent,
@@ -42,7 +50,17 @@ import { A11yModule } from '@angular/cdk/a11y';
     CalendarBodyComponent,
     DatepickerInputDirective
   ],
-  providers: [SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER]
+  providers: [
+    DatepickerIntlService,
+    SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
+  ],
+  entryComponents: [
+    DatepickerContentComponent,
+    CalendarHeaderComponent,
+    IconArrowSmallRightComponent,
+    IconArrowSmallLeftComponent,
+    IconCalendarComponent
+  ]
 
 })
 export class DatepickerModule { }

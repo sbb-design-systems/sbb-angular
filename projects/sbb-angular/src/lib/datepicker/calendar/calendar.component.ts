@@ -267,17 +267,19 @@ export class CalendarHeaderComponent<D> {
   }
 
   /** The label for the current calendar view. */
-  get periodButtonText(): string {
-    if (this.calendar.currentView === 'month') {
-      return this._dateAdapter
-        .format(this.calendar.activeDate, this._dateFormats.display.monthYearLabel)
-        .toLocaleUpperCase();
-    }
+  get monthText(): string {
+    return this._dateAdapter
+      .format(this.calendar.activeDate, this._dateFormats.display.monthLabel)
+      .toLocaleUpperCase();
   }
 
-  get periodButtonLabel(): string {
-    return this.calendar.currentView === 'month' ?
-      this._intl.switchToMultiYearViewLabel : this._intl.switchToMonthViewLabel;
+  /** The label for the current calendar view. */
+  get yearText(): string {
+
+    return this._dateAdapter
+      .format(this.calendar.activeDate, this._dateFormats.display.yearLabel)
+      .toLocaleUpperCase();
+
   }
 
   /** The label for the the previous button. */
@@ -298,41 +300,74 @@ export class CalendarHeaderComponent<D> {
     }[this.calendar.currentView];
   }
 
+
+
+
   /** Handles user clicks on the period label. */
   currentPeriodClicked(): void {
     this.calendar.currentView = this.calendar.currentView === 'month' ? 'multi-year' : 'month';
   }
 
   /** Handles user clicks on the previous button. */
-  previousClicked(): void {
+  previousMonthClicked(): void {
     this.calendar.activeDate = this._dateAdapter.addCalendarMonths(this.calendar.activeDate, -1);
   }
 
   /** Handles user clicks on the next button. */
-  nextClicked(): void {
+  nextMonthClicked(): void {
     this.calendar.activeDate = this._dateAdapter.addCalendarMonths(this.calendar.activeDate, 1);
   }
 
   /** Whether the previous period button is enabled. */
-  previousEnabled(): boolean {
+  previousMonthEnabled(): boolean {
     if (!this.calendar.minDate) {
       return true;
     }
     return !this.calendar.minDate ||
-      !this._isSameView(this.calendar.activeDate, this.calendar.minDate);
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
   }
 
   /** Whether the next period button is enabled. */
-  nextEnabled(): boolean {
+  nextMonthEnabled(): boolean {
     return !this.calendar.maxDate ||
-      !this._isSameView(this.calendar.activeDate, this.calendar.maxDate);
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
   }
 
   /** Whether the two dates represent the same view in the current view mode (month or year). */
-  private _isSameView(date1: D, date2: D): boolean {
+  private _isSameMonthView(date1: D, date2: D): boolean {
 
-    return this._dateAdapter.getYear(date1) === this._dateAdapter.getYear(date2) &&
-      this._dateAdapter.getMonth(date1) === this._dateAdapter.getMonth(date2);
+    return this._dateAdapter.getMonth(date1) === this._dateAdapter.getMonth(date2);
+  }
+
+  /** Handles user clicks on the previous button. */
+  previousYearClicked(): void {
+    this.calendar.activeDate = this._dateAdapter.addCalendarYears(this.calendar.activeDate, -1);
+  }
+
+  /** Handles user clicks on the next button. */
+  nextYearClicked(): void {
+    this.calendar.activeDate = this._dateAdapter.addCalendarYears(this.calendar.activeDate, 1);
+  }
+
+  /** Whether the previous period button is enabled. */
+  previousYearEnabled(): boolean {
+    if (!this.calendar.minDate) {
+      return true;
+    }
+    return !this.calendar.minDate ||
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
+  }
+
+  /** Whether the next period button is enabled. */
+  nextYearEnabled(): boolean {
+    return !this.calendar.maxDate ||
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
+  }
+
+  /** Whether the two dates represent the same view in the current view mode (month or year). */
+  private _isSameYearView(date1: D, date2: D): boolean {
+
+    return this._dateAdapter.getYear(date1) === this._dateAdapter.getYear(date2);
   }
 
 }

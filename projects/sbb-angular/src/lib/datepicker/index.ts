@@ -6,6 +6,8 @@ export * from './datepicker-input/datepicker-input.directive';
 export * from './calendar/calendar.component';
 export * from './calendar-body/calendar-body.component';
 export * from './month-view/month-view.component';
+export * from './fns-date-formats';
+export * from './fns-date-adapter';
 export * from './date-adapter';
 export * from './date-formats';
 export * from './datepicker-intl.service';

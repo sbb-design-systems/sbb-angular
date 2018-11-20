@@ -23,14 +23,13 @@ import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
-import { IconComponents } from '../sbb-components-mapping-export';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
-import { DatepickerModule, DateAdapter, SBB_DATE_FORMATS } from 'projects/sbb-angular/src/public_api';
-import { DateFnsAdapter } from 'projects/sbb-angular/src/lib/datepicker/date-fns-adapter';
-import { SBB_SIMPLE_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker/simple-date-formats';
+import { DateAdapter, SBB_DATE_FORMATS, DatepickerModule } from 'projects/sbb-angular/src/public_api';
+import { FnsDateAdapter } from 'projects/sbb-angular/src/lib/datepicker/fns-date-adapter';
+import { FNS_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker/fns-date-formats';
 
 @NgModule({
   declarations: [
@@ -62,8 +61,9 @@ import { SBB_SIMPLE_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker
     TimeInputModule,
     IconCommonModule
   ],
-  providers: [{ provide: DateAdapter, useClass: DateFnsAdapter },
-    {provide: SBB_DATE_FORMATS, useValue: SBB_SIMPLE_DATE_FORMATS}
+  providers: [
+    { provide: DateAdapter, useClass: FnsDateAdapter},
+    { provide: SBB_DATE_FORMATS, useValue: FNS_DATE_FORMATS }
   ],
   exports: [
     TextareaShowcaseComponent,

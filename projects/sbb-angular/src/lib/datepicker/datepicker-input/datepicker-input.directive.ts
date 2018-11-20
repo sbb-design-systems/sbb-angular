@@ -46,7 +46,7 @@ export const SBB_DATEPICKER_VALIDATORS: any = {
 /**
  * An event used for datepicker input and change events. We don't always have access to a native
  * input or change event because the event may have been triggered by the user clicking on the
- * calendar popup. For consistency, we always use MatDatepickerInputEvent instead.
+ * calendar popup. For consistency, we always use SbbDatepickerInputEvent instead.
  */
 export class SbbDatepickerInputEvent<D> {
   /** The new value for the target datepicker input. */
@@ -62,13 +62,13 @@ export class SbbDatepickerInputEvent<D> {
 }
 
 @Directive({
-  selector: 'input[sbbDatepickerInput]',
+  selector: 'input[sbbDatepicker]',
   providers: [
     SBB_DATEPICKER_VALUE_ACCESSOR,
     SBB_DATEPICKER_VALIDATORS
 
   ],
-  exportAs: 'sbbDatepickerInput',
+  exportAs: 'sbbDatepickerInput'
 })
 export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDestroy, Validator {
 

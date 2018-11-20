@@ -24,7 +24,8 @@ export class CalendarCell {
 
 
 @Component({
-  selector: 'sbb-calendar-body',
+  // tslint:disable-next-line:component-selector
+  selector: '[sbb-calendar-body]',
   templateUrl: './calendar-body.component.html',
   styleUrls: ['./calendar-body.component.scss'],
   exportAs: 'sbbCalendarBody',

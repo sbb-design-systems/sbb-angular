@@ -1,5 +1,14 @@
 import { DateAdapter } from './date-adapter';
 import * as dateFns from 'date-fns';
+import * as itLocale from 'date-fns/locale/it';
+import * as deLocale from 'date-fns/locale/de';
+import * as frLocale from 'date-fns/locale/fr';
+
+const locales = {
+    'it': itLocale,
+    'de': deLocale,
+    'fr': frLocale
+};
 
 /** The default month names to use if Intl API is not available. */
 const DEFAULT_MONTH_NAMES = {
@@ -32,7 +41,7 @@ const DEFAULT_DAY_OF_WEEK_NAMES = {
 };
 
 
-export class DateFnsAdapter extends DateAdapter<Date> {
+export class FnsDateAdapter extends DateAdapter<Date> {
     protected locale: any;
     localeChanges;
     protected _localeChanges;
@@ -81,7 +90,7 @@ export class DateFnsAdapter extends DateAdapter<Date> {
         return dateFns.parse(value, parseFormat);
     }
     format(date: Date, displayFormat: any): string {
-        return dateFns.format(date, displayFormat, { locale: this.locale });
+        return dateFns.format(date, displayFormat, { locale: locales[this.locale] });
     }
     addCalendarYears(date: Date, years: number): Date {
         return dateFns.addYears(date, years);
@@ -94,10 +103,10 @@ export class DateFnsAdapter extends DateAdapter<Date> {
     }
 
     /**
-  * Pads a number to make it two digits.
-  * @param n The number to pad.
-  * @returns The padded number.
-  */
+      * Pads a number to make it two digits.
+      * @param n The number to pad.
+      * @returns The padded number.
+      */
     private _2digit(n: number) {
         return ('00' + n).slice(-2);
     }
@@ -121,3 +130,4 @@ export class DateFnsAdapter extends DateAdapter<Date> {
 
 
 }
+

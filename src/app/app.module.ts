@@ -58,7 +58,7 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent
+    ComponentViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +83,7 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     ComponentViewerComponent,
-    DatepickerShowcaseComponent
+    DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,
     ...IconComponents.types
   ]
