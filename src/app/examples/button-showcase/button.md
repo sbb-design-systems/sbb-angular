@@ -8,11 +8,20 @@ import {
   ButtonModule
 } from 'sbb-angular';
 ```
-and for example you can use the basic primary mode how in the example
+and then you can use the button component as seen below
 
 ```html
-  <button sbbButton mode="primary">
-      <sbb-icon-arrow-thick *sbbButtonIcon></sbb-icon-arrow-thick>
+  <button sbbButton>
+      <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+      Bezeichnung
+  </button>
+```
+
+The button supports four modes: primary (default), secondary, ghost and frameless as shown in the example
+
+```html
+  <button sbbButton mode="secondary">
+      <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
       Bezeichnung
   </button>
 ```
