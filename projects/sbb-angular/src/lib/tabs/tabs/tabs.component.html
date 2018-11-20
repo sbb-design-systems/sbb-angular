@@ -1,20 +1,13 @@
-<div class="sbb-tabs-wrapper">
-<div *ngFor="let tab of tabs$ | async"
-     role="tablist"
-     class="sbb-tabs-tablist"
-     [attr.aria-label]="nameOfTabList">
-     <button (click)="selectTab(tab)"
-             (keyup)="onKeydown($event)"
-             role="tab"
-             [attr.aria-selected]="tab.active"
-             [attr.aria-controls]="tab.id"
-             [id]="tab.labelId"
-             class="sbb-tabs-tablistitem"
-             [class.is-active]="tab.active"
-             [attr.tabindex]="tab.active ? 0 : -1"
-             [disabled]="tab.disabled">{{ tab.label }}
-     </button>
-     <span><sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill></span>
+<div class="sbb-tabs-wrapper" role="tablist">
+  <div *ngFor="let tab of tabs$ | async" class="sbb-tabs-tablist" [attr.aria-label]="nameOfTabList">
+    <button (click)="selectTab(tab)" (keyup)="onKeydown($event)" role="tab" [attr.aria-selected]="tab.active"
+      [attr.aria-controls]="tab.id" [id]="tab.labelId" class="sbb-tabs-tablistitem" [class.is-active]="tab.active"
+      [attr.tabindex]="tab.active ? 0 : -1" [disabled]="tab.disabled">
+      {{ tab.label }}
+    </button>
+    <span>
+      <sbb-tab-badge-pill *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-tab-badge-pill>
+    </span>
+  </div>
 </div>
-</div>
-<ng-content></ng-content>
+<ng-content select="sbb-tab"></ng-content>

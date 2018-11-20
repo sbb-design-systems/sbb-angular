@@ -8,11 +8,11 @@ import { TabsComponent } from 'sbb-angular';
 })
 export class TabsShowcaseComponent implements OnInit {
 
-  @ViewChild('personEdit') editPersonTemplate;
-  @ViewChild(TabsComponent) tabsComponent;
+  @ViewChild('tabs') tabsComponent: TabsComponent;
 
   disabled = false;
   removed = false;
+  innerChange = true;
 
   dataSet = 'default (add data manually)';
   data = [
@@ -21,7 +21,7 @@ export class TabsShowcaseComponent implements OnInit {
     '1000'
   ];
 
-  personInitialLoad = {id: 1, name: 'Max', surname: 'Muster'};
+  personInitialLoad = { id: 1, name: 'Max', surname: 'Muster' };
 
   person = [];
 
@@ -42,42 +42,52 @@ export class TabsShowcaseComponent implements OnInit {
     this.person.push(this.personInitialLoad);
   }
 
-  private initialPersonArrayByAmount(amount: number) : void {
+  private initialPersonArrayByAmount(amount: number): void {
     let counter = 0;
-    while(counter < amount) {
-          for(const item of this.personList) {
-              counter++;
-              this.person.push({id: counter, name: item.name, surname: item.surname});
-          }
+    while (counter < amount) {
+      for (const item of this.personList) {
+        counter++;
+        this.person.push({ id: counter, name: item.name, surname: item.surname });
+      }
     }
   }
 
-  setFirstTabIfDisabled() {
-    if(this.disabled) {
-       this.tabsComponent.openFirstTab();
+  removeChange(removedTabId: string) {
+    this.openPrevTabByTabIdOrDefault(removedTabId);
+  }
+
+  disableChange(disabledTabId: string) {
+    this.openPrevTabByTabIdOrDefault(disabledTabId);
+  }
+
+  openPrevTabByTabIdOrDefault(tabId: string) {
+    const tabsArray = this.tabsComponent.tabs.toArray();
+    const activeTab = tabsArray.findIndex(currTab => currTab.active);
+    const selectedTabIndex = tabsArray.findIndex(tab => tab.id === tabId);
+
+    if (activeTab === selectedTabIndex) {
+      if (selectedTabIndex > 0) {
+        this.tabsComponent.openTabByIndex(selectedTabIndex - 1);
+      } else {
+        this.tabsComponent.openFirstTab();
+      }
     }
   }
 
   onChangeOfDataSet(event) {
     this.person = [];
-    if(event.startsWith('default')) {
-       this.person.push(this.personInitialLoad);
+    if (event.startsWith('default')) {
+      this.person.push(this.personInitialLoad);
     }
-    if(event.startsWith('500')) {
-       this.initialPersonArrayByAmount(500);
+    if (event.startsWith('500')) {
+      this.initialPersonArrayByAmount(500);
     }
-    if(event.startsWith('1000')) {
-       this.initialPersonArrayByAmount(1000);
-    }
-  }
-
-  checkValueForRemoveLastTab() {
-    if(this.removed) {
-       this.tabsComponent.openFirstTab();
+    if (event.startsWith('1000')) {
+      this.initialPersonArrayByAmount(1000);
     }
   }
 
-  getCountOfPersons() : number {
+  getCountOfPersons(): number {
     return Object.keys(this.person).length;
   }
 }
