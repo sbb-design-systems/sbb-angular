@@ -67,7 +67,7 @@ import { PersonListComponent } from './examples/tabs-showcase/person/person-list
     NgbModule,
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     AppRoutingModule,
-    IconCommonModule.withComponents(IconComponents.types),
+    IconCommonModule,
     ExamplesModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
@@ -86,7 +86,8 @@ import { PersonListComponent } from './examples/tabs-showcase/person/person-list
     TabsShowcaseComponent,
     PersonListComponent,
     ComponentViewerComponent,
-    TimeInputShowcaseComponent
+    TimeInputShowcaseComponent,
+    ...IconComponents.types
   ]
 })
 export class AppModule { }

@@ -17,10 +17,25 @@ import { ButtonIconDirective } from './button-icon.directive';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit {
-  @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
-  @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
+  /**
+   * Button modes available for different purposes.
+   */
+  @Input() mode: 'primary' | 'secondary' | 'ghost' | 'frameless' = 'primary';
+
+   /**
+   * Template that will contain icons.
+   * Use the *sbbButtonIcon structural directive to provide the desired icon.
+   */
+  @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
+  /**
+   * Sets modes and icons for all buttons
+   */
   @Input() class = '';
+
+  /**
+   * Sets value of button mode
+   */
   @HostBinding('class') buttonModeClass: string;
 
   ngOnInit() {

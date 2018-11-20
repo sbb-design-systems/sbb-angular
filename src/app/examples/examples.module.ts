@@ -24,7 +24,6 @@ import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
-import { IconComponents } from '../sbb-components-mapping-export';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
@@ -58,9 +57,9 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
-    IconCommonModule.withComponents(IconComponents.types),
-    TabsModule,
-    TimeInputModule
+    TimeInputModule,
+    IconCommonModule,
+    TabsModule
   ],
   providers: [],
   exports: [

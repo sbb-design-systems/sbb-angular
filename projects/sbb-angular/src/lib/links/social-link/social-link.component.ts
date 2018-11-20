@@ -8,7 +8,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SocialLinkComponent {
-
+  /**
+   * social icons available for different purposes
+   */
   @Input() icon: 'facebook' | 'google-plus' | 'instagram' | 'linkedin' | 'pinterest' | 'twitter' | 'xing' | 'youtube';
 
 }
