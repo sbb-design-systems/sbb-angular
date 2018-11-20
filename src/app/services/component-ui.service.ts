@@ -6,6 +6,7 @@ import { AutocompleteShowcaseComponent } from '../examples/autocomplete-showcase
 import { ButtonShowcaseComponent } from '../examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
+import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/datepicker-showcase.component';
@@ -298,6 +299,19 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
+      ),
+      new UiComponent(
+        'Time Input',
+        'time-input',
+        'Time Input',
+        'Subtitel goes here ...',
+        true,
+        false,
+        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TimeInputShowcaseComponent
       )
     ];
   }

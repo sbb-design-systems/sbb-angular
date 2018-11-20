@@ -13,7 +13,8 @@ import {
   RadioButtonModule,
   CheckboxModule,
   ButtonModule,
-  AutocompleteModule
+  AutocompleteModule,
+  TimeInputModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -23,6 +24,7 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { IconComponents } from '../sbb-components-mapping-export';
+import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
@@ -40,7 +42,8 @@ import { SBB_SIMPLE_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
-    DatepickerShowcaseComponent
+    DatepickerShowcaseComponent,
+    TimeInputShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { SBB_SIMPLE_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker
     RadioButtonModule,
     CheckboxModule,
     DatepickerModule,
-    IconCommonModule.withComponents(IconComponents.types)
+    TimeInputModule,
+    IconCommonModule
   ],
   providers: [{ provide: DateAdapter, useClass: DateFnsAdapter },
     {provide: SBB_DATE_FORMATS, useValue: SBB_SIMPLE_DATE_FORMATS}
@@ -71,6 +75,7 @@ import { SBB_SIMPLE_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
     DatepickerShowcaseComponent,
+    TimeInputShowcaseComponent,
     ButtonModule
   ],
 

@@ -28,6 +28,7 @@ import { AutocompleteShowcaseComponent } from './examples/autocomplete-showcase/
 import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
 import { RadioButtonShowcaseComponent } from './examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
+import { TimeInputShowcaseComponent } from './examples/time-input-showcase/time-input-showcase.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ComponentsListComponent } from './components-list/components-list.component';
@@ -65,7 +66,7 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
     NgbModule,
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     AppRoutingModule,
-    IconCommonModule.withComponents(IconComponents.types),
+    IconCommonModule,
     ExamplesModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
@@ -83,6 +84,8 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
     SbbFieldShowcaseComponent,
     ComponentViewerComponent,
     DatepickerShowcaseComponent
+    TimeInputShowcaseComponent,
+    ...IconComponents.types
   ]
 })
 export class AppModule { }
