@@ -25,7 +25,7 @@ export class ButtonComponent implements OnInit {
 
    /**
    * Template that will contain icons.
-   * Use the *icon directive to provide the desired icon.
+   * Use the *sbbButtonIcon structural directive to provide the desired icon.
    */
   @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
   /**
