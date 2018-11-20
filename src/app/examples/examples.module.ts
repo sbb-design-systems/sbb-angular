@@ -54,7 +54,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     RadioButtonModule,
     CheckboxModule,
     TimeInputModule,
-    IconCommonModule.withComponents(IconComponents.types)
+    IconCommonModule
   ],
   providers: [],
   exports: [
