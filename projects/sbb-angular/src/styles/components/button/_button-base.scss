@@ -10,6 +10,11 @@
 	margin: 0;
 }
 
+@mixin buttonResetFrameless() {
+	@include buttonReset();
+	border: none;
+}
+
 /*** KICKSTART BASIC BUTTON ***/
 @mixin buttons($fontSize: $buttonSizeFontDefault) {
 	@include buttonReset();

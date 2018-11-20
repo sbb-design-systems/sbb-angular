@@ -12,7 +12,6 @@ export class TabsShowcaseComponent implements OnInit {
 
   disabled = false;
   removed = false;
-  innerChange = true;
 
   dataSet = 'default (add data manually)';
   data = [

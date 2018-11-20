@@ -6,20 +6,17 @@
         <!-- First tab (required) -->
         <sbb-tab label="Tab 1" id="content1-tab" labelId="content1">
           <h4>Content 1</h4>
-          <hr />
           <p>Here comes the content for tab 1 ...</p>
         </sbb-tab>
         <!-- Second tab (required) -->
         <sbb-tab label="Tab 2" id="content2-tab" labelId="content2">
           <h4>Content 2</h4>
-          <hr />
           <p>Here comes the content for tab 2 ...</p>
         </sbb-tab>
         <!-- Third tab with the possibility of dynamic tabs if any -->
-        <sbb-tab label="Persons" id="persons-tab" labelId="persons" [badgePill]="getCountOfPersons()"
-          [disabled]="disabled" *ngIf="!removed" (disableChange)="disableChange($event)" (removeChange)="removeChange($event)">
+        <sbb-tab label="Persons" id="persons-tab" labelId="persons" [badgePill]="getCountOfPersons()" [disabled]="disabled"
+          *ngIf="!removed" (disableChange)="disableChange($event)" (removeChange)="removeChange($event)">
           <h4>List of Persons</h4>
-          <hr />
           <person-list [person]="person"></person-list>
         </sbb-tab>
       </sbb-tabs>

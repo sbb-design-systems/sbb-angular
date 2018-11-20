@@ -119,6 +119,10 @@ a {
   @include clearfix;
 }
 
+.sbb-hidden {
+  display: none;
+}
+
 input[type="email"],
 input[type="password"],
 input[type="search"],

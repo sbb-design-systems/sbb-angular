@@ -1,96 +1,17 @@
-@import '../../../styles/main';
+@import "../../../styles/main";
 
-:host {
-  @include sbbTabsWrapper;
-}
+.sbb-tabs {
 
-.sbb-tabs-tablist {
-  list-style: none;
-  margin: 0;
-	padding-top: 10px;
-  font-size: inherit;
-  display: block;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  height: 3.73333em;
-  padding-bottom: 15px;
-}
+  &-tablist {
+    @include tabsBase();
+    
+    &-item {
+      @include tabsItem();
+    }
 
-@include mq($from: desktop4k) {
-  font-size: pxToRem(39);
-  line-height: pxToRem(39);
-}
+    &-item-button {
+      @include tabsButton();
+    }
+  }
 
-@include mq($from: desktop5k) {
-  font-size: pxToRem(52);
-  line-height: pxToRem(52);
-}
-
-.sbb-tabs-tablistitem {
-  -webkit-box-flex: 0;
-	-ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  position: relative;
-  display: inline-block;
-  margin: 0 0.9em 0 0;
-  padding: 0 0 0.4em 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: $colorBlack;
-  text-decoration: none;
-	background-color: Transparent;
-	background-repeat: no-repeat;
-	outline: none;
-	border: none;
-	font-family: $fontSbbLight;
-  font-size: 1.33333em;
-  line-height: 26px;
-  color: $colorBlack;
-  margin: 0 1.61538em 0 0;
-  padding-bottom: 0.46154em;
-	font-size: 1.73333em;
-}
-.sbb_tabs-tablistitem.is-not-clickable {
-	cursor: default;
-}
-.sbb-tabs-tablistitem:first-child {
-	margin-left: 0;
-}
-.sbb-tabs-tablistitem:not(.has-counter):last-child {
-	margin-right: 0;
-}
-.sbb-tabs-tablistitem:after {
-  content: '';
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 0;
-  left: 50%;
-  height: 1px;
-	border-bottom: 1px solid currentColor; 
-}
-.sbb-tabs-tablistitem:after {
-  transition: width 0.3s ease, left 0.3s ease; 
-}
-.sbb-tabs-tablistitem:not(.is-active):not(:disabled):focus, 
-.sbb-tabs-tablistitem:not(.is-active):not(:disabled):hover {
-  color: $colorRed125;
-}
-.sbb-tabs-tablistitem:not(.is-active):not(:disabled):focus:after, 
-.sbb-tabs-tablistitem:not(.is-active):not(:disabled):hover:after {
-  left: 0;
-	width: 100%;
-}
-.sbb-tabs-tablistitem.is-active {
-	color: $colorBlack; 
-}
-.sbb-tabs-tablistitem.is-active:after {
-  width: 100%;
-	left: 0; 
-}
-.sbb-tabs-tablistitem:disabled {
-	opacity:0.6;
-	pointer-events: none;
 }
