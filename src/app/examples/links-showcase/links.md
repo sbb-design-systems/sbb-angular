@@ -9,7 +9,7 @@ import {
 } from 'sbb-angular';
 ```
 
-and then you can use the link component in two modality as seen below:
+and then you can use the link component in two modality as seen below
 
 * Icon Links
 
