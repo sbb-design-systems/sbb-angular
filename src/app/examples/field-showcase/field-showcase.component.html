@@ -52,7 +52,7 @@
           <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
         </select>
       </div>
-      <input id="disabled" type="checkbox" (click)="disableForms()" [(ngModel)]="disabled">&nbsp;
+      <sbb-checkbox inputId="disabled" type="checkbox" (click)="disableForms()" [(ngModel)]="disabled"></sbb-checkbox>
       <label for="disabled">Disabled</label>
     </div>
   </div>

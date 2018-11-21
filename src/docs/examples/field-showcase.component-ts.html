@@ -7,23 +7,57 @@
   styleUrls: [<span class="hljs-string">'./field-showcase.component.scss'</span>]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SbbFieldShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
-
+  <span class="hljs-comment">/**
+   * Class property that refers to the first input field
+   */</span>
   inputText1 = <span class="hljs-string">''</span>;
+   <span class="hljs-comment">/**
+   * Class property that refers to the second input field
+   */</span>
   inputText2 = <span class="hljs-string">''</span>;
+  <span class="hljs-comment">/**
+   * Class property that refers to the third input field
+   */</span>
   inputText3 = <span class="hljs-string">''</span>;
 
+  <span class="hljs-comment">/**
+   * Class property that disable input field
+   */</span>
   disabled: <span class="hljs-built_in">boolean</span>;
 
+  <span class="hljs-comment">/**
+   * Class property that refers to the first form group
+   */</span>
   myForm1: FormGroup;
+  <span class="hljs-comment">/**
+   * Class property that refers to the second form group
+   */</span>
   myForm2: FormGroup;
+  <span class="hljs-comment">/**
+   * Class property that refers to the third form group
+   */</span>
   myForm3: FormGroup;
-
+  <span class="hljs-comment">/**
+   * Class property that sets placeholder at all input field
+   */</span>
   placeholder = <span class="hljs-string">'Please enter your name ...'</span>;
 
+  <span class="hljs-comment">/**
+   * Class property that refers to the first form group header
+   */</span>
   header1 = <span class="hljs-string">'1. SBB-Field without Attribute Label'</span>;
+  <span class="hljs-comment">/**
+   * Class property that refers to the second form group header
+   */</span>
   header2 = <span class="hljs-string">'2. SBB-Field with SBB-Label, Text and Input'</span>;
+  <span class="hljs-comment">/**
+   * Class property that refers to the third form group header
+   */</span>
   header3 = <span class="hljs-string">'3. SBB-Field with Attribute Label'</span>;
 
+  <span class="hljs-comment">/**
+   * Class property that sets input field to the first header
+   */</span>
   inputType = <span class="hljs-keyword">this</span>.header1;
   types = [
     <span class="hljs-keyword">this</span>.header1,
@@ -51,7 +85,9 @@
     <span class="hljs-keyword">this</span>.myForm3.reset();
 
   }
-
+  <span class="hljs-comment">/**
+   * Method that verify if a child element (in this case: input field) of a form group is disable
+   */</span>
   disableForms() {
     <span class="hljs-keyword">const</span> control1 = <span class="hljs-keyword">this</span>.myForm1.get(<span class="hljs-string">'name1'</span>);
     control1.disabled ? control1.enable() : control1.disable();
@@ -62,17 +98,25 @@
     <span class="hljs-keyword">const</span> control3 = <span class="hljs-keyword">this</span>.myForm3.get(<span class="hljs-string">'name3'</span>);
     control3.disabled ? control3.enable() : control3.disable();
   }
-
+  <span class="hljs-comment">/**
+   * Method that reset the first input field
+   */</span>
   reset1() {
     <span class="hljs-keyword">this</span>.myForm1.reset();
     <span class="hljs-keyword">this</span>.inputText1 = <span class="hljs-string">''</span>;
   }
 
+  <span class="hljs-comment">/**
+   * Method that reset the second input field
+   */</span>
   reset2() {
     <span class="hljs-keyword">this</span>.myForm2.reset();
     <span class="hljs-keyword">this</span>.inputText2 = <span class="hljs-string">''</span>;
   }
 
+  <span class="hljs-comment">/**
+   * Method that reset the third input field
+   */</span>
   reset3() {
     <span class="hljs-keyword">this</span>.myForm3.reset();
     <span class="hljs-keyword">this</span>.inputText3 = <span class="hljs-string">''</span>;
