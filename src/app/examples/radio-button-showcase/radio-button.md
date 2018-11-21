@@ -20,4 +20,3 @@ and then you can use the radioButton component as seen below
  <label for="single-radio">Radio 1</label>
  
 ```
-
