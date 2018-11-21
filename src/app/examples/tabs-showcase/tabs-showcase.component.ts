@@ -13,11 +13,11 @@ export class TabsShowcaseComponent implements OnInit {
   disabled = false;
   removed = false;
 
-  dataSet = 'default (add data manually)';
+  dataSet = '1';
   data = [
-    'default (add data manually)',
-    '500',
-    '1000'
+    '1',
+    '50',
+    '550'
   ];
 
   personInitialLoad = { id: 1, name: 'Max', surname: 'Muster' };
@@ -75,14 +75,14 @@ export class TabsShowcaseComponent implements OnInit {
 
   onChangeOfDataSet(event) {
     this.person = [];
-    if (event.startsWith('default')) {
+    if (event.startsWith('1')) {
       this.person.push(this.personInitialLoad);
     }
-    if (event.startsWith('500')) {
-      this.initialPersonArrayByAmount(500);
+    if (event.startsWith('50')) {
+      this.initialPersonArrayByAmount(50);
     }
-    if (event.startsWith('1000')) {
-      this.initialPersonArrayByAmount(1000);
+    if (event.startsWith('550')) {
+      this.initialPersonArrayByAmount(550);
     }
   }
 

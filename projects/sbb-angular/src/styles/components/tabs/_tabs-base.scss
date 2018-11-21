@@ -14,6 +14,7 @@
   @include buttonResetFrameless();
 
   display: block;
+  white-space: nowrap;
   font-family: $fontSbbLight;
   font-size: pxToRem(26);
   text-decoration: none;
@@ -53,6 +54,16 @@
     width: 100%;
   }
 
+  &[disabled] {
+    &:hover, &:focus {
+      cursor: default;
+      
+      &::after {
+        width: 0;
+      }
+    }
+  }
+
   &:not(.sbb-active):focus::after,
   &:not(.sbb-active):hover::after {
     border-bottom-color: $colorRed125;
@@ -69,6 +80,6 @@
   }
 }
 
-@mixin tabPanel {
-  
+@mixin tabScrollbar() {
+  max-width: 100%;
 }

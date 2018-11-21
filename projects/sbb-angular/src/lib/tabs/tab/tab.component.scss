@@ -1,7 +1,0 @@
-@import '../../../styles/main.scss';
-
-.sbb-tabs {
-  &-tabpanel {
-    @include tabPanel();
-  }
-}

@@ -1,5 +1,9 @@
 @import "../../../styles/main";
 
+sbb-tabs {
+  display: block;
+}
+
 .sbb-tabs {
 
   &-tablist {
@@ -12,6 +16,10 @@
     &-item-button {
       @include tabsButton();
     }
+  }
+
+  &-scrollbar {
+    @include tabScrollbar();
   }
 
 }

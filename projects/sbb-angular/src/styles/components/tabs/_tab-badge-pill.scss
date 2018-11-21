@@ -1,6 +1,6 @@
-// TabBadgePill mixins
-// ----------------------------------------------------------------------------------------------------
-
+/**
+*	Tab Badge mixin
+*/
 @mixin sbbTabBadgePill($fontSize: $sizeFontDefault) {
 	position: absolute;
 	top: 0;

@@ -7,17 +7,28 @@
         <sbb-tab label="Tab 1" id="content1-tab" labelId="content1">
           <h4>Content 1</h4>
           <p>Here comes the content for tab 1 ...</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex ea commodo consequat.</p>
         </sbb-tab>
         <!-- Second tab (required) -->
         <sbb-tab label="Tab 2" id="content2-tab" labelId="content2">
           <h4>Content 2</h4>
           <p>Here comes the content for tab 2 ...</p>
         </sbb-tab>
-        <!-- Third tab with the possibility of dynamic tabs if any -->
+        <!-- Third tab with some generated content to be tracked on badge -->
         <sbb-tab label="Persons" id="persons-tab" labelId="persons" [badgePill]="getCountOfPersons()" [disabled]="disabled"
           *ngIf="!removed" (disableChange)="disableChange($event)" (removeChange)="removeChange($event)">
           <h4>List of Persons</h4>
           <person-list [person]="person"></person-list>
+        </sbb-tab>
+        <sbb-tab label="Tab 4" id="content4-tab" labelId="content4">
+          <h4>Content 4</h4>
+          <p>Here comes the content for tab 4 ...</p>
+        </sbb-tab>
+        <sbb-tab label="Tab 5" id="content5-tab" labelId="content5">
+          <h4>Content 5</h4>
+          <p>Here comes the content for tab 5 ...</p>
         </sbb-tab>
       </sbb-tabs>
       <small class="font-italic">* Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for right</small>
@@ -25,18 +36,18 @@
     <div class="col-lg-5">
       <h4>Properties</h4>
       <div class="sbbsc-block">
-        <label>Please set data-set for tabs content / tab pill :</label>
+        <label>Set data-set for tabs content / tab pill:</label>&nbsp;
         <select [(ngModel)]="dataSet" (ngModelChange)="onChangeOfDataSet($event)">
           <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
         </select>
       </div>
       <div class="sbbsc-block">
-        <input id="disabled" type="checkbox" [(ngModel)]="disabled">
-        <label for="disabled">Disabled</label>
+        <input id="disabled" type="checkbox" [(ngModel)]="disabled">&nbsp;
+        <label for="disabled">Set a tab disabled</label>
       </div>
       <div class="sbbsc-block">
-        <input id="removed" type="checkbox" [(ngModel)]="removed">
-        <label for="removed">Remove last tab in the tabs module</label>
+        <input id="removed" type="checkbox" [(ngModel)]="removed">&nbsp;
+        <label for="removed">Remove a tab</label>
       </div>
     </div>
   </div>

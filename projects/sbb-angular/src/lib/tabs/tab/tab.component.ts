@@ -36,13 +36,6 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   @HostBinding('attr.role')
   role = 'tabpanel';
 
-  @HostBinding('class')
-  get hostClasses(): string {
-    return ['sbb-tabs-tabpanel',
-      this.active ? '' : 'sbb-hidden',
-      this.disabled ? 'sbb-disabled' : ''].join(' ');
-  }
-
   @HostBinding('attr.aria-hidden')
   get ariaHidden(): string {
     return this.active ? 'false' : 'true';
