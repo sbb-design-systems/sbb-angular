@@ -12,9 +12,8 @@
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule,
-  TabsModule,
+  AutocompleteModule,
   TimeInputModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
@@ -28,8 +27,6 @@
 <span class="hljs-keyword">import</span> { TimeInputShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./time-input-showcase/time-input-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { InputFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./text-input-showcase/text-input-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SbbFieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./field-showcase/field-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -41,8 +38,6 @@
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
-    TabsShowcaseComponent,
-    PersonListComponent,
     TimeInputShowcaseComponent
   ],
   imports: [
@@ -58,9 +53,8 @@
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
-    IconCommonModule.withComponents(IconComponents.types),
-    TabsModule,
-    TimeInputModule
+    TimeInputModule,
+    IconCommonModule
   ],
   providers: [],
   exports: [
@@ -72,8 +66,6 @@
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
-    TabsShowcaseComponent,
-    PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule
   ]
