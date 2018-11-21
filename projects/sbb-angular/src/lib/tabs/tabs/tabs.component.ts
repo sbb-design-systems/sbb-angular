@@ -86,8 +86,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       if (t.labelId === tab.labelId) {
         this.tabListIndex = index;
       }
-      t.tabindex = -1;
       t.active = false;
+      t.tabindex = -1;
       t.tabMarkForCheck();
     });
 

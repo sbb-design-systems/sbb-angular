@@ -31,7 +31,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   @Input() labelId: string;
 
   @HostBinding('attr.tabindex')
-  @Input() tabindex = 0;
+  @Input() tabindex = -1;
 
   @HostBinding('attr.role')
   role = 'tabpanel';
