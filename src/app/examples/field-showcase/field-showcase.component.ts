@@ -7,57 +7,23 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./field-showcase.component.scss']
 })
 export class SbbFieldShowcaseComponent implements OnInit {
-  /**
-   * Class property that refers to the first input field
-   */
+
   inputText1 = '';
-   /**
-   * Class property that refers to the second input field
-   */
   inputText2 = '';
-  /**
-   * Class property that refers to the third input field
-   */
   inputText3 = '';
 
-  /**
-   * Class property that disable input field
-   */
   disabled: boolean;
 
-  /**
-   * Class property that refers to the first form group
-   */
   myForm1: FormGroup;
-  /**
-   * Class property that refers to the second form group
-   */
   myForm2: FormGroup;
-  /**
-   * Class property that refers to the third form group
-   */
   myForm3: FormGroup;
-  /**
-   * Class property that sets placeholder at all input field
-   */
+
   placeholder = 'Please enter your name ...';
 
-  /**
-   * Class property that refers to the first form group header
-   */
   header1 = '1. SBB-Field without Attribute Label';
-  /**
-   * Class property that refers to the second form group header
-   */
   header2 = '2. SBB-Field with SBB-Label, Text and Input';
-  /**
-   * Class property that refers to the third form group header
-   */
   header3 = '3. SBB-Field with Attribute Label';
 
-  /**
-   * Class property that sets input field to the first header
-   */
   inputType = this.header1;
   types = [
     this.header1,
