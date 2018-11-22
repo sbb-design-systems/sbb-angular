@@ -55,23 +55,26 @@
     width: 100%;
   }
 
-  &[disabled] {
-    &:hover,
-    &:focus {
-      cursor: default;
-
-      &::after {
-        width: 0;
-      }
-    }
-  }
-
   &:not(.sbb-active):focus,
   &:not(.sbb-active):hover {
     color: $colorRed125;
     
     &::after {
       border-bottom-color: $colorRed125;
+    }
+  }
+
+  &[disabled] {
+    color: $colorBlack40;
+
+    &:hover,
+    &:focus {
+      color: $colorBlack40;
+      cursor: default;
+
+      &::after {
+        width: 0;
+      }
     }
   }
 
@@ -86,6 +89,3 @@
   }
 }
 
-@mixin tabScrollbar() {
-  max-width: 100%;
-}

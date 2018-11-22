@@ -5,10 +5,6 @@ sbb-tabs {
 }
 
 .sbb-tabs {
-  
-  .sbb-tabs-scrollbar {
-    @include tabScrollbar();
-  }
 
   &-tablist {
     @include tabsBase();

@@ -97,23 +97,48 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   }
 
   onKeydown(event) {
+    this.handleKeyDown(event.keyCode);
+  }
+
+  private handleKeyDown(keyCode) {
     const tabLabels = this.labels.toArray();
 
-    if (event.keyCode === ENTER) {
-      const tab = this.tabs.toArray()[this.tabListIndex];
-      this.selectTab(tab);
-    }
-    if (event.keyCode === LEFT_ARROW || event.keyCode === UP_ARROW) {
-      if (this.tabListIndex !== 0) {
-        this.tabListIndex--;
-      }
+    this.handleKeyCode(keyCode);
+
+    const tabToFocus = tabLabels[this.tabListIndex];
+
+    if (tabToFocus.nativeElement.disabled) {
+      // go to next
+      this.handleKeyDown(keyCode);
+    } else {
       tabLabels[this.tabListIndex].nativeElement.focus();
     }
-    if (event.keyCode === RIGHT_ARROW || event.keyCode === DOWN_ARROW) {
-      if (this.tabListIndex !== this.tabs.length - 1) {
-        this.tabListIndex++;
-      }
-      tabLabels[this.tabListIndex].nativeElement.focus();
+
+  }
+
+  private handleKeyCode(keyCode) {
+    switch (keyCode) {
+      case ENTER:
+        const tab = this.tabs.toArray()[this.tabListIndex];
+        this.selectTab(tab);
+        break;
+
+      case LEFT_ARROW:
+      case UP_ARROW:
+        this.tabListIndex = (this.tabListIndex !== 0)
+          ? this.tabListIndex -= 1
+          : this.tabListIndex;
+        break;
+
+      case RIGHT_ARROW:
+      case DOWN_ARROW:
+        this.tabListIndex = (this.tabListIndex < this.tabs.length - 1)
+          ? this.tabListIndex += 1
+          : this.tabListIndex;
+        break;
+
+      default:
+        this.tabListIndex = this.tabListIndex;
     }
   }
 

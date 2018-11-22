@@ -4,7 +4,6 @@
         class="sbb-tabs-tablist-item" 
         [attr.aria-label]="nameOfTabList">
       <button #label
-              sbbButton mode="frameless"
               (click)="selectTab(tab)" 
               (keyup)="onKeydown($event)" 
               role="tab" 
