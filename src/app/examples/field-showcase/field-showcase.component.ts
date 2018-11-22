@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   templateUrl: './field-showcase.component.html',
   styleUrls: ['./field-showcase.component.scss']
 })
-export class SbbFieldShowcaseComponent implements OnInit {
+export class FieldShowcaseComponent implements OnInit {
 
   inputText1 = '';
   inputText2 = '';

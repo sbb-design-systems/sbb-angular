@@ -36,8 +36,7 @@ import { IconsListComponent } from './icons-list/icons-list.component';
 import { DocDirective } from './doc/doc.directive';
 import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-doc.component';
 import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.component';
-import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
 
 @NgModule({
@@ -79,8 +78,7 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     ComponentViewerComponent,
     TimeInputShowcaseComponent,
     ...IconComponents.types

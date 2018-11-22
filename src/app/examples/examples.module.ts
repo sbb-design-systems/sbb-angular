@@ -24,8 +24,7 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
-import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     TimeInputShowcaseComponent
   ],
   imports: [
@@ -63,8 +61,7 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     TimeInputShowcaseComponent,
     ButtonModule
   ]

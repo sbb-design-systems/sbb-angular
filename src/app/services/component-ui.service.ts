@@ -7,8 +7,8 @@ import { ButtonShowcaseComponent } from '../examples/button-showcase/button-show
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
-import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+// import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
+import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 
 
 @Injectable({
@@ -87,17 +87,17 @@ export class ComponentUiService {
         'Import text.'
       ),
       new UiComponent(
-        'Input Field',
+        'Field',
         'field',
-        'Input Field',
-        'Input Field is an extension to standard input element with theming.',
+        'Field',
+        'Describes an input field that can contain different values: text, password, number etc',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Genchi'],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        InputFieldShowcaseComponent
+        FieldShowcaseComponent
       ),
       new UiComponent(
         'Autocompletion',
