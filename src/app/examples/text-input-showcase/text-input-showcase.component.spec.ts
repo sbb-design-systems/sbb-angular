@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldModule } from 'sbb-angular';
 import { InputFieldShowcaseComponent } from './text-input-showcase.component';
+import { CheckboxModule } from 'projects/sbb-angular/src/public_api';
 
 describe('InputFieldShowcaseComponent', () => {
 
@@ -13,7 +14,7 @@ describe('InputFieldShowcaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, FieldModule],
+      imports: [FormsModule, ReactiveFormsModule, FieldModule, CheckboxModule],
       declarations: [InputFieldShowcaseComponent]
     })
     .overrideComponent(InputFieldShowcaseComponent, {
