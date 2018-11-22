@@ -119,10 +119,6 @@ a {
   @include clearfix;
 }
 
-.sbb-hidden {
-  display: none;
-}
-
 input[type="email"],
 input[type="password"],
 input[type="search"],
@@ -156,6 +152,12 @@ input[type="datetime-local"] {
     padding: 0;
     background: transparent;
   }
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 sbb-radio-button {

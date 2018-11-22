@@ -30,7 +30,8 @@
     font-size: pxToRem(52);
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     cursor: pointer;
     outline: none;
   }
@@ -55,18 +56,23 @@
   }
 
   &[disabled] {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       cursor: default;
-      
+
       &::after {
         width: 0;
       }
     }
   }
 
-  &:not(.sbb-active):focus::after,
-  &:not(.sbb-active):hover::after {
-    border-bottom-color: $colorRed125;
+  &:not(.sbb-active):focus,
+  &:not(.sbb-active):hover {
+    color: $colorRed125;
+    
+    &::after {
+      border-bottom-color: $colorRed125;
+    }
   }
 
   &.sbb-active:hover,

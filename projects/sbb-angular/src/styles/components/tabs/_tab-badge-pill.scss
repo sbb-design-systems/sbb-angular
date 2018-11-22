@@ -2,25 +2,24 @@
 *	Tab Badge mixin
 */
 @mixin sbbTabBadgePill($fontSize: $sizeFontDefault) {
-	position: absolute;
-	top: 0;
+  position: absolute;
+  top: 0;
   right: 0;
-  -webkit-transform: translate(120%, 50%);
   transform: translate(120%, 50%);
-	min-width: pxToEm(18, 11);
-	border-radius: pxToEm(15, 11);
-	padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
-	background-color: $colorRed100;
-	color: $colorWhite;
-	font-family: $fontSbbBold;
-	line-height: pxToEm(11, 11);
-	font-size: pxToRem(11);
-	text-align: center;
+  min-width: pxToEm(18, 11);
+  border-radius: pxToEm(15, 11);
+  padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
+  background-color: $colorRed100;
+  color: $colorWhite;
+  font-family: $fontSbbBold;
+  line-height: pxToEm(11, 11);
+  font-size: pxToRem(11);
+  text-align: center;
 
   @include mq($from: desktop4k) {
     font-size: pxToRem(17);
-  }  
-  
+  }
+
   @include mq($from: desktop5k) {
     font-size: pxToRem(22);
   }
