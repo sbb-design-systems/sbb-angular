@@ -32,6 +32,13 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   tabListIndex = 0;
 
+  private allowedKeyCodes = [
+    LEFT_ARROW,
+    RIGHT_ARROW,
+    UP_ARROW,
+    DOWN_ARROW
+  ];
+
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
   tabs$: Observable<TabComponent[]>;
 
@@ -97,7 +104,9 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   }
 
   onKeydown(event) {
-    this.handleKeyDown(event.keyCode);
+    if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
+      this.handleKeyDown(event.keyCode);
+    }
   }
 
   private handleKeyDown(keyCode) {
@@ -118,11 +127,6 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   private handleKeyCode(keyCode) {
     switch (keyCode) {
-      case ENTER:
-        const tab = this.tabs.toArray()[this.tabListIndex];
-        this.selectTab(tab);
-        break;
-
       case LEFT_ARROW:
       case UP_ARROW:
         this.tabListIndex = (this.tabListIndex !== 0)
