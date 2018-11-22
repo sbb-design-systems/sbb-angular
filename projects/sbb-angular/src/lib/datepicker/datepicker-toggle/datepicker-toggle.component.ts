@@ -25,7 +25,7 @@ import { DatepickerIntlService } from '../datepicker-intl.service';
 })
 export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
 
-  private _stateChanges = Subscription.EMPTY;
+  private stateChanges = Subscription.EMPTY;
   /** Datepicker instance that the button will toggle. */
   // tslint:disable-next-line:no-input-rename
   @Input('for') datepicker: DatepickerComponent<D>;
@@ -43,8 +43,8 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   }
   private _disabled: boolean;
 
-  constructor(public _intl: DatepickerIntlService,
-    private _changeDetectorRef: ChangeDetectorRef,
+  constructor(public intl: DatepickerIntlService,
+    private changeDetectorRef: ChangeDetectorRef,
     @Attribute('tabindex') defaultTabIndex: string) {
 
     const parsedTabIndex = Number(defaultTabIndex);
@@ -69,7 +69,7 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   }
 
   ngOnDestroy() {
-    this._stateChanges.unsubscribe();
+    this.stateChanges.unsubscribe();
   }
 
   ngAfterContentInit() {
@@ -84,20 +84,20 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   }
 
   private watchStateChanges() {
-    const datepickerDisabled = this.datepicker ? this.datepicker._disabledChange : of();
-    const inputDisabled = this.datepicker && this.datepicker._datepickerInput ?
-      this.datepicker._datepickerInput._disabledChange : of();
+    const datepickerDisabled = this.datepicker ? this.datepicker.disabledChange : of();
+    const inputDisabled = this.datepicker && this.datepicker.datepickerInput ?
+      this.datepicker.datepickerInput.disabledChange : of();
     const datepickerToggled = this.datepicker ?
       merge(this.datepicker.openedStream, this.datepicker.closedStream) :
       of();
 
-    this._stateChanges.unsubscribe();
-    this._stateChanges = merge(
-      this._intl.changes,
+    this.stateChanges.unsubscribe();
+    this.stateChanges = merge(
+      this.intl.changes,
       datepickerDisabled,
       inputDisabled,
       datepickerToggled
-    ).subscribe(() => this._changeDetectorRef.markForCheck());
+    ).subscribe(() => this.changeDetectorRef.markForCheck());
   }
 
 }

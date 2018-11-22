@@ -61,10 +61,6 @@ import { FNS_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker/fns-da
     TimeInputModule,
     IconCommonModule
   ],
-  providers: [
-    { provide: DateAdapter, useClass: FnsDateAdapter},
-    { provide: SBB_DATE_FORMATS, useValue: FNS_DATE_FORMATS }
-  ],
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,

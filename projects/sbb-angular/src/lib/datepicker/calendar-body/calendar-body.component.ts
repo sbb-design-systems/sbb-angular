@@ -78,7 +78,7 @@ export class CalendarBodyComponent {
 
   constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) { }
 
-  _cellClicked(cell: CalendarCell): void {
+  cellClicked(cell: CalendarCell): void {
     if (!this.allowDisabledSelection && !cell.enabled) {
       return;
     }
@@ -86,24 +86,24 @@ export class CalendarBodyComponent {
   }
 
   /** The number of blank cells to put at the beginning for the first row. */
-  get _firstRowOffset(): number {
+  get firstRowOffset(): number {
     return this.rows && this.rows.length && this.rows[0].length ?
       this.numCols - this.rows[0].length : 0;
   }
 
-  _isActiveCell(rowIndex: number, colIndex: number): boolean {
+  isActiveCell(rowIndex: number, colIndex: number): boolean {
     let cellNumber = rowIndex * this.numCols + colIndex;
 
     // Account for the fact that the first row may not have as many cells.
     if (rowIndex) {
-      cellNumber -= this._firstRowOffset;
+      cellNumber -= this.firstRowOffset;
     }
 
     return cellNumber === this.activeCell;
   }
 
   /** Focuses the active cell after the microtask queue is empty. */
-  _focusActiveCell() {
+  focusActiveCell() {
     this._ngZone.runOutsideAngular(() => {
       this._ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
         const activeCell: HTMLElement | null =

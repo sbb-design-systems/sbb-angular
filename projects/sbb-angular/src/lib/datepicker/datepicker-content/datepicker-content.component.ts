@@ -4,7 +4,7 @@ import { CalendarComponent } from '../calendar/calendar.component';
 
 /**
  * Component used as the content for the datepicker dialog and popup. We use this instead of using
- * MatCalendar directly as the content so we can control the initial focus. This also gives us a
+ * SbbCalendar directly as the content so we can control the initial focus. This also gives us a
  * place to put additional features of the popup that are not part of the calendar itself in the
  * future. (e.g. confirmation buttons).
  * @docs-private
@@ -22,15 +22,15 @@ export class DatepickerContentComponent<D> implements AfterViewInit {
   @HostBinding('class') cssClass = 'sbb-datepicker-content';
 
   /** Reference to the internal calendar component. */
-  @ViewChild(CalendarComponent) _calendar: CalendarComponent<D>;
+  @ViewChild(CalendarComponent) calendar: CalendarComponent<D>;
 
   /** Reference to the datepicker that created the overlay. */
   datepicker: DatepickerComponent<D>;
 
   /** Whether the datepicker is above or below the input. */
-  _isAbove: boolean;
+  isAbove: boolean;
 
   ngAfterViewInit() {
-    this._calendar.focusActiveCell();
+    this.calendar.focusActiveCell();
   }
 }

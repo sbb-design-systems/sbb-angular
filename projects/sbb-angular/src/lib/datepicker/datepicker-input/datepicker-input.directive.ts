@@ -29,16 +29,19 @@ import { SbbFieldComponent } from '../../field';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
+import { TitleCasePipe } from '@angular/common';
 
 
 export const SBB_DATEPICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line:no-use-before-declare
   useExisting: forwardRef(() => DatepickerInputDirective),
   multi: true
 };
 
 export const SBB_DATEPICKER_VALIDATORS: any = {
   provide: NG_VALIDATORS,
+  // tslint:disable-next-line:no-use-before-declare
   useExisting: forwardRef(() => DatepickerInputDirective),
   multi: true
 };
@@ -66,29 +69,29 @@ export class SbbDatepickerInputEvent<D> {
   providers: [
     SBB_DATEPICKER_VALUE_ACCESSOR,
     SBB_DATEPICKER_VALIDATORS
-
   ],
   exportAs: 'sbbDatepickerInput'
 })
 export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDestroy, Validator {
 
+  private titleCasePipe = new TitleCasePipe();
 
   @HostBinding('attr.aria-haspopup')
   ariaHasPopup = true;
 
   @HostBinding('attr.aria-owns')
   get ariaOwns() {
-    return (this._datepicker && this._datepicker.opened && this._datepicker.id) || null;
+    return (this.datepicker && this.datepicker.opened && this.datepicker.id) || null;
   }
 
   @HostBinding('attr.min')
   get minAttr() {
-    return this.min ? this._dateAdapter.toIso8601(this.min) : null;
+    return this.min ? this.dateAdapter.toIso8601(this.min) : null;
   }
 
   @HostBinding('attr.max')
   get maxAttr() {
-    return this.max ? this._dateAdapter.toIso8601(this.max) : null;
+    return this.max ? this.dateAdapter.toIso8601(this.max) : null;
   }
 
   @HostBinding('disabled')
@@ -104,41 +107,41 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
       return;
     }
 
-    this._datepicker = value;
-    this._datepicker._registerInput(this);
-    this._datepickerSubscription.unsubscribe();
+    this.datepicker = value;
+    this.datepicker.registerInput(this);
+    this.datepickerSubscription.unsubscribe();
 
-    this._datepickerSubscription = this._datepicker._selectedChanged.subscribe((selected: D) => {
+    this.datepickerSubscription = this.datepicker.selectedChanged.subscribe((selected: D) => {
       this.value = selected;
-      this._cvaOnChange(selected);
-      this._onTouched();
-      this.dateInput.emit(new SbbDatepickerInputEvent(this, this._elementRef.nativeElement));
-      this.dateChange.emit(new SbbDatepickerInputEvent(this, this._elementRef.nativeElement));
+      this.cvaOnChange(selected);
+      this.onTouched();
+      this.dateInput.emit(new SbbDatepickerInputEvent(this, this.elementRef.nativeElement));
+      this.dateChange.emit(new SbbDatepickerInputEvent(this, this.elementRef.nativeElement));
     });
   }
-  _datepicker: DatepickerComponent<D>;
+  datepicker: DatepickerComponent<D>;
 
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
   set sbbDatepickerFilter(value: (date: D | null) => boolean) {
-    this._dateFilter = value;
-    this._validatorOnChange();
+    this.dateFilter = value;
+    this.validatorOnChange();
   }
-  _dateFilter: (date: D | null) => boolean;
+  dateFilter: (date: D | null) => boolean;
 
   /** The value of the input. */
   @Input()
   get value(): D | null { return this._value; }
   set value(value: D | null) {
-    value = this._dateAdapter.deserialize(value);
-    this._lastValueValid = !value || this._dateAdapter.isValid(value);
-    value = this._getValidDateOrNull(value);
+    value = this.dateAdapter.deserialize(value);
+    this.lastValueValid = !value || this.dateAdapter.isValid(value);
+    value = this.getValidDateOrNull(value);
     const oldDate = this.value;
     this._value = value;
     this._formatValue(value);
 
-    if (!this._dateAdapter.sameDate(oldDate, value)) {
-      this._valueChange.emit(value);
+    if (!this.dateAdapter.sameDate(oldDate, value)) {
+      this.valueChange.emit(value);
     }
   }
   private _value: D | null;
@@ -147,8 +150,8 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
   @Input()
   get min(): D | null { return this._min; }
   set min(value: D | null) {
-    this._min = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
-    this._validatorOnChange();
+    this._min = this.getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this.validatorOnChange();
   }
   private _min: D | null;
 
@@ -156,8 +159,8 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
   @Input()
   get max(): D | null { return this._max; }
   set max(value: D | null) {
-    this._max = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
-    this._validatorOnChange();
+    this._max = this.getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this.validatorOnChange();
   }
   private _max: D | null;
 
@@ -166,11 +169,11 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
   get disabled(): boolean { return !!this._disabled; }
   set disabled(value: boolean) {
     const newValue = coerceBooleanProperty(value);
-    const element = this._elementRef.nativeElement;
+    const element = this.elementRef.nativeElement;
 
     if (this._disabled !== newValue) {
       this._disabled = newValue;
-      this._disabledChange.emit(newValue);
+      this.disabledChange.emit(newValue);
     }
 
     // We need to null check the `blur` method, because it's undefined during SSR.
@@ -192,102 +195,94 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
     new EventEmitter<SbbDatepickerInputEvent<D>>();
 
   /** Emits when the value changes (either due to user input or programmatic change). */
-  _valueChange = new EventEmitter<D | null>();
+  valueChange = new EventEmitter<D | null>();
 
   /** Emits when the disabled state has changed */
-  _disabledChange = new EventEmitter<boolean>();
+  disabledChange = new EventEmitter<boolean>();
 
-  private _datepickerSubscription = Subscription.EMPTY;
+  private datepickerSubscription = Subscription.EMPTY;
 
-  private _localeSubscription = Subscription.EMPTY;
+  private localeSubscription = Subscription.EMPTY;
 
 
   /** Whether the last value set on the input was valid. */
-  private _lastValueValid = false;
+  private lastValueValid = false;
 
-  _onTouched = () => { };
+  onTouched = () => { };
 
-  private _cvaOnChange: (value: any) => void = () => { };
+  private cvaOnChange: (value: any) => void = () => { };
 
-  private _validatorOnChange = () => { };
+  private validatorOnChange = () => { };
 
   /** The form control validator for whether the input parses. */
-  private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
-    return this._lastValueValid ?
-      null : { 'sbbtDatepickerParse': { 'text': this._elementRef.nativeElement.value } };
+  private parseValidator: ValidatorFn = (): ValidationErrors | null => {
+    return this.lastValueValid ?
+      null : { 'sbbtDatepickerParse': { 'text': this.elementRef.nativeElement.value } };
   }
 
   /** The form control validator for the min date. */
-  private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
+  private minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const controlValue = this.getValidDateOrNull(this.dateAdapter.deserialize(control.value));
     return (!this.min || !controlValue ||
-      this._dateAdapter.compareDate(this.min, controlValue) <= 0) ?
+      this.dateAdapter.compareDate(this.min, controlValue) <= 0) ?
       null : { 'sbbDatepickerMin': { 'min': this.min, 'actual': controlValue } };
   }
 
   /** The form control validator for the max date. */
-  private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
+  private maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const controlValue = this.getValidDateOrNull(this.dateAdapter.deserialize(control.value));
     return (!this.max || !controlValue ||
-      this._dateAdapter.compareDate(this.max, controlValue) >= 0) ?
+      this.dateAdapter.compareDate(this.max, controlValue) >= 0) ?
       null : { 'sbbDatepickerMax': { 'max': this.max, 'actual': controlValue } };
   }
 
   /** The form control validator for the date filter. */
-  private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
-    return !this._dateFilter || !controlValue || this._dateFilter(controlValue) ?
+  private filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const controlValue = this.getValidDateOrNull(this.dateAdapter.deserialize(control.value));
+    return !this.dateFilter || !controlValue || this.dateFilter(controlValue) ?
       null : { 'sbbDatepickerFilter': true };
   }
 
 
   /** The combined form control validator for this input. */
   // tslint:disable-next-line:member-ordering
-  private _validator: ValidatorFn | null =
+  private validator: ValidatorFn | null =
     Validators.compose(
-      [this._parseValidator, this._minValidator, this._maxValidator, this._filterValidator]);
+      [this.parseValidator, this.minValidator, this.maxValidator, this.filterValidator]);
 
   constructor(
-    private _elementRef: ElementRef<HTMLInputElement>,
-    @Optional() public _dateAdapter: DateAdapter<D>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
+    private elementRef: ElementRef<HTMLInputElement>,
+    @Optional() public dateAdapter: DateAdapter<D>,
+    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
     @Optional() private _formField: SbbFieldComponent) {
-    if (!this._dateAdapter) {
+    if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
-    if (!this._dateFormats) {
+    if (!this.dateFormats) {
       throw createMissingDateImplError('SBB_DATE_FORMATS');
     }
 
     // Update the displayed date when the locale changes.
-    this._localeSubscription = _dateAdapter.localeChanges.subscribe(() => {
+    this.localeSubscription = dateAdapter.localeChanges.subscribe(() => {
       this.value = this.value;
     });
   }
 
   ngOnDestroy() {
-    this._datepickerSubscription.unsubscribe();
-    this._localeSubscription.unsubscribe();
-    this._valueChange.complete();
-    this._disabledChange.complete();
+    this.datepickerSubscription.unsubscribe();
+    this.localeSubscription.unsubscribe();
+    this.valueChange.complete();
+    this.disabledChange.complete();
   }
 
   /** @docs-private */
   registerOnValidatorChange(fn: () => void): void {
-    this._validatorOnChange = fn;
+    this.validatorOnChange = fn;
   }
 
   /** @docs-private */
   validate(c: AbstractControl): ValidationErrors | null {
-    return this._validator ? this._validator(c) : null;
-  }
-
-  /**
-   * @deprecated
-   * @breaking-change 7.0.0 Use `getConnectedOverlayOrigin` instead
-   */
-  getPopupConnectionElementRef(): ElementRef {
-    return this.getConnectedOverlayOrigin();
+    return this.validator ? this.validator(c) : null;
   }
 
   /**
@@ -295,7 +290,7 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
    * @return The element to connect the popup to.
    */
   getConnectedOverlayOrigin(): ElementRef {
-    return this._elementRef;
+    return this.elementRef;
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -305,12 +300,12 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
 
   // Implemented as part of ControlValueAccessor.
   registerOnChange(fn: (value: any) => void): void {
-    this._cvaOnChange = fn;
+    this.cvaOnChange = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
   registerOnTouched(fn: () => void): void {
-    this._onTouched = fn;
+    this.onTouched = fn;
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -320,29 +315,29 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
 
   @HostListener('keydown', ['$event'])
   _onKeydown(event: KeyboardEvent) {
-    if (this._datepicker && event.altKey && event.keyCode === DOWN_ARROW) {
-      this._datepicker.open();
+    if (this.datepicker && event.altKey && event.keyCode === DOWN_ARROW) {
+      this.datepicker.open();
       event.preventDefault();
     }
   }
 
   @HostListener('input', ['$event.target.value'])
   _onInput(value: string) {
-    let date = this._dateAdapter.parse(value, this._dateFormats.parse.dateInput);
-    this._lastValueValid = !date || this._dateAdapter.isValid(date);
-    date = this._getValidDateOrNull(date);
+    let date = this.dateAdapter.parse(value);
+    this.lastValueValid = !date || this.dateAdapter.isValid(date);
+    date = this.getValidDateOrNull(date);
 
-    if (!this._dateAdapter.sameDate(date, this._value)) {
+    if (!this.dateAdapter.sameDate(date, this._value)) {
       this._value = date;
-      this._cvaOnChange(date);
-      this._valueChange.emit(date);
-      this.dateInput.emit(new SbbDatepickerInputEvent(this, this._elementRef.nativeElement));
+      this.cvaOnChange(date);
+      this.valueChange.emit(date);
+      this.dateInput.emit(new SbbDatepickerInputEvent(this, this.elementRef.nativeElement));
     }
   }
 
   @HostListener('change')
   _onChange() {
-    this.dateChange.emit(new SbbDatepickerInputEvent(this, this._elementRef.nativeElement));
+    this.dateChange.emit(new SbbDatepickerInputEvent(this, this.elementRef.nativeElement));
   }
 
   /** Handles blur events on the input. */
@@ -353,20 +348,21 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
       this._formatValue(this.value);
     }
 
-    this._onTouched();
+    this.onTouched();
   }
 
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
-    this._elementRef.nativeElement.value =
-      value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';
+    this.elementRef.nativeElement.value =
+      value ? this.titleCasePipe.transform(this.dateAdapter.format(value, this.dateFormats.display.dateInput))
+        : '';
   }
 
   /**
    * @param obj The object to check.
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
-  private _getValidDateOrNull(obj: any): D | null {
-    return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
+  private getValidDateOrNull(obj: any): D | null {
+    return (this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj)) ? obj : null;
   }
 }

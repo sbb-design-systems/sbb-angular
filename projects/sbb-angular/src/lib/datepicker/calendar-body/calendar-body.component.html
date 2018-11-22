@@ -2,7 +2,7 @@
   If there's not enough space in the first row, create a separate label row. We mark this row as
   aria-hidden because we don't want it to be read out as one of the weeks in the month.
 -->
-<tr *ngIf="_firstRowOffset < labelMinRequiredCells" aria-hidden="true">
+<tr *ngIf="firstRowOffset < labelMinRequiredCells" aria-hidden="true">
   <td class="sbb-calendar-body-label"
       [attr.colspan]="numCols"
       [style.paddingTop.%]="50 * cellAspectRatio / numCols"
@@ -19,24 +19,24 @@
     percentage of the width (a variant of the trick described here:
     https://www.w3schools.com/howto/howto_css_aspect_ratio.asp).
   -->
-  <td *ngIf="rowIndex === 0 && _firstRowOffset"
+  <td *ngIf="rowIndex === 0 && firstRowOffset"
       aria-hidden="true"
       class="sbb-calendar-body-label"
-      [attr.colspan]="_firstRowOffset"
+      [attr.colspan]="firstRowOffset"
       [style.paddingTop.%]="50 * cellAspectRatio / numCols"
       [style.paddingBottom.%]="50 * cellAspectRatio / numCols">
-    {{_firstRowOffset >= labelMinRequiredCells ? label : ''}}
+    {{firstRowOffset >= labelMinRequiredCells ? label : ''}}
   </td>
   <td *ngFor="let item of row; let colIndex = index"
       role="gridcell"
       class="sbb-calendar-body-cell"
-      [tabindex]="_isActiveCell(rowIndex, colIndex) ? 0 : -1"
+      [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
       [class.sbb-calendar-body-disabled]="!item.enabled"
-      [class.sbb-calendar-body-active]="_isActiveCell(rowIndex, colIndex)"
+      [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
       [attr.aria-label]="item.ariaLabel"
       [attr.aria-disabled]="!item.enabled || null"
       [attr.aria-selected]="selectedValue === item.value"
-      (click)="_cellClicked(item)"
+      (click)="cellClicked(item)"
       [style.width.%]="100 / numCols"
       [style.paddingTop.%]="50 * cellAspectRatio / numCols"
       [style.paddingBottom.%]="50 * cellAspectRatio / numCols">

@@ -18,6 +18,10 @@ import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
 import { DatepickerIntlService } from './datepicker-intl.service';
+import { DateAdapter } from './date-adapter';
+import { FnsDateAdapter } from './fns-date-adapter';
+import { SBB_DATE_FORMATS } from './date-formats';
+import { FNS_DATE_FORMATS } from './fns-date-formats';
 
 
 @NgModule({
@@ -52,7 +56,9 @@ import { DatepickerIntlService } from './datepicker-intl.service';
   ],
   providers: [
     DatepickerIntlService,
-    SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
+    SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
+    { provide: DateAdapter, useClass: FnsDateAdapter },
+    { provide: SBB_DATE_FORMATS, useValue: FNS_DATE_FORMATS }
   ],
   entryComponents: [
     DatepickerContentComponent,

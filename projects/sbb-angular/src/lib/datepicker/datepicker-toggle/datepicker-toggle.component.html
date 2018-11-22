@@ -2,7 +2,7 @@
   sbbButton
   mode="frameless"
   aria-haspopup="true"
-  [attr.aria-label]="_intl.openCalendarLabel"
+  [attr.aria-label]="intl.openCalendarLabel"
   [attr.tabindex]="disabled ? -1 : tabIndex"
   [disabled]="disabled"
   (click)="open($event)">

@@ -124,11 +124,9 @@ export abstract class DateAdapter<D> {
     /**
      * Parses a date from a user-provided value.
      * @param value The value to parse.
-     * @param parseFormat The expected format of the value being parsed
-     *     (type is implementation-dependent).
      * @returns The parsed date.
      */
-    abstract parse(value: any, parseFormat: any): D | null;
+    abstract parse(value: any): D | null;
 
     /**
      * Formats a date as a string according to the given format.
