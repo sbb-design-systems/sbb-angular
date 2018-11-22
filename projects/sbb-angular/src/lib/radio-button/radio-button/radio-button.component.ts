@@ -64,6 +64,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
 
   /**
    * The checked state of the radio button
+   */
   @Input()
   @HostBinding('class.sbb-radio-checked')
   get checked(): boolean {
@@ -86,6 +87,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   /**
    * Class property that represents a touch on the radio button
    */
+  onTouched = () => { };
 
   constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
     super();
