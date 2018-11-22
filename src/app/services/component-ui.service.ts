@@ -88,7 +88,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Input Field',
-        'text-input',
+        'field',
         'Input Field',
         'Input Field is an extension to standard input element with theming.',
         true,
@@ -98,19 +98,6 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         InputFieldShowcaseComponent
-      ),
-      new UiComponent(
-        'SBB Field',
-        'field',
-        'SBB Field',
-        'SBB Field is an extension to standard input element with theming.',
-        true,
-        false,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.',
-        SbbFieldShowcaseComponent
       ),
       new UiComponent(
         'Autocompletion',

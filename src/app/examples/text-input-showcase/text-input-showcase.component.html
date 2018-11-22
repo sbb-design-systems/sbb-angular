@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Input Field (Within SBB-Field)</h4>
+      <h4>Input Field</h4>
       <sbb-field>
         <sbb-label for="simpleInput">Name</sbb-label>
         <input [type]="inputType" [placeholder]="placeholder" autocomplete="off" spellcheck="false" [readonly]="readonly"
@@ -23,15 +23,15 @@
         <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
       </select>
       <div class="sbbsc-block">
-        <input id="disabled" type="checkbox" [(ngModel)]="disabled">&nbsp;
+        <sbb-checkbox inputId="disabled" [(ngModel)]="disabled"></sbb-checkbox>
         <label for="disabled">Disabled</label>
       </div>
       <div class="sbbsc-block">
-        <input id="required" type="checkbox" [(ngModel)]="required">&nbsp;
+        <sbb-checkbox inputId="required" [(ngModel)]="required"></sbb-checkbox>
         <label for="required">Required</label>
       </div>
       <div class="sbbsc-block" *ngIf="inputType !== 'file'">
-        <input id="readonly" type="checkbox" [(ngModel)]="readonly">&nbsp;
+        <sbb-checkbox inputId="readonly" [(ngModel)]="readonly"></sbb-checkbox>
         <label for="readonly">Readonly</label>
       </div>
     </div>
