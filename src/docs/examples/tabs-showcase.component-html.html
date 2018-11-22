@@ -1,0 +1,56 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-9 sbbsc-v-sep"</span>&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tabs</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- First tab (required) --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tab</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"'Tab 1'"</span> 
+               [<span class="hljs-attr">id</span>]=<span class="hljs-string">"'content1-tab'"</span>
+               [<span class="hljs-attr">labelId</span>]=<span class="hljs-string">"'content1'"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Content 1<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here comes the content for tab 1 ...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tab</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Second tab (required) --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tab</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"'Tab 2'"</span> 
+               [<span class="hljs-attr">id</span>]=<span class="hljs-string">"'content2-tab'"</span>
+               [<span class="hljs-attr">labelId</span>]=<span class="hljs-string">"'content2'"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Content 2<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here comes the content for tab 2 ...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tab</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Third tab with the possibility of dynamic tabs if any --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tab</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"'Persons'"</span>
+               [<span class="hljs-attr">id</span>]=<span class="hljs-string">"'persons-tab'"</span>
+               [<span class="hljs-attr">labelId</span>]=<span class="hljs-string">"'persons'"</span>
+               [<span class="hljs-attr">badgePill</span>]=<span class="hljs-string">"getCountOfPersons()"</span> 
+               [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"disabled"</span>
+               *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!removed"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>List of Persons<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">person-list</span> [<span class="hljs-attr">person</span>]=<span class="hljs-string">"person"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">person-list</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tab</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tabs</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">small</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-italic"</span>&gt;</span>* Navigate with &amp;#8592; and &amp;#8593; for left, &amp;#8594; and &amp;#8595; for right<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-3"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Please set data-set for tabs content / tab pill :<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">select</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"dataSet"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> (<span class="hljs-attr">ngModelChange</span>)=<span class="hljs-string">"onChangeOfDataSet($event)"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let set of data"</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"set"</span>&gt;</span>{{ set }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"disabled"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-check-input"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"disabled"</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"setFirstTabIfDisabled()"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-check-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"disabled"</span>&gt;</span>Disabled<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"removed"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-check-input"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"removed"</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"checkValueForRemoveLastTab()"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-check-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"removed"</span>&gt;</span>Remove last tab in the tabs module<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
