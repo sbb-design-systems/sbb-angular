@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { RadioButton } from './radio-button.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RadioButtonRegistryService {
 
   private _accessors: any = {};
