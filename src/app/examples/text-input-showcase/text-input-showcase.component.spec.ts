@@ -56,17 +56,6 @@ describe('InputFieldShowcaseComponent', () => {
       expect(component.inputType).toBe('text');
   });
 
-  /*
-  it('input should be disappeared', () => {
-    component.disabled = true;
-    // first round of change detection ...
-    fixture.detectChanges();
-    // get the input element ...
-    const input = debugElement.query(By.css('#simpleInput'));
-    expect(input).toBeNull();
-  });
-  */
-
   it('should be readonly attribute', () => {
      component.readonly = true;
      // first round of change detection ...

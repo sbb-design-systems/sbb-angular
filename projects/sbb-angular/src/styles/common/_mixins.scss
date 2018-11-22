@@ -211,7 +211,7 @@
 	font-weight: normal;
 	font-size: pxToRem($sizeFontH4Default);
 	line-height: 1.5;
-	margin: 2em 0 pxToEm(-4);
+	margin: 2em 0 0;
 
 	@include mq($from: tabletPortrait) {
 		font-size: pxToRem($sizeFontH4Default);

@@ -91,6 +91,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 

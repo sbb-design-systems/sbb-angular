@@ -39,6 +39,8 @@ import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.com
 import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
+import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     SbbFieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     ComponentViewerComponent,
     TimeInputShowcaseComponent,
     ...IconComponents.types

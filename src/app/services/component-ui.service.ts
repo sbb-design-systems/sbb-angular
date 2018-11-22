@@ -9,6 +9,7 @@ import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbo
 import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 
 
 @Injectable({
@@ -207,11 +208,12 @@ export class ComponentUiService {
         'Tab',
         'Subtitel goes here ...',
         true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
+        false,
+        ['Davide Aresta', 'Marco Sut', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
+        'Import text.',
+        TabsShowcaseComponent
       ),
       new UiComponent(
         'Accordion',
