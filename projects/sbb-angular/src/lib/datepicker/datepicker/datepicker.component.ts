@@ -15,14 +15,24 @@ export class DatepickerComponent {
    */
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
 
+  /**
+   * Scrolls used to go directly to the next/prev day. They also support min and max date limits.
+   */
   @Input()
-  set withScrolls(value: boolean) {
-    this._withScrolls = value;
+  withScrolls: boolean;
+
+  get leftScroll(): boolean {
+    return this.isDayScrollApplicable() &&
+      this.embeddedDatepicker.selected !== this.embeddedDatepicker.minDate;
   }
-  get withScrolls(): boolean {
-    return this._withScrolls && !!this.embeddedDatepicker.selected;
+  get rightScroll(): boolean {
+    return this.isDayScrollApplicable() &&
+      this.embeddedDatepicker.selected !== this.embeddedDatepicker.maxDate;
   }
-  _withScrolls: boolean;
+
+  private isDayScrollApplicable(): boolean {
+    return this.withScrolls && !!this.embeddedDatepicker.selected;
+  }
 
   /**
    * Adds or removes a day when clicking on the arrow buttons on the right/left of the input

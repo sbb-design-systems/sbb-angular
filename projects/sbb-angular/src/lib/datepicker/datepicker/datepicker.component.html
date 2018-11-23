@@ -1,9 +1,9 @@
-<button mode="frameless" sbbButton *ngIf="withScrolls" (click)="scrollToDay('left')">
+<button mode="frameless" sbbButton *ngIf="leftScroll" (click)="scrollToDay('left')">
   <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
 </button>
 <input type="text" [sbbDatepicker]="picker" placeholder="Choose a date">
 <sbb-datepicker-toggle [for]="picker"></sbb-datepicker-toggle>
 <sbb-datepicker-embeddable #picker></sbb-datepicker-embeddable>
-<button mode="frameless" sbbButton *ngIf="withScrolls" (click)="scrollToDay('right')">
+<button mode="frameless" sbbButton *ngIf="rightScroll" (click)="scrollToDay('right')">
   <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
 </button>
