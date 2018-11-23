@@ -6,5 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./sbb-label.component.scss']
 })
 export class SbbLabelComponent {
+  /**
+   * Label of a input text
+   */
   @Input() for?: string;
 }
