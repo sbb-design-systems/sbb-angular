@@ -77,7 +77,25 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>tabindex: 0</code>
+          <code>tabindex: -1</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>disableChange: EventEmitter</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>removeChange: EventEmitter</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -85,7 +103,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>hostClasses: string</code>
+          <code>ariaHidden: string</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -98,6 +116,14 @@
       </td>
       <td class="docs-api-property-description"></td>
     </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">tabMarkForCheck </th>
+      </tr>
+    </thead>
   </table>
   <h4 id="TabsComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
     <span header-link="TabsComponent"></span>
@@ -132,6 +158,14 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>labels: QueryList&lt;ElementRef&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>nameOfTabList: `sbb-tabs-${counter++}`</code>
         </p>
       </td>
@@ -141,14 +175,6 @@
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
           <code>tabListIndex: 0</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>tabModules: QueryList&lt;TabsComponent&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -174,6 +200,13 @@
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">initTabs </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
         <th colspan="2" class="docs-api-method-name-cell">onKeydown </th>
       </tr>
     </thead>
@@ -184,6 +217,28 @@
         <th colspan="2" class="docs-api-method-name-cell">openFirstTab </th>
       </tr>
     </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">openTabByIndex </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> tabIndex</p>
+        <code class="docs-api-method-parameter-type">number</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
