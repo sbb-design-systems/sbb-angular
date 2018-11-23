@@ -104,6 +104,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   }
 
   onKeydown(event) {
+    // respond only to arrows
     if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
       this.handleKeyDown(event.keyCode);
     }
@@ -111,39 +112,52 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   private handleKeyDown(keyCode) {
     const tabLabels = this.labels.toArray();
-
-    this.handleKeyCode(keyCode);
-
+    const hasReachEnd = this.handleKeyCodeReturnHasReachEnd(keyCode);
     const tabToFocus = tabLabels[this.tabListIndex];
 
-    if (tabToFocus.nativeElement.disabled) {
+    if (tabToFocus.nativeElement.disabled && !hasReachEnd) {
       // go to next
       this.handleKeyDown(keyCode);
+    } else if (tabToFocus.nativeElement.disabled && hasReachEnd) {
+      // reached end and no focusable tabs found. reverse direction to find a focusable one
+      if (keyCode === LEFT_ARROW || keyCode === UP_ARROW) {
+        this.handleKeyDown(RIGHT_ARROW);
+      } else {
+        this.handleKeyDown(LEFT_ARROW);
+      }
     } else {
       tabLabels[this.tabListIndex].nativeElement.focus();
     }
 
   }
 
-  private handleKeyCode(keyCode) {
+  private handleKeyCodeReturnHasReachEnd(keyCode) {
+    let hasReachEnd = false;
+
     switch (keyCode) {
       case LEFT_ARROW:
       case UP_ARROW:
-        this.tabListIndex = (this.tabListIndex !== 0)
-          ? this.tabListIndex -= 1
-          : this.tabListIndex;
+        if (this.tabListIndex > 0) {
+          this.tabListIndex -= 1;
+        } else {
+          hasReachEnd = true;
+        }
         break;
 
       case RIGHT_ARROW:
       case DOWN_ARROW:
-        this.tabListIndex = (this.tabListIndex < this.tabs.length - 1)
-          ? this.tabListIndex += 1
-          : this.tabListIndex;
+        if (this.tabListIndex < this.tabs.length - 1) {
+          this.tabListIndex += 1;
+        } else {
+          hasReachEnd = true;
+        }
         break;
 
       default:
         this.tabListIndex = this.tabListIndex;
     }
+
+    return hasReachEnd;
   }
 
   private checkNumberOfTabs(): void {
