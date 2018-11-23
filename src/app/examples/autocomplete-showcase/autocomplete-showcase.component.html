@@ -1,7 +1,7 @@
 <article class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Basic Example</h4>
+      <h4 class="sbbsc-block">Basic Example</h4>
       <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
       <sbb-autocomplete #auto="sbbAutocomplete">
         <sbb-option *ngFor="let option of filteredOptions" [value]="option">
@@ -16,7 +16,7 @@
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Basic Example</h4>
+      <h4 class="sbbsc-block">Basic Example</h4>
       <input type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic">
       <sbb-autocomplete #autoStatic="sbbAutocomplete">
         <sbb-option *ngFor="let option of options$ | async" [value]="option">

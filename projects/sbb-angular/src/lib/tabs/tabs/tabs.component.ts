@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
   ViewChildren
 } from '@angular/core';
-import { ENTER, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
+import { LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB } from '@angular/cdk/keycodes';
 import { Observable, merge, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -36,7 +36,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     LEFT_ARROW,
     RIGHT_ARROW,
     UP_ARROW,
-    DOWN_ARROW
+    DOWN_ARROW,
+    TAB
   ];
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
@@ -103,10 +104,14 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     tab.tabMarkForCheck();
   }
 
-  onKeydown(event) {
-    // respond only to arrows
+  onKeyUp(event) {
+    // respond only to arrows and tab
     if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
-      this.handleKeyDown(event.keyCode);
+      if (event.keyCode === TAB) {
+        this.tabListIndex = this.labels.toArray().findIndex(l => l.nativeElement.tabIndex === 0);
+      } else {
+        this.handleKeyDown(event.keyCode);
+      }
     }
   }
 

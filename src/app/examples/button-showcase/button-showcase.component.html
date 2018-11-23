@@ -1,7 +1,7 @@
 <article class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Basic Example</h4>
+      <h4 class="sbbsc-block">Basic Example</h4>
       <div *ngIf="showButton">
         <button sbbButton [mode]="buttonMode" [disabled]="buttonDisabled" *ngIf="buttonIcon === 'noIcon'">
           Bezeichnung
@@ -17,30 +17,40 @@
       </div>
     </div>
     <div class="col-lg-6" [formGroup]="buttonForm">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <div class="row">
         <div class="col-2">
-          <label for="buttonMode">Mode</label>
+          <div class="sbbsc-block">
+            <label for="buttonMode">Mode</label>
+          </div>
         </div>
         <div class="col-10">
-          <select formControlName="mode" id="buttonMode">
-            <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
-          </select>
+          <div class="sbbsc-block">
+            <select formControlName="mode" id="buttonMode">
+              <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-2">
-          <label for="buttonIcon">Icon</label>
+          <div class="sbbsc-block">
+            <label for="buttonIcon">Icon</label>
+          </div>
         </div>
         <div class="col-10">
-          <select formControlName="icon" id="buttonIcon">
-            <option [ngValue]="'noIcon'">No Icon</option>
-            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
-          </select>
+          <div class="sbbsc-block">
+            <select formControlName="icon" id="buttonIcon">
+              <option [ngValue]="'noIcon'">No Icon</option>
+              <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+            </select>
+          </div>
         </div>
       </div>
-      <input formControlName="disabled" type="checkbox" id="buttonDisabled">&nbsp;
-      <label for="buttonDisabled">Disabled button</label>
+      <div class="sbbsc-block">
+        <input formControlName="disabled" type="checkbox" id="buttonDisabled">&nbsp;
+        <label for="buttonDisabled">Disabled button</label>
+      </div>
       <p><small>* All icons allowed, in this example are loaded only three as sample icons</small></p>
     </div>
   </div>
