@@ -1,0 +1,20 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Input Field Overview</h1>
+  <p class="docs-markdown-p">Import field module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> {FieldModule} <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and then you can use the input field component as seen below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">
+  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Example Input Field<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"name1"</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"name1"</span> [<span class="hljs-attr">placeholder</span>]=<span class="hljs-string">"placeholder"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"name1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name1').errors.required"</span>&gt;</span>This field is required!<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+</code></pre>
+</body>
+
+</html>

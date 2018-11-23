@@ -1,0 +1,21 @@
+@import "../../../styles/main";
+
+sbb-tabs {
+  display: block;
+}
+
+.sbb-tabs {
+
+  &-tablist {
+    @include tabsBase();
+    
+    > .sbb-tabs-tablist-item {
+      @include tabsItem();
+
+      .sbb-tabs-tablist-item-button {
+        @include tabsButton();
+      }
+    }
+  }
+
+}
