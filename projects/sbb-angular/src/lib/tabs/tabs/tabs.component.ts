@@ -108,7 +108,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     // respond only to arrows and tab
     if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
       if (event.keyCode === TAB) {
-        this.tabListIndex = this.labels.toArray().findIndex(l => l.nativeElement.tabIndex === 0);
+        this.tabListIndex = this.tabs.map(t => t.active).indexOf(true);
       } else {
         this.handleKeyDown(event.keyCode);
       }
