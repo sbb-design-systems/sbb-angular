@@ -101,7 +101,6 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   ngOnDestroy(): void {
     this.registry.remove(this);
   }
-
   writeValue(value: any): void {
     this.checked = this.value === value;
   }
@@ -112,7 +111,6 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
-
   /**
    * Registers the on touched callback
    */

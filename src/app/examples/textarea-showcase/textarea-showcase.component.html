@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep no-fix-width">
-      <h4>Textarea</h4>
+      <h4 class="sbbsc-block">Textarea</h4>
       <sbb-textarea *ngIf="isVisible" [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"
         [required]="required" [readonly]="readonly" [disabled]="disabled"></sbb-textarea>
       <p>Model:</p>
       <pre>{{ textArea1 | json }}</pre>
     </div>
     <div class="col-lg-6">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
         <div class="row">
           <div class="col-3">

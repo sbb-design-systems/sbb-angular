@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
   ViewChildren
 } from '@angular/core';
-import { ENTER, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
+import { LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB } from '@angular/cdk/keycodes';
 import { Observable, merge, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -36,7 +36,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     LEFT_ARROW,
     RIGHT_ARROW,
     UP_ARROW,
-    DOWN_ARROW
+    DOWN_ARROW,
+    TAB
   ];
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
@@ -103,47 +104,65 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     tab.tabMarkForCheck();
   }
 
-  onKeydown(event) {
+  onKeyUp(event) {
+    // respond only to arrows and tab
     if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
-      this.handleKeyDown(event.keyCode);
+      if (event.keyCode === TAB) {
+        this.tabListIndex = this.tabs.map(t => t.active).indexOf(true);
+      } else {
+        this.handleKeyUp(event.keyCode);
+      }
     }
   }
 
-  private handleKeyDown(keyCode) {
+  private handleKeyUp(keyCode) {
     const tabLabels = this.labels.toArray();
-
-    this.handleKeyCode(keyCode);
-
+    const hasReachEnd = this.handleKeyCodeReturnHasReachEnd(keyCode);
     const tabToFocus = tabLabels[this.tabListIndex];
 
-    if (tabToFocus.nativeElement.disabled) {
+    if (tabToFocus.nativeElement.disabled && !hasReachEnd) {
       // go to next
-      this.handleKeyDown(keyCode);
+      this.handleKeyUp(keyCode);
+    } else if (tabToFocus.nativeElement.disabled && hasReachEnd) {
+      // reached end and no focusable tabs found. reverse direction to find a focusable one
+      if (keyCode === LEFT_ARROW || keyCode === UP_ARROW) {
+        this.handleKeyUp(RIGHT_ARROW);
+      } else {
+        this.handleKeyUp(LEFT_ARROW);
+      }
     } else {
       tabLabels[this.tabListIndex].nativeElement.focus();
     }
 
   }
 
-  private handleKeyCode(keyCode) {
+  private handleKeyCodeReturnHasReachEnd(keyCode) {
+    let hasReachEnd = false;
+
     switch (keyCode) {
       case LEFT_ARROW:
       case UP_ARROW:
-        this.tabListIndex = (this.tabListIndex !== 0)
-          ? this.tabListIndex -= 1
-          : this.tabListIndex;
+        if (this.tabListIndex > 0) {
+          this.tabListIndex -= 1;
+        } else {
+          hasReachEnd = true;
+        }
         break;
 
       case RIGHT_ARROW:
       case DOWN_ARROW:
-        this.tabListIndex = (this.tabListIndex < this.tabs.length - 1)
-          ? this.tabListIndex += 1
-          : this.tabListIndex;
+        if (this.tabListIndex < this.tabs.length - 1) {
+          this.tabListIndex += 1;
+        } else {
+          hasReachEnd = true;
+        }
         break;
 
       default:
         this.tabListIndex = this.tabListIndex;
     }
+
+    return hasReachEnd;
   }
 
   private checkNumberOfTabs(): void {

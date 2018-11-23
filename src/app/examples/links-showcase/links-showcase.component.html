@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Icon Links</h4>
+      <h4 class="sbbsc-block">Icon Links</h4>
       <ng-container [ngSwitch]="linkMode">
         <a *ngSwitchCase="'stretch'" href="#" sbbLink mode="stretch" [icon]="linkIcon">Bezeichnung</a>
         <a *ngSwitchCase="'form'" href="#" sbbLink mode="form" [icon]="linkIcon">Bezeichnung</a>
@@ -9,25 +9,33 @@
       </ng-container>
     </div>
     <div class="col-lg-6">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <div class="row">
         <div class="col-2">
-          <label for="linkMode">Mode</label>
+          <div class="sbbsc-block">
+            <label for="linkMode">Mode</label>
+          </div>
         </div>
         <div class="col-10">
-          <select [(ngModel)]="linkMode" id="linkMode">
-            <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
-          </select>
+          <div class="sbbsc-block">
+            <select [(ngModel)]="linkMode" id="linkMode">
+              <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-2">
-          <label for="linkIcon">Icon</label>
+          <div class="sbbsc-block">
+            <label for="linkIcon">Icon</label>
+          </div>
         </div>
         <div class="col-10">
-          <select [(ngModel)]="linkIcon" id="linkIcon">
-            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
-          </select>
+          <div class="sbbsc-block">
+            <select [(ngModel)]="linkIcon" id="linkIcon">
+              <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
@@ -37,11 +45,11 @@
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Social Links</h4>
+      <h4 class="sbbsc-block">Social Links</h4>
       <a sbbSocialLink [icon]="socialLinkIcon">Bezeichnung</a>
     </div>
     <div class="col-lg-6">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <label for="socialLinkIcon">Icon</label>&nbsp;
       <select [(ngModel)]="socialLinkIcon" id="socialLinkIcon">
         <option *ngFor="let social of socials" [ngValue]="social">{{ social }}</option>

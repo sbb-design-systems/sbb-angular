@@ -8,20 +8,19 @@
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TabsShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
 
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'personEdit'</span>) editPersonTemplate;
-  <span class="hljs-meta">@ViewChild</span>(TabsComponent) tabsComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'tabs'</span>) tabsComponent: TabsComponent;
 
   disabled = <span class="hljs-literal">false</span>;
   removed = <span class="hljs-literal">false</span>;
 
-  dataSet = <span class="hljs-string">'default (add data manually)'</span>;
+  dataSet = <span class="hljs-string">'1'</span>;
   data = [
-    <span class="hljs-string">'default (add data manually)'</span>,
-    <span class="hljs-string">'500'</span>,
-    <span class="hljs-string">'1000'</span>
+    <span class="hljs-string">'1'</span>,
+    <span class="hljs-string">'50'</span>,
+    <span class="hljs-string">'550'</span>
   ];
 
-  personInitialLoad = {id: <span class="hljs-number">1</span>, name: <span class="hljs-string">'Max'</span>, surname: <span class="hljs-string">'Muster'</span>};
+  personInitialLoad = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">'Max'</span>, surname: <span class="hljs-string">'Muster'</span> };
 
   person = [];
 
@@ -42,42 +41,52 @@
     <span class="hljs-keyword">this</span>.person.push(<span class="hljs-keyword">this</span>.personInitialLoad);
   }
 
-  <span class="hljs-keyword">private</span> initialPersonArrayByAmount(amount: <span class="hljs-built_in">number</span>) : <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">private</span> initialPersonArrayByAmount(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> {
     <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(counter &lt; amount) {
-          <span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> item of <span class="hljs-keyword">this</span>.personList) {
-              counter++;
-              <span class="hljs-keyword">this</span>.person.push({id: counter, name: item.name, surname: item.surname});
-          }
+    <span class="hljs-keyword">while</span> (counter &lt; amount) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item of <span class="hljs-keyword">this</span>.personList) {
+        counter++;
+        <span class="hljs-keyword">this</span>.person.push({ id: counter, name: item.name, surname: item.surname });
+      }
     }
   }
 
-  setFirstTabIfDisabled() {
-    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.disabled) {
-       <span class="hljs-keyword">this</span>.tabsComponent.openFirstTab();
+  removeChange(removedTabId: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">this</span>.openPrevTabByTabIdOrDefault(removedTabId);
+  }
+
+  disableChange(disabledTabId: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">this</span>.openPrevTabByTabIdOrDefault(disabledTabId);
+  }
+
+  openPrevTabByTabIdOrDefault(tabId: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">const</span> tabsArray = <span class="hljs-keyword">this</span>.tabsComponent.tabs.toArray();
+    <span class="hljs-keyword">const</span> activeTab = tabsArray.findIndex(<span class="hljs-function"><span class="hljs-params">currTab</span> =&gt;</span> currTab.active);
+    <span class="hljs-keyword">const</span> selectedTabIndex = tabsArray.findIndex(<span class="hljs-function"><span class="hljs-params">tab</span> =&gt;</span> tab.id === tabId);
+
+    <span class="hljs-keyword">if</span> (activeTab === selectedTabIndex) {
+      <span class="hljs-keyword">if</span> (selectedTabIndex &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">this</span>.tabsComponent.openTabByIndex(selectedTabIndex - <span class="hljs-number">1</span>);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.tabsComponent.openFirstTab();
+      }
     }
   }
 
   onChangeOfDataSet(event) {
     <span class="hljs-keyword">this</span>.person = [];
-    <span class="hljs-keyword">if</span>(event.startsWith(<span class="hljs-string">'default'</span>)) {
-       <span class="hljs-keyword">this</span>.person.push(<span class="hljs-keyword">this</span>.personInitialLoad);
+    <span class="hljs-keyword">if</span> (event.startsWith(<span class="hljs-string">'1'</span>)) {
+      <span class="hljs-keyword">this</span>.person.push(<span class="hljs-keyword">this</span>.personInitialLoad);
     }
-    <span class="hljs-keyword">if</span>(event.startsWith(<span class="hljs-string">'500'</span>)) {
-       <span class="hljs-keyword">this</span>.initialPersonArrayByAmount(<span class="hljs-number">500</span>);
+    <span class="hljs-keyword">if</span> (event.startsWith(<span class="hljs-string">'50'</span>)) {
+      <span class="hljs-keyword">this</span>.initialPersonArrayByAmount(<span class="hljs-number">50</span>);
     }
-    <span class="hljs-keyword">if</span>(event.startsWith(<span class="hljs-string">'1000'</span>)) {
-       <span class="hljs-keyword">this</span>.initialPersonArrayByAmount(<span class="hljs-number">1000</span>);
-    }
-  }
-
-  checkValueForRemoveLastTab() {
-    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.removed) {
-       <span class="hljs-keyword">this</span>.tabsComponent.openFirstTab();
+    <span class="hljs-keyword">if</span> (event.startsWith(<span class="hljs-string">'550'</span>)) {
+      <span class="hljs-keyword">this</span>.initialPersonArrayByAmount(<span class="hljs-number">550</span>);
     }
   }
 
-  getCountOfPersons() : <span class="hljs-built_in">number</span> {
+  getCountOfPersons(): <span class="hljs-built_in">number</span> {
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(<span class="hljs-keyword">this</span>.person).length;
   }
 }
