@@ -5,7 +5,7 @@
         [attr.aria-label]="nameOfTabList">
       <button #label
               (click)="selectTab(tab)" 
-              (keyup)="onKeydown($event)" 
+              (keyup)="onKeyUp($event)" 
               role="tab" 
               [attr.aria-selected]="tab.active"
               [attr.aria-controls]="tab.id" 
