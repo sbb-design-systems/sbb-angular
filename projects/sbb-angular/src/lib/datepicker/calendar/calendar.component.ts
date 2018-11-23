@@ -41,7 +41,7 @@ export type CalendarView = 'month' | 'year' | 'multi-year';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarHeaderComponent<D> {
-  constructor(private _intl: DatepickerIntlService,
+  constructor(private intl: DatepickerIntlService,
     // tslint:disable-next-line:no-use-before-declare
     @Inject(forwardRef(() => CalendarComponent)) public calendar: CalendarComponent<D>,
     @Optional() private _dateAdapter: DateAdapter<D>,
@@ -70,18 +70,18 @@ export class CalendarHeaderComponent<D> {
   /** The label for the the previous button. */
   get prevButtonLabel(): string {
     return {
-      'month': this._intl.prevMonthLabel,
-      'year': this._intl.prevYearLabel,
-      'multi-year': this._intl.prevMultiYearLabel
+      'month': this.intl.prevMonthLabel,
+      'year': this.intl.prevYearLabel,
+      'multi-year': this.intl.prevMultiYearLabel
     }[this.calendar.currentView];
   }
 
   /** The label for the the next button. */
   get nextButtonLabel(): string {
     return {
-      'month': this._intl.nextMonthLabel,
-      'year': this._intl.nextYearLabel,
-      'multi-year': this._intl.nextMultiYearLabel
+      'month': this.intl.nextMonthLabel,
+      'year': this.intl.nextYearLabel,
+      'multi-year': this.intl.nextMultiYearLabel
     }[this.calendar.currentView];
   }
 
