@@ -51,10 +51,6 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   useFactory: SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY,
 };
 
-// TODO(mmalerba): We use a component instead of a directive here so the user can use implicit
-// template reference variables (e.g. #d vs #d="matDatepicker"). We can change this to a directive
-// if angular adds support for `exportAs: '$implicit'` on directives.
-/** Component responsible for managing the datepicker popup/dialog. */
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'sbb-datepicker',
@@ -97,18 +93,6 @@ export class DatepickerComponent<D> implements OnDestroy {
     }
   }
   private _disabled: boolean;
-
-  /**
-   * Emits selected year in multiyear view.
-   * This doesn't imply a change on the selected date.
-   */
-  @Output() readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
-
-  /**
-   * Emits selected month in year view.
-   * This doesn't imply a change on the selected date.
-   */
-  @Output() readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
 
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
@@ -206,16 +190,6 @@ export class DatepickerComponent<D> implements OnDestroy {
     if (!this.dateAdapter.sameDate(oldValue, this.selected)) {
       this.selectedChanged.next(date);
     }
-  }
-
-  /** Emits the selected year in multiyear view */
-  selectYear(normalizedYear: D): void {
-    this.yearSelected.emit(normalizedYear);
-  }
-
-  /** Emits selected month in year view */
-  selectMonth(normalizedMonth: D): void {
-    this.monthSelected.emit(normalizedMonth);
   }
 
   /**
