@@ -16,65 +16,78 @@ import { RadioButton } from './radio-button.model';
 let counter = 0;
 
 @Component({
-  selector: 'sbb-radio-button[value]',
+  selector: 'sbb-radio-button',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
-  providers: [ {
+  providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => RadioButtonComponent),
     multi: true,
-  } ],
+  }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
   /**
-   * RadioButton identifier
+   * Radio button identifier
    */
   @Input() inputId = `sbb-radio-button-${counter++}`;
   /**
-   * Specific radioButton name in formControl
+   * Specific radio button name in formControl
    */
   @Input() formControlName: string;
   /**
-   * Specific that radioButton field is required
+   * Used to set the 'aria-label' attribute on the underlying input element.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('aria-label') ariaLabel: string;
+  /**
+   * The 'aria-labelledby' attribute takes precedence as the element's text alternative.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('aria-labelledby') ariaLabelledby: string;
+  /**
+   * The 'aria-describedby' attribute is read after the element's label and field type.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('aria-describedby') ariaDescribedby: string;
+  /**
+   * Specifies that the radio button field is required
    */
   @Input() required: boolean;
+
   /**
-   * Sets radioButton class property unchecked
-   */
-  @HostBinding('class.sbb-radio-checked') _checked = false;
-  /**
-   * Sets radioButton class property disabled
+   * The disabled state of the radio button
    */
   @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
 
-  @Input()
+  private _checked = false;
+
   /**
-   * Sets radioButton with the value in input
+   * The checked state of the radio button
    */
+  @Input()
+  @HostBinding('class.sbb-radio-checked')
+  get checked(): boolean {
+    return this._checked;
+  }
   set checked(value: boolean) {
     this._checked = value;
 
-    if(this._checked) {
+    if (this._checked) {
       this.registry.select(this);
     }
 
     this.changeDetector.markForCheck();
   }
+
   /**
-   * Returns a value that means if a radioButton is checked
-   */
-  get checked(): boolean {
-    return this._checked;
-  }
-  /**
-   * Class property that represents a change on radioButton field
+   * Class property that represents a change on the radio button
    */
   onChange = (obj: any) => { };
   /**
-   * Class property that represents a touch on radioButton field
+   * Class property that represents a touch on the radio button
    */
-  onTouched = (_: any) => { };
+  onTouched = () => { };
 
   constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
     super();
@@ -91,50 +104,57 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   writeValue(value: any): void {
     this.checked = this.value === value;
   }
+
   /**
-   * Records a change on radioButton field
+   * Registers the on change callback
    */
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
   /**
-   * Records a touch on radioButton field
+   * Registers the on touched callback
    */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
+
   /**
-   * Manage the event click on radioButton field
+   * Manage the event click on the radio button
    */
-  click($event) {
-    const value = $event.target.value;
-    this.onChange(value);
-    this.onTouched(value);
-    this.writeValue(value);
+  click($event: Event) {
+    this.onChange(this.value);
+    this.onTouched();
+    this.writeValue(this.value);
+    this.checked = true;
   }
+
   /**
-   * Sets radioButton status to disabled
+   * Sets the radio button status to disabled
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
+
   /**
-   * Sets radioButton field to unchecked
+   * Unchecks the radio button
    */
   uncheck() {
     this.checked = false;
   }
+
   /**
-   * Verify that radioButton name matches with radioButton form control name
+   * Verify that radio button name matches with radio button form control name
    */
   private checkName(): void {
     if (this.name && this.formControlName && this.name !== this.formControlName) {
       this.throwNameError();
+    } else if (!this.name && this.formControlName) {
+      this.name = this.formControlName;
     }
-    if (!this.name && this.formControlName) { this.name = this.formControlName; }
   }
+
   /**
-   * Throws an exception if radioButton name doesn't match with radioButton form control name
+   * Throws an exception if the radio button name doesn't match with the radio button form control name
    */
   private throwNameError(): void {
     throw new Error(`

@@ -160,10 +160,6 @@ fieldset {
   border: none;
 }
 
-sbb-radio-button {
-  @include radioButtonLabel;
-}
-
 sbb-checkbox {
   @include checkboxLabel;
 }

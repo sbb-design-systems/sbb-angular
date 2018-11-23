@@ -1,69 +1,74 @@
 // Radio button mixins
 // ----------------------------------------------------------------------------------------------------
 
-@mixin radioButtonBase() {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  width: toPx(20);
-  height: toPx(20);
-  left: 0;
-  z-index: 1;
-  opacity: 0;
+@mixin radioButton() {
+  & > label {
+    display: flex;
+    align-items: flex-start;
 
-  @include mq($from: desktop4k) {
-    width: toPx(20 * $scalingFactor4k);
-    height: toPx(20 * $scalingFactor4k);
-  }
-
-  @include mq($from: desktop5k) {
-    width: toPx(20 * $scalingFactor5k);
-    height: toPx(20 * $scalingFactor5k);
-  }
-
-  &:focus + .radio-circle-container {
-    border-color: $colorGrey;
-  }
-
-  &:checked + .radio-circle-container,
-  &[checked] + .radio-circle-container {
-    .radio-circle-checked {
-      opacity: 1 !important;
+    & > input[type="radio"] {
+      @include visuallyhidden;
+    
+      & + .sbb-radio-circle-container {
+        @include radioButtonCircle();
+  
+        & > .sbb-radio-circle-checked {
+          display: none;
+        }
+    
+        & + .sbb-radio-label-content {
+          color: $colorGrey;
+          transition: color .3s cubic-bezier(.785,.135,.15,.86);
+        }
+      }
+    
+      &:focus + .sbb-radio-circle-container {
+        border-color: $colorGrey;
+      }
+    
+      &:checked + .sbb-radio-circle-container,
+      &[checked] + .sbb-radio-circle-container {
+        & > .sbb-radio-circle-checked {
+          display: block;
+        }
+    
+        & + .sbb-radio-label-content {
+          color: $colorBlack;
+        }
+      }
+      
+      &:disabled + .sbb-radio-circle-container,
+      &[disabled] + .sbb-radio-circle-container {
+        border-color: $colorBlack20;
+        background-color: $colorBlack5;
+    
+        & > .sbb-radio-circle-checked {
+          background-color: $colorGrey;
+        }
+    
+        & + .sbb-radio-label-content {
+          color: $colorGrey;
+        }
+      }
     }
   }
 }
 
-@mixin radioButtonLabel {
-  & + label {
-    position: relative;
-    color: $colorGrey;
-    transition: color .3s cubic-bezier(.785,.135,.15,.86);
-  }
-
-  &.sbb-radio-checked + label {
-    color: $colorBlack;
-  }
-
-  &.sbb-radio-disabled + label {
-    color: $colorGrey;
-  }
-
-}
-
 @mixin radioButtonCircle() {
-  position: relative;
   width: toPx(20);
   height: toPx(20);
   background-color: $colorWhite;
   border: toPx(2) solid $colorBlack72;
   border-radius: 50%;
   margin-right: toPx(8);
+  margin-top: toPx(1);
 
   @include mq($from: desktop4k) {
     width: toPx(20 * $scalingFactor4k);
     height: toPx(20 * $scalingFactor4k);
     border: toPx(2 * $scalingFactor4k) solid $colorBlack72;
     margin-right: toPx(8 * $scalingFactor4k);
+    margin-top: toPx(1 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
@@ -71,18 +76,15 @@
     height: toPx(20 * $scalingFactor5k);
     border: toPx(2 * $scalingFactor5k) solid $colorBlack72;
     margin-right: toPx(8 * $scalingFactor5k);
+    margin-top: toPx(1 * $scalingFactor5k);
   }
 
-  .radio-circle-checked {
-    position: absolute;
-    left: 0;
-    top: 0;
+  .sbb-radio-circle-checked {
     height: 100%;
     width: 100%;
     background-color: $colorRed100;
     border-radius: 50%;
     transform: scale(.65);
     transition: opacity .3s cubic-bezier(.785,.135,.15,.86);
-    opacity: 0;
   }
 }
