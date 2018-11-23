@@ -25,8 +25,7 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
-import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
@@ -38,8 +37,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent
@@ -69,8 +67,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,

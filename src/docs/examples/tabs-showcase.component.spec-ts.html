@@ -1,79 +1,79 @@
-<span class="hljs-keyword">import</span> { ChangeDetectionStrategy, DebugElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-keyword">async</span>, ComponentFixture, TestBed } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/testing'</span>;
-<span class="hljs-keyword">import</span> { By } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
-<span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./person/person-list/person-list.component'</span>;
-<span class="hljs-keyword">import</span> { FormsModule, ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
-<span class="hljs-keyword">import</span> { TabsModule, FieldModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
+<span class="hljs-comment">// import { ChangeDetectionStrategy, DebugElement } from '@angular/core';</span>
+<span class="hljs-comment">// import { async, ComponentFixture, TestBed } from '@angular/core/testing';</span>
+<span class="hljs-comment">// import { By } from '@angular/platform-browser';</span>
+<span class="hljs-comment">// import { TabsShowcaseComponent } from './tabs-showcase.component';</span>
+<span class="hljs-comment">// import { PersonListComponent } from './person/person-list/person-list.component';</span>
+<span class="hljs-comment">// import { FormsModule, ReactiveFormsModule } from '@angular/forms';</span>
+<span class="hljs-comment">// import { TabsModule, FieldModule } from 'sbb-angular';</span>
 
-describe(<span class="hljs-string">'TabsShowcaseComponent'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+<span class="hljs-comment">// describe('TabsShowcaseComponent', () =&gt; {</span>
 
-  <span class="hljs-keyword">let</span> component: TabsShowcaseComponent;
-  <span class="hljs-keyword">let</span> fixture: ComponentFixture&lt;TabsShowcaseComponent&gt;;
-  <span class="hljs-keyword">let</span> debugElement: DebugElement;
+<span class="hljs-comment">//   let component: TabsShowcaseComponent;</span>
+<span class="hljs-comment">//   let fixture: ComponentFixture&lt;TabsShowcaseComponent&gt;;</span>
+<span class="hljs-comment">//   let debugElement: DebugElement;</span>
 
-  beforeEach(<span class="hljs-keyword">async</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    TestBed.configureTestingModule({
-      imports: [FormsModule,
-                ReactiveFormsModule,
-                TabsModule,
-                FieldModule],
-      declarations: [TabsShowcaseComponent, PersonListComponent]
-    })
-    .overrideComponent(TabsShowcaseComponent, {
-      <span class="hljs-keyword">set</span>: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
-  }));
+<span class="hljs-comment">//   beforeEach(async(() =&gt; {</span>
+<span class="hljs-comment">//     TestBed.configureTestingModule({</span>
+<span class="hljs-comment">//       imports: [FormsModule,</span>
+<span class="hljs-comment">//                 ReactiveFormsModule,</span>
+<span class="hljs-comment">//                 TabsModule,</span>
+<span class="hljs-comment">//                 FieldModule],</span>
+<span class="hljs-comment">//       declarations: [TabsShowcaseComponent, PersonListComponent]</span>
+<span class="hljs-comment">//     })</span>
+<span class="hljs-comment">//     .overrideComponent(TabsShowcaseComponent, {</span>
+<span class="hljs-comment">//       set: { changeDetection: ChangeDetectionStrategy.Default }</span>
+<span class="hljs-comment">//     })</span>
+<span class="hljs-comment">//     .compileComponents();</span>
+<span class="hljs-comment">//   }));</span>
 
-  beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    fixture = TestBed.createComponent(TabsShowcaseComponent);
-    component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
-  });
+<span class="hljs-comment">//   beforeEach(() =&gt; {</span>
+<span class="hljs-comment">//     fixture = TestBed.createComponent(TabsShowcaseComponent);</span>
+<span class="hljs-comment">//     component = fixture.componentInstance;</span>
+<span class="hljs-comment">//     debugElement = fixture.debugElement;</span>
+<span class="hljs-comment">//   });</span>
 
-  it(<span class="hljs-string">'should create'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    expect(component).toBeTruthy();
-  });
+<span class="hljs-comment">//   it('should create', () =&gt; {</span>
+<span class="hljs-comment">//     expect(component).toBeTruthy();</span>
+<span class="hljs-comment">//   });</span>
 
-  it(<span class="hljs-string">'tab module should have 3 tabs inside, at least 2'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-     <span class="hljs-comment">// first round of change detection ...</span>
-     fixture.detectChanges();
-     expect(component.tabsComponent.tabs.length).toBe(<span class="hljs-number">3</span>);
-  });
+<span class="hljs-comment">//   it('tab module should have 3 tabs inside, at least 2', () =&gt; {</span>
+<span class="hljs-comment">//      // first round of change detection ...</span>
+<span class="hljs-comment">//      fixture.detectChanges();</span>
+<span class="hljs-comment">//      expect(component.tabsComponent.tabs.length).toBe(3);</span>
+<span class="hljs-comment">//   });</span>
 
-  it(<span class="hljs-string">'tab module should have no more tab modules inside'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// first round of change detection ...</span>
-    fixture.detectChanges();
-    expect(component.tabsComponent.tabModules.length).toBe(<span class="hljs-number">1</span>);
-  });
+<span class="hljs-comment">//   it('tab module should have no more tab modules inside', () =&gt; {</span>
+<span class="hljs-comment">//     // first round of change detection ...</span>
+<span class="hljs-comment">//     fixture.detectChanges();</span>
+<span class="hljs-comment">//     expect(component.tabsComponent.tabModules.length).toBe(1);</span>
+<span class="hljs-comment">//   });</span>
 
-  it(<span class="hljs-string">'tab 1 should have label "Tab 1", tab id "1" and also should be "active" per default'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-     <span class="hljs-comment">// first round of change detection ...</span>
-     fixture.detectChanges();
-     expect(component.tabsComponent.tabs.first.label).toBe(<span class="hljs-string">'Tab 1'</span>);
-     expect(component.tabsComponent.tabs.first.id).toBe(<span class="hljs-string">'content1-tab'</span>);
-     expect(component.tabsComponent.tabs.first.active).toBe(<span class="hljs-literal">true</span>);
-  });
+<span class="hljs-comment">//   it('tab 1 should have label "Tab 1", tab id "1" and also should be "active" per default', () =&gt; {</span>
+<span class="hljs-comment">//      // first round of change detection ...</span>
+<span class="hljs-comment">//      fixture.detectChanges();</span>
+<span class="hljs-comment">//      expect(component.tabsComponent.tabs.first.label).toBe('Tab 1');</span>
+<span class="hljs-comment">//      expect(component.tabsComponent.tabs.first.id).toBe('content1-tab');</span>
+<span class="hljs-comment">//      expect(component.tabsComponent.tabs.first.active).toBe(true);</span>
+<span class="hljs-comment">//   });</span>
 
-  it(<span class="hljs-string">'tab 3 should have label "Persons", tab id "3" and should not be "active" per default'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// first round of change detection ...</span>
-    fixture.detectChanges();
-    expect(component.tabsComponent.tabs.last.label).toBe(<span class="hljs-string">'Persons'</span>);
-    expect(component.tabsComponent.tabs.last.id).toBe(<span class="hljs-string">'persons-tab'</span>);
-    expect(component.tabsComponent.tabs.last.active).toBe(<span class="hljs-literal">false</span>);
-  });
+<span class="hljs-comment">//   it('tab 3 should have label "Persons", tab id "3" and should not be "active" per default', () =&gt; {</span>
+<span class="hljs-comment">//     // first round of change detection ...</span>
+<span class="hljs-comment">//     fixture.detectChanges();</span>
+<span class="hljs-comment">//     expect(component.tabsComponent.tabs.last.label).toBe('Persons');</span>
+<span class="hljs-comment">//     expect(component.tabsComponent.tabs.last.id).toBe('persons-tab');</span>
+<span class="hljs-comment">//     expect(component.tabsComponent.tabs.last.active).toBe(false);</span>
+<span class="hljs-comment">//   });</span>
 
-  it(<span class="hljs-string">'person tab should have 1 tag pill / quantity indicator with the value 1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// first round of change detection ...</span>
-    fixture.detectChanges();
-    <span class="hljs-comment">// switch over to our dynamic tab ...</span>
-    component.tabsComponent.selectTab(component.tabsComponent.tabs.last);
-    expect(component.tabsComponent.tabs.last.active).toBe(<span class="hljs-literal">true</span>);
-    <span class="hljs-comment">// get add new person button ...</span>
-    <span class="hljs-keyword">const</span> tabBadgePill = debugElement.query(By.css(<span class="hljs-string">'sbb-tab-badge-pill'</span>)).nativeElement;
-    expect(tabBadgePill).toBeTruthy();
-    expect(tabBadgePill.textContent).toBe(<span class="hljs-string">'1'</span>);
- });
+<span class="hljs-comment">//   it('person tab should have 1 tag pill / quantity indicator with the value 1', () =&gt; {</span>
+<span class="hljs-comment">//     // first round of change detection ...</span>
+<span class="hljs-comment">//     fixture.detectChanges();</span>
+<span class="hljs-comment">//     // switch over to our dynamic tab ...</span>
+<span class="hljs-comment">//     component.tabsComponent.selectTab(component.tabsComponent.tabs.last);</span>
+<span class="hljs-comment">//     expect(component.tabsComponent.tabs.last.active).toBe(true);</span>
+<span class="hljs-comment">//     // get add new person button ...</span>
+<span class="hljs-comment">//     const tabBadgePill = debugElement.query(By.css('sbb-tab-badge-pill')).nativeElement;</span>
+<span class="hljs-comment">//     expect(tabBadgePill).toBeTruthy();</span>
+<span class="hljs-comment">//     expect(tabBadgePill.textContent).toBe('1');</span>
+<span class="hljs-comment">//  });</span>
 
-});
+<span class="hljs-comment">// });</span>

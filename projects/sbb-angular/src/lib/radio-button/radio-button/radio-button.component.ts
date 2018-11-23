@@ -39,7 +39,6 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    * Specific that radioButton field is required
    */
   @Input() required: boolean;
-
   /**
    * Sets radioButton class property unchecked
    */
@@ -89,7 +88,6 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   ngOnDestroy(): void {
     this.registry.remove(this);
   }
-
   writeValue(value: any): void {
     this.checked = this.value === value;
   }
@@ -99,7 +97,6 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
-
   /**
    * Records a touch on radioButton field
    */
