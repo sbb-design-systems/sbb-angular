@@ -110,25 +110,25 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       if (event.keyCode === TAB) {
         this.tabListIndex = this.tabs.map(t => t.active).indexOf(true);
       } else {
-        this.handleKeyDown(event.keyCode);
+        this.handleKeyUp(event.keyCode);
       }
     }
   }
 
-  private handleKeyDown(keyCode) {
+  private handleKeyUp(keyCode) {
     const tabLabels = this.labels.toArray();
     const hasReachEnd = this.handleKeyCodeReturnHasReachEnd(keyCode);
     const tabToFocus = tabLabels[this.tabListIndex];
 
     if (tabToFocus.nativeElement.disabled && !hasReachEnd) {
       // go to next
-      this.handleKeyDown(keyCode);
+      this.handleKeyUp(keyCode);
     } else if (tabToFocus.nativeElement.disabled && hasReachEnd) {
       // reached end and no focusable tabs found. reverse direction to find a focusable one
       if (keyCode === LEFT_ARROW || keyCode === UP_ARROW) {
-        this.handleKeyDown(RIGHT_ARROW);
+        this.handleKeyUp(RIGHT_ARROW);
       } else {
-        this.handleKeyDown(LEFT_ARROW);
+        this.handleKeyUp(LEFT_ARROW);
       }
     } else {
       tabLabels[this.tabListIndex].nativeElement.focus();
