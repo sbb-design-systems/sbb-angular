@@ -12,7 +12,13 @@
          [disabled]="disabled"
          (click)="click($event)" />
 
-  <div class="radio-circle-container">
-    <div class="radio-circle-checked"></div>
+  <div class="sbb-radio-circle-container">
+    <div class="sbb-radio-circle-checked"></div>
+  </div>
+
+  <div class="sbb-radio-label-content">
+    <!-- Add an invisible span so JAWS can read the label -->
+    <span style="display:none">&nbsp;</span>
+    <ng-content></ng-content>
   </div>
 </label>
