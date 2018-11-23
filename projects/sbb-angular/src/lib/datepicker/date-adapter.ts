@@ -23,6 +23,7 @@ export const SBB_DATE_LOCALE_PROVIDER = { provide: SBB_DATE_LOCALE, useExisting:
 
 /** Adapts type `D` to be usable as a date by cdk-based components that work with dates. */
 export abstract class DateAdapter<D> {
+
     /** The locale to use for all dates. */
     protected locale: any;
 

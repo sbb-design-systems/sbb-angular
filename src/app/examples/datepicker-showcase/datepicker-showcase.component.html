@@ -3,12 +3,12 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4>Simple Datepicker</h4>
       <sbb-field>
-        <sbb-datepicker withScrolls="true"></sbb-datepicker>
+        <sbb-datepicker withScrolls="true" [(ngModel)]="today" disabled="false" [min]="minDate" [max]="maxDate"></sbb-datepicker>
       </sbb-field>
     </div>
     <div class="col-lg-6">
       <h4>Properties</h4>
-
+      <pre>{{ today }}</pre>
     </div>
   </div>
 </div>

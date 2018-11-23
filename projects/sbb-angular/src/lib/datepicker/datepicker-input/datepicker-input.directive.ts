@@ -1,6 +1,5 @@
 import {
   Directive,
-  forwardRef,
   OnDestroy,
   Input,
   EventEmitter,
@@ -12,14 +11,10 @@ import {
   HostListener
 } from '@angular/core';
 import {
-  NG_VALUE_ACCESSOR,
-  ControlValueAccessor,
-  Validator,
   ValidatorFn,
   ValidationErrors,
   AbstractControl,
-  Validators,
-  NG_VALIDATORS
+  Validators
 } from '@angular/forms';
 import { DOWN_ARROW } from '@angular/cdk/keycodes';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
@@ -30,21 +25,6 @@ import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { TitleCasePipe } from '@angular/common';
-
-
-export const SBB_DATEPICKER_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line:no-use-before-declare
-  useExisting: forwardRef(() => DatepickerInputDirective),
-  multi: true
-};
-
-export const SBB_DATEPICKER_VALIDATORS: any = {
-  provide: NG_VALIDATORS,
-  // tslint:disable-next-line:no-use-before-declare
-  useExisting: forwardRef(() => DatepickerInputDirective),
-  multi: true
-};
 
 /**
  * An event used for datepicker input and change events. We don't always have access to a native
@@ -66,13 +46,9 @@ export class SbbDatepickerInputEvent<D> {
 
 @Directive({
   selector: 'input[sbbDatepicker]',
-  providers: [
-    SBB_DATEPICKER_VALUE_ACCESSOR,
-    SBB_DATEPICKER_VALIDATORS
-  ],
   exportAs: 'sbbDatepickerInput'
 })
-export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDestroy, Validator {
+export class DatepickerInputDirective<D> implements OnDestroy {
 
   private titleCasePipe = new TitleCasePipe();
 
