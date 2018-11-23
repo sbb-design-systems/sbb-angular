@@ -12,8 +12,9 @@
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  ButtonModule,
   AutocompleteModule,
+  ButtonModule,
+  TabsModule,
   TimeInputModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
@@ -25,6 +26,8 @@
 <span class="hljs-keyword">import</span> { AutocompleteShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./autocomplete-showcase/autocomplete-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TimeInputShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./time-input-showcase/time-input-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { FieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./field-showcase/field-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -35,6 +38,8 @@
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent
   ],
   imports: [
@@ -51,7 +56,8 @@
     RadioButtonModule,
     CheckboxModule,
     TimeInputModule,
-    IconCommonModule
+    IconCommonModule,
+    TabsModule
   ],
   providers: [],
   exports: [
@@ -62,6 +68,8 @@
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule
   ]

@@ -245,25 +245,6 @@
 
 }
 
-// Counter badge
-// ----------------------------------------------------------------------------------------------------
-@mixin buttonCounter($fontSize: $sizeFontDefault) {
-	position: absolute;
-	top: pxToEm(8, 11);
-	right: pxToEm(9, 11);
-	min-width: pxToEm(18, 11);
-	border-radius: pxToEm(15, 11);
-	padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
-
-	background: $colorBlack60;
-	color: $colorWhite;
-	font-family: $fontSbbBold;
-
-	line-height: pxToEm(11, 11);
-	font-size: pxToEm(11, $fontSize);
-	text-align: center;
-}
-
 // Discount Label
 // ----------------------------------------------------------------------------------------------------
 @mixin discountLabel() {

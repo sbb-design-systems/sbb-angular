@@ -42,23 +42,4 @@
     border-bottom: 1px solid rgba($colorGreyLight, 0.5);
     min-height: 300px;
   }
-
-  &-instance {
-    h2, h3, h4 {
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
-
-    fieldset {
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-
-    label, input, select, sbb-checkbox, sbb-radio-button {
-      margin-bottom: 1em;
-      vertical-align: middle;
-      display: inline-block;
-    }
-  }
 }

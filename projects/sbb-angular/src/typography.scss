@@ -154,6 +154,12 @@ input[type="datetime-local"] {
   }
 }
 
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 sbb-radio-button {
   @include radioButtonLabel;
 }

@@ -12,8 +12,9 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  ButtonModule,
   AutocompleteModule,
+  ButtonModule,
+  TabsModule,
   TimeInputModule
 } from 'sbb-angular';
 
@@ -25,6 +26,8 @@ import { ButtonShowcaseComponent } from './button-showcase/button-showcase.compo
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { FieldShowcaseComponent } from './field-showcase/field-showcase.componen
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent
   ],
   imports: [
@@ -51,7 +56,8 @@ import { FieldShowcaseComponent } from './field-showcase/field-showcase.componen
     RadioButtonModule,
     CheckboxModule,
     TimeInputModule,
-    IconCommonModule
+    IconCommonModule,
+    TabsModule
   ],
   providers: [],
   exports: [
@@ -62,6 +68,8 @@ import { FieldShowcaseComponent } from './field-showcase/field-showcase.componen
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule
   ]

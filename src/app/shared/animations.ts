@@ -6,7 +6,9 @@ import {
   keyframes,
   group,
   animateChild,
-  query
+  query,
+  state,
+  stagger
 } from '@angular/animations';
 
 export const fadeAnimation = trigger('fadeAnimation', [
@@ -18,6 +20,15 @@ export const fadeAnimation = trigger('fadeAnimation', [
     style({ opacity: 1 }),
     animate(400, style({ opacity: 0 }))
   ])
+]);
+
+
+export const fadePositionAnimation = trigger('fadePositionAnimation', [
+  transition('* => *', [
+    style({ opacity: 0 }),
+    animate(400, style({ opacity: 1 })),
+    animateChild()
+  ]),
 ]);
 
 export const slideAnimation = trigger('slideAnimation', [
