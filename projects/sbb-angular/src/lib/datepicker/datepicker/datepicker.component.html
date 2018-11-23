@@ -1,10 +1,9 @@
-<button *ngIf="withScroll" class="sbb-icon-wrapper sbb-icon-wrapper-before">
+<button mode="frameless" sbbButton *ngIf="withScrolls" (click)="scrollToDay('left')">
   <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
 </button>
-<button class="sbb-icon-wrapper sbb-icon-wrapper-before">
-  <sbb-icon-calendar></sbb-icon-calendar>
-</button>
-<input #datepickerInput type="text" autocomplete="off" spellcheck="false" class="sbb-datepicker-input">
-<button *ngIf="withScroll" class="sbb-icon-wrapper sbb-icon-wrapper-after">
-  <sbb-icon-arrow-small-right *ngIf="withScroll"></sbb-icon-arrow-small-right>
+<input type="text" [sbbDatepicker]="picker" placeholder="Choose a date">
+<sbb-datepicker-toggle [for]="picker"></sbb-datepicker-toggle>
+<sbb-datepicker-embeddable #picker></sbb-datepicker-embeddable>
+<button mode="frameless" sbbButton *ngIf="withScrolls" (click)="scrollToDay('right')">
+  <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
 </button>

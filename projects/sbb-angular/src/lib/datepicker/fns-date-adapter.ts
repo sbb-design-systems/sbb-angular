@@ -3,7 +3,6 @@ import * as dateFns from 'date-fns';
 import * as itLocale from 'date-fns/locale/it';
 import * as deLocale from 'date-fns/locale/de';
 import * as frLocale from 'date-fns/locale/fr';
-import { match } from '../../../../../node_modules/@types/minimatch';
 
 const locales = {
   'it': itLocale,

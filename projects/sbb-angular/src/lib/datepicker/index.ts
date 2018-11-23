@@ -1,4 +1,5 @@
 export * from './datepicker.module';
+export * from './datepicker-embeddable/datepicker-embeddable.component';
 export * from './datepicker/datepicker.component';
 export * from './datepicker-content/datepicker-content.component';
 export * from './datepicker-toggle/datepicker-toggle.component';

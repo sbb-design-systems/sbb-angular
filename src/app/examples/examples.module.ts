@@ -27,9 +27,8 @@ import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-sho
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
-import { DateAdapter, SBB_DATE_FORMATS, DatepickerModule } from 'projects/sbb-angular/src/public_api';
-import { FnsDateAdapter } from 'projects/sbb-angular/src/lib/datepicker/fns-date-adapter';
-import { FNS_DATE_FORMATS } from 'projects/sbb-angular/src/lib/datepicker/fns-date-formats';
+import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
+
 
 @NgModule({
   declarations: [

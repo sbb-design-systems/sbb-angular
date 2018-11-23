@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DatepickerComponent, SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER } from './datepicker/datepicker.component';
+import {
+  DatepickerEmbeddableComponent,
+  SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
+} from './datepicker-embeddable/datepicker-embeddable.component';
 import {
   IconCommonModule,
   IconArrowSmallRightComponent,
@@ -22,6 +25,7 @@ import { DateAdapter } from './date-adapter';
 import { FnsDateAdapter } from './fns-date-adapter';
 import { SBB_DATE_FORMATS } from './date-formats';
 import { FNS_DATE_FORMATS } from './fns-date-formats';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 
 
 @NgModule({
@@ -34,7 +38,7 @@ import { FNS_DATE_FORMATS } from './fns-date-formats';
     OverlayModule
   ],
   declarations: [
-    DatepickerComponent,
+    DatepickerEmbeddableComponent,
     DatepickerToggleComponent,
     DatepickerContentComponent,
     CalendarComponent,
@@ -42,17 +46,19 @@ import { FNS_DATE_FORMATS } from './fns-date-formats';
     MonthViewComponent,
     CalendarBodyComponent,
     DatepickerInputDirective,
+    DatepickerComponent,
 
   ],
   exports: [
-    DatepickerComponent,
+    DatepickerEmbeddableComponent,
     DatepickerToggleComponent,
     DatepickerContentComponent,
     CalendarComponent,
     CalendarHeaderComponent,
     MonthViewComponent,
     CalendarBodyComponent,
-    DatepickerInputDirective
+    DatepickerInputDirective,
+    DatepickerComponent
   ],
   providers: [
     DatepickerIntlService,

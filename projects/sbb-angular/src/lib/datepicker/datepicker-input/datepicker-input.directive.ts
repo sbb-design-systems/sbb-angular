@@ -22,7 +22,7 @@ import {
   NG_VALIDATORS
 } from '@angular/forms';
 import { DOWN_ARROW } from '@angular/cdk/keycodes';
-import { DatepickerComponent } from '../datepicker/datepicker.component';
+import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subscription } from 'rxjs';
 import { SbbFieldComponent } from '../../field';
@@ -102,7 +102,7 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
 
   /** The datepicker that this input is associated with. */
   @Input()
-  set sbbDatepicker(value: DatepickerComponent<D>) {
+  set sbbDatepicker(value: DatepickerEmbeddableComponent<D>) {
     if (!value) {
       return;
     }
@@ -119,7 +119,7 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
       this.dateChange.emit(new SbbDatepickerInputEvent(this, this.elementRef.nativeElement));
     });
   }
-  datepicker: DatepickerComponent<D>;
+  datepicker: DatepickerEmbeddableComponent<D>;
 
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
@@ -138,7 +138,7 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
     value = this.getValidDateOrNull(value);
     const oldDate = this.value;
     this._value = value;
-    this._formatValue(value);
+    this.formatValue(value);
 
     if (!this.dateAdapter.sameDate(oldDate, value)) {
       this.valueChange.emit(value);
@@ -314,7 +314,7 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
   }
 
   @HostListener('keydown', ['$event'])
-  _onKeydown(event: KeyboardEvent) {
+  onKeydown(event: KeyboardEvent) {
     if (this.datepicker && event.altKey && event.keyCode === DOWN_ARROW) {
       this.datepicker.open();
       event.preventDefault();
@@ -322,7 +322,7 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
   }
 
   @HostListener('input', ['$event.target.value'])
-  _onInput(value: string) {
+  onInput(value: string) {
     let date = this.dateAdapter.parse(value);
     this.lastValueValid = !date || this.dateAdapter.isValid(date);
     date = this.getValidDateOrNull(date);
@@ -336,23 +336,23 @@ export class DatepickerInputDirective<D> implements ControlValueAccessor, OnDest
   }
 
   @HostListener('change')
-  _onChange() {
+  onChange() {
     this.dateChange.emit(new SbbDatepickerInputEvent(this, this.elementRef.nativeElement));
   }
 
   /** Handles blur events on the input. */
   @HostListener('blur')
-  _onBlur() {
+  onBlur() {
     // Reformat the input only if we have a valid value.
     if (this.value) {
-      this._formatValue(this.value);
+      this.formatValue(this.value);
     }
 
     this.onTouched();
   }
 
   /** Formats a value and sets it on the input element. */
-  private _formatValue(value: D | null) {
+  private formatValue(value: D | null) {
     this.elementRef.nativeElement.value =
       value ? this.titleCasePipe.transform(this.dateAdapter.format(value, this.dateFormats.display.dateInput))
         : '';
