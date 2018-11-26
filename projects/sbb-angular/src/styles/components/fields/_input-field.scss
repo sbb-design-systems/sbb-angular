@@ -14,8 +14,6 @@
   line-height: 1.5;
   font-size: pxToRem($sizeFontDefault);
   -webkit-appearance: none;
-  min-width: 60px;
-  max-width: 400px;
 
   &::-ms-clear {
     display: none;
@@ -27,8 +25,6 @@
     font-size: toPx($sizeFontDefault4k);
     padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k)
       toPx(12 * $scalingFactor4k);
-    min-width: toPx(60 * $scalingFactor4k);
-    max-width: toPx(400 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
@@ -37,8 +33,6 @@
     font-size: pxToRem($sizeFontDefault5k);
     padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k)
       toPx(12 * $scalingFactor5k);
-    min-width: toPx(60 * $scalingFactor5k);
-    max-width: toPx(400 * $scalingFactor5k);
   }
 
   &:focus {
