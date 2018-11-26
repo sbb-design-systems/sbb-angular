@@ -117,7 +117,7 @@ export class FnsDateAdapter extends DateAdapter<Date> {
 
     if (value) {
       const splittedDate = value.split(',');
-      if (splittedDate.length > 0) {
+      if (splittedDate.length > 1) {
         value = splittedDate[1].trim();
       }
       const matches = (value as string).match(dateRegex);

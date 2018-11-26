@@ -27,7 +27,6 @@ import { SBB_DATE_FORMATS } from './date-formats';
 import { FNS_DATE_FORMATS } from './fns-date-formats';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -72,6 +71,5 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     IconArrowSmallLeftComponent,
     IconCalendarComponent
   ]
-
 })
 export class DatepickerModule { }

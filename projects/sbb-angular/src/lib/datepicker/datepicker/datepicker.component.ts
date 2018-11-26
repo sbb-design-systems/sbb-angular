@@ -1,17 +1,24 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ViewChild,
   Input,
   forwardRef,
-  HostBinding,
   Optional,
-  Inject
+  Inject,
+  ChangeDetectorRef,
+  OnInit
 } from '@angular/core';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
-import { ControlValueAccessor, Validator, AbstractControl, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  Validator,
+  AbstractControl,
+  ValidationErrors,
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS
+} from '@angular/forms';
 import { DatepickerInputDirective } from '../datepicker-input/datepicker-input.directive';
 import { SBB_DATE_FORMATS, DateFormats } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
@@ -42,7 +49,7 @@ export const SBB_DATEPICKER_VALIDATORS: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class DatepickerComponent implements ControlValueAccessor, Validator {
+export class DatepickerComponent implements ControlValueAccessor, Validator, OnInit {
 
   /** The minimum valid date. */
   @Input()
@@ -82,22 +89,33 @@ export class DatepickerComponent implements ControlValueAccessor, Validator {
   @Input()
   withScrolls: boolean;
 
-  get leftScroll(): boolean {
-    return this.isDayScrollApplicable() &&
-      this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.embeddedDatepicker.minDate) > 0;
-  }
-  get rightScroll(): boolean {
-    return this.isDayScrollApplicable() &&
-    this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.embeddedDatepicker.maxDate) < 0;
-  }
+  leftScroll: boolean;
+  rightScroll: boolean;
 
   private isDayScrollApplicable(): boolean {
-    return this.withScrolls && !!this.embeddedDatepicker.selected;
+    return this.withScrolls && !!this.datepickerInput.value;
   }
 
-  constructor(@Optional() public dateAdapter: DateAdapter<Date>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats) {
+  constructor(
+    @Optional() public dateAdapter: DateAdapter<Date>,
+    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
+    private changeDetectorRef: ChangeDetectorRef) {
   }
+  /*
+    ngAfterViewInit(): void {
+
+    } */
+  ngOnInit(): void {
+    this.datepickerInput.valueChange.subscribe(res => {
+      this.leftScroll = this.isDayScrollApplicable() &&
+        this.dateAdapter.compareDate(this.datepickerInput.value, this.min) > 0;
+      this.rightScroll = this.isDayScrollApplicable() &&
+        this.dateAdapter.compareDate(this.datepickerInput.value, this.max) < 0;
+
+      this.changeDetectorRef.markForCheck();
+    });
+  }
+
 
   /**
    * Adds or removes a day when clicking on the arrow buttons on the right/left of the input

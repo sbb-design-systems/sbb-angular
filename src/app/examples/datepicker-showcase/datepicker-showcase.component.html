@@ -3,12 +3,12 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4>Simple Datepicker</h4>
       <sbb-field>
-        <sbb-datepicker withScrolls="true" [(ngModel)]="today" disabled="false" [min]="minDate" [max]="maxDate"></sbb-datepicker>
+        <sbb-datepicker [formControl]="laData" withScrolls="true" disabled="false" [min]="minDate" [max]="maxDate"></sbb-datepicker>
       </sbb-field>
     </div>
     <div class="col-lg-6">
       <h4>Properties</h4>
-      <pre>{{ today | date : 'fullDate' }}</pre>
+      <pre>formControl: {{ laData | json }}</pre>
     </div>
   </div>
 </div>

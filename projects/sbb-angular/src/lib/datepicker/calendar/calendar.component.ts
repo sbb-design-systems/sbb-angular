@@ -46,7 +46,7 @@ export class CalendarHeaderComponent<D> {
   constructor(private intl: DatepickerIntlService,
     // tslint:disable-next-line:no-use-before-declare
     @Inject(forwardRef(() => CalendarComponent)) public calendar: CalendarComponent<D>,
-    @Optional() private _dateAdapter: DateAdapter<D>,
+    @Optional() private dateAdapter: DateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
     changeDetectorRef: ChangeDetectorRef) {
 
@@ -56,13 +56,13 @@ export class CalendarHeaderComponent<D> {
 
   /** The label for the current calendar view. */
   get monthText(): string {
-    return this._dateAdapter.getMonthName(this.calendar.activeDate);
+    return this.dateAdapter.getMonthName(this.calendar.activeDate);
 
   }
 
   /** The label for the current calendar view. */
   get yearText(): string {
-    return this._dateAdapter.getYearName(this.calendar.activeDate);
+    return this.dateAdapter.getYearName(this.calendar.activeDate);
   }
 
   /** The label for the the previous button. */
@@ -90,12 +90,12 @@ export class CalendarHeaderComponent<D> {
 
   /** Handles user clicks on the previous button. */
   previousMonthClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(this.calendar.activeDate, -1);
+    this.calendar.activeDate = this.dateAdapter.addCalendarMonths(this.calendar.activeDate, -1);
   }
 
   /** Handles user clicks on the next button. */
   nextMonthClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(this.calendar.activeDate, 1);
+    this.calendar.activeDate = this.dateAdapter.addCalendarMonths(this.calendar.activeDate, 1);
   }
 
   /** Whether the previous period button is enabled. */
@@ -116,17 +116,17 @@ export class CalendarHeaderComponent<D> {
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameMonthView(date1: D, date2: D): boolean {
 
-    return this._dateAdapter.getMonth(date1) === this._dateAdapter.getMonth(date2);
+    return this.dateAdapter.getMonth(date1) === this.dateAdapter.getMonth(date2);
   }
 
   /** Handles user clicks on the previous button. */
   previousYearClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarYears(this.calendar.activeDate, -1);
+    this.calendar.activeDate = this.dateAdapter.addCalendarYears(this.calendar.activeDate, -1);
   }
 
   /** Handles user clicks on the next button. */
   nextYearClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarYears(this.calendar.activeDate, 1);
+    this.calendar.activeDate = this.dateAdapter.addCalendarYears(this.calendar.activeDate, 1);
   }
 
   /** Whether the previous period button is enabled. */
@@ -147,7 +147,7 @@ export class CalendarHeaderComponent<D> {
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameYearView(date1: D, date2: D): boolean {
 
-    return this._dateAdapter.getYear(date1) === this._dateAdapter.getYear(date2);
+    return this.dateAdapter.getYear(date1) === this.dateAdapter.getYear(date2);
   }
 
 }
