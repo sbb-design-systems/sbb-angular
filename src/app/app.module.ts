@@ -36,7 +36,6 @@ import { IconsListComponent } from './icons-list/icons-list.component';
 import { DocDirective } from './doc/doc.directive';
 import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-doc.component';
 import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.component';
-import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text-input-showcase.component';
 import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
 import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/datepicker-showcase.component';
@@ -82,7 +81,6 @@ import { PersonListComponent } from './examples/tabs-showcase/person/person-list
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
