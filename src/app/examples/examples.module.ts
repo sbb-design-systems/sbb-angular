@@ -12,8 +12,9 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  ButtonModule,
   AutocompleteModule,
+  ButtonModule,
+  TabsModule,
   TimeInputModule
 } from 'sbb-angular';
 
@@ -24,11 +25,11 @@ import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
-import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
 import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
-
+import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,10 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    FieldShowcaseComponent,
     DatepickerShowcaseComponent,
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent
   ],
   imports: [
@@ -58,7 +60,8 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     CheckboxModule,
     DatepickerModule,
     TimeInputModule,
-    IconCommonModule
+    IconCommonModule,
+    TabsModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -67,9 +70,10 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    FieldShowcaseComponent,
     DatepickerShowcaseComponent,
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule
   ],

@@ -40,6 +40,8 @@ import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text
 import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
 import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/datepicker-showcase.component';
+import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
     FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     ComponentViewerComponent,
     DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,

@@ -351,6 +351,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   handleKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line
     const keyCode = event.keyCode;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
@@ -569,6 +570,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       this.overlayRef.keydownEvents().subscribe(event => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
+        // tslint:disable-next-line
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
           this.resetActiveItem();
           this.closeKeyEventStream.next();
