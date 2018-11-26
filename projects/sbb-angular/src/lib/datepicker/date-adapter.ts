@@ -59,6 +59,8 @@ export abstract class DateAdapter<D> {
      */
     abstract getDayOfWeek(date: D): number;
 
+    abstract getMonthName(date: D): string;
+
     /**
      * Gets a list of names for the months.
      * @param style The naming style (e.g. long = 'January', short = 'Jan', narrow = 'J').

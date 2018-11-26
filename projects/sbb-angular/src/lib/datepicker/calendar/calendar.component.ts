@@ -17,6 +17,7 @@ import {
   ViewEncapsulation,
   HostBinding,
   forwardRef,
+  LOCALE_ID,
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { DatepickerIntlService } from '../datepicker-intl.service';
@@ -24,6 +25,7 @@ import { MonthViewComponent } from '../month-view/month-view.component';
 import { DateAdapter } from '../date-adapter';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { createMissingDateImplError } from '../datepicker-errors';
+import { DatePipe } from '@angular/common';
 
 
 /**
@@ -51,20 +53,16 @@ export class CalendarHeaderComponent<D> {
     this.calendar.stateChanges.subscribe(() => changeDetectorRef.markForCheck());
   }
 
+
   /** The label for the current calendar view. */
   get monthText(): string {
-    return this._dateAdapter
-      .format(this.calendar.activeDate, this._dateFormats.display.monthLabel)
-      .toLocaleUpperCase();
+    return this._dateAdapter.getMonthName(this.calendar.activeDate);
+
   }
 
   /** The label for the current calendar view. */
   get yearText(): string {
-
-    return this._dateAdapter
-      .format(this.calendar.activeDate, this._dateFormats.display.yearLabel)
-      .toLocaleUpperCase();
-
+    return this._dateAdapter.getYearName(this.calendar.activeDate);
   }
 
   /** The label for the the previous button. */
@@ -84,9 +82,6 @@ export class CalendarHeaderComponent<D> {
       'multi-year': this.intl.nextMultiYearLabel
     }[this.calendar.currentView];
   }
-
-
-
 
   /** Handles user clicks on the period label. */
   currentPeriodClicked(): void {

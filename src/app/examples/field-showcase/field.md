@@ -16,5 +16,5 @@ and then you can use the input field component as seen below
     <input type="text" formControlName="name1" [placeholder]="placeholder" id="name1">
     <sbb-form-error *ngIf="form.get('name1').errors.required">This field is required!</sbb-form-error>
   </sbb-field>
-   
+
 ```  

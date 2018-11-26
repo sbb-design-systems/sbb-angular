@@ -3,14 +3,14 @@ import { DateFormats } from './date-formats';
 
 export const FNS_DATE_FORMATS: DateFormats = {
     parse: {
-        dateInput: 'DD.MM.YYYY'
+        dateInput: 'dd.MM.yyyy'
     },
     display: {
         monthLabel: 'MMM',
-        dateInput: 'dd, DD.MM.YYYY',
-        yearLabel: 'YYYY',
-        dateA11yLabel:'DD MM YYYY',
+        dateInput: 'EEEEEE, dd.MM.yyyy',
+        yearLabel: 'yyyy',
+        dateA11yLabel:'dd MM yyyy',
         monthA11yLabel: 'MMMM' ,
-        yearA11yLabel: 'YYYY'
+        yearA11yLabel: 'yyyy'
     }
 };

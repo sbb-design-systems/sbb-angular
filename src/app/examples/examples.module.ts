@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -30,6 +30,13 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import localeFr from '@angular/common/locales/fr-CH';
+import localeIt from '@angular/common/locales/it-CH';
+import localeDe from '@angular/common/locales/de-CH';
+
+[localeIt, localeFr, localeDe].forEach( locale => {
+  registerLocaleData(locale);
+});
 
 @NgModule({
   declarations: [
@@ -77,6 +84,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     TimeInputShowcaseComponent,
     ButtonModule
   ],
+  providers: [{ provide: LOCALE_ID, useValue: 'de-CH' }]
 
 })
 export class ExamplesModule { }
