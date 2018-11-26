@@ -1,0 +1,25 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Loading example</h4>
+      <span>tiny</span>
+      <sbb-loading mode="tiny" srOnlyLabel="Loading 1"></sbb-loading>
+      <span>small</span>
+      <sbb-loading mode="small" srOnlyLabel="Loading 2"></sbb-loading>
+      <span>medium</span>
+      <sbb-loading mode="medium" srOnlyLabel="Loading 3"></sbb-loading>
+      <span>big</span>
+      <sbb-loading mode="big"></sbb-loading>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Spinner example</h4>
+      <sbb-spinner bdColor="rgba(0, 0, 0, 0.3)" mode="medium"></sbb-spinner>
+      <div class="align-middle">
+        <button (click)="activateSpinner()" sbbButton>
+          <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+          Spinner
+        </button>
+      </div>
+    </div>
+  </div>
+</article>

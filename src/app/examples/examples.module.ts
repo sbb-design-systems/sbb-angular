@@ -15,7 +15,8 @@ import {
   AutocompleteModule,
   ButtonModule,
   TabsModule,
-  TimeInputModule
+  TimeInputModule,
+  LoadingModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -28,6 +29,7 @@ import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-sho
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
-    TimeInputShowcaseComponent
+    TimeInputShowcaseComponent,
+    LoadingShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     CheckboxModule,
     TimeInputModule,
     IconCommonModule,
-    TabsModule
+    TabsModule,
+    LoadingModule
   ],
   providers: [],
   exports: [
@@ -71,7 +75,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    ButtonModule
+    ButtonModule,
+    LoadingModule
   ]
 })
 export class ExamplesModule { }
