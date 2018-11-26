@@ -112,15 +112,7 @@ export class FnsDateAdapter extends DateAdapter<Date> {
   }
   parse(value: any): Date {
 
-    // ^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)|[0-9]{2})\s*$
     if (value) {
-   /*    const dateParts = value.trim().split('.');
-      let date = null;
-      if (dateParts.length === 3 && isNumber(dateParts[0]) && isNumber(dateParts[1]) && isNumber(dateParts[2])) {
-        date = { year: toInteger(dateParts[2]), month: toInteger(dateParts[1] - 1), day: toInteger(dateParts[0]) };
-
-      }
-      return date; */
       const dateRegex = new RegExp('^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)[0-9]{2}|[0-9]{2})\s*$', 'g');
       const matches = (value as string).match(dateRegex);
       if (matches) {
