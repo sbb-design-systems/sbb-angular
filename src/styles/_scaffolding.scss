@@ -86,5 +86,9 @@ perfect-scrollbar.sbbsc-perfect-scrollbar {
 }
 
 .sbbsc-main-content {
-  padding: $main-content-padding;
+  padding: $main-content-padding-mobile;
+
+  @include mq($from: tabletLandscape) {
+    padding: $main-content-padding;
+  }
 }

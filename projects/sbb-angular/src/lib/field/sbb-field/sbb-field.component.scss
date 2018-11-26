@@ -1,0 +1,21 @@
+@import "../../../styles/main.scss";
+
+sbb-field.sbb-input-field {
+  &-short {
+    input {
+      @include inputMode(short);
+    }
+  }
+
+  &-medium {
+    input {
+      @include inputMode(medium);
+    }
+  }
+
+  &-long {
+    input {
+      @include inputMode(long);
+    }
+  }
+}

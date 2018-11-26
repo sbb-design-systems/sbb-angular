@@ -31,6 +31,16 @@ export class FieldShowcaseComponent implements OnInit {
     this.header3
   ];
 
+  inputMode = 'default';
+  modes = [
+    'default',
+    'short',
+    'medium',
+    'long'
+  ];
+
+  showField = true;
+
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -86,6 +96,11 @@ export class FieldShowcaseComponent implements OnInit {
   reset3() {
     this.myForm3.reset();
     this.inputText3 = '';
+  }
+
+  reRender() {
+    this.showField = false;
+    setTimeout(() => this.showField = true);
   }
 
 }
