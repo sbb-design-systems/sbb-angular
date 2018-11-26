@@ -25,7 +25,7 @@ import { ButtonShowcaseComponent } from './button-showcase/button-showcase.compo
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
 import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
 
@@ -39,7 +39,7 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     DatepickerShowcaseComponent,
     TimeInputShowcaseComponent
   ],
@@ -68,7 +68,7 @@ import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
     InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
     DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,
     ButtonModule

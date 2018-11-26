@@ -1,27 +1,27 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SbbFieldShowcaseComponent } from './field-showcase.component';
+import { FieldShowcaseComponent } from './field-showcase.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldModule } from 'sbb-angular';
 
-describe('SbbFieldShowcaseComponent', () => {
+describe('FieldShowcaseComponent', () => {
 
-  let component: SbbFieldShowcaseComponent;
-  let fixture: ComponentFixture<SbbFieldShowcaseComponent>;
+  let component: FieldShowcaseComponent;
+  let fixture: ComponentFixture<FieldShowcaseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule, FieldModule],
-      declarations: [SbbFieldShowcaseComponent]
+      declarations: [FieldShowcaseComponent]
     })
-    .overrideComponent(SbbFieldShowcaseComponent, {
+    .overrideComponent(FieldShowcaseComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SbbFieldShowcaseComponent);
+    fixture = TestBed.createComponent(FieldShowcaseComponent);
     component = fixture.componentInstance;
     component.ngOnInit();
   });

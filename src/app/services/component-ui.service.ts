@@ -8,7 +8,7 @@ import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
 import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/datepicker-showcase.component';
 
 
@@ -112,7 +112,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        SbbFieldShowcaseComponent
+        FieldShowcaseComponent
       ),
       new UiComponent(
         'Autocompletion',

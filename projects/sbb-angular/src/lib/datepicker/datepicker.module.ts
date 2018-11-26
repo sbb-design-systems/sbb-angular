@@ -46,8 +46,7 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     MonthViewComponent,
     CalendarBodyComponent,
     DatepickerInputDirective,
-    DatepickerComponent,
-
+    DatepickerComponent
   ],
   exports: [
     DatepickerEmbeddableComponent,
