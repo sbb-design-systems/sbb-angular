@@ -87,13 +87,19 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    * Scrolls used to go directly to the next/prev day. They also support min and max date limits.
    */
   @Input()
-  withScrolls: boolean;
+  get scrollable() {
+    return this.isScrollable;
+  }
+  set scrollable(scrollable: any) {
+    this.isScrollable = scrollable !== 'false';
+  }
+  private isScrollable = false;
 
   leftScroll: boolean;
   rightScroll: boolean;
 
   private isDayScrollApplicable(): boolean {
-    return this.withScrolls && !!this.datepickerInput.value;
+    return this.scrollable && !!this.datepickerInput.value;
   }
 
   constructor(

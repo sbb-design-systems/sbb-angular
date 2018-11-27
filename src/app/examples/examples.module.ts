@@ -30,9 +30,6 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
-import localeFr from '@angular/common/locales/fr-CH';
-import localeIt from '@angular/common/locales/it-CH';
-import localeDe from '@angular/common/locales/de-CH';
 
 @NgModule({
   declarations: [
