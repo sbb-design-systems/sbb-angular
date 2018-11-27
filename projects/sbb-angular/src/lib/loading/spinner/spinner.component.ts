@@ -1,4 +1,12 @@
-import { Component, OnDestroy, Input, OnInit, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  SimpleChange,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SbbSpinnerService } from '../service/sbb-spinner.service';
 
@@ -6,7 +14,8 @@ import { SbbSpinnerService } from '../service/sbb-spinner.service';
 @Component({
   selector: 'sbb-spinner',
   templateUrl: 'spinner.component.html',
-  styleUrls: ['spinner.component.css']
+  styleUrls: ['spinner.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpinnerComponent implements OnDestroy, OnChanges {
   /**
@@ -23,7 +32,7 @@ export class SpinnerComponent implements OnDestroy, OnChanges {
    * Accessibility label
    *
    */
-  @Input() srOnlyLabel?: string;
+  @Input() srAltText?: string;
   /**
    * Flag to show/hide spinner
    *
@@ -33,16 +42,16 @@ export class SpinnerComponent implements OnDestroy, OnChanges {
    * Subscription variable for spinner
    *
    */
-  spinnerSubscription: Subscription;
-
+  private _spinnerSubscription: Subscription;
 
   /**
    * Creates an instance of SpinnerComponent.
    *
    */
-  constructor(private spinnerService: SbbSpinnerService) {
-    this.spinnerSubscription = this.spinnerService.spinnerObservable.subscribe(flag => {
+  constructor(private spinnerService: SbbSpinnerService, private _changeDetector: ChangeDetectorRef) {
+    this._spinnerSubscription = this.spinnerService.spinnerObservable.subscribe(flag => {
       this.showSpinner = flag;
+      this._changeDetector.markForCheck();
     });
   }
 
@@ -67,6 +76,6 @@ export class SpinnerComponent implements OnDestroy, OnChanges {
    *
    */
   ngOnDestroy() {
-    this.spinnerSubscription.unsubscribe();
+    this._spinnerSubscription.unsubscribe();
   }
 }

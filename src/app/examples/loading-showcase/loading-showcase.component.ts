@@ -17,7 +17,7 @@ export class LoadingShowcaseComponent {
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
-    }, 3000);
+    }, 5000);
   }
 }
 

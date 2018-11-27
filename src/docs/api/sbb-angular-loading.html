@@ -1,0 +1,173 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL loading </h2>
+  <p class="docs-api-module-import">
+    <code> import { LoadingModule } from 'sbb-angular'; </code>
+  </p>
+  <h3 id="services" class="docs-header-link docs-api-h3">
+    <span header-link="services"></span> Services </h3>
+  <h4 id="SbbSpinnerService" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SbbSpinnerService"></span>
+    <code>SbbSpinnerService</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>spinnerObservable: Subject&lt;boolean&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Spinner observable</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">hide </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>To hide spinner</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">show </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>To show spinner</p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="LoadingComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LoadingComponent"></span>
+    <code>LoadingComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-loading</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>mode: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>srAltText: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isBusy: &#39;true&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: &#39;progressbar&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h4 id="SpinnerComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SpinnerComponent"></span>
+    <code>SpinnerComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-spinner</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>bdColor: &#39;rgba(51,51,51,0.8)&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>To set backdrop color(&#39;rgba(51,51,51,0.8)&#39;) Only supports RGBA color format</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>mode: &#39;medium&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>To set spinner size</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>srAltText: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Accessibility label</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>showSpinner: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Flag to show/hide spinner</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>spinnerSubscription: Subscription</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Subscription variable for spinner</p>
+      </td>
+    </tr>
+  </table>
+</div>

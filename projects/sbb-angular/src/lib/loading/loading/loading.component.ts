@@ -1,15 +1,16 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'sbb-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+  styleUrls: ['./loading.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingComponent {
 
-  @HostBinding('attr.role') role = 'alert';
-  @HostBinding('attr.aria-live') ariaLive = 'assertive';
+  @HostBinding('attr.aria-busy') isBusy = 'true';
+  @HostBinding('attr.role') role = 'progressbar';
+  @Input() @HostBinding('attr.aria-valuetext') srAltText?: string;
   @Input() mode: string;
-  @Input() srOnlyLabel?: string;
 
 }
