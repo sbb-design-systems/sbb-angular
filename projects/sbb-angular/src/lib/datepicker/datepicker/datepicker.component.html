@@ -1,7 +1,7 @@
 <button *ngIf="leftScroll" (click)="scrollToDay('left')">
   <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
 </button>
-<input type="text" [sbbDatepicker]="picker" placeholder="Choose a date" [min]="min" [max]="max" [disabled]="disabled">
+<input type="text" [sbbDatepicker]="picker"  i18n-placeholder placeholder="DD.MM.YYYY" [min]="min" [max]="max" [disabled]="disabled">
 <sbb-datepicker-toggle [for]="picker"></sbb-datepicker-toggle>
 <sbb-datepicker-embeddable #picker></sbb-datepicker-embeddable>
 <button *ngIf="rightScroll" (click)="scrollToDay('right')">
