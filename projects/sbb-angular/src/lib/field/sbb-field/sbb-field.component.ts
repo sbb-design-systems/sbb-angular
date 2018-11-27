@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   HostBinding,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnChanges,
@@ -15,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class SbbFieldComponent implements OnInit, OnChanges {
+export class SbbFieldComponent implements OnChanges {
   /**
    * Class property to verify if a label exists
    */
@@ -36,10 +35,6 @@ export class SbbFieldComponent implements OnInit, OnChanges {
    * Sets css classes for field mode
    */
   @HostBinding('class') fieldModeClass: string;
-
-  ngOnInit() {
-    this.fieldModeClass = `${this.class} sbb-input-field-${this.mode}`;
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.mode.currentValue !== changes.mode.previousValue) {
