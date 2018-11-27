@@ -15,5 +15,3 @@ import { SbbSpinnerService } from './service/sbb-spinner.service';
 })
 export class LoadingModule {
 }
-
-
