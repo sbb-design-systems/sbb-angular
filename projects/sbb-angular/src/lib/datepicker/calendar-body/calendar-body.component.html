@@ -1,16 +1,3 @@
-<!--
-  If there's not enough space in the first row, create a separate label row. We mark this row as
-  aria-hidden because we don't want it to be read out as one of the weeks in the month.
--->
-<tr *ngIf="firstRowOffset < labelMinRequiredCells" aria-hidden="true">
-  <td class="sbb-calendar-body-label"
-      [attr.colspan]="numCols"
-      [style.paddingTop.%]="50 * cellAspectRatio / numCols"
-      [style.paddingBottom.%]="50 * cellAspectRatio / numCols">
-    {{label}}
-  </td>
-</tr>
-
 <!-- Create the first row separately so we can include a special spacer cell. -->
 <tr *ngFor="let row of rows; let rowIndex = index" role="row">
   <!--
@@ -25,7 +12,6 @@
       [attr.colspan]="firstRowOffset"
       [style.paddingTop.%]="50 * cellAspectRatio / numCols"
       [style.paddingBottom.%]="50 * cellAspectRatio / numCols">
-    {{firstRowOffset >= labelMinRequiredCells ? label : ''}}
   </td>
   <td *ngFor="let item of row; let colIndex = index"
       role="gridcell"
