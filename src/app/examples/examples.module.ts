@@ -34,10 +34,6 @@ import localeFr from '@angular/common/locales/fr-CH';
 import localeIt from '@angular/common/locales/it-CH';
 import localeDe from '@angular/common/locales/de-CH';
 
-[localeIt, localeFr, localeDe].forEach( locale => {
-  registerLocaleData(locale);
-});
-
 @NgModule({
   declarations: [
     TextareaShowcaseComponent,
@@ -83,8 +79,6 @@ import localeDe from '@angular/common/locales/de-CH';
     PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule
-  ],
-  providers: [{ provide: LOCALE_ID, useValue: 'de-CH' }]
-
+  ]
 })
 export class ExamplesModule { }
