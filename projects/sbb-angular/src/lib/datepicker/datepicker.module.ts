@@ -9,7 +9,7 @@ import {
   IconArrowSmallRightComponent,
   IconArrowSmallLeftComponent,
   IconCalendarComponent
-} from '../svg-icons-components';
+} from '../svg-icons-components/index';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
