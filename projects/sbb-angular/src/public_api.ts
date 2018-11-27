@@ -10,6 +10,5 @@ export * from './lib/button/index';
 export * from './lib/radio-button/index';
 export * from './lib/checkbox/index';
 export * from './lib/tabs/index';
-export * from './lib/time-input/index';
 export * from './lib/datepicker/index';
-export * from './lib/tabs/index';
+export * from './lib/time-input/index';

@@ -1,22 +1,22 @@
 <div class="sbb-calendar-header">
         <div class="sbb-calendar-controls">
                 <button [disabled]="!previousMonthEnabled()" (click)="previousMonthClicked()" i18n-aria-label
-                        [attr.aria-label]="prevButtonLabel">
+                        attr.aria-label=" {{ prevButtonLabel }}">
                         <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
                 </button>
-                <span i18n-aria-label [attr.aria-label]="monthText" cdkAriaLive="polite" i18n>{{ monthText }}</span>
-                <button [disabled]="!nextMonthEnabled()" (click)="nextMonthClicked()" i18n-aria-label [attr.aria-label]="nextButtonLabel">
+                <span i18n-aria-label attr.aria-label=" {{ monthText }}" cdkAriaLive="polite" i18n>{{ monthText }}</span>
+                <button [disabled]="!nextMonthEnabled()" (click)="nextMonthClicked()" i18n-aria-label attr.aria-label=" {{nextButtonLabel}}">
                         <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
                 </button>
 
                 <div class="sbb-calendar-spacer"></div>
 
                 <button [disabled]="!previousYearEnabled()" (click)="previousYearClicked()" i18n-aria-label
-                        [attr.aria-label]="prevButtonLabel">
+                        attr.aria-label=" {{ prevButtonLabel }}">
                         <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
                 </button>
-                <span i18n-aria-label [attr.aria-label]="yearText" cdkAriaLive="polite">{{ yearText }}</span>
-                <button [disabled]="!nextYearEnabled()" (click)="nextYearClicked()" i18n-aria-label [attr.aria-label]="nextButtonLabel">
+                <span i18n-aria-label attr.aria-label=" {{ yearText }}" cdkAriaLive="polite">{{ yearText }}</span>
+                <button [disabled]="!nextYearEnabled()" (click)="nextYearClicked()" i18n-aria-label attr.aria-label=" {{ nextButtonLabel }}">
                         <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
                 </button>
 

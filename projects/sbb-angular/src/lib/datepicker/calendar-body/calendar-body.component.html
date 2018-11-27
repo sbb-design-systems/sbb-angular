@@ -20,7 +20,7 @@
       [class.sbb-calendar-body-disabled]="!item.enabled"
       [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
       i18n-aria-label
-      [attr.aria-label]="item.ariaLabel"
+      attr.aria-label=" {{ item.ariaLabel }}"
       [attr.aria-disabled]="!item.enabled || null"
       [attr.aria-selected]="selectedValue === item.value"
       (click)="cellClicked(item)"
