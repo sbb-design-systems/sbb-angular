@@ -28,7 +28,6 @@ import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-b
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
-import { DatePipe } from '@angular/common';
 
 
 const DAYS_PER_WEEK = 7;
@@ -120,8 +119,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
   /** The names of the weekdays. */
   weekdays: { long: string, narrow: string }[];
 
-  private datePipe: DatePipe;
-
   constructor(private changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
     @Optional() public dateAdapter: DateAdapter<D>,
@@ -145,8 +142,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
     this.weekdays = weekdays.slice(firstDayOfWeek).concat(weekdays.slice(0, firstDayOfWeek));
 
     this._activeDate = this.dateAdapter.today();
-    this.datePipe = new DatePipe(locale);
-
   }
 
   ngAfterContentInit() {

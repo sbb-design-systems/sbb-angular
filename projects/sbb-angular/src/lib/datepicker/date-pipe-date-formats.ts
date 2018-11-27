@@ -1,7 +1,7 @@
 import { DateFormats } from './date-formats';
 
 
-export const FNS_DATE_FORMATS: DateFormats = {
+export const DATE_PIPE_DATE_FORMATS: DateFormats = {
     parse: {
         dateInput: 'dd.MM.yyyy'
     },

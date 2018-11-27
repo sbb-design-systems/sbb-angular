@@ -10,7 +10,6 @@ import {
   IconArrowSmallLeftComponent,
   IconCalendarComponent
 } from '../svg-icons-components';
-import { ButtonModule } from '../button';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
@@ -22,16 +21,15 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
 import { DatepickerIntlService } from './datepicker-intl.service';
 import { DateAdapter } from './date-adapter';
-import { FnsDateAdapter } from './fns-date-adapter';
+import { NativeDateAdapter } from './native-date-adapter';
 import { SBB_DATE_FORMATS } from './date-formats';
-import { FNS_DATE_FORMATS } from './fns-date-formats';
+import { DATE_PIPE_DATE_FORMATS } from './date-pipe-date-formats';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     IconCommonModule,
-    ButtonModule,
     PortalModule,
     A11yModule,
     OverlayModule
@@ -61,8 +59,8 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
   providers: [
     DatepickerIntlService,
     SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
-    { provide: DateAdapter, useClass: FnsDateAdapter },
-    { provide: SBB_DATE_FORMATS, useValue: FNS_DATE_FORMATS }
+    { provide: DateAdapter, useClass: NativeDateAdapter },
+    { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
   ],
   entryComponents: [
     DatepickerContentComponent,

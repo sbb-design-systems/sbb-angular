@@ -1,7 +1,20 @@
 import { DateAdapter } from './date-adapter';
-import * as dateFns from 'date-fns';
+import {
+  getDate,
+  getMonth,
+  getYear,
+  getDay,
+  getDaysInMonth,
+  parse,
+  startOfToday,
+  isValid,
+  isDate,
+  addDays,
+  addMonths,
+  addYears
+} from 'date-fns';
 import { DatePipe } from '@angular/common';
-import { LOCALE_ID, Inject } from '@angular/core';
+import { LOCALE_ID, Inject, Injectable } from '@angular/core';
 
 const dateRegex = new RegExp('^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)[0-9]{2}|[0-9]{2})\s*$', 'g');
 
@@ -16,14 +29,15 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 }
 
 export function toInteger(value: any): number {
-  return parseInt(`${value}`, 10);
+  return Number(value);
 }
 
 export function isNumber(value: any): value is number {
   return !isNaN(toInteger(value));
 }
 
-export class FnsDateAdapter extends DateAdapter<Date> {
+@Injectable()
+export class NativeDateAdapter extends DateAdapter<Date> {
   localeChanges;
   protected _localeChanges;
   private datePipe: DatePipe;
@@ -34,16 +48,16 @@ export class FnsDateAdapter extends DateAdapter<Date> {
   }
 
   getYear(date: Date): number {
-    return dateFns.getYear(date);
+    return getYear(date);
   }
   getMonth(date: Date): number {
-    return dateFns.getMonth(date);
+    return getMonth(date);
   }
   getDate(date: Date): number {
-    return dateFns.getDate(date);
+    return getDate(date);
   }
   getDayOfWeek(date: Date): number {
-    return dateFns.getDay(date);
+    return getDay(date);
   }
 
   getMonthName(date: Date) {
@@ -94,23 +108,23 @@ export class FnsDateAdapter extends DateAdapter<Date> {
   }
 
   getFirstDayOfWeek(): number {
-    return 0;
+    return 1;
   }
 
   getNumDaysInMonth(date: Date): number {
-    return dateFns.getDaysInMonth(date);
+    return getDaysInMonth(date);
   }
 
   clone(date: Date): Date {
-    return dateFns.parse(date);
+    return parse(date);
   }
 
   createDate(year: number, month: number, date: number): Date {
-    return dateFns.parse(new Date(year, month, date));
+    return new Date(year, month, date);
   }
 
   today(): Date {
-    return dateFns.startOfToday();
+    return startOfToday();
   }
 
   parse(value: any): Date {
@@ -124,7 +138,7 @@ export class FnsDateAdapter extends DateAdapter<Date> {
       if (matches) {
         const dateParts = value.trim().split('.');
         const date = new Date(toInteger(dateParts[2]), toInteger(dateParts[1]) - 1, toInteger(dateParts[0]));
-        return dateFns.parse(date);
+        return parse(date);
       }
     }
     return null;
@@ -135,40 +149,27 @@ export class FnsDateAdapter extends DateAdapter<Date> {
   }
 
   addCalendarYears(date: Date, years: number): Date {
-    return dateFns.addYears(date, years);
+    return addYears(date, years);
   }
 
   addCalendarMonths(date: Date, months: number): Date {
-    return dateFns.addMonths(date, months);
+    return addMonths(date, months);
   }
 
   addCalendarDays(date: Date, days: number): Date {
-    return dateFns.addDays(date, days);
-  }
-
-  /**
-    * Pads a number to make it two digits.
-    * @param n The number to pad.
-    * @returns The padded number.
-    */
-  private _2digit(n: number) {
-    return ('00' + n).slice(-2);
+    return addDays(date, days);
   }
 
   toIso8601(date: Date): string {
-    return [
-      date.getUTCFullYear(),
-      this._2digit(date.getUTCMonth() + 1),
-      this._2digit(date.getUTCDate())
-    ].join('-');
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
 
   isDateInstance(obj: any): boolean {
-    return dateFns.isDate(obj);
+    return isDate(obj);
   }
 
   isValid(date: Date): boolean {
-    return dateFns.isValid(date);
+    return isValid(date);
   }
 
   invalid(): Date {
