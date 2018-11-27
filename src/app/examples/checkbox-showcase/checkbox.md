@@ -3,10 +3,7 @@
 Import checkbox module in your application
 
 ```ts
-import {
-  IconCommonModule,
-  CheckboxModule
-} from 'sbb-angular';
+import { CheckboxModule } from 'sbb-angular';
 ```
 and then you can use the checkbox component as seen below
 
