@@ -160,10 +160,6 @@ fieldset {
   border: none;
 }
 
-sbb-checkbox {
-  @include checkboxLabel;
-}
-
 input.ssb-time-input {
   @include timeInputBase;
 }
