@@ -5,11 +5,8 @@ import {
   SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './datepicker-embeddable/datepicker-embeddable.component';
 import {
-  IconCommonModule,
-  IconArrowSmallRightComponent,
-  IconArrowSmallLeftComponent,
-  IconCalendarComponent
-} from '../svg-icons-components';
+  IconCommonModule
+} from '../svg-icons-components/index';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
@@ -64,10 +61,7 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
   ],
   entryComponents: [
     DatepickerContentComponent,
-    CalendarHeaderComponent,
-    IconArrowSmallRightComponent,
-    IconArrowSmallLeftComponent,
-    IconCalendarComponent
+    CalendarHeaderComponent
   ]
 })
 export class DatepickerModule { }

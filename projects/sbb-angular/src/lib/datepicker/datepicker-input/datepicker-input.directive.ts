@@ -20,7 +20,6 @@ import { DOWN_ARROW } from '@angular/cdk/keycodes';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subscription } from 'rxjs';
-import { SbbFieldComponent } from '../../field';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
@@ -229,8 +228,7 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   constructor(
     private elementRef: ElementRef<HTMLInputElement>,
     @Optional() public dateAdapter: DateAdapter<D>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
-    @Optional() private _formField: SbbFieldComponent) {
+    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats) {
     if (!this.dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
