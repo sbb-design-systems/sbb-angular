@@ -51,6 +51,7 @@ export const SBB_DATEPICKER_VALIDATORS: any = {
 })
 export class DatepickerComponent implements ControlValueAccessor, Validator, OnInit {
 
+
   /** The minimum valid date. */
   @Input()
   set min(value: Date) {
@@ -107,16 +108,14 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
     private changeDetectorRef: ChangeDetectorRef) {
   }
-  /*
-    ngAfterViewInit(): void {
 
-    } */
   ngOnInit(): void {
     this.datepickerInput.valueChange.subscribe(res => {
+      this.embeddedDatepicker.selected = res;
       this.leftScroll = this.isDayScrollApplicable() &&
-        this.dateAdapter.compareDate(this.datepickerInput.value, this.min) > 0;
+        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
       this.rightScroll = this.isDayScrollApplicable() &&
-        this.dateAdapter.compareDate(this.datepickerInput.value, this.max) < 0;
+        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
 
       this.changeDetectorRef.markForCheck();
     });
