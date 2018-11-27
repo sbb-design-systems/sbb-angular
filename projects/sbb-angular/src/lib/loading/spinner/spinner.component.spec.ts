@@ -10,11 +10,7 @@ import { LoadingComponent } from '../loading/loading.component';
                           srAltText="Loading please wait"></sbb-spinner>`
 })
 class SpinnerTestComponent  {
-  isVisible = true;
-  disableChange(evt) {}
-  removeChange(evt) {}
 }
-
 
 describe('SpinnerComponent', () => {
   let component: SpinnerTestComponent;
