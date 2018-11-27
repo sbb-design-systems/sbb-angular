@@ -39,8 +39,6 @@ export class FieldShowcaseComponent implements OnInit {
     'long'
   ];
 
-  showField = true;
-
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -96,11 +94,6 @@ export class FieldShowcaseComponent implements OnInit {
   reset3() {
     this.myForm3.reset();
     this.inputText3 = '';
-  }
-
-  reRender() {
-    this.showField = false;
-    setTimeout(() => this.showField = true);
   }
 
 }

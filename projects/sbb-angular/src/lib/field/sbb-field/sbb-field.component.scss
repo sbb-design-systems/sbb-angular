@@ -1,21 +1,29 @@
 @import "../../../styles/main.scss";
 
-sbb-field.sbb-input-field {
-  &-short {
-    input {
+sbb-field {
+  display: inline-block;
+
+  &.sbb-input-field {
+    &-short {
       @include inputMode(short);
     }
-  }
-
-  &-medium {
-    input {
+  
+    &-medium {
       @include inputMode(medium);
     }
-  }
-
-  &-long {
-    input {
+  
+    &-long {
       @include inputMode(long);
     }
+  
+    &-short, &-medium, &-long {
+      input {
+        &:not([type="checkbox"]),
+        &:not([type="radio"]) {
+          width: 100%;
+        }
+      }
+    }
   }
+  
 }

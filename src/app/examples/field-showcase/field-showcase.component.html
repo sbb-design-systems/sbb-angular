@@ -4,7 +4,7 @@
       <div *ngIf="inputType === header1">
         <h4 class="sbbsc-block">{{ header1 }}</h4>
         <form autocomplete="off" [formGroup]="myForm1">
-          <sbb-field [mode]="inputMode" *ngIf="showField">
+          <sbb-field [mode]="inputMode">
             <sbb-label for="name1">Name</sbb-label>
             <span *ngIf="disabled">{{ myForm1.get('name1').value ? myForm1.get('name1').value : placeholder }}</span>
             <input *ngIf="!disabled" type="text" formControlName="name1" autocomplete="off" [placeholder]="placeholder"
@@ -18,7 +18,7 @@
       <div *ngIf="inputType === header2">
         <h4 class="sbbsc-block">{{ header2 }}</h4>
         <form autocomplete="off" [formGroup]="myForm2">
-          <sbb-field [mode]="inputMode" *ngIf="showField">
+          <sbb-field [mode]="inputMode">
             <sbb-label for="name2">Name</sbb-label>
             <span *ngIf="disabled">{{ myForm2.get('name2').value ? myForm2.get('name2').value : placeholder }}</span>
             <input *ngIf="!disabled" type="text" formControlName="name2" autocomplete="off" [placeholder]="placeholder"
@@ -33,7 +33,7 @@
       <div *ngIf="inputType === header3">
         <h4 class="sbbsc-block">{{ header3 }}</h4>
         <form autocomplete="off" [formGroup]="myForm3">
-          <sbb-field label="Name" for="name3" [mode]="inputMode" *ngIf="showField">
+          <sbb-field label="Name" for="name3" [mode]="inputMode">
             <span *ngIf="disabled">{{ myForm3.get('name3').value ? myForm3.get('name3').value : placeholder }}</span>
             <input *ngIf="!disabled" type="text" formControlName="name3" autocomplete="off" required [placeholder]="placeholder"
               id="name3" spellcheck="false">
@@ -54,7 +54,7 @@
       </div>
       <div class="sbbsc-block">
         <sbb-label>Modes :</sbb-label>
-        <select [(ngModel)]="inputMode" (change)="reRender()">
+        <select [(ngModel)]="inputMode">
           <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
         </select>
       </div>

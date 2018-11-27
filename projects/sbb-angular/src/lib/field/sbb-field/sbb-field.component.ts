@@ -1,12 +1,21 @@
-import { Component, Input, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostBinding,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'sbb-field',
   templateUrl: './sbb-field.component.html',
   styleUrls: ['./sbb-field.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class SbbFieldComponent implements OnInit {
+export class SbbFieldComponent implements OnInit, OnChanges {
   /**
    * Class property to verify if a label exists
    */
@@ -30,5 +39,11 @@ export class SbbFieldComponent implements OnInit {
 
   ngOnInit() {
     this.fieldModeClass = `${this.class} sbb-input-field-${this.mode}`;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.mode.currentValue !== changes.mode.previousValue) {
+      this.fieldModeClass = `${this.class} sbb-input-field-${this.mode}`;
+    }
   }
 }
