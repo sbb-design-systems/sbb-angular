@@ -81,6 +81,6 @@ describe('RadioButtonRegistryService', () => {
     expect(service.accessors['test-name'].length).toBe(1);
     service.remove(component);
 
-    expect(service.accessors['test-name'].length).toBe(0);
+    expect(service.accessors['test-name']).toBeUndefined();
   });
 });

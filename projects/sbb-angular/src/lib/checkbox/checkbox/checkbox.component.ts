@@ -1,11 +1,4 @@
-import {
-  Component,
-  forwardRef,
-  ChangeDetectionStrategy,
-  Input,
-  HostBinding,
-  ChangeDetectorRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 let counter = 0;
@@ -31,35 +24,40 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   @Input() value: any;
   /**
+   * Used to set the 'aria-label' attribute on the underlying input element.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('aria-label') ariaLabel: string;
+  /**
+   * The 'aria-labelledby' attribute takes precedence as the element's text alternative.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('aria-labelledby') ariaLabelledby: string;
+  /**
+   * The 'aria-describedby' attribute is read after the element's label and field type.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('aria-describedby') ariaDescribedby: string;
+  /**
    * Establish if a checkbox value is required or not
    */
   @Input() required: boolean;
   /**
-   * Sets checkbox field status to false
-   */
-  @HostBinding('class.sbb-checkbox-checked') _checked = false;
-  /**
    * Sets checkbox field disabled
    */
-  @HostBinding('class.sbb-checkbox-disabled') @Input() disabled: boolean;
-
+  @Input() disabled: boolean;
   /**
-   * Sets checkbox field with the value in input
+   * The checked state of the checkbox
    */
   @Input()
-  set checked(value: any) {
-    this._checked = value;
-
-    this.changeDetector.markForCheck();
-  }
-  /**
-   * Returns the checked status of a checkbox field
-   */
   get checked(): any {
     return this._checked;
   }
-
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  set checked(value: any) {
+    this._checked = value;
+    this.changeDetector.markForCheck();
+  }
+  private _checked = false;
   /**
    * Property that describes the status change of a checkbox field
    */
@@ -68,6 +66,8 @@ export class CheckboxComponent implements ControlValueAccessor {
    * Property that describes an updating of checkbox
    */
   onTouched = () => { };
+
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
   /**
    * Sets the value in input in the checkbox field
@@ -79,20 +79,27 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * Method that records the change on a checkbox field
    */
-  registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
+  registerOnChange(fn: (_: any) => {}): void {
+    this.onChange = fn;
+  }
+
   /**
    * Method that records the touch on a checkbox field
    */
-  registerOnTouched(fn: () => {}): void { this.onTouched = fn; }
+  registerOnTouched(fn: () => {}): void {
+    this.onTouched = fn;
+  }
+
   /**
    * Method that set up a checkbox field to the click
    */
-  click($event: Event) {
-    const value = (<HTMLInputElement>$event.target).checked;
-    this.onChange(value);
+  click() {
+    this.checked = !this.checked;
+    this.onChange(this.checked);
     this.onTouched();
-    this.writeValue(value);
+    this.writeValue(this.checked);
   }
+
   /**
    * Method that sets disabled a checkbox
    */

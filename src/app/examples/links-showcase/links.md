@@ -3,10 +3,7 @@
 Import link module into your application
 
 ```ts
-import {
-   IconCommonModule,
-   LinksModule
-} from 'sbb-angular';
+import { LinksModule } from 'sbb-angular';
 ```
 
 and then you can use the link component in two modality as seen below
@@ -15,7 +12,7 @@ and then you can use the link component in two modality as seen below
 
 ```html
 <h4>Icon Links</h4>
-<a href="#" sbbLink >Bezeichnung</a>
+<a href="#" sbbLink>Bezeichnung</a>
 ```
 
 * Social Links
