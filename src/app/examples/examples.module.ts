@@ -15,7 +15,8 @@ import {
   AutocompleteModule,
   ButtonModule,
   TabsModule,
-  TimeInputModule
+  TimeInputModule,
+  DatepickerModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -27,7 +28,6 @@ import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocompl
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
-import { DatepickerModule } from 'projects/sbb-angular/src/public_api';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
