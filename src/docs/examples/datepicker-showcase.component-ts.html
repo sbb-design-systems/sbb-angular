@@ -1,0 +1,17 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-datepicker-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./datepicker-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./datepicker-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DatepickerShowcaseComponent {
+  today = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+
+  minDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-20'</span>);
+  maxDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-11-28'</span>);
+
+  laData = <span class="hljs-keyword">new</span> FormControl(<span class="hljs-keyword">this</span>.today);
+
+}

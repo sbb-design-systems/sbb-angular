@@ -226,7 +226,7 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
       return;
     }
     if (!this.datepickerInput) {
-      throw Error('Attempted to open an MatDatepicker with no associated input.');
+      throw Error('Attempted to open an SbbDatepicker with no associated input.');
     }
     if (this._document) {
       this.focusedElementBeforeOpen = this._document.activeElement;
