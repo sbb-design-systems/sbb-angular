@@ -23,8 +23,6 @@ export class DatepickerShowcaseComponent {
   }
   private _withArrows = false;
 
-
-
   onlyInput($event) {
     if ($event.target.checked) {
       this.withoutToggle = true;

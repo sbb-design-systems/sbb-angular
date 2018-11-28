@@ -6,7 +6,6 @@ import {
   Input,
   forwardRef,
   Optional,
-  Inject,
   ChangeDetectorRef,
   OnInit,
   Output,
@@ -23,7 +22,6 @@ import {
   NG_VALIDATORS
 } from '@angular/forms';
 import { DatepickerInputDirective, SbbDatepickerInputEvent } from '../datepicker-input/datepicker-input.directive';
-import { SBB_DATE_FORMATS, DateFormats } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 
 
@@ -110,7 +108,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     return this.isWithArrows;
   }
   set withArrows(withArrows: any) {
-    this.isWithArrows = Boolean(withArrows) !== false;
+    this.isWithArrows = (withArrows !== false && withArrows !== 'false');
     this.checkArrows('left');
     this.checkArrows('right');
   }
@@ -121,7 +119,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     return this.isWithoutToggle;
   }
   set withoutToggle(withoutToggle: any) {
-    this.isWithoutToggle = Boolean(withoutToggle) !== false;
+    this.isWithoutToggle = (withoutToggle !== false && withoutToggle !== 'false');
   }
   private isWithoutToggle = false;
 
@@ -148,7 +146,6 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
 
   constructor(
     @Optional() public dateAdapter: DateAdapter<Date>,
-    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
     private changeDetectorRef: ChangeDetectorRef) {
   }
 
