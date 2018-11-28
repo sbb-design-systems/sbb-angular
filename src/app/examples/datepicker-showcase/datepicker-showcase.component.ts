@@ -10,7 +10,7 @@ export class DatepickerShowcaseComponent {
   today = new Date();
 
   minDate = new Date('2018-06-20');
-  maxDate = new Date('2018-11-28');
+  maxDate = new Date('2018-12-28');
 
   laData = new FormControl(this.today);
 

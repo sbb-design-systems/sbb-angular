@@ -3,8 +3,9 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4>Simple Datepicker</h4>
       <sbb-field>
-        <sbb-datepicker [formControl]="laData" [withArrows]="withArrows" [withoutToggle]="withoutToggle" [min]="minDate" [max]="maxDate" (closed)="closedEvent()"
-          (opened)="openedEvent()" (dateChange)="dateChangeEvent($event)" (dateInput)="dateInputEvent($event)"></sbb-datepicker>
+        <sbb-datepicker [formControl]="laData" [withArrows]="withArrows" [withoutToggle]="withoutToggle" [min]="minDate"
+          [max]="maxDate" (closed)="closedEvent()" (opened)="openedEvent()" (dateChange)="dateChangeEvent($event)"
+          (dateInput)="dateInputEvent($event)"></sbb-datepicker>
       </sbb-field>
     </div>
     <div class="col-lg-6">
@@ -16,6 +17,21 @@
       <pre>model: {{ laData.value | json }}</pre>
       <pre>form control validity: {{ laData.valid }}</pre>
       <pre>form control errors: {{ laData.errors |json }}</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>2 Datepickers</h4>
+      <sbb-field>
+        <sbb-datepicker [toSbbDatepicker]="datepickerTheSecond" withArrows></sbb-datepicker>
+      </sbb-field>
+      <sbb-field>
+        <sbb-datepicker #datepickerTheSecond withArrows></sbb-datepicker>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
     </div>
   </div>
 </div>
