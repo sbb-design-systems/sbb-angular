@@ -14,4 +14,19 @@ export class DatepickerShowcaseComponent {
 
   laData = new FormControl(this.today);
 
+  closedEvent() {
+    console.log('CLOSED');
+  }
+
+  openedEvent() {
+    console.log('OPENED');
+  }
+
+  dateChangeEvent($event) {
+    console.log('DATE_CHANGED', $event);
+  }
+
+  dateInputEvent($event) {
+    console.log('DATE_INPUT', $event);
+  }
 }

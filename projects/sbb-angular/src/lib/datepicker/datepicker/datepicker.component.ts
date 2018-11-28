@@ -8,7 +8,9 @@ import {
   Optional,
   Inject,
   ChangeDetectorRef,
-  OnInit
+  OnInit,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import {
@@ -19,7 +21,7 @@ import {
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS
 } from '@angular/forms';
-import { DatepickerInputDirective } from '../datepicker-input/datepicker-input.directive';
+import { DatepickerInputDirective, SbbDatepickerInputEvent } from '../datepicker-input/datepicker-input.directive';
 import { SBB_DATE_FORMATS, DateFormats } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 
@@ -84,6 +86,21 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    */
   @ViewChild(DatepickerInputDirective) datepickerInput: DatepickerInputDirective<Date>;
 
+  /** Emits when the datepicker has been opened. */
+  @Output('opened') opened: EventEmitter<void> = new EventEmitter<void>();
+
+  /** Emits when the datepicker has been closed. */
+  @Output('closed') closed: EventEmitter<void> = new EventEmitter<void>();
+
+
+  /** Emits when a `change` event is fired on this `<input>`. */
+  @Output() readonly dateChange: EventEmitter<SbbDatepickerInputEvent<Date>> =
+    new EventEmitter<SbbDatepickerInputEvent<Date>>();
+
+  /** Emits when an `input` event is fired on this `<input>`. */
+  @Output() readonly dateInput: EventEmitter<SbbDatepickerInputEvent<Date>> =
+    new EventEmitter<SbbDatepickerInputEvent<Date>>();
+
   /**
    * Scrolls used to go directly to the next/prev day. They also support min and max date limits.
    */
@@ -118,6 +135,22 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
         this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
 
       this.changeDetectorRef.markForCheck();
+    });
+
+    this.embeddedDatepicker.closedStream.subscribe(() => {
+      this.closed.emit();
+    });
+
+    this.embeddedDatepicker.openedStream.subscribe(() => {
+      this.opened.emit();
+    });
+
+    this.datepickerInput.dateChange.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
+      this.dateChange.emit(datepickerInputEvent);
+    });
+
+    this.datepickerInput.dateInput.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
+      this.dateInput.emit(datepickerInputEvent);
     });
   }
 

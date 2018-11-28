@@ -4,8 +4,8 @@
     <tr><th class="sbb-calendar-table-header-divider" colspan="7" aria-hidden="true"></th></tr>
   </thead>
   <tbody sbb-calendar-body
-         i18n-month-label
-         [label]="monthLabel"
+         i18n-label
+         label="{{ monthLabel }}"
          [rows]="weeks"
          [todayValue]="todayDate"
          [selectedValue]="selectedDate"
