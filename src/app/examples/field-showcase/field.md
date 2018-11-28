@@ -3,7 +3,7 @@
 Import field module into your application
 
 ```ts
-import {FieldModule} from 'sbb-angular';
+import { FieldModule } from 'sbb-angular';
 ```
 
 and then you can use the input field component as seen below

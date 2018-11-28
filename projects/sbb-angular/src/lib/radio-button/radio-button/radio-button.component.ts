@@ -1,13 +1,4 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  forwardRef,
-  HostBinding,
-  OnInit,
-  OnDestroy,
-  ChangeDetectorRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
@@ -54,19 +45,14 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    * Specifies that the radio button field is required
    */
   @Input() required: boolean;
-
   /**
    * The disabled state of the radio button
    */
-  @HostBinding('class.sbb-radio-disabled') @Input() disabled: boolean;
-
-  private _checked = false;
-
+  @Input() disabled: boolean;
   /**
    * The checked state of the radio button
    */
   @Input()
-  @HostBinding('class.sbb-radio-checked')
   get checked(): boolean {
     return this._checked;
   }
@@ -79,11 +65,11 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
 
     this.changeDetector.markForCheck();
   }
-
+  private _checked = false;
   /**
    * Class property that represents a change on the radio button
    */
-  onChange = (obj: any) => { };
+  onChange = (_: any) => { };
   /**
    * Class property that represents a touch on the radio button
    */
