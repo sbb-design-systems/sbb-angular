@@ -29,8 +29,8 @@ pipeline {
             -Dsonar.branch=${BRANCH_NAME} \
             -Dsonar.sources=projects/sbb-angular/src \
             -Dsonar.tests=projects/sbb-angular/src \
+            -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/*.routes.ts \
             -Dsonar.test.inclusions=**/*.spec.ts \
-            -Dsonar.testExecutionReportPaths=coverage/ut_report.xml \
             -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
             -Dsonar.typescript.tslint.reportPaths=lintReport.json
           """
