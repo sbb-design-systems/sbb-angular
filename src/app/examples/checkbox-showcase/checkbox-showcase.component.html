@@ -2,36 +2,35 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Single Checkbox</h4>
-      <sbb-checkbox inputId="single-checkbox" value="single-checkbox" [disabled]="disabled" [required]="required"
-        [checked]="checked"></sbb-checkbox>
-      <label for="single-checkbox"> Test label</label>
+      <sbb-checkbox value="single-checkbox"
+                    [disabled]="disabled"
+                    [required]="required"
+                    [checked]="checked">Test label</sbb-checkbox>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
-        <sbb-checkbox inputId="checkedCheck" [(ngModel)]="checked" ></sbb-checkbox>
-        <label for="checkedCheck">Checked</label>
+        <sbb-checkbox [(ngModel)]="checked">Checked</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <sbb-checkbox inputId="requiredCheck" [(ngModel)]="required"></sbb-checkbox>
-        <label for="requiredCheck">Required</label>
+        <sbb-checkbox [(ngModel)]="required">Required</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <sbb-checkbox inputId="disabled" [(ngModel)]="disabled"></sbb-checkbox>
-        <label for="disabled">Disabled</label>
+        <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
       </div>
     </div>
   </div>
 
-  <div role="presentation" class="sbbsc-separator"></div>
+  <div role="presentation"
+       class="sbbsc-separator"></div>
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Checkboxes Group</h4>
       <ng-container *ngFor="let option of checkboxOptions; index as i">
         <div class="sbbsc-block">
-          <sbb-checkbox [(ngModel)]="option.selected" inputId="model-checkbox-{{i}}" [value]="option.value"></sbb-checkbox>
-          <label for="model-checkbox-{{i}}"> {{option.name}}</label>
+          <sbb-checkbox [(ngModel)]="option.selected"
+                        [value]="option.value">{{option.name}}</sbb-checkbox>
         </div>
       </ng-container>
     </div>
