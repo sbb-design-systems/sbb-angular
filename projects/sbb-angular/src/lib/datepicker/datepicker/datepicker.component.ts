@@ -113,6 +113,15 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
   private isScrollable = false;
 
+  @Input()
+  get inputOnly() {
+    return this.isInputOnly;
+  }
+  set inputOnly(inputOnly: any) {
+    this.isInputOnly = inputOnly !== 'false';
+  }
+  private isInputOnly = false;
+
   leftScroll: boolean;
   rightScroll: boolean;
 

@@ -2,7 +2,7 @@
   <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
 </button>
 <input type="text" [sbbDatepicker]="picker"  i18n-placeholder placeholder="TT.MM.JJJJ" [min]="min" [max]="max" [disabled]="disabled">
-<sbb-datepicker-toggle [for]="picker"></sbb-datepicker-toggle>
+<sbb-datepicker-toggle *ngIf="!inputOnly" [for]="picker"></sbb-datepicker-toggle>
 <sbb-datepicker-embeddable #picker></sbb-datepicker-embeddable>
 <button *ngIf="rightScroll" (click)="scrollToDay('right')">
   <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
