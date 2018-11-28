@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Simple Datepicker</h4>
+      <h4 class="sbbsc-block">Simple Datepicker</h4>
       <sbb-field>
         <sbb-datepicker [formControl]="laData" [withArrows]="withArrows" [withoutToggle]="withoutToggle" [min]="minDate" [max]="maxDate" (closed)="closedEvent()"
           (opened)="openedEvent()" (dateChange)="dateChangeEvent($event)" (dateInput)="dateInputEvent($event)"></sbb-datepicker>
       </sbb-field>
     </div>
     <div class="col-lg-6">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <sbb-checkbox [(ngModel)]="withArrows" [value]="withArrows">Arrows</sbb-checkbox>
       <sbb-checkbox [(ngModel)]="withoutToggle" [value]="withoutToggle">Without Toggle</sbb-checkbox>
 

@@ -1,3 +1,19 @@
 @mixin baseDatePicker() {
   display: inline-block;
 }
+
+@mixin datePickerControls() {
+  &-toggle button {
+    @extend %pickerIconsSize;
+  }
+  
+  &-arrow {
+    @extend %pickerIconsSize;
+
+    &-left {
+    }
+
+    &-right {
+    }
+  }
+}

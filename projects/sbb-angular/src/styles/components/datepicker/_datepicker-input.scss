@@ -1,0 +1,35 @@
+
+@mixin datePickerInput($mode: default) {
+
+  @if ($mode == default) {
+
+    @include datePickerInputDefaults();
+
+  } @else if ($mode == withArrows) {
+
+    @include datePickerInputWithArrows();
+
+  } @else if ($mode == withoutToggle) {
+
+    @include datePickerInputWithoutToggle();
+    
+  }
+  
+}
+
+@mixin datePickerInputDefaults() {
+  &-input-wrapper {
+    position: relative;
+  }
+
+  &-input {
+  }
+}
+
+@mixin datePickerInputWithArrows() {
+  
+}
+
+@mixin datePickerInputWithoutToggle() {
+  
+}

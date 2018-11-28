@@ -1,42 +1,17 @@
-@import '../../../styles/main.scss';
+@import '../../../styles/main';
 
-sbb-datepicker.ssb-datepicker {
-  
+.sbb-datepicker {
+  @include baseDatePicker();
+  @include defaultDatePickerTheme();
+  @include datePickerControls();
 
-  &-toggle {
-  }
-
-  &-input-wrapper {
-  }
-
-  &-input {
-  }
+  @include datePickerInput();
 
   &-with-arrows {
-    .sbb-datepicker {
-      &-input-wrapper {
-      }
-
-      &-input {
-      }
-
-      &-arrow {
-        &-left {
-        }
-
-        &-right {
-        }
-      }
-    }
+    @include datePickerInput(withArrows);
   }
 
   &-without-toggle {
-    .sbb-datepicker {
-      &-input-wrapper {
-      }
-      
-      &-input {
-      }
-    }
+    @include datePickerInput(withoutToggle);
   }
 }
