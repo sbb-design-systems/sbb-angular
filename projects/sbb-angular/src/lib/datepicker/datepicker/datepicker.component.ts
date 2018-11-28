@@ -81,6 +81,18 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
 
   /**
+   * Second datepicker to be used in 2 datepickers use case
+   */
+  @Input()
+  set toSbbDatepicker(value: DatepickerComponent) {
+    if (!value) {
+      return;
+    }
+    this.toDatepicker = value;
+  }
+  toDatepicker: DatepickerComponent;
+
+  /**
    * Embedded input field connected to the datepicker
    */
   @ViewChild(DatepickerInputDirective) datepickerInput: DatepickerInputDirective<Date>;
@@ -150,22 +162,39 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
 
   private checkArrows(direction: 'left' | 'right') {
-    if (direction === 'left') {
-      this.leftArrow = this.isDayScrollApplicable() &&
-        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
+    if (this.isDayScrollApplicable()) {
+      if (direction === 'left' && this.min) {
+        this.leftArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
+      } else {
+        this.leftArrow = true;
+      }
+      if (direction === 'right' && this.max) {
+        this.rightArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
+      } else {
+        this.rightArrow = true;
+      }
     }
-    if (direction === 'right') {
-      this.rightArrow = this.isDayScrollApplicable() &&
-        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
+  }
+
+  private handleToDatepicker(datepickerInputValue) {
+    if (this.toDatepicker) {
+      if (!datepickerInputValue) {
+        this.toDatepicker.datepickerInput.value = null;
+      } else if (!this.toDatepicker.datepickerInput.value) {
+        this.toDatepicker.embeddedDatepicker.open();
+      }
     }
   }
 
   ngOnInit(): void {
-    this.datepickerInput.valueChange.subscribe(res => {
-      this.embeddedDatepicker.selected = res;
+    this.datepickerInput.valueChange.subscribe(newDateValue => {
+      this.embeddedDatepicker.selected = newDateValue;
       this.checkArrows('left');
       this.checkArrows('right');
+      this.handleToDatepicker(newDateValue);
+
       this.changeDetectorRef.markForCheck();
+
     });
 
     this.embeddedDatepicker.closedStream.subscribe(() => {
