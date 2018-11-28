@@ -105,28 +105,28 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    * Scrolls used to go directly to the next/prev day. They also support min and max date limits.
    */
   @Input()
-  get scrollable() {
-    return this.isScrollable;
+  get withArrows() {
+    return this.isWithArrows;
   }
-  set scrollable(scrollable: any) {
-    this.isScrollable = scrollable !== 'false';
+  set withArrows(withArrows: any) {
+    this.isWithArrows = Boolean(withArrows) !== false;
   }
-  private isScrollable = false;
+  private isWithArrows = false;
 
   @Input()
-  get inputOnly() {
-    return this.isInputOnly;
+  get withoutToggle() {
+    return this.isWithoutToggle;
   }
-  set inputOnly(inputOnly: any) {
-    this.isInputOnly = inputOnly !== 'false';
+  set withoutToggle(withoutToggle: any) {
+    this.isWithoutToggle = Boolean(withoutToggle) !== false;
   }
-  private isInputOnly = false;
+  private isWithoutToggle = false;
 
   leftScroll: boolean;
   rightScroll: boolean;
 
   private isDayScrollApplicable(): boolean {
-    return this.scrollable && !!this.datepickerInput.value;
+    return this.withArrows && !!this.datepickerInput.value;
   }
 
   constructor(

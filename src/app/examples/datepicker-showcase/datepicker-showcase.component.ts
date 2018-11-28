@@ -14,6 +14,21 @@ export class DatepickerShowcaseComponent {
 
   laData = new FormControl(this.today);
 
+  withoutToggle = false;
+  withArrows = true;
+
+
+  onlyInput($event) {
+    if ($event.target.checked) {
+      this.withoutToggle = true;
+      this.withArrows = false;
+    } else {
+      this.withoutToggle = false;
+      this.withArrows = true;
+    }
+
+  }
+
   closedEvent() {
     console.log('CLOSED');
   }
