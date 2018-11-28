@@ -10,7 +10,8 @@ import {
   ChangeDetectorRef,
   OnInit,
   Output,
-  EventEmitter
+  EventEmitter,
+  HostBinding
 } from '@angular/core';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import {
@@ -118,6 +119,15 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
 
   private isDayScrollApplicable(): boolean {
     return this.scrollable && !!this.datepickerInput.value;
+  }
+
+  @HostBinding('class')
+  get cssClass() {
+    const cssClasses = ['sbb-datepicker'];
+    if(this.scrollable) {
+      cssClasses.push('sbb-datepicker-witharrows');
+    }
+    return cssClasses.join(' ');
   }
 
   constructor(
