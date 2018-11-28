@@ -15,8 +15,13 @@ export class DatepickerShowcaseComponent {
   laData = new FormControl(this.today);
 
   withoutToggle = false;
-  withArrows = true;
-
+  get withArrows() {
+    return this._withArrows;
+  }
+  set withArrows(useArrows: boolean) {
+    this._withArrows = useArrows;
+  }
+  private _withArrows = false;
 
   onlyInput($event) {
     if ($event.target.checked) {

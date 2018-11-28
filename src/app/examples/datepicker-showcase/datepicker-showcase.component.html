@@ -13,7 +13,9 @@
       <sbb-checkbox [(ngModel)]="withoutToggle" [value]="withoutToggle">Without Toggle</sbb-checkbox>
 
       <sbb-checkbox (click)="onlyInput($event)" value="false">Input only</sbb-checkbox>
-      <pre>formControl: {{ laData | json }}</pre>
+      <pre>model: {{ laData.value | json }}</pre>
+      <pre>form control validity: {{ laData.valid }}</pre>
+      <pre>form control errors: {{ laData.errors |json }}</pre>
     </div>
   </div>
 </div>
