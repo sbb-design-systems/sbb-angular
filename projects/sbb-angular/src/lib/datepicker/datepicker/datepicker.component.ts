@@ -111,6 +111,8 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
   set withArrows(withArrows: any) {
     this.isWithArrows = Boolean(withArrows) !== false;
+    this.checkArrows('left');
+    this.checkArrows('right');
   }
   private isWithArrows = false;
 
@@ -123,8 +125,8 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
   private isWithoutToggle = false;
 
-  leftScroll: boolean;
-  rightScroll: boolean;
+  leftArrow: boolean;
+  rightArrow: boolean;
 
   private isDayScrollApplicable(): boolean {
     return this.withArrows && !!this.datepickerInput.value;
@@ -150,14 +152,22 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     private changeDetectorRef: ChangeDetectorRef) {
   }
 
+  private checkArrows(direction: 'left' | 'right') {
+    if (direction === 'left') {
+      this.leftArrow = this.isDayScrollApplicable() &&
+        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
+    }
+    if (direction === 'right') {
+      this.rightArrow = this.isDayScrollApplicable() &&
+        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
+    }
+  }
+
   ngOnInit(): void {
     this.datepickerInput.valueChange.subscribe(res => {
       this.embeddedDatepicker.selected = res;
-      this.leftScroll = this.isDayScrollApplicable() &&
-        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
-      this.rightScroll = this.isDayScrollApplicable() &&
-        this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
-
+      this.checkArrows('left');
+      this.checkArrows('right');
       this.changeDetectorRef.markForCheck();
     });
 
