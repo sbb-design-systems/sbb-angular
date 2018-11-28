@@ -133,9 +133,14 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   @HostBinding('class')
   get cssClass() {
     const cssClasses = ['sbb-datepicker'];
-    if(this.scrollable) {
+
+    if (this.scrollable) {
       cssClasses.push('sbb-datepicker-witharrows');
     }
+    if (this.isInputOnly) {
+      cssClasses.push('sbb-datepicker-inputonly');
+    }
+
     return cssClasses.join(' ');
   }
 
