@@ -8,8 +8,11 @@ import {
   ViewEncapsulation,
   NgZone,
   HostBinding,
+  Inject,
+  Optional,
 } from '@angular/core';
 import { take } from 'rxjs/operators';
+import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 
 /**
  * An internal class that represents the data corresponding to a single calendar cell.
@@ -17,9 +20,8 @@ import { take } from 'rxjs/operators';
  */
 export class CalendarCell {
   constructor(public value: number,
-              public displayValue: string,
-              public ariaLabel: string,
-              public enabled: boolean) {}
+    public displayValue: string,
+    public enabled: boolean) { }
 }
 
 
@@ -76,7 +78,15 @@ export class CalendarBodyComponent {
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private _elementRef: ElementRef<HTMLElement>, private _ngZone: NgZone) { }
+  a11yFormat: string;
+
+  constructor(
+    private _elementRef: ElementRef<HTMLElement>,
+    private _ngZone: NgZone,
+    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats
+  ) {
+    this.a11yFormat = this.dateFormats.display.dateA11yLabel;
+  }
 
   cellClicked(cell: CalendarCell): void {
     if (!this.allowDisabledSelection && !cell.enabled) {

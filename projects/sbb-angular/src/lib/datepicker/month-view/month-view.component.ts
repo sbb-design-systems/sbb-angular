@@ -260,9 +260,8 @@ export class MonthViewComponent<D> implements AfterContentInit {
         this.dateAdapter.getYear(this.activeDate),
         this.dateAdapter.getMonth(this.activeDate), i + 1);
       const enabled = this.shouldEnableDate(date);
-      const ariaLabel = this.dateAdapter.format(date, this.dateFormats.display.dateA11yLabel);
       this.weeks[this.weeks.length - 1]
-        .push(new CalendarCell(i + 1, dateNames[i], ariaLabel, enabled));
+        .push(new CalendarCell(i + 1, dateNames[i], enabled));
     }
   }
 
