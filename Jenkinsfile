@@ -5,6 +5,10 @@ String cron_string = BRANCH_NAME == 'develop' ? '@midnight' : ''
 pipeline {
   agent { label 'nodejs' }
   triggers { cron(cron_string) }
+  environment {
+    scannerHome = tool 'SonarRunner';
+    libraryVersion = """${sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"').trim()}"""
+  }
 
   stages {
     stage('Installation') {
@@ -18,6 +22,19 @@ pipeline {
         sh 'npm test'
         sh 'npm run lint'
         sh 'npm run build'
+        withSonarQubeEnv('Sonar NextGen') {
+          sh """${scannerHome}/bin/sonar-scanner -X \
+            -Dsonar.projectKey=sbb-angular \
+            -Dsonar.projectVersion=${libraryVersion} \
+            -Dsonar.branch=${BRANCH_NAME} \
+            -Dsonar.sources=projects/sbb-angular/src \
+            -Dsonar.tests=projects/sbb-angular/src \
+            -Dsonar.test.inclusions=**/*.spec.ts \
+            -Dsonar.testExecutionReportPaths=coverage/ut_report.xml \
+            -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
+            -Dsonar.typescript.tslint.reportPaths=lintReport.json
+          """
+        }
       }
     }
 
