@@ -1,28 +1,42 @@
+@import '../../../styles/main.scss';
+
 sbb-datepicker.ssb-datepicker {
-  display: inline-block;
+  
 
   &-toggle {
+  }
+
+  &-input-wrapper {
   }
 
   &-input {
   }
 
   &-with-arrows {
-    .sbb-datepicker-input {
-    }
-
-    .sbb-datepicker-arrow {
-      &-left {
+    .sbb-datepicker {
+      &-input-wrapper {
       }
 
-      &-right {
+      &-input {
+      }
+
+      &-arrow {
+        &-left {
+        }
+
+        &-right {
+        }
       }
     }
   }
 
   &-without-toggle {
-    .sbb-datepicker-input {
-
+    .sbb-datepicker {
+      &-input-wrapper {
+      }
+      
+      &-input {
+      }
     }
   }
 }

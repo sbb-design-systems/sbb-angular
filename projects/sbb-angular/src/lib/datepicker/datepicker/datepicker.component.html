@@ -1,12 +1,12 @@
-<button class="sbb-datepicker-arrow sbb-datepicker-arrow-left" *ngIf="leftScroll" (click)="scrollToDay('left')">
-  <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
-</button>
-<input type="text" class="sbb-datepicker-input"
-       [sbbDatepicker]="picker" i18n-placeholder 
-       placeholder="TT.MM.JJJJ" [min]="min" 
-       [max]="max" [disabled]="disabled">
-<sbb-datepicker-toggle *ngIf="!withoutToggle" [for]="picker"></sbb-datepicker-toggle>
+<div class="sbb-datepicker-input-wrapper">
+  <button class="sbb-datepicker-arrow sbb-datepicker-arrow-left" *ngIf="leftScroll" (click)="scrollToDay('left')">
+    <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+  </button>
+  <sbb-datepicker-toggle *ngIf="!withoutToggle" [for]="picker"></sbb-datepicker-toggle>
+  <input type="text" class="sbb-datepicker-input" [sbbDatepicker]="picker" i18n-placeholder placeholder="TT.MM.JJJJ"
+    [min]="min" [max]="max" [disabled]="disabled">
+  <button class="sbb-datepicker-arrow sbb-datepicker-arrow-right" *ngIf="rightScroll" (click)="scrollToDay('right')">
+    <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+  </button>
+</div>
 <sbb-datepicker-embeddable #picker></sbb-datepicker-embeddable>
-<button class="sbb-datepicker-arrow sbb-datepicker-arrow-right" *ngIf="rightScroll" (click)="scrollToDay('right')">
-  <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
-</button>

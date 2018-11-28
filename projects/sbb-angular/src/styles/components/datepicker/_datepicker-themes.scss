@@ -1,0 +1,5 @@
+@mixin defaultPickerTheme() {
+  button {
+    @include buttonResetFrameless();
+  }
+}
