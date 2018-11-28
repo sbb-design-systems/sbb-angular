@@ -1,9 +1,28 @@
 sbb-datepicker.ssb-datepicker {
-  &-inputonly {
-    
+  display: inline-block;
+
+  &-toggle {
   }
-  &-witharrows {
-    &-toggle {
+
+  &-input {
+  }
+
+  &-with-arrows {
+    .sbb-datepicker-input {
+    }
+
+    .sbb-datepicker-arrow {
+      &-left {
+      }
+
+      &-right {
+      }
+    }
+  }
+
+  &-without-toggle {
+    .sbb-datepicker-input {
+
     }
   }
 }
