@@ -58,24 +58,12 @@ pipeline {
       }
       steps {
         script {
-          try {
-            cloud_callDeploy(
-              cluster: 'aws',
-              project: 'sbb-angular-showcase',
-              dc: 'sbb-angular',
-              credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
-          } catch (e) {
-            sleep(90)
-            try {
-              cloud_callDeploy(
-                cluster: 'aws',
-                project: 'sbb-angular-showcase',
-                dc: 'sbb-angular',
-                credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
-            } catch (ex) {
-              echo 'Failed to deploy'
-            }
-          }
+          cloud_callDeploy(
+            cluster: 'aws',
+            project: 'sbb-angular-showcase',
+            dc: 'sbb-angular',
+            credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181',
+            doNotFailOnRunningDeployment: true)
         }
       }
     }
@@ -88,7 +76,7 @@ pipeline {
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
     }
 
     fixed {
@@ -97,7 +85,7 @@ pipeline {
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
     }
   }
 }
