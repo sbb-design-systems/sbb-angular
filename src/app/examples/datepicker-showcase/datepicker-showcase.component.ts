@@ -14,8 +14,10 @@ export class DatepickerShowcaseComponent {
 
   laData = new FormControl(this.today);
 
+  dateWithFilter = new FormControl();
+
   withoutToggle = false;
-  get withArrows() {
+  get withArrows(): boolean {
     return this._withArrows;
   }
   set withArrows(useArrows: boolean) {
@@ -31,7 +33,6 @@ export class DatepickerShowcaseComponent {
       this.withoutToggle = false;
       this.withArrows = true;
     }
-
   }
 
   closedEvent() {
@@ -48,5 +49,9 @@ export class DatepickerShowcaseComponent {
 
   dateInputEvent($event) {
     console.log('DATE_INPUT', $event);
+  }
+
+  filterDates(date: Date) : boolean {
+    return date.getDate() === 1;
   }
 }

@@ -96,12 +96,6 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   }
   datepicker: DatepickerEmbeddableComponent<D>;
 
-  /** Function that can be used to filter out dates within the datepicker. */
-  @Input()
-  set sbbDatepickerFilter(value: (date: D | null) => boolean) {
-    this.dateFilter = value;
-    this.validatorOnChange();
-  }
   dateFilter: (date: D | null) => boolean;
 
   /** The value of the input. */
@@ -187,7 +181,7 @@ export class DatepickerInputDirective<D> implements OnDestroy {
 
   private cvaOnChange: (value: any) => void = () => { };
 
-  private validatorOnChange = () => { };
+  public validatorOnChange = () => { };
 
   /** The form control validator for whether the input parses. */
   private parseValidator: ValidatorFn = (): ValidationErrors | null => {

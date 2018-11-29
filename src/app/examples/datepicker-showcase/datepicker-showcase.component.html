@@ -34,4 +34,19 @@
       <h4>Properties</h4>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4>Date filter</h4>
+      <sbb-field>
+        <sbb-datepicker [formControl]="dateWithFilter" [sbbDatepickerFilter]="filterDates" withArrows></sbb-datepicker>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>model: {{ dateWithFilter.value | json }}</pre>
+      <pre>form control validity: {{ dateWithFilter.valid }}</pre>
+      <pre>form control errors: {{ dateWithFilter.errors |json }}</pre>
+    </div>
+  </div>
 </div>

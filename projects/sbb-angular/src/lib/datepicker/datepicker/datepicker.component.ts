@@ -138,6 +138,13 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   leftArrow: boolean;
   rightArrow: boolean;
 
+  /** Function that can be used to filter out dates within the datepicker. */
+  @Input()
+  set sbbDatepickerFilter(fn: (date: Date | null) => boolean) {
+    this.datepickerInput.dateFilter = fn;
+    this.datepickerInput.validatorOnChange();
+  }
+
   private isDayScrollApplicable(): boolean {
     return this.withArrows && !!this.datepickerInput.value;
   }
