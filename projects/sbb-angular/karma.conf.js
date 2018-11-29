@@ -12,7 +12,6 @@ module.exports = function (config) {
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('karma-sonarqube-unit-reporter'),
       require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
@@ -27,11 +26,7 @@ module.exports = function (config) {
     preprocessors: {
       'dist/packages/**/*.js': ['sourcemap']
     },
-    sonarQubeUnitReporter: {
-      outputDir: require('path').join(__dirname, '../../coverage'),
-      useBrowserName: false
-    },
-    reporters: ['progress', 'kjhtml', 'sonarqubeUnit'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

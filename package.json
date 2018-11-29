@@ -87,7 +87,6 @@
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-sonarqube-unit-reporter": "^0.0.18",
     "karma-sourcemap-loader": "^0.3.7",
     "lodash": "^4.17.11",
     "ng-packagr": "^4.2.0",
