@@ -16,11 +16,16 @@
   display: block;
   white-space: nowrap;
   font-family: $fontSbbLight;
-  font-size: pxToRem(26);
+  font-size: pxToRem(20);
   text-decoration: none;
-  padding-bottom: pxToRem(20);
+  padding-bottom: pxToRem(8);
   margin-bottom: 1em;
   position: relative;
+
+  @include mq($from: tabletLandscape) {
+    font-size: pxToRem(26);
+    padding-bottom: pxToRem(20);
+  }
 
   @include mq($from: desktop4k) {
     font-size: pxToRem(39);
