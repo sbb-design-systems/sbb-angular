@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SbbSpinnerService } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-loading-showcase',
@@ -7,17 +6,18 @@ import { SbbSpinnerService } from 'sbb-angular';
   styleUrls: ['./loading-showcase.component.scss']
 })
 export class LoadingShowcaseComponent {
+  showSpinner: boolean;
+  spinnerMode = '';
 
-  constructor(private spinner: SbbSpinnerService) {}
+  constructor() {
+  }
 
-  activateSpinner() {
-    /** spinner starts */
-    this.spinner.show();
+  activateSpinner(mode) {
 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
+    this.spinnerMode = mode;
+    this.showSpinner = true;
+
+    setTimeout(() => this.showSpinner = false, 3500);
   }
 }
 

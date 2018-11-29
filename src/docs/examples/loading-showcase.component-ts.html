@@ -1,5 +1,4 @@
 <span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
-<span class="hljs-keyword">import</span> { SbbSpinnerService } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'sbb-loading-showcase'</span>,
@@ -7,17 +6,18 @@
   styleUrls: [<span class="hljs-string">'./loading-showcase.component.scss'</span>]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LoadingShowcaseComponent {
+  showSpinner: <span class="hljs-built_in">boolean</span>;
+  spinnerMode = <span class="hljs-string">''</span>;
 
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> spinner: SbbSpinnerService</span>) {}
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+  }
 
-  activateSpinner() {
-    <span class="hljs-comment">/** spinner starts */</span>
-    <span class="hljs-keyword">this</span>.spinner.show();
+  activateSpinner(mode) {
 
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-      <span class="hljs-comment">/** spinner ends after 5 seconds */</span>
-      <span class="hljs-keyword">this</span>.spinner.hide();
-    }, <span class="hljs-number">5000</span>);
+    <span class="hljs-keyword">this</span>.spinnerMode = mode;
+    <span class="hljs-keyword">this</span>.showSpinner = <span class="hljs-literal">true</span>;
+
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.showSpinner = <span class="hljs-literal">false</span>, <span class="hljs-number">3500</span>);
   }
 }
 

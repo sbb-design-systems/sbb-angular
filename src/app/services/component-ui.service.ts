@@ -77,7 +77,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Loading Indicator',
-        'loadingIndicator',
+        'loading',
         'Loading Indicator',
         'Subtitel goes here ...',
         true,

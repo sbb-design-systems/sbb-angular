@@ -1,9 +1,0 @@
-@import '../../../styles/main.scss';
-
-.sbb-spinner-backdrop {
-  @include spinnerBackDrop();
-
-  > sbb-loading {
-    @include spinnerLoaderPositioning();
-  }
-}
