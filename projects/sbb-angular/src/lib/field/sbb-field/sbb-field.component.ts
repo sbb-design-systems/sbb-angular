@@ -1,11 +1,20 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostBinding,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'sbb-field',
   templateUrl: './sbb-field.component.html',
-  styleUrls: ['./sbb-field.component.scss']
+  styleUrls: ['./sbb-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
-export class SbbFieldComponent {
+export class SbbFieldComponent implements OnChanges {
   /**
    * Class property to verify if a label exists
    */
@@ -14,4 +23,22 @@ export class SbbFieldComponent {
    * Label of a input text
    */
   @Input() for?: string;
+  /**
+  * mode set the length of the input field
+  */
+  @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
+  /**
+   * Take css classes as input from the consumer
+   */
+  @Input() class = '';
+  /**
+   * Sets css classes for field mode
+   */
+  @HostBinding('class') fieldModeClass: string;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.mode.currentValue !== changes.mode.previousValue) {
+      this.fieldModeClass = `${this.class} sbb-input-field-${this.mode}`;
+    }
+  }
 }
