@@ -120,7 +120,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     return this.isWithArrows;
   }
   set withArrows(withArrows: any) {
-    this.isWithArrows = (withArrows !== false && withArrows !== 'false');
+    this.isWithArrows = withArrows === '' ? true : Boolean(withArrows);
     this.checkArrows('left');
     this.checkArrows('right');
   }
@@ -131,7 +131,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     return this.isWithoutToggle;
   }
   set withoutToggle(withoutToggle: any) {
-    this.isWithoutToggle = (withoutToggle !== false && withoutToggle !== 'false');
+    this.isWithoutToggle = withoutToggle === '' ? true : Boolean(withoutToggle);
   }
   private isWithoutToggle = false;
 
@@ -162,6 +162,8 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
 
   private checkArrows(direction: 'left' | 'right') {
+    this.rightArrow = false;
+    this.leftArrow = false;
     if (this.isDayScrollApplicable()) {
       if (direction === 'left' && this.min) {
         this.leftArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
