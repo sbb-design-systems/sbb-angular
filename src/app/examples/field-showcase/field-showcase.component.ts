@@ -12,8 +12,6 @@ export class FieldShowcaseComponent implements OnInit {
   inputText2 = '';
   inputText3 = '';
 
-  disabled: boolean;
-
   myForm1: FormGroup;
   myForm2: FormGroup;
   myForm3: FormGroup;
@@ -29,6 +27,14 @@ export class FieldShowcaseComponent implements OnInit {
     this.header1,
     this.header2,
     this.header3
+  ];
+
+  inputMode = 'default';
+  modes = [
+    'default',
+    'short',
+    'medium',
+    'long'
   ];
 
   constructor(private formBuilder: FormBuilder) {
@@ -52,17 +58,17 @@ export class FieldShowcaseComponent implements OnInit {
 
   }
   /**
-   * Method that verify if a child element (in this case: input field) of a form group is disable
+   * Method that verify if a child element (in this case: input field) of a form group is disabled
    */
-  disableForms() {
+  disableForms(evt) {
     const control1 = this.myForm1.get('name1');
-    control1.disabled ? control1.enable() : control1.disable();
+    evt.target.checked ? control1.disable() : control1.enable();
 
     const control2 = this.myForm2.get('name2');
-    control2.disabled ? control2.enable() : control2.disable();
+    evt.target.checked ? control2.disable() : control2.enable();
 
     const control3 = this.myForm3.get('name3');
-    control3.disabled ? control3.enable() : control3.disable();
+    evt.target.checked ? control3.disable() : control3.enable();
   }
   /**
    * Method that reset the first input field

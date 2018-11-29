@@ -9,6 +9,7 @@ import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbo
 import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
+import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 
 
 @Injectable({
@@ -74,9 +75,9 @@ export class ComponentUiService {
         'export class ExamplesModule { }',
         LinksShowcaseComponent
       ),
-     /*  new UiComponent(
+      new UiComponent(
         'Loading Indicator',
-        'loadingIndicator',
+        'loading',
         'Loading Indicator',
         'Subtitel goes here ...',
         true,
@@ -84,8 +85,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        LoadingShowcaseComponent
+      ),
       new UiComponent(
         'Field',
         'field',

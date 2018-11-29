@@ -8,11 +8,11 @@
   outline: none;
   padding: 10px 14px 12px;
   background: $colorWhite;
-  border: toPx(2) solid $colorBlack72;
-  border-radius: toPx(2);
+  border: 2px solid $colorBlack72;
+  border-radius: 2px;
   color: $colorGrey;
   line-height: 1.5;
-  font-size: pxToRem(15);
+  font-size: pxToRem($sizeFontDefault);
   -webkit-appearance: none;
 
   &::-ms-clear {
@@ -20,18 +20,19 @@
   }
 
   @include mq($from: desktop4k) {
-    margin-top: pxToEm(15);
     border-width: toPx(2 * $scalingFactor4k);
     border-radius: toPx(2 * $scalingFactor4k);
-    font-size: pxToRem(15 * $scalingFactor4k);
-    padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k) toPx(12 * $scalingFactor4k);
+    font-size: toPx($sizeFontDefault4k);
+    padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k)
+      toPx(12 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
     border-width: toPx(2 * $scalingFactor5k);
     border-radius: toPx(2 * $scalingFactor5k);
-    font-size: pxToRem(15 * $scalingFactor4k);
-    padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k) toPx(12 * $scalingFactor5k);
+    font-size: pxToRem($sizeFontDefault5k);
+    padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k)
+      toPx(12 * $scalingFactor5k);
   }
 
   &:focus {
@@ -39,8 +40,8 @@
   }
 
   &.ng-dirty.ng-invalid {
-    color: $colorRed100;
-    border-color: $colorRed100;
+    color: $colorError;
+    border-color: $colorError;
   }
 }
 
@@ -62,16 +63,65 @@
   resize: none;
   background-color: transparent;
   font-family: $fontSbbRoman;
-  font-size: 13px;
+  font-size: pxToRem(13);
   color: $colorGrey;
-  line-height: 20px;
+  line-height: pxToRem(16);
   display: block;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(13 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(13 * $scalingFactor5k);
+  }
 }
 
 @mixin sbbLabel {
-  display: block;
-  margin-bottom: toPx(5);
-  padding-left: toPx(10);
+  margin-bottom: pxToEm(5, 13);
+  padding-left: pxToEm(10, 13);
+
+  @include mq($from: desktop4k) {
+    margin-bottom: pxToEm(5 * $scalingFactor4k, 13);
+  }
+
+  @include mq($from: desktop5k) {
+    margin-bottom: pxToEm(5 * $scalingFactor5k, 13);
+  }
 
   @include label;
+}
+
+@mixin inputMode($mode) {
+  @if $mode == short {
+    @include inputShort();
+  } @else if $mode == medium {
+    @include inputMedium();
+  } @else if $mode == long {
+    @include inputLong();
+  }
+}
+
+@mixin inputShort {
+  width: 33.333%;
+
+  @include mq($from: mobileLandscape) {
+    width: 25%;
+  }
+
+  @include mq($from: desktop) {
+    width: 16.66666%;
+  }
+}
+
+@mixin inputMedium {
+  width: 100%;
+
+  @include mq($from: tabletPortrait) {
+    width: 50%;
+  }
+}
+
+@mixin inputLong {
+  width: 100%;
 }

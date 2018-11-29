@@ -40,6 +40,7 @@ import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
+import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { PersonListComponent } from './examples/tabs-showcase/person/person-list
     PersonListComponent,
     ComponentViewerComponent,
     TimeInputShowcaseComponent,
+    LoadingShowcaseComponent,
     ...IconComponents.types
   ]
 })

@@ -1,11 +1,19 @@
 @mixin formError($borderColor) {
-    display: block;
-    letter-spacing: 0;
-    outline: 0px;
-    resize: none;
-    opacity: 1;
-    font-family: $fontSbbRoman;
-    font-size: 14px;
-    line-height: 21px;
-    color: $colorCallToAction;
+  display: block;
+  letter-spacing: 0;
+  outline: none;
+  resize: none;
+  opacity: 1;
+  font-family: $fontSbbRoman;
+  font-size: pxToRem(14);
+  line-height: pxToEm(21, 14);
+  color: $colorError;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(14 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(14 * $scalingFactor5k);
+  }
 }
