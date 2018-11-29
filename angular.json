@@ -179,6 +179,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "typeCheck": true,
             "tsConfig": [
               "projects/sbb-angular/tsconfig.lib.json",
               "projects/sbb-angular/tsconfig.spec.json"

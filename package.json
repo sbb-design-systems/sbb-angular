@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "clean": "rimraf dist coverage lintReport.json",
     "build": "run-s build:library build:showcase",
     "build:library": "run-s build:library:ng build:library:styles build:library:typography",
     "build:library:ng": "ng build sbb-angular",
@@ -16,7 +17,9 @@
     "test:library": "ng test sbb-angular -c ci",
     "lint": "run-s lint:*",
     "lint:showcase": "ng lint sbb-angular-showcase",
-    "lint:library": "ng lint sbb-angular",
+    "lint:library": "run-s lint:library:*",
+    "lint:library:console": "ng lint sbb-angular",
+    "lint:library:report": "ng lint sbb-angular --format=json > lintReport.json",
     "sbb:publish": "node scripts/publish.js",
     "e2e": "ng e2e",
     "docs": "gulp docs"
