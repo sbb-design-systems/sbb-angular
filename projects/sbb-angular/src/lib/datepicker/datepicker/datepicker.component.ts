@@ -178,11 +178,13 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     }
   }
 
-  private handleToDatepicker(datepickerInputValue) {
+  /**
+   * Manages the 2nd datepicker linked to this instance.
+   * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
+   */
+  private handleToDatepicker() {
     if (this.toDatepicker) {
-      if (!datepickerInputValue) {
-        this.toDatepicker.datepickerInput.value = null;
-      } else if (!this.toDatepicker.datepickerInput.value) {
+      if (!this.toDatepicker.datepickerInput.value) {
         this.toDatepicker.embeddedDatepicker.open();
       }
     }
@@ -193,7 +195,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
       this.embeddedDatepicker.selected = newDateValue;
       this.checkArrows('left');
       this.checkArrows('right');
-      this.handleToDatepicker(newDateValue);
+      this.handleToDatepicker();
 
       this.changeDetectorRef.markForCheck();
 
