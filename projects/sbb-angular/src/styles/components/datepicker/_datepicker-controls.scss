@@ -35,6 +35,10 @@
       left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
     }
 
+    &-active {
+      @include datePickerToggleArrow();
+    }
+
   }
   
   .sbb-datepicker-arrow {

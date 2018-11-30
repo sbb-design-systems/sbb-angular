@@ -1,0 +1,32 @@
+@mixin datePickerCalendar() {
+  display: block;
+  width: $datePickerCalendarWidth;
+  height: $datePickerCalendarHeight;
+  background-color: $datePickerCalendarBg;
+  border: $datePickerCalendarBorder;
+  border-radius: $datePickerCalendarBorderRadius;
+  box-shadow: $datePickerCalendarBoxShadow;
+}
+
+@mixin datePickerCalendarHeader() {
+  height: $datePickerCalendarHeaderHeight;
+}
+
+@mixin datePickerCalendarControls() {
+  &-controls {
+    &-months {
+      
+    }
+    &-years {
+    }
+
+    &-left-arrow {
+    }
+
+    &-label {
+    }
+
+    &-right-arrow {
+    }
+  }
+}
