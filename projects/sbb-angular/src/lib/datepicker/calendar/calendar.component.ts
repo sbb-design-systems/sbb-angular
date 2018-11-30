@@ -25,14 +25,13 @@ import { MonthViewComponent } from '../month-view/month-view.component';
 import { DateAdapter } from '../date-adapter';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { createMissingDateImplError } from '../datepicker-errors';
-import { DatePipe } from '@angular/common';
 
 
 /**
  * Possible views for the calendar.
  * @docs-private
  */
-export type CalendarView = 'month' | 'year' | 'multi-year';
+export type CalendarView = 'month';
 
 
 @Component({
@@ -85,7 +84,7 @@ export class CalendarHeaderComponent<D> {
 
   /** Handles user clicks on the period label. */
   currentPeriodClicked(): void {
-    this.calendar.currentView = this.calendar.currentView === 'month' ? 'multi-year' : 'month';
+    this.calendar.currentView = 'month';
   }
 
   /** Handles user clicks on the previous button. */
@@ -143,13 +142,6 @@ export class CalendarHeaderComponent<D> {
     return !this.calendar.maxDate ||
       !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
   }
-
-  /** Whether the two dates represent the same view in the current view mode (month or year). */
-  private _isSameYearView(date1: D, date2: D): boolean {
-
-    return this.dateAdapter.getYear(date1) === this.dateAdapter.getYear(date2);
-  }
-
 }
 
 
@@ -342,7 +334,7 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   }
 
   /** Handles year/month selection in the multi-year/year views. */
-  goToDateInView(date: D, view: 'month' | 'year' | 'multi-year'): void {
+  goToDateInView(date: D, view: 'month'): void {
     this.activeDate = date;
     this.currentView = view;
   }

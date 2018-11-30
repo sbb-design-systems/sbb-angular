@@ -260,9 +260,14 @@ export class MonthViewComponent<D> implements AfterContentInit {
         this.dateAdapter.getYear(this.activeDate),
         this.dateAdapter.getMonth(this.activeDate), i + 1);
       const enabled = this.shouldEnableDate(date);
+      const rangeBackground = this.shouldApplyRangeBackground(date);
       this.weeks[this.weeks.length - 1]
-        .push(new CalendarCell(i + 1, dateNames[i], enabled));
+        .push(new CalendarCell(i + 1, dateNames[i], enabled, rangeBackground));
     }
+  }
+
+  private shouldApplyRangeBackground(date): boolean {
+    return true; // this.dateAdapter.compareDate(date) <= 0;
   }
 
   /** Date filter for the month */

@@ -76,7 +76,7 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
   private _startAt: D | null;
 
   /** The view that the calendar should start in. */
-  @Input() startView: 'month' | 'year' | 'multi-year' = 'month';
+  @Input() startView = 'month';
 
   /** Whether the datepicker pop-up should be disabled. */
   @Input()

@@ -19,6 +19,7 @@
       [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
       [class.sbb-calendar-body-disabled]="!item.enabled"
       [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
+      [class.sbb-calendar-body-range-background]="item.rangeBackground"
       [attr.aria-label]="item.date | date:a11yFormat"
       [attr.aria-disabled]="!item.enabled || null"
       [attr.aria-selected]="selectedValue === item.value"
