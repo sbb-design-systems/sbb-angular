@@ -23,6 +23,7 @@ import {
 } from '@angular/forms';
 import { DatepickerInputDirective, SbbDatepickerInputEvent } from '../datepicker-input/datepicker-input.directive';
 import { DateAdapter } from '../date-adapter';
+import { DateRange } from '../date-range';
 
 
 export const SBB_DATEPICKER_VALUE_ACCESSOR: any = {
@@ -76,6 +77,16 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   disabled: boolean;
 
   /**
+   * Property active when a toDatepicker is defined
+   */
+  dateRange: DateRange<Date>;
+
+  /**
+  * Identifies if this sbbDatepicker is used in range mode for 'from' or 'to' dates
+  */
+  rangeMode: 'from' | 'to';
+
+  /**
    * Embedded datepicker with calendar header and body, switches for next/prev months and years
    */
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
@@ -89,6 +100,12 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
       return;
     }
     this.toDatepicker = value;
+    this.dateRange = new DateRange();
+    this.datepickerInput.dateRange = this.dateRange;
+    this.rangeMode = 'from';
+    this.toDatepicker.rangeMode = 'to';
+    this.toDatepicker.datepickerInput.dateRange = this.dateRange;
+
   }
   toDatepicker: DatepickerComponent;
 
@@ -121,8 +138,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
   set withArrows(withArrows: any) {
     this.isWithArrows = withArrows === '' ? true : Boolean(withArrows);
-    this.checkArrows('left');
-    this.checkArrows('right');
+    this.checkArrows();
   }
   private isWithArrows = false;
 
@@ -168,16 +184,17 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     private changeDetectorRef: ChangeDetectorRef) {
   }
 
-  private checkArrows(direction: 'left' | 'right') {
+  private checkArrows() {
     this.rightArrow = false;
     this.leftArrow = false;
     if (this.isDayScrollApplicable()) {
-      if (direction === 'left' && this.min) {
+      if (this.min) {
         this.leftArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
       } else {
         this.leftArrow = true;
+
       }
-      if (direction === 'right' && this.max) {
+      if (this.max) {
         this.rightArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
       } else {
         this.rightArrow = true;
@@ -186,24 +203,28 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
 
   /**
-   * Manages the 2nd datepicker linked to this instance.
-   * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
-   */
-  private handleToDatepicker() {
+  * Manages the 2nd datepicker linked to this instance.
+  * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
+  */
+  private handleRangeDatepicker(beginDate: Date) {
     if (this.toDatepicker) {
+      this.dateRange.begin = beginDate;
       if (!this.toDatepicker.datepickerInput.value) {
         this.toDatepicker.embeddedDatepicker.open();
+      } else {
+        this.dateRange.end = this.toDatepicker.datepickerInput.value;
       }
+      this.toDatepicker.min = beginDate;
     }
   }
 
   ngOnInit(): void {
     this.datepickerInput.valueChange.subscribe(newDateValue => {
       this.embeddedDatepicker.selected = newDateValue;
-      this.checkArrows('left');
-      this.checkArrows('right');
-      this.handleToDatepicker();
-
+      this.handleRangeDatepicker(newDateValue);
+      if (this.withArrows) {
+        this.checkArrows();
+      }
       this.changeDetectorRef.markForCheck();
 
     });
@@ -223,6 +244,12 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     this.datepickerInput.dateInput.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
       this.dateInput.emit(datepickerInputEvent);
     });
+
+    if (this.toDatepicker) {
+      this.toDatepicker.datepickerInput.valueChange.subscribe(newEndDateValue => {
+        this.dateRange.end = newEndDateValue;
+      });
+    }
   }
 
 
@@ -231,6 +258,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    */
   scrollToDay(value: 'left' | 'right') {
     value === 'left' ? this.embeddedDatepicker.prevDay() : this.embeddedDatepicker.nextDay();
+    this.checkArrows();
   }
 
   writeValue(obj: any): void {

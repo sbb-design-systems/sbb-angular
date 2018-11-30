@@ -22,7 +22,7 @@ export class CalendarCell {
   constructor(public value: number,
     public displayValue: string,
     public enabled: boolean,
-    public rangeBackground: boolean) { }
+    public rangeBackground?: string | null) { }
 }
 
 

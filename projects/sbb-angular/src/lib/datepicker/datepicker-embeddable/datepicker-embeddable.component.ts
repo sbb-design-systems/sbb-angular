@@ -31,6 +31,7 @@ import { DatepickerContentComponent } from '../datepicker-content/datepicker-con
 import { DatepickerInputDirective } from '../datepicker-input/datepicker-input.directive';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
+import { DateRange } from '../date-range';
 
 /** Used to generate a unique ID for each datepicker instance. */
 let datepickerUid = 0;
@@ -97,6 +98,9 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
 
+  @Input()
+  rangeMode: 'from' | 'to';
+
   /** Emits when the datepicker has been opened. */
   // tslint:disable-next-line:no-output-rename
   @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
@@ -132,6 +136,10 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
 
   get dateFilter(): (date: D | null) => boolean {
     return this.datepickerInput && this.datepickerInput.dateFilter;
+  }
+
+  get dateRange(): DateRange<D> {
+    return this.datepickerInput && this.datepickerInput.dateRange;
   }
 
   /** A reference to the overlay when the calendar is opened as a popup. */

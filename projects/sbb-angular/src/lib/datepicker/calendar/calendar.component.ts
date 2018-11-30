@@ -25,6 +25,7 @@ import { MonthViewComponent } from '../month-view/month-view.component';
 import { DateAdapter } from '../date-adapter';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { createMissingDateImplError } from '../datepicker-errors';
+import { DateRange } from '../date-range';
 
 
 /**
@@ -217,6 +218,12 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
+  @Input()
+  rangeMode: 'from' | 'to';
+
+  @Input()
+  dateRange: DateRange<D>;
+
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
@@ -302,7 +309,7 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.minDate || changes.maxDate || changes.dateFilter;
+    const change = changes.minDate || changes.maxDate || changes.dateFilter || changes.dateRange;
 
     if (change && !change.firstChange) {
       const view = this.getCurrentViewComponent();

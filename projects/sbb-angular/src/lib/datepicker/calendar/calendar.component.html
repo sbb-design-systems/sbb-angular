@@ -9,7 +9,9 @@
       [maxDate]="maxDate"
       [minDate]="minDate"
       (selectedChange)="dateSelected($event)"
-      (userSelection)="userSelected()">
+      (userSelection)="userSelected()"
+      [dateRange]="dateRange"
+      [rangeMode]="rangeMode">
   </sbb-month-view>
 
 </div>

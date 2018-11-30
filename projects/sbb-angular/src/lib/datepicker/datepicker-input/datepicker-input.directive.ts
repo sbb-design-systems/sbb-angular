@@ -24,6 +24,7 @@ import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { TitleCasePipe } from '@angular/common';
+import { DateRange } from '../date-range';
 
 /**
  * An event used for datepicker input and change events. We don't always have access to a native
@@ -97,6 +98,8 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   datepicker: DatepickerEmbeddableComponent<D>;
 
   dateFilter: (date: D | null) => boolean;
+
+  dateRange: DateRange<D>;
 
   /** The value of the input. */
   @Input()
