@@ -81,12 +81,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    */
   dateRange: DateRange<Date>;
 
-  /**
-  * Identifies if this sbbDatepicker is used in range mode for 'from' or 'to' dates
-  */
-  rangeMode: 'from' | 'to';
-
-  /**
+   /**
    * Embedded datepicker with calendar header and body, switches for next/prev months and years
    */
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
@@ -102,8 +97,6 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     this.toDatepicker = value;
     this.dateRange = new DateRange();
     this.datepickerInput.dateRange = this.dateRange;
-    this.rangeMode = 'from';
-    this.toDatepicker.rangeMode = 'to';
     this.toDatepicker.datepickerInput.dateRange = this.dateRange;
 
   }
@@ -212,7 +205,12 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
       if (!this.toDatepicker.datepickerInput.value) {
         this.toDatepicker.embeddedDatepicker.open();
       } else {
-        this.dateRange.end = this.toDatepicker.datepickerInput.value;
+        if (this.dateAdapter.compareDate(beginDate, this.toDatepicker.datepickerInput.value) > 0) {
+          this.toDatepicker.datepickerInput.value = null;
+          this.toDatepicker.embeddedDatepicker.open();
+        } else {
+          this.dateRange.end = this.toDatepicker.datepickerInput.value;
+        }
       }
       this.toDatepicker.min = beginDate;
     }

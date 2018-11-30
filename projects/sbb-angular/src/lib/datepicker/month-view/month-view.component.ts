@@ -88,9 +88,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
   @Input() dateFilter: (date: D) => boolean;
 
   @Input()
-  rangeMode: 'from' | 'to';
-
-  @Input()
   dateRange: DateRange<D>;
 
   /** Emits when a new date is selected. */

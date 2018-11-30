@@ -219,9 +219,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   @Input() dateFilter: (date: D) => boolean;
 
   @Input()
-  rangeMode: 'from' | 'to';
-
-  @Input()
   dateRange: DateRange<D>;
 
   /** Emits when the currently selected date changes. */
