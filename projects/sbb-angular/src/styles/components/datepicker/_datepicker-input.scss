@@ -1,35 +1,37 @@
-
 @mixin datePickerInput($mode: default) {
-
   @if ($mode == default) {
-
     @include datePickerInputDefaults();
-
   } @else if ($mode == withArrows) {
-
     @include datePickerInputWithArrows();
-
   } @else if ($mode == withoutToggle) {
-
     @include datePickerInputWithoutToggle();
-    
   }
-  
 }
 
 @mixin datePickerInputDefaults() {
-  &-input-wrapper {
+  .sbb-datepicker-input-wrapper {
     position: relative;
-  }
 
-  &-input {
+    .sbb-datepicker-input {
+      width: 100%;
+      padding-left: pxToEm($defaultPickerInputLeftPadding);
+    }
   }
 }
 
 @mixin datePickerInputWithArrows() {
-  
+  .sbb-datepicker-input-wrapper {
+    .sbb-datepicker-input {
+      padding-left: pxToEm($withArrowsPickerInputLeftPadding);
+      padding-right: pxToEm($withArrowsPickerInputRightPadding);
+    }
+  }
 }
 
 @mixin datePickerInputWithoutToggle() {
-  
+  .sbb-datepicker-input-wrapper {
+    .sbb-datepicker-input {
+      @include inputFieldPadding();
+    }
+  }
 }

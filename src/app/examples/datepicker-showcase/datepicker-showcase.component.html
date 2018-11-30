@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Simple Datepicker</h4>
-      <sbb-field>
+      <sbb-field mode="long">
         <sbb-datepicker [formControl]="laData" [withArrows]="withArrows" [withoutToggle]="withoutToggle" [min]="minDate"
           [max]="maxDate" (closed)="closedEvent()" (opened)="openedEvent()" (dateChange)="dateChangeEvent($event)"
           (dateInput)="dateInputEvent($event)"></sbb-datepicker>

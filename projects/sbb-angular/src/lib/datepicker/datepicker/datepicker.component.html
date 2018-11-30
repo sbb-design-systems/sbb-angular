@@ -2,9 +2,9 @@
   <button class="sbb-datepicker-arrow sbb-datepicker-arrow-left" *ngIf="leftArrow" (click)="scrollToDay('left')">
     <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
   </button>
+  <sbb-datepicker-toggle *ngIf="!withoutToggle" [for]="picker"></sbb-datepicker-toggle>
   <input class="sbb-datepicker-input" type="text" [sbbDatepicker]="picker" i18n-placeholder placeholder="TT.MM.JJJJ"
     [min]="min" [max]="max" [disabled]="disabled">
-  <sbb-datepicker-toggle *ngIf="!withoutToggle" [for]="picker"></sbb-datepicker-toggle>
   <button class="sbb-datepicker-arrow sbb-datepicker-arrow-right" *ngIf="rightArrow" (click)="scrollToDay('right')">
     <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
   </button>

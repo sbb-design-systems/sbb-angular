@@ -1,1 +1,9 @@
-$defaultPickerIconSize: 24;
+$defaultPickerIconSize:                 24;
+$defaultPickerInputLeftPadding:         $defaultPickerIconSize + 20;
+$defaultToggleLeftOffset:               $defaultPickerIconSize / 2;
+$pickerIconsHoverColor:                 $colorRed125;
+$withArrowsPickerInputLeftPadding:      ($defaultPickerIconSize * 2) + 24;
+$withArrowsPickerInputRightPadding:     $defaultPickerIconSize + 20;
+$withArrowsToggleLeftOffset:            $defaultPickerIconSize + ($defaultPickerIconSize / 2) + 4;
+$withArrowsLeftArrowOffset:             $defaultPickerIconSize / 2;
+$withArrowsRightArrowOffset:            $defaultPickerIconSize / 2;

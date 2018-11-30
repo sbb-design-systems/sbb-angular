@@ -1,0 +1,90 @@
+@mixin datePickerControls($mode: default) {
+
+  @if ($mode == default) {
+    @include datePickerControlsDefaults();
+  } @else if ($mode == withArrows) {
+    @include datePickerControlsWithArrows();
+  } @else if ($mode == withoutToggle) {
+    @include datePickerControlsWithoutToggle();
+  }
+
+}
+
+@mixin datePickerControlsDefaults() {
+  .sbb-datepicker-toggle, 
+  .sbb-datepicker-arrow {
+    display: block;
+    // z-index: 9999;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .sbb-datepicker-toggle {
+    left: toPx($defaultToggleLeftOffset);
+    @include absoluteCenterY();
+    @extend %pickerIconsSize;
+
+    @include mq($from: desktop4k) {
+      left: toPx($defaultToggleLeftOffset * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
+    }
+
+  }
+  
+  .sbb-datepicker-arrow {
+    @extend %pickerIconsSize;
+    @include absoluteCenterY();
+  }
+
+}
+
+@mixin datePickerControlsWithArrows() {
+  .sbb-datepicker-toggle {
+    left: toPx($withArrowsToggleLeftOffset);
+
+    @include mq($from: desktop4k) {
+      left: toPx($withArrowsToggleLeftOffset * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      left: toPx($withArrowsToggleLeftOffset * $scalingFactor5k);
+    }
+  }
+
+  .sbb-datepicker-arrow {
+
+    &-left {
+      left: toPx($withArrowsLeftArrowOffset);
+
+      @include mq($from: desktop4k) {
+        left: toPx($withArrowsLeftArrowOffset * $scalingFactor4k);
+      }
+  
+      @include mq($from: desktop5k) {
+        left: toPx($withArrowsLeftArrowOffset * $scalingFactor5k);
+      }
+    }
+
+    &-right {
+      right: toPx($withArrowsRightArrowOffset);
+
+      @include mq($from: desktop4k) {
+        right: toPx($withArrowsRightArrowOffset * $scalingFactor4k);
+      }
+  
+      @include mq($from: desktop5k) {
+        right: toPx($withArrowsRightArrowOffset * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+@mixin datePickerControlsWithoutToggle() {
+  
+}

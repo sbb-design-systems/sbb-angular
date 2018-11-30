@@ -1,6 +1,11 @@
 @mixin defaultDatePickerTheme() {
   button {
     @include buttonResetFrameless();
+
+    &:hover, &:focus {
+      cursor: pointer;
+      fill: $pickerIconsHoverColor;
+    }
   }
 }
 
