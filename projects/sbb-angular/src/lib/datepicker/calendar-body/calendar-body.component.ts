@@ -21,7 +21,8 @@ import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 export class CalendarCell {
   constructor(public value: number,
     public displayValue: string,
-    public enabled: boolean) { }
+    public enabled: boolean,
+    public rangeBackground: boolean) { }
 }
 
 

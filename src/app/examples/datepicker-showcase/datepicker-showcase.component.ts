@@ -25,13 +25,20 @@ export class DatepickerShowcaseComponent {
   }
   private _withArrows = false;
 
+  withoutToggleDisabled = false;
+  withArrowsDisabled = false;
+
   onlyInput($event) {
     if ($event.target.checked) {
       this.withoutToggle = true;
       this.withArrows = false;
+      this.withoutToggleDisabled = true;
+      this.withArrowsDisabled = true;
     } else {
       this.withoutToggle = false;
       this.withArrows = true;
+      this.withoutToggleDisabled = false;
+      this.withArrowsDisabled = false;
     }
   }
 
@@ -51,7 +58,7 @@ export class DatepickerShowcaseComponent {
     console.log('DATE_INPUT', $event);
   }
 
-  filterDates(date: Date) : boolean {
+  filterDates(date: Date): boolean {
     return date.getDate() === 1;
   }
 }
