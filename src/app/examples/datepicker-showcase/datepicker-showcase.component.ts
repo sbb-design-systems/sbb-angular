@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-datepicker-showcase',
@@ -15,6 +15,13 @@ export class DatepickerShowcaseComponent {
   laData = new FormControl(this.today);
 
   dateWithFilter = new FormControl();
+
+  twoDatepickersForm = new FormGroup(
+    {
+      firstDatepicker: new FormControl(),
+      secondDatepicker: new FormControl()
+    }
+  );
 
   withoutToggle = false;
   get withArrows(): boolean {
