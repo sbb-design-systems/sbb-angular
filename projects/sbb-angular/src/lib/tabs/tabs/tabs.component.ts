@@ -27,11 +27,17 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
-
+  /**
+   * Class property that track tab number of the list
+   */
   nameOfTabList = `sbb-tabs-${counter++}`;
-
+  /**
+   * Index of tab list
+   */
   tabListIndex = 0;
-
+  /**
+   * Option keys available to move between tabs
+   */
   private allowedKeyCodes = [
     LEFT_ARROW,
     RIGHT_ARROW,
@@ -39,15 +45,27 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     DOWN_ARROW,
     TAB
   ];
-
+  /**
+   * Class property that track changes in the tabs contained in the list
+   */
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
+  /**
+   * Class property that track changes in the content tab in the list of tab
+   */
   tabs$: Observable<TabComponent[]>;
-
+  /**
+   * Class property that track changes in the label tab in the list of tab
+   */
   @ViewChildren('label') labels: QueryList<ElementRef>;
-
+  /**
+   * Class property that records an event on tabs
+   */
   private _tabsSubscription = Subscription.EMPTY;
 
-  constructor(public componentFactoryResolver: ComponentFactoryResolver,
+  constructor(/** * Class property that manages different events */ public componentFactoryResolver: ComponentFactoryResolver,
+    /**
+     * Class property that refers to the component object
+     */
     public elementRef: ElementRef,
     private _changeDetector: ChangeDetectorRef) { }
 
@@ -64,7 +82,9 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       .subscribe(() => this._changeDetector.markForCheck());
 
   }
-
+  /**
+   * Method that verifies the initial tabs state
+   */
   initTabs() {
     this.tabs$ = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes);
 
@@ -74,21 +94,29 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       this.selectTab(this.tabs.first);
     }
   }
-
+  /**
+   * Method that destroys an event subscribed on tabs
+   */
   ngOnDestroy() {
     this._tabsSubscription.unsubscribe();
   }
-
+  /**
+   * Method that recovers the first tab selected
+   */
   openFirstTab() {
     this.tabListIndex = 0;
     this.selectTab(this.tabs.first);
   }
-
+  /**
+   * Method that recovers the tab selected by index
+   */
   openTabByIndex(tabIndex: number) {
     const tabToSelect = this.tabs.toArray()[tabIndex];
     this.selectTab(tabToSelect);
   }
-
+  /**
+   * Method that selects the tab that matches with the tab in input
+   */
   selectTab(tab: TabComponent) {
     this.tabs.forEach((t, index) => {
       if (t.labelId === tab.labelId) {
@@ -103,8 +131,10 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     tab.tabindex = 0;
     tab.tabMarkForCheck();
   }
-
-  onKeyUp(event) {
+  /**
+   * Method that responds only to arrows and tab event
+   */
+  onKeyUp(event : any) {
     // respond only to arrows and tab
     if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
       if (event.keyCode === TAB) {
@@ -136,7 +166,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   }
 
-  private handleKeyCodeReturnHasReachEnd(keyCode) {
+  private handleKeyCodeReturnHasReachEnd(keyCode): boolean {
     let hasReachEnd = false;
 
     switch (keyCode) {
@@ -164,7 +194,9 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
     return hasReachEnd;
   }
-
+  /**
+   * Method that controls if the activated tab number is at least two
+   */
   private checkNumberOfTabs(): void {
     if (this.tabs.length < 2) {
       throw new Error(`The number of tabs must be at least 2`);

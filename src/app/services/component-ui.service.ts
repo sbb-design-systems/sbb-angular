@@ -34,7 +34,7 @@ export class ComponentUiService {
         'Import text.',
         ButtonShowcaseComponent
       ),
-      new UiComponent(
+      /* new UiComponent(
         'List',
         'list',
         'List',
@@ -45,8 +45,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Table',
         'table',
         'Table',
@@ -59,7 +59,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
+      ), */
       new UiComponent(
         'Link',
         'links',
@@ -127,7 +127,7 @@ export class ComponentUiService {
         'Import text.',
         TextareaShowcaseComponent
       ),
-      new UiComponent(
+     /*  new UiComponent(
         'Select',
         'select',
         'Select',
@@ -138,8 +138,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Date Picker',
         'datePicker',
         'Date Picker',
@@ -150,20 +150,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
-        'Time Chooser',
-        'timeChooser',
-        'Time Chooser',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-
-      ),
+      ), */
       new UiComponent(
         'Radio Button',
         'radio-button',
@@ -203,7 +190,7 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-      new UiComponent(
+     /*  new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -214,8 +201,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Section (Fieldset)',
         'section',
         'Section (Fieldset)',
@@ -226,8 +213,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+     /*  new UiComponent(
         'Light Box',
         'lightBox',
         'Light Box',
@@ -238,8 +225,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+     /*  new UiComponent(
         'Notification',
         'notification',
         'Notification',
@@ -250,8 +237,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Process Flow',
         'processFlow',
         'Process Flow',
@@ -262,8 +249,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Option Chooser (simple)',
         'optionChooserSimple',
         'Option Chooser (simple)',
@@ -274,19 +261,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
-        'Option Chooser (multiple)',
-        'optionChooserMultiple',
-        'Option Chooser (multiple)',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ),
+      ), */
       new UiComponent(
         'Time Input',
         'time-input',
