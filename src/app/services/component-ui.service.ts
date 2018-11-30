@@ -114,7 +114,7 @@ export class ComponentUiService {
         'Import text.',
         AutocompleteShowcaseComponent
       ),
-     /*  new UiComponent(
+      new UiComponent(
         'Text Area',
         'textarea',
         'Text Area',
@@ -126,7 +126,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         TextareaShowcaseComponent
-      ), */
+      ),
      /*  new UiComponent(
         'Select',
         'select',
@@ -150,19 +150,6 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ), */
-      /* new UiComponent(
-        'Time Chooser',
-        'timeChooser',
-        'Time Chooser',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-
       ), */
       new UiComponent(
         'Radio Button',
@@ -275,19 +262,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
-        'Option Chooser (multiple)',
-        'optionChooserMultiple',
-        'Option Chooser (multiple)',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ), */
-     /*  new UiComponent(
+      new UiComponent(
         'Time Input',
         'time-input',
         'Time Input',
@@ -299,7 +274,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         TimeInputShowcaseComponent
-      ) */
+      )
     ];
   }
 

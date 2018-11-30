@@ -3,18 +3,13 @@
  Import tabs module into your application
  
  ```ts
-import {
-  IconCommonModule,
-  PerfectScrollbarModule,
-  TabsModule
-} from 'sbb-angular';
+import { TabsModule } from 'sbb-angular';
 ```
-
 and then you can use the tab component as seen below (in this simple example you can navigate between tabs with left and right arrow)
 
 ```html
 <h4>Basic Example</h4>
-<sbb-tabs #tabs>
+<sbb-tabs>
   <sbb-tab label="Tab 1" id="content1-tab" labelId="content1">
     <h4>Content 1</h4>
     <p>Here comes the content for tab 1 ...</p>

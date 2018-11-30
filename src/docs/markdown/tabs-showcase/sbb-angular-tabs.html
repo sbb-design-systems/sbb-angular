@@ -5,14 +5,10 @@
 <body>
   <h1 class="docs-markdown-h1">Tabs Overview</h1>
   <p class="docs-markdown-p"> Import tabs module into your application</p>
-  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> {
-  IconCommonModule,
-  PerfectScrollbarModule,
-  TabsModule
-} <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { TabsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
   <p class="docs-markdown-p">and then you can use the tab component as seen below (in this simple example you can navigate between tabs with left and right arrow)</p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-tabs</span> #<span class="hljs-attr">tabs</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-tabs</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tab</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Tab 1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content1-tab"</span> <span class="hljs-attr">labelId</span>=<span class="hljs-string">"content1"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Content 1<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here comes the content for tab 1 ...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
