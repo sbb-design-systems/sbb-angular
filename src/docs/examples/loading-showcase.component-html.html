@@ -1,0 +1,42 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep no-fix-width"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Simple loading example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-loaders-list"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Tiny<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-loading</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"tiny"</span> <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"Loading 1 please wait"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-loading</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Small<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-loading</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"small"</span> <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"Loading 2 please wait"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-loading</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Medium<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-loading</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"medium"</span> <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"Loading 3 please wait"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-loading</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Big<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-loading</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"big"</span> <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"Loading 4 please wait"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-loading</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Spinner overlay example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-loading</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"showSpinner"</span> [<span class="hljs-attr">mode</span>]=<span class="hljs-string">"spinnerMode"</span> <span class="hljs-attr">aria-valuetext</span>=<span class="hljs-string">"Loading 5 please wait"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-loading</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"align-middle"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"activateSpinner('fullbox')"</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
+          Fullbox Spinner
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"align-middle"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"activateSpinner('fullscreen')"</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
+          Fullscreen Spinner
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>

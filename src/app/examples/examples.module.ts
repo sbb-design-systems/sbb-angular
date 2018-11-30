@@ -16,6 +16,7 @@ import {
   ButtonModule,
   TabsModule,
   TimeInputModule,
+  LoadingModule,
   DatepickerModule
 } from 'sbb-angular';
 
@@ -30,6 +31,7 @@ import { FieldShowcaseComponent } from './field-showcase/field-showcase.componen
 import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
-    TimeInputShowcaseComponent
+    TimeInputShowcaseComponent,
+    LoadingShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     DatepickerModule,
     TimeInputModule,
     IconCommonModule,
-    TabsModule
+    TabsModule,
+    LoadingModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -75,7 +79,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    ButtonModule
+    ButtonModule,
+    LoadingModule
   ]
 })
 export class ExamplesModule { }
