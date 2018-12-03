@@ -11,4 +11,3 @@ export * from './date-pipe-date-formats';
 export * from './native-date-adapter';
 export * from './date-adapter';
 export * from './date-formats';
-export * from './datepicker-intl.service';
