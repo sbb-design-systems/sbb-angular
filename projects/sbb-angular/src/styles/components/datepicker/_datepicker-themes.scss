@@ -30,34 +30,64 @@
   @include pickerIconsSize();
 }
 
-@mixin datePickerToggleArrow() {
+@mixin datePickerToggleArrow($dir: calendarDown) {
   position: absolute;
-  top: $datePickerToggleArrowTopOffset;
   left: pxToEm($defaultToggleLeftOffset);
   width: $datePickerToggleWrapperArrowWidth;
+  background-color: $datePickerCalendarBg;
   height: $datePickerToggleWrapperArrowHeight;
-  border-bottom: pxToEm(2) solid $datePickerCalendarBg;
 
-  .sbb-datepicker-with-arrows & {
-    left: pxToEm($withArrowsToggleLeftOffset);
-  }
-  
   &::before,
   &::after {
     content: "";
     display: block;
     position: absolute;
-    top: $datePickerToggleWrapperArrowHeight / 2;
     background-color: $datePickerToggleArrowColor;
     width: $datePickerToggleArrowWidth;
     height: $datePickerToggleArrowHeight;
   }
+
   &::before {
     left: $datePickerToggleArrowBeforeOffset;
-    transform: rotate(-45deg);
   }
   &::after {
     left: $datePickerToggleArrowAfterOffset;
-    transform: rotate(45deg);
   }
+
+  @if $dir == calendarDown {
+    top: $datePickerToggleArrowTopOffset;
+  
+    &::before,
+    &::after {
+      top: $datePickerToggleWrapperArrowHeight / 2;
+    }
+  
+    &::before {
+      transform: rotate(-45deg);
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
+
+    .sbb-datepicker-with-arrows & {
+      left: pxToEm($withArrowsToggleLeftOffset);
+    }
+  } @else if $dir == calendarTop {
+    top: auto;
+    bottom: $datePickerToggleArrowTopOffset;
+  
+    &::before,
+    &::after {
+      top: auto;
+      bottom: $datePickerToggleWrapperArrowHeight / 2;
+    }
+  
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  
 }

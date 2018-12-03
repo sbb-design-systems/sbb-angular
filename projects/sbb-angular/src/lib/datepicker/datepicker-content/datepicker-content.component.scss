@@ -2,76 +2,24 @@
 
 .sbb-datepicker-popup {
   @include datePickerPopup();
+  @include defaultDatePickerTheme();
 
   .sbb-datepicker-content {
     position: relative;
     width: 100%;
     top: pxToEm(17);
-    
+
     .sbb-calendar {
       @include datePickerCalendar();
-      @include defaultDatePickerTheme();
       @include datePickerCalendarHeader();
       @include datePickerCalendarControls();
-
-      &-content {
-        
-      }
-
-      &-table {
-        width: 100%;
-        border-spacing: 0;
-        border-collapse: collapse;
-        margin: 0;
-
-        &-header {
-          tr th {
-          }
-        }
-      }
-
-      &-body {
-        &-label {
-        }
-        &-cell {
-          position: relative;
-          height: 0;
-          line-height: 0;
-          text-align: center;
-          outline: 0;
-          cursor: pointer;
-
-          &.sbb-calendar-body-active {
-
-          }
-
-          &.sbb-calendar-body-range-background {
-            
-          }
-
-          &.sbb-calendar-body-selected {
-          }
-
-          &.sbb-calendar-body-today {
-          }
-
-          &-content {
-            border-color: transparent;
-            position: absolute;
-            top: 5%;
-            left: 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            height: 90%;
-            line-height: 1;
-            border-width: 1px;
-            border-style: solid;
-            border-radius: 50%;
-          }
-        }
-      }
+      @include datePickerCalendarTable();
     }
+  }
+}
+
+.sbb-datepicker-popup-above {
+  .sbb-datepicker-popup {
+    @include revertPopUp();
   }
 }

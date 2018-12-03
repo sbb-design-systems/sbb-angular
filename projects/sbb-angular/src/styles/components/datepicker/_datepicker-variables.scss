@@ -19,9 +19,19 @@ $datePickerToggleArrowAfterOffset:      pxToEm(9);
 $datePickerToggleArrowTopOffset:        -($datePickerToggleWrapperArrowHeight - $datePickerToggleArrowHeight);
 
 $datePickerCalendarBg:                  $colorWhite;
+$datePickerCalendarHeaderColor:         $colorBlack60;
+$datePickerCalendarHeaderFontSize:      pxToEm(13);
 $datePickerCalendarWidth:               pxToEm(428);
 $datePickerCalendarHeight:              pxToEm(428);
 $datePickerCalendarBorder:              pxToEm(2) solid $colorGrey;
 $datePickerCalendarBorderRadius:        pxToEm(2);
 $datePickerCalendarBoxShadow:           0 pxToEm(8) 0 rgba(0,0,0,.15);
+$datePickerRevertCalendarBoxShadow:     0 pxToEm(-8) 0 rgba(0,0,0,.15);
 $datePickerCalendarHeaderHeight:        pxToEm(68);
+
+$datePickerCalendarTableContentPadding: 0 pxToEm(22) pxToEm(16) pxToEm(22);
+$datePickerCalendarTableTodayFontFamily:$fontSbbBold;
+$datePickerCalendarTableTodayColor:     $colorBlack;
+$datePickerCalendarTableActiveColor:    $colorRed125;
+$datePickerCalendarTableSelectedColor:  $colorGrey;
+$datePickerCalendarTableRangeBgColor:   $colorBlack5;

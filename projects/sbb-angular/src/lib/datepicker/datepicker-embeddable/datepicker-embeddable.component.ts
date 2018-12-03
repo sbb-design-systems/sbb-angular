@@ -156,6 +156,8 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
   /** Subscription to value changes in the associated input element. */
   private inputSubscription = Subscription.EMPTY;
 
+  private posStrategySubsription = Subscription.EMPTY;
+
   /** The input element this datepicker is associated with. */
   datepickerInput: DatepickerInputDirective<D>;
 
@@ -185,6 +187,7 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
     this.disabledChange.complete();
 
     if (this.popupRef) {
+      this.posStrategySubsription.unsubscribe();
       this.popupRef.dispose();
       this.popupComponentRef = null;
     }
@@ -335,7 +338,7 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
 
   /** Create the popup PositionStrategy. */
   private createPopupPositionStrategy(): PositionStrategy {
-    return this._overlay.position()
+    const posStrategy =  this._overlay.position()
       .flexibleConnectedTo(this.datepickerInput.getConnectedOverlayOrigin())
       .withTransformOriginOn('.sbb-datepicker-content')
       .withFlexibleDimensions(false)
@@ -367,6 +370,16 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
           overlayY: 'bottom'
         }
       ]);
+
+      this.posStrategySubsription = posStrategy.positionChanges.subscribe((pos) => {
+        if (pos.connectionPair.originY === 'top') {
+          this.popupRef.hostElement.classList.add('sbb-datepicker-popup-above');
+        } else {
+          this.popupRef.hostElement.classList.remove('sbb-datepicker-popup-above');
+        }
+      });
+
+      return posStrategy;
   }
 
   /**

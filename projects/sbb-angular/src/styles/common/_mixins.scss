@@ -422,3 +422,8 @@
 	top: 50%;
 	transform: translateY(-50%);
 }
+
+@mixin setFullBleed($offset) {
+	margin-left: -$offset;
+	margin-right: -$offset; 
+}
