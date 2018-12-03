@@ -18,53 +18,87 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaComponent implements ControlValueAccessor {
-
+  /**
+   * Text content in a textarea
+   */
   textContent: string;
+  /**
+   * Class property that represents the autosize textarea
+   */
   matTextareaAutosize = true;
+  /**
+   * Class property that represents an observer on the number of digits in a textarea
+   */
   counterObserver$: Subject<number> = new Subject<number>();
-
+  /**
+   * Class property that disable the textarea status
+   */
   @Input()
   disabled: boolean;
-
+  /**
+   * Class property that sets readonly the textarea content
+   */
   @Input()
   readonly: boolean;
-
+  /**
+   * Class property that sets the maxlength of the textarea content
+   */
   @Input()
   maxlength: number;
-
+  /**
+   * Class property that sets the minlength of the textarea content
+   */
   @Input()
   minlength: number;
-
+  /**
+   * Class property that sets required the textarea
+   */
   @Input()
   required: boolean;
-
+  /**
+   * Identifier of textarea
+   */
   @Input()
   inputId: string;
-
+  /**
+   * Class property that automatically resize a textarea to fit its content
+   */
   @ViewChild('autosize')
   autosize: CdkTextareaAutosize;
-
+  /**
+   * Class property that represents the disabled class status
+   */
   @HostBinding('class.disabled')
   disabledClass: boolean;
-
+  /**
+   * Class property that represents the focused class status
+   */
   @HostBinding('class.focused')
   focusedClass: boolean;
-
+  /**
+   * Method that sets the focus class status true
+   */
   onFocus() {
     this.focusedClass = true;
   }
-
+  /**
+   * Method that sets the focus class status false
+   */
   onBlur() {
     this.focusedClass = false;
   }
 
   constructor(private ngZone: NgZone) { }
-
+  /**
+   * Method that listens the automatically resize of a textarea to fit its content
+   */
   triggerResize() {
     this.ngZone.onStable.pipe(first())
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
-
+  /**
+   * Class property that represents a change caused by a new digit in a textarea
+   */
   propagateChange: any = () => { };
 
   writeValue(newValue: any) {
@@ -80,7 +114,9 @@ export class TextareaComponent implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: () => void): void { }
-
+  /**
+   * Method that listens change in the textarea content
+   */
   onChange(event) {
     this.propagateChange(event.target.value);
     this.updateDigitsCounter(event.target.value);
@@ -90,7 +126,9 @@ export class TextareaComponent implements ControlValueAccessor {
     this.disabled = disabled;
     this.disabledClass = disabled;
   }
-
+  /**
+   * Method that updates the max number of digits available in the textarea content
+   */
   updateDigitsCounter(newValue) {
     if (!!this.maxlength) {
       this.counterObserver$.next(this.maxlength - newValue.length);

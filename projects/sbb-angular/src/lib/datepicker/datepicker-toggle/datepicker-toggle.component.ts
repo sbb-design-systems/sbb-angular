@@ -14,7 +14,6 @@ import {
 import { Subscription, of, merge } from 'rxjs';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { DatepickerIntlService } from '../datepicker-intl.service';
 
 @Component({
   selector: 'sbb-datepicker-toggle',
@@ -42,9 +41,10 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   }
   private _disabled: boolean;
 
-  constructor(public intl: DatepickerIntlService,
+  constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    @Attribute('tabindex') defaultTabIndex: string) {
+    @Attribute('tabindex') defaultTabIndex: string
+  ) {
 
     const parsedTabIndex = Number(defaultTabIndex);
     this.tabIndex = (parsedTabIndex || parsedTabIndex === 0) ? parsedTabIndex : null;
@@ -92,7 +92,6 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
 
     this.stateChanges.unsubscribe();
     this.stateChanges = merge(
-      this.intl.changes,
       datepickerDisabled,
       inputDisabled,
       datepickerToggled

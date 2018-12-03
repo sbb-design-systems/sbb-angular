@@ -20,7 +20,6 @@ import {
   LOCALE_ID,
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
-import { DatepickerIntlService } from '../datepicker-intl.service';
 import { MonthViewComponent } from '../month-view/month-view.component';
 import { DateAdapter } from '../date-adapter';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
@@ -42,8 +41,7 @@ export type CalendarView = 'month';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarHeaderComponent<D> {
-  constructor(private intl: DatepickerIntlService,
-    // tslint:disable-next-line:no-use-before-declare
+  constructor(// tslint:disable-next-line:no-use-before-declare
     @Inject(forwardRef(() => CalendarComponent)) public calendar: CalendarComponent<D>,
     @Optional() private dateAdapter: DateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
@@ -62,24 +60,6 @@ export class CalendarHeaderComponent<D> {
   /** The label for the current calendar view. */
   get yearText(): string {
     return this.dateAdapter.getYearName(this.calendar.activeDate);
-  }
-
-  /** The label for the the previous button. */
-  get prevButtonLabel(): string {
-    return {
-      'month': this.intl.prevMonthLabel,
-      'year': this.intl.prevYearLabel,
-      'multi-year': this.intl.prevMultiYearLabel
-    }[this.calendar.currentView];
-  }
-
-  /** The label for the the next button. */
-  get nextButtonLabel(): string {
-    return {
-      'month': this.intl.nextMonthLabel,
-      'year': this.intl.nextYearLabel,
-      'multi-year': this.intl.nextMultiYearLabel
-    }[this.calendar.currentView];
   }
 
   /** Handles user clicks on the period label. */
@@ -168,8 +148,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
 
   /** A portal containing the header component type for this calendar. */
   calendarHeaderPortal: Portal<any>;
-
-  private intlChanges: Subscription;
 
   /**
    * Used for scheduling that focus should be moved to the active cell on the next tick.
@@ -264,8 +242,7 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
    */
   stateChanges = new Subject<void>();
 
-  constructor(intl: DatepickerIntlService,
-    @Optional() private dateAdapter: DateAdapter<D>,
+  constructor(@Optional() private dateAdapter: DateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
     private changeDetectorRef: ChangeDetectorRef) {
 
@@ -277,10 +254,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
       throw createMissingDateImplError('SBB_DATE_FORMATS');
     }
 
-    this.intlChanges = intl.changes.subscribe(() => {
-      changeDetectorRef.markForCheck();
-      this.stateChanges.next();
-    });
   }
 
   ngAfterContentInit() {
@@ -299,7 +272,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   }
 
   ngOnDestroy() {
-    this.intlChanges.unsubscribe();
     this.stateChanges.complete();
   }
 
