@@ -1,7 +1,14 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/sbb-angular",
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "ngx-perfect-scrollbar"
+  ],
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
+    }
   }
 }
