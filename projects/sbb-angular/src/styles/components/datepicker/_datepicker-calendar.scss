@@ -1,0 +1,50 @@
+@mixin datePickerPopup() {
+  &-arrow {
+    @include datePickerToggleArrow();
+  }
+}
+
+@mixin datePickerCalendar() {
+  display: block;
+  width: $datePickerCalendarWidth;
+  height: $datePickerCalendarHeight;
+  background-color: $datePickerCalendarBg;
+  border: $datePickerCalendarBorder;
+  border-radius: $datePickerCalendarBorderRadius;
+  box-shadow: $datePickerCalendarBoxShadow;
+}
+
+@mixin datePickerCalendarHeader() {
+  &-header {
+    
+  }
+}
+
+@mixin datePickerCalendarControls() {
+  &-controls {
+    height: $datePickerCalendarHeaderHeight;
+    display: flex;
+    
+    &-months, &-years {
+      flex: 1 0 auto;
+    }
+
+    &-months {
+    }
+    &-years {
+    }
+
+    &-left-arrow {
+      width: 24px;
+      height: 24px;
+    }
+
+    &-label {
+    }
+
+    &-right-arrow {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

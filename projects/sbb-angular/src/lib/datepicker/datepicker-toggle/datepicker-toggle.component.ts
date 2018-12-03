@@ -18,7 +18,6 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 @Component({
   selector: 'sbb-datepicker-toggle',
   templateUrl: './datepicker-toggle.component.html',
-  styleUrls: ['./datepicker-toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

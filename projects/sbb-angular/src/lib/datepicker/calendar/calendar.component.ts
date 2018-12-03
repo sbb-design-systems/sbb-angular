@@ -37,7 +37,6 @@ export type CalendarView = 'month';
 @Component({
   selector: 'sbb-calendar-header',
   templateUrl: './calendar-header.component.html',
-  styleUrls: ['./calendar-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -134,7 +133,6 @@ export class CalendarHeaderComponent<D> {
 @Component({
   selector: 'sbb-calendar',
   templateUrl: 'calendar.component.html',
-  styleUrls: ['calendar.component.scss'],
   exportAs: 'sbbCalendar',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

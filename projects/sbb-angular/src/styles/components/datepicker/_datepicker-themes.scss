@@ -2,7 +2,8 @@
   button {
     @include buttonResetFrameless();
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       cursor: pointer;
       fill: $pickerIconsHoverColor;
     }
@@ -10,17 +11,15 @@
 }
 
 @mixin pickerIconsSize(
-  $pickerIconWidth: $defaultPickerIconSize, 
+  $pickerIconWidth: $defaultPickerIconSize,
   $pickerIconHeight: $defaultPickerIconSize
 ) {
   width: toPx($pickerIconWidth);
   height: toPx($pickerIconHeight);
-
   @include mq($from: desktop4k) {
     width: toPx($pickerIconWidth * $scalingFactor4k);
     height: toPx($pickerIconHeight * $scalingFactor4k);
   }
-
   @include mq($from: desktop5k) {
     width: toPx($pickerIconWidth * $scalingFactor5k);
     height: toPx($pickerIconHeight * $scalingFactor5k);
@@ -29,4 +28,36 @@
 
 %pickerIconsSize {
   @include pickerIconsSize();
+}
+
+@mixin datePickerToggleArrow() {
+  position: absolute;
+  top: $datePickerToggleArrowTopOffset;
+  left: pxToEm($defaultToggleLeftOffset);
+  width: $datePickerToggleWrapperArrowWidth;
+  height: $datePickerToggleWrapperArrowHeight;
+  border-bottom: pxToEm(2) solid $datePickerCalendarBg;
+
+  .sbb-datepicker-with-arrows & {
+    left: pxToEm($withArrowsToggleLeftOffset);
+  }
+  
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: $datePickerToggleWrapperArrowHeight / 2;
+    background-color: $datePickerToggleArrowColor;
+    width: $datePickerToggleArrowWidth;
+    height: $datePickerToggleArrowHeight;
+  }
+  &::before {
+    left: $datePickerToggleArrowBeforeOffset;
+    transform: rotate(-45deg);
+  }
+  &::after {
+    left: $datePickerToggleArrowAfterOffset;
+    transform: rotate(45deg);
+  }
 }
