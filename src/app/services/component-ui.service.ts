@@ -7,8 +7,9 @@ import { ButtonShowcaseComponent } from '../examples/button-showcase/button-show
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
-import { InputFieldShowcaseComponent } from '../examples/text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
+import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
+import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 
 
 @Injectable({
@@ -33,7 +34,7 @@ export class ComponentUiService {
         'Import text.',
         ButtonShowcaseComponent
       ),
-      new UiComponent(
+      /* new UiComponent(
         'List',
         'list',
         'List',
@@ -44,8 +45,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Table',
         'table',
         'Table',
@@ -58,7 +59,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
+      ), */
       new UiComponent(
         'Link',
         'links',
@@ -76,7 +77,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'Loading Indicator',
-        'loadingIndicator',
+        'loading',
         'Loading Indicator',
         'Subtitel goes here ...',
         true,
@@ -84,33 +85,21 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ),
-      new UiComponent(
-        'Input Field',
-        'text-input',
-        'Input Field',
-        'Input Field is an extension to standard input element with theming.',
-        true,
-        false,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
         'Import text.',
-        InputFieldShowcaseComponent
+        LoadingShowcaseComponent
       ),
       new UiComponent(
-        'SBB Field',
+        'Field',
         'field',
-        'SBB Field',
-        'SBB Field is an extension to standard input element with theming.',
+        'Field',
+        'Describes an input field that can contain different values: text, password, number etc',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Genchi'],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        SbbFieldShowcaseComponent
+        FieldShowcaseComponent
       ),
       new UiComponent(
         'Autocompletion',
@@ -138,7 +127,7 @@ export class ComponentUiService {
         'Import text.',
         TextareaShowcaseComponent
       ),
-      new UiComponent(
+     /*  new UiComponent(
         'Select',
         'select',
         'Select',
@@ -149,8 +138,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Date Picker',
         'datePicker',
         'Date Picker',
@@ -161,20 +150,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
-        'Time Chooser',
-        'timeChooser',
-        'Time Chooser',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-
-      ),
+      ), */
       new UiComponent(
         'Radio Button',
         'radio-button',
@@ -207,13 +183,14 @@ export class ComponentUiService {
         'Tab',
         'Subtitel goes here ...',
         true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
+        false,
+        ['Davide Aresta', 'Marco Sut', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
+        'Import text.',
+        TabsShowcaseComponent
       ),
-      new UiComponent(
+     /*  new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -224,8 +201,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Section (Fieldset)',
         'section',
         'Section (Fieldset)',
@@ -236,8 +213,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+     /*  new UiComponent(
         'Light Box',
         'lightBox',
         'Light Box',
@@ -248,8 +225,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+     /*  new UiComponent(
         'Notification',
         'notification',
         'Notification',
@@ -260,8 +237,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Process Flow',
         'processFlow',
         'Process Flow',
@@ -272,8 +249,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
+      ), */
+      /* new UiComponent(
         'Option Chooser (simple)',
         'optionChooserSimple',
         'Option Chooser (simple)',
@@ -284,19 +261,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.'
-      ),
-      new UiComponent(
-        'Option Chooser (multiple)',
-        'optionChooserMultiple',
-        'Option Chooser (multiple)',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ),
+      ), */
       new UiComponent(
         'Time Input',
         'time-input',

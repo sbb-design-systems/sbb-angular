@@ -5,6 +5,10 @@ String cron_string = BRANCH_NAME == 'develop' ? '@midnight' : ''
 pipeline {
   agent { label 'nodejs' }
   triggers { cron(cron_string) }
+  environment {
+    scannerHome = tool 'SonarRunner';
+    libraryVersion = """${sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"').trim()}"""
+  }
 
   stages {
     stage('Installation') {
@@ -18,6 +22,19 @@ pipeline {
         sh 'npm test'
         sh 'npm run lint'
         sh 'npm run build'
+        withSonarQubeEnv('Sonar NextGen') {
+          sh """${scannerHome}/bin/sonar-scanner -X \
+            -Dsonar.projectKey=sbb-angular \
+            -Dsonar.projectVersion=${libraryVersion} \
+            -Dsonar.branch=${BRANCH_NAME} \
+            -Dsonar.sources=projects/sbb-angular/src \
+            -Dsonar.tests=projects/sbb-angular/src \
+            -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/*.routes.ts \
+            -Dsonar.test.inclusions=**/*.spec.ts \
+            -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
+            -Dsonar.typescript.tslint.reportPaths=lintReport.json
+          """
+        }
       }
     }
 
@@ -58,24 +75,12 @@ pipeline {
       }
       steps {
         script {
-          try {
-            cloud_callDeploy(
-              cluster: 'aws',
-              project: 'sbb-angular-showcase',
-              dc: 'sbb-angular',
-              credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
-          } catch (e) {
-            sleep(90)
-            try {
-              cloud_callDeploy(
-                cluster: 'aws',
-                project: 'sbb-angular-showcase',
-                dc: 'sbb-angular',
-                credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181')
-            } catch (ex) {
-              echo 'Failed to deploy'
-            }
-          }
+          cloud_callDeploy(
+            cluster: 'aws',
+            project: 'sbb-angular-showcase',
+            dc: 'sbb-angular',
+            credentialId: '265c7ecd-dc0c-4b41-b8b1-53a2f55d8181',
+            doNotFailOnRunningDeployment: true)
         }
       }
     }
@@ -88,7 +93,7 @@ pipeline {
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
     }
 
     fixed {
@@ -97,7 +102,7 @@ pipeline {
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,stefan.meili@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
     }
   }
 }

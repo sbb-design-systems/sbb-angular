@@ -36,9 +36,11 @@ import { IconsListComponent } from './icons-list/icons-list.component';
 import { DocDirective } from './doc/doc.directive';
 import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-doc.component';
 import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.component';
-import { InputFieldShowcaseComponent } from './examples/text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
+import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
+import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
 
 @NgModule({
   declarations: [
@@ -79,10 +81,12 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     ComponentViewerComponent,
     TimeInputShowcaseComponent,
+    LoadingShowcaseComponent,
     ...IconComponents.types
   ]
 })

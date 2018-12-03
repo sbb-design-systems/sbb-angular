@@ -4,6 +4,7 @@
 @import './common/mixins';
 @import './legacy/mixins';
 @import './link';
+
 @import './components/link/link';
 @import './components/fields/fields';
 @import './components/radio-button';
@@ -11,4 +12,6 @@
 @import './components/button/button';
 @import './components/textarea';
 @import './components/autocomplete/autocomplete';
+@import './components/tabs/tabs';
 @import './components/time-input';
+@import './components/loading/loading';

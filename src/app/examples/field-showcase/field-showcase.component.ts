@@ -6,13 +6,11 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   templateUrl: './field-showcase.component.html',
   styleUrls: ['./field-showcase.component.scss']
 })
-export class SbbFieldShowcaseComponent implements OnInit {
+export class FieldShowcaseComponent implements OnInit {
 
   inputText1 = '';
   inputText2 = '';
   inputText3 = '';
-
-  disabled: boolean;
 
   myForm1: FormGroup;
   myForm2: FormGroup;
@@ -29,6 +27,14 @@ export class SbbFieldShowcaseComponent implements OnInit {
     this.header1,
     this.header2,
     this.header3
+  ];
+
+  inputMode = 'default';
+  modes = [
+    'default',
+    'short',
+    'medium',
+    'long'
   ];
 
   constructor(private formBuilder: FormBuilder) {
@@ -51,28 +57,38 @@ export class SbbFieldShowcaseComponent implements OnInit {
     this.myForm3.reset();
 
   }
-
-  disableForms() {
+  /**
+   * Method that verify if a child element (in this case: input field) of a form group is disabled
+   */
+  disableForms(evt) {
     const control1 = this.myForm1.get('name1');
-    control1.disabled ? control1.enable() : control1.disable();
+    evt.target.checked ? control1.disable() : control1.enable();
 
     const control2 = this.myForm2.get('name2');
-    control2.disabled ? control2.enable() : control2.disable();
+    evt.target.checked ? control2.disable() : control2.enable();
 
     const control3 = this.myForm3.get('name3');
-    control3.disabled ? control3.enable() : control3.disable();
+    evt.target.checked ? control3.disable() : control3.enable();
   }
-
+  /**
+   * Method that reset the first input field
+   */
   reset1() {
     this.myForm1.reset();
     this.inputText1 = '';
   }
 
+  /**
+   * Method that reset the second input field
+   */
   reset2() {
     this.myForm2.reset();
     this.inputText2 = '';
   }
 
+  /**
+   * Method that reset the third input field
+   */
   reset3() {
     this.myForm3.reset();
     this.inputText3 = '';

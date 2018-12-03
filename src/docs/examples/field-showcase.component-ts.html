@@ -6,13 +6,11 @@
   templateUrl: <span class="hljs-string">'./field-showcase.component.html'</span>,
   styleUrls: [<span class="hljs-string">'./field-showcase.component.scss'</span>]
 })
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SbbFieldShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FieldShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
 
   inputText1 = <span class="hljs-string">''</span>;
   inputText2 = <span class="hljs-string">''</span>;
   inputText3 = <span class="hljs-string">''</span>;
-
-  disabled: <span class="hljs-built_in">boolean</span>;
 
   myForm1: FormGroup;
   myForm2: FormGroup;
@@ -29,6 +27,14 @@
     <span class="hljs-keyword">this</span>.header1,
     <span class="hljs-keyword">this</span>.header2,
     <span class="hljs-keyword">this</span>.header3
+  ];
+
+  inputMode = <span class="hljs-string">'default'</span>;
+  modes = [
+    <span class="hljs-string">'default'</span>,
+    <span class="hljs-string">'short'</span>,
+    <span class="hljs-string">'medium'</span>,
+    <span class="hljs-string">'long'</span>
   ];
 
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> formBuilder: FormBuilder</span>) {
@@ -51,28 +57,38 @@
     <span class="hljs-keyword">this</span>.myForm3.reset();
 
   }
-
-  disableForms() {
+  <span class="hljs-comment">/**
+   * Method that verify if a child element (in this case: input field) of a form group is disabled
+   */</span>
+  disableForms(evt) {
     <span class="hljs-keyword">const</span> control1 = <span class="hljs-keyword">this</span>.myForm1.get(<span class="hljs-string">'name1'</span>);
-    control1.disabled ? control1.enable() : control1.disable();
+    evt.target.checked ? control1.disable() : control1.enable();
 
     <span class="hljs-keyword">const</span> control2 = <span class="hljs-keyword">this</span>.myForm2.get(<span class="hljs-string">'name2'</span>);
-    control2.disabled ? control2.enable() : control2.disable();
+    evt.target.checked ? control2.disable() : control2.enable();
 
     <span class="hljs-keyword">const</span> control3 = <span class="hljs-keyword">this</span>.myForm3.get(<span class="hljs-string">'name3'</span>);
-    control3.disabled ? control3.enable() : control3.disable();
+    evt.target.checked ? control3.disable() : control3.enable();
   }
-
+  <span class="hljs-comment">/**
+   * Method that reset the first input field
+   */</span>
   reset1() {
     <span class="hljs-keyword">this</span>.myForm1.reset();
     <span class="hljs-keyword">this</span>.inputText1 = <span class="hljs-string">''</span>;
   }
 
+  <span class="hljs-comment">/**
+   * Method that reset the second input field
+   */</span>
   reset2() {
     <span class="hljs-keyword">this</span>.myForm2.reset();
     <span class="hljs-keyword">this</span>.inputText2 = <span class="hljs-string">''</span>;
   }
 
+  <span class="hljs-comment">/**
+   * Method that reset the third input field
+   */</span>
   reset3() {
     <span class="hljs-keyword">this</span>.myForm3.reset();
     <span class="hljs-keyword">this</span>.inputText3 = <span class="hljs-string">''</span>;

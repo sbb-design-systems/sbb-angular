@@ -1,45 +1,42 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep no-fix-width">
-      <h4>Textarea</h4>
+      <h4 class="sbbsc-block">Textarea</h4>
       <sbb-textarea *ngIf="isVisible" [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"
         [required]="required" [readonly]="readonly" [disabled]="disabled"></sbb-textarea>
       <p>Model:</p>
       <pre>{{ textArea1 | json }}</pre>
     </div>
     <div class="col-lg-6">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
         <div class="row">
-          <div class="col-3">
-            <label for="maxlength">Max Length</label>
-          </div>
-          <div class="col-9">
-            <input id="maxlength" [(ngModel)]="maxlength" type="number">
+          <div class="col-12">
+            <sbb-field>
+              <sbb-label for="maxlength">Max Length</sbb-label>
+              <input type="number" [(ngModel)]="maxlength" id="maxlength">
+            </sbb-field>
           </div>
         </div>
       </div>
       <div class="sbbsc-block">
         <div class="row">
-          <div class="col-3">
-            <label for="minlength">Min Length</label>
-          </div>
-          <div class="col-9">
-            <input id="minlength" [(ngModel)]="minlength" type="number">
+          <div class="col-12">
+            <sbb-field>
+              <sbb-label for="minlength">Min Length</sbb-label>
+              <input type="number" [(ngModel)]="minlength" id="minlength">
+            </sbb-field>
           </div>
         </div>
       </div>
       <div class="sbbsc-block">
-        <input id="requiredCheck" class="form-check-input" type="checkbox" [(ngModel)]="required">&nbsp;
-        <label class="form-check-label" for="requiredCheck">Required</label>
+        <sbb-checkbox value="required" [(ngModel)]="required">Required</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <input id="disabled" class="form-check-input" type="checkbox" [(ngModel)]="disabled">&nbsp;
-        <label class="form-check-label" for="disabled">Disabled</label>
+        <sbb-checkbox value="disabled" [(ngModel)]="disabled">Disabled</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <input id="readonly" class="form-check-input" type="checkbox" [(ngModel)]="readonly">&nbsp;
-        <label class="form-check-label" for="readonly">Readonly</label>
+        <sbb-checkbox value="disabled" [(ngModel)]="readonly">Readonly</sbb-checkbox>
       </div>
     </div>
   </div>

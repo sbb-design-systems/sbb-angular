@@ -12,9 +12,11 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  ButtonModule,
   AutocompleteModule,
-  TimeInputModule
+  ButtonModule,
+  TabsModule,
+  TimeInputModule,
+  LoadingModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -23,10 +25,11 @@ import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase
 import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
-import { IconComponents } from '../sbb-components-mapping-export';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
-import { InputFieldShowcaseComponent } from './text-input-showcase/text-input-showcase.component';
-import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,11 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
-    TimeInputShowcaseComponent
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
+    TimeInputShowcaseComponent,
+    LoadingShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,9 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     RadioButtonModule,
     CheckboxModule,
     TimeInputModule,
-    IconCommonModule
+    IconCommonModule,
+    TabsModule,
+    LoadingModule
   ],
   providers: [],
   exports: [
@@ -64,10 +71,12 @@ import { SbbFieldShowcaseComponent } from './field-showcase/field-showcase.compo
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
-    InputFieldShowcaseComponent,
-    SbbFieldShowcaseComponent,
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
     TimeInputShowcaseComponent,
-    ButtonModule
+    ButtonModule,
+    LoadingModule
   ]
 })
 export class ExamplesModule { }

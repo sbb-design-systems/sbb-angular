@@ -1,0 +1,23 @@
+<span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-loading-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./loading-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./loading-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LoadingShowcaseComponent {
+  showSpinner: <span class="hljs-built_in">boolean</span>;
+  spinnerMode = <span class="hljs-string">''</span>;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+  }
+
+  activateSpinner(mode) {
+
+    <span class="hljs-keyword">this</span>.spinnerMode = mode;
+    <span class="hljs-keyword">this</span>.showSpinner = <span class="hljs-literal">true</span>;
+
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.showSpinner = <span class="hljs-literal">false</span>, <span class="hljs-number">3500</span>);
+  }
+}
+

@@ -154,12 +154,10 @@ input[type="datetime-local"] {
   }
 }
 
-sbb-radio-button {
-  @include radioButtonLabel;
-}
-
-sbb-checkbox {
-  @include checkboxLabel;
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 input.ssb-time-input {

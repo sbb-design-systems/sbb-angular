@@ -9,8 +9,12 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: 12px 0 12px 20px;
+    padding: 12px 20px 12px 20px;
     background-color: rgba($colorGreyLight, 0.5);
+
+    @include mq($from: tabletLandscape) {
+      padding: 12px 0 12px 20px;
+    }
   }
 
   &-title {
@@ -41,24 +45,5 @@
   &-src {
     border-bottom: 1px solid rgba($colorGreyLight, 0.5);
     min-height: 300px;
-  }
-
-  &-instance {
-    h2, h3, h4 {
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
-
-    fieldset {
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-
-    label, input, select, sbb-checkbox, sbb-radio-button {
-      margin-bottom: 1em;
-      vertical-align: middle;
-      display: inline-block;
-    }
   }
 }

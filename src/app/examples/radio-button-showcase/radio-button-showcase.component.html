@@ -1,42 +1,43 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Single Radio Button</h4>
-      <sbb-radio-button inputId="single-radio" name="single-radio" value="single-radio" [disabled]="disabled"
-        [required]="required" [checked]="checked"></sbb-radio-button>
-      <label for="single-radio">Test label</label>
+      <h4 class="sbbsc-block">Single Radio Button</h4>
+      <sbb-radio-button name="single-radio"
+                        value="single-radio"
+                        [disabled]="disabled"
+                        [required]="required"
+                        [checked]="checked">Test label</sbb-radio-button>
     </div>
     <div class="col-lg-6">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
-        <input id="checkedCheck" type="checkbox" [(ngModel)]="checked">&nbsp;
-        <label for="checkedCheck">Checked</label>
+        <sbb-checkbox [(ngModel)]="checked">Checked</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <input id="requiredCheck" type="checkbox" [(ngModel)]="required">&nbsp;
-        <label for="requiredCheck">Required</label>
+        <sbb-checkbox [(ngModel)]="required">Required</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <input id="disabled" type="checkbox" [(ngModel)]="disabled">&nbsp;
-        <label for="disabled">Disabled</label>
+        <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
       </div>
     </div>
   </div>
 
-  <div role="presentation" class="sbbsc-separator"></div>
+  <div role="presentation"
+       class="sbbsc-separator"></div>
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4>Radio buttons</h4>
+      <h4 class="sbbsc-block">Radio buttons</h4>
       <ng-container *ngFor="let option of radioOptions; index as i">
         <div class="sbbsc-block">
-          <sbb-radio-button [(ngModel)]="modelValue" inputId="model-radio-{{i}}" name="model-radio" [value]="option.value"></sbb-radio-button>
-          <label for="model-radio-{{i}}">{{option.name}}</label>
+          <sbb-radio-button [(ngModel)]="modelValue"
+                            name="model-radio"
+                            [value]="option.value">{{option.name}}</sbb-radio-button>
         </div>
       </ng-container>
     </div>
     <div class="col-lg-6">
-      <h4>Model</h4>
+      <h4 class="sbbsc-block">Model</h4>
       <pre>{{ modelValue }}</pre>
     </div>
   </div>

@@ -1,0 +1,96 @@
+@mixin tabsBase() {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+@mixin tabsItem() {
+  padding-right: 3em;
+  padding-left: 0;
+}
+
+@mixin tabsButton() {
+  @include buttonResetFrameless();
+
+  display: block;
+  white-space: nowrap;
+  font-family: $fontSbbLight;
+  font-size: pxToRem(20);
+  text-decoration: none;
+  padding-bottom: pxToRem(8);
+  margin-bottom: 1em;
+  position: relative;
+
+  @include mq($from: tabletLandscape) {
+    font-size: pxToRem(26);
+    padding-bottom: pxToRem(20);
+  }
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(39);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(52);
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    outline: none;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    left: 50%;
+    height: 1px;
+    border-bottom: 1px solid currentColor;
+    transition: width 0.3s, left 0.3s;
+  }
+
+  &.sbb-active::after,
+  &:not(.sbb-active):focus::after,
+  &:not(.sbb-active):hover::after {
+    left: 0;
+    width: 100%;
+  }
+
+  &:not(.sbb-active):focus,
+  &:not(.sbb-active):hover {
+    color: $colorRed125;
+    
+    &::after {
+      border-bottom-color: $colorRed125;
+    }
+  }
+
+  &[disabled] {
+    color: $colorBlack40;
+
+    &:hover,
+    &:focus {
+      color: $colorBlack40;
+      cursor: default;
+
+      &::after {
+        width: 0;
+      }
+    }
+  }
+
+  &.sbb-active:hover,
+  &.sbb-active:focus {
+    color: currentColor;
+    cursor: default;
+
+    &::after {
+      border-bottom-color: currentColor;
+    }
+  }
+}
+
