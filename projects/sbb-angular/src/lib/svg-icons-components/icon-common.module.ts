@@ -28,17 +28,4 @@ import { IconUtilizationModule } from './webshop/utilization/sbb-icon-utilizatio
   // tslint:disable-next-line:max-line-length
   exports: [IconArrowsModule, IconBaseModule, IconClockModule, IconDocumentsModule, IconHimModule, IconSocialMediaModule, IconGreenclassModule, IconLeisureHolidaysModule, IconProductsModule, IconWeatherModule, IconWebshopArrowsModule, IconEnvironmentcalculatorModule, IconOevModule, IconRealtimeModule, IconServiceModule, IconTrainformationModule, IconUtilizationModule]
 })
-export class IconCommonModule {
-  static withComponents(components: any[]) {
-    return {
-      ngModule: IconCommonModule,
-      providers: [
-        {
-          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: components,
-          multi: true
-        }
-      ]
-    };
-  }
- }
+export class IconCommonModule { }

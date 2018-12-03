@@ -9,13 +9,7 @@ import { By } from '@angular/platform-browser';
 import { MockNgZone } from '../../_common/testing/mock-ng-zone';
 import { DatepickerModule, CalendarComponent } from '..';
 import { dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent } from '../../_common/testing/dispatch-events';
-
-
-const JAN = 0;
-const FEB = 1;
-const DEC = 11;
-const NOV = 10;
-const JUL = 6;
+import { JAN, NOV, DEC, FEB, JUL } from '../../_common/testing/dates-constants';
 
 @Component({
   template: `

@@ -81,9 +81,9 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    */
   dateRange: DateRange<Date>;
 
-   /**
-   * Embedded datepicker with calendar header and body, switches for next/prev months and years
-   */
+  /**
+  * Embedded datepicker with calendar header and body, switches for next/prev months and years
+  */
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
 
   /**
@@ -101,6 +101,9 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
 
   }
   toDatepicker: DatepickerComponent;
+
+  @HostBinding('class')
+  cssClass = 'sbb-datepicker';
 
   /**
    * Embedded input field connected to the datepicker
@@ -126,6 +129,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    * Scrolls used to go directly to the next/prev day. They also support min and max date limits.
    */
   @Input()
+  @HostBinding('class.sbb-datepicker-with-arrows')
   get withArrows() {
     return this.isWithArrows;
   }
@@ -137,6 +141,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   private isWithArrows = false;
 
   @Input()
+  @HostBinding('class.sbb-datepicker-without-toggle')
   get withoutToggle() {
     return this.isWithoutToggle;
   }
@@ -159,19 +164,6 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     return this.withArrows && !!this.datepickerInput.value;
   }
 
-  @HostBinding('class')
-  get cssClass() {
-    const cssClasses = ['sbb-datepicker'];
-
-    if (this.withArrows) {
-      cssClasses.push('sbb-datepicker-with-arrows');
-    }
-    if (this.withoutToggle) {
-      cssClasses.push('sbb-datepicker-without-toggle');
-    }
-
-    return cssClasses.join(' ');
-  }
 
   constructor(
     @Optional() public dateAdapter: DateAdapter<Date>,
@@ -251,12 +243,19 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     }
   }
 
+  /**
+  * Adds or removes a day when clicking on the arrow buttons on the left of the input
+  */
+  scrollToPreviousDay() {
+    this.embeddedDatepicker.prevDay();
+    this.checkArrows();
+  }
 
   /**
-   * Adds or removes a day when clicking on the arrow buttons on the right/left of the input
-   */
-  scrollToDay(value: 'left' | 'right') {
-    value === 'left' ? this.embeddedDatepicker.prevDay() : this.embeddedDatepicker.nextDay();
+  * Adds or removes a day when clicking on the arrow buttons on the right/left of the input
+  */
+  scrollToNextDay() {
+    this.embeddedDatepicker.nextDay();
     this.checkArrows();
   }
 
