@@ -8,8 +8,8 @@ import { TextareaModule } from 'sbb-angular';
 and then you can use the textarea component as seen below
 
 ```html
- <h4 class="sbbsc-block">Textarea</h4>
- <sbb-textarea [(ngModel)]="textArea1" 
+<h4 class="sbbsc-block">Textarea</h4>
+<sbb-textarea [(ngModel)]="textArea1" 
                [minlength]="minlength" 
                [maxlength]="maxlength">
 </sbb-textarea>
