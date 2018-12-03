@@ -11,13 +11,26 @@ export class TimeInputDirective {
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
-
+  /**
+   * Type of value admitted
+   */
   @HostBinding('attr.type') type = 'text';
+  /**
+   * Admitted pattern value for time input value
+   */
   @HostBinding('attr.pattern') pattern = '[0-9]*';
+  /**
+   * Input mode for time input
+   */
   @HostBinding('attr.inputmode') inputmode = 'numeric';
+  /**
+   * Class property that refers to time input
+   */
   @HostBinding('class.ssb-time-input') ssbTimeInput = true;
 
-
+  /**
+   * Method that transforms the input value in 'hours:mins' format on blur event
+   */
   @HostListener('blur', ['$event.target.value'])
   onBlur(value) {
     const regGroups = this.inputValidate(value);
