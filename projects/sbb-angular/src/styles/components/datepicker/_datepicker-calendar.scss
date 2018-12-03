@@ -16,35 +16,52 @@
 
 @mixin datePickerCalendarHeader() {
   &-header {
-    
   }
 }
 
 @mixin datePickerCalendarControls() {
   &-controls {
-    height: $datePickerCalendarHeaderHeight;
     display: flex;
-    
-    &-months, &-years {
-      flex: 1 0 auto;
+    height: $datePickerCalendarHeaderHeight;
+    align-items: center;
+
+    &-months,
+    &-years {
+      flex: 1 0 50%;
+      text-align: center;
+      padding-left: pxToEm(16);
+      padding-right: pxToEm(16);
     }
 
     &-months {
     }
+
     &-years {
     }
 
+    &-left-arrow,
+    &-right-arrow {
+      width: pxToEm($defaultPickerIconSize);
+      height: $datePickerCalendarHeaderHeight;
+      vertical-align: middle;
+
+      &[disabled] {
+        opacity: 0;
+      }
+    }
+
     &-left-arrow {
-      width: 24px;
-      height: 24px;
+      float: left;
     }
 
     &-label {
+      font-size: pxToEm(21);
+      font-family: $fontSbbLight;
+      line-height: 3.4;
     }
 
     &-right-arrow {
-      width: 24px;
-      height: 24px;
+      float: right;
     }
   }
 }
