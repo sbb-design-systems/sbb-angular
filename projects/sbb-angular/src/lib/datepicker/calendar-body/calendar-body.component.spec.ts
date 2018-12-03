@@ -7,6 +7,54 @@ import { NativeDateAdapter } from '../native-date-adapter';
 import { SBB_DATE_FORMATS } from '../date-formats';
 import { DATE_PIPE_DATE_FORMATS } from '../date-pipe-date-formats';
 
+@Component({
+  template: `<table sbb-calendar-body
+                    [label]="label"
+                    [rows]="rows"
+                    [todayValue]="todayValue"
+                    [selectedValue]="selectedValue"
+                    [labelMinRequiredCells]="labelMinRequiredCells"
+                    [numCols]="numCols"
+                    [activeCell]="10"
+                    (selectedValueChange)="onSelect($event)">
+             </table>`,
+})
+class StandardCalendarBodyComponent {
+  label = 'Jan 2017';
+  rows = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14]].map(r => r.map(createCell));
+  todayValue = 3;
+  selectedValue = 4;
+  labelMinRequiredCells = 3;
+  numCols = 7;
+
+  onSelect(value: number) {
+    this.selectedValue = value;
+  }
+}
+
+
+@Component({
+  template: `<table sbb-calendar-body
+                    [rows]="rows"
+                    [allowDisabledSelection]="allowDisabledSelection"
+                    (selectedValueChange)="selected = $event">
+             </table>`
+})
+class CalendarBodyWithDisabledCellsComponent {
+  rows = [[1, 2, 3, 4]].map(r => r.map(d => {
+    const cell = createCell(d);
+    cell.enabled = d % 2 === 0;
+    return cell;
+  }));
+  allowDisabledSelection = false;
+  selected: number;
+}
+
+
+function createCell(value: number) {
+  return new CalendarCell(value, `${value}`, true);
+}
+
 
 describe('SbbCalendarBody', () => {
   beforeEach(async(() => {
@@ -144,52 +192,3 @@ describe('SbbCalendarBody', () => {
     });
   });
 });
-
-
-@Component({
-  template: `<table sbb-calendar-body
-                    [label]="label"
-                    [rows]="rows"
-                    [todayValue]="todayValue"
-                    [selectedValue]="selectedValue"
-                    [labelMinRequiredCells]="labelMinRequiredCells"
-                    [numCols]="numCols"
-                    [activeCell]="10"
-                    (selectedValueChange)="onSelect($event)">
-             </table>`,
-})
-class StandardCalendarBodyComponent {
-  label = 'Jan 2017';
-  rows = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14]].map(r => r.map(createCell));
-  todayValue = 3;
-  selectedValue = 4;
-  labelMinRequiredCells = 3;
-  numCols = 7;
-
-  onSelect(value: number) {
-    this.selectedValue = value;
-  }
-}
-
-
-@Component({
-  template: `<table sbb-calendar-body
-                    [rows]="rows"
-                    [allowDisabledSelection]="allowDisabledSelection"
-                    (selectedValueChange)="selected = $event">
-             </table>`
-})
-class CalendarBodyWithDisabledCellsComponent {
-  rows = [[1, 2, 3, 4]].map(r => r.map(d => {
-    const cell = createCell(d);
-    cell.enabled = d % 2 === 0;
-    return cell;
-  }));
-  allowDisabledSelection = false;
-  selected: number;
-}
-
-
-function createCell(value: number) {
-  return new CalendarCell(value, `${value}`, true);
-}
