@@ -9,12 +9,10 @@ import { RadioButtonRegistryService } from './radio-button-registry.service';
 
 @Component({
   selector: 'sbb-model-radio-button-test',
-  template: '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">' +
-            '</sbb-radio-button>' +
-            '<label for="test-radio-1">Test radio button 1</label>' +
-            '<sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">' +
-            '</sbb-radio-button>' +
-            '<label for="test-radio-2">Test radio button 2</label>'
+  template: `
+  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">Test radio button 1</sbb-radio-button>
+  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">Test radio button 2</sbb-radio-button>
+  `
 })
 class ModelRadioButtonTestComponent {
   testValue = '2';
