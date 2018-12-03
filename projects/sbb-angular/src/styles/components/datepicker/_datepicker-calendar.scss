@@ -16,6 +16,7 @@
 
 @mixin datePickerCalendarHeader() {
   &-header {
+    border-bottom: 1px solid $colorGreySilver;
   }
 }
 
@@ -29,11 +30,20 @@
     &-years {
       flex: 1 0 50%;
       text-align: center;
-      padding-left: pxToEm(16);
-      padding-right: pxToEm(16);
+      position: relative;
     }
 
     &-months {
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0;
+        height: calc(100% - #{pxToEm(2)});
+        top: pxToEm(2);
+        right: 0;
+        border-right: 1px solid $colorGreySilver;
+      }
     }
 
     &-years {
@@ -41,7 +51,7 @@
 
     &-left-arrow,
     &-right-arrow {
-      width: pxToEm($defaultPickerIconSize);
+      width: pxToEm($defaultPickerIconSize) + pxToEm(16);
       height: $datePickerCalendarHeaderHeight;
       vertical-align: middle;
 
