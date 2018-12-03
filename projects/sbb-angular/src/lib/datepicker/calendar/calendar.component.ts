@@ -151,8 +151,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   /** A portal containing the header component type for this calendar. */
   calendarHeaderPortal: Portal<any>;
 
-  private intlChanges: Subscription;
-
   /**
    * Used for scheduling that focus should be moved to the active cell on the next tick.
    * We need to schedule it, rather than do it immediately, because we have to wait
@@ -276,7 +274,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   }
 
   ngOnDestroy() {
-    this.intlChanges.unsubscribe();
     this.stateChanges.complete();
   }
 
