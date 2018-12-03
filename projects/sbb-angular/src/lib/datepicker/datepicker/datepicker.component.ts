@@ -132,6 +132,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   set withArrows(withArrows: any) {
     this.isWithArrows = withArrows === '' ? true : Boolean(withArrows);
     this.checkArrows();
+    this.embeddedDatepicker.withArrows = this.isWithArrows;
   }
   private isWithArrows = false;
 

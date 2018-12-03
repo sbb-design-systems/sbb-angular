@@ -1,6 +1,7 @@
 @import "../../../styles/main";
 
 .sbb-datepicker-popup {
+  @include datePickerPopup();
 
   .sbb-datepicker-content {
     position: relative;
@@ -10,11 +11,7 @@
     .sbb-calendar {
       @include datePickerCalendar();
       @include defaultDatePickerTheme();
-
-      &-header {
-        @include datePickerCalendarHeader();
-      }
-
+      @include datePickerCalendarHeader();
       @include datePickerCalendarControls();
 
       &-content {

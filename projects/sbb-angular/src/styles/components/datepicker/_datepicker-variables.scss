@@ -1,6 +1,7 @@
 $defaultPickerIconSize:                 24;
 $defaultPickerInputLeftPadding:         $defaultPickerIconSize + 20;
 $defaultToggleLeftOffset:               $defaultPickerIconSize / 2;
+$withArrowsToggleLeftOffset:            $defaultPickerIconSize;
 $pickerIconsHoverColor:                 $colorRed125;
 $withArrowsPickerInputLeftPadding:      ($defaultPickerIconSize * 2) + 24;
 $withArrowsPickerInputRightPadding:     $defaultPickerIconSize + 20;
@@ -8,12 +9,14 @@ $withArrowsToggleLeftOffset:            $defaultPickerIconSize + ($defaultPicker
 $withArrowsLeftArrowOffset:             $defaultPickerIconSize / 2;
 $withArrowsRightArrowOffset:            $defaultPickerIconSize / 2;
 
+$datePickerToggleWrapperArrowWidth:     pxToEm(24);
+$datePickerToggleWrapperArrowHeight:    pxToEm(16);
 $datePickerToggleArrowWidth:            pxToEm(18);
 $datePickerToggleArrowHeight:           pxToEm(2);
 $datePickerToggleArrowColor:            $colorGrey;
 $datePickerToggleArrowBeforeOffset:     pxToEm(-3);
 $datePickerToggleArrowAfterOffset:      pxToEm(9);
-$datePickerToggleArrowTopOffset:        calc(100% + 1.5em);
+$datePickerToggleArrowTopOffset:        -($datePickerToggleWrapperArrowHeight - $datePickerToggleArrowHeight);
 
 $datePickerCalendarBg:                  $colorWhite;
 $datePickerCalendarWidth:               pxToEm(428);

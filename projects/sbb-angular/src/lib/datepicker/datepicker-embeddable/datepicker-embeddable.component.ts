@@ -9,7 +9,7 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
-import { take, filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   OnDestroy,
-  LOCALE_ID,
+  LOCALE_ID
 } from '@angular/core';
 import { merge, Subject, Subscription } from 'rxjs';
 import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
@@ -97,6 +97,8 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
 
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
+
+  @Input() withArrows: boolean;
 
   /** Emits when the datepicker has been opened. */
   // tslint:disable-next-line:no-output-rename
@@ -278,6 +280,11 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
     }
   }
 
+  private getPanelClasses(): Array<string> {
+    const classArray = ['sbb-datepicker-popup', this.withArrows ? 'sbb-datepicker-with-arrows' : 'sbb-datepicker-no-arrows'];
+    return classArray;
+  }
+
   /** Open the calendar as a popup. */
   private openAsPopup(): void {
     if (!this.calendarPortal) {
@@ -287,6 +294,8 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
 
     if (!this.popupRef) {
       this.createPopup();
+    } else {
+      this.popupRef.getConfig().panelClass = this.getPanelClasses();
     }
 
     if (!this.popupRef.hasAttached()) {
@@ -294,7 +303,7 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
       this.popupComponentRef.instance.datepicker = this;
 
       // Update the position once the calendar has rendered.
-      this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
+      this.ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
         this.popupRef.updatePosition();
       });
     }
@@ -307,7 +316,7 @@ export class DatepickerEmbeddableComponent<D> implements OnDestroy {
       hasBackdrop: true,
       backdropClass: 'sbb-overlay-transparent-backdrop',
       scrollStrategy: this.scrollStrategy(),
-      panelClass: 'sbb-datepicker-popup',
+      panelClass: this.getPanelClasses(),
     });
 
     this.popupRef = this._overlay.create(overlayConfig);

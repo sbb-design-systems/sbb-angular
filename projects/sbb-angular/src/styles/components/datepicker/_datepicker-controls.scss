@@ -14,7 +14,6 @@
   .sbb-datepicker-toggle, 
   .sbb-datepicker-arrow {
     display: block;
-    // z-index: 9999;
 
     button {
       width: 100%;
@@ -33,10 +32,6 @@
 
     @include mq($from: desktop5k) {
       left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
-    }
-
-    &-active {
-      @include datePickerToggleArrow();
     }
 
   }
