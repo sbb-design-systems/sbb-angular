@@ -87,7 +87,7 @@ class CalendarWithSelectableMinDateComponent {
 }
 
 
-fdescribe('CalendarComponent', () => {
+describe('CalendarComponent', () => {
   let zone: MockNgZone;
 
   beforeEach(async(() => {
