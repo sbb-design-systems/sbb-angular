@@ -28,6 +28,7 @@ import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-b
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
+import { DateRange } from '../date-range';
 
 
 const DAYS_PER_WEEK = 7;
@@ -85,6 +86,9 @@ export class MonthViewComponent<D> implements AfterContentInit {
 
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
+
+  @Input()
+  dateRange: DateRange<D>;
 
   /** Emits when a new date is selected. */
   @Output() readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
@@ -246,6 +250,16 @@ export class MonthViewComponent<D> implements AfterContentInit {
     this.matCalendarBody.focusActiveCell();
   }
 
+  private isRangeLimit(date: D) {
+    if (this.dateAdapter.compareDate(date, this.dateRange.begin) === 0) {
+      return 'begin';
+    }
+    if (this.dateAdapter.compareDate(date, this.dateRange.end) === 0) {
+      return 'end';
+    }
+    return null;
+  }
+
   /** Creates MatCalendarCells for the dates in this month. */
   private createWeekCells() {
     const daysInMonth = this.dateAdapter.getNumDaysInMonth(this.activeDate);
@@ -266,8 +280,15 @@ export class MonthViewComponent<D> implements AfterContentInit {
     }
   }
 
-  private shouldApplyRangeBackground(date): boolean {
-    return true; // this.dateAdapter.compareDate(date) <= 0;
+  private shouldApplyRangeBackground(date): string | null {
+    if (this.dateRange && this.dateRange.begin && this.dateRange.end) {
+      if (this.dateAdapter.compareDate(date, this.dateRange.begin) > 0 &&
+        this.dateAdapter.compareDate(date, this.dateRange.end) < 0) {
+        return 'range';
+      }
+      return this.isRangeLimit(date);
+    }
+    return null;
   }
 
   /** Date filter for the month */

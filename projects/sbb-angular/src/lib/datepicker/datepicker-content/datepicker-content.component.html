@@ -9,5 +9,6 @@
     [headerComponent]="datepicker.calendarHeaderComponent"
     [selected]="datepicker.selected"
     (selectedChange)="datepicker.select($event)"
-    (userSelection)="datepicker.close()">
+    (userSelection)="datepicker.close()"
+    [dateRange]="datepicker.dateRange">
 </sbb-calendar>

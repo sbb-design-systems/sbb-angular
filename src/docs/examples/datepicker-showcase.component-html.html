@@ -1,14 +1,52 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Simple Datepicker<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Simple Datepicker<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"laData"</span> [<span class="hljs-attr">withArrows</span>]=<span class="hljs-string">"withArrows"</span> [<span class="hljs-attr">withoutToggle</span>]=<span class="hljs-string">"withoutToggle"</span> [<span class="hljs-attr">min</span>]=<span class="hljs-string">"minDate"</span>
+          [<span class="hljs-attr">max</span>]=<span class="hljs-string">"maxDate"</span> (<span class="hljs-attr">closed</span>)=<span class="hljs-string">"closedEvent()"</span> (<span class="hljs-attr">opened</span>)=<span class="hljs-string">"openedEvent()"</span> (<span class="hljs-attr">dateChange</span>)=<span class="hljs-string">"dateChangeEvent($event)"</span>
+          (<span class="hljs-attr">dateInput</span>)=<span class="hljs-string">"dateInputEvent($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"withArrows"</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"withArrowsDisabled"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"withArrows"</span>&gt;</span>Arrows<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"withoutToggle"</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"withoutToggleDisabled"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"withoutToggle"</span>&gt;</span>Without Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"onlyInput($event)"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>&gt;</span>Input only<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>model: {{ laData.value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>form control validity: {{ laData.valid }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>form control errors: {{ laData.errors |json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>2 Datepickers<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"laData"</span> <span class="hljs-attr">scrollable</span> [<span class="hljs-attr">min</span>]=<span class="hljs-string">"minDate"</span> [<span class="hljs-attr">max</span>]=<span class="hljs-string">"maxDate"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">toSbbDatepicker</span>]=<span class="hljs-string">"datepickerTheSecond"</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> #<span class="hljs-attr">datepickerTheSecond</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>formControl: {{ laData | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Date filter<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"dateWithFilter"</span> [<span class="hljs-attr">sbbDatepickerFilter</span>]=<span class="hljs-string">"filterDates"</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>model: {{ dateWithFilter.value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>form control validity: {{ dateWithFilter.valid }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>form control errors: {{ dateWithFilter.errors |json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

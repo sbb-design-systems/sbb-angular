@@ -73,7 +73,8 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
     HttpClientModule,
-    BrowserAnimationsModule],
+    BrowserAnimationsModule
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,
