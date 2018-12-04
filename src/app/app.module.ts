@@ -41,6 +41,7 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
+import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     ComponentViewerComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    AccordionShowcaseComponent,
     ...IconComponents.types
   ]
 })

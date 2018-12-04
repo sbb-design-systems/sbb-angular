@@ -1,0 +1,58 @@
+
+.sbb-expansion-panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+
+  &.sbb-expanded:focus,
+  &.sbb-expanded:hover, {
+    background: inherit;
+  }
+
+  &:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+}
+
+.sbb-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.sbb-expansion-panel-header-title,
+.sbb-expansion-panel-header-description {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 16px;
+
+  [dir='rtl'] & {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+}
+
+.sbb-expansion-panel-header-description {
+  flex-grow: 2;
+}
+
+/**
+ * Creates the expansion indicator arrow. Done using ::after rather than having
+ * additional nodes in the template.
+ */
+.sbb-expansion-indicator::after {
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  content: '';
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  vertical-align: middle;
+}

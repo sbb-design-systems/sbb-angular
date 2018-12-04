@@ -1,0 +1,101 @@
+<sbb-accordion multi="true">
+  <sbb-expansion-panel>
+    <sbb-expansion-panel-header>
+      <sbb-panel-title>
+        <h3 style="margin: 1em;">Some html content title</h3>
+      </sbb-panel-title>
+      <sbb-panel-description>
+        <p>Some html content description</p>
+      </sbb-panel-description>
+    </sbb-expansion-panel-header>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </sbb-expansion-panel>
+  <sbb-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <sbb-expansion-panel-header>
+      <sbb-panel-title>
+        <h3 style="margin: 1em;">Self aware panel</h3>
+      </sbb-panel-title>
+      <sbb-panel-description>
+        <p>Currently I am {{panelOpenState ? 'open' : 'closed'}}</p>
+      </sbb-panel-description>
+    </sbb-expansion-panel-header>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </sbb-expansion-panel>
+</sbb-accordion>
+
+<div style="margin-bottom: 3em"></div>
+
+<sbb-accordion class="example-headers-align">
+  <sbb-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <sbb-expansion-panel-header>
+      <sbb-panel-title>
+        Personal data
+      </sbb-panel-title>
+      <sbb-panel-description>
+        Type your name and age
+        <sbb-icon-avatar></sbb-icon-avatar>
+      </sbb-panel-description>
+    </sbb-expansion-panel-header>
+
+    <sbb-field>
+      <input type="text" placeholder="First name">
+    </sbb-field>
+    &nbsp;
+    <sbb-field>
+      <input type="number" min="1" placeholder="Age">
+    </sbb-field>
+
+    <sbb-action-row>
+      <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+    </sbb-action-row>
+  </sbb-expansion-panel>
+
+  <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <sbb-expansion-panel-header>
+      <sbb-panel-title>
+        Destination
+      </sbb-panel-title>
+      <sbb-panel-description>
+        Type the country name
+        <sbb-icon-map></sbb-icon-map>
+      </sbb-panel-description>
+    </sbb-expansion-panel-header>
+
+    <sbb-field>
+      <input type="text" placeholder="Country">
+    </sbb-field>
+
+    <sbb-action-row>
+      <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>
+      <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+    </sbb-action-row>
+  </sbb-expansion-panel>
+
+  <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <sbb-expansion-panel-header>
+      <sbb-panel-title>
+        Day of the trip
+      </sbb-panel-title>
+      <sbb-panel-description>
+        Inform the date you wish to travel
+        <sbb-icon-comfort></sbb-icon-comfort>
+      </sbb-panel-description>
+    </sbb-expansion-panel-header>
+
+    <sbb-field>
+      <input type="date" placeholder="Country">
+    </sbb-field>
+
+    <sbb-action-row>
+      <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>
+      <button sbbButton mode="primary" (click)="nextStep()">End</button>
+    </sbb-action-row>
+  </sbb-expansion-panel>
+
+</sbb-accordion>
