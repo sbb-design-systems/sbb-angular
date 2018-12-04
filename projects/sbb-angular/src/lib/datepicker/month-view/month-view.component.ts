@@ -100,7 +100,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
   @Output() readonly activeDateChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** The body of calendar table */
-  @ViewChild(CalendarBodyComponent) matCalendarBody: CalendarBodyComponent;
+  @ViewChild(CalendarBodyComponent) sbbCalendarBody: CalendarBodyComponent;
 
   /** The label for this month (e.g. "January 2017"). */
   monthLabel: string;
@@ -167,10 +167,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
 
   /** Handles keydown events on the calendar body when calendar is in month view. */
   handleCalendarBodyKeydown(event: KeyboardEvent): void {
-    // TODO(mmalerba): We currently allow keyboard navigation to disabled dates, but just prevent
-    // disabled ones from being selected. This may not be ideal, we should look into whether
-    // navigation should skip over disabled dates, and if so, how to implement that efficiently.
-
     const oldActiveDate = this._activeDate;
 
     switch (event.keyCode) {
@@ -247,7 +243,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
 
   /** Focuses the active cell after the microtask queue is empty. */
   focusActiveCell() {
-    this.matCalendarBody.focusActiveCell();
+    this.sbbCalendarBody.focusActiveCell();
   }
 
   private isRangeLimit(date: D) {

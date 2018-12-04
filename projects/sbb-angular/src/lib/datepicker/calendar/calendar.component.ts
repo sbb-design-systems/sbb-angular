@@ -83,17 +83,17 @@ export class CalendarHeaderComponent<D> {
       return true;
     }
     return !this.calendar.minDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
+      !this.isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
   }
 
   /** Whether the next period button is enabled. */
   nextMonthEnabled(): boolean {
     return !this.calendar.maxDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
+      !this.isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
   }
 
   /** Whether the two dates represent the same view in the current view mode (month or year). */
-  private _isSameMonthView(date1: D, date2: D): boolean {
+  private isSameMonthView(date1: D, date2: D): boolean {
 
     return this.dateAdapter.getMonth(date1) === this.dateAdapter.getMonth(date2);
   }
@@ -114,13 +114,13 @@ export class CalendarHeaderComponent<D> {
       return true;
     }
     return !this.calendar.minDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
+      !this.isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
   }
 
   /** Whether the next period button is enabled. */
   nextYearEnabled(): boolean {
     return !this.calendar.maxDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
+      !this.isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
   }
 }
 
@@ -199,18 +199,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
 
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
-
-  /**
-   * Emits the year chosen in multiyear view.
-   * This doesn't imply a change on the selected date.
-   */
-  @Output() readonly yearSelected: EventEmitter<D> = new EventEmitter<D>();
-
-  /**
-   * Emits the month chosen in year view.
-   * This doesn't imply a change on the selected date.
-   */
-  @Output() readonly monthSelected: EventEmitter<D> = new EventEmitter<D>();
 
   /** Emits when any date is selected. */
   @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
@@ -305,12 +293,6 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
 
   userSelected(): void {
     this.userSelection.emit();
-  }
-
-  /** Handles year/month selection in the multi-year/year views. */
-  goToDateInView(date: D, view: 'month'): void {
-    this.activeDate = date;
-    this.currentView = view;
   }
 
   /**

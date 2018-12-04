@@ -176,8 +176,7 @@
       text-align: center;
       outline: 0;
       cursor: pointer;
-
-      &:not(.sbb-calendar-body-disabled).sbb-calendar-body-active, 
+      
       &:not(.sbb-calendar-body-disabled):hover, 
       &:not(.sbb-calendar-body-disabled):focus {
         .sbb-calendar-body-cell-content {
