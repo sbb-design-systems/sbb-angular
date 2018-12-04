@@ -25,18 +25,15 @@
     height: toPx($pickerIconHeight * $scalingFactor5k);
   }
 }
-
 %pickerIconsSize {
   @include pickerIconsSize();
 }
-
 @mixin datePickerToggleArrow($dir: calendarDown) {
   position: absolute;
   left: pxToEm($defaultToggleLeftOffset);
   width: $datePickerToggleWrapperArrowWidth;
   background-color: $datePickerCalendarBg;
   height: $datePickerToggleWrapperArrowHeight;
-
   &::before,
   &::after {
     content: "";
@@ -46,47 +43,60 @@
     width: $datePickerToggleArrowWidth;
     height: $datePickerToggleArrowHeight;
   }
-
   &::before {
     left: $datePickerToggleArrowBeforeOffset;
   }
   &::after {
     left: $datePickerToggleArrowAfterOffset;
   }
-
   @if $dir == calendarDown {
     top: $datePickerToggleArrowTopOffset;
-  
     &::before,
     &::after {
       top: $datePickerToggleWrapperArrowHeight / 2;
     }
-  
     &::before {
       transform: rotate(-45deg);
     }
     &::after {
       transform: rotate(45deg);
     }
-
     .sbb-datepicker-with-arrows & {
       left: pxToEm($withArrowsToggleLeftOffset);
     }
   } @else if $dir == calendarTop {
     top: auto;
     bottom: $datePickerToggleArrowTopOffset;
-  
     &::before,
     &::after {
       top: auto;
       bottom: $datePickerToggleWrapperArrowHeight / 2;
     }
-  
     &::before {
       transform: rotate(45deg);
     }
     &::after {
       transform: rotate(-45deg);
+    }
+  }
+}
+@mixin datePickerDisableCell() {
+  color: $datePickerCalendarDisabledCellColor;
+  cursor: default;
+
+  &:not(.empty)::after {
+    content: "";
+    width: pxToEm(32);
+    height: pxToEm(1);
+    top: pxToEm(22);
+    left: calc(50% - #{pxToEm(16)});
+    background-color: $datePickerCalendarDisabledCellColor;
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+
+    @include mq($from: tabletPortrait) {
+      top: pxToEm(27);
     }
   }
   

@@ -1,4 +1,12 @@
 @mixin datePickerPopup() {
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(23);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(30);
+  }
+
   &-arrow {
     @include datePickerToggleArrow();
   }
@@ -6,15 +14,25 @@
 
 @mixin datePickerCalendar() {
   display: block;
-  width: $datePickerCalendarWidth;
-  height: $datePickerCalendarHeight;
+  width: $datePickerCalendarWidthMobile;
+  max-width: 100%;
+  height: $datePickerCalendarHeightMobile;
   background-color: $datePickerCalendarBg;
   border: $datePickerCalendarBorder;
   border-radius: $datePickerCalendarBorderRadius;
   box-shadow: $datePickerCalendarBoxShadow;
 
+  @include mq($from: tabletPortrait) {
+    width: $datePickerCalendarWidth;
+    height: $datePickerCalendarHeight;
+  }
+
   &-content {
-    padding: $datePickerCalendarTableContentPadding;
+    padding: $datePickerCalendarTableContentPaddingMobile;
+
+    @include mq($from: tabletPortrait) {
+      padding: $datePickerCalendarTableContentPadding;
+    }
   }
 }
 
@@ -68,13 +86,18 @@
 
     &-left-arrow,
     &-right-arrow {
-      width: pxToEm($defaultPickerIconSize) + pxToEm(16);
+      width: pxToEm($defaultPickerIconSize);
       height: $datePickerCalendarHeaderHeight;
       margin-top: pxToEm(2);
       vertical-align: middle;
 
+      @include mq($from: tabletPortrait) {
+        width: pxToEm($defaultPickerIconSize) + pxToEm(16);
+      }
+
       &[disabled] {
         opacity: 0;
+        cursor: default;
       }
 
       svg {
@@ -146,8 +169,6 @@
   }
 
   &-body {
-    &-label {
-    }
     &-cell {
       position: relative;
       height: 0;
@@ -156,9 +177,9 @@
       outline: 0;
       cursor: pointer;
 
-      &.sbb-calendar-body-active, 
-      &:hover, 
-      &:focus {
+      &:not(.sbb-calendar-body-disabled).sbb-calendar-body-active, 
+      &:not(.sbb-calendar-body-disabled):hover, 
+      &:not(.sbb-calendar-body-disabled):focus {
         .sbb-calendar-body-cell-content {
           color: $datePickerCalendarTableActiveColor;
           border-color: $datePickerCalendarTableActiveColor;
@@ -191,7 +212,7 @@
         } 
       }
 
-      &.sbb-calendar-body-selected, 
+      &:not(.sbb-calendar-body-disabled).sbb-calendar-body-selected, 
       &.sbb-calendar-body-selected-begin,
       &.sbb-calendar-body-selected-end {
         .sbb-calendar-body-cell-content {
@@ -204,6 +225,10 @@
       &.sbb-calendar-body-today {
         font-family: $datePickerCalendarTableTodayFontFamily;
         color: $datePickerCalendarTableTodayColor;
+      }
+
+      &.sbb-calendar-body-disabled {
+        @include datePickerDisableCell();
       }
 
       &-content {
