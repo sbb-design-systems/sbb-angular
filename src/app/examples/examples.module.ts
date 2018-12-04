@@ -16,7 +16,8 @@ import {
   ButtonModule,
   TabsModule,
   TimeInputModule,
-  LoadingModule
+  LoadingModule,
+  OptionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -61,7 +62,8 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     TimeInputModule,
     IconCommonModule,
     TabsModule,
-    LoadingModule
+    LoadingModule,
+    OptionModule
   ],
   providers: [],
   exports: [
