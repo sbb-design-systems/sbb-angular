@@ -35,7 +35,7 @@ import { Subject } from 'rxjs';
 import { filter, startWith, take } from 'rxjs/operators';
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { SbbExpansionPanelContent } from './accordion-panel-content';
-import { SBB_ACCORDION, SbbAccordionBase } from '../accordion/accordion-base';
+import { SBB_ACCORDION, AccordionBase } from '../accordion/accordion-base';
 
 // TODO(devversion): workaround for https://github.com/angular/material2/issues/12760
 export const _CdkAccordionItem = CdkAccordionItem;
@@ -72,8 +72,7 @@ let uniqueId = 0;
   // tslint:disable-next-line:use-host-property-decorator
   host: {
     'class': 'sbb-expansion-panel',
-    '[class.sbb-expanded]': 'expanded',
-    '[class.sbb-expansion-panel-spacing]': '_hasSpacing()',
+    '[class.sbb-expanded]': 'expanded'
   }
 })
 // tslint:disable-next-line:component-class-suffix
@@ -84,21 +83,11 @@ export class SbbExpansionPanel extends CdkAccordionItem implements AfterContentI
   // when the `_document` constructor param is required.
   private _document: Document | undefined;
 
-  /** Whether the toggle indicator should be hidden. */
-  @Input()
-  get hideToggle(): boolean {
-    return this._hideToggle || (this.accordion && this.accordion.hideToggle);
-  }
-  set hideToggle(value: boolean) {
-    this._hideToggle = coerceBooleanProperty(value);
-  }
-  private _hideToggle = false;
-
   /** Stream that emits for changes in `@Input` properties. */
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
-  accordion: SbbAccordionBase;
+  accordion: AccordionBase;
 
   /** Content that will be rendered lazily. */
   @ContentChild(SbbExpansionPanelContent) _lazyContent: SbbExpansionPanelContent;
@@ -112,7 +101,7 @@ export class SbbExpansionPanel extends CdkAccordionItem implements AfterContentI
   /** ID for the associated header element. Used for a11y labelling. */
   _headerId = `sbb-expansion-panel-header-${uniqueId++}`;
 
-  constructor(@Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: SbbAccordionBase,
+  constructor(@Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: AccordionBase,
     _changeDetectorRef: ChangeDetectorRef,
     _uniqueSelectionDispatcher: UniqueSelectionDispatcher,
     private _viewContainerRef: ViewContainerRef,
@@ -120,17 +109,6 @@ export class SbbExpansionPanel extends CdkAccordionItem implements AfterContentI
     super(accordion, _changeDetectorRef, _uniqueSelectionDispatcher);
     this.accordion = accordion;
     this._document = _document;
-  }
-
-  /** Determines whether the expansion panel should have spacing between it and its siblings. */
-  _hasSpacing(): boolean {
-    if (this.accordion) {
-      // We don't need to subscribe to the `stateChanges` of the parent accordion because each time
-      // the [displayMode] input changes, the change detection will also cover the host bindings
-      // of this expansion panel.
-      return (this.expanded ? this.accordion.displayMode : this._getExpandedState()) === 'default';
-    }
-    return false;
   }
 
   /** Gets the expanded state string. */

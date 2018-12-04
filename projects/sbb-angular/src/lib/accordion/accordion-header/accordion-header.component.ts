@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
 import { FocusMonitor, FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import {
@@ -62,7 +54,7 @@ import { SbbExpansionPanel } from '../accordion-panel/accordion-panel.component'
   },
 })
 // tslint:disable-next-line:component-class-suffix
-export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
+export class AccordionPanelHeader implements OnDestroy, FocusableOption {
   private _parentChangeSubscription = Subscription.EMPTY;
 
   constructor(
@@ -71,16 +63,12 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef) {
 
-    const accordionHideToggleChange = panel.accordion ?
-      panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle)) : EMPTY;
-
     // Since the toggle state depends on an @Input on the panel, we
     // need to subscribe and trigger change detection manually.
     this._parentChangeSubscription = merge(
       panel.opened,
       panel.closed,
-      accordionHideToggleChange,
-      panel._inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled)))
+      panel._inputChanges.pipe(filter(changes => !!(changes.disabled)))
     )
       .subscribe(() => this._changeDetectorRef.markForCheck());
 
@@ -91,7 +79,7 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
 
     _focusMonitor.monitor(_element.nativeElement).subscribe(origin => {
       if (origin && panel.accordion) {
-        panel.accordion._handleHeaderFocus(this);
+        panel.accordion.handleHeaderFocus(this);
       }
     });
   }
@@ -132,7 +120,7 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
 
   /** Gets whether the expand indicator should be shown. */
   _showToggle(): boolean {
-    return !this.panel.hideToggle && !this.panel.disabled;
+    return !this.panel.disabled;
   }
 
   /** Handle keydown event calling to toggle() if appropriate. */
@@ -146,7 +134,7 @@ export class SbbExpansionPanelHeader implements OnDestroy, FocusableOption {
         break;
       default:
         if (this.panel.accordion) {
-          this.panel.accordion._handleHeaderKeydown(event);
+          this.panel.accordion.handleHeaderKeydown(event);
         }
 
         return;

@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import {
   animate,
   animateChild,
@@ -20,7 +13,7 @@ import {
 /** Time and timing curve for expansion panel animations. */
 export const EXPANSION_PANEL_ANIMATION_TIMING = '225ms cubic-bezier(0.4,0.0,0.2,1)';
 
-/** Animations used by the Material expansion panel. */
+/** Animations used by the expansion panel. */
 export const sbbExpansionAnimations: {
   readonly indicatorRotate: AnimationTriggerMetadata;
   readonly expansionHeaderHeight: AnimationTriggerMetadata;

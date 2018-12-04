@@ -14,7 +14,7 @@ import { NgModule } from '@angular/core';
 import { AccordionDirective } from './accordion/accordion.directive';
 import { SbbExpansionPanel, SbbExpansionPanelActionRow } from './accordion-panel/accordion-panel.component';
 import {
-  SbbExpansionPanelHeader,
+  AccordionPanelHeader,
   SbbExpansionPanelTitle,
   SbbExpansionPanelDescription } from './accordion-header/accordion-header.component';
 import { SbbExpansionPanelContent } from './accordion-panel/accordion-panel-content';
@@ -26,7 +26,7 @@ import { SbbExpansionPanelContent } from './accordion-panel/accordion-panel-cont
     AccordionDirective,
     SbbExpansionPanel,
     SbbExpansionPanelActionRow,
-    SbbExpansionPanelHeader,
+    AccordionPanelHeader,
     SbbExpansionPanelTitle,
     SbbExpansionPanelDescription,
     SbbExpansionPanelContent
@@ -35,7 +35,7 @@ import { SbbExpansionPanelContent } from './accordion-panel/accordion-panel-cont
     AccordionDirective,
     SbbExpansionPanel,
     SbbExpansionPanelActionRow,
-    SbbExpansionPanelHeader,
+    AccordionPanelHeader,
     SbbExpansionPanelTitle,
     SbbExpansionPanelDescription,
     SbbExpansionPanelContent
