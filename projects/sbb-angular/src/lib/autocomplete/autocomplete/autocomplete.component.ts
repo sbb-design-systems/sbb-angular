@@ -16,8 +16,9 @@ import {
   ViewEncapsulation,
   HostBinding,
 } from '@angular/core';
-import { OptionComponent } from '../option/option.component';
-import { OptionGroupComponent } from '../option-group/option-group.component';
+import { OptionComponent } from '../../option/option/option.component';
+import { OptionGroupComponent } from '../../option/option-group/option-group.component';
+
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of

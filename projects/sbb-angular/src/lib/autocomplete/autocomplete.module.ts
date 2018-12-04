@@ -5,36 +5,30 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { OptionComponent } from './option/option.component';
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {
   AutocompleteTriggerDirective, SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './autocomplete/autocomplete-trigger.directive';
-import { HighlightPipe } from './option/highlight.pipe';
-import { OptionGroupComponent } from './option-group/option-group.component';
+import { OptionModule } from '../option/option.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     A11yModule,
-    OverlayModule
+    OverlayModule,
+    OptionModule
   ],
   declarations: [
     AutocompleteComponent,
-    OptionComponent,
     AutocompleteOriginDirective,
-    AutocompleteTriggerDirective,
-    HighlightPipe,
-    OptionGroupComponent
+    AutocompleteTriggerDirective
   ],
   exports: [
     AutocompleteComponent,
-    OptionComponent,
-    OptionGroupComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    OverlayModule,
-    HighlightPipe
+    OverlayModule
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })

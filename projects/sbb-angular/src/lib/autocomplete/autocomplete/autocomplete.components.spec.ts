@@ -36,11 +36,12 @@ import {
     getSbbAutocompleteMissingPanelError,
     SBB_AUTOCOMPLETE_SCROLL_STRATEGY
 } from './autocomplete-trigger.directive';
-import { SBBOptionSelectionChange, OptionComponent, } from '../option/option.component';
 import { SbbAutocompleteSelectedEvent, AutocompleteComponent } from './autocomplete.component';
-import { HighlightPipe } from '../option/highlight.pipe';
 import { SbbFieldComponent } from '../../field/sbb-field/sbb-field.component';
 import { FieldModule } from '../../field';
+import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
+import { HighlightPipe } from '../../option/option/highlight.pipe';
+import { OptionModule } from '../../option/option.module';
 
 
 @Component({
@@ -347,6 +348,7 @@ describe('AutocompleteComponent', () => {
                 FieldModule,
                 FormsModule,
                 ReactiveFormsModule,
+                OptionModule
             ],
             declarations: [component],
             providers: [

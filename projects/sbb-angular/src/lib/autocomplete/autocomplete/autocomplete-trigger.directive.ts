@@ -34,13 +34,13 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
+import { HighlightPipe } from '../../option/option/highlight.pipe';
 import {
   SBBOptionSelectionChange,
-  OptionComponent,
+  countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  countGroupLabelsBeforeOption
-} from '../option/option.component';
-import { HighlightPipe } from '../option/highlight.pipe';
+  OptionComponent
+} from '../../option/option/option.component';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
