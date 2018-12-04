@@ -24,6 +24,7 @@ import {
 import { DatepickerInputDirective, SbbDatepickerInputEvent } from '../datepicker-input/datepicker-input.directive';
 import { DateAdapter } from '../date-adapter';
 import { DateRange } from '../date-range';
+import { DatepickerToggleComponent } from '../datepicker-toggle/datepicker-toggle.component';
 
 
 export const SBB_DATEPICKER_VALUE_ACCESSOR: any = {
@@ -85,6 +86,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   * Embedded datepicker with calendar header and body, switches for next/prev months and years
   */
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
+  @ViewChild(DatepickerToggleComponent) datepickerToggle: DatepickerToggleComponent<Date>;
 
   /**
    * Second datepicker to be used in 2 datepickers use case
