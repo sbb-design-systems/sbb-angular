@@ -11,7 +11,7 @@ import {
   Inject,
   Optional,
 } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { take, first } from 'rxjs/operators';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 
 /**
@@ -115,7 +115,7 @@ export class CalendarBodyComponent {
   /** Focuses the active cell after the microtask queue is empty. */
   focusActiveCell() {
     this._ngZone.runOutsideAngular(() => {
-      this._ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
+      this._ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
         const activeCell: HTMLElement | null =
           this._elementRef.nativeElement.querySelector('.sbb-calendar-body-active');
 

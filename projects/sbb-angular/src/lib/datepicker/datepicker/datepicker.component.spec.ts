@@ -51,29 +51,7 @@ class DatepickerWithFilterAndValidationComponent {
   }
 }
 
-
-@Component({
-  template: `  <sbb-datepicker (change)="onChange()"
-                               (input)="onInput()"
-                               (dateChange)="onDateChange()"
-                               (dateInput)="onDateInput()"></sbb-datepicker>`,
-})
-class DatepickerWithChangeAndInputEventsComponent {
-  @ViewChild(DatepickerComponent) datepicker: DatepickerComponent;
-
-  onChange() { }
-
-  onInput() { }
-
-  onDateChange() { }
-
-  onDateInput() { }
-}
-
-
-
-
-fdescribe('DatepickerComponent', () => {
+describe('DatepickerComponent', () => {
 
 
   // Creates a test component fixture.
@@ -340,111 +318,6 @@ fdescribe('DatepickerComponent', () => {
         .not.toContain('ng-invalid');
     }));
 
-    it('should disable filtered calendar cells', () => {
-      fixture.detectChanges();
-
-      testComponent.datepicker.embeddedDatepicker.open();
-      fixture.detectChanges();
-
-      expect(document.querySelector('sbb-dialog-container')).not.toBeNull();
-
-      const cells = document.querySelectorAll('.sbb-calendar-body-cell');
-      expect(cells[0].classList).toContain('sbb-calendar-body-disabled');
-      expect(cells[1].classList).not.toContain('sbb-calendar-body-disabled');
-    });
   });
 
-  describe('datepicker with change and input events', () => {
-    let fixture: ComponentFixture<DatepickerWithChangeAndInputEventsComponent>;
-    let testComponent: DatepickerWithChangeAndInputEventsComponent;
-    let inputEl: HTMLInputElement;
-
-    beforeEach(fakeAsync(() => {
-      fixture = createComponent(DatepickerWithChangeAndInputEventsComponent);
-      fixture.detectChanges();
-
-      testComponent = fixture.componentInstance;
-      inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
-
-      spyOn(testComponent, 'onChange');
-      spyOn(testComponent, 'onInput');
-      spyOn(testComponent, 'onDateChange');
-      spyOn(testComponent, 'onDateInput');
-    }));
-
-    afterEach(fakeAsync(() => {
-      testComponent.datepicker.embeddedDatepicker.close();
-      fixture.detectChanges();
-    }));
-
-    it('should fire input and dateInput events when user types input', () => {
-      expect(testComponent.onChange).not.toHaveBeenCalled();
-      expect(testComponent.onDateChange).not.toHaveBeenCalled();
-      expect(testComponent.onInput).not.toHaveBeenCalled();
-      expect(testComponent.onDateInput).not.toHaveBeenCalled();
-
-      inputEl.value = '2001-01-01';
-      dispatchFakeEvent(inputEl, 'input');
-      fixture.detectChanges();
-
-      expect(testComponent.onChange).not.toHaveBeenCalled();
-      expect(testComponent.onDateChange).not.toHaveBeenCalled();
-      expect(testComponent.onInput).toHaveBeenCalled();
-      expect(testComponent.onDateInput).toHaveBeenCalled();
-    });
-
-    it('should fire change and dateChange events when user commits typed input', () => {
-      expect(testComponent.onChange).not.toHaveBeenCalled();
-      expect(testComponent.onDateChange).not.toHaveBeenCalled();
-      expect(testComponent.onInput).not.toHaveBeenCalled();
-      expect(testComponent.onDateInput).not.toHaveBeenCalled();
-
-      dispatchFakeEvent(inputEl, 'change');
-      fixture.detectChanges();
-
-      expect(testComponent.onChange).toHaveBeenCalled();
-      expect(testComponent.onDateChange).toHaveBeenCalled();
-      expect(testComponent.onInput).not.toHaveBeenCalled();
-      expect(testComponent.onDateInput).not.toHaveBeenCalled();
-    });
-
-    it('should fire dateChange and dateInput events when user selects calendar date',
-      fakeAsync(() => {
-        expect(testComponent.onChange).not.toHaveBeenCalled();
-        expect(testComponent.onDateChange).not.toHaveBeenCalled();
-        expect(testComponent.onInput).not.toHaveBeenCalled();
-        expect(testComponent.onDateInput).not.toHaveBeenCalled();
-
-        testComponent.datepicker.embeddedDatepicker.open();
-        fixture.detectChanges();
-
-        expect(document.querySelector('sbb-dialog-container')).not.toBeNull();
-
-        const cells = document.querySelectorAll('.sbb-calendar-body-cell');
-        dispatchMouseEvent(cells[0], 'click');
-        fixture.detectChanges();
-        flush();
-
-        expect(testComponent.onChange).not.toHaveBeenCalled();
-        expect(testComponent.onDateChange).toHaveBeenCalled();
-        expect(testComponent.onInput).not.toHaveBeenCalled();
-        expect(testComponent.onDateInput).toHaveBeenCalled();
-      })
-    );
-
-    it('should not fire the dateInput event if the value has not changed', () => {
-      expect(testComponent.onDateInput).not.toHaveBeenCalled();
-
-      inputEl.value = '12/12/2012';
-      dispatchFakeEvent(inputEl, 'input');
-      fixture.detectChanges();
-
-      expect(testComponent.onDateInput).toHaveBeenCalledTimes(1);
-
-      dispatchFakeEvent(inputEl, 'input');
-      fixture.detectChanges();
-
-      expect(testComponent.onDateInput).toHaveBeenCalledTimes(1);
-    });
-  });
 });
