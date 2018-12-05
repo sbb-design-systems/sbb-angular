@@ -26,7 +26,7 @@
       <h4 class="sbbsc-block">2 Datepickers</h4>
       <form [formGroup]="twoDatepickersForm">
         <sbb-field mode="medium" class="sbbsc-medium-field">
-          <sbb-datepicker formControlName="firstDatepicker" [toSbbDatepicker]="datepickerTheSecond" withArrows></sbb-datepicker>
+          <sbb-datepicker formControlName="firstDatepicker" [attachDatepicker]="datepickerTheSecond" withArrows></sbb-datepicker>
         </sbb-field>
         <sbb-field mode="medium" class="sbbsc-medium-field">
           <sbb-datepicker formControlName="secondDatepicker" #datepickerTheSecond withArrows></sbb-datepicker>

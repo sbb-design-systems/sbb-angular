@@ -38,8 +38,7 @@ export function isNumber(value: any): value is number {
 
 @Injectable()
 export class NativeDateAdapter extends DateAdapter<Date> {
-  localeChanges;
-  protected _localeChanges;
+
   private datePipe: DatePipe;
 
   constructor(@Inject(LOCALE_ID) protected locale: string) {

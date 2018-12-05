@@ -85,7 +85,7 @@ export class CalendarBodyComponent {
     private _ngZone: NgZone,
     @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats
   ) {
-    this.a11yFormat = this.dateFormats.display.dateA11yLabel;
+    this.a11yFormat = this.dateFormats.dateA11yLabel;
   }
 
   cellClicked(cell: CalendarCell): void {

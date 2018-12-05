@@ -10,7 +10,8 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  HostBinding
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import {
@@ -92,17 +93,17 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
    * Second datepicker to be used in 2 datepickers use case
    */
   @Input()
-  set toSbbDatepicker(value: DatepickerComponent) {
+  set attachDatepicker(value: DatepickerComponent) {
     if (!value) {
       return;
     }
-    this.toDatepicker = value;
+    this.attachedDatepicker = value;
     this.dateRange = new DateRange();
     this.datepickerInput.dateRange = this.dateRange;
-    this.toDatepicker.datepickerInput.dateRange = this.dateRange;
+    this.attachedDatepicker.datepickerInput.dateRange = this.dateRange;
 
   }
-  toDatepicker: DatepickerComponent;
+  attachedDatepicker: DatepickerComponent;
 
   @HostBinding('class')
   cssClass = 'sbb-datepicker';
@@ -194,27 +195,30 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   * Manages the 2nd datepicker linked to this instance.
   * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
   */
-  private handleRangeDatepicker(beginDate: Date) {
-    if (this.toDatepicker) {
-      this.dateRange.begin = beginDate;
-      if (!this.toDatepicker.datepickerInput.value) {
-        this.toDatepicker.embeddedDatepicker.open();
-      } else {
-        if (this.dateAdapter.compareDate(beginDate, this.toDatepicker.datepickerInput.value) > 0) {
-          this.toDatepicker.datepickerInput.value = null;
-          this.toDatepicker.embeddedDatepicker.open();
+  private handleRangeDatepicker(beginDate: Date, arrowClick: boolean = false) {
+    if (this.attachedDatepicker) {
+      if (beginDate && this.dateAdapter.isValid(beginDate)) {
+        this.dateRange.begin = beginDate;
+        if (!this.attachedDatepicker.datepickerInput.value && !arrowClick) {
+          this.attachedDatepicker.embeddedDatepicker.open();
         } else {
-          this.dateRange.end = this.toDatepicker.datepickerInput.value;
+          if (this.dateAdapter.compareDate(beginDate, this.attachedDatepicker.datepickerInput.value) > 0) {
+            this.attachedDatepicker.datepickerInput.value = null;
+            if (!arrowClick) {
+              this.attachedDatepicker.embeddedDatepicker.open();
+            }
+          } else {
+            this.dateRange.end = this.attachedDatepicker.datepickerInput.value;
+          }
         }
+        this.attachedDatepicker.min = beginDate;
       }
-      this.toDatepicker.min = beginDate;
     }
   }
 
   ngOnInit(): void {
     this.datepickerInput.valueChange.subscribe(newDateValue => {
       this.embeddedDatepicker.selected = newDateValue;
-      this.handleRangeDatepicker(newDateValue);
       if (this.withArrows) {
         this.checkArrows();
       }
@@ -224,6 +228,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
 
     this.embeddedDatepicker.closedStream.subscribe(() => {
       this.closed.emit();
+      this.handleRangeDatepicker(this.datepickerInput.value);
     });
 
     this.embeddedDatepicker.openedStream.subscribe(() => {
@@ -238,8 +243,12 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
       this.dateInput.emit(datepickerInputEvent);
     });
 
-    if (this.toDatepicker) {
-      this.toDatepicker.datepickerInput.valueChange.subscribe(newEndDateValue => {
+    this.datepickerInput.inputBlurred.subscribe(() => {
+      this.handleRangeDatepicker(this.datepickerInput.value);
+    });
+
+    if (this.attachedDatepicker) {
+      this.attachedDatepicker.datepickerInput.valueChange.subscribe(newEndDateValue => {
         this.dateRange.end = newEndDateValue;
       });
     }
@@ -249,16 +258,20 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   * Adds or removes a day when clicking on the arrow buttons on the left of the input
   */
   scrollToPreviousDay() {
-    this.embeddedDatepicker.prevDay();
-    this.checkArrows();
+    this.scrollToDay('prev');
   }
 
   /**
   * Adds or removes a day when clicking on the arrow buttons on the right/left of the input
   */
   scrollToNextDay() {
-    this.embeddedDatepicker.nextDay();
+    this.scrollToDay('next');
+  }
+
+  private scrollToDay(value: 'prev' | 'next') {
+    value === 'prev' ? this.embeddedDatepicker.prevDay() : this.embeddedDatepicker.nextDay();
     this.checkArrows();
+    this.handleRangeDatepicker(this.datepickerInput.value, true);
   }
 
   writeValue(obj: any): void {

@@ -7,10 +7,6 @@ export abstract class DateAdapter<D> {
     /** The locale to use for all dates. */
     protected locale: any;
 
-    /** A stream that emits when the locale changes. */
-    get localeChanges(): Observable<void> { return this._localeChanges; }
-    protected _localeChanges = new Subject<void>();
-
     /**
      * Gets the year component of the given date.
      * @param date The date to extract the year from.
@@ -202,7 +198,6 @@ export abstract class DateAdapter<D> {
      */
     setLocale(locale: any) {
         this.locale = locale;
-        this._localeChanges.next();
     }
 
     /**

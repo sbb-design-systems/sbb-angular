@@ -166,6 +166,8 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   @Output() readonly dateInput: EventEmitter<SbbDatepickerInputEvent<D>> =
     new EventEmitter<SbbDatepickerInputEvent<D>>();
 
+  @Output() readonly inputBlurred: EventEmitter<void> = new EventEmitter<void>();
+
   /** Emits when the value changes (either due to user input or programmatic change). */
   valueChange = new EventEmitter<D | null>();
 
@@ -173,8 +175,6 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   disabledChange = new EventEmitter<boolean>();
 
   private datepickerSubscription = Subscription.EMPTY;
-
-  private localeSubscription = Subscription.EMPTY;
 
 
   /** Whether the last value set on the input was valid. */
@@ -232,16 +232,10 @@ export class DatepickerInputDirective<D> implements OnDestroy {
     if (!this.dateFormats) {
       throw createMissingDateImplError('SBB_DATE_FORMATS');
     }
-
-    // Update the displayed date when the locale changes.
-    this.localeSubscription = dateAdapter.localeChanges.subscribe(() => {
-      this.value = this.value;
-    });
   }
 
   ngOnDestroy() {
     this.datepickerSubscription.unsubscribe();
-    this.localeSubscription.unsubscribe();
     this.valueChange.complete();
     this.disabledChange.complete();
   }
@@ -320,12 +314,13 @@ export class DatepickerInputDirective<D> implements OnDestroy {
     }
 
     this.onTouched();
+    this.inputBlurred.emit();
   }
 
   /** Formats a value and sets it on the input element. */
   private formatValue(value: D | null) {
     this.elementRef.nativeElement.value =
-      value ? this.titleCasePipe.transform(this.dateAdapter.format(value, this.dateFormats.display.dateInput))
+      value ? this.titleCasePipe.transform(this.dateAdapter.format(value, this.dateFormats.dateInput))
         : '';
   }
 
