@@ -1,3 +1,66 @@
+@mixin baseDocsTheme() {
+  table {
+    color: rgba(0, 0, 0, 0.87);
+    border-collapse: collapse;
+    border-radius: 2px;
+    border-spacing: 0;
+    margin: 0 0 32px;
+    width: 100%;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  }
+  th {
+    background: rgba($colorGreyLight, 0.5);
+    font-family: $fontSbbRoman;
+    font-weight: 400;
+    max-width: 100px;
+    padding: 13px 32px;
+    text-align: left;
+  }
+  td {
+    border: 1px solid $colorGreyLight;
+    font-family: $fontSbbRoman;
+    font-weight: 400;
+    padding: 8px 16px;
+  }
+
+  > p {
+    word-break: break-word;
+  }
+
+  code,
+  pre {
+    font-family: "Roboto Mono", monospace;
+  }
+  pre {
+    font-size: pxToRem(14);
+  }
+  code {
+    font-size: 90%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-top: 0;
+  }
+
+  @include mq($to: tabletLandscape) {
+    table {
+      margin: 0 0 32px;
+    }
+    th {
+      padding: 6px 16px;
+    }
+    td {
+      padding: 4px 8px;
+    }
+  }
+}
+
+%baseDocsTheme {
+  @include baseDocsTheme;
+}
+
 .docs {
   &-api {
     &-h2 {
@@ -104,62 +167,7 @@
       font-size: $sizeFontBase;
     }
 
-    table {
-      color: rgba(0, 0, 0, 0.87);
-      border-collapse: collapse;
-      border-radius: 2px;
-      border-spacing: 0;
-      margin: 0 0 32px;
-      width: 100%;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
-    }
-    th {
-      background: rgba($colorGreyLight, 0.5);
-      font-family: $fontSbbRoman;
-      font-weight: 400;
-      max-width: 100px;
-      padding: 13px 32px;
-      text-align: left;
-    }
-    td {
-      border: 1px solid $colorGreyLight;
-      font-family: $fontSbbRoman;
-      font-weight: 400;
-      padding: 8px 16px;
-    }
-
-    > p {
-      word-break: break-word;
-    }
-
-    code,
-    pre {
-      font-family: "Roboto Mono", monospace;
-    }
-    pre {
-      font-size: pxToRem(14);
-    }
-    code {
-      font-size: 90%;
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin-top: 0;
-    }
-
-    @include mq($to: tabletLandscape) {
-      table {
-        margin: 0 0 32px;
-      }
-      th {
-        padding: 6px 16px;
-      }
-      td {
-        padding: 4px 8px;
-      }
-    }
+    @extend %baseDocsTheme;
   }
 
   &-markdown {
@@ -275,3 +283,8 @@
   }
   
 }
+
+#sbbsc-overview-tab-panel {
+  @extend %baseDocsTheme;
+}
+
