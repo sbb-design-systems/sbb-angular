@@ -28,7 +28,8 @@ import { OptionModule } from '../option/option.module';
     AutocompleteComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    OverlayModule
+    OverlayModule,
+    OptionModule
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
