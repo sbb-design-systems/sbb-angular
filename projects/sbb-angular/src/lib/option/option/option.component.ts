@@ -15,7 +15,8 @@ import {
   HostListener,
   ViewChild,
   QueryList,
-  Optional
+  Optional,
+  InjectionToken
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Highlightable } from '@angular/cdk/a11y';
@@ -36,6 +37,21 @@ export class SBBOptionSelectionChange {
     /** Whether the change in the option's value was a result of a user action. */
     public isUserInput = false) { }
 }
+
+/**
+ * Describes a parent component that manages a list of options.
+ * Contains properties that the options can inherit.
+ * @docs-private
+ */
+export interface SbbOptionParentComponent {
+  multiple?: boolean;
+}
+
+/**
+ * Injection token used to provide the parent component to options.
+ */
+export const SBB_OPTION_PARENT_COMPONENT =
+    new InjectionToken<SbbOptionParentComponent>('SBB_OPTION_PARENT_COMPONENT');
 
 @Component({
   selector: 'sbb-option',
