@@ -5,19 +5,17 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
   ElementRef,
   EventEmitter,
   Input,
   Output,
-  QueryList,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
   HostBinding,
 } from '@angular/core';
-import { OptionComponent } from '../../option/option/option.component';
-import { OptionGroupComponent } from '../../option/option-group/option-group.component';
+import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
+import { HasOptions } from '../../_common/options/has-options';
 
 
 /**
@@ -48,9 +46,12 @@ export interface SbbAutocompleteDefaultOptions {
   templateUrl: 'autocomplete.component.html',
   styleUrls: ['autocomplete.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent },
+  ]
 })
-export class AutocompleteComponent implements AfterContentInit {
+export class AutocompleteComponent extends HasOptions implements AfterContentInit {
 
 
   /** Manages active item in option list based on key events. */
@@ -70,12 +71,6 @@ export class AutocompleteComponent implements AfterContentInit {
 
   /** Element for the panel containing the autocomplete options. */
   @ViewChild('panel') panel: ElementRef;
-
-  /** @docs-private */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
-
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
-
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -126,8 +121,7 @@ export class AutocompleteComponent implements AfterContentInit {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef<HTMLElement>) {
-
-
+    super();
   }
 
   ngAfterContentInit() {

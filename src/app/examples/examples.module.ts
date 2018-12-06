@@ -8,7 +8,6 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import {
   IconCommonModule,
   TextareaModule,
-  OptionModule,
   FieldModule,
   LinksModule,
   RadioButtonModule,
@@ -19,7 +18,8 @@ import {
   LoadingModule,
   DatepickerModule,
   AutocompleteModule,
-  SelectModule
+  SelectModule,
+  OptionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -55,7 +55,6 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
   imports: [
     BrowserModule,
     CommonModule,
-    OptionModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -70,6 +69,7 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    OptionModule,
     AutocompleteModule,
     SelectModule
   ],
@@ -87,7 +87,8 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
     ButtonModule,
-    LoadingModule
+    LoadingModule,
+    OptionModule
   ]
 })
 export class ExamplesModule { }

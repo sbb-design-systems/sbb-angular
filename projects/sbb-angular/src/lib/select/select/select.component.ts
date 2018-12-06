@@ -26,7 +26,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
   DoCheck,
   ElementRef,
   EventEmitter,
@@ -40,7 +39,6 @@ import {
   OnInit,
   Optional,
   Output,
-  QueryList,
   Self,
   SimpleChanges,
   ViewChild,
@@ -56,8 +54,7 @@ import {
   SBB_OPTION_PARENT_COMPONENT,
   SBBOptionSelectionChange,
   countGroupLabelsBeforeOption,
-  getOptionScrollPosition,
-  OptionGroupComponent
+  getOptionScrollPosition
 } from '../../option';
 import {
   filter,
@@ -69,6 +66,7 @@ import {
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
+import { HasOptions } from '../../_common/options/has-options';
 
 
 
@@ -136,12 +134,14 @@ export class SbbSelectChange {
 
 // Boilerplate for applying mixins to SelectComponent.
 /** @docs-private */
-export class SbbSelectBase {
+export class SbbSelectBase extends HasOptions {
   constructor(public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
-    public ngControl: NgControl) { }
+    public ngControl: NgControl) {
+    super();
+  }
 }
 
 export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
@@ -155,7 +155,7 @@ export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent },
-  ],
+  ]
 })
 export class SelectComponent extends SbbSelectMixinBase implements AfterContentInit, OnChanges,
   OnDestroy, OnInit, DoCheck, ControlValueAccessor, CanUpdateErrorState {
@@ -225,12 +225,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Overlay pane containing the options. */
   @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
-
-  /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
-
-  /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
 
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };

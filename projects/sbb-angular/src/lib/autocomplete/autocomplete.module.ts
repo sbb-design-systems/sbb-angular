@@ -13,10 +13,10 @@ import {
 
 @NgModule({
   imports: [
+    OptionModule,
     CommonModule,
     A11yModule,
-    OverlayModule,
-    OptionModule
+    OverlayModule
   ],
   declarations: [
     AutocompleteComponent,
@@ -27,7 +27,8 @@ import {
     AutocompleteComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    OverlayModule
+    OverlayModule,
+    OptionModule
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })

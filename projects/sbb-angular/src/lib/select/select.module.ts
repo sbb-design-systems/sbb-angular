@@ -6,8 +6,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   imports: [
-    CommonModule,
     OptionModule,
+    CommonModule,
     OverlayModule
   ],
   declarations: [
@@ -15,7 +15,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
   ],
   exports: [
     SelectComponent,
-    OverlayModule
+    OverlayModule,
+    OptionModule
   ],
   providers: [
     SBB_SELECT_SCROLL_STRATEGY_PROVIDER
