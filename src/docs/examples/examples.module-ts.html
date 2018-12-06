@@ -12,7 +12,6 @@
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -32,6 +31,11 @@
 <span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SelectModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/select'</span>;
+<span class="hljs-keyword">import</span> { OptionModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/option'</span>;
+<span class="hljs-keyword">import</span> { AutocompleteModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/autocomplete'</span>;
+
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -46,7 +50,8 @@
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    LoadingShowcaseComponent
+    LoadingShowcaseComponent,
+    SelectShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@
     TextareaModule,
     FieldModule,
     LinksModule,
+    OptionModule,
     AutocompleteModule,
     ButtonModule,
     FormsModule,
@@ -65,7 +71,8 @@
     TimeInputModule,
     IconCommonModule,
     TabsModule,
-    LoadingModule
+    LoadingModule,
+    SelectModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -79,6 +86,7 @@
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
+    SelectShowcaseComponent,
     ButtonModule,
     LoadingModule
   ]

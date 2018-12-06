@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { OverlayModule } from '@angular/cdk/overlay';
 
-
+import { OptionModule } from '../option/option.module';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {
   AutocompleteTriggerDirective, SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './autocomplete/autocomplete-trigger.directive';
-import { OptionModule } from '../option/option.module';
 
 
 @NgModule({
@@ -28,8 +27,7 @@ import { OptionModule } from '../option/option.module';
     AutocompleteComponent,
     AutocompleteOriginDirective,
     AutocompleteTriggerDirective,
-    OverlayModule,
-    OptionModule
+    OverlayModule
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })

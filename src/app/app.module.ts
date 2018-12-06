@@ -42,6 +42,7 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
+import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent,
+    ComponentViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +91,7 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    SelectShowcaseComponent,
     ...IconComponents.types
   ]
 })

@@ -1,3 +1,4 @@
+
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -45,21 +46,11 @@ import {
   ViewChild,
   ViewEncapsulation,
   HostBinding,
-  Host,
-  HostListener,
+  HostListener
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-
 import { defer, merge, Observable, Subject } from 'rxjs';
-import {
-  filter,
-  map,
-  startWith,
-  switchMap,
-  take,
-  takeUntil,
-  distinctUntilChanged,
-} from 'rxjs/operators';
+
 import {
   OptionComponent,
   SBB_OPTION_PARENT_COMPONENT,
@@ -68,7 +59,14 @@ import {
   getOptionScrollPosition,
   OptionGroupComponent
 } from '../../option';
-
+import {
+  filter,
+  map,
+  startWith,
+  switchMap,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
 
@@ -156,7 +154,7 @@ export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent }
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent },
   ],
 })
 export class SelectComponent extends SbbSelectMixinBase implements AfterContentInit, OnChanges,
