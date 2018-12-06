@@ -1,44 +1,35 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AccordionDirective } from './accordion/accordion.directive';
-import { SbbExpansionPanel, SbbExpansionPanelActionRow } from './accordion-panel/accordion-panel.component';
-import {
-  AccordionPanelHeader,
-  SbbExpansionPanelTitle,
-  SbbExpansionPanelDescription } from './accordion-header/accordion-header.component';
-import { SbbExpansionPanelContent } from './accordion-panel/accordion-panel-content';
+import { IconCommonModule } from '../svg-icons-components/icon-common.module';
+import { AccordionComponent } from './accordion/accordion.component';
+import { ExpansionPanelComponent, ExpansionPanelBodyComponent } from './expansion-panel/expansion-panel.component';
+import { ExpansionPanelHeaderComponent } from './expansion-panel-header/expansion-panel-header.component';
+import { ExpansionPanelContentDirective } from './expansion-panel/expansion-panel-content';
 
 
 @NgModule({
-  imports: [CommonModule, CdkAccordionModule, PortalModule],
+  imports: [
+    CommonModule,
+    CdkAccordionModule,
+    PortalModule,
+    IconCommonModule
+  ],
   exports: [
-    AccordionDirective,
-    SbbExpansionPanel,
-    SbbExpansionPanelActionRow,
-    AccordionPanelHeader,
-    SbbExpansionPanelTitle,
-    SbbExpansionPanelDescription,
-    SbbExpansionPanelContent
+    AccordionComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelBodyComponent,
+    ExpansionPanelHeaderComponent,
+    ExpansionPanelContentDirective
   ],
   declarations: [
-    AccordionDirective,
-    SbbExpansionPanel,
-    SbbExpansionPanelActionRow,
-    AccordionPanelHeader,
-    SbbExpansionPanelTitle,
-    SbbExpansionPanelDescription,
-    SbbExpansionPanelContent
+    AccordionComponent,
+    ExpansionPanelComponent,
+    ExpansionPanelBodyComponent,
+    ExpansionPanelHeaderComponent,
+    ExpansionPanelContentDirective
   ],
 })
 export class AccordionModule { }

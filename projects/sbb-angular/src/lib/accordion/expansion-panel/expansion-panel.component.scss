@@ -1,0 +1,24 @@
+// @import '~@angular/cdk/cdk/a11y/a11y';
+
+$sbb-fast-out-slow-in-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+.sbb-expansion-panel {
+  box-sizing: content-box;
+  display: block;
+  margin: 0;
+  transition: margin 225ms $sbb-fast-out-slow-in-timing-function;
+  border: 2px solid;
+}
+
+.sbb-expansion-panel-content {
+  overflow: hidden;
+
+  &.sbb-expanded {
+    overflow: visible;
+  }
+}
+
+.sbb-expansion-panel-body {
+  padding: 0 24px 16px;
+}
+

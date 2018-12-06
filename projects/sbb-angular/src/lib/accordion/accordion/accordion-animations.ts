@@ -1,12 +1,9 @@
 import {
   animate,
-  animateChild,
-  group,
   state,
   style,
   transition,
   trigger,
-  query,
   AnimationTriggerMetadata,
 } from '@angular/animations';
 
@@ -15,35 +12,8 @@ export const EXPANSION_PANEL_ANIMATION_TIMING = '225ms cubic-bezier(0.4,0.0,0.2,
 
 /** Animations used by the expansion panel. */
 export const sbbExpansionAnimations: {
-  readonly indicatorRotate: AnimationTriggerMetadata;
-  readonly expansionHeaderHeight: AnimationTriggerMetadata;
   readonly bodyExpansion: AnimationTriggerMetadata;
 } = {
-  /** Animation that rotates the indicator arrow. */
-  indicatorRotate: trigger('indicatorRotate', [
-    state('collapsed', style({transform: 'rotate(0deg)'})),
-    state('expanded', style({transform: 'rotate(180deg)'})),
-    transition('expanded <=> collapsed', animate(EXPANSION_PANEL_ANIMATION_TIMING)),
-  ]),
-
-  /** Animation that expands and collapses the panel header height. */
-  expansionHeaderHeight: trigger('expansionHeight', [
-    state('collapsed', style({
-      height: '{{collapsedHeight}}',
-    }), {
-      params: {collapsedHeight: '48px'},
-    }),
-    state('expanded', style({
-      height: '{{expandedHeight}}'
-    }), {
-      params: {expandedHeight: '64px'}
-    }),
-    transition('expanded <=> collapsed', group([
-      query('@indicatorRotate', animateChild(), {optional: true}),
-      animate(EXPANSION_PANEL_ANIMATION_TIMING),
-    ])),
-  ]),
-
   /** Animation that expands and collapses the panel content. */
   bodyExpansion: trigger('bodyExpansion', [
     state('collapsed', style({height: '0px', visibility: 'hidden'})),

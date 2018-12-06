@@ -5,10 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './accordion-showcase.component.html',
   styleUrls: ['./accordion-showcase.component.scss']
 })
-export class AccordionShowcaseComponent implements OnInit {
+export class AccordionShowcaseComponent {
 
   panelOpenState = false;
   step = 0;
+  disabled = false;
 
   setStep(index: number) {
     this.step = index;
@@ -22,9 +23,8 @@ export class AccordionShowcaseComponent implements OnInit {
     this.step--;
   }
 
-  constructor() { }
-
-  ngOnInit() {
+  log(...args: any[]) {
+    console.log(args);
   }
 
 }

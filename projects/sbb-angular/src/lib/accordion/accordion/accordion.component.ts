@@ -1,29 +1,36 @@
-import { Directive, Input, ContentChildren, QueryList, AfterContentInit, HostBinding } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+  Input,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
+  HostBinding,
+  Component,
+  ChangeDetectionStrategy } from '@angular/core';
 import { CdkAccordion } from '@angular/cdk/accordion';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { HOME, END } from '@angular/cdk/keycodes';
 
-import { SBB_ACCORDION, AccordionBase } from './accordion-base';
-import { AccordionPanelHeader } from '../accordion-header/accordion-header.component';
+import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
+import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
 
 
-@Directive({
-  // tslint:disable-next-line:directive-selector
+@Component({
   selector: 'sbb-accordion',
   exportAs: 'sbbAccordion',
   providers: [{
     provide: SBB_ACCORDION,
-    useExisting: AccordionDirective
-  }]
+    useExisting: AccordionComponent
+  }],
+  template: `<ng-content select='sbb-expansion-panel'></ng-content>`,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccordionDirective extends CdkAccordion implements AccordionBase, AfterContentInit {
-  private _keyManager: FocusKeyManager<AccordionPanelHeader>;
-
-  @ContentChildren(AccordionPanelHeader, { descendants: true })
-  headers: QueryList<AccordionPanelHeader>;
+export class AccordionComponent extends CdkAccordion implements IAccordionBase, AfterContentInit {
+  private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
 
   @Input() multi = true;
+
+  @ContentChildren(ExpansionPanelHeaderComponent, { descendants: true })
+  headers: QueryList<ExpansionPanelHeaderComponent>;
 
   @HostBinding('class.sbb-accordion') sbbAccordionClass = true;
 
@@ -47,7 +54,7 @@ export class AccordionDirective extends CdkAccordion implements AccordionBase, A
     }
   }
 
-  handleHeaderFocus(header: AccordionPanelHeader) {
+  handleHeaderFocus(header: ExpansionPanelHeaderComponent) {
     this._keyManager.updateActiveItem(header);
   }
 }

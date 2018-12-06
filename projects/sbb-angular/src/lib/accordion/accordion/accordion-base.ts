@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { CdkAccordion } from '@angular/cdk/accordion';
 
-export interface AccordionBase extends CdkAccordion {
+export interface IAccordionBase extends CdkAccordion {
   /** Handles keyboard events coming in from the panel headers. */
   handleHeaderKeydown: (event: KeyboardEvent) => void;
 
@@ -13,5 +13,5 @@ export interface AccordionBase extends CdkAccordion {
  * Token used to provide a `SbbAccordion` to `SbbExpansionPanel`.
  * Used primarily to avoid circular imports between `SbbAccordion` and `SbbExpansionPanel`.
  */
-export const SBB_ACCORDION = new InjectionToken<AccordionBase>('SBB_ACCORDION');
+export const SBB_ACCORDION = new InjectionToken<IAccordionBase>('SBB_ACCORDION');
 
