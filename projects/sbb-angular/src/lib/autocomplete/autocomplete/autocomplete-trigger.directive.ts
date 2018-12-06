@@ -300,7 +300,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return this.activeOption ? this.activeOption.id : null;
   }
 
-  /** The currently active option, coerced to MatOption type. */
+  /** The currently active option, coerced to SbbOption type. */
   get activeOption(): OptionComponent | null {
     if (this.autocomplete && this.autocomplete.keyManager) {
       return this.autocomplete.keyManager.activeItem;
@@ -507,7 +507,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     // The display value can also be the number zero and shouldn't fall back to an empty string.
     const inputValue = toDisplay != null ? toDisplay : '';
 
-    // If it's used within a `MatFormField`, we should set it through the property so it can go
+    // If it's used within a `SbbField`, we should set it through the property so it can go
     // through change detection.
     this.element.nativeElement.value = inputValue;
     this.previousValue = inputValue;

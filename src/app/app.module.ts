@@ -38,6 +38,7 @@ import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-
 import { ExamplesTabDocComponent } from './doc/examples-doc/examples-tab-doc.component';
 import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { ComponentViewerComponent } from './shared/component-viewer/component-viewer.component';
+import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/datepicker-showcase.component';
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
@@ -59,7 +60,7 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent
+    ComponentViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +73,8 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
     HttpClientModule,
-    BrowserAnimationsModule],
+    BrowserAnimationsModule
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     TextareaShowcaseComponent,
@@ -85,6 +87,7 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
     TabsShowcaseComponent,
     PersonListComponent,
     ComponentViewerComponent,
+    DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
     ...IconComponents.types

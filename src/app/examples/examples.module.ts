@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -18,7 +18,8 @@ import {
   TimeInputModule,
   LoadingModule,
   OptionModule,
-  SelectModule
+  SelectModule,
+  DatepickerModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -29,6 +30,7 @@ import { ButtonShowcaseComponent } from './button-showcase/button-showcase.compo
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
@@ -43,6 +45,7 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
@@ -63,13 +66,13 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
+    DatepickerModule,
     TimeInputModule,
     IconCommonModule,
     TabsModule,
     LoadingModule,
     SelectModule
   ],
-  providers: [],
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
@@ -77,6 +80,7 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,

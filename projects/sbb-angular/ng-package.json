@@ -8,7 +8,8 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
-      "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
+      "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
+      "date-fns": "dateFns"
     }
   }
 }

@@ -378,10 +378,6 @@
 		font-size: toEm(14/$sizeFontDefault);
 	}
 
-	@include mq($from: desktop) {
-
-	}
-
 	&:focus {
 		border-color: $colorGrey;
 	}
@@ -406,4 +402,28 @@
 	height: pxToEm(16, $sizeFontDefault);
 	margin-bottom: pxToEm(-4, $sizeFontDefault);
 	border-radius: 1px;
+}
+
+@mixin absoluteCenterXY() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin absoluteCenterX() {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+@mixin absoluteCenterY() {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@mixin setFullBleed($offset) {
+	margin-left: -$offset;
+	margin-right: -$offset; 
 }
