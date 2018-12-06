@@ -12,4 +12,5 @@ export * from './lib/checkbox/index';
 export * from './lib/tabs/index';
 export * from './lib/time-input/index';
 export * from './lib/loading/index';
+export * from './lib/select/index';
 export * from './lib/option/index';

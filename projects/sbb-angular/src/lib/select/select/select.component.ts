@@ -65,9 +65,10 @@ import {
   SBB_OPTION_PARENT_COMPONENT,
   SBBOptionSelectionChange,
   countGroupLabelsBeforeOption,
-  getOptionScrollPosition
+  getOptionScrollPosition,
+  OptionGroupComponent
 } from '../../option';
-import { OptionGroupComponent } from 'sbb-angular/lib/option';
+
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
 

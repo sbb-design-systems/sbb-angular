@@ -17,7 +17,8 @@ import {
   TabsModule,
   TimeInputModule,
   LoadingModule,
-  OptionModule
+  OptionModule,
+  SelectModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -31,6 +32,8 @@ import { FieldShowcaseComponent } from './field-showcase/field-showcase.componen
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    LoadingShowcaseComponent
+    LoadingShowcaseComponent,
+    SelectShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,7 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     IconCommonModule,
     TabsModule,
     LoadingModule,
-    OptionModule
+    SelectModule
   ],
   providers: [],
   exports: [
