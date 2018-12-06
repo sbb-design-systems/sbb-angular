@@ -195,19 +195,19 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private readonly _destroy = new Subject<void>();
 
   /** The last measured value for the trigger's client bounding rect. */
-  _triggerRect: ClientRect;
+  triggerRect: ClientRect;
 
   /** The aria-describedby attribute on the select for improved a11y. */
   _ariaDescribedby: string;
 
   /** The cached font-size of the trigger element. */
-  _triggerFontSize = 0;
+  triggerFontSize = 0;
 
   /** Deals with the selection logic. */
-  _selectionModel: SelectionModel<OptionComponent>;
+  selectionModel: SelectionModel<OptionComponent>;
 
   /** Manages keyboard events for options in the panel. */
-  _keyManager: ActiveDescendantKeyManager<OptionComponent>;
+  keyManager: ActiveDescendantKeyManager<OptionComponent>;
 
   private _focused = false;
 
@@ -332,20 +332,20 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   /** The IDs of child options to be passed to the aria-owns attribute. */
-  _optionIds = '';
+  optionIds = '';
 
   /** The value of the select panel's transform-origin property. */
-  _transformOrigin = 'top';
+  transformOrigin = 'top';
 
   /** Strategy that will be used to handle scrolling while the select panel is open. */
-  _scrollStrategy = this._scrollStrategyFactory();
+  scrollStrategy = this.scrollStrategyFactory();
 
   /**
    * The y-offset of the overlay panel in relation to the trigger's top start corner.
    * This must be adjusted to align the selected option text over the trigger text.
    * when the panel opens. Will change based on the y-position of the selected option.
    */
-  _offsetY = 0;
+  offsetY = 0;
 
   /**
    * This position config ensures that the top "start" corner of the overlay
@@ -353,7 +353,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
    * the trigger completely). If the panel cannot fit below the trigger, it
    * will fall back to a position above the trigger.
    */
-  _positions = [
+  positions = [
     {
       originX: 'start',
       originY: 'top',
@@ -378,7 +378,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   onChange: (value: any) => void = () => { };
 
   /** `View -> model callback called when select has been touched` */
-  _onTouched = () => { };
+  onTouched = () => { };
 
   /** Whether the select is focused. */
   get focused(): boolean {
@@ -416,7 +416,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   @Input()
   get multiple(): boolean { return this._multiple; }
   set multiple(value: boolean) {
-    if (this._selectionModel) {
+    if (this.selectionModel) {
       throw Error('Cannot change `multiple` mode of select after initialization.');
     }
 
@@ -442,7 +442,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       throw Error('`compareWith` must be a function.');
     }
     this._compareWith = fn;
-    if (this._selectionModel) {
+    if (this.selectionModel) {
       // A different comparator means the selection could change.
       this.initializeSelection();
     }
@@ -472,7 +472,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   @HostBinding('attr.aria-owns')
   getAriaOwns() {
-    return this.panelOpen ? this._optionIds : null;
+    return this.panelOpen ? this.optionIds : null;
   }
 
   constructor(
@@ -485,7 +485,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     @Optional() parentFormGroup: FormGroupDirective,
     @Self() @Optional() public ngControl: NgControl,
     @Attribute('tabindex') tabIndex: string,
-    @Inject(SBB_SELECT_SCROLL_STRATEGY) private _scrollStrategyFactory) {
+    @Inject(SBB_SELECT_SCROLL_STRATEGY) private scrollStrategyFactory) {
 
     super(_elementRef,
       defaultErrorStateMatcher,
@@ -507,7 +507,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   }
 
   ngOnInit() {
-    this._selectionModel = new SelectionModel<OptionComponent>(this.multiple);
+    this.selectionModel = new SelectionModel<OptionComponent>(this.multiple);
     this.stateChanges.next();
 
     if (this.panelOpen) {
@@ -526,7 +526,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this.initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
-    this._selectionModel.onChange!.pipe(takeUntil(this._destroy)).subscribe(event => {
+    this.selectionModel.onChange!.pipe(takeUntil(this._destroy)).subscribe(event => {
       event.added.forEach(option => option.select());
       event.removed.forEach(option => option.deselect());
     });
@@ -568,23 +568,23 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       return;
     }
 
-    this._triggerRect = this.trigger.nativeElement.getBoundingClientRect();
+    this.triggerRect = this.trigger.nativeElement.getBoundingClientRect();
     // Note: The computed font-size will be a string pixel value (e.g. "16px").
     // `parseInt` ignores the trailing 'px' and converts this to a number.
     // tslint:disable-next-line:radix
-    this._triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement)['font-size']);
+    this.triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement)['font-size']);
 
     this._panelOpen = true;
-    this._keyManager.withHorizontalOrientation(null);
+    this.keyManager.withHorizontalOrientation(null);
     this.calculateOverlayPosition();
     this.highlightCorrectOption();
     this.changeDetectorRef.markForCheck();
 
     // Set the font size on the panel element once it exists.
     this._ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
-      if (this._triggerFontSize && this.overlayDir.overlayRef &&
+      if (this.triggerFontSize && this.overlayDir.overlayRef &&
         this.overlayDir.overlayRef.overlayElement) {
-        this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this._triggerFontSize}px`;
+        this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
       }
     });
   }
@@ -594,7 +594,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     if (this._panelOpen) {
       this._panelOpen = false;
       this.changeDetectorRef.markForCheck();
-      this._onTouched();
+      this.onTouched();
     }
   }
 
@@ -629,7 +629,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
    * @param fn Callback to be triggered when the component has been touched.
    */
   registerOnTouched(fn: () => {}): void {
-    this._onTouched = fn;
+    this.onTouched = fn;
   }
 
   /**
@@ -651,7 +651,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** The currently selected option. */
   get selected(): OptionComponent | OptionComponent[] {
-    return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
+    return this.multiple ? this.selectionModel.selected : this.selectionModel.selected[0];
   }
 
   /** The value displayed in the trigger. */
@@ -661,13 +661,13 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     }
 
     if (this._multiple) {
-      const selectedOptions = this._selectionModel.selected.map(option => option.viewValue);
+      const selectedOptions = this.selectionModel.selected.map(option => option.viewValue);
 
       // TODO(crisbeto): delimiter should be configurable for proper localization.
       return selectedOptions.join(', ');
     }
 
-    return this._selectionModel.selected[0].viewValue;
+    return this.selectionModel.selected[0].viewValue;
   }
 
 
@@ -691,7 +691,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       event.preventDefault(); // prevents the page from scrolling down when pressing space
       this.open();
     } else if (!this.multiple) {
-      this._keyManager.onKeydown(event);
+      this.keyManager.onKeydown(event);
     }
   }
 
@@ -699,7 +699,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private handleOpenKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
-    const manager = this._keyManager;
+    const manager = this.keyManager;
 
     if (keyCode === HOME || keyCode === END) {
       event.preventDefault();
@@ -749,7 +749,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this._focused = false;
 
     if (!this.disabled && !this.panelOpen) {
-      this._onTouched();
+      this.onTouched();
       this.changeDetectorRef.markForCheck();
       this.stateChanges.next();
     }
@@ -768,7 +768,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Whether the select has a value. */
   get empty(): boolean {
-    return !this._selectionModel || this._selectionModel.isEmpty();
+    return !this.selectionModel || this.selectionModel.isEmpty();
   }
 
   private initializeSelection(): void {
@@ -789,17 +789,17 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
         throw Error('Value must be an array in multiple-selection mode.');
       }
 
-      this._selectionModel.clear();
+      this.selectionModel.clear();
       value.forEach((currentValue: any) => this._selectValue(currentValue));
       this.sortValues();
     } else {
-      this._selectionModel.clear();
+      this.selectionModel.clear();
       const correspondingOption = this._selectValue(value);
 
       // Shift focus to the active item. Note that we shouldn't do this in multiple
       // mode, because we don't know what option the user interacted with last.
       if (correspondingOption) {
-        this._keyManager.setActiveItem(correspondingOption);
+        this.keyManager.setActiveItem(correspondingOption);
       }
     }
 
@@ -825,7 +825,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     });
 
     if (correspondingOption) {
-      this._selectionModel.select(correspondingOption);
+      this.selectionModel.select(correspondingOption);
     }
 
     return correspondingOption;
@@ -833,22 +833,22 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Sets up a key manager to listen to keyboard events on the overlay panel. */
   private initKeyManager() {
-    this._keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options)
+    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options)
       .withTypeAhead()
       .withVerticalOrientation();
 
-    this._keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
+    this.keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
       // Restore focus to the trigger before closing. Ensures that the focus
       // position won't be lost if the user got focus into the overlay.
       this.focus();
       this.close();
     });
 
-    this._keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
+    this.keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
       if (this._panelOpen && this.panel) {
         this.scrollActiveOptionIntoView();
-      } else if (!this._panelOpen && !this.multiple && this._keyManager.activeItem) {
-        this._keyManager.activeItem.selectViaInteraction();
+      } else if (!this._panelOpen && !this.multiple && this.keyManager.activeItem) {
+        this.keyManager.activeItem.selectViaInteraction();
       }
     });
   }
@@ -880,17 +880,17 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Invoked when an option is clicked. */
   private onSelect(option: OptionComponent, isUserInput: boolean): void {
-    const wasSelected = this._selectionModel.isSelected(option);
+    const wasSelected = this.selectionModel.isSelected(option);
 
     if (option.value == null && !this._multiple) {
       option.deselect();
-      this._selectionModel.clear();
+      this.selectionModel.clear();
       this.propagateChanges(option.value);
     } else {
-      option.selected ? this._selectionModel.select(option) : this._selectionModel.deselect(option);
+      option.selected ? this.selectionModel.select(option) : this.selectionModel.deselect(option);
 
       if (isUserInput) {
-        this._keyManager.setActiveItem(option);
+        this.keyManager.setActiveItem(option);
       }
 
       if (this.multiple) {
@@ -906,7 +906,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       }
     }
 
-    if (wasSelected !== this._selectionModel.isSelected(option)) {
+    if (wasSelected !== this.selectionModel.isSelected(option)) {
       this.propagateChanges();
     }
 
@@ -917,7 +917,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private sortValues() {
     if (this.multiple) {
       const options = this.options.toArray();
-      this._selectionModel.sort((a, b) => options.indexOf(a) - options.indexOf(b));
+      this.selectionModel.sort((a, b) => options.indexOf(a) - options.indexOf(b));
       this.stateChanges.next();
     }
   }
@@ -941,7 +941,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Records option IDs to pass to the aria-owns property. */
   private setOptionIds() {
-    this._optionIds = this.options.map(option => option.id).join(' ');
+    this.optionIds = this.options.map(option => option.id).join(' ');
   }
 
   /**
@@ -949,18 +949,18 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
    * the first item instead.
    */
   private highlightCorrectOption(): void {
-    if (this._keyManager) {
+    if (this.keyManager) {
       if (this.empty) {
-        this._keyManager.setFirstItemActive();
+        this.keyManager.setFirstItemActive();
       } else {
-        this._keyManager.setActiveItem(this._selectionModel.selected[0]);
+        this.keyManager.setActiveItem(this.selectionModel.selected[0]);
       }
     }
   }
 
   /** Scrolls the active option into view. */
   private scrollActiveOptionIntoView(): void {
-    const activeOptionIndex = this._keyManager.activeItemIndex || 0;
+    const activeOptionIndex = this.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options,
       this.optionGroups);
 
@@ -997,7 +997,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     // If no value is selected we open the popup to the first item.
     let selectedOptionOffset =
       // tslint:disable-next-line:no-non-null-assertion
-      this.empty ? 0 : this.getOptionIndex(this._selectionModel.selected[0])!;
+      this.empty ? 0 : this.getOptionIndex(this.selectionModel.selected[0])!;
 
     selectedOptionOffset += countGroupLabelsBeforeOption(selectedOptionOffset, this.options,
       this.optionGroups);
@@ -1006,7 +1006,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     // center of the overlay panel rather than the top.
     const scrollBuffer = panelHeight / 2;
     this.scrollTop = this.calculateOverlayScroll(selectedOptionOffset, scrollBuffer, maxScroll);
-    this._offsetY = this.calculateOverlayOffsetY(selectedOptionOffset, scrollBuffer, maxScroll);
+    this.offsetY = this.calculateOverlayOffsetY(selectedOptionOffset, scrollBuffer, maxScroll);
 
     this.checkOverlayWithinViewport(maxScroll);
   }
@@ -1035,8 +1035,8 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   /** Determines the `aria-activedescendant` to be set on the host. */
   @HostBinding('attr.aria-activedescendant')
   getAriaActiveDescendant(): string | null {
-    if (this.panelOpen && this._keyManager && this._keyManager.activeItem) {
-      return this._keyManager.activeItem.id;
+    if (this.panelOpen && this.keyManager && this.keyManager.activeItem) {
+      return this.keyManager.activeItem.id;
     }
 
     return null;
@@ -1060,7 +1060,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     if (this.multiple) {
       offsetX = SELECT_MULTIPLE_PANEL_PADDING_X;
     } else {
-      const selected = this._selectionModel.selected[0] || this.options.first;
+      const selected = this.selectionModel.selected[0] || this.options.first;
       offsetX = selected && selected.group ? SELECT_PANEL_INDENT_PADDING_X : SELECT_PANEL_PADDING_X;
     }
     // Determine how much the select overflows on each side.
@@ -1090,7 +1090,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private calculateOverlayOffsetY(selectedIndex: number, scrollBuffer: number,
     maxScroll: number): number {
     const itemHeight = this.getItemHeight();
-    const optionHeightAdjustment = (itemHeight - this._triggerRect.height) / 2;
+    const optionHeightAdjustment = (itemHeight - this.triggerRect.height) / 2;
     const maxOptionsDisplayed = Math.floor(SELECT_PANEL_MAX_HEIGHT / itemHeight);
     let optionOffsetFromPanelTop: number;
 
@@ -1138,21 +1138,21 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     const itemHeight = this.getItemHeight();
     const viewportSize = this.viewportRuler.getViewportSize();
 
-    const topSpaceAvailable = this._triggerRect.top - SELECT_PANEL_VIEWPORT_PADDING;
+    const topSpaceAvailable = this.triggerRect.top - SELECT_PANEL_VIEWPORT_PADDING;
     const bottomSpaceAvailable =
-      viewportSize.height - this._triggerRect.bottom - SELECT_PANEL_VIEWPORT_PADDING;
+      viewportSize.height - this.triggerRect.bottom - SELECT_PANEL_VIEWPORT_PADDING;
 
-    const panelHeightTop = Math.abs(this._offsetY);
+    const panelHeightTop = Math.abs(this.offsetY);
     const totalPanelHeight =
       Math.min(this.getItemCount() * itemHeight, SELECT_PANEL_MAX_HEIGHT);
-    const panelHeightBottom = totalPanelHeight - panelHeightTop - this._triggerRect.height;
+    const panelHeightBottom = totalPanelHeight - panelHeightTop - this.triggerRect.height;
 
     if (panelHeightBottom > bottomSpaceAvailable) {
       this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
     } else if (panelHeightTop > topSpaceAvailable) {
       this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
     } else {
-      this._transformOrigin = this.getOriginBasedOnOption();
+      this.transformOrigin = this.getOriginBasedOnOption();
     }
   }
 
@@ -1164,16 +1164,16 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     // Scrolls the panel up by the distance it was extending past the boundary, then
     // adjusts the offset by that amount to move the panel up into the viewport.
     this.scrollTop -= distanceBelowViewport;
-    this._offsetY -= distanceBelowViewport;
-    this._transformOrigin = this.getOriginBasedOnOption();
+    this.offsetY -= distanceBelowViewport;
+    this.transformOrigin = this.getOriginBasedOnOption();
 
     // If the panel is scrolled to the very top, it won't be able to fit the panel
     // by scrolling, so set the offset to 0 to allow the fallback position to take
     // effect.
     if (this.scrollTop <= 0) {
       this.scrollTop = 0;
-      this._offsetY = 0;
-      this._transformOrigin = `50% bottom 0px`;
+      this.offsetY = 0;
+      this.transformOrigin = `50% bottom 0px`;
     }
   }
 
@@ -1186,16 +1186,16 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     // Scrolls the panel down by the distance it was extending past the boundary, then
     // adjusts the offset by that amount to move the panel down into the viewport.
     this.scrollTop += distanceAboveViewport;
-    this._offsetY += distanceAboveViewport;
-    this._transformOrigin = this.getOriginBasedOnOption();
+    this.offsetY += distanceAboveViewport;
+    this.transformOrigin = this.getOriginBasedOnOption();
 
     // If the panel is scrolled to the very bottom, it won't be able to fit the
     // panel by scrolling, so set the offset to 0 to allow the fallback position
     // to take effect.
     if (this.scrollTop >= maxScroll) {
       this.scrollTop = maxScroll;
-      this._offsetY = 0;
-      this._transformOrigin = `50% top 0px`;
+      this.offsetY = 0;
+      this.transformOrigin = `50% top 0px`;
       return;
     }
   }
@@ -1203,8 +1203,8 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   /** Sets the transform origin point based on the selected option. */
   private getOriginBasedOnOption(): string {
     const itemHeight = this.getItemHeight();
-    const optionHeightAdjustment = (itemHeight - this._triggerRect.height) / 2;
-    const originY = Math.abs(this._offsetY) - optionHeightAdjustment + itemHeight / 2;
+    const optionHeightAdjustment = (itemHeight - this.triggerRect.height) / 2;
+    const originY = Math.abs(this.offsetY) - optionHeightAdjustment + itemHeight / 2;
     return `50% ${originY}px 0px`;
   }
 
@@ -1215,7 +1215,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Calculates the height of the select's options. */
   private getItemHeight(): number {
-    return this._triggerFontSize * SELECT_ITEM_HEIGHT_EM;
+    return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
   }
 
   @HostBinding('attr.aria-describedby')
