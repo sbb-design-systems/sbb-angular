@@ -16,7 +16,8 @@ import {
   ButtonModule,
   TabsModule,
   TimeInputModule,
-  LoadingModule
+  LoadingModule,
+  AccordionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -31,7 +32,6 @@ import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
-import { AccordionModule } from 'projects/sbb-angular/src/lib/accordion';
 
 @NgModule({
   declarations: [
