@@ -277,7 +277,10 @@ export class MonthViewComponent<D> implements AfterContentInit {
   }
 
   private shouldApplyRangeBackground(date): string | null {
-    if (this.dateRange && this.dateRange.begin && this.dateRange.end) {
+    if (this.dateRange &&
+      this.dateRange.begin &&
+      this.dateRange.end &&
+      !this.dateAdapter.sameDate(this.dateRange.begin, this.dateRange.end)) {
       if (this.dateAdapter.compareDate(date, this.dateRange.begin) > 0 &&
         this.dateAdapter.compareDate(date, this.dateRange.end) < 0) {
         return 'range';
