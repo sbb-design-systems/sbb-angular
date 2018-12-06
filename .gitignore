@@ -36,6 +36,7 @@ yarn-error.log
 testem.log
 /typings
 docker/browser
+lintReport.json
 
 # System Files
 .DS_Store

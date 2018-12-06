@@ -1,0 +1,71 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormControl, FormGroup } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-datepicker-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./datepicker-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./datepicker-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DatepickerShowcaseComponent {
+  today = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+
+  minDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-20'</span>);
+  maxDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-12-28'</span>);
+
+  laData = <span class="hljs-keyword">new</span> FormControl(<span class="hljs-keyword">this</span>.today);
+
+  dateWithFilter = <span class="hljs-keyword">new</span> FormControl();
+
+  twoDatepickersForm = <span class="hljs-keyword">new</span> FormGroup(
+    {
+      firstDatepicker: <span class="hljs-keyword">new</span> FormControl(),
+      secondDatepicker: <span class="hljs-keyword">new</span> FormControl()
+    }
+  );
+
+  withoutToggle = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">get</span> withArrows(): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._withArrows;
+  }
+  <span class="hljs-keyword">set</span> withArrows(useArrows: <span class="hljs-built_in">boolean</span>) {
+    <span class="hljs-keyword">this</span>._withArrows = useArrows;
+  }
+  <span class="hljs-keyword">private</span> _withArrows = <span class="hljs-literal">false</span>;
+
+  withoutToggleDisabled = <span class="hljs-literal">false</span>;
+  withArrowsDisabled = <span class="hljs-literal">false</span>;
+
+  onlyInput($event) {
+    <span class="hljs-keyword">if</span> ($event.target.checked) {
+      <span class="hljs-keyword">this</span>.withoutToggle = <span class="hljs-literal">true</span>;
+      <span class="hljs-keyword">this</span>.withArrows = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">this</span>.withoutToggleDisabled = <span class="hljs-literal">true</span>;
+      <span class="hljs-keyword">this</span>.withArrowsDisabled = <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">this</span>.withoutToggle = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">this</span>.withArrows = <span class="hljs-literal">true</span>;
+      <span class="hljs-keyword">this</span>.withoutToggleDisabled = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">this</span>.withArrowsDisabled = <span class="hljs-literal">false</span>;
+    }
+  }
+
+  closedEvent() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'CLOSED'</span>);
+  }
+
+  openedEvent() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'OPENED'</span>);
+  }
+
+  dateChangeEvent($event) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'DATE_CHANGED'</span>, $event);
+  }
+
+  dateInputEvent($event) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'DATE_INPUT'</span>, $event);
+  }
+
+  filterDates(date: <span class="hljs-built_in">Date</span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">return</span> date.getDate() === <span class="hljs-number">1</span>;
+  }
+}

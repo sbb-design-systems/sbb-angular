@@ -35,8 +35,12 @@
   }
 
   &-body {
-    padding: 0.25em 1em;
+    padding: 0.25em;
     
+    @include mq($from: tabletLandscape) {
+      padding: 0.25em 1em;
+    }
+
     ngb-tabset .nav-tabs .nav-item .nav-link {
       font-size: pxToRem(22);
     }
