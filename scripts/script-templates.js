@@ -55,20 +55,7 @@ ${modulesImportStatement}
   // tslint:disable-next-line:max-line-length
   exports: [${joinedModuleNames}]
 })
-export class IconCommonModule {
-  static withComponents(components: any[]) {
-    return {
-      ngModule: IconCommonModule,
-      providers: [
-        {
-          provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-          useValue: components,
-          multi: true
-        }
-      ]
-    };
-  }
- }
+export class IconCommonModule { }
 `;
 };
 

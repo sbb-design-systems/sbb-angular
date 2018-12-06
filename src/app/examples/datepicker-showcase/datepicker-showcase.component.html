@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Simple Datepicker</h4>
+      <sbb-field mode="long">
+        <sbb-datepicker [formControl]="laData" [withArrows]="withArrows" [withoutToggle]="withoutToggle" [min]="minDate"
+          [max]="maxDate" (closed)="closedEvent()" (opened)="openedEvent()" (dateChange)="dateChangeEvent($event)"
+          (dateInput)="dateInputEvent($event)"></sbb-datepicker>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-checkbox [(ngModel)]="withArrows" [disabled]="withArrowsDisabled" [value]="withArrows">Arrows</sbb-checkbox>
+      <sbb-checkbox [(ngModel)]="withoutToggle" [disabled]="withoutToggleDisabled" [value]="withoutToggle">Without
+        Toggle</sbb-checkbox>
+
+      <sbb-checkbox (click)="onlyInput($event)" value="false">Input only</sbb-checkbox>
+      <pre>model: {{ laData.value | json }}</pre>
+      <pre>form control validity: {{ laData.valid }}</pre>
+      <pre>form control errors: {{ laData.errors | json }}</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">2 Datepickers</h4>
+      <form [formGroup]="twoDatepickersForm">
+        <sbb-field mode="medium" class="sbbsc-medium-field">
+          <sbb-datepicker formControlName="firstDatepicker" [attachDatepicker]="datepickerTheSecond" withArrows></sbb-datepicker>
+        </sbb-field>
+        <sbb-field mode="medium" class="sbbsc-medium-field">
+          <sbb-datepicker formControlName="secondDatepicker" #datepickerTheSecond withArrows></sbb-datepicker>
+        </sbb-field>
+      </form>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>datepicker 1 errors: {{ twoDatepickersForm.get('firstDatepicker').errors | json }}</pre>
+      <pre>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker').errors | json }}</pre>
+
+      
+      <pre>form validity: {{ twoDatepickersForm.valid | json }}</pre>
+      <pre>form model: {{ twoDatepickersForm.value | json }}</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Date filter</h4>
+      <sbb-field>
+        <sbb-datepicker [formControl]="dateWithFilter" [sbbDatepickerFilter]="filterDates" withArrows></sbb-datepicker>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>model: {{ dateWithFilter.value | json }}</pre>
+      <pre>form control validity: {{ dateWithFilter.valid }}</pre>
+      <pre>form control errors: {{ dateWithFilter.errors |json }}</pre>
+    </div>
+  </div>
+</div>

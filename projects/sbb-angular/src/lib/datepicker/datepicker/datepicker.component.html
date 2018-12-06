@@ -1,0 +1,12 @@
+<div class="sbb-datepicker-input-wrapper">
+  <button class="sbb-datepicker-arrow sbb-datepicker-arrow-left" *ngIf="leftArrow" (click)="scrollToPreviousDay()">
+    <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+  </button>
+  <sbb-datepicker-toggle *ngIf="!withoutToggle" [for]="picker"></sbb-datepicker-toggle>
+  <input class="sbb-datepicker-input" type="text" [sbbDatepicker]="picker" i18n-placeholder placeholder="TT.MM.JJJJ"
+    [min]="min" [max]="max" [disabled]="disabled">
+  <button class="sbb-datepicker-arrow sbb-datepicker-arrow-right" *ngIf="rightArrow" (click)="scrollToNextDay()">
+    <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+  </button>
+</div>
+<sbb-datepicker-embeddable #picker></sbb-datepicker-embeddable>

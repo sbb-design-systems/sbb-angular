@@ -23,7 +23,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   @Input() inputId = `sbb-radio-button-${counter++}`;
   /**
-   * Specific radio button name in formControl
+   * Indicates radio button name in formControl
    */
   @Input() formControlName: string;
   /**
@@ -42,7 +42,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   // tslint:disable-next-line:no-input-rename
   @Input('aria-describedby') ariaDescribedby: string;
   /**
-   * Specifies that the radio button field is required
+   * Indicates that the radio button field is required
    */
   @Input() required: boolean;
   /**

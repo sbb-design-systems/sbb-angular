@@ -1,0 +1,20 @@
+@import '../../../styles/main';
+
+.sbb-datepicker {
+  display: inline-block;
+  width: 100%;
+
+  @include defaultDatePickerTheme();
+  @include datePickerControls();
+  @include datePickerInput();
+
+  &-with-arrows {
+    @include datePickerInput(withArrows);
+    @include datePickerControls(withArrows);
+  }
+
+  &-without-toggle {
+    @include datePickerInput(withoutToggle);
+    @include datePickerControls(withoutToggle);
+  }
+}

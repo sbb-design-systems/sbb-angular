@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,7 +17,8 @@ import {
   TabsModule,
   TimeInputModule,
   LoadingModule,
-  AccordionModule
+  AccordionModule,
+  DatepickerModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -28,6 +29,7 @@ import { ButtonShowcaseComponent } from './button-showcase/button-showcase.compo
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
+import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-showcase.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
@@ -41,6 +43,7 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
@@ -61,13 +64,13 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
+    DatepickerModule,
     TimeInputModule,
     IconCommonModule,
     TabsModule,
     LoadingModule,
     AccordionModule
   ],
-  providers: [],
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
@@ -75,6 +78,7 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
