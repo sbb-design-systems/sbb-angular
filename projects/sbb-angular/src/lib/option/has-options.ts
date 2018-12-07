@@ -1,5 +1,5 @@
 import { ContentChildren, QueryList } from '@angular/core';
-import { OptionComponent, OptionGroupComponent } from '../option/index';
+import { OptionComponent, OptionGroupComponent } from '../option/option';
 
 export class HasOptions {
 

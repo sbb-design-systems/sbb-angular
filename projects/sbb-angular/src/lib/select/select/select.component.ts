@@ -55,7 +55,7 @@ import {
   SBBOptionSelectionChange,
   countGroupLabelsBeforeOption,
   getOptionScrollPosition
-} from '../../option/index';
+} from '../../option/option';
 import {
   filter,
   map,
