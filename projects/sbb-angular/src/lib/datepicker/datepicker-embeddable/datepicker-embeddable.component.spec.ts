@@ -7,14 +7,13 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Subject } from 'rxjs';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { DatepickerModule } from '../datepicker.module';
 import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchEvent, dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { JAN, DEC, JUL, JUN, SEP } from '../../_common/testing/dates-constants';
+import { JAN } from '../../_common/testing/dates-constants';
 import { createKeyboardEvent } from '../../_common/testing/event-objects';
 import { DatepickerEmbeddableComponent } from './datepicker-embeddable.component';
-import { DatepickerToggleComponent, DatepickerInputDirective } from 'projects/sbb-angular/src/lib/datepicker';
+import { DatepickerToggleComponent, DatepickerInputDirective } from '../datepicker';
 
 
 @Component({
