@@ -1,18 +1,18 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic sbb-select<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Favorite food"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span> <span class="hljs-attr">multiple</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>
       {{food.viewValue}}
     <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic native select<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Multiple sbb-select<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">matNativeControl</span> <span class="hljs-attr">required</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"volvo"</span>&gt;</span>Volvo<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"saab"</span>&gt;</span>Saab<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"mercedes"</span>&gt;</span>Mercedes<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"audi"</span>&gt;</span>Audi<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Favorite food"</span> <span class="hljs-attr">multiple</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>
+      {{food.viewValue}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
