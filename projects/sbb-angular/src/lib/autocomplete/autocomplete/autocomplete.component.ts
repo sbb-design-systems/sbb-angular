@@ -15,7 +15,7 @@ import {
   HostBinding,
 } from '@angular/core';
 import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
-import { HasOptions } from '../../option/has-options';
+import { OptionsChooserComponent } from '../../option/has-options';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -50,7 +50,7 @@ export interface SbbAutocompleteDefaultOptions {
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent },
   ]
 })
-export class AutocompleteComponent extends HasOptions implements AfterContentInit {
+export class AutocompleteComponent extends OptionsChooserComponent implements AfterContentInit {
 
 
   /** Manages active item in option list based on key events. */

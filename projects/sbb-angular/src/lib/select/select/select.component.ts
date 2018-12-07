@@ -66,7 +66,7 @@ import {
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
-import { HasOptions } from '../../option/has-options';
+import { OptionsChooserComponent } from '../../option/has-options';
 
 let nextUniqueId = 0;
 
@@ -132,7 +132,7 @@ export class SbbSelectChange {
 
 // Boilerplate for applying mixins to SelectComponent.
 /** @docs-private */
-export class SbbSelectBase extends HasOptions {
+export class SbbSelectBase extends OptionsChooserComponent {
   constructor(public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
