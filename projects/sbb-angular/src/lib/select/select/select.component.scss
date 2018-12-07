@@ -1,1 +1,24 @@
 @import "../../../styles/main";
+
+.sbb-select-panel {
+  @include autocompleteBase();
+  @include autocompleteDirectionalRules();
+
+  &.sbb-select-panel-above {
+    @include autocompleteDirectionalRules($mode: reverse);
+  }
+}
+
+input[aria-expanded="true"] {
+  @include autocompleteInputActive();
+
+  &.sbb-select-input-above {
+    @include autocompleteInputActive($mode: reverse);
+  }
+}
+
+.sbb-select {
+  .sbb-select-trigger {
+    @include inputfields;
+  }
+}

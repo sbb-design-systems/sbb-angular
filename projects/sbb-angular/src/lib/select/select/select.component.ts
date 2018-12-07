@@ -77,10 +77,12 @@ let nextUniqueId = 0;
  */
 
 /** The max height of the select's overlay panel */
-export const SELECT_PANEL_MAX_HEIGHT = 256;
+export const SELECT_PANEL_MAX_HEIGHT = 480;
+
+export const SELECT_BASE_TRIGGER_HEIGHT = 48;
 
 /** The panel's padding on the x-axis */
-export const SELECT_PANEL_PADDING_X = 16;
+export const SELECT_PANEL_PADDING_X = 0;
 
 /** The panel's x axis padding if it is indented (e.g. there is an option group). */
 export const SELECT_PANEL_INDENT_PADDING_X = SELECT_PANEL_PADDING_X * 2;
@@ -96,7 +98,7 @@ export const SELECT_ITEM_HEIGHT_EM = 3;
  * The padding is multiplied by 1.5 because the checkbox's margin is half the padding.
  * The checkbox width is 20px.
  */
-export const SELECT_MULTIPLE_PANEL_PADDING_X = SELECT_PANEL_PADDING_X * 1.5 + 20;
+export const SELECT_MULTIPLE_PANEL_PADDING_X = SELECT_PANEL_PADDING_X * 1.5 + 0;
 
 /**
  * The select panel will only "fit" inside the viewport if it is positioned at
@@ -161,7 +163,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   @HostBinding('attr.role') role = 'listbox';
 
   @Input()
-  @HostBinding('attr.tabindex')
   get tabIndex(): number { return this.disabled ? -1 : this._tabIndex; }
   set tabIndex(value: number) {
     // If the specified tabIndex value is null or undefined, fall back to the default value.
@@ -359,7 +360,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   ];
 
   /** Whether the component is disabling centering of the active option over the trigger. */
-  private _disableOptionCentering = false;
+  private _disableOptionCentering = true;
 
   /** Comparison function to specify which option is displayed. Defaults to object equality. */
   private _compareWith = (o1: any, o2: any) => o1 === o2;
@@ -439,29 +440,29 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   }
 
   @HostBinding('attr.aria-required')
-  isAriaRequired() {
+  get isAriaRequired() {
     return this.required.toString();
   }
 
   @HostBinding('attr.aria-disabled')
-  isAriaDisabled() {
+  get isAriaDisabled() {
     return this.disabled.toString();
   }
 
   @HostBinding('class.sbb-select-disabled')
-  isDisabled(): boolean {
+  get isDisabled(): boolean {
     return this.disabled;
   }
 
 
   @HostBinding('attr.aria-invalid')
   @HostBinding('class.sbb-select-invalid')
-  isInvalid() {
+  get isInvalid() {
     return this.errorState;
   }
 
   @HostBinding('attr.aria-owns')
-  getAriaOwns() {
+  get getAriaOwns() {
     return this.panelOpen ? this.optionIds : null;
   }
 
@@ -659,7 +660,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
     return this.selectionModel.selected[0].viewValue;
   }
-
 
   /** Handles all keydown events on the select. */
   @HostListener('keydown', ['$event'])
@@ -958,7 +958,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       activeOptionIndex + labelCount,
       this.getItemHeight(),
       this.panel.nativeElement.scrollTop,
-      SELECT_PANEL_MAX_HEIGHT
+      SELECT_PANEL_MAX_HEIGHT * this.ems
     );
   }
 
@@ -996,7 +996,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     // center of the overlay panel rather than the top.
     const scrollBuffer = panelHeight / 2;
     this.scrollTop = this.calculateOverlayScroll(selectedOptionOffset, scrollBuffer, maxScroll);
-    this.offsetY = this.calculateOverlayOffsetY(selectedOptionOffset, scrollBuffer, maxScroll);
+    this.offsetY = this.calculateOverlayOffsetY();
 
     this.checkOverlayWithinViewport(maxScroll);
   }
@@ -1024,7 +1024,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Determines the `aria-activedescendant` to be set on the host. */
   @HostBinding('attr.aria-activedescendant')
-  getAriaActiveDescendant(): string | null {
+  get getAriaActiveDescendant(): string | null {
     if (this.panelOpen && this.keyManager && this.keyManager.activeItem) {
       return this.keyManager.activeItem.id;
     }
@@ -1077,45 +1077,8 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
    * top start corner of the trigger. It has to be adjusted in order for the
    * selected option to be aligned over the trigger when the panel opens.
    */
-  private calculateOverlayOffsetY(selectedIndex: number, scrollBuffer: number,
-    maxScroll: number): number {
-    const itemHeight = this.getItemHeight();
-    const optionHeightAdjustment = (itemHeight - this.triggerRect.height) / 2;
-    const maxOptionsDisplayed = Math.floor(SELECT_PANEL_MAX_HEIGHT / itemHeight);
-    let optionOffsetFromPanelTop: number;
-
-    // Disable offset if requested by user by returning 0 as value to offset
-    if (this._disableOptionCentering) {
-      return 0;
-    }
-
-    if (this.scrollTop === 0) {
-      optionOffsetFromPanelTop = selectedIndex * itemHeight;
-    } else if (this.scrollTop === maxScroll) {
-      const firstDisplayedIndex = this.getItemCount() - maxOptionsDisplayed;
-      const selectedDisplayIndex = selectedIndex - firstDisplayedIndex;
-
-      // The first item is partially out of the viewport. Therefore we need to calculate what
-      // portion of it is shown in the viewport and account for it in our offset.
-      const partialItemHeight =
-        itemHeight - (this.getItemCount() * itemHeight - SELECT_PANEL_MAX_HEIGHT) % itemHeight;
-
-      // Because the panel height is longer than the height of the options alone,
-      // there is always extra padding at the top or bottom of the panel. When
-      // scrolled to the very bottom, this padding is at the top of the panel and
-      // must be added to the offset.
-      optionOffsetFromPanelTop = selectedDisplayIndex * itemHeight + partialItemHeight;
-    } else {
-      // If the option was scrolled to the middle of the panel using a scroll buffer,
-      // its offset will be the scroll buffer minus the half height that was added to
-      // center it.
-      optionOffsetFromPanelTop = scrollBuffer - itemHeight / 2;
-    }
-
-    // The final offset is the option's offset from the top, adjusted for the height difference,
-    // multiplied by -1 to ensure that the overlay moves in the correct direction up the page.
-    // The value is rounded to prevent some browsers from blurring the content.
-    return Math.round(optionOffsetFromPanelTop * -1 - optionHeightAdjustment);
+  private calculateOverlayOffsetY(): number {
+    return SELECT_BASE_TRIGGER_HEIGHT * this.ems;
   }
 
   /**
@@ -1209,7 +1172,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   }
 
   @HostBinding('attr.aria-describedby')
-  getAriaDescribedBy(): string | null {
+  get getAriaDescribedBy(): string | null {
     return this._ariaDescribedby || null;
   }
 

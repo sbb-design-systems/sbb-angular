@@ -1,18 +1,14 @@
 <h4>Basic sbb-select</h4>
-<sbb-field>
-  <sbb-select placeholder="Favorite food">
-    <sbb-option *ngFor="let food of foods" [value]="food.value">
-      {{food.viewValue}}
-    </sbb-option>
-  </sbb-select>
-</sbb-field>
+<sbb-select placeholder="Favorite food">
+  <sbb-option *ngFor="let food of foods" [value]="food.value">
+    {{food.viewValue}}
+  </sbb-option>
+</sbb-select>
 
 
 <h4>Multiple sbb-select</h4>
-<sbb-field>
-  <sbb-select placeholder="Favorite food" multiple>
-    <sbb-option *ngFor="let food of foods" [value]="food.value">
-      {{food.viewValue}}
-    </sbb-option>
-  </sbb-select>
-</sbb-field>
+<sbb-select placeholder="Favorite food" multiple>
+  <sbb-option *ngFor="let food of foods" [value]="food.value">
+    {{food.viewValue}}
+  </sbb-option>
+</sbb-select>
