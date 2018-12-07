@@ -1,15 +1,15 @@
 /*
  * Public API Surface of sbb-angular
  */
-export * from './lib/svg-icons-components/index';
-export * from './lib/field/index';
-export * from './lib/textarea/index';
-export * from './lib/links/index';
-export * from './lib/autocomplete/index';
-export * from './lib/button/index';
-export * from './lib/radio-button/index';
-export * from './lib/checkbox/index';
-export * from './lib/tabs/index';
-export * from './lib/datepicker/index';
-export * from './lib/time-input/index';
-export * from './lib/loading/index';
+export * from './lib/svg-icons-components/svg-icons-components';
+export * from './lib/field/field';
+export * from './lib/textarea/textarea';
+export * from './lib/links/links';
+export * from './lib/autocomplete/autocomplete';
+export * from './lib/button/button';
+export * from './lib/radio-button/radio-button';
+export * from './lib/checkbox/checkbox';
+export * from './lib/tabs/tabs';
+export * from './lib/datepicker/datepicker';
+export * from './lib/time-input/time-input';
+export * from './lib/loading/loading';

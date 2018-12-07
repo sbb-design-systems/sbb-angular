@@ -7,8 +7,8 @@ import { Component, NgZone } from '@angular/core';
 import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { MockNgZone } from '../../_common/testing/mock-ng-zone';
-import { DatepickerModule, CalendarComponent } from '..';
-import { dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent } from '../../_common/testing/dispatch-events';
+import { DatepickerModule, CalendarComponent } from '../datepicker';
+import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import { JAN, NOV, DEC, FEB, JUL } from '../../_common/testing/dates-constants';
 
 @Component({
