@@ -41,7 +41,6 @@ You can use datepicker in three different modes:
   <sbb-datepicker [formControl]="dateWithFilter" [sbbDatepickerFilter]="filterDates" withArrows></sbb-datepicker>
 </sbb-field>
 ```
-
     ```ts
         filterDates(date: Date): boolean {
             return date.getDate() === 1;
