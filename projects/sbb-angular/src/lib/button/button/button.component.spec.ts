@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { ButtonComponent } from './button.component';
 import { ButtonIconDirective } from './button-icon.directive';
-import { IconCommonModule } from '../../svg-icons-components';
+import { IconCommonModule } from '../../svg-icons-components/svg-icons-components';
 import { IconArrowDownComponent as TestIconComponent } from '../../svg-icons-components/base/sbb-icon-arrow-down.component';
 
 @Component({

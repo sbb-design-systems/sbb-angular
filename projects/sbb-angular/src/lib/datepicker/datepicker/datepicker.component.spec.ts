@@ -2,7 +2,7 @@ import { dispatchFakeEvent, dispatchMouseEvent } from '../../_common/testing/dis
 import { flush, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { Type, FactoryProvider, ValueProvider, inject, Component, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { DatepickerModule } from '..';
+import { DatepickerModule } from '../datepicker.module';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { JAN, DEC } from '../../_common/testing/dates-constants';
 import { By } from '@angular/platform-browser';
