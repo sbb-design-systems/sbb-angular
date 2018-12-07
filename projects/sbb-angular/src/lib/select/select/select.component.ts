@@ -55,7 +55,7 @@ import {
   SBBOptionSelectionChange,
   countGroupLabelsBeforeOption,
   getOptionScrollPosition
-} from '../../option';
+} from '../../option/index';
 import {
   filter,
   map,
@@ -66,9 +66,7 @@ import {
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
-import { HasOptions } from '../../_common/options/has-options';
-
-
+import { HasOptions } from '../../option/has-options';
 
 let nextUniqueId = 0;
 

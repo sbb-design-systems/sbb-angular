@@ -15,8 +15,7 @@ import {
   HostBinding,
 } from '@angular/core';
 import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
-import { HasOptions } from '../../_common/options/has-options';
-
+import { HasOptions } from '../../option/has-options';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
