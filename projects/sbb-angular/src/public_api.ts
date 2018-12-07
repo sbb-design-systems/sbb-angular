@@ -13,3 +13,4 @@ export * from './lib/tabs/tabs';
 export * from './lib/datepicker/datepicker';
 export * from './lib/time-input/time-input';
 export * from './lib/loading/loading';
+export * from './lib/accordion/accordion';
