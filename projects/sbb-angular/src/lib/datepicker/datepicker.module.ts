@@ -6,7 +6,7 @@ import {
 } from './datepicker-embeddable/datepicker-embeddable.component';
 import {
   IconCommonModule
-} from '../svg-icons-components/index';
+} from '../svg-icons-components/svg-icons-components';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';

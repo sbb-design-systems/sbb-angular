@@ -40,7 +40,7 @@ import { SBBOptionSelectionChange, OptionComponent, } from '../option/option.com
 import { SbbAutocompleteSelectedEvent, AutocompleteComponent } from './autocomplete.component';
 import { HighlightPipe } from '../option/highlight.pipe';
 import { SbbFieldComponent } from '../../field/sbb-field/sbb-field.component';
-import { FieldModule } from '../../field';
+import { FieldModule } from '../../field/field';
 
 
 @Component({
