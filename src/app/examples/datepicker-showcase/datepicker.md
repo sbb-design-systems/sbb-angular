@@ -44,7 +44,7 @@ You can use datepicker in three different modes:
 
     ```ts
         filterDates(date: Date): boolean {
-         return date.getDate() === 1;
+            return date.getDate() === 1;
         }
     ```
 
