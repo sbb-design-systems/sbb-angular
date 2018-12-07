@@ -1,60 +1,9 @@
+@import "../../../styles/main";
 
 .sbb-expansion-panel-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0 24px;
-  position: relative;
-
-  &:focus,
-  &:hover {
-    outline: none;
-  }
-
-  &.sbb-expanded:focus,
-  &.sbb-expanded:hover, {
-    background: inherit;
-  }
-
-  &[aria-disabled='true'] {
-    opacity: 0.5;
-  }
-
-  &:not([aria-disabled='true']) {
-    cursor: pointer;
-  }
-}
-
-.sbb-content {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  overflow: hidden;
-}
-
-.sbb-expansion-panel-header-title,
-.sbb-expansion-panel-header-description {
-  display: flex;
-  flex-grow: 1;
-  margin-right: 16px;
-
-  [dir='rtl'] & {
-    margin-right: 0;
-    margin-left: 16px;
-  }
-}
-
-.sbb-expansion-panel-header-description {
-  flex-grow: 2;
+  @include expansionPanelHeader();
 }
 
 .sbb-expansion-indicator {
-  position: absolute;
-  top: 50%;
-  right: 1.6em;
-  width: 1.6em;
-  height: 1.6em;
-  border: 1px solid #a8a8a8;
-  border-radius: 60%;
-  transform: translateY(-50%);
+  @include expansionIndicator();
 }

@@ -5,13 +5,15 @@ import {
   AfterContentInit,
   HostBinding,
   Component,
-  ChangeDetectionStrategy } from '@angular/core';
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { CdkAccordion } from '@angular/cdk/accordion';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { HOME, END } from '@angular/cdk/keycodes';
 
 import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
 import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 
 @Component({
@@ -31,6 +33,12 @@ export class AccordionComponent extends CdkAccordion implements IAccordionBase, 
 
   @ContentChildren(ExpansionPanelHeaderComponent, { descendants: true })
   headers: QueryList<ExpansionPanelHeaderComponent>;
+
+  /** Whether the expansion indicator should be hidden. */
+  @Input()
+  get hideToggle(): boolean { return this._hideToggle; }
+  set hideToggle(show: boolean) { this._hideToggle = coerceBooleanProperty(show); }
+  private _hideToggle = false;
 
   @HostBinding('class.sbb-accordion') sbbAccordionClass = true;
 

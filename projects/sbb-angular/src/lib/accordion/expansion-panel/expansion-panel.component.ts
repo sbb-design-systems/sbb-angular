@@ -29,6 +29,7 @@ import { filter, startWith, first } from 'rxjs/operators';
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
 import { ExpansionPanelContentDirective } from './expansion-panel-content';
 import { SBB_ACCORDION, IAccordionBase } from '../accordion/accordion-base';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 /** SbbExpansionPanel's states. */
 export type ExpansionPanelState = 'expanded' | 'collapsed';
@@ -76,6 +77,16 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
 
   @HostBinding('class.sbb-expanded')
   get expandedPanelClass() { return this.expanded; }
+
+  /** Whether the toggle indicator should be hidden. */
+  @Input()
+  get hideToggle(): boolean {
+    return this._hideToggle || (this.accordion && this.accordion.hideToggle);
+  }
+  set hideToggle(value: boolean) {
+    this._hideToggle = coerceBooleanProperty(value);
+  }
+  private _hideToggle = false;
 
   private _document: Document;
 

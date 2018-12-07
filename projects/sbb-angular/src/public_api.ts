@@ -13,4 +13,4 @@ export * from './lib/tabs/index';
 export * from './lib/datepicker/index';
 export * from './lib/time-input/index';
 export * from './lib/loading/index';
-export * from './lib/accordion/index';
+export * from './lib/accordion/accordion';

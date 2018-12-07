@@ -1,0 +1,43 @@
+@mixin expansionPanelHeader() {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  position: relative;
+
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+
+  &.sbb-expanded:focus,
+  &.sbb-expanded:hover, {
+    background: inherit;
+  }
+
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+  }
+
+  &:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+
+  &-content {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    overflow: hidden;
+  }
+}
+
+@mixin expansionIndicator() {
+  position: absolute;
+  top: 50%;
+  right: 1.6em;
+  width: 1.6em;
+  height: 1.6em;
+  border: 1px solid #a8a8a8;
+  border-radius: 60%;
+  transform: translateY(-50%);
+}

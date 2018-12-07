@@ -11,7 +11,7 @@ import {
   HostBinding,
   HostListener,
 } from '@angular/core';
-import { merge, Subscription } from 'rxjs';
+import { merge, Subscription, EMPTY } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
 
@@ -53,12 +53,16 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     private _focusMonitor: FocusMonitor,
     private _changeDetectorRef: ChangeDetectorRef) {
 
+    const accordionHideToggleChange = panel.accordion ?
+      panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle)) : EMPTY;
+
     // Since the toggle state depends on an @Input on the panel, we
     // need to subscribe and trigger change detection manually.
     this._parentChangeSubscription = merge(
       panel.opened,
       panel.closed,
-      panel._inputChanges.pipe(filter(changes => !!(changes.disabled)))
+      accordionHideToggleChange,
+      panel._inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled)))
     )
       .subscribe(() => this._changeDetectorRef.markForCheck());
 
@@ -109,7 +113,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
 
   /** Gets whether the expand indicator should be shown. */
   showToggle(): boolean {
-    return !this.panel.disabled;
+    return !this.panel.hideToggle && !this.panel.disabled;
   }
 
   /** Handle keydown event calling to toggle() if appropriate. */

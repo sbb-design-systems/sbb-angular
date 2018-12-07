@@ -2,6 +2,9 @@ import { InjectionToken } from '@angular/core';
 import { CdkAccordion } from '@angular/cdk/accordion';
 
 export interface IAccordionBase extends CdkAccordion {
+  /** Whether the expansion indicator should be hidden. */
+  hideToggle: boolean;
+
   /** Handles keyboard events coming in from the panel headers. */
   handleHeaderKeydown: (event: KeyboardEvent) => void;
 
