@@ -13,8 +13,18 @@
       <sbb-checkbox [(ngModel)]="withArrows" [disabled]="withArrowsDisabled" [value]="withArrows">Arrows</sbb-checkbox>
       <sbb-checkbox [(ngModel)]="withoutToggle" [disabled]="withoutToggleDisabled" [value]="withoutToggle">Without
         Toggle</sbb-checkbox>
-
       <sbb-checkbox (click)="onlyInput($event)" value="false">Input only</sbb-checkbox>
+
+      <sbb-field>
+        <sbb-label for="minDate">Min Date</sbb-label>
+        <sbb-datepicker [(ngModel)]="minDate" withArrows></sbb-datepicker>
+      </sbb-field>
+      
+      <sbb-field>
+        <sbb-label for="maxDate">Max Date</sbb-label>
+        <sbb-datepicker [(ngModel)]="maxDate" withArrows></sbb-datepicker>
+      </sbb-field>
+
       <pre>model: {{ laData.value | json }}</pre>
       <pre>form control validity: {{ laData.valid }}</pre>
       <pre>form control errors: {{ laData.errors | json }}</pre>
@@ -38,7 +48,7 @@
       <pre>datepicker 1 errors: {{ twoDatepickersForm.get('firstDatepicker').errors | json }}</pre>
       <pre>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker').errors | json }}</pre>
 
-      
+
       <pre>form validity: {{ twoDatepickersForm.valid | json }}</pre>
       <pre>form model: {{ twoDatepickersForm.value | json }}</pre>
     </div>
@@ -58,4 +68,9 @@
       <pre>form control errors: {{ dateWithFilter.errors |json }}</pre>
     </div>
   </div>
+
+  <h4 class="sbbsc-block">Simple Datepicker</h4>
+<sbb-field>
+  <sbb-datepicker withoutToggle="true"></sbb-datepicker>
+</sbb-field>
 </div>
