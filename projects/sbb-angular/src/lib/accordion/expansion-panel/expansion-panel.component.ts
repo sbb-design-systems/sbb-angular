@@ -162,12 +162,3 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
   }
 }
 
-@Component({
-  selector: 'sbb-expansion-panel-body',
-  template: '<ng-content></ng-content>',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class ExpansionPanelBodyComponent {
-  @HostBinding('class.sbb-expansion-panel-body')
-  expansionPanelBodyClass = true;
-}

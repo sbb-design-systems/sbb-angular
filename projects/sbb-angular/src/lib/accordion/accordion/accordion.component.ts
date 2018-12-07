@@ -21,7 +21,7 @@ import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansi
     provide: SBB_ACCORDION,
     useExisting: AccordionComponent
   }],
-  template: `<ng-content select='sbb-expansion-panel'></ng-content>`,
+  template: `<ng-content></ng-content>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccordionComponent extends CdkAccordion implements IAccordionBase, AfterContentInit {

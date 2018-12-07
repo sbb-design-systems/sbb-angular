@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { IconCommonModule } from '../svg-icons-components/icon-common.module';
 import { AccordionComponent } from './accordion/accordion.component';
-import { ExpansionPanelComponent, ExpansionPanelBodyComponent } from './expansion-panel/expansion-panel.component';
+import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
 import { ExpansionPanelHeaderComponent } from './expansion-panel-header/expansion-panel-header.component';
 import { ExpansionPanelContentDirective } from './expansion-panel/expansion-panel-content';
 
@@ -20,14 +20,12 @@ import { ExpansionPanelContentDirective } from './expansion-panel/expansion-pane
   exports: [
     AccordionComponent,
     ExpansionPanelComponent,
-    ExpansionPanelBodyComponent,
     ExpansionPanelHeaderComponent,
     ExpansionPanelContentDirective
   ],
   declarations: [
     AccordionComponent,
     ExpansionPanelComponent,
-    ExpansionPanelBodyComponent,
     ExpansionPanelHeaderComponent,
     ExpansionPanelContentDirective
   ],

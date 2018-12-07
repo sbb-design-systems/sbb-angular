@@ -27,4 +27,18 @@ export class AccordionShowcaseComponent {
     console.log(args);
   }
 
+  logAndPreventOpeningPanel(evt, message) {
+    console.log(message);
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+
+  logAndPreventOpeningPanelKeyDown(evt: KeyboardEvent, message) {
+    if (evt.keyCode === 13 || evt.keyCode === 32) {
+      console.log(message);
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
+  }
+
 }
