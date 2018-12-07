@@ -24,11 +24,11 @@ import {
     AutocompleteTriggerDirective
   ],
   exports: [
+    OptionModule,
+    OverlayModule,
     AutocompleteComponent,
     AutocompleteOriginDirective,
-    AutocompleteTriggerDirective,
-    OverlayModule,
-    OptionModule
+    AutocompleteTriggerDirective
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })

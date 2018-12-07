@@ -14,9 +14,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
     SelectComponent
   ],
   exports: [
-    SelectComponent,
+    OptionModule,
     OverlayModule,
-    OptionModule
+    SelectComponent
   ],
   providers: [
     SBB_SELECT_SCROLL_STRATEGY_PROVIDER
