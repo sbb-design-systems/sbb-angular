@@ -111,6 +111,11 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     return this.panel.id;
   }
 
+  @HostBinding('class.sbb-no-toggle')
+  get hasNoToggle(): boolean {
+    return !this.showToggle();
+  }
+
   /** Gets whether the expand indicator should be shown. */
   showToggle(): boolean {
     return !this.panel.hideToggle && !this.panel.disabled;

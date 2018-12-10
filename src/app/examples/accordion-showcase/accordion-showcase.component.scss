@@ -1,9 +1,10 @@
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
+.sbbsc-custom-html {
+  h2 {
+    margin: 0;
+  }
 
-.example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
+  .sbbsc-button-group {
+    flex: 1 0 auto;
+    text-align: right;
+  }
 }

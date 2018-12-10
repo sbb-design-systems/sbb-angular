@@ -1,31 +1,18 @@
-<div style="margin-bottom: 5em;"></div>
-
-
+<div style="margin-bottom: 2em;"></div>
 
 <sbb-accordion>
   <sbb-expansion-panel>
     <sbb-expansion-panel-header>
-      <h3>Some generic content accordion panel</h3>
+      Some generic content accordion panel
     </sbb-expansion-panel-header>
-
-    <p>
-      Interdum et malesuada fames ac ante ipsum primis in faucibus.
-      Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
-      Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
-      Mauris gravida aliquet eleifend.
-    </p>
-    <ul>
-      <li>Some kind of list item 1</li>
-      <li>Some kind of list item 2</li>
-      <li>Some kind of list item 3</li>
-      <li>Some kind of list item 4</li>
-      <li>Some kind of list item 5</li>
-    </ul>
-
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+    Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
+    Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
+    Mauris gravida aliquet eleifend.
   </sbb-expansion-panel>
   <sbb-expansion-panel>
     <sbb-expansion-panel-header>
-      <h3>Accordion with table</h3>
+      Panel with table
     </sbb-expansion-panel-header>
     <div class="docs-api">
       <h2>Table Title h2</h2>
@@ -158,56 +145,38 @@
       </table>
     </div>
   </sbb-expansion-panel>
-  <sbb-expansion-panel>
+  <sbb-expansion-panel hideToggle class="sbbsc-custom-html">
     <sbb-expansion-panel-header>
-      Very minimalistic Accordion panel
-    </sbb-expansion-panel-header>
-
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
-    Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
-    Mauris gravida aliquet eleifend.
-
-  </sbb-expansion-panel>
-  <sbb-expansion-panel hideToggle>
-    <sbb-expansion-panel-header>
-      <p>Panel with paragraph and two buttons</p>
+      <h2>Panel with custom html</h2>
       <div class="sbbsc-button-group">
         <button sbbButton (click)="logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"
-                          (keydown)="logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')">
+          (keydown)="logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')">
           Test button
           <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
         </button>
       </div>
     </sbb-expansion-panel-header>
-
     Interdum et malesuada fames ac ante ipsum primis in faucibus.
     Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
     Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
     Mauris gravida aliquet eleifend.
-
   </sbb-expansion-panel>
 </sbb-accordion>
 
-
-
-
-<div style="margin-bottom: 5em;"></div>
-
+<div style="margin-bottom: 3em;"></div>
 
 <button sbbButton (click)="firstAccordion.openAll()">Open All</button>&nbsp;&nbsp;
 <button sbbButton mode="secondary" (click)="firstAccordion.closeAll()">Close All</button>&nbsp;&nbsp;
-<sbb-checkbox [(ngModel)]="disabled" style="display: inline-block;">disable one</sbb-checkbox>
+<sbb-checkbox [(ngModel)]="disabled" style="display: inline-block;">Disable one</sbb-checkbox>
 
 <sbb-accordion #firstAccordion>
   <sbb-expansion-panel>
     <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">Some html content title</h3>
-      <p>Some html content description</p>
+      Panel with lazy loaded content
     </sbb-expansion-panel-header>
 
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
       magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
       pariatur.
@@ -217,8 +186,7 @@
     <ng-template sbbExpansionPanelContent>
       <sbb-expansion-panel>
         <sbb-expansion-panel-header>
-          <h3 style="margin: 1em;">Lazy loaded content initialized at the first parent open</h3>
-          <p>Some html content description</p>
+          Lazy loaded content initialized at the first parent open
         </sbb-expansion-panel-header>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -237,10 +205,9 @@
     (expandedChange)="log('expandedChange called', $event)">
 
     <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">Self aware panel that cast some events around</h3>
-      <p>Currently I am {{panelOpenState ? 'open' : 'closed'}}</p>
+      <h3 style="margin: 0;">Self aware panel that cast some events around</h3>
+      <p style="margin: 0 1em;">Currently I am {{panelOpenState ? 'open' : 'closed'}}</p>
     </sbb-expansion-panel-header>
-
 
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
       magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -252,8 +219,7 @@
 
   <sbb-expansion-panel [disabled]="disabled">
     <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">I can disable this panel</h3>
-      <p>Currently I am {{panelOpenState ? 'open' : 'closed'}}</p>
+      I can disable this panel
     </sbb-expansion-panel-header>
 
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -263,20 +229,6 @@
       Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
   </sbb-expansion-panel>
-  <sbb-expansion-panel>
-    <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">Some html content title</h3>
-      <p>Some html content description</p>
-    </sbb-expansion-panel-header>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-
-  </sbb-expansion-panel>
 </sbb-accordion>
 
 <div style="margin-bottom: 3em"></div>
@@ -284,19 +236,18 @@
 <sbb-accordion class="example-headers-align">
   <sbb-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
     <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">I'm a wizard like accordion</h3>
-      <p>conditionally open using [expand] property<br> and (opened) event</p>
+      <span>I'm a wizard like accordion</span>
+      <p style="margin: 0 1em;">conditionally open using [expand] property<br> and (opened) event</p>
     </sbb-expansion-panel-header>
 
     <div class="sbbsc-block">
       <button sbbButton mode="primary" (click)="nextStep()">Next</button>
     </div>
-
   </sbb-expansion-panel>
 
   <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
     <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">Step 1</h3>
+      Step 1
     </sbb-expansion-panel-header>
 
     <div class="sbbsc-block">
@@ -308,7 +259,7 @@
 
   <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
     <sbb-expansion-panel-header>
-      <h3 style="margin: 1em;">Step 2</h3>
+      Step 2
     </sbb-expansion-panel-header>
 
     <div class="sbbsc-block">
@@ -324,13 +275,13 @@
 
 <sbb-expansion-panel>
   <sbb-expansion-panel-header>
-    <h3 style="margin: 1em;">A single orphan (no accordion) panel</h3>
+    A single orphan (no accordion) panel
   </sbb-expansion-panel-header>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 </sbb-expansion-panel>
 
@@ -338,7 +289,7 @@
 
 <sbb-expansion-panel>
   <sbb-expansion-panel-header>
-    <h3 style="margin: 1em;">Some nested panels and accordion</h3>
+    <h2 style="margin: 0;">Some nested panels and accordion</h2>
   </sbb-expansion-panel-header>
 
   <sbb-accordion multi="false">
