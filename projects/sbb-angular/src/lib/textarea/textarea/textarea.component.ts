@@ -31,7 +31,7 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   counterObserver$: Subject<number> = new Subject<number>();
   /**
-   * Class property that disable the textarea status
+   * Class property that disables the textarea status
    */
   @Input()
   disabled: boolean;
@@ -76,13 +76,13 @@ export class TextareaComponent implements ControlValueAccessor {
   @HostBinding('class.focused')
   focusedClass: boolean;
   /**
-   * Method that sets the focus class status true
+   * Method that sets true the focus class status
    */
   onFocus() {
     this.focusedClass = true;
   }
   /**
-   * Method that sets the focus class status false
+   * Method that sets false the focus class status
    */
   onBlur() {
     this.focusedClass = false;

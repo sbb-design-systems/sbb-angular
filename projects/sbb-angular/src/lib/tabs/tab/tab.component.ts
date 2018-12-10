@@ -58,7 +58,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
 
   private _disabled: boolean;
   /**
-   * Sets a specifics tab disabled
+   * Sets a specifics tab to disabled
    */
   @Input()
   set disabled(value: boolean) {
