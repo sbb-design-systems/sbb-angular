@@ -276,7 +276,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   }
   private _value: any;
 
-
   /** Unique id of the element. */
   @Input()
   @HostBinding('attr.id')
@@ -356,6 +355,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       overlayY: 'bottom'
     }
   ];
+
+  /** Flag used to rotate the icon on the select trigger  */
+  rotateIcon = false;
 
   /** Whether the component is disabling centering of the active option over the trigger. */
   private _disableOptionCentering = true;
@@ -562,14 +564,14 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     // `parseInt` ignores the trailing 'px' and converts this to a number.
     // tslint:disable-next-line:radix
     this.triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement)['font-size']);
-
+    this.rotateIcon = true;
     this._panelOpen = true;
     this.keyManager.withHorizontalOrientation(null);
     this.highlightCorrectOption();
     this.changeDetectorRef.markForCheck();
 
     // Set the font size on the panel element once it exists.
-    this._ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
+    this._ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
       if (this.triggerFontSize && this.overlayDir.overlayRef &&
         this.overlayDir.overlayRef.overlayElement) {
         this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
@@ -581,6 +583,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   close(): void {
     if (this._panelOpen) {
       this._panelOpen = false;
+      this.rotateIcon = false;
       this.changeDetectorRef.markForCheck();
       this.onTouched();
     }

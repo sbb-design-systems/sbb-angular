@@ -20,5 +20,23 @@ input[aria-expanded="true"] {
 .sbb-select {
   .sbb-select-trigger {
     @include inputfields;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    .sbb-select-value {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sbb-select-arrow-wrapper {
+      width: 24px;
+      height: 24px;
+      fill: $colorGrey;
+
+      &-rotate {
+        transform: rotate(180deg);
+      }
+    }
   }
 }
