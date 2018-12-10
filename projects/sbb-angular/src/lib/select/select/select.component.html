@@ -12,10 +12,17 @@
   </div>
 </div>
 
-<ng-template cdk-connected-overlay cdkConnectedOverlayLockPosition cdkConnectedOverlayHasBackdrop
-  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
-  [cdkConnectedOverlayOrigin]="origin" [cdkConnectedOverlayOpen]="panelOpen" [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayMinWidth]="triggerRect?.width" [cdkConnectedOverlayOffsetY]="offsetY" (backdropClick)="close()"
+<ng-template cdk-connected-overlay 
+  cdkConnectedOverlayLockPosition 
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
+  [cdkConnectedOverlayOrigin]="origin" 
+  [cdkConnectedOverlayOpen]="panelOpen" 
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayMinWidth]="triggerRect?.width" 
+  [cdkConnectedOverlayOffsetY]="offsetY" 
+  (backdropClick)="close()"
   (attach)="onAttached()" (detach)="close()">
 
   <div #panel class="sbb-select-panel" [ngClass]="panelClass" [style.transformOrigin]="transformOrigin"

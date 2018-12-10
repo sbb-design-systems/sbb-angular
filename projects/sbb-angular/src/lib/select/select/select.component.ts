@@ -63,6 +63,7 @@ import {
   switchMap,
   take,
   takeUntil,
+  first,
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
@@ -83,9 +84,6 @@ export const SELECT_BASE_TRIGGER_HEIGHT = 48;
 
 /** The panel's padding on the x-axis */
 export const SELECT_PANEL_PADDING_X = 0;
-
-/** The panel's x axis padding if it is indented (e.g. there is an option group). */
-export const SELECT_PANEL_INDENT_PADDING_X = SELECT_PANEL_PADDING_X * 2;
 
 /** The height of the select items in `em` units. */
 export const SELECT_ITEM_HEIGHT_EM = 3;
@@ -347,16 +345,16 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   positions = [
     {
       originX: 'start',
-      originY: 'top',
+      originY: 'bottom',
       overlayX: 'start',
-      overlayY: 'top',
+      overlayY: 'top'
     },
     {
       originX: 'start',
-      originY: 'bottom',
+      originY: 'top',
       overlayX: 'start',
-      overlayY: 'bottom',
-    },
+      overlayY: 'bottom'
+    }
   ];
 
   /** Whether the component is disabling centering of the active option over the trigger. */
@@ -567,7 +565,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
     this._panelOpen = true;
     this.keyManager.withHorizontalOrientation(null);
-    this.calculateOverlayPosition();
     this.highlightCorrectOption();
     this.changeDetectorRef.markForCheck();
 
@@ -749,10 +746,15 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
    * Callback that is invoked when the overlay panel has been attached.
    */
   onAttached(): void {
-    this.overlayDir.positionChange.pipe(take(1)).subscribe(() => {
+    this.overlayDir.positionChange.pipe(first()).subscribe((positions) => {
+      if (positions.connectionPair.originY === 'top') {
+        this.panel.nativeElement.classList.add('sbb-select-panel-above');
+        this.trigger.nativeElement.classList.add('sbb-select-input-above');
+      } else {
+        this.panel.nativeElement.classList.remove('sbb-select-panel-above');
+        this.trigger.nativeElement.classList.remove('sbb-select-input-above');
+      }
       this.changeDetectorRef.detectChanges();
-      this.calculateOverlayOffsetX();
-      this.panel.nativeElement.scrollTop = this.scrollTop;
     });
   }
 
@@ -967,61 +969,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this._elementRef.nativeElement.focus();
   }
 
-  /** Gets the index of the provided option in the option list. */
-  private getOptionIndex(option: OptionComponent): number | undefined {
-    return this.options.reduce((result: number, current: OptionComponent, index: number) => {
-      return result === undefined ? (option === current ? index : undefined) : result;
-    }, undefined);
-  }
-
-  /** Calculates the scroll position and x- and y-offsets of the overlay panel. */
-  private calculateOverlayPosition(): void {
-    const itemHeight = this.getItemHeight();
-    const items = this.getItemCount();
-    const panelHeight = Math.min(items * itemHeight, SELECT_PANEL_MAX_HEIGHT);
-    const scrollContainerHeight = items * itemHeight;
-
-    // The farthest the panel can be scrolled before it hits the bottom
-    const maxScroll = scrollContainerHeight - panelHeight;
-
-    // If no value is selected we open the popup to the first item.
-    let selectedOptionOffset =
-      // tslint:disable-next-line:no-non-null-assertion
-      this.empty ? 0 : this.getOptionIndex(this.selectionModel.selected[0])!;
-
-    selectedOptionOffset += countGroupLabelsBeforeOption(selectedOptionOffset, this.options,
-      this.optionGroups);
-
-    // We must maintain a scroll buffer so the selected option will be scrolled to the
-    // center of the overlay panel rather than the top.
-    const scrollBuffer = panelHeight / 2;
-    this.scrollTop = this.calculateOverlayScroll(selectedOptionOffset, scrollBuffer, maxScroll);
-    this.offsetY = this.calculateOverlayOffsetY();
-
-    this.checkOverlayWithinViewport(maxScroll);
-  }
-
-  /**
-   * Calculates the scroll position of the select's overlay panel.
-   *
-   * Attempts to center the selected option in the panel. If the option is
-   * too high or too low in the panel to be scrolled to the center, it clamps the
-   * scroll position to the min or max scroll positions respectively.
-   */
-  calculateOverlayScroll(selectedIndex: number, scrollBuffer: number,
-    maxScroll: number): number {
-    const itemHeight = this.getItemHeight();
-    const optionOffsetFromScrollTop = itemHeight * selectedIndex;
-    const halfOptionHeight = itemHeight / 2;
-
-    // Starts at the optionOffsetFromScrollTop, which scrolls the option to the top of the
-    // scroll container, then subtracts the scroll buffer to scroll the option down to
-    // the center of the overlay panel. Half the option height must be re-added to the
-    // scrollTop so the option is centered based on its middle, not its top edge.
-    const optimalScrollPosition = optionOffsetFromScrollTop - scrollBuffer + halfOptionHeight;
-    return Math.min(Math.max(0, optimalScrollPosition), maxScroll);
-  }
-
   /** Determines the `aria-activedescendant` to be set on the host. */
   @HostBinding('attr.aria-activedescendant')
   get getAriaActiveDescendant(): string | null {
@@ -1030,127 +977,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     }
 
     return null;
-  }
-
-  /**
-   * Sets the x-offset of the overlay panel in relation to the trigger's top start corner.
-   * This must be adjusted to align the selected option text over the trigger text when
-   * the panel opens. Will change based on LTR or RTL text direction. Note that the offset
-   * can't be calculated until the panel has been attached, because we need to know the
-   * content width in order to constrain the panel within the viewport.
-   */
-  private calculateOverlayOffsetX(): void {
-    const overlayRect = this.overlayDir.overlayRef.overlayElement.getBoundingClientRect();
-    const viewportSize = this.viewportRuler.getViewportSize();
-    const paddingWidth = this.multiple ? SELECT_MULTIPLE_PANEL_PADDING_X + SELECT_PANEL_PADDING_X :
-      SELECT_PANEL_PADDING_X * 2;
-    let offsetX: number;
-
-    // Adjust the offset, depending on the option padding.
-    if (this.multiple) {
-      offsetX = SELECT_MULTIPLE_PANEL_PADDING_X;
-    } else {
-      const selected = this.selectionModel.selected[0] || this.options.first;
-      offsetX = selected && selected.group ? SELECT_PANEL_INDENT_PADDING_X : SELECT_PANEL_PADDING_X;
-    }
-    // Determine how much the select overflows on each side.
-    const leftOverflow = 0 - (overlayRect.left + offsetX);
-    const rightOverflow = overlayRect.right + offsetX - viewportSize.width
-      + paddingWidth;
-
-    // If the element overflows on either side, reduce the offset to allow it to fit.
-    if (leftOverflow > 0) {
-      offsetX += leftOverflow + SELECT_PANEL_VIEWPORT_PADDING;
-    } else if (rightOverflow > 0) {
-      offsetX -= rightOverflow + SELECT_PANEL_VIEWPORT_PADDING;
-    }
-
-    // Set the offset directly in order to avoid having to go through change detection and
-    // potentially triggering "changed after it was checked" errors. Round the value to avoid
-    // blurry content in some browsers.
-    this.overlayDir.offsetX = Math.round(offsetX);
-    this.overlayDir.overlayRef.updatePosition();
-  }
-
-  /**
-   * Calculates the y-offset of the select's overlay panel in relation to the
-   * top start corner of the trigger. It has to be adjusted in order for the
-   * selected option to be aligned over the trigger when the panel opens.
-   */
-  private calculateOverlayOffsetY(): number {
-    return SELECT_BASE_TRIGGER_HEIGHT * this.ems;
-  }
-
-  /**
-   * Checks that the attempted overlay position will fit within the viewport.
-   * If it will not fit, tries to adjust the scroll position and the associated
-   * y-offset so the panel can open fully on-screen. If it still won't fit,
-   * sets the offset back to 0 to allow the fallback position to take over.
-   */
-  private checkOverlayWithinViewport(maxScroll: number): void {
-    const itemHeight = this.getItemHeight();
-    const viewportSize = this.viewportRuler.getViewportSize();
-
-    const topSpaceAvailable = this.triggerRect.top - SELECT_PANEL_VIEWPORT_PADDING;
-    const bottomSpaceAvailable =
-      viewportSize.height - this.triggerRect.bottom - SELECT_PANEL_VIEWPORT_PADDING;
-
-    const panelHeightTop = Math.abs(this.offsetY);
-    const totalPanelHeight =
-      Math.min(this.getItemCount() * itemHeight, SELECT_PANEL_MAX_HEIGHT);
-    const panelHeightBottom = totalPanelHeight - panelHeightTop - this.triggerRect.height;
-
-    if (panelHeightBottom > bottomSpaceAvailable) {
-      this.adjustPanelUp(panelHeightBottom, bottomSpaceAvailable);
-    } else if (panelHeightTop > topSpaceAvailable) {
-      this.adjustPanelDown(panelHeightTop, topSpaceAvailable, maxScroll);
-    } else {
-      this.transformOrigin = this.getOriginBasedOnOption();
-    }
-  }
-
-  /** Adjusts the overlay panel up to fit in the viewport. */
-  private adjustPanelUp(panelHeightBottom: number, bottomSpaceAvailable: number) {
-    // Browsers ignore fractional scroll offsets, so we need to round.
-    const distanceBelowViewport = Math.round(panelHeightBottom - bottomSpaceAvailable);
-
-    // Scrolls the panel up by the distance it was extending past the boundary, then
-    // adjusts the offset by that amount to move the panel up into the viewport.
-    this.scrollTop -= distanceBelowViewport;
-    this.offsetY -= distanceBelowViewport;
-    this.transformOrigin = this.getOriginBasedOnOption();
-
-    // If the panel is scrolled to the very top, it won't be able to fit the panel
-    // by scrolling, so set the offset to 0 to allow the fallback position to take
-    // effect.
-    if (this.scrollTop <= 0) {
-      this.scrollTop = 0;
-      this.offsetY = 0;
-      this.transformOrigin = `50% bottom 0px`;
-    }
-  }
-
-  /** Adjusts the overlay panel down to fit in the viewport. */
-  private adjustPanelDown(panelHeightTop: number, topSpaceAvailable: number,
-    maxScroll: number) {
-    // Browsers ignore fractional scroll offsets, so we need to round.
-    const distanceAboveViewport = Math.round(panelHeightTop - topSpaceAvailable);
-
-    // Scrolls the panel down by the distance it was extending past the boundary, then
-    // adjusts the offset by that amount to move the panel down into the viewport.
-    this.scrollTop += distanceAboveViewport;
-    this.offsetY += distanceAboveViewport;
-    this.transformOrigin = this.getOriginBasedOnOption();
-
-    // If the panel is scrolled to the very bottom, it won't be able to fit the
-    // panel by scrolling, so set the offset to 0 to allow the fallback position
-    // to take effect.
-    if (this.scrollTop >= maxScroll) {
-      this.scrollTop = maxScroll;
-      this.offsetY = 0;
-      this.transformOrigin = `50% top 0px`;
-      return;
-    }
   }
 
   /** Sets the transform origin point based on the selected option. */
@@ -1175,6 +1001,5 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   get getAriaDescribedBy(): string | null {
     return this._ariaDescribedby || null;
   }
-
 
 }
