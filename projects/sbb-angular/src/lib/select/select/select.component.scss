@@ -2,10 +2,10 @@
 
 .sbb-select-panel {
   @include autocompleteBase();
-  @include autocompleteDirectionalRules();
+  @include autocompleteDirectionalRules($selectMode: true);
 
   &.sbb-select-panel-above {
-    @include autocompleteDirectionalRules($mode: reverse);
+    @include autocompleteDirectionalRules($mode: reverse, $selectMode: true);
   }
 }
 

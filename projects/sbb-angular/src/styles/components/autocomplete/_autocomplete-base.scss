@@ -57,7 +57,7 @@
   }
 }
 
-@mixin autocompleteDirectionalRules($mode: default) {
+@mixin autocompleteDirectionalRules($mode: default, $selectMode: false) {
   @if $mode == default {
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -80,7 +80,7 @@
       bottom: auto;
     }
     sbb-option-group {
-      @include optionGroupBaseDirectional;
+      @include optionGroupBaseDirectional($selectMode);
     }
   } @else if $mode == reverse {
     border-top-left-radius: 2px;
@@ -111,7 +111,7 @@
     }
 
     sbb-option-group {
-      @include optionGroupBaseDirectional;
+      @include optionGroupBaseDirectionalReverse($selectMode); 
     }
   }
 }

@@ -107,26 +107,54 @@
   }
 }
 
-@mixin optionGroupBaseDirectionalReverse {
-  border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+@mixin optionGroupBaseDirectional($selectMode: false) {
+  @if $selectMode == false {
+    border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
 
-  @include mq($from: desktop4k) {
-    border-top-width: toPx(1 * $scalingFactor4k);
-  }
+    @include mq($from: desktop4k) {
+      border-top-width: toPx(1 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    border-top-width: toPx(1 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      border-top-width: toPx(1 * $scalingFactor5k);
+    }
+  } @else {
+    border-top: 0;
+    &:last-of-type {
+      border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+    @include mq($from: desktop4k) {
+      border-top-width: 0;
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-width: 0;
+    }
   }
 }
 
-@mixin optionGroupBaseDirectional {
-  border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+@mixin optionGroupBaseDirectionalReverse($selectMode: false) {
+  @if $selectMode == false {
+    border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
 
-  @include mq($from: desktop4k) {
-    border-bottom-width: toPx(1 * $scalingFactor4k);
-  }
+    @include mq($from: desktop4k) {
+      border-bottom-width: toPx(1 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    border-bottom-width: toPx(1 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      border-bottom-width: toPx(1 * $scalingFactor5k);
+    }
+  } @else {
+    border-bottom: 0;
+    &:first-of-type {
+      border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+    @include mq($from: desktop4k) {
+      border-bottom-width: 0;
+    }
+
+    @include mq($from: desktop5k) {
+      border-bottom-width: 0;
+    }
   }
 }
