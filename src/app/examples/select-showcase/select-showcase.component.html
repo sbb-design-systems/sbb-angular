@@ -1,14 +1,59 @@
-<h4>Basic sbb-select</h4>
-<sbb-select placeholder="Favorite food">
-  <sbb-option *ngFor="let food of foods" [value]="food.value">
-    {{food.viewValue}}
-  </sbb-option>
-</sbb-select>
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
 
+      <h4 class="sbbsc-block">Basic Example</h4>
+      <sbb-field>
+        <sbb-label>Lieblingsessen</sbb-label>
+        <sbb-select placeholder="Lieblingsessen">
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+        </sbb-select>
+      </sbb-field>
+      <div role="presentation" class="sbbsc-separator"></div>
 
-<h4>Multiple sbb-select</h4>
-<sbb-select placeholder="Favorite food" multiple>
-  <sbb-option *ngFor="let food of foods" [value]="food.value">
-    {{food.viewValue}}
-  </sbb-option>
-</sbb-select>
+      <h4 class="sbbsc-block">Multiple Example</h4>
+      <sbb-field>
+        <sbb-label>Viele Lieblingsgerichte</sbb-label>
+        <sbb-select placeholder="Beliebteste Lebensmittel" multiple>
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+        </sbb-select>
+      </sbb-field>
+      <div role="presentation" class="sbbsc-separator"></div>
+
+      <h4 class="sbbsc-block">With option groups</h4>
+      <sbb-field>
+        <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
+        <sbb-select placeholder="Lebensmittel aus der ganzen Welt">
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+          <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+            <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
+              {{food.viewValue}}
+            </sbb-option>
+          </sbb-option-group>
+        </sbb-select>
+      </sbb-field>
+      <div role="presentation" class="sbbsc-separator"></div>
+
+      <h4 class="sbbsc-block">Multiple with option groups</h4>
+      <sbb-field>
+        <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
+        <sbb-select placeholder="Lebensmittel aus der ganzen Welt" multiple>
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+          <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+            <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
+              {{food.viewValue}}
+            </sbb-option>
+          </sbb-option-group>
+        </sbb-select>
+      </sbb-field>
+    </div>
+  </div>
+</article>
