@@ -1,4 +1,4 @@
-@mixin optionBase() {
+@mixin optionBase($selectMode: false) {
   @include ellipsis;
 
   position: relative;
@@ -9,6 +9,11 @@
   max-width: 100%;
   cursor: pointer;
   outline: 0;
+
+  @if $selectMode == true {
+    cursor: default;
+    color: $colorGrey;
+  }
 
   &:first-of-type {
     padding-top: $autocompletePaddingTop;
@@ -50,12 +55,19 @@
     color: $autocompleteHoverColor;
   }
 
-  &.sbb-active,
-  &:hover,
-  &:focus,
-  &:hover .highlight,
-  &:focus .highlight {
-    color: $autocompleteOptionHoverColor;
+  @if $selectMode == false {
+    &.sbb-active,
+    &:hover,
+    &:focus,
+    &:hover .highlight,
+    &:focus .highlight {
+      color: $autocompleteOptionHoverColor;
+    }
+  } @else {
+    &.sbb-active,
+    &.sbb-selected {
+      color: $colorBlack;
+    }
   }
 
   .sbb-option-text {
