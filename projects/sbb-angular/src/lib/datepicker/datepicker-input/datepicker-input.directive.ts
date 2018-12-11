@@ -189,7 +189,7 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   /** The form control validator for whether the input parses. */
   private parseValidator: ValidatorFn = (): ValidationErrors | null => {
     return this.lastValueValid ?
-      null : { 'sbbtDatepickerParse': { 'text': this.elementRef.nativeElement.value } };
+      null : { 'sbbDatepickerParse': { 'text': this.elementRef.nativeElement.value } };
   }
 
   /** The form control validator for the min date. */

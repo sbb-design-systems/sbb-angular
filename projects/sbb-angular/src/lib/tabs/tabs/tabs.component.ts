@@ -28,7 +28,7 @@ let counter = 0;
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
-   * Class property that track tab number of the list
+   * Class property that tracks tab number of the list
    */
   nameOfTabList = `sbb-tabs-${counter++}`;
   /**
@@ -46,15 +46,15 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     TAB
   ];
   /**
-   * Class property that track changes in the tabs contained in the list
+   * Class property that tracks changes in the tabs contained in the list
    */
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
   /**
-   * Class property that track changes in the content tab in the list of tab
+   * Class property that tracks changes in the content tab in the list of tab
    */
   tabs$: Observable<TabComponent[]>;
   /**
-   * Class property that track changes in the label tab in the list of tab
+   * Class property that tracks changes in the label tab in the list of tab
    */
   @ViewChildren('label') labels: QueryList<ElementRef>;
   /**
