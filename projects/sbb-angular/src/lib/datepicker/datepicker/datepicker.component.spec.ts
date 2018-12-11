@@ -40,7 +40,7 @@ class MinMaxDatepickerComponent {
 
 
 @Component({
-  template: `<sbb-datepicker [(ngModel)]="date" [sbbDatepickerFilter]="filterDates"></sbb-datepicker>`,
+  template: `<sbb-datepicker [(ngModel)]="date" [validDateFilter]="filterDates"></sbb-datepicker>`,
 })
 class DatepickerWithFilterAndValidationComponent {
   @ViewChild(DatepickerComponent) datepicker: DatepickerComponent;

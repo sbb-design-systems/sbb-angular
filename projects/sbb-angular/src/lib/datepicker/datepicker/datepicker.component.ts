@@ -158,7 +158,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
 
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
-  set sbbDatepickerFilter(fn: (date: Date | null) => boolean) {
+  set validDateFilter(fn: (date: Date | null) => boolean) {
     this.datepickerInput.dateFilter = fn;
     this.datepickerInput.validatorOnChange();
   }

@@ -35,6 +35,16 @@
       height: 24px;
       fill: $colorGrey;
 
+      @include mq($from: desktop4k) {
+        width: toPx(24 * $scalingFactor4k);
+        height: toPx(24 * $scalingFactor4k);
+      }
+  
+      @include mq($from: desktop5k) {
+        width: toPx(24 * $scalingFactor5k);
+        height: toPx(24 * $scalingFactor5k); 
+      }
+
       &-rotate {
         transform: rotate(180deg);
       }
