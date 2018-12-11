@@ -76,13 +76,13 @@ export class TextareaComponent implements ControlValueAccessor {
   @HostBinding('class.focused')
   focusedClass: boolean;
   /**
-   * Method that sets true the focus class status
+   * Adds the focused CSS class to this element
    */
   onFocus() {
     this.focusedClass = true;
   }
   /**
-   * Method that sets false the focus class status
+   * Removes the focused CSS class from this element
    */
   onBlur() {
     this.focusedClass = false;
@@ -90,7 +90,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   constructor(private ngZone: NgZone) { }
   /**
-   * Method that listens the automatically resize of a textarea to fit its content
+   * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
     this.ngZone.onStable.pipe(first())

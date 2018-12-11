@@ -6,7 +6,7 @@
   <h1 class="docs-markdown-h1">DatePicker Overview</h1>
   <p class="docs-markdown-p">Import datepicker module in your application </p>
   <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { DatepickerModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
-  <p class="docs-markdown-p">The datepicker field accepts dates in the format of dd.MM.yyyy as see below</p>
+  <p class="docs-markdown-p">The datepicker field accepts dates in the format of dd.MM.yyyy as seen below</p>
   <table class="docs-markdown-table">
     <thead>
       <tr class="docs-markdown-tr">
@@ -24,32 +24,39 @@
   <p class="docs-markdown-p">You can use datepicker in three different modes:</p>
   <ol class="docs-markdown-ol">
     <li class="docs-markdown-li">
-      <p class="docs-markdown-p">You can choose any date and also to set a min and max date. The initial focus is the current date value.</p>
+      <p class="docs-markdown-p">You can choose any date and also set a min and max date. The initial focus is the current date value.</p>
       <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Simple Datepicker<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"Datum"</span>&gt;</span>Datum<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span> 
- <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"laData"</span> [<span class="hljs-attr">withoutToggle</span>]=<span class="hljs-string">"withoutToggle"</span> [<span class="hljs-attr">min</span>]=<span class="hljs-string">"minDate"</span> [<span class="hljs-attr">max</span>]=<span class="hljs-string">"maxDate"</span> (<span class="hljs-attr">closed</span>)=<span class="hljs-string">"closedEvent()"</span> (<span class="hljs-attr">opened</span>)=<span class="hljs-string">"openedEvent()"</span> (<span class="hljs-attr">dateChange</span>)=<span class="hljs-string">"dateChangeEvent($event)"</span> (<span class="hljs-attr">dateInput</span>)=<span class="hljs-string">"dateInputEvent($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"Datum"</span>&gt;</span>Datum<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span> 
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"laData"</span>
+               [<span class="hljs-attr">withoutToggle</span>]=<span class="hljs-string">"withoutToggle"</span>
+               [<span class="hljs-attr">min</span>]=<span class="hljs-string">"minDate"</span>
+               [<span class="hljs-attr">max</span>]=<span class="hljs-string">"maxDate"</span>
+               (<span class="hljs-attr">closed</span>)=<span class="hljs-string">"closedEvent()"</span>
+               (<span class="hljs-attr">opened</span>)=<span class="hljs-string">"openedEvent()"</span>
+               (<span class="hljs-attr">dateChange</span>)=<span class="hljs-string">"dateChangeEvent($event)"</span>
+               (<span class="hljs-attr">dateInput</span>)=<span class="hljs-string">"dateInputEvent($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
     </li>
     <li class="docs-markdown-li">
       <p class="docs-markdown-p">To set a range of dates</p>
       <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>2 Datepickers<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">form</span> [<span class="hljs-attr">formGroup</span>]=<span class="hljs-string">"twoDatepickersForm"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"medium"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-medium-field"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"medium"</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"Datum"</span>&gt;</span>Datumsbereich innerhalb eines Monats<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"firstDatepicker"</span> [<span class="hljs-attr">attachDatepicker</span>]=<span class="hljs-string">"datepickerTheSecond"</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"medium"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-medium-field"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"medium"</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"secondDatepicker"</span> #<span class="hljs-attr">datepickerTheSecond</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
     </li>
     <li class="docs-markdown-li">
-      <p class="docs-markdown-p">You can create a function to get only the date of the first day of the month as see below</p>
+      <p class="docs-markdown-p">You can create a function to only be able to select the first day of each month as see below</p>
       <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Date filter<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"Datum"</span>&gt;</span>Datum<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>  
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"dateWithFilter"</span> [<span class="hljs-attr">sbbDatepickerFilter</span>]=<span class="hljs-string">"filterDates"</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"dateWithFilter"</span> [<span class="hljs-attr">validDateFilter</span>]=<span class="hljs-string">"filterDates"</span> <span class="hljs-attr">withArrows</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
       <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"> filterDates(date: <span class="hljs-built_in">Date</span>): <span class="hljs-built_in">boolean</span> {
      <span class="hljs-keyword">return</span> date.getDate() === <span class="hljs-number">1</span>;
