@@ -17,4 +17,3 @@ export interface IAccordionBase extends CdkAccordion {
  * Used primarily to avoid circular imports between `SbbAccordion` and `SbbExpansionPanel`.
  */
 export const SBB_ACCORDION = new InjectionToken<IAccordionBase>('SBB_ACCORDION');
-
