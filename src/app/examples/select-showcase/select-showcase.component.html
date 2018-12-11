@@ -14,7 +14,7 @@
       <div role="presentation" class="sbbsc-separator"></div>
 
       <h4 class="sbbsc-block">Multiple Example</h4>
-      <sbb-field>
+      <sbb-field mode="long">
         <sbb-label>Viele Lieblingsgerichte</sbb-label>
         <sbb-select placeholder="Beliebteste Lebensmittel" multiple>
           <sbb-option *ngFor="let food of foods" [value]="food.value">
@@ -25,7 +25,7 @@
       <div role="presentation" class="sbbsc-separator"></div>
 
       <h4 class="sbbsc-block">With option groups</h4>
-      <sbb-field>
+      <sbb-field mode="long">
         <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
         <sbb-select placeholder="Lebensmittel aus der ganzen Welt">
           <sbb-option *ngFor="let food of foods" [value]="food.value">
@@ -41,7 +41,7 @@
       <div role="presentation" class="sbbsc-separator"></div>
 
       <h4 class="sbbsc-block">Multiple with option groups</h4>
-      <sbb-field>
+      <sbb-field mode="long">
         <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
         <sbb-select placeholder="Lebensmittel aus der ganzen Welt" multiple>
           <sbb-option *ngFor="let food of foods" [value]="food.value">

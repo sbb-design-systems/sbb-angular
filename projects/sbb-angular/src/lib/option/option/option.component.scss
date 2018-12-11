@@ -2,6 +2,15 @@
 
 sbb-option {
   @include optionBase();
+  &.sbb-option-multiple {
+    display: flex;
+    align-items: center;
+
+    sbb-pseudo-checkbox {
+      @include pseudoCheckbox;
+    }
+    
+  }
 }
 
 sbb-option[disabled] {
