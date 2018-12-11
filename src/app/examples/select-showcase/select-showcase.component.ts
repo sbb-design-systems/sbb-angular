@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 export interface Food {
   value: string;
@@ -35,5 +36,11 @@ export class SelectShowcaseComponent {
     ]
   }];
 
+  basicExampleFormControl = new FormControl();
 
+  multipleExampleFormControl = new FormControl();
+
+  withOptionGroupsExampleFormControl = new FormControl();
+
+  multipleWithOptionGroupsExampleFormControl = new FormControl();
 }
