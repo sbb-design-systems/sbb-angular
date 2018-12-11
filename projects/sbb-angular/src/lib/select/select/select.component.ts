@@ -174,9 +174,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   /** Whether filling out the select is required in the form. */
   private _required = false;
 
-  /** The scroll position of the overlay panel, calculated to center the selected option. */
-  private scrollTop = 0;
-
   /** The placeholder displayed in the trigger of the select. */
   private _placeholder: string;
 
@@ -502,7 +499,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this.stateChanges.next();
 
     if (this.panelOpen) {
-      this.scrollTop = 0;
       this.openedChange.emit(true);
     } else {
       this.openedChange.emit(false);

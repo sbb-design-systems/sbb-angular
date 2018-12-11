@@ -9,20 +9,21 @@
   }
 }
 
-input[aria-expanded="true"] {
-  @include autocompleteInputActive();
-
-  &.sbb-select-input-above {
-    @include autocompleteInputActive($mode: reverse);
-  }
-}
-
 .sbb-select {
   .sbb-select-trigger {
     @include inputfields;
     display: flex;
     align-items: center;
     padding-right: 12px;
+
+    &[aria-expanded="true"] {
+      @include autocompleteInputActive();
+
+      &.sbb-select-input-above {
+        @include autocompleteInputActive($mode: reverse);
+      }
+    }
+
     .sbb-select-value {
       width: 100%;
       overflow: hidden;
