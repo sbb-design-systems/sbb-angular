@@ -1,22 +1,9 @@
 @import "../../../styles/main";
 
 sbb-option {
-  .sbb-select-content & {
-    @include optionBase($selectMode: true);
-  }
-
-  .sbb-autocomplete-panel & {
-    @include optionBase;
-  }
-
-  &.sbb-option-multiple {
-    display: flex;
-    align-items: center;
-
-    sbb-pseudo-checkbox {
-      @include pseudoCheckbox;
-    }
-  }
+  @include optionInSelect;
+  @include optionInAutocomplete;
+  @include multipleOption;
 }
 
 sbb-option[disabled] {
