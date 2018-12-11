@@ -20,23 +20,36 @@
     }
 
     .sbb-select-arrow-wrapper {
-      width: 24px;
-      height: 24px;
+      width: toPx($selectArrowWidthHeight);
+      height: toPx($selectArrowWidthHeight);
       fill: $colorGrey;
 
       @include mq($from: desktop4k) {
-        width: toPx(24 * $scalingFactor4k);
-        height: toPx(24 * $scalingFactor4k);
+        width: toPx($selectArrowWidthHeight * $scalingFactor4k);
+        height: toPx($selectArrowWidthHeight * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
-        width: toPx(24 * $scalingFactor5k);
-        height: toPx(24 * $scalingFactor5k);
+        width: toPx($selectArrowWidthHeight * $scalingFactor5k);
+        height: toPx($selectArrowWidthHeight * $scalingFactor5k);
       }
 
       &-rotate {
         transform: rotate(180deg);
       }
     }
+  }
+}
+
+@mixin selectPanelBase {
+  overflow: overlay;
+  max-height: toPx($selectMaxWidth);
+
+  @include mq($from: desktop4k) {
+    max-height: toPx($selectMaxWidth * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    max-height: toPx($selectMaxWidth * $scalingFactor5k);
   }
 }

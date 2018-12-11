@@ -34,6 +34,14 @@ export class SelectShowcaseComponent {
       { value: 'eisbein', viewValue: 'Eisbein' },
       { value: 'rheinische-muscheln', viewValue: 'Rheinische Muscheln' }
     ]
+  },
+  {
+    nation: 'Swiss',
+    food: [
+      { value: 'bircherműesli', viewValue: 'Bircherműesli' },
+      { value: 'rösti', viewValue: 'Rösti' },
+      { value: 'bűndnernusstorte', viewValue: 'Bűndnernusstorte' }
+    ]
   }];
 
   basicExampleFormControl = new FormControl();

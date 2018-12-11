@@ -3,6 +3,9 @@
 .sbb-select-panel {
   @include autocompleteBase();
   @include autocompleteDirectionalRules($selectMode: true);
+  .sbb-select-content {
+    @include selectPanelBase;
+  }
 
   &.sbb-select-panel-above {
     @include autocompleteDirectionalRules($mode: reverse, $selectMode: true);
