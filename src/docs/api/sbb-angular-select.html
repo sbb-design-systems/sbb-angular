@@ -212,28 +212,70 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>errorState: boolean</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>errorStateMatcher: ErrorStateMatcher</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
           <code>focused: boolean</code>
         </p>
       </td>
       <td class="docs-api-property-description">
         <p>Whether the select is focused.</p>
       </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getAriaActiveDescendant: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Determines the <code>aria-activedescendant</code> to be set on the host.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getAriaDescribedBy: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getAriaOwns: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isAriaDisabled: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isAriaRequired: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isDisabled: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isInvalid: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -336,7 +378,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>positions: [ { originX: &#39;start&#39;, originY: &#39;top&#39;, overlayX: &#39;start&#39;, overlayY: &#39;top&#39; }, { originX: &#39;start&#39;, originY: &#39;bottom&#39;, overlayX: &#39;start&#39;, overlayY: &#39;bottom&#39; }, ]</code>
+          <code>positions: [ { originX: &#39;start&#39;, originY: &#39;bottom&#39;, overlayX: &#39;start&#39;, overlayY: &#39;top&#39; }, { originX: &#39;start&#39;, originY: &#39;top&#39;, overlayX: &#39;start&#39;, overlayY: &#39;bottom&#39; } ]</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -350,6 +392,16 @@
         </p>
       </td>
       <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>rotateIcon: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Flag used to rotate the icon on the select trigger</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -446,68 +498,6 @@
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">calculateOverlayScroll </th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Calculates the scroll position of the select&#39;s overlay panel.</p>
-        <p>Attempts to center the selected option in the panel. If the option is too high or too low in the panel to be scrolled to the center, it clamps the scroll position to the min or max scroll positions respectively.</p>
-      </td>
-    </tr>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> selectedIndex</p>
-        <code class="docs-api-method-parameter-type">number</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> scrollBuffer</p>
-        <code class="docs-api-method-parameter-type">number</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> maxScroll</p>
-        <code class="docs-api-method-parameter-type">number</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-    <thead>
-      <tr class="docs-api-method-returns-header-row">
-        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-      </tr>
-    </thead>
-    <tr>
-      <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">number</code>
-      </td>
-      <td class="docs-api-method-returns-description-cell">
-        <p class="docs-api-method-returns-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
         <th colspan="2" class="docs-api-method-name-cell">close </th>
       </tr>
     </thead>
@@ -528,60 +518,6 @@
         <p>Focuses the select element.</p>
       </td>
     </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">getAriaActiveDescendant </th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Determines the <code>aria-activedescendant</code> to be set on the host.</p>
-      </td>
-    </tr>
-    <thead>
-      <tr class="docs-api-method-returns-header-row">
-        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-      </tr>
-    </thead>
-    <tr>
-      <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">string | null</code>
-      </td>
-      <td class="docs-api-method-returns-description-cell">
-        <p class="docs-api-method-returns-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">getAriaDescribedBy </th>
-      </tr>
-    </thead>
-    <thead>
-      <tr class="docs-api-method-returns-header-row">
-        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-      </tr>
-    </thead>
-    <tr>
-      <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">string | null</code>
-      </td>
-      <td class="docs-api-method-returns-description-cell">
-        <p class="docs-api-method-returns-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">getAriaOwns </th>
-      </tr>
-    </thead>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -609,48 +545,6 @@
         </p>
       </td>
     </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">isAriaDisabled </th>
-      </tr>
-    </thead>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">isAriaRequired </th>
-      </tr>
-    </thead>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">isDisabled </th>
-      </tr>
-    </thead>
-    <thead>
-      <tr class="docs-api-method-returns-header-row">
-        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-      </tr>
-    </thead>
-    <tr>
-      <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">boolean</code>
-      </td>
-      <td class="docs-api-method-returns-description-cell">
-        <p class="docs-api-method-returns-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">isInvalid </th>
-      </tr>
-    </thead>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -706,13 +600,6 @@
         <p>Toggles the overlay panel open or closed.</p>
       </td>
     </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">updateErrorState </th>
-      </tr>
-    </thead>
   </table>
   <h3 id="additional_classes" class="docs-header-link docs-api-h3">
     <span header-link="additional_classes"></span> Additional classes </h3>

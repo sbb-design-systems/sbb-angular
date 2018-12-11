@@ -92,7 +92,7 @@ apiDocsPackage.config((readTypeScriptModules: ReadTypeScriptModules, tsParser: T
   const typescriptPathMap: any = {};
 
   saclPackages.forEach(packageName => {
-    typescriptPathMap[`sbb-angular/${packageName}`] = [`./lib/${packageName}/index.ts`];
+    typescriptPathMap[`sbb-angular/${packageName}`] = [`./lib/${packageName}/${packageName}.ts`];
   });
 
   // Add proper path mappings to the TSParser service of Dgeni. This ensures that properties
@@ -103,7 +103,7 @@ apiDocsPackage.config((readTypeScriptModules: ReadTypeScriptModules, tsParser: T
   // Entry points for docs generation. All publicly exported symbols found through these
   // files will have docs generated.
   readTypeScriptModules.sourceFiles = [
-    ...saclPackages.map(packageName => `./lib/${packageName}/index.ts`)
+    ...saclPackages.map(packageName => `./lib/${packageName}/${packageName}.ts`)
   ];
 });
 
