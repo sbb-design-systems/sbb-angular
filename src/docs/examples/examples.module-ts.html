@@ -17,6 +17,7 @@
   TabsModule,
   TimeInputModule,
   LoadingModule,
+  AccordionModule,
   DatepickerModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
@@ -32,6 +33,7 @@
 <span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -46,7 +48,8 @@
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    LoadingShowcaseComponent
+    LoadingShowcaseComponent,
+    AccordionShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@
     TimeInputModule,
     IconCommonModule,
     TabsModule,
-    LoadingModule
+    LoadingModule,
+    AccordionModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -80,7 +84,8 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule,
-    LoadingModule
+    LoadingModule,
+    AccordionModule
   ]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExamplesModule { }

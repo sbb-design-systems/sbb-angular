@@ -1,6 +1,327 @@
 <div style="margin-bottom: 2em;"></div>
+<article class="container-fluid">
+  <div class="row">
 
-<sbb-accordion>
+    <div class="col-lg-7 sbbsc-v-sep no-fix-width">
+      <h4>Basic Example</h4>
+      <br>
+      <sbb-accordion #firstAccordion [multi]="multi">
+        <sbb-expansion-panel [expanded]="panelMode === 'panel 1'" [hideToggle]="hideToggle">
+          <sbb-expansion-panel-header>
+            Some generic content accordion panel
+          </sbb-expansion-panel-header>
+          Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
+          Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
+          Mauris gravida aliquet eleifend.
+        </sbb-expansion-panel>
+        <sbb-expansion-panel [expanded]="panelMode === 'panel 2'" (opened)="panelOpenState = true; log('opened called')"
+          (closed)="panelOpenState = false; log('closed called')" (expandedChange)="log('expandedChange called', $event)" [hideToggle]="hideToggle">
+          <sbb-expansion-panel-header>
+            Panel with table
+            <p style="margin: 0 2em;">Currently I am {{panelOpenState ? 'open' : 'closed'}}</p>
+          </sbb-expansion-panel-header>
+          <div class="docs-api">
+            <h2>Table Title h2</h2>
+            <table class="docs-api-properties-table">
+              <tbody>
+                <tr class="docs-api-properties-header-row">
+                  <th class="docs-api-properties-th">Name</th>
+                  <th class="docs-api-properties-th">Description</th>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>active: false</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Class property that specifics tab status</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>badgePill: number</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Class property that identifies the data-set for tabs content</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>disabled: boolean</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Sets a specifics tab disabled</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>id: string</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Tab identifier</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>label: string</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Label of a specific tab</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>labelId: string</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Label identifier of a tab</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-input-marker"> @Input()</div>
+                    <p class="docs-api-property-name">
+                      <code>tabindex: -1</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Initial index tab</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-output-marker"> @Output()</div>
+                    <p class="docs-api-property-name">
+                      <code>disableChange: EventEmitter</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Event generated if a tab is disabled</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <div class="docs-api-output-marker"> @Output()</div>
+                    <p class="docs-api-property-name">
+                      <code>removeChange: EventEmitter</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Event generated if a tab is removed</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <p class="docs-api-property-name">
+                      <code>ariaHidden: string</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Class property that identifies an aria hidden of a tab</p>
+                  </td>
+                </tr>
+                <tr class="docs-api-properties-row">
+                  <td class="docs-api-properties-name-cell">
+                    <p class="docs-api-property-name">
+                      <code>role: 'tabpanel'</code>
+                    </p>
+                  </td>
+                  <td class="docs-api-property-description">
+                    <p>Role of tab</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </sbb-expansion-panel>
+        <sbb-expansion-panel [expanded]="panelMode === 'panel 3'" [disabled]="disabled" [hideToggle]="hideToggle">
+          <sbb-expansion-panel-header>
+            I can disable this panel
+          </sbb-expansion-panel-header>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
+
+        </sbb-expansion-panel>
+        <sbb-expansion-panel [expanded]="panelMode === 'panel 4'" [hideToggle]="hideToggle">
+          <sbb-expansion-panel-header>
+            Panel with lazy loaded content
+          </sbb-expansion-panel-header>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.
+          </p>
+
+          <ng-template sbbExpansionPanelContent>
+            <sbb-expansion-panel>
+              <sbb-expansion-panel-header>
+                Lazy loaded content initialized at the first parent open
+              </sbb-expansion-panel-header>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.</p>
+
+            </sbb-expansion-panel>
+          </ng-template>
+
+        </sbb-expansion-panel>
+        <sbb-expansion-panel hideToggle class="sbbsc-custom-html" [expanded]="panelMode === 'panel 5'">
+          <sbb-expansion-panel-header>
+            <h2>Panel with custom html</h2>
+            <div class="sbbsc-button-group">
+              <button sbbButton (click)="logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"
+                (keydown)="logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')">
+                Test button
+                <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+              </button>
+            </div>
+          </sbb-expansion-panel-header>
+          Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
+          Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
+          Mauris gravida aliquet eleifend.
+        </sbb-expansion-panel>
+      </sbb-accordion>
+      <div style="margin-bottom: 2em;"></div>
+      <h4>Advanced Accordion</h4>
+      <br>
+      <sbb-accordion class="example-headers-align">
+        <sbb-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+          <sbb-expansion-panel-header>
+            <span>I'm a wizard like accordion</span>
+            <p style="margin: 0 1em;">conditionally open using [expand] property<br> and (opened) event</p>
+          </sbb-expansion-panel-header>
+
+          <div class="sbbsc-block">
+            <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+          </div>
+        </sbb-expansion-panel>
+
+        <sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+          <sbb-expansion-panel-header>
+            Step 1
+          </sbb-expansion-panel-header>
+
+          <div class="sbbsc-block">
+            <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
+            <button sbbButton mode="primary" (click)="nextStep()">Next</button>
+          </div>
+
+        </sbb-expansion-panel>
+
+        <sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+          <sbb-expansion-panel-header>
+            Step 2
+          </sbb-expansion-panel-header>
+
+          <div class="sbbsc-block">
+            <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
+            <button sbbButton mode="primary" (click)="nextStep()">End</button>
+          </div>
+
+        </sbb-expansion-panel>
+
+      </sbb-accordion>
+      <div style="margin-bottom: 2em;"></div>
+      <h4>Simple Panel</h4>
+      <br>
+      <sbb-expansion-panel>
+        <sbb-expansion-panel-header>
+          A single orphan (no accordion) panel
+        </sbb-expansion-panel-header>
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      </sbb-expansion-panel>
+
+    </div>
+
+    <div class="col-lg-5" [formGroup]="accordionForm">
+
+      <h4>Properties</h4>
+      <div class="sbbsc-block">
+
+        <div class="sbbsc-block">
+
+          <div *ngFor="let option of radioOptions">
+            <sbb-radio-button formControlName="radioModes" [value]="option.value">{{option.name}}</sbb-radio-button>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="sbbsc-block">
+        <label>Click to open the panels of the accordion together:</label>
+        <br>
+        <sbb-checkbox value="multi" formControlName="multi" style="display: inline-block;"> multi panel </sbb-checkbox>
+      </div>
+      <div class="sbbsc-block">
+        <label>Click to disable a panel of the accordion:</label>
+        <br>
+        <sbb-checkbox value="disabled" formControlName="disabled" style="display: inline-block;"> disabled
+        </sbb-checkbox>
+      </div>
+      <div class="sbbsc-block">
+          <label>Click to show/hide the panel toggles:</label>
+          <br>
+          <sbb-checkbox value="hideToggle" formControlName="hideToggle" style="display: inline-block;"> Hide Toggle
+          </sbb-checkbox>
+        </div>
+      <div class="sbbsc-block">
+        <label>Click an option to open a specific panel of the accordion: </label>
+        <br>
+        <select formControlName="panelMode" id="panelMode">
+          <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
+        </select>
+      </div>
+      <br>
+      <p><small>*You can choose "Open all/Close all" if multi panel checkbox is selected </small></p>
+      <small>*You can choose one panel into select field to expand if the multi panel checkbox isn't selected</small>
+    </div>
+
+  </div>
+</article>
+
+<!-- <sbb-accordion>
   <sbb-expansion-panel>
     <sbb-expansion-panel-header>
       Some generic content accordion panel
@@ -325,4 +646,4 @@
     </sbb-expansion-panel>
   </sbb-accordion>
 
-</sbb-expansion-panel>
+</sbb-expansion-panel> -->
