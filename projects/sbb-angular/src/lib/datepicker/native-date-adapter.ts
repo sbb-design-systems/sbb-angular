@@ -1,23 +1,8 @@
 import { DateAdapter } from './date-adapter';
-import {
-  getDate,
-  getMonth,
-  getYear,
-  getDay,
-  getDaysInMonth,
-  parse,
-  startOfToday,
-  isValid,
-  isDate,
-  addDays,
-  addMonths,
-  addYears
-} from 'date-fns';
 import { DatePipe } from '@angular/common';
 import { LOCALE_ID, Inject, Injectable } from '@angular/core';
 
 const dateRegex = new RegExp('^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)[0-9]{2}|[0-9]{2})\s*$', 'g');
-
 
 /** Creates an array and fills it with values. */
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
@@ -47,16 +32,16 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   getYear(date: Date): number {
-    return getYear(date);
+    return date.getFullYear();
   }
   getMonth(date: Date): number {
-    return getMonth(date);
+    return date.getMonth();
   }
   getDate(date: Date): number {
-    return getDate(date);
+    return date.getDate();
   }
   getDayOfWeek(date: Date): number {
-    return getDay(date);
+    return date.getDay();
   }
 
   getMonthName(date: Date) {
@@ -111,11 +96,14 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   getNumDaysInMonth(date: Date): number {
-    return getDaysInMonth(date);
+    const lastDayOfMonth = new Date(0);
+    lastDayOfMonth.setFullYear(date.getFullYear(), date.getMonth() + 1, 0);
+    lastDayOfMonth.setHours(0, 0, 0, 0);
+    return lastDayOfMonth.getDate();
   }
 
   clone(date: Date): Date {
-    return parse(date);
+    return new Date(date.valueOf());
   }
 
   createDate(year: number, month: number, date: number): Date {
@@ -123,11 +111,12 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   today(): Date {
-    return startOfToday();
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    return date;
   }
 
   parse(value: any): Date {
-
     if (value) {
       const splittedDate = value.split(',');
       if (splittedDate.length > 1) {
@@ -136,8 +125,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       const matches = (value as string).match(dateRegex);
       if (matches) {
         const dateParts = value.trim().split('.');
-        const date = new Date(toInteger(dateParts[2]), toInteger(dateParts[1]) - 1, toInteger(dateParts[0]));
-        return parse(date);
+        return new Date(toInteger(dateParts[2]), toInteger(dateParts[1]) - 1, toInteger(dateParts[0]));
       }
     }
     return null;
@@ -148,15 +136,25 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   addCalendarYears(date: Date, years: number): Date {
-    return addYears(date, years);
+    return this.addCalendarMonths(date, years * 12);
   }
 
   addCalendarMonths(date: Date, months: number): Date {
-    return addMonths(date, months);
+    const targetMonth = date.getMonth() + months;
+    const dateWithCorrectMonth = new Date(0);
+    dateWithCorrectMonth.setFullYear(date.getFullYear(), targetMonth, 1);
+    dateWithCorrectMonth.setHours(0, 0, 0, 0);
+    const daysInMonth = this.getNumDaysInMonth(dateWithCorrectMonth);
+    const newDate = this.clone(date);
+    // Adapt last day of month for shorter months
+    newDate.setMonth(targetMonth, Math.min(daysInMonth, date.getDate()));
+    return newDate;
   }
 
   addCalendarDays(date: Date, days: number): Date {
-    return addDays(date, days);
+    const newDate = this.clone(date);
+    newDate.setDate(newDate.getDate() + days);
+    return newDate;
   }
 
   toIso8601(date: Date): string {
@@ -164,11 +162,11 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   isDateInstance(obj: any): boolean {
-    return isDate(obj);
+    return obj instanceof Date;
   }
 
   isValid(date: Date): boolean {
-    return isValid(date);
+    return !isNaN(date.valueOf());
   }
 
   invalid(): Date {
