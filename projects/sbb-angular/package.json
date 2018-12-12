@@ -4,8 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/cdk": "6.4.7",
-    "date-fns": "^1.29.0"
+    "@angular/cdk": "6.4.7"
   },
   "dependencies": {
     "ngx-perfect-scrollbar": "^6.3.1"
