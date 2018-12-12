@@ -1,5 +1,12 @@
-<div cdk-overlay-origin class="sbb-select-trigger" aria-hidden="true" (click)="toggle()" #origin="cdkOverlayOrigin"
-  #trigger [attr.tabindex]="tabIndex" [attr.aria-expanded]="panelOpen">
+<div 
+  cdk-overlay-origin class="sbb-select-trigger" 
+  aria-hidden="true" 
+  (click)="toggle()"
+  #origin="cdkOverlayOrigin"
+  #trigger 
+  [attr.tabindex]="tabIndex" 
+  [attr.aria-expanded]="panelOpen"
+  [class.sbb-select-disabled]="disabled">
   <div class="sbb-select-value" [ngSwitch]="empty">
     <span class="sbb-select-placeholder" *ngSwitchCase="true">{{placeholder || '\u00A0'}}</span>
     <span class="sbb-select-value-text" *ngSwitchCase="false">

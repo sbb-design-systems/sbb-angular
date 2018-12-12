@@ -73,6 +73,8 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     return this._parent && this._parent.multiple;
   }
 
+  @HostBinding('attr.role')
+  role = 'option';
 
   @HostBinding('attr.aria-selected')
   get selectedString(): string { return this.selected.toString(); }

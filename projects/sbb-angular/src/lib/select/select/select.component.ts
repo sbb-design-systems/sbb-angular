@@ -161,7 +161,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   @HostBinding('attr.role') role = 'listbox';
 
   @Input()
-  @HostBinding('attr.tabindex')
   get tabIndex(): number { return this.disabled ? -1 : this._tabIndex; }
   set tabIndex(value: number) {
     // If the specified tabIndex value is null or undefined, fall back to the default value.

@@ -1,4 +1,5 @@
 @mixin selectBase {
+
   .sbb-select-trigger {
     @include inputfields;
     display: flex;
@@ -13,6 +14,12 @@
       }
     }
 
+    &.sbb-select-disabled {
+      cursor: default;
+      background: $colorBlack5;
+      border-color: $colorBlack20;
+    }
+    
     .sbb-select-value {
       width: 100%;
       overflow: hidden;
