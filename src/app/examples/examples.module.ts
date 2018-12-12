@@ -17,6 +17,7 @@ import {
   TabsModule,
   TimeInputModule,
   LoadingModule,
+  AccordionModule,
   DatepickerModule
 } from 'sbb-angular';
 
@@ -32,6 +33,7 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    LoadingShowcaseComponent
+    LoadingShowcaseComponent,
+    AccordionShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     TimeInputModule,
     IconCommonModule,
     TabsModule,
-    LoadingModule
+    LoadingModule,
+    AccordionModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -80,7 +84,8 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule,
-    LoadingModule
+    LoadingModule,
+    AccordionModule
   ]
 })
 export class ExamplesModule { }

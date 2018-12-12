@@ -11,6 +11,7 @@ import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/dat
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
+import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 
 
 @Injectable({
@@ -207,7 +208,7 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-     /*  new UiComponent(
+     new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -217,8 +218,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        AccordionShowcaseComponent
+      ),
       /* new UiComponent(
         'Section (Fieldset)',
         'section',
