@@ -2,6 +2,7 @@
 
   .sbb-select-trigger {
     @include inputfields;
+    cursor: pointer;
     display: flex;
     align-items: center;
     padding-right: 12px;

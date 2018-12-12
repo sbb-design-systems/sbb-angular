@@ -1,6 +1,6 @@
 import { ViewEncapsulation, ChangeDetectionStrategy, Input, Optional, Inject, HostBinding, Component } from '@angular/core';
 
-export type SbbPseudoCheckboxState = 'unchecked' | 'checked' | 'indeterminate';
+export type SbbPseudoCheckboxState = 'unchecked' | 'checked';
 
 @Component({
     selector: 'sbb-pseudo-checkbox',
@@ -24,11 +24,6 @@ export class PseudoCheckboxComponent {
         return this.state === 'checked';
     }
 
-    @HostBinding('class.sbb-pseudo-checkbox-indeterminate')
-    get indeterminate(): boolean {
-        return this.state === 'indeterminate';
-    }
-
-    @HostBinding('class.sbb-pseudo-checkbox') baseCssClass = true;
+      @HostBinding('class.sbb-pseudo-checkbox') baseCssClass = true;
 
 }

@@ -99,6 +99,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   value: any;
 
   @Input()
+  @HostBinding('attr.id')
   id = `sbb-option-${uniqueIdCounter++}`;
 
   // tslint:disable-next-line:no-output-on-prefix

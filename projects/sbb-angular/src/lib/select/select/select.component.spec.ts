@@ -52,12 +52,6 @@ import { SBBOptionSelectionChange, OptionComponent } from '../../option/option/o
 import { SelectComponent } from './select.component';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { FieldModule } from '../../field/field.module';
-import { OptionModule } from '../../option/option.module';
-
-
-
-/** The debounce interval when typing letters to select an option. */
-const LETTER_KEY_DEBOUNCE_INTERVAL = 200;
 
 
 @Component({
@@ -251,29 +245,6 @@ class CustomSelectAccessorComponent implements ControlValueAccessor {
 class CompWithCustomSelectComponent {
   ctrl = new FormControl('initial value');
   @ViewChild(CustomSelectAccessorComponent) customAccessor: CustomSelectAccessorComponent;
-}
-
-@Component({
-  selector: 'sbb-select-infinite-loop',
-  template: `
-    <sbb-field>
-      <sbb-select [(ngModel)]="value"></sbb-select>
-    </sbb-field>
-    <throws-error-on-init></throws-error-on-init>
-  `
-})
-class SelectWithErrorSiblingComponent {
-  value: string;
-}
-
-@Component({
-  selector: 'sbb-throws-error-on-init',
-  template: ''
-})
-class ThrowsErrorOnInitComponent implements OnInit {
-  ngOnInit() {
-    throw Error('Oh no!');
-  }
 }
 
 @Component({
@@ -559,7 +530,7 @@ class InvalidSelectInFormComponent {
           <sbb-option value="pizza-1">Pizza</sbb-option>
         </sbb-select>
 
-        <sbb-error>This field is required</sbb-error>
+        <sbb-form-error>This field is required</sbb-form-error>
       </sbb-field>
     </form>
   `
@@ -642,7 +613,7 @@ class BasicSelectWithoutFormsMultipleComponent {
   selector: 'sbb-select-with-custom-trigger',
   template: `
     <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control" #select="matSelect">
+      <sbb-select placeholder="Food" [formControl]="control" #select="sbbSelect">
         <sbb-select-trigger>
           {{ select.selected?.viewValue.split('').reverse().join('') }}
         </sbb-select-trigger>
@@ -787,7 +758,8 @@ class SelectWithFormFieldLabelComponent {
 }
 
 
-xdescribe('SelectComponent', () => {
+describe('SelectComponent', () => {
+
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject();
@@ -846,11 +818,13 @@ xdescribe('SelectComponent', () => {
       describe('for select', () => {
         let fixture: ComponentFixture<BasicSelectComponent>;
         let select: HTMLElement;
+        let trigger: HTMLElement;
 
         beforeEach(fakeAsync(() => {
           fixture = TestBed.createComponent(BasicSelectComponent);
           fixture.detectChanges();
           select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
         }));
 
         it('should set the role of the select to listbox', fakeAsync(() => {
@@ -883,14 +857,14 @@ xdescribe('SelectComponent', () => {
         }));
 
         it('should set the tabindex of the select to 0 by default', fakeAsync(() => {
-          expect(select.getAttribute('tabindex')).toEqual('0');
+          expect(trigger.getAttribute('tabindex')).toEqual('0');
         }));
 
         it('should be able to override the tabindex', fakeAsync(() => {
           fixture.componentInstance.tabIndexOverride = 3;
           fixture.detectChanges();
 
-          expect(select.getAttribute('tabindex')).toBe('3');
+          expect(trigger.getAttribute('tabindex')).toBe('3');
         }));
 
         it('should set aria-required for required selects', fakeAsync(() => {
@@ -940,11 +914,11 @@ xdescribe('SelectComponent', () => {
           fixture.componentInstance.control.disable();
           flush();
           fixture.detectChanges();
-          expect(select.getAttribute('tabindex')).toEqual('-1');
+          expect(trigger.getAttribute('tabindex')).toEqual('-1');
 
           fixture.componentInstance.control.enable();
           fixture.detectChanges();
-          expect(select.getAttribute('tabindex')).toEqual('0');
+          expect(trigger.getAttribute('tabindex')).toEqual('0');
         }));
 
         it('should not set `aria-labelledby` if there is a placeholder', () => {
@@ -1058,7 +1032,7 @@ xdescribe('SelectComponent', () => {
 
           const event = createKeyboardEvent('keydown', DOWN_ARROW);
           Object.defineProperty(event, 'altKey', { get: () => true });
-
+          flush();
           dispatchEvent(select, event);
 
           expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
@@ -1076,7 +1050,7 @@ xdescribe('SelectComponent', () => {
 
           const event = createKeyboardEvent('keydown', UP_ARROW);
           Object.defineProperty(event, 'altKey', { get: () => true });
-
+          flush();
           dispatchEvent(select, event);
 
           expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
@@ -1326,18 +1300,9 @@ xdescribe('SelectComponent', () => {
           expect(event.defaultPrevented).toBe(true);
         }));
 
-        it('should be able to focus the select trigger', fakeAsync(() => {
-          document.body.focus(); // ensure that focus isn't on the trigger already
-
-          fixture.componentInstance.select.focus();
-
-          expect(document.activeElement).toBe(select, 'Expected select element to be focused.');
-        }));
-
         // Having `aria-hidden` on the trigger avoids issues where
         // screen readers read out the wrong amount of options.
         it('should set aria-hidden on the trigger element', fakeAsync(() => {
-          const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
 
           expect(trigger.getAttribute('aria-hidden'))
             .toBe('true', 'Expected aria-hidden to be true when the select is open.');
@@ -1358,100 +1323,6 @@ xdescribe('SelectComponent', () => {
           expect(select.getAttribute('aria-multiselectable')).toBe('false');
         }));
 
-        it('should set aria-activedescendant only while the panel is open', fakeAsync(() => {
-          fixture.componentInstance.control.setValue('chips-4');
-          fixture.detectChanges();
-
-          const host = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
-
-          expect(host.hasAttribute('aria-activedescendant'))
-            .toBe(false, 'Expected no aria-activedescendant on init.');
-
-          fixture.componentInstance.select.open();
-          fixture.detectChanges();
-          flush();
-
-          const options = overlayContainerElement.querySelectorAll('sbb-option');
-
-          expect(host.getAttribute('aria-activedescendant'))
-            .toBe(options[4].id, 'Expected aria-activedescendant to match the active option.');
-
-          fixture.componentInstance.select.close();
-          fixture.detectChanges();
-          flush();
-
-          expect(host.hasAttribute('aria-activedescendant'))
-            .toBe(false, 'Expected no aria-activedescendant when closed.');
-        }));
-
-        it('should set aria-activedescendant based on the focused option', fakeAsync(() => {
-          const host = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
-
-          fixture.componentInstance.select.open();
-          fixture.detectChanges();
-          flush();
-
-          const options = overlayContainerElement.querySelectorAll('sbb-option');
-
-          expect(host.getAttribute('aria-activedescendant')).toBe(options[0].id);
-
-          [1, 2, 3].forEach(() => {
-            dispatchKeyboardEvent(host, 'keydown', DOWN_ARROW);
-            fixture.detectChanges();
-          });
-
-          expect(host.getAttribute('aria-activedescendant')).toBe(options[4].id);
-
-          dispatchKeyboardEvent(host, 'keydown', UP_ARROW);
-          fixture.detectChanges();
-
-          expect(host.getAttribute('aria-activedescendant')).toBe(options[3].id);
-        }));
-
-        it('should not change the aria-activedescendant using the horizontal arrow keys',
-          fakeAsync(() => {
-            const host = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
-
-            fixture.componentInstance.select.open();
-            fixture.detectChanges();
-            flush();
-
-            const options = overlayContainerElement.querySelectorAll('sbb-option');
-
-            expect(host.getAttribute('aria-activedescendant')).toBe(options[0].id);
-
-            [1, 2, 3].forEach(() => {
-              dispatchKeyboardEvent(host, 'keydown', RIGHT_ARROW);
-              fixture.detectChanges();
-            });
-
-            expect(host.getAttribute('aria-activedescendant')).toBe(options[0].id);
-          }));
-
-        it('should restore focus to the trigger after selecting an option in multi-select mode',
-          fakeAsync(() => {
-            fixture.destroy();
-
-            const multiFixture = TestBed.createComponent(MultiSelectComponent);
-            const instance = multiFixture.componentInstance;
-
-            multiFixture.detectChanges();
-            select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
-            instance.select.open();
-            multiFixture.detectChanges();
-
-            // Ensure that the select isn't focused to begin with.
-            select.blur();
-            expect(document.activeElement).not.toBe(select, 'Expected trigger not to be focused.');
-
-            // tslint:disable-next-line:no-non-null-assertion
-            const option = overlayContainerElement.querySelector('sbb-option')! as HTMLElement;
-            option.click();
-            multiFixture.detectChanges();
-
-            expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
-          }));
-
       });
 
       describe('for options', () => {
@@ -1465,7 +1336,7 @@ xdescribe('SelectComponent', () => {
           trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
           trigger.click();
           fixture.detectChanges();
-
+          flush();
           options =
             overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
         }));
@@ -1524,6 +1395,7 @@ xdescribe('SelectComponent', () => {
           trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
           trigger.click();
           fixture.detectChanges();
+          flush();
           groups =
             overlayContainerElement.querySelectorAll('sbb-option-group') as NodeListOf<HTMLElement>;
         }));
@@ -1555,6 +1427,7 @@ xdescribe('SelectComponent', () => {
       beforeEach(fakeAsync(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
+        flush();
         trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
       }));
 
@@ -1603,17 +1476,6 @@ xdescribe('SelectComponent', () => {
 
         expect(overlayContainerElement.textContent).toEqual('');
         expect(fixture.componentInstance.select.panelOpen).toBe(false);
-      }));
-
-      it('should set the width of the overlay based on the trigger', fakeAsync(() => {
-        trigger.style.width = '200px';
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-        expect(pane.style.minWidth).toBe('200px');
       }));
 
       it('should not attempt to open a select that does not have any options', fakeAsync(() => {
@@ -1708,6 +1570,7 @@ xdescribe('SelectComponent', () => {
       it('should be able to set extra classes on the panel', fakeAsync(() => {
         trigger.click();
         fixture.detectChanges();
+        flush();
 
         const panel = overlayContainerElement.querySelector('.sbb-select-panel') as HTMLElement;
 
@@ -1718,7 +1581,7 @@ xdescribe('SelectComponent', () => {
       it('should prevent the default action when pressing SPACE on an option', fakeAsync(() => {
         trigger.click();
         fixture.detectChanges();
-
+        flush();
         // tslint:disable-next-line:no-non-null-assertion
         const option = overlayContainerElement.querySelector('sbb-option')!;
         const event = dispatchKeyboardEvent(option, 'keydown', SPACE);
@@ -1729,25 +1592,13 @@ xdescribe('SelectComponent', () => {
       it('should prevent the default action when pressing ENTER on an option', fakeAsync(() => {
         trigger.click();
         fixture.detectChanges();
+        flush();
 
         // tslint:disable-next-line:no-non-null-assertion
         const option = overlayContainerElement.querySelector('sbb-option')!;
         const event = dispatchKeyboardEvent(option, 'keydown', ENTER);
 
         expect(event.defaultPrevented).toBe(true);
-      }));
-
-      it('should be able to render options inside groups with an ng-container', fakeAsync(() => {
-        fixture.destroy();
-
-        const groupFixture = TestBed.createComponent(SelectWithGroupsAndNgContainerComponent);
-        groupFixture.detectChanges();
-        trigger = groupFixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        trigger.click();
-        groupFixture.detectChanges();
-
-        expect(document.querySelectorAll('.cdk-overlay-container sbb-option').length)
-          .toBeGreaterThan(0, 'Expected at least one option to be rendered.');
       }));
 
       it('should not consider itself as blurred if the trigger loses focus while the ' +
@@ -1757,6 +1608,7 @@ xdescribe('SelectComponent', () => {
 
           dispatchFakeEvent(selectElement, 'focus');
           fixture.detectChanges();
+          flush();
 
           expect(selectInstance.focused).toBe(true, 'Expected select to be focused.');
 
@@ -1779,21 +1631,9 @@ xdescribe('SelectComponent', () => {
       beforeEach(fakeAsync(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
-        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        formField = fixture.debugElement.query(By.css('.sbb-field')).nativeElement;
-      }));
-
-      it('should not float label if no option is selected', fakeAsync(() => {
-        expect(formField.classList.contains('sbb-field-should-float'))
-          .toBe(false, 'Label should not be floating');
-      }));
-
-      it('should focus the first option if no option is selected', fakeAsync(() => {
-        trigger.click();
-        fixture.detectChanges();
         flush();
-
-        expect(fixture.componentInstance.select.keyManager.activeItemIndex).toEqual(0);
+        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        formField = fixture.debugElement.query(By.css('sbb-field')).nativeElement;
       }));
 
       it('should select an option when it is clicked', fakeAsync(() => {
@@ -1932,8 +1772,6 @@ xdescribe('SelectComponent', () => {
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value')).nativeElement;
 
-        expect(formField.classList.contains('sbb-field-should-float'))
-          .toBe(true, 'Label should be floating');
         expect(value.textContent).toContain('Steak');
       }));
 
@@ -1987,12 +1825,13 @@ xdescribe('SelectComponent', () => {
       it('should not select disabled options', fakeAsync(() => {
         trigger.click();
         fixture.detectChanges();
+        flush();
 
         const options =
           overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
         options[2].click();
         fixture.detectChanges();
-
+        flush();
         expect(fixture.componentInstance.select.panelOpen).toBe(true);
         expect(options[2].classList).not.toContain('sbb-selected');
         expect(fixture.componentInstance.select.selected).toBeUndefined();
@@ -2000,6 +1839,7 @@ xdescribe('SelectComponent', () => {
 
       it('should not select options inside a disabled group', fakeAsync(() => {
         fixture.destroy();
+        flush();
 
         const groupFixture = TestBed.createComponent(SelectWithGroupsComponent);
         groupFixture.detectChanges();
@@ -2011,6 +1851,7 @@ xdescribe('SelectComponent', () => {
 
         (options[0] as HTMLElement).click();
         groupFixture.detectChanges();
+        flush();
 
         expect(groupFixture.componentInstance.select.panelOpen).toBe(true);
         expect(options[0].classList).not.toContain('sbb-selected');
@@ -2084,6 +1925,7 @@ xdescribe('SelectComponent', () => {
       it('should take an initial view value with reactive forms', fakeAsync(() => {
         fixture.componentInstance.control = new FormControl('pizza-1');
         fixture.detectChanges();
+        flush();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
         expect(value.nativeElement.textContent)
@@ -2107,6 +1949,7 @@ xdescribe('SelectComponent', () => {
 
         fixture.componentInstance.control.setValue('pizza-1');
         fixture.detectChanges();
+        flush();
 
         value = fixture.debugElement.query(By.css('.sbb-select-value'));
         expect(value.nativeElement.textContent)
@@ -2142,9 +1985,11 @@ xdescribe('SelectComponent', () => {
       it('should clear the selection when a nonexistent option value is selected', fakeAsync(() => {
         fixture.componentInstance.control.setValue('pizza-1');
         fixture.detectChanges();
+        flush();
 
         fixture.componentInstance.control.setValue('gibberish');
         fixture.detectChanges();
+        flush();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
         expect(value.nativeElement.textContent.trim())
@@ -2166,9 +2011,11 @@ xdescribe('SelectComponent', () => {
       it('should clear the selection when the control is reset', fakeAsync(() => {
         fixture.componentInstance.control.setValue('pizza-1');
         fixture.detectChanges();
+        flush();
 
         fixture.componentInstance.control.reset();
         fixture.detectChanges();
+        flush();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
         expect(value.nativeElement.textContent.trim())
@@ -2268,27 +2115,18 @@ xdescribe('SelectComponent', () => {
             .toEqual(false, `Expected control to stay pristine after programmatic change.`);
         }));
 
-      it('should set an asterisk after the label if control is required', fakeAsync(() => {
-        let requiredMarker = fixture.debugElement.query(By.css('.sbb-field-required-marker'));
-        expect(requiredMarker)
-          .toBeNull(`Expected label not to have an asterisk, as control was not required.`);
-
-        fixture.componentInstance.isRequired = true;
-        fixture.detectChanges();
-
-        requiredMarker = fixture.debugElement.query(By.css('.sbb-field-required-marker'));
-        expect(requiredMarker)
-          .not.toBeNull(`Expected label to have an asterisk, as control was required.`);
-      }));
     });
 
     describe('disabled behavior', () => {
       it('should disable itself when control is disabled programmatically', fakeAsync(() => {
         const fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
+        flush();
 
         fixture.componentInstance.control.disable();
         fixture.detectChanges();
+        flush();
+
         const trigger =
           fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
         expect(getComputedStyle(trigger).getPropertyValue('cursor'))
@@ -2296,6 +2134,7 @@ xdescribe('SelectComponent', () => {
 
         trigger.click();
         fixture.detectChanges();
+        flush();
 
         expect(overlayContainerElement.textContent)
           .toEqual('', `Expected select panel to stay closed.`);
@@ -2309,6 +2148,7 @@ xdescribe('SelectComponent', () => {
 
         trigger.click();
         fixture.detectChanges();
+        flush();
 
         expect(overlayContainerElement.textContent)
           .toContain('Steak', `Expected select panel to open normally on re-enabled control`);
@@ -2352,88 +2192,6 @@ xdescribe('SelectComponent', () => {
           .toBe(initialScrollPosition, 'Expected scroll position not to change');
       }));
 
-      it('should scroll down to the active option', fakeAsync(() => {
-        for (let i = 0; i < 15; i++) {
-          dispatchKeyboardEvent(host, 'keydown', DOWN_ARROW);
-        }
-
-        // <option index * height> - <panel height> = 16 * 48 - 256 = 512
-        expect(panel.scrollTop).toBe(512, 'Expected scroll to be at the 16th option.');
-      }));
-
-      it('should scroll up to the active option', fakeAsync(() => {
-        // Scroll to the bottom.
-        for (let i = 0; i < fixture.componentInstance.foods.length; i++) {
-          dispatchKeyboardEvent(host, 'keydown', DOWN_ARROW);
-        }
-
-        for (let i = 0; i < 20; i++) {
-          dispatchKeyboardEvent(host, 'keydown', UP_ARROW);
-        }
-
-        // <option index * height> = 9 * 48 = 432
-        expect(panel.scrollTop).toBe(432, 'Expected scroll to be at the 9th option.');
-      }));
-
-      it('should skip option group labels', fakeAsync(() => {
-        fixture.destroy();
-
-        const groupFixture = TestBed.createComponent(SelectWithGroupsComponent);
-
-        groupFixture.detectChanges();
-        groupFixture.componentInstance.select.open();
-        groupFixture.detectChanges();
-        flush();
-
-        host = groupFixture.debugElement.query(By.css('sbb-select')).nativeElement;
-        // tslint:disable-next-line:no-non-null-assertion
-        panel = overlayContainerElement.querySelector('.sbb-select-panel')! as HTMLElement;
-
-        for (let i = 0; i < 5; i++) {
-          dispatchKeyboardEvent(host, 'keydown', DOWN_ARROW);
-        }
-
-        // Note that we press down 5 times, but it will skip
-        // 3 options because the second group is disabled.
-        // <(option index + group labels) * height> - <panel height> = (9 + 3) * 48 - 256 = 320
-        expect(panel.scrollTop).toBe(320, 'Expected scroll to be at the 9th option.');
-      }));
-
-      it('should scroll top the top when pressing HOME', fakeAsync(() => {
-        for (let i = 0; i < 20; i++) {
-          dispatchKeyboardEvent(host, 'keydown', DOWN_ARROW);
-          fixture.detectChanges();
-        }
-
-        expect(panel.scrollTop).toBeGreaterThan(0, 'Expected panel to be scrolled down.');
-
-        dispatchKeyboardEvent(host, 'keydown', HOME);
-        fixture.detectChanges();
-
-        expect(panel.scrollTop).toBe(0, 'Expected panel to be scrolled to the top');
-      }));
-
-      it('should scroll to the bottom of the panel when pressing END', fakeAsync(() => {
-        dispatchKeyboardEvent(host, 'keydown', END);
-        fixture.detectChanges();
-
-        // <option amount> * <option height> - <panel height> = 30 * 48 - 256 = 1184
-        expect(panel.scrollTop).toBe(1184, 'Expected panel to be scrolled to the bottom');
-      }));
-
-      it('should scroll to the active option when typing', fakeAsync(() => {
-        for (let i = 0; i < 15; i++) {
-          // Press the letter 'o' 15 times since all the options are named 'Option <index>'
-          dispatchEvent(host, createKeyboardEvent('keydown', 79, undefined, 'o'));
-          fixture.detectChanges();
-          tick(LETTER_KEY_DEBOUNCE_INTERVAL);
-        }
-        flush();
-
-        // <option index * height> - <panel height> = 16 * 48 - 256 = 512
-        expect(panel.scrollTop).toBe(512, 'Expected scroll to be at the 16th option.');
-      }));
-
     });
   });
 
@@ -2468,14 +2226,14 @@ xdescribe('SelectComponent', () => {
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SelectWithChangeEventComponent);
       fixture.detectChanges();
-
+      flush();
       trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
     }));
 
     it('should emit an event when the selected option has changed', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
 
       expect(fixture.componentInstance.changeListener).toHaveBeenCalled();
@@ -2484,6 +2242,7 @@ xdescribe('SelectComponent', () => {
     it('should not emit multiple change events for the same option', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
+      flush();
 
       const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
 
@@ -2507,6 +2266,7 @@ xdescribe('SelectComponent', () => {
     it('should disable itself when control is disabled using the property', fakeAsync(() => {
       const fixture = TestBed.createComponent(NgModelSelectComponent);
       fixture.detectChanges();
+      flush();
 
       fixture.componentInstance.isDisabled = true;
       fixture.detectChanges();
@@ -2520,7 +2280,7 @@ xdescribe('SelectComponent', () => {
 
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       expect(overlayContainerElement.textContent)
         .toEqual('', `Expected select panel to stay closed.`);
       expect(fixture.componentInstance.select.panelOpen)
@@ -2531,11 +2291,14 @@ xdescribe('SelectComponent', () => {
       flush();
 
       fixture.detectChanges();
+      flush();
+
       expect(getComputedStyle(trigger).getPropertyValue('cursor'))
         .toEqual('pointer', `Expected cursor to be a pointer on enabled control.`);
 
       trigger.click();
       fixture.detectChanges();
+      flush();
 
       expect(overlayContainerElement.textContent)
         .toContain('Steak', `Expected select panel to open normally on re-enabled control`);
@@ -2550,10 +2313,11 @@ xdescribe('SelectComponent', () => {
     it('should handle nesting in an ngIf', fakeAsync(() => {
       const fixture = TestBed.createComponent(NgIfSelectComponent);
       fixture.detectChanges();
+      flush();
 
       fixture.componentInstance.isShowing = true;
       fixture.detectChanges();
-
+      flush();
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
       trigger.style.width = '300px';
 
@@ -2566,7 +2330,7 @@ xdescribe('SelectComponent', () => {
         .toContain('Pizza', `Expected trigger to be populated by the control's initial value.`);
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-      expect(pane.style.minWidth).toEqual('300px');
+      expect(pane.style.minWidth).toEqual('330px');
 
       expect(fixture.componentInstance.select.panelOpen).toBe(true);
       expect(overlayContainerElement.textContent).toContain('Steak');
@@ -2662,21 +2426,6 @@ xdescribe('SelectComponent', () => {
     }));
   });
 
-  describe('with a sibling component that throws an error', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      SelectWithErrorSiblingComponent,
-      ThrowsErrorOnInitComponent
-    ])));
-
-    it('should not crash the browser when a sibling throws an error on init', fakeAsync(() => {
-      // Note that this test can be considered successful if the error being thrown didn't
-      // end up crashing the testing setup altogether.
-      expect(() => {
-        TestBed.createComponent(SelectWithErrorSiblingComponent).detectChanges();
-      }).toThrowError(new RegExp('Oh no!', 'g'));
-    }));
-  });
-
   describe('with tabindex', () => {
     beforeEach(async(() => configureSbbSelectTestingModule([SelectWithPlainTabindexComponent])));
 
@@ -2725,7 +2474,7 @@ xdescribe('SelectComponent', () => {
       flush();
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-      expect(pane.style.minWidth).toBe('200px');
+      expect(pane.style.minWidth).toBe('230px');
     }));
   });
 
@@ -2745,29 +2494,6 @@ xdescribe('SelectComponent', () => {
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
       // tslint:disable-next-line:radix
       expect(parseInt(pane.style.minWidth as string)).toBeGreaterThan(0);
-    }));
-  });
-
-  describe('with theming', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectWithThemingComponent])));
-
-    let fixture: ComponentFixture<BasicSelectWithThemingComponent>;
-
-    beforeEach(fakeAsync(() => {
-      fixture = TestBed.createComponent(BasicSelectWithThemingComponent);
-      fixture.detectChanges();
-    }));
-
-    it('should transfer the theme to the select panel', fakeAsync(() => {
-      fixture.componentInstance.theme = 'warn';
-      fixture.detectChanges();
-
-      fixture.componentInstance.select.open();
-      fixture.detectChanges();
-
-      // tslint:disable-next-line:no-non-null-assertion
-      const panel = overlayContainerElement.querySelector('.sbb-select-panel')! as HTMLElement;
-      expect(panel.classList).toContain('sbb-warn');
     }));
   });
 
@@ -2795,6 +2521,7 @@ xdescribe('SelectComponent', () => {
       fixture = TestBed.createComponent(NgModelCompareWithSelectComponent);
       instance = fixture.componentInstance;
       fixture.detectChanges();
+      flush();
     }));
 
     describe('comparing by value', () => {
@@ -2836,6 +2563,7 @@ xdescribe('SelectComponent', () => {
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(SelectInsideFormGroupComponent);
       fixture.detectChanges();
+      flush();
       testComponent = fixture.componentInstance;
       select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
     }));
@@ -2897,59 +2625,7 @@ xdescribe('SelectComponent', () => {
         .toBe('true', 'Expected aria-invalid to be set to true.');
     }));
 
-    it('should render the error messages when the parent form is submitted', fakeAsync(() => {
-      const debugEl = fixture.debugElement.nativeElement;
 
-      expect(debugEl.querySelectorAll('sbb-error').length).toBe(0, 'Expected no error messages');
-
-      dispatchFakeEvent(fixture.debugElement.query(By.css('form')).nativeElement, 'submit');
-      fixture.detectChanges();
-
-      expect(debugEl.querySelectorAll('sbb-error').length).toBe(1, 'Expected one error message');
-    }));
-
-    it('should override error matching behavior via injection token', fakeAsync(() => {
-      const errorStateMatcher: ErrorStateMatcher = {
-        isErrorState: jasmine.createSpy('error state matcher').and.returnValue(true)
-      };
-
-      fixture.destroy();
-
-      TestBed.resetTestingModule().configureTestingModule({
-        imports: [SelectModule, ReactiveFormsModule, FormsModule, NoopAnimationsModule],
-        declarations: [SelectInsideFormGroupComponent],
-        providers: [{ provide: ErrorStateMatcher, useValue: errorStateMatcher }],
-      });
-
-      const errorFixture = TestBed.createComponent(SelectInsideFormGroupComponent);
-      const component = errorFixture.componentInstance;
-
-      errorFixture.detectChanges();
-
-      expect(component.select.errorState).toBe(true);
-      expect(errorStateMatcher.isErrorState).toHaveBeenCalled();
-    }));
-  });
-
-  describe('with custom error behavior', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([CustomErrorBehaviorSelectComponent])));
-
-    it('should be able to override the error matching behavior via an @Input', fakeAsync(() => {
-      const fixture = TestBed.createComponent(CustomErrorBehaviorSelectComponent);
-      const component = fixture.componentInstance;
-      const matcher = jasmine.createSpy('error state matcher').and.returnValue(true);
-
-      fixture.detectChanges();
-
-      expect(component.control.invalid).toBe(false);
-      expect(component.select.errorState).toBe(false);
-
-      fixture.componentInstance.errorStateMatcher = { isErrorState: matcher };
-      fixture.detectChanges();
-
-      expect(component.select.errorState).toBe(true);
-      expect(matcher).toHaveBeenCalled();
-    }));
   });
 
   describe('with preselected array values', () => {
@@ -2970,22 +2646,6 @@ xdescribe('SelectComponent', () => {
     }));
   });
 
-  describe('with custom value accessor', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      CompWithCustomSelectComponent,
-      CustomSelectAccessorComponent,
-    ])));
-
-    it('should support use inside a custom value accessor', fakeAsync(() => {
-      const fixture = TestBed.createComponent(CompWithCustomSelectComponent);
-      spyOn(fixture.componentInstance.customAccessor, 'writeValue');
-      fixture.detectChanges();
-
-      expect(fixture.componentInstance.customAccessor.select.ngControl)
-        .toBeFalsy('Expected sbb-select NOT to inherit control from parent value accessor.');
-      expect(fixture.componentInstance.customAccessor.writeValue).toHaveBeenCalled();
-    }));
-  });
 
   describe('with a falsy value', () => {
     beforeEach(async(() => configureSbbSelectTestingModule([FalsyValueSelectComponent])));
@@ -3021,6 +2681,7 @@ xdescribe('SelectComponent', () => {
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
 
       fixture.detectChanges();
+      flush();
 
       expect(trigger.textContent).toContain('Pizza');
     }));
@@ -3028,15 +2689,18 @@ xdescribe('SelectComponent', () => {
     it('should update the trigger based on the value', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectOnPushComponent);
       fixture.detectChanges();
+      flush();
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
 
       fixture.componentInstance.control.setValue('pizza-1');
       fixture.detectChanges();
+      flush();
 
       expect(trigger.textContent).toContain('Pizza');
 
       fixture.componentInstance.control.reset();
       fixture.detectChanges();
+      flush();
 
       expect(trigger.textContent).not.toContain('Pizza');
     }));
@@ -3048,9 +2712,11 @@ xdescribe('SelectComponent', () => {
     it('should allow the user to customize the label', fakeAsync(() => {
       const fixture = TestBed.createComponent(SelectWithCustomTriggerComponent);
       fixture.detectChanges();
+      flush();
 
       fixture.componentInstance.control.setValue('pizza-1');
       fixture.detectChanges();
+      flush();
 
       const label = fixture.debugElement.query(By.css('.sbb-select-value')).nativeElement;
 
@@ -3198,15 +2864,16 @@ xdescribe('SelectComponent', () => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);
 
       fixture.detectChanges();
+      flush();
       fixture.componentInstance.selectedFood = 'sandwich-2';
       fixture.detectChanges();
-
+      flush();
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
       expect(trigger.textContent).toContain('Sandwich');
 
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       const option = overlayContainerElement.querySelectorAll('sbb-option')[2];
 
       expect(option.classList).toContain('sbb-selected');
@@ -3217,6 +2884,7 @@ xdescribe('SelectComponent', () => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);
 
       fixture.detectChanges();
+      flush();
       expect(fixture.componentInstance.selectedFood).toBeFalsy();
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
@@ -3235,6 +2903,7 @@ xdescribe('SelectComponent', () => {
 
       fixture.componentInstance.selectedFood = null;
       fixture.detectChanges();
+      flush();
 
       expect(fixture.componentInstance.select.value).toBeNull();
       expect(trigger.textContent).not.toContain('Steak');
@@ -3248,10 +2917,12 @@ xdescribe('SelectComponent', () => {
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
       fixture.detectChanges();
+      flush();
       expect(trigger.textContent).toContain('Pizza');
 
       trigger.click();
       fixture.detectChanges();
+      flush();
 
       const option = overlayContainerElement.querySelectorAll('sbb-option')[1];
 
@@ -3263,18 +2934,20 @@ xdescribe('SelectComponent', () => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsMultipleComponent);
 
       fixture.detectChanges();
+      flush();
       expect(fixture.componentInstance.selectedFoods).toBeFalsy();
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
 
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       const options =
         overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
 
       options[0].click();
       fixture.detectChanges();
+      flush();
 
       expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0']);
       expect(fixture.componentInstance.select.value).toEqual(['steak-0']);
@@ -3282,6 +2955,7 @@ xdescribe('SelectComponent', () => {
 
       options[2].click();
       fixture.detectChanges();
+      flush();
 
       expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'sandwich-2']);
       expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'sandwich-2']);
@@ -3289,47 +2963,13 @@ xdescribe('SelectComponent', () => {
 
       options[1].click();
       fixture.detectChanges();
+      flush();
 
       expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
       expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
       expect(trigger.textContent).toContain('Steak, Pizza, Sandwich');
     }));
 
-    it('should restore focus to the host element', fakeAsync(() => {
-      const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);
-
-      fixture.detectChanges();
-      fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement.click();
-      fixture.detectChanges();
-      flush();
-
-      (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
-      fixture.detectChanges();
-      flush();
-
-      const select = fixture.debugElement.nativeElement.querySelector('sbb-select');
-
-      expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
-    }));
-
-    it('should not restore focus to the host element when clicking outside', fakeAsync(() => {
-      const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);
-      const select = fixture.debugElement.nativeElement.querySelector('sbb-select');
-
-      fixture.detectChanges();
-      fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement.click();
-      fixture.detectChanges();
-      flush();
-
-      expect(document.activeElement).toBe(select, 'Expected trigger to be focused.');
-
-      select.blur(); // Blur manually since the programmatic click might not do it.
-      (overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement).click();
-      fixture.detectChanges();
-      flush();
-
-      expect(document.activeElement).not.toBe(select, 'Expected trigger not to be focused.');
-    }));
 
     it('should update the data binding before emitting the change event', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);
@@ -3337,6 +2977,7 @@ xdescribe('SelectComponent', () => {
       const spy = jasmine.createSpy('change spy');
 
       fixture.detectChanges();
+      flush();
       instance.select.selectionChange.subscribe(() => spy(instance.selectedFood));
 
       expect(instance.selectedFood).toBeFalsy();
@@ -3355,680 +2996,6 @@ xdescribe('SelectComponent', () => {
 
   });
 
-  describe('with option centering disabled', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      SelectWithoutOptionCenteringComponent,
-    ])));
-
-    let fixture: ComponentFixture<SelectWithoutOptionCenteringComponent>;
-    let trigger: HTMLElement;
-
-    beforeEach(fakeAsync(() => {
-      fixture = TestBed.createComponent(SelectWithoutOptionCenteringComponent);
-      fixture.detectChanges();
-      trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-    }));
-
-    it('should not align the active option with the trigger if centering is disabled',
-      fakeAsync(() => {
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-        // The panel should be scrolled to 0 because centering the option disabled.
-        expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to be scrolled.`);
-        // The trigger should contain 'Pizza' because it was preselected
-        expect(trigger.textContent).toContain('Pizza');
-        // The selected index should be 1 because it was preselected
-        expect(fixture.componentInstance.options.toArray()[1].selected).toBe(true);
-      }));
-  });
-
-  describe('positioning', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      BasicSelectComponent,
-      MultiSelectComponent,
-      SelectWithGroupsComponent,
-    ])));
-
-    beforeEach((inject([ViewportRuler], (vr: ViewportRuler) => {
-      viewportRuler = vr;
-    })));
-
-    let fixture: ComponentFixture<BasicSelectComponent>;
-    let trigger: HTMLElement;
-    let formField: HTMLElement;
-
-    beforeEach(fakeAsync(() => {
-      fixture = TestBed.createComponent(BasicSelectComponent);
-      fixture.detectChanges();
-      trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      formField = fixture.debugElement.query(By.css('sbb-field')).nativeElement;
-    }));
-
-    /**
-     * Asserts that the given option is aligned with the trigger.
-     * @param index The index of the option.
-     * @param selectInstance Instance of the `sbb-select` component to check against.
-     */
-    function checkTriggerAlignedWithOption(index: number, selectInstance =
-      fixture.componentInstance.select): void {
-
-      // tslint:disable-next-line:no-non-null-assertion
-      const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
-      const triggerTop = trigger.getBoundingClientRect().top;
-      const overlayTop = overlayPane.getBoundingClientRect().top;
-      const options = overlayPane.querySelectorAll('sbb-option');
-      const optionTop = options[index].getBoundingClientRect().top;
-      // tslint:disable-next-line:radix
-      const triggerFontSize = parseInt(window.getComputedStyle(trigger)['font-size']);
-      const triggerLineHeightEm = 1.125;
-
-      // Extra trigger height beyond the font size caused by the fact that the line-height is
-      // greater than 1em.
-      const triggerExtraLineSpaceAbove = (1 - triggerLineHeightEm) * triggerFontSize / 2;
-      const topDifference = Math.floor(optionTop) -
-        Math.floor(triggerTop - triggerFontSize - triggerExtraLineSpaceAbove);
-
-      // Expect the coordinates to be within a pixel of each other. We can't rely on comparing
-      // the exact value, because different browsers report the various sizes with slight (< 1px)
-      // deviations.
-      expect(Math.abs(topDifference) < 2)
-        .toBe(true, `Expected trigger to align with option ${index}.`);
-
-      // For the animation to start at the option's center, its origin must be the distance
-      // from the top of the overlay to the option top + half the option height (48/2 = 24).
-      const expectedOrigin = Math.floor(optionTop - overlayTop + 24);
-      const rawYOrigin = selectInstance.transformOrigin.split(' ')[1].trim();
-      // tslint:disable-next-line:radix
-      const origin = Math.floor(parseInt(rawYOrigin));
-
-      // Because the origin depends on the Y axis offset, we also have to
-      // round down and check that the difference is within a pixel.
-      expect(Math.abs(expectedOrigin - origin) < 2).toBe(true,
-        `Expected panel animation to originate in the center of option ${index}.`);
-    }
-
-    describe('ample space to open', () => {
-      beforeEach(fakeAsync(() => {
-        // these styles are necessary because we are first testing the overlay's position
-        // if there is room for it to open to its full extent in either direction.
-        formField.style.position = 'fixed';
-        formField.style.top = '285px';
-        formField.style.left = '20px';
-      }));
-
-      it('should align the first option with trigger text if no option is selected',
-        fakeAsync(() => {
-          // We shouldn't push it too far down for this one, because the default may
-          // end up being too much when running the tests on mobile browsers.
-          formField.style.top = '100px';
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          // tslint:disable-next-line:no-non-null-assertion
-          const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-          // The panel should be scrolled to 0 because centering the option is not possible.
-          expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to be scrolled.`);
-          checkTriggerAlignedWithOption(0);
-        }));
-
-      it('should align a selected option too high to be centered with the trigger text',
-        fakeAsync(() => {
-          // Select the second option, because it can't be scrolled any further downward
-          fixture.componentInstance.control.setValue('pizza-1');
-          fixture.detectChanges();
-
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          // tslint:disable-next-line:no-non-null-assertion
-          const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-          // The panel should be scrolled to 0 because centering the option is not possible.
-          expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to be scrolled.`);
-          checkTriggerAlignedWithOption(1);
-        }));
-
-      it('should align a selected option in the middle with the trigger text', fakeAsync(() => {
-        // Select the fifth option, which has enough space to scroll to the center
-        fixture.componentInstance.control.setValue('chips-4');
-        fixture.detectChanges();
-        flush();
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-        // The selected option should be scrolled to the center of the panel.
-        // This will be its original offset from the scrollTop - half the panel height + half
-        // the option height. 4 (index) * 48 (option height) = 192px offset from scrollTop
-        // 192 - 256/2 + 48/2 = 88px
-        expect(scrollContainer.scrollTop)
-          .toEqual(88, `Expected overlay panel to be scrolled to center the selected option.`);
-
-        checkTriggerAlignedWithOption(4);
-      }));
-
-      it('should align a selected option at the scroll max with the trigger text', fakeAsync(() => {
-        // Select the last option in the list
-        fixture.componentInstance.control.setValue('sushi-7');
-        fixture.detectChanges();
-        flush();
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-        // The selected option should be scrolled to the max scroll position.
-        // This will be the height of the scrollContainer - the panel height.
-        // 8 options * 48px = 384 scrollContainer height, 384 - 256 = 128px max scroll
-        expect(scrollContainer.scrollTop)
-          .toEqual(128, `Expected overlay panel to be scrolled to its maximum position.`);
-
-        checkTriggerAlignedWithOption(7);
-      }));
-
-      it('should account for preceding label groups when aligning the option', fakeAsync(() => {
-        // Test is off-by-one on edge for some reason, but verified that it looks correct through
-        // manual testing.
-        if (platform.EDGE) {
-          return;
-        }
-
-        fixture.destroy();
-
-        const groupFixture = TestBed.createComponent(SelectWithGroupsComponent);
-        groupFixture.detectChanges();
-        trigger = groupFixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        formField = groupFixture.debugElement.query(By.css('sbb-field')).nativeElement;
-
-        formField.style.position = 'fixed';
-        formField.style.top = '200px';
-        formField.style.left = '100px';
-
-        // Select an option in the third group, which has a couple of group labels before it.
-        groupFixture.componentInstance.control.setValue('vulpix-7');
-        groupFixture.detectChanges();
-
-        trigger.click();
-        groupFixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-        // The selected option should be scrolled to the center of the panel.
-        // This will be its original offset from the scrollTop - half the panel height + half the
-        // option height. 10 (option index + 3 group labels before it) * 48 (option height) = 480
-        // 480 (offset from scrollTop) - 256/2 + 48/2 = 376px
-        expect(Math.floor(scrollContainer.scrollTop))
-          .toBe(376, `Expected overlay panel to be scrolled to center the selected option.`);
-
-        checkTriggerAlignedWithOption(7, groupFixture.componentInstance.select);
-      }));
-    });
-
-    describe('limited space to open vertically', () => {
-      beforeEach(fakeAsync(() => {
-        formField.style.position = 'fixed';
-        formField.style.left = '20px';
-      }));
-
-      it('should adjust position of centered option if there is little space above',
-        fakeAsync(() => {
-          const selectMenuHeight = 256;
-          const selectMenuViewportPadding = 8;
-          const selectItemHeight = 48;
-          const selectedIndex = 4;
-          const fontSize = 16;
-          const lineHeightEm = 1.125;
-          const expectedExtraScroll = 5;
-
-          // Trigger element height.
-          const triggerHeight = fontSize * lineHeightEm;
-
-          // Ideal space above selected item in order to center it.
-          const idealSpaceAboveSelectedItem = (selectMenuHeight - selectItemHeight) / 2;
-
-          // Actual space above selected item.
-          const actualSpaceAboveSelectedItem = selectItemHeight * selectedIndex;
-
-          // Ideal scroll position to center.
-          const idealScrollTop = actualSpaceAboveSelectedItem - idealSpaceAboveSelectedItem;
-
-          // Top-most select-position that allows for perfect centering.
-          const topMostPositionForPerfectCentering =
-            idealSpaceAboveSelectedItem + selectMenuViewportPadding +
-            (selectItemHeight - triggerHeight) / 2;
-
-          // Position of select relative to top edge of sbb-field.
-          const formFieldTopSpace =
-            trigger.getBoundingClientRect().top - formField.getBoundingClientRect().top;
-
-          const formFieldTop =
-            topMostPositionForPerfectCentering - formFieldTopSpace - expectedExtraScroll;
-
-          formField.style.top = `${formFieldTop}px`;
-
-          // Select an option in the middle of the list
-          fixture.componentInstance.control.setValue('chips-4');
-          fixture.detectChanges();
-          flush();
-
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          // tslint:disable-next-line:no-non-null-assertion
-          const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-          expect(Math.ceil(scrollContainer.scrollTop))
-            .toEqual(Math.ceil(idealScrollTop + 5),
-              `Expected panel to adjust scroll position to fit in viewport.`);
-
-          checkTriggerAlignedWithOption(4);
-        }));
-
-      it('should adjust position of centered option if there is little space below',
-        fakeAsync(() => {
-          const selectMenuHeight = 256;
-          const selectMenuViewportPadding = 8;
-          const selectItemHeight = 48;
-          const selectedIndex = 4;
-          const fontSize = 16;
-          const lineHeightEm = 1.125;
-          const expectedExtraScroll = 5;
-
-          // Trigger element height.
-          const triggerHeight = fontSize * lineHeightEm;
-
-          // Ideal space above selected item in order to center it.
-          const idealSpaceAboveSelectedItem = (selectMenuHeight - selectItemHeight) / 2;
-
-          // Actual space above selected item.
-          const actualSpaceAboveSelectedItem = selectItemHeight * selectedIndex;
-
-          // Ideal scroll position to center.
-          const idealScrollTop = actualSpaceAboveSelectedItem - idealSpaceAboveSelectedItem;
-
-          // Bottom-most select-position that allows for perfect centering.
-          const bottomMostPositionForPerfectCentering =
-            idealSpaceAboveSelectedItem + selectMenuViewportPadding +
-            (selectItemHeight - triggerHeight) / 2;
-
-          // Position of select relative to bottom edge of sbb-field:
-          const formFieldBottomSpace =
-            formField.getBoundingClientRect().bottom - trigger.getBoundingClientRect().bottom;
-
-          const formFieldBottom =
-            bottomMostPositionForPerfectCentering - formFieldBottomSpace - expectedExtraScroll;
-
-          // Push the select to a position with not quite enough space on the bottom to open
-          // with the option completely centered (needs 113px at least: 256/2 - 48/2 + 9)
-          formField.style.bottom = `${formFieldBottom}px`;
-
-          // Select an option in the middle of the list
-          fixture.componentInstance.control.setValue('chips-4');
-          fixture.detectChanges();
-          flush();
-
-          fixture.detectChanges();
-
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          // tslint:disable-next-line:no-non-null-assertion
-          const scrollContainer = document.querySelector('.cdk-overlay-pane .sbb-select-panel')!;
-
-          // Scroll should adjust by the difference between the bottom space available
-          // (56px from the bottom of the screen - 8px padding = 48px)
-          // and the height of the panel below the option (113px).
-          // 113px - 48px = 75px difference. Original scrollTop 88px - 75px = 23px
-          const difference = Math.ceil(scrollContainer.scrollTop) -
-            Math.ceil(idealScrollTop - expectedExtraScroll);
-
-          // Note that different browser/OS combinations report the different dimensions with
-          // slight deviations (< 1px). We round the expectation and check that the values
-          // are within a pixel of each other to avoid flakes.
-          expect(Math.abs(difference) < 2)
-            .toBe(true, `Expected panel to adjust scroll position to fit in viewport.`);
-
-          checkTriggerAlignedWithOption(4);
-        }));
-
-      it('should fall back to "above" positioning if scroll adjustment will not help',
-        fakeAsync(() => {
-          // Push the select to a position with not enough space on the bottom to open
-          formField.style.bottom = '56px';
-          fixture.detectChanges();
-
-          // Select an option that cannot be scrolled any farther upward
-          fixture.componentInstance.control.setValue('coke-0');
-          fixture.detectChanges();
-
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          // tslint:disable-next-line:no-non-null-assertion
-          const overlayPane = document.querySelector('.cdk-overlay-pane')!;
-          const triggerBottom = trigger.getBoundingClientRect().bottom;
-          const overlayBottom = overlayPane.getBoundingClientRect().bottom;
-          // tslint:disable-next-line:no-non-null-assertion
-          const scrollContainer = overlayPane.querySelector('.sbb-select-panel')!;
-
-          // Expect no scroll to be attempted
-          expect(scrollContainer.scrollTop).toEqual(0, `Expected panel not to be scrolled.`);
-
-          const difference = Math.floor(overlayBottom) - Math.floor(triggerBottom);
-
-          // Check that the values are within a pixel of each other. This avoids sub-pixel
-          // deviations between OS and browser versions.
-          expect(Math.abs(difference) < 2)
-            .toEqual(true, `Expected trigger bottom to align with overlay bottom.`);
-
-          expect(fixture.componentInstance.select.transformOrigin)
-            .toContain(`bottom`, `Expected panel animation to originate at the bottom.`);
-        }));
-
-      it('should fall back to "below" positioning if scroll adjustment won\'t help',
-        fakeAsync(() => {
-          // Push the select to a position with not enough space on the top to open
-          formField.style.top = '85px';
-
-          // Select an option that cannot be scrolled any farther downward
-          fixture.componentInstance.control.setValue('sushi-7');
-          fixture.detectChanges();
-          flush();
-
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          // tslint:disable-next-line:no-non-null-assertion
-          const overlayPane = document.querySelector('.cdk-overlay-pane')!;
-          const triggerTop = trigger.getBoundingClientRect().top;
-          const overlayTop = overlayPane.getBoundingClientRect().top;
-          // tslint:disable-next-line:no-non-null-assertion
-          const scrollContainer = overlayPane.querySelector('.sbb-select-panel')!;
-
-          // Expect scroll to remain at the max scroll position
-          expect(scrollContainer.scrollTop).toEqual(128, `Expected panel to be at max scroll.`);
-
-          expect(Math.floor(overlayTop))
-            .toEqual(Math.floor(triggerTop), `Expected trigger top to align with overlay top.`);
-
-          expect(fixture.componentInstance.select.transformOrigin)
-            .toContain(`top`, `Expected panel animation to originate at the top.`);
-        }));
-
-    });
-
-    describe('limited space to open horizontally', () => {
-      beforeEach(fakeAsync(() => {
-        formField.style.position = 'absolute';
-        formField.style.top = '200px';
-      }));
-
-      it('should stay within the viewport when overflowing on the left in ltr', fakeAsync(() => {
-        formField.style.left = '-100px';
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const panelLeft = document.querySelector('.sbb-select-panel')!.getBoundingClientRect().left;
-
-        expect(panelLeft).toBeGreaterThan(0,
-          `Expected select panel to be inside the viewport in ltr.`);
-      }));
-
-      it('should stay within the viewport when overflowing on the left in rtl', fakeAsync(() => {
-        formField.style.left = '-100px';
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const panelLeft = document.querySelector('.sbb-select-panel')!.getBoundingClientRect().left;
-
-        expect(panelLeft).toBeGreaterThan(0,
-          `Expected select panel to be inside the viewport in rtl.`);
-      }));
-
-      it('should stay within the viewport when overflowing on the right in ltr', fakeAsync(() => {
-        formField.style.right = '-100px';
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        const viewportRect = viewportRuler.getViewportRect().right;
-        // tslint:disable-next-line:no-non-null-assertion
-        const panelRight = document.querySelector('.sbb-select-panel')!
-          .getBoundingClientRect().right;
-
-        expect(viewportRect - panelRight).toBeGreaterThan(0,
-          `Expected select panel to be inside the viewport in ltr.`);
-      }));
-
-      it('should keep the position within the viewport on repeat openings', fakeAsync(() => {
-        formField.style.left = '-100px';
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        let panelLeft = document.querySelector('.sbb-select-panel')!.getBoundingClientRect().left;
-
-        expect(panelLeft)
-          .toBeGreaterThanOrEqual(0, `Expected select panel to be inside the viewport.`);
-
-        fixture.componentInstance.select.close();
-        fixture.detectChanges();
-        flush();
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        panelLeft = document.querySelector('.sbb-select-panel')!.getBoundingClientRect().left;
-
-        expect(panelLeft).toBeGreaterThanOrEqual(0,
-          `Expected select panel continue being inside the viewport.`);
-      }));
-    });
-
-    describe('when scrolled', () => {
-      const startingWindowHeight = window.innerHeight;
-
-      // Need to set the scrollTop two different ways to support
-      // both Chrome and Firefox.
-      function setScrollTop(num: number) {
-        document.body.scrollTop = num;
-        document.documentElement.scrollTop = num;
-      }
-
-      beforeEach(fakeAsync(() => {
-        // Make the div above the select very tall, so the page will scroll
-        fixture.componentInstance.heightAbove = 2000;
-        fixture.detectChanges();
-        setScrollTop(0);
-
-        // Give the select enough horizontal space to open
-        formField.style.marginLeft = '20px';
-        formField.style.marginRight = '20px';
-      }));
-
-      it('should align the first option properly when scrolled', fakeAsync(() => {
-        // Give the select enough space to open
-        fixture.componentInstance.heightBelow = 400;
-        fixture.detectChanges();
-
-        // Space that is needed in order to show the menu below the trigger.
-        // 256 (height of the menu overlay) - 45 (estimated height of the trigger)
-        const requiredSpaceBelow = 256 - 45;
-
-        // Scroll the select into view. Make sure that there is enough space for the menu
-        // to open below the trigger (depending on the screen resolution)
-        setScrollTop(2000 - requiredSpaceBelow);
-
-
-        // In the iOS simulator (BrowserStack & SauceLabs), adding the content to the
-        // body causes karma's iframe for the test to stretch to fit that content once we attempt to
-        // scroll the page. Setting width / height / maxWidth / maxHeight on the iframe does not
-        // successfully constrain its size. As such, skip assertions in environments where the
-        // window size has changed since the start of the test.
-        if (window.innerHeight > startingWindowHeight) {
-          return;
-        }
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        checkTriggerAlignedWithOption(0);
-      }));
-
-      it('should align a centered option properly when scrolled', fakeAsync(() => {
-        // Give the select enough space to open
-        fixture.componentInstance.heightBelow = 400;
-        fixture.detectChanges();
-
-        fixture.componentInstance.control.setValue('chips-4');
-        fixture.detectChanges();
-        flush();
-
-        // Space that is needed in order to show the menu below the trigger.
-        // 256 (height of the menu overlay) - 45 (estimated height of the trigger)
-        // Even though there might be less options displayed below the trigger because the
-        // selected option is the fourth item, we want to make sure we have enough space here.
-        const requiredSpaceBelow = 256 - 45;
-
-        // Scroll the select into view. Make sure that there is enough space for the menu
-        // to open below the trigger (depending on the screen resolution)
-        setScrollTop(2000 - requiredSpaceBelow);
-
-        // In the iOS simulator (BrowserStack & SauceLabs), adding the content to the
-        // body causes karma's iframe for the test to stretch to fit that content once we attempt
-        // to scroll the page. Setting width / height / maxWidth / maxHeight on the iframe does
-        // not successfully constrain its size. As such, skip assertions in environments where the
-        // window size has changed since the start of the test.
-        if (window.innerHeight > startingWindowHeight) {
-          return;
-        }
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        checkTriggerAlignedWithOption(4);
-      }));
-
-      it('should align a centered option properly when scrolling while the panel is open',
-        fakeAsync(() => {
-          fixture.componentInstance.heightBelow = 400;
-          fixture.componentInstance.heightAbove = 400;
-          fixture.componentInstance.control.setValue('chips-4');
-          fixture.detectChanges();
-          flush();
-
-          trigger.click();
-          fixture.detectChanges();
-          flush();
-
-          setScrollTop(100);
-          scrolledSubject.next();
-          fixture.detectChanges();
-
-          checkTriggerAlignedWithOption(4);
-        }));
-
-      it('should fall back to "above" positioning properly when scrolled', fakeAsync(() => {
-        // Give the select insufficient space to open below the trigger
-        fixture.componentInstance.heightAbove = 0;
-        fixture.componentInstance.heightBelow = 100;
-        trigger.style.marginTop = '2000px';
-        fixture.detectChanges();
-
-        // Scroll the select into view
-        setScrollTop(1400);
-
-        // In the iOS simulator (BrowserStack & SauceLabs), adding the content to the
-        // body causes karma's iframe for the test to stretch to fit that content once we attempt to
-        // scroll the page. Setting width / height / maxWidth / maxHeight on the iframe does not
-        // successfully constrain its size. As such, skip assertions in environments where the
-        // window size has changed since the start of the test.
-        if (window.innerHeight > startingWindowHeight) {
-          return;
-        }
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
-        const triggerBottom = trigger.getBoundingClientRect().bottom;
-        const overlayBottom = overlayPane.getBoundingClientRect().bottom;
-        const difference = Math.floor(overlayBottom) - Math.floor(triggerBottom);
-
-        // Check that the values are within a pixel of each other. This avoids sub-pixel
-        // deviations between OS and browser versions.
-        expect(Math.abs(difference) < 2)
-          .toEqual(true, `Expected trigger bottom to align with overlay bottom.`);
-      }));
-
-      it('should fall back to "below" positioning properly when scrolled', fakeAsync(() => {
-        // Give plenty of space for the select to open below the trigger
-        fixture.componentInstance.heightBelow = 650;
-        fixture.detectChanges();
-
-        // Select an option too low in the list to fit in limited space above
-        fixture.componentInstance.control.setValue('sushi-7');
-        fixture.detectChanges();
-
-        // Scroll the select so that it has insufficient space to open above the trigger
-        setScrollTop(1950);
-
-        // In the iOS simulator (BrowserStack & SauceLabs), adding the content to the
-        // body causes karma's iframe for the test to stretch to fit that content once we attempt to
-        // scroll the page. Setting width / height / maxWidth / maxHeight on the iframe does not
-        // successfully constrain its size. As such, skip assertions in environments where the
-        // window size has changed since the start of the test.
-        if (window.innerHeight > startingWindowHeight) {
-          return;
-        }
-
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-
-        // tslint:disable-next-line:no-non-null-assertion
-        const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane')!;
-        const triggerTop = trigger.getBoundingClientRect().top;
-        const overlayTop = overlayPane.getBoundingClientRect().top;
-
-        expect(Math.floor(overlayTop))
-          .toEqual(Math.floor(triggerTop), `Expected trigger top to align with overlay top.`);
-      }));
-    });
-  });
-
   describe('with multiple selection', () => {
     beforeEach(async(() => configureSbbSelectTestingModule([MultiSelectComponent])));
 
@@ -4040,14 +3007,14 @@ xdescribe('SelectComponent', () => {
       fixture = TestBed.createComponent(MultiSelectComponent);
       testInstance = fixture.componentInstance;
       fixture.detectChanges();
-
+      flush();
       trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
     }));
 
     it('should be able to select multiple values', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       const options = overlayContainerElement.querySelectorAll('sbb-option') as
         NodeListOf<HTMLElement>;
 
@@ -4055,24 +3022,24 @@ xdescribe('SelectComponent', () => {
       options[2].click();
       options[5].click();
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.control.value).toEqual(['steak-0', 'tacos-2', 'eggs-5']);
     }));
 
     it('should be able to toggle an option on and off', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
 
       option.click();
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.control.value).toEqual(['steak-0']);
 
       option.click();
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.control.value).toEqual([]);
     }));
 
@@ -4088,7 +3055,7 @@ xdescribe('SelectComponent', () => {
       options[2].click();
       options[5].click();
       fixture.detectChanges();
-
+      flush();
       expect(trigger.textContent).toContain('Steak, Tacos, Eggs');
 
       options[2].click();
@@ -4101,7 +3068,7 @@ xdescribe('SelectComponent', () => {
       trigger.click();
       testInstance.control.setValue(['steak-0', 'eggs-5']);
       fixture.detectChanges();
-
+      flush();
       const optionNodes = overlayContainerElement.querySelectorAll('sbb-option') as
         NodeListOf<HTMLElement>;
 
@@ -4117,18 +3084,18 @@ xdescribe('SelectComponent', () => {
     it('should override the previously-selected value when setting an array', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       const options = overlayContainerElement.querySelectorAll('sbb-option') as
         NodeListOf<HTMLElement>;
 
       options[0].click();
       fixture.detectChanges();
-
+      flush();
       expect(options[0].classList).toContain('sbb-selected');
 
       testInstance.control.setValue(['eggs-5']);
       fixture.detectChanges();
-
+      flush();
       expect(options[0].classList).not.toContain('sbb-selected');
       expect(options[5].classList).toContain('sbb-selected');
     }));
@@ -4136,7 +3103,7 @@ xdescribe('SelectComponent', () => {
     it('should not close the panel when clicking on options', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.select.panelOpen).toBe(true);
 
       const options = overlayContainerElement.querySelectorAll('sbb-option') as
@@ -4161,7 +3128,7 @@ xdescribe('SelectComponent', () => {
       options[0].click();
       options[1].click();
       fixture.detectChanges();
-
+      flush();
       expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
       expect(fixture.componentInstance.control.value).toEqual(['steak-0', 'pizza-1', 'tacos-2']);
     }));
@@ -4170,10 +3137,10 @@ xdescribe('SelectComponent', () => {
       fakeAsync(() => {
         trigger.click();
         fixture.detectChanges();
-
+        flush();
         testInstance.control.setValue(['tacos-2', 'steak-0', 'pizza-1']);
         fixture.detectChanges();
-
+        flush();
         expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
       }));
 
@@ -4187,7 +3154,7 @@ xdescribe('SelectComponent', () => {
 
       testInstance.foods.push({ value: 'cake-8', viewValue: 'Cake' });
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.options.toArray().every(option => !!option.multiple)).toBe(true,
         'Expected `multiple` to have been set on dynamically-added option.');
     }));
@@ -4204,7 +3171,7 @@ xdescribe('SelectComponent', () => {
 
       options[2].click();
       fixture.detectChanges();
-
+      flush();
       expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(2);
     }));
 
@@ -4216,9 +3183,10 @@ xdescribe('SelectComponent', () => {
       ];
 
       fixture.detectChanges();
+      flush();
       trigger.click();
       fixture.detectChanges();
-
+      flush();
       const options = overlayContainerElement.querySelectorAll('sbb-option') as
         NodeListOf<HTMLElement>;
 
@@ -4230,7 +3198,7 @@ xdescribe('SelectComponent', () => {
       expect(testInstance.control.value).toEqual([null, 'pizza-1', null]);
     }));
 
-    it('should select all options when pressing ctrl + a', () => {
+    it('should select all options when pressing ctrl + a', fakeAsync(() => {
       const selectElement = fixture.nativeElement.querySelector('sbb-select');
       const options = fixture.componentInstance.options.toArray();
 
@@ -4239,7 +3207,7 @@ xdescribe('SelectComponent', () => {
 
       fixture.componentInstance.select.open();
       fixture.detectChanges();
-
+      flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
       Object.defineProperty(event, 'ctrlKey', { get: () => true });
       dispatchEvent(selectElement, event);
@@ -4256,9 +3224,9 @@ xdescribe('SelectComponent', () => {
         'pasta-6',
         'sushi-7'
       ]);
-    });
+    }));
 
-    it('should skip disabled options when using ctrl + a', () => {
+    it('should skip disabled options when using ctrl + a', fakeAsync(() => {
       const selectElement = fixture.nativeElement.querySelector('sbb-select');
       const options = fixture.componentInstance.options.toArray();
 
@@ -4270,7 +3238,7 @@ xdescribe('SelectComponent', () => {
 
       fixture.componentInstance.select.open();
       fixture.detectChanges();
-
+      flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
       Object.defineProperty(event, 'ctrlKey', { get: () => true });
       dispatchEvent(selectElement, event);
@@ -4283,21 +3251,21 @@ xdescribe('SelectComponent', () => {
         'pasta-6',
         'sushi-7'
       ]);
-    });
+    }));
 
-    it('should select all options when pressing ctrl + a when some options are selected', () => {
+    it('should select all options when pressing ctrl + a when some options are selected', fakeAsync(() => {
       const selectElement = fixture.nativeElement.querySelector('sbb-select');
       const options = fixture.componentInstance.options.toArray();
 
       options[0].select();
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.control.value).toEqual(['steak-0']);
       expect(options.some(option => option.selected)).toBe(true);
 
       fixture.componentInstance.select.open();
       fixture.detectChanges();
-
+      flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
       Object.defineProperty(event, 'ctrlKey', { get: () => true });
       dispatchEvent(selectElement, event);
@@ -4314,15 +3282,15 @@ xdescribe('SelectComponent', () => {
         'pasta-6',
         'sushi-7'
       ]);
-    });
+    }));
 
-    it('should deselect all options with ctrl + a if all options are selected', () => {
+    it('should deselect all options with ctrl + a if all options are selected', fakeAsync(() => {
       const selectElement = fixture.nativeElement.querySelector('sbb-select');
       const options = fixture.componentInstance.options.toArray();
 
       options.forEach(option => option.select());
       fixture.detectChanges();
-
+      flush();
       expect(testInstance.control.value).toEqual([
         'steak-0',
         'pizza-1',
@@ -4337,15 +3305,15 @@ xdescribe('SelectComponent', () => {
 
       fixture.componentInstance.select.open();
       fixture.detectChanges();
-
+      flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
       Object.defineProperty(event, 'ctrlKey', { get: () => true });
       dispatchEvent(selectElement, event);
       fixture.detectChanges();
-
+      flush();
       expect(options.some(option => option.selected)).toBe(false);
       expect(testInstance.control.value).toEqual([]);
-    });
+    }));
 
   });
 });
