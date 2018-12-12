@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef,
+  Input, OnDestroy, OnInit
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
@@ -23,7 +26,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   @Input() inputId = `sbb-radio-button-${counter++}`;
   /**
-   * Specific radio button name in formControl
+   * Indicates radio button name in formControl
    */
   @Input() formControlName: string;
   /**
@@ -42,7 +45,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   // tslint:disable-next-line:no-input-rename
   @Input('aria-describedby') ariaDescribedby: string;
   /**
-   * Specifies that the radio button field is required
+   * Indicates that the radio button field is required
    */
   @Input() required: boolean;
   /**
@@ -119,6 +122,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.changeDetector.markForCheck();
   }
 
   /**

@@ -7,9 +7,11 @@ import { ButtonShowcaseComponent } from '../examples/button-showcase/button-show
 import { RadioButtonShowcaseComponent } from '../examples/radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from '../examples/checkbox-showcase/checkbox-showcase.component';
 import { TimeInputShowcaseComponent } from '../examples/time-input-showcase/time-input-showcase.component';
+import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/datepicker-showcase.component';
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
+import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 
 
 @Injectable({
@@ -139,9 +141,9 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
+       new UiComponent(
         'Date Picker',
-        'datePicker',
+        'datepicker',
         'Date Picker',
         'Subtitel goes here ...',
         true,
@@ -149,6 +151,22 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
+        'Import text.',
+        DatepickerShowcaseComponent
+      ), /*
+      new UiComponent(
+        'Time Chooser',
+        'timeChooser',
+        'Time Chooser',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.'
+
+      ),
         'Import text.'
       ), */
       new UiComponent(
@@ -190,7 +208,7 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-     /*  new UiComponent(
+     new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -200,8 +218,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        AccordionShowcaseComponent
+      ),
       /* new UiComponent(
         'Section (Fieldset)',
         'section',

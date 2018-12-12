@@ -1,5 +1,5 @@
-<span class="hljs-keyword">import</span> { CommonModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
-<span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { CommonModule, registerLocaleData } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+<span class="hljs-keyword">import</span> { NgModule, LOCALE_ID } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { FormsModule, ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
 <span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
 
@@ -16,7 +16,9 @@
   ButtonModule,
   TabsModule,
   TimeInputModule,
-  LoadingModule
+  LoadingModule,
+  AccordionModule,
+  DatepickerModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
@@ -27,9 +29,11 @@
 <span class="hljs-keyword">import</span> { AutocompleteShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./autocomplete-showcase/autocomplete-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TimeInputShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./time-input-showcase/time-input-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { FieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./field-showcase/field-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { DatepickerShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./datepicker-showcase/datepicker-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -39,11 +43,13 @@
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    LoadingShowcaseComponent
+    LoadingShowcaseComponent,
+    AccordionShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -58,12 +64,13 @@
     MonacoEditorModule.forRoot(),
     RadioButtonModule,
     CheckboxModule,
+    DatepickerModule,
     TimeInputModule,
     IconCommonModule,
     TabsModule,
-    LoadingModule
+    LoadingModule,
+    AccordionModule
   ],
-  providers: [],
   exports: [
     TextareaShowcaseComponent,
     LinksShowcaseComponent,
@@ -71,12 +78,14 @@
     ButtonShowcaseComponent,
     RadioButtonShowcaseComponent,
     CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
     FieldShowcaseComponent,
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule,
-    LoadingModule
+    LoadingModule,
+    AccordionModule
   ]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExamplesModule { }

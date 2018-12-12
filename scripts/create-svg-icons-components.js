@@ -172,7 +172,7 @@ function buildCommonIconModule(basePath, modules) {
  * @param modules Angular Icon modules with related components
  **/
 function createPublicApiIconsFile(modules) {
-  const publicApiSourceFile = scriptConfiguration.baseOutputPath + '/index.ts';
+  const publicApiSourceFile = scriptConfiguration.baseOutputPath + '/svg-icons-components.ts';
   fs.writeFileSync(publicApiSourceFile, angularTemplates.getPublicApiIconsFileTemplate(modules, PROJECT_LIB_PATH + 'src/lib/svg-icons-components/'));
 
 }
