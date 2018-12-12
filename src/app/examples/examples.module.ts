@@ -20,6 +20,7 @@ import {
   AutocompleteModule,
   SelectModule,
   OptionModule
+  AccordionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -35,6 +36,7 @@ import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
+import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
-    SelectShowcaseComponent
+    SelectShowcaseComponent,
+    AccordionShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     LoadingModule,
     OptionModule,
     AutocompleteModule,
-    SelectModule
+    SelectModule,
+    AccordionModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -88,7 +92,8 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
     SelectShowcaseComponent,
     ButtonModule,
     LoadingModule,
-    OptionModule
+    OptionModule,
+    AccordionModule
   ]
 })
 export class ExamplesModule { }

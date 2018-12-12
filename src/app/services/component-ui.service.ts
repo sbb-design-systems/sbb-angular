@@ -12,6 +12,7 @@ import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcas
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
+import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 
 
 @Injectable({
@@ -209,18 +210,19 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-      /*  new UiComponent(
-         'Accordion',
-         'accordion',
-         'Accordion',
-         'Subtitel goes here ...',
-         true,
-         true,
-         ['Davide Aresta', 'Stefan Meili'],
-         'Description goes here ...',
-         'Source goes here ...',
-         'Import text.'
-       ), */
+     new UiComponent(
+        'Accordion',
+        'accordion',
+        'Accordion',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        AccordionShowcaseComponent
+      ),
       /* new UiComponent(
         'Section (Fieldset)',
         'section',
