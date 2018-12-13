@@ -17,7 +17,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
-import { OptionsChooserComponent, HasOptions } from '../../option/has-options';
+import { HasOptions } from '../../option/has-options';
 import { OptionGroupComponent } from '../../option/option-group/option-group.component';
 
 /**

@@ -135,13 +135,12 @@ export class SbbSelectChange {
 
 // Boilerplate for applying mixins to SelectComponent.
 /** @docs-private */
-export class SbbSelectBase extends MediaQueryResizableComponent {
+export class SbbSelectBase {
   constructor(public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     public ngControl: NgControl) {
-    super();
   }
 }
 
@@ -968,7 +967,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       activeOptionIndex + labelCount,
       this.getItemHeight(),
       this.panel.nativeElement.scrollTop,
-      SELECT_PANEL_MAX_HEIGHT * this.ems
+      SELECT_PANEL_MAX_HEIGHT
     );
   }
 
@@ -985,19 +984,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     }
 
     return null;
-  }
-
-  /** Sets the transform origin point based on the selected option. */
-  private getOriginBasedOnOption(): string {
-    const itemHeight = this.getItemHeight();
-    const optionHeightAdjustment = (itemHeight - this.triggerRect.height) / 2;
-    const originY = Math.abs(this.offsetY) - optionHeightAdjustment + itemHeight / 2;
-    return `50% ${originY}px 0px`;
-  }
-
-  /** Calculates the amount of items in the select. This includes options and group labels. */
-  private getItemCount(): number {
-    return this.options.length + this.optionGroups.length;
   }
 
   /** Calculates the height of the select's options. */

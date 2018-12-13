@@ -43,8 +43,3 @@ export class MediaQueryResizableComponent {
   }
 
 }
-
-export abstract class OptionsChooserComponent extends MediaQueryResizableComponent {
-
-
-}
