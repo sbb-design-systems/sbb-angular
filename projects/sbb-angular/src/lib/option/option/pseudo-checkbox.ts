@@ -24,6 +24,6 @@ export class PseudoCheckboxComponent {
         return this.state === 'checked';
     }
 
-      @HostBinding('class.sbb-pseudo-checkbox') baseCssClass = true;
+    @HostBinding('class.sbb-pseudo-checkbox') baseCssClass = true;
 
 }

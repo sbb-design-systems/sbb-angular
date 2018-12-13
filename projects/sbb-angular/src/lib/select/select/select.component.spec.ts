@@ -763,7 +763,6 @@ describe('SelectComponent', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject();
-  let viewportRuler: ViewportRuler;
   let platform: Platform;
 
   /**
