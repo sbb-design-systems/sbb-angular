@@ -42,6 +42,7 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
+import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 
 @NgModule({
@@ -61,7 +62,7 @@ import { AccordionShowcaseComponent } from './examples/accordion-showcase/accord
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent,
+    ComponentViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +92,7 @@ import { AccordionShowcaseComponent } from './examples/accordion-showcase/accord
     DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    SelectShowcaseComponent,
     AccordionShowcaseComponent,
     ...IconComponents.types
   ]

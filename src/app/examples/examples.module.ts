@@ -1,5 +1,5 @@
-import { CommonModule, registerLocaleData } from '@angular/common';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,13 +12,15 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
   LoadingModule,
-  AccordionModule,
-  DatepickerModule
+  DatepickerModule,
+  AutocompleteModule,
+  SelectModule,
+  OptionModule,
+  AccordionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -33,6 +35,7 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 
 @NgModule({
@@ -49,6 +52,7 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    SelectShowcaseComponent,
     AccordionShowcaseComponent
   ],
   imports: [
@@ -57,7 +61,6 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     TextareaModule,
     FieldModule,
     LinksModule,
-    AutocompleteModule,
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -69,6 +72,9 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    OptionModule,
+    AutocompleteModule,
+    SelectModule,
     AccordionModule
   ],
   exports: [
@@ -83,8 +89,10 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
+    SelectShowcaseComponent,
     ButtonModule,
     LoadingModule,
+    OptionModule,
     AccordionModule
   ]
 })

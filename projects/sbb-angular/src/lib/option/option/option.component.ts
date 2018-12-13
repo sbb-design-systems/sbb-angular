@@ -15,7 +15,9 @@ import {
   HostListener,
   ViewChild,
   QueryList,
-  Optional
+  Optional,
+  InjectionToken,
+  Inject
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Highlightable } from '@angular/cdk/a11y';
@@ -37,6 +39,21 @@ export class SBBOptionSelectionChange {
     public isUserInput = false) { }
 }
 
+/**
+ * Describes a parent component that manages a list of options.
+ * Contains properties that the options can inherit.
+ * @docs-private
+ */
+export interface SbbOptionParentComponent {
+  multiple?: boolean;
+}
+
+/**
+ * Injection token used to provide the parent component to options.
+ */
+export const SBB_OPTION_PARENT_COMPONENT =
+  new InjectionToken<SbbOptionParentComponent>('SBB_OPTION_PARENT_COMPONENT');
+
 @Component({
   selector: 'sbb-option',
   styleUrls: ['option.component.scss'],
@@ -50,6 +67,14 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   @HostBinding('class.sbb-selected')
   selected = false;
+
+  @HostBinding('class.sbb-option-multiple')
+  get multiple() {
+    return this._parent && this._parent.multiple;
+  }
+
+  @HostBinding('attr.role')
+  role = 'option';
 
   @HostBinding('attr.aria-selected')
   get selectedString(): string { return this.selected.toString(); }
@@ -74,6 +99,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   value: any;
 
   @Input()
+  @HostBinding('attr.id')
   id = `sbb-option-${uniqueIdCounter++}`;
 
   // tslint:disable-next-line:no-output-on-prefix
@@ -86,6 +112,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   constructor(
     private element: ElementRef<HTMLElement>,
     private changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(SBB_OPTION_PARENT_COMPONENT) private _parent: SbbOptionParentComponent,
     @Optional() readonly group: OptionGroupComponent
   ) { }
 
@@ -103,7 +130,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   @HostListener('click')
   selectViaInteraction(): void {
     if (!this.disabled) {
-      this.selected = true;
+      this.selected = this.multiple ? !this.selected : true;
       this.changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent(true);
     }

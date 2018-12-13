@@ -16,11 +16,13 @@ export class OptionGroupComponent {
   @HostBinding('attr.role')
   role = 'group';
 
+  @Input()
   @HostBinding('class.sbb-optgroup-disabled')
   disabled = false;
 
   @HostBinding('attr.aria-disabled')
   get isDisabled() { return this.disabled; }
+
 
   @HostBinding('attr.aria-labelledby')
   get isLabelledBy() { return this.labelId; }

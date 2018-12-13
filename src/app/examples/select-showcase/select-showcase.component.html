@@ -1,0 +1,87 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Basic Example</h4>
+      <sbb-field mode="long">
+        <sbb-label>Lieblingsessen</sbb-label>
+        <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl">
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+        </sbb-select>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <pre>{{ basicExampleFormControl.value | json }}</pre>
+    </div>
+  </div>
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Multiple Example</h4>
+      <sbb-field mode="long">
+        <sbb-label>Viele Lieblingsgerichte</sbb-label>
+        <sbb-select placeholder="Beliebteste Lebensmittel" multiple [formControl]="multipleExampleFormControl">
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+        </sbb-select>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>{{ multipleExampleFormControl.value | json }}</pre>
+
+    </div>
+  </div>
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">With option groups</h4>
+      <sbb-field mode="long">
+        <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
+        <sbb-select placeholder="Lebensmittel aus der ganzen Welt" [formControl]="withOptionGroupsExampleFormControl">
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+          <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+            <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
+              {{food.viewValue}}
+            </sbb-option>
+          </sbb-option-group>
+        </sbb-select>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>{{withOptionGroupsExampleFormControl.value | json}}</pre>
+    </div>
+  </div>
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Multiple with option groups</h4>
+      <sbb-field mode="long">
+        <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
+        <sbb-select placeholder="Lebensmittel aus der ganzen Welt" multiple [formControl]="multipleWithOptionGroupsExampleFormControl">
+          <sbb-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </sbb-option>
+          <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+            <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
+              {{food.viewValue}}
+            </sbb-option>
+          </sbb-option-group>
+        </sbb-select>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>{{multipleWithOptionGroupsExampleFormControl.value | json }}</pre>
+    </div>
+  </div>
+</article>
