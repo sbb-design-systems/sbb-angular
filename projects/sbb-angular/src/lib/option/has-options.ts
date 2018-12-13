@@ -32,7 +32,7 @@ export class MediaQueryResizableComponent {
 
 }
 
-export class OptionsChooserComponent extends MediaQueryResizableComponent {
+export abstract class OptionsChooserComponent extends MediaQueryResizableComponent {
 
   /** All of the defined select options. */
   @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
