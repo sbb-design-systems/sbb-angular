@@ -1,5 +1,5 @@
-import { CommonModule, registerLocaleData } from '@angular/common';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,7 +17,8 @@ import {
   TabsModule,
   TimeInputModule,
   LoadingModule,
-  DatepickerModule
+  DatepickerModule,
+  LightboxModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -32,6 +33,11 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import { LightboxShowcaseComponent } from './lightbox-showcase/lightbox-showcase.component';
+import { LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleDialogComponent } from './lightbox-showcase/lightbox-showcase-example.component';
+import { LightboxShowcaseExampleDialogBisComponent,
+  LightboxShowcaseExampleBisComponent } from './lightbox-showcase/lightbox-showcase-example.component-bis';
 
 @NgModule({
   declarations: [
@@ -46,7 +52,12 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
-    LoadingShowcaseComponent
+    LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleDialogComponent,
+    LightboxShowcaseExampleBisComponent,
+    LightboxShowcaseExampleDialogBisComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +76,8 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     TimeInputModule,
     IconCommonModule,
     TabsModule,
-    LoadingModule
+    LoadingModule,
+    LightboxModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -80,7 +92,12 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
     PersonListComponent,
     TimeInputShowcaseComponent,
     ButtonModule,
-    LoadingModule
+    LoadingModule,
+    LightboxModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleDialogComponent,
+    LightboxShowcaseExampleDialogBisComponent
   ]
 })
 export class ExamplesModule { }
