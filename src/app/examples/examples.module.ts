@@ -19,7 +19,7 @@ import {
   DatepickerModule,
   AutocompleteModule,
   SelectModule,
-  OptionModule
+  OptionModule,
   AccordionModule
 } from 'sbb-angular';
 

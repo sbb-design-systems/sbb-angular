@@ -41,7 +41,7 @@ import { SbbFieldComponent } from '../../field/sbb-field/sbb-field.component';
 import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
 import { HighlightPipe } from '../../option/option/highlight.pipe';
 import { OptionModule } from '../../option/option.module';
-import { FieldModule } from '../../field/field';
+import { FieldModule } from '../../field/field.module';
 
 
 @Component({
