@@ -44,18 +44,21 @@ import {
   ViewChild,
   ViewEncapsulation,
   HostBinding,
-  HostListener
+  HostListener,
+  ContentChildren,
+  QueryList
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { defer, merge, Observable, Subject } from 'rxjs';
 
 import {
-  OptionComponent,
   SBB_OPTION_PARENT_COMPONENT,
   SBBOptionSelectionChange,
   countGroupLabelsBeforeOption,
   getOptionScrollPosition
 } from '../../option/option';
+import { OptionComponent } from '../../option/option/option.component';
+import { OptionGroupComponent } from '../../option/option-group/option-group.component';
 import {
   filter,
   map,
@@ -67,7 +70,7 @@ import {
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
-import { OptionsChooserComponent } from '../../option/has-options';
+import { HasOptions, MediaQueryResizableComponent } from '../../option/has-options';
 
 let nextUniqueId = 0;
 
@@ -132,7 +135,7 @@ export class SbbSelectChange {
 
 // Boilerplate for applying mixins to SelectComponent.
 /** @docs-private */
-export class SbbSelectBase extends OptionsChooserComponent {
+export class SbbSelectBase extends MediaQueryResizableComponent {
   constructor(public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
@@ -156,7 +159,13 @@ export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
   ]
 })
 export class SelectComponent extends SbbSelectMixinBase implements AfterContentInit, OnChanges,
-  OnDestroy, OnInit, DoCheck, ControlValueAccessor, CanUpdateErrorState {
+  OnDestroy, OnInit, DoCheck, ControlValueAccessor, CanUpdateErrorState, HasOptions {
+
+  /** All of the defined select options. */
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+
+  /** All of the defined groups of options. */
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
 
   @HostBinding('attr.role') role = 'listbox';
 
@@ -510,6 +519,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   }
 
   ngAfterContentInit() {
+    this.initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
     this.selectionModel.onChange!.pipe(takeUntil(this._destroy)).subscribe(event => {
@@ -518,7 +528,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     });
 
     this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
-      this.initKeyManager();
       this.resetOptions();
       this.initializeSelection();
     });

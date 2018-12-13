@@ -1,6 +1,18 @@
-import { ContentChildren, QueryList } from '@angular/core';
+import { QueryList } from '@angular/core';
 import { OptionComponent, OptionGroupComponent } from '../option/option';
 
+import { Constructor } from '../_common/constructor';
+
+
+/** @docs-private */
+export interface HasOptions {
+  /** Whether the component is disabled. */
+  options: QueryList<OptionComponent>;
+  optionGroups: QueryList<OptionGroupComponent>;
+
+}
+
+/** Mixin to augment a directive with a `disabled` property. */
 const mediaQueriesBreakpoints = [
   { min: 321, em: 1 },
   { min: 643, em: 1 },
@@ -34,10 +46,5 @@ export class MediaQueryResizableComponent {
 
 export abstract class OptionsChooserComponent extends MediaQueryResizableComponent {
 
-  /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
-
-  /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
 
 }

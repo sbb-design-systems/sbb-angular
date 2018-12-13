@@ -1,8 +1,7 @@
 import { FormControl, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { ErrorStateMatcher } from './error-services';
-
-export type Constructor<T> = new(...args: any[]) => T;
+import { Constructor } from '../constructor';
 
 /** @docs-private */
 export interface CanUpdateErrorState {

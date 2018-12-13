@@ -13,9 +13,12 @@ import {
   ViewChild,
   ViewEncapsulation,
   HostBinding,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
 import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
-import { OptionsChooserComponent } from '../../option/has-options';
+import { OptionsChooserComponent, HasOptions } from '../../option/has-options';
+import { OptionGroupComponent } from '../../option/option-group/option-group.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -50,7 +53,12 @@ export interface SbbAutocompleteDefaultOptions {
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent },
   ]
 })
-export class AutocompleteComponent extends OptionsChooserComponent implements AfterContentInit {
+export class AutocompleteComponent implements AfterContentInit, HasOptions {
+  /** All of the defined select options. */
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+
+  /** All of the defined groups of options. */
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
 
 
   /** Manages active item in option list based on key events. */
@@ -120,7 +128,6 @@ export class AutocompleteComponent extends OptionsChooserComponent implements Af
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef<HTMLElement>) {
-    super();
   }
 
   ngAfterContentInit() {
