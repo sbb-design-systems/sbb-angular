@@ -49,8 +49,7 @@
   }
 }
 
-@mixin selectPanelBase {
-  overflow: overlay;
+@mixin selectContentBase {
   max-height: toPx($selectMaxWidth);
 
   @include mq($from: desktop4k) {

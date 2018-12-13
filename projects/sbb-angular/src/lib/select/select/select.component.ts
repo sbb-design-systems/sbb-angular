@@ -70,7 +70,8 @@ import {
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
-import { HasOptions, MediaQueryResizableComponent } from '../../option/has-options';
+import { HasOptions } from '../../option/has-options';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 
 let nextUniqueId = 0;
 
@@ -168,6 +169,8 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   @HostBinding('attr.role') role = 'listbox';
 
+  perfectScrollbarScrollTop = 0;
+
   @Input()
   get tabIndex(): number { return this.disabled ? -1 : this._tabIndex; }
   set tabIndex(value: number) {
@@ -224,6 +227,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Panel containing the select options. */
   @ViewChild('panel') panel: ElementRef;
+
+  /** Panel containing the select options. */
+  @ViewChild('scrollbar') perfectScrollbar: PerfectScrollbarComponent;
 
   /** Overlay pane containing the options. */
   @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
@@ -762,6 +768,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
         this.trigger.nativeElement.classList.remove('sbb-select-input-above');
       }
       this.changeDetectorRef.detectChanges();
+
+      this.scrollActiveOptionIntoView();
+
     });
   }
 
@@ -963,12 +972,15 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options,
       this.optionGroups);
 
-    this.panel.nativeElement.scrollTop = getOptionScrollPosition(
+    const optionScrollPosition = getOptionScrollPosition(
       activeOptionIndex + labelCount,
       this.getItemHeight(),
       this.panel.nativeElement.scrollTop,
       SELECT_PANEL_MAX_HEIGHT
     );
+
+    this.perfectScrollbar.directiveRef.scrollToY(optionScrollPosition);
+    this.perfectScrollbar.directiveRef.update();
   }
 
   /** Focuses the select element. */
