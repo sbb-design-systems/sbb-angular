@@ -510,7 +510,6 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   }
 
   ngAfterContentInit() {
-    this.initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
     this.selectionModel.onChange!.pipe(takeUntil(this._destroy)).subscribe(event => {
@@ -519,6 +518,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     });
 
     this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
+      this.initKeyManager();
       this.resetOptions();
       this.initializeSelection();
     });
