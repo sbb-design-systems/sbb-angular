@@ -119,6 +119,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.changeDetector.markForCheck();
   }
 
   /**
