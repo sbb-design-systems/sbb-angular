@@ -1,0 +1,25 @@
+<span class="hljs-keyword">import</span> { <span class="hljs-keyword">async</span>, ComponentFixture, TestBed } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/testing'</span>;
+
+<span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase.component'</span>;
+
+describe(<span class="hljs-string">'SelectShowcaseComponent'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">let</span> component: SelectShowcaseComponent;
+  <span class="hljs-keyword">let</span> fixture: ComponentFixture&lt;SelectShowcaseComponent&gt;;
+
+  beforeEach(<span class="hljs-keyword">async</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    TestBed.configureTestingModule({
+      declarations: [ SelectShowcaseComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    fixture = TestBed.createComponent(SelectShowcaseComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it(<span class="hljs-string">'should create'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    expect(component).toBeTruthy();
+  });
+});

@@ -11,6 +11,7 @@ import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/dat
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
+import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 
 
@@ -129,7 +130,7 @@ export class ComponentUiService {
         'Import text.',
         TextareaShowcaseComponent
       ),
-     /*  new UiComponent(
+      new UiComponent(
         'Select',
         'select',
         'Select',
@@ -139,9 +140,10 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
-       new UiComponent(
+        'Import text.',
+        SelectShowcaseComponent
+      ),
+      new UiComponent(
         'Date Picker',
         'datepicker',
         'Date Picker',
@@ -233,30 +235,30 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-     /*  new UiComponent(
-        'Light Box',
-        'lightBox',
-        'Light Box',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ), */
-     /*  new UiComponent(
-        'Notification',
-        'notification',
-        'Notification',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ), */
+      /*  new UiComponent(
+         'Light Box',
+         'lightBox',
+         'Light Box',
+         'Subtitel goes here ...',
+         true,
+         true,
+         ['Davide Aresta', 'Stefan Meili'],
+         'Description goes here ...',
+         'Source goes here ...',
+         'Import text.'
+       ), */
+      /*  new UiComponent(
+         'Notification',
+         'notification',
+         'Notification',
+         'Subtitel goes here ...',
+         true,
+         true,
+         ['Davide Aresta', 'Stefan Meili'],
+         'Description goes here ...',
+         'Source goes here ...',
+         'Import text.'
+       ), */
       /* new UiComponent(
         'Process Flow',
         'processFlow',

@@ -1,0 +1,54 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Food {
+  value: <span class="hljs-built_in">string</span>;
+  viewValue: <span class="hljs-built_in">string</span>;
+}
+
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-select-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./select-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./select-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SelectShowcaseComponent {
+
+  foods: Food[] = [
+    { value: <span class="hljs-string">'beefsteak-0'</span>, viewValue: <span class="hljs-string">'Beefsteak'</span> },
+    { value: <span class="hljs-string">'pizza-1'</span>, viewValue: <span class="hljs-string">'Pizza'</span> },
+    { value: <span class="hljs-string">'nudeln-2'</span>, viewValue: <span class="hljs-string">'Nudeln'</span> }
+  ];
+
+  foodFromTheWorld = [{
+    nation: <span class="hljs-string">'Italien'</span>,
+    food: [
+      { value: <span class="hljs-string">'lasagna'</span>, viewValue: <span class="hljs-string">'Lasagna'</span> },
+      { value: <span class="hljs-string">'parmigiana'</span>, viewValue: <span class="hljs-string">'Parmigiana'</span> },
+      { value: <span class="hljs-string">'krm'</span>, viewValue: <span class="hljs-string">'Kartoffeln, Reis und Muscheln'</span> }
+    ]
+  }, {
+    nation: <span class="hljs-string">'Deutschland'</span>,
+    food: [
+      { value: <span class="hljs-string">'weißwurst'</span>, viewValue: <span class="hljs-string">'Weißwurst'</span> },
+      { value: <span class="hljs-string">'eisbein'</span>, viewValue: <span class="hljs-string">'Eisbein'</span> },
+      { value: <span class="hljs-string">'rheinische-muscheln'</span>, viewValue: <span class="hljs-string">'Rheinische Muscheln'</span> }
+    ]
+  },
+  {
+    nation: <span class="hljs-string">'Swiss'</span>,
+    food: [
+      { value: <span class="hljs-string">'bircherműesli'</span>, viewValue: <span class="hljs-string">'Bircherműesli'</span> },
+      { value: <span class="hljs-string">'rösti'</span>, viewValue: <span class="hljs-string">'Rösti'</span> },
+      { value: <span class="hljs-string">'bűndnernusstorte'</span>, viewValue: <span class="hljs-string">'Bűndnernusstorte'</span> }
+    ]
+  }];
+
+  basicExampleFormControl = <span class="hljs-keyword">new</span> FormControl();
+
+  multipleExampleFormControl = <span class="hljs-keyword">new</span> FormControl();
+
+  withOptionGroupsExampleFormControl = <span class="hljs-keyword">new</span> FormControl();
+
+  multipleWithOptionGroupsExampleFormControl = <span class="hljs-keyword">new</span> FormControl();
+}

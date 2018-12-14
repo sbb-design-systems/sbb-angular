@@ -1,0 +1,53 @@
+@mixin pseudoCheckbox {
+  width: toPx(20);
+  height: toPx(20);
+  background-color: $colorWhite;
+  border: toPx(2) solid $colorBlack72;
+  border-radius: toPx(2);
+  margin-right: toPx(8);
+  margin-top: toPx(1);
+
+  @include mq($from: desktop4k) {
+    width: toPx(20 * $scalingFactor4k);
+    height: toPx(20 * $scalingFactor4k);
+    border: toPx(2 * $scalingFactor4k) solid $colorBlack72;
+    margin-right: toPx(8 * $scalingFactor4k);
+    margin-top: toPx(1 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(20 * $scalingFactor5k);
+    height: toPx(20 * $scalingFactor5k);
+    border: toPx(2 * $scalingFactor5k) solid $colorBlack72;
+    margin-right: toPx(8 * $scalingFactor5k);
+    margin-top: toPx(1 * $scalingFactor5k);
+  }
+
+  .sbb-checkbox-checked {
+    line-height: 0;
+    height: 100%;
+    width: 100%;
+    fill: $colorRed100;
+    border-radius: toPx(2);
+    transform: scale(1.3);
+    transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+
+  & > .sbb-checkbox-checked {
+    display: none;
+  }
+
+  &.sbb-pseudo-checkbox-checked {
+    & > .sbb-checkbox-checked {
+      display: block;
+    }
+  }
+  &.sbb-pseudo-checkbox-disabled {
+    border-color: $colorBlack20;
+    background-color: $colorBlack5;
+
+    & > .sbb-checkbox-checked {
+      fill: $colorGrey;
+    }
+  }
+}
