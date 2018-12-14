@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef,
+  Input, OnDestroy, OnInit
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
@@ -119,6 +122,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.changeDetector.markForCheck();
   }
 
   /**

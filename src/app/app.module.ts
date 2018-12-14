@@ -43,6 +43,8 @@ import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.co
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
 import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox-showcase.component';
+import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
+import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent,
+    ComponentViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,8 @@ import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
     LightboxShowcaseComponent,
+    SelectShowcaseComponent,
+    AccordionShowcaseComponent,
     ...IconComponents.types
   ]
 })

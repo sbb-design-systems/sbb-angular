@@ -12,13 +12,16 @@ import {
   LinksModule,
   RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
-  LightboxModule
+  LightboxModule,
+  AutocompleteModule,
+  SelectModule,
+  OptionModule,
+  AccordionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -38,6 +41,8 @@ import { LightboxShowcaseExampleComponent,
   LightboxShowcaseExampleDialogComponent } from './lightbox-showcase/lightbox-showcase-example.component';
 import { LightboxShowcaseExampleDialogBisComponent,
   LightboxShowcaseExampleBisComponent } from './lightbox-showcase/lightbox-showcase-example.component-bis';
+import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
+import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,9 @@ import { LightboxShowcaseExampleDialogBisComponent,
     LightboxShowcaseExampleComponent,
     LightboxShowcaseExampleDialogComponent,
     LightboxShowcaseExampleBisComponent,
-    LightboxShowcaseExampleDialogBisComponent
+    LightboxShowcaseExampleDialogBisComponent,
+    SelectShowcaseComponent,
+    AccordionShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +72,6 @@ import { LightboxShowcaseExampleDialogBisComponent,
     TextareaModule,
     FieldModule,
     LinksModule,
-    AutocompleteModule,
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -77,7 +83,11 @@ import { LightboxShowcaseExampleDialogBisComponent,
     IconCommonModule,
     TabsModule,
     LoadingModule,
-    LightboxModule
+    LightboxModule,
+    OptionModule,
+    AutocompleteModule,
+    SelectModule,
+    AccordionModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -91,9 +101,12 @@ import { LightboxShowcaseExampleDialogBisComponent,
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
+    SelectShowcaseComponent,
     ButtonModule,
     LoadingModule,
-    LightboxModule
+    LightboxModule,
+    OptionModule,
+    AccordionModule
   ],
   entryComponents: [
     LightboxShowcaseExampleDialogComponent,

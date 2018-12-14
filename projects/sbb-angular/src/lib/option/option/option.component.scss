@@ -1,7 +1,9 @@
 @import "../../../styles/main";
 
 sbb-option {
-  @include optionBase();
+  @include optionInSelect;
+  @include optionInAutocomplete;
+  @include multipleOption;
 }
 
 sbb-option[disabled] {

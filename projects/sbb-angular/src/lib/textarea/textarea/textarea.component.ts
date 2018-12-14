@@ -1,4 +1,4 @@
-import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding } from '@angular/core';
+import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { first } from 'rxjs/operators';
@@ -88,7 +88,7 @@ export class TextareaComponent implements ControlValueAccessor {
     this.focusedClass = false;
   }
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private changeDetector:ChangeDetectorRef, private ngZone: NgZone) { }
   /**
    * Trigger the resize of the textarea to fit the content
    */
@@ -125,6 +125,7 @@ export class TextareaComponent implements ControlValueAccessor {
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
     this.disabledClass = disabled;
+    this.changeDetector.markForCheck();
   }
   /**
    * Method that updates the max number of digits available in the textarea content
