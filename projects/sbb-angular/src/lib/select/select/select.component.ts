@@ -305,7 +305,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
     return this._ngZone.onStable
       .asObservable()
-      .pipe(take(1), switchMap(() => this.optionSelectionChanges));
+      .pipe(first(), switchMap(() => this.optionSelectionChanges));
   });
 
   /** Event emitted when the select panel has been toggled. */
