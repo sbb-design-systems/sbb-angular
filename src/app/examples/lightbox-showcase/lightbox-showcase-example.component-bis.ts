@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from 'sbb-angular';
+import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
 
 /**
  * @title Dialog with header, scrollable content and actions
@@ -7,15 +7,15 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from 'sbb-angular';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dialog-content-example-bis',
-  template: '<button (click)="openDialog()">Open dialog</button>'
+  template: '<button (click)="openDialog()">Open dialog</button>',
 })
 export class LightboxShowcaseExampleBisComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(LightboxShowcaseExampleDialogBisComponent);
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExampleDialogBisComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    lightboxRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -28,3 +28,4 @@ export class LightboxShowcaseExampleBisComponent {
 })
 // tslint:disable-next-line:component-class-suffix
 export class LightboxShowcaseExampleDialogBisComponent {}
+

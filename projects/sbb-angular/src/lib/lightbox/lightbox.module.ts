@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-import { MatDialog } from './lightbox/dialog';
-import { MatDialogContainer } from './lightbox/dialog-container';
+import { Lightbox } from './lightbox/lightbox.service';
+import { LightboxContainerComponent } from './lightbox/lightbox-container.component';
 import {
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-} from './lightbox/dialog-content-directives';
+  LightboxFooterDirective,
+  LightboxCloseDirective,
+  LightboxContentDirective,
+  LightboxTitleDirective,
+} from './lightbox/lightbox-content.directives';
 
 @NgModule({
   imports: [
@@ -18,24 +18,24 @@ import {
     PortalModule,
   ],
   exports: [
-    MatDialogContainer,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
+    LightboxContainerComponent,
+    LightboxCloseDirective,
+    LightboxTitleDirective,
+    LightboxContentDirective,
+    LightboxFooterDirective,
   ],
   declarations: [
-    MatDialogContainer,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogActions,
-    MatDialogContent,
+    LightboxContainerComponent,
+    LightboxCloseDirective,
+    LightboxTitleDirective,
+    LightboxFooterDirective,
+    LightboxContentDirective,
   ],
   providers: [
-    MatDialog
+    Lightbox
   ],
   entryComponents: [
-    MatDialogContainer
+    LightboxContainerComponent
   ]
 })
 export class LightboxModule { }

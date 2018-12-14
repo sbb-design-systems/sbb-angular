@@ -1,12 +1,9 @@
-<p>
-  lightbox-showcase works!
-</p>
 <ol>
   <li>
     <input [(ngModel)]="name" placeholder="What's your name?">
   </li>
   <li>
-    <button (click)="openDialog()">Pick one</button>
+    <button (click)="openLightbox()">Pick one</button>
   </li>
   <li *ngIf="animal">
     You chose: <i>{{animal}}</i>

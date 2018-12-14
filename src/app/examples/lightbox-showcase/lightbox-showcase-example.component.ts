@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from 'sbb-angular';
+import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
 
-export interface DialogData {
+export interface LightboxData {
   animal: string;
   name: string;
 }
@@ -9,24 +9,25 @@ export interface DialogData {
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dialog-overview-example-dialog',
-  template: `<h1 mat-dialog-title>Hi {{data.name}}</h1>
-  <div mat-dialog-content>
+  template: `
+  <h1 sbbLightboxTitle>Hi {{data.name}}</h1>
+  <div sbbLightboxContent>
     <p>What's your favorite animal?</p>
       <input [(ngModel)]="data.animal">
   </div>
-  <div mat-dialog-actions>
+  <div sbbLightboxFooter>
     <button (click)="onNoClick()">No Thanks</button>
-    <button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+    <button [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
   </div>`
 })
 export class LightboxShowcaseExampleDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<LightboxShowcaseExampleDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    public lightboxRef: LightboxRef<LightboxShowcaseExampleDialogComponent>,
+    @Inject(LIGHTBOX_DATA) public data: LightboxData) {}
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.lightboxRef.close();
   }
 
 }
@@ -41,16 +42,15 @@ export class LightboxShowcaseExampleComponent {
   animal: string;
   name: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public lightbox: Lightbox) { }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(LightboxShowcaseExampleDialogComponent, {
-      width: '250px',
+  openLightbox(): void {
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExampleDialogComponent, {
       data: { name: this.name, animal: this.animal }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    lightboxRef.afterClosed().subscribe(result => {
+      console.log('The lightbox was closed');
       this.animal = result;
     });
   }
