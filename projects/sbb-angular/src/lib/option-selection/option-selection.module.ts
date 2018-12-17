@@ -6,6 +6,7 @@ import { OptionSelectionComponent } from './option-selection/option-selection.co
   imports: [
     CommonModule
   ],
-  declarations: [OptionSelectionComponent]
+  declarations: [OptionSelectionComponent],
+  exports: [OptionSelectionComponent]
 })
 export class OptionSelectionModule { }

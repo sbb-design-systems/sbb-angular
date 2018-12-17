@@ -13,6 +13,8 @@ import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.c
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+import { OptionSelectionComponent } from 'projects/sbb-angular/src/public_api';
+import { OptionSelectionShowcaseComponent } from '../examples/option-selection-showcase/option-selection-showcase.component';
 
 
 @Injectable({
@@ -271,18 +273,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
-        'Option Chooser (simple)',
-        'optionChooserSimple',
-        'Option Chooser (simple)',
+       new UiComponent(
+        'Option Selection (simple)',
+        'option-selection',
+        'Option Selection (simple)',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Aresta'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        OptionSelectionShowcaseComponent
+      ),
       new UiComponent(
         'Time Input',
         'time-input',
