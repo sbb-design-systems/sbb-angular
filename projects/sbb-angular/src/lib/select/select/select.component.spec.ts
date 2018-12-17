@@ -766,7 +766,7 @@ describe('SelectComponent', () => {
   let platform: Platform;
 
   /**
-   * Configures the test module for MatSelect with the given declarations. This is broken out so
+   * Configures the test module for SelectComponent with the given declarations. This is broken out so
    * that we're only compiling the necessary test components for each test in order to speed up
    * overall test time.
    * @param declarations Components to declare for this block
@@ -1636,7 +1636,7 @@ describe('SelectComponent', () => {
           .toBe(fixture.componentInstance.options.first);
       });
 
-      it('should be able to select an option using the MatOption API', () => {
+      it('should be able to select an option using the OptionComponent API', () => {
         trigger.click();
         fixture.detectChanges();
 
