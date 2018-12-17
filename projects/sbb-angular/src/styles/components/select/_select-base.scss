@@ -1,5 +1,4 @@
 @mixin selectBase {
-
   .sbb-select-trigger {
     @include inputfields;
     cursor: pointer;
@@ -20,7 +19,7 @@
       background: $colorBlack5;
       border-color: $colorBlack20;
     }
-    
+
     .sbb-select-value {
       width: 100%;
       overflow: hidden;
@@ -58,5 +57,23 @@
 
   @include mq($from: desktop5k) {
     max-height: toPx($selectMaxWidth * $scalingFactor5k);
+  }
+}
+
+@mixin nativeSelectBase {
+  @include inputfields;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  background: url($selectNativeBackground) 97.5% no-repeat;
+  background-size: toPx($selectArrowWidthHeight);
+  @include mq($from: desktop4k) {
+    background-size: toPx($selectArrowWidthHeight * $scalingFactor4k);
+    background-position-x: 96%;
+  }
+
+  @include mq($from: desktop5k) {
+    background-size: toPx($selectArrowWidthHeight * $scalingFactor5k);
+    background-position-x: 94%;
   }
 }

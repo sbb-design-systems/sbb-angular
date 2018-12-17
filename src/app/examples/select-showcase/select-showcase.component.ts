@@ -46,6 +46,8 @@ export class SelectShowcaseComponent {
 
   basicExampleFormControl = new FormControl();
 
+  nativeExampleFormControl = new FormControl();
+
   multipleExampleFormControl = new FormControl();
 
   withOptionGroupsExampleFormControl = new FormControl();

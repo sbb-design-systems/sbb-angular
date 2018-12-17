@@ -20,6 +20,25 @@
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Basic Example (native version)</h4>
+      <sbb-field mode="long">
+        <sbb-label>Lieblingsessen</sbb-label>
+        <select class="sbb-select" [formControl]="nativeExampleFormControl">
+          <option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </option>
+        </select>
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <pre>{{ nativeExampleFormControl.value | json }}</pre>
+    </div>
+  </div>
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Multiple Example</h4>
       <sbb-field mode="long">
         <sbb-label>Viele Lieblingsgerichte</sbb-label>
