@@ -38,11 +38,12 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { LightboxShowcaseComponent } from './lightbox-showcase/lightbox-showcase.component';
 import { LightboxShowcaseExampleComponent,
-  LightboxShowcaseExampleDialogComponent } from './lightbox-showcase/lightbox-showcase-example.component';
-import { LightboxShowcaseExampleDialogBisComponent,
-  LightboxShowcaseExampleBisComponent } from './lightbox-showcase/lightbox-showcase-example.component-bis';
+  LightboxShowcaseExampleContentComponent } from './lightbox-showcase/lightbox-showcase-example.component';
+import { LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample2Component } from './lightbox-showcase/lightbox-showcase-example-2.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { LightboxShowcaseExample3Component } from './lightbox-showcase/lightbox-showcase-example-3.component';
 
 @NgModule({
   declarations: [
@@ -60,9 +61,10 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     LoadingShowcaseComponent,
     LightboxShowcaseComponent,
     LightboxShowcaseExampleComponent,
-    LightboxShowcaseExampleDialogComponent,
-    LightboxShowcaseExampleBisComponent,
-    LightboxShowcaseExampleDialogBisComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
     SelectShowcaseComponent,
     AccordionShowcaseComponent
   ],
@@ -109,8 +111,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     AccordionModule
   ],
   entryComponents: [
-    LightboxShowcaseExampleDialogComponent,
-    LightboxShowcaseExampleDialogBisComponent
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent
   ]
 })
 export class ExamplesModule { }

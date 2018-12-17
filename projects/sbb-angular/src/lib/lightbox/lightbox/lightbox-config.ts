@@ -1,4 +1,5 @@
 import { ViewContainerRef } from '@angular/core';
+import { ScrollStrategy } from '@angular/cdk/overlay';
 
 /** Valid ARIA roles for a Lightbox element. */
 export type LightboxRole = 'dialog' | 'alertdialog';
@@ -31,18 +32,6 @@ export class LightboxConfig<D = any> {
   /** Height of the Lightbox. */
   height? = '100vw';
 
-  /** Min-width of the Lightbox. If a number is provided, pixel units are assumed. */
-  minWidth?: number | string;
-
-  /** Min-height of the Lightbox. If a number is provided, pixel units are assumed. */
-  minHeight?: number | string;
-
-  /** Max-width of the Lightbox. If a number is provided, pixel units are assumed. */
-  maxWidth?: number | string = '';
-
-  /** Max-height of the Lightbox. If a number is provided, pixel units are assumed. */
-  maxHeight?: number | string;
-
   /** Data being injected into the child component. */
   data?: D | null = null;
 
@@ -54,6 +43,9 @@ export class LightboxConfig<D = any> {
 
   /** Whether the Lightbox should focus the first focusable element on open. */
   autoFocus? = true;
+
+  /** Scroll strategy to be used for the dialog. */
+  scrollStrategy?: ScrollStrategy;
 
   /** Whether the Lightbox should close when the user goes backwards/forwards in history. */
   closeOnNavigation? = true;

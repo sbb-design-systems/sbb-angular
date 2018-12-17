@@ -7,23 +7,13 @@ export interface LightboxData {
 }
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'dialog-overview-example-dialog',
-  template: `
-  <h1 sbbLightboxTitle>Hi {{data.name}}</h1>
-  <div sbbLightboxContent>
-    <p>What's your favorite animal?</p>
-      <input [(ngModel)]="data.animal">
-  </div>
-  <div sbbLightboxFooter>
-    <button (click)="onNoClick()">No Thanks</button>
-    <button [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
-  </div>`
+  selector: 'sbb-lightbox-showcase-example-content',
+  templateUrl: 'lightbox-showcase-example-content.component.html'
 })
-export class LightboxShowcaseExampleDialogComponent {
+export class LightboxShowcaseExampleContentComponent {
 
   constructor(
-    public lightboxRef: LightboxRef<LightboxShowcaseExampleDialogComponent>,
+    public lightboxRef: LightboxRef<LightboxShowcaseExampleContentComponent>,
     @Inject(LIGHTBOX_DATA) public data: LightboxData) {}
 
   onNoClick(): void {
@@ -34,8 +24,7 @@ export class LightboxShowcaseExampleDialogComponent {
 
 @Component({
   selector: 'sbb-lightbox-showcase-example',
-  templateUrl: './lightbox-showcase.component.html',
-  styleUrls: ['./lightbox-showcase.component.scss']
+  templateUrl: './lightbox-showcase-example.component.html'
 })
 export class LightboxShowcaseExampleComponent {
 
@@ -45,7 +34,7 @@ export class LightboxShowcaseExampleComponent {
   constructor(public lightbox: Lightbox) { }
 
   openLightbox(): void {
-    const lightboxRef = this.lightbox.open(LightboxShowcaseExampleDialogComponent, {
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExampleContentComponent, {
       data: { name: this.name, animal: this.animal }
     });
 

@@ -10,13 +10,15 @@ import {
 import {
   Overlay,
   OverlayConfig,
-  OverlayRef
+  OverlayRef,
+  ScrollStrategy
 } from '@angular/cdk/overlay';
 import {
   ComponentPortal,
   ComponentType,
   PortalInjector,
-  TemplatePortal } from '@angular/cdk/portal';
+  TemplatePortal
+} from '@angular/cdk/portal';
 import { Location } from '@angular/common';
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
@@ -32,6 +34,23 @@ export const LIGHTBOX_DATA = new InjectionToken<any>('LightboxData');
 /** Injection token that can be used to specify default lightbox options. */
 export const LIGHTBOX_DEFAULT_OPTIONS =
   new InjectionToken<LightboxConfig>('LightboxDefaultOptions');
+
+/** Injection token that determines the scroll handling while the dialog is open. */
+export const LIGHTBOX_SCROLL_STRATEGY =
+  new InjectionToken<() => ScrollStrategy>('LightboxScrollStrategy');
+
+/** @docs-private */
+export function LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
+  () => ScrollStrategy {
+  return () => overlay.scrollStrategies.block();
+}
+
+/** @docs-private */
+export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
+  provide: LIGHTBOX_SCROLL_STRATEGY,
+  deps: [Overlay],
+  useFactory: LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
+};
 
 /**
  * Service to open SBB Design modal lightboxes.
@@ -73,6 +92,7 @@ export class Lightbox {
     private _injector: Injector,
     @Optional() private _location: Location,
     @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions,
+    @Inject(LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy,
     @Optional() @SkipSelf() private _parentLightbox: Lightbox) { }
 
   /**
@@ -146,11 +166,10 @@ export class Lightbox {
   private _getOverlayConfig(lightboxConfig: LightboxConfig): OverlayConfig {
     const state = new OverlayConfig({
       positionStrategy: this._overlay.position().global(),
+      scrollStrategy: lightboxConfig.scrollStrategy || this._scrollStrategy(),
       panelClass: lightboxConfig.panelClass,
-      minWidth: lightboxConfig.minWidth,
-      minHeight: lightboxConfig.minHeight,
-      maxWidth: lightboxConfig.maxWidth,
-      maxHeight: lightboxConfig.maxHeight
+      width: lightboxConfig.width,
+      height: lightboxConfig.height
     });
 
     return state;
