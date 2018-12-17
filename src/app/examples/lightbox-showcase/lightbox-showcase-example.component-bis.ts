@@ -1,6 +1,15 @@
 import { Component, Inject } from '@angular/core';
 import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
 
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'dialog-content-example-dialog-bis',
+  templateUrl: 'lightbox-showcase.component-bis.html',
+})
+// tslint:disable-next-line:component-class-suffix
+export class LightboxShowcaseExampleDialogBisComponent {}
+
+
 /**
  * @title Dialog with header, scrollable content and actions
  */
@@ -20,12 +29,3 @@ export class LightboxShowcaseExampleBisComponent {
     });
   }
 }
-
-@Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'dialog-content-example-dialog-bis',
-  templateUrl: 'lightbox-showcase.component-bis.html',
-})
-// tslint:disable-next-line:component-class-suffix
-export class LightboxShowcaseExampleDialogBisComponent {}
-
