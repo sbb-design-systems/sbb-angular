@@ -527,7 +527,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this.initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
-    this.selectionModel.onChange!.pipe(takeUntil(this._destroy)).subscribe(event => {
+    this.selectionModel.changed!.pipe(takeUntil(this._destroy)).subscribe(event => {
       event.added.forEach(option => option.select());
       event.removed.forEach(option => option.deselect());
     });
