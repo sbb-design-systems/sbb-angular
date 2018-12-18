@@ -4,7 +4,7 @@
 @mixin checkbox() {
   & > label {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 
     & > input[type="checkbox"] {
       @include visuallyhidden;
