@@ -8,13 +8,16 @@ import {
   OnDestroy,
   OnInit,
   HostBinding,
-  HostListener
+  HostListener,
+  ContentChild,
+  TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButtonComponent } from '../../radio-button/radio-button';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { RadioButtonRegistryService } from '../../radio-button/radio-button/radio-button-registry.service';
+import { OptionSelectionImageDirective } from './option-selection-image.directive';
 
 let counter = 0;
 
@@ -34,6 +37,13 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @HostBinding('class.sbb-option-selection')
   private cssClass = true;
 
+  /**
+     * Template that will contain icons.
+     * Use the *sbbButtonIcon structural directive to provide the desired icon.
+     */
+  @Input()
+  @ContentChild(OptionSelectionImageDirective, { read: TemplateRef })
+  image: TemplateRef<any>;
 
   @Input()
   label: string;

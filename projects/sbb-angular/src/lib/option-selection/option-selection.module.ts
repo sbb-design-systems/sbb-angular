@@ -2,16 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OptionSelectionComponent } from './option-selection/option-selection.component';
 import { RadioButtonModule } from 'sbb-angular';
-import { RadioButtonComponent } from '../radio-button/radio-button/radio-button.component';
+import { OptionSelectionImageDirective } from './option-selection/option-selection-image.directive';
 
 @NgModule({
   imports: [
     CommonModule,
     RadioButtonModule
   ],
-  declarations: [OptionSelectionComponent],
+  declarations: [
+    OptionSelectionComponent,
+    OptionSelectionImageDirective
+  ],
   exports: [
-    OptionSelectionComponent
+    OptionSelectionComponent,
+    OptionSelectionImageDirective
   ]
 })
 export class OptionSelectionModule { }

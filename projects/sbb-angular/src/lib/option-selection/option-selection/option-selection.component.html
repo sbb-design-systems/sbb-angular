@@ -1,5 +1,7 @@
 <div class="sbb-option-selection-header">
   <sbb-radio-button #radio [inputId]="inputId" [name]="name">{{ label }}</sbb-radio-button>
-  <div *ngIf="subtitle" class="sbb-option-selection-subtitle">{{ subtitle }}</div>
+  <div *ngIf="subtitle" aria-level="3"  class="sbb-option-selection-header-subtitle">{{ subtitle }}</div>
 </div>
-<div class="sbb-option-selection-image"></div>
+<div class="sbb-option-selection-image">
+  <ng-container *ngTemplateOutlet="image"></ng-container>
+</div>
