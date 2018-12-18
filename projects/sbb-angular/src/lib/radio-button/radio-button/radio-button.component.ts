@@ -78,7 +78,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   onTouched = () => { };
 
-  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
+  constructor(public changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
     super();
   }
 

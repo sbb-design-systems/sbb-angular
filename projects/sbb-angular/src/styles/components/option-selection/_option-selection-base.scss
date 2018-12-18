@@ -1,0 +1,23 @@
+@mixin optionSelection {
+
+    border: 1px solid #f6f6f6;
+    background-color:  #f6f6f6;
+    width: 100%;
+    height: toPx($optionSelectionHeight);
+    display: flex;
+    padding: toPx($optionSelectionPadding);
+    border-radius: toPx($optionSelectionBorderRadius);
+    &-checked {
+        background-color: $colorWhite;
+        border: solid 1px $colorBlack;
+        color: $colorBlack;
+    }
+
+    &-has-subtitle {
+        height: toPx($optionSelectionHeightWithSubtitle);
+    }
+    
+    &-disabled {
+        color: $colorGrey;
+    }
+}

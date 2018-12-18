@@ -5,11 +5,22 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './option-selection-showcase.component.html',
   styleUrls: ['./option-selection-showcase.component.scss']
 })
-export class OptionSelectionShowcaseComponent implements OnInit {
+export class OptionSelectionShowcaseComponent {
 
-  constructor() { }
+  required: boolean;
+  disabled: boolean;
+  checked: boolean;
+  modelValue = 'value1';
 
-  ngOnInit() {
-  }
+  radioOptions = [{
+    'name': 'Radio 1',
+    'value': 'value1'
+  }, {
+    'name': 'Radio 2',
+    'value': 'value2'
+  }, {
+    'name': 'Radio 3',
+    'value': 'value3'
+  }];
 
 }

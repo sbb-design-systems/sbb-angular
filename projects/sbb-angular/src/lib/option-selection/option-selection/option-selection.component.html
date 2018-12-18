@@ -1,3 +1,5 @@
-<p>
-  option-selection works!
-</p>
+<div class="sbb-option-selection-header">
+  <sbb-radio-button #radio [inputId]="inputId" [name]="name">{{ label }}</sbb-radio-button>
+  <div *ngIf="subtitle" class="sbb-option-selection-subtitle">{{ subtitle }}</div>
+</div>
+<div class="sbb-option-selection-image"></div>
