@@ -35,7 +35,7 @@ let counter = 0;
 export class OptionSelectionComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
 
   @HostBinding('class.sbb-option-selection')
-  private cssClass = true;
+  cssClass = true;
 
   /**
      * Template that will contain icons.

@@ -13,7 +13,6 @@ import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.c
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
-import { OptionSelectionComponent } from 'projects/sbb-angular/src/public_api';
 import { OptionSelectionShowcaseComponent } from '../examples/option-selection-showcase/option-selection-showcase.component';
 
 

@@ -1,8 +1,7 @@
-import { Directive, HostBinding } from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
-    selector: '[sbbOptionSelectionImage]',
-
+    selector: '[sbbOptionSelectionImage]'
 })
 export class OptionSelectionImageDirective {
 }

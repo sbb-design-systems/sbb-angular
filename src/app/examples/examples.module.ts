@@ -20,7 +20,8 @@ import {
   AutocompleteModule,
   SelectModule,
   OptionModule,
-  AccordionModule
+  AccordionModule,
+  OptionSelectionModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -37,6 +38,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { OptionSelectionShowcaseComponent } from './option-selection-showcase/option-selection-showcase.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
-    AccordionShowcaseComponent
+    AccordionShowcaseComponent,
+    OptionSelectionShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     OptionModule,
     AutocompleteModule,
     SelectModule,
-    AccordionModule
+    AccordionModule,
+    OptionSelectionModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -90,6 +94,7 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    OptionSelectionShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

@@ -1,16 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OptionSelectionComponent } from './option-selection.component';
+import { OptionSelectionModule } from '../option-selection.module';
 
-describe('OptionSelectionComponent', () => {
+fdescribe('OptionSelectionComponent', () => {
   let component: OptionSelectionComponent;
   let fixture: ComponentFixture<OptionSelectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OptionSelectionComponent ]
+      imports: [
+        OptionSelectionModule
+      ],
+      declarations: [
+
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
