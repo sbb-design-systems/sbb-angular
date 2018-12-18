@@ -30,7 +30,7 @@ export class LightboxConfig<D = any> {
   width? = '100vw';
 
   /** Height of the Lightbox. */
-  height? = '100vw';
+  height? = '100vh';
 
   /** Data being injected into the child component. */
   data?: D | null = null;

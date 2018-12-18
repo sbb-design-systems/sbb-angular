@@ -1,9 +1,11 @@
-<h1 sbbLightboxTitle>Hi {{data.name}}</h1>
+<header sbbLightboxHeader></header>
 <div sbbLightboxContent>
+  <h1 sbbLightboxTitle>Hi {{data.name}}</h1>
   <p>What's your favorite animal?</p>
-    <input [(ngModel)]="data.animal">
+  <input [(ngModel)]="data.animal">
 </div>
 <div sbbLightboxFooter>
+  <h2>I shouldn't be visible since I'm not a button</h2>
   <button (click)="onNoClick()">No Thanks</button>
   <button [sbbLightboxClose]="data.animal" cdkFocusInitial>Ok</button>
 </div>

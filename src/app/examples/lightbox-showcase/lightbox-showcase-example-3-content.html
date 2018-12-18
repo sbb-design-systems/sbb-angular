@@ -3,8 +3,9 @@
 </div>
 
 <ng-template #sampleLightboxTemplate>
-  <h2 sbbLightboxTitle>Install Angular</h2>
+  <sbb-lightbox-header></sbb-lightbox-header>
   <sbb-lightbox-content>
+    <h2 sbbLightboxTitle>Install Angular</h2>
     <h3>Develop across all platforms</h3>
     <p>Learn one way to build applications with Angular and reuse your code and abilities to build
       apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
@@ -63,7 +64,7 @@
       the Router service to help you define navigation paths among views. The router provides
       sophisticated in-browser navigational capabilities.</p>
   </sbb-lightbox-content>
-  <sbb-lightbox-footer align="end">
+  <sbb-lightbox-footer alignment="right">
     <button sbbLightboxClose>Cancel</button>
     <button [sbbLightboxClose]="true" cdkFocusInitial>Install</button>
   </sbb-lightbox-footer>

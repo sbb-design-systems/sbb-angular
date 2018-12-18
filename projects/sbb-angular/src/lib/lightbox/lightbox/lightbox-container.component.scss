@@ -1,53 +1,25 @@
-$sbb-lightbox-padding: 24px !default;
-$sbb-lightbox-border-radius: 2px !default;
-$sbb-lightbox-max-height: 65vh !default;
-$sbb-lightbox-button-margin: 8px !default;
+@import "../../../styles/main.scss";
 
 .sbb-lightbox-container {
-  display: block;
-  padding: $sbb-lightbox-padding;
-  border-radius: $sbb-lightbox-border-radius;
-  box-sizing: border-box;
-  overflow: auto;
-  outline: 0;
+  @include lightboxContainer();
 
-  // The lightbox container should completely fill its parent overlay element.
-  width: 100%;
-  height: 100%;
-
-  // Since the lightbox won't stretch to fit the parent, if the height
-  // isn't set, we have to inherit the min and max values explicitly.
-  min-height: inherit;
-  max-height: inherit;
-}
-
-.sbb-lightbox-content {
-  display: block;
-  margin: 0 $sbb-lightbox-padding * -1;
-  padding: 0 $sbb-lightbox-padding;
-  max-height: $sbb-lightbox-max-height;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.sbb-lightbox-title {
-  margin: 0 0 20px;
-  display: block;
-}
-
-.sbb-lightbox-actions {
-  padding: $sbb-lightbox-padding / 2 0;
-  display: flex;
-  flex-wrap: wrap;
-
-  // Pull the actions down to avoid their padding stacking with the lightbox's padding.
-  margin-bottom: -$sbb-lightbox-padding;
-
-  &[align='end'] {
-    justify-content: flex-end;
+  .sbb-lightbox-content {
+    @include lightboxContent();
   }
 
-  &[align='center'] {
-    justify-content: center;
+  .sbb-lightbox-header {
+    @include lightboxHeader();
+  }
+
+  .sbb-lightbox-footer {
+    @include lightboxFooter();
+  }
+
+  .sbb-lightbox-close-btn {
+    @include lightboxCloseBtn();
+  }
+
+  .sbb-lightbox-title {
+    @include lightboxTitle();
   }
 }

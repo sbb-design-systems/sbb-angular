@@ -6,6 +6,7 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
+  Component,
 } from '@angular/core';
 
 import { Lightbox } from './lightbox.service';
@@ -59,14 +60,28 @@ export class LightboxCloseDirective implements OnInit {
 }
 
 /**
- * Title of a lightbox element. Stays fixed to the top of the lightbox when scrolling.
+ * Header of a lightbox element. Stays fixed to the top of the lightbox when scrolling.
  */
+@Component({
+  selector: 'sbb-lightbox-header, [sbbLightboxHeader]',
+  template: `
+    <ng-content></ng-content>
+    <button sbbLightboxClose class="sbb-lightbox-close-btn">
+      <sbb-icon-close></sbb-icon-close>
+    </button>
+  `,
+  exportAs: 'sbbLightboxHeader'
+})
+export class LightboxHeaderComponent {
+  @HostBinding('class.sbb-lightbox-header')
+  lightboxHeaderClass = true;
+}
+
+
 @Directive({
-  selector: 'sbb-lightbox-title, [sbbLightboxTitle]',
-  exportAs: 'sbbLightboxTitle'
+  selector: `[sbbLightboxTitle]`
 })
 export class LightboxTitleDirective implements OnInit {
-
   @Input()
   @HostBinding('attr.id')
   id = `sbb-lightbox-title-${lightboxElementUid++}`;
@@ -100,10 +115,15 @@ export class LightboxTitleDirective implements OnInit {
 /**
  * Scrollable content container of a lightbox.
  */
-@Directive({
-  selector: `sbb-lightbox-content, [sbbLightboxContent]`
+@Component({
+  selector: `sbb-lightbox-content, [sbbLightboxContent]`,
+  template: `
+    <perfect-scrollbar>
+      <ng-content></ng-content>
+    </perfect-scrollbar>
+  `
 })
-export class LightboxContentDirective {
+export class LightboxContentComponent {
   @HostBinding('class.sbb-lightbox-content')
   lightboxContentClass = true;
 }
@@ -113,12 +133,30 @@ export class LightboxContentDirective {
  * Container for the bottom action buttons in a lightbox.
  * Stays fixed to the bottom when scrolling.
  */
-@Directive({
+@Component({
   selector: `sbb-lightbox-footer, [sbbLightboxFooter]`,
+  template: `<ng-content select="button"></ng-content>`
 })
-export class LightboxFooterDirective {
+export class LightboxFooterComponent {
   @HostBinding('class.sbb-lightbox-footer')
   lightboxFooterClass = true;
+
+  @Input() alignment: 'left' | 'center' | 'right' = 'left';
+
+  @HostBinding('class.sbb-lightbox-footer-align-start')
+  get alignmentStartClass() {
+    return this.alignment === 'left';
+  }
+
+  @HostBinding('class.sbb-lightbox-footer-align-center')
+  get alignmentCenterClass() {
+    return this.alignment === 'center';
+  }
+
+  @HostBinding('class.sbb-lightbox-footer-align-end')
+  get alignmentEndClass() {
+    return this.alignment === 'right';
+  }
 }
 
 
