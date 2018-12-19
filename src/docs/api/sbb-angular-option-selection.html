@@ -1,17 +1,17 @@
 <div class="docs-api">
-  <h2> API reference for Angular SACL radio-button </h2>
+  <h2> API reference for Angular SACL option-selection </h2>
   <p class="docs-api-module-import">
-    <code> import { RadioButtonModule } from 'sbb-angular'; </code>
+    <code> import { OptionSelectionModule } from 'sbb-angular'; </code>
   </p>
   <h3 id="directives" class="docs-header-link docs-api-h3">
     <span header-link="directives"></span> Directives </h3>
-  <h4 id="RadioButtonComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="RadioButtonComponent"></span>
-    <code>RadioButtonComponent</code>
+  <h4 id="OptionSelectionComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="OptionSelectionComponent"></span>
+    <code>OptionSelectionComponent</code>
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-radio-button</span>
+    <span class="docs-api-class-selector-name">sbb-option-selection</span>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -67,7 +67,7 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>disabled: boolean</code>
+          <code>disabled: any</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -89,7 +89,18 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>inputId: `sbb-radio-button-${counter++}`</code>
+          <code>image: TemplateRef&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Template that will contain icons. Use the *sbbButtonIcon structural directive to provide the desired icon.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>inputId: `sbb-option-selection-${counter++}`</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -100,7 +111,16 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>required: boolean</code>
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>required: any</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -109,8 +129,9 @@
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>changeDetector: ChangeDetectorRef</code>
+          <code>subtitle: string</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -118,7 +139,31 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>onChange: (_: any) =&gt; { }</code>
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>embeddedRadio: RadioButtonComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hasSubtitle: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (_: any) =&gt; { this.embeddedRadio.onChange(_); }</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -128,7 +173,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>onTouched: () =&gt; { }</code>
+          <code>onTouched: () =&gt; { this.embeddedRadio.onTouched(); }</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -148,21 +193,6 @@
         <p>Manage the event click on the radio button</p>
       </td>
     </tr>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> $event</p>
-        <code class="docs-api-method-parameter-type">Event</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -176,4 +206,12 @@
       </td>
     </tr>
   </table>
+  <h4 id="OptionSelectionImageDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="OptionSelectionImageDirective"></span>
+    <code>OptionSelectionImageDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbOptionSelectionImage]</span>
+  </p>
 </div>
