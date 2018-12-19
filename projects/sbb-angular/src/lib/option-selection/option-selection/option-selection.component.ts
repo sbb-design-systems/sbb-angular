@@ -140,11 +140,11 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
 
   ngOnInit(): void {
     this.checkName();
-    this.registry.add(this);
+    this.registry.add(this.embeddedRadio);
   }
 
   ngOnDestroy(): void {
-    this.registry.remove(this);
+    this.registry.remove(this.embeddedRadio);
   }
 
   writeValue(value: any): void {

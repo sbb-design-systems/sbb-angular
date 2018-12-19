@@ -8,7 +8,7 @@ describe('RadioButtonRegistryService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ RadioButtonRegistryService ]
+      providers: [RadioButtonRegistryService]
     });
     service = TestBed.get(RadioButtonRegistryService);
   });
@@ -29,7 +29,7 @@ describe('RadioButtonRegistryService', () => {
     expect(service.accessors['test-name'].length).toBe(1);
   });
 
-  it('should have a radio button group', () => {
+  it('group', () => {
     const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue']);
     component.name = 'test-name';
     component.inputId = 'test-comp-id-1';
@@ -62,11 +62,18 @@ describe('RadioButtonRegistryService', () => {
     component.checked = true;
     service.select(component);
 
+    console.log(service.accessors['test-name'][0].checked);
+    console.log(service.accessors['test-name'][1].checked);
+
     expect(service.accessors['test-name'][0].checked).toBeTruthy();
     expect(service.accessors['test-name'][1].checked).toBeFalsy();
 
     component2.checked = true;
     service.select(component2);
+
+    
+    console.log(service.accessors['test-name'][0].checked);
+    console.log(service.accessors['test-name'][1].checked);
 
     expect(service.accessors['test-name'][0].checked).toBeFalsy();
     expect(service.accessors['test-name'][1].checked).toBeTruthy();
@@ -84,3 +91,4 @@ describe('RadioButtonRegistryService', () => {
     expect(service.accessors['test-name']).toBeUndefined();
   });
 });
+

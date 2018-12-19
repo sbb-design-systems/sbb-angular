@@ -10,7 +10,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  RadioButtonModule,
   CheckboxModule,
   ButtonModule,
   TabsModule,
@@ -21,6 +20,7 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
+  RadioButtonModule,
   OptionSelectionModule
 } from 'sbb-angular';
 
