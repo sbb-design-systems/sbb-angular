@@ -30,7 +30,7 @@ export class RadioButtonRegistryService {
 
   select(accessor: RadioButton) {
     this._accessors[accessor.name]
-      .filter(a => a !== accessor)
+      .filter(a => a.value !== accessor.value)
       .forEach(c => c.uncheck());
   }
 
