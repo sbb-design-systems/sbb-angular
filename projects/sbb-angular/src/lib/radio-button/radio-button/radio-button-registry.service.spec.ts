@@ -62,18 +62,11 @@ describe('RadioButtonRegistryService', () => {
     component.checked = true;
     service.select(component);
 
-    console.log(service.accessors['test-name'][0].checked);
-    console.log(service.accessors['test-name'][1].checked);
-
     expect(service.accessors['test-name'][0].checked).toBeTruthy();
     expect(service.accessors['test-name'][1].checked).toBeFalsy();
 
     component2.checked = true;
     service.select(component2);
-
-    
-    console.log(service.accessors['test-name'][0].checked);
-    console.log(service.accessors['test-name'][1].checked);
 
     expect(service.accessors['test-name'][0].checked).toBeFalsy();
     expect(service.accessors['test-name'][1].checked).toBeTruthy();
