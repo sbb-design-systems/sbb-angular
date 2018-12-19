@@ -3,7 +3,9 @@
 </div>
 
 <ng-template #sampleLightboxTemplate>
-  <sbb-lightbox-header></sbb-lightbox-header>
+  <sbb-lightbox-header>
+    Sample text
+  </sbb-lightbox-header>
   <sbb-lightbox-content>
     <h2 sbbLightboxTitle>Install Angular</h2>
     <h3>Develop across all platforms</h3>
@@ -65,7 +67,7 @@
       sophisticated in-browser navigational capabilities.</p>
   </sbb-lightbox-content>
   <sbb-lightbox-footer alignment="right">
-    <button sbbLightboxClose>Cancel</button>
-    <button [sbbLightboxClose]="true" cdkFocusInitial>Install</button>
+    <button sbbButton mode="ghost" sbbLightboxClose>Cancel</button>
+    <button sbbButton [sbbLightboxClose]="true" cdkFocusInitial>Install</button>
   </sbb-lightbox-footer>
 </ng-template>

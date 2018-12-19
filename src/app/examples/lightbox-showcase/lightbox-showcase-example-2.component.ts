@@ -5,7 +5,9 @@ import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
   selector: 'sbb-lightbox-showcase-example-2-content',
   templateUrl: 'lightbox-showcase-example-2-content.html',
 })
-export class LightboxShowcaseExample2ContentComponent { }
+export class LightboxShowcaseExample2ContentComponent {
+  alignment = 'center';
+}
 
 
 /**
@@ -19,6 +21,7 @@ export class LightboxShowcaseExample2ContentComponent { }
     </div>`,
 })
 export class LightboxShowcaseExample2Component {
+
   constructor(public lightbox: Lightbox) { }
 
   openDialog() {

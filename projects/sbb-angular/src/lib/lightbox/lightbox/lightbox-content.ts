@@ -7,6 +7,7 @@ import {
   HostBinding,
   HostListener,
   Component,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { Lightbox } from './lightbox.service';
@@ -70,7 +71,8 @@ export class LightboxCloseDirective implements OnInit {
       <sbb-icon-close></sbb-icon-close>
     </button>
   `,
-  exportAs: 'sbbLightboxHeader'
+  exportAs: 'sbbLightboxHeader',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxHeaderComponent {
   @HostBinding('class.sbb-lightbox-header')
@@ -121,7 +123,8 @@ export class LightboxTitleDirective implements OnInit {
     <perfect-scrollbar>
       <ng-content></ng-content>
     </perfect-scrollbar>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxContentComponent {
   @HostBinding('class.sbb-lightbox-content')
@@ -135,7 +138,8 @@ export class LightboxContentComponent {
  */
 @Component({
   selector: `sbb-lightbox-footer, [sbbLightboxFooter]`,
-  template: `<ng-content select="button"></ng-content>`
+  template: `<ng-content select="button"></ng-content>`,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxFooterComponent {
   @HostBinding('class.sbb-lightbox-footer')
