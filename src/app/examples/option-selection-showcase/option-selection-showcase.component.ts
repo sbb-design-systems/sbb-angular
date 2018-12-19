@@ -13,13 +13,13 @@ export class OptionSelectionShowcaseComponent {
   modelValue = 'value1';
 
   radioOptions = [{
-    'name': 'Radio 1',
+    'name': 'Option 1',
     'value': 'value1'
   }, {
-    'name': 'Radio 2',
+    'name': 'Option 2',
     'value': 'value2'
   }, {
-    'name': 'Radio 3',
+    'name': 'Option 3',
     'value': 'value3'
   }];
 

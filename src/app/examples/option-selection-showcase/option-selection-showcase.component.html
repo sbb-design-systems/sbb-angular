@@ -17,6 +17,7 @@
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
+      <p>In this example a img from external sources is used</p>
       <div class="sbbsc-block">
         <sbb-checkbox [(ngModel)]="checked">Checked</sbb-checkbox>
       </div>
@@ -32,6 +33,27 @@
   <div role="presentation"
        class="sbbsc-separator"></div>
 
+       <div class="row">
+        <div class="col-lg-6 sbbsc-v-sep">
+          <h4 class="sbbsc-block">Single Option Selection</h4>
+          
+          <sbb-option-selection name="single-option-svg"
+                                value="single-option"                             
+                                label="SBB - Finanzen" 
+                                subtitle="Armin Burgermeister">
+                                <sbb-icon-comfort *sbbOptionSelectionImage></sbb-icon-comfort>
+          </sbb-option-selection>
+    
+    
+        </div>
+        <div class="col-lg-6">
+          <h4 class="sbbsc-block">Properties</h4>
+          <p>In this example a svg icon component is used</p>
+        </div>
+      </div>
+    
+      <div role="presentation"
+           class="sbbsc-separator"></div>
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Option selections</h4>
