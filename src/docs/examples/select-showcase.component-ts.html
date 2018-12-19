@@ -1,9 +1,11 @@
-<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { Component, OnInit, ViewChild, ElementRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { SelectComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Food {
   value: <span class="hljs-built_in">string</span>;
   viewValue: <span class="hljs-built_in">string</span>;
+  disabled: <span class="hljs-built_in">boolean</span>;
 }
 
 
@@ -13,11 +15,15 @@
   styleUrls: [<span class="hljs-string">'./select-showcase.component.scss'</span>]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SelectShowcaseComponent {
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'basicSelect'</span>) basicSelect: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiSelect'</span>) multiSelect: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'withOptionGroup'</span>) withOptionGroup: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiWithOptionGroup'</span>) multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
-    { value: <span class="hljs-string">'beefsteak-0'</span>, viewValue: <span class="hljs-string">'Beefsteak'</span> },
-    { value: <span class="hljs-string">'pizza-1'</span>, viewValue: <span class="hljs-string">'Pizza'</span> },
-    { value: <span class="hljs-string">'nudeln-2'</span>, viewValue: <span class="hljs-string">'Nudeln'</span> }
+    { value: <span class="hljs-string">'beefsteak-0'</span>, viewValue: <span class="hljs-string">'Beefsteak'</span>, disabled: <span class="hljs-literal">false</span> },
+    { value: <span class="hljs-string">'pizza-1'</span>, viewValue: <span class="hljs-string">'Pizza'</span>, disabled: <span class="hljs-literal">false</span> },
+    { value: <span class="hljs-string">'nudeln-2'</span>, viewValue: <span class="hljs-string">'Nudeln'</span>, disabled: <span class="hljs-literal">false</span> }
   ];
 
   foodFromTheWorld = [{
@@ -53,4 +59,17 @@
   withOptionGroupsExampleFormControl = <span class="hljs-keyword">new</span> FormControl();
 
   multipleWithOptionGroupsExampleFormControl = <span class="hljs-keyword">new</span> FormControl();
+
+  toggleDisabled($event: <span class="hljs-built_in">any</span>, control: FormControl) {
+    $event.target.checked ? control.disable() : control.enable();
+  }
+
+  toggleDisabledOptions($event: <span class="hljs-built_in">any</span>, component: SelectComponent | <span class="hljs-string">'select'</span>, mode: <span class="hljs-string">'options'</span> | <span class="hljs-string">'optionGroups'</span>) {
+    <span class="hljs-keyword">if</span> (component === <span class="hljs-string">'select'</span>) {
+      <span class="hljs-keyword">this</span>.foods[<span class="hljs-number">1</span>].disabled = $event.target.checked;
+    } <span class="hljs-keyword">else</span> {
+      component[mode].toArray()[<span class="hljs-number">1</span>].disabled = $event.target.checked;
+    }
+
+  }
 }

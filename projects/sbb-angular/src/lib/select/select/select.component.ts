@@ -166,9 +166,13 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** All of the defined groups of options. */
   @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
-
+  /**
+   * Role of select field
+   */
   @HostBinding('attr.role') role = 'listbox';
-
+  /**
+   * Value of the scrollbar on top
+   */
   perfectScrollbarScrollTop = 0;
 
   @Input()
@@ -219,7 +223,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** A name for this control that can be used by `sbb-field`. */
   controlType = 'sbb-select';
-
+  /**
+   * Css class of select component.
+   */
   @HostBinding('class.sbb-select') cssClass = true;
 
   /** Trigger that opens the select. */
@@ -236,13 +242,17 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };
-
+  /**
+   * Disables a select field
+   */
   @Input()
   get disabled() { return this._disabled; }
   set disabled(value: any) { this._disabled = coerceBooleanProperty(value); }
   private _disabled = false;
 
-
+  /**
+   * Returns the aria-label of the select component.
+   */
   @Input('attr.aria-label')
   @HostBinding('attr.aria-label')
   get ariaLabel(): string | null {
@@ -449,29 +459,39 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       this.initializeSelection();
     }
   }
-
+  /**
+   * Determines if the attribute aria-required is required
+   */
   @HostBinding('attr.aria-required')
   get isAriaRequired() {
     return this.required.toString();
   }
-
+  /**
+   * Determines if the attribute aria-disabled is disabled
+   */
   @HostBinding('attr.aria-disabled')
   get isAriaDisabled() {
     return this.disabled.toString();
   }
-
+  /**
+   * Controls if a select is disabled
+   */
   @HostBinding('class.sbb-select-disabled')
   get isDisabled(): boolean {
     return this.disabled;
   }
 
-
+  /**
+   * Controls if a select value is invalid
+   */
   @HostBinding('attr.aria-invalid')
   @HostBinding('class.sbb-select-invalid')
   get isInvalid() {
     return this.errorState;
   }
-
+  /**
+   * Determines the aria-owns to be set on the host.
+   */
   @HostBinding('attr.aria-owns')
   get getAriaOwns() {
     return this.panelOpen ? this.optionIds : null;
@@ -1002,7 +1022,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private getItemHeight(): number {
     return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
   }
-
+  /**
+   * Determines the aria-describedby to be set on the host.
+   */
   @HostBinding('attr.aria-describedby')
   get getAriaDescribedBy(): string | null {
     return this._ariaDescribedby || null;

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SelectComponent } from 'sbb-angular';
 
 export interface Food {
   value: string;
   viewValue: string;
+  disabled: boolean;
 }
 
 
@@ -13,11 +15,15 @@ export interface Food {
   styleUrls: ['./select-showcase.component.scss']
 })
 export class SelectShowcaseComponent {
+  @ViewChild('basicSelect') basicSelect: SelectComponent;
+  @ViewChild('multiSelect') multiSelect: SelectComponent;
+  @ViewChild('withOptionGroup') withOptionGroup: SelectComponent;
+  @ViewChild('multiWithOptionGroup') multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
-    { value: 'beefsteak-0', viewValue: 'Beefsteak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'nudeln-2', viewValue: 'Nudeln' }
+    { value: 'beefsteak-0', viewValue: 'Beefsteak', disabled: false },
+    { value: 'pizza-1', viewValue: 'Pizza', disabled: false },
+    { value: 'nudeln-2', viewValue: 'Nudeln', disabled: false }
   ];
 
   foodFromTheWorld = [{
@@ -53,4 +59,17 @@ export class SelectShowcaseComponent {
   withOptionGroupsExampleFormControl = new FormControl();
 
   multipleWithOptionGroupsExampleFormControl = new FormControl();
+
+  toggleDisabled($event: any, control: FormControl) {
+    $event.target.checked ? control.disable() : control.enable();
+  }
+
+  toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 'options' | 'optionGroups') {
+    if (component === 'select') {
+      this.foods[1].disabled = $event.target.checked;
+    } else {
+      component[mode].toArray()[1].disabled = $event.target.checked;
+    }
+
+  }
 }
