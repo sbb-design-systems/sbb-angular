@@ -23,7 +23,7 @@ export class RadioButtonRegistryService {
     if (this._accessors[accessor.name]) {
       this._accessors[accessor.name] = this._accessors[accessor.name].filter(a => a !== accessor);
     }
-    if (this._accessors[accessor.name].length === 0) {
+    if (this._accessors[accessor.name] && this._accessors[accessor.name].length === 0) {
       delete this._accessors[accessor.name];
     }
   }

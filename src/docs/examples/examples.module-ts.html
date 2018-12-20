@@ -10,7 +10,6 @@
   TextareaModule,
   FieldModule,
   LinksModule,
-  RadioButtonModule,
   CheckboxModule,
   ButtonModule,
   TabsModule,
@@ -21,6 +20,7 @@
   SelectModule,
   OptionModule,
   AccordionModule,
+  RadioButtonModule,
   OptionSelectionModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
@@ -39,6 +39,9 @@
 <span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { OptionSelectionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./option-selection-showcase/option-selection-showcase.component'</span>;
+<span class="hljs-keyword">import</span> {
+  OptionSelectionMultipleShowcaseComponent
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'./option-selection-multiple-showcase/option-selection-multiple-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -56,7 +59,8 @@
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    OptionSelectionShowcaseComponent
+    OptionSelectionShowcaseComponent,
+    OptionSelectionMultipleShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +99,7 @@
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
     OptionSelectionShowcaseComponent,
+    OptionSelectionMultipleShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

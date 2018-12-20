@@ -45,6 +45,9 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
 import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 import { OptionSelectionShowcaseComponent } from './examples/option-selection-showcase/option-selection-showcase.component';
+import {
+  OptionSelectionMultipleShowcaseComponent
+} from './examples/option-selection-multiple-showcase/option-selection-multiple-showcase.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +99,7 @@ import { OptionSelectionShowcaseComponent } from './examples/option-selection-sh
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     OptionSelectionShowcaseComponent,
+    OptionSelectionMultipleShowcaseComponent,
     ...IconComponents.types
   ]
 })

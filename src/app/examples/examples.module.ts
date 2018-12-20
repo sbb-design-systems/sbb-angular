@@ -39,6 +39,9 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { OptionSelectionShowcaseComponent } from './option-selection-showcase/option-selection-showcase.component';
+import {
+  OptionSelectionMultipleShowcaseComponent
+} from './option-selection-multiple-showcase/option-selection-multiple-showcase.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import { OptionSelectionShowcaseComponent } from './option-selection-showcase/op
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    OptionSelectionShowcaseComponent
+    OptionSelectionShowcaseComponent,
+    OptionSelectionMultipleShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +99,7 @@ import { OptionSelectionShowcaseComponent } from './option-selection-showcase/op
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
     OptionSelectionShowcaseComponent,
+    OptionSelectionMultipleShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

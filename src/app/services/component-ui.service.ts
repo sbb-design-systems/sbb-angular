@@ -14,6 +14,9 @@ import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-s
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 import { OptionSelectionShowcaseComponent } from '../examples/option-selection-showcase/option-selection-showcase.component';
+import {
+  OptionSelectionMultipleShowcaseComponent
+} from '../examples/option-selection-multiple-showcase/option-selection-multiple-showcase.component';
 
 
 @Injectable({
@@ -211,7 +214,7 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-     new UiComponent(
+      new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -272,7 +275,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-       new UiComponent(
+      new UiComponent(
         'Option Selection (simple)',
         'option-selection',
         'Option Selection (simple)',
@@ -284,6 +287,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         OptionSelectionShowcaseComponent
+      ),
+      new UiComponent(
+        'Option Selection (multiple)',
+        'option-selection-multiple',
+        'Option Selection (multiple)',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        OptionSelectionMultipleShowcaseComponent
       ),
       new UiComponent(
         'Time Input',

@@ -13,33 +13,41 @@ import {
   TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { RadioButtonComponent } from '../../radio-button/radio-button';
-import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { RadioButtonRegistryService } from '../../radio-button/radio-button/radio-button-registry.service';
 import { OptionSelectionImageDirective } from '../option-selection-image.directive';
+import { CheckboxComponent } from '../../checkbox/checkbox';
 
 let counter = 0;
 
 @Component({
-  selector: 'sbb-option-selection',
-  templateUrl: './option-selection.component.html',
-  styleUrls: ['./option-selection.component.scss'],
+  selector: 'sbb-option-selection-multiple',
+  templateUrl: './option-selection-multiple.component.html',
+  styleUrls: ['./option-selection-multiple.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => OptionSelectionComponent),
+    useExisting: forwardRef(() => OptionSelectionMultipleComponent),
     multi: true,
   }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionSelectionComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
+export class OptionSelectionMultipleComponent implements ControlValueAccessor {
 
   @HostBinding('class.sbb-option-selection')
   cssClass = true;
 
   /**
+  * Value contained in a checkbox field
+  */
+  @Input() value: any;
+
+  /**
+  * Name contained in a checkbox field
+  */
+  @Input() name: string;
+
+  /**
      * Template that will contain icons.
-     * Use the *sbbButtonIcon structural directive to provide the desired icon.
+     * Use the *sbbOptionSelectionImage structural directive to provide the desired icon/image.
      */
   @Input()
   @ContentChild(OptionSelectionImageDirective, { read: TemplateRef })
@@ -51,13 +59,13 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @Input()
   subtitle?: string;
 
-  @ViewChild('radio') embeddedRadio: RadioButtonComponent;
+  @ViewChild('checkbox') embeddedCheckbox: CheckboxComponent;
   /**
      * Radio button identifier
      */
   @Input()
   @HostBinding('id')
-  inputId = `sbb-option-selection-${counter++}`;
+  inputId = `sbb-option-selection-multiple-${counter++}`;
   /**
    * Indicates radio button name in formControl
    */
@@ -83,10 +91,10 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @Input()
   @HostBinding('class.sbb-option-selection-required')
   set required(value: any) {
-    this.embeddedRadio.required = coerceBooleanProperty(value);
+    this.embeddedCheckbox.required = coerceBooleanProperty(value);
   }
   get required(): any {
-    return this.embeddedRadio.required;
+    return this.embeddedCheckbox.required;
   }
 
 
@@ -96,11 +104,11 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @Input()
   @HostBinding('class.sbb-option-selection-disabled')
   set disabled(value: any) {
-    this.embeddedRadio.disabled = coerceBooleanProperty(value);
-    this.embeddedRadio.changeDetector.markForCheck();
+    this.embeddedCheckbox.disabled = coerceBooleanProperty(value);
+    this.embeddedCheckbox.changeDetector.markForCheck();
   }
   get disabled(): any {
-    return this.embeddedRadio.disabled;
+    return this.embeddedCheckbox.disabled;
   }
 
   /**
@@ -109,10 +117,10 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @Input()
   @HostBinding('class.sbb-option-selection-checked')
   get checked(): boolean {
-    return this.embeddedRadio.checked;
+    return this.embeddedCheckbox.checked;
   }
   set checked(value: boolean) {
-    this.embeddedRadio.checked = value;
+    this.embeddedCheckbox.checked = value;
   }
 
 
@@ -125,43 +133,34 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
    * Class property that represents a change on the radio button
    */
   onChange = (_: any) => {
-    this.embeddedRadio.onChange(_);
+    this.embeddedCheckbox.onChange(_);
   }
   /**
    * Class property that represents a touch on the radio button
    */
   onTouched = () => {
-    this.embeddedRadio.onTouched();
+    this.embeddedCheckbox.onTouched();
   }
 
-  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
-    super();
-  }
+  constructor(private changeDetector: ChangeDetectorRef) {
 
-  ngOnInit(): void {
-    this.checkName();
-    this.registry.add(this.embeddedRadio);
-  }
-
-  ngOnDestroy(): void {
-    this.registry.remove(this.embeddedRadio);
   }
 
   writeValue(value: any): void {
-    this.embeddedRadio.checked = this.value === value;
+    this.embeddedCheckbox.checked = this.value = value;
   }
 
   /**
    * Registers the on change callback
    */
   registerOnChange(fn: any): void {
-    this.embeddedRadio.onChange = fn;
+    this.embeddedCheckbox.onChange = fn;
   }
   /**
    * Registers the on touched callback
    */
   registerOnTouched(fn: any): void {
-    this.embeddedRadio.onTouched = fn;
+    this.embeddedCheckbox.onTouched = fn;
   }
 
   /**
@@ -170,10 +169,12 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @HostListener('click')
   click() {
     if (!this.disabled) {
-      this.onChange(this.value);
+
+      this.checked = !this.checked;
+      this.embeddedCheckbox.checked = this.checked;
+      this.onChange(this.checked);
       this.onTouched();
-      this.writeValue(this.value);
-      this.embeddedRadio.checked = true;
+      this.writeValue(this.checked);
     }
 
   }
@@ -183,35 +184,8 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    this.embeddedRadio.disabled = disabled;
+    this.embeddedCheckbox.disabled = disabled;
     this.changeDetector.markForCheck();
   }
 
-  /**
-   * Unchecks the radio button
-   */
-  uncheck() {
-    this.embeddedRadio.uncheck();
-  }
-
-  /**
-  * Verify that radio button name matches with radio button form control name
-  */
-  private checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this.throwNameError();
-    } else if (!this.name && this.formControlName) {
-      this.name = this.formControlName;
-    }
-  }
-
-  /**
-   * Throws an exception if the radio button name doesn't match with the radio button form control name
-   */
-  private throwNameError(): void {
-    throw new Error(`
-      If you define both a name and a formControlName attribute on your radio button, their values
-      must match. Ex: <sbb-radio-button formControlName="food" name="food"></sbb-radio-button>
-    `);
-  }
 }
