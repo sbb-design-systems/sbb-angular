@@ -7,7 +7,7 @@ import {
   HostBinding,
   HostListener,
   Component,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { Lightbox } from './lightbox.service';
@@ -74,9 +74,31 @@ export class LightboxCloseDirective implements OnInit {
   exportAs: 'sbbLightboxHeader',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LightboxHeaderComponent {
+export class LightboxHeaderComponent implements OnInit {
   @HostBinding('class.sbb-lightbox-header')
   lightboxHeaderClass = true;
+
+  constructor(
+    @Optional() private _lightboxRef: LightboxRef<any>,
+    private _elementRef: ElementRef<HTMLElement>,
+    private _lightbox: Lightbox
+  ) { }
+
+  ngOnInit() {
+    if (!this._lightboxRef) {
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
+    }
+
+    if (this._lightboxRef) {
+      Promise.resolve().then(() => {
+        const container = this._lightboxRef.containerInstance;
+
+        if (container) {
+          container.hasHeader = true;
+        }
+      });
+    }
+  }
 }
 
 
@@ -138,10 +160,14 @@ export class LightboxContentComponent {
  */
 @Component({
   selector: `sbb-lightbox-footer, [sbbLightboxFooter]`,
-  template: `<ng-content select="button"></ng-content>`,
+  template: `
+    <perfect-scrollbar>
+      <ng-content select="button"></ng-content>
+    </perfect-scrollbar>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LightboxFooterComponent {
+export class LightboxFooterComponent implements OnInit {
   @HostBinding('class.sbb-lightbox-footer')
   lightboxFooterClass = true;
 
@@ -160,6 +186,28 @@ export class LightboxFooterComponent {
   @HostBinding('class.sbb-lightbox-footer-align-end')
   get alignmentEndClass() {
     return this.alignment === 'right';
+  }
+
+  constructor(
+    @Optional() private _lightboxRef: LightboxRef<any>,
+    private _elementRef: ElementRef<HTMLElement>,
+    private _lightbox: Lightbox
+  ) { }
+
+  ngOnInit() {
+    if (!this._lightboxRef) {
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
+    }
+
+    if (this._lightboxRef) {
+      Promise.resolve().then(() => {
+        const container = this._lightboxRef.containerInstance;
+
+        if (container) {
+          container.hasFooter = true;
+        }
+      });
+    }
   }
 }
 

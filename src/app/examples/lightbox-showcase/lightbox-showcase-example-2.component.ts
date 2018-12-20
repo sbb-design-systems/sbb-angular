@@ -1,5 +1,5 @@
-import { Component, Inject, ViewChild, TemplateRef } from '@angular/core';
-import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
+import { Component } from '@angular/core';
+import { Lightbox } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-lightbox-showcase-example-2-content',

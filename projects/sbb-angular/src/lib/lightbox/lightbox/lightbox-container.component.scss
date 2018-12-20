@@ -5,6 +5,7 @@
 
   .sbb-lightbox-content {
     @include lightboxContent();
+    @include lightboxContentHeight();
   }
 
   .sbb-lightbox-header {
@@ -21,5 +22,23 @@
 
   .sbb-lightbox-title {
     @include lightboxTitle();
+  }
+
+  &.sbb-lightbox-with-header {
+    .sbb-lightbox-content {
+      @include lightboxContentHeight(withHeader);
+    }
+  }
+
+  &.sbb-lightbox-with-footer {
+    .sbb-lightbox-content {
+      @include lightboxContentHeight(withFooter);
+    }
+  }
+
+  &.sbb-lightbox-with-header.sbb-lightbox-with-footer {
+    .sbb-lightbox-content {
+      @include lightboxContentHeight(withHeaderAndFooter);
+    }
   }
 }

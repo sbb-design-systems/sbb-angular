@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostBinding,
-  HostListener,
+  HostListener
 } from '@angular/core';
 
 import { DOCUMENT } from '@angular/common';
@@ -28,7 +28,6 @@ import {
 import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
 
 import { LightboxConfig } from './lightbox-config';
-
 
 /**
  * Throws an exception for the case when a ComponentPortal is
@@ -94,6 +93,16 @@ export class LightboxContainerComponent extends BasePortalOutlet {
     return this.state;
   }
 
+  @HostBinding('class.sbb-lightbox-with-header')
+  get hasHeaderClass() {
+    return this.hasHeader;
+  }
+
+  @HostBinding('class.sbb-lightbox-with-footer')
+  get hasFooterClass() {
+    return this.hasFooter;
+  }
+
   /** The class that traps and manages focus within the lightbox. */
   private _focusTrap: FocusTrap;
 
@@ -111,6 +120,10 @@ export class LightboxContainerComponent extends BasePortalOutlet {
 
   /** ID for the container DOM element. */
   id: string;
+
+  hasHeader: boolean | null = null;
+
+  hasFooter: boolean | null = null;
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
