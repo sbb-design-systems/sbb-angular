@@ -32,7 +32,7 @@ let counter = 0;
 })
 export class OptionSelectionMultipleComponent implements ControlValueAccessor {
 
-  @HostBinding('class.sbb-option-selection')
+  @HostBinding('class.sbb-option-selection-multiple')
   cssClass = true;
 
   /**
