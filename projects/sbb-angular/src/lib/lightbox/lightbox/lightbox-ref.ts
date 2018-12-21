@@ -16,6 +16,11 @@ export class LightboxRef<T, R = any> {
   /** The instance of component opened into the lightbox. */
   componentInstance: T;
 
+  /** Whether the user is allowed to close the dialog. */
+  disableClose: boolean | undefined = this.containerInstance.config.disableClose;
+
+  manualCloseAction = new Subject<void>();
+
   /** Subject for notifying the user that the lightbox has finished opening. */
   private readonly _afterOpen = new Subject<void>();
 
@@ -67,7 +72,7 @@ export class LightboxRef<T, R = any> {
     });
 
     _overlayRef.keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE))
+      .pipe(filter(event => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
 
     if (location) {
@@ -80,6 +85,10 @@ export class LightboxRef<T, R = any> {
         }
       });
     }
+  }
+
+  manualCloseTrigger() {
+    this.manualCloseAction.next(null);
   }
 
   /**

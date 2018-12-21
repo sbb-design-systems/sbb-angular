@@ -26,6 +26,9 @@ export class LightboxConfig<D = any> {
   /** Custom class for the overlay pane. */
   panelClass?: string | string[] = '';
 
+  /** Whether the user can use escape or clicking on the backdrop to close the modal. */
+  disableClose? = false;
+
   /** Width of the Lightbox. */
   width? = '100vw';
 

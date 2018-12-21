@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, Inject, ViewChild, TemplateRef } from '@angular/core';
 import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
+import { filter } from 'rxjs/operators';
+import { ESCAPE } from '@angular/cdk/keycodes';
 
 export interface LightboxData {
   animal: string;
@@ -14,7 +16,7 @@ export class LightboxShowcaseExampleContentComponent {
 
   constructor(
     public lightboxRef: LightboxRef<LightboxShowcaseExampleContentComponent>,
-    @Inject(LIGHTBOX_DATA) public data: LightboxData) {}
+    @Inject(LIGHTBOX_DATA) public data: LightboxData) { }
 
   onNoClick(): void {
     this.lightboxRef.close();
@@ -104,6 +106,49 @@ export class LightboxShowcaseExample3Component {
     });
   }
 }
+
+@Component({
+  selector: 'sbb-lightbox-showcase-content-4',
+  template: `<header sbbLightboxHeader></header>
+             <div sbbLightboxContent>
+              <h2>DEFAULT CLOSE DISABLED - PRESS THE BUTTON ABOVE TO CLOSE MANUALLY</h2>
+              <button sbbButton sbbLightboxClose>Close</button>
+            </div>`,
+})
+export class LightboxShowcaseExample4ContentComponent {
+  constructor(private _lightBoxRef: LightboxRef<LightboxShowcaseExample4ContentComponent>) {
+    this._lightBoxRef.manualCloseAction.subscribe(() => {
+      console.log('I WANT TO CLOSE MANUALLY');
+    });
+
+    this._lightBoxRef.keydownEvents()
+      .pipe(filter(event => event.keyCode === ESCAPE))
+      .subscribe(() => {
+        console.log('I WANT TO CLOSE MANUALLY');
+      });
+  }
+
+}
+
+/**
+ * @title Dialog with header, scrollable content and actions
+ */
+@Component({
+  selector: 'sbb-lightbox-showcase-example-4',
+  template: `
+    <div class="sbbsc-block">
+      <button sbbButton mode="secondary" (click)="openDialog()">Open Lightbox with default close disabled</button>
+    </div>`,
+})
+export class LightboxShowcaseExample4Component {
+
+  constructor(public lightbox: Lightbox) { }
+
+  openDialog() {
+    this.lightbox.open(LightboxShowcaseExample4ContentComponent, { disableClose: true });
+  }
+}
+
 
 @Component({
   selector: 'sbb-lightbox-showcase',
