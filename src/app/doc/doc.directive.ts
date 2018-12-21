@@ -11,11 +11,12 @@ export class DocDirective implements OnInit {
 
   private hostElement: HTMLElement;
 
-  @Input() type? = 'api';
+  @Input() type?= 'api';
 
   componentType: string;
 
   @Input() sbbDoc: UiComponent;
+  @Input() htmlExample?: string;
 
   constructor(private http: HttpClient, elementRef: ElementRef) {
     this.hostElement = elementRef.nativeElement;
@@ -25,7 +26,7 @@ export class DocDirective implements OnInit {
     this.componentType = this.sbbDoc.isComponent ? 'component' : 'directive';
     this.http
       .get(this.apiDocHTMLName, { responseType: 'text' })
-      .subscribe((html: any) => this.templateHtml = html ? html: '// No content');
+      .subscribe((html: any) => this.templateHtml = html ? html : '// No content');
 
   }
 
@@ -47,6 +48,9 @@ export class DocDirective implements OnInit {
         break;
       case 'md':
         docsUrl += 'markdown/' + this.sbbDoc.routerLink + '-showcase/sbb-angular-' + this.sbbDoc.routerLink;
+        break;
+      case 'htmlExample':
+        docsUrl += 'examples/' + this.sbbDoc.routerLink + '-showcase-' + this.htmlExample + '.' + this.componentType + '-html';
         break;
       default:
         docsUrl += 'api/sbb-angular-' + this.sbbDoc.routerLink;

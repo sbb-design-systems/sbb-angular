@@ -247,7 +247,8 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        LightboxShowcaseComponent
+        LightboxShowcaseComponent,
+        ['content-1', 'content-2', 'content-3']
       ),
       /*  new UiComponent(
          'Notification',
