@@ -1,0 +1,17 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { JumpMark } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-notification-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./notification-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./notification-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NotificationShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
+
+  jumpMarks: JumpMark[] = [{ elementId:<span class="hljs-string">'#'</span>, title:<span class="hljs-string">'Hello'</span>}, { elementId:<span class="hljs-string">'#'</span>, title:<span class="hljs-string">'Suchen'</span>}];
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) { }
+
+  ngOnInit() {
+  }
+
+}

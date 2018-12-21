@@ -37,6 +37,8 @@
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { NotificationsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -53,7 +55,8 @@
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
-    AccordionShowcaseComponent
+    AccordionShowcaseComponent,
+    NotificationShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@
     OptionModule,
     AutocompleteModule,
     SelectModule,
-    AccordionModule
+    AccordionModule,
+    NotificationsModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -90,6 +94,7 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

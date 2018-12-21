@@ -1,4 +1,15 @@
-<p>
-  notification-showcase works!
-</p>
-<sbb-notification></sbb-notification>
+<sbb-notification message="Suchen">
+  <sbb-icon-check *sbbNotificationIcon></sbb-icon-check>
+</sbb-notification>
+
+<div role="presentation" class="sbbsc-separator"></div>
+
+<sbb-notification message="Suchen" type="error">
+  <sbb-icon-exclamation-mark *sbbNotificationIcon></sbb-icon-exclamation-mark>
+</sbb-notification>
+
+<div role="presentation" class="sbbsc-separator"></div>
+
+<sbb-notification message="Suchen" type="error" [jumpMarks]="jumpMarks">
+  <sbb-icon-exclamation-mark *sbbNotificationIcon></sbb-icon-exclamation-mark>
+</sbb-notification>

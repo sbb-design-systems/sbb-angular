@@ -1,3 +1,17 @@
-<p>
-  notification works!
-</p>
+<span class="sbb-notification-icon-wrapper">
+  <ng-container *ngTemplateOutlet="icon"></ng-container>
+</span>
+<div *ngIf="jumpMarks; else content" class="sbb-notification-content">
+  <div class="sbb-notification-content-title">
+    {{ message }}
+  </div>
+  <span *ngFor="let jumpMark of jumpMarks; let i = index" class="sbb-notification-jump-mark">
+    <a [attr.href]="jumpMark.elementId">{{ jumpMark.title }}</a>
+    <ng-container *ngIf="i < jumpMarks.length - 1"> / </ng-container>
+  </span>
+</div>
+<ng-template #content>
+  <div class="sbb-notification-content">
+    {{ message }}
+  </div>
+</ng-template>

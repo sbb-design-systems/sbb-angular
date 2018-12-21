@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JumpMark } from 'projects/sbb-angular/src/public_api';
 
 @Component({
   selector: 'sbb-notification-showcase',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationShowcaseComponent implements OnInit {
 
+  jumpMarks: JumpMark[] = [{ elementId:'#', title:'Hello'}, { elementId:'#', title:'Suchen'}];
   constructor() { }
 
   ngOnInit() {
