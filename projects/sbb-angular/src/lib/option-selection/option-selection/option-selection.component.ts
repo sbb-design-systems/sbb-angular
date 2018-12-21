@@ -33,33 +33,37 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionSelectionComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
-
+  /** @docs-private */
   @HostBinding('class.sbb-option-selection')
   cssClass = true;
 
   /**
      * Template that will contain icons.
-     * Use the *sbbButtonIcon structural directive to provide the desired icon.
+     * Use the *sbbOptionSelectionImage structural directive to provide the desired icon/image.
      */
   @Input()
   @ContentChild(OptionSelectionImageDirective, { read: TemplateRef })
   image: TemplateRef<any>;
-
+  /**
+   * Label of a option selection.
+   */
   @Input()
   label: string;
-
+  /**
+   * Subtitle of a option selection.
+   */
   @Input()
   subtitle?: string;
-
+  /** @docs-private */
   @ViewChild('radio') embeddedRadio: RadioButtonComponent;
   /**
-     * Radio button identifier
+     * Option selection identifier
      */
   @Input()
   @HostBinding('id')
   inputId = `sbb-option-selection-${counter++}`;
   /**
-   * Indicates radio button name in formControl
+   * Indicates option selection name in formControl.
    */
   @Input() formControlName: string;
   /**
@@ -78,7 +82,7 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   // tslint:disable-next-line:no-input-rename
   @Input('aria-describedby') ariaDescribedby: string;
   /**
-   * Indicates that the radio button field is required
+   * Indicates that the option selection field is required.
    */
   @Input()
   @HostBinding('class.sbb-option-selection-required')
@@ -91,7 +95,7 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
 
 
   /**
-   * The disabled state of the radio button
+   * The disabled state of the option selection.
    */
   @Input()
   @HostBinding('class.sbb-option-selection-disabled')
@@ -104,7 +108,7 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   }
 
   /**
-   * The checked state of the radio button
+   * The checked state of the option selection.
    */
   @Input()
   @HostBinding('class.sbb-option-selection-checked')
@@ -115,20 +119,22 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
     this.embeddedRadio.checked = value;
   }
 
-
+  /**
+   * Returns the subtitle of a option selection.
+   */
   @HostBinding('class.sbb-option-selection-has-subtitle')
   get hasSubtitle() {
     return !!this.subtitle;
   }
 
   /**
-   * Class property that represents a change on the radio button
+   * Class property that represents a change on the option selection.
    */
   onChange = (_: any) => {
     this.embeddedRadio.onChange(_);
   }
   /**
-   * Class property that represents a touch on the radio button
+   * Class property that represents a touch on the option selection.
    */
   onTouched = () => {
     this.embeddedRadio.onTouched();
@@ -152,20 +158,20 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   }
 
   /**
-   * Registers the on change callback
+   * Registers the on change callback.
    */
   registerOnChange(fn: any): void {
     this.embeddedRadio.onChange = fn;
   }
   /**
-   * Registers the on touched callback
+   * Registers the on touched callback.
    */
   registerOnTouched(fn: any): void {
     this.embeddedRadio.onTouched = fn;
   }
 
   /**
-   * Manage the event click on the radio button
+   * Manage the event click on the option selection.
    */
   @HostListener('click')
   click() {
@@ -179,7 +185,7 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   }
 
   /**
-   * Sets the radio button status to disabled
+   * Sets the option selection status to disabled.
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
@@ -188,14 +194,14 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   }
 
   /**
-   * Unchecks the radio button
+   * Unchecks the option selection.
    */
   uncheck() {
     this.embeddedRadio.uncheck();
   }
 
   /**
-  * Verify that radio button name matches with radio button form control name
+  * Verify that option selection name matches with option selection form control name.
   */
   private checkName(): void {
     if (this.name && this.formControlName && this.name !== this.formControlName) {
@@ -206,7 +212,7 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   }
 
   /**
-   * Throws an exception if the radio button name doesn't match with the radio button form control name
+   * Throws an exception if the option selection name doesn't match with the option selection form control name.
    */
   private throwNameError(): void {
     throw new Error(`

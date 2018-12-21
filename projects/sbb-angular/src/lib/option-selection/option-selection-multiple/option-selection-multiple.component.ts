@@ -31,17 +31,17 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionSelectionMultipleComponent implements ControlValueAccessor {
-
-  @HostBinding('class.sbb-option-selection-multiple')
+  /** @docs-private */
+  @HostBinding('class.sbb-option-selection')
   cssClass = true;
 
   /**
-  * Value contained in a checkbox field
+  * Value contained in a option selection multiple field.
   */
   @Input() value: any;
 
   /**
-  * Name contained in a checkbox field
+  * Name contained in a option selection multiple field.
   */
   @Input() name: string;
 
@@ -52,22 +52,26 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   @Input()
   @ContentChild(OptionSelectionImageDirective, { read: TemplateRef })
   image: TemplateRef<any>;
-
+  /**
+   * Label of a option selection multiple.
+   */
   @Input()
   label: string;
-
+  /**
+   * Subtitle of a option selection multiple.
+   */
   @Input()
   subtitle?: string;
-
+   /** @docs-private */
   @ViewChild('checkbox') embeddedCheckbox: CheckboxComponent;
   /**
-     * Radio button identifier
+     * Option selection multiple identifier.
      */
   @Input()
   @HostBinding('id')
   inputId = `sbb-option-selection-multiple-${counter++}`;
   /**
-   * Indicates radio button name in formControl
+   * Indicates option selection multiple name in formControl.
    */
   @Input() formControlName: string;
   /**
@@ -86,7 +90,7 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   // tslint:disable-next-line:no-input-rename
   @Input('aria-describedby') ariaDescribedby: string;
   /**
-   * Indicates that the radio button field is required
+   * Indicates that the option selection multiple field is required.
    */
   @Input()
   @HostBinding('class.sbb-option-selection-required')
@@ -99,7 +103,7 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
 
 
   /**
-   * The disabled state of the radio button
+   * The disabled state of the option selection multiple.
    */
   @Input()
   @HostBinding('class.sbb-option-selection-disabled')
@@ -112,7 +116,7 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   }
 
   /**
-   * The checked state of the radio button
+   * The checked state of the option selection multiple.
    */
   @Input()
   @HostBinding('class.sbb-option-selection-checked')
@@ -123,20 +127,22 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
     this.embeddedCheckbox.checked = value;
   }
 
-
+  /**
+   * Returns the subtitle of a option selection multiple.
+   */
   @HostBinding('class.sbb-option-selection-has-subtitle')
   get hasSubtitle() {
     return !!this.subtitle;
   }
 
   /**
-   * Class property that represents a change on the radio button
+   * Class property that represents a change on the option selection multiple.
    */
   onChange = (_: any) => {
     this.embeddedCheckbox.onChange(_);
   }
   /**
-   * Class property that represents a touch on the radio button
+   * Class property that represents a touch on the option selection multiple.
    */
   onTouched = () => {
     this.embeddedCheckbox.onTouched();
@@ -151,20 +157,20 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   }
 
   /**
-   * Registers the on change callback
+   * Registers the on change callback.
    */
   registerOnChange(fn: any): void {
     this.embeddedCheckbox.onChange = fn;
   }
   /**
-   * Registers the on touched callback
+   * Registers the on touched callback.
    */
   registerOnTouched(fn: any): void {
     this.embeddedCheckbox.onTouched = fn;
   }
 
   /**
-   * Manage the event click on the radio button
+   * Manage the event click on the option selection multiple.
    */
   @HostListener('click')
   click() {
@@ -180,7 +186,7 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   }
 
   /**
-   * Sets the radio button status to disabled
+   * Sets the option selection multiple status to disabled.
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
