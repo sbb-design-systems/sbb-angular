@@ -13,6 +13,7 @@ import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.c
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 
 
 @Injectable({
@@ -247,7 +248,7 @@ export class ComponentUiService {
          'Source goes here ...',
          'Import text.'
        ), */
-      /*  new UiComponent(
+        new UiComponent(
          'Notification',
          'notification',
          'Notification',
@@ -257,8 +258,9 @@ export class ComponentUiService {
          ['Davide Aresta', 'Stefan Meili'],
          'Description goes here ...',
          'Source goes here ...',
-         'Import text.'
-       ), */
+         'Import text.',
+         NotificationShowcaseComponent
+       ),
       /* new UiComponent(
         'Process Flow',
         'processFlow',

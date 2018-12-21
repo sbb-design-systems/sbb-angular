@@ -37,6 +37,8 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
+import { NotificationsModule } from 'projects/sbb-angular/src/public_api';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
-    AccordionShowcaseComponent
+    AccordionShowcaseComponent,
+    NotificationShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     OptionModule,
     AutocompleteModule,
     SelectModule,
-    AccordionModule
+    AccordionModule,
+    NotificationsModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -90,6 +94,7 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

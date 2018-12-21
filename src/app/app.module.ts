@@ -44,6 +44,7 @@ import { PersonListComponent } from './examples/tabs-showcase/person/person-list
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
+import { NotificationShowcaseComponent } from './examples/notification-showcase/notification-showcase.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { AccordionShowcaseComponent } from './examples/accordion-showcase/accord
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
+    NotificationShowcaseComponent,
     ...IconComponents.types
   ]
 })
