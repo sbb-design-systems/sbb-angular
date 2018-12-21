@@ -1,0 +1,698 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL lightbox </h2>
+  <p class="docs-api-module-import">
+    <code> import { LightboxModule } from 'sbb-angular'; </code>
+  </p>
+  <h3 id="services" class="docs-header-link docs-api-h3">
+    <span header-link="services"></span> Services </h3>
+  <h4 id="Lightbox" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="Lightbox"></span>
+    <code>Lightbox</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Service to open SBB Design modal lightboxes.</p>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>afterAllClosed: Observable&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Stream that emits when all open lightbox have finished closing. Will emit on subscribe if there are no open lightboxes to begin with.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>afterOpen: Subject&lt;LightboxRef&lt;any&gt;&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Stream that emits when a lightbox has been opened.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>openLightboxes: LightboxRef&lt;any&gt;[]</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Keeps track of the currently-open lightboxes.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">closeAll </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Closes all of the currently-open lightboxes.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getLightboxById </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Finds an open lightbox by its id.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> id</p>
+        <code class="docs-api-method-parameter-type">string</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>ID to use when looking up the lightbox.</p>
+        </p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">LightboxRef&lt;any&gt; | undefined</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">open </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Opens a modal lightbox containing the given component.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> componentOrTemplateRef</p>
+        <code class="docs-api-method-parameter-type">ComponentType&lt;T&gt; | TemplateRef&lt;T&gt;</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Type of the component to load into the lightbox, or a TemplateRef to instantiate as the lightbox content.</p>
+        </p>
+      </td>
+    </tr>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> config<span class="docs-api-method-parameter-optional-marker">?</span></p>
+        <code class="docs-api-method-parameter-type">LightboxConfig&lt;D&gt;</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Extra configuration options.</p>
+        </p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">LightboxRef&lt;T, R&gt;</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+          <p>Reference to the newly-opened lightbox.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="LightboxCloseDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxCloseDirective"></span>
+    <code>LightboxCloseDirective</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Button that will close the current lightbox.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">button[sbbLightboxClose]</span>
+  </p><span class="docs-api-class-export-label">Exported as:</span>
+  <span class="docs-api-class-export-name">sbbLightboxClose</span>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbLightboxClose&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>lightboxResult: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>lightbox close input. Renamed to be more meaningful *</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaLabel: &#39;Close lightbox&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Screenreader label for the button.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>btnType: &#39;button&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Prevents accidental form submits. *</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>lightboxRef: LightboxRef&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onCloseClick </th>
+      </tr>
+    </thead>
+  </table>
+  <h4 id="LightboxHeaderComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxHeaderComponent"></span>
+    <code>LightboxHeaderComponent</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Header of a lightbox element. Stays fixed to the top of the lightbox when scrolling.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-lightbox-header</span>
+    <span class="docs-api-class-selector-name">[sbbLightboxHeader]</span>
+  </p><span class="docs-api-class-export-label">Exported as:</span>
+  <span class="docs-api-class-export-name">sbbLightboxHeader</span>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>lightboxHeaderClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h4 id="LightboxTitleDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxTitleDirective"></span>
+    <code>LightboxTitleDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbLightboxTitle]</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>id: `sbb-lightbox-title-${lightboxElementUid++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>lightboxTitleClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h4 id="LightboxContentComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxContentComponent"></span>
+    <code>LightboxContentComponent</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Scrollable content container of a lightbox.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-lightbox-content</span>
+    <span class="docs-api-class-selector-name">[sbbLightboxContent]</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>lightboxContentClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h4 id="LightboxFooterComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxFooterComponent"></span>
+    <code>LightboxFooterComponent</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Container for the bottom action buttons in a lightbox. Stays fixed to the bottom when scrolling.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-lightbox-footer</span>
+    <span class="docs-api-class-selector-name">[sbbLightboxFooter]</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>alignment: &#39;left&#39; | &#39;center&#39; | &#39;right&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>alignmentCenterClass: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>alignmentEndClass: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>alignmentStartClass: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>lightboxFooterClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h3 id="additional_classes" class="docs-header-link docs-api-h3">
+    <span header-link="additional_classes"></span> Additional classes </h3>
+  <h4 id="LightboxConfig" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxConfig"></span>
+    <code>LightboxConfig</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Configuration for opening a modal lightbox with the Lightbox service.</p>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaDescribedBy: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>ID of the element that describes the Lightbox.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaLabel: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Aria label to assign to the Lightbox element</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>autoFocus: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the Lightbox should focus the first focusable element on open.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>closeOnNavigation: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the Lightbox should close when the user goes backwards/forwards in history.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>data: D | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Data being injected into the child component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>height: &#39;100vh&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Height of the Lightbox.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>id: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>ID for the Lightbox. If omitted, a unique one will be generated.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelClass: string | string[]</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Custom class for the overlay pane.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: LightboxRole</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The ARIA role of the Lightbox element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>scrollStrategy: ScrollStrategy</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Scroll strategy to be used for the dialog.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>viewContainerRef: ViewContainerRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Where the attached component should live in Angular&#39;s <em>logical</em> component tree. This affects what is available for injection and the change detection order for the component instantiated inside of the Lightbox. This does not affect where the Lightbox content will be rendered.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>width: &#39;100vw&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Width of the Lightbox.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="LightboxRef" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="LightboxRef"></span>
+    <code>LightboxRef</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Reference to a lightbox opened via the Lightbox service.</p>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>componentInstance: T</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The instance of component opened into the lightbox.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>containerInstance: LightboxContainerComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>id: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">afterClosed </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets an observable that is notified when the lightbox is finished closing.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">Observable&lt;R | undefined&gt;</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">afterOpen </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets an observable that is notified when the lightbox is finished opening.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">Observable&lt;void&gt;</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">beforeClose </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets an observable that is notified when the lightbox has started closing.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">Observable&lt;R | undefined&gt;</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">close </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Close the lightbox.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> lightboxResult<span class="docs-api-method-parameter-optional-marker">?</span></p>
+        <code class="docs-api-method-parameter-type">R</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Optional result to return to the lightbox opener.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">keydownEvents </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets an observable that emits when keydown events are targeted on the overlay.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">Observable&lt;KeyboardEvent&gt;</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="additional_type_aliases" class="docs-header-link docs-api-h3">
+    <span header-link="additional_type_aliases"></span> Additional type aliases </h3>
+  <h4 id="LightboxRole" class="docs-header-link docs-api-h4 docs-api-type-alias-name">
+    <span header-link="LightboxRole"></span>
+    <code>LightboxRole</code>
+  </h4>
+  <p class="docs-api-type-alias-description">
+    <p>Valid ARIA roles for a Lightbox element.</p>
+  </p>
+  <p class="docs-api-type-alias-value">
+    <span class="docs-api-type-alias-value-label">Type:</span>
+    <code class="docs-api-type-alias-value">&#39;dialog&#39; | &#39;alertdialog&#39;</code>
+  </p>
+</div>

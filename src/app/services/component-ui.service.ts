@@ -238,7 +238,7 @@ export class ComponentUiService {
       ), */
       new UiComponent(
         'Light Box',
-        'lightBox',
+        'lightbox',
         'Light Box',
         'Subtitel goes here ...',
         true,

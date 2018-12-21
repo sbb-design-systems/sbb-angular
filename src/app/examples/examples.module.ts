@@ -36,14 +36,15 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
-import { LightboxShowcaseComponent } from './lightbox-showcase/lightbox-showcase.component';
-import { LightboxShowcaseExampleComponent,
-  LightboxShowcaseExampleContentComponent } from './lightbox-showcase/lightbox-showcase-example.component';
-import { LightboxShowcaseExample2ContentComponent,
-  LightboxShowcaseExample2Component } from './lightbox-showcase/lightbox-showcase-example-2.component';
+import {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
-import { LightboxShowcaseExample3Component } from './lightbox-showcase/lightbox-showcase-example-3.component';
 
 @NgModule({
   declarations: [
