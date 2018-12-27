@@ -6,7 +6,7 @@
     {{ message }}
   </div>
   <span *ngFor="let jumpMark of jumpMarks; let i = index" class="sbb-notification-jump-mark">
-    <a [attr.href]="jumpMark.elementId">{{ jumpMark.title }}</a>
+    <a (click)="scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
     <ng-container *ngIf="i < jumpMarks.length - 1"> / </ng-container>
   </span>
 </div>

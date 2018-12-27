@@ -88,4 +88,15 @@ export class NotificationComponent {
   get hasJumpMarks() {
     return this.jumpMarks && this.jumpMarks.length;
   }
+
+  /**
+   * Used to scroll to an element identified by a JumpMark
+   *
+   * @param $event click event
+   * @param jumpMark jump mark after the notification message
+   */
+  scrollTo($event: any, jumpMark: JumpMark) {
+    $event.preventDefault();
+    document.querySelector(jumpMark.elementId).scrollIntoView({ behavior: 'smooth' });
+  }
 }

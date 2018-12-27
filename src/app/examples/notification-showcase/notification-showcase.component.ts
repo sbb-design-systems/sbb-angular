@@ -8,7 +8,7 @@ import { JumpMark, NotificationType } from 'projects/sbb-angular/src/public_api'
 })
 export class NotificationShowcaseComponent {
 
-  jumpMarks: JumpMark[] = [{ elementId: '#', title: 'Hello' }, { elementId: '#', title: 'Suchen' }];
+  jumpMarks: JumpMark[] = [{ elementId: '#default', title: 'Hello' }, { elementId: '#default', title: 'Suchen' }];
 
   type = NotificationType.SUCCESS;
 
