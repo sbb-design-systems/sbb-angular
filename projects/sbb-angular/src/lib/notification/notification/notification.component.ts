@@ -1,7 +1,5 @@
-import { Component, OnInit, HostBinding, Input, TemplateRef, ContentChild, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, TemplateRef, ContentChild, ViewChild } from '@angular/core';
 import { NotificationIconDirective } from '../notification-icon.directive';
-import { IconCheckComponent } from '../../svg-icons-components/campaigns/greenclass/sbb-icon-check.component';
-import { IconExclamationMarkComponent } from '../../svg-icons-components/svg-icons-components';
 
 export enum NotificationType {
   SUCCESS = 'success',
@@ -25,12 +23,13 @@ export class NotificationComponent {
   @HostBinding('class.sbb-notification')
   baseCssClass = true;
 
-
+  /** @docs-private */
   @HostBinding('class.sbb-notification-success')
   get typeSuccess(): boolean {
     return this.type === NotificationType.SUCCESS || this.type === NotificationType.INFO;
   }
 
+  /** @docs-private */
   @HostBinding('class.sbb-notification-error')
   get typeError(): boolean {
     return this.type === NotificationType.ERROR;
@@ -39,18 +38,21 @@ export class NotificationComponent {
   @Input()
   type = NotificationType.SUCCESS;
 
+  /** @docs-private */
   @ViewChild('error', { read: TemplateRef })
   errorIcon: TemplateRef<any>;
 
+  /** @docs-private */
   @ViewChild('check', { read: TemplateRef })
   checkIcon: TemplateRef<any>;
 
+  /** @docs-private */
   @ViewChild('info', { read: TemplateRef })
   infoIcon: TemplateRef<any>;
 
   /** The icon to be used into the notification left side.
-   *  By default uses two icons for SUCCESS, ERROR or INFO notification type,
-   *  but the user can define his own icon using the {@link NotificationIconDirective} directive.
+   *  By default uses three icons for SUCCESS, ERROR or INFO notification type,
+   *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
   @ContentChild(NotificationIconDirective, { read: TemplateRef })
