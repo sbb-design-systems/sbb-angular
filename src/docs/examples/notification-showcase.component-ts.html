@@ -6,12 +6,9 @@
   templateUrl: <span class="hljs-string">'./notification-showcase.component.html'</span>,
   styleUrls: [<span class="hljs-string">'./notification-showcase.component.scss'</span>]
 })
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NotificationShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NotificationShowcaseComponent {
 
   jumpMarks: JumpMark[] = [{ elementId:<span class="hljs-string">'#'</span>, title:<span class="hljs-string">'Hello'</span>}, { elementId:<span class="hljs-string">'#'</span>, title:<span class="hljs-string">'Suchen'</span>}];
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) { }
-
-  ngOnInit() {
-  }
 
 }
