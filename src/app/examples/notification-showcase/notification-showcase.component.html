@@ -1,20 +1,59 @@
-<sbb-notification message="Suchen">
-</sbb-notification>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="sbbsc-block">Default success notification</h4>
+      <sbb-notification message="Suchen"></sbb-notification>
+    </div>
+  </div>
 
-<div role="presentation" class="sbbsc-separator"></div>
+  <div role="presentation" class="sbbsc-separator"></div>
 
-<sbb-notification message="Suchen" type="error">
-  <sbb-icon-exclamation-mark *sbbNotificationIcon></sbb-icon-exclamation-mark>
-</sbb-notification>
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="sbbsc-block">Default error notification</h4>
+      <sbb-notification message="Suchen" type="error"></sbb-notification>
+    </div>
+  </div>
 
-<div role="presentation" class="sbbsc-separator"></div>
+  <div role="presentation" class="sbbsc-separator"></div>
 
-<sbb-notification message="Suchen" type="error" [jumpMarks]="jumpMarks">
-  <sbb-icon-exclamation-mark *sbbNotificationIcon></sbb-icon-exclamation-mark>
-</sbb-notification>
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="sbbsc-block">Default info notification</h4>
+      <sbb-notification message="Suchen" type="info"></sbb-notification>
+    </div>
+  </div>
 
-<div role="presentation" class="sbbsc-separator"></div>
+  <div role="presentation" class="sbbsc-separator"></div>
 
-<sbb-notification message="Suchen" [jumpMarks]="jumpMarks">
-  <sbb-icon-info *sbbNotificationIcon></sbb-icon-info>
-</sbb-notification>
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="sbbsc-block">Notification with custom icon</h4>
+      <sbb-notification message="Suchen">
+        <sbb-icon-clock *sbbNotificationIcon></sbb-icon-clock>
+      </sbb-notification>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="sbbsc-block">Error notification with jumpMarks and custom icon</h4>
+      <sbb-notification message="Suchen" type="error" [jumpMarks]="jumpMarks">
+        <sbb-icon-leicht-bewoelkt *sbbNotificationIcon></sbb-icon-leicht-bewoelkt>
+      </sbb-notification>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="sbbsc-block">Success notification with jumpMarks and custom icon</h4>
+      <sbb-notification message="Suchen" [jumpMarks]="jumpMarks">
+        <sbb-icon-gluehbirne-an *sbbNotificationIcon></sbb-icon-gluehbirne-an>
+      </sbb-notification>
+    </div>
+  </div>
+</div>

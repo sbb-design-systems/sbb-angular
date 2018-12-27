@@ -5,7 +5,8 @@ import { IconExclamationMarkComponent } from '../../svg-icons-components/svg-ico
 
 export enum NotificationType {
   SUCCESS = 'success',
-  ERROR = 'error'
+  ERROR = 'error',
+  INFO = 'info'
 }
 
 export interface JumpMark {
@@ -27,7 +28,7 @@ export class NotificationComponent {
 
   @HostBinding('class.sbb-notification-success')
   get typeSuccess(): boolean {
-    return this.type === NotificationType.SUCCESS;
+    return this.type === NotificationType.SUCCESS || this.type === NotificationType.INFO;
   }
 
   @HostBinding('class.sbb-notification-error')
@@ -38,14 +39,17 @@ export class NotificationComponent {
   @Input()
   type = NotificationType.SUCCESS;
 
-  @ViewChild('error',  { read: TemplateRef })
+  @ViewChild('error', { read: TemplateRef })
   errorIcon: TemplateRef<any>;
 
-  @ViewChild('check',  { read: TemplateRef })
+  @ViewChild('check', { read: TemplateRef })
   checkIcon: TemplateRef<any>;
 
+  @ViewChild('info', { read: TemplateRef })
+  infoIcon: TemplateRef<any>;
+
   /** The icon to be used into the notification left side.
-   *  By default uses two icons for SUCCESS or ERROR notification type,
+   *  By default uses two icons for SUCCESS, ERROR or INFO notification type,
    *  but the user can define his own icon using the {@link NotificationIconDirective} directive.
    */
   @Input()
@@ -55,7 +59,19 @@ export class NotificationComponent {
   }
   get icon() {
     if (!this._icon) {
-      return this.type === NotificationType.SUCCESS ? this.checkIcon : this.errorIcon;
+      let icon = null;
+      switch (this.type) {
+        case NotificationType.SUCCESS:
+          icon = this.checkIcon;
+          break;
+        case NotificationType.ERROR:
+          icon = this.errorIcon;
+          break;
+        case NotificationType.INFO:
+          icon = this.infoIcon;
+          break;
+      }
+      return icon;
     }
     return this._icon;
   }
