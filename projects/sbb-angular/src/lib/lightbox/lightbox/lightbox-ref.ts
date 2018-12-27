@@ -75,6 +75,10 @@ export class LightboxRef<T, R = any> {
       .pipe(filter(event => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
 
+    _overlayRef.keydownEvents()
+      .pipe(filter(event => event.keyCode === ESCAPE && this.disableClose))
+      .subscribe(() => this.manualCloseAction.next(null));
+
     if (location) {
       // Close the lightbox when the user goes forwards/backwards in history or when the location
       // hash changes. Note that this usually doesn't include clicking on links (unless the user
@@ -85,10 +89,6 @@ export class LightboxRef<T, R = any> {
         }
       });
     }
-  }
-
-  manualCloseTrigger() {
-    this.manualCloseAction.next(null);
   }
 
   /**

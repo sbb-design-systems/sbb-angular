@@ -25,19 +25,13 @@
   <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">sbbLightboxTitle</span> <span class="hljs-attr">cdkFocusInitial</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Install Angular<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Set alignment of buttons in footer<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"alignment"</span>
-                        <span class="hljs-attr">name</span>=<span class="hljs-string">"alignment-radio"</span>
-                        <span class="hljs-attr">value</span>=<span class="hljs-string">"left"</span>&gt;</span>LEFT<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"alignment"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"alignment-radio"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"left"</span>&gt;</span>LEFT<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"alignment"</span>
-                        <span class="hljs-attr">name</span>=<span class="hljs-string">"alignment-radio"</span>
-                        <span class="hljs-attr">value</span>=<span class="hljs-string">"center"</span>&gt;</span>CENTER<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"alignment"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"alignment-radio"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"center"</span>&gt;</span>CENTER<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"alignment"</span>
-                        <span class="hljs-attr">name</span>=<span class="hljs-string">"alignment-radio"</span>
-                        <span class="hljs-attr">value</span>=<span class="hljs-string">"right"</span>&gt;</span>RIGHT<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"alignment"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"alignment-radio"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"right"</span>&gt;</span>RIGHT<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Develop across all platforms<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Learn one way to build applications with Angular and reuse your code and abilities to build
@@ -95,18 +89,17 @@
 
   <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>An app's components typically define many views, arranged hierarchically. Angular provides
     the Router service to help you define navigation paths among views. The router provides
-    sophisticated in-browser navigational capabilities.  END<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    sophisticated in-browser navigational capabilities. END<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-lightbox-content</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-lightbox-footer</span> [<span class="hljs-attr">alignment</span>]=<span class="hljs-string">"alignment"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"secondary"</span> <span class="hljs-attr">sbbLightboxClose</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"secondary"</span> <span class="hljs-attr">sbbLightboxClose</span>&gt;</span>
+    Abbrechen
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-close</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-close</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> [<span class="hljs-attr">sbbLightboxClose</span>]=<span class="hljs-string">"true"</span>&gt;</span>
-    Install
+    Übernehmen
     <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span> [<span class="hljs-attr">sbbLightboxClose</span>]=<span class="hljs-string">"true"</span>&gt;</span>
-      One button more
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-lightbox-footer</span>&gt;</span>
 
 

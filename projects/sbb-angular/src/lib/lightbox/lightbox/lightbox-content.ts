@@ -111,7 +111,7 @@ export class LightboxHeaderComponent implements OnInit {
 
   emitManualCloseAction() {
     if (this._lightboxRef) {
-      this._lightboxRef.manualCloseTrigger();
+      this._lightboxRef.manualCloseAction.next(null);
     }
   }
 }

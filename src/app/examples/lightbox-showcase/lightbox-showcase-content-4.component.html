@@ -1,0 +1,13 @@
+<header sbbLightboxHeader></header>
+<div sbbLightboxContent>
+  <div *ngIf="!confirmPanel" class="sbbsc-lb-disableclose-c-1">
+    <h3 sbbLightboxTitle>In order to close this lightbox you have to confirm in the confirm panel
+      which is going to appear when trying to close this lightbox</h3>
+  </div>
+  <div *ngIf="confirmPanel" class="sbbsc-lb-disableclose-c-2">
+    <h3>Sind Sie sicher, dass Sie dieses Fenster schliessen möchten?
+      Ihre Eingaben werden dadurch verworfen.</h3>
+    <button sbbButton mode="ghost" (click)="confirmPanel = false">Eingaben überprüfen</button>
+    <button sbbButton sbbLightboxClose="confirmed">Fenster schliessen</button>
+  </div>
+</div>

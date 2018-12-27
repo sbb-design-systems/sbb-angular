@@ -44,7 +44,10 @@ import {
   LightboxShowcaseExample2ContentComponent,
   LightboxShowcaseExample3Component,
   LightboxShowcaseExample4Component,
-  LightboxShowcaseExample4ContentComponent
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
 } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
@@ -71,6 +74,9 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     LightboxShowcaseExample3Component,
     LightboxShowcaseExample4Component,
     LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent
   ],
@@ -120,6 +126,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     LightboxShowcaseExampleContentComponent,
     LightboxShowcaseExample2ContentComponent,
     LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 export class ExamplesModule { }

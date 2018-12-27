@@ -25,19 +25,13 @@
   <h2 sbbLightboxTitle cdkFocusInitial tabindex="0">Install Angular</h2>
   <h3>Set alignment of buttons in footer</h3>
   <sbb-field mode="default" class="sbbsc-block">
-      <sbb-radio-button [(ngModel)]="alignment"
-                        name="alignment-radio"
-                        value="left">LEFT</sbb-radio-button>
+    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="left">LEFT</sbb-radio-button>
   </sbb-field>
   <sbb-field mode="default" class="sbbsc-block">
-      <sbb-radio-button [(ngModel)]="alignment"
-                        name="alignment-radio"
-                        value="center">CENTER</sbb-radio-button>
+    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="center">CENTER</sbb-radio-button>
   </sbb-field>
   <sbb-field mode="default" class="sbbsc-block">
-      <sbb-radio-button [(ngModel)]="alignment"
-                        name="alignment-radio"
-                        value="right">RIGHT</sbb-radio-button>
+    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="right">RIGHT</sbb-radio-button>
   </sbb-field>
   <h3>Develop across all platforms</h3>
   <p>Learn one way to build applications with Angular and reuse your code and abilities to build
@@ -95,18 +89,17 @@
 
   <p>An app's components typically define many views, arranged hierarchically. Angular provides
     the Router service to help you define navigation paths among views. The router provides
-    sophisticated in-browser navigational capabilities.  END</p>
+    sophisticated in-browser navigational capabilities. END</p>
 </sbb-lightbox-content>
 <sbb-lightbox-footer [alignment]="alignment">
-  <button sbbButton mode="secondary" sbbLightboxClose>Cancel</button>
+  <button sbbButton mode="secondary" sbbLightboxClose>
+    Abbrechen
+    <sbb-icon-close *sbbButtonIcon></sbb-icon-close>
+  </button>
   <button sbbButton [sbbLightboxClose]="true">
-    Install
+    Übernehmen
     <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
   </button>
-  <button sbbButton mode="ghost" [sbbLightboxClose]="true">
-      One button more
-      <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
-    </button>
 </sbb-lightbox-footer>
 
 

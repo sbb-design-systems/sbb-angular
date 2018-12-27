@@ -1,13 +1,23 @@
-import { Component, ViewEncapsulation, Inject, ViewChild, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Inject, ViewChild,
+  TemplateRef,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
+
 import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
-import { filter } from 'rxjs/operators';
-import { ESCAPE } from '@angular/cdk/keycodes';
 
 export interface LightboxData {
   animal: string;
   name: string;
 }
 
+/**
+ * Lighbox sharing data
+ */
 @Component({
   selector: 'sbb-lightbox-showcase-content-1',
   templateUrl: 'lightbox-showcase-content-1.component.html'
@@ -18,7 +28,7 @@ export class LightboxShowcaseExampleContentComponent {
     public lightboxRef: LightboxRef<LightboxShowcaseExampleContentComponent>,
     @Inject(LIGHTBOX_DATA) public data: LightboxData) { }
 
-  onNoClick(): void {
+  noThanks(): void {
     this.lightboxRef.close();
   }
 
@@ -29,7 +39,7 @@ export class LightboxShowcaseExampleContentComponent {
   template: `
   <ol>
     <li>
-      <input [(ngModel)]="name" placeholder="What's your name?">
+      <input type="text" [(ngModel)]="name" placeholder="What's your name?">
     </li>
     <li>
       <button sbbButton mode="secondary" (click)="openLightbox()">Pick one</button>
@@ -52,13 +62,16 @@ export class LightboxShowcaseExampleComponent {
     });
 
     lightboxRef.afterClosed().subscribe(result => {
-      console.log('The lightbox was closed');
+      console.log('Lighbox sharing data was closed');
       this.animal = result;
     });
   }
 
 }
 
+/**
+ * Lighbox with content loaded from component, footer button bar
+ */
 @Component({
   selector: 'sbb-lightbox-showcase-content-2',
   templateUrl: 'lightbox-showcase-content-2.component.html',
@@ -85,11 +98,14 @@ export class LightboxShowcaseExample2Component {
     const lightboxRef = this.lightbox.open(LightboxShowcaseExample2ContentComponent);
 
     lightboxRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Lightbox result: ${result}`);
     });
   }
 }
 
+/**
+ * Lighbox with content loaded from Template
+ */
 @Component({
   selector: 'sbb-lightbox-showcase-example-3',
   templateUrl: 'lightbox-showcase-content-3.component.html',
@@ -107,25 +123,101 @@ export class LightboxShowcaseExample3Component {
   }
 }
 
+/**
+ * Lighbox Alert with confirmation button
+ * all into one Lightbox using manualCloseAction Observable
+ */
 @Component({
   selector: 'sbb-lightbox-showcase-content-4',
-  template: `<header sbbLightboxHeader></header>
-             <div sbbLightboxContent>
-              <h2>DEFAULT CLOSE DISABLED - PRESS THE BUTTON ABOVE TO CLOSE MANUALLY</h2>
-              <button sbbButton sbbLightboxClose>Close</button>
-            </div>`,
+  templateUrl: 'lightbox-showcase-content-4.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LightboxShowcaseExample4ContentComponent {
-  constructor(private _lightBoxRef: LightboxRef<LightboxShowcaseExample4ContentComponent>) {
-    this._lightBoxRef.manualCloseAction.subscribe(() => {
-      console.log('I WANT TO CLOSE MANUALLY');
-    });
+export class LightboxShowcaseExample4ContentComponent implements OnInit {
+  confirmPanel = false;
 
-    this._lightBoxRef.keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE))
-      .subscribe(() => {
-        console.log('I WANT TO CLOSE MANUALLY');
-      });
+  constructor(
+    private _lightBoxRef: LightboxRef<LightboxShowcaseExample4ContentComponent>,
+    private _changeDetectorRef: ChangeDetectorRef) {
+  }
+
+  ngOnInit() {
+    this._lightBoxRef.manualCloseAction.subscribe(() => {
+      this.confirmPanel = true;
+      this._changeDetectorRef.markForCheck();
+    });
+  }
+
+}
+
+@Component({
+  selector: 'sbb-lightbox-showcase-example-4',
+  template: `
+    <div class="sbbsc-block">
+      <button sbbButton mode="secondary" (click)="openDialog()">Open with confirmation button in one Lightbox</button>
+    </div>`,
+})
+export class LightboxShowcaseExample4Component {
+
+  constructor(public lightbox: Lightbox) { }
+
+  openDialog() {
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExample4ContentComponent, { disableClose: true });
+
+    lightboxRef.afterClosed().subscribe((result) => {
+      console.log(`Lightbox ${result}`);
+    });
+  }
+}
+
+/**
+ * Lighbox Alert with confirmation button
+ * opening in a new extra Lightbox
+ */
+@Component({
+  selector: 'sbb-lightbox-showcase-content-6',
+  template: `<header sbbLightboxHeader></header>
+             <div class="sbbsc-lb-disableclose-c-2">
+              <h3>Sind Sie sicher, dass Sie dieses Fenster schliessen möchten?
+                Ihre Eingaben werden dadurch verworfen.</h3>
+              <button sbbButton mode="ghost" (click)="closeThisLightbox()">Eingaben überprüfen</button>
+              <button sbbButton (click)="closeAllLightbox()">Fenster schliessen</button>
+            </div>`
+})
+export class LightboxShowcaseExample6ContentComponent {
+
+  constructor(
+    private _lightBoxRef: LightboxRef<LightboxShowcaseExample5ContentComponent>,
+    public lightbox: Lightbox) {
+  }
+
+  closeThisLightbox() {
+    this._lightBoxRef.close();
+  }
+
+  closeAllLightbox() {
+    this.lightbox.closeAll();
+  }
+}
+
+@Component({
+  selector: 'sbb-lightbox-showcase-content-5',
+  template: `<header sbbLightboxHeader></header>
+            <div class="sbbsc-lb-disableclose-c-1">
+              <h3 sbbLightboxTitle>In order to close this lightbox you have to confirm in the confirm panel
+                which is going to appear when trying to close this lightbox</h3>
+            </div>`
+})
+export class LightboxShowcaseExample5ContentComponent implements OnInit {
+
+  constructor(
+    private _lightBoxRef: LightboxRef<LightboxShowcaseExample5ContentComponent>,
+    public lightbox: Lightbox) {
+  }
+
+  ngOnInit() {
+    this._lightBoxRef.manualCloseAction.subscribe(() => {
+      this.lightbox.open(LightboxShowcaseExample6ContentComponent);
+    });
   }
 
 }
@@ -134,19 +226,24 @@ export class LightboxShowcaseExample4ContentComponent {
  * @title Dialog with header, scrollable content and actions
  */
 @Component({
-  selector: 'sbb-lightbox-showcase-example-4',
+  selector: 'sbb-lightbox-showcase-example-5',
   template: `
     <div class="sbbsc-block">
-      <button sbbButton mode="secondary" (click)="openDialog()">Open Lightbox with default close disabled</button>
+      <button sbbButton mode="secondary" (click)="openDialog()">Open with confirmation button in separate one</button>
     </div>`,
 })
-export class LightboxShowcaseExample4Component {
+export class LightboxShowcaseExample5Component {
 
   constructor(public lightbox: Lightbox) { }
 
   openDialog() {
-    this.lightbox.open(LightboxShowcaseExample4ContentComponent, { disableClose: true });
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExample5ContentComponent, { disableClose: true });
+
+    lightboxRef.afterClosed().subscribe(() => {
+      console.log(`Lightbox confirmed`);
+    });
   }
+
 }
 
 
