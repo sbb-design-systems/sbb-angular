@@ -1,26 +1,16 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-12"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Default success notification<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">type</span>]=<span class="hljs-string">"type"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-12"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Default error notification<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"error"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-12"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Default info notification<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"info"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Notification type"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">select</span>  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"type"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let type of types"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"type"</span>&gt;</span>{{ type }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JumpMark } from 'projects/sbb-angular/src/public_api';
+import { JumpMark, NotificationType } from 'projects/sbb-angular/src/public_api';
 
 @Component({
   selector: 'sbb-notification-showcase',
@@ -8,7 +8,9 @@ import { JumpMark } from 'projects/sbb-angular/src/public_api';
 })
 export class NotificationShowcaseComponent {
 
-  jumpMarks: JumpMark[] = [{ elementId:'#', title:'Hello'}, { elementId:'#', title:'Suchen'}];
-  constructor() { }
+  jumpMarks: JumpMark[] = [{ elementId: '#', title: 'Hello' }, { elementId: '#', title: 'Suchen' }];
 
+  type = NotificationType.SUCCESS;
+
+  types = [NotificationType.SUCCESS, NotificationType.INFO, NotificationType.ERROR];
 }

@@ -1,26 +1,16 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Default success notification</h4>
-      <sbb-notification message="Suchen"></sbb-notification>
+      <sbb-notification message="Suchen" [type]="type"></sbb-notification>
     </div>
-  </div>
-
-  <div role="presentation" class="sbbsc-separator"></div>
-
-  <div class="row">
-    <div class="col-lg-12">
-      <h4 class="sbbsc-block">Default error notification</h4>
-      <sbb-notification message="Suchen" type="error"></sbb-notification>
-    </div>
-  </div>
-
-  <div role="presentation" class="sbbsc-separator"></div>
-
-  <div class="row">
-    <div class="col-lg-12">
-      <h4 class="sbbsc-block">Default info notification</h4>
-      <sbb-notification message="Suchen" type="info"></sbb-notification>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-field mode="long" label="Notification type">
+        <select  [(ngModel)]="type">
+          <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+        </select>
+      </sbb-field>
     </div>
   </div>
 
