@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProcessflowComponent } from './processflow.component';
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 
 describe('ProcessflowComponent', () => {
   let component: ProcessflowComponent;
@@ -8,6 +9,7 @@ describe('ProcessflowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [IconCommonModule],
       declarations: [ ProcessflowComponent ]
     })
     .compileComponents();
