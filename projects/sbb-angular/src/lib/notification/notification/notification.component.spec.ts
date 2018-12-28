@@ -1,25 +1,114 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotificationComponent } from './notification.component';
+import { NotificationComponent, NotificationType } from './notification.component';
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
-fdescribe('NotificationComponent', () => {
-  let component: NotificationComponent;
-  let fixture: ComponentFixture<NotificationComponent>;
+@Component({
+  selector: 'sbb-notification-mock',
+  template: '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>'
+})
+export class NotificationMockComponent {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NotificationComponent ]
-    })
-    .compileComponents();
-  }));
+  message = 'Suchen';
+  type = NotificationType.SUCCESS;
+  jumpMarks = [];
+}
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NotificationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+describe('NotificationComponent', () => {
+
+  describe('core', () => {
+    let component: NotificationComponent;
+    let fixture: ComponentFixture<NotificationComponent>;
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [IconCommonModule, CommonModule],
+        declarations: [NotificationComponent]
+      })
+        .compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(NotificationComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('behaviour', () => {
+    let testFixture: ComponentFixture<NotificationMockComponent>;
+    let testComponent: NotificationMockComponent;
+    beforeEach(async(() => {
+
+      TestBed.configureTestingModule({
+        imports: [CommonModule, FormsModule, IconCommonModule],
+        declarations: [NotificationComponent, NotificationMockComponent]
+      })
+        .compileComponents();
+    }));
+
+    beforeEach(() => {
+      testFixture = TestBed.createComponent(NotificationMockComponent);
+      testComponent = testFixture.componentInstance;
+      testFixture.detectChanges();
+    });
+
+
+    it('should have red background when type is ERROR', () => {
+      testComponent.type = NotificationType.ERROR;
+      testFixture.detectChanges();
+      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
+      expect(notifications.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        const styles = window.getComputedStyle(notifications[0].nativeElement);
+        expect(styles.backgroundColor).toBe('rgb(235, 0, 0)');
+      });
+
+    });
+
+    it('should have grey background when type is SUCCESS or INFO', () => {
+      testComponent.type = NotificationType.SUCCESS;
+      testFixture.detectChanges();
+      let notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
+      expect(notifications.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        const styles = window.getComputedStyle(notifications[0].nativeElement);
+        expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
+      });
+
+      testComponent.type = NotificationType.INFO;
+      testFixture.detectChanges();
+      notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
+      expect(notifications.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        const styles = window.getComputedStyle(notifications[0].nativeElement);
+        expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
+      });
+
+    });
+
+    it('should change height with jump marks', () => {
+      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
+      expect(componentStyles.height).toBe('68px');
+
+      testComponent.jumpMarks = [{ elementId: '#here', title: 'Here' }, { elementId: '#there', title: 'There' }];
+      testFixture.detectChanges();
+      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-jump-mark'));
+      expect(notifications.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        expect(componentStyles.height).toBe('92px');
+      });
+    });
+
   });
+
 });

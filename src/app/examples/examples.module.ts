@@ -20,7 +20,8 @@ import {
   AutocompleteModule,
   SelectModule,
   OptionModule,
-  AccordionModule
+  AccordionModule,
+  NotificationsModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -38,7 +39,6 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
-import { NotificationsModule } from 'projects/sbb-angular/src/public_api';
 
 @NgModule({
   declarations: [

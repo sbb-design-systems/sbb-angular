@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { JumpMark, NotificationType } from 'projects/sbb-angular/src/public_api';
+import { Component } from '@angular/core';
+import { JumpMark, NotificationType } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-notification-showcase',
