@@ -13,6 +13,7 @@ import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.c
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
 
 
 @Injectable({
@@ -259,9 +260,9 @@ export class ComponentUiService {
          'Source goes here ...',
          'Import text.'
        ), */
-      /* new UiComponent(
+       new UiComponent(
         'Process Flow',
-        'processFlow',
+        'processflow',
         'Process Flow',
         'Subtitel goes here ...',
         true,
@@ -269,8 +270,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        ProcessflowShowcaseComponent
+      ),
       /* new UiComponent(
         'Option Chooser (simple)',
         'optionChooserSimple',
