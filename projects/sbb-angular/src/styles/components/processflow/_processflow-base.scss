@@ -1,3 +1,18 @@
 @mixin processflowBase {
-    
+/*     display: flex;
+    align-items: center; */
+    @include tabsBase;
+
+    .sbb-processflow-step {
+         // @include processflowStepBase;
+         @include tabsButton;
+    }
+}
+
+@mixin processflowStepBase {
+    margin-left: 16px;
+    &-arrow {
+        width: 36px;
+        height: 36px;        
+    }
 }

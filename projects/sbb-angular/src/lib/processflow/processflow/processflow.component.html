@@ -1,3 +1,16 @@
-<p>
-  processflow works!
-</p>
+<ol *ngFor="let step of steps; let i = index">
+  <li class="sbb-processflow-step">
+    <button  
+            [class.sbb-processflow-step-active]="step.active"
+            [class.sbb-processflow-step-disabled]="step.disabled" 
+            (click)="changeStep($event, step)">
+      {{ step.title }}
+    </button>
+  </li>
+
+  <ng-container *ngIf="i < steps.length - 1">
+    <div class="sbb-processflow-step-arrow">
+      <sbb-icon-arrow-left></sbb-icon-arrow-left>
+    </div>
+  </ng-container>
+</ol>

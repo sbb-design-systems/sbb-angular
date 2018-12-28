@@ -1,11 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input, ChangeDetectorRef, HostBinding } from '@angular/core';
 
-export interface ProcessflowState {
-  route: string;
+export interface ProcessflowStep {
   title: string;
   active: boolean;
+  disabled: boolean;
 }
-
 
 @Component({
   selector: 'sbb-processflow',
@@ -15,4 +14,24 @@ export interface ProcessflowState {
 })
 export class ProcessflowComponent {
 
+  /** @docs-private */
+  @HostBinding('class.sbb-processflow')
+  cssClass = true;
+
+  @Input()
+  steps: ProcessflowStep[] = [];
+
+  @Output()
+  stepChange: EventEmitter<ProcessflowStep>;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+
+  changeStep(step: ProcessflowStep) {
+    this.steps.forEach((s) => {
+      s.active = false;
+    });
+    step.active = true;
+    this.changeDetectorRef.markForCheck();
+    this.stepChange.emit(step);
+  }
 }
