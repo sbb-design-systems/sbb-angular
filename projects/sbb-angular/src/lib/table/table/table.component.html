@@ -1,0 +1,8 @@
+<div class="sbb-table-wrapper">
+  <table class="sbb-table">
+    <ng-content select="tr, caption, colgroup, col, thead, tbody, tfoot"></ng-content>
+  </table>
+  <div *ngIf="tableCaption" class="sbb-table-caption">
+    <ng-container *ngTemplateOutlet="tableCaption"></ng-container>
+  </div>
+</div>

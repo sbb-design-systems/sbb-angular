@@ -4,10 +4,13 @@
     Documentation and examples for SBB typography, including global settings, headings, body text, lists, and more.
   </p>
 
-  <h3 class="text-headline2 sbbsc-typography-section-title">Table of contents</h3>
+  <h3 class="bbsc-typography-section-title">Table of contents</h3>
   <ul>
     <li><a href="#" (click)="goToInpageLink($event, 0)">Lists</a></li>
+    <li><a href="#" (click)="goToInpageLink($event, 1)">Tables</a></li>
   </ul>
+
+  <div class="sbbsc-separator" role="presentation"></div>
 
   <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Lists</h3>
 
@@ -44,6 +47,61 @@
     <div class="sbbsc-typography-example-body" [innerHTML]="codeMixedList">
     </div>
     <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeMixedList"></ngx-monaco-editor>
+  </article>
+
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Tables</h3>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Simple Table</h4>
+    <div class="sbbsc-typography-example-body"> 
+
+        <sbb-table>
+          <caption>Sicherheit</caption>
+          <thead>
+            <tr>
+              <th scope="col">Sicherheit</th>
+              <td>&nbsp;</td>
+              <th scope="col">2013</th>
+              <th scope="col">2014</th>
+              <th scope="col">%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kundenpünktlichkeit</td>
+              <td>Anzahl</td>
+              <td>18</td>
+              <td>1</td>
+              <td>-94.4</td>
+            </tr>
+            <tr>
+              <td>Zusammenstösse mit Beteiligung von Zugfahrten</td>
+              <td>Anzahl</td>
+              <td>18</td>
+              <td>1</td>
+              <td>-94.4</td>
+            </tr>
+            <tr>
+              <td>Unfälle an Bahnübergängen</td>
+              <td>Anzahl</td>
+              <td>17</td>
+              <td>11</td>
+              <td>-35.3</td>
+            </tr>
+            <tr>
+              <td>Unfälle von Reisenden oder Dritten im Zugang zur Bahn</td>
+              <td>Anzahl</td>
+              <td>5</td>
+              <td>5</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+          <p *sbbTableCaption>Quelle: UIC-Statistik 2012.</p>
+        </sbb-table>
+
+
+    </div>
+    <!-- <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="null"></ngx-monaco-editor> -->
   </article>
 
 </section>

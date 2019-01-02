@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'sbb-typography',

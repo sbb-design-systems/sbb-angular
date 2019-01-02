@@ -6,13 +6,17 @@
 .sbbsc-typography-example {
   &-body{
     border: 1px solid $colorGreyLight;
-    background-color: #f8f9fa;
+    // background-color: #f8f9fa;
     overflow: hidden;
     padding: 0.5em;
+  }
+
+  ngx-monaco-editor {
+    min-height: 300px;
   }
 }
 
 .sbbsc-typography-section-title {
-  border-bottom: 1px solid $colorGreyLight;
+  // border-bottom: 1px solid $colorGreyLight;
   padding-bottom: 0.25em;
 }

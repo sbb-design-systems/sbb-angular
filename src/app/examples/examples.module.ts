@@ -37,6 +37,7 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { TableModule } from 'projects/sbb-angular/src/lib/table/table';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     OptionModule,
     AutocompleteModule,
     SelectModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -93,7 +95,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     ButtonModule,
     LoadingModule,
     OptionModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
   ]
 })
 export class ExamplesModule { }
