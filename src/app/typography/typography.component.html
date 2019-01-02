@@ -1,26 +1,49 @@
-<article class="sbbsc-typography">
+<section class="sbbsc-typography">
   <h2 class="text-headline1" style="margin-top: 0;">Typography</h2>
   <p class="text-lead">
     Documentation and examples for SBB typography, including global settings, headings, body text, lists, and more.
   </p>
-  <h3 class="text-headline2">Lists</h3>
-  <h4 class="text-headline3">Unordered lists</h4>
 
-  <div class="sbbsc-typography-example">
-    <ul>
-      <li>
-        Consectetur adipiscing elit. Mauris ac velit turpis. Integer vehicula sagittis libero, id pretium metus rutrum
-        sed.
-      </li>
-      <li>
-        Curabitur vitae vehicula sem. Praesent et convallis augue. Quisque tristique eleifend augue, vitae consectetur
-        ipsum porta nec. Nullam eget ex pretium, tincidunt felis ac, commodo arcu.
-      </li>
-      <li>
-        Sed non turpis sed metus lobortis blandit non id dui. Mauris ultrices dictum ornare. Cras sed condimentum nisl,
-        bibendum cursus felis.
-      </li>
-    </ul>
+  <h3 class="text-headline2 sbbsc-typography-section-title">Table of contents</h3>
+  <ul>
+    <li><a href="#" (click)="goToInpageLink($event, 0)">Lists</a></li>
+  </ul>
+
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Lists</h3>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Unordered lists</h4>
+    <div class="sbbsc-typography-example-body" [innerHTML]="codeUnorderedList">
+    </div>
     <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeUnorderedList"></ngx-monaco-editor>
-  </div>
-</article>
+  </article>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Nested unordered lists</h4>
+    <div class="sbbsc-typography-example-body" [innerHTML]="codeNestedUnorderedList">
+    </div>
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeNestedUnorderedList"></ngx-monaco-editor>
+  </article>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Ordered lists</h4>
+    <div class="sbbsc-typography-example-body" [innerHTML]="codeOrderedList">
+    </div>
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeOrderedList"></ngx-monaco-editor>
+  </article>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Nested ordered lists</h4>
+    <div class="sbbsc-typography-example-body" [innerHTML]="codeNestedOrderedList">
+    </div>
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeNestedOrderedList"></ngx-monaco-editor>
+  </article>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Mixed lists</h4>
+    <div class="sbbsc-typography-example-body" [innerHTML]="codeMixedList">
+    </div>
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeMixedList"></ngx-monaco-editor>
+  </article>
+
+</section>

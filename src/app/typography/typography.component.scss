@@ -1,0 +1,18 @@
+/***
+* sbb-angular mixins
+***/
+@import '../../../dist/sbb-angular/styles.scss';
+
+.sbbsc-typography-example {
+  &-body{
+    border: 1px solid $colorGreyLight;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    padding: 0.5em;
+  }
+}
+
+.sbbsc-typography-section-title {
+  border-bottom: 1px solid $colorGreyLight;
+  padding-bottom: 0.25em;
+}
