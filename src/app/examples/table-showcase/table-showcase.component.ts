@@ -75,6 +75,15 @@ export class TableShowcaseComponent {
 
   rows = this._rows.slice();
 
+  currentAlignment = 'none';
+
+  alignments = [
+    'none',
+    'left',
+    'center',
+    'right'
+  ];
+
   removeRow() {
     this.rows.splice(this.rows.length - 1, 1);
   }

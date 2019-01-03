@@ -79,6 +79,18 @@ $tableCaptionColor: $colorGrey;
   caption {
     @include tableCaption();
   }
+
+  &-align-center {
+    text-align: center;
+  }
+
+  &-align-left {
+    text-align: left;
+  }
+
+  &-align-right {
+    text-align: right;
+  }
 }
 
 @mixin tableCaption() {

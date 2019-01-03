@@ -1,4 +1,7 @@
-<sbb-table tableId="testID" tableClass="testClass testClass2" tableLabelledBy="caption">
+<sbb-table tableId="testID" 
+           tableClass="testClass testClass2" 
+           [tableAlignment]="currentAlignment"
+           tableLabelledBy="caption">
   <caption>UIC-Statistik</caption>
   <thead>
     <tr>
@@ -14,7 +17,7 @@
       <td>{{ row.text2 }}</td>
       <td>{{ row.text3 }}</td>
       <td>{{ row.text4 }}</td>
-      <td>{{ row.text5 }}</td>
+      <td class="sbb-table-align-right">{{ row.text5 }}</td>
     </tr>
   </tbody>
   <ng-container *sbbTableCaption>
@@ -44,3 +47,17 @@
   <sbb-label for="filter">Set a filter</sbb-label>
   <input type="text" placeholder="Filter table" id="filter" (keyup)="filterTable($event)">
 </sbb-field>
+
+<h4 class="sbbsc-block">Text Alignment *</h4>
+<sbb-field mode="default" class="sbbsc-block">
+  <sbb-radio-button name="radio-alignment" 
+                    *ngFor="let alignment of alignments" 
+                    [(ngModel)]="currentAlignment"
+                    [value]="alignment">{{ alignment }}</sbb-radio-button>
+</sbb-field>
+<em>
+  * The property <code>tableAlignment</code> set the text alignment for the overall table.
+   You can use it in a single <code>tr, th, td</code> tag the alignment classes: <code><strong>sbb-table-align-center | sbb-table-align-left | sbb-table-align-right'</strong></code>.
+   <br>
+   In this example it has been used <code><strong>sbb-table-align-right</strong></code> to fix the text alignment of the last column to right.
+</em>
