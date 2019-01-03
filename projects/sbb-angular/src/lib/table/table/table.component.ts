@@ -1,15 +1,18 @@
-import { Component, OnInit, HostBinding, TemplateRef, ContentChild } from '@angular/core';
+import { Component, TemplateRef, ContentChild, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { TableCaptionDirective } from './table-caption.directive';
 
 @Component({
   selector: 'sbb-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
-export class TableComponent implements OnInit {
-  @ContentChild(TableCaptionDirective, { read: TemplateRef }) tableCaption: TemplateRef<any>;
+export class TableComponent {
+  @Input() tableId: string;
+  @Input() tableClass = '';
+  @Input() tableLabelledBy: string;
 
-  ngOnInit() {
-
-  }
+  @ContentChild(TableCaptionDirective, { read: TemplateRef })
+  tableCaption: TemplateRef<any>;
 }

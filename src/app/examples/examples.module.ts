@@ -38,6 +38,7 @@ import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.co
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { TableModule } from 'projects/sbb-angular/src/lib/table/table';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { TableModule } from 'projects/sbb-angular/src/lib/table/table';
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
-    AccordionShowcaseComponent
+    AccordionShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,

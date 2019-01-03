@@ -1,0 +1,46 @@
+<sbb-table tableId="testID" tableClass="testClass testClass2" tableLabelledBy="caption">
+  <caption>UIC-Statistik</caption>
+  <thead>
+    <tr>
+      <th scope="col" *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of rows">
+      <th [attr.scope]="row.scope" [attr.aria-describedby]="row.describedby">
+        {{ row.text1 }}
+      </th>
+      <td>{{ row.text2 }}</td>
+      <td>{{ row.text3 }}</td>
+      <td>{{ row.text4 }}</td>
+      <td>{{ row.text5 }}</td>
+    </tr>
+  </tbody>
+  <ng-container *sbbTableCaption>
+    <ol>
+      <li id="legend_item_1" tabindex="-1">
+        Eisenbahnverkehrsunternehmen
+      </li>
+      <li id="legend_item_2" tabindex="-1">
+        Eisenbahninfrastrukturbetreiberin
+      </li>
+      <li id="legend_item_3" tabindex="-1">
+        Integriertes Bahnunternehmen/Holding
+      </li>
+    </ol>
+    <p id="caption">Quelle: UIC-Statistik 2012.</p>
+  </ng-container>
+</sbb-table>
+
+<div role="presentation" class="sbbsc-separator"></div>
+
+<h4 class="sbbsc-block">Properties</h4>
+<button sbbButton mode="ghost" (click)="removeRow()">Remove a row</button>
+&nbsp;
+<button sbbButton mode="ghost" (click)="resetRows()">Reset rows</button>
+
+<sbb-field mode="default" class="sbbsc-block">
+  <sbb-label for="filter">Set a filter</sbb-label>
+  <input type="text" placeholder="Filter table" id="filter" (keyup)="filterTable($event)">
+</sbb-field>

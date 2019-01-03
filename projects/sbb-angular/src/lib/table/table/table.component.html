@@ -1,7 +1,9 @@
-<div class="sbb-table-wrapper">
-  <table class="sbb-table">
-    <ng-content select="tr, caption, colgroup, col, thead, tbody, tfoot"></ng-content>
-  </table>
+<div class="sbb-table-container">
+  <div class="sbb-table-wrapper">
+    <table [ngClass]="'sbb-table ' + tableClass" [attr.id]="tableId" [attr.aria-labelledby]="tableLabelledBy">
+      <ng-content select="tr, caption, colgroup, col, thead, tbody, tfoot"></ng-content>
+    </table>
+  </div>
   <div *ngIf="tableCaption" class="sbb-table-caption">
     <ng-container *ngTemplateOutlet="tableCaption"></ng-container>
   </div>

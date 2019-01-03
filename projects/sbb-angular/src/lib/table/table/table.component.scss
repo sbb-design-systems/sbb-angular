@@ -1,0 +1,17 @@
+@import '../../../styles/main';
+
+.sbb-table-container {
+  .sbb-table-wrapper {
+    @include tableWrapper();
+  }
+  
+  .sbb-table {
+    @include table();
+  }
+  
+  .sbb-table-caption {
+    > * {
+      @include tableCaption();
+    }
+  }
+}
