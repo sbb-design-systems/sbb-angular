@@ -75,7 +75,7 @@ export class TableShowcaseComponent {
 
   rows = this._rows.slice();
 
-  currentAlignment = 'none';
+  currentAlignment = 'center';
 
   alignments = [
     'none',
