@@ -84,6 +84,8 @@ export class TableShowcaseComponent {
     'right'
   ];
 
+  isFirstColumnPinned = false;
+
   removeRow() {
     this.rows.splice(this.rows.length - 1, 1);
   }

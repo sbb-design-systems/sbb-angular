@@ -1,8 +1,10 @@
+<div style="margin: 1em 0"></div>
 <sbb-table tableId="testID" 
            tableClass="testClass testClass2" 
            [tableAlignment]="currentAlignment"
+           [pinMode]="isFirstColumnPinned ? 'on' : 'off'"
            tableLabelledBy="caption">
-  <caption>UIC-Statistik</caption>
+  <caption class="visuallyhidden">UIC-Statistik</caption>
   <thead>
     <tr>
       <th scope="col" *ngFor="let header of headers">{{ header }}</th>
@@ -46,6 +48,11 @@
 <sbb-field mode="default" class="sbbsc-block">
   <sbb-label for="filter">Set a filter</sbb-label>
   <input type="text" placeholder="Filter table" id="filter" (keyup)="filterTable($event)">
+</sbb-field>
+
+<h4 class="sbbsc-block">Pin Mode</h4>
+<sbb-field mode="default" class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="isFirstColumnPinned">Pin the first column</sbb-checkbox>
 </sbb-field>
 
 <h4 class="sbbsc-block">Text Alignment *</h4>

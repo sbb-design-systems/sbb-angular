@@ -3,6 +3,10 @@
 .sbb-table-container {
   .sbb-table-wrapper {
     @include tableWrapper();
+
+    &.sbb-table-is-scrolling {
+      @include tableScrollingPinModeEnabled();
+    }
   }
   
   .sbb-table {

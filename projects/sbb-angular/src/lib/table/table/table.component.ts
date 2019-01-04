@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ContentChild, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, TemplateRef, ContentChild, Input, ChangeDetectionStrategy, ViewEncapsulation, HostListener } from '@angular/core';
 import { TableCaptionDirective } from './table-caption.directive';
 
 @Component({
@@ -12,6 +12,7 @@ export class TableComponent {
   @Input() tableId: string;
   @Input() tableLabelledBy: string;
   @Input() tableAlignment: 'none' | 'left' | 'center' | 'right';
+  @Input() pinMode: 'off' | 'on' = 'off';
 
   private _tableClass: string;
 
@@ -31,4 +32,5 @@ export class TableComponent {
 
   @ContentChild(TableCaptionDirective, { read: TemplateRef })
   tableCaption: TemplateRef<any>;
+
 }

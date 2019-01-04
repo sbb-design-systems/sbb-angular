@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table/table.component';
 import { TableCaptionDirective } from './table/table-caption.directive';
+import { ScrollAreaDirective } from './table/table-scroll-area.directive';
 
 @NgModule({
   imports: [
@@ -9,11 +10,13 @@ import { TableCaptionDirective } from './table/table-caption.directive';
   ],
   declarations: [
     TableComponent,
-    TableCaptionDirective
+    TableCaptionDirective,
+    ScrollAreaDirective
   ],
   exports: [
     TableComponent,
-    TableCaptionDirective
+    TableCaptionDirective,
+    ScrollAreaDirective
   ]
 })
 export class TableModule { }
