@@ -5,15 +5,15 @@
   </p>
 
   <h3 class="bbsc-typography-section-title">Table of contents</h3>
-  <ul>
+  <ol>
     <li><a href="#" (click)="goToInpageLink($event, 0)">Lists</a></li>
     <li><a href="#" (click)="goToInpageLink($event, 1)">Tables</a></li>
     <li><a href="#" (click)="goToInpageLink($event, 2)">Section (Fieldset)</a></li>
-  </ul>
+  </ol>
 
   <div class="sbbsc-separator" role="presentation"></div>
 
-  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Lists</h3>
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">1. Lists</h3>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Unordered lists</h4>
@@ -50,7 +50,7 @@
     <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeMixedList"></ngx-monaco-editor>
   </article>
 
-  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Tables</h3>
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">2. Tables</h3>
 
   <p>
     The table is an actual component but you can use the <code>@include table()</code> mixin to style a custom table.
@@ -163,7 +163,7 @@
     <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeTable"></ngx-monaco-editor>
   </article>
 
-  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Section (Fieldset)</h3>
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">3. Section (Fieldset)</h3>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Example nested fieldsets</h4>
