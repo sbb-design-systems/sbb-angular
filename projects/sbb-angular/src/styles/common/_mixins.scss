@@ -427,3 +427,80 @@
 	margin-left: -$offset;
 	margin-right: -$offset; 
 }
+
+// Section (Fieldset)
+// ----------------------------------------------------------------------------------------------------
+
+@mixin fieldset {
+	margin: 0;
+	padding: pxToEm(36) pxToEm(24);
+	border: 1px solid $colorGreyLight;
+	min-width: 0;
+
+	@include mq($from: tabletPortrait) {
+		padding: pxToEm(48) pxToEm(24);
+	}
+
+	@include mq($from: desktop4k) {
+		font-size: pxToEm(1 * $scalingFactor4k);
+	}
+
+	@include mq($from: desktop5k) {
+		font-size: pxToEm(1 * $scalingFactor5k);
+	}
+
+	> legend {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		padding: 0;
+		margin: 0 0 24px;
+		font-family: $fontSbbLight;
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 1.2;
+		float: left;
+
+		@include mq($from: desktop) {
+			font-size: 32px;
+		}
+
+		@include mq($from: desktop4k) {
+			font-size: 48px;
+			margin: 0 0 36px;
+		}
+
+		@include mq($from: desktop5k) {
+			font-size: 64px;
+			margin: 0 0 48px;
+		}
+	}
+
+	fieldset {
+		border-top: none;
+		border-right: none;
+		border-left: none;
+		padding-left: 0;
+		padding-right: 0;
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+
+		> legend {
+			font-size: 20px;
+	
+			@include mq($from: desktop) {
+				font-size: 22px;
+			}
+	
+			@include mq($from: desktop4k) {
+				font-size: 32px;
+			}
+	
+			@include mq($from: desktop5k) {
+				font-size: 42px;
+			}
+		}
+	}
+}

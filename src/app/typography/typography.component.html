@@ -8,6 +8,7 @@
   <ul>
     <li><a href="#" (click)="goToInpageLink($event, 0)">Lists</a></li>
     <li><a href="#" (click)="goToInpageLink($event, 1)">Tables</a></li>
+    <li><a href="#" (click)="goToInpageLink($event, 2)">Section (Fieldset)</a></li>
   </ul>
 
   <div class="sbbsc-separator" role="presentation"></div>
@@ -51,12 +52,30 @@
 
   <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Tables</h3>
 
+  <p>
+    The table is an actual component but you can use the <code>@include table()</code> mixin to style a custom table.
+  </p>
+  <p>
+    Don't forget to follow a couple of simple rules for the accessibility and styling. In order to have proper styles
+    <strong>must</strong> be used the <code>thead</code>&nbsp;<code>tbody</code> tags.
+  </p>
+  <p>
+    In order to have proper accessibility you have to mark table headings with the proper <code>th</code> tag and the
+    <code>scope</code> attribute set
+    to <code>col</code> for column headers and <code>row</code> for row headers.
+  </p>
+  <p>
+    Don't forget in presence of a custom caption or legend ( <code>*sbbTableCaption</code> directive ) to put proper
+    <code>aria-describedby</code> and <code>aria-labelledby</code> association.
+    Note that the <code>sbb-table</code> component accept an attribute <code>tableLabelledBy="caption_ID"</code> to set
+    proper
+    <code>aria-labelledby</code> attribute on the table.
+  </p>
+
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Simple Table</h4>
     <div class="sbbsc-typography-example-body">
-
-      <sbb-table tableId="testID" tableClass="testClass testClass2" tableLabelledBy="caption">
-        <caption>UIC-Statistik</caption>
+      <sbb-table tableLabelledBy="caption">
         <thead>
           <tr>
             <th scope="col">Unternehmen und Land *1</th>
@@ -140,10 +159,51 @@
           <p id="caption">Quelle: UIC-Statistik 2012.</p>
         </ng-container>
       </sbb-table>
-
-
     </div>
-    <!-- <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="null"></ngx-monaco-editor> -->
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeTable"></ngx-monaco-editor>
+  </article>
+
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">Section (Fieldset)</h3>
+
+  <article class="sbbsc-typography-example">
+    <h4 class="text-headline3">Example nested fieldsets</h4>
+    <div class="sbbsc-typography-example-body">
+      <form>
+        <fieldset>
+          <legend>Reise Section 1</legend>
+          Some content in here...
+          <fieldset>
+            <legend>Reise Section 1.1</legend>
+            Some content in here...
+          </fieldset>
+          <fieldset>
+            <legend>Reise Section 1.2</legend>
+            Some content in here...
+          </fieldset>
+          <fieldset>
+            <legend>Reise Section 1.3</legend>
+            Some content in here...
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <legend>Reise Section 2</legend>
+          Some content in here...
+          <fieldset>
+            <legend>Reise Section 2.1</legend>
+            Some content in here...
+          </fieldset>
+          <fieldset>
+            <legend>Reise Section 2.2</legend>
+            Some content in here...
+          </fieldset>
+          <fieldset>
+            <legend>Reise Section 2.3</legend>
+            Some content in here...
+          </fieldset>
+        </fieldset>
+      </form>
+    </div>
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="codeFieldset"></ngx-monaco-editor>
   </article>
 
 </section>

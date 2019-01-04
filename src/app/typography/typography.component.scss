@@ -6,7 +6,6 @@
 .sbbsc-typography-example {
   &-body{
     border: 1px solid $colorGreyLight;
-    // background-color: #f8f9fa;
     overflow: hidden;
     padding: 0.5em;
   }
@@ -17,6 +16,12 @@
 }
 
 .sbbsc-typography-section-title {
-  // border-bottom: 1px solid $colorGreyLight;
   padding-bottom: 0.25em;
+}
+
+code {
+  display: inline-block;
+  padding: .05em 0.25em;
+  border-radius: .1em;
+  border: 1px solid #e5e5e5;
 }
