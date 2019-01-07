@@ -40,6 +40,7 @@ export class LightboxCloseDirective implements OnInit {
   lightboxResult: any;
 
   constructor(
+    /** Reference of lightbox. */
     @Optional() public lightboxRef: LightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
     private _lightbox: Lightbox) { }
@@ -79,8 +80,9 @@ export class LightboxCloseDirective implements OnInit {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxHeaderComponent implements OnInit {
+  /** Disables lightbox header when lightbox is closed.  */
   isCloseDisabled: boolean;
-
+  /** Class attribute on lightbox header. */
   @HostBinding('class.sbb-lightbox-header')
   lightboxHeaderClass = true;
 
@@ -121,10 +123,11 @@ export class LightboxHeaderComponent implements OnInit {
   selector: `[sbbLightboxTitle]`
 })
 export class LightboxTitleDirective implements OnInit {
+  /** Identifier of lightbox title. */
   @Input()
   @HostBinding('attr.id')
   id = `sbb-lightbox-title-${lightboxElementUid++}`;
-
+  /** Class attribute for lightbox title. */
   @HostBinding('class.sbb-lightbox-title')
   lightboxTitleClass = true;
 
@@ -164,6 +167,7 @@ export class LightboxTitleDirective implements OnInit {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxContentComponent {
+  /** Class attribute for lightbox content */
   @HostBinding('class.sbb-lightbox-content')
   lightboxContentClass = true;
 }
@@ -183,21 +187,22 @@ export class LightboxContentComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxFooterComponent implements OnInit {
+  /** Class attribute for the footer.  */
   @HostBinding('class.sbb-lightbox-footer')
   lightboxFooterClass = true;
-
+  /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'left';
-
+  /** Alignment to left position.  */
   @HostBinding('class.sbb-lightbox-footer-align-start')
   get alignmentStartClass() {
     return this.alignment === 'left';
   }
-
+  /** Alignment to center position.  */
   @HostBinding('class.sbb-lightbox-footer-align-center')
   get alignmentCenterClass() {
     return this.alignment === 'center';
   }
-
+  /** Alignment to right position.  */
   @HostBinding('class.sbb-lightbox-footer-align-end')
   get alignmentEndClass() {
     return this.alignment === 'right';
