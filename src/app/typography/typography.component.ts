@@ -1,4 +1,10 @@
-import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewChildren,
+  QueryList,
+  ElementRef
+} from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'sbb-typography',
@@ -9,14 +15,69 @@ export class TypographyComponent {
 
   @ViewChildren('pageLink') pageLinks: QueryList<ElementRef>;
 
-  editorOptions = {
+  private editorOptionsBase = {
     theme: 'vs-dark',
     codeLens: false,
     readOnly: true,
-    language: 'html',
     lineNumbers: 'off',
     minimap: { enabled: false }
   };
+
+  editorOptionsHtml = Object.assign({}, this.editorOptionsBase, { language: 'html' });
+
+  editorOptionsScss = Object.assign({}, this.editorOptionsBase, { language: 'scss' });
+
+  constructor(private _sanitizer: DomSanitizer) { }
+
+  codeGlobal = `
+$sizeFontBase: 15px;
+$sizeLineHeightBase: 1.7;
+
+/**
+ * Font Families
+ */
+$fontFamilyBase: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$fontSbbRoman: 'SBBWeb Roman', $fontFamilyBase;
+$fontSbbBold: 'SBBWeb Bold', $fontFamilyBase;
+$fontSbbUltralight: 'SBBWeb Ultralight', $fontFamilyBase;
+$fontSbbLight: 'SBBWeb Light', $fontFamilyBase;
+$fontSbbThin: 'SBBWeb Thin', $fontFamilyBase;
+
+$colorWhite: #FFFFFF;
+$colorBlack: #000000;
+
+$colorBg: $colorWhite;
+$colorText: $colorBlack;
+
+html {
+  background: $colorBg;
+  color: $colorText;
+  font-family: $fontSbbRoman;
+  font-size: $sizeFontBase / 16px * 100%;
+  line-height: $sizeLineHeightBase;
+
+  @include fontSmoothing;
+
+  b,
+  strong,
+  optgroup[label="*"] {
+    font-family: $fontSbbBold;
+    font-weight: normal;
+  }
+}
+
+a {
+  @include standardLink;
+}
+
+.visuallyhidden {
+  @include visuallyhidden;
+}
+
+.clearfix {
+  @include clearfix;
+}
+`;
 
   codeUnorderedList = `
 <ul>
@@ -245,7 +306,7 @@ export class TypographyComponent {
   </ng-container>
 </sbb-table>`;
 
-codeFieldset = `
+  codeFieldset = `
 <form>
   <fieldset>
     <legend>Reise Section 1</legend>
@@ -281,6 +342,40 @@ codeFieldset = `
   </fieldset>
 </form>`;
 
+  codeHeadings = `
+<h1>h1. SBB heading</h1>
+<h2>h2. SBB heading</h2>
+<h3>h3. SBB heading</h3>
+<h4>h4. SBB heading</h4>
+
+<!--// scss:
+
+h1,
+.text-headline1 {
+  @include headline1;
+}
+
+h2,
+.text-headline2 {
+  @include headline2;
+}
+
+h3,
+.text-headline3 {
+  @include headline3;
+}
+
+h4,
+.text-headline4 {
+  @include headline4;
+}
+
+-->
+`;
+
+  getRawHTML(htmlString: string) {
+    return this._sanitizer.bypassSecurityTrustHtml(htmlString);
+  }
 
   goToInpageLink(evt: any, pageLinkIndex: number) {
     evt.preventDefault();
