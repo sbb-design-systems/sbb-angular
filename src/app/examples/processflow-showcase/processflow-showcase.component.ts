@@ -24,7 +24,7 @@ export class ProcessflowShowcaseComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.processflow.stepChange.subscribe((s: ProcessflowStep) => {
       this.logs.push('Step changed to ' + s.title);
-      this.logText = this.logs.reverse().join('\n');
+      this.logText = this.logs.join('\n');
     });
   }
 
