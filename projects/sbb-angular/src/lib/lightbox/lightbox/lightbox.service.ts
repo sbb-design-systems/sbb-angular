@@ -142,6 +142,7 @@ export class Lightbox {
   /**
    * Finds an open lightbox by its id.
    * @param id ID to use when looking up the lightbox.
+   * @returns Lightbox reference associated to the input id.
    */
   getLightboxById(id: string): LightboxRef<any> | undefined {
     return this.openLightboxes.find(lightbox => lightbox.id === id);
