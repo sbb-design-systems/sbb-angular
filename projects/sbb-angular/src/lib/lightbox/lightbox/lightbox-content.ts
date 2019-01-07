@@ -7,7 +7,8 @@ import {
   HostBinding,
   HostListener,
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { Lightbox } from './lightbox.service';
@@ -67,7 +68,10 @@ export class LightboxCloseDirective implements OnInit {
   selector: 'sbb-lightbox-header, [sbbLightboxHeader]',
   template: `
     <ng-content></ng-content>
-    <button sbbLightboxClose class="sbb-lightbox-close-btn">
+    <button sbbLightboxClose *ngIf="!isCloseDisabled" class="sbb-lightbox-close-btn">
+      <sbb-icon-close></sbb-icon-close>
+    </button>
+    <button *ngIf="isCloseDisabled" (click)="emitManualCloseAction()" class="sbb-lightbox-close-btn">
       <sbb-icon-close></sbb-icon-close>
     </button>
   `,
@@ -75,13 +79,16 @@ export class LightboxCloseDirective implements OnInit {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxHeaderComponent implements OnInit {
+  isCloseDisabled: boolean;
+
   @HostBinding('class.sbb-lightbox-header')
   lightboxHeaderClass = true;
 
   constructor(
     @Optional() private _lightboxRef: LightboxRef<any>,
     private _elementRef: ElementRef<HTMLElement>,
-    private _lightbox: Lightbox
+    private _lightbox: Lightbox,
+    private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -95,8 +102,16 @@ export class LightboxHeaderComponent implements OnInit {
 
         if (container) {
           container.hasHeader = true;
+          this.isCloseDisabled = container.config.disableClose;
+          this._changeDetectorRef.markForCheck();
         }
       });
+    }
+  }
+
+  emitManualCloseAction() {
+    if (this._lightboxRef) {
+      this._lightboxRef.manualCloseAction.next(null);
     }
   }
 }

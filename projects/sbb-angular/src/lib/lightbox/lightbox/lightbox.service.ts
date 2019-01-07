@@ -62,7 +62,6 @@ export class Lightbox {
   private _openLightboxesAtThisLevel: LightboxRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
   private readonly _afterOpenAtThisLevel = new Subject<LightboxRef<any>>();
-  private _ariaHiddenElements = new Map<Element, string | null>();
 
   /** Keeps track of the currently-open lightboxes. */
   get openLightboxes(): LightboxRef<any>[] {
@@ -264,18 +263,8 @@ export class Lightbox {
     if (index > -1) {
       this.openLightboxes.splice(index, 1);
 
-      // If all the lightboxes were closed, remove/restore the `aria-hidden`
-      // to a the siblings and emit to the `afterAllClosed` stream.
+      // emit to the `afterAllClosed` stream.
       if (!this.openLightboxes.length) {
-        this._ariaHiddenElements.forEach((previousValue, element) => {
-          if (previousValue) {
-            element.setAttribute('aria-hidden', previousValue);
-          } else {
-            element.removeAttribute('aria-hidden');
-          }
-        });
-
-        this._ariaHiddenElements.clear();
         this._afterAllClosed.next();
       }
     }
