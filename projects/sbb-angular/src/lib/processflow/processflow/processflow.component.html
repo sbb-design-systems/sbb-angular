@@ -1,16 +1,13 @@
-<ol *ngFor="let step of steps; let i = index">
-  <li class="sbb-processflow-step">
-    <button  
-            [class.sbb-processflow-step-active]="step.active"
-            [class.sbb-processflow-step-disabled]="step.disabled" 
-            (click)="changeStep($event, step)">
+<ol>
+  <li *ngFor="let step of steps; let i = index" class="sbb-processflow-step">
+    <button [class.sbb-active]="step.active" [class.sbb-disabled]="step.disabled"
+      [disabled]="step.disabled" (click)="stepClick($event, i)">
       {{ step.title }}
     </button>
+    <ng-container *ngIf="i < steps.length - 1">
+      <div class="sbb-processflow-step-arrow">
+        <sbb-icon-arrow-left></sbb-icon-arrow-left>
+      </div>
+    </ng-container>
   </li>
-
-  <ng-container *ngIf="i < steps.length - 1">
-    <div class="sbb-processflow-step-arrow">
-      <sbb-icon-arrow-left></sbb-icon-arrow-left>
-    </div>
-  </ng-container>
 </ol>

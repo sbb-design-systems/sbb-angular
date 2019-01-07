@@ -1,0 +1,31 @@
+<span class="hljs-keyword">import</span> { Component, ViewChild, AfterViewInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { ProcessflowStep, ProcessflowComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-processflow-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./processflow-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./processflow-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ProcessflowShowcaseComponent <span class="hljs-keyword">implements</span> AfterViewInit {
+
+  logs: <span class="hljs-built_in">string</span>[] = [];
+  logText: <span class="hljs-built_in">string</span>;
+
+  steps: ProcessflowStep[] = [
+    { title: <span class="hljs-string">'1. Verbindung'</span>, active: <span class="hljs-literal">true</span>, disabled: <span class="hljs-literal">false</span> },
+    { title: <span class="hljs-string">'2. Reisedaten'</span>, active: <span class="hljs-literal">false</span>, disabled: <span class="hljs-literal">true</span> },
+    { title: <span class="hljs-string">'3. Zahlung'</span>, active: <span class="hljs-literal">false</span>, disabled: <span class="hljs-literal">true</span> },
+    { title: <span class="hljs-string">'4. Bestätigung'</span>, active: <span class="hljs-literal">false</span>, disabled: <span class="hljs-literal">true</span> }
+
+  ];
+
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'processflow'</span>) processflow: ProcessflowComponent;
+
+  ngAfterViewInit(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.processflow.stepChange.subscribe(<span class="hljs-function">(<span class="hljs-params">s: ProcessflowStep</span>) =&gt;</span> {
+      <span class="hljs-keyword">this</span>.logs.push(<span class="hljs-string">'Step changed to '</span> + s.title);
+      <span class="hljs-keyword">this</span>.logText = <span class="hljs-keyword">this</span>.logs.reverse().join(<span class="hljs-string">'\n'</span>);
+    });
+  }
+
+}

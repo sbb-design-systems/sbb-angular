@@ -1,1 +1,6 @@
-<sbb-processflow [steps]="steps"></sbb-processflow>
+<sbb-processflow #processflow [steps]="steps"></sbb-processflow>
+<button (click)="processflow.nextStep()">Next step</button>
+
+<div>
+    <textarea style="width: 100%" readonly [(ngModel)]="logText"></textarea>
+</div>
