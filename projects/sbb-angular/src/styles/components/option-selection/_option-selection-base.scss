@@ -1,5 +1,5 @@
 @mixin optionSelection {
-  &.sbb-option-selection {
+  .sbb-option-selection {
     border: toPx($optionSelectionBorderSize) solid $colorBlack5;
     background-color: $colorBlack5;
     font-size: toPx($sizeFontDefault);
@@ -51,28 +51,26 @@
     }
 
     .sbb-option-selection-header {
-      &-subtitle {
-        color: $colorGrey;
-        padding-left: toPx($optionSelectionHeaderPaddingLeft);
-        font-size: toPx($optionSelectionSubtitleFontSize);
+      @include radioButtonBase;
+    }
 
-        @include mq($from: desktop4k) {
-          font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor4k);
-          padding-left: toPx(
-            $optionSelectionHeaderPaddingLeft * $scalingFactor4k
-          );
-        }
-        @include mq($from: desktop5k) {
-          font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor5k);
-          padding-left: toPx(
-            $optionSelectionHeaderPaddingLeft * $scalingFactor5k
-          );
-        }
+    .sbb-option-selection-multiple-header {
+      @include checkboxBase;
+    }
+
+    .sbb-option-selection-header-subtitle {
+      color: $colorGrey;
+      font-size: toPx($optionSelectionSubtitleFontSize);
+
+      @include mq($from: desktop4k) {
+        font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor5k);
       }
     }
   }
 }
-
 @mixin optionSelectionDisabled {
   color: $colorGrey;
   background-color: $colorWhite;

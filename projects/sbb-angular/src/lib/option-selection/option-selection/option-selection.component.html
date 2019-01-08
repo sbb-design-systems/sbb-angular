@@ -1,7 +1,34 @@
-<div class="sbb-option-selection-header">
-  <sbb-radio-button #radio [inputId]="inputId" [name]="name" [value]="value">{{ label }}</sbb-radio-button>
-  <div *ngIf="subtitle" aria-level="3" class="sbb-option-selection-header-subtitle">{{ subtitle }}</div>
-</div>
-<div class="sbb-option-selection-image">
-  <ng-content select="[icon]"></ng-content>
-</div>
+<label class="sbb-option-selection" 
+      [class.sbb-option-selection-required]="required"
+      [class.sbb-option-selection-disabled]="disabled"
+      [class.sbb-option-selection-checked]="checked"
+      [class.sbb-option-selection-has-subtitle]="hasSubtitle">
+  <div class="sbb-option-selection-header">
+    <input type="radio" 
+          [id]="inputId" 
+          [name]="name" 
+          [value]="value" 
+          [required]="required" 
+          [checked]="checked"
+          [attr.aria-checked]="checked" 
+          [attr.aria-label]="ariaLabel" 
+          [attr.aria-labelledby]="ariaLabelledby"
+          [attr.aria-describedby]="ariaDescribedby" 
+          [disabled]="disabled" 
+          (click)="click($event)" />
+
+    <div class="sbb-radio-circle-container">
+      <div class="sbb-radio-circle-checked"></div>
+    </div>
+
+    <div class="sbb-radio-label-content">
+      <!-- Add an invisible span so JAWS can read the label -->
+      <span style="display:none">&nbsp;</span>
+      {{ label }}
+      <div *ngIf="subtitle" aria-level="3" class="sbb-option-selection-header-subtitle">{{ subtitle }}</div>
+    </div>
+  </div>
+  <div class="sbb-option-selection-image">
+    <ng-content select="[icon]"></ng-content>
+  </div>
+</label>

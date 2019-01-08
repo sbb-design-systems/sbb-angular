@@ -4,13 +4,15 @@ import { RadioButtonModule } from '../radio-button/radio-button.module';
 import { OptionSelectionComponent } from './option-selection/option-selection.component';
 import { OptionSelectionMultipleComponent } from './option-selection-multiple/option-selection-multiple.component';
 import { CheckboxModule } from '../checkbox/checkbox.module';
+import { IconCommonModule } from '../svg-icons-components/icon-common.module';
 
 @NgModule({
 
   imports: [
     CommonModule,
     RadioButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    IconCommonModule
   ],
   declarations: [
     OptionSelectionComponent,
