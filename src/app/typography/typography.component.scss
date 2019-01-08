@@ -4,6 +4,8 @@
 @import '../../../dist/sbb-angular/styles.scss';
 
 .sbbsc-typography-example {
+  position: relative;
+
   &-body{
     border: 1px solid $colorGreyLight;
     overflow: hidden;
@@ -12,6 +14,7 @@
 
   ngx-monaco-editor {
     min-height: 300px;
+    max-width: 100%;
   }
 }
 
