@@ -162,3 +162,7 @@ fieldset {
 input.ssb-time-input {
   @include timeInputBase;
 }
+
+table.sbb-table {
+  @include table();
+}
