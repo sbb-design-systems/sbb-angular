@@ -26,7 +26,7 @@
     <li>Default link color is <code>#000000</code>, hover/focus color is <code>#C60018</code></li>
   </ul>
   <article class="sbbsc-typography-example">
-    <ngx-monaco-editor [options]="editorOptionsScss" [(ngModel)]="codeGlobal"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsScss" [(ngModel)]="code.globalSettings"></ngx-monaco-editor>
   </article>
 
   <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">2. Headings</h3>
@@ -35,46 +35,46 @@
     <code>.text-headline1</code>&nbsp;<code>.text-headline2</code>&nbsp;<code>.text-headline3</code>&nbsp;<code>.text-headline4</code>.</p>
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Headings</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="codeHeadings">
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.headings">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeHeadings"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.headings"></ngx-monaco-editor>
   </article>
 
   <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">3. Lists</h3>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Unordered lists</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="codeUnorderedList">
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.unorderedList">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeUnorderedList"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.unorderedList"></ngx-monaco-editor>
   </article>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Nested unordered lists</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="codeNestedUnorderedList">
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.nestedUnorderedList">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeNestedUnorderedList"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.nestedUnorderedList"></ngx-monaco-editor>
   </article>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Ordered lists</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="codeOrderedList">
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.orderedList">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeOrderedList"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.orderedList"></ngx-monaco-editor>
   </article>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Nested ordered lists</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="codeNestedOrderedList">
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.nestedOrderedList">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeNestedOrderedList"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.nestedOrderedList"></ngx-monaco-editor>
   </article>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Mixed lists</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="codeMixedList">
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.mixedList">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeMixedList"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.mixedList"></ngx-monaco-editor>
   </article>
 
   <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">4. Tables</h3>
@@ -187,16 +187,16 @@
         </ng-container>
       </sbb-table>
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeTable"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.table"></ngx-monaco-editor>
   </article>
 
   <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">5. Section (Fieldset)</h3>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Example nested fieldsets</h4>
-    <div class="sbbsc-typography-example-body" [innerHTML]="getRawHTML(codeFieldset)">
+    <div class="sbbsc-typography-example-body" [innerHTML]="getRawHTML(code.fieldset)">
     </div>
-    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="codeFieldset"></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.fieldset"></ngx-monaco-editor>
   </article>
 
 </section>
