@@ -21,7 +21,11 @@ export class TableComponent {
     this._tableClass = classVal;
   }
   get tableClass() {
-    let classList = this._tableClass;
+    let classList = 'sbb-table ';
+
+    if (this._tableClass) {
+      classList += this._tableClass;
+    }
 
     if (this.tableAlignment && this.tableAlignment !== 'none') {
       classList += ' sbb-table-align-' + this.tableAlignment;
