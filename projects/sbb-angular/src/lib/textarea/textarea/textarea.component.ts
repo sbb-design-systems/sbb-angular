@@ -1,4 +1,4 @@
-import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding, ChangeDetectorRef } from '@angular/core';
+import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { first } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { Subject } from 'rxjs';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaComponent implements ControlValueAccessor {
+export class TextareaComponent implements ControlValueAccessor, OnInit, OnDestroy {
   /**
    * Text content in a textarea
    */
@@ -30,6 +30,9 @@ export class TextareaComponent implements ControlValueAccessor {
    * Class property that represents an observer on the number of digits in a textarea
    */
   counterObserver$: Subject<number> = new Subject<number>();
+
+  counter: number;
+
   /**
    * Class property that disables the textarea status
    */
@@ -89,6 +92,19 @@ export class TextareaComponent implements ControlValueAccessor {
   }
 
   constructor(private changeDetector:ChangeDetectorRef, private ngZone: NgZone) { }
+
+  ngOnInit() {
+    this.counterObserver$.subscribe(
+      (val) => {
+        this.counter = val;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.counterObserver$.unsubscribe();
+  }
+
   /**
    * Trigger the resize of the textarea to fit the content
    */
