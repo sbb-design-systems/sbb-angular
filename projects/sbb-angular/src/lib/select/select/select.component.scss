@@ -16,8 +16,3 @@
 sbb-select.sbb-select {
   @include selectBase;
 }
-
-select.sbb-select {
-  @include nativeSelectBase;
-}
-

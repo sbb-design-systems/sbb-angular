@@ -2,10 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectComponent } from 'sbb-angular';
 
-export interface Food {
-  value: string;
-  viewValue: string;
-  disabled: boolean;
+export class Food {
+  constructor(public value: string, public viewValue: string, public disabled: boolean = false) { }
 }
 
 
@@ -21,9 +19,9 @@ export class SelectShowcaseComponent {
   @ViewChild('multiWithOptionGroup') multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
-    { value: 'beefsteak-0', viewValue: 'Beefsteak', disabled: false },
-    { value: 'pizza-1', viewValue: 'Pizza', disabled: false },
-    { value: 'nudeln-2', viewValue: 'Nudeln', disabled: false }
+    new Food('beefsteak-0', 'Beefsteak'),
+    new Food('pizza-1', 'Pizza'),
+    new Food('nudeln-2', 'Nudeln')
   ];
 
   foodFromTheWorld = [{
