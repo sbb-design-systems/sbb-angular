@@ -52,11 +52,6 @@ body {
   outline: 0 !important;
 }
 
-// Polyfill for older browser
-[hidden] {
-  display: none;
-}
-
 input,
 button,
 select,
