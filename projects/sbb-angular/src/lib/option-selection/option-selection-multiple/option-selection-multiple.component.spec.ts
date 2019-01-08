@@ -60,7 +60,7 @@ describe('OptionSelectionMultipleComponent', () => {
   });
 });
 
-fdescribe('OptionSelectionComponent using mock component', () => {
+describe('OptionSelectionComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionMultipleTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionMultipleTestComponent>;
 

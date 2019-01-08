@@ -8,6 +8,8 @@ import { By } from '@angular/platform-browser';
 import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { RadioButtonModule } from '../../radio-button/radio-button';
+import { dispatchMouseEvent } from '../../_common/testing/dispatch-events';
+import { createFakeEvent } from '../../_common/testing/event-objects';
 
 @Component({
   selector: 'sbb-model-option-selection-test',
@@ -97,13 +99,13 @@ describe('OptionSelectionComponent using mock component', () => {
 
     await modelComponentFixture.whenRenderingDone();
 
-    opt1.click();
+    opt1.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
     let checkedComponents = modelComponent.optionSelections.filter( o => o.checked === true);
     expect(checkedComponents.length).toBe(1);
 
-    opt2.click();
+    opt2.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
     checkedComponents = modelComponent.optionSelections.filter( o => o.checked === true);
@@ -121,7 +123,7 @@ describe('OptionSelectionComponent using mock component', () => {
 
     expect(opt1.checked).toBe(true);
 
-    opt2.click();
+    opt2.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();
