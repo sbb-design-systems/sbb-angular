@@ -61,20 +61,34 @@ let uniqueId = 0;
 
 export class ExpansionPanelComponent extends CdkAccordionItem implements AfterContentInit, OnChanges,
   OnDestroy {
-
+  /**
+   * Class property to disable a specific panel.
+   */
   @Input() disabled = false;
-
+  /**
+   * Class property to expand a specific panel.
+   */
   @Input() expanded = false;
-
+  /**
+   * An event generated when a panel is opened.
+   */
   @Output() opened: EventEmitter<void>;
-
+  /**
+   * An event generated when a panel is closed.
+   */
   @Output() closed: EventEmitter<void>;
-
+  /**
+   * An event generated when change the status of the expansion panel.
+   */
   @Output() expandedChange: EventEmitter<boolean>;
-
+  /**
+   * Class property that refers to the attribute class of the panel.
+   */
   @HostBinding('class.sbb-expansion-panel')
   sbbExpansionPanelClass = true;
-
+  /**
+   * Class property that refers to the status of expansion of the panel.
+   */
   @HostBinding('class.sbb-expanded')
   get expandedPanelClass() { return this.expanded; }
 
