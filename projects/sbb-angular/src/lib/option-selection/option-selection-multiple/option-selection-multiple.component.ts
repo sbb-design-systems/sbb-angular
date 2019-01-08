@@ -5,8 +5,6 @@ import {
   Input,
   ViewChild,
   ChangeDetectorRef,
-  OnDestroy,
-  OnInit,
   HostBinding,
   HostListener,
   ContentChild,
@@ -14,7 +12,6 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { OptionSelectionImageDirective } from '../option-selection-image.directive';
 import { CheckboxComponent } from '../../checkbox/checkbox';
 
 let counter = 0;
@@ -45,13 +42,6 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   */
   @Input() name: string;
 
-  /**
-     * Template that will contain icons.
-     * Use the *sbbOptionSelectionImage structural directive to provide the desired icon/image.
-     */
-  @Input()
-  @ContentChild(OptionSelectionImageDirective, { read: TemplateRef })
-  image: TemplateRef<any>;
   /**
    * Label of a option selection multiple.
    */

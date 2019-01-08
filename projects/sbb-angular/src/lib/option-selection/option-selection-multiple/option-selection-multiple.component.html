@@ -1,7 +1,7 @@
 <div class="sbb-option-selection-header">
   <sbb-checkbox #checkbox [inputId]="inputId" [value]="value">{{ label }}</sbb-checkbox>
-  <div *ngIf="subtitle" aria-level="3"  class="sbb-option-selection-header-subtitle">{{ subtitle }}</div>
+  <div *ngIf="subtitle" aria-level="3" class="sbb-option-selection-header-subtitle">{{ subtitle }}</div>
 </div>
 <div class="sbb-option-selection-image">
-  <ng-container *ngTemplateOutlet="image"></ng-container>
+  <ng-content select="[icon]"></ng-content>
 </div>

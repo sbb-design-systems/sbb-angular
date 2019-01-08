@@ -1,71 +1,73 @@
 @mixin optionSelection {
-  border: toPx($optionSelectionBorderSize) solid $colorBlack5;
-  background-color: $colorBlack5;
-  font-size: toPx($sizeFontDefault);
-  width: 100%;
-  height: toPx($optionSelectionHeight);
-  padding: toPx($optionSelectionPadding);
-  border-radius: toPx($optionSelectionBorderRadius);
-  display: flex;
-  transition: border-color 0.15s ease-in-out;
-  user-select: none;
+  &.sbb-option-selection {
+    border: toPx($optionSelectionBorderSize) solid $colorBlack5;
+    background-color: $colorBlack5;
+    font-size: toPx($sizeFontDefault);
+    width: 100%;
+    height: toPx($optionSelectionHeight);
+    padding: toPx($optionSelectionPadding);
+    border-radius: toPx($optionSelectionBorderRadius);
+    display: flex;
+    transition: border-color 0.15s ease-in-out;
+    user-select: none;
 
-  &-checked {
-    background-color: $colorWhite;
-    border: solid toPx($optionSelectionBorderSize) $colorBlack;
-    color: $colorBlack;
-  }
+    &-checked {
+      background-color: $colorWhite;
+      border: solid toPx($optionSelectionBorderSize) $colorBlack;
+      color: $colorBlack;
+    }
 
-  @include mq($from: desktop4k) {
-    font-size: toPx($sizeFontDefault * $scalingFactor4k);
-    height: toPx($optionSelectionHeight * $scalingFactor4k);
-    border: toPx($optionSelectionBorderSize * $scalingFactor4k) solid
-      $colorBlack5;
-    padding: toPx($optionSelectionPadding * $scalingFactor4k);
-    border-radius: toPx($optionSelectionBorderRadius * $scalingFactor4k);
-  }
-
-  @include mq($from: desktop5k) {
-    font-size: toPx($sizeFontDefault * $scalingFactor5k);
-    height: toPx($optionSelectionHeight * $scalingFactor5k);
-    border: toPx($optionSelectionBorderSize * $scalingFactor5k) solid
-      $colorBlack5;
-    padding: toPx($optionSelectionPadding * $scalingFactor5k);
-    border-radius: toPx($optionSelectionBorderRadius * $scalingFactor5k);
-  }
-
-  &-has-subtitle {
-    height: toPx($optionSelectionHeightWithSubtitle);
     @include mq($from: desktop4k) {
-      height: toPx($optionSelectionHeightWithSubtitle * $scalingFactor4k);
+      font-size: toPx($sizeFontDefault * $scalingFactor4k);
+      height: toPx($optionSelectionHeight * $scalingFactor4k);
+      border: toPx($optionSelectionBorderSize * $scalingFactor4k) solid
+        $colorBlack5;
+      padding: toPx($optionSelectionPadding * $scalingFactor4k);
+      border-radius: toPx($optionSelectionBorderRadius * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      height: toPx($optionSelectionHeightWithSubtitle * $scalingFactor5k);
+      font-size: toPx($sizeFontDefault * $scalingFactor5k);
+      height: toPx($optionSelectionHeight * $scalingFactor5k);
+      border: toPx($optionSelectionBorderSize * $scalingFactor5k) solid
+        $colorBlack5;
+      padding: toPx($optionSelectionPadding * $scalingFactor5k);
+      border-radius: toPx($optionSelectionBorderRadius * $scalingFactor5k);
     }
-  }
 
-  &-disabled {
-    @include optionSelectionDisabled;
-  }
-
-  .sbb-option-selection-header {
-    &-subtitle {
-      color: $colorGrey;
-      padding-left: toPx($optionSelectionHeaderPaddingLeft);
-      font-size: toPx($optionSelectionSubtitleFontSize);
-
+    &-has-subtitle {
+      height: toPx($optionSelectionHeightWithSubtitle);
       @include mq($from: desktop4k) {
-        font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor4k);
-        padding-left: toPx(
-          $optionSelectionHeaderPaddingLeft * $scalingFactor4k
-        );
+        height: toPx($optionSelectionHeightWithSubtitle * $scalingFactor4k);
       }
+
       @include mq($from: desktop5k) {
-        font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor5k);
-        padding-left: toPx(
-          $optionSelectionHeaderPaddingLeft * $scalingFactor5k
-        );
+        height: toPx($optionSelectionHeightWithSubtitle * $scalingFactor5k);
+      }
+    }
+
+    &-disabled {
+      @include optionSelectionDisabled;
+    }
+
+    .sbb-option-selection-header {
+      &-subtitle {
+        color: $colorGrey;
+        padding-left: toPx($optionSelectionHeaderPaddingLeft);
+        font-size: toPx($optionSelectionSubtitleFontSize);
+
+        @include mq($from: desktop4k) {
+          font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor4k);
+          padding-left: toPx(
+            $optionSelectionHeaderPaddingLeft * $scalingFactor4k
+          );
+        }
+        @include mq($from: desktop5k) {
+          font-size: toPx($optionSelectionSubtitleFontSize * $scalingFactor5k);
+          padding-left: toPx(
+            $optionSelectionHeaderPaddingLeft * $scalingFactor5k
+          );
+        }
       }
     }
   }
@@ -84,7 +86,6 @@
       $colorBlack5;
   }
 }
-
 .sbb-option-selection-image {
   width: toPx($optionSelectionImageWidth);
   height: toPx($optionSelectionImageHeight);
