@@ -100,8 +100,7 @@ export class OptionSelectionComponent extends RadioButton implements ControlValu
   @Input()
   @HostBinding('class.sbb-option-selection-disabled')
   set disabled(value: any) {
-    this.embeddedRadio.disabled = coerceBooleanProperty(value);
-    this.embeddedRadio.changeDetector.markForCheck();
+    this.embeddedRadio.setDisabledState(coerceBooleanProperty(value));
   }
   get disabled(): any {
     return this.embeddedRadio.disabled;

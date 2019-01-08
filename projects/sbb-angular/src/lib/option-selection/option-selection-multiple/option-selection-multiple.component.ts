@@ -62,7 +62,7 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
    */
   @Input()
   subtitle?: string;
-   /** @docs-private */
+  /** @docs-private */
   @ViewChild('checkbox') embeddedCheckbox: CheckboxComponent;
   /**
      * Option selection multiple identifier.
@@ -108,8 +108,8 @@ export class OptionSelectionMultipleComponent implements ControlValueAccessor {
   @Input()
   @HostBinding('class.sbb-option-selection-disabled')
   set disabled(value: any) {
-    this.embeddedCheckbox.disabled = coerceBooleanProperty(value);
-    this.embeddedCheckbox.changeDetector.markForCheck();
+    this.embeddedCheckbox.setDisabledState(coerceBooleanProperty(value));
+
   }
   get disabled(): any {
     return this.embeddedCheckbox.disabled;

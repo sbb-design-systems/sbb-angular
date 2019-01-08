@@ -67,7 +67,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   onTouched = () => { };
 
-  constructor(public changeDetector: ChangeDetectorRef) { }
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
   /**
    * Sets the value in input in the checkbox field
