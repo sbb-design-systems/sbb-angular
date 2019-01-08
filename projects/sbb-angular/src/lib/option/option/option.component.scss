@@ -6,8 +6,9 @@ sbb-option {
   @include multipleOption;
 }
 
-sbb-option[disabled] {
+sbb-option[disabled], .sbb-option-disabled {
   cursor: default;
+  opacity: .5;
 }
 
 sbb-option[aria-disabled="true"] {

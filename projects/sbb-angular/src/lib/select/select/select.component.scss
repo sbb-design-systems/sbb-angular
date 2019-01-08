@@ -3,8 +3,9 @@
 .sbb-select-panel {
   @include autocompleteBase();
   @include autocompleteDirectionalRules($selectMode: true);
+  // overflow-y: auto;
   .sbb-select-content {
-    @include selectPanelBase;
+    @include selectContentBase;
   }
 
   &.sbb-select-panel-above {
@@ -12,6 +13,6 @@
   }
 }
 
-.sbb-select {
+sbb-select.sbb-select {
   @include selectBase;
 }

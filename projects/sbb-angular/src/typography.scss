@@ -166,3 +166,7 @@ input.ssb-time-input {
 table.sbb-table {
   @include table();
 }
+
+select {
+  @include nativeSelectBase;
+}
