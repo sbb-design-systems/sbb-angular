@@ -33,17 +33,17 @@
   (attach)="onAttached()" 
   (detach)="close()"
   >
-
-  <div
-    #panel 
-    class="sbb-select-panel" 
-    [ngClass]="panelClass" 
-    [style.transformOrigin]="transformOrigin"
-    [style.font-size.px]="triggerFontSize" 
-    (keydown)="handleKeydown($event)">
-
-    <perfect-scrollbar class="sbb-select-content">
-      <ng-content></ng-content>
-    </perfect-scrollbar> 
-  </div>
+  
+    <div
+      #panel 
+      class="sbb-select-panel" 
+      [ngClass]="panelClass" 
+      [style.transformOrigin]="transformOrigin"
+      [style.font-size.px]="triggerFontSize"
+      (keydown)="handleKeydown($event)">
+      
+      <perfect-scrollbar #scrollbar class="sbb-select-content"> 
+        <ng-content></ng-content>
+      </perfect-scrollbar>
+    </div>
 </ng-template>
