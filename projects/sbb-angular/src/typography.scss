@@ -168,3 +168,7 @@ fieldset {
 input.ssb-time-input {
   @include timeInputBase;
 }
+
+select {
+  @include nativeSelectBase;
+}
