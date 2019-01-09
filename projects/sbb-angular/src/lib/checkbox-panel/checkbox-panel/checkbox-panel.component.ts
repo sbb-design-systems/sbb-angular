@@ -24,25 +24,25 @@ let counter = 0;
 export class CheckboxPanelComponent extends CheckboxComponent {
 
   /**
-   * Label of a option selection multiple.
+   * Label of a multiple checkbox panel.
    */
   @Input()
   label: string;
   /**
-   * Subtitle of a option selection multiple.
+   * Subtitle of a multiple checkbox panel.
    */
   @Input()
   subtitle?: string;
 
   /**
-     * Option selection multiple identifier.
+     * Multiple checkbox panel identifier.
      */
   @Input()
   @HostBinding('id')
   inputId = `sbb-checkbox-panel-${counter++}`;
 
   /**
-   * Returns the subtitle of a option selection.
+   * Returns the subtitle of a multiple checkbox panel.
    */
   get hasSubtitle() {
     return !!this.subtitle;

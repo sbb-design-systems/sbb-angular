@@ -20,8 +20,7 @@
   SelectModule,
   OptionModule,
   AccordionModule,
-  RadioButtonModule,
-  OptionSelectionModule
+  RadioButtonModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
@@ -38,7 +37,9 @@
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { OptionSelectionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./option-selection-showcase/option-selection-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { RadioButtonPanelModule, CheckboxPanelModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
+<span class="hljs-keyword">import</span> { RadioButtonPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./radio-button-panel-showcase/radio-button-panel-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { CheckboxPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-panel-showcase/checkbox-panel-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -56,7 +57,8 @@
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    OptionSelectionShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@
     AutocompleteModule,
     SelectModule,
     AccordionModule,
-    OptionSelectionModule
+    RadioButtonPanelModule,
+    CheckboxPanelModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -94,7 +97,8 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
-    OptionSelectionShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

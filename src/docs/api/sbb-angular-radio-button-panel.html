@@ -1,17 +1,21 @@
 <div class="docs-api">
-  <h2> API reference for Angular SACL radio-button </h2>
+  <h2> API reference for Angular SACL radio-button-panel </h2>
   <p class="docs-api-module-import">
-    <code> import { RadioButtonModule } from 'sbb-angular'; </code>
+    <code> import { RadioButtonPanelModule } from 'sbb-angular'; </code>
   </p>
   <h3 id="directives" class="docs-header-link docs-api-h3">
     <span header-link="directives"></span> Directives </h3>
-  <h4 id="RadioButtonComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="RadioButtonComponent"></span>
-    <code>RadioButtonComponent</code>
+  <h4 id="RadioButtonPanelComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="RadioButtonPanelComponent"></span>
+    <code>RadioButtonPanelComponent</code>
+    <span class="docs-api-class-extends-clauses">
+      <span class="docs-api-class-extends-label">extends</span>
+      <span class="docs-api-class-extends-type">RadioButtonComponent</span>
+    </span>
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-radio-button</span>
+    <span class="docs-api-class-selector-name">sbb-radio-button-panel</span>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -89,11 +93,22 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>inputId: `sbb-radio-button-${counter++}`</code>
+          <code>inputId: `sbb-radio-button-panel-${counter++}`</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Radio button identifier</p>
+        <p>Radio button panel identifier</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Label of a radio button panel.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -105,6 +120,27 @@
       </td>
       <td class="docs-api-property-description">
         <p>Indicates that the radio button field is required</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>subtitle: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Subtitle of a radio button panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hasSubtitle: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Returns the subtitle of a radio button panel.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">

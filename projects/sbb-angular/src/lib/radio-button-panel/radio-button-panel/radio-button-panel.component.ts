@@ -23,25 +23,25 @@ let counter = 0;
 })
 export class RadioButtonPanelComponent extends RadioButtonComponent {
   /**
-   * Label of a option selection.
+   * Label of a radio button panel.
    */
   @Input()
   label: string;
   /**
-   * Subtitle of a option selection.
+   * Subtitle of a radio button panel.
    */
   @Input()
   subtitle?: string;
 
   /**
-     * Option selection identifier
+     * Radio button panel identifier
      */
   @Input()
   @HostBinding('id')
   inputId = `sbb-radio-button-panel-${counter++}`;
 
   /**
-   * Returns the subtitle of a option selection.
+   * Returns the subtitle of a radio button panel.
    */
   get hasSubtitle() {
     return !!this.subtitle;

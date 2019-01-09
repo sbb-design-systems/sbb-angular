@@ -1,34 +1,32 @@
-# Option Selection Overview
+# Checkbox panel Overview
 
-Import option selection module into your application
+Import checkbox panel module into your application
 
 ```ts
-import { OptionSelectionModule } from 'sbb-angular';
+import { CheckboxPanelModule } from 'sbb-angular';
 ```
 
-* Simple option selection multiple
+* Multiple checkbox panel 
 
-        ```html
-        <h4>Basic Example</h4>
-        <ng-container *ngFor="let option of checkboxOptions; index as i">
-            <div class="sbbsc-block">
-                <sbb-checkbox-panel [(ngModel)]="option.selected" [value]="option.value" [label]="option.name"></sbb-checkbox-panel>
-            </div>
-        </ng-container>
-        ```
+```html
+<h4>Basic Example</h4>
+<div class="sbbsc-block" *ngFor="let option of checkboxOptions; index as i">
+    <sbb-checkbox-panel [(ngModel)]="option.selected" [value]="option.value" [label]="option.name"></sbb-checkbox-panel>
+</div>
+```
 
-    * Option selection multiple with subtitle
+* Multiple checkbox panel with subtitle
 
-        ```html
-        <h4>Option selection multiple with a subtitle</h4>
-        <sbb-checkbox-panel name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister"></sbb-checkbox-panel>
-        ```
+```html
+<h4>Multiple checkbox panel with a subtitle</h4>
+<sbb-checkbox-panel name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister"></sbb-checkbox-panel>
+```
 
-    * Option selection multiple with an image using *sbbOptionSelectionImage directive
+* Multiple checkbox panel with an icon
 
-        ```html
-        <h4>Option Selection multiple with a subtitle and an image</h4>
-        <sbb-checkbox-panel name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-            <sbb-icon-comfort *sbbOptionSelectionImage></sbb-icon-comfort>
-        </sbb-checkbox-panel>
-        ```
+```html
+<h4>Multiple checkbox panel with a subtitle and an icon</h4>
+<sbb-checkbox-panel name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister">
+    <sbb-icon-comfort icon></sbb-icon-comfort>
+</sbb-checkbox-panel>
+```

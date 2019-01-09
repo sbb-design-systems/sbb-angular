@@ -1,17 +1,21 @@
 <div class="docs-api">
-  <h2> API reference for Angular SACL radio-button </h2>
+  <h2> API reference for Angular SACL checkbox-panel </h2>
   <p class="docs-api-module-import">
-    <code> import { RadioButtonModule } from 'sbb-angular'; </code>
+    <code> import { CheckboxPanelModule } from 'sbb-angular'; </code>
   </p>
   <h3 id="directives" class="docs-header-link docs-api-h3">
     <span header-link="directives"></span> Directives </h3>
-  <h4 id="RadioButtonComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="RadioButtonComponent"></span>
-    <code>RadioButtonComponent</code>
+  <h4 id="CheckboxPanelComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="CheckboxPanelComponent"></span>
+    <code>CheckboxPanelComponent</code>
+    <span class="docs-api-class-extends-clauses">
+      <span class="docs-api-class-extends-label">extends</span>
+      <span class="docs-api-class-extends-type">CheckboxComponent</span>
+    </span>
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-radio-button</span>
+    <span class="docs-api-class-selector-name">sbb-checkbox-panel</span>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -56,11 +60,11 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>checked: boolean</code>
+          <code>checked: any</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The checked state of the radio button</p>
+        <p>The checked state of the checkbox</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -71,29 +75,29 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The disabled state of the radio button</p>
+        <p>Sets checkbox field disabled</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>formControlName: string</code>
+          <code>inputId: `sbb-checkbox-panel-${counter++}`</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Indicates radio button name in formControl</p>
+        <p>Multiple checkbox panel identifier.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>inputId: `sbb-radio-button-${counter++}`</code>
+          <code>label: string</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Radio button identifier</p>
+        <p>Label of a multiple checkbox panel.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -104,7 +108,39 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Indicates that the radio button field is required</p>
+        <p>Establish if a checkbox value is required or not</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>subtitle: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Subtitle of a multiple checkbox panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>value: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Value contained in a checkbox field</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hasSubtitle: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Returns the subtitle of a multiple checkbox panel.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -114,7 +150,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Class property that represents a change on the radio button</p>
+        <p>Property that describes the status change of a checkbox field</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -124,7 +160,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Class property that represents a touch on the radio button</p>
+        <p>Property that describes an updating of checkbox</p>
       </td>
     </tr>
   </table>
@@ -137,34 +173,7 @@
     </thead>
     <tr class="docs-api-method-description-row">
       <td colspan="2" class="docs-api-method-description-cell">
-        <p>Manage the event click on the radio button</p>
-      </td>
-    </tr>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> $event</p>
-        <code class="docs-api-method-parameter-type">Event</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">uncheck </th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Unchecks the radio button</p>
+        <p>Method that set up a checkbox field to the click</p>
       </td>
     </tr>
   </table>
