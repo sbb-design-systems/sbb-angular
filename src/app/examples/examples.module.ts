@@ -22,7 +22,9 @@ import {
   OptionModule,
   AccordionModule,
   RadioButtonModule,
-  TableModule
+  TableModule,
+  RadioButtonPanelModule,
+  CheckboxPanelModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -52,7 +54,6 @@ import {
 } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
-import { RadioButtonPanelModule, CheckboxPanelModule } from 'projects/sbb-angular/src/public_api';
 import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
