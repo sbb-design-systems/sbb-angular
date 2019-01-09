@@ -1,55 +1,50 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OptionSelectionComponent } from './option-selection.component';
-import { OptionSelectionModule } from '../option-selection.module';
+import { RadioButtonPanelComponent } from './radio-button-panel.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
-import { RadioButtonModule } from '../../radio-button/radio-button';
-import { dispatchMouseEvent } from '../../_common/testing/dispatch-events';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 import { createFakeEvent } from '../../_common/testing/event-objects';
+import { RadioButtonPanelModule } from '../radio-button-panel.module';
 
 @Component({
-  selector: 'sbb-model-option-selection-test',
+  selector: 'sbb-model-radio-button-panel-test',
   template: `
-  <sbb-option-selection
+  <sbb-radio-button-panel
     [(ngModel)]="testValue"
     inputId="test-option-1"
     name="test-option"
     value="1">
     Test option selection 1
-  </sbb-option-selection>
-  <sbb-option-selection
+  </sbb-radio-button-panel>
+  <sbb-radio-button-panel
     [(ngModel)]="testValue"
     inputId="test-option-2"
     name="test-option"
     value="2">
     Test option selection 2
-  </sbb-option-selection>
+  </sbb-radio-button-panel>
   `
 })
 class ModelOptionSelectionTestComponent {
   testValue = '2';
-  @ViewChildren(OptionSelectionComponent) optionSelections: QueryList<OptionSelectionComponent>;
+  @ViewChildren(RadioButtonPanelComponent) optionSelections: QueryList<RadioButtonPanelComponent>;
 }
 
-
-
-describe('OptionSelectionComponent', () => {
-  let component: OptionSelectionComponent;
-  let fixture: ComponentFixture<OptionSelectionComponent>;
+describe('RadioButtonPanelComponent', () => {
+  let component: RadioButtonPanelComponent;
+  let fixture: ComponentFixture<RadioButtonPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, OptionSelectionModule],
+      imports: [CommonModule, FormsModule, RadioButtonPanelModule],
       declarations: [ModelOptionSelectionTestComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OptionSelectionComponent);
+    fixture = TestBed.createComponent(RadioButtonPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -59,17 +54,17 @@ describe('OptionSelectionComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toBe('sbb-option-selection-1');
+    expect(component.inputId).toBe('sbb-radio-button-panel-1');
   });
 });
 
-describe('OptionSelectionComponent using mock component', () => {
+describe('RadioButtonPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, OptionSelectionModule],
+      imports: [FormsModule, RadioButtonPanelModule],
       declarations: [ModelOptionSelectionTestComponent]
     }).compileComponents();
   }));
@@ -85,17 +80,17 @@ describe('OptionSelectionComponent using mock component', () => {
     expect(modelComponent).toBeTruthy();
   });
 
-  it('should create mock component and should contain two sbb-option-selection components', () => {
+  it('should create mock component and should contain two sbb-radio-button-panel components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(By.directive(OptionSelectionComponent));
+    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(By.directive(RadioButtonPanelComponent));
     expect(optionSelectionComponents).toBeTruthy();
     expect(optionSelectionComponents.length).toBe(2);
   });
 
   it('should be mutual exclusive', async() => {
-    const opt1: OptionSelectionComponent = modelComponent.optionSelections.toArray()[0];
-    const opt2: OptionSelectionComponent = modelComponent.optionSelections.toArray()[1];
+    const opt1: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[0];
+    const opt2: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[1];
 
     await modelComponentFixture.whenRenderingDone();
 
@@ -113,8 +108,8 @@ describe('OptionSelectionComponent using mock component', () => {
   });
 
   it('should checked if model is equal to value', async() => {
-    const opt1: OptionSelectionComponent = modelComponent.optionSelections.toArray()[0];
-    const opt2: OptionSelectionComponent = modelComponent.optionSelections.toArray()[1];
+    const opt1: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[0];
+    const opt2: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[1];
 
     modelComponent.testValue = '1';
     modelComponentFixture.detectChanges();

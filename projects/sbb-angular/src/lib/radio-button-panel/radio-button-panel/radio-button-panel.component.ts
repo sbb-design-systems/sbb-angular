@@ -11,17 +11,17 @@ import { RadioButtonComponent } from '../../radio-button/radio-button';
 let counter = 0;
 
 @Component({
-  selector: 'sbb-option-selection',
-  templateUrl: './option-selection.component.html',
-  styleUrls: ['./option-selection.component.scss'],
+  selector: 'sbb-radio-button-panel',
+  templateUrl: './radio-button-panel.component.html',
+  styleUrls: ['./radio-button-panel.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => OptionSelectionComponent),
+    useExisting: forwardRef(() => RadioButtonPanelComponent),
     multi: true,
   }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionSelectionComponent extends RadioButtonComponent {
+export class RadioButtonPanelComponent extends RadioButtonComponent {
   /**
    * Label of a option selection.
    */
@@ -38,7 +38,7 @@ export class OptionSelectionComponent extends RadioButtonComponent {
      */
   @Input()
   @HostBinding('id')
-  inputId = `sbb-option-selection-${counter++}`;
+  inputId = `sbb-radio-button-panel-${counter++}`;
 
   /**
    * Returns the subtitle of a option selection.

@@ -16,4 +16,5 @@ export * from './lib/time-input/time-input';
 export * from './lib/loading/loading';
 export * from './lib/select/select';
 export * from './lib/accordion/accordion';
-export * from './lib/option-selection/option-selection';
+export * from './lib/radio-button-panel/radio-button-panel';
+export * from './lib/checkbox-panel/checkbox-panel';

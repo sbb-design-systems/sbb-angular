@@ -44,7 +44,8 @@ import { PersonListComponent } from './examples/tabs-showcase/person/person-list
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
-import { OptionSelectionShowcaseComponent } from './examples/option-selection-showcase/option-selection-showcase.component';
+import { CheckboxPanelShowcaseComponent } from './examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from './examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { OptionSelectionShowcaseComponent } from './examples/option-selection-sh
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    OptionSelectionShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     ...IconComponents.types
   ]
 })

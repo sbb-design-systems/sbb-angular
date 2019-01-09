@@ -20,8 +20,7 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
-  RadioButtonModule,
-  OptionSelectionModule
+  RadioButtonModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -38,7 +37,9 @@ import { PersonListComponent } from './tabs-showcase/person/person-list/person-l
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
-import { OptionSelectionShowcaseComponent } from './option-selection-showcase/option-selection-showcase.component';
+import { RadioButtonPanelModule, CheckboxPanelModule } from 'projects/sbb-angular/src/public_api';
+import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { OptionSelectionShowcaseComponent } from './option-selection-showcase/op
     LoadingShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    OptionSelectionShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ import { OptionSelectionShowcaseComponent } from './option-selection-showcase/op
     AutocompleteModule,
     SelectModule,
     AccordionModule,
-    OptionSelectionModule
+    RadioButtonPanelModule,
+    CheckboxPanelModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -94,7 +97,8 @@ import { OptionSelectionShowcaseComponent } from './option-selection-showcase/op
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
-    OptionSelectionShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     ButtonModule,
     LoadingModule,
     OptionModule,

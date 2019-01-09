@@ -5,23 +5,23 @@ import {
   Input,
   HostBinding
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
 
 let counter = 0;
 
 @Component({
-  selector: 'sbb-option-selection-multiple',
-  templateUrl: './option-selection-multiple.component.html',
-  styleUrls: ['./option-selection-multiple.component.scss'],
+  selector: 'sbb-checkbox-panel',
+  templateUrl: './checkbox-panel.component.html',
+  styleUrls: ['./checkbox-panel.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => OptionSelectionMultipleComponent),
+    useExisting: forwardRef(() => CheckboxPanelComponent),
     multi: true,
   }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionSelectionMultipleComponent extends CheckboxComponent {
+export class CheckboxPanelComponent extends CheckboxComponent {
 
   /**
    * Label of a option selection multiple.
@@ -39,7 +39,7 @@ export class OptionSelectionMultipleComponent extends CheckboxComponent {
      */
   @Input()
   @HostBinding('id')
-  inputId = `sbb-option-selection-multiple-${counter++}`;
+  inputId = `sbb-checkbox-panel-${counter++}`;
 
   /**
    * Returns the subtitle of a option selection.

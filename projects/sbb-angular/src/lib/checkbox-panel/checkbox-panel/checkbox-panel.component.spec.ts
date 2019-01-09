@@ -1,52 +1,52 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OptionSelectionMultipleComponent } from './option-selection-multiple.component';
-import { OptionSelectionModule } from '../option-selection.module';
+import { CheckboxPanelComponent } from './checkbox-panel.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Component, ViewChildren, QueryList } from '@angular/core';
+import { CheckboxPanelModule } from '../checkbox-panel.module';
 
 @Component({
-  selector: 'sbb-model-option-selection-test',
+  selector: 'sbb-model-sbb-checkbox-panel-test',
   template: `
-  <sbb-option-selection-multiple
+  <sbb-checkbox-panel
     [(ngModel)]="checkValue1"
     inputId="test-option-1"
     name="test-option"
     value="1">
     Test option selection 1
-  </sbb-option-selection-multiple>
-  <sbb-option-selection-multiple
+  </sbb-checkbox-panel>
+  <sbb-checkbox-panel
     [(ngModel)]="checkValue2"
     inputId="test-option-2"
     name="test-option"
     value="2">
     Test option selection 2
-  </sbb-option-selection-multiple>
+  </sbb-checkbox-panel>
   `
 })
 class ModelOptionSelectionMultipleTestComponent {
   checkValue1 = false;
   checkValue2 = false;
-  @ViewChildren(OptionSelectionMultipleComponent) optionSelections: QueryList<OptionSelectionMultipleComponent>;
+  @ViewChildren(CheckboxPanelComponent) optionSelections: QueryList<CheckboxPanelComponent>;
 }
 
 
 
-describe('OptionSelectionMultipleComponent', () => {
-  let component: OptionSelectionMultipleComponent;
-  let fixture: ComponentFixture<OptionSelectionMultipleComponent>;
+describe('CheckboxPanelComponent', () => {
+  let component: CheckboxPanelComponent;
+  let fixture: ComponentFixture<CheckboxPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, OptionSelectionModule],
+      imports: [CommonModule, FormsModule, CheckboxPanelModule],
       declarations: [ModelOptionSelectionMultipleTestComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OptionSelectionMultipleComponent);
+    fixture = TestBed.createComponent(CheckboxPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -56,17 +56,17 @@ describe('OptionSelectionMultipleComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toBe('sbb-option-selection-multiple-1');
+    expect(component.inputId).toBe('sbb-checkbox-panel-1');
   });
 });
 
-describe('OptionSelectionComponent using mock component', () => {
+describe('CheckboxPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionMultipleTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionMultipleTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, OptionSelectionModule],
+      imports: [FormsModule, CheckboxPanelModule],
       declarations: [ModelOptionSelectionMultipleTestComponent]
     }).compileComponents();
   }));
@@ -82,17 +82,17 @@ describe('OptionSelectionComponent using mock component', () => {
     expect(modelComponent).toBeTruthy();
   });
 
-  it('should create mock component and should contain two sbb-option-selection components', () => {
+  it('should create mock component and should contain two sbb-checkbox-panel components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(By.directive(OptionSelectionMultipleComponent));
+    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(By.directive(CheckboxPanelComponent));
     expect(optionSelectionComponents).toBeTruthy();
     expect(optionSelectionComponents.length).toBe(2);
   });
 
   it('should not be mutual exclusive', async () => {
-    const opt1: OptionSelectionMultipleComponent = modelComponent.optionSelections.toArray()[0];
-    const opt2: OptionSelectionMultipleComponent = modelComponent.optionSelections.toArray()[1];
+    const opt1: CheckboxPanelComponent = modelComponent.optionSelections.toArray()[0];
+    const opt2: CheckboxPanelComponent = modelComponent.optionSelections.toArray()[1];
 
     await modelComponentFixture.whenRenderingDone();
 
@@ -110,8 +110,8 @@ describe('OptionSelectionComponent using mock component', () => {
   });
 
   it('should checked if model is true', async () => {
-    const opt1: OptionSelectionMultipleComponent = modelComponent.optionSelections.toArray()[0];
-    const opt2: OptionSelectionMultipleComponent = modelComponent.optionSelections.toArray()[1];
+    const opt1: CheckboxPanelComponent = modelComponent.optionSelections.toArray()[0];
+    const opt2: CheckboxPanelComponent = modelComponent.optionSelections.toArray()[1];
 
     modelComponent.checkValue1 = true;
     modelComponentFixture.detectChanges();

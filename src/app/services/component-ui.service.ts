@@ -13,7 +13,8 @@ import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.c
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
-import { OptionSelectionShowcaseComponent } from '../examples/option-selection-showcase/option-selection-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 
 @Injectable({
   providedIn: 'root'
@@ -272,9 +273,9 @@ export class ComponentUiService {
         'Import text.'
       ), */
       new UiComponent(
-        'Option Selection',
-        'option-selection',
-        'Option Selection',
+        'Radio Button Panel',
+        'radio-button-panel',
+        'Radio Button Panel',
         'Subtitel goes here ...',
         true,
         true,
@@ -282,7 +283,20 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        OptionSelectionShowcaseComponent
+        RadioButtonPanelShowcaseComponent
+      ),
+      new UiComponent(
+        'Checkbox Panel',
+        'checkbox-panel',
+        'Checkbox Panel',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        CheckboxPanelShowcaseComponent
       ),
       new UiComponent(
         'Time Input',
