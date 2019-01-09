@@ -14,11 +14,9 @@
         <li class="docs-markdown-li">
           <p class="docs-markdown-p">Simple option selection</p>
           <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">   <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of radioOptions; index as i"</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
-           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"modelValue"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"model-option-selection"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection</span>&gt;</span>
-       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span></code></pre>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of radioOptions; index as i"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"modelValue"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"model-option-selection"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
         </li>
         <li class="docs-markdown-li">
           <p class="docs-markdown-p">Option selection with a subtitle</p>
@@ -26,10 +24,10 @@
    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span> [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span> <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection</span>&gt;</span></code></pre>
         </li>
         <li class="docs-markdown-li">
-          <p class="docs-markdown-p">Option selection with an image using *sbbOptionSelectionImage directive</p>
-          <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">   <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Option selection with subtitle and an image<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <p class="docs-markdown-p">Option selection with an icon</p>
+          <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">   <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Option selection with subtitle and an icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span> [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span> <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-comfort</span> *<span class="hljs-attr">sbbOptionSelectionImage</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-comfort</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-comfort</span> <span class="hljs-attr">icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-comfort</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection</span>&gt;</span></code></pre>
         </li>
       </ul>
@@ -38,24 +36,22 @@
       <p class="docs-markdown-p">Multiple mode</p>
       <ul class="docs-markdown-ul">
         <li class="docs-markdown-li">
-          <p class="docs-markdown-p">Simple option selection multiple</p>
+          <p class="docs-markdown-p">Multiple simple option selection</p>
           <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of checkboxOptions; index as i"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection-multiple</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"option.selected"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection-multiple</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span></code></pre>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of checkboxOptions; index as i"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection-multiple</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"option.selected"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection-multiple</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
         </li>
         <li class="docs-markdown-li">
-          <p class="docs-markdown-p">Option selection multiple with subtitle</p>
+          <p class="docs-markdown-p">Multiple option selection with subtitle</p>
           <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Option selection multiple with a subtitle<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection-multiple</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span> [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked2"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span> <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection-multiple</span>&gt;</span></code></pre>
         </li>
         <li class="docs-markdown-li">
-          <p class="docs-markdown-p">Option selection multiple with an image using *sbbOptionSelectionImage directive</p>
-          <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Option Selection multiple with a subtitle and an image<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <p class="docs-markdown-p">Multiple option selection with an icon</p>
+          <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code">  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Option Selection multiple with a subtitle and an icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-selection-multiple</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span> [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked2"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span> <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-comfort</span> *<span class="hljs-attr">sbbOptionSelectionImage</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-comfort</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-comfort</span> <span class="hljs-attr">icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-comfort</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-selection-multiple</span>&gt;</span></code></pre>
         </li>
       </ul>

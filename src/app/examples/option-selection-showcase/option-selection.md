@@ -12,11 +12,9 @@ You can use the option selection in two modes:
 
         ```html
         <h4>Basic example</h4>
-        <ng-container *ngFor="let option of radioOptions; index as i">
-            <div class="sbbsc-block">
-                <sbb-option-selection [(ngModel)]="modelValue" name="model-option-selection" [value]="option.value" [label]="option.name"></sbb-option-selection>
-            </div>
-        </ng-container>
+        <div class="sbbsc-block" *ngFor="let option of radioOptions; index as i">
+            <sbb-option-selection [(ngModel)]="modelValue" name="model-option-selection" [value]="option.value" [label]="option.name"></sbb-option-selection>
+        </div>
         ```
 
    * Option selection with a subtitle
@@ -26,40 +24,38 @@ You can use the option selection in two modes:
         <sbb-option-selection name="single-option" value="single-option" [checked]="checked" label="SBB - Finanzen" subtitle="Armin Burgermeister"></sbb-option-selection>
         ```
 
-   * Option selection with an image using *sbbOptionSelectionImage directive
+   * Option selection with an icon
   
         ```html
-        <h4>Option selection with subtitle and an image</h4>
+        <h4>Option selection with subtitle and an icon</h4>
         <sbb-option-selection name="single-option" value="single-option" [checked]="checked" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-            <sbb-icon-comfort *sbbOptionSelectionImage></sbb-icon-comfort>
+            <sbb-icon-comfort icon></sbb-icon-comfort>
         </sbb-option-selection>
         ```
 
 2. Multiple mode
 
-    * Simple option selection multiple
+    * Multiple simple option selection
 
         ```html
         <h4>Basic Example</h4>
-        <ng-container *ngFor="let option of checkboxOptions; index as i">
-            <div class="sbbsc-block">
-                <sbb-option-selection-multiple [(ngModel)]="option.selected" [value]="option.value" [label]="option.name"></sbb-option-selection-multiple>
-            </div>
-        </ng-container>
+        <div class="sbbsc-block" *ngFor="let option of checkboxOptions; index as i">
+            <sbb-option-selection-multiple [(ngModel)]="option.selected" [value]="option.value" [label]="option.name"></sbb-option-selection-multiple>
+        </div>
         ```
 
-    * Option selection multiple with subtitle
+    * Multiple option selection with subtitle
 
         ```html
         <h4>Option selection multiple with a subtitle</h4>
         <sbb-option-selection-multiple name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister"></sbb-option-selection-multiple>
         ```
 
-    * Option selection multiple with an image using *sbbOptionSelectionImage directive
+    * Multiple option selection with an icon
 
         ```html
-        <h4>Option Selection multiple with a subtitle and an image</h4>
+        <h4>Option Selection multiple with a subtitle and an icon</h4>
         <sbb-option-selection-multiple name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-            <sbb-icon-comfort *sbbOptionSelectionImage></sbb-icon-comfort>
+            <sbb-icon-comfort icon></sbb-icon-comfort>
         </sbb-option-selection-multiple>
         ```
