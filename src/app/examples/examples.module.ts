@@ -17,6 +17,7 @@ import {
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
+  LightboxModule,
   AutocompleteModule,
   SelectModule,
   OptionModule,
@@ -36,6 +37,19 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
@@ -54,6 +68,17 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     TableShowcaseComponent
@@ -75,6 +100,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AutocompleteModule,
     SelectModule,
@@ -96,9 +122,17 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     SelectShowcaseComponent,
     ButtonModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AccordionModule,
     TableModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 export class ExamplesModule { }
