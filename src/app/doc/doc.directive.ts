@@ -11,7 +11,7 @@ export class DocDirective implements OnInit {
 
   private hostElement: HTMLElement;
 
-  @Input() type?= 'api';
+  @Input() type? = 'api';
 
   componentType: string;
 
