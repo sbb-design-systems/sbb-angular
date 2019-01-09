@@ -1,4 +1,6 @@
-import { Directive, ElementRef, HostBinding, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Optional, Renderer2, Self, Inject } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
   selector: 'input[sbbTimeInput]'
@@ -8,8 +10,14 @@ export class TimeInputDirective {
   private REGEX_PATTERN = /[0-9]{3,4}/;
   private REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
   private REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
+  private document: Document;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    @Self() @Optional() private control: NgControl,
+    @Inject(DOCUMENT) document: any) {
+    this.document = document;
   }
   /**
    * Value type allowed
@@ -34,11 +42,19 @@ export class TimeInputDirective {
   @HostListener('blur', ['$event.target.value'])
   onBlur(value) {
     const regGroups = this.inputValidate(value);
+    if (!regGroups || regGroups.length <= 2) {
+      return;
+    }
 
-    if (regGroups && regGroups.length > 2) {
-      const hours = this.parseHour(regGroups[1]);
-      const mins = this.parseMinute(regGroups[2]);
+    const hours = this.parseHour(regGroups[1]);
+    const mins = this.parseMinute(regGroups[2]);
+    if (this.control && this.control.control) {
+      this.control.control.setValue(`${hours}:${mins}`);
+    } else {
       this.renderer.setProperty(this.el.nativeElement, 'value', `${hours}:${mins}`);
+      const event = this.document.createEvent('Event');
+      event.initEvent('input', true, true);
+      this.el.nativeElement.dispatchEvent(event);
     }
   }
 
