@@ -16,11 +16,13 @@ import {
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
+  LightboxModule,
   AutocompleteModule,
   SelectModule,
   OptionModule,
   AccordionModule,
-  RadioButtonModule
+  RadioButtonModule,
+  TableModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -35,11 +37,25 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { RadioButtonPanelModule, CheckboxPanelModule } from 'projects/sbb-angular/src/public_api';
 import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -55,10 +71,22 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     RadioButtonPanelShowcaseComponent,
-    CheckboxPanelShowcaseComponent
+    CheckboxPanelShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -77,12 +105,14 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AutocompleteModule,
     SelectModule,
     AccordionModule,
     RadioButtonPanelModule,
-    CheckboxPanelModule
+    CheckboxPanelModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -101,8 +131,17 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
     CheckboxPanelShowcaseComponent,
     ButtonModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 export class ExamplesModule { }
