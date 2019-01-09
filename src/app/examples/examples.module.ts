@@ -22,7 +22,8 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
-  NotificationsModule
+  NotificationsModule,
+  TableModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -53,6 +54,7 @@ import {
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    NotificationShowcaseComponent
+    NotificationShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +108,8 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
     AutocompleteModule,
     SelectModule,
     AccordionModule,
-    NotificationsModule
+    NotificationsModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -125,7 +129,8 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
     LoadingModule,
     LightboxModule,
     OptionModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

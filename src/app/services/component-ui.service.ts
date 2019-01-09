@@ -15,6 +15,7 @@ import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbo
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
+import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 
 
 @Injectable({
@@ -51,7 +52,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
+      new UiComponent(
         'Table',
         'table',
         'Table',
@@ -63,8 +64,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        TableShowcaseComponent
+      ),
       new UiComponent(
         'Link',
         'links',

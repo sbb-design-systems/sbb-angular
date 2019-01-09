@@ -18,3 +18,4 @@ export * from './lib/lightbox/lightbox';
 export * from './lib/select/select';
 export * from './lib/accordion/accordion';
 export * from './lib/notification/notification';
+export * from './lib/table/table';
