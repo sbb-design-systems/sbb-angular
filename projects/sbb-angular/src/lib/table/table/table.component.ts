@@ -1,5 +1,4 @@
-import { Component, TemplateRef, ContentChild, Input, ChangeDetectionStrategy, ViewEncapsulation, HostListener } from '@angular/core';
-import { TableCaptionDirective } from './table-caption.directive';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sbb-table',
@@ -33,8 +32,5 @@ export class TableComponent {
 
     return classList;
   }
-
-  @ContentChild(TableCaptionDirective, { read: TemplateRef })
-  tableCaption: TemplateRef<any>;
 
 }

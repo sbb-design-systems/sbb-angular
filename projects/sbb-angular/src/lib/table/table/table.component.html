@@ -6,7 +6,7 @@
       <ng-content select="tr, caption, colgroup, col, thead, tbody, tfoot"></ng-content>
     </table>
   </div>
-  <div *ngIf="tableCaption" class="sbb-table-caption">
-    <ng-container *ngTemplateOutlet="tableCaption"></ng-container>
+  <div class="sbb-table-caption">
+    <ng-content select="[sbbTableCaption]"></ng-content>
   </div>
 </div>
