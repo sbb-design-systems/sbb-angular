@@ -21,7 +21,8 @@ import {
   AutocompleteModule,
   SelectModule,
   OptionModule,
-  AccordionModule
+  AccordionModule,
+  TableModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -51,6 +52,7 @@ import {
 } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     LightboxShowcaseExample5ContentComponent,
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
-    AccordionShowcaseComponent
+    AccordionShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +104,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     OptionModule,
     AutocompleteModule,
     SelectModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -120,7 +124,8 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     LoadingModule,
     LightboxModule,
     OptionModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

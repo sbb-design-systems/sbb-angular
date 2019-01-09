@@ -4,6 +4,7 @@ import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './home/home.component';
 import { ComponentsListComponent } from './components-list/components-list.component';
 import { IconsListComponent } from './icons-list/icons-list.component';
+import { TypographyComponent } from './typography/typography.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,12 @@ const routes: Routes = [
     component: IconsListComponent,
     pathMatch: 'full',
     data: { page: 'icons-list' }
+  },
+  {
+    path: 'typography',
+    component: TypographyComponent,
+    pathMatch: 'full',
+    data: { page: 'typography' }
   },
   {
     path: '**',

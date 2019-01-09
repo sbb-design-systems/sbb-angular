@@ -17,3 +17,4 @@ export * from './lib/loading/loading';
 export * from './lib/lightbox/lightbox';
 export * from './lib/select/select';
 export * from './lib/accordion/accordion';
+export * from './lib/table/table';

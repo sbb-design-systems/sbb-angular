@@ -45,6 +45,8 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
 import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
+import { TypographyComponent } from './typography/typography.component';
+import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { AccordionShowcaseComponent } from './examples/accordion-showcase/accord
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent
+    ComponentViewerComponent,
+    TypographyComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ import { AccordionShowcaseComponent } from './examples/accordion-showcase/accord
     LightboxShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
+    TableShowcaseComponent,
     ...IconComponents.types
   ]
 })
