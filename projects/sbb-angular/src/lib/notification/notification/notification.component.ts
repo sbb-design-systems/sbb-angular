@@ -8,7 +8,9 @@ export enum NotificationType {
 }
 
 export interface JumpMark {
+  /** Title of an element in jumpMarks. */
   title: string;
+  /** Identifier of an element in jumpMarks. */
   elementId: string;
 }
 
@@ -34,7 +36,7 @@ export class NotificationComponent {
   get typeError(): boolean {
     return this.type === NotificationType.ERROR;
   }
-
+  /** Type of notification. */
   @Input()
   type = NotificationType.SUCCESS;
 
