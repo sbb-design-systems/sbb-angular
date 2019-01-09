@@ -13,6 +13,7 @@ export class UiComponent {
         public description: string,
         public source: string,
         public importText: string,
-        public component?: Type<{}>
+        public component?: Type<{}>,
+        public htmlExamples?: string[]
     ) { }
 }

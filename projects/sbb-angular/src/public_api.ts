@@ -14,6 +14,7 @@ export * from './lib/tabs/tabs';
 export * from './lib/datepicker/datepicker';
 export * from './lib/time-input/time-input';
 export * from './lib/loading/loading';
+export * from './lib/lightbox/lightbox';
 export * from './lib/select/select';
 export * from './lib/accordion/accordion';
 export * from './lib/notification/notification';

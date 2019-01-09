@@ -84,8 +84,13 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
 
   @Input()
   @HostBinding('class.sbb-option-disabled')
-  get disabled() { return (this.group && this.group.disabled) || this._disabled; }
-  set disabled(value: any) { this._disabled = coerceBooleanProperty(value); }
+  get disabled() {
+    this.changeDetectorRef.markForCheck();
+    return (this.group && this.group.disabled) || this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
 
   @HostBinding('attr.tabIndex')
   get _getTabIndex(): string { return this.disabled ? '-1' : '0'; }

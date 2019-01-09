@@ -1,0 +1,44 @@
+@import "../../../styles/main.scss";
+
+.sbb-lightbox-container {
+  @include lightboxContainer();
+
+  .sbb-lightbox-content {
+    @include lightboxContent();
+    @include lightboxContentHeight();
+  }
+
+  .sbb-lightbox-header {
+    @include lightboxHeader();
+  }
+
+  .sbb-lightbox-footer {
+    @include lightboxFooter();
+  }
+
+  .sbb-lightbox-close-btn {
+    @include lightboxCloseBtn();
+  }
+
+  .sbb-lightbox-title {
+    @include lightboxTitle();
+  }
+
+  &.sbb-lightbox-with-header {
+    .sbb-lightbox-content {
+      @include lightboxContentHeight(withHeader);
+    }
+  }
+
+  &.sbb-lightbox-with-footer {
+    .sbb-lightbox-content {
+      @include lightboxContentHeight(withFooter);
+    }
+  }
+
+  &.sbb-lightbox-with-header.sbb-lightbox-with-footer {
+    .sbb-lightbox-content {
+      @include lightboxContentHeight(withHeaderAndFooter);
+    }
+  }
+}

@@ -28,9 +28,14 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class AccordionComponent extends CdkAccordion implements IAccordionBase, AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
-
+  /**
+   * Whether the accordion should allow multiple expanded accordion items.
+   */
   @Input() multi = true;
 
+  /**
+   * Class property that refers to the headers of the panels of the accordion.
+   */
   @ContentChildren(ExpansionPanelHeaderComponent, { descendants: true })
   headers: QueryList<ExpansionPanelHeaderComponent>;
 
@@ -40,6 +45,9 @@ export class AccordionComponent extends CdkAccordion implements IAccordionBase, 
   set hideToggle(show: boolean) { this._hideToggle = coerceBooleanProperty(show); }
   private _hideToggle = false;
 
+  /**
+   * Class property that refers to the attribute class of the accordion.
+   */
   @HostBinding('class.sbb-accordion') sbbAccordionClass = true;
 
   ngAfterContentInit() {
@@ -61,7 +69,9 @@ export class AccordionComponent extends CdkAccordion implements IAccordionBase, 
       this._keyManager.onKeydown(event);
     }
   }
-
+  /**
+   * Handles a event coming on a header of a panel associated at a specific item.
+   */
   handleHeaderFocus(header: ExpansionPanelHeaderComponent) {
     this._keyManager.updateActiveItem(header);
   }

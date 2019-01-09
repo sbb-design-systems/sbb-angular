@@ -17,6 +17,7 @@ import {
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
+  LightboxModule,
   AutocompleteModule,
   SelectModule,
   OptionModule,
@@ -36,6 +37,19 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
@@ -54,6 +68,17 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     NotificationShowcaseComponent
@@ -75,6 +100,7 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AutocompleteModule,
     SelectModule,
@@ -97,8 +123,16 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
     NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AccordionModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 export class ExamplesModule { }

@@ -11,6 +11,7 @@ import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/dat
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
+import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
@@ -211,7 +212,7 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-     new UiComponent(
+      new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -248,7 +249,21 @@ export class ComponentUiService {
          'Source goes here ...',
          'Import text.'
        ), */
-        new UiComponent(
+      new UiComponent(
+        'Light Box',
+        'lightbox',
+        'Light Box',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        LightboxShowcaseComponent,
+        ['content-1', 'content-2', 'content-3']
+      ),
+      /*  new UiComponent(
          'Notification',
          'notification',
          'Notification',

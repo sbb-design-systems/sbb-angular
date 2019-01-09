@@ -29,25 +29,36 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
-
+  /**
+   * Class property that refers to the attribute class of the header panel.
+   */
   @HostBinding('class.sbb-expansion-panel-header')
   panelHeaderClass = true;
-
+  /**
+   * Class property that refers to the role of the header panel.
+   */
   @HostBinding('attr.role')
   panelHeaderRole = 'button';
-
+  /**
+   * Class property that refers to the identifier of the header panel.
+   */
   @HostBinding('attr.id')
   panelHeaderAttrId: string = this.panel.headerId;
 
   @HostBinding('attr.tabindex')
   get tabIndex() { return this.disabled ? '-1' : '0'; }
-
+  /**
+   * Class property that gets the status disabled of the panel.
+   */
   @HostBinding('attr.aria-disabled')
   get ariaDisabled() { return this.panel.disabled; }
 
   private _parentChangeSubscription = Subscription.EMPTY;
 
   constructor(
+    /**
+     * Class property that refers to the ExpansionPanelComponent.
+     */
     @Host() public panel: ExpansionPanelComponent,
     private _element: ElementRef,
     private _focusMonitor: FocusMonitor,
@@ -110,7 +121,9 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   get getPanelId(): string {
     return this.panel.id;
   }
-
+  /**
+   * Class property that identifies a header panel without toggle.
+   */
   @HostBinding('class.sbb-no-toggle')
   get hasNoToggle(): boolean {
     return !this.showToggle();
