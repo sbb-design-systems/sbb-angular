@@ -9,7 +9,7 @@
 
 @mixin checkboxBase {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   & > input[type="checkbox"] {
     @include visuallyhidden;

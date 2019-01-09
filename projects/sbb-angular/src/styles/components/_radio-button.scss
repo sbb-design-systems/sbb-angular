@@ -9,7 +9,7 @@
 
 @mixin radioButtonBase {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   & > input[type="radio"] {
     @include visuallyhidden;
