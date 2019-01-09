@@ -263,19 +263,19 @@ export class ComponentUiService {
         LightboxShowcaseComponent,
         ['content-1', 'content-2', 'content-3']
       ),
-      /*  new UiComponent(
-         'Notification',
-         'notification',
-         'Notification',
-         'Subtitel goes here ...',
-         true,
-         true,
-         ['Davide Aresta', 'Stefan Meili'],
-         'Description goes here ...',
-         'Source goes here ...',
-         'Import text.',
-         NotificationShowcaseComponent
-       ),
+      new UiComponent(
+        'Notification',
+        'notification',
+        'Notification',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        NotificationShowcaseComponent
+      ),
       /* new UiComponent(
         'Process Flow',
         'processFlow',
