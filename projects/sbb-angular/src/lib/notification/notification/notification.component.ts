@@ -38,7 +38,7 @@ export class NotificationComponent {
   }
   /** Type of notification. */
   @Input()
-  type = NotificationType.SUCCESS;
+  type: 'success' | 'info' | 'error' = NotificationType.SUCCESS;
 
   /** @docs-private */
   @ViewChild('error', { read: TemplateRef })
