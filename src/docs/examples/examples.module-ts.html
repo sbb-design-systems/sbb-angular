@@ -21,7 +21,9 @@
   AutocompleteModule,
   SelectModule,
   OptionModule,
-  AccordionModule
+  AccordionModule,
+  NotificationsModule,
+  TableModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
@@ -51,6 +53,8 @@
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lightbox-showcase/lightbox-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -78,7 +82,9 @@
     LightboxShowcaseExample5ContentComponent,
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
-    AccordionShowcaseComponent
+    AccordionShowcaseComponent,
+    NotificationShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +107,9 @@
     OptionModule,
     AutocompleteModule,
     SelectModule,
-    AccordionModule
+    AccordionModule,
+    NotificationsModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -116,11 +124,13 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
     OptionModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
