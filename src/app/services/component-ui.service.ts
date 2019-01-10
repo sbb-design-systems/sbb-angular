@@ -11,9 +11,11 @@ import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/dat
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
+import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
+import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 
 
 @Injectable({
@@ -50,7 +52,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
+      new UiComponent(
         'Table',
         'table',
         'Table',
@@ -62,8 +64,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        TableShowcaseComponent
+      ),
       new UiComponent(
         'Link',
         'links',
@@ -236,18 +239,20 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /*  new UiComponent(
-         'Light Box',
-         'lightBox',
-         'Light Box',
-         'Subtitel goes here ...',
-         true,
-         true,
-         ['Davide Aresta', 'Stefan Meili'],
-         'Description goes here ...',
-         'Source goes here ...',
-         'Import text.'
-       ), */
+      new UiComponent(
+        'Light Box',
+        'lightbox',
+        'Light Box',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        LightboxShowcaseComponent,
+        ['content-1', 'content-2', 'content-3']
+      ),
       /*  new UiComponent(
          'Notification',
          'notification',

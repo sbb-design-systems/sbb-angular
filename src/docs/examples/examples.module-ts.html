@@ -17,6 +17,7 @@
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
+  LightboxModule,
   AutocompleteModule,
   SelectModule,
   OptionModule,
@@ -35,6 +36,19 @@
 <span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
+<span class="hljs-keyword">import</span> {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'./lightbox-showcase/lightbox-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { ProcessflowShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./processflow-showcase/processflow-showcase.component'</span>;
@@ -54,6 +68,17 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     ProcessflowShowcaseComponent
@@ -75,6 +100,7 @@
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AutocompleteModule,
     SelectModule,
@@ -97,8 +123,16 @@
     ProcessflowShowcaseComponent,
     ButtonModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AccordionModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExamplesModule { }

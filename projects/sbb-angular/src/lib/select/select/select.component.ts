@@ -70,7 +70,8 @@ import {
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
-import { HasOptions, MediaQueryResizableComponent } from '../../option/has-options';
+import { HasOptions } from '../../option/has-options';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 
 let nextUniqueId = 0;
 
@@ -165,8 +166,14 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** All of the defined groups of options. */
   @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
-
+  /**
+   * Role of select field
+   */
   @HostBinding('attr.role') role = 'listbox';
+  /**
+   * Value of the scrollbar on top
+   */
+  perfectScrollbarScrollTop = 0;
 
   @Input()
   get tabIndex(): number { return this.disabled ? -1 : this._tabIndex; }
@@ -216,7 +223,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
   /** A name for this control that can be used by `sbb-field`. */
   controlType = 'sbb-select';
-
+  /**
+   * Css class of select component.
+   */
   @HostBinding('class.sbb-select') cssClass = true;
 
   /** Trigger that opens the select. */
@@ -225,18 +234,25 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   /** Panel containing the select options. */
   @ViewChild('panel') panel: ElementRef;
 
+  /** Panel containing the select options. */
+  @ViewChild('scrollbar') perfectScrollbar: PerfectScrollbarComponent;
+
   /** Overlay pane containing the options. */
   @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
 
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };
-
+  /**
+   * Disables a select field
+   */
   @Input()
   get disabled() { return this._disabled; }
   set disabled(value: any) { this._disabled = coerceBooleanProperty(value); }
   private _disabled = false;
 
-
+  /**
+   * Returns the aria-label of the select component.
+   */
   @Input('attr.aria-label')
   @HostBinding('attr.aria-label')
   get ariaLabel(): string | null {
@@ -299,7 +315,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
 
     return this._ngZone.onStable
       .asObservable()
-      .pipe(take(1), switchMap(() => this.optionSelectionChanges));
+      .pipe(first(), switchMap(() => this.optionSelectionChanges));
   });
 
   /** Event emitted when the select panel has been toggled. */
@@ -443,29 +459,39 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
       this.initializeSelection();
     }
   }
-
+  /**
+   * Determines if the attribute aria-required is required
+   */
   @HostBinding('attr.aria-required')
   get isAriaRequired() {
     return this.required.toString();
   }
-
+  /**
+   * Determines if the attribute aria-disabled is disabled
+   */
   @HostBinding('attr.aria-disabled')
   get isAriaDisabled() {
     return this.disabled.toString();
   }
-
+  /**
+   * Controls if a select is disabled
+   */
   @HostBinding('class.sbb-select-disabled')
   get isDisabled(): boolean {
     return this.disabled;
   }
 
-
+  /**
+   * Controls if a select value is invalid
+   */
   @HostBinding('attr.aria-invalid')
   @HostBinding('class.sbb-select-invalid')
   get isInvalid() {
     return this.errorState;
   }
-
+  /**
+   * Determines the aria-owns to be set on the host.
+   */
   @HostBinding('attr.aria-owns')
   get getAriaOwns() {
     return this.panelOpen ? this.optionIds : null;
@@ -521,7 +547,7 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this.initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
-    this.selectionModel.onChange!.pipe(takeUntil(this._destroy)).subscribe(event => {
+    this.selectionModel.changed!.pipe(takeUntil(this._destroy)).subscribe(event => {
       event.added.forEach(option => option.select());
       event.removed.forEach(option => option.deselect());
     });
@@ -762,6 +788,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
         this.trigger.nativeElement.classList.remove('sbb-select-input-above');
       }
       this.changeDetectorRef.detectChanges();
+
+      this.scrollActiveOptionIntoView();
+
     });
   }
 
@@ -963,12 +992,15 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options,
       this.optionGroups);
 
-    this.panel.nativeElement.scrollTop = getOptionScrollPosition(
+    const optionScrollPosition = getOptionScrollPosition(
       activeOptionIndex + labelCount,
       this.getItemHeight(),
       this.panel.nativeElement.scrollTop,
       SELECT_PANEL_MAX_HEIGHT
     );
+
+    this.perfectScrollbar.directiveRef.scrollToY(optionScrollPosition);
+    this.perfectScrollbar.directiveRef.update();
   }
 
   /** Focuses the select element. */
@@ -990,7 +1022,9 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private getItemHeight(): number {
     return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
   }
-
+  /**
+   * Determines the aria-describedby to be set on the host.
+   */
   @HostBinding('attr.aria-describedby')
   get getAriaDescribedBy(): string | null {
     return this._ariaDescribedby || null;

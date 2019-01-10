@@ -17,10 +17,12 @@ import {
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
+  LightboxModule,
   AutocompleteModule,
   SelectModule,
   OptionModule,
-  AccordionModule
+  AccordionModule,
+  TableModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -35,10 +37,24 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
 import { ProcessflowModule } from 'projects/sbb-angular/src/lib/processflow/processflow';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +70,21 @@ import { ProcessflowModule } from 'projects/sbb-angular/src/lib/processflow/proc
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    ProcessflowShowcaseComponent
+    ProcessflowShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -75,11 +103,13 @@ import { ProcessflowModule } from 'projects/sbb-angular/src/lib/processflow/proc
     IconCommonModule,
     TabsModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
     AutocompleteModule,
     SelectModule,
     AccordionModule,
-    ProcessflowModule
+    ProcessflowModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -97,8 +127,17 @@ import { ProcessflowModule } from 'projects/sbb-angular/src/lib/processflow/proc
     ProcessflowShowcaseComponent,
     ButtonModule,
     LoadingModule,
+    LightboxModule,
     OptionModule,
-    AccordionModule
+    AccordionModule,
+    TableModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 export class ExamplesModule { }

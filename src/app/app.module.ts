@@ -42,9 +42,12 @@ import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/date
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-showcase.component';
+import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 import { ProcessflowShowcaseComponent } from './examples/processflow-showcase/processflow-showcase.component';
+import { TypographyComponent } from './typography/typography.component';
+import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { ProcessflowShowcaseComponent } from './examples/processflow-showcase/pr
     DocDirective,
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
-    ComponentViewerComponent
+    ComponentViewerComponent,
+    TypographyComponent
   ],
   imports: [
     BrowserModule,
@@ -93,9 +97,11 @@ import { ProcessflowShowcaseComponent } from './examples/processflow-showcase/pr
     DatepickerShowcaseComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     ProcessflowShowcaseComponent,
+    TableShowcaseComponent,
     ...IconComponents.types
   ]
 })

@@ -1,0 +1,14 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">sbbLightboxHeader</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">sbbLightboxContent</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-lightbox-example-1-content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">sbbLightboxTitle</span>&gt;</span>Hi {{data.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>What's your favorite animal?<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"data.animal"</span> <span class="hljs-attr">cdkFocusInitial</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"noThanks()"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-right: 1em;"</span>&gt;</span>No Thanks<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> [<span class="hljs-attr">sbbLightboxClose</span>]=<span class="hljs-string">"data.animal"</span> <span class="hljs-attr">cdkFocusInitial</span>&gt;</span>Ok<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
