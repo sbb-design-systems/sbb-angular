@@ -2,4 +2,9 @@
 
 :host {
   @include checkboxRadioButtonPanel;
+  
+  .sbb-checkbox-radio-button-panel-image {
+    @include checkboxRadioButtonPanelImage;
+  }
+
 }
