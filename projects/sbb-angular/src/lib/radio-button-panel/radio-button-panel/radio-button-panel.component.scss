@@ -5,6 +5,10 @@
 
   .sbb-checkbox-radio-button-panel-image {
     @include checkboxRadioButtonPanelImage;
+    * {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 
 }
