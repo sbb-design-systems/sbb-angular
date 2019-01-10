@@ -25,6 +25,8 @@ import {
   TableModule,
   RadioButtonPanelModule,
   CheckboxPanelModule
+  NotificationsModule,
+  TableModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -56,6 +58,7 @@ import { SelectShowcaseComponent } from './select-showcase/select-showcase.compo
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
+import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
@@ -87,6 +90,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     AccordionShowcaseComponent,
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
     TableShowcaseComponent
   ],
   imports: [
@@ -113,6 +117,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     AccordionModule,
     RadioButtonPanelModule,
     CheckboxPanelModule,
+    NotificationsModule,
     TableModule
   ],
   exports: [
@@ -130,6 +135,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     SelectShowcaseComponent,
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,

@@ -19,4 +19,5 @@ export * from './lib/select/select';
 export * from './lib/accordion/accordion';
 export * from './lib/radio-button-panel/radio-button-panel';
 export * from './lib/checkbox-panel/checkbox-panel';
+export * from './lib/notification/notification';
 export * from './lib/table/table';

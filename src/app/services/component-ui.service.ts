@@ -14,8 +14,12 @@ import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-s
 import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+<<<<<<< HEAD
 import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
+=======
+import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
+>>>>>>> develop
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 
 
@@ -240,6 +244,18 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
+      /*  new UiComponent(
+         'Light Box',
+         'lightBox',
+         'Light Box',
+         'Subtitel goes here ...',
+         true,
+         true,
+         ['Davide Aresta', 'Stefan Meili'],
+         'Description goes here ...',
+         'Source goes here ...',
+         'Import text.'
+       ), */
       new UiComponent(
         'Light Box',
         'lightbox',
@@ -254,18 +270,19 @@ export class ComponentUiService {
         LightboxShowcaseComponent,
         ['content-1', 'content-2', 'content-3']
       ),
-      /*  new UiComponent(
-         'Notification',
-         'notification',
-         'Notification',
-         'Subtitel goes here ...',
-         true,
-         true,
-         ['Davide Aresta', 'Stefan Meili'],
-         'Description goes here ...',
-         'Source goes here ...',
-         'Import text.'
-       ), */
+      new UiComponent(
+        'Notification',
+        'notification',
+        'Notification',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        NotificationShowcaseComponent
+      ),
       /* new UiComponent(
         'Process Flow',
         'processFlow',
