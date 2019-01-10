@@ -1,0 +1,70 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-spacer"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-table</span> <span class="hljs-attr">tableId</span>=<span class="hljs-string">"testID"</span> 
+           <span class="hljs-attr">tableClass</span>=<span class="hljs-string">"testClass testClass2"</span> 
+           [<span class="hljs-attr">tableAlignment</span>]=<span class="hljs-string">"currentAlignment"</span>
+           [<span class="hljs-attr">pinMode</span>]=<span class="hljs-string">"isFirstColumnPinned ? 'on' : 'off'"</span>
+           <span class="hljs-attr">tableLabelledBy</span>=<span class="hljs-string">"caption"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"visuallyhidden"</span>&gt;</span>UIC-Statistik<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let header of headers"</span>&gt;</span>{{ header }}<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let row of rows"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> [<span class="hljs-attr">attr.scope</span>]=<span class="hljs-string">"row.scope"</span> [<span class="hljs-attr">attr.aria-describedby</span>]=<span class="hljs-string">"row.describedby"</span>&gt;</span>
+        {{ row.text1 }}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ row.text2 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ row.text3 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ row.text4 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbb-table-align-right"</span>&gt;</span>{{ row.text5 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> <span class="hljs-attr">sbbTableCaption</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"legend_item_1"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"-1"</span>&gt;</span>
+        Eisenbahnverkehrsunternehmen
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"legend_item_2"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"-1"</span>&gt;</span>
+        Eisenbahninfrastrukturbetreiberin
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"legend_item_3"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"-1"</span>&gt;</span>
+        Integriertes Bahnunternehmen/Holding
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"caption"</span>&gt;</span>Quelle: UIC-Statistik 2012.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-table</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"removeRow()"</span>&gt;</span>Remove a row<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+&amp;nbsp;
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"resetRows()"</span>&gt;</span>Reset rows<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"filter"</span>&gt;</span>Set a filter<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Filter table"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"filter"</span> (<span class="hljs-attr">keyup</span>)=<span class="hljs-string">"filterTable($event)"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Pin Mode<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"isFirstColumnPinned"</span>&gt;</span>Pin the first column<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Text Alignment *<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"radio-alignment"</span> 
+                    *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let alignment of alignments"</span> 
+                    [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"currentAlignment"</span>
+                    [<span class="hljs-attr">value</span>]=<span class="hljs-string">"alignment"</span>&gt;</span>{{ alignment }}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>
+  * The property <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>tableAlignment<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> set the text alignment for the overall table.
+   You can use it in a single <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>tr, th, td<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> tag the alignment classes: <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>sbb-table-align-center | sbb-table-align-left | sbb-table-align-right<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>.
+   <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+   In this example it has been used <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>sbb-table-align-right<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> to fix the text alignment of the last column to right.
+<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
