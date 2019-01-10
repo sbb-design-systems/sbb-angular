@@ -1,9 +1,9 @@
-<label class="sbb-option-selection" 
-  [class.sbb-option-selection-required]="required"
-  [class.sbb-option-selection-disabled]="disabled" 
-  [class.sbb-option-selection-checked]="checked"
-  [class.sbb-option-selection-has-subtitle]="hasSubtitle">
-  <div class="sbb-option-selection-multiple-header">
+<label class="sbb-checkbox-radio-button-panel" 
+  [class.sbb-checkbox-radio-button-panel-required]="required"
+  [class.sbb-checkbox-radio-button-panel-disabled]="disabled" 
+  [class.sbb-checkbox-radio-button-panel-checked]="checked"
+  [class.sbb-checkbox-radio-button-panel-has-subtitle]="hasSubtitle">
+  <div class="sbb-checkbox-radio-button-panel-multiple-header">
     <input type="checkbox" 
       [id]="inputId" 
       [value]="value" 
@@ -24,10 +24,10 @@
       <!-- Add an invisible span so JAWS can read the label -->
       <span style="display:none">&nbsp;</span>
       {{ label }}
-      <div *ngIf="subtitle" aria-level="3" class="sbb-option-selection-header-subtitle">{{ subtitle }}</div>
+      <div *ngIf="subtitle" aria-level="3" class="sbb-checkbox-radio-button-panel-header-subtitle">{{ subtitle }}</div>
     </div>
   </div>
-  <div class="sbb-option-selection-image">
+  <div class="sbb-checkbox-radio-button-panel-image">
     <ng-content select="[icon]"></ng-content>
   </div>
 </label>

@@ -23,10 +23,9 @@ import {
   AccordionModule,
   RadioButtonModule,
   TableModule,
+  NotificationsModule,
   RadioButtonPanelModule,
   CheckboxPanelModule
-  NotificationsModule,
-  TableModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
