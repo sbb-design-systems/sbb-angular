@@ -27,10 +27,10 @@ It is also possible to send a notification message with a custom icon (using *sb
 </sbb-notification>
 ```
 
-or with a custom icon and jumpMarks
+or with a custom icon and jump marks
 
 ```html
-<h4>Success notification with jumpMarks and custom icon</h4>
+<h4>Success notification with jump marks and custom icon</h4>
 <sbb-notification message="Suchen" type="success" [jumpMarks]="jumpMarks">
     <sbb-icon-gluehbirne-an *sbbNotificationIcon></sbb-icon-gluehbirne-an>
 </sbb-notification>

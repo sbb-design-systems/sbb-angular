@@ -8,9 +8,9 @@ export enum NotificationType {
 }
 
 export interface JumpMark {
-  /** Title of an element in jumpMarks. */
+  /** Title of an element in jump marks. */
   title: string;
-  /** Identifier of an element in jumpMarks. */
+  /** Identifier of an element in jump marks. */
   elementId: string;
 }
 
@@ -94,7 +94,7 @@ export class NotificationComponent {
   }
 
   /**
-   * Used to scroll to an element identified by a JumpMark
+   * Used to scroll to an element identified by a jump mark
    *
    * @param $event click event
    * @param jumpMark jump mark after the notification message
