@@ -8,23 +8,12 @@ import { ProcessflowStep, ProcessflowComponent } from 'projects/sbb-angular/src/
 })
 export class ProcessflowShowcaseComponent implements AfterViewInit {
 
-  logs: string[] = [];
-  logText: string;
-
-  steps: ProcessflowStep[] = [
-    { title: '1. Verbindung', active: true, disabled: false },
-    { title: '2. Reisedaten', active: false, disabled: true },
-    { title: '3. Zahlung', active: false, disabled: true },
-    { title: '4. Bestätigung', active: false, disabled: true }
-
-  ];
-
   @ViewChild('processflow') processflow: ProcessflowComponent;
 
   ngAfterViewInit(): void {
     this.processflow.stepChange.subscribe((s: ProcessflowStep) => {
-      this.logs.push('Step changed to ' + s.title);
-      this.logText = this.logs.join('\n');
+
+      console.log(s.title);
     });
   }
 

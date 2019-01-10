@@ -1,6 +1,19 @@
-<sbb-processflow #processflow [steps]="steps"></sbb-processflow>
-<button (click)="processflow.nextStep()">Next step</button>
-
-<div>
-    <textarea style="width: 100%" readonly [(ngModel)]="logText"></textarea>
-</div>
+<sbb-processflow #processflow>
+    <sbb-processflow-step title="Step 1">
+        <div>
+            Step 1
+        </div>
+    </sbb-processflow-step>
+    <sbb-processflow-step title="Step 2">
+        <div>
+            Step 2
+        </div>
+    </sbb-processflow-step>
+    <sbb-processflow-step title="Step 3">
+        <div>
+            Step 3
+        </div>
+    </sbb-processflow-step>
+</sbb-processflow>
+<button *ngIf="selectedStep.index !== 0" sbbButton (click)="processflow.prevStep()">Previous step</button>
+<button sbbButton (click)="processflow.nextStep()">Next step</button>

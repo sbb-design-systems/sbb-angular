@@ -1,10 +1,15 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input, ChangeDetectorRef, HostBinding } from '@angular/core';
-
-export interface ProcessflowStep {
-  title: string;
-  active: boolean;
-  disabled: boolean;
-}
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+  HostBinding,
+  ContentChildren,
+  QueryList,
+  AfterContentInit
+} from '@angular/core';
+import { ProcessflowStepComponent, ProcessflowStep } from '../processflow-step/processflow-step.component';
 
 @Component({
   selector: 'sbb-processflow',
@@ -12,22 +17,29 @@ export interface ProcessflowStep {
   styleUrls: ['./processflow.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProcessflowComponent {
+export class ProcessflowComponent implements AfterContentInit {
 
   /** @docs-private */
   @HostBinding('class.sbb-processflow')
   cssClass = true;
 
-  @Input()
-  steps: ProcessflowStep[] = [];
-
   @Output()
   stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
 
+  @ContentChildren(ProcessflowStepComponent) steps: QueryList<ProcessflowStepComponent>;
+
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
+  ngAfterContentInit(): void {
+    if (this.steps && this.steps.length) {
+      this.steps.first.active = true;
+      this.steps.first.disabled = false;
+    }
+  }
+
+
   nextStep() {
-    const activeStepIndex = this.findActiveStep(this.steps);
+    const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
     let activatedStep = false;
     if (activeStepIndex < this.steps.length - 1) {
       this.steps.forEach((s, i) => {
@@ -40,11 +52,15 @@ export class ProcessflowComponent {
         }
       });
       this.changeDetectorRef.markForCheck();
-      this.stepChange.emit(this.steps[activeStepIndex + 1]);
+      this.stepChange.emit(this.steps.toArray()[activeStepIndex + 1]);
     }
   }
 
-  private findActiveStep(steps: ProcessflowStep[]) {
+  prevStep() {
+    this.changeStep(this.findActiveStepIndex(this.steps.toArray()) - 1);
+  }
+
+  private findActiveStepIndex(steps: ProcessflowStepComponent[]) {
     return steps.findIndex(s => !!s.active);
   }
 
@@ -54,13 +70,13 @@ export class ProcessflowComponent {
   }
 
   changeStep(index: number) {
-    const step = this.steps[index];
+    const step = this.steps.toArray()[index];
     this.steps.forEach((s, i) => {
       s.active = false;
     });
     step.active = true;
     this.changeDetectorRef.markForCheck();
-    this.stepChange.emit(step);
+    this.stepChange.emit(step.descriptor);
   }
 
   disableStep(index: number) {
