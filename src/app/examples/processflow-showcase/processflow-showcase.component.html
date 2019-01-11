@@ -1,19 +1,35 @@
-<sbb-processflow #processflow>
-    <sbb-processflow-step title="Step 1">
-        <div>
-            Step 1
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 sbbsc-v-sep">
+            <h4 class="sbbsc-block">Processflow</h4>
+            <sbb-processflow #processflow>
+                <sbb-processflow-step title="Step 1">
+                    <div>
+                        Step 1
+                    </div>
+                </sbb-processflow-step>
+                <sbb-processflow-step title="Step 2">
+                    <div>
+                        Step 2
+                    </div>
+                </sbb-processflow-step>
+                <sbb-processflow-step title="Step 3">
+                    <div>
+                        Step 3
+                    </div>
+                </sbb-processflow-step>
+            </sbb-processflow>
+            <button sbbButton (click)="processflow.prevStep()">Previous step</button>
+            <button sbbButton (click)="processflow.nextStep()">Next step</button>
         </div>
-    </sbb-processflow-step>
-    <sbb-processflow-step title="Step 2">
-        <div>
-            Step 2
+        <div class="col-lg-6">
+            <h4 class="sbbsc-block">Properties</h4>
+            <div class="sbbsc-block">
+                <button mode="ghost" sbbButton (click)="reset()">Reset</button>
+            </div>
+            <div class="sbbsc-block">
+                <button mode="ghost" sbbButton (click)="disableStep(1)">Disable step 2</button>
+            </div>
         </div>
-    </sbb-processflow-step>
-    <sbb-processflow-step title="Step 3">
-        <div>
-            Step 3
-        </div>
-    </sbb-processflow-step>
-</sbb-processflow>
-<button *ngIf="selectedStep.index !== 0" sbbButton (click)="processflow.prevStep()">Previous step</button>
-<button sbbButton (click)="processflow.nextStep()">Next step</button>
+    </div>
+</div>

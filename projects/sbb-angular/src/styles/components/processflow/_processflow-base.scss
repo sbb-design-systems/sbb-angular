@@ -12,39 +12,39 @@
       content: "";
     }
     &-arrow {
-      width: toPx(24);
-      height: toPx(24);
+      width: toPx($processflowArrowWidth);
+      height: toPx($processflowArrowHeight);
       fill: $colorGrey;
-      line-height: toPx(21);
+      line-height: toPx($processflowArrowLineHeight);
       margin-bottom: auto;
 
       @include mq($from: mobilePortrait) {
-        margin-left: toPx(12);
-        margin-right: toPx(12);
+        margin-left: toPx($processflowArrowMarginsMP);
+        margin-right: toPx($processflowArrowMarginsMP);
       }
 
       @include mq($from: tabletPortrait) {
-        margin-left: toPx(16);
-        margin-right: toPx(16);
+        margin-left: toPx($processflowArrowMarginsTP);
+        margin-right: toPx($processflowArrowMarginsTP);
       }
 
       @include mq($from: desktop) {
-        margin-left: toPx(24);
-        margin-right: toPx(24);
+        margin-left: toPx($processflowArrowMarginsDT);
+        margin-right: toPx($processflowArrowMarginsDT);
       }
 
       @include mq($from: desktop4k) {
-        margin-left: toPx(36);
-        margin-right: toPx(36);
-        width: toPx(36);
-        height: toPx(36);
+        margin-left: toPx($processflowArrowMargins4K);
+        margin-right: toPx($processflowArrowMargins4K);
+        width: toPx($processflowArrowWidth4K);
+        height: toPx($processflowArrowHeight4K);
       }
 
       @include mq($from: desktop5k) {
-        margin-left: toPx(48);
-        margin-right: toPx(48);
-        width: toPx(48);
-        height: toPx(48);
+        margin-left: toPx(processflowArrowMargins5K);
+        margin-right: toPx(processflowArrowMargins5K);
+        width: toPx($processflowArrowWidth5K);
+        height: toPx($processflowArrowHeight5K);
       }
     }
     button {
@@ -60,7 +60,6 @@
 
 @mixin processflowButton {
   @include buttonResetFrameless();
-
   display: block;
   white-space: nowrap;
   font-family: $fontSbbLight;
@@ -68,33 +67,33 @@
   position: relative;
 
   @include mq($from: mobilePortrait) {
-    font-size: toPx(21);
-    line-height: toPx(21);
-    padding-bottom: toPx(11);
+    font-size: toPx($processflowStepButtonFontSizeMP);
+    line-height: toPx($processflowStepButtonLineHeightMP);
+    padding-bottom: toPx($processflowStepButtonPaddingBottomMP);
   }
 
   @include mq($from: tabletPortrait) {
-    font-size: toPx(21);
-    line-height: toPx(21);
-    padding-bottom: toPx(14);
+    font-size: toPx($processflowStepButtonFontSizeTP);
+    line-height: toPx($processflowStepButtonLineHeightTP);
+    padding-bottom: toPx($processflowStepButtonPaddingBottomTP);
   }
 
   @include mq($from: desktop) {
-    font-size: toPx(21);
-    line-height: toPx(21);
-    padding-bottom: toPx(22);
+    font-size: toPx($processflowStepButtonFontSizeDT);
+    line-height: toPx($processflowStepButtonLineHeightDT);
+    padding-bottom: toPx($processflowStepButtonPaddingBottomDT);
   }
 
   @include mq($from: desktop4k) {
-    font-size: toPx(32);
-    padding-bottom: toPx(34);
-    line-height: toPx(32);
+    font-size: toPx($processflowStepButtonFontSize4K);
+    line-height: toPx($processflowStepButtonLineHeight4K);
+    padding-bottom: toPx($processflowStepButtonPaddingBottom4K);
   }
 
   @include mq($from: desktop5k) {
-    font-size: toPx(42);
-    padding-bottom: toPx(45);
-    line-height: toPx(42);
+    font-size: toPx($processflowStepButtonFontSize5K);
+    line-height: toPx($processflowStepButtonLineHeight5K);
+    padding-bottom: toPx($processflowStepButtonPaddingBottom5K);
   }
 
   &::after {

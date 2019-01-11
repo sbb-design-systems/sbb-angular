@@ -26,7 +26,8 @@ export class ProcessflowComponent implements AfterContentInit {
   @Output()
   stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
 
-  @ContentChildren(ProcessflowStepComponent) steps: QueryList<ProcessflowStepComponent>;
+  @ContentChildren(ProcessflowStepComponent)
+  steps: QueryList<ProcessflowStepComponent>;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
@@ -36,7 +37,6 @@ export class ProcessflowComponent implements AfterContentInit {
       this.steps.first.disabled = false;
     }
   }
-
 
   nextStep() {
     const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
@@ -57,7 +57,11 @@ export class ProcessflowComponent implements AfterContentInit {
   }
 
   prevStep() {
-    this.changeStep(this.findActiveStepIndex(this.steps.toArray()) - 1);
+    const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+    if (activeStepIndex > 0) {
+
+      this.changeStep(activeStepIndex - 1);
+    }
   }
 
   private findActiveStepIndex(steps: ProcessflowStepComponent[]) {
@@ -71,19 +75,38 @@ export class ProcessflowComponent implements AfterContentInit {
 
   changeStep(index: number) {
     const step = this.steps.toArray()[index];
-    this.steps.forEach((s, i) => {
-      s.active = false;
-    });
-    step.active = true;
-    this.changeDetectorRef.markForCheck();
-    this.stepChange.emit(step.descriptor);
+    if (step) {
+
+      this.steps.forEach((s, i) => {
+        s.active = false;
+      });
+      step.active = true;
+      this.changeDetectorRef.markForCheck();
+      this.stepChange.emit(step.descriptor);
+    }
   }
 
   disableStep(index: number) {
-    const step = this.steps[index];
-    step.disabled = true;
-    this.changeDetectorRef.markForCheck();
+    const step = this.steps.toArray()[index];
+    if (step) {
+      step.disabled = true;
+      if (step.active) {
+        step.active = false;
+        if (index > 0) {
+          this.changeStep(index - 1);
+        }
+      }
+      this.changeDetectorRef.markForCheck();
+    }
+  }
 
+  reset() {
+    this.steps.forEach(s => {
+      s.active = false;
+      s.disabled = true;
+    });
+    this.ngAfterContentInit();
+    this.changeDetectorRef.markForCheck();
   }
 
 }

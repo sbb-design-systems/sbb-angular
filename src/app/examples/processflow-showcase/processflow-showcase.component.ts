@@ -17,4 +17,11 @@ export class ProcessflowShowcaseComponent implements AfterViewInit {
     });
   }
 
+  reset() {
+    this.processflow.reset();
+  }
+
+  disableStep(index: number) {
+    this.processflow.disableStep(index);
+  }
 }

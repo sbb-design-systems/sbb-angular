@@ -22,7 +22,8 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
-  TableModule
+  TableModule,
+  ProcessflowModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -53,7 +54,6 @@ import {
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
-import { ProcessflowModule } from 'projects/sbb-angular/src/lib/processflow/processflow';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
