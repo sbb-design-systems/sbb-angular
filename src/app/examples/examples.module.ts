@@ -10,7 +10,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  RadioButtonModule,
   CheckboxModule,
   ButtonModule,
   TabsModule,
@@ -22,8 +21,11 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
+  RadioButtonModule,
+  TableModule,
   NotificationsModule,
-  TableModule
+  RadioButtonPanelModule,
+  CheckboxPanelModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -53,6 +55,8 @@ import {
 } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
@@ -83,6 +87,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent
   ],
@@ -108,6 +114,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     AutocompleteModule,
     SelectModule,
     AccordionModule,
+    RadioButtonPanelModule,
+    CheckboxPanelModule,
     NotificationsModule,
     TableModule
   ],
@@ -124,6 +132,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
