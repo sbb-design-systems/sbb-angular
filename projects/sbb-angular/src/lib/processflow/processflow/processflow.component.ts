@@ -59,7 +59,7 @@ export class ProcessflowComponent implements AfterContentInit {
   prevStep() {
     const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
     if (activeStepIndex > 0) {
-
+      this.disableStep(activeStepIndex);
       this.changeStep(activeStepIndex - 1);
     }
   }
@@ -76,7 +76,6 @@ export class ProcessflowComponent implements AfterContentInit {
   changeStep(index: number) {
     const step = this.steps.toArray()[index];
     if (step) {
-
       this.steps.forEach((s, i) => {
         s.active = false;
       });
