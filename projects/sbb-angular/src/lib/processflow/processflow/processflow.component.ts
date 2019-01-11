@@ -85,16 +85,10 @@ export class ProcessflowComponent implements AfterContentInit {
     }
   }
 
-  disableStep(index: number) {
+  private disableStep(index: number) {
     const step = this.steps.toArray()[index];
     if (step) {
       step.disabled = true;
-      if (step.active) {
-        step.active = false;
-        if (index > 0) {
-          this.changeStep(index - 1);
-        }
-      }
       this.changeDetectorRef.markForCheck();
     }
   }

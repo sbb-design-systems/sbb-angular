@@ -12,7 +12,6 @@ export class ProcessflowShowcaseComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.processflow.stepChange.subscribe((s: ProcessflowStep) => {
-
       console.log(s.title);
     });
   }
@@ -21,7 +20,4 @@ export class ProcessflowShowcaseComponent implements AfterViewInit {
     this.processflow.reset();
   }
 
-  disableStep(index: number) {
-    this.processflow.disableStep(index);
-  }
 }
