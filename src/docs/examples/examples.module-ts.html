@@ -22,6 +22,7 @@
   SelectModule,
   OptionModule,
   AccordionModule,
+  NotificationsModule,
   TableModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
@@ -52,8 +53,7 @@
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lightbox-showcase/lightbox-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { ProcessflowShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./processflow-showcase/processflow-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { ProcessflowModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/processflow/processflow'</span>;
+<span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
@@ -83,7 +83,7 @@
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
-    ProcessflowShowcaseComponent,
+    NotificationShowcaseComponent,
     TableShowcaseComponent
   ],
   imports: [
@@ -108,7 +108,7 @@
     AutocompleteModule,
     SelectModule,
     AccordionModule,
-    ProcessflowModule,
+    NotificationsModule,
     TableModule
   ],
   exports: [
@@ -124,7 +124,7 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
-    ProcessflowShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,

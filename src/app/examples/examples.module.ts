@@ -23,7 +23,8 @@ import {
   OptionModule,
   AccordionModule,
   TableModule,
-  ProcessflowModule
+  ProcessflowModule,
+  NotificationsModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -54,6 +55,7 @@ import {
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
+import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
@@ -84,6 +86,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     ProcessflowShowcaseComponent,
+    NotificationShowcaseComponent,
     TableShowcaseComponent
   ],
   imports: [
@@ -109,6 +112,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     SelectModule,
     AccordionModule,
     ProcessflowModule,
+    NotificationsModule,
     TableModule
   ],
   exports: [
@@ -125,6 +129,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
     ProcessflowShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
