@@ -2,8 +2,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProcessflowComponent } from './processflow.component';
 import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
+import { Component, ViewChild } from '@angular/core';
 
-describe('ProcessflowComponent', () => {
+
+@Component({
+  selector: 'sbb-processflow-test',
+  templateUrl: './processflow-showcase.component.html',
+  styleUrls: ['./processflow-showcase.component.scss']
+})
+export class ProcessflowTestComponent {
+
+  @ViewChild('processflow') processflow: ProcessflowComponent;
+}
+
+fdescribe('ProcessflowComponent', () => {
   let component: ProcessflowComponent;
   let fixture: ComponentFixture<ProcessflowComponent>;
 
