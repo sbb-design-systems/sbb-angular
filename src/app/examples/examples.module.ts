@@ -22,6 +22,7 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
+  NotificationsModule,
   TableModule
 } from 'sbb-angular';
 
@@ -52,6 +53,7 @@ import {
 } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
@@ -81,6 +83,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
+    NotificationShowcaseComponent,
     TableShowcaseComponent
   ],
   imports: [
@@ -105,6 +108,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     AutocompleteModule,
     SelectModule,
     AccordionModule,
+    NotificationsModule,
     TableModule
   ],
   exports: [
@@ -120,6 +124,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
