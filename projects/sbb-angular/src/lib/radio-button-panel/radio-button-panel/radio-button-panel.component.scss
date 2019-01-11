@@ -1,14 +1,9 @@
-@import '../../../styles/main';
+@import "../../../styles/main";
 
-:host {
+sbb-radio-button-panel {
   @include checkboxRadioButtonPanel;
-
   .sbb-checkbox-radio-button-panel-image {
     @include checkboxRadioButtonPanelImage;
-    * {
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
 
+  }
 }

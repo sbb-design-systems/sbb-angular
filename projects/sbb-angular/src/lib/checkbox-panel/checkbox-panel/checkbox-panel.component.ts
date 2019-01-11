@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy,
   forwardRef,
   Input,
-  HostBinding
+  HostBinding,
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
@@ -19,7 +20,8 @@ let counter = 0;
     useExisting: forwardRef(() => CheckboxPanelComponent),
     multi: true,
   }],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class CheckboxPanelComponent extends CheckboxComponent {
 
