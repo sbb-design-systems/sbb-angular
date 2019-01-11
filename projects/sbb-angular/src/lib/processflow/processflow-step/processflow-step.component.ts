@@ -14,9 +14,9 @@ export class ProcessflowStep {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessflowStepComponent {
-
+  /** Refers to the processFlowStep istance. */
   descriptor: ProcessflowStep = new ProcessflowStep();
-
+  /** Title of a step in a process flow. */
   @Input()
   set title(value: string) {
     this.descriptor.title = value;
@@ -24,7 +24,7 @@ export class ProcessflowStepComponent {
   get title() {
     return this.descriptor.title;
   }
-
+  /** Refers to the active status of a step in process flow.  */
   @Input()
   set active(value: boolean) {
     this.descriptor.active = coerceBooleanProperty(value);
@@ -33,7 +33,7 @@ export class ProcessflowStepComponent {
   get active() {
     return this.descriptor.active;
   }
-
+  /** Refers to the disable status of a step in process flow.  */
   @Input()
   set disabled(value: boolean) {
     this.descriptor.disabled = coerceBooleanProperty(value);

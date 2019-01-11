@@ -22,10 +22,10 @@ export class ProcessflowComponent implements AfterContentInit {
   /** @docs-private */
   @HostBinding('class.sbb-processflow')
   cssClass = true;
-
+  /** Event emitted to the change of step in the process flow. */
   @Output()
   stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
-
+  /** Refers to the steps of process flow. */
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;
 
@@ -67,12 +67,19 @@ export class ProcessflowComponent implements AfterContentInit {
   private findActiveStepIndex(steps: ProcessflowStepComponent[]) {
     return steps.findIndex(s => !!s.active);
   }
-
+  /**
+   * Method to change on a step with a click.
+   * @param $event Event generated at the click on a step.
+   * @param stepIndex Index of a step.
+   */
   stepClick($event: any, stepIndex: number) {
     $event.preventDefault();
     this.changeStep(stepIndex);
   }
-
+  /**
+   * Method to change a step in a process flow.
+   * @param index Index of the step to change.
+   */
   changeStep(index: number) {
     const step = this.steps.toArray()[index];
     if (step) {
@@ -84,8 +91,10 @@ export class ProcessflowComponent implements AfterContentInit {
       this.stepChange.emit(step.descriptor);
     }
   }
-
-  private disableStep(index: number) {
+  /** Method to disable a step in a process flow.
+   * @param index Index of the step to disable.
+  */
+  disableStep(index: number) {
     const step = this.steps.toArray()[index];
     if (step) {
       step.disabled = true;
