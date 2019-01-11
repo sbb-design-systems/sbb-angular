@@ -111,4 +111,14 @@ export class ProcessflowComponent implements AfterContentInit {
     this.changeDetectorRef.markForCheck();
   }
 
+  getActiveStep() {
+    if (this.steps && this.steps.length) {
+      const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+      if (activeStepIndex > -1) {
+        return this.steps.toArray()[activeStepIndex];
+      }
+    }
+    return null;
+  }
+
 }
