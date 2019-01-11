@@ -10,7 +10,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  RadioButtonModule,
   CheckboxModule,
   ButtonModule,
   TabsModule,
@@ -22,9 +21,12 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
-  TableModule,
   ProcessflowModule,
-  NotificationsModule
+  RadioButtonModule,
+  NotificationsModule,
+  TableModule,
+  RadioButtonPanelModule,
+  CheckboxPanelModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -55,6 +57,8 @@ import {
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
@@ -86,6 +90,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
     ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent
   ],
@@ -112,6 +118,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     SelectModule,
     AccordionModule,
     ProcessflowModule,
+    RadioButtonPanelModule,
+    CheckboxPanelModule,
     NotificationsModule,
     TableModule
   ],
@@ -129,6 +137,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
     ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
