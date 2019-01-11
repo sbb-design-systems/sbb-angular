@@ -14,6 +14,8 @@ import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-s
 import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 
@@ -189,9 +191,9 @@ export class ComponentUiService {
         RadioButtonShowcaseComponent
       ),
       new UiComponent(
-        'Check Box',
+        'Checkbox',
         'checkbox',
-        'Check Box',
+        'Checkbox',
         'Subtitel goes here ...',
         true,
         false,
@@ -290,18 +292,32 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
-        'Option Chooser (simple)',
-        'optionChooserSimple',
-        'Option Chooser (simple)',
+      new UiComponent(
+        'Radio Button Panel',
+        'radio-button-panel',
+        'Radio Button Panel',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Aresta'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        RadioButtonPanelShowcaseComponent
+      ),
+      new UiComponent(
+        'Checkbox Panel',
+        'checkbox-panel',
+        'Checkbox Panel',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        CheckboxPanelShowcaseComponent
+      ),
       new UiComponent(
         'Time Input',
         'time-input',
