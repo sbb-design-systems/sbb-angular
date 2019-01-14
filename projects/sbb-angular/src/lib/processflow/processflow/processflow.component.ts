@@ -85,6 +85,9 @@ export class ProcessflowComponent implements AfterContentInit {
     if (step) {
       this.steps.forEach((s, i) => {
         s.active = false;
+        if (i > index) {
+          s.disabled = true;
+        }
       });
       step.active = true;
       this.changeDetectorRef.markForCheck();
