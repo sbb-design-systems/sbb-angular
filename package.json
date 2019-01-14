@@ -59,7 +59,7 @@
     "@types/run-sequence": "^0.0.30",
     "codelyzer": "^4.5.0",
     "dgeni": "^0.4.11",
-    "dgeni-packages": "^0.26.12",
+    "dgeni-packages": "^0.27.1",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^3.10.0",
