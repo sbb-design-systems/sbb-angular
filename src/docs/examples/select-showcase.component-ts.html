@@ -2,10 +2,8 @@
 <span class="hljs-keyword">import</span> { FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
 <span class="hljs-keyword">import</span> { SelectComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Food {
-  value: <span class="hljs-built_in">string</span>;
-  viewValue: <span class="hljs-built_in">string</span>;
-  disabled: <span class="hljs-built_in">boolean</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Food {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> value: <span class="hljs-built_in">string</span>, <span class="hljs-keyword">public</span> viewValue: <span class="hljs-built_in">string</span>, <span class="hljs-keyword">public</span> disabled: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span></span>) { }
 }
 
 
@@ -21,9 +19,9 @@
   <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiWithOptionGroup'</span>) multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
-    { value: <span class="hljs-string">'beefsteak-0'</span>, viewValue: <span class="hljs-string">'Beefsteak'</span>, disabled: <span class="hljs-literal">false</span> },
-    { value: <span class="hljs-string">'pizza-1'</span>, viewValue: <span class="hljs-string">'Pizza'</span>, disabled: <span class="hljs-literal">false</span> },
-    { value: <span class="hljs-string">'nudeln-2'</span>, viewValue: <span class="hljs-string">'Nudeln'</span>, disabled: <span class="hljs-literal">false</span> }
+    <span class="hljs-keyword">new</span> Food(<span class="hljs-string">'beefsteak-0'</span>, <span class="hljs-string">'Beefsteak'</span>),
+    <span class="hljs-keyword">new</span> Food(<span class="hljs-string">'pizza-1'</span>, <span class="hljs-string">'Pizza'</span>),
+    <span class="hljs-keyword">new</span> Food(<span class="hljs-string">'nudeln-2'</span>, <span class="hljs-string">'Nudeln'</span>)
   ];
 
   foodFromTheWorld = [{

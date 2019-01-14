@@ -1,0 +1,15 @@
+<ol class="sbb-processflow-header">
+  <li *ngFor="let step of steps; let i = index; let isLast = last" class="sbb-processflow-step">
+    <button [class.sbb-active]="step.active" [class.sbb-disabled]="step.disabled"
+      [disabled]="step.disabled" (click)="stepClick($event, i)">
+      {{ step.title }}
+    </button>
+    <ng-container *ngIf="!isLast">
+      <div class="sbb-processflow-step-arrow">
+        <sbb-icon-arrow-left></sbb-icon-arrow-left>
+      </div>
+    </ng-container>
+  </li>
+</ol>
+
+<ng-content select="sbb-processflow-step"></ng-content>

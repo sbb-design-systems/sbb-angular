@@ -6,7 +6,7 @@ import {
   HostBinding,
   ViewEncapsulation
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR,  } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonComponent } from '../../radio-button/radio-button';
 
 let counter = 0;
