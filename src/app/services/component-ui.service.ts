@@ -11,7 +11,14 @@ import { DatepickerShowcaseComponent } from '../examples/datepicker-showcase/dat
 import { FieldShowcaseComponent } from '../examples/field-showcase/field-showcase.component';
 import { TabsShowcaseComponent } from '../examples/tabs-showcase/tabs-showcase.component';
 import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-showcase.component';
+import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbox-showcase.component';
+import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
+import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
+import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 
 
 @Injectable({
@@ -48,7 +55,7 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /* new UiComponent(
+      new UiComponent(
         'Table',
         'table',
         'Table',
@@ -60,8 +67,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        TableShowcaseComponent
+      ),
       new UiComponent(
         'Link',
         'links',
@@ -129,7 +137,7 @@ export class ComponentUiService {
         'Import text.',
         TextareaShowcaseComponent
       ),
-     /*  new UiComponent(
+      new UiComponent(
         'Select',
         'select',
         'Select',
@@ -139,9 +147,10 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
-       new UiComponent(
+        'Import text.',
+        SelectShowcaseComponent
+      ),
+      new UiComponent(
         'Date Picker',
         'datepicker',
         'Date Picker',
@@ -183,9 +192,9 @@ export class ComponentUiService {
         RadioButtonShowcaseComponent
       ),
       new UiComponent(
-        'Check Box',
+        'Checkbox',
         'checkbox',
-        'Check Box',
+        'Checkbox',
         'Subtitel goes here ...',
         true,
         false,
@@ -208,7 +217,7 @@ export class ComponentUiService {
         'Import text.',
         TabsShowcaseComponent
       ),
-     new UiComponent(
+      new UiComponent(
         'Accordion',
         'accordion',
         'Accordion',
@@ -233,9 +242,21 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-     /*  new UiComponent(
+      /*  new UiComponent(
+         'Light Box',
+         'lightBox',
+         'Light Box',
+         'Subtitel goes here ...',
+         true,
+         true,
+         ['Davide Aresta', 'Stefan Meili'],
+         'Description goes here ...',
+         'Source goes here ...',
+         'Import text.'
+       ), */
+      new UiComponent(
         'Light Box',
-        'lightBox',
+        'lightbox',
         'Light Box',
         'Subtitel goes here ...',
         true,
@@ -243,9 +264,11 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
-     /*  new UiComponent(
+        'Import text.',
+        LightboxShowcaseComponent,
+        ['content-1', 'content-2', 'content-3']
+      ),
+      new UiComponent(
         'Notification',
         'notification',
         'Notification',
@@ -255,11 +278,12 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
-      /* new UiComponent(
+        'Import text.',
+        NotificationShowcaseComponent
+      ),
+       new UiComponent(
         'Process Flow',
-        'processFlow',
+        'processflow',
         'Process Flow',
         'Subtitel goes here ...',
         true,
@@ -267,20 +291,35 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
-      /* new UiComponent(
-        'Option Chooser (simple)',
-        'optionChooserSimple',
-        'Option Chooser (simple)',
+        'Import text.',
+        ProcessflowShowcaseComponent
+      ),
+      new UiComponent(
+        'Radio Button Panel',
+        'radio-button-panel',
+        'Radio Button Panel',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Aresta'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        RadioButtonPanelShowcaseComponent
+      ),
+      new UiComponent(
+        'Checkbox Panel',
+        'checkbox-panel',
+        'Checkbox Panel',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        CheckboxPanelShowcaseComponent
+      ),
       new UiComponent(
         'Time Input',
         'time-input',

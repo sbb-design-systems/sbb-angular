@@ -5,10 +5,9 @@ const { join } = require('path');
 const { DateTime, Duration } = require('luxon');
 const execAsync = require('util').promisify(exec);
 
+const MAX_AGE_IN_DAYS = (process.env.MAX_AGE_IN_DAYS || 14) * -1;
+
 class ShowcasePackage {
-
-  static maxAgeInDays = (process.env.MAX_AGE_IN_DAYS || 14) * -1;
-
   constructor(packageInfo, tag) {
     this.name = packageInfo.name;
     this.tag = tag;
@@ -39,7 +38,7 @@ class ShowcasePackage {
 
   isObsolete() {
     return this.tag.startsWith('feature-')
-      && this.dateTime.diffNow('days').toObject().days < ShowcasePackage.maxAgeInDays;
+      && this.dateTime.diffNow('days').toObject().days < MAX_AGE_IN_DAYS;
   }
 
   toString() {

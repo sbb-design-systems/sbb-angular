@@ -1,5 +1,5 @@
-import { CommonModule, registerLocaleData } from '@angular/common';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,15 +10,23 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
   LoadingModule,
+  DatepickerModule,
+  LightboxModule,
+  AutocompleteModule,
+  SelectModule,
+  OptionModule,
   AccordionModule,
-  DatepickerModule
+  ProcessflowModule,
+  RadioButtonModule,
+  NotificationsModule,
+  TableModule,
+  RadioButtonPanelModule,
+  CheckboxPanelModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -33,7 +41,26 @@ import { DatepickerShowcaseComponent } from './datepicker-showcase/datepicker-sh
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { LoadingShowcaseComponent } from './loading-showcase/loading-showcase.component';
+import {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} from './lightbox-showcase/lightbox-showcase.component';
+import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
+import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +76,24 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
-    AccordionShowcaseComponent
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
+    SelectShowcaseComponent,
+    AccordionShowcaseComponent,
+    ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
+    TableShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +101,6 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     TextareaModule,
     FieldModule,
     LinksModule,
-    AutocompleteModule,
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -69,7 +112,16 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     IconCommonModule,
     TabsModule,
     LoadingModule,
-    AccordionModule
+    LightboxModule,
+    OptionModule,
+    AutocompleteModule,
+    SelectModule,
+    AccordionModule,
+    ProcessflowModule,
+    RadioButtonPanelModule,
+    CheckboxPanelModule,
+    NotificationsModule,
+    TableModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -83,9 +135,24 @@ import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showc
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
+    SelectShowcaseComponent,
+    ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
     ButtonModule,
     LoadingModule,
-    AccordionModule
+    LightboxModule,
+    OptionModule,
+    AccordionModule,
+    TableModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 export class ExamplesModule { }

@@ -5,19 +5,20 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
   ElementRef,
   EventEmitter,
   Input,
   Output,
-  QueryList,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
   HostBinding,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
-import { OptionComponent } from '../option/option.component';
-import { OptionGroupComponent } from '../option-group/option-group.component';
+import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
+import { HasOptions } from '../../option/has-options';
+import { OptionGroupComponent } from '../../option/option-group/option-group.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -47,9 +48,17 @@ export interface SbbAutocompleteDefaultOptions {
   templateUrl: 'autocomplete.component.html',
   styleUrls: ['autocomplete.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent },
+  ]
 })
-export class AutocompleteComponent implements AfterContentInit {
+export class AutocompleteComponent implements AfterContentInit, HasOptions {
+  /** All of the defined select options. */
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+
+  /** All of the defined groups of options. */
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
 
 
   /** Manages active item in option list based on key events. */
@@ -69,12 +78,6 @@ export class AutocompleteComponent implements AfterContentInit {
 
   /** Element for the panel containing the autocomplete options. */
   @ViewChild('panel') panel: ElementRef;
-
-  /** @docs-private */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
-
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
-
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -125,8 +128,6 @@ export class AutocompleteComponent implements AfterContentInit {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef<HTMLElement>) {
-
-
   }
 
   ngAfterContentInit() {

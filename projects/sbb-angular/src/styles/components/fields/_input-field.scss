@@ -57,7 +57,7 @@
 
 @mixin disabledinputfields {
   &:disabled {
-    background: $colorBlack5;
+    background-color: $colorBlack5;
     border-color: $colorBlack20;
   }
 }

@@ -1,8 +1,17 @@
-import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  ChangeDetectionStrategy,
+  Input,
+  ViewChild,
+  NgZone,
+  HostBinding,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { first } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'sbb-textarea',
@@ -26,10 +35,7 @@ export class TextareaComponent implements ControlValueAccessor {
    * Class property that represents the autosize textarea
    */
   matTextareaAutosize = true;
-  /**
-   * Class property that represents an observer on the number of digits in a textarea
-   */
-  counterObserver$: Subject<number> = new Subject<number>();
+
   /**
    * Class property that disables the textarea status
    */
@@ -45,6 +51,10 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   @Input()
   maxlength: number;
+  /**
+  * Class property that represents an observer on the number of digits in a textarea
+  */
+  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
   /**
    * Class property that sets the minlength of the textarea content
    */
@@ -88,7 +98,8 @@ export class TextareaComponent implements ControlValueAccessor {
     this.focusedClass = false;
   }
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private changeDetector: ChangeDetectorRef, private ngZone: NgZone) { }
+
   /**
    * Trigger the resize of the textarea to fit the content
    */
@@ -125,6 +136,7 @@ export class TextareaComponent implements ControlValueAccessor {
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
     this.disabledClass = disabled;
+    this.changeDetector.markForCheck();
   }
   /**
    * Method that updates the max number of digits available in the textarea content
@@ -132,7 +144,6 @@ export class TextareaComponent implements ControlValueAccessor {
   updateDigitsCounter(newValue) {
     if (!!this.maxlength) {
       this.counterObserver$.next(this.maxlength - newValue.length);
-
     }
   }
 }

@@ -1,0 +1,36 @@
+.sbbsc-lightbox-example-icon-1,
+.sbbsc-lightbox-example-icon-2 {
+  height: 20px;
+  vertical-align: middle;
+}
+
+.sbbsc-lightbox-example-icon-1 {
+  width: 20px; 
+}
+
+.sbbsc-lightbox-example-icon-2 {
+  width: 60px; 
+  fill: #fff;
+  background: #eb0000;
+}
+
+.sbbsc-lightbox-example-1-content {
+  max-width: 400px;
+  margin: auto;
+}
+
+.sbbsc-lb-disableclose-c-1 {
+  text-align: center;
+}
+
+.sbbsc-lb-disableclose-c-2 {
+  text-align: center;
+
+  h3 {
+    margin-bottom: 1em;
+  }
+
+  button[mode="ghost"] {
+    margin-right: 8px;
+  }
+}

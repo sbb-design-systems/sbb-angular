@@ -105,6 +105,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
+    this.changeDetector.markForCheck();
   }
 
 }

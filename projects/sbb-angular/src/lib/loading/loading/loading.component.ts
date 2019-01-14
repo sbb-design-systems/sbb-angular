@@ -10,11 +10,15 @@ const cssPrefix = 'sbb-loading-';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingComponent implements OnChanges {
-
+  /** The aria-busy of loading component. */
   @HostBinding('attr.aria-busy') isBusy = 'true';
+  /** The role of loading component. */
   @HostBinding('attr.role') role = 'progressbar';
+  /** Class of loading component. */
   @Input() class = '';
+  /** Class mode of loading component. */
   @HostBinding('class') modeClasses: string;
+  /** Types of mode for loading indicator. */
   @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' = 'medium';
 
   private modeClassList = [];

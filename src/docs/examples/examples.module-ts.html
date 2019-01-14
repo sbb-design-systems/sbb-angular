@@ -1,5 +1,5 @@
-<span class="hljs-keyword">import</span> { CommonModule, registerLocaleData } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
-<span class="hljs-keyword">import</span> { NgModule, LOCALE_ID } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { CommonModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+<span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { FormsModule, ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
 <span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
 
@@ -10,15 +10,23 @@
   TextareaModule,
   FieldModule,
   LinksModule,
-  RadioButtonModule,
   CheckboxModule,
-  AutocompleteModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
   LoadingModule,
+  DatepickerModule,
+  LightboxModule,
+  AutocompleteModule,
+  SelectModule,
+  OptionModule,
   AccordionModule,
-  DatepickerModule
+<<<<<<< HEAD
+  RadioButtonModule
+=======
+  NotificationsModule,
+  TableModule
+>>>>>>> develop
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
@@ -33,7 +41,29 @@
 <span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
 <span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
+<span class="hljs-keyword">import</span> {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'./lightbox-showcase/lightbox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
+<<<<<<< HEAD
+<span class="hljs-keyword">import</span> { RadioButtonPanelModule, CheckboxPanelModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
+<span class="hljs-keyword">import</span> { RadioButtonPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./radio-button-panel-showcase/radio-button-panel-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { CheckboxPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-panel-showcase/checkbox-panel-showcase.component'</span>;
+=======
+<span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
+>>>>>>> develop
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -49,7 +79,26 @@
     PersonListComponent,
     TimeInputShowcaseComponent,
     LoadingShowcaseComponent,
-    AccordionShowcaseComponent
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
+    SelectShowcaseComponent,
+    AccordionShowcaseComponent,
+<<<<<<< HEAD
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent
+=======
+    NotificationShowcaseComponent,
+    TableShowcaseComponent
+>>>>>>> develop
   ],
   imports: [
     BrowserModule,
@@ -57,7 +106,6 @@
     TextareaModule,
     FieldModule,
     LinksModule,
-    AutocompleteModule,
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -69,7 +117,18 @@
     IconCommonModule,
     TabsModule,
     LoadingModule,
-    AccordionModule
+    LightboxModule,
+    OptionModule,
+    AutocompleteModule,
+    SelectModule,
+    AccordionModule,
+<<<<<<< HEAD
+    RadioButtonPanelModule,
+    CheckboxPanelModule
+=======
+    NotificationsModule,
+    TableModule
+>>>>>>> develop
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -83,9 +142,26 @@
     TabsShowcaseComponent,
     PersonListComponent,
     TimeInputShowcaseComponent,
+    SelectShowcaseComponent,
+<<<<<<< HEAD
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
+=======
+    NotificationShowcaseComponent,
+>>>>>>> develop
     ButtonModule,
     LoadingModule,
-    AccordionModule
+    LightboxModule,
+    OptionModule,
+    AccordionModule,
+    TableModule
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
   ]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExamplesModule { }

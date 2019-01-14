@@ -10,6 +10,10 @@
   margin: 1em 0;
 }
 
+.sbbsc-spacer {
+  margin: 1em 0;
+}
+
 .sbbsc-v-sep {
   @include mq($from: desktop) {
     border-right: 1px solid $colorGreyLight;

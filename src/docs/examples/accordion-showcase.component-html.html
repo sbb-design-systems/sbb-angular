@@ -6,7 +6,7 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-accordion</span> #<span class="hljs-attr">firstAccordion</span> [<span class="hljs-attr">multi</span>]=<span class="hljs-string">"multi"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 1'"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 1'"</span> [<span class="hljs-attr">hideToggle</span>]=<span class="hljs-string">"hideToggle"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
             Some generic content accordion panel
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
@@ -15,8 +15,8 @@
           Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
           Mauris gravida aliquet eleifend.
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 2'"</span> (<span class="hljs-attr">opened</span>)=<span class="hljs-string">"panelOpenState = true; log('opened called')"</span> (<span class="hljs-attr">closed</span>)=<span class="hljs-string">"panelOpenState = false; log('closed called')"</span>
-          (<span class="hljs-attr">expandedChange</span>)=<span class="hljs-string">"log('expandedChange called', $event)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 2'"</span> (<span class="hljs-attr">opened</span>)=<span class="hljs-string">"panelOpenState = true; log('opened called')"</span>
+          (<span class="hljs-attr">closed</span>)=<span class="hljs-string">"panelOpenState = false; log('closed called')"</span> (<span class="hljs-attr">expandedChange</span>)=<span class="hljs-string">"log('expandedChange called', $event)"</span> [<span class="hljs-attr">hideToggle</span>]=<span class="hljs-string">"hideToggle"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
             Panel with table
             <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin: 0 2em;"</span>&gt;</span>Currently I am {{panelOpenState ? 'open' : 'closed'}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
@@ -152,7 +152,7 @@
             <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 3'"</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"disabled"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 3'"</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"disabled"</span> [<span class="hljs-attr">hideToggle</span>]=<span class="hljs-string">"hideToggle"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
             I can disable this panel
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
@@ -167,7 +167,7 @@
             laborum.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 4'"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 4'"</span> [<span class="hljs-attr">hideToggle</span>]=<span class="hljs-string">"hideToggle"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
             Panel with lazy loaded content
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
@@ -201,21 +201,21 @@
 
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel</span> <span class="hljs-attr">hideToggle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-custom-html"</span> [<span class="hljs-attr">expanded</span>]=<span class="hljs-string">"panelMode === 'panel 5'"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Panel with custom html<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-button-group"</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"</span>
-                  (<span class="hljs-attr">keydown</span>)=<span class="hljs-string">"logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')"</span>&gt;</span>
-                  Test button
-                  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-              <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
-            Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
-            Mauris gravida aliquet eleifend.
-          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Panel with custom html<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-button-group"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"</span>
+                (<span class="hljs-attr">keydown</span>)=<span class="hljs-string">"logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')"</span>&gt;</span>
+                Test button
+                <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbButtonIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel-header</span>&gt;</span>
+          Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
+          Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
+          Mauris gravida aliquet eleifend.
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-expansion-panel</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-accordion</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-bottom: 2em;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Advanced Accordion<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
@@ -301,6 +301,12 @@
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Click to show/hide the panel toggles:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"hideToggle"</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"hideToggle"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: inline-block;"</span>&gt;</span> Hide Toggle
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Click an option to open a specific panel of the accordion: <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"panelMode"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"panelMode"</span>&gt;</span>
@@ -311,333 +317,5 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>*You can choose "Open all/Close all" if multi panel checkbox is selected <span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>*You can choose one panel into select field to expand if the multi panel checkbox isn't selected<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
-
-<span class="hljs-comment">&lt;!-- &lt;sbb-accordion&gt;
-  &lt;sbb-expansion-panel&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      Some generic content accordion panel
-    &lt;/sbb-expansion-panel-header&gt;
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
-    Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
-    Mauris gravida aliquet eleifend.
-  &lt;/sbb-expansion-panel&gt;
-  &lt;sbb-expansion-panel&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      Panel with table
-    &lt;/sbb-expansion-panel-header&gt;
-    &lt;div class="docs-api"&gt;
-      &lt;h2&gt;Table Title h2&lt;/h2&gt;
-      &lt;table class="docs-api-properties-table"&gt;
-        &lt;tbody&gt;
-          &lt;tr class="docs-api-properties-header-row"&gt;
-            &lt;th class="docs-api-properties-th"&gt;Name&lt;/th&gt;
-            &lt;th class="docs-api-properties-th"&gt;Description&lt;/th&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;active: false&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Class property that specifics tab status&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;badgePill: number&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Class property that identifies the data-set for tabs content&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;disabled: boolean&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Sets a specifics tab disabled&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;id: string&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Tab identifier&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;label: string&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Label of a specific tab&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;labelId: string&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Label identifier of a tab&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-input-marker"&gt; @Input()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;tabindex: -1&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Initial index tab&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-output-marker"&gt; @Output()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;disableChange: EventEmitter&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Event generated if a tab is disabled&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;div class="docs-api-output-marker"&gt; @Output()&lt;/div&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;removeChange: EventEmitter&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Event generated if a tab is removed&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;ariaHidden: string&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Class property that identifies an aria hidden of a tab&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-          &lt;tr class="docs-api-properties-row"&gt;
-            &lt;td class="docs-api-properties-name-cell"&gt;
-              &lt;p class="docs-api-property-name"&gt;
-                &lt;code&gt;role: 'tabpanel'&lt;/code&gt;
-              &lt;/p&gt;
-            &lt;/td&gt;
-            &lt;td class="docs-api-property-description"&gt;
-              &lt;p&gt;Role of tab&lt;/p&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-        &lt;/tbody&gt;
-      &lt;/table&gt;
-    &lt;/div&gt;
-  &lt;/sbb-expansion-panel&gt;
-  &lt;sbb-expansion-panel hideToggle class="sbbsc-custom-html"&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      &lt;h2&gt;Panel with custom html&lt;/h2&gt;
-      &lt;div class="sbbsc-button-group"&gt;
-        &lt;button sbbButton (click)="logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"
-          (keydown)="logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')"&gt;
-          Test button
-          &lt;sbb-icon-arrow-down *sbbButtonIcon&gt;&lt;/sbb-icon-arrow-down&gt;
-        &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/sbb-expansion-panel-header&gt;
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    Proin blandit, justo eget pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
-    Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
-    Mauris gravida aliquet eleifend.
-  &lt;/sbb-expansion-panel&gt;
-&lt;/sbb-accordion&gt;
-
-&lt;div style="margin-bottom: 3em;"&gt;&lt;/div&gt;
-
-&lt;button sbbButton (click)="firstAccordion.openAll()"&gt;Open All&lt;/button&gt;&amp;nbsp;&amp;nbsp;
-&lt;button sbbButton mode="secondary" (click)="firstAccordion.closeAll()"&gt;Close All&lt;/button&gt;&amp;nbsp;&amp;nbsp;
-&lt;sbb-checkbox [(ngModel)]="disabled" style="display: inline-block;"&gt;Disable one&lt;/sbb-checkbox&gt;
-
-&lt;sbb-accordion #firstAccordion&gt;
-  &lt;sbb-expansion-panel&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      Panel with lazy loaded content
-    &lt;/sbb-expansion-panel-header&gt;
-
-    &lt;p&gt;
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    &lt;/p&gt;
-
-    &lt;ng-template sbbExpansionPanelContent&gt;
-      &lt;sbb-expansion-panel&gt;
-        &lt;sbb-expansion-panel-header&gt;
-          Lazy loaded content initialized at the first parent open
-        &lt;/sbb-expansion-panel-header&gt;
-
-        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.&lt;/p&gt;
-
-      &lt;/sbb-expansion-panel&gt;
-    &lt;/ng-template&gt;
-
-  &lt;/sbb-expansion-panel&gt;
-
-  &lt;sbb-expansion-panel (opened)="panelOpenState = true; log('opened called')" (closed)="panelOpenState = false; log('closed called')"
-    (expandedChange)="log('expandedChange called', $event)"&gt;
-
-    &lt;sbb-expansion-panel-header&gt;
-      &lt;h3 style="margin: 0;"&gt;Self aware panel that cast some events around&lt;/h3&gt;
-      &lt;p style="margin: 0 1em;"&gt;Currently I am {{panelOpenState ? 'open' : 'closed'}}&lt;/p&gt;
-    &lt;/sbb-expansion-panel-header&gt;
-
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-
-  &lt;/sbb-expansion-panel&gt;
-
-  &lt;sbb-expansion-panel [disabled]="disabled"&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      I can disable this panel
-    &lt;/sbb-expansion-panel-header&gt;
-
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-      pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-
-  &lt;/sbb-expansion-panel&gt;
-&lt;/sbb-accordion&gt;
-
-&lt;div style="margin-bottom: 3em"&gt;&lt;/div&gt;
-
-&lt;sbb-accordion class="example-headers-align"&gt;
-  &lt;sbb-expansion-panel [expanded]="step === 0" (opened)="setStep(0)"&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      &lt;span&gt;I'm a wizard like accordion&lt;/span&gt;
-      &lt;p style="margin: 0 1em;"&gt;conditionally open using [expand] property&lt;br&gt; and (opened) event&lt;/p&gt;
-    &lt;/sbb-expansion-panel-header&gt;
-
-    &lt;div class="sbbsc-block"&gt;
-      &lt;button sbbButton mode="primary" (click)="nextStep()"&gt;Next&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/sbb-expansion-panel&gt;
-
-  &lt;sbb-expansion-panel [expanded]="step === 1" (opened)="setStep(1)"&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      Step 1
-    &lt;/sbb-expansion-panel-header&gt;
-
-    &lt;div class="sbbsc-block"&gt;
-      &lt;button sbbButton mode="ghost" (click)="prevStep()"&gt;Previous&lt;/button&gt;&amp;nbsp;
-      &lt;button sbbButton mode="primary" (click)="nextStep()"&gt;Next&lt;/button&gt;
-    &lt;/div&gt;
-
-  &lt;/sbb-expansion-panel&gt;
-
-  &lt;sbb-expansion-panel [expanded]="step === 2" (opened)="setStep(2)"&gt;
-    &lt;sbb-expansion-panel-header&gt;
-      Step 2
-    &lt;/sbb-expansion-panel-header&gt;
-
-    &lt;div class="sbbsc-block"&gt;
-      &lt;button sbbButton mode="ghost" (click)="prevStep()"&gt;Previous&lt;/button&gt;&amp;nbsp;
-      &lt;button sbbButton mode="primary" (click)="nextStep()"&gt;End&lt;/button&gt;
-    &lt;/div&gt;
-
-  &lt;/sbb-expansion-panel&gt;
-
-&lt;/sbb-accordion&gt;
-
-&lt;div style="margin-bottom: 3em"&gt;&lt;/div&gt;
-
-&lt;sbb-expansion-panel&gt;
-  &lt;sbb-expansion-panel-header&gt;
-    A single orphan (no accordion) panel
-  &lt;/sbb-expansion-panel-header&gt;
-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-&lt;/sbb-expansion-panel&gt;
-
-&lt;div style="margin-bottom: 3em"&gt;&lt;/div&gt;
-
-&lt;sbb-expansion-panel&gt;
-  &lt;sbb-expansion-panel-header&gt;
-    &lt;h2 style="margin: 0;"&gt;Some nested panels and accordion&lt;/h2&gt;
-  &lt;/sbb-expansion-panel-header&gt;
-
-  &lt;sbb-accordion multi="false"&gt;
-    &lt;sbb-expansion-panel&gt;
-      &lt;sbb-expansion-panel-header&gt;
-        I'm a single expansion-panel accordion into a panel
-      &lt;/sbb-expansion-panel-header&gt;
-
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua.
-
-      &lt;sbb-expansion-panel&gt;
-        &lt;sbb-expansion-panel-header&gt;
-          Another inner panel
-        &lt;/sbb-expansion-panel-header&gt;
-
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore
-        magna aliqua.
-
-      &lt;/sbb-expansion-panel&gt;
-
-
-    &lt;/sbb-expansion-panel&gt;
-    &lt;sbb-expansion-panel&gt;
-      &lt;sbb-expansion-panel-header&gt;
-        Panel 2
-      &lt;/sbb-expansion-panel-header&gt;
-
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua.
-
-    &lt;/sbb-expansion-panel&gt;
-  &lt;/sbb-accordion&gt;
-
-&lt;/sbb-expansion-panel&gt; --&gt;</span>

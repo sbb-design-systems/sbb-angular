@@ -27,6 +27,10 @@
     border-right: solid 1px #ccc;
   }
 
+  @include mq($from: desktop) {
+    position: fixed;
+  }
+
   &-card {
     padding: 0.25em pxToEm(30);
   
