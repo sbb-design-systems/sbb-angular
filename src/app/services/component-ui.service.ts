@@ -14,6 +14,7 @@ import { LoadingShowcaseComponent } from '../examples/loading-showcase/loading-s
 import { LightboxShowcaseComponent } from '../examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from '../examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
+import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
 import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
@@ -280,9 +281,9 @@ export class ComponentUiService {
         'Import text.',
         NotificationShowcaseComponent
       ),
-      /* new UiComponent(
+       new UiComponent(
         'Process Flow',
-        'processFlow',
+        'processflow',
         'Process Flow',
         'Subtitel goes here ...',
         true,
@@ -290,8 +291,9 @@ export class ComponentUiService {
         ['Davide Aresta', 'Stefan Meili'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        ProcessflowShowcaseComponent
+      ),
       new UiComponent(
         'Radio Button Panel',
         'radio-button-panel',
