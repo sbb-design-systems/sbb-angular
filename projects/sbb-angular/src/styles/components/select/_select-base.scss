@@ -16,7 +16,7 @@
 
     &.sbb-select-disabled {
       cursor: default;
-      background: $colorBlack5;
+      background-color: $colorBlack5;
       border-color: $colorBlack20;
     }
 
@@ -65,6 +65,10 @@
   cursor: pointer;
   align-items: center;
   width: 100%;
+  &:disabled {
+    cursor: default;
+
+  }
   background: url($selectNativeBackground) 97.5% no-repeat;
   background-size: toPx($selectArrowWidthHeight);
   @include mq($from: desktop4k) {
