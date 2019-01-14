@@ -863,7 +863,8 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private initKeyManager() {
     this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options)
       .withTypeAhead()
-      .withVerticalOrientation();
+      .withVerticalOrientation()
+      .withAllowedModifierKeys(['shiftKey']);
 
     this.keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
       // Restore focus to the trigger before closing. Ensures that the focus
