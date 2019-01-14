@@ -122,4 +122,14 @@ describe('ProcessflowComponent user interaction', () => {
     expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
 
   });
+
+  it('should disable next steps when clicking on previous steps', () => {
+    component.processflow.nextStep();
+    component.processflow.nextStep();
+    fixture.detectChanges();
+    const steps = document.querySelectorAll('.sbb-processflow-step button');
+    dispatchMouseEvent(steps[0], 'click');
+    fixture.detectChanges();
+    expect(steps[1].classList.contains('sbb-disabled') && steps[2].classList.contains('sbb-disabled')).toBeTruthy();
+  });
 });
