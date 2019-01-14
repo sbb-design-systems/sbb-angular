@@ -322,11 +322,11 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   @Output() readonly openedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /** Event emitted when the select has been opened. */
-  @Output('opened') readonly opened: Observable<void> =
+  @Output() readonly opened: Observable<void> =
     this.openedChange.pipe(filter(o => o), map(() => { }));
 
   /** Event emitted when the select has been closed. */
-  @Output('closed') readonly closed: Observable<void> =
+  @Output() readonly closed: Observable<void> =
     this.openedChange.pipe(filter(o => !o), map(() => { }));
 
   /** Event emitted when the selected value has been changed by the user. */
@@ -863,7 +863,8 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   private initKeyManager() {
     this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options)
       .withTypeAhead()
-      .withVerticalOrientation();
+      .withVerticalOrientation()
+      .withAllowedModifierKeys(['shiftKey']);
 
     this.keyManager.tabOut.pipe(takeUntil(this._destroy)).subscribe(() => {
       // Restore focus to the trigger before closing. Ensures that the focus
