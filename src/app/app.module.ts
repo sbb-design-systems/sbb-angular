@@ -45,6 +45,10 @@ import { LoadingShowcaseComponent } from './examples/loading-showcase/loading-sh
 import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './examples/select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
+import { ProcessflowShowcaseComponent } from './examples/processflow-showcase/processflow-showcase.component';
+import { CheckboxPanelShowcaseComponent } from './examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
+import { RadioButtonPanelShowcaseComponent } from './examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
+import { NotificationShowcaseComponent } from './examples/notification-showcase/notification-showcase.component';
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 
@@ -99,6 +103,10 @@ import { TableShowcaseComponent } from './examples/table-showcase/table-showcase
     LightboxShowcaseComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
+    ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
     TableShowcaseComponent,
     ...IconComponents.types
   ]

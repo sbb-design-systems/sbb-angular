@@ -47,7 +47,7 @@ describe('CheckboxComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toBe('sbb-checkbox-1');
+    expect(component.inputId).toContain('sbb-checkbox-');
   });
 });
 
