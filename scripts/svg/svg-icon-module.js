@@ -7,25 +7,27 @@ const readFileAsync = promisify(readFile);
 
 class SvgIconModule extends IconModule {
   constructor(basePath, filePath) {
-    super(dirname(relative(basePath, filePath)).split(sep))
+    super(
+      dirname(relative(basePath, filePath))
+        .split(sep),
+      basename(filePath)
+        .replace(/\.svg$/i, '')
+        .replace(/SBB_(XX_)?(GC_)?(\d+_)?(\d+_)?/i, '')
+        .replace(/\_/g, '-')
+        .replace(/([A-Z])/g, (_, m) => `-${m.toLowerCase()}`)
+        .replace(/^[\w\W]+$/g, m => `icon-${m}`));
     this.filePath = filePath;
+    this.selector = `sbb-${this.kebabCaseName}`;
+    this.componentName = `${this.pascalCaseName}Component`;
+    this.importPath = `./${this.outputFileBaseName}`;
   }
 
-  get importPath() {
-    return `./${this.outputFileBaseName}`;
-  }
-
-  /**
-   * Handles various types of SVG input file names to create a normalized Icon Name
-   * @return normalized filename
-   **/
-  _normaliseName() {
-    const name = basename(this.filePath)
-      .replace(/\.svg$/i, '')
-      .replace(/SBB_(XX_)?(GC_)?(\d+_)?(\d+_)?/i, '')
-      .replace(/\_/g, '-')
-      .replace(/([A-Z])/g, (_, m) => `-${m.toLowerCase()}`);
-    return `icon-${name}`;
+  iconComponentDetails() {
+    return [{
+      selector: this.selector,
+      name: this.componentName,
+      tags: this.modules,
+    }];
   }
 
   async _angularTemplate() {
@@ -45,20 +47,20 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { IconBase } from '${this.modules.map(m => '..').join('/')}/icon-base';
 
 @Component({
-  selector: 'sbb-${this.kebabCaseName}',
+  selector: '${this.selector}',
   // tslint:disable-next-line:max-line-length
   template: \`${angularSvgTemplate}\`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ${this.pascalCaseName}Component extends IconBase {
+export class ${this.componentName} extends IconBase {
   constructor() {
     super({ viewBox: '${viewBoxValue}' });
   }
 }
 
 @NgModule({
-  declarations: [${this.pascalCaseName}Component],
-  exports: [${this.pascalCaseName}Component],
+  declarations: [${this.componentName}],
+  exports: [${this.componentName}],
 })
 export class ${this.moduleName} { }
 `;

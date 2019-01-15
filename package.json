@@ -10,7 +10,7 @@
     "build:library:ng": "ng build sbb-angular",
     "build:library:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
-    "build:icons": "node ./scripts/create-svg-icons-components.js",
+    "build:icons": "node ./scripts/svg/svg-generator projects/sbb-angular/svgs projects/sbb-angular/src/lib/svg-icons src/app",
     "build:showcase": "ng build sbb-angular-showcase --prod",
     "test": "run-s build:library test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
