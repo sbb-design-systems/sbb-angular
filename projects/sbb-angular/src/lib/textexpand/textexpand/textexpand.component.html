@@ -1,0 +1,4 @@
+<ng-content></ng-content>
+
+<button *ngIf="expanded" sbbButton mode="frameless" (click)="toggleExpanded()" i18n>Mostra meno</button>
+<button *ngIf="!expanded" sbbButton mode="frameless" (click)="toggleExpanded()" i18n>Mostra più</button>
