@@ -61,6 +61,8 @@ import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
+import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
+import { PaginationModule } from 'projects/sbb-angular/src/public_api';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
-    TableShowcaseComponent
+    TableShowcaseComponent,
+    PaginationShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
-    TableModule
+    TableModule,
+    PaginationModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -140,6 +144,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    PaginationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
