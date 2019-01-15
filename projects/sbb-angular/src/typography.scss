@@ -73,6 +73,7 @@ table {
   }
   th {
     font-family: $fontSbbBold;
+    font-weight: 400;
   }
 }
 
@@ -155,11 +156,17 @@ input[type="datetime-local"] {
 }
 
 fieldset {
-  margin: 0;
-  padding: 0;
-  border: none;
+  @include fieldset;
 }
 
 input.ssb-time-input {
   @include timeInputBase;
+}
+
+table.sbb-table {
+  @include table();
+}
+
+select {
+  @include nativeSelectBase;
 }

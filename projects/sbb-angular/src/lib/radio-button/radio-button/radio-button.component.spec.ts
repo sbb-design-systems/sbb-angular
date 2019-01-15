@@ -46,7 +46,7 @@ describe('RadioButtonComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toBe('sbb-radio-button-1');
+    expect(component.inputId).toContain('sbb-radio-button-');
   });
 });
 

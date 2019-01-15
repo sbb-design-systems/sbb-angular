@@ -1,0 +1,17 @@
+@import "../../../styles/main";
+
+sbb-option {
+  @include optionInSelect;
+  @include optionInAutocomplete;
+  @include multipleOption;
+}
+
+sbb-option[disabled], .sbb-option-disabled {
+  cursor: default;
+  opacity: .5;
+}
+
+sbb-option[aria-disabled="true"] {
+  user-select: none;
+  cursor: default;
+}

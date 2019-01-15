@@ -1,0 +1,31 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Notification Overview</h1>
+  <p class="docs-markdown-p">Import notification module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { NotificationsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and then you can use the notification component to send a simple message:</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"default"</span>&gt;</span>Default success notification<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"success"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">There are three types of notification:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">success</li>
+    <li class="docs-markdown-li">info</li>
+    <li class="docs-markdown-li">error</li>
+  </ul>
+  <p class="docs-markdown-p">to send respectively a success, info or error message.</p>
+  <p class="docs-markdown-p">It is also possible to send a notification message with a custom icon (using *sbbNotificationIcon directive) as see below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Notification with custom icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"error"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-clock</span> *<span class="hljs-attr">sbbNotificationIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-clock</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">or with a custom icon and jump marks</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Success notification with jump marks and custom icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-notification</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Suchen"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"success"</span> [<span class="hljs-attr">jumpMarks</span>]=<span class="hljs-string">"jumpMarks"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-gluehbirne-an</span> *<span class="hljs-attr">sbbNotificationIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-gluehbirne-an</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-notification</span>&gt;</span></code></pre>
+</body>
+
+</html>

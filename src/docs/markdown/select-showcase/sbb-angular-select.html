@@ -1,0 +1,101 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Select Overview</h1>
+  <p class="docs-markdown-p">Import select module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { SelectModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p"><code class="docs-markdown-code">&lt;sbb-select&gt;</code> is a form control for selecting a value from a set of options. To add options to the select, add <code class="docs-markdown-code">&lt;sbb-option&gt;</code> elements to the <code class="docs-markdown-code">&lt;sbb-select&gt;</code>. Each <code class="docs-markdown-code">&lt;sbb-option&gt;</code> has a value property that can be used to set the value that will be selected if the user chooses this option. The content of the <code class="docs-markdown-code">&lt;sbb-option&gt;</code> is what will be shown to the user.</p>
+  <p class="docs-markdown-p">You can use select component with sbb style using <code class="docs-markdown-code">&lt;sbb-select&gt;</code> and <code class="docs-markdown-code">&lt;sbb-option&gt;</code> as see below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lieblingsessen<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lieblingsessen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"basicExampleFormControl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">or using <code class="docs-markdown-code">&lt;select&gt;</code> with class value 'sbb-select'(to give sbb style) for select native version:</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lieblingsessen<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbb-select"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"nativeExampleFormControl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <br>
+  <h4 class="docs-markdown-h4">Multiple Selection</h4>
+  <p class="docs-markdown-p">The default <code class="docs-markdown-code">&lt;sbb-select&gt;</code> allows to single-selection mode, but can be configured to choose multiple selection by setting the <code class="docs-markdown-code">multiple</code> property. This will allow the user to select multiple values at once.</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Multiple Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Viele Lieblingsgerichte<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Beliebteste Lebensmittel"</span> <span class="hljs-attr">multiple</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"multipleExampleFormControl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <h4 class="docs-markdown-h4">Creating groups of options</h4>
+  <p class="docs-markdown-p">The <code class="docs-markdown-code">&lt;sbb-option-group&gt;</code> element can be used to group common options under a subheading. The name of the group can be set using the label property of <code class="docs-markdown-code">&lt;sbb-option-group&gt;</code>.</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>With option groups<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lebensmittel aus der ganzen Welt<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lebensmittel aus der ganzen Welt"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"withOptionGroupsExampleFormControl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-group</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">The <code class="docs-markdown-code">&lt;sbb-option-group&gt;</code> can be configured to allow multiple values in each group options to choose multiple selection by setting the <code class="docs-markdown-code">multiple</code> property. This will allow the user to select multiple values at once. The name of each group can be set using the label property of <code class="docs-markdown-code">&lt;sbb-option-group&gt;</code>.</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Multiple with option groups<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lebensmittel aus der ganzen Welt<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lebensmittel aus der ganzen Welt"</span> <span class="hljs-attr">multiple</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"multipleWithOptionGroupsExampleFormControl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-group</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <h4 class="docs-markdown-h4">Disabling the select, individual options or a group of options</h4>
+  <ol class="docs-markdown-ol">
+    <li class="docs-markdown-li">It is possible to disable the entire select using the 'toggleDisabled' method on the disabled checkbox passing it the form control property referred to the specific select field:
+      <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">toggleDisabled($event: <span class="hljs-built_in">any</span>, control: FormControl) {
+$event.target.checked ? control.disable() : control.enable();
+}</code></pre>
+      <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lieblingsessen<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lieblingsessen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"basicExampleFormControl"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event,basicExampleFormControl)"</span>&gt;</span>disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span></code></pre>
+    </li>
+    <li class="docs-markdown-li">To disable individual options using the 'toggleDisabledOptions' method on the disabled option checkbox passing it as third param the value 'options':
+      <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">toggleDisabledOptions($event: <span class="hljs-built_in">any</span>, component: SelectComponent | <span class="hljs-string">'select'</span>, mode: <span class="hljs-string">'options'</span> | <span class="hljs-string">'optionGroups'</span>) {
+<span class="hljs-keyword">if</span> (component === <span class="hljs-string">'select'</span>) {
+ <span class="hljs-keyword">this</span>.foods[<span class="hljs-number">1</span>].disabled = $event.target.checked;
+} <span class="hljs-keyword">else</span> {
+ component[mode].toArray()[<span class="hljs-number">1</span>].disabled = $event.target.checked;
+}
+}</code></pre>
+      <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Viele Lieblingsgerichte<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Beliebteste Lebensmittel"</span> <span class="hljs-attr">multiple</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"multipleExampleFormControl"</span> #<span class="hljs-attr">multiSelect</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, multiSelect, 'options')"</span>&gt;</span>disabled option<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span></code></pre>
+    </li>
+    <li class="docs-markdown-li">To disable a specific group of options using the 'toggleDisabledOptions' method on the disabled option checkbox passing it, as third param , the value 'optionGroups' as see below (using the same 'toggleDisabledOptions' method in the second point):
+      <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lebensmittel aus der ganzen Welt<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Lebensmittel aus der ganzen Welt"</span> <span class="hljs-attr">multiple</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"multipleWithOptionGroupsExampleFormControl"</span> #<span class="hljs-attr">multiWithOptionGroup</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>{{food.viewValue}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-group</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')"</span>&gt;</span>disabled option group<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span></code></pre>
+    </li>
+  </ol>
+</body>
+
+</html>

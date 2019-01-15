@@ -1,0 +1,5 @@
+@import "../../../styles/main.scss";
+
+:host.sbb-notification {
+  @include notificationBase();
+}

@@ -114,10 +114,10 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   @ViewChild(DatepickerInputDirective) datepickerInput: DatepickerInputDirective<Date>;
 
   /** Emits when the datepicker has been opened. */
-  @Output('opened') opened: EventEmitter<void> = new EventEmitter<void>();
+  @Output() opened: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the datepicker has been closed. */
-  @Output('closed') closed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closed: EventEmitter<void> = new EventEmitter<void>();
 
 
   /** Emits when a `change` event is fired on this `<input>`. */
@@ -158,7 +158,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
 
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
-  set sbbDatepickerFilter(fn: (date: Date | null) => boolean) {
+  set validDateFilter(fn: (date: Date | null) => boolean) {
     this.datepickerInput.dateFilter = fn;
     this.datepickerInput.validatorOnChange();
   }

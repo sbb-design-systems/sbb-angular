@@ -166,12 +166,12 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "FirefoxHeadless"
+              "browsers": "ChromeHeadless"
             },
             "local": {
               "watch": true,
               "codeCoverage": true,
-              "browsers": "Firefox",
+              "browsers": "Chrome",
               "sourceMap": true
             }
           }

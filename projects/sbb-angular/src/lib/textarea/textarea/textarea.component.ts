@@ -1,8 +1,17 @@
-import { Component, forwardRef, ChangeDetectionStrategy, Input, ViewChild, NgZone, HostBinding } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  ChangeDetectionStrategy,
+  Input,
+  ViewChild,
+  NgZone,
+  HostBinding,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { first } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'sbb-textarea',
@@ -26,12 +35,9 @@ export class TextareaComponent implements ControlValueAccessor {
    * Class property that represents the autosize textarea
    */
   matTextareaAutosize = true;
+
   /**
-   * Class property that represents an observer on the number of digits in a textarea
-   */
-  counterObserver$: Subject<number> = new Subject<number>();
-  /**
-   * Class property that disable the textarea status
+   * Class property that disables the textarea status
    */
   @Input()
   disabled: boolean;
@@ -45,6 +51,10 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   @Input()
   maxlength: number;
+  /**
+  * Class property that represents an observer on the number of digits in a textarea
+  */
+  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
   /**
    * Class property that sets the minlength of the textarea content
    */
@@ -76,21 +86,22 @@ export class TextareaComponent implements ControlValueAccessor {
   @HostBinding('class.focused')
   focusedClass: boolean;
   /**
-   * Method that sets the focus class status true
+   * Adds the focused CSS class to this element
    */
   onFocus() {
     this.focusedClass = true;
   }
   /**
-   * Method that sets the focus class status false
+   * Removes the focused CSS class from this element
    */
   onBlur() {
     this.focusedClass = false;
   }
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private changeDetector: ChangeDetectorRef, private ngZone: NgZone) { }
+
   /**
-   * Method that listens the automatically resize of a textarea to fit its content
+   * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
     this.ngZone.onStable.pipe(first())
@@ -125,6 +136,7 @@ export class TextareaComponent implements ControlValueAccessor {
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
     this.disabledClass = disabled;
+    this.changeDetector.markForCheck();
   }
   /**
    * Method that updates the max number of digits available in the textarea content
@@ -132,7 +144,6 @@ export class TextareaComponent implements ControlValueAccessor {
   updateDigitsCounter(newValue) {
     if (!!this.maxlength) {
       this.counterObserver$.next(this.maxlength - newValue.length);
-
     }
   }
 }

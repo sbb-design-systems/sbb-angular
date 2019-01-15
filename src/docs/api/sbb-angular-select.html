@@ -1,0 +1,700 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL select </h2>
+  <p class="docs-api-module-import">
+    <code> import { SelectModule } from 'sbb-angular'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="SelectComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SelectComponent"></span>
+    <code>SelectComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-select</span>
+  </p><span class="docs-api-class-export-label">Exported as:</span>
+  <span class="docs-api-class-export-name">sbbSelect</span>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;attr.aria-label&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabel: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Returns the aria-label of the select component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;attr.aria-labelledby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabelledby: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Returns the aria-labelledby of the select component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>compareWith: (o1: any, o2: any) =&gt; boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A function to compare the option values with the selected values. The first argument is a value from an option. The second is a value from the selection. A boolean should be returned.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disableOptionCentering: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether to center the active option over the trigger.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Disables a select field</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>id: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Unique id of the element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>multiple: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the user should be allowed to select multiple options.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>panelClass: string | string[] | Set&lt;string&gt; | { [key: string]: any; }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Classes to be passed to the select panel. Supports the same syntax as <code>ngClass</code>.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>placeholder: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Placeholder to be shown if no value has been selected.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>required: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the component is required.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>value: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Value of the select control.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>closed: Observable&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted when the select has been closed.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>opened: Observable&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted when the select has been opened.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>openedChange: EventEmitter&lt;boolean&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted when the select panel has been toggled.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>selectionChange: EventEmitter&lt;SbbSelectChange&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted when the selected value has been changed by the user.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>controlType: &#39;sbb-select&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A name for this control that can be used by <code>sbb-field</code>.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of select component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>empty: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the select has a value.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>focused: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the select is focused.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getAriaActiveDescendant: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Determines the <code>aria-activedescendant</code> to be set on the host.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getAriaDescribedBy: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Determines the aria-describedby to be set on the host.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getAriaOwns: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Determines the aria-owns to be set on the host.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isAriaDisabled: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Determines if the attribute aria-disabled is disabled</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isAriaRequired: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Determines if the attribute aria-required is required</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isDisabled: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Controls if a select is disabled</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isInvalid: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Controls if a select value is invalid</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>keyManager: ActiveDescendantKeyManager&lt;OptionComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Manages keyboard events for options in the panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ngControl: NgControl</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>offsetY: 0</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The y-offset of the overlay panel in relation to the trigger&#39;s top start corner. This must be adjusted to align the selected option text over the trigger text. when the panel opens. Will change based on the y-position of the selected option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (value: any) =&gt; void</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p><code>View -&gt; model callback called when value changes</code></p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p><code>View -&gt; model callback called when select has been touched</code></p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>optionGroups: QueryList&lt;OptionGroupComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>All of the defined groups of options.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>optionIds: &#39;&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The IDs of child options to be passed to the aria-owns attribute.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>optionSelectionChanges: Observable&lt;SBBOptionSelectionChange&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Combined stream of all of the child options&#39; change events.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>options: QueryList&lt;OptionComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>All of the defined select options.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>overlayDir: CdkConnectedOverlay</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Overlay pane containing the options.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panel: ElementRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Panel containing the select options.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelOpen: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether or not the overlay panel is open.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>perfectScrollbar: PerfectScrollbarComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Panel containing the select options.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>perfectScrollbarScrollTop: 0</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Value of the scrollbar on top</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>positions: [ { originX: &#39;start&#39;, originY: &#39;bottom&#39;, overlayX: &#39;start&#39;, overlayY: &#39;top&#39; }, { originX: &#39;start&#39;, originY: &#39;top&#39;, overlayX: &#39;start&#39;, overlayY: &#39;bottom&#39; } ]</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>This position config ensures that the top &quot;start&quot; corner of the overlay is aligned with with the top &quot;start&quot; of the origin by default (overlapping the trigger completely). If the panel cannot fit below the trigger, it will fall back to a position above the trigger.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: &#39;listbox&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Role of select field</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>rotateIcon: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Flag used to rotate the icon on the select trigger</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>scrollStrategy: this.scrollStrategyFactory()</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Strategy that will be used to handle scrolling while the select panel is open.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>selected: OptionComponent | OptionComponent[]</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The currently selected option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>selectionModel: SelectionModel&lt;OptionComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Deals with the selection logic.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>stateChanges: Subject&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Emits when the state of the option changes and any parents have to be notified.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>transformOrigin: &#39;top&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The value of the select panel&#39;s transform-origin property.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>trigger: ElementRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Trigger that opens the select.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>triggerFontSize: 0</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The cached font-size of the trigger element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>triggerRect: ClientRect</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The last measured value for the trigger&#39;s client bounding rect.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>triggerValue: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The value displayed in the trigger.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">close </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Closes the overlay panel and focuses the host element.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">focus </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Focuses the select element.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">handleKeydown </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Handles all keydown events on the select.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">KeyboardEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onAttached </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Callback that is invoked when the overlay panel has been attached.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onBlur </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Calls the touched callback only if the panel is closed. Otherwise, the trigger will &quot;blur&quot; to the panel when it opens, causing a false positive.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onFocus </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">open </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Opens the overlay panel.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">toggle </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Toggles the overlay panel open or closed.</p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="additional_classes" class="docs-header-link docs-api-h3">
+    <span header-link="additional_classes"></span> Additional classes </h3>
+  <h4 id="SbbSelectChange" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SbbSelectChange"></span>
+    <code>SbbSelectChange</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Change event object that is emitted when the select value has changed.</p>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>source: SelectComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Reference to the select that emitted the change event.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>value: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Current value of the select that emitted the event.</p>
+      </td>
+    </tr>
+  </table>
+</div>
