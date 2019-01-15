@@ -1,3 +1,19 @@
-<p>
-  pagination works!
-</p>
+<button class="sbb-pagination-arrow" [class.sbb-pagination-arrow-disabled]="isFirstPage()">
+  <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+</button>
+
+<ng-container>
+  <sbb-page-number *ngIf="displayFirstPage()" [index]="0" [displayNumber]="1"></sbb-page-number>
+  <span *ngIf="displayMoreBefore()">
+    ...
+  </span>
+  <sbb-page-number *ngFor="let item of getPages(); let i = index" [index]="i" [displayNumber]="item"></sbb-page-number>
+  <span *ngIf="displayMoreAfter()">
+    ...
+  </span>
+  <sbb-page-number *ngIf="displayLastPage()" [index]="this.maxPage - 1" [displayNumber]="this.maxPage"></sbb-page-number>
+</ng-container>
+
+<button class="sbb-pagination-arrow" [class.sbb-pagination-arrow-disabled]="isLastPage()">
+  <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+</button>
