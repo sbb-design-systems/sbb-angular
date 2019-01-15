@@ -21,9 +21,10 @@ import {
   SelectModule,
   OptionModule,
   AccordionModule,
+  ProcessflowModule,
   RadioButtonModule,
-  TableModule,
   NotificationsModule,
+  TableModule,
   RadioButtonPanelModule,
   CheckboxPanelModule
 } from 'sbb-angular';
@@ -55,6 +56,7 @@ import {
 } from './lightbox-showcase/lightbox-showcase.component';
 import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
+import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
 import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
@@ -89,6 +91,7 @@ import { TextexpandModule } from 'projects/sbb-angular/src/public_api';
     LightboxShowcaseExample6ContentComponent,
     SelectShowcaseComponent,
     AccordionShowcaseComponent,
+    ProcessflowShowcaseComponent,
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
@@ -117,6 +120,7 @@ import { TextexpandModule } from 'projects/sbb-angular/src/public_api';
     AutocompleteModule,
     SelectModule,
     AccordionModule,
+    ProcessflowModule,
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
@@ -136,6 +140,7 @@ import { TextexpandModule } from 'projects/sbb-angular/src/public_api';
     PersonListComponent,
     TimeInputShowcaseComponent,
     SelectShowcaseComponent,
+    ProcessflowShowcaseComponent,
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,

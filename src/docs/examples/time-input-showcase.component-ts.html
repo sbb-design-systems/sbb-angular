@@ -1,4 +1,5 @@
 <span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormBuilder, FormGroup } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
 
 <span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'sbb-time-input-showcase'</span>,
@@ -6,5 +7,12 @@
   styleUrls: [<span class="hljs-string">'./time-input-showcase.component.scss'</span>]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TimeInputShowcaseComponent {
+  form: FormGroup;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">formBuilder: FormBuilder</span>) {
+    <span class="hljs-keyword">this</span>.form = formBuilder.group({
+      time: [],
+    });
+  }
 }
 

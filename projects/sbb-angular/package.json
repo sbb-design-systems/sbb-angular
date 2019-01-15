@@ -2,11 +2,11 @@
   "name": "sbb-angular",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/cdk": "6.4.7"
+    "@angular/common": "7.0.0-rc.0 || ^7.0.0",
+    "@angular/core": "7.0.0-rc.0 || ^7.0.0",
+    "@angular/cdk": "^7.0.0"
   },
   "dependencies": {
-    "ngx-perfect-scrollbar": "^6.3.1"
+    "ngx-perfect-scrollbar": "^7.1.0"
   }
 }

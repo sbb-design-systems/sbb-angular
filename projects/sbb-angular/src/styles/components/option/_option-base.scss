@@ -55,19 +55,16 @@
     color: $autocompleteHoverColor;
   }
 
-  @if $selectMode == false {
-    &.sbb-active,
-    &:hover,
-    &:focus,
-    &:hover .highlight,
-    &:focus .highlight {
-      color: $autocompleteOptionHoverColor;
-    }
-  } @else {
-    &.sbb-active,
-    &.sbb-selected {
-      color: $colorBlack;
-    }
+  &.sbb-active,
+  &:hover,
+  &:focus,
+  &:hover .highlight,
+  &:focus .highlight {
+    color: $autocompleteOptionHoverColor;
+  }
+
+  &.sbb-selected {
+    color: $colorBlack;
   }
 
   .sbb-option-text {
