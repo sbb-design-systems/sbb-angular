@@ -4,15 +4,14 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
-  ViewChildren,
-  QueryList,
-  AfterViewInit,
-  OnDestroy
+  ChangeDetectorRef,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
-import { PageNumberComponent } from '../page-number/page-number.component';
-import { Subscription } from 'rxjs';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+
 
 @Component({
   selector: 'sbb-pagination',
@@ -20,8 +19,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PaginationComponent implements AfterViewInit, OnDestroy {
+export class PaginationComponent implements OnChanges {
 
+  @Input()
+  set links(value: boolean) {
+    this._links = coerceBooleanProperty(value);
+  }
+  private _links = false;
+
+  get mode() {
+    return this._links ? 'link' : 'button';
+  }
 
   @Input()
   initialPage = 1;
@@ -32,48 +40,12 @@ export class PaginationComponent implements AfterViewInit, OnDestroy {
   @Output()
   pageChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChildren(PageNumberComponent)
-  pageComponents: QueryList<PageNumberComponent>;
+  pages: Array<number> = [];
 
   @Input()
   linkGenerator: (page: PageDescriptor) => NavigationExtras & { routerLink: string | any[] };
 
-  private pageChangeSubscriptions: Subscription[];
-
-  ngAfterViewInit(): void {
-    this.pageChangeSubscriptions = this.pageComponents.map(page => {
-      return page.pageClicked.subscribe(pageDescriptor => {
-        if (pageDescriptor.index !== (this.initialPage - 1)) {
-          this.pageChange.emit(pageDescriptor);
-          if (this.linkGenerator) {
-            this.linkGenerator(pageDescriptor);
-          }
-          console.log('Page changed', pageDescriptor);
-        }
-      });
-    });
-  }
-
-  constructor() { }
-
-  ngOnDestroy(): void {
-    this.pageChangeSubscriptions.forEach(sub => {
-      sub.unsubscribe();
-    });
-  }
-
-  getPages() {
-    let i = 0;
-    let pages = [];
-    if (this.maxPage < 6) {
-      pages = new Array(this.maxPage).fill(0).map(val => val = ++i);
-    } else {
-      i = this.initialPage - 1;
-      pages = new Array(3).fill(0).map(val => val = ++i);
-    }
-    return pages;
-
-  }
+  maxSize = 3;
 
   isFirstPage() {
     return this.initialPage === 1;
@@ -97,5 +69,112 @@ export class PaginationComponent implements AfterViewInit, OnDestroy {
 
   displayLastPage() {
     return this.maxPage > 5;
+  }
+
+  hasPrevious(): boolean { return this.initialPage > 1; }
+
+  hasNext(): boolean { return this.initialPage < this.maxPage; }
+
+  selectPage(pageNumber: number): void {
+    this.updatePages(pageNumber);
+    if (this.linkGenerator) {
+      this.linkGenerator({ displayNumber: pageNumber, index: pageNumber - 1 });
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void { this.updatePages(this.initialPage); }
+
+  isEllipsis(pageNumber): boolean { return pageNumber === -1; }
+
+  /**
+   * Appends ellipses and first/last page number to the displayed pages
+   */
+  private applyEllipses(start: number, end: number) {
+
+    if (start > 0) {
+      if (start > 1) {
+        this.pages.unshift(-1);
+      }
+      this.pages.unshift(1);
+    }
+    if (end < this.maxPage) {
+      if (end < (this.maxPage - 1)) {
+        this.pages.push(-1);
+      }
+      this.pages.push(this.maxPage);
+    }
+
+  }
+
+  /**
+   * Rotates page numbers based on maxSize items visible.
+   * Currently selected page stays in the middle:
+   *
+   * Ex. for selected page = 6:
+   * [5,*6*,7] for maxSize = 3
+   * [4,5,*6*,7] for maxSize = 4
+   */
+  private applyRotation(): [number, number] {
+    let start = 0;
+    let end = this.maxPage;
+    const leftOffset = Math.floor(this.maxSize / 2);
+    const rightOffset = this.maxSize % 2 === 0 ? leftOffset - 1 : leftOffset;
+
+    if (this.maxPage > 5) {
+      if (this.initialPage <= leftOffset) {
+        // very beginning, no rotation -> [0..maxSize]
+        end = this.maxSize;
+      } else if (this.maxPage - this.initialPage < leftOffset) {
+        // very end, no rotation -> [len-maxSize..len]
+        start = this.maxPage - this.maxSize;
+      } else {
+        // rotate
+        start = this.initialPage - leftOffset - 1;
+        end = this.initialPage + rightOffset;
+      }
+    }
+
+    return [start, end];
+  }
+
+  private getValueInRange(value: number, max: number, min = 0): number {
+    return Math.max(Math.min(value, max), min);
+  }
+
+  private setPageInRange(newPageNo) {
+    const prevPageNo = this.initialPage;
+    this.initialPage = this.getValueInRange(newPageNo, this.maxPage, 1);
+
+    if (this.initialPage !== prevPageNo) {
+      this.pageChange.emit(this.initialPage);
+    }
+  }
+
+  private updatePages(newPage: number) {
+    // fill-in model needed to render pages
+    this.pages.length = 0;
+    for (let i = 1; i <= this.maxPage; i++) {
+      this.pages.push(i);
+    }
+
+    // set page within 1..max range
+    this.setPageInRange(newPage);
+
+    // apply maxSize if necessary
+    if (this.maxSize > 0 && this.maxPage > this.maxSize) {
+      let start = 0;
+      let end = this.maxPage;
+
+      // either paginating or rotating page numbers
+
+      [start, end] = this.applyRotation();
+
+
+      this.pages = this.pages.slice(start, end);
+
+      // adding ellipses
+      this.applyEllipses(start, end);
+    }
+
   }
 }

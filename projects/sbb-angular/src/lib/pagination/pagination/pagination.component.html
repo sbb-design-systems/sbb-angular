@@ -1,19 +1,17 @@
-<button class="sbb-pagination-arrow" [class.sbb-pagination-arrow-disabled]="isFirstPage()">
-  <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
-</button>
-
-<ng-container>
-  <sbb-page-number *ngIf="displayFirstPage()" [index]="0" [displayNumber]="1"></sbb-page-number>
-  <span *ngIf="displayMoreBefore()">
-    ...
-  </span>
-  <sbb-page-number *ngFor="let item of getPages(); let i = index" [index]="i" [displayNumber]="item"></sbb-page-number>
-  <span *ngIf="displayMoreAfter()">
-    ...
-  </span>
-  <sbb-page-number *ngIf="displayLastPage()" [index]="this.maxPage - 1" [displayNumber]="this.maxPage"></sbb-page-number>
-</ng-container>
-
-<button class="sbb-pagination-arrow" [class.sbb-pagination-arrow-disabled]="isLastPage()">
-  <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
-</button>
+<ul class="sbb-pagination">
+  <li [class.sbb-pagination-item-disabled]="!hasPrevious()">
+    <sbb-pagination-item [mode]="mode" [attr.tabindex]="(hasPrevious() ? null : '-1')" (click)="selectPage(initialPage - 1)">
+      <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+    </sbb-pagination-item>
+  </li>
+  <li *ngFor="let pageNumber of pages" [class.active]="pageNumber === initialPage" [class.disabled]="isEllipsis(pageNumber)">
+    <sbb-pagination-item [mode]="mode" *ngIf="isEllipsis(pageNumber)">...</sbb-pagination-item>
+    <sbb-pagination-item [mode]="mode" *ngIf="!isEllipsis(pageNumber)" (click)="selectPage(pageNumber)">{{ pageNumber
+      }}</sbb-pagination-item>
+  </li>
+  <li [class.sbb-pagination-item-disabled]="!hasNext()">
+    <sbb-pagination-item [mode]="mode" [attr.tabindex]="(hasNext() ? null : '-1')" (click)="selectPage(initialPage + 1)">
+      <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+    </sbb-pagination-item>
+  </li>
+</ul>

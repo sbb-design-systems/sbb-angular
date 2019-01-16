@@ -1,0 +1,7 @@
+<button *ngIf="mode === 'button'">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</button>
+<a *ngIf="mode === 'link'">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</a>
+<ng-template #contentTpl><ng-content></ng-content></ng-template>

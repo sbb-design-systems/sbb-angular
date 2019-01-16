@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pagination-showcase.component.html',
   styleUrls: ['./pagination-showcase.component.scss']
 })
-export class PaginationShowcaseComponent implements OnInit {
+export class PaginationShowcaseComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  onPageChange($event) {
+    console.log($event);
   }
 
 }

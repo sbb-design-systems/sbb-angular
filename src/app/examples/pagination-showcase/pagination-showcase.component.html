@@ -1,11 +1,11 @@
-<sbb-pagination [maxPage]="5"></sbb-pagination>
+<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="5"></sbb-pagination>
 <br>
-<sbb-pagination [maxPage]="5" [initialPage]="3"></sbb-pagination>
+<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="5" [initialPage]="3"></sbb-pagination>
 <br>
-<sbb-pagination [maxPage]="6" [initialPage]="3"></sbb-pagination>
+<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="6" [initialPage]="3"></sbb-pagination>
 <br>
-<sbb-pagination [maxPage]="20" [initialPage]="7"></sbb-pagination>
+<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="20" [initialPage]="7"></sbb-pagination>
 <br>
-<sbb-pagination [maxPage]="6" [initialPage]="2"></sbb-pagination>
+<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="6" [initialPage]="2"></sbb-pagination>
 <br>
 <sbb-navigation></sbb-navigation>
