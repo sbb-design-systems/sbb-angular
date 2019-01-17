@@ -47,30 +47,6 @@ export class PaginationComponent implements OnChanges {
 
   maxSize = 3;
 
-  isFirstPage() {
-    return this.initialPage === 1;
-  }
-
-  isLastPage() {
-    return this.initialPage === this.maxPage;
-  }
-
-  displayMoreBefore() {
-    return this.initialPage > 2 && this.maxPage > 5;
-  }
-
-  displayMoreAfter() {
-    return this.initialPage < (this.maxPage - 1) && this.maxPage > 5 && (this.initialPage + 3 < this.maxPage);
-  }
-
-  displayFirstPage() {
-    return this.maxPage > 5;
-  }
-
-  displayLastPage() {
-    return this.maxPage > 5;
-  }
-
   hasPrevious(): boolean { return this.initialPage > 1; }
 
   hasNext(): boolean { return this.initialPage < this.maxPage; }
@@ -121,12 +97,12 @@ export class PaginationComponent implements OnChanges {
     const rightOffset = this.maxSize % 2 === 0 ? leftOffset - 1 : leftOffset;
 
     if (this.maxPage > 5) {
-      if (this.initialPage <= leftOffset) {
+      if (this.initialPage <= leftOffset + 1) {
         // very beginning, no rotation -> [0..maxSize]
-        end = this.maxSize;
-      } else if (this.maxPage - this.initialPage < leftOffset) {
+        end = this.maxSize + 1;
+      } else if (this.maxPage - this.initialPage <= leftOffset) {
         // very end, no rotation -> [len-maxSize..len]
-        start = this.maxPage - this.maxSize;
+        start = this.maxPage - this.maxSize - 1;
       } else {
         // rotate
         start = this.initialPage - leftOffset - 1;

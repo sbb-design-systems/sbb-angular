@@ -1,0 +1,7 @@
+@import "../../../styles/main";
+
+:host {
+  .sbb-pagination {
+    @include paginationBase();
+  }
+}

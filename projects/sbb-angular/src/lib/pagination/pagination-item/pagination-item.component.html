@@ -1,7 +1,7 @@
-<button *ngIf="mode === 'button'">
+<button *ngIf="mode === 'button'" [attr.tabindex]="tabindex">
     <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 </button>
-<a *ngIf="mode === 'link'">
+<a *ngIf="mode === 'link'"  [attr.tabindex]="tabindex">
     <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 </a>
 <ng-template #contentTpl><ng-content></ng-content></ng-template>

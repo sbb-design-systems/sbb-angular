@@ -1,0 +1,23 @@
+@import "../../../styles/main";
+
+:host {
+  position: relative;
+  height: 0;
+  line-height: 0;
+  text-align: center;
+  outline: 0;
+  cursor: pointer;
+  > button,
+  > a {
+    border-radius: 50%;
+    top: 12.5%;
+    left: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    height: 75%;
+    line-height: 1;
+    border: 0.13333em solid transparent;
+  }
+}

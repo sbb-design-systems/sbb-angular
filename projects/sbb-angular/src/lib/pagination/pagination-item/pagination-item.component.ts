@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'sbb-pagination-item',
@@ -11,4 +11,6 @@ export class PaginationItemComponent {
   @Input()
   mode: 'link' | 'button' = 'button';
 
+  @Input()
+  tabindex = 0;
 }

@@ -4,8 +4,8 @@
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </sbb-pagination-item>
   </li>
-  <li *ngFor="let pageNumber of pages" [class.active]="pageNumber === initialPage" [class.disabled]="isEllipsis(pageNumber)">
-    <sbb-pagination-item [mode]="mode" *ngIf="isEllipsis(pageNumber)">...</sbb-pagination-item>
+  <li *ngFor="let pageNumber of pages" [class.active]="pageNumber === initialPage" [class.sbb-pagination-item-disabled]="isEllipsis(pageNumber)">
+    <sbb-pagination-item [mode]="mode" *ngIf="isEllipsis(pageNumber)" [tabindex]="-1">...</sbb-pagination-item>
     <sbb-pagination-item [mode]="mode" *ngIf="!isEllipsis(pageNumber)" (click)="selectPage(pageNumber)">{{ pageNumber
       }}</sbb-pagination-item>
   </li>
