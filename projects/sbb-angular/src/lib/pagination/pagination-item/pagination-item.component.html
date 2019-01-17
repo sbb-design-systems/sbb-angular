@@ -11,7 +11,8 @@
   [class.sbb-pagination-item-selected]="selected"
   [class.sbb-pagination-item-disabled]="disabled"
   [class.sbb-pagination-item-ellipsis]="ellipsis" 
-  [class.sbb-pagination-item-boundary]="boundary">
+  [class.sbb-pagination-item-boundary]="boundary"
+  href="#" (click)="preventDefault($event)">
   <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 </a>
 <ng-template #contentTpl>

@@ -1,16 +1,35 @@
 <ul class="sbb-pagination">
-  <li >
-    <sbb-pagination-item [disabled]="!hasPrevious()" [mode]="mode" [tabindex]="(hasPrevious() ? null : '-1')" (click)="selectPage(initialPage - 1)" boundary>
+  <li>
+    <sbb-pagination-item 
+      [disabled]="!hasPrevious()" 
+      [mode]="mode" 
+      [tabindex]="(hasPrevious() ? null : '-1')" 
+      (click)="selectPage(initialPage - 1)"
+      boundary>
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </sbb-pagination-item>
   </li>
   <li *ngFor="let pageNumber of pages">
-    <sbb-pagination-item [mode]="mode" *ngIf="isEllipsis(pageNumber)" [tabindex]="-1"  ellipsis>...</sbb-pagination-item>
-    <sbb-pagination-item [mode]="mode" *ngIf="!isEllipsis(pageNumber)" [tabindex]="pageNumber === initialPage ? -1 : 0"  (click)="selectPage(pageNumber)" [selected]="pageNumber === initialPage">{{ pageNumber
-      }}</sbb-pagination-item>
+    <sbb-pagination-item 
+      [mode]="mode" 
+      *ngIf="isEllipsis(pageNumber)" 
+      [tabindex]="-1" 
+      ellipsis>...</sbb-pagination-item>
+    <sbb-pagination-item 
+      [mode]="mode" 
+      *ngIf="!isEllipsis(pageNumber)" 
+      [tabindex]="pageNumber === initialPage ? -1 : 0"
+      (click)="selectPage(pageNumber)" 
+      [selected]="pageNumber === initialPage">
+      {{ pageNumber }}</sbb-pagination-item>
   </li>
   <li>
-    <sbb-pagination-item [disabled]="!hasNext()" [mode]="mode" [tabindex]="(hasNext() ? null : '-1')" (click)="selectPage(initialPage + 1)" boundary>
+    <sbb-pagination-item 
+      [disabled]="!hasNext()"  
+      [mode]="mode" 
+      [tabindex]="(hasNext() ? null : '-1')" 
+      (click)="selectPage(initialPage + 1)"
+      boundary>
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
     </sbb-pagination-item>
   </li>

@@ -43,4 +43,8 @@ export class PaginationItemComponent {
   }
   private _boundary: boolean;
 
+
+  preventDefault($event) {
+    $event.preventDefault();
+  }
 }
