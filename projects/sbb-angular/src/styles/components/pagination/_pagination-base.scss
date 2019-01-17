@@ -45,7 +45,8 @@
         &.sbb-pagination-item-selected {
           border-color: $colorGrey;
           cursor: default;
-          &:hover {
+          &:hover,
+          &:focus {
             color: $colorGrey;
           }
         }
@@ -68,7 +69,7 @@
             width: toPx($paginationLiWidthHeight4K);
             height: toPx($paginationLiWidthHeight4K);
           }
-      
+
           @include mq($from: desktop5k) {
             width: toPx($paginationLiWidthHeight5K);
             height: toPx($paginationLiWidthHeight5K);

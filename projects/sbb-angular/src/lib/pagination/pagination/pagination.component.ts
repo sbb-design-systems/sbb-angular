@@ -13,6 +13,10 @@ import { NavigationExtras } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
+export interface PageChangeEvent {
+  currentPage: number;
+  selectedPage: number;
+}
 
 @Component({
   selector: 'sbb-pagination',
@@ -57,7 +61,8 @@ export class PaginationComponent implements OnChanges, OnInit {
    * This event can be used by parent components to handle events on page change
    */
   @Output()
-  pageChange: EventEmitter<any> = new EventEmitter<any>();
+  pageChange: EventEmitter<PageChangeEvent> = new EventEmitter<PageChangeEvent>();
+
 
   /**
    * A custom function called everytime a new pagination item has been clicked
@@ -169,7 +174,7 @@ export class PaginationComponent implements OnChanges, OnInit {
     this.initialPage = this.getValueInRange(newPageNo, this.maxPage, 1);
 
     if (this.initialPage !== prevPageNo) {
-      this.pageChange.emit(this.initialPage);
+      this.pageChange.emit({ currentPage: prevPageNo, selectedPage: this.initialPage });
     }
   }
 
