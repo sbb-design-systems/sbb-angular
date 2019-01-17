@@ -14,7 +14,7 @@ export class PaginationItemComponent {
   @HostBinding('class.sbb-pagination-item')
   cssClass = true;
 
-  /** 
+  /**
    * Rendering mode for this item: button or link (default is button)
    */
   @Input()

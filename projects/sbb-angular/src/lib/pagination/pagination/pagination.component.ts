@@ -6,7 +6,8 @@ import {
   EventEmitter,
   SimpleChanges,
   OnChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
@@ -20,7 +21,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PaginationComponent implements OnChanges {
+export class PaginationComponent implements OnChanges, OnInit {
 
   /**
    * Used to make pagination items as links.
@@ -65,7 +66,7 @@ export class PaginationComponent implements OnChanges {
   linkGenerator: (page: PageDescriptor) => NavigationExtras & { routerLink: string | any[] };
 
   /**
-   * Amount of pagination items rotating at the pagination center
+   * Amount of pagination items rotating
    */
   maxSize = 3;
 
@@ -91,6 +92,12 @@ export class PaginationComponent implements OnChanges {
     this.updatePages(pageNumber);
     if (this.linkGenerator) {
       this.linkGenerator({ displayNumber: pageNumber, index: pageNumber - 1 });
+    }
+  }
+
+  ngOnInit(): void {
+    if (!this.maxPage) {
+      throw new Error('You must add the maxPage attribute to the <sbb-pagination> element.');
     }
   }
 
