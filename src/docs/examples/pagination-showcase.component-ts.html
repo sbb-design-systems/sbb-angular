@@ -1,0 +1,17 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-pagination-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./pagination-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./pagination-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> PaginationShowcaseComponent {
+
+  maxPage = <span class="hljs-number">5</span>;
+  initialPage = <span class="hljs-number">1</span>;
+
+  onPageChange($event) {
+    <span class="hljs-built_in">console</span>.log($event);
+  }
+
+}

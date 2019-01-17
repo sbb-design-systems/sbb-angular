@@ -1,6 +1,7 @@
 <ul class="sbb-pagination">
   <li>
     <sbb-pagination-item 
+      i18n-aria-label="Previous Page"
       [disabled]="!hasPrevious()" 
       [mode]="mode" 
       [tabindex]="(hasPrevious() ? null : '-1')" 
@@ -25,6 +26,7 @@
   </li>
   <li>
     <sbb-pagination-item 
+      i18n-aria-label="Next page"
       [disabled]="!hasNext()"  
       [mode]="mode" 
       [tabindex]="(hasNext() ? null : '-1')" 

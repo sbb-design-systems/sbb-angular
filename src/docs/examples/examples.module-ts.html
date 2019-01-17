@@ -61,6 +61,8 @@
 <span class="hljs-keyword">import</span> { CheckboxPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-panel-showcase/checkbox-panel-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { PaginationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./pagination-showcase/pagination-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { PaginationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -93,7 +95,8 @@
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
-    TableShowcaseComponent
+    TableShowcaseComponent,
+    PaginationShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,8 @@
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
-    TableModule
+    TableModule,
+    PaginationModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -140,6 +144,7 @@
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    PaginationShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
