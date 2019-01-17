@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginationShowcaseComponent {
 
+  maxPage = 5;
+  initialPage = 1;
+
   onPageChange($event) {
     console.log($event);
   }

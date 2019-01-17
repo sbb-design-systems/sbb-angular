@@ -4,9 +4,9 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
-  ChangeDetectorRef,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  ViewEncapsulation
 } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
@@ -17,7 +17,8 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   selector: 'sbb-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class PaginationComponent implements OnChanges {
 
@@ -40,12 +41,12 @@ export class PaginationComponent implements OnChanges {
   @Output()
   pageChange: EventEmitter<any> = new EventEmitter<any>();
 
-  pages: Array<number> = [];
-
   @Input()
   linkGenerator: (page: PageDescriptor) => NavigationExtras & { routerLink: string | any[] };
 
   maxSize = 3;
+
+  pages: Array<number> = [];
 
   hasPrevious(): boolean { return this.initialPage > 1; }
 

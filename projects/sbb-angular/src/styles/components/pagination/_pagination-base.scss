@@ -2,4 +2,73 @@
   display: flex;
   padding-left: 0;
   list-style: none;
+  li {
+    position: relative;
+    height: 0;
+    line-height: 0;
+    text-align: center;
+    outline: 0;
+    width: 40px;
+    height: 40px;
+
+    .sbb-pagination-item {
+      > button,
+      > a {
+        cursor: pointer;
+        border-color: transparent;
+        border-width: pxToEm(2);
+        border-style: solid;
+        border-radius: 50%;
+        background-color: $colorWhite;
+        text-decoration: none;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        line-height: 1;
+        outline: 0;
+        &.sbb-pagination-item-selected {
+          border-color: $colorGrey;
+          cursor: default;
+          &:hover {
+            color: $colorGrey;
+          }
+        }
+        &:hover,&:focus {
+          color: $colorRed100;
+          fill: $colorRed100;
+        }
+        &.sbb-pagination-item-ellipsis {
+          cursor: default;
+          &:hover {
+            color: $colorGrey;
+          }
+        }
+        &.sbb-pagination-item-boundary {
+          width: 40px;
+          height: 40px;          
+          &:hover {
+            fill: $colorRed100;
+          }
+          > * {
+            margin-top: 1px;
+            width: 24px;
+            height: 24px;
+          }
+        }
+        &.sbb-pagination-item-disabled {
+          color: $colorGreyLight;
+          fill: $colorGreyLight;
+          cursor: default;
+          &:hover {
+            color: $colorGrey;
+            fill: $colorGreyLight;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
 }

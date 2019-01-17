@@ -1,11 +1,50 @@
-<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="5"></sbb-pagination>
-<br>
-<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="5" [initialPage]="3"></sbb-pagination>
-<br>
-<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="6" [initialPage]="3"></sbb-pagination>
-<br>
-<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="20" [initialPage]="7"></sbb-pagination>
-<br>
-<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="6" [initialPage]="2"></sbb-pagination>
-<br>
-<sbb-navigation></sbb-navigation>
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6 sbbsc-v-sep">
+			<h4 id="default" class="sbbsc-block">Pagination</h4>
+			<sbb-pagination (pageChange)="onPageChange($event)" [maxPage]="maxPage" [initialPage]="initialPage"></sbb-pagination>
+		</div>
+		<div class="col-lg-6">
+			<h4 class="sbbsc-block">Properties</h4>
+			<sbb-field mode="long" label="Max page">
+				<input type="number" [(ngModel)]="maxPage" name="maxPage">
+			</sbb-field>
+			<sbb-field mode="long" label="Initial page" >
+					<input type="number" [(ngModel)]="initialPage" name="initialPage">
+				</sbb-field>
+		</div>
+	</div>
+
+	<div class="row">
+			<div class="col-lg-6 sbbsc-v-sep">
+				<h4 id="default" class="sbbsc-block">Pagination as links</h4>
+				<sbb-pagination links (pageChange)="onPageChange($event)" [maxPage]="maxPage" [initialPage]="initialPage"></sbb-pagination>
+			</div>
+			<div class="col-lg-6">
+				<h4 class="sbbsc-block">Properties</h4>
+				<sbb-field mode="long" label="Max page">
+					<input type="number" [(ngModel)]="maxPage" name="maxPage">
+				</sbb-field>
+				<sbb-field mode="long" label="Initial page" >
+						<input type="number" [(ngModel)]="initialPage" name="initialPage">
+					</sbb-field>
+			</div>
+		</div>
+
+	<div role="presentation" class="sbbsc-separator"></div>
+
+	<div class="row">
+		<div class="col-lg-6">
+			<h4 class="sbbsc-block">Navigation</h4>
+			<sbb-navigation></sbb-navigation>
+		</div>
+		<div class="col-lg-6">
+				<h4 class="sbbsc-block">Properties</h4>
+			
+			</div>
+	</div>
+	
+</div>

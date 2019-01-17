@@ -1,7 +1,19 @@
-<button *ngIf="mode === 'button'" [attr.tabindex]="tabindex">
-    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+<button *ngIf="mode === 'button'" 
+  [attr.tabindex]="tabindex" 
+  [class.sbb-pagination-item-selected]="selected"
+  [class.sbb-pagination-item-disabled]="disabled"
+  [class.sbb-pagination-item-ellipsis]="ellipsis" 
+  [class.sbb-pagination-item-boundary]="boundary">
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 </button>
-<a *ngIf="mode === 'link'"  [attr.tabindex]="tabindex">
-    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+<a *ngIf="mode === 'link'" 
+  [attr.tabindex]="tabindex" 
+  [class.sbb-pagination-item-selected]="selected"
+  [class.sbb-pagination-item-disabled]="disabled"
+  [class.sbb-pagination-item-ellipsis]="ellipsis" 
+  [class.sbb-pagination-item-boundary]="boundary">
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 </a>
-<ng-template #contentTpl><ng-content></ng-content></ng-template>
+<ng-template #contentTpl>
+  <ng-content></ng-content>
+</ng-template>
