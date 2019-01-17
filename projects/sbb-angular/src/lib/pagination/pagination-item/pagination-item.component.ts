@@ -10,9 +10,13 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class PaginationItemComponent {
 
+  /** @docs-private */
   @HostBinding('class.sbb-pagination-item')
   cssClass = true;
 
+  /** 
+   * Rendering mode for this item: button or link (default is button)
+   */
   @Input()
   mode: 'link' | 'button' = 'button';
 
@@ -25,6 +29,9 @@ export class PaginationItemComponent {
   @Input()
   disabled = false;
 
+  /**
+   * Used to know when apply ellipsis styles on the button/link
+   */
   @Input()
   set ellipsis(value: boolean) {
     this._ellipsis = coerceBooleanProperty(value);
@@ -34,6 +41,9 @@ export class PaginationItemComponent {
   }
   private _ellipsis: boolean;
 
+  /**
+   * Used to know when apply boundary styles on the button/link
+   */
   @Input()
   set boundary(value: boolean) {
     this._boundary = coerceBooleanProperty(value);
@@ -43,7 +53,9 @@ export class PaginationItemComponent {
   }
   private _boundary: boolean;
 
-
+  /**
+   * When using link mode, this methods prevents the default behaviour of the link itself
+   */
   preventDefault($event) {
     $event.preventDefault();
   }

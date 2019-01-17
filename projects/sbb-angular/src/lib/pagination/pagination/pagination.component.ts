@@ -22,36 +22,71 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class PaginationComponent implements OnChanges {
 
+  /**
+   * Used to make pagination items as links.
+   * Just add [links] attribute to sbb-pagination element.
+   */
   @Input()
   set links(value: boolean) {
     this._links = coerceBooleanProperty(value);
   }
   private _links = false;
 
-  get mode() {
+  /**
+   * Renders the pagination items as links
+   * It depends if [links] attribute is applied on the element or not
+   */
+  get mode(): 'link' | 'button' {
     return this._links ? 'link' : 'button';
   }
 
+  /**
+   * The starting page of the pagination
+   */
   @Input()
   initialPage = 1;
 
+  /**
+   * Maximum length of the pagination
+   */
   @Input()
   maxPage: number;
 
+  /**
+   * This event can be used by parent components to handle events on page change
+   */
   @Output()
   pageChange: EventEmitter<any> = new EventEmitter<any>();
 
+  /**
+   * A custom function called everytime a new pagination item has been clicked
+   */
   @Input()
   linkGenerator: (page: PageDescriptor) => NavigationExtras & { routerLink: string | any[] };
 
+  /**
+   * Amount of pagination items rotating at the pagination center
+   */
   maxSize = 3;
 
+  /**
+   * Pages of the pagination
+   */
   pages: Array<number> = [];
 
+  /**
+   * Used to know if current page has a previous page
+   */
   hasPrevious(): boolean { return this.initialPage > 1; }
 
+  /**
+   * Used to know if current page has a next page
+   */
   hasNext(): boolean { return this.initialPage < this.maxPage; }
 
+  /**
+   * Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined
+   */
   selectPage(pageNumber: number): void {
     this.updatePages(pageNumber);
     if (this.linkGenerator) {
@@ -61,6 +96,10 @@ export class PaginationComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void { this.updatePages(this.initialPage); }
 
+  /**
+   * Used to know when rendering an 'ellipsis' instead of a page number
+   * @param pageNumber current selected page number
+   */
   isEllipsis(pageNumber): boolean { return pageNumber === -1; }
 
   /**
@@ -142,13 +181,9 @@ export class PaginationComponent implements OnChanges {
       let start = 0;
       let end = this.maxPage;
 
-      // either paginating or rotating page numbers
-
       [start, end] = this.applyRotation();
 
-
       this.pages = this.pages.slice(start, end);
-
       // adding ellipses
       this.applyEllipses(start, end);
     }

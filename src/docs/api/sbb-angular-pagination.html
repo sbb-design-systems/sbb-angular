@@ -26,7 +26,9 @@
           <code>initialPage: 1</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>The starting page of the pagination</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -35,7 +37,9 @@
           <code>linkGenerator: (page: PageDescriptor) =&gt; NavigationExtras &amp; { routerLink: string | any[]; }</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>A custom function called everytime a new pagination item has been clicked</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -44,7 +48,9 @@
           <code>links: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to make pagination items as links. Just add [links] attribute to sbb-pagination element.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -53,7 +59,9 @@
           <code>maxPage: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Maximum length of the pagination</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -62,7 +70,9 @@
           <code>pageChange: EventEmitter&lt;any&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>This event can be used by parent components to handle events on page change</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -70,15 +80,19 @@
           <code>maxSize: 3</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Amount of pagination items rotating at the pagination center</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>mode: </code>
+          <code>mode: &#39;link&#39; | &#39;button&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Renders the pagination items as links It depends if [links] attribute is applied on the element or not</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -86,7 +100,9 @@
           <code>pages: Array&lt;number&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Pages of the pagination</p>
+      </td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
@@ -96,6 +112,11 @@
         <th colspan="2" class="docs-api-method-name-cell">hasNext </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Used to know if current page has a next page</p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-returns-header-row">
         <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
@@ -117,6 +138,11 @@
         <th colspan="2" class="docs-api-method-name-cell">hasPrevious </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Used to know if current page has a previous page</p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-returns-header-row">
         <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
@@ -138,6 +164,27 @@
         <th colspan="2" class="docs-api-method-name-cell">isEllipsis </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Used to know when rendering an &#39;ellipsis&#39; instead of a page number</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> pageNumber</p>
+        <code class="docs-api-method-parameter-type"></code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>current selected page number</p>
+        </p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-returns-header-row">
         <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
@@ -159,6 +206,11 @@
         <th colspan="2" class="docs-api-method-name-cell">selectPage </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined</p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-parameters-header-row">
         <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
@@ -204,7 +256,9 @@
           <code>boundary: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to know when apply boundary styles on the button/link</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -222,7 +276,9 @@
           <code>ellipsis: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to know when apply ellipsis styles on the button/link</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -231,7 +287,9 @@
           <code>mode: &#39;link&#39; | &#39;button&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Rendering mode for this item: button or link (default is button)</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -251,14 +309,6 @@
       </td>
       <td class="docs-api-property-description"></td>
     </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>cssClass: true</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
   <table class="docs-api-method-table">
@@ -267,6 +317,11 @@
         <th colspan="2" class="docs-api-method-name-cell">preventDefault </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>When using link mode, this methods prevents the default behaviour of the link itself</p>
+      </td>
+    </tr>
   </table>
   <h3 id="additional_classes" class="docs-header-link docs-api-h3">
     <span header-link="additional_classes"></span> Additional classes </h3>
