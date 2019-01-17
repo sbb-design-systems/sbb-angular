@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginationComponent } from './pagination.component';
+import { PaginationItemComponent } from '../pagination-item/pagination-item.component';
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
@@ -8,7 +10,8 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      imports: [IconCommonModule],
+      declarations: [ PaginationComponent, PaginationItemComponent ]
     })
     .compileComponents();
   }));
@@ -16,6 +19,7 @@ describe('PaginationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
+    component.maxPage = 5;
     fixture.detectChanges();
   });
 

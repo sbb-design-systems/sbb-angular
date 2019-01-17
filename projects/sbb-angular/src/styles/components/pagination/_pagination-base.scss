@@ -2,14 +2,27 @@
   display: flex;
   padding-left: 0;
   list-style: none;
+  margin-left: 0;
   li {
     position: relative;
     height: 0;
     line-height: 0;
     text-align: center;
     outline: 0;
-    width: 40px;
-    height: 40px;
+    width: toPx($paginationLiWidthHeight);
+    height: toPx($paginationLiWidthHeight);
+
+    @include mq($from: desktop4k) {
+      width: toPx($paginationLiWidthHeight4K);
+      height: toPx($paginationLiWidthHeight4K);
+      font-size: toPx($sizeFontBase * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx($paginationLiWidthHeight5K);
+      height: toPx($paginationLiWidthHeight5K);
+      font-size: toPx($sizeFontBase * $scalingFactor5k);
+    }
 
     .sbb-pagination-item {
       > button,
@@ -36,7 +49,8 @@
             color: $colorGrey;
           }
         }
-        &:hover,&:focus {
+        &:hover,
+        &:focus {
           color: $colorRed100;
           fill: $colorRed100;
         }
@@ -47,15 +61,37 @@
           }
         }
         &.sbb-pagination-item-boundary {
-          width: 40px;
-          height: 40px;          
+          width: toPx($paginationLiWidthHeight);
+          height: toPx($paginationLiWidthHeight);
+
+          @include mq($from: desktop4k) {
+            width: toPx($paginationLiWidthHeight4K);
+            height: toPx($paginationLiWidthHeight4K);
+          }
+      
+          @include mq($from: desktop5k) {
+            width: toPx($paginationLiWidthHeight5K);
+            height: toPx($paginationLiWidthHeight5K);
+          }
           &:hover {
             fill: $colorRed100;
           }
           > * {
-            margin-top: 1px;
-            width: 24px;
-            height: 24px;
+            margin-top: toPx(1);
+            width: toPx($paginationItemIconSize);
+            height: toPx($paginationItemIconSize);
+
+            @include mq($from: desktop4k) {
+              margin-top: toPx($scalingFactor4k);
+              width: toPx($paginationItemIconSize4K);
+              height: toPx($paginationItemIconSize4K);
+            }
+
+            @include mq($from: desktop5k) {
+              margin-top: toPx($scalingFactor5k);
+              width: toPx($paginationItemIconSize5K);
+              height: toPx($paginationItemIconSize5K);
+            }
           }
         }
         &.sbb-pagination-item-disabled {

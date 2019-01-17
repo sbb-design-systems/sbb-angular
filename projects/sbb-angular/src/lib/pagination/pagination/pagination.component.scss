@@ -1,5 +1,7 @@
 @import "../../../styles/main";
 
-.sbb-pagination {
-  @include paginationBase();
+sbb-pagination {
+  .sbb-pagination {
+    @include paginationBase();
+  }
 }
