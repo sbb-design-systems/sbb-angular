@@ -18,28 +18,25 @@
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </a>
   </li>
-  <ng-template ngFor let-pageNumber [ngForOf]="pages" let-i="index">
-    <li class="sbb-pagination-item">
-      <button *ngIf="!linkGenerator" 
-        [attr.tabindex]="pageNumber === initialPage ? -1 : 0"
-        [class.sbb-pagination-item-selected]="pageNumber === initialPage" 
-        [class.sbb-pagination-item-ellipsis]="isEllipsis(pageNumber)"
-        (click)="selectPage(pageNumber)">
-        <ng-container *ngIf="isEllipsis(pageNumber)">...</ng-container>
-        <ng-container *ngIf="!isEllipsis(pageNumber)">{{ pageNumber }}</ng-container>
-      </button>
-      <a *ngIf="linkGenerator" 
-        [attr.tabindex]="pageNumber === initialPage ? -1 : 0"
-        [class.sbb-pagination-item-selected]="pageNumber === initialPage" 
-        [class.sbb-pagination-item-ellipsis]="isEllipsis(pageNumber)"
-        [routerLink]="linkGenerator({displayNumber: pageNumber, index: pageNumber -1}).routerLink" 
-        [queryParams]="linkGenerator({displayNumber: pageNumber, index: pageNumber -1}).queryParams">
-
-        <ng-container *ngIf="isEllipsis(pageNumber)">...</ng-container>
-        <ng-container *ngIf="!isEllipsis(pageNumber)">{{ pageNumber }}</ng-container>
-      </a>
-    </li>
-  </ng-template>
+  <li *ngFor="let page of pageDescriptors" class="sbb-pagination-item">
+    <button *ngIf="!linkGenerator" 
+      [attr.tabindex]="page.tabIndex"
+      [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" [class.sbb-pagination-item-ellipsis]="page.isEllipsis"
+      (click)="selectPage(page.displayNumber)">
+      <ng-container *ngIf="page.isEllipsis">...</ng-container>
+      <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
+    </button>
+    <a *ngIf="linkGenerator" 
+      [attr.tabindex]="page.tabIndex" 
+      [routerLinkActive]="!page.isEllipsis ?'sbb-pagination-item-selected': ''"
+      [routerLinkActiveOptions]="{exact: true}" 
+      [class.sbb-pagination-item-ellipsis]="page.isEllipsis" 
+      [routerLink]="page.link.routerLink"
+      [queryParams]="page.link.queryParams">
+      <ng-container *ngIf="page.isEllipsis">...</ng-container>
+      <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
+    </a>
+  </li>
   <li class="sbb-pagination-item">
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Next Page" 

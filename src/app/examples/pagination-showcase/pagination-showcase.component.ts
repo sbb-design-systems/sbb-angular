@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PageDescriptor } from 'projects/sbb-angular/src/public_api';
 import { NavigationExtras } from '@angular/router';
 
 @Component({
@@ -16,7 +15,7 @@ export class PaginationShowcaseComponent {
     console.log($event);
   }
 
-  linkGenerator = (page: PageDescriptor): NavigationExtras & { routerLink: string | any[] } => {
+  linkGenerator = (page: { displayNumber: number, index: number }): NavigationExtras & { routerLink: string | any[] } => {
     console.log('calling linkGenerator');
     return {
       routerLink: ['.'],

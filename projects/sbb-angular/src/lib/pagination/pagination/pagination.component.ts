@@ -33,14 +33,6 @@ export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationL
 export class PaginationComponent implements OnChanges, OnInit {
 
   /**
-   * Renders the pagination items as links
-   * It depends if linkGenerator is defined or not
-   */
-  get mode(): 'link' | 'button' {
-    return this.linkGenerator ? 'link' : 'button';
-  }
-
-  /**
    * The starting page of the pagination
    */
   @Input()
@@ -63,17 +55,19 @@ export class PaginationComponent implements OnChanges, OnInit {
    * A custom function called everytime a new pagination item has been clicked
    */
   @Input()
-  linkGenerator?: (page: PageDescriptor) => LinkGeneratorResult;
+  linkGenerator?: (page: { index: number, displayNumber: number }) => LinkGeneratorResult;
 
   /**
-   * Amount of pagination items rotating
+   * Amount of pagination rotating items
    */
   maxSize = 3;
 
   /**
-   * Pages of the pagination
+   * Pagination page numbers
    */
   pages: Array<number> = [];
+
+  pageDescriptors: Array<PageDescriptor> = [];
 
   /**
    * Used to know if current page has a previous page
@@ -99,12 +93,6 @@ export class PaginationComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void { this.updatePages(this.initialPage); }
-
-  /**
-   * Used to know when rendering an 'ellipsis' instead of a page number
-   * @param pageNumber current selected page number
-   */
-  isEllipsis(pageNumber): boolean { return pageNumber === -1; }
 
   /**
    * Appends ellipses and first/last page number to the displayed pages
@@ -190,9 +178,13 @@ export class PaginationComponent implements OnChanges, OnInit {
       this.pages = this.pages.slice(start, end);
       // adding ellipses
       this.applyEllipses(start, end);
+      this.buildPageDescriptors(this.pages);
     }
-
   }
 
-
+  private buildPageDescriptors(pages: Array<number>) {
+    this.pageDescriptors = pages.map(page => {
+      return new PageDescriptor(page, page - 1, this.maxPage, this.initialPage, this.linkGenerator);
+    });
+  }
 }
