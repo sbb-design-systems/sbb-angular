@@ -2,8 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginationComponent } from './pagination.component';
 import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
-import { PageDescriptor } from '../pagination';
-import { NavigationExtras } from '@angular/router';
 import { PaginationModule } from '../pagination.module';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -11,7 +9,6 @@ import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
-
 
 @Component({
   selector: 'sbb-pagination-test',

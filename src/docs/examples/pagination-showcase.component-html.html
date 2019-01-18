@@ -1,37 +1,43 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Pagination<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span> (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span> [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span> [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span>
-		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Max page"</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"maxPage"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxPage"</span>&gt;</span>
-			<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Initial page"</span> &gt;</span>
-					<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"initialPage"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"initialPage"</span>&gt;</span>
-				<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
-		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Pagination as buttons<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span> 
+        (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span> 
+        [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span>
+        [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Max page"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"maxPage"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxPage"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Initial page"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"initialPage"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"initialPage"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Pagination as links<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span> <span class="hljs-attr">links</span> (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span> [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span> [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span>
-			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>		
-		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"default"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Pagination as links<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span> 
+        (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span> 
+        [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span> 
+        [<span class="hljs-attr">linkGenerator</span>]=<span class="hljs-string">"linkGenerator"</span> 
+        [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Navigation<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">sbb-navigation</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-navigation</span>&gt;</span>
-		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-			
-			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Navigation<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-navigation</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-navigation</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

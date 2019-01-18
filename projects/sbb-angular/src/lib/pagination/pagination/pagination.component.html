@@ -34,6 +34,7 @@
         [class.sbb-pagination-item-ellipsis]="isEllipsis(pageNumber)"
         [routerLink]="linkGenerator({displayNumber: pageNumber, index: pageNumber -1}).routerLink" 
         [queryParams]="linkGenerator({displayNumber: pageNumber, index: pageNumber -1}).queryParams">
+
         <ng-container *ngIf="isEllipsis(pageNumber)">...</ng-container>
         <ng-container *ngIf="!isEllipsis(pageNumber)">{{ pageNumber }}</ng-container>
       </a>
