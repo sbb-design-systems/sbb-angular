@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginationComponent } from './pagination.component';
-import { PaginationItemComponent } from '../pagination-item/pagination-item.component';
 import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 import { PageDescriptor } from '../pagination';
 import { NavigationExtras } from '@angular/router';
@@ -10,15 +9,17 @@ import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
+import { CommonModule } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 @Component({
   selector: 'sbb-pagination-test',
   template: `<sbb-pagination #pagination
     (pageChange)="onPageChange($event)"
-    [linkGenerator]="linkGenerator"
     [maxPage]="maxPage"
-    [initialPage]="initialPage"></sbb-pagination>`
+    [initialPage]="initialPage"></sbb-pagination>
+    `
 })
 export class PaginationTestComponent {
 
@@ -28,16 +29,7 @@ export class PaginationTestComponent {
   @ViewChild('pagination') pagination: PaginationComponent;
 
   onPageChange($event) {
-    console.log($event);
-  }
-
-  linkGenerator = (page: PageDescriptor): NavigationExtras & { routerLink: string | any[] } => {
-    console.log('calling linkGenerator');
-    return {
-      routerLink: ['.'],
-      queryParams: { page: page.index },
-      queryParamsHandling: 'merge',
-    };
+    // no code here :)
   }
 
 }
@@ -48,8 +40,8 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule],
-      declarations: [PaginationComponent, PaginationItemComponent]
+      imports: [IconCommonModule, CommonModule],
+      declarations: [PaginationComponent]
     })
       .compileComponents();
   }));
@@ -72,8 +64,8 @@ describe('PaginationComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule],
-      declarations: [PaginationTestComponent]
+      imports: [PaginationModule, RouterTestingModule],
+      declarations: [PaginationTestComponent],
     })
       .compileComponents();
   }));
@@ -86,18 +78,64 @@ describe('PaginationComponent behaviour', () => {
     fixture.detectChanges();
   });
 
+  describe('with more than 5 pages', () => {
+    describe('ellipsis', () => {
+      it('should show one ellipsis with first,second and third page selected', () => {
+        component.maxPage = 10;
+        component.initialPage = 1;
+        fixture.detectChanges();
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.initialPage = 2;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.initialPage = 3;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.initialPage = 4;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(2);
+      });
+
+      it('should show one ellipsis with last, last -1 and last-2 page selected', () => {
+        component.maxPage = 10;
+        component.initialPage = 10;
+        fixture.detectChanges();
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.initialPage = 9;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.initialPage = 8;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(1);
+        component.initialPage = 7;
+        fixture.detectChanges();
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        expect(ellipsisItems.length).toBe(2);
+      });
+    });
+  });
+
+
   describe('when clicking on the left arrow', () => {
     it('should go to the next page', () => {
-      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item'));
-      dispatchEvent(pageNumbers[pageNumbers.length - 1 ].nativeElement, createMouseEvent('click'));
+      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item > button'));
+      dispatchEvent(pageNumbers[pageNumbers.length - 1].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
       expect(component.pagination.initialPage).toBe(6);
     });
+
   });
 
   describe('when clicking on the right arrow', () => {
     it('should go to the previous page', () => {
-      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item'));
+      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item > button'));
       dispatchEvent(pageNumbers[0].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
       expect(component.pagination.initialPage).toBe(4);

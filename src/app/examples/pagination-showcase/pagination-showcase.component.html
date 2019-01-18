@@ -4,7 +4,6 @@
       <h4 id="default" class="sbbsc-block">Pagination as buttons</h4>
       <sbb-pagination 
         (pageChange)="onPageChange($event)" 
-        [linkGenerator]="linkGenerator" 
         [maxPage]="maxPage"
         [initialPage]="initialPage"></sbb-pagination>
     </div>
@@ -23,9 +22,9 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 id="default" class="sbbsc-block">Pagination as links</h4>
       <sbb-pagination 
-        links 
         (pageChange)="onPageChange($event)" 
         [maxPage]="maxPage" 
+        [linkGenerator]="linkGenerator" 
         [initialPage]="initialPage"></sbb-pagination>
     </div>
   </div>
@@ -39,7 +38,6 @@
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-
     </div>
   </div>
 </div>

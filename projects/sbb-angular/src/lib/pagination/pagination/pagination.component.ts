@@ -11,12 +11,17 @@ import {
 } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 export interface PageChangeEvent {
   currentPage: number;
   selectedPage: number;
 }
+
+export interface RouterPaginationLink {
+  routerLink: string | any[];
+}
+
+export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationLink { }
 
 @Component({
   selector: 'sbb-pagination',
@@ -28,21 +33,11 @@ export interface PageChangeEvent {
 export class PaginationComponent implements OnChanges, OnInit {
 
   /**
-   * Used to make pagination items as links.
-   * Just add [links] attribute to sbb-pagination element.
-   */
-  @Input()
-  set links(value: boolean) {
-    this._links = coerceBooleanProperty(value);
-  }
-  private _links = false;
-
-  /**
    * Renders the pagination items as links
-   * It depends if [links] attribute is applied on the element or not
+   * It depends if linkGenerator is defined or not
    */
   get mode(): 'link' | 'button' {
-    return this._links ? 'link' : 'button';
+    return this.linkGenerator ? 'link' : 'button';
   }
 
   /**
@@ -68,7 +63,7 @@ export class PaginationComponent implements OnChanges, OnInit {
    * A custom function called everytime a new pagination item has been clicked
    */
   @Input()
-  linkGenerator: (page: PageDescriptor) => NavigationExtras & { routerLink: string | any[] };
+  linkGenerator?: (page: PageDescriptor) => LinkGeneratorResult;
 
   /**
    * Amount of pagination items rotating
@@ -95,9 +90,6 @@ export class PaginationComponent implements OnChanges, OnInit {
    */
   selectPage(pageNumber: number): void {
     this.updatePages(pageNumber);
-    if (this.linkGenerator) {
-      this.linkGenerator({ displayNumber: pageNumber, index: pageNumber - 1 });
-    }
   }
 
   ngOnInit(): void {
@@ -201,4 +193,6 @@ export class PaginationComponent implements OnChanges, OnInit {
     }
 
   }
+
+
 }

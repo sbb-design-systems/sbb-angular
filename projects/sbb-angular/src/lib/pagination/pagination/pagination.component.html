@@ -1,38 +1,60 @@
 <ul class="sbb-pagination">
-  <li>
-    <sbb-pagination-item 
-      i18n-aria-label="Previous Page"
-      [disabled]="!hasPrevious()" 
-      [mode]="mode" 
-      [tabindex]="(hasPrevious() ? null : '-1')" 
-      (click)="selectPage(initialPage - 1)"
-      boundary>
+  <li class="sbb-pagination-item">
+    <button *ngIf="!linkGenerator" 
+      i18n-aria-label="Previous Page" 
+      class="sbb-pagination-item-boundary" 
+      [attr.tabindex]="(hasPrevious() ? null : '-1')"
+      [class.sbb-pagination-item-disabled]="!hasPrevious()" 
+      (click)="selectPage(initialPage - 1)">
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
-    </sbb-pagination-item>
+    </button>
+    <a *ngIf="linkGenerator" 
+      i18n-aria-label="Previous Page" 
+      class="sbb-pagination-item-boundary" 
+      [attr.tabindex]="(hasPrevious() ? null : '-1')"
+      [class.sbb-pagination-item-disabled]="!hasPrevious()" 
+      [routerLink]="linkGenerator({displayNumber: initialPage - 1,index: initialPage -2}).routerLink"
+      [queryParams]="linkGenerator({displayNumber: initialPage - 1,index: initialPage -2}).queryParams">
+      <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+    </a>
   </li>
-  <li *ngFor="let pageNumber of pages">
-    <sbb-pagination-item 
-      [mode]="mode" 
-      *ngIf="isEllipsis(pageNumber)" 
-      [tabindex]="-1" 
-      ellipsis>...</sbb-pagination-item>
-    <sbb-pagination-item 
-      [mode]="mode" 
-      *ngIf="!isEllipsis(pageNumber)" 
-      [tabindex]="pageNumber === initialPage ? -1 : 0"
-      (click)="selectPage(pageNumber)" 
-      [selected]="pageNumber === initialPage">
-      {{ pageNumber }}</sbb-pagination-item>
-  </li>
-  <li>
-    <sbb-pagination-item 
-      i18n-aria-label="Next page"
-      [disabled]="!hasNext()"  
-      [mode]="mode" 
-      [tabindex]="(hasNext() ? null : '-1')" 
-      (click)="selectPage(initialPage + 1)"
-      boundary>
+  <ng-template ngFor let-pageNumber [ngForOf]="pages" let-i="index">
+    <li class="sbb-pagination-item">
+      <button *ngIf="!linkGenerator" 
+        [attr.tabindex]="pageNumber === initialPage ? -1 : 0"
+        [class.sbb-pagination-item-selected]="pageNumber === initialPage" 
+        [class.sbb-pagination-item-ellipsis]="isEllipsis(pageNumber)"
+        (click)="selectPage(pageNumber)">
+        <ng-container *ngIf="isEllipsis(pageNumber)">...</ng-container>
+        <ng-container *ngIf="!isEllipsis(pageNumber)">{{ pageNumber }}</ng-container>
+      </button>
+      <a *ngIf="linkGenerator" 
+        [attr.tabindex]="pageNumber === initialPage ? -1 : 0"
+        [class.sbb-pagination-item-selected]="pageNumber === initialPage" 
+        [class.sbb-pagination-item-ellipsis]="isEllipsis(pageNumber)"
+        [routerLink]="linkGenerator({displayNumber: pageNumber, index: pageNumber -1}).routerLink" 
+        [queryParams]="linkGenerator({displayNumber: pageNumber, index: pageNumber -1}).queryParams">
+        <ng-container *ngIf="isEllipsis(pageNumber)">...</ng-container>
+        <ng-container *ngIf="!isEllipsis(pageNumber)">{{ pageNumber }}</ng-container>
+      </a>
+    </li>
+  </ng-template>
+  <li class="sbb-pagination-item">
+    <button *ngIf="!linkGenerator" 
+      i18n-aria-label="Next Page" 
+      class="sbb-pagination-item-boundary" 
+      [attr.tabindex]="(hasNext() ? null : '-1')"
+      [class.sbb-pagination-item-disabled]="!hasNext()" 
+      (click)="selectPage(initialPage + 1)">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
-    </sbb-pagination-item>
+    </button>
+    <a *ngIf="linkGenerator" 
+      class="sbb-pagination-item-boundary" 
+      [attr.tabindex]="(hasNext() ? null : '-1')"
+      [class.sbb-pagination-item-disabled]="!hasNext()" 
+      [routerLink]="linkGenerator({displayNumber: initialPage + 1, index: initialPage }).routerLink"
+      [queryParams]="linkGenerator({displayNumber: initialPage + 1, index: initialPage }).queryParams">
+      <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+    </a>
   </li>
 </ul>
