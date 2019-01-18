@@ -37,7 +37,7 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule, CommonModule],
+      imports: [IconCommonModule, CommonModule, RouterTestingModule],
       declarations: [PaginationComponent]
     })
       .compileComponents();
