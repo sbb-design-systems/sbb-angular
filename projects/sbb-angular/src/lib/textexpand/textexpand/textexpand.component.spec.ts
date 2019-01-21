@@ -24,7 +24,7 @@ class TextexpandTestComponent {
 
 }
 
-describe('TextexpandComponent', () => {
+xdescribe('TextexpandComponent', () => {
   let componentTextexpand: TextexpandComponent;
   let fixtureTextexpand: ComponentFixture<TextexpandComponent>;
 
@@ -90,7 +90,7 @@ describe('TextexpandComponent', () => {
 });
 
 
-describe('TextexpandComponent using mock component', () => {
+fdescribe('TextexpandComponent using mock component', () => {
 
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
@@ -140,6 +140,7 @@ describe('TextexpandComponent using mock component', () => {
       fixtureTest.detectChanges();
 
       expect(buttonClicked.attributes['aria-expanded']).toBeTruthy();
+      expect(buttonClicked.attributes['aria-expanded'].value).toBe('true');
   }));
 
   it('verify text content collapsed',(async() => {

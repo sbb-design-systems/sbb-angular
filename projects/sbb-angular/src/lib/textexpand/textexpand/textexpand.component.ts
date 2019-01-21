@@ -67,7 +67,7 @@ export class TextexpandComponent implements AfterContentInit {
   ngAfterContentInit() {
 
     if (!this.collapsedComponent || !this.expandedComponent) {
-      throw new Error('Collapsed and expand must be defined!');
+      throw new Error('Collapsed and expanded must be defined!');
     }
 
   }
