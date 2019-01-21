@@ -116,8 +116,8 @@ class TextexpandTestComponent {
   it('text collapsed and textexpand-expanded component is hidden', (async() => {
 
       expect(componentTest.textexpand.isExpanded).toBe(false);
-      expect(componentTest.textexpand.collapsedComponent.visible).toBe(false);
-      expect(componentTest.textexpand.expandedComponent.visible).toBe(true);
+      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
+      expect(componentTest.textexpand.expandedComponent.isHidden).toBe(true);
 
   }));
 
@@ -128,8 +128,8 @@ class TextexpandTestComponent {
       fixtureTest.detectChanges();
 
       expect(componentTest.textexpand.isExpanded).toBe(true);
-      expect(componentTest.textexpand.collapsedComponent.visible).toBe(true);
-      expect(componentTest.textexpand.expandedComponent.visible).toBe(false);
+      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
+      expect(componentTest.textexpand.expandedComponent.isHidden).toBe(false);
 
   }));
 
@@ -146,7 +146,7 @@ class TextexpandTestComponent {
   it('verify text content collapsed',(async() => {
 
       expect(componentTest.textexpand.isExpanded).toBe(false);
-      expect(componentTest.textexpand.collapsedComponent.visible).toBe(false);
+      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
 
       const textContent = fixtureTest.nativeElement;
       expect(textContent.textContent).toContain('Hello Davide!');
@@ -159,7 +159,7 @@ class TextexpandTestComponent {
       fixtureTest.detectChanges();
 
       expect(componentTest.textexpand.isExpanded).toBe(true);
-      expect(componentTest.textexpand.collapsedComponent.visible).toBe(true);
+      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
 
       const textContent = fixtureTest.nativeElement;
       expect(textContent.textContent).toContain('Hello Marco!');

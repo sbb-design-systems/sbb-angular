@@ -10,7 +10,7 @@ export class TextexpandCollapsedComponent  {
    * Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden.
    */
   @HostBinding('hidden')
-  visible = false;
+  isHidden = false;
 
   /**
    * Css class of the textexpand-collapsed component.

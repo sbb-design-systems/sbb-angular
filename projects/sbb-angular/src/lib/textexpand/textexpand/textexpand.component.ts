@@ -58,8 +58,8 @@ export class TextexpandComponent implements AfterContentInit {
   toggleExpanded() {
 
     this.isExpanded = !this.isExpanded;
-    this.collapsedComponent.visible = !this.collapsedComponent.visible;
-    this.expandedComponent.visible = !this.expandedComponent.visible;
+    this.collapsedComponent.isHidden = !this.collapsedComponent.isHidden;
+    this.expandedComponent.isHidden = !this.expandedComponent.isHidden;
     this.expandEvent.emit(this.isExpanded);
 
   }
