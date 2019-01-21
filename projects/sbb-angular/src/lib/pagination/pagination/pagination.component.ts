@@ -7,10 +7,17 @@ import {
   SimpleChanges,
   OnChanges,
   ViewEncapsulation,
-  OnInit
+  OnInit,
+  ElementRef,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+  AfterViewChecked,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 export interface PageChangeEvent {
   currentPage: number;
@@ -30,7 +37,8 @@ export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationL
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PaginationComponent implements OnChanges, OnInit {
+export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, AfterViewChecked {
+
 
   /**
    * The starting page of the pagination
@@ -57,6 +65,8 @@ export class PaginationComponent implements OnChanges, OnInit {
   @Input()
   linkGenerator?: (page: { index: number, displayNumber: number }) => LinkGeneratorResult;
 
+  @ViewChildren('pageButton') buttons: QueryList<ElementRef<any>>;
+
   /**
    * Amount of pagination rotating items
    */
@@ -67,7 +77,7 @@ export class PaginationComponent implements OnChanges, OnInit {
    */
   pages: Array<number> = [];
 
-  pageDescriptors: Array<PageDescriptor> = [];
+  pageDescriptors: BehaviorSubject<Array<PageDescriptor>> = new BehaviorSubject<Array<PageDescriptor>>([]);
 
   /**
    * Used to know if current page has a previous page
@@ -79,11 +89,30 @@ export class PaginationComponent implements OnChanges, OnInit {
    */
   hasNext(): boolean { return this.initialPage < this.maxPage; }
 
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+
+  ngAfterViewInit() {
+    if (this.buttons) {
+      this.buttons.changes.subscribe((btns: QueryList<ElementRef>) => {
+        const selectedElement = btns.find(el => el.nativeElement.classList.contains('sbb-pagination-item-selected'));
+        if (selectedElement) {
+          selectedElement.nativeElement.focus();
+        }
+      });
+    }
+  }
+
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
+  }
+
   /**
    * Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined
    */
   selectPage(pageNumber: number): void {
-    this.updatePages(pageNumber);
+    if (this.initialPage !== pageNumber) {
+      this.updatePages(pageNumber);
+    }
   }
 
   ngOnInit(): void {
@@ -178,13 +207,15 @@ export class PaginationComponent implements OnChanges, OnInit {
       this.pages = this.pages.slice(start, end);
       // adding ellipses
       this.applyEllipses(start, end);
-      this.buildPageDescriptors(this.pages);
     }
+    this.buildPageDescriptors(this.pages);
   }
 
   private buildPageDescriptors(pages: Array<number>) {
-    this.pageDescriptors = pages.map(page => {
+    this.pageDescriptors.next(pages.map(page => {
       return new PageDescriptor(page, page - 1, this.maxPage, this.initialPage, this.linkGenerator);
-    });
+    }));
   }
+
+
 }

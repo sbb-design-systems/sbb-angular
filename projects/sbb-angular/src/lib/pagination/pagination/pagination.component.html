@@ -1,5 +1,5 @@
 <ul class="sbb-pagination">
-  <li class="sbb-pagination-item">
+  <li class="sbb-pagination-item" >
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Previous Page" 
       class="sbb-pagination-item-boundary" 
@@ -18,10 +18,11 @@
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </a>
   </li>
-  <li *ngFor="let page of pageDescriptors" class="sbb-pagination-item">
-    <button *ngIf="!linkGenerator" 
+  <li *ngFor="let page of pageDescriptors | async" class="sbb-pagination-item">
+    <button #pageButton *ngIf="!linkGenerator" 
       [attr.tabindex]="page.tabIndex"
-      [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" [class.sbb-pagination-item-ellipsis]="page.isEllipsis"
+      [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
+      [class.sbb-pagination-item-ellipsis]="page.isEllipsis"
       (click)="selectPage(page.displayNumber)">
       <ng-container *ngIf="page.isEllipsis">...</ng-container>
       <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>

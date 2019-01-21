@@ -8,7 +8,7 @@ import { NavigationExtras } from '@angular/router';
 })
 export class PaginationShowcaseComponent {
 
-  maxPage = 5;
+  maxPage = 7;
   initialPage = 1;
 
   onPageChange($event) {
