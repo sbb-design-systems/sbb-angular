@@ -24,7 +24,7 @@ class TextexpandTestComponent {
 
 }
 
-xdescribe('TextexpandComponent', () => {
+ describe('TextexpandComponent', () => {
   let componentTextexpand: TextexpandComponent;
   let fixtureTextexpand: ComponentFixture<TextexpandComponent>;
 
@@ -90,7 +90,7 @@ xdescribe('TextexpandComponent', () => {
 });
 
 
-fdescribe('TextexpandComponent using mock component', () => {
+ describe('TextexpandComponent using mock component', () => {
 
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
