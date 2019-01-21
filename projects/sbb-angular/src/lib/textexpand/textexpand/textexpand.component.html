@@ -1,8 +1,5 @@
 <ng-content></ng-content>
 
-<!-- <button #buttonLess class="sbb-textexpand-button" *ngIf="expanded" sbbButton aria-expanded="true" aria-controls="id" mode="frameless" (click)="toggleExpanded()" i18n>Mehr anzeigen</button>
-<button #buttonMore class="sbb-textexpand-button" *ngIf="!expanded" sbbButton aria-expanded="false" mode="frameless" (click)="toggleExpanded()" i18n>Weniger anzeigen</button>
- -->
 <button 
   class="sbb-textexpand-button" 
   sbbButton [attr.aria-controls]="id" 
