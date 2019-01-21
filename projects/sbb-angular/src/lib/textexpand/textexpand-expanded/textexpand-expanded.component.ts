@@ -6,9 +6,16 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   styleUrls: ['./textexpand-expanded.component.scss']
 })
 export class TextexpandExpandedComponent {
+
+  /**
+   * Describes if textexpand-expanded is hidden or not. Initially it is hidden.
+   */
   @HostBinding('hidden')
   visible = true;
 
+  /**
+   * Css class of the textexpand-expanded component.
+   */
   @HostBinding('class') cssClass = 'sbb-textexpand-expanded';
 
 }

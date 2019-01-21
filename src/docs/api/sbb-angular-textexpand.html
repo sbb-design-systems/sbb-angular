@@ -26,7 +26,9 @@
           <code>expandEvent: EventEmitter&lt;boolean&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Event activated at the expansion of the text.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -34,7 +36,9 @@
           <code>ariaLive: &#39;polite&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Is used to set the priority with which screen reader should treat updates to live regions. With &quot;polite&quot; value the screen reader will speak changes whenever the user is idle.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -42,7 +46,9 @@
           <code>collapsedComponent: TextexpandCollapsedComponent</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers to the textexpand-collapsed component istance.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -50,15 +56,9 @@
           <code>cssClass: &#39;sbb-textexpand&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>expanded: false</code>
-        </p>
+      <td class="docs-api-property-description">
+        <p>Css class of the textexpand component.</p>
       </td>
-      <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -66,7 +66,9 @@
           <code>expandedComponent: TextexpandExpandedComponent</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers to the textexpand-expanded component istance.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -74,7 +76,19 @@
           <code>id: `sbb-textexpand-${counter++}`</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Identifier of the textexpand component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isExpanded: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Describes if text content is expanded or not. Initially is collapsed.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -82,7 +96,9 @@
           <code>role: &#39;region&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Is an ARIA landmark role. It provide a way to identify a specific zone of the page. Screen readers use landmark roles to provide keyboard navigation to important sections of a page.</p>
+      </td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
@@ -110,10 +126,22 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>cssClass: &#39;sbb-textexpand-expanded&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of the textexpand-expanded component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>visible: true</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Describes if textexpand-expanded is hidden or not. Initially it is hidden.</p>
+      </td>
     </tr>
   </table>
   <h4 id="TextexpandCollapsedComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
@@ -133,10 +161,22 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>cssClass: &#39;sbb-textexpand-collapsed&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of the textexpand-collapsed component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>visible: false</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Describes if textexpand-collapsed is hidden or not. Initially it isn&#39;t hidden.</p>
+      </td>
     </tr>
   </table>
 </div>
