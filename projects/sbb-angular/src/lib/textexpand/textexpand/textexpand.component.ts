@@ -1,8 +1,9 @@
-import { Component, OnInit, HostBinding, Output, ChangeDetectionStrategy } from '@angular/core';
+// tslint:disable-next-line:max-line-length
+import { Component, OnInit, HostBinding, Output, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, EventEmitter, ContentChild, AfterContentInit } from '@angular/core';
 import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
 import { TextexpandExpandedComponent } from '../textexpand-expanded/textexpand-expanded.component';
-import { EventEmitter, ContentChild, AfterContentInit } from '@angular/core';
 
+let counter = 0;
 
 @Component({
   selector: 'sbb-textexpand',
@@ -12,21 +13,29 @@ import { EventEmitter, ContentChild, AfterContentInit } from '@angular/core';
 })
 export class TextexpandComponent implements AfterContentInit {
 
-  expanded = false;
+  isExpanded = false;
+
+  @HostBinding('attr.id') id = `sbb-textexpand-${counter++}`;
 
   @HostBinding('class') cssClass = 'sbb-textexpand';
+
+  @HostBinding('attr.role') role = 'region';
+
+  @HostBinding('attr.aria-live') ariaLive = 'polite';
 
   @Output() expandEvent = new EventEmitter<boolean>();
 
   @ContentChild(TextexpandCollapsedComponent) collapsedComponent: TextexpandCollapsedComponent;
-  @ContentChild(TextexpandExpandedComponent) expandedComponent: TextexpandCollapsedComponent;
+
+  @ContentChild(TextexpandExpandedComponent) expandedComponent: TextexpandExpandedComponent;
+
 
   toggleExpanded() {
 
-    this.expanded = !this.expanded;
+    this.isExpanded = !this.isExpanded;
     this.collapsedComponent.visible = !this.collapsedComponent.visible;
     this.expandedComponent.visible = !this.expandedComponent.visible;
-    this.expandEvent.emit(this.expanded);
+    this.expandEvent.emit(this.isExpanded);
 
   }
 
@@ -37,7 +46,5 @@ export class TextexpandComponent implements AfterContentInit {
     }
 
   }
-
-
 
 }

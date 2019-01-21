@@ -9,4 +9,6 @@ export class TextexpandExpandedComponent {
   @HostBinding('hidden')
   visible = true;
 
+  @HostBinding('class') cssClass = 'sbb-textexpand-expanded';
+
 }

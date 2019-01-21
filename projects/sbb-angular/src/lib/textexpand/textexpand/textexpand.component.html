@@ -1,4 +1,15 @@
 <ng-content></ng-content>
 
-<button *ngIf="expanded" sbbButton mode="frameless" (click)="toggleExpanded()" i18n>Mehr anzeigen</button>
-<button *ngIf="!expanded" sbbButton mode="frameless" (click)="toggleExpanded()" i18n>Weniger anzeigen</button>
+<!-- <button #buttonLess class="sbb-textexpand-button" *ngIf="expanded" sbbButton aria-expanded="true" aria-controls="id" mode="frameless" (click)="toggleExpanded()" i18n>Mehr anzeigen</button>
+<button #buttonMore class="sbb-textexpand-button" *ngIf="!expanded" sbbButton aria-expanded="false" mode="frameless" (click)="toggleExpanded()" i18n>Weniger anzeigen</button>
+ -->
+<button 
+  class="sbb-textexpand-button" 
+  sbbButton [attr.aria-controls]="id" 
+  [attr.aria-expanded]="isExpanded" 
+  mode="frameless"
+  (click)="toggleExpanded()">
+
+  <u *ngIf="isExpanded" i18n>Mehr anzeigen</u>
+  <u *ngIf="!isExpanded" i18n>Weniger anzeigen</u>
+</button>

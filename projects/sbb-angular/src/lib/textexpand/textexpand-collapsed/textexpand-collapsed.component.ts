@@ -8,4 +8,6 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 export class TextexpandCollapsedComponent  {
   @HostBinding('hidden')
   visible = false;
+
+  @HostBinding('class') cssClass = 'sbb-textexpand-collapsed';
 }

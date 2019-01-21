@@ -1,0 +1,61 @@
+@mixin textexpand {
+  font-family: $fontSbbRoman;
+  color: $colorBlack60;
+  letter-spacing: 0;
+  line-height: toPx(20);
+  opacity: 100%;
+  font-size: pxtoRe(13);
+}
+
+@mixin textexpand-expanded {
+  font-family: $fontSbbRoman;
+  font-size: pxtoRe(13);
+  color: $colorBlack60;
+  letter-spacing: 0;
+  line-height: toPx(20);
+  width: toPx(536);
+  height: toPx(140);
+}
+
+@mixin textexpand-collapsed {
+  font-family: $fontSbbRoman;
+  font-size: pxtoRe(13);
+  color: $colorBlack60;
+  letter-spacing: 0;
+  line-height: toPx(20);
+  width: toPx(536);
+  height: toPx(40);
+}
+
+@mixin textexpandButton {
+  font-family: $fontSbbRoman;
+  color: $colorBlack60;
+  letter-spacing: 0;
+  line-height: toPx(20);
+  font-size: pxtoRe(13);
+  width: toPx(86);
+  height: toPx(20);
+  &:focus,
+  &:hover {
+    color: $colorRed100;
+  }
+  > u {
+    color: $colorBlack60;
+  }
+}
+
+@include mq($from: desktop4k) {
+  font-family: $fontSbbRoman;
+  font-size: pxtoRe(20);
+  color: $colorBlack60;
+  letter-spacing: 0;
+  line-height: toPx(30 * $scalingFactor4k);
+}
+
+@include mq($from: desktop5k) {
+  font-family: $fontSbbRoman;
+  font-size: pxtoRe(26);
+  color: $colorBlack60;
+  letter-spacing: 0;
+  line-height: toPx(39 * $scalingFactor5k);
+}
