@@ -1,0 +1,21 @@
+<span *ngIf="linkMode">
+  {{ label }} {{ amount }}
+</span>
+
+<label *ngIf="!linkMode" [attr.for]="inputId">
+  <input type="checkbox"
+         [id]="inputId"
+         [value]="value"
+         [required]="required"
+         [checked]="checked"
+         [attr.aria-checked]="checked"
+         [attr.aria-label]="ariaLabel"
+         [attr.aria-labelledby]="ariaLabelledby"
+         [attr.aria-describedby]="ariaDescribedby"
+         [disabled]="disabled"
+         (click)="click()" />
+
+  <!-- Add an invisible span so JAWS can read the label -->
+  <span style="display:none">&nbsp;</span>
+  {{ label }} {{ amount }}
+</label>

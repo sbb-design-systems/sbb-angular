@@ -1,0 +1,53 @@
+<h4 class="sbbsc-block">Link</h4>
+<a routerLink="/home">
+  <sbb-tag label="Link tag" amount="5"></sbb-tag>
+</a>
+
+<br><br>
+
+<sbb-tags>
+  <ng-container *ngFor="let tag of tagItems; let i=index">
+    <sbb-tag [(ngModel)]="tag.selected" 
+             [label]="tag.label" 
+             [disabled]="disableOne && (i === 1)"
+             [amount]="tag.amount"></sbb-tag>
+  </ng-container>
+</sbb-tags>
+
+<br><br>
+
+<pre>{{ tagItems | json }}</pre>
+
+<br><br>
+
+<form [formGroup]="form" novalidate>
+  <sbb-tags formArrayName="tags">
+    <ng-container *ngFor="let tag of tags.controls; let i=index">
+      <sbb-tag [formControlName]="i" 
+               [label]="tagItemsReactive[i].label" 
+               [amount]="tagItemsReactive[i].amount"></sbb-tag>
+    </ng-container>
+  </sbb-tags>
+</form>
+
+<br><br>
+
+<pre>
+  {{ tagItemsReactive | json }}
+</pre>
+
+
+<br><br>
+
+<button sbbButton (click)="removeOneItem()">Remove one tag</button>
+&nbsp;&nbsp;
+<button sbbButton (click)="addOneItem()">Add one tag</button>
+&nbsp;&nbsp;
+<button sbbButton (click)="reset()">Reset</button>
+<br><br>
+<sbb-checkbox [formControl]="disableCheckbox" [(ngModel)]="disableOne">Disable some tags</sbb-checkbox>
+<br><br>
+<sbb-field [mode]="inputMode">
+  <sbb-label for="name1">Change one amount</sbb-label>
+  <input id="name1" type="number" [formControl]="changeAmount" />
+</sbb-field>

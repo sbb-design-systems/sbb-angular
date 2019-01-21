@@ -51,6 +51,7 @@ import { RadioButtonPanelShowcaseComponent } from './examples/radio-button-panel
 import { NotificationShowcaseComponent } from './examples/notification-showcase/notification-showcase.component';
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
+import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { TableShowcaseComponent } from './examples/table-showcase/table-showcase
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
+    TagShowcaseComponent,
     ...IconComponents.types
   ]
 })
