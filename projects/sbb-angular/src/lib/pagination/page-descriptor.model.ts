@@ -10,14 +10,15 @@ export class PageDescriptor {
     this.hasNext = displayNumber < maxPage;
     this.isEllipsis = displayNumber === -1;
     this.tabIndex = this.isEllipsis || this.displayNumber === selectedPage ? -1 : 0;
+    this.isSelected = selectedPage === displayNumber;
     if (linkGenerator) {
       if (this.hasPrevious) {
         this.previousLink = linkGenerator({ displayNumber: displayNumber - 1, index: index - 1 });
       }
       if (this.hasNext) {
-        this.previousLink = linkGenerator({ displayNumber: displayNumber + 1, index: index + 1 });
+        this.nextLink = linkGenerator({ displayNumber: displayNumber + 1, index: index + 1 });
       }
-      this.link = linkGenerator({ displayNumber: displayNumber + 1, index: index + 1 });
+      this.link = linkGenerator({ displayNumber: displayNumber, index: index });
     }
   }
   displayNumber: number;
@@ -29,5 +30,6 @@ export class PageDescriptor {
   previousLink?: LinkGeneratorResult = null;
   nextLink?: LinkGeneratorResult = null;
   link?: LinkGeneratorResult = null;
+  isSelected = false;
 
 }

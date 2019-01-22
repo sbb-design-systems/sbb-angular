@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras } from '@angular/router';
+import { NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sbb-pagination-showcase',
@@ -7,6 +7,8 @@ import { NavigationExtras } from '@angular/router';
   styleUrls: ['./pagination-showcase.component.scss']
 })
 export class PaginationShowcaseComponent {
+
+  constructor(private route: ActivatedRoute) {}
 
   maxPage = 7;
   initialPage = 1;
@@ -16,11 +18,11 @@ export class PaginationShowcaseComponent {
   }
 
   linkGenerator = (page: { displayNumber: number, index: number }): NavigationExtras & { routerLink: string | any[] } => {
-    console.log('calling linkGenerator');
     return {
       routerLink: ['.'],
       queryParams: { page: page.index },
       queryParamsHandling: 'merge',
+      relativeTo: this.route,
     };
   }
 

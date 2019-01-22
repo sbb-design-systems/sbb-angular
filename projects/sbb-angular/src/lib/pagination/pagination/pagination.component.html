@@ -1,5 +1,5 @@
 <ul class="sbb-pagination">
-  <li class="sbb-pagination-item" >
+  <li class="sbb-pagination-item">
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Previous Page" 
       class="sbb-pagination-item-boundary" 
@@ -18,41 +18,41 @@
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </a>
   </li>
-  <li *ngFor="let page of pageDescriptors | async" class="sbb-pagination-item">
+  <li *ngFor="let page of pageDescriptors" class="sbb-pagination-item">
     <button #pageButton *ngIf="!linkGenerator" 
       [attr.tabindex]="page.tabIndex"
       [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
       [class.sbb-pagination-item-ellipsis]="page.isEllipsis"
-      (click)="selectPage(page.displayNumber)">
+      (click)="buttonClick(page)">
       <ng-container *ngIf="page.isEllipsis">...</ng-container>
       <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
     </button>
     <a *ngIf="linkGenerator" 
+      #pageLink
       [attr.tabindex]="page.tabIndex" 
-      [routerLinkActive]="!page.isEllipsis ?'sbb-pagination-item-selected': ''"
-      [routerLinkActiveOptions]="{exact: true}" 
+      [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
       [class.sbb-pagination-item-ellipsis]="page.isEllipsis" 
-      [routerLink]="page.link.routerLink"
-      [queryParams]="page.link.queryParams">
+      (click)="linkClick($event, page)"
+      (keydown.enter)="linkClick($event, page)">
       <ng-container *ngIf="page.isEllipsis">...</ng-container>
       <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
     </a>
   </li>
-  <li class="sbb-pagination-item">
+  <li class="sbb-pagination-item" >
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Next Page" 
       class="sbb-pagination-item-boundary" 
-      [attr.tabindex]="(hasNext() ? null : '-1')"
+      [attr.tabindex]="(hasNext() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()" 
       (click)="selectPage(initialPage + 1)">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
     </button>
     <a *ngIf="linkGenerator" 
       class="sbb-pagination-item-boundary" 
-      [attr.tabindex]="(hasNext() ? null : '-1')"
+      [attr.tabindex]="(hasNext() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()" 
-      [routerLink]="linkGenerator({displayNumber: initialPage + 1, index: initialPage }).routerLink"
-      [queryParams]="linkGenerator({displayNumber: initialPage + 1, index: initialPage }).queryParams">
+      (click)="linkNext($event)"
+      (keydown.enter)="linkNext($event)">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
     </a>
   </li>

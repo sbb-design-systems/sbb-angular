@@ -15,9 +15,10 @@ import {
   AfterViewChecked,
   ChangeDetectorRef,
 } from '@angular/core';
-import { NavigationExtras } from '@angular/router';
+import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { isArray, isString } from 'util';
 
 export interface PageChangeEvent {
   currentPage: number;
@@ -29,6 +30,11 @@ export interface RouterPaginationLink {
 }
 
 export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationLink { }
+
+export interface Page {
+  index: number;
+  displayNumber: number;
+}
 
 @Component({
   selector: 'sbb-pagination',
@@ -65,19 +71,21 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   @Input()
   linkGenerator?: (page: { index: number, displayNumber: number }) => LinkGeneratorResult;
 
-  @ViewChildren('pageButton') buttons: QueryList<ElementRef<any>>;
+  @ViewChildren('pageButton') buttons: QueryList<ElementRef>;
+  @ViewChildren('pageLink') links: QueryList<ElementRef>;
+
 
   /**
-   * Amount of pagination rotating items
+   * Amount of rotating pagination items
    */
   maxSize = 3;
 
   /**
    * Pagination page numbers
    */
-  pages: Array<number> = [];
+  pages: Array<Page> = [];
 
-  pageDescriptors: BehaviorSubject<Array<PageDescriptor>> = new BehaviorSubject<Array<PageDescriptor>>([]);
+  pageDescriptors: Array<PageDescriptor> = [];
 
   /**
    * Used to know if current page has a previous page
@@ -89,28 +97,18 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
    */
   hasNext(): boolean { return this.initialPage < this.maxPage; }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
-  ngAfterViewInit() {
-    if (this.buttons) {
-      this.buttons.changes.subscribe((btns: QueryList<ElementRef>) => {
-        const selectedElement = btns.find(el => el.nativeElement.classList.contains('sbb-pagination-item-selected'));
-        if (selectedElement) {
-          selectedElement.nativeElement.focus();
-        }
-      });
-    }
-  }
-
-  ngAfterViewChecked() {
-    this.changeDetectorRef.detectChanges();
-  }
 
   /**
    * Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined
    */
   selectPage(pageNumber: number): void {
-    if (this.initialPage !== pageNumber) {
+    if (this.initialPage !== pageNumber || this.linkGenerator) {
       this.updatePages(pageNumber);
     }
   }
@@ -121,7 +119,25 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void { this.updatePages(this.initialPage); }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updatePages(this.initialPage);
+  }
+
+  ngAfterViewInit() {
+    if (this.route.queryParams) {
+      this.route.queryParams.subscribe(params => {
+        if (params.page) {
+          this.selectPage(params.page as number);
+        } else {
+          this.selectPage(1);
+        }
+      });
+    }
+  }
+
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
+  }
 
   /**
    * Appends ellipses and first/last page number to the displayed pages
@@ -130,15 +146,15 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
 
     if (start > 0) {
       if (start > 1) {
-        this.pages.unshift(-1);
+        this.pages.unshift({ displayNumber: -1, index: -1 });
       }
-      this.pages.unshift(1);
+      this.pages.unshift({ displayNumber: 1, index: 1 });
     }
     if (end < this.maxPage) {
       if (end < (this.maxPage - 1)) {
-        this.pages.push(-1);
+        this.pages.push({ displayNumber: -1, index: -1 });
       }
-      this.pages.push(this.maxPage);
+      this.pages.push({ displayNumber: this.maxPage, index: this.maxPage });
     }
 
   }
@@ -191,7 +207,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
     // fill-in model needed to render pages
     this.pages.length = 0;
     for (let i = 1; i <= this.maxPage; i++) {
-      this.pages.push(i);
+      this.pages.push({ displayNumber: i, index: i });
     }
 
     // set page within 1..max range
@@ -211,11 +227,55 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
     this.buildPageDescriptors(this.pages);
   }
 
-  private buildPageDescriptors(pages: Array<number>) {
-    this.pageDescriptors.next(pages.map(page => {
-      return new PageDescriptor(page, page - 1, this.maxPage, this.initialPage, this.linkGenerator);
-    }));
+  private buildPageDescriptors(pages: Array<Page>) {
+    this.pageDescriptors = pages.map(page => {
+      return new PageDescriptor(page.displayNumber, page.index, this.maxPage, this.initialPage, this.linkGenerator);
+    });
+
   }
 
+  private findActivePage(el: ElementRef) {
+    return Number(el.nativeElement.textContent) === this.pageDescriptors.find(page => page.isSelected).displayNumber;
+  }
 
+  linkClick($event, page: PageDescriptor) {
+    this.navigateToLink(page.link);
+    $event.preventDefault();
+  }
+
+  buttonClick(page: PageDescriptor) {
+    this.selectPage(page.displayNumber);
+    setTimeout(() => {
+      if (this.buttons.length) {
+        this.buttons.find(button => {
+          return this.findActivePage(button);
+        }).nativeElement.focus();
+      }
+    });
+  }
+
+  focusActive(page) {
+    return page.isSelected ? 'sbb-pagination-item-selected' : '';
+  }
+
+  linkNext($event) {
+    const route = this.pageDescriptors.find(page => page.isSelected).nextLink;
+    this.navigateToLink(route);
+    $event.preventDefault();
+  }
+
+  linkBefore($event) {
+    const route = this.pageDescriptors.find(page => page.isSelected).previousLink;
+    this.navigateToLink(route);
+    $event.preventDefault();
+  }
+
+  private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {
+    let routerLink = linkGeneratorResult.routerLink;
+    if (isString(linkGeneratorResult.routerLink)) {
+      routerLink = (linkGeneratorResult.routerLink as string).split('/');
+    }
+    return this.router.navigate(routerLink as any[], linkGeneratorResult);
+
+  }
 }

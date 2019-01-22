@@ -1,6 +1,5 @@
 <span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
-<span class="hljs-keyword">import</span> { PageDescriptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
-<span class="hljs-keyword">import</span> { NavigationExtras } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { NavigationExtras, ActivatedRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
 
 <span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'sbb-pagination-showcase'</span>,
@@ -9,19 +8,21 @@
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> PaginationShowcaseComponent {
 
-  maxPage = <span class="hljs-number">5</span>;
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> route: ActivatedRoute</span>) {}
+
+  maxPage = <span class="hljs-number">7</span>;
   initialPage = <span class="hljs-number">1</span>;
 
   onPageChange($event) {
     <span class="hljs-built_in">console</span>.log($event);
   }
 
-  linkGenerator = (page: PageDescriptor): NavigationExtras &amp; { routerLink: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">any</span>[] } =&gt; {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'calling linkGenerator'</span>);
+  linkGenerator = (page: { displayNumber: <span class="hljs-built_in">number</span>, index: <span class="hljs-built_in">number</span> }): NavigationExtras &amp; { routerLink: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">any</span>[] } =&gt; {
     <span class="hljs-keyword">return</span> {
       routerLink: [<span class="hljs-string">'.'</span>],
       queryParams: { page: page.index },
       queryParamsHandling: <span class="hljs-string">'merge'</span>,
+      relativeTo: <span class="hljs-keyword">this</span>.route,
     };
   }
 
