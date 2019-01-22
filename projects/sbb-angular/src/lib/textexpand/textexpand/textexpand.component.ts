@@ -54,7 +54,6 @@ export class TextexpandComponent implements AfterContentInit {
    */
   @ContentChild(TextexpandExpandedComponent) expandedComponent: TextexpandExpandedComponent;
 
-
   toggleExpanded() {
 
     this.isExpanded = !this.isExpanded;
