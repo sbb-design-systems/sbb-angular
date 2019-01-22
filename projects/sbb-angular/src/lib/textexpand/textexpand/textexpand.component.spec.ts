@@ -60,31 +60,31 @@ class TextexpandTestComponent {
   });
 
   it('textexpand should create', () => {
-      expect(componentTextexpand).toBeTruthy();
+    expect(componentTextexpand).toBeTruthy();
   });
 
   it('textexpand-collapsed should create',() => {
-      expect(componentCollapsed).toBeTruthy();
+    expect(componentCollapsed).toBeTruthy();
   });
 
   it('textexpand-expanded should create',() => {
-      expect(componentExpanded).toBeTruthy();
+    expect(componentExpanded).toBeTruthy();
   });
 
   it('should have a generated id if not provided', () => {
-      expect(componentTextexpand.id).toContain('sbb-textexpand-');
+    expect(componentTextexpand.id).toContain('sbb-textexpand-');
   });
 
   it('textexpand class must exist',() => {
-      expect(componentTextexpand.cssClass).toBe('sbb-textexpand');
+    expect(componentTextexpand.cssClass).toBe('sbb-textexpand');
   });
 
   it('textexpand-collapsed class must exist',() => {
-      expect(componentCollapsed.cssClass).toBe('sbb-textexpand-collapsed');
+    expect(componentCollapsed.cssClass).toBe('sbb-textexpand-collapsed');
   });
 
   it('textexpand-expanded class must exist',() => {
-      expect(componentExpanded.cssClass).toBe('sbb-textexpand-expanded');
+    expect(componentExpanded.cssClass).toBe('sbb-textexpand-expanded');
   });
 
 });
@@ -110,59 +110,77 @@ class TextexpandTestComponent {
   });
 
   it('component test is created',(async() => {
-      expect(componentTest).toBeTruthy();
+    expect(componentTest).toBeTruthy();
   }));
 
   it('text collapsed and textexpand-expanded component is hidden', (async() => {
 
-      expect(componentTest.textexpand.isExpanded).toBe(false);
-      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
-      expect(componentTest.textexpand.expandedComponent.isHidden).toBe(true);
+    expect(componentTest.textexpand.isExpanded).toBe(false);
+    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
+    expect(componentTest.textexpand.expandedComponent.isHidden).toBe(true);
 
   }));
 
   it('text expanded and textexpand-collapsed is hidden ', (async() => {
 
-      const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
-      buttonClicked.click();
-      fixtureTest.detectChanges();
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    buttonClicked.click();
+    fixtureTest.detectChanges();
 
-      expect(componentTest.textexpand.isExpanded).toBe(true);
-      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
-      expect(componentTest.textexpand.expandedComponent.isHidden).toBe(false);
+    expect(componentTest.textexpand.isExpanded).toBe(true);
+    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
+    expect(componentTest.textexpand.expandedComponent.isHidden).toBe(false);
 
   }));
 
   it('aria-expanded button property is true to a click on the button', (async() => {
 
-      const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
-      buttonClicked.click();
-      fixtureTest.detectChanges();
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    buttonClicked.click();
+    fixtureTest.detectChanges();
 
-      expect(buttonClicked.attributes['aria-expanded']).toBeTruthy();
-      expect(buttonClicked.attributes['aria-expanded'].value).toBe('true');
+    expect(buttonClicked.attributes['aria-expanded']).toBeTruthy();
+    expect(buttonClicked.attributes['aria-expanded'].value).toBe('true');
   }));
 
   it('verify text content collapsed',(async() => {
 
-      expect(componentTest.textexpand.isExpanded).toBe(false);
-      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
+    expect(componentTest.textexpand.isExpanded).toBe(false);
+    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
 
-      const textContent = fixtureTest.nativeElement;
-      expect(textContent.textContent).toContain('Hello Davide!');
+    const textContent = fixtureTest.nativeElement;
+    expect(textContent.textContent).toContain('Hello Davide!');
   }));
 
   it('verify text content expanded to a click on the button', (async() => {
 
-      const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
-      buttonClicked.click();
-      fixtureTest.detectChanges();
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    buttonClicked.click();
+    fixtureTest.detectChanges();
 
-      expect(componentTest.textexpand.isExpanded).toBe(true);
-      expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
+    expect(componentTest.textexpand.isExpanded).toBe(true);
+    expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
 
-      const textContent = fixtureTest.nativeElement;
-      expect(textContent.textContent).toContain('Hello Marco!');
+    const textContent = fixtureTest.nativeElement;
+    expect(textContent.textContent).toContain('Hello Marco!');
+  }));
+
+  it('verify button label when text is collapsed',(async() => {
+
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+
+    expect(buttonClicked.textContent).toContain('Weniger anzeigen');
+
+}));
+
+  it('verify button label when text is expanded',(async() => {
+
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    buttonClicked.click();
+    fixtureTest.detectChanges();
+
+    expect(buttonClicked.textContent).toContain('Mehr anzeigen');
+
   }));
 
 });

@@ -7,26 +7,6 @@
   font-size: pxtoRe(13);
 }
 
-@mixin textexpand-expanded {
-  font-family: $fontSbbRoman;
-  font-size: pxtoRe(13);
-  color: $colorBlack60;
-  letter-spacing: 0;
-  line-height: toPx(20);
-  width: toPx(536);
-  height: toPx(140);
-}
-
-@mixin textexpand-collapsed {
-  font-family: $fontSbbRoman;
-  font-size: pxtoRe(13);
-  color: $colorBlack60;
-  letter-spacing: 0;
-  line-height: toPx(20);
-  width: toPx(536);
-  height: toPx(40);
-}
-
 @mixin textexpandButton {
   font-family: $fontSbbRoman;
   color: $colorBlack60;
