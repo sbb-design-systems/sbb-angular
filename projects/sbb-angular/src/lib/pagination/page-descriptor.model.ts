@@ -11,7 +11,7 @@ export class PageDescriptor {
     this.isEllipsis = displayNumber === -1;
     this.tabIndex = this.isEllipsis || this.displayNumber === selectedPage ? -1 : 0;
     this.isSelected = selectedPage === displayNumber;
-    if (linkGenerator) {
+    if (linkGenerator && !this.isEllipsis) {
       if (this.hasPrevious) {
         this.previousLink = linkGenerator({ displayNumber: displayNumber - 1, index: index - 1 });
       }
