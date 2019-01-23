@@ -19,6 +19,7 @@ import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-pane
 import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
+import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
 
 
 @Injectable({
@@ -332,6 +333,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         TimeInputShowcaseComponent
+      ),
+      new UiComponent(
+        'Tooltip',
+        'tooltip',
+        'Tooltip',
+        'Subtitel goes here ...',
+        true,
+        false,
+        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TooltipShowcaseComponent
       )
     ];
   }
