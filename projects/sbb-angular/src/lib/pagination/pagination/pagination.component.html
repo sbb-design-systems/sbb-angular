@@ -23,6 +23,7 @@
       [attr.tabindex]="page.tabIndex"
       [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
       [class.sbb-pagination-item-ellipsis]="page.isEllipsis"
+      [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
       (click)="buttonClick(page)">
       <ng-container *ngIf="page.isEllipsis">...</ng-container>
       <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
@@ -32,6 +33,7 @@
       [attr.tabindex]="page.tabIndex" 
       [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
       [class.sbb-pagination-item-ellipsis]="page.isEllipsis" 
+      [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
       (click)="linkClick($event, page)"
       (keydown.enter)="linkClick($event, page)">
       <ng-container *ngIf="page.isEllipsis">...</ng-container>

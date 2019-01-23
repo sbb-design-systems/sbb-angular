@@ -14,6 +14,7 @@ import {
   AfterViewInit,
   AfterViewChecked,
   ChangeDetectorRef,
+  HostBinding,
 } from '@angular/core';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 import { PageDescriptor } from '../page-descriptor.model';
@@ -45,7 +46,11 @@ export interface Page {
 })
 export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, AfterViewChecked {
 
+  @HostBinding('attr.role')
+  role = 'navigation';
 
+  @HostBinding('attr.i18n-aria-label')
+  ariaLabel = 'Pagination Navigation';
   /**
    * The starting page of the pagination
    */
