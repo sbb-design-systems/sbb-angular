@@ -12,7 +12,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -65,6 +64,7 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { TagModule } from 'projects/sbb-angular/src/lib/tag/tag';
+import { CheckboxModule } from 'projects/sbb-angular/src/lib/checkbox/checkbox';
 
 @NgModule({
   declarations: [

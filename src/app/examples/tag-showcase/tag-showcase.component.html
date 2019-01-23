@@ -9,6 +9,7 @@
   <ng-container *ngFor="let tag of tagItems; let i=index">
     <sbb-tag [(ngModel)]="tag.selected" 
              [label]="tag.label" 
+             [id]="tag.id"
              [disabled]="disableOne && (i === 1)"
              [amount]="tag.amount"></sbb-tag>
   </ng-container>
@@ -24,6 +25,7 @@
   <sbb-tags formArrayName="tags">
     <ng-container *ngFor="let tag of tags.controls; let i=index">
       <sbb-tag [formControlName]="i" 
+               [id]="tagItemsReactive[i].id"
                [label]="tagItemsReactive[i].label" 
                [amount]="tagItemsReactive[i].amount"></sbb-tag>
     </ng-container>

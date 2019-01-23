@@ -1,33 +1,61 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Tag } from 'sbb-angular';
-import { Subscription, Observable, of, pipe } from 'rxjs';
-import { switchMap, map, mergeAll, mergeMap, skipUntil, skip, last } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 const tagItems: Tag[] = [
   {
+    id: 'tag-1',
     label: 'Services',
     amount: 8,
     selected: false
   },
   {
+    id: 'tag-2',
     label: 'Restaurants / Take Away',
     amount: 9,
-    selected: true
+    selected: false
   },
   {
+    id: 'tag-3',
     label: 'Blumen',
     amount: 10,
     selected: false
   },
   {
+    id: 'tag-4',
     label: 'Elektronik / Musik / Foto',
     amount: 11,
     selected: false
   }
 ];
 
-const tagItems2 = tagItems.map((t: Tag) => Object.assign({}, t));
+const tagItems2: Tag[] = [
+  {
+    id: 'tag-2-1',
+    label: 'Services',
+    amount: 8,
+    selected: false
+  },
+  {
+    id: 'tag-2-2',
+    label: 'Restaurants / Take Away',
+    amount: 9,
+    selected: false
+  },
+  {
+    id: 'tag-2-3',
+    label: 'Blumen',
+    amount: 10,
+    selected: false
+  },
+  {
+    id: 'tag-2-4',
+    label: 'Elektronik / Musik / Foto',
+    amount: 11,
+    selected: false
+  }
+];
 
 @Component({
   selector: 'sbb-tag-showcase',
@@ -63,40 +91,52 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    this._tagFormSubscription = this.tags.valueChanges
-      .subscribe(() => {
-        this.tags.controls.map((c, i) => {
-          this.tagItemsReactive[i].selected = c.value;
-        });
-      });
-
-    this._checkboxSubscription = this.disableCheckbox
-      .valueChanges.subscribe(
-        (val) => {
-          if (val) {
-            this.tags.controls[1].disable();
-            this.tags.controls[2].disable();
-          } else {
-            this.tags.controls[1].enable();
-            this.tags.controls[2].enable();
-          }
-        }
-      );
-
-    this._changeAmountSubscription = this.changeAmount
-      .valueChanges.subscribe(
-        (val) => {
-          this.tagItems[1].amount = val;
-          this.tagItemsReactive[1].amount = val;
-        }
-      );
+    this._tagFormSubscription = this.subscribeOnTags();
+    this._checkboxSubscription = this.subscribeOnDisableCheckbox();
+    this._changeAmountSubscription = this.subscribeOnChangeAmount();
   }
 
   ngOnDestroy() {
     this._tagFormSubscription.unsubscribe();
     this._checkboxSubscription.unsubscribe();
     this._changeAmountSubscription.unsubscribe();
+  }
+
+  subscribeOnTags(): Subscription {
+    return this.tags.valueChanges
+    .subscribe(() => {
+      this.tags.controls.map((c, i) => {
+        this.tagItemsReactive[i].selected = c.value;
+      });
+    });
+  }
+
+  subscribeOnDisableCheckbox(): Subscription {
+    return this.disableCheckbox
+    .valueChanges.subscribe(
+      (val) => {
+        const control1 = this.tags.controls[1];
+        const control2 = this.tags.controls[2];
+
+        if (val && control1 && control2) {
+          control1.disable();
+          control2.disable();
+        } else if (control1 && control2) {
+          control1.enable();
+          control2.enable();
+        }
+      }
+    );
+  }
+
+  subscribeOnChangeAmount(): Subscription {
+    return this.changeAmount
+    .valueChanges.subscribe(
+      (val) => {
+        this.tagItems[1].amount = val;
+        this.tagItemsReactive[1].amount = val;
+      }
+    );
   }
 
   buildTags(): FormArray {
@@ -120,8 +160,8 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
       selected: true
     };
 
-    this.tagItems.push(itemToAdd);
-    this.tagItemsReactive.push(itemToAdd);
+    this.tagItems.push(Object.assign({}, itemToAdd));
+    this.tagItemsReactive.push(Object.assign({}, itemToAdd));
     this.tags.push(new FormControl(itemToAdd.selected));
   }
 
@@ -129,6 +169,7 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
     this.tagItems = tagItems.slice();
     this.tagItemsReactive = tagItems2.slice();
     this.form.setControl('tags', this.buildTags());
+    this._tagFormSubscription = this.subscribeOnTags();
   }
 
 }
