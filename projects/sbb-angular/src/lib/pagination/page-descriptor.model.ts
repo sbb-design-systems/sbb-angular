@@ -1,4 +1,20 @@
-import { LinkGeneratorResult } from './pagination';
+import { NavigationExtras } from '@angular/router';
+
+export interface PageChangeEvent {
+  currentPage: number;
+  selectedPage: number;
+}
+
+export interface RouterPaginationLink {
+  routerLink: string | any[];
+}
+
+export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationLink { }
+
+export interface Page {
+  index: number;
+  displayNumber: number;
+}
 
 export class PageDescriptor {
 

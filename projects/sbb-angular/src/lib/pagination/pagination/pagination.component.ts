@@ -16,26 +16,10 @@ import {
   ChangeDetectorRef,
   HostBinding,
 } from '@angular/core';
-import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
-import { PageDescriptor } from '../page-descriptor.model';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { isArray, isString } from 'util';
-
-export interface PageChangeEvent {
-  currentPage: number;
-  selectedPage: number;
-}
-
-export interface RouterPaginationLink {
-  routerLink: string | any[];
-}
-
-export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationLink { }
-
-export interface Page {
-  index: number;
-  displayNumber: number;
-}
+import { Router, NavigationEnd } from '@angular/router';
+import { PageDescriptor, PageChangeEvent, LinkGeneratorResult, Page } from '../page-descriptor.model';
+import { isString } from 'util';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-pagination',
@@ -104,7 +88,6 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private route: ActivatedRoute,
     private router: Router
   ) { }
 
@@ -130,16 +113,11 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
 
   ngAfterViewInit() {
     if (this.links.length) {
-
-      if (this.route.queryParams) {
-        this.route.queryParams.subscribe(params => {
-          if (params.page) {
-            this.selectPage(params.page as number);
-          } else {
-            this.selectPage(1);
-          }
+      this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe((event) => {
+          this.selectPage(this.initialPage);
         });
-      }
     }
   }
 
@@ -247,6 +225,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   }
 
   linkClick($event, page: PageDescriptor) {
+    this.initialPage = page.index;
     this.navigateToLink(page.link);
     $event.preventDefault();
   }
@@ -267,14 +246,16 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   }
 
   linkNext($event) {
-    const route = this.pageDescriptors.find(page => page.isSelected).nextLink;
-    this.navigateToLink(route);
+    const selectedPage = this.pageDescriptors.find(page => page.isSelected);
+    this.initialPage = selectedPage.index + 1;
+    this.navigateToLink(selectedPage.nextLink);
     $event.preventDefault();
   }
 
   linkBefore($event) {
-    const route = this.pageDescriptors.find(page => page.isSelected).previousLink;
-    this.navigateToLink(route);
+    const selectedPage = this.pageDescriptors.find(page => page.isSelected);
+    this.initialPage = selectedPage.index - 1;
+    this.navigateToLink(selectedPage.previousLink);
     $event.preventDefault();
   }
 
