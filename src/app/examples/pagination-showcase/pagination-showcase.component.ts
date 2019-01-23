@@ -11,7 +11,7 @@ export class PaginationShowcaseComponent {
   constructor(private route: ActivatedRoute) {}
 
   maxPage = 7;
-  initialPage = 1;
+  initialPage = 5;
 
   onPageChange($event) {
     console.log($event);

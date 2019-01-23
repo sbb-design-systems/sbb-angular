@@ -26,7 +26,7 @@ export class PaginationTestComponent {
   @ViewChild('pagination') pagination: PaginationComponent;
 
   onPageChange($event) {
-    // no code here :)
+    console.log($event);
   }
 
 }
@@ -81,19 +81,19 @@ describe('PaginationComponent behaviour', () => {
         component.maxPage = 10;
         component.initialPage = 1;
         fixture.detectChanges();
-        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 2;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 3;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 4;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(2);
       });
 
@@ -101,29 +101,33 @@ describe('PaginationComponent behaviour', () => {
         component.maxPage = 10;
         component.initialPage = 10;
         fixture.detectChanges();
-        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 9;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 8;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 7;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
+        ellipsisItems = fixture.debugElement.queryAll(By.css('button.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(2);
       });
     });
+
   });
 
 
   describe('when clicking on the left arrow', () => {
     it('should go to the next page', () => {
-      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item > button'));
-      dispatchEvent(pageNumbers[pageNumbers.length - 1].nativeElement, createMouseEvent('click'));
+      component.maxPage = 10;
+      component.initialPage = 5;
+      fixture.detectChanges();
+      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
+      dispatchEvent(pageNumbers[1].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
       expect(component.pagination.initialPage).toBe(6);
     });
@@ -132,7 +136,10 @@ describe('PaginationComponent behaviour', () => {
 
   describe('when clicking on the right arrow', () => {
     it('should go to the previous page', () => {
-      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item > button'));
+      component.maxPage = 10;
+      component.initialPage = 5;
+      fixture.detectChanges();
+      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(pageNumbers[0].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
       expect(component.pagination.initialPage).toBe(4);

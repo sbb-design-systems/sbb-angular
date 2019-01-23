@@ -124,14 +124,17 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   }
 
   ngAfterViewInit() {
-    if (this.route.queryParams) {
-      this.route.queryParams.subscribe(params => {
-        if (params.page) {
-          this.selectPage(params.page as number);
-        } else {
-          this.selectPage(1);
-        }
-      });
+    if (this.links.length) {
+
+      if (this.route.queryParams) {
+        this.route.queryParams.subscribe(params => {
+          if (params.page) {
+            this.selectPage(params.page as number);
+          } else {
+            this.selectPage(1);
+          }
+        });
+      }
     }
   }
 
