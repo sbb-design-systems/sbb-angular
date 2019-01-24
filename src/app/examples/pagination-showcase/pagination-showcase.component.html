@@ -42,10 +42,11 @@
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
+      <sbb-field label="Page title" mode="long">
+        <input type="text" name="newPage" [(ngModel)]="newPage.title" (keydown.enter)="addPage()" >
+      </sbb-field>
     </div>
   </div>
-
-  <div role="presentation" class="sbbsc-separator"></div>
 
   <div class="row">
     <div class="col-lg-6">
@@ -57,8 +58,6 @@
        [hasPrevious]="hasPrevious" >
       </sbb-navigation>
     </div>
-    <div class="col-lg-6">
-      <h4 class="sbbsc-block">Properties</h4>
-    </div>
+
   </div>
 </div>

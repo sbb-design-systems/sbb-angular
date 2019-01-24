@@ -26,6 +26,8 @@ export class PaginationShowcaseComponent {
   hasPrevious: NavigationPageDescriptor = this.pages[1];
   hasNext: NavigationPageDescriptor = this.pages[2];
 
+  newPage = {title: ''};
+
   onPageChange($event) {
     console.log($event);
   }
@@ -64,5 +66,10 @@ export class PaginationShowcaseComponent {
       queryParamsHandling: 'merge',
       relativeTo: this.route,
     };
+  }
+
+  addPage() {
+    this.pages.push({title: this.newPage.title, index: this.pages.length});
+    this.newPage.title = '';
   }
 }
