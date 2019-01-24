@@ -73,13 +73,14 @@ export class NavigationComponent implements OnChanges {
     }
   }
 
-
-  linkNext($event) {
+  nextLink($event) {
+    this.pageChange.emit('next');
     this.navigateToLink(this.hasNext.link);
     $event.preventDefault();
   }
 
-  linkBefore($event) {
+  previousLink($event) {
+    this.pageChange.emit('previous');
     this.navigateToLink(this.hasPrevious.link);
     $event.preventDefault();
   }

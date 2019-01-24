@@ -11,8 +11,8 @@
     <a *ngIf="linkGenerator" 
       i18n-aria-label="Previous Page" 
       class="sbb-pagination-item-boundary" 
-      (click)="linkBefore($event)"
-      (keydown.enter)="linkBefore($event)"
+      (click)="previousLink($event)"
+      (keydown.enter)="previousLink($event)"
       [attr.title]="hasPrevious.title">
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
       {{ hasPrevious.title }}
@@ -30,8 +30,8 @@
     <a *ngIf="linkGenerator" 
       i18n-aria-label="Next Page" 
       class="sbb-navigation-item-boundary" 
-      (click)="linkNext($event)"
-      (keydown.enter)="linkNext($event)"
+      (click)="nextLink($event)"
+      (keydown.enter)="nextLink($event)"
       [attr.title]="hasNext.title">
       {{ hasNext.title }}
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>

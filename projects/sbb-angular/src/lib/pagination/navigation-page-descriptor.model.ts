@@ -6,6 +6,4 @@ export interface NavigationPageDescriptor {
   link?: LinkGeneratorResult;
 }
 
-export class NavigationPageChangeEvent {
-  direction: 'next' | 'previous';
-}
+export type NavigationPageChangeEvent = 'next' | 'previous';

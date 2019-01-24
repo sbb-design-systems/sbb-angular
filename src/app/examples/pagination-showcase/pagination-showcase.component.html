@@ -52,6 +52,7 @@
       <h4 class="sbbsc-block">Navigation</h4>
       <sbb-navigation 
        [linkGenerator]="linkGeneratorNavigation"
+       (pageChange)="onPageChangeNavigation($event)"
        [hasNext]="hasNext"
        [hasPrevious]="hasPrevious" >
       </sbb-navigation>
