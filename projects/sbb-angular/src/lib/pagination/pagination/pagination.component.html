@@ -11,7 +11,7 @@
     <a *ngIf="linkGenerator" 
       i18n-aria-label="Previous Page" 
       class="sbb-pagination-item-boundary" 
-      [attr.tabindex]="(hasPrevious() ? null : '-1')"
+      [attr.tabindex]="(hasPrevious() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
       (click)="linkBefore($event)"
       (keydown.enter)="linkBefore($event)">
@@ -44,7 +44,7 @@
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Next Page" 
       class="sbb-pagination-item-boundary" 
-      [attr.tabindex]="(hasNext() ? '0' : '-1')"
+      [attr.tabindex]="(hasNext() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()" 
       (click)="selectPage(initialPage + 1)">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
@@ -53,7 +53,7 @@
       i18n-aria-label="Next Page" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasNext() ? '0' : '-1')"
-      [class.sbb-pagination-item-disabled]="!hasNext()" 
+      [class.sbb-pagination-item-disabled]="!hasNext()"
       (click)="linkNext($event)"
       (keydown.enter)="linkNext($event)">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>

@@ -246,16 +246,20 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   }
 
   linkNext($event) {
-    const selectedPage = this.pageDescriptors.find(page => page.isSelected);
-    this.initialPage = selectedPage.index + 1;
-    this.navigateToLink(selectedPage.nextLink);
+    if (this.hasNext()) {
+      const selectedPage = this.pageDescriptors.find(page => page.isSelected);
+      this.initialPage = selectedPage.index + 1;
+      this.navigateToLink(selectedPage.nextLink);
+    }
     $event.preventDefault();
   }
 
   linkBefore($event) {
-    const selectedPage = this.pageDescriptors.find(page => page.isSelected);
-    this.initialPage = selectedPage.index - 1;
-    this.navigateToLink(selectedPage.previousLink);
+    if (this.hasPrevious()) {
+      const selectedPage = this.pageDescriptors.find(page => page.isSelected);
+      this.initialPage = selectedPage.index - 1;
+      this.navigateToLink(selectedPage.previousLink);
+    }
     $event.preventDefault();
   }
 

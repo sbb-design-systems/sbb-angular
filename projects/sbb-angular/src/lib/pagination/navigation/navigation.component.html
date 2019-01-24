@@ -1,40 +1,48 @@
 <ul class="sbb-navigation">
-  <li class="sbb-navigation-item" *ngIf="hasPrevious">
+  <li class="sbb-navigation-item" *ngIf="hasPrevious" [style.width.%]="!hasNext ? 100 : 50">
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Previous Page" 
-      class="sbb-navigation-item-boundary" 
+      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left" 
       (click)="pageChange.emit('previous')"
       [attr.title]="hasPrevious.title">
-      <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
-      {{ hasPrevious.title }}
+      <span class="sbb-navigation-item-boundary-arrow">
+        <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+      </span>
+      <span class="sbb-navigation-item-boundary-text">{{ hasPrevious.title }}</span>
     </button>
     <a *ngIf="linkGenerator" 
       i18n-aria-label="Previous Page" 
-      class="sbb-pagination-item-boundary" 
+      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left" 
       (click)="previousLink($event)"
       (keydown.enter)="previousLink($event)"
       [attr.title]="hasPrevious.title">
-      <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
-      {{ hasPrevious.title }}
+      <span class="sbb-navigation-item-boundary-arrow">
+        <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+      </span>
+      <span class="sbb-navigation-item-boundary-text">{{ hasPrevious.title }}</span>
     </a>
   </li>
-    <li class="sbb-navigation-item" *ngIf="hasNext" >
+    <li class="sbb-navigation-item" *ngIf="hasNext" [style.width.%]="!hasPrevious ? 100 : 50">
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Next Page" 
-      class="sbb-navigation-item-boundary" 
+      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right" 
       (click)="pageChange.emit('next')"
       [attr.title]="hasNext.title">
-      {{ hasNext.title }}
-      <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      <span class="sbb-navigation-item-boundary-text">{{ hasNext.title }}</span>
+      <span class="sbb-navigation-item-boundary-arrow">
+        <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      </span>
     </button>
     <a *ngIf="linkGenerator" 
       i18n-aria-label="Next Page" 
-      class="sbb-navigation-item-boundary" 
+      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right" 
       (click)="nextLink($event)"
       (keydown.enter)="nextLink($event)"
       [attr.title]="hasNext.title">
-      {{ hasNext.title }}
-      <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      <span class="sbb-navigation-item-boundary-text">{{ hasNext.title }}</span>
+      <span class="sbb-navigation-item-boundary-arrow">
+        <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      </span>
     </a>
   </li>
 </ul>

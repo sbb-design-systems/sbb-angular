@@ -1,28 +1,25 @@
 import {
   Component,
-  OnInit,
-  ElementRef,
-  ViewChildren,
   Input,
-  QueryList,
   EventEmitter,
   Output,
   HostBinding,
-  ChangeDetectorRef,
   OnChanges,
-  AfterViewInit,
   SimpleChanges,
-  AfterViewChecked
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import { PageDescriptor, LinkGeneratorResult, PageChangeEvent, Page } from '../page-descriptor.model';
+import { LinkGeneratorResult } from '../page-descriptor.model';
 import { isString } from 'util';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NavigationPageDescriptor, NavigationPageChangeEvent } from '../navigation-page-descriptor.model';
 
 @Component({
   selector: 'sbb-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationComponent implements OnChanges {
 
