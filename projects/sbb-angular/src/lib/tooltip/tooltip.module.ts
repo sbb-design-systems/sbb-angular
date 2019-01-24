@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ButtonModule } from '../button/button.module';
 import { IconCommonModule } from '../svg-icons-components/icon-common.module';
-import { LightboxModule } from '../lightbox/lightbox.module';
+import { IconExampleComponent } from './icon-example/icon-example.component';
 
 
 @NgModule({
-  declarations: [TooltipComponent],
+  declarations: [TooltipComponent, IconExampleComponent],
   imports: [
-    CommonModule, ButtonModule, IconCommonModule,LightboxModule
+    CommonModule, ButtonModule, IconCommonModule
   ],
-  exports:[TooltipComponent]
+  exports:[TooltipComponent,IconExampleComponent]
 })
 export class TooltipModule { }

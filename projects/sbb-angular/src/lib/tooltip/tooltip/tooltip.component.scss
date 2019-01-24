@@ -1,11 +1,16 @@
-.icon {
+@import "../../../styles/main.scss";
 
-    width:20px;
-    height:20px;
-    position:relative;
-}
+sbb-tooltip {
+  
+  .sbb-tooltip-trigger {
+    @include tooltipTrigger;
+  }
+  .sbb-tooltip-content {
+    @include tooltipContent;
 
-.content {
+    .sbb-tooltip-icon {
 
-    border: 2px solid black;
+      @include tooltipIconClose;
+    }
+  }
 }

@@ -1,9 +1,11 @@
-import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostBinding, Output, EventEmitter, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'sbb-tooltip',
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss']
+  styleUrls: ['./tooltip.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent implements OnInit {
 
