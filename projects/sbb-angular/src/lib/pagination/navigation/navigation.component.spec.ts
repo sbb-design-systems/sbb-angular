@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavigationComponent } from './navigation.component';
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -8,9 +9,10 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ]
+      imports: [IconCommonModule],
+      declarations: [NavigationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
