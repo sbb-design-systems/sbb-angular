@@ -117,6 +117,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
         .pipe(filter(event => event instanceof NavigationEnd))
         .subscribe((event) => {
           this.selectPage(this.initialPage);
+
         });
     }
   }
@@ -227,6 +228,13 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   linkClick($event, page: PageDescriptor) {
     this.initialPage = page.index;
     this.navigateToLink(page.link);
+    setTimeout(() => {
+      if (this.links.length) {
+        this.links.find(link => {
+          return this.findActivePage(link);
+        }).nativeElement.focus();
+      }
+    });
     $event.preventDefault();
   }
 
