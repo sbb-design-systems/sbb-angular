@@ -148,7 +148,7 @@
     max-height: 100%;
   }
 
-  &-active {
+  &-active, &:hover, &:focus {
     fill: $colorRed100;
     border-color: $colorRed100;
   }

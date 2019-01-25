@@ -11,14 +11,15 @@ import {
   Inject,
   ElementRef,
   Optional,
-  NgZone
+  NgZone,
+  ChangeDetectorRef
 } from '@angular/core';
 import { OverlayRef, Overlay, OverlayConfig, ScrollStrategy, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import { merge, fromEvent, Observable, of, Subscription, Subject } from 'rxjs';
 import { filter, map, switchMap, tap, first } from 'rxjs/operators';
-import { ESCAPE } from '@angular/cdk/keycodes';
+import { ESCAPE, ENTER } from '@angular/cdk/keycodes';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY =
@@ -75,11 +76,12 @@ export class TooltipComponent {
     private overlay: Overlay,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private scrollStrategy,
     @Optional() @Inject(DOCUMENT) private _document: any,
-    private zone: NgZone
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   onClick() {
-    if (this.tooltipRef && this.tooltipRef.hasAttached()) {
+    if (this.overlayAttached) {
       this.close(true);
     } else {
       this.open(true);
@@ -94,13 +96,13 @@ export class TooltipComponent {
   }
 
   close(isUserInput = false) {
+    this.tooltipRef.detach();
     this.tooltipRef.dispose();
     this.closingActionsSubscription.unsubscribe();
     this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
-
   }
 
-  private get overlayAttached() {
+  get overlayAttached() {
     return this.tooltipRef && this.tooltipRef.hasAttached();
   }
 

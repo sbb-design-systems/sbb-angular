@@ -1,4 +1,4 @@
-<button (click)="onClick()" #trigger class="sbb-tooltip-trigger" [class.sbb-tooltip-trigger-active]="visible">
+<button (click)="onClick()" #trigger class="sbb-tooltip-trigger" [class.sbb-tooltip-trigger-active]="overlayAttached">
   <sbb-icon-question-mark></sbb-icon-question-mark>
 </button>
 <ng-template cdkPortal #tooltipTemplate="cdkPortal">
