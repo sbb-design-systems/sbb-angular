@@ -101,6 +101,7 @@ export class TooltipComponent {
     this.tooltipRef.dispose();
     this.closingActionsSubscription.unsubscribe();
     this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
+    this.changeDetectorRef.detectChanges();
   }
 
   @HostBinding('attr.aria-expanded')
