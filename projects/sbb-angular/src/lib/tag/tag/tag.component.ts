@@ -2,11 +2,14 @@ import {
   Component,
   forwardRef,
   ChangeDetectionStrategy,
-  Input, ChangeDetectorRef, HostBinding, OnDestroy
+  Input, ChangeDetectorRef, HostBinding, OnDestroy,
+  NgZone,
+  OnChanges
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
 import { Subject } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 let counter = 0;
 
@@ -21,7 +24,9 @@ let counter = 0;
   }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TagComponent extends CheckboxComponent implements OnDestroy {
+export class TagComponent extends CheckboxComponent implements OnChanges, OnDestroy {
+
+  readonly stateChange$ = new Subject<void>();
 
   private _linkMode = true;
   get linkMode() {
@@ -32,8 +37,6 @@ export class TagComponent extends CheckboxComponent implements OnDestroy {
     this._changeDetector.detectChanges();
   }
 
-  readonly tagChecking$ = new Subject<any>();
-
   /**
    * Label of the tag.
    */
@@ -41,7 +44,7 @@ export class TagComponent extends CheckboxComponent implements OnDestroy {
   label: string;
 
   @Input()
-  amount = 0;
+  amount: number;
 
   private _inputId: string;
   // tslint:disable-next-line:no-input-rename
@@ -54,6 +57,7 @@ export class TagComponent extends CheckboxComponent implements OnDestroy {
   }
 
   private _checkedTag = false;
+  readonly tagChecking$ = new Subject<any>();
   @Input()
   get checked(): any {
     return this._checkedTag;
@@ -64,22 +68,35 @@ export class TagComponent extends CheckboxComponent implements OnDestroy {
     this._changeDetector.markForCheck();
   }
 
-  private _active = true;
-
+  private _active = false;
   @HostBinding('class.sbb-tag-active')
   get active() {
-    return this._active && (this.checked && !this.disabled);
+    return this._active || (this.checked && !this.disabled);
   }
   set active(value: boolean) {
     this._active = value;
+    this._changeDetector.markForCheck();
   }
 
-  constructor(private _changeDetector: ChangeDetectorRef) {
+  constructor(private _changeDetector: ChangeDetectorRef, private zone: NgZone) {
     super(_changeDetector);
+
+    this.zone.onStable.pipe(first()).subscribe(
+      () => {
+        this.zone.run(() => {
+          this.tagChecking$.next(this.checked);
+        });
+      }
+    );
+  }
+
+  ngOnChanges() {
+    this.stateChange$.next();
   }
 
   ngOnDestroy() {
     this.tagChecking$.complete();
+    this.stateChange$.complete();
   }
 
 }

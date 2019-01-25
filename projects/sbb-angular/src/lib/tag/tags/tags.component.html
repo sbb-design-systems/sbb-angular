@@ -1,4 +1,6 @@
-<sbb-tag i18n-label 
+<sbb-tag #allTag
+         i18n-label 
          label="Alle"
-         [amount]="totalAmount"></sbb-tag>
+         [amount]="totalAmount"
+         (click)="allTagClick()"></sbb-tag>
 <ng-content select="sbb-tag, ng-container"></ng-content>

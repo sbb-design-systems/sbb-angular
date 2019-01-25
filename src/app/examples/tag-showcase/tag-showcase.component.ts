@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Tag } from 'sbb-angular';
 import { Subscription } from 'rxjs';
@@ -60,17 +60,17 @@ const tagItems2: Tag[] = [
 @Component({
   selector: 'sbb-tag-showcase',
   templateUrl: './tag-showcase.component.html',
-  styleUrls: ['./tag-showcase.component.scss']
+  styleUrls: ['./tag-showcase.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TagShowcaseComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  disableCheckbox: FormControl;
   tagsOutput: any;
   tagItems: Tag[] = tagItems.slice();
   tagItemsReactive: Tag[] = tagItems2.slice();
-  disableOne = false;
-  changeAmount: FormControl;
+  changeAmount = new FormControl();
+  changeAmountReactive = new FormControl();
 
   get tags() {
     return this.form.get('tags') as FormArray;
@@ -79,64 +79,52 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
   private _tagFormSubscription = Subscription.EMPTY;
   private _checkboxSubscription = Subscription.EMPTY;
   private _changeAmountSubscription = Subscription.EMPTY;
+  private _changeAmountReactiveSubscription = Subscription.EMPTY;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
     this.form = this.formBuilder.group({
       tags: this.buildTags()
     });
 
-    this.disableCheckbox = new FormControl(false);
-
-    this.changeAmount = new FormControl();
-  }
-
-  ngOnInit() {
     this._tagFormSubscription = this.subscribeOnTags();
-    this._checkboxSubscription = this.subscribeOnDisableCheckbox();
     this._changeAmountSubscription = this.subscribeOnChangeAmount();
+    this._changeAmountReactiveSubscription = this.subscribeOnChangeAmountReactive();
   }
 
   ngOnDestroy() {
     this._tagFormSubscription.unsubscribe();
     this._checkboxSubscription.unsubscribe();
     this._changeAmountSubscription.unsubscribe();
+    this._changeAmountReactiveSubscription.unsubscribe();
   }
 
   subscribeOnTags(): Subscription {
     return this.tags.valueChanges
-    .subscribe(() => {
-      this.tags.controls.map((c, i) => {
-        this.tagItemsReactive[i].selected = c.value;
+      .subscribe(() => {
+        this.tags.controls.map((c, i) => {
+          this.tagItemsReactive[i].selected = c.value;
+        });
       });
-    });
-  }
-
-  subscribeOnDisableCheckbox(): Subscription {
-    return this.disableCheckbox
-    .valueChanges.subscribe(
-      (val) => {
-        const control1 = this.tags.controls[1];
-        const control2 = this.tags.controls[2];
-
-        if (val && control1 && control2) {
-          control1.disable();
-          control2.disable();
-        } else if (control1 && control2) {
-          control1.enable();
-          control2.enable();
-        }
-      }
-    );
   }
 
   subscribeOnChangeAmount(): Subscription {
     return this.changeAmount
-    .valueChanges.subscribe(
-      (val) => {
-        this.tagItems[1].amount = val;
-        this.tagItemsReactive[1].amount = val;
-      }
-    );
+      .valueChanges.subscribe(
+        (val) => {
+          this.tagItems[0].amount = val;
+        }
+      );
+  }
+
+  subscribeOnChangeAmountReactive(): Subscription {
+    return this.changeAmountReactive
+      .valueChanges.subscribe(
+        (val) => {
+          this.tagItemsReactive[0].amount = val;
+        }
+      );
   }
 
   buildTags(): FormArray {
@@ -147,29 +135,49 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
     return this.formBuilder.array(arr);
   }
 
-  removeOneItem() {
-    this.tagItems.splice(-1);
-    this.tagItemsReactive.splice(-1);
-    this.tags.removeAt(this.tags.length - 1);
+  removeOneItem(mode: string) {
+    switch (mode) {
+      case 'templateDriven':
+        this.tagItems.splice(-1);
+        break;
+      case 'reactive':
+        this.tagItemsReactive.splice(-1);
+        this.tags.removeAt(this.tags.length - 1);
+        break;
+    }
   }
 
-  addOneItem() {
+  addOneItem(mode: string) {
     const itemToAdd: Tag = {
       label: 'New Item',
       amount: 20,
       selected: true
     };
 
-    this.tagItems.push(Object.assign({}, itemToAdd));
-    this.tagItemsReactive.push(Object.assign({}, itemToAdd));
-    this.tags.push(new FormControl(itemToAdd.selected));
+    switch (mode) {
+      case 'templateDriven':
+        this.tagItems.push(Object.assign({}, itemToAdd));
+        break;
+      case 'reactive':
+        this.tagItemsReactive.push(Object.assign({}, itemToAdd));
+        this.tags.push(new FormControl(itemToAdd.selected));
+        break;
+    }
+
   }
 
-  reset() {
-    this.tagItems = tagItems.slice();
-    this.tagItemsReactive = tagItems2.slice();
-    this.form.setControl('tags', this.buildTags());
-    this._tagFormSubscription = this.subscribeOnTags();
+  reset(mode: string) {
+    switch (mode) {
+      case 'templateDriven':
+        this.tagItems = tagItems.slice();
+        break;
+      case 'reactive':
+        this.tagItemsReactive = tagItems2.slice();
+        this.form.setControl('tags', this.buildTags());
+        this._tagFormSubscription = this.subscribeOnTags();
+        break;
+    }
+
   }
 
 }
