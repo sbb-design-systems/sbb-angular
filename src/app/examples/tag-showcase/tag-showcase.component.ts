@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Tag } from 'sbb-angular';
 import { Subscription } from 'rxjs';
@@ -66,7 +66,6 @@ const tagItems2: Tag[] = [
 export class TagShowcaseComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  tagsOutput: any;
   tagItems: Tag[] = tagItems.slice();
   tagItemsReactive: Tag[] = tagItems2.slice();
   changeAmount = new FormControl();
@@ -77,7 +76,6 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
   }
 
   private _tagFormSubscription = Subscription.EMPTY;
-  private _checkboxSubscription = Subscription.EMPTY;
   private _changeAmountSubscription = Subscription.EMPTY;
   private _changeAmountReactiveSubscription = Subscription.EMPTY;
 
@@ -95,7 +93,6 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._tagFormSubscription.unsubscribe();
-    this._checkboxSubscription.unsubscribe();
     this._changeAmountSubscription.unsubscribe();
     this._changeAmountReactiveSubscription.unsubscribe();
   }

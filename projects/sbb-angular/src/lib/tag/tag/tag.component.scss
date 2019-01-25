@@ -1,1 +1,16 @@
+@import "../../../styles/main";
 
+.sbb-tag {
+  @include baseTag();
+
+  &.sbb-tag-active,
+  a &,
+  button & {
+    @include activeTag();
+  }
+
+  a &,
+  button & {
+    @include onlyLinkTag();
+  }
+}

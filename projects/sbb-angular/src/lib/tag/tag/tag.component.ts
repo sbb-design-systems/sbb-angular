@@ -4,7 +4,8 @@ import {
   ChangeDetectionStrategy,
   Input, ChangeDetectorRef, HostBinding, OnDestroy,
   NgZone,
-  OnChanges
+  OnChanges,
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
@@ -22,7 +23,8 @@ let counter = 0;
     useExisting: forwardRef(() => TagComponent),
     multi: true,
   }],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class TagComponent extends CheckboxComponent implements OnChanges, OnDestroy {
 
@@ -67,6 +69,9 @@ export class TagComponent extends CheckboxComponent implements OnChanges, OnDest
     this.tagChecking$.next(value);
     this._changeDetector.markForCheck();
   }
+
+  @HostBinding('class.sbb-tag')
+  sbbTagClass = true;
 
   private _active = false;
   @HostBinding('class.sbb-tag-active')

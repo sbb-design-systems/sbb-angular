@@ -27,7 +27,9 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  CheckboxModule,
+  TagModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -63,8 +65,6 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
-import { TagModule } from 'projects/sbb-angular/src/lib/tag/tag';
-import { CheckboxModule } from 'projects/sbb-angular/src/lib/checkbox/checkbox';
 
 @NgModule({
   declarations: [

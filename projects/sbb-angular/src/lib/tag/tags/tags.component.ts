@@ -3,7 +3,9 @@ import {
   AfterContentInit,
   forwardRef,
   OnDestroy,
-  ViewChild
+  ViewChild,
+  HostBinding,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { TagComponent } from '../tag/tag.component';
@@ -14,7 +16,8 @@ import { map, switchMap } from 'rxjs/operators';
   selector: 'sbb-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class TagsComponent implements AfterContentInit, OnDestroy {
 
@@ -29,6 +32,9 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   private _tagsChangeSubscription = Subscription.EMPTY;
   private _tagsCheckingSubscription = Subscription.EMPTY;
   private _tagChecking$: Observable<TagComponent[]>;
+
+  @HostBinding('class.sbb-tags')
+  sbbTagsClass = true;
 
   @ContentChildren(forwardRef(() => TagComponent))
   tags: QueryList<TagComponent>;

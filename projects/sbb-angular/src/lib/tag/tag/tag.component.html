@@ -1,5 +1,5 @@
 <ng-container *ngIf="linkMode">
-  <div class="sbb-tag">
+  <div class="sbb-tag-content">
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
     <span class="sbb-tag-amount">{{ amount }}</span>
@@ -7,7 +7,7 @@
 </ng-container>
 
 <ng-container *ngIf="!linkMode">
-  <label class="sbb-tag" [attr.for]="inputId">
+  <label class="sbb-tag-content" [attr.for]="inputId">
     <input type="checkbox" 
            [id]="inputId" 
            [attr.value]="value" 

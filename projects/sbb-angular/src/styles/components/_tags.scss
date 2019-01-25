@@ -1,0 +1,88 @@
+$tagTransition:           border-color 225ms cubic-bezier(.4,0,.2,1), background-color 225ms cubic-bezier(.4,0,.2,1);
+$tagBaseBgcolor:          $colorBlack5;
+$tagBaseColor:            $colorGrey;
+$tagActiveBgcolor:        $colorWhite;
+$tagActiveColor:          $colorBlack;
+$tagBadgeActiveColor:     $colorRed100;
+$tagPadding:              pxToEm(7) pxToEm(8) pxToEm(7) pxToEm(16);
+
+@mixin tagList() {
+  .sbb-tag-content {
+    margin-right: pxToEm(8);
+  }
+}
+
+@mixin baseTag() {
+  .sbb-tag-content {
+    display: inline-block;
+    background-color: $tagBaseBgcolor;
+    border-radius: pxToEm(18);
+    padding: $tagPadding;
+    transition: $tagTransition;
+    margin-bottom: pxToEm(8);
+    line-height: 1;
+    border: 1px solid;
+    border-color: transparent;
+    cursor: default;
+
+    @include mq($from: desktop4k) {
+      font-size: toRem(1 * $scalingFactor4k);
+      border-width: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: toRem(1 * $scalingFactor5k);
+      border-width: toPx(1 * $scalingFactor5k);
+    }
+
+    input[type="checkbox"] {
+      @include visuallyhidden;
+
+      &:focus ~ .sbb-tag-label {
+        color: $tagActiveColor;
+      }
+    }
+
+    .sbb-tag-label, .sbb-tag-amount {
+      display: inline-block;
+    }
+
+    .sbb-tag-label {
+      color: $tagBaseColor;
+
+      @include mq($from: desktop4k) {
+        font-size: pxToRem(23)
+      }
+
+      @include mq($from: desktop5k) {
+        font-size: pxToRem(30)
+      }
+    }
+
+    .sbb-tag-amount {
+      @include baseBadgePill();
+      margin-left: pxToEm(8);
+    }
+  }
+}
+
+@mixin activeTag() {
+  .sbb-tag-content {
+    background-color: $tagActiveBgcolor;
+    border-color: $tagActiveColor;
+
+    .sbb-tag-label {
+      color: $tagActiveColor
+    }
+
+    .sbb-tag-amount {
+      background-color: $tagBadgeActiveColor;
+    }
+  }
+}
+
+@mixin onlyLinkTag() {
+  .sbb-tag-content {
+    cursor: pointer;
+  }
+}
