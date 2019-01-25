@@ -2,7 +2,9 @@
   <sbb-icon-question-mark></sbb-icon-question-mark>
 </button>
 <ng-template cdkPortal #tooltipTemplate="cdkPortal">
-  <ng-content></ng-content>
+  <div class="sbb-tooltip-content-body">
+    <ng-content></ng-content>
+  </div>
   <button class="sbb-tooltip-icon" (click)="onClick()">
     <sbb-icon-close></sbb-icon-close>
   </button>
