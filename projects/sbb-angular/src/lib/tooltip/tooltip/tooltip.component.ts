@@ -58,6 +58,7 @@ export class TooltipComponent {
 
   @HostBinding('attr.id')
   tooltipId = 'sbb-tooltip-id-' + tooltipCounter++;
+  contentId = 'sbb-tooltip-content-id-' + tooltipCounter++;
 
   @HostBinding('class')
   cssClass = 'sbb-tooltip';
@@ -102,6 +103,7 @@ export class TooltipComponent {
     this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
   }
 
+  @HostBinding('attr.aria-expanded')
   get overlayAttached() {
     return this.tooltipRef && this.tooltipRef.hasAttached();
   }
@@ -203,7 +205,9 @@ export class TooltipComponent {
         first()
       )
       // set the value, close the panel, and complete.
-      .subscribe(event => this.close());
+      .subscribe(event => {
+        this.close();
+      });
   }
 
   private createPopup(): void {
@@ -215,7 +219,7 @@ export class TooltipComponent {
     });
 
     this.tooltipRef = this.overlay.create(overlayConfig);
-    this.tooltipRef.overlayElement.setAttribute('role', 'dialog');
+    this.tooltipRef.overlayElement.setAttribute('role', 'tooltip');
 
     // Use the `keydownEvents` in order to take advantage of
     // the overlay event targeting provided by the CDK overlay.

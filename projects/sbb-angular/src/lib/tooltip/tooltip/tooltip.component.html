@@ -1,8 +1,14 @@
-<button (click)="onClick()" #trigger class="sbb-tooltip-trigger" [class.sbb-tooltip-trigger-active]="overlayAttached">
+<button 
+  (click)="onClick()" 
+  #trigger 
+  class="sbb-tooltip-trigger" 
+  [class.sbb-tooltip-trigger-active]="overlayAttached"
+  [attr.aria-describedby]="contentId"
+>
   <sbb-icon-question-mark></sbb-icon-question-mark>
 </button>
 <ng-template cdkPortal #tooltipTemplate="cdkPortal">
-  <div class="sbb-tooltip-content-body">
+  <div class="sbb-tooltip-content-body" [attr.id]="contentId">
     <ng-content></ng-content>
   </div>
   <button class="sbb-tooltip-icon" (click)="onClick()">
