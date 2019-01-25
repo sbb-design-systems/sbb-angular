@@ -5,11 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './tooltip-showcase.component.html',
   styleUrls: ['./tooltip-showcase.component.scss']
 })
-export class TooltipShowcaseComponent implements OnInit {
+export class TooltipShowcaseComponent {
 
-  constructor() { }
+  onOpen($event) {
+    console.log('opened', $event);
 
-  ngOnInit() {
+  }
+
+  onClose($event) {
+    console.log('closed', $event);
   }
 
 }

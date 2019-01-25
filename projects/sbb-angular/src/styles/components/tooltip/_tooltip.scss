@@ -6,13 +6,13 @@
   letter-spacing: 0;
   line-height:toPx(23);
   border-radius: toPx(2) toPx(2) toPx(2) 0 0 0 toPx(2);
-  text-align: center;
+  text-align: left;
   width: toPx(460);
-  height: toPx(129); 
+  min-height: toPx(72); 
   display:block;
   background-color: $colorWhite;
   .sbb-tooltip-content-body {
-    padding-top: toPx(36);
+    padding-top: toPx(24);
     padding-left: toPx(24);
     padding-bottom: toPx(24);
     width: toPx(460 - 72);
