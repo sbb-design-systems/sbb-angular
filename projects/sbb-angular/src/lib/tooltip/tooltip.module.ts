@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipComponent } from './tooltip/tooltip.component';
+import { TooltipComponent, SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from './tooltip/tooltip.component';
 import { ButtonModule } from '../button/button.module';
 import { IconCommonModule } from '../svg-icons-components/icon-common.module';
-import { IconExampleComponent } from './icon-example/icon-example.component';
-
+import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
-  declarations: [TooltipComponent, IconExampleComponent],
+  declarations: [TooltipComponent],
   imports: [
-    CommonModule, ButtonModule, IconCommonModule
+    CommonModule, ButtonModule, IconCommonModule, PortalModule
   ],
-  exports:[TooltipComponent,IconExampleComponent]
+  providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
+  exports: [TooltipComponent]
 })
 export class TooltipModule { }

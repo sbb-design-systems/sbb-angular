@@ -13,6 +13,7 @@
   height: toPx(129); 
   margin:auto;
   display:block;
+  background-color: $colorWhite;
 
   @include mq($from: desktop4k) {
     /* font-size:;

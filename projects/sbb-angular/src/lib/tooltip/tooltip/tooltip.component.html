@@ -1,8 +1,9 @@
-<button (click)="onClick()" class="sbb-tooltip-trigger" [class.sbb-tooltip-trigger-active]="visible">
+<button (click)="onClick()" #trigger class="sbb-tooltip-trigger" [class.sbb-tooltip-trigger-active]="visible">
   <sbb-icon-question-mark></sbb-icon-question-mark>
 </button>
-<div class="sbb-tooltip-content" *ngIf="visible">
-  <ng-content></ng-content><button class="sbb-tooltip-icon" (click)="onClick()">
-    <ng-content select="sbb-icon-example"></ng-content>
+<ng-template cdkPortal #tooltipTemplate="cdkPortal">
+  <ng-content></ng-content>
+  <button class="sbb-tooltip-icon" (click)="onClick()">
+    <sbb-icon-close></sbb-icon-close>
   </button>
-</div>
+</ng-template>

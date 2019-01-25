@@ -5,12 +5,14 @@ sbb-tooltip {
   .sbb-tooltip-trigger {
     @include tooltipTrigger;
   }
-  .sbb-tooltip-content {
-    @include tooltipContent;
+  
+}
 
-    .sbb-tooltip-icon {
+.sbb-tooltip-content {
+  @include tooltipContent;
 
-      @include tooltipIconClose;
-    }
+  .sbb-tooltip-icon {
+
+    @include tooltipIconClose;
   }
 }
