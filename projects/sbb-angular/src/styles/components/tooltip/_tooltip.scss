@@ -1,6 +1,5 @@
 @mixin tooltipContent {
   border: toPx(2) solid $colorGrey;
-  box-shadow: 0 toPx(8) 0 0 $colorGrey;
   padding: toPx(10);
   font-family: $fontSbbRoman;
   color:$colorGrey;
@@ -11,7 +10,6 @@
   text-align: center;
   width: toPx(460);
   height: toPx(129); 
-  margin:auto;
   display:block;
   background-color: $colorWhite;
 
@@ -29,6 +27,72 @@
     height:;
     box-shadow:;
     border:; */
+  }
+}
+
+@mixin tooltipArrowBelow {
+  .sbb-tooltip-content-below {
+    box-shadow: 0 toPx(8) 0 0 rgba(102, 102, 102, 0.15);
+    margin-top: toPx(12);
+    margin-left: toPx(12);
+    background: $colorWhite;
+    border: toPx(2) solid $colorGrey;
+  }
+  .sbb-tooltip-content-below::after, .sbb-tooltip-content-below::before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .sbb-tooltip-content-below::after {
+    border-color: transparent;
+    border-bottom-color: $colorWhite;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  .sbb-tooltip-content-below::before {
+    border-color: transparent;
+    border-bottom-color: $colorGrey;
+    border-width: 13px;
+    margin-left: -13px;
+  }
+}
+
+@mixin tooltipArrowAbove {
+  .sbb-tooltip-content-above {
+    box-shadow: 0px toPx(-8) 0px 0px rgba(102, 102, 102, 0.15);
+    margin-bottom: toPx(12);
+    margin-left: toPx(12);
+    background: $colorWhite;
+    border: toPx(2) solid $colorGrey;
+  }
+  .sbb-tooltip-content-above::after, .sbb-tooltip-content-above::before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .sbb-tooltip-content-above::after {
+    border-color: transparent;
+    border-top-color: $colorWhite;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  .sbb-tooltip-content-above::before {
+    border-color: transparent;
+    border-top-color: $colorGrey;
+    border-width: 13px;
+    margin-left: -13px;
   }
 }
 
