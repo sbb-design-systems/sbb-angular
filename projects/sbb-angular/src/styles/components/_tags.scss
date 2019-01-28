@@ -13,8 +13,11 @@ $tagPadding:              pxToEm(7) pxToEm(8) pxToEm(7) pxToEm(16);
 }
 
 @mixin baseTag() {
+
+  display:inline-block;
+
   .sbb-tag-content {
-    display: inline-block;
+    display: flex;
     background-color: $tagBaseBgcolor;
     border-radius: pxToEm(18);
     padding: $tagPadding;
@@ -48,7 +51,12 @@ $tagPadding:              pxToEm(7) pxToEm(8) pxToEm(7) pxToEm(16);
     }
 
     .sbb-tag-label {
+
+      @include ellipsis;
+
       color: $tagBaseColor;
+      max-width: pxToEm(250);
+      vertical-align: middle;
 
       @include mq($from: desktop4k) {
         font-size: pxToRem(23)
