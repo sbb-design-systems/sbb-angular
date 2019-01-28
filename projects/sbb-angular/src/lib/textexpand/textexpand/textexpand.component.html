@@ -2,11 +2,10 @@
 
 <button 
   class="sbb-textexpand-button" 
-  sbbButton [attr.aria-controls]="id" 
+  [attr.aria-controls]="id" 
   [attr.aria-expanded]="isExpanded" 
-  mode="frameless"
   (click)="toggleExpanded()">
 
-  <u *ngIf="isExpanded" i18n>Mehr anzeigen</u>
-  <u *ngIf="!isExpanded" i18n>Weniger anzeigen</u>
+  <span class="sbb-textexpand-button-label" *ngIf="isExpanded" i18n>Mehr anzeigen</span>
+  <span class="sbb-textexpand-button-label" *ngIf="!isExpanded" i18n>Weniger anzeigen</span>
 </button>

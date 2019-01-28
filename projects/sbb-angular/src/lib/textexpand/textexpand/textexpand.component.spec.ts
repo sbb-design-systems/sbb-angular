@@ -24,7 +24,7 @@ class TextexpandTestComponent {
 
 }
 
- describe('TextexpandComponent', () => {
+ fdescribe('TextexpandComponent', () => {
   let componentTextexpand: TextexpandComponent;
   let fixtureTextexpand: ComponentFixture<TextexpandComponent>;
 
@@ -90,7 +90,7 @@ class TextexpandTestComponent {
 });
 
 
- describe('TextexpandComponent using mock component', () => {
+ fdescribe('TextexpandComponent using mock component', () => {
 
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
@@ -123,7 +123,7 @@ class TextexpandTestComponent {
 
   it('text expanded and textexpand-collapsed is hidden ', (async() => {
 
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -135,7 +135,7 @@ class TextexpandTestComponent {
 
   it('aria-expanded button property is true to a click on the button', (async() => {
 
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -154,7 +154,7 @@ class TextexpandTestComponent {
 
   it('verify text content expanded to a click on the button', (async() => {
 
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -167,7 +167,7 @@ class TextexpandTestComponent {
 
   it('verify button label when text is collapsed',(async() => {
 
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
 
     expect(buttonClicked.textContent).toContain('Weniger anzeigen');
 
@@ -175,7 +175,7 @@ class TextexpandTestComponent {
 
   it('verify button label when text is expanded',(async() => {
 
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button.sbb-button-frameless')).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
