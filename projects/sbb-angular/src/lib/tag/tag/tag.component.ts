@@ -5,12 +5,15 @@ import {
   Input, ChangeDetectorRef, HostBinding, OnDestroy,
   NgZone,
   OnChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { TagChange } from '../tag.model';
 
 let counter = 0;
 
@@ -29,6 +32,8 @@ let counter = 0;
 export class TagComponent extends CheckboxComponent implements OnChanges, OnDestroy {
 
   readonly stateChange$ = new Subject<void>();
+
+  @Output() readonly tagChange = new EventEmitter<TagChange>();
 
   private _linkMode = true;
   get linkMode() {
@@ -67,6 +72,7 @@ export class TagComponent extends CheckboxComponent implements OnChanges, OnDest
   set checked(value: any) {
     this._checkedTag = value;
     this.tagChecking$.next(value);
+    this.tagChange.emit(new TagChange(this, value));
     this._changeDetector.markForCheck();
   }
 

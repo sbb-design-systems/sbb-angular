@@ -25,7 +25,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
     return this.tags
       .map(t => t.amount)
       .reduce((amount1, amount2) => {
-        return amount1 + amount2;
+        return Number(amount1) + Number(amount2);
       }, 0);
   }
 

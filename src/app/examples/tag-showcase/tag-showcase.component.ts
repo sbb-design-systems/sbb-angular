@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { Tag } from 'sbb-angular';
+import { Tag, TagChange } from 'sbb-angular';
 import { Subscription } from 'rxjs';
 
 const tagItems: Tag[] = [
@@ -175,6 +175,10 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
         break;
     }
 
+  }
+
+  change(evt: TagChange) {
+    console.log(evt);
   }
 
 }
