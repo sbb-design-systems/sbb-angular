@@ -1,15 +1,15 @@
 @mixin tooltipContent {
   border: toPx(2) solid $colorGrey;
   font-family: $fontSbbRoman;
-  color:$colorGrey;
+  color: $colorGrey;
   font-size: toPx(15);
   letter-spacing: 0;
-  line-height:toPx(23);
+  line-height: toPx(23);
   border-radius: toPx(2) toPx(2) toPx(2) 0 0 0 toPx(2);
   text-align: left;
   width: toPx(460);
-  min-height: toPx(72); 
-  display:block;
+  min-height: toPx(72);
+  display: block;
   background-color: $colorWhite;
   .sbb-tooltip-content-body {
     padding-top: toPx(24);
@@ -42,8 +42,15 @@
     margin-left: toPx(12);
     background: $colorWhite;
     border: toPx(2) solid $colorGrey;
+
+    .sbb-tooltip-shadow {
+      width: 0px;
+      height: 0px;
+    }
+   
   }
-  .sbb-tooltip-content-below::after, .sbb-tooltip-content-below::before {
+  .sbb-tooltip-content-below::after,
+  .sbb-tooltip-content-below::before {
     bottom: 100%;
     left: 50%;
     border: solid transparent;
@@ -59,24 +66,46 @@
     border-bottom-color: $colorWhite;
     border-left-color: $colorWhite;
   }
-  
 }
 
 @mixin tooltipArrowAbove {
   .sbb-tooltip-content-above {
-    box-shadow: 0 toPx(8) 0 0 rgba(102, 102, 102, 0.15);
+    // box-shadow: 0 toPx(8) 0 0 rgba(102, 102, 102, 0.15);
     margin-bottom: toPx(24);
     margin-left: toPx(12);
     background: $colorWhite;
     border: toPx(2) solid $colorGrey;
+
+    .sbb-tooltip-shadow {
+      width: calc(100% + 2px);
+      background-color: rgba(102, 102, 102, 0.15);
+      height: 8px;
+      bottom: -8px;
+      position: absolute;
+     
+    }
+    .sbb-tooltip-shadow::after {
+
+      top: 100%;
+      left: 50%;
+      content: " ";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 14px solid rgba(102, 102, 102, 0.15);
+      transform: translateX(-50%);
+    }
   }
-  .sbb-tooltip-content-above::after, .sbb-tooltip-content-above::before {
+  .sbb-tooltip-content-above::after,
+  .sbb-tooltip-content-above::before {
     top: 100%;
     left: 50%;
     border: solid transparent;
     content: " ";
-    height: 20px;
-    width: 20px;
+    height: toPx(20);
+    width: toPx(20);
     position: absolute;
     pointer-events: none;
     transform: rotate(45deg) translate(-14px);
@@ -86,11 +115,8 @@
     border-top-color: $colorWhite;
     border-left-color: $colorWhite;
     // box-shadow: 7px 7px 0px -3px rgba(102, 102, 102, 0.15);
-    filter: drop-shadow(1px 1px 0 rgba(102, 102, 102, 0.15));
-
+    
   }
-  
-  
 }
 
 @mixin tooltipIconClose {
@@ -118,12 +144,9 @@
   }
 
   @include mq($from: desktop4k) {
-
   }
 
   @include mq($from: desktop5k) {
-
-    
   }
 }
 
@@ -132,8 +155,8 @@
   cursor: pointer;
   width: 24px;
   height: 24px;
-  margin:auto;
-  display:block;
+  margin: auto;
+  display: block;
   border-color: $colorGrey;
   border-width: pxToEm(1);
   border-style: solid;
@@ -148,18 +171,16 @@
     max-height: 100%;
   }
 
-  &-active, &:hover, &:focus {
+  &-active,
+  &:hover,
+  &:focus {
     fill: $colorRed100;
     border-color: $colorRed100;
   }
 
   @include mq($from: desktop4k) {
-
   }
 
   @include mq($from: desktop5k) {
-
-    
   }
 }
-
