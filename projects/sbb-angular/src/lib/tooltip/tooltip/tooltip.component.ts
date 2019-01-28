@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   HostBinding,
   Output,
   EventEmitter,
@@ -18,8 +17,8 @@ import { OverlayRef, Overlay, OverlayConfig, ScrollStrategy, PositionStrategy } 
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import { merge, fromEvent, Observable, of, Subscription, Subject } from 'rxjs';
-import { filter, map, switchMap, tap, first } from 'rxjs/operators';
-import { ESCAPE, ENTER } from '@angular/cdk/keycodes';
+import { filter, map, switchMap, first } from 'rxjs/operators';
+import { ESCAPE } from '@angular/cdk/keycodes';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY =
@@ -90,18 +89,22 @@ export class TooltipComponent {
   }
 
   open(isUserInput = false) {
-    this.createPopup();
-    this.tooltipRef.attach(this.tooltipContentPortal);
-    this.closingActionsSubscription = this.subscribeToClosingActions();
-    this.opened.emit(new SbbTooltipChangeEvent(this, isUserInput));
+    if (!this.overlayAttached) {
+      this.createPopup();
+      this.tooltipRef.attach(this.tooltipContentPortal);
+      this.closingActionsSubscription = this.subscribeToClosingActions();
+      this.opened.emit(new SbbTooltipChangeEvent(this, isUserInput));
+    }
   }
 
   close(isUserInput = false) {
-    this.tooltipRef.detach();
-    this.tooltipRef.dispose();
-    this.closingActionsSubscription.unsubscribe();
-    this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
-    this.changeDetectorRef.detectChanges();
+    if (this.overlayAttached) {
+      this.tooltipRef.detach();
+      this.tooltipRef.dispose();
+      this.closingActionsSubscription.unsubscribe();
+      this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
   @HostBinding('attr.aria-expanded')
