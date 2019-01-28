@@ -27,7 +27,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The starting page of the pagination</p>
+        <p>The starting page of the pagination.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -38,7 +38,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>A custom function called everytime a new pagination item has been clicked</p>
+        <p>A custom function called everytime a new pagination item has been clicked.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -49,7 +49,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Maximum length of the pagination</p>
+        <p>Maximum length of the pagination.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -60,7 +60,17 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>This event can be used by parent components to handle events on page change</p>
+        <p>This event can be used by parent components to handle events on page change.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaLabel: &#39;Pagination Navigation&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Aria label of the pagination.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -69,7 +79,9 @@
           <code>buttons: QueryList&lt;ElementRef&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Reference to list of page buttons of the sbb-pagination.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -77,7 +89,9 @@
           <code>links: QueryList&lt;ElementRef&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Reference to list of page links of the sbb-pagination.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -86,7 +100,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Amount of rotating pagination items</p>
+        <p>Amount of rotating pagination items.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -95,7 +109,9 @@
           <code>pageDescriptors: Array&lt;PageDescriptor&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Pagination descriptors.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -104,7 +120,17 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Pagination page numbers</p>
+        <p>Pagination page numbers.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: &#39;navigation&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Role of the sbb-pagination.</p>
       </td>
     </tr>
   </table>
@@ -115,6 +141,11 @@
         <th colspan="2" class="docs-api-method-name-cell">buttonClick </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Method on click to a page button.</p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-parameters-header-row">
         <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
@@ -127,6 +158,7 @@
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
+          <p>Page button clicked.</p>
         </p>
       </td>
     </tr>
@@ -146,7 +178,7 @@
     </thead>
     <tr class="docs-api-method-description-row">
       <td colspan="2" class="docs-api-method-description-cell">
-        <p>Used to know if current page has a next page</p>
+        <p>Used to know if current page has a next page.</p>
       </td>
     </tr>
     <thead>
@@ -160,6 +192,7 @@
       </td>
       <td class="docs-api-method-returns-description-cell">
         <p class="docs-api-method-returns-description">
+          <p>Value true/false to indicate if a next page exists or not.</p>
         </p>
       </td>
     </tr>
@@ -172,7 +205,7 @@
     </thead>
     <tr class="docs-api-method-description-row">
       <td colspan="2" class="docs-api-method-description-cell">
-        <p>Used to know if current page has a previous page</p>
+        <p>Used to know if current page has a previous page.</p>
       </td>
     </tr>
     <thead>
@@ -186,6 +219,7 @@
       </td>
       <td class="docs-api-method-returns-description-cell">
         <p class="docs-api-method-returns-description">
+          <p>Value true/false to indicate if a previous page exists or not.</p>
         </p>
       </td>
     </tr>
@@ -196,6 +230,11 @@
         <th colspan="2" class="docs-api-method-name-cell">linkBefore </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Used to know the before page link.</p>
+      </td>
+    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -203,6 +242,11 @@
         <th colspan="2" class="docs-api-method-name-cell">linkClick </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Method on click to a page link.</p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-parameters-header-row">
         <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
@@ -210,11 +254,23 @@
     </thead>
     <tr class="docs-api-method-parameter-row">
       <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type"></code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Event generated on click.</p>
+        </p>
+      </td>
+    </tr>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
         <p class="docs-api-method-parameter-name"> page</p>
         <code class="docs-api-method-parameter-type">PageDescriptor</code>
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
+          <p>Page link clicked.</p>
         </p>
       </td>
     </tr>
@@ -225,6 +281,11 @@
         <th colspan="2" class="docs-api-method-name-cell">linkNext </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Used to know the next page link.</p>
+      </td>
+    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -234,7 +295,7 @@
     </thead>
     <tr class="docs-api-method-description-row">
       <td colspan="2" class="docs-api-method-description-cell">
-        <p>Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined</p>
+        <p>Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined.</p>
       </td>
     </tr>
     <thead>
@@ -249,6 +310,7 @@
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
+          <p>Page number to select.</p>
         </p>
       </td>
     </tr>
@@ -261,6 +323,92 @@
     <span class="docs-api-class-selector-label">Selector:</span>
     <span class="docs-api-class-selector-name">sbb-navigation</span>
   </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>hasNext: NavigationPageDescriptor</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The next page descriptor.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>hasPrevious: NavigationPageDescriptor</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The previous page descriptor.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>linkGenerator: (direction: &#39;previous&#39; | &#39;next&#39;) =&gt; LinkGeneratorResult</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A custom function called everytime a new pagination item has been clicked.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>pageChange: EventEmitter&lt;NavigationPageChangeEvent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>This event can be used by parent components to handle events on page change.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaLabel: &#39;Pagination Navigation&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Aria-label of the pagination navigation.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: &#39;navigation&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Role of the sbb-navigation.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">nextLink </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">previousLink </th>
+      </tr>
+    </thead>
+  </table>
   <h3 id="additional_classes" class="docs-header-link docs-api-h3">
     <span header-link="additional_classes"></span> Additional classes </h3>
   <h4 id="PageDescriptor" class="docs-header-link docs-api-h4 docs-api-class-name">
@@ -279,7 +427,9 @@
           <code>displayNumber: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Page number displayed.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -287,7 +437,9 @@
           <code>hasNext: false</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to know if current page has a next page button.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -295,7 +447,9 @@
           <code>hasPrevious: false</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to know if current page has a previous page button.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -303,7 +457,9 @@
           <code>index: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Index of page.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -311,7 +467,9 @@
           <code>isEllipsis: false</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Ellipsis status of a page.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -319,7 +477,9 @@
           <code>isSelected: false</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Initial status of page.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -327,7 +487,9 @@
           <code>link: LinkGeneratorResult</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers to the pagination item clicked.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -335,7 +497,9 @@
           <code>nextLink: LinkGeneratorResult</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to know if current page link has a next page link.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -343,7 +507,9 @@
           <code>previousLink: LinkGeneratorResult</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Used to know if current page link has a previous page link.</p>
+      </td>
     </tr>
   </table>
   <h3 id="additional_interfaces" class="docs-header-link docs-api-h3">
@@ -364,7 +530,9 @@
           <code>currentPage: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Current page number.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -372,7 +540,9 @@
           <code>selectedPage: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Current index of page selected.</p>
+      </td>
     </tr>
   </table>
   <h4 id="RouterPaginationLink" class="docs-header-link docs-api-h4 docs-api-interface-name">
@@ -391,7 +561,9 @@
           <code>routerLink: string | any[]</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Router reference to navigate between page buttons.</p>
+      </td>
     </tr>
   </table>
   <h4 id="LinkGeneratorResult" class="docs-header-link docs-api-h4 docs-api-interface-name">
@@ -414,7 +586,9 @@
           <code>displayNumber: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Page number displayed.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -422,7 +596,9 @@
           <code>index: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Index of page.</p>
+      </td>
     </tr>
   </table>
 </div>

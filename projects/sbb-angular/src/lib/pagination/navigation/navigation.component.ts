@@ -22,32 +22,32 @@ import { NavigationPageDescriptor, NavigationPageChangeEvent } from '../navigati
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationComponent implements OnChanges {
-
+  /** Role of the sbb-navigation. */
   @HostBinding('attr.role')
   role = 'navigation';
-
+  /** Aria-label of the pagination navigation. */
   @HostBinding('attr.i18n-aria-label')
   ariaLabel = 'Pagination Navigation';
   /**
-   * The next page descriptor
+   * The next page descriptor.
    */
   @Input()
   hasNext: NavigationPageDescriptor;
 
   /**
-   * The previous page descriptor
+   * The previous page descriptor.
    */
   @Input()
   hasPrevious: NavigationPageDescriptor;
 
   /**
-   * This event can be used by parent components to handle events on page change
+   * This event can be used by parent components to handle events on page change.
    */
   @Output()
   pageChange: EventEmitter<NavigationPageChangeEvent> = new EventEmitter<NavigationPageChangeEvent>();
 
   /**
-   * A custom function called everytime a new pagination item has been clicked
+   * A custom function called everytime a new pagination item has been clicked.
    */
   @Input()
   linkGenerator?: (direction: 'previous' | 'next') => LinkGeneratorResult;

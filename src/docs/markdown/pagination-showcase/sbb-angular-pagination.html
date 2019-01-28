@@ -1,0 +1,28 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Pagination Overview</h1>
+  <p class="docs-markdown-p">Import pagination module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { PaginationModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <h3 id="basic-use" class="docs-header-link docs-markdown-h3">
+    <span header-link="basic-use"></span> Basic Use </h3>
+  <p class="docs-markdown-p">Each sbb-pagination instance requires:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">The max number of pages (a maximum of 5 pages are displayed)</li>
+    <li class="docs-markdown-li">The initial page</li>
+  </ul>
+  <p class="docs-markdown-p">as see below:</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span> 
+    (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span> 
+    [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span>
+    [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">When the user interacts with the paginator, a <code class="docs-markdown-code">PageEvent</code> will be fired that can be used to update the status of pagination (current page selected, previous and next pages and the pages displayed)</p>
+  <br>
+  <h3 id="accessibility" class="docs-header-link docs-markdown-h3">
+    <span header-link="accessibility"></span> Accessibility </h3>
+  <p class="docs-markdown-p">The <code class="docs-markdown-code">aria-label</code> attribute is set for next page, previous page and current page buttons.</p>
+</body>
+
+</html>

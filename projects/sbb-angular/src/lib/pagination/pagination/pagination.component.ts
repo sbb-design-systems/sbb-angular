@@ -29,60 +29,63 @@ import { filter } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, AfterViewChecked {
-
+  /** Role of the sbb-pagination. */
   @HostBinding('attr.role')
   role = 'navigation';
-
+  /** Aria label of the pagination. */
   @HostBinding('attr.i18n-aria-label')
   ariaLabel = 'Pagination Navigation';
   /**
-   * The starting page of the pagination
+   * The starting page of the pagination.
    */
   @Input()
   initialPage = 1;
 
   /**
-   * Maximum length of the pagination
+   * Maximum length of the pagination.
    */
   @Input()
   maxPage: number;
 
   /**
-   * This event can be used by parent components to handle events on page change
+   * This event can be used by parent components to handle events on page change.
    */
   @Output()
   pageChange: EventEmitter<PageChangeEvent> = new EventEmitter<PageChangeEvent>();
 
 
   /**
-   * A custom function called everytime a new pagination item has been clicked
+   * A custom function called everytime a new pagination item has been clicked.
    */
   @Input()
   linkGenerator?: (page: { index: number, displayNumber: number }) => LinkGeneratorResult;
-
+  /** Reference to list of page buttons of the sbb-pagination.  */
   @ViewChildren('pageButton') buttons: QueryList<ElementRef>;
+  /** Reference to list of page links of the sbb-pagination.  */
   @ViewChildren('pageLink') links: QueryList<ElementRef>;
 
 
   /**
-   * Amount of rotating pagination items
+   * Amount of rotating pagination items.
    */
   maxSize = 3;
 
   /**
-   * Pagination page numbers
+   * Pagination page numbers.
    */
   pages: Array<Page> = [];
-
+  /**Pagination descriptors. */
   pageDescriptors: Array<PageDescriptor> = [];
 
   /**
-   * Used to know if current page has a previous page
+   * Used to know if current page has a previous page.
+   * @return Value true/false to indicate if a previous page exists or not.
    */
   hasPrevious(): boolean { return this.initialPage > 1; }
 
   /**
-   * Used to know if current page has a next page
+   * Used to know if current page has a next page.
+   * @return Value true/false to indicate if a next page exists or not.
    */
   hasNext(): boolean { return this.initialPage < this.maxPage; }
 
@@ -93,7 +96,8 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
 
 
   /**
-   * Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined
+   * Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined.
+   * @param pageNumber Page number to select.
    */
   selectPage(pageNumber: number): void {
     if (this.initialPage !== pageNumber || this.linkGenerator) {
@@ -127,7 +131,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   }
 
   /**
-   * Appends ellipses and first/last page number to the displayed pages
+   * Appends ellipses and first/last page number to the displayed pages.
    */
   private applyEllipses(start: number, end: number) {
 
@@ -224,7 +228,11 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   private findActivePage(el: ElementRef) {
     return Number(el.nativeElement.textContent) === this.pageDescriptors.find(page => page.isSelected).displayNumber;
   }
-
+  /**
+   * Method on click to a page link.
+   * @param $event Event generated on click.
+   * @param page Page link clicked.
+   */
   linkClick($event, page: PageDescriptor) {
     this.initialPage = page.index;
     this.navigateToLink(page.link);
@@ -237,7 +245,10 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
     });
     $event.preventDefault();
   }
-
+  /**
+   * Method on click to a page button.
+   * @param page Page button clicked.
+   */
   buttonClick(page: PageDescriptor) {
     this.selectPage(page.displayNumber);
     setTimeout(() => {
@@ -252,7 +263,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
   focusActive(page) {
     return page.isSelected ? 'sbb-pagination-item-selected' : '';
   }
-
+  /** Used to know the next page link. */
   linkNext($event) {
     if (this.hasNext()) {
       const selectedPage = this.pageDescriptors.find(page => page.isSelected);
@@ -261,7 +272,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
     }
     $event.preventDefault();
   }
-
+  /** Used to know the before page link. */
   linkBefore($event) {
     if (this.hasPrevious()) {
       const selectedPage = this.pageDescriptors.find(page => page.isSelected);
