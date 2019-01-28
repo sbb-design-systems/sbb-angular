@@ -61,6 +61,8 @@ import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
+import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
+import { ToggleModule } from 'projects/sbb-angular/src/lib/toggle/toggle';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
-    TableShowcaseComponent
+    TableShowcaseComponent,
+    ToggleShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
-    TableModule
+    TableModule,
+    ToggleModule
   ],
   exports: [
     TextareaShowcaseComponent,
