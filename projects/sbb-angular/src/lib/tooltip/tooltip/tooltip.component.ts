@@ -62,6 +62,10 @@ export class TooltipComponent {
   @HostBinding('class')
   cssClass = 'sbb-tooltip';
 
+  /**
+   * Overlay containg the tooltip text and the close button.
+   * It's built when the user clicks on the question mark.
+   */
   tooltipRef: OverlayRef;
   @ViewChild('tooltipTemplate') tooltipContentPortal: TemplatePortal<any>;
   @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
@@ -88,6 +92,10 @@ export class TooltipComponent {
     }
   }
 
+  /**
+   * Opens the tooltip
+   * @param isUserInput states if the tooltip has been opened by a click
+   */
   open(isUserInput = false) {
     if (!this.overlayAttached) {
       this.createPopup();
@@ -97,6 +105,10 @@ export class TooltipComponent {
     }
   }
 
+  /**
+   * Closes the tooltip
+   * @param isUserInput states if the tooltip has been opened by a click
+   */
   close(isUserInput = false) {
     if (this.overlayAttached) {
       this.tooltipRef.detach();
@@ -107,6 +119,7 @@ export class TooltipComponent {
     }
   }
 
+  /** Checks if a tooltip panel exists */
   @HostBinding('attr.aria-expanded')
   get overlayAttached() {
     return this.tooltipRef && this.tooltipRef.hasAttached();

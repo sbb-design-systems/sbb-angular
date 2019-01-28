@@ -26,7 +26,8 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  TooltipModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -62,7 +63,6 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
-import { TooltipModule } from 'projects/sbb-angular/src/lib/tooltip/tooltip.module';
 
 @NgModule({
   declarations: [

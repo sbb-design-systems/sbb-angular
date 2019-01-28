@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TooltipShowcaseComponent {
 
+  tooltipContent = 'Tooltip-Inhalt';
+
   onOpen($event) {
     console.log('opened', $event);
 
@@ -15,5 +17,6 @@ export class TooltipShowcaseComponent {
   onClose($event) {
     console.log('closed', $event);
   }
+
 
 }
