@@ -1,7 +1,29 @@
-<p>
-  toggle-showcase works!
-</p>
+<form [formGroup]="form" novalidate>
+  <sbb-toggle formControlName="test">
+    <ng-container *ngFor="let option of toggleOptions">
+      <sbb-toggle-option [label]="option.label" [value]="option.value">
+        More context
+      </sbb-toggle-option>
+    </ng-container>
+  </sbb-toggle>
+</form>
 
-<sbb-toggle>
-  <sbb-toggle-option></sbb-toggle-option>
+<br><br>
+
+{{ modelReactive }}
+
+<br><br>
+
+<sbb-toggle [(ngModel)]="modelValue" name="test-toggle-2">
+  <ng-container *ngFor="let option of toggleOptions">
+    <sbb-toggle-option [label]="option.label" [value]="option.value">
+      More context
+    </sbb-toggle-option>
+  </ng-container>
 </sbb-toggle>
+
+<br><br>
+
+{{ modelValue }}
+
+<br><br>
