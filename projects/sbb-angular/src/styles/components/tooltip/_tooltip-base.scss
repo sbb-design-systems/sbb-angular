@@ -153,15 +153,6 @@
   position: absolute;
   top: toPx($tooltipIconsSize);
   right: toPx($tooltipIconsSize);
-  @include mq($from: desktop4k) {
-    top: toPx($tooltipIconsSize * $scalingFactor4k);
-    right: toPx($tooltipIconsSize * $scalingFactor4k);
-  }
-
-  @include mq($from: desktop5k) {
-    top: toPx($tooltipIconsSize * $scalingFactor5k);
-    right: toPx($tooltipIconsSize * $scalingFactor5k);
-  }
 }
 
 @mixin tooltipTrigger {
@@ -169,18 +160,19 @@
   margin: auto;
   display: block;
 
-  &-active,
-  &:hover,
-  &:focus {
-    fill: $colorRed100;
-    border-color: $colorRed100;
-  }
 }
 
 @mixin tooltipIcon {
   @include buttonResetFrameless();
   width: toPx($tooltipIconsSize);
   height: toPx($tooltipIconsSize);
+  
+  &-active,
+  &:hover,
+  &:focus {
+    fill: $colorRed100;
+    border-color: $colorRed100;
+  }
   @include mq($from: desktop4k) {
     width: toPx($tooltipIconsSize * $scalingFactor4k);
     height: toPx($tooltipIconsSize * $scalingFactor4k);
@@ -190,6 +182,7 @@
     width: toPx($tooltipIconsSize * $scalingFactor5k);
     height: toPx($tooltipIconsSize * $scalingFactor5k);
   }
+
   cursor: pointer;
   display: block;
   border-color: $colorGrey;
