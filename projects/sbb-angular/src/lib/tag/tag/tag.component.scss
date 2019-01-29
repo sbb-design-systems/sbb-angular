@@ -5,12 +5,12 @@
 
   &.sbb-tag-active,
   a &,
-  button & {
+  button:not(.sbb-tag-all-button) & {
     @include activeTag();
   }
 
   a &,
-  button & {
+  button:not(.sbb-tag-all-button) & {
     @include onlyLinkTag();
   }
 }
