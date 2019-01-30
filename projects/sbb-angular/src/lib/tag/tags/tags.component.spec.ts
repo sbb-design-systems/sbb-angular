@@ -47,7 +47,7 @@ class TagsTestFixtureComponent {
 class TagLinkTestFixtureComponent {
 }
 
-fdescribe('TagsComponent', () => {
+describe('TagsComponent', () => {
   let component: TagsComponent;
   let fixture: ComponentFixture<TagsComponent>;
 
@@ -73,7 +73,7 @@ fdescribe('TagsComponent', () => {
   });
 });
 
-fdescribe('TagsComponent with Model attached', () => {
+describe('TagsComponent with Model attached', () => {
   let component: TagsTestFixtureComponent;
   let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
@@ -173,7 +173,7 @@ fdescribe('TagsComponent with Model attached', () => {
 
 });
 
-fdescribe('TagComponent as a Link Tag', () => {
+describe('TagComponent as a Link Tag', () => {
   let component: TagLinkTestFixtureComponent;
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
