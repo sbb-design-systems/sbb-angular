@@ -15,11 +15,12 @@ import {
   HostBinding,
   NgZone,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { Router, NavigationEnd, RouterLinkActive } from '@angular/router';
 import { PageDescriptor, PageChangeEvent, LinkGeneratorResult } from '../page-descriptor.model';
 import { filter, first } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-pagination',
@@ -28,7 +29,7 @@ import { Observable, of } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
+export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
   /** Role of the sbb-pagination. */
   @HostBinding('attr.role')
   role = 'navigation';
@@ -78,6 +79,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   pageDescriptors: Array<PageDescriptor> = [];
 
   selectedPage$: Observable<PageDescriptor>;
+  selectedPageSubject = new Subject<PageDescriptor>();
 
   /**
    * Used to know if current page has a previous page.
@@ -125,6 +127,8 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     if (!this.maxPage) {
       throw new Error('You must add the maxPage attribute to the <sbb-pagination> element.');
     }
+    this.selectedPage$ = this.selectedPageSubject.asObservable();
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -133,33 +137,36 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.links.length) {
+      this.selectedPage$.subscribe((selectedPage) => {
+        this.selectPage(selectedPage);
+        const selectedPageIndex = this.activeLinks.toArray()
+          .findIndex(page => page.isActive);
+        if (selectedPageIndex === -1) {
+          this.navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
+        }
+      });
+
       this.zone.onStable.asObservable().pipe(first()).subscribe(() => {
         this.zone.run(() => {
-          this.selectedPage$ = of(this.getSelectedLinkPage());
-          const subscription = this.selectedPage$.subscribe((selectedPage) => {
+          this.selectedPageSubject.next(this.getSelectedLinkPage());
 
-            this.selectPage(selectedPage);
-            this.navigateToLink(selectedPage.link);
-          });
-          subscription.unsubscribe();
         });
       });
       this.router.events
         .pipe(filter(event => event instanceof NavigationEnd))
         .subscribe((event) => {
           setTimeout(() => {
-            this.selectedPage$ = of(this.getSelectedLinkPage());
-            this.selectedPage$.subscribe((selectedPage) => {
-
-              this.selectPage(selectedPage);
-            });
-
+            this.selectedPageSubject.next(this.getSelectedLinkPage());
           });
         });
     } else {
-      this.selectedPage$ = of(this.getSelectedButtonPage());
+      this.selectedPageSubject.next(this.getSelectedButtonPage());
       this.changeDetectorRef.detectChanges();
     }
+  }
+
+  ngOnDestroy() {
+    this.selectedPageSubject.unsubscribe();
   }
 
   /**
