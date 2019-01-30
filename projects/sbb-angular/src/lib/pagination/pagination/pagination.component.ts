@@ -12,12 +12,14 @@ import {
   ViewChildren,
   QueryList,
   AfterViewInit,
-  ChangeDetectorRef,
   HostBinding,
+  NgZone,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { PageDescriptor, PageChangeEvent, LinkGeneratorResult, Page } from '../page-descriptor.model';
-import { filter } from 'rxjs/operators';
+import { Router, NavigationEnd, RouterLinkActive } from '@angular/router';
+import { PageDescriptor, PageChangeEvent, LinkGeneratorResult } from '../page-descriptor.model';
+import { filter, first } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'sbb-pagination',
@@ -62,7 +64,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   /** Reference to list of page links of the sbb-pagination.  */
   @ViewChildren('pageLink') links: QueryList<ElementRef>;
 
-
+  @ViewChildren('rla') activeLinks: QueryList<RouterLinkActive>;
   /**
    * Amount of rotating pagination items.
    */
@@ -71,9 +73,11 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   /**
    * Pagination page numbers.
    */
-  pages: Array<Page> = [];
+  pages: Array<number> = [];
   /**Pagination descriptors. */
   pageDescriptors: Array<PageDescriptor> = [];
+
+  selectedPage$: Observable<PageDescriptor>;
 
   /**
    * Used to know if current page has a previous page.
@@ -88,18 +92,32 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   hasNext(): boolean { return this.initialPage < this.maxPage; }
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
+
+  private getSelectedLinkPage() {
+    const selectedPageIndex = this.activeLinks.toArray()
+      .findIndex(page => page.isActive);
+    if (selectedPageIndex === -1) {
+      return this.pageDescriptors[0];
+    }
+    return this.pageDescriptors.find(page => page.index === selectedPageIndex);
+  }
+
+  private getSelectedButtonPage() {
+    return this.pageDescriptors.find(page => page.displayNumber === this.initialPage);
+  }
 
   /**
    * Selects the page just clicked or activated by keyboard and calls the linkGenerator method if defined.
    * @param pageNumber Page number to select.
    */
-  selectPage(pageNumber: number): void {
-    if (this.initialPage !== pageNumber || this.linkGenerator) {
-      this.updatePages(pageNumber);
+  selectPage(page: PageDescriptor): void {
+    if (this.initialPage !== page.displayNumber || this.linkGenerator) {
+      this.updatePages(page.displayNumber);
     }
   }
 
@@ -115,12 +133,32 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.links.length) {
+      this.zone.onStable.asObservable().pipe(first()).subscribe(() => {
+        this.zone.run(() => {
+          this.selectedPage$ = of(this.getSelectedLinkPage());
+          const subscription = this.selectedPage$.subscribe((selectedPage) => {
+
+            this.selectPage(selectedPage);
+            this.navigateToLink(selectedPage.link);
+          });
+          subscription.unsubscribe();
+        });
+      });
       this.router.events
         .pipe(filter(event => event instanceof NavigationEnd))
         .subscribe((event) => {
-          this.selectPage(this.initialPage);
+          setTimeout(() => {
+            this.selectedPage$ = of(this.getSelectedLinkPage());
+            this.selectedPage$.subscribe((selectedPage) => {
 
+              this.selectPage(selectedPage);
+            });
+
+          });
         });
+    } else {
+      this.selectedPage$ = of(this.getSelectedButtonPage());
+      this.changeDetectorRef.detectChanges();
     }
   }
 
@@ -131,15 +169,15 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
     if (start > 0) {
       if (start > 1) {
-        this.pages.unshift({ displayNumber: -1, index: -1 });
+        this.pages.unshift(-1);
       }
-      this.pages.unshift({ displayNumber: 1, index: 1 });
+      this.pages.unshift(1);
     }
     if (end < this.maxPage) {
       if (end < (this.maxPage - 1)) {
-        this.pages.push({ displayNumber: -1, index: -1 });
+        this.pages.push(-1);
       }
-      this.pages.push({ displayNumber: this.maxPage, index: this.maxPage });
+      this.pages.push(this.maxPage);
     }
 
   }
@@ -184,15 +222,17 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     this.initialPage = this.getValueInRange(newPageNo, this.maxPage, 1);
 
     if (this.initialPage !== prevPageNo) {
+      if (!this.linkGenerator) {
+        this.selectedPage$ = of(this.getSelectedButtonPage());
+      }
       this.pageChange.emit({ currentPage: prevPageNo, selectedPage: this.initialPage });
     }
   }
-
   private updatePages(newPage: number) {
     // fill-in model needed to render pages
     this.pages.length = 0;
     for (let i = 1; i <= this.maxPage; i++) {
-      this.pages.push({ displayNumber: i, index: i });
+      this.pages.push(i);
     }
 
     // set page within 1..max range
@@ -212,9 +252,20 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     this.buildPageDescriptors(this.pages);
   }
 
-  private buildPageDescriptors(pages: Array<Page>) {
-    this.pageDescriptors = pages.map(page => {
-      return new PageDescriptor(page.displayNumber, page.index, this.maxPage, this.initialPage, this.linkGenerator);
+  private buildPageDescriptors(pages: Array<number>) {
+    let index = -1;
+    this.pageDescriptors = pages.map((pageNumber) => {
+      if (pageNumber !== -1) {
+        index++;
+      }
+      const pageDescr = new PageDescriptor(pageNumber, index, this.maxPage, this.initialPage, this.linkGenerator);
+      if (pageDescr.hasPrevious) {
+        pageDescr.previousPage = new PageDescriptor(pageNumber - 1, index - 1, this.maxPage, this.initialPage, this.linkGenerator);
+      }
+      if (pageDescr.hasNext) {
+        pageDescr.nextPage = new PageDescriptor(pageNumber + 1, index + 1, this.maxPage, this.initialPage, this.linkGenerator);
+      }
+      return pageDescr;
     });
 
   }
@@ -222,29 +273,13 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   private findActivePage(el: ElementRef) {
     return Number(el.nativeElement.textContent) === this.pageDescriptors.find(page => page.isSelected).displayNumber;
   }
-  /**
-   * Method on click to a page link.
-   * @param $event Event generated on click.
-   * @param page Page link clicked.
-   */
-  linkClick($event, page: PageDescriptor) {
-    this.initialPage = page.index;
-    this.navigateToLink(page.link);
-    setTimeout(() => {
-      if (this.links.length) {
-        this.links.find(link => {
-          return this.findActivePage(link);
-        }).nativeElement.focus();
-      }
-    });
-    $event.preventDefault();
-  }
+
   /**
    * Method on click to a page button.
    * @param page Page button clicked.
    */
   buttonClick(page: PageDescriptor) {
-    this.selectPage(page.displayNumber);
+    this.selectPage(page);
     setTimeout(() => {
       if (this.buttons.length) {
         this.buttons.find(button => {
@@ -252,28 +287,6 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
         }).nativeElement.focus();
       }
     });
-  }
-
-  focusActive(page) {
-    return page.isSelected ? 'sbb-pagination-item-selected' : '';
-  }
-  /** Used to know the next page link. */
-  linkNext($event) {
-    if (this.hasNext()) {
-      const selectedPage = this.pageDescriptors.find(page => page.isSelected);
-      this.initialPage = selectedPage.index + 1;
-      this.navigateToLink(selectedPage.nextLink);
-    }
-    $event.preventDefault();
-  }
-  /** Used to know the before page link. */
-  linkBefore($event) {
-    if (this.hasPrevious()) {
-      const selectedPage = this.pageDescriptors.find(page => page.isSelected);
-      this.initialPage = selectedPage.index - 1;
-      this.navigateToLink(selectedPage.previousLink);
-    }
-    $event.preventDefault();
   }
 
   private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {

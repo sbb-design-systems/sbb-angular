@@ -23,9 +23,9 @@ export interface Page {
 
 export class PageDescriptor {
 
-  constructor(displayNumber: number, index: number, maxPage: number, selectedPage: number, linkGenerator, ) {
+  constructor(displayNumber: number, index: number, maxPage: number, selectedPage: number, linkGenerator) {
     this.displayNumber = displayNumber;
-    this.index = index;
+    this.index = displayNumber === -1 ? -1 : index;
 
     this.hasPrevious = displayNumber > 1;
     this.hasNext = displayNumber < maxPage;
@@ -55,11 +55,12 @@ export class PageDescriptor {
   isEllipsis?= false;
   /** Used to know if current page link has a previous page link. */
   previousLink?: LinkGeneratorResult = null;
-   /** Used to know if current page link has a next page link. */
+  /** Used to know if current page link has a next page link. */
   nextLink?: LinkGeneratorResult = null;
   /** Refers to the pagination item clicked. */
   link?: LinkGeneratorResult = null;
   /** Initial status of page. */
   isSelected = false;
-
+  previousPage?: PageDescriptor;
+  nextPage?: PageDescriptor;
 }

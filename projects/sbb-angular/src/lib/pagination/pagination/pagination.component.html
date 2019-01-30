@@ -1,11 +1,11 @@
 <ul class="sbb-pagination">
-  <li class="sbb-pagination-item">
+  <li class="sbb-pagination-item" *ngIf="selectedPage$ | async as selectedPage" >
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Previous Page" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasPrevious() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
-      (click)="selectPage(initialPage - 1)">
+      (click)="selectPage(selectedPage.previousPage)">
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </button>    
     <a *ngIf="linkGenerator" 
@@ -13,46 +13,58 @@
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasPrevious() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
-      (click)="linkBefore($event)"
-      (keydown.enter)="linkBefore($event)">
+      [routerLink]="selectedPage.previousLink?.routerLink"
+      [queryParams]="selectedPage.previousLink?.queryParams"
+      [fragment]="selectedPage.previousLink?.fragment"
+      [preserveFragment]="selectedPage.previousLink?.preserveFragment"
+      [skipLocationChange]="selectedPage.previousLink?.skipLocationChange"
+      [replaceUrl]="selectedPage.previousLink?.replaceUrl"
+      [state]="selectedPage.previousLink?.state"
+      [queryParamsHandling]="selectedPage.previousLink?.queryParamsHandling">
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </a>
   </li>
+  
   <li *ngFor="let page of pageDescriptors" class="sbb-pagination-item">
-    <button #pageButton *ngIf="!linkGenerator" 
-      [attr.tabindex]="page.tabIndex"
-      [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
-      [class.sbb-pagination-item-ellipsis]="page.isEllipsis"
-      [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
-      (click)="buttonClick(page)">
-      <ng-container *ngIf="page.isEllipsis">...</ng-container>
-      <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
-    </button>
-    <a *ngIf="linkGenerator" 
-      #pageLink
-      [attr.tabindex]="page.tabIndex" 
-      [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
-      [class.sbb-pagination-item-ellipsis]="page.isEllipsis" 
-      [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
-      [routerLink]="page.link?.routerLink"
-      [queryParams]="page.link?.queryParams"
-      [fragment]="page.link?.fragment"
-      [preserveFragment]="page.link?.preserveFragment"
-      [skipLocationChange]="page.link?.skipLocationChange"
-      [replaceUrl]="page.link?.replaceUrl"
-      [state]="page.link?.state"
-      [queryParamsHandling]="page.link?.queryParamsHandling">
-      <ng-container *ngIf="page.isEllipsis">...</ng-container>
-      <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
-    </a>
+      <ng-container *ngIf="page.isEllipsis">
+        <span class="sbb-pagination-item-ellipsis">...</span>
+      </ng-container>
+      <ng-container *ngIf="!page.isEllipsis">
+          <button #pageButton *ngIf="!linkGenerator" 
+          [attr.tabindex]="page.tabIndex"
+          [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
+          [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
+          (click)="buttonClick(page)">
+          <ng-container *ngIf="page.isEllipsis">...</ng-container>
+          <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
+        </button>
+        <a *ngIf="linkGenerator" 
+          #pageLink
+          [attr.tabindex]="page.tabIndex" 
+          [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
+          [routerLink]="page.link?.routerLink"
+          [queryParams]="page.link?.queryParams"
+          [fragment]="page.link?.fragment"
+          [preserveFragment]="page.link?.preserveFragment"
+          [skipLocationChange]="page.link?.skipLocationChange"
+          [replaceUrl]="page.link?.replaceUrl"
+          [state]="page.link?.state"
+          [queryParamsHandling]="page.link?.queryParamsHandling"
+          routerLinkActive="sbb-pagination-item-selected" 
+          [routerLinkActiveOptions]="{exact: true}"
+          #rla="routerLinkActive">
+           {{ page.displayNumber }}
+        </a>
+      </ng-container>
+   
   </li>
-  <li class="sbb-pagination-item" >
+  <li class="sbb-pagination-item" *ngIf="selectedPage$ | async as selectedPage" >
     <button *ngIf="!linkGenerator" 
       i18n-aria-label="Next Page" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasNext() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()" 
-      (click)="selectPage(initialPage + 1)">
+      (click)="selectPage(selectedPage.nextPage)">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
     </button>
     <a *ngIf="linkGenerator" 
@@ -60,8 +72,14 @@
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasNext() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()"
-      (click)="linkNext($event)"
-      (keydown.enter)="linkNext($event)">
+      [routerLink]="selectedPage.nextLink?.routerLink"
+      [queryParams]="selectedPage.nextLink?.queryParams"
+      [fragment]="selectedPage.nextLink?.fragment"
+      [preserveFragment]="selectedPage.nextLink?.preserveFragment"
+      [skipLocationChange]="selectedPage.nextLink?.skipLocationChange"
+      [replaceUrl]="selectedPage.nextLink?.replaceUrl"
+      [state]="selectedPage.nextLink?.state"
+      [queryParamsHandling]="selectedPage.nextLink?.queryParamsHandling">
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
     </a>
   </li>

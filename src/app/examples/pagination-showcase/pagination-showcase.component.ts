@@ -35,7 +35,7 @@ export class PaginationShowcaseComponent {
   linkGenerator = (page: { displayNumber: number, index: number }): NavigationExtras & { routerLink: string | any[] } => {
     return {
       routerLink: ['.'],
-      queryParams: { page: page.index },
+      queryParams: { page: page.displayNumber },
       queryParamsHandling: 'merge',
       relativeTo: this.route,
     };
