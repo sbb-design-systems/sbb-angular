@@ -12,13 +12,11 @@ import {
   ViewChildren,
   QueryList,
   AfterViewInit,
-  AfterViewChecked,
   ChangeDetectorRef,
   HostBinding,
 } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { PageDescriptor, PageChangeEvent, LinkGeneratorResult, Page } from '../page-descriptor.model';
-import { isString } from 'util';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -28,7 +26,7 @@ import { filter } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, AfterViewChecked {
+export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   /** Role of the sbb-pagination. */
   @HostBinding('attr.role')
   role = 'navigation';
@@ -124,10 +122,6 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
 
         });
     }
-  }
-
-  ngAfterViewChecked() {
-    this.changeDetectorRef.detectChanges();
   }
 
   /**
@@ -284,7 +278,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, Af
 
   private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {
     let routerLink = linkGeneratorResult.routerLink;
-    if (isString(linkGeneratorResult.routerLink)) {
+    if (typeof linkGeneratorResult.routerLink === 'string') {
       routerLink = (linkGeneratorResult.routerLink as string).split('/');
     }
     return this.router.navigate(routerLink as any[], linkGeneratorResult);

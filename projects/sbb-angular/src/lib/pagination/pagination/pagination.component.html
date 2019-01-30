@@ -7,7 +7,7 @@
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
       (click)="selectPage(initialPage - 1)">
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
-    </button>
+    </button>    
     <a *ngIf="linkGenerator" 
       i18n-aria-label="Previous Page" 
       class="sbb-pagination-item-boundary" 
@@ -34,8 +34,14 @@
       [class.sbb-pagination-item-selected]="!page.isEllipsis && page.displayNumber === initialPage" 
       [class.sbb-pagination-item-ellipsis]="page.isEllipsis" 
       [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
-      (click)="linkClick($event, page)"
-      (keydown.enter)="linkClick($event, page)">
+      [routerLink]="page.link?.routerLink"
+      [queryParams]="page.link?.queryParams"
+      [fragment]="page.link?.fragment"
+      [preserveFragment]="page.link?.preserveFragment"
+      [skipLocationChange]="page.link?.skipLocationChange"
+      [replaceUrl]="page.link?.replaceUrl"
+      [state]="page.link?.state"
+      [queryParamsHandling]="page.link?.queryParamsHandling">
       <ng-container *ngIf="page.isEllipsis">...</ng-container>
       <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
     </a>
