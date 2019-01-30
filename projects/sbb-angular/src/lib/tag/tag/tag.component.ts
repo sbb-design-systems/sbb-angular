@@ -7,7 +7,11 @@ import {
   OnChanges,
   ViewEncapsulation,
   Output,
-  EventEmitter
+  EventEmitter,
+  Optional,
+  OnInit,
+  InjectionToken,
+  Inject
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
@@ -16,6 +20,11 @@ import { first } from 'rxjs/operators';
 import { TagChange } from '../tag.model';
 
 let counter = 0;
+
+/**
+ * Injection token used to provide the parent component to TagComponent.
+ */
+export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
 
 @Component({
   selector: 'sbb-tag',
@@ -29,19 +38,19 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class TagComponent extends CheckboxComponent implements OnChanges, OnDestroy {
+export class TagComponent extends CheckboxComponent implements OnInit, OnChanges, OnDestroy {
 
   readonly stateChange$ = new Subject<void>();
 
   @Output() readonly tagChange = new EventEmitter<TagChange>();
 
-  private _linkMode = true;
+  private _linkMode = false;
   get linkMode() {
     return this._linkMode;
   }
   set linkMode(value: boolean) {
     this._linkMode = value;
-    this._changeDetector.detectChanges();
+    this.active = value;
   }
 
   /**
@@ -89,16 +98,21 @@ export class TagComponent extends CheckboxComponent implements OnChanges, OnDest
     this._changeDetector.markForCheck();
   }
 
-  constructor(private _changeDetector: ChangeDetectorRef, private zone: NgZone) {
+  constructor(
+    private _changeDetector: ChangeDetectorRef,
+    @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer,
+    private zone: NgZone) {
     super(_changeDetector);
 
     this.zone.onStable.pipe(first()).subscribe(
-      () => {
-        this.zone.run(() => {
-          this.tagChecking$.next(this.checked);
-        });
-      }
+      () => this.zone.run(() => this.tagChecking$.next(this.checked))
     );
+  }
+
+  ngOnInit() {
+    if(!this._tagsContainer) {
+      this.linkMode = true;
+    }
   }
 
   ngOnChanges() {
@@ -108,6 +122,13 @@ export class TagComponent extends CheckboxComponent implements OnChanges, OnDest
   ngOnDestroy() {
     this.tagChecking$.complete();
     this.stateChange$.complete();
+  }
+
+  setTagChecked(checked: boolean) {
+    this.checked = checked;
+    this.onChange(checked);
+    this.onTouched();
+    this.writeValue(checked);
   }
 
 }

@@ -89,8 +89,3 @@ $tagPadding:              pxToEm(7) pxToEm(8) pxToEm(7) pxToEm(16);
   }
 }
 
-@mixin onlyLinkTag() {
-  .sbb-tag-content {
-    cursor: pointer;
-  }
-}

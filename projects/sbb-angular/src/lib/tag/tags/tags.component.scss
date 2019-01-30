@@ -2,16 +2,4 @@
 
 .sbb-tags {
   @include tagList();
-
-  .sbb-tag-all-button {
-    @include buttonResetFrameless();
-
-    &:hover, &:focus {
-      outline: none;
-
-      .sbb-tag-label {
-        color: $colorBlack;
-      }
-    }
-  }
 }

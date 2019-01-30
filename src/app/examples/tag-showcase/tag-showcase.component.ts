@@ -8,7 +8,7 @@ const tagItems: Tag[] = [
     id: 'tag-1',
     label: 'Services',
     amount: 8,
-    selected: false
+    selected: true
   },
   {
     id: 'tag-2',
@@ -35,7 +35,7 @@ const tagItems2: Tag[] = [
     id: 'tag-2-1',
     label: 'Services',
     amount: 8,
-    selected: false
+    selected: true
   },
   {
     id: 'tag-2-2',

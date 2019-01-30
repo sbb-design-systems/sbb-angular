@@ -8,14 +8,19 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { TagComponent } from '../tag/tag.component';
 import { Subscription, merge, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+
+import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
 
 @Component({
   selector: 'sbb-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
+  providers: [{
+    provide: TAGS_CONTAINER,
+    useExisting: TagsComponent
+  }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -29,7 +34,6 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
       }, 0);
   }
 
-  private _tagsChangeSubscription = Subscription.EMPTY;
   private _tagsCheckingSubscription = Subscription.EMPTY;
   private _tagChecking$: Observable<TagComponent[]>;
 
@@ -43,20 +47,11 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   allTag: TagComponent;
 
   ngAfterContentInit() {
-    this.initTags();
-    this._tagsChangeSubscription = this.tagsChange();
     this._tagsCheckingSubscription = this.tagsHandleChecking();
   }
 
   ngOnDestroy() {
-    this._tagsChangeSubscription.unsubscribe();
     this._tagsCheckingSubscription.unsubscribe();
-  }
-
-  initTags() {
-    this.tags.forEach(t => {
-      t.linkMode = false;
-    });
   }
 
   setAllTagState() {
@@ -70,20 +65,10 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
     const hasAcheckedTag = values.indexOf(true) !== -1;
 
     if (!hasAcheckedTag) {
-      this.allTag.active = true;
+      this.allTag.setTagChecked(true);
     } else {
-      this.allTag.active = false;
+      this.allTag.setTagChecked(false);
     }
-  }
-
-  tagsChange(): Subscription {
-    return this.tags
-      .changes.subscribe(
-        () => {
-          this.initTags();
-          this.setAllTagState();
-        }
-      );
   }
 
   tagsHandleChecking(): Subscription {
@@ -101,14 +86,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
-    this.tags.forEach(t => this.setTagChecked(t, false));
-  }
-
-  setTagChecked(tag: TagComponent, checked: boolean) {
-    tag.checked = checked;
-    tag.onChange(checked);
-    tag.onTouched();
-    tag.writeValue(checked);
+    this.tags.forEach(t => t.setTagChecked(false));
   }
 
 }

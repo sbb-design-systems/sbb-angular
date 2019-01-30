@@ -3,14 +3,7 @@
 .sbb-tag {
   @include baseTag();
 
-  &.sbb-tag-active,
-  a &,
-  button:not(.sbb-tag-all-button) & {
+  &.sbb-tag-active {
     @include activeTag();
-  }
-
-  a &,
-  button:not(.sbb-tag-all-button) & {
-    @include onlyLinkTag();
   }
 }
