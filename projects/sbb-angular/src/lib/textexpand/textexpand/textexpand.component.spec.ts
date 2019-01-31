@@ -76,15 +76,15 @@ class TextexpandTestComponent {
   });
 
   it('textexpand class must exist',() => {
-    expect(componentTextexpand.cssClass).toBe('sbb-textexpand');
+    expect(componentTextexpand.cssClass).toBe(true);
   });
 
   it('textexpand-collapsed class must exist',() => {
-    expect(componentCollapsed.cssClass).toBe('sbb-textexpand-collapsed');
+    expect(componentCollapsed.cssClass).toBe(true);
   });
 
   it('textexpand-expanded class must exist',() => {
-    expect(componentExpanded.cssClass).toBe('sbb-textexpand-expanded');
+    expect(componentExpanded.cssClass).toBe(true);
   });
 
 });
@@ -169,7 +169,7 @@ class TextexpandTestComponent {
 
     const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
 
-    expect(buttonClicked.textContent).toContain('Weniger anzeigen');
+    expect(buttonClicked.textContent).toContain('Mehr anzeigen');
 
 }));
 
@@ -179,7 +179,7 @@ class TextexpandTestComponent {
     buttonClicked.click();
     fixtureTest.detectChanges();
 
-    expect(buttonClicked.textContent).toContain('Mehr anzeigen');
+    expect(buttonClicked.textContent).toContain('Weniger anzeigen');
 
   }));
 

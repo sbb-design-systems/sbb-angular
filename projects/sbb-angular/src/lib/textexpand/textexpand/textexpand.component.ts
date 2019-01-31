@@ -25,7 +25,7 @@ export class TextexpandComponent implements AfterContentInit {
   /**
    * Css class of the textexpand component.
    */
-  @HostBinding('class') cssClass = 'sbb-textexpand';
+  @HostBinding('class.sbb-textexpand') cssClass = true;
 
   /**
    * Is an ARIA landmark role. It provide a way to identify a specific zone of the page.

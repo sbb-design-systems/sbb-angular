@@ -1,9 +1,10 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'sbb-textexpand-collapsed',
   templateUrl: './textexpand-collapsed.component.html',
-  styleUrls: ['./textexpand-collapsed.component.scss']
+  styleUrls: ['./textexpand-collapsed.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextexpandCollapsedComponent  {
   /**
@@ -15,5 +16,5 @@ export class TextexpandCollapsedComponent  {
   /**
    * Css class of the textexpand-collapsed component.
    */
-  @HostBinding('class') cssClass = 'sbb-textexpand-collapsed';
+  @HostBinding('class.sbb-textexpand-collapsed') cssClass = true;
 }

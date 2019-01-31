@@ -1,9 +1,10 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'sbb-textexpand-expanded',
   templateUrl: './textexpand-expanded.component.html',
-  styleUrls: ['./textexpand-expanded.component.scss']
+  styleUrls: ['./textexpand-expanded.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextexpandExpandedComponent {
 
@@ -16,6 +17,6 @@ export class TextexpandExpandedComponent {
   /**
    * Css class of the textexpand-expanded component.
    */
-  @HostBinding('class') cssClass = 'sbb-textexpand-expanded';
+  @HostBinding('class.sbb-textexpand-expanded') cssClass = true;
 
 }
