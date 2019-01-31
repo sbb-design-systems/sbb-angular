@@ -14,7 +14,7 @@
     <div class="col-lg-6 sbbsc-v-sep no-fix-width">
       <h4 class="sbbsc-block">Tags used with template driven forms</h4>
       <sbb-tags>
-        <ng-container *ngFor="let tag of tagItems; let i=index">
+        <ng-container *ngFor="let tag of tagItems">
           <sbb-tag [(ngModel)]="tag.selected" 
                    (tagChange)="change($event)"
                    [label]="tag.label" 
