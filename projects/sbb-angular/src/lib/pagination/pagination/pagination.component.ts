@@ -15,12 +15,11 @@ import {
   HostBinding,
   NgZone,
   ChangeDetectorRef,
-  OnDestroy,
 } from '@angular/core';
 import { Router, NavigationEnd, RouterLinkActive } from '@angular/router';
 import { PageDescriptor, PageChangeEvent, LinkGeneratorResult } from '../page-descriptor.model';
-import { filter, first } from 'rxjs/operators';
-import { Observable, of, Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-pagination',
@@ -29,7 +28,7 @@ import { Observable, of, Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   /** Role of the sbb-pagination. */
   @HostBinding('attr.role')
   role = 'navigation';
@@ -95,7 +94,6 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
 
   constructor(
     private router: Router,
-    private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef
   ) { }
 
@@ -133,11 +131,14 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updatePages(this.initialPage);
+    console.log('onchange');
+
   }
 
   ngAfterViewInit() {
     if (this.links.length) {
       this.selectedPage$.subscribe((selectedPage) => {
+        console.log('subscribe', selectedPage);
         this.selectPage(selectedPage);
         const selectedPageIndex = this.activeLinks.toArray()
           .findIndex(page => page.isActive);
@@ -145,28 +146,16 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
           this.navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
         }
       });
-
-      this.zone.onStable.asObservable().pipe(first()).subscribe(() => {
-        this.zone.run(() => {
-          this.selectedPageSubject.next(this.getSelectedLinkPage());
-
-        });
-      });
+      this.selectedPageSubject.next(this.getSelectedLinkPage());
       this.router.events
         .pipe(filter(event => event instanceof NavigationEnd))
-        .subscribe((event) => {
-          setTimeout(() => {
-            this.selectedPageSubject.next(this.getSelectedLinkPage());
-          });
+        .pipe().subscribe((event: NavigationEnd) => {
+          this.changeDetectorRef.detectChanges();
         });
     } else {
       this.selectedPageSubject.next(this.getSelectedButtonPage());
       this.changeDetectorRef.detectChanges();
     }
-  }
-
-  ngOnDestroy() {
-    this.selectedPageSubject.unsubscribe();
   }
 
   /**
@@ -187,6 +176,11 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
       this.pages.push(this.maxPage);
     }
 
+  }
+
+  linkClick(page) {
+    this.selectedPageSubject.next(page);
+    this.changeDetectorRef.detectChanges();
   }
 
   /**
@@ -230,7 +224,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
 
     if (this.initialPage !== prevPageNo) {
       if (!this.linkGenerator) {
-        this.selectedPage$ = of(this.getSelectedButtonPage());
+        this.selectedPageSubject.next(this.getSelectedButtonPage());
       }
       this.pageChange.emit({ currentPage: prevPageNo, selectedPage: this.initialPage });
     }
@@ -277,23 +271,12 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
 
   }
 
-  private findActivePage(el: ElementRef) {
-    return Number(el.nativeElement.textContent) === this.pageDescriptors.find(page => page.isSelected).displayNumber;
-  }
-
   /**
    * Method on click to a page button.
    * @param page Page button clicked.
    */
   buttonClick(page: PageDescriptor) {
     this.selectPage(page);
-    setTimeout(() => {
-      if (this.buttons.length) {
-        this.buttons.find(button => {
-          return this.findActivePage(button);
-        }).nativeElement.focus();
-      }
-    });
   }
 
   private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {
@@ -303,5 +286,15 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit, On
     }
     return this.router.navigate(routerLink as any[], linkGeneratorResult);
 
+  }
+
+  nextLink(page: PageDescriptor) {
+    this.selectedPageSubject
+      .next(new PageDescriptor(page.displayNumber + 1, page.index + 1, this.maxPage, page.displayNumber, this.linkGenerator));
+  }
+
+  previousLink(page: PageDescriptor) {
+    this.selectedPageSubject
+      .next(new PageDescriptor(page.displayNumber - 1, page.index - 1, this.maxPage, page.displayNumber, this.linkGenerator));
   }
 }
