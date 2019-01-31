@@ -18,8 +18,9 @@ import {
 } from '@angular/core';
 import { Router, NavigationEnd, RouterLinkActive } from '@angular/router';
 import { PageDescriptor, PageChangeEvent, LinkGeneratorResult } from '../page-descriptor.model';
-import { filter } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Observable, Subject, of } from 'rxjs';
+import { pipe } from '@angular/core/src/render3';
 
 @Component({
   selector: 'sbb-pagination',
@@ -131,30 +132,43 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updatePages(this.initialPage);
-    console.log('onchange');
-
   }
 
   ngAfterViewInit() {
     if (this.links.length) {
-      this.selectedPage$.subscribe((selectedPage) => {
-        console.log('subscribe', selectedPage);
-        this.selectPage(selectedPage);
-        const selectedPageIndex = this.activeLinks.toArray()
-          .findIndex(page => page.isActive);
-        if (selectedPageIndex === -1) {
-          this.navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
-        }
-      });
+      this.selectedPage$
+        .subscribe((selectedPage) => {
+          this.selectPage(selectedPage);
+          const selectedPageIndex = this.activeLinks.toArray()
+            .findIndex(page => page.isActive);
+          if (selectedPageIndex === -1) {
+            this.navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
+          }
+        });
       this.selectedPageSubject.next(this.getSelectedLinkPage());
       this.router.events
         .pipe(filter(event => event instanceof NavigationEnd))
         .pipe().subscribe((event: NavigationEnd) => {
           this.changeDetectorRef.detectChanges();
         });
+
+      this.activeLinks.changes
+        .pipe(debounceTime(100))
+        .subscribe(linkList => {
+          console.log(linkList);
+          const selectedPageIndex = linkList.toArray()
+            .findIndex(page => page.isActive);
+          if (selectedPageIndex !== -1) {
+            linkList.toArray()[selectedPageIndex].element.nativeElement.focus();
+          }
+        });
     } else {
       this.selectedPageSubject.next(this.getSelectedButtonPage());
+      this.buttons.changes.subscribe(() => {
+        this.buttons.toArray()[this.getSelectedButtonPage().index].nativeElement.focus();
+      });
       this.changeDetectorRef.detectChanges();
+
     }
   }
 

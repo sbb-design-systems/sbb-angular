@@ -1,7 +1,7 @@
 <ul class="sbb-pagination">
   <li class="sbb-pagination-item" *ngIf="selectedPage$ | async as selectedPage" >
     <button *ngIf="!linkGenerator" 
-      i18n-aria-label="Previous Page" 
+      i18n-aria-label="Previous Page@@paginationPreviousPage" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasPrevious() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
@@ -9,7 +9,7 @@
       <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
     </button>    
     <a *ngIf="linkGenerator" 
-      i18n-aria-label="Previous Page" 
+    i18n-aria-label="Previous Page@@paginationPreviousPage" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasPrevious() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
@@ -63,7 +63,7 @@
   </li>
   <li class="sbb-pagination-item" *ngIf="selectedPage$ | async as selectedPage" >
     <button *ngIf="!linkGenerator" 
-      i18n-aria-label="Next Page" 
+      i18n-aria-label="Next Page@@paginationNextPage" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasNext() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()" 
@@ -71,7 +71,7 @@
       <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
     </button>
     <a *ngIf="linkGenerator" 
-      i18n-aria-label="Next Page" 
+      i18n-aria-label="Next Page@@paginationNextPage" 
       class="sbb-pagination-item-boundary" 
       [attr.tabindex]="(hasNext() ? '0' : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()"
