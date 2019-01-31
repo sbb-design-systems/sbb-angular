@@ -35,7 +35,7 @@ class TagsTestFixtureComponent {
     }
   ];
 
-  change(change: TagChange) { }
+  change() { }
 }
 
 @Component({
@@ -143,11 +143,14 @@ describe('TagsComponent with Model attached', () => {
     const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
     const tagLabel = tag.query(By.css('label'));
 
-    expect(tag.componentInstance._checked).toBe(false);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(tag.componentInstance.checked).toBe(false);
 
     component.tagItems[0].selected = true;
-    fixture.detectChanges();
 
+    fixture.detectChanges();
     await fixture.whenStable();
 
     expect(tag.componentInstance.checked).toBe(true);
@@ -162,19 +165,63 @@ describe('TagsComponent with Model attached', () => {
     expect(component.tagItems[0].selected).toBe(false);
   });
 
-  it('should the allTag inactive with at least one tag selected and active with no tags selected', () => {
+  it('should the allTag be inactive with at least one tag selected and vice versa', async () => {
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+    const firstTag = tags[1];
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    firstTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(false);
+    expect(allTag.componentInstance.active).toBe(false);
+
+    allTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(allTag.componentInstance.checked).toBe(true);
+    expect(allTag.componentInstance.active).toBe(true);
+
   });
 
-  it('should when clicking the allTag set all other tags to unchecked/false', () => {
+  it('should when clicking the allTag all other tags to be unchecked/false', async () => {
+    const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
+    const allTag = tags[0];
+
+    allTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    tags.splice(0, 1);
+
+    const hasTruthyValues = tags.findIndex(t => (t.componentInstance.checked && t.componentInstance.active)) !== -1;
+
+    expect(hasTruthyValues).toBeFalsy();
   });
 
   it('should call the tagChange event when checking/unchecking a sbb-tag', () => {
+    const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+
+    spyOn(component, 'change');
+
+    firstTag.query(By.css('label')).nativeElement.click();
+
+    fixture.detectChanges();
+
+    expect(component.change).toHaveBeenCalled();
   });
 
 });
 
 describe('TagComponent as a Link Tag', () => {
-  let component: TagLinkTestFixtureComponent;
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
   beforeEach(async(() => {
@@ -186,13 +233,18 @@ describe('TagComponent as a Link Tag', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagLinkTestFixtureComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should have linkMode set to true', () => {
+    const linkTag = fixture.debugElement.query(By.directive(TagComponent));
+
+    expect(linkTag.componentInstance.linkMode).toBe(true);
   });
 
-  it('should have an active like appearance', () => {
+  it('should be active', () => {
+    const linkTag = fixture.debugElement.query(By.directive(TagComponent));
+
+    expect(linkTag.componentInstance.active).toBe(true);
   });
 });
