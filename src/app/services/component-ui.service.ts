@@ -20,6 +20,7 @@ import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showc
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
 
 
 @Injectable({
@@ -44,18 +45,6 @@ export class ComponentUiService {
         'Import text.',
         ButtonShowcaseComponent
       ),
-      /* new UiComponent(
-        'List',
-        'list',
-        'List',
-        'Listbox is used to select one or more values from a list of items.',
-        true,
-        false,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ), */
       new UiComponent(
         'Table',
         'table',
@@ -231,30 +220,6 @@ export class ComponentUiService {
         'Import text.',
         AccordionShowcaseComponent
       ),
-      /* new UiComponent(
-        'Section (Fieldset)',
-        'section',
-        'Section (Fieldset)',
-        'Subtitel goes here ...',
-        true,
-        true,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ), */
-      /*  new UiComponent(
-         'Light Box',
-         'lightBox',
-         'Light Box',
-         'Subtitel goes here ...',
-         true,
-         true,
-         ['Davide Aresta', 'Stefan Meili'],
-         'Description goes here ...',
-         'Source goes here ...',
-         'Import text.'
-       ), */
       new UiComponent(
         'Light Box',
         'lightbox',
@@ -341,11 +306,24 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        ['Davide Aresta', 'Marco Sut', 'Davide Genchi'],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
         TextexpandShowcaseComponent
+      ),
+      new UiComponent(
+        'Tag',
+        'tag',
+        'Tag',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TagShowcaseComponent
       )
     ];
   }

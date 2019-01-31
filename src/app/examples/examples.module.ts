@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
+
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
@@ -10,7 +12,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -27,7 +28,9 @@ import {
   TableModule,
   RadioButtonPanelModule,
   CheckboxPanelModule,
-  TextexpandModule
+  TextexpandModule,
+  CheckboxModule,
+  TagModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -64,6 +67,7 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 
+import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -97,11 +101,13 @@ import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-sh
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
-    TextexpandShowcaseComponent
+    TextexpandShowcaseComponent,
+    TagShowcaseComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -126,7 +132,8 @@ import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-sh
     CheckboxPanelModule,
     NotificationsModule,
     TableModule,
-    TextexpandModule
+    TextexpandModule,
+    TagModule
   ],
   exports: [
     TextareaShowcaseComponent,
