@@ -14,13 +14,12 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep no-fix-width"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Tags used with template driven forms<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tags</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let tag of tagItems"</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"tag.selected"</span> 
-                   (<span class="hljs-attr">tagChange</span>)=<span class="hljs-string">"change($event)"</span>
-                   [<span class="hljs-attr">label</span>]=<span class="hljs-string">"tag.label"</span> 
-                   [<span class="hljs-attr">id</span>]=<span class="hljs-string">"tag.id"</span> 
-                   [<span class="hljs-attr">amount</span>]=<span class="hljs-string">"tag.amount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let tag of tagItems"</span>
+                  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"tag.selected"</span> 
+                  (<span class="hljs-attr">tagChange</span>)=<span class="hljs-string">"change($event)"</span>
+                  [<span class="hljs-attr">label</span>]=<span class="hljs-string">"tag.label"</span> 
+                  [<span class="hljs-attr">id</span>]=<span class="hljs-string">"tag.id"</span> 
+                  [<span class="hljs-attr">amount</span>]=<span class="hljs-string">"tag.amount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tags</span>&gt;</span>
 
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -55,13 +54,12 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Tags used with reactive form<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">form</span> [<span class="hljs-attr">formGroup</span>]=<span class="hljs-string">"form"</span> <span class="hljs-attr">novalidate</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tags</span> <span class="hljs-attr">formArrayName</span>=<span class="hljs-string">"tags"</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let tag of tags.controls; let i=index"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> [<span class="hljs-attr">formControlName</span>]=<span class="hljs-string">"i"</span> 
-                     (<span class="hljs-attr">tagChange</span>)=<span class="hljs-string">"change($event)"</span>
-                     [<span class="hljs-attr">id</span>]=<span class="hljs-string">"tagItemsReactive[i].id"</span> 
-                     [<span class="hljs-attr">label</span>]=<span class="hljs-string">"tagItemsReactive[i].label"</span> 
-                     [<span class="hljs-attr">amount</span>]=<span class="hljs-string">"tagItemsReactive[i].amount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let tag of tags.controls; let i=index"</span>
+                    [<span class="hljs-attr">formControlName</span>]=<span class="hljs-string">"i"</span> 
+                    (<span class="hljs-attr">tagChange</span>)=<span class="hljs-string">"change($event)"</span>
+                    [<span class="hljs-attr">id</span>]=<span class="hljs-string">"tagItemsReactive[i].id"</span> 
+                    [<span class="hljs-attr">label</span>]=<span class="hljs-string">"tagItemsReactive[i].label"</span> 
+                    [<span class="hljs-attr">amount</span>]=<span class="hljs-string">"tagItemsReactive[i].amount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tags</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 

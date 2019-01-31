@@ -30,14 +30,12 @@ So the tags are active or inactive in the filter. This means that clicking on a 
 Within the filter, an additional tag called "Alle" is always inserted. If this filter tag is clicked, it changes the status of all tags in the filter to inactive.
 ```html
 <sbb-tags>
-    <ng-container *ngFor="let tag of tagItems">
-        <sbb-tag [(ngModel)]="tag.selected" 
-                 (tagChange)="change($event)"
-                 [label]="tag.label" 
-                 [id]="tag.id" 
-                 [amount]="tag.amount">
-        </sbb-tag>
-    </ng-container>
+  <sbb-tag *ngFor="let tag of tagItems"
+           [(ngModel)]="tag.selected" 
+           (tagChange)="change($event)"
+           [label]="tag.label" 
+           [id]="tag.id" 
+           [amount]="tag.amount"></sbb-tag>
 </sbb-tags>
 ```
 
