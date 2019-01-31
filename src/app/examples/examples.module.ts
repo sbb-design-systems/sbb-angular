@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
+
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
@@ -10,7 +12,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -26,7 +27,9 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  CheckboxModule,
+  TagModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -63,6 +66,7 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
 import { ToggleModule } from 'projects/sbb-angular/src/lib/toggle/toggle';
+import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -96,11 +100,13 @@ import { ToggleModule } from 'projects/sbb-angular/src/lib/toggle/toggle';
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
-    ToggleShowcaseComponent
+    ToggleShowcaseComponent,
+    TagShowcaseComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -125,7 +131,8 @@ import { ToggleModule } from 'projects/sbb-angular/src/lib/toggle/toggle';
     CheckboxPanelModule,
     NotificationsModule,
     TableModule,
-    ToggleModule
+    ToggleModule,
+    TagModule
   ],
   exports: [
     TextareaShowcaseComponent,

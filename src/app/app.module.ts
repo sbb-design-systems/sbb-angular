@@ -52,6 +52,7 @@ import { NotificationShowcaseComponent } from './examples/notification-showcase/
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 import { ToggleShowcaseComponent } from './examples/toggle-showcase/toggle-showcase.component';
+import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { ToggleShowcaseComponent } from './examples/toggle-showcase/toggle-showc
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     ToggleShowcaseComponent,
+    TagShowcaseComponent,
     ...IconComponents.types
   ]
 })
