@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
+
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
@@ -10,7 +12,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -26,7 +27,9 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  CheckboxModule,
+  TagModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -61,6 +64,7 @@ import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
+import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -93,11 +97,13 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
-    TableShowcaseComponent
+    TableShowcaseComponent,
+    TagShowcaseComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -121,7 +127,8 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
-    TableModule
+    TableModule,
+    TagModule
   ],
   exports: [
     TextareaShowcaseComponent,
