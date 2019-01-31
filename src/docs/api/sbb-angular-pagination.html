@@ -66,6 +66,14 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>activeLinks: QueryList&lt;RouterLinkActive&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>ariaLabel: &#39;Pagination Navigation&#39;</code>
         </p>
       </td>
@@ -116,7 +124,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>pages: Array&lt;Page&gt;</code>
+          <code>pages: Array&lt;number&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -132,6 +140,22 @@
       <td class="docs-api-property-description">
         <p>Role of the sbb-pagination.</p>
       </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>selectedPage$: Observable&lt;PageDescriptor&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>selectedPageSubject: Subject&lt;PageDescriptor&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
@@ -162,13 +186,6 @@
         </p>
       </td>
     </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">focusActive </th>
-      </tr>
-    </thead>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -227,26 +244,16 @@
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">linkBefore </th>
+        <th colspan="2" class="docs-api-method-name-cell">linkClick </th>
       </tr>
     </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Used to know the before page link.</p>
-      </td>
-    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">linkClick </th>
+        <th colspan="2" class="docs-api-method-name-cell">nextLink </th>
       </tr>
     </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Method on click to a page link.</p>
-      </td>
-    </tr>
     <thead>
       <tr class="docs-api-method-parameters-header-row">
         <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
@@ -254,23 +261,11 @@
     </thead>
     <tr class="docs-api-method-parameter-row">
       <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> $event</p>
-        <code class="docs-api-method-parameter-type"></code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-          <p>Event generated on click.</p>
-        </p>
-      </td>
-    </tr>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
         <p class="docs-api-method-parameter-name"> page</p>
         <code class="docs-api-method-parameter-type">PageDescriptor</code>
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
-          <p>Page link clicked.</p>
         </p>
       </td>
     </tr>
@@ -278,12 +273,22 @@
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">linkNext </th>
+        <th colspan="2" class="docs-api-method-name-cell">previousLink </th>
       </tr>
     </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Used to know the next page link.</p>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> page</p>
+        <code class="docs-api-method-parameter-type">PageDescriptor</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
       </td>
     </tr>
   </table>
@@ -306,11 +311,21 @@
     <tr class="docs-api-method-parameter-row">
       <td class="docs-api-method-parameter-cell">
         <p class="docs-api-method-parameter-name"> pageNumber</p>
-        <code class="docs-api-method-parameter-type">number</code>
+        <code class="docs-api-method-parameter-type"></code>
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
           <p>Page number to select.</p>
+        </p>
+      </td>
+    </tr>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> page</p>
+        <code class="docs-api-method-parameter-type">PageDescriptor</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
         </p>
       </td>
     </tr>
@@ -376,7 +391,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>ariaLabel: &#39;Pagination Navigation&#39;</code>
+          <code>ariaLabel: &#39;Navigation@@navigationTitle&#39;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -393,21 +408,6 @@
         <p>Role of the sbb-navigation.</p>
       </td>
     </tr>
-  </table>
-  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">nextLink </th>
-      </tr>
-    </thead>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">previousLink </th>
-      </tr>
-    </thead>
   </table>
   <h3 id="additional_classes" class="docs-header-link docs-api-h3">
     <span header-link="additional_classes"></span> Additional classes </h3>
@@ -504,12 +504,28 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>nextPage: PageDescriptor</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>previousLink: LinkGeneratorResult</code>
         </p>
       </td>
       <td class="docs-api-property-description">
         <p>Used to know if current page link has a previous page link.</p>
       </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>previousPage: PageDescriptor</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
     </tr>
   </table>
   <h3 id="additional_interfaces" class="docs-header-link docs-api-h3">

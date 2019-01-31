@@ -23,3 +23,5 @@ export * from './lib/checkbox-panel/checkbox-panel';
 export * from './lib/notification/notification';
 export * from './lib/table/table';
 export * from './lib/pagination/pagination';
+export * from './lib/textexpand/textexpand';
+export * from './lib/tag/tag';

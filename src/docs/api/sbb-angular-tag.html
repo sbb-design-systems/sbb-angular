@@ -1,0 +1,439 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL tag </h2>
+  <p class="docs-api-module-import">
+    <code> import { TagModule } from 'sbb-angular'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="TagComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TagComponent"></span>
+    <code>TagComponent</code>
+    <span class="docs-api-class-extends-clauses">
+      <span class="docs-api-class-extends-label">extends</span>
+      <span class="docs-api-class-extends-type">CheckboxComponent</span>
+    </span>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-tag</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>amount: number</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Amount of result found.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-describedby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaDescribedby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-describedby&#39; attribute is read after the element&#39;s label and field type.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-label&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabel: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Used to set the &#39;aria-label&#39; attribute on the underlying input element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-labelledby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabelledby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-labelledby&#39; attribute takes precedence as the element&#39;s text alternative.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>checked: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers if a tag is checked.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Sets checkbox field disabled</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;id&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>inputId: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Label of the tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>required: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Establish if a checkbox value is required or not</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>value: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Value contained in a checkbox field</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>tagChange: EventEmitter&lt;TagChange&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event generated on tag change.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>active: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers if a tag is active.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>linkMode: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Link mode of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (_: any) =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Property that describes the status change of a checkbox field</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Property that describes an updating of checkbox</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>sbbTagClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>stateChange$: Subject&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A subject on a state change of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>tagChecking$: Subject&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A subject on tag checking.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">click </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Method that set up a checkbox field to the click</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">setTagChecked </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Set a tag to checked status.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> checked</p>
+        <code class="docs-api-method-parameter-type">boolean</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Value of tag checked.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="TagsComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TagsComponent"></span>
+    <code>TagsComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-tags</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>allTag: TagComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the tag always displayed in the filter.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>sbbTagsClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class associated to sbb-tags.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>tags: QueryList&lt;TagComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the tags contained.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>totalAmount: number</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Total amount of results found.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">allTagClick </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">setAllTagState </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">tagsHandleChecking </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">Subscription</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="additional_classes" class="docs-header-link docs-api-h3">
+    <span header-link="additional_classes"></span> Additional classes </h3>
+  <h4 id="TagChange" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TagChange"></span>
+    <code>TagChange</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Change event object emitted by Tag.</p>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>checked: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The checked prop of Tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>source: TagComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The Tag that emits the change event.</p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="additional_interfaces" class="docs-header-link docs-api-h3">
+    <span header-link="additional_interfaces"></span> Additional interfaces </h3>
+  <h4 id="Tag" class="docs-header-link docs-api-h4 docs-api-interface-name">
+    <span header-link="Tag"></span>
+    <code>Tag</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>amount: number</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Amount of results of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>id: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Label of a tag.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>selected: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers if a tag is selected.</p>
+      </td>
+    </tr>
+  </table>
+</div>

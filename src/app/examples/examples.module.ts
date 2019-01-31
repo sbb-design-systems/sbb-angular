@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
+
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
@@ -10,7 +12,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -26,7 +27,10 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  TextexpandModule,
+  CheckboxModule,
+  TagModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -63,6 +67,8 @@ import { NotificationShowcaseComponent } from './notification-showcase/notificat
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { PaginationModule } from 'projects/sbb-angular/src/public_api';
+import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -96,11 +102,14 @@ import { PaginationModule } from 'projects/sbb-angular/src/public_api';
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
-    PaginationShowcaseComponent
+    PaginationShowcaseComponent,
+    TextexpandShowcaseComponent,
+    TagShowcaseComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -125,7 +134,9 @@ import { PaginationModule } from 'projects/sbb-angular/src/public_api';
     CheckboxPanelModule,
     NotificationsModule,
     TableModule,
-    PaginationModule
+    PaginationModule,
+    TextexpandModule,
+    TagModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -145,6 +156,7 @@ import { PaginationModule } from 'projects/sbb-angular/src/public_api';
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     PaginationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,

@@ -26,6 +26,8 @@
   hasPrevious: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">1</span>];
   hasNext: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">2</span>];
 
+  newPage = {title: <span class="hljs-string">''</span>};
+
   onPageChange($event) {
     <span class="hljs-built_in">console</span>.log($event);
   }
@@ -33,7 +35,7 @@
   linkGenerator = (page: { displayNumber: <span class="hljs-built_in">number</span>, index: <span class="hljs-built_in">number</span> }): NavigationExtras &amp; { routerLink: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">any</span>[] } =&gt; {
     <span class="hljs-keyword">return</span> {
       routerLink: [<span class="hljs-string">'.'</span>],
-      queryParams: { page: page.index },
+      queryParams: { page: page.displayNumber },
       queryParamsHandling: <span class="hljs-string">'merge'</span>,
       relativeTo: <span class="hljs-keyword">this</span>.route,
     };
@@ -64,5 +66,10 @@
       queryParamsHandling: <span class="hljs-string">'merge'</span>,
       relativeTo: <span class="hljs-keyword">this</span>.route,
     };
+  }
+
+  addPage() {
+    <span class="hljs-keyword">this</span>.pages.push({title: <span class="hljs-keyword">this</span>.newPage.title, index: <span class="hljs-keyword">this</span>.pages.length});
+    <span class="hljs-keyword">this</span>.newPage.title = <span class="hljs-string">''</span>;
   }
 }

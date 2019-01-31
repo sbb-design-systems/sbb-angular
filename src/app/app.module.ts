@@ -52,6 +52,8 @@ import { NotificationShowcaseComponent } from './examples/notification-showcase/
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 import { PaginationShowcaseComponent } from './examples/pagination-showcase/pagination-showcase.component';
+import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +112,8 @@ import { PaginationShowcaseComponent } from './examples/pagination-showcase/pagi
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     PaginationShowcaseComponent,
+    TextexpandShowcaseComponent,
+    TagShowcaseComponent,
     ...IconComponents.types
   ]
 })
