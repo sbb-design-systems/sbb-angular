@@ -27,7 +27,7 @@ export class NavigationComponent implements OnChanges {
   role = 'navigation';
   /** Aria-label of the pagination navigation. */
   @HostBinding('attr.i18n-aria-label')
-  ariaLabel = 'Pagination Navigation';
+  ariaLabel = 'Navigation@@navigationTitle';
   /**
    * The next page descriptor.
    */
@@ -68,18 +68,6 @@ export class NavigationComponent implements OnChanges {
         }
       }
     }
-  }
-
-  nextLink($event) {
-    this.pageChange.emit('next');
-    this.navigateToLink(this.hasNext.link);
-    $event.preventDefault();
-  }
-
-  previousLink($event) {
-    this.pageChange.emit('previous');
-    this.navigateToLink(this.hasPrevious.link);
-    $event.preventDefault();
   }
 
   private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {

@@ -1,7 +1,7 @@
 <ul class="sbb-navigation">
   <li class="sbb-navigation-item" *ngIf="hasPrevious" [style.width.%]="!hasNext ? 100 : 50">
     <button *ngIf="!linkGenerator" 
-      i18n-aria-label="Previous Page" 
+      i18n-aria-label="Previous Page@@previousNextPage" 
       class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left" 
       (click)="pageChange.emit('previous')"
       [attr.title]="hasPrevious.title">
@@ -11,10 +11,17 @@
       <span class="sbb-navigation-item-boundary-text">{{ hasPrevious.title }}</span>
     </button>
     <a *ngIf="linkGenerator" 
-      i18n-aria-label="Previous Page" 
+      i18n-aria-label="Previous Page@@previousNextPage" 
       class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left" 
-      (click)="previousLink($event)"
-      (keydown.enter)="previousLink($event)"
+      [routerLink]="hasPrevious.link?.routerLink"
+      [queryParams]="hasPrevious.link?.queryParams"
+      [fragment]="hasPrevious.link?.fragment"
+      [preserveFragment]="hasPrevious.link?.preserveFragment"
+      [skipLocationChange]="hasPrevious.link?.skipLocationChange"
+      [replaceUrl]="hasPrevious.link?.replaceUrl"
+      [state]="hasPrevious.link?.state"
+      [queryParamsHandling]="hasPrevious.link?.queryParamsHandling"
+      (click)="pageChange.emit('previous')"
       [attr.title]="hasPrevious.title">
       <span class="sbb-navigation-item-boundary-arrow">
         <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
@@ -24,7 +31,7 @@
   </li>
     <li class="sbb-navigation-item" *ngIf="hasNext" [style.width.%]="!hasPrevious ? 100 : 50">
     <button *ngIf="!linkGenerator" 
-      i18n-aria-label="Next Page" 
+      i18n-aria-label="Next Page@@navigationNextPage" 
       class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right" 
       (click)="pageChange.emit('next')"
       [attr.title]="hasNext.title">
@@ -34,10 +41,17 @@
       </span>
     </button>
     <a *ngIf="linkGenerator" 
-      i18n-aria-label="Next Page" 
+      i18n-aria-label="Next Page@@navigationNextPage" 
       class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right" 
-      (click)="nextLink($event)"
-      (keydown.enter)="nextLink($event)"
+      [routerLink]="hasNext.link?.routerLink"
+      [queryParams]="hasNext.link?.queryParams"
+      [fragment]="hasNext.link?.fragment"
+      [preserveFragment]="hasNext.link?.preserveFragment"
+      [skipLocationChange]="hasNext.link?.skipLocationChange"
+      [replaceUrl]="hasNext.link?.replaceUrl"
+      [state]="hasNext.link?.state"
+      [queryParamsHandling]="hasNext.link?.queryParamsHandling"
+      (click)="pageChange.emit('next')"
       [attr.title]="hasNext.title">
       <span class="sbb-navigation-item-boundary-text">{{ hasNext.title }}</span>
       <span class="sbb-navigation-item-boundary-arrow">
