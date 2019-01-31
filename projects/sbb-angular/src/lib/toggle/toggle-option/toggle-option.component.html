@@ -1,1 +1,13 @@
-<button (click)="selectOption()">{{ label }}</button>
+<button [attr.id]="buttonId"
+        aria-pressed="false"
+        [attr.aria-controls]="contentId"
+        aria-expanded="false"
+        class="sbb-toggle-option-button"
+        (click)="selectOption()"
+        [disabled]="disabled">{{ label }}</button>
+
+<article [attr.id]="contentId" 
+         [attr.aria-labelledby]="buttonId" 
+         class="sbb-toggle-option-content">
+  <ng-content></ng-content>
+</article>

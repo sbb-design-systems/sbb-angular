@@ -5,10 +5,13 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Output,
-  EventEmitter
+  HostBinding,
+  Inject
 } from '@angular/core';
 import { Subject } from 'rxjs';
+import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle-base';
+
+let counter = 0;
 
 @Component({
   selector: 'sbb-toggle-option',
@@ -20,20 +23,51 @@ import { Subject } from 'rxjs';
 export class ToggleOptionComponent implements OnInit {
 
   @Input()
+  @HostBinding('id')
+  inputId = `sbb-toggle-option-${counter++}`;
+
+  get buttonId() {
+    return `${this.inputId}-button`;
+  }
+
+  get contentId() {
+    return `${this.inputId}-content`;
+  }
+
+  @HostBinding('class.sbb-toggle-option')
+  toggleOptionClass = true;
+
+  @Input()
   label: string;
 
   @Input()
   value: any;
 
-  valueChange = new Subject<any>();
+  private _selected: boolean;
+  @HostBinding('class.sbb-toggle-option-selected')
+  get selected() {
+    return this._selected;
+  }
+  set selected(value: boolean) {
+    this._selected = value;
+  }
 
-  constructor(private _changeDetector: ChangeDetectorRef) { }
+  @Input()
+  disabled = false;
+
+  valueChange$ = new Subject<any>();
+
+  constructor(
+    @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
+    private _changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
 
   selectOption() {
-    this.valueChange.next(this.value);
+    this.selected = true;
+    this.valueChange$.next(this.value);
+    console.log(this._parent.toggleOptions);
   }
 
 }

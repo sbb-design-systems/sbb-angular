@@ -7,18 +7,17 @@ import {
   Input,
   HostBinding,
   ChangeDetectorRef,
-  ContentChild,
   AfterContentInit,
   QueryList,
   ContentChildren,
   OnDestroy
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, RadioControlValueAccessor, ControlValueAccessor } from '@angular/forms';
-import { RadioButtonComponent } from '../../radio-button/radio-button';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { Subscription, Observable, merge, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle-base';
 
 let counter = 0;
 
@@ -26,15 +25,21 @@ let counter = 0;
   selector: 'sbb-toggle',
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => ToggleComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleComponent),
+      multi: true,
+    },
+    {
+      provide: SBB_TOGGLE_COMPONENT,
+      useExisting: ToggleComponent
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ToggleComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
+export class ToggleComponent extends RadioButton implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
   /**
      * Radio button panel identifier
      */
@@ -42,14 +47,17 @@ export class ToggleComponent extends RadioButton implements ControlValueAccessor
   @HostBinding('id')
   inputId = `sbb-toggle-${counter++}`;
 
-  @Input()
-  disabled: boolean;
-
   /**
    * Indicates radio button name in formControl
    */
   @Input()
   formControlName: string;
+
+  @HostBinding('class.sbb-toggle')
+  toggleClass = true;
+
+  @HostBinding('attr.role')
+  role = 'group';
 
   private _toggleValueChangesSubscription = Subscription.EMPTY;
   private _toggleValueChanges$: Observable<any>;
@@ -68,7 +76,7 @@ export class ToggleComponent extends RadioButton implements ControlValueAccessor
   ngAfterContentInit() {
     this.checkNumOfOptions();
 
-    this._toggleValueChanges$ = of(this.toggleOptions.map(toggle => toggle.valueChange))
+    this._toggleValueChanges$ = of(this.toggleOptions.map(toggle => toggle.valueChange$))
       .pipe(
         switchMap(valueChange => merge(...valueChange))
       );
@@ -105,11 +113,6 @@ export class ToggleComponent extends RadioButton implements ControlValueAccessor
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-    this._changeDetector.markForCheck();
   }
 
   uncheck() { }
