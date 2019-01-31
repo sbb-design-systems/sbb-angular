@@ -64,6 +64,8 @@
 <span class="hljs-keyword">import</span> { CheckboxPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-panel-showcase/checkbox-panel-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextexpandModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
@@ -98,6 +100,7 @@
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
+    TextexpandShowcaseComponent
     TagShowcaseComponent
   ],
   imports: [
@@ -128,6 +131,7 @@
     CheckboxPanelModule,
     NotificationsModule,
     TableModule,
+    TextexpandModule
     TagModule
   ],
   exports: [
@@ -147,6 +151,7 @@
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,

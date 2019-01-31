@@ -51,6 +51,7 @@ import { RadioButtonPanelShowcaseComponent } from './examples/radio-button-panel
 import { NotificationShowcaseComponent } from './examples/notification-showcase/notification-showcase.component';
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
+import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 
 @NgModule({
@@ -109,6 +110,7 @@ import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.compo
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
+    TextexpandShowcaseComponent,
     TagShowcaseComponent,
     ...IconComponents.types
   ]

@@ -1,0 +1,9 @@
+@import "../../../styles/main";
+
+:host.sbb-textexpand {
+  @include textexpand;
+
+  .sbb-textexpand-button {
+    @include textexpandButton;
+  }
+}
