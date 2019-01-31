@@ -1,0 +1,92 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep no-fix-width">
+      <h4 class="sbbsc-block">Link Tag</h4>
+      <a routerLink="/home">
+        <sbb-tag label="Link tag" amount="5"></sbb-tag>
+      </a>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep no-fix-width">
+      <h4 class="sbbsc-block">Tags used with template driven forms</h4>
+      <sbb-tags>
+        <sbb-tag *ngFor="let tag of tagItems"
+                  [(ngModel)]="tag.selected" 
+                  (tagChange)="change($event)"
+                  [label]="tag.label" 
+                  [id]="tag.id" 
+                  [amount]="tag.amount"></sbb-tag>
+      </sbb-tags>
+
+      <div role="presentation" class="sbbsc-separator"></div>
+
+      <h4>Playground</h4>
+      <div class="sbbsc-block">
+        <button sbbButton mode="secondary" (click)="removeOneItem('templateDriven')">Remove one tag</button>
+      </div>
+      <div class="sbbsc-block">
+        <button sbbButton mode="secondary" (click)="addOneItem('templateDriven')">Add one tag</button>
+      </div>
+      <div class="sbbsc-block">
+        <button sbbButton mode="secondary" (click)="reset('templateDriven')">Reset</button>
+      </div>
+      <div class="sbbsc-block">
+        <sbb-field mode="default">
+          <sbb-label for="name1">Change amount of first item</sbb-label>
+          <input id="name1" type="number" [formControl]="changeAmount" />
+        </sbb-field>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>{{ tagItems | json }}</pre>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep no-fix-width">
+      <h4 class="sbbsc-block">Tags used with reactive form</h4>
+      <form [formGroup]="form" novalidate>
+        <sbb-tags formArrayName="tags">
+          <sbb-tag *ngFor="let tag of tags.controls; let i=index"
+                    [formControlName]="i" 
+                    (tagChange)="change($event)"
+                    [id]="tagItemsReactive[i].id" 
+                    [label]="tagItemsReactive[i].label" 
+                    [amount]="tagItemsReactive[i].amount"></sbb-tag>
+        </sbb-tags>
+      </form>
+
+      <div role="presentation" class="sbbsc-separator"></div>
+      
+      <h4>Playground</h4>
+      <div class="sbbsc-block">
+        <button sbbButton mode="secondary" (click)="removeOneItem('reactive')">Remove one tag</button>
+      </div>
+      <div class="sbbsc-block">
+        <button sbbButton mode="secondary" (click)="addOneItem('reactive')">Add one tag</button>
+      </div>
+      <div class="sbbsc-block">
+        <button sbbButton mode="secondary" (click)="reset('reactive')">Reset</button>
+      </div>
+      <div class="sbbsc-block">
+        <sbb-field mode="default">
+          <sbb-label for="name1">Change amount of first item</sbb-label>
+          <input id="name1" type="number" [formControl]="changeAmountReactive" />
+        </sbb-field>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>
+        {{ tagItemsReactive | json }}
+      </pre>
+    </div>
+  </div>
+</article>

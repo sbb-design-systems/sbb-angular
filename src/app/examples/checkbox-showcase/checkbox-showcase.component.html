@@ -29,8 +29,7 @@
       <h4 class="sbbsc-block">Checkboxes Group</h4>
       <ng-container *ngFor="let option of checkboxOptions; index as i">
         <div class="sbbsc-block">
-          <sbb-checkbox [(ngModel)]="option.selected"
-                        [value]="option.value">{{option.name}}</sbb-checkbox>
+          <sbb-checkbox [(ngModel)]="option.selected">{{option.name}}</sbb-checkbox>
         </div>
       </ng-container>
     </div>
