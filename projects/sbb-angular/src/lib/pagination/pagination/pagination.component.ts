@@ -155,7 +155,6 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
       this.activeLinks.changes
         .pipe(debounceTime(100))
         .subscribe(linkList => {
-          console.log(linkList);
           const selectedPageIndex = linkList.toArray()
             .findIndex(page => page.isActive);
           if (selectedPageIndex !== -1) {

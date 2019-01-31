@@ -42,8 +42,9 @@
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <sbb-field label="Page title" mode="long">
-        <input type="text" name="newPage" [(ngModel)]="newPage.title" (keydown.enter)="addPage()" >
+        <input type="text" name="newPage" [(ngModel)]="newPage.title">       
       </sbb-field>
+      <button sbbButton (click)="addPage()">Add new page</button>
     </div>
   </div>
 
