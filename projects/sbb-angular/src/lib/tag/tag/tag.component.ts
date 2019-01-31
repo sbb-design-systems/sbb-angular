@@ -39,12 +39,19 @@ export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
   encapsulation: ViewEncapsulation.None
 })
 export class TagComponent extends CheckboxComponent implements OnInit, OnChanges, OnDestroy {
-
+  /**
+   * A subject on a state change of a tag.
+   */
   readonly stateChange$ = new Subject<void>();
-
+  /**
+   * Event generated on tag change.
+   */
   @Output() readonly tagChange = new EventEmitter<TagChange>();
 
   private _linkMode = false;
+  /**
+   * Link mode of a tag.
+   */
   get linkMode() {
     return this._linkMode;
   }
@@ -58,12 +65,16 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
    */
   @Input()
   label: string;
-
+  /**
+   * Amount of result found.
+   */
   @Input()
   amount: number;
 
   private _inputId: string;
-  // tslint:disable-next-line:no-input-rename
+  /**
+   * Identifier of a tag.
+   */
   @Input('id')
   get inputId(): string {
     return this._inputId;
@@ -73,7 +84,13 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
   }
 
   private _checkedTag = false;
+  /**
+   * A subject on tag checking.
+   */
   readonly tagChecking$ = new Subject<any>();
+  /**
+   * Refers if a tag is checked.
+   */
   @Input()
   get checked(): any {
     return this._checkedTag;
@@ -84,11 +101,16 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
     this.tagChange.emit(new TagChange(this, value));
     this._changeDetector.markForCheck();
   }
-
+  /**
+   * Css class of a tag.
+   */
   @HostBinding('class.sbb-tag')
   sbbTagClass = true;
 
   private _active = false;
+  /**
+   * Refers if a tag is active.
+   */
   @HostBinding('class.sbb-tag-active')
   get active() {
     return this._active || (this.checked && !this.disabled);
@@ -123,7 +145,10 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
     this.tagChecking$.complete();
     this.stateChange$.complete();
   }
-
+  /**
+   * Set a tag to checked status.
+   * @param checked Value of tag checked.
+   */
   setTagChecked(checked: boolean) {
     this.checked = checked;
     this.onChange(checked);

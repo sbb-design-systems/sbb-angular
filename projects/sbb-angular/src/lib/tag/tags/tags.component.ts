@@ -25,7 +25,9 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
   encapsulation: ViewEncapsulation.None
 })
 export class TagsComponent implements AfterContentInit, OnDestroy {
-
+  /**
+   * Total amount of results found.
+   */
   get totalAmount(): number {
     return this.tags
       .map(t => t.amount)
@@ -36,13 +38,19 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
 
   private _tagsCheckingSubscription = Subscription.EMPTY;
   private _tagChecking$: Observable<TagComponent[]>;
-
+  /**
+   * Css class associated to sbb-tags.
+   */
   @HostBinding('class.sbb-tags')
   sbbTagsClass = true;
-
+  /**
+   * Refers to the tags contained.
+   */
   @ContentChildren(forwardRef(() => TagComponent))
   tags: QueryList<TagComponent>;
-
+  /**
+   * Refers to the tag always displayed in the filter.
+   */
   @ViewChild('allTag')
   allTag: TagComponent;
 

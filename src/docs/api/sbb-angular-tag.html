@@ -30,7 +30,9 @@
           <code>amount: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Amount of result found.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -72,7 +74,9 @@
           <code>checked: any</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers if a tag is checked.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -92,7 +96,9 @@
           <code>inputId: string</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Identifier of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -134,7 +140,9 @@
           <code>tagChange: EventEmitter&lt;TagChange&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Event generated on tag change.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -142,7 +150,9 @@
           <code>active: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers if a tag is active.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -150,7 +160,9 @@
           <code>linkMode: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Link mode of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -178,7 +190,9 @@
           <code>sbbTagClass: true</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Css class of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -186,7 +200,9 @@
           <code>stateChange$: Subject&lt;void&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>A subject on a state change of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -194,7 +210,9 @@
           <code>tagChecking$: Subject&lt;any&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>A subject on tag checking.</p>
+      </td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
@@ -207,6 +225,34 @@
     <tr class="docs-api-method-description-row">
       <td colspan="2" class="docs-api-method-description-cell">
         <p>Method that set up a checkbox field to the click</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">setTagChecked </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Set a tag to checked status.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> checked</p>
+        <code class="docs-api-method-parameter-type">boolean</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Value of tag checked.</p>
+        </p>
       </td>
     </tr>
   </table>
@@ -230,7 +276,9 @@
           <code>allTag: TagComponent</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers to the tag always displayed in the filter.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -238,7 +286,9 @@
           <code>sbbTagsClass: true</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Css class associated to sbb-tags.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -246,7 +296,9 @@
           <code>tags: QueryList&lt;TagComponent&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers to the tags contained.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -254,7 +306,9 @@
           <code>totalAmount: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Total amount of results found.</p>
+      </td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
@@ -268,69 +322,9 @@
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">initTags </th>
-      </tr>
-    </thead>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
         <th colspan="2" class="docs-api-method-name-cell">setAllTagState </th>
       </tr>
     </thead>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">setTagChecked </th>
-      </tr>
-    </thead>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> tag</p>
-        <code class="docs-api-method-parameter-type">TagComponent</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> checked</p>
-        <code class="docs-api-method-parameter-type">boolean</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">tagsChange </th>
-      </tr>
-    </thead>
-    <thead>
-      <tr class="docs-api-method-returns-header-row">
-        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-      </tr>
-    </thead>
-    <tr>
-      <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">Subscription</code>
-      </td>
-      <td class="docs-api-method-returns-description-cell">
-        <p class="docs-api-method-returns-description">
-        </p>
-      </td>
-    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -407,7 +401,9 @@
           <code>amount: number</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Amount of results of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -415,7 +411,9 @@
           <code>id: string</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Identifier of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -423,7 +421,9 @@
           <code>label: string</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Label of a tag.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -431,7 +431,9 @@
           <code>selected: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Refers if a tag is selected.</p>
+      </td>
     </tr>
   </table>
 </div>
