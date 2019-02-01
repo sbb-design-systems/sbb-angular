@@ -30,7 +30,8 @@ import {
   CheckboxPanelModule,
   TextexpandModule,
   CheckboxModule,
-  TagModule
+  TagModule,
+  PaginationModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -68,7 +69,6 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
-import { PaginationModule } from 'projects/sbb-angular/src/lib/pagination/pagination.module';
 
 @NgModule({
   declarations: [
