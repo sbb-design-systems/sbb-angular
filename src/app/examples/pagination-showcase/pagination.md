@@ -17,7 +17,7 @@ Each of them can be used in two ways:
 * as buttons
 
 ## The sbb-pagination component
-
+  
 ### Buttons configuration
 
 Each sbb-pagination instance requires:
@@ -36,7 +36,7 @@ as see below:
 </sbb-pagination>
 ```
 
-When the user interacts with the paginator, a ```PageEvent``` will be fired that can be used to update the status of pagination (current page selected, previous and next pages and the pages displayed)
+When the user interacts with the paginator, a ```PageEvent``` will be fired that can be used to update the status of pagination (current page selected, previous and next pages and the pages displayed).  
 
 ### Links configuration
 
@@ -69,9 +69,9 @@ Input needed:
 * pageChange: callback called when a button/link is clicked
 * linkGenerator: input function to be used to enable the link mode
 
-The pageChange callback argument is a ```{direction: 'previous' | 'next'}``` object.
+The pageChange callback argument is a ```{direction: 'previous' | 'next'}``` object.  
 
-### Buttons configuration
+### Navigation buttons configuration
 
 If no ```linkGenerator``` function is passed as input to the component, this renders two buttons.
 
@@ -83,9 +83,9 @@ If no ```linkGenerator``` function is passed as input to the component, this ren
 </sbb-navigation>
 ```
 
-The switching logic has to be implemented into the ```pageChange``` callback.
+The switching logic has to be implemented into the ```pageChange``` callback.  
 
-### Links configuration
+### Navigation links configuration
 
 If you want to use Angular routing to change pages, you have to implement and pass into the component a ```linkGenerator``` function.
 
