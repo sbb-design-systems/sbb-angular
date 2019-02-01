@@ -66,6 +66,8 @@
 <span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TooltipShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tooltip-showcase/tooltip-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TooltipModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/tooltip/tooltip.module'</span>;
+<span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextexpandModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/public_api'</span>;
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
@@ -101,6 +103,7 @@
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     TooltipShowcaseComponent
+    TextexpandShowcaseComponent
     TagShowcaseComponent
   ],
   imports: [
@@ -132,6 +135,7 @@
     NotificationsModule,
     TableModule,
     TooltipModule
+    TextexpandModule
     TagModule
   ],
   exports: [
@@ -151,6 +155,7 @@
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,

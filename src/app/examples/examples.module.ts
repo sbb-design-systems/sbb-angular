@@ -29,6 +29,7 @@ import {
   RadioButtonPanelModule,
   CheckboxPanelModule,
   TooltipModule,
+  TextexpandModule,
   CheckboxModule,
   TagModule
 } from 'sbb-angular';
@@ -66,6 +67,8 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
+
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
@@ -101,6 +104,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
     TagShowcaseComponent
   ],
   imports: [
@@ -132,6 +136,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationsModule,
     TableModule,
     TooltipModule,
+    TextexpandModule,
     TagModule
   ],
   exports: [
@@ -151,6 +156,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,

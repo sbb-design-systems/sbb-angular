@@ -20,6 +20,7 @@ import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showc
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
 
 
@@ -311,6 +312,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         TooltipShowcaseComponent
+      ),
+      new UiComponent(
+        'Text Expand',
+        'textexpand',
+        'Text Expand',
+        'Subtitel goes here ...',
+        true,
+        false,
+        ['Davide Aresta', 'Marco Sut', 'Davide Genchi'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TextexpandShowcaseComponent
       ),
       new UiComponent(
         'Tag',

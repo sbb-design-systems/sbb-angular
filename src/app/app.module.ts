@@ -52,6 +52,7 @@ import { NotificationShowcaseComponent } from './examples/notification-showcase/
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from './examples/tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 
 @NgModule({
@@ -111,6 +112,7 @@ import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.compo
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
     TagShowcaseComponent,
     ...IconComponents.types
   ]
