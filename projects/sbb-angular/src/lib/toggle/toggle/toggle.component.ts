@@ -140,12 +140,12 @@ export class ToggleComponent extends RadioButton
   }
 
   /**
-   * Throws an exception if the radio button name doesn't match with the radio button form control name
+   * Throws an exception if the Toggle name doesn't match with the Toggle form control name
    */
   private throwNameError(): void {
     throw new Error(`
-      If you define both a name and a formControlName attribute on your radio button, their values
-      must match. Ex: <sbb-radio-button formControlName="food" name="food"></sbb-radio-button>
+      If you define both a name and a formControlName attribute on your Toggle, their values
+      must match. Ex: <sbb-toggle formControlName="food" name="food"></sbb-toggle>
     `);
   }
 
