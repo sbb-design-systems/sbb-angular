@@ -8,6 +8,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { LinkGeneratorResult } from '../page-descriptor.model';
 import { isString } from 'util';
@@ -30,13 +31,15 @@ export class NavigationComponent implements OnChanges {
    * The next page descriptor.
    */
   @Input()
-  nextPage: NavigationPageDescriptor;
+  nextPage: string;
+  nextLink: NavigationPageDescriptor;
 
   /**
    * The previous page descriptor.
    */
   @Input()
-  previousPage: NavigationPageDescriptor;
+  previousPage: string;
+  previousLink: NavigationPageDescriptor;
 
   /**
    * This event can be used by parent components to handle events on page change.
@@ -50,7 +53,7 @@ export class NavigationComponent implements OnChanges {
   @Input()
   linkGenerator?: (direction: 'previous' | 'next') => LinkGeneratorResult;
 
-  constructor(private router: Router) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.nextPage && !this.previousPage) {
@@ -59,13 +62,16 @@ export class NavigationComponent implements OnChanges {
 
       if (this.linkGenerator) {
         if (this.previousPage) {
-          this.previousPage.link = this.linkGenerator('previous');
+          this.previousLink = { title: this.previousPage, link: this.linkGenerator('previous') };
+
         }
         if (this.nextPage) {
-          this.nextPage.link = this.linkGenerator('next');
+          this.nextLink = { title: this.nextPage, link: this.linkGenerator('next') };
+
         }
       }
     }
+    this.changeDetectorRef.markForCheck();
   }
 
 }

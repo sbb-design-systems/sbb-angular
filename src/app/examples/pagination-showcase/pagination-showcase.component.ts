@@ -15,18 +15,21 @@ export class PaginationShowcaseComponent {
   initialPage = 5;
 
   pages = [
-    'Introduction',
-    'Chapter 1',
-    'Chapter 2',
-    'Chapter 3'
+    'Einführung',
+    'Kapitel 1',
+    'Kapitel 2',
+    'Kapitel 3'
   ].map((page, index) => {
     return { title: page, index: index };
   });
 
-  previousPage: NavigationPageDescriptor = this.pages[1];
-  nextPage: NavigationPageDescriptor = this.pages[2];
+  hasPrevious: NavigationPageDescriptor = this.pages[1];
+  hasNext: NavigationPageDescriptor = this.pages[2];
 
-  newPage = {title: ''};
+  get previousPage(): string { return this.hasPrevious ? this.hasPrevious.title : null; }
+  get nextPage(): string { return this.hasNext ? this.hasNext.title : null; }
+
+  newPage = { title: '' };
 
   onPageChange($event) {
     console.log($event);
@@ -44,20 +47,20 @@ export class PaginationShowcaseComponent {
 
   onPageChangeNavigation($event) {
     if ($event === 'next') {
-      this.previousPage = this.nextPage;
-      this.nextPage = this.pages[this.nextPage.index + 1];
+      this.hasPrevious = this.hasNext;
+      this.hasNext = this.pages[this.hasNext.index + 1];
     } else {
-      this.nextPage = this.previousPage;
-      this.previousPage = this.pages[this.previousPage.index - 1];
+      this.hasNext = this.hasPrevious;
+      this.hasPrevious = this.pages[this.hasPrevious.index - 1];
     }
   }
 
   linkGeneratorNavigation = (direction: 'previous' | 'next'): LinkGeneratorResult => {
     let index = null;
     if (direction === 'next') {
-      index = this.nextPage.index;
+      index = this.hasNext.index;
     } else {
-      index = this.previousPage.index;
+      index = this.hasPrevious.index;
     }
 
     return {
@@ -69,7 +72,7 @@ export class PaginationShowcaseComponent {
   }
 
   addPage() {
-    this.pages.push({title: this.newPage.title, index: this.pages.length});
+    this.pages.push({ title: this.newPage.title, index: this.pages.length });
     this.newPage.title = '';
   }
 }
