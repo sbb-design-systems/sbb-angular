@@ -28,6 +28,7 @@ import {
   TableModule,
   RadioButtonPanelModule,
   CheckboxPanelModule,
+  TooltipModule,
   TextexpandModule,
   CheckboxModule,
   TagModule,
@@ -67,6 +68,7 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
+import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
@@ -103,6 +105,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     PaginationShowcaseComponent,
+    TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent
   ],
@@ -135,6 +138,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationsModule,
     TableModule,
     PaginationModule,
+    TooltipModule,
     TextexpandModule,
     TagModule
   ],
@@ -162,7 +166,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     LightboxModule,
     OptionModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    TooltipShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
