@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, ActivatedRoute } from '@angular/router';
-import { NavigationPageDescriptor } from 'projects/sbb-angular/src/lib/pagination/navigation-page-descriptor.model';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { LinkGeneratorResult, NavigationPageDescriptor } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-pagination-showcase',
@@ -23,8 +23,8 @@ export class PaginationShowcaseComponent {
     return { title: page, index: index };
   });
 
-  hasPrevious: NavigationPageDescriptor = this.pages[1];
-  hasNext: NavigationPageDescriptor = this.pages[2];
+  previousPage: NavigationPageDescriptor = this.pages[1];
+  nextPage: NavigationPageDescriptor = this.pages[2];
 
   newPage = {title: ''};
 
@@ -32,7 +32,7 @@ export class PaginationShowcaseComponent {
     console.log($event);
   }
 
-  linkGenerator = (page: { displayNumber: number, index: number }): NavigationExtras & { routerLink: string | any[] } => {
+  linkGenerator = (page: { displayNumber: number, index: number }): LinkGeneratorResult => {
     return {
       routerLink: ['.'],
       queryParams: { page: page.displayNumber },
@@ -44,20 +44,20 @@ export class PaginationShowcaseComponent {
 
   onPageChangeNavigation($event) {
     if ($event === 'next') {
-      this.hasPrevious = this.hasNext;
-      this.hasNext = this.pages[this.hasNext.index + 1];
+      this.previousPage = this.nextPage;
+      this.nextPage = this.pages[this.nextPage.index + 1];
     } else {
-      this.hasNext = this.hasPrevious;
-      this.hasPrevious = this.pages[this.hasPrevious.index - 1];
+      this.nextPage = this.previousPage;
+      this.previousPage = this.pages[this.previousPage.index - 1];
     }
   }
 
-  linkGeneratorNavigation = (direction: 'previous' | 'next'): NavigationExtras & { routerLink: string | any[] } => {
+  linkGeneratorNavigation = (direction: 'previous' | 'next'): LinkGeneratorResult => {
     let index = null;
     if (direction === 'next') {
-      index = this.hasNext.index;
+      index = this.nextPage.index;
     } else {
-      index = this.hasPrevious.index;
+      index = this.previousPage.index;
     }
 
     return {

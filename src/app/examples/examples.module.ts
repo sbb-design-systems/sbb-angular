@@ -66,9 +66,9 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
-import { PaginationModule } from 'projects/sbb-angular/src/public_api';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { PaginationModule } from 'projects/sbb-angular/src/lib/pagination/pagination.module';
 
 @NgModule({
   declarations: [

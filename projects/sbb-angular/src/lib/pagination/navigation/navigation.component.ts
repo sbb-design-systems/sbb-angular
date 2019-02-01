@@ -25,20 +25,18 @@ export class NavigationComponent implements OnChanges {
   /** Role of the sbb-navigation. */
   @HostBinding('attr.role')
   role = 'navigation';
-  /** Aria-label of the pagination navigation. */
-  @HostBinding('attr.i18n-aria-label')
-  ariaLabel = 'Navigation@@navigationTitle';
+
   /**
    * The next page descriptor.
    */
   @Input()
-  hasNext: NavigationPageDescriptor;
+  nextPage: NavigationPageDescriptor;
 
   /**
    * The previous page descriptor.
    */
   @Input()
-  hasPrevious: NavigationPageDescriptor;
+  previousPage: NavigationPageDescriptor;
 
   /**
    * This event can be used by parent components to handle events on page change.
@@ -55,27 +53,19 @@ export class NavigationComponent implements OnChanges {
   constructor(private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.hasNext && !this.hasPrevious) {
+    if (!this.nextPage && !this.previousPage) {
       throw Error('At least hasNext or hasPrevious must be defined in <sbb-navigation>');
     } else {
 
       if (this.linkGenerator) {
-        if (this.hasPrevious) {
-          this.hasPrevious.link = this.linkGenerator('previous');
+        if (this.previousPage) {
+          this.previousPage.link = this.linkGenerator('previous');
         }
-        if (this.hasNext) {
-          this.hasNext.link = this.linkGenerator('next');
+        if (this.nextPage) {
+          this.nextPage.link = this.linkGenerator('next');
         }
       }
     }
-  }
-
-  private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {
-    let routerLink = linkGeneratorResult.routerLink;
-    if (isString(linkGeneratorResult.routerLink)) {
-      routerLink = (linkGeneratorResult.routerLink as string).split('/');
-    }
-    return this.router.navigate(routerLink as any[], linkGeneratorResult);
   }
 
 }

@@ -33,9 +33,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   /** Role of the sbb-pagination. */
   @HostBinding('attr.role')
   role = 'navigation';
-  /** Aria label of the pagination. */
-  @HostBinding('attr.i18n-aria-label')
-  ariaLabel = 'Pagination Navigation';
+
   /**
    * The starting page of the pagination.
    */

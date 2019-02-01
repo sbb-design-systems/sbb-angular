@@ -74,16 +74,6 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>ariaLabel: &#39;Pagination Navigation&#39;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Aria label of the pagination.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
           <code>buttons: QueryList&lt;ElementRef&gt;</code>
         </p>
       </td>
@@ -348,7 +338,18 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>hasNext: NavigationPageDescriptor</code>
+          <code>linkGenerator: (direction: &#39;previous&#39; | &#39;next&#39;) =&gt; LinkGeneratorResult</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A custom function called everytime a new pagination item has been clicked.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>nextPage: NavigationPageDescriptor</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -359,22 +360,11 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>hasPrevious: NavigationPageDescriptor</code>
+          <code>previousPage: NavigationPageDescriptor</code>
         </p>
       </td>
       <td class="docs-api-property-description">
         <p>The previous page descriptor.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>linkGenerator: (direction: &#39;previous&#39; | &#39;next&#39;) =&gt; LinkGeneratorResult</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>A custom function called everytime a new pagination item has been clicked.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -386,16 +376,6 @@
       </td>
       <td class="docs-api-property-description">
         <p>This event can be used by parent components to handle events on page change.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>ariaLabel: &#39;Navigation@@navigationTitle&#39;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Aria-label of the pagination navigation.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -617,4 +597,49 @@
       </td>
     </tr>
   </table>
+  <h4 id="NavigationPageDescriptor" class="docs-header-link docs-api-h4 docs-api-interface-name">
+    <span header-link="NavigationPageDescriptor"></span>
+    <code>NavigationPageDescriptor</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>index: number</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>link: LinkGeneratorResult</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>title: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h3 id="additional_type_aliases" class="docs-header-link docs-api-h3">
+    <span header-link="additional_type_aliases"></span> Additional type aliases </h3>
+  <h4 id="NavigationPageChangeEvent" class="docs-header-link docs-api-h4 docs-api-type-alias-name">
+    <span header-link="NavigationPageChangeEvent"></span>
+    <code>NavigationPageChangeEvent</code>
+  </h4>
+  <p class="docs-api-type-alias-value">
+    <span class="docs-api-type-alias-value-label">Type:</span>
+    <code class="docs-api-type-alias-value">&#39;next&#39; | &#39;previous&#39;</code>
+  </p>
 </div>

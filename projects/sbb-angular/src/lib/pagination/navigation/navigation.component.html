@@ -1,61 +1,70 @@
 <ul class="sbb-navigation">
-  <li class="sbb-navigation-item" *ngIf="hasPrevious" [style.width.%]="!hasNext ? 100 : 50">
+  <li class="sbb-navigation-item sbb-navigation-item-left" *ngIf="previousPage">
     <button *ngIf="!linkGenerator" 
-      i18n-aria-label="Previous Page@@previousNextPage" 
-      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left" 
+      i18n-aria-label="@@navigationPreviousPage" 
+      aria-label="Vorherige Seite" 
       (click)="pageChange.emit('previous')"
-      [attr.title]="hasPrevious.title">
-      <span class="sbb-navigation-item-boundary-arrow">
-        <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+      [attr.title]="previousPage.title">
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
+        <span class="sbb-navigation-item-boundary-arrow">
+          <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+        </span>
+        <span class="sbb-navigation-item-boundary-text">{{ previousPage.title }}</span>
       </span>
-      <span class="sbb-navigation-item-boundary-text">{{ hasPrevious.title }}</span>
     </button>
     <a *ngIf="linkGenerator" 
-      i18n-aria-label="Previous Page@@previousNextPage" 
-      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left" 
-      [routerLink]="hasPrevious.link?.routerLink"
-      [queryParams]="hasPrevious.link?.queryParams"
-      [fragment]="hasPrevious.link?.fragment"
-      [preserveFragment]="hasPrevious.link?.preserveFragment"
-      [skipLocationChange]="hasPrevious.link?.skipLocationChange"
-      [replaceUrl]="hasPrevious.link?.replaceUrl"
-      [state]="hasPrevious.link?.state"
-      [queryParamsHandling]="hasPrevious.link?.queryParamsHandling"
+      i18n-aria-label="@@navigationPreviousPage" 
+      aria-label="Vorherige Seite" 
+      [routerLink]="previousPage.link?.routerLink"
+      [queryParams]="previousPage.link?.queryParams"
+      [fragment]="previousPage.link?.fragment"
+      [preserveFragment]="previousPage.link?.preserveFragment"
+      [skipLocationChange]="previousPage.link?.skipLocationChange"
+      [replaceUrl]="previousPage.link?.replaceUrl"
+      [state]="previousPage.link?.state"
+      [queryParamsHandling]="previousPage.link?.queryParamsHandling"
       (click)="pageChange.emit('previous')"
-      [attr.title]="hasPrevious.title">
-      <span class="sbb-navigation-item-boundary-arrow">
-        <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+      [attr.title]="previousPage.title">
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
+
+        <span class="sbb-navigation-item-boundary-arrow">
+          <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+        </span>
+        <span class="sbb-navigation-item-boundary-text">{{ previousPage.title }}</span>
       </span>
-      <span class="sbb-navigation-item-boundary-text">{{ hasPrevious.title }}</span>
     </a>
   </li>
-    <li class="sbb-navigation-item" *ngIf="hasNext" [style.width.%]="!hasPrevious ? 100 : 50">
+    <li class="sbb-navigation-item sbb-navigation-item-right" *ngIf="nextPage">
     <button *ngIf="!linkGenerator" 
-      i18n-aria-label="Next Page@@navigationNextPage" 
-      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right" 
+      i18n-aria-label="@@navigationNextPage" 
+      aria-label="Nächste Seite"
       (click)="pageChange.emit('next')"
-      [attr.title]="hasNext.title">
-      <span class="sbb-navigation-item-boundary-text">{{ hasNext.title }}</span>
-      <span class="sbb-navigation-item-boundary-arrow">
-        <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      [attr.title]="nextPage.title">
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
+        <span class="sbb-navigation-item-boundary-text">{{ nextPage.title }}</span>
+        <span class="sbb-navigation-item-boundary-arrow">
+          <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+        </span>
       </span>
     </button>
     <a *ngIf="linkGenerator" 
-      i18n-aria-label="Next Page@@navigationNextPage" 
-      class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right" 
-      [routerLink]="hasNext.link?.routerLink"
-      [queryParams]="hasNext.link?.queryParams"
-      [fragment]="hasNext.link?.fragment"
-      [preserveFragment]="hasNext.link?.preserveFragment"
-      [skipLocationChange]="hasNext.link?.skipLocationChange"
-      [replaceUrl]="hasNext.link?.replaceUrl"
-      [state]="hasNext.link?.state"
-      [queryParamsHandling]="hasNext.link?.queryParamsHandling"
+      i18n-aria-label="@@navigationNextPage" 
+      aria-label="Nächste Seite"
+      [routerLink]="nextPage.link?.routerLink"
+      [queryParams]="nextPage.link?.queryParams"
+      [fragment]="nextPage.link?.fragment"
+      [preserveFragment]="nextPage.link?.preserveFragment"
+      [skipLocationChange]="nextPage.link?.skipLocationChange"
+      [replaceUrl]="nextPage.link?.replaceUrl"
+      [state]="nextPage.link?.state"
+      [queryParamsHandling]="nextPage.link?.queryParamsHandling"
       (click)="pageChange.emit('next')"
-      [attr.title]="hasNext.title">
-      <span class="sbb-navigation-item-boundary-text">{{ hasNext.title }}</span>
-      <span class="sbb-navigation-item-boundary-arrow">
-        <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      [attr.title]="nextPage.title">
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
+        <span class="sbb-navigation-item-boundary-text">{{ nextPage.title }}</span>
+        <span class="sbb-navigation-item-boundary-arrow">
+          <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+        </span>
       </span>
     </a>
   </li>

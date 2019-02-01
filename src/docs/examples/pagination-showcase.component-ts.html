@@ -1,6 +1,6 @@
-<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
-<span class="hljs-keyword">import</span> { NavigationExtras, ActivatedRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
-<span class="hljs-keyword">import</span> { NavigationPageDescriptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/pagination/navigation-page-descriptor.model'</span>;
+<span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { ActivatedRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { LinkGeneratorResult, NavigationPageDescriptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'sbb-pagination-showcase'</span>,
@@ -23,8 +23,8 @@
     <span class="hljs-keyword">return</span> { title: page, index: index };
   });
 
-  hasPrevious: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">1</span>];
-  hasNext: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">2</span>];
+  previousPage: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">1</span>];
+  nextPage: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">2</span>];
 
   newPage = {title: <span class="hljs-string">''</span>};
 
@@ -32,7 +32,7 @@
     <span class="hljs-built_in">console</span>.log($event);
   }
 
-  linkGenerator = (page: { displayNumber: <span class="hljs-built_in">number</span>, index: <span class="hljs-built_in">number</span> }): NavigationExtras &amp; { routerLink: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">any</span>[] } =&gt; {
+  linkGenerator = (page: { displayNumber: <span class="hljs-built_in">number</span>, index: <span class="hljs-built_in">number</span> }): <span class="hljs-function"><span class="hljs-params">LinkGeneratorResult</span> =&gt;</span> {
     <span class="hljs-keyword">return</span> {
       routerLink: [<span class="hljs-string">'.'</span>],
       queryParams: { page: page.displayNumber },
@@ -44,20 +44,20 @@
 
   onPageChangeNavigation($event) {
     <span class="hljs-keyword">if</span> ($event === <span class="hljs-string">'next'</span>) {
-      <span class="hljs-keyword">this</span>.hasPrevious = <span class="hljs-keyword">this</span>.hasNext;
-      <span class="hljs-keyword">this</span>.hasNext = <span class="hljs-keyword">this</span>.pages[<span class="hljs-keyword">this</span>.hasNext.index + <span class="hljs-number">1</span>];
+      <span class="hljs-keyword">this</span>.previousPage = <span class="hljs-keyword">this</span>.nextPage;
+      <span class="hljs-keyword">this</span>.nextPage = <span class="hljs-keyword">this</span>.pages[<span class="hljs-keyword">this</span>.nextPage.index + <span class="hljs-number">1</span>];
     } <span class="hljs-keyword">else</span> {
-      <span class="hljs-keyword">this</span>.hasNext = <span class="hljs-keyword">this</span>.hasPrevious;
-      <span class="hljs-keyword">this</span>.hasPrevious = <span class="hljs-keyword">this</span>.pages[<span class="hljs-keyword">this</span>.hasPrevious.index - <span class="hljs-number">1</span>];
+      <span class="hljs-keyword">this</span>.nextPage = <span class="hljs-keyword">this</span>.previousPage;
+      <span class="hljs-keyword">this</span>.previousPage = <span class="hljs-keyword">this</span>.pages[<span class="hljs-keyword">this</span>.previousPage.index - <span class="hljs-number">1</span>];
     }
   }
 
-  linkGeneratorNavigation = (direction: <span class="hljs-string">'previous'</span> | <span class="hljs-string">'next'</span>): NavigationExtras &amp; { routerLink: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">any</span>[] } =&gt; {
+  linkGeneratorNavigation = (direction: <span class="hljs-string">'previous'</span> | <span class="hljs-string">'next'</span>): <span class="hljs-function"><span class="hljs-params">LinkGeneratorResult</span> =&gt;</span> {
     <span class="hljs-keyword">let</span> index = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">if</span> (direction === <span class="hljs-string">'next'</span>) {
-      index = <span class="hljs-keyword">this</span>.hasNext.index;
+      index = <span class="hljs-keyword">this</span>.nextPage.index;
     } <span class="hljs-keyword">else</span> {
-      index = <span class="hljs-keyword">this</span>.hasPrevious.index;
+      index = <span class="hljs-keyword">this</span>.previousPage.index;
     }
 
     <span class="hljs-keyword">return</span> {
