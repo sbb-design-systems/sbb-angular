@@ -28,6 +28,8 @@
   TableModule,
   RadioButtonPanelModule,
   CheckboxPanelModule,
+  TooltipModule,
+  TextexpandModule,
   CheckboxModule,
   TagModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
@@ -64,6 +66,9 @@
 <span class="hljs-keyword">import</span> { CheckboxPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-panel-showcase/checkbox-panel-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TooltipShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tooltip-showcase/tooltip-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
+
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
@@ -98,6 +103,8 @@
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
+    TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
     TagShowcaseComponent
   ],
   imports: [
@@ -128,6 +135,8 @@
     CheckboxPanelModule,
     NotificationsModule,
     TableModule,
+    TooltipModule,
+    TextexpandModule,
     TagModule
   ],
   exports: [
@@ -147,12 +156,14 @@
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
     OptionModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    TooltipShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

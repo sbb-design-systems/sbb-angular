@@ -28,8 +28,11 @@ import {
   TableModule,
   RadioButtonPanelModule,
   CheckboxPanelModule,
+  TooltipModule,
+  TextexpandModule,
   CheckboxModule,
-  TagModule
+  TagModule,
+  ToggleModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -65,7 +68,9 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
-import { ToggleModule } from 'projects/sbb-angular/src/lib/toggle/toggle';
+import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
+
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
@@ -101,6 +106,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     ToggleShowcaseComponent,
+    TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
     TagShowcaseComponent
   ],
   imports: [
@@ -132,6 +139,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationsModule,
     TableModule,
     ToggleModule,
+    TooltipModule,
+    TextexpandModule,
     TagModule
   ],
   exports: [
@@ -151,12 +160,14 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
     OptionModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    TooltipShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
