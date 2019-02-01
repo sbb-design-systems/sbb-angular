@@ -5,11 +5,12 @@
         class="sbb-toggle-option-button"
         (click)="selectOption()"
         [disabled]="disabled">
-        <span class="sbb-svgsprite-icon">
+        <span class="sbb-toggle-option-button-icon">
           <ng-container *ngTemplateOutlet="icon"></ng-container>
         </span>
-        {{ label }}
-      </button>
+        <span class="sbb-toggle-option-button-label">{{ label }}</span>
+        <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">{{ infoText }}</span>
+</button>
 
 <article #toggleOptionContentContainer
          *ngIf="toggleOptionHasContent"

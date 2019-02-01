@@ -47,6 +47,9 @@ export class ToggleOptionComponent implements AfterViewInit {
   label: string;
 
   @Input()
+  infoText?: string;
+
+  @Input()
   value: any;
 
   private _selected = false;
@@ -83,7 +86,8 @@ export class ToggleOptionComponent implements AfterViewInit {
     @Inject(DOCUMENT) private _document: Document,
     private _changeDetector: ChangeDetectorRef) { }
 
-  @Input() @ContentChild(ToggleOptionIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
+  @Input() @ContentChild(ToggleOptionIconDirective, { read: TemplateRef })
+  icon?: TemplateRef<any>;
 
   @ViewChild('toggleOptionContentContainer')
   contentContainer: ElementRef<Element>;

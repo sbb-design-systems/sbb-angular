@@ -1,6 +1,9 @@
 <form [formGroup]="form" novalidate>
   <sbb-toggle formControlName="test">
-    <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" [label]="option.label" [value]="option.value">
+    <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" 
+                       infoText="info text"
+                       [label]="option.label" 
+                       [value]="option.value">
       <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
       <sbb-field *ngIf="i === 1">
         <sbb-label for="name1">Select date</sbb-label>
@@ -17,7 +20,10 @@
 <br><br>
 
 <sbb-toggle [(ngModel)]="modelValue" name="test-toggle-2">
-  <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" [label]="option.label" [value]="option.value">
+  <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" 
+                     infoText="info text"
+                     [label]="option.label" 
+                     [value]="option.value">
     <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
     <sbb-field *ngIf="i === 1">
       <sbb-label for="name1">Select date</sbb-label>
@@ -33,10 +39,14 @@
 <br><br>
 
 <sbb-toggle (toggleChange)="toggleChange($event)">
-  <sbb-toggle-option [icon]="icon" label="Test event 1" [value]="{ myObjectValue: true }">
+  <sbb-toggle-option [icon]="icon" 
+                     label="Test event 1" 
+                     [value]="{ myObjectValue: true }">
     Some simple text
   </sbb-toggle-option>
-  <sbb-toggle-option label="Test event 2" [value]="{ myObjectValue: false }">
+  <sbb-toggle-option label="Test event 2" 
+                     infoText="info text"
+                     [value]="{ myObjectValue: false }">
   </sbb-toggle-option>
 </sbb-toggle>
 
