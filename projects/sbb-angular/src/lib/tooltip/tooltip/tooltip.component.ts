@@ -11,7 +11,8 @@ import {
   ElementRef,
   Optional,
   NgZone,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  OnDestroy
 } from '@angular/core';
 import { OverlayRef, Overlay, OverlayConfig, ScrollStrategy, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -38,7 +39,9 @@ export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 
 export class SbbTooltipChangeEvent {
   constructor(
+    /** Instance of tooltip component. */
     public instance: TooltipComponent,
+    /** States if the tooltip has been opened by a click. */
     public isUserInput = false
   ) { }
 
@@ -53,24 +56,42 @@ let tooltipCounter = 1;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TooltipComponent {
+export class TooltipComponent implements OnDestroy {
 
+  /**
+   * Identifier of tooltip.
+   */
   @HostBinding('attr.id')
   tooltipId = 'sbb-tooltip-id-' + tooltipCounter++;
+  /**
+   * Identifier of tooltip content.
+   */
   contentId = 'sbb-tooltip-content-id-' + tooltipCounter++;
-
-  @HostBinding('class')
-  cssClass = 'sbb-tooltip';
+  /**
+   * Css class on tooltip component.
+   */
+  @HostBinding('class.sbb-tooltip') cssClass = true;
 
   /**
    * Overlay containg the tooltip text and the close button.
    * It's built when the user clicks on the question mark.
    */
   tooltipRef: OverlayRef;
+  /**
+   * @docs-private
+   */
   @ViewChild('tooltipTemplate') tooltipContentPortal: TemplatePortal<any>;
+  /**
+   * Refers to tooltip trigger element.
+   */
   @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
-
+  /**
+   * Open event to a click on tooltip element.
+   */
   @Output() readonly opened = new EventEmitter<SbbTooltipChangeEvent>();
+  /**
+   * Close event to a click on tooltip element.
+   */
   @Output() readonly closed = new EventEmitter<SbbTooltipChangeEvent>();
 
   private readonly closeKeyEventStream = new Subject<void>();
@@ -83,6 +104,16 @@ export class TooltipComponent {
     private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef
   ) { }
+
+  ngOnDestroy(): void {
+    if (this.tooltipRef) {
+
+      this.tooltipRef.detach();
+      this.tooltipRef.dispose();
+      this.closingActionsSubscription.unsubscribe();
+    }
+  }
+
 
   onClick() {
     if (this.overlayAttached) {
