@@ -22,5 +22,6 @@ export * from './lib/radio-button-panel/radio-button-panel';
 export * from './lib/checkbox-panel/checkbox-panel';
 export * from './lib/notification/notification';
 export * from './lib/table/table';
+export * from './lib/tooltip/tooltip';
 export * from './lib/textexpand/textexpand';
 export * from './lib/tag/tag';
