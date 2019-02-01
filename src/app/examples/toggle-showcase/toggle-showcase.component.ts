@@ -15,10 +15,10 @@ export class ToggleShowcaseComponent implements OnInit {
 
   toggleOptions: Observable<any> = of([{
     'label': 'Toggle 1',
-    'value': 'value1'
+    'value': 'Option_1'
   }, {
     'label': 'Toggle 2',
-    'value': 'value2'
+    'value': 'Option_2'
   }]);
 
   toggleValues: any;

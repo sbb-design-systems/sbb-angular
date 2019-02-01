@@ -81,10 +81,14 @@ export class ToggleOptionComponent implements AfterViewInit {
 
   valueChange$ = new Subject<any>();
 
+  private _document: Document;
+
   constructor(
     @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
-    @Inject(DOCUMENT) private _document: Document,
-    private _changeDetector: ChangeDetectorRef) { }
+    @Inject(DOCUMENT) document: any,
+    private _changeDetector: ChangeDetectorRef) {
+      this._document = document;
+    }
 
   @Input() @ContentChild(ToggleOptionIconDirective, { read: TemplateRef })
   icon?: TemplateRef<any>;
