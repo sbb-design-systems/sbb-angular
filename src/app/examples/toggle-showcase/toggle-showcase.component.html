@@ -1,6 +1,6 @@
 <form [formGroup]="form" novalidate>
   <sbb-toggle formControlName="test">
-    <sbb-toggle-option *ngFor="let option of toggleOptions; let i = index;" [label]="option.label" [value]="option.value">
+    <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" [label]="option.label" [value]="option.value">
       <sbb-field *ngIf="i === 1">
         <sbb-label for="name1">Select date</sbb-label>
         <sbb-datepicker></sbb-datepicker>
@@ -16,9 +16,9 @@
 <br><br>
 
 <sbb-toggle [(ngModel)]="modelValue" name="test-toggle-2">
-  <sbb-toggle-option *ngFor="let option of toggleOptions; let i = index;" [label]="option.label" [value]="option.value">
+  <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" [label]="option.label" [value]="option.value">
     <sbb-field *ngIf="i === 1">
-      <sbb-label for="name2">Select date</sbb-label>
+      <sbb-label for="name1">Select date</sbb-label>
       <sbb-datepicker></sbb-datepicker>
     </sbb-field>
   </sbb-toggle-option>
@@ -29,3 +29,15 @@
 {{ modelValue }}
 
 <br><br>
+
+<sbb-toggle (toggleChange)="toggleChange($event)">
+  <sbb-toggle-option label="Test event 1" [value]="{ myObjectValue: true }">
+    Some simple text
+  </sbb-toggle-option>
+  <sbb-toggle-option label="Test event 2" [value]="{ myObjectValue: false }">
+  </sbb-toggle-option>
+</sbb-toggle>
+
+<br><br>
+
+{{ toggleValues | json }}

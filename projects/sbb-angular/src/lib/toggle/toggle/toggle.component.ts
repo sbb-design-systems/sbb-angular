@@ -6,17 +6,20 @@ import {
   ViewEncapsulation,
   Input,
   HostBinding,
-  ChangeDetectorRef,
   AfterContentInit,
   QueryList,
   ContentChildren,
-  OnDestroy
+  OnDestroy,
+  Output,
+  EventEmitter,
+  AfterViewChecked,
+  NgZone
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { Subscription, Observable, merge, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
 import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle-base';
 
 let counter = 0;
@@ -39,7 +42,8 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ToggleComponent extends RadioButton implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
+export class ToggleComponent extends RadioButton
+  implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit, AfterViewChecked {
   /**
      * Radio button panel identifier
      */
@@ -59,11 +63,21 @@ export class ToggleComponent extends RadioButton implements ToggleBase, ControlV
   @HostBinding('attr.role')
   role = 'group';
 
+  @Output()
+  toggleChange = new EventEmitter<any[]>();
+
   private _toggleValueChangesSubscription = Subscription.EMPTY;
   private _toggleValueChanges$: Observable<any>;
 
-  constructor(private _changeDetector: ChangeDetectorRef) {
+  constructor(private zone: NgZone) {
     super();
+
+    this.zone.onStable.pipe(first()).subscribe(
+      () => this.zone.run(() => {
+        const defaultOption = this.toggleOptions.toArray()[0];
+        defaultOption.selectOption();
+      })
+    );
   }
 
   @ContentChildren(forwardRef(() => ToggleOptionComponent))
@@ -86,8 +100,12 @@ export class ToggleComponent extends RadioButton implements ToggleBase, ControlV
         this.onChange(value);
         this.onTouched();
         this.writeValue(value);
+        this.toggleChange.emit(value);
       }
     );
+  }
+
+  ngAfterViewChecked() {
   }
 
   ngOnDestroy() {

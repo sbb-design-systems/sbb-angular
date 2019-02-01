@@ -1,0 +1,15 @@
+
+.sbb-toggle-option {
+  &-content {
+    display: none;
+  }
+
+  &-selected {
+    .sbb-toggle-option-button {
+      background: #fff;
+    }
+    .sbb-toggle-option-content {
+      display: block;
+    }
+  }
+}
