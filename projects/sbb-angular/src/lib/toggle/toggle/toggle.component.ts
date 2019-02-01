@@ -12,7 +12,6 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
-  AfterViewChecked,
   NgZone
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -43,7 +42,7 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleComponent extends RadioButton
-  implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit, AfterViewChecked {
+  implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
   /**
      * Radio button panel identifier
      */
@@ -103,9 +102,6 @@ export class ToggleComponent extends RadioButton
         this.toggleChange.emit(value);
       }
     );
-  }
-
-  ngAfterViewChecked() {
   }
 
   ngOnDestroy() {

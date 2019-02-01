@@ -8,11 +8,14 @@ import {
   Inject,
   AfterViewInit,
   ElementRef,
-  ViewChild
+  ViewChild,
+  ContentChild,
+  TemplateRef
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle-base';
 import { DOCUMENT } from '@angular/common';
+import { ToggleOptionIconDirective } from './toggle-option-icon.directive';
 
 let counter = 0;
 
@@ -79,6 +82,8 @@ export class ToggleOptionComponent implements AfterViewInit {
     @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
     @Inject(DOCUMENT) private _document: Document,
     private _changeDetector: ChangeDetectorRef) { }
+
+  @Input() @ContentChild(ToggleOptionIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
   @ViewChild('toggleOptionContentContainer')
   contentContainer: ElementRef<Element>;

@@ -4,7 +4,12 @@
         [attr.aria-expanded]="ariaExpandedValue"
         class="sbb-toggle-option-button"
         (click)="selectOption()"
-        [disabled]="disabled">{{ label }}</button>
+        [disabled]="disabled">
+        <span class="sbb-svgsprite-icon">
+          <ng-container *ngTemplateOutlet="icon"></ng-container>
+        </span>
+        {{ label }}
+      </button>
 
 <article #toggleOptionContentContainer
          *ngIf="toggleOptionHasContent"
