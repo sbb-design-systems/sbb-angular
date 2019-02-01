@@ -18,9 +18,8 @@ import {
 } from '@angular/core';
 import { Router, NavigationEnd, RouterLinkActive } from '@angular/router';
 import { PageDescriptor, PageChangeEvent, LinkGeneratorResult } from '../page-descriptor.model';
-import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Observable, Subject, of } from 'rxjs';
-import { pipe } from '@angular/core/src/render3';
+import { filter, debounceTime } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-pagination',
