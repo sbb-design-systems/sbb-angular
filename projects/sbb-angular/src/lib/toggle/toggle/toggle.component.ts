@@ -12,14 +12,15 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
-  NgZone
+  NgZone,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { Subscription, Observable, merge, of } from 'rxjs';
 import { switchMap, first } from 'rxjs/operators';
-import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle-base';
+import { ToggleBase, SBB_TOGGLE_COMPONENT } from '../toggle.base';
 
 let counter = 0;
 
@@ -56,11 +57,14 @@ export class ToggleComponent extends RadioButton
   @Input()
   formControlName: string;
 
+  @Input()
+  name: string;
+
   @HostBinding('class.sbb-toggle')
   toggleClass = true;
 
   @HostBinding('attr.role')
-  role = 'group';
+  role = 'radiogroup';
 
   @Output()
   toggleChange = new EventEmitter<any[]>();
@@ -74,7 +78,7 @@ export class ToggleComponent extends RadioButton
     this.zone.onStable.pipe(first()).subscribe(
       () => this.zone.run(() => {
         const defaultOption = this.toggleOptions.toArray()[0];
-        defaultOption.selectOption();
+        defaultOption.setToggleChecked(true);
       })
     );
   }
@@ -151,13 +155,12 @@ export class ToggleComponent extends RadioButton
 
   private checkNumOfOptions(): void {
     if (this.toggleOptions.length !== 2) {
-      console.log(this.toggleOptions.length);
       this.throwNotTwoOptionsError();
     }
   }
 
   private throwNotTwoOptionsError(): void {
-    throw new Error('You must set two sbb-toggle-option into the sbb-toggle component');
+    throw new Error(`You must set two sbb-toggle-option into the sbb-toggle component. You set ${this.toggleOptions.length} options.`);
   }
 
 

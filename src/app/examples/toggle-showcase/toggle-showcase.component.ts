@@ -10,8 +10,8 @@ import { of, Observable } from 'rxjs';
 })
 export class ToggleShowcaseComponent implements OnInit {
 
-  modelValue = 'value1';
-  modelReactive = 'value1';
+  modelValue = 'Option_1';
+  modelReactive = 'Option_2';
 
   toggleOptions: Observable<any> = of([{
     'label': 'Toggle 1',

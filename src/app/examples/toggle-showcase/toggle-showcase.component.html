@@ -1,8 +1,10 @@
 <article class="container-fluid">
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4 class="sbbsc-block">Toggle buttons used as Template driven Form</h4>
-      <sbb-toggle [(ngModel)]="modelValue" name="test-toggle-2">
+      <h4 id="group_label_1" class="sbbsc-block">Toggle buttons used as Template driven Form</h4>
+      <sbb-toggle aria-labelledby="group_label_1" 
+                  [(ngModel)]="modelValue" 
+                  name="test-toggle-2">
           <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" 
                              infoText="info text"
                              [label]="option.label" 
@@ -23,13 +25,14 @@
   <div role="presentation" class="sbbsc-separator"></div>
   <div class="row">
       <div class="col-lg-6 sbbsc-v-sep">
-        <h4 class="sbbsc-block">Toggle buttons used as Reactive Forms</h4>
+        <h4 id="group_label_2" class="sbbsc-block">Toggle buttons used as Reactive Forms</h4>
         <form [formGroup]="form" novalidate>
-            <sbb-toggle formControlName="test">
+            <sbb-toggle aria-labelledby="group_label_2"  
+                        formControlName="test">
               <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" 
-                                  infoText="info text"
-                                  [label]="option.label" 
-                                  [value]="option.value">
+                                 infoText="info text"
+                                 [label]="option.label" 
+                                 [value]="option.value">
                 <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
                 <sbb-field *ngIf="i === 1">
                   <sbb-label for="name1">Select date</sbb-label>
@@ -46,22 +49,22 @@
     </div>
     <div class="row">
         <div class="col-lg-6 sbbsc-v-sep">
-          <h4 class="sbbsc-block">Toggle buttons simple use case no Forms attached</h4>
-          <sbb-toggle (toggleChange)="toggleChange($event)">
-              <sbb-toggle-option [icon]="icon" 
-                                 label="Test event 1" 
-                                 [value]="{ myObjectValue: true }">
-                Some simple text
-              </sbb-toggle-option>
-              <sbb-toggle-option label="Test event 2" 
-                                 infoText="info text"
-                                 [value]="{ myObjectValue: false }">
-              </sbb-toggle-option>
-            </sbb-toggle>
-            
-            <ng-template #icon>
-              <sbb-icon-arrow-down></sbb-icon-arrow-down>
-            </ng-template>
+          <h4 id="group_label_3" class="sbbsc-block">Toggle buttons simple use case no Forms attached</h4>
+          <sbb-toggle aria-labelledby="group_label_3"
+                      (toggleChange)="toggleChange($event)">
+            <sbb-toggle-option [icon]="icon" 
+                               label="Test event 1" 
+                               [value]="{ myObjectValue: true }">
+              Some simple text
+            </sbb-toggle-option>
+            <sbb-toggle-option label="Test event 2" 
+                               infoText="info text"
+                               [value]="{ myObjectValue: false }">
+            </sbb-toggle-option>
+          </sbb-toggle>
+          <ng-template #icon>
+            <sbb-icon-arrow-down></sbb-icon-arrow-down>
+          </ng-template>
         </div>
         <div class="col-lg-6">
             <h4 class="sbbsc-block">Model</h4>

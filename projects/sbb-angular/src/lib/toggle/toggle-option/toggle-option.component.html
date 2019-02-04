@@ -1,21 +1,30 @@
-<button [attr.id]="buttonId"
-        [attr.aria-pressed]="selected"
-        [attr.aria-controls]="ariaControls"
-        [attr.aria-expanded]="ariaExpandedValue"
-        class="sbb-toggle-option-button"
-        (click)="selectOption()"
-        [disabled]="disabled">
-        <span class="sbb-toggle-option-button-icon">
-          <ng-container *ngTemplateOutlet="icon"></ng-container>
-        </span>
-        <span class="sbb-toggle-option-button-label">{{ label }}</span>
-        <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">{{ infoText }}</span>
-</button>
+<label [attr.for]="inputId" class="sbb-toggle-option-button">
+  <input type="radio"
+         [id]="inputId"
+         [name]="name"
+         [value]="value"
+         [required]="required"
+         [checked]="checked"
+         [attr.aria-checked]="checked"
+         [attr.aria-label]="ariaLabel"
+         [attr.aria-labelledby]="ariaLabelledby"
+         [attr.aria-describedby]="ariaDescribedby"
+         [disabled]="disabled"
+         [attr.aria-controls]="ariaControls"
+         [attr.aria-expanded]="ariaExpandedValue"
+         (click)="click($event)" />
 
-<article #toggleOptionContentContainer
+  <span role="presentation" class="sbb-toggle-option-button-icon">
+    <ng-container *ngTemplateOutlet="icon"></ng-container>
+  </span>
+  <span class="sbb-toggle-option-button-label">{{ label }}</span>
+  <span class="visuallyhidden">&nbsp;</span>
+  <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">{{ infoText }}</span>
+</label>
+
+<section #toggleOptionContentContainer
          *ngIf="toggleOptionHasContent"
          [attr.id]="contentId" 
-         [attr.aria-labelledby]="buttonId" 
          class="sbb-toggle-option-content">
   <ng-content></ng-content>
-</article>
+</section>
