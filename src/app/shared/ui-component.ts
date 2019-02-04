@@ -1,4 +1,3 @@
-import { Thumbnail } from './thumbnail';
 import { Type } from '@angular/core';
 
 export class UiComponent {

@@ -19,6 +19,7 @@ import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-pane
 import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
+import { PaginationShowcaseComponent } from '../examples/pagination-showcase/pagination-showcase.component';
 import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
@@ -221,6 +222,31 @@ export class ComponentUiService {
         'Import text.',
         AccordionShowcaseComponent
       ),
+      /* new UiComponent(
+        'Section (Fieldset)',
+        'section',
+        'Section (Fieldset)',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Stefan Meili'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.'
+      ), */
+      new UiComponent(
+        'Pagination',
+        'pagination',
+        'Pagination',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Marco Sut', 'Davide Genchi'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        PaginationShowcaseComponent
+      ),
       new UiComponent(
         'Light Box',
         'lightbox',
@@ -248,7 +274,7 @@ export class ComponentUiService {
         'Import text.',
         NotificationShowcaseComponent
       ),
-       new UiComponent(
+      new UiComponent(
         'Process Flow',
         'processflow',
         'Process Flow',
