@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DropdownComponent } from './dropdown.component';
+import {
+  DropdownTriggerDirective,
+  DropdownOriginDirective,
+  DropdownItemDirective,
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
+} from '../dropdown';
+import { CommonModule } from '@angular/common';
+import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponent;
@@ -8,9 +16,19 @@ describe('DropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DropdownComponent ]
+      declarations: [
+        DropdownComponent,
+        DropdownItemDirective,
+        DropdownOriginDirective,
+        DropdownTriggerDirective
+      ],
+      imports: [
+        CommonModule,
+        IconCommonModule
+      ],
+      providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
