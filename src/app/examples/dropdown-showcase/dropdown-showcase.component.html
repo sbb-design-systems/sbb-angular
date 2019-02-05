@@ -1,7 +1,7 @@
-<sbb-dropdown>
-  <img src="https://it.gravatar.com/userimage/13016503/1f2abfae2abad4b8748e893fdd110ba3.jpg?size=200">Prova 
-  <a [routerLink]="['/?page=1']" routerLinkActive="router-link-active">Test</a>
-  <a [routerLink]="['/?page=2']" routerLinkActive="router-link-active">Test 2</a>
+<button sbbButton type="button" [sbbDropdown]="dropdown" >Open dropdown</button>
+<sbb-dropdown #dropdown="sbbDropdown">
+  <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="router-link-active">Test</a>
+  <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="router-link-active">Test 2</a>
   <hr>
-  <button type="button">Logout</button>
+  <button sbbDropdownItem type="button">Logout</button>
 </sbb-dropdown>
