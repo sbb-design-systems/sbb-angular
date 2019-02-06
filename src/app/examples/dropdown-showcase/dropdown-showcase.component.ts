@@ -12,4 +12,8 @@ export class DropdownShowcaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClick() {
+    console.log('Button clicked');
+
+  }
 }

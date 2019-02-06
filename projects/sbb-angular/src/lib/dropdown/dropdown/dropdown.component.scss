@@ -8,10 +8,22 @@
     @include autocompleteDirectionalRules($mode: reverse);
   }
 
+  &.sbb-dropdown-visible {
+    visibility: visible;
+  }
+
+  &.sbb-dropdown-hidden {
+    visibility: hidden;
+  }
+
   a,
   button {
     @include buttonResetFrameless;
     @include optionBase;
+    width: 100%;
+    &.sbb-selected {
+      color: $colorRed100;
+    }
   }
 
   hr {

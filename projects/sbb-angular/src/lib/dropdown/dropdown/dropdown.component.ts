@@ -55,7 +55,7 @@ export interface DropdownDefaultOptions {
 })
 export class DropdownComponent implements AfterContentInit {
 
-  @ContentChildren(DropdownItemDirective) items: QueryList<DropdownItemDirective>;
+  @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
 
 
   /** Manages active item in option list based on key events. */
@@ -68,7 +68,7 @@ export class DropdownComponent implements AfterContentInit {
   get isOpen(): boolean { return this._isOpen && this.showPanel; }
   _isOpen = false;
 
-  @HostBinding('class.sbb-autocomplete') sbbAutocomplete = false;
+  @HostBinding('class.sbb-dropdown') sbbDropdown = false;
 
   /** @docs-private */
   @ViewChild(TemplateRef) template: TemplateRef<any>;
@@ -128,7 +128,7 @@ export class DropdownComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(this.items).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(this.options).withWrap();
     // Set the initial visibility state.
     this.setVisibility();
   }
@@ -150,7 +150,7 @@ export class DropdownComponent implements AfterContentInit {
 
   /** Panel should hide itself when the option list is empty. */
   setVisibility() {
-    this.showPanel = !!this.items.length;
+    this.showPanel = !!this.options.length;
     this._classList['sbb-dropdown-visible'] = this.showPanel;
     this._classList['sbb-dropdown-hidden'] = !this.showPanel;
     this.changeDetectorRef.markForCheck();

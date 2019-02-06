@@ -27,7 +27,7 @@ import {
   OnInit
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable } from 'rxjs';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -36,28 +36,28 @@ import { DropdownOriginDirective } from './dropdown-origin.directive';
 import { DropdownSelectionChange, DropdownItemDirective, getOptionScrollPosition } from './dropdown-item.directive';
 
 /**
- * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
+ * Creates an error to be thrown when attempting to use an dropdown trigger without a panel.
  * @docs-private
  */
-export function getSbbAutocompleteMissingPanelError(): Error {
-  return Error('Attempting to open an undefined instance of `sbb-autocomplete`. ' +
-    'Make sure that the id passed to the `sbbAutocomplete` is correct and that ' +
+export function getSbbDropdownMissingPanelError(): Error {
+  return Error('Attempting to open an undefined instance of `sbb-dropdown`. ' +
+    'Make sure that the id passed to the `sbbDropdown` is correct and that ' +
     'you\'re attempting to open it after the ngAfterContentInit hook.');
 }
 
-/** Injection token that determines the scroll handling while the autocomplete panel is open. */
+/** Injection token that determines the scroll handling while the dropdown panel is open. */
 export const DROPDOWN_SCROLL_STRATEGY =
-  new InjectionToken<() => ScrollStrategy>('sbb-autocomplete-scroll-strategy');
+  new InjectionToken<() => ScrollStrategy>('sbb-dropdown-scroll-strategy');
 
 /** @docs-private */
 export function DROPDOWN_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
-/** The height of each autocomplete option. */
+/** The height of each dropdown option. */
 export const DROPDOWN_OPTION_HEIGHT = 40;
 
-/** The total height of the autocomplete panel. */
+/** The total height of the dropdown panel. */
 export const DROPDOWN_PANEL_HEIGHT = 404;
 
 export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
@@ -75,20 +75,16 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
     multi: true
   }]
 })
-export class DropdownTriggerDirective implements  OnDestroy {
+export class DropdownTriggerDirective implements OnDestroy {
   private overlayRef: OverlayRef | null;
   private portal: TemplatePortal;
   private componentDestroyed = false;
-  private _autocompleteDisabled = false;
+  private _dropdownDisabled = false;
 
-  /** Old value of the native input. Used to work around issues with the `input` event on IE. */
-  private previousValue: string | number | null;
+
 
   /** Strategy that is used to position the panel. */
   private positionStrategy: FlexibleConnectedPositionStrategy;
-
-  /** Whether or not the label state is being overridden. */
-  private manuallyFloatingLabel = false;
 
   /** The subscription for closing actions (some are bound to document). */
   private closingActionsSubscription: Subscription;
@@ -96,12 +92,6 @@ export class DropdownTriggerDirective implements  OnDestroy {
   /** Subscription to viewport size changes. */
   private viewportSubscription = Subscription.EMPTY;
   private positionSubscription = Subscription.EMPTY;
-  /**
-   * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
-   * closed autocomplete from being reopened if the user switches to another browser tab and then
-   * comes back.
-   */
-  private canOpenOnNextFocus = true;
 
   /** Stream of keyboard events that can close the panel. */
   private readonly closeKeyEventStream = new Subject<void>();
@@ -109,28 +99,32 @@ export class DropdownTriggerDirective implements  OnDestroy {
 
 
   @HostBinding('attr.role') get role() {
-    return this._autocompleteDisabled ? null : 'combobox';
+    return this.dropdownDisabled ? null : 'combobox';
   }
 
-  /** The autocomplete panel to be attached to this trigger. */
+  /** The dropdown panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
   @Input('sbbDropdown') dropdown: DropdownComponent;
 
   /**
-   * Reference relative to which to position the autocomplete panel.
-   * Defaults to the autocomplete trigger element.
+   * Reference relative to which to position the dropdown panel.
+   * Defaults to the dropdown trigger element.
    */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocompleteConnectedTo') connectedTo: DropdownOriginDirective;
+  @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
 
-  /**
-   * `autocomplete` attribute to be set on the input element.
-   * @docs-private
-   */
-  // tslint:disable-next-line:no-input-rename
-  @Input('autocomplete')
-  @HostBinding('attr.autocomplete')
-  autocompleteAttribute = 'off';
+  /** Stream of dropdown option selections. */
+  readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
+    if (this.dropdown && this.dropdown.options) {
+      return merge(...this.dropdown.options.map(option => option.selectionChange));
+    }
+
+    // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
+    // Return a stream that we'll replace with the real one once everything is in place.
+    return this.zone.onStable
+      .asObservable()
+      .pipe(take(1), switchMap(() => this.optionSelections));
+  });
 
   @HostListener('blur')
   onBlur() {
@@ -143,43 +137,28 @@ export class DropdownTriggerDirective implements  OnDestroy {
   }
 
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
-    return this.autocompleteDisabled ? null : this.panelOpen.toString();
+    return this.dropdownDisabled ? null : this.panelOpen.toString();
   }
 
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
-    return (this.autocompleteDisabled || !this.panelOpen) ? null : this.dropdown.id;
-  }
-
-  /**
-   * Event handler for when the window is blurred. Needs to be an
-   * arrow function in order to preserve the context.
-   */
-  private windowBlurHandler = () => {
-    // If the user blurred the window while the autocomplete is focused, it means that it'll be
-    // refocused when they come back. In this case we want to skip the first focus event, if the
-    // pane was closed, in order to avoid reopening it unintentionally.
-    this.canOpenOnNextFocus =
-      document.activeElement !== this.element.nativeElement || this.panelOpen;
+    return (this.dropdownDisabled || !this.panelOpen) ? null : this.dropdown.id;
   }
 
   /** `View -> model callback called when value changes` */
   onChange: (value: any) => void = () => { };
 
-  /** `View -> model callback called when autocomplete has been touched` */
+  /** `View -> model callback called when dropdown has been touched` */
   onTouched = () => { };
 
   /**
-   * Whether the autocomplete is disabled. When disabled, the element will
+   * Whether the dropdown is disabled. When disabled, the element will
    * act as a regular input and the user won't be able to open the panel.
    */
   @Input('sbbDropdownDisabled')
-  get autocompleteDisabled(): boolean { return this._autocompleteDisabled; }
-  set autocompleteDisabled(value: boolean) {
-    this._autocompleteDisabled = coerceBooleanProperty(value);
+  get dropdownDisabled(): boolean { return this._dropdownDisabled; }
+  set dropdownDisabled(value: boolean) {
+    this._dropdownDisabled = coerceBooleanProperty(value);
   }
-
-  @HostBinding('attr.aria-autocomplete')
-  get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
 
   constructor(
     private element: ElementRef<HTMLInputElement>,
@@ -191,19 +170,9 @@ export class DropdownTriggerDirective implements  OnDestroy {
     @Optional() @Inject(DOCUMENT) private _document: any,
     private viewportRuler?: ViewportRuler
   ) {
-
-    if (typeof window !== 'undefined') {
-      zone.runOutsideAngular(() => {
-        window.addEventListener('blur', this.windowBlurHandler);
-      });
-    }
   }
 
   ngOnDestroy() {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('blur', this.windowBlurHandler);
-    }
-
     this.viewportSubscription.unsubscribe();
     this.positionSubscription.unsubscribe();
     this.componentDestroyed = true;
@@ -211,20 +180,19 @@ export class DropdownTriggerDirective implements  OnDestroy {
     this.closeKeyEventStream.complete();
   }
 
-  /** Whether or not the autocomplete panel is open. */
+  /** Whether or not the dropdown panel is open. */
   get panelOpen(): boolean {
     return this.overlayAttached && this.dropdown.showPanel;
   }
 
-  /** Opens the autocomplete suggestion panel. */
+  /** Opens the dropdown suggestion panel. */
   openPanel(): void {
     this.attachOverlay();
   }
 
-  /** Closes the autocomplete suggestion panel. */
+  /** Closes the dropdown suggestion panel. */
   closePanel(): void {
-    this.resetLabel();
-
+    console.log('closePanel');
     if (!this.overlayAttached) {
       return;
     }
@@ -252,12 +220,14 @@ export class DropdownTriggerDirective implements  OnDestroy {
     }
   }
 
+
   /**
-   * A stream of actions that should close the autocomplete panel, including
+   * A stream of actions that should close the dropdown panel, including
    * when an option is selected, on blur, and when TAB is pressed.
    */
   get panelClosingActions(): Observable<DropdownSelectionChange | null> {
     return merge(
+      this.optionSelections,
       this.dropdown.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
       this.closeKeyEventStream,
       this.getOutsideClickStream(),
@@ -283,7 +253,7 @@ export class DropdownTriggerDirective implements  OnDestroy {
     return null;
   }
 
-  /** Stream of clicks outside of the autocomplete panel. */
+  /** Stream of clicks outside of the dropdown panel. */
   private getOutsideClickStream(): Observable<any> {
     if (!this._document) {
       return observableOf(null);
@@ -320,14 +290,14 @@ export class DropdownTriggerDirective implements  OnDestroy {
       this.activeOption.selectViaInteraction();
       this.resetActiveItem();
       event.preventDefault();
+      this.closePanel();
     } else if (this.dropdown) {
       const prevActiveItem = this.dropdown.keyManager.activeItem;
       const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
       if (this.panelOpen || keyCode === TAB) {
         this.dropdown.keyManager.onKeydown(event);
-      } else if (isArrowKey && this.canOpen()) {
+      } else if ((isArrowKey) && this.canOpen()) {
         this.openPanel();
-
       }
       if (isArrowKey || this.dropdown.keyManager.activeItem !== prevActiveItem) {
         this.scrollToOption();
@@ -353,23 +323,20 @@ export class DropdownTriggerDirective implements  OnDestroy {
     this.dropdown.setScrollTop(newScrollPosition);
   }
 
+  @HostListener('click', ['$event'])
+  handleClick(event): void {
+    if (event instanceof MouseEvent) {
 
-  @HostListener('focusin')
-  handleFocus(): void {
-    if (!this.canOpenOnNextFocus) {
-      this.canOpenOnNextFocus = true;
-    } else if (this.canOpen()) {
-      this.previousValue = this.element.nativeElement.value;
-      this.attachOverlay();
+      if (!this.panelOpen) {
+        if (this.canOpen()) {
+          this.openPanel();
+        }
+      } else {
+        this.closePanel();
+      }
     }
   }
 
-  /** If the label has been manually elevated, return it to its normal state. */
-  private resetLabel(): void {
-    if (this.manuallyFloatingLabel) {
-      this.manuallyFloatingLabel = false;
-    }
-  }
 
   /**
  * This method listens to a stream of panel closing actions and resets the
@@ -377,7 +344,7 @@ export class DropdownTriggerDirective implements  OnDestroy {
  */
   private subscribeToClosingActions(): Subscription {
     const firstStable = this.zone.onStable.asObservable().pipe(first());
-    const optionChanges = this.dropdown.items.changes.pipe(
+    const optionChanges = this.dropdown.options.changes.pipe(
       tap(() => this.positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
       // bindings in here will cause "changed after checked" errors.
@@ -407,28 +374,13 @@ export class DropdownTriggerDirective implements  OnDestroy {
       .subscribe(event => this.setValueAndClose(event));
   }
 
-  /** Destroys the autocomplete suggestion panel. */
+  /** Destroys the dropdown suggestion panel. */
   private destroyPanel(): void {
     if (this.overlayRef) {
       this.closePanel();
       this.overlayRef.dispose();
       this.overlayRef = null;
     }
-  }
-
-  private setTriggerValue(value: any): void {
-    const toDisplay = this.dropdown && this.dropdown.displayWith ?
-      this.dropdown.displayWith(value) :
-      value;
-
-    // Simply falling back to an empty string if the display value is falsy does not work properly.
-    // The display value can also be the number zero and shouldn't fall back to an empty string.
-    const inputValue = toDisplay != null ? toDisplay : '';
-
-    // If it's used within a `SbbField`, we should set it through the property so it can go
-    // through change detection.
-    this.element.nativeElement.value = inputValue;
-    this.previousValue = inputValue;
   }
 
   /**
@@ -450,7 +402,7 @@ export class DropdownTriggerDirective implements  OnDestroy {
    * Clear any previous selected option and emit a selection change event for this option
    */
   private clearPreviousSelectedOption(skip: DropdownItemDirective) {
-    this.dropdown.items.forEach(item => {
+    this.dropdown.options.forEach(item => {
       // tslint:disable-next-line:triple-equals
       if (item != skip && item.selected) {
         item.deselect();
@@ -460,7 +412,7 @@ export class DropdownTriggerDirective implements  OnDestroy {
 
   private attachOverlay(): void {
     if (!this.dropdown) {
-      throw getSbbAutocompleteMissingPanelError();
+      throw getSbbDropdownMissingPanelError();
     }
     if (!this.overlayRef) {
       this.portal = new TemplatePortal(this.dropdown.template, this.viewContainerRef);
@@ -516,7 +468,7 @@ export class DropdownTriggerDirective implements  OnDestroy {
     this.dropdown._isOpen = this.overlayAttached = true;
 
     // We need to do an extra `panelOpen` check in here, because the
-    // autocomplete won't be shown if there are no options.
+    // dropdown won't be shown if there are no options.
     if (this.panelOpen && wasOpen !== this.panelOpen) {
       this.dropdown.opened.emit();
     }
@@ -583,6 +535,6 @@ export class DropdownTriggerDirective implements  OnDestroy {
     const element = this.element.nativeElement;
     return !element.readOnly &&
       !element.disabled &&
-      !this.autocompleteDisabled;
+      !this.dropdownDisabled;
   }
 }

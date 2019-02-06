@@ -1,5 +1,6 @@
 import { Directive, ElementRef, HostBinding, ChangeDetectorRef, HostListener, InjectionToken, Output, EventEmitter } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
+import { ENTER, SPACE } from '@angular/cdk/keycodes';
 
 let counter = 0;
 
@@ -54,7 +55,7 @@ export function getOptionScrollPosition(optionIndex: number, optionHeight: numbe
 export class DropdownItemDirective implements Highlightable {
   id = 'sbb-dropdown-item-' + counter++;
 
-  disabled?: boolean;
+  disabled?= false;
   selected = false;
 
   @Output()
@@ -85,30 +86,48 @@ export class DropdownItemDirective implements Highlightable {
     private changeDetectorRef: ChangeDetectorRef
   ) { }
 
-  @HostListener('focus')
-  focus() {
-    this.elementRef.nativeElement.focus();
-  }
+  @HostListener('keydown', ['$event'])
+  handleKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line
+    if (event.keyCode === ENTER || event.keyCode === SPACE) {
+      this.selectViaInteraction();
 
-  @HostListener('click')
-  selectViaInteraction(): void {
-    if (!this.disabled) {
-      this.selected = true;
-      this.changeDetectorRef.markForCheck();
-      this.emitSelectionChangeEvent(true);
+      // Prevent the page from scrolling down and form submits.
+      event.preventDefault();
     }
   }
 
-  private emitSelectionChangeEvent(isUserInput = false): void {
+  @HostListener('click')
+  onClick(): void {
+    this.emitSelectionChangeEvent();
+  }
+
+  selectViaInteraction(): void {
+    // this.elementRef.nativeElement.click();
+    this.emitSelectionChangeEvent();
+  }
+
+  private emitSelectionChangeEvent(): void {
     this.selectionChange.emit(new DropdownSelectionChange(this));
+    console.log('selectionChange');
+
   }
 
-  deselect() {
-    this.selected = false;
+  select(): void {
+    if (!this.selected) {
+      this.selected = true;
+      this.changeDetectorRef.markForCheck();
+      this.emitSelectionChangeEvent();
+    }
   }
 
-  select() {
-    this.selected = true;
+  deselect(): void {
+    if (this.selected) {
+      this.selected = false;
+      this.changeDetectorRef.markForCheck();
+      this.emitSelectionChangeEvent();
+    }
   }
+
 
 }
