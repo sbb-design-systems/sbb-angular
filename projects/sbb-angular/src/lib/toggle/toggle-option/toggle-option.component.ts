@@ -121,7 +121,9 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
     this._document = document;
   }
 
-  @Input() @ContentChild(ToggleOptionIconDirective, { read: TemplateRef })
+  @Input()
+  @HostBinding('class.sbb-toggle-option-has-icon')
+  @ContentChild(ToggleOptionIconDirective, { read: TemplateRef })
   icon?: TemplateRef<any>;
 
   @ViewChild('toggleOptionContentContainer')

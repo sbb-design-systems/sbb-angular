@@ -14,10 +14,10 @@ export class ToggleShowcaseComponent implements OnInit {
   modelReactive = 'Option_2';
 
   toggleOptions: Observable<any> = of([{
-    'label': 'Toggle 1',
+    'label': 'Einfache Fahrt',
     'value': 'Option_1'
   }, {
-    'label': 'Toggle 2',
+    'label': 'Hin- und Rückfahrt',
     'value': 'Option_2'
   }]);
 

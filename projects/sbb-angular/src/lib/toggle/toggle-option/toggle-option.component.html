@@ -1,29 +1,36 @@
 <label [attr.for]="inputId" class="sbb-toggle-option-button">
-  <input type="radio"
-         [id]="inputId"
-         [name]="name"
-         [value]="value"
-         [required]="required"
-         [checked]="checked"
-         [attr.aria-checked]="checked"
-         [attr.aria-label]="ariaLabel"
-         [attr.aria-labelledby]="ariaLabelledby"
-         [attr.aria-describedby]="ariaDescribedby"
-         [disabled]="disabled"
-         [attr.aria-controls]="ariaControls"
-         [attr.aria-expanded]="ariaExpandedValue"
-         (click)="click($event)" />
-
-  <span role="presentation" class="sbb-toggle-option-button-icon">
-    <ng-container *ngTemplateOutlet="icon"></ng-container>
-  </span>
-  <span class="sbb-toggle-option-button-label">{{ label }}</span>
-  <span class="visuallyhidden">&nbsp;</span>
-  <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">{{ infoText }}</span>
+  <div class="sbb-toggle-option-button-inner">
+    <input type="radio"
+          [id]="inputId"
+          [name]="name"
+          [value]="value"
+          [required]="required"
+          [checked]="checked"
+          [attr.aria-checked]="checked"
+          [attr.aria-label]="ariaLabel"
+          [attr.aria-labelledby]="ariaLabelledby"
+          [attr.aria-describedby]="ariaDescribedby"
+          [disabled]="disabled"
+          [attr.aria-controls]="ariaControls"
+          [attr.aria-expanded]="ariaExpandedValue"
+          (click)="click($event)" />
+    <span class="sbb-toggle-option-button-label-wrapper">
+      <span *ngIf="icon" role="presentation" class="sbb-toggle-option-button-icon">
+        <ng-container *ngTemplateOutlet="icon"></ng-container>
+      </span>
+      <span class="sbb-toggle-option-button-label">{{ label }}</span>
+      <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">
+        <span class="visuallyhidden">&nbsp;</span>
+        {{ infoText }}
+      </span>
+    </span>
+  </div>
 </label>
 
 <section #toggleOptionContentContainer
          *ngIf="toggleOptionHasContent"
+         [attr.tabindex]="checked ? 0 : -1"
+         [attr.aria-hidden]="!checked"
          [attr.id]="contentId" 
          class="sbb-toggle-option-content">
   <ng-content></ng-content>
