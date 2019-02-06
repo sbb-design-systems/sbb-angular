@@ -32,7 +32,8 @@ import {
   TextexpandModule,
   CheckboxModule,
   TagModule,
-  ToggleModule
+  ToggleModule,
+  PaginationModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -68,9 +69,9 @@ import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkb
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
+import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
-
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
@@ -106,6 +107,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     ToggleShowcaseComponent,
+    PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent
@@ -139,6 +141,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     NotificationsModule,
     TableModule,
     ToggleModule,
+    PaginationModule,
     TooltipModule,
     TextexpandModule,
     TagModule
@@ -160,6 +163,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    PaginationShowcaseComponent,
     TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,

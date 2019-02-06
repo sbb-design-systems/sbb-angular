@@ -52,6 +52,7 @@ import { NotificationShowcaseComponent } from './examples/notification-showcase/
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 import { ToggleShowcaseComponent } from './examples/toggle-showcase/toggle-showcase.component';
+import { PaginationShowcaseComponent } from './examples/pagination-showcase/pagination-showcase.component';
 import { TooltipShowcaseComponent } from './examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
@@ -113,6 +114,7 @@ import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.compo
     NotificationShowcaseComponent,
     TableShowcaseComponent,
     ToggleShowcaseComponent,
+    PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
