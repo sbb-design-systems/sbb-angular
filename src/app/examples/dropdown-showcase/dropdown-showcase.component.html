@@ -22,11 +22,11 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Custom trigger</h4>
-      <div class="dropdown-avatar" [sbbDropdown]="dropdown" [class.dropdown-avatar-active]="dropdown.isOpen" >
+      <div class="dropdown-avatar" [sbbDropdown]="dropdown2" [class.dropdown-avatar-active]="dropdown2.isOpen" >
         <img src="https://issues-ext.sbb.ch/secure/useravatar?ownerId=daresta">
         <div *ngIf="dropdown.isOpen">Davide Aresta</div>
       </div>
-      <sbb-dropdown #dropdown="sbbDropdown">
+      <sbb-dropdown #dropdown2="sbbDropdown">
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
