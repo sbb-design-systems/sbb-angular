@@ -88,7 +88,6 @@ export class DropdownItemDirective implements Highlightable {
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 
@@ -103,14 +102,11 @@ export class DropdownItemDirective implements Highlightable {
   }
 
   selectViaInteraction(): void {
-    // this.elementRef.nativeElement.click();
-    this.emitSelectionChangeEvent();
+    this.elementRef.nativeElement.click();
   }
 
   private emitSelectionChangeEvent(): void {
     this.selectionChange.emit(new DropdownSelectionChange(this));
-    console.log('selectionChange');
-
   }
 
   select(): void {

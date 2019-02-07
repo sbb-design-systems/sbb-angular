@@ -68,7 +68,7 @@ export class DropdownComponent implements AfterContentInit {
   get isOpen(): boolean { return this._isOpen && this.showPanel; }
   _isOpen = false;
 
-  @HostBinding('class.sbb-dropdown') sbbDropdown = false;
+  @HostBinding('class.sbb-dropdown') sbbDropdown = true;
 
   /** @docs-private */
   @ViewChild(TemplateRef) template: TemplateRef<any>;

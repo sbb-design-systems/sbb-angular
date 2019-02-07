@@ -1,4 +1,4 @@
-import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, SPACE, HOME, END, A } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
   Overlay,
@@ -135,6 +135,54 @@ export class DropdownTriggerDirective implements OnDestroy {
   onKeydown($event: KeyboardEvent) {
     this.handleKeydown($event);
   }
+
+
+  /** Handles all keydown events on the select. */
+  handleKeydown(event: KeyboardEvent): void {
+    if (!this.dropdownDisabled) {
+      this.panelOpen ? this.handleOpenKeydown(event) : this.handleClosedKeydown(event);
+    }
+  }
+
+  /** Handles keyboard events while the select is closed. */
+  private handleClosedKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW ||
+      keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW;
+    const isOpenKey = keyCode === ENTER || keyCode === SPACE;
+
+    // Open the select on ALT + arrow key to match the native <select>
+    if (isOpenKey || ((event.altKey) && isArrowKey)) {
+      event.preventDefault(); // prevents the page from scrolling down when pressing space
+      this.openPanel();
+    } else {
+      this.dropdown.keyManager.onKeydown(event);
+
+    }
+
+  }
+
+  /** Handles keyboard events when the selected is open. */
+  private handleOpenKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
+    const manager = this.dropdown.keyManager;
+
+    if (keyCode === HOME || keyCode === END) {
+      event.preventDefault();
+      keyCode === HOME ? manager.setFirstItemActive() : manager.setLastItemActive();
+    } else if (isArrowKey && event.altKey) {
+      // Close the select on ALT + arrow key to match the native <select>
+      event.preventDefault();
+      this.closePanel();
+    } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
+      event.preventDefault();
+      manager.activeItem.selectViaInteraction();
+    } else {
+      manager.onKeydown(event);
+    }
+  }
+
 
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.dropdownDisabled ? null : this.panelOpen.toString();
@@ -274,41 +322,41 @@ export class DropdownTriggerDirective implements OnDestroy {
           (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
       }));
   }
-
-  handleKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line
-    const keyCode = event.keyCode;
-
-    // Prevent the default action on all escape key presses. This is here primarily to bring IE
-    // in line with other browsers. By default, pressing escape on IE will cause it to revert
-    // the input value to the one that it had on focus, however it won't dispatch any events
-    // which means that the model value will be out of sync with the view.
-    if (keyCode === ESCAPE) {
-      event.preventDefault();
-    }
-
-    if (this.activeOption && keyCode === ENTER && this.panelOpen) {
-      this.activeOption.selectViaInteraction();
-      this.resetActiveItem();
-      event.preventDefault();
-      this.closePanel();
-    } else if (this.dropdown) {
-      const prevActiveItem = this.dropdown.keyManager.activeItem;
-      const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-      if (this.panelOpen || keyCode === TAB) {
-        this.dropdown.keyManager.onKeydown(event);
-      } else if ((isArrowKey) && this.canOpen()) {
-        this.openPanel();
+  /* 
+    handleKeydown(event: KeyboardEvent): void {
+      // tslint:disable-next-line
+      const keyCode = event.keyCode;
+  
+      // Prevent the default action on all escape key presses. This is here primarily to bring IE
+      // in line with other browsers. By default, pressing escape on IE will cause it to revert
+      // the input value to the one that it had on focus, however it won't dispatch any events
+      // which means that the model value will be out of sync with the view.
+      if (keyCode === ESCAPE) {
+        event.preventDefault();
       }
-      if (isArrowKey || this.dropdown.keyManager.activeItem !== prevActiveItem) {
-        this.scrollToOption();
+  
+      if (this.activeOption && keyCode === ENTER && this.panelOpen) {
+        this.activeOption.selectViaInteraction();
+        this.resetActiveItem();
+        event.preventDefault();
+        this.closePanel();
+      } else if (this.dropdown) {
+        const prevActiveItem = this.dropdown.keyManager.activeItem;
+        const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
+        if (this.panelOpen || keyCode === TAB) {
+          this.dropdown.keyManager.onKeydown(event);
+        } else if ((isArrowKey) && this.canOpen()) {
+          this.openPanel();
+        }
+        if (isArrowKey || this.dropdown.keyManager.activeItem !== prevActiveItem) {
+          this.scrollToOption();
+        }
       }
-    }
-    this.zone.onStable
-      .asObservable()
-      .pipe()
-      .subscribe();
-  }
+      this.zone.onStable
+        .asObservable()
+        .pipe()
+        .subscribe();
+    } */
 
   scrollToOption(): void {
     const index = this.dropdown.keyManager.activeItemIndex || 0;
