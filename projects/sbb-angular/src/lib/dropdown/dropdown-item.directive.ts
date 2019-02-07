@@ -56,6 +56,8 @@ export class DropdownItemDirective implements Highlightable {
   id = 'sbb-dropdown-item-' + counter++;
 
   disabled?= false;
+
+  @HostBinding('class.sbb-selected')
   selected = false;
 
   @Output()

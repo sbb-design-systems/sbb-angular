@@ -322,41 +322,6 @@ export class DropdownTriggerDirective implements OnDestroy {
           (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
       }));
   }
-  /* 
-    handleKeydown(event: KeyboardEvent): void {
-      // tslint:disable-next-line
-      const keyCode = event.keyCode;
-  
-      // Prevent the default action on all escape key presses. This is here primarily to bring IE
-      // in line with other browsers. By default, pressing escape on IE will cause it to revert
-      // the input value to the one that it had on focus, however it won't dispatch any events
-      // which means that the model value will be out of sync with the view.
-      if (keyCode === ESCAPE) {
-        event.preventDefault();
-      }
-  
-      if (this.activeOption && keyCode === ENTER && this.panelOpen) {
-        this.activeOption.selectViaInteraction();
-        this.resetActiveItem();
-        event.preventDefault();
-        this.closePanel();
-      } else if (this.dropdown) {
-        const prevActiveItem = this.dropdown.keyManager.activeItem;
-        const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
-        if (this.panelOpen || keyCode === TAB) {
-          this.dropdown.keyManager.onKeydown(event);
-        } else if ((isArrowKey) && this.canOpen()) {
-          this.openPanel();
-        }
-        if (isArrowKey || this.dropdown.keyManager.activeItem !== prevActiveItem) {
-          this.scrollToOption();
-        }
-      }
-      this.zone.onStable
-        .asObservable()
-        .pipe()
-        .subscribe();
-    } */
 
   scrollToOption(): void {
     const index = this.dropdown.keyManager.activeItemIndex || 0;
