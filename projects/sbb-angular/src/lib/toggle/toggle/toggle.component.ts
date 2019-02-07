@@ -56,21 +56,45 @@ export class ToggleComponent extends RadioButton
    */
   @Input()
   formControlName: string;
-
+  /**
+   * Attribute name of sbb-toggle.
+   */
   @Input()
   name: string;
-
+  /**
+   * Css class on sbb-toggle.
+   */
   @HostBinding('class.sbb-toggle')
   toggleClass = true;
-
+  /**
+   * Role of sbb-toggle.
+   */
   @HostBinding('attr.role')
   role = 'radiogroup';
-
+  /**
+   * Event generated on a change of sbb-toggle.
+   */
   @Output()
   toggleChange = new EventEmitter<any[]>();
 
+  /**
+   * Reference to sbb-toggle-options.
+   */
+  @ContentChildren(forwardRef(() => ToggleOptionComponent))
+  toggleOptions: QueryList<ToggleOptionComponent>;
+
+
   private _toggleValueChangesSubscription = Subscription.EMPTY;
   private _toggleValueChanges$: Observable<any>;
+
+  /**
+   * Class property that represents a change on the radio button
+   */
+  onChange = (_: any) => { };
+  /**
+   * Class property that represents a touch on the radio button
+   */
+  onTouched = () => { };
 
   constructor(private zone: NgZone) {
     super();
@@ -83,9 +107,6 @@ export class ToggleComponent extends RadioButton
     );
   }
 
-  @ContentChildren(forwardRef(() => ToggleOptionComponent))
-  toggleOptions: QueryList<ToggleOptionComponent>;
-
   ngOnInit() {
     this.checkName();
   }
@@ -93,11 +114,7 @@ export class ToggleComponent extends RadioButton
   ngAfterContentInit() {
     this.checkNumOfOptions();
 
-    this._toggleValueChanges$ = of(this.toggleOptions.map(toggle => toggle.valueChange$))
-      .pipe(
-        switchMap(valueChange => merge(...valueChange))
-      );
-
+    this._toggleValueChanges$ = merge(...this.toggleOptions.map(toggle => toggle.valueChange$));
     this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(
       (value) => {
         this.onChange(value);
@@ -111,15 +128,6 @@ export class ToggleComponent extends RadioButton
   ngOnDestroy() {
     this._toggleValueChangesSubscription.unsubscribe();
   }
-
-  /**
-   * Class property that represents a change on the radio button
-   */
-  onChange = (_: any) => { };
-  /**
-   * Class property that represents a touch on the radio button
-   */
-  onTouched = () => { };
 
   writeValue(value: any): void {
     this.value = value;

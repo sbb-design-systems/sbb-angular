@@ -37,30 +37,55 @@ let counter = 0;
 })
 export class ToggleOptionComponent extends RadioButtonComponent implements ToggleBase, AfterViewInit {
 
+  /**
+   * Identifier of a sbb-toggle-option.
+   */
   @Input()
   inputId = `sbb-toggle-option-${counter++}`;
 
+  /**
+   * Identifier of sbb-toggle label.
+   */
   get labelId() {
     return `${this.inputId}-label`;
   }
 
+  /**
+   * Identifier of sbb-toggle content.
+   */
   get contentId() {
     return `${this.inputId}-content`;
   }
 
+  /**
+   * Css class of sbb-toggle-option.
+   */
   @HostBinding('class.sbb-toggle-option')
   toggleOptionClass = true;
 
+  /**
+   * Label of a sbb-toggle-option.
+   */
   @Input()
   label: string;
 
+  /**
+   * Information text in a sbb-toggle-option.
+   */
   @Input()
   infoText?: string;
 
+  /**
+   * Value of a sbb-toggle-option.
+   */
   @Input()
   value: any;
 
   private _toggleChecked: boolean;
+
+  /**
+   * Verifies if a sbb-toggle-option is selected.
+   */
   @Input()
   @HostBinding('class.sbb-toggle-option-selected')
   get checked(): boolean {
@@ -77,6 +102,9 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
     this._changeDetector.markForCheck();
   }
 
+  /**
+   * Name of a toggle parent of options.
+   */
   @Input()
   get name() {
     return `${this._parent.inputId}-option`;
@@ -86,28 +114,50 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
      Please bind it to its parent <sbb-toggle> component.`);
   }
 
+  /**
+   * @docs-private
+   */
   @Input()
   get formControlName() {
     return null;
   }
+
+  /**
+   * @docs-private
+   */
   set formControlName(value) {
     throw new Error(`You're trying to assign the formControlName "${value}" directly on sbb-toggle-option.
      Please bind it to its parent <sbb-toggle> component.`);
   }
 
+  /**
+   * Aria expanded value is true when a toggle button is selected.
+   */
   get ariaExpandedValue(): boolean | undefined {
     return this.toggleOptionHasContent ? this.checked : undefined;
   }
 
+  /**
+   * Aria controls associated to toggle option content.
+   */
   get ariaControls(): string | undefined {
     return this.toggleOptionHasContent ? this.contentId : undefined;
   }
 
+  /**
+   * Verifies if a toggle option is disabled.
+   */
   @Input()
   disabled = false;
 
+  /**
+   * Verifies the presence of text in a toggle option.
+   */
   toggleOptionHasContent = true;
 
+  /**
+   * Observable on change of the value of a toggle option.
+   */
   valueChange$ = new Subject<any>();
 
   private _document: Document;
@@ -121,14 +171,23 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
     this._document = document;
   }
 
+  /**
+   * Refers to the icon optionally contained in a toggle option.
+   */
   @Input()
   @HostBinding('class.sbb-toggle-option-has-icon')
   @ContentChild(ToggleOptionIconDirective, { read: TemplateRef })
   icon?: TemplateRef<any>;
 
+  /**
+   * Refers to the content of a toggle option.
+   */
   @ViewChild('toggleOptionContentContainer')
   contentContainer: ElementRef<Element>;
 
+  /**
+   * Filter on a toggle option content.
+   */
   filteredContentNodes: ChildNode[] = [];
 
   ngAfterViewInit() {
@@ -144,6 +203,10 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
     }
   }
 
+  /**
+   * Set value of a toggle option to checked.
+   * @param checked Value checked.
+   */
   setToggleChecked(checked: boolean) {
     this.onChange(checked);
     this.onTouched();
