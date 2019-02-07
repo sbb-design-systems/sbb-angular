@@ -1,7 +1,41 @@
-<button sbbButton type="button" [sbbDropdown]="dropdown" >Open dropdown</button>
-<sbb-dropdown #dropdown="sbbDropdown">
-  <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
-  <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
-  <hr>
-  <button sbbDropdownItem type="button" (click)="onClick()">Logout</button>
-</sbb-dropdown>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Button trigger</h4>
+      <button sbbButton type="button" [sbbDropdown]="dropdown" >Open dropdown</button>
+      <sbb-dropdown #dropdown="sbbDropdown">
+        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
+        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
+        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
+        <hr>
+        <button sbbDropdownItem type="button" (click)="onClick()">Logout</button>
+      </sbb-dropdown>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+     
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Custom trigger</h4>
+      <div class="dropdown-avatar" [sbbDropdown]="dropdown" [class.dropdown-avatar-active]="dropdown.isOpen" >
+        <img src="https://issues-ext.sbb.ch/secure/useravatar?ownerId=daresta">
+        <div *ngIf="dropdown.isOpen">Davide Aresta</div>
+      </div>
+      <sbb-dropdown #dropdown="sbbDropdown">
+        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
+        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
+        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
+        <hr>
+        <button sbbDropdownItem type="button" (click)="onClick()">Logout</button>
+      </sbb-dropdown>    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+     
+    </div>
+  </div>
+</div>
