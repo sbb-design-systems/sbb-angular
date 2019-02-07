@@ -24,7 +24,7 @@
       <h4 class="sbbsc-block">Custom trigger</h4>
       <div class="dropdown-avatar" [sbbDropdown]="dropdown2" [class.dropdown-avatar-active]="dropdown2.isOpen" >
         <img src="https://issues-ext.sbb.ch/secure/useravatar?ownerId=daresta">
-        <div *ngIf="dropdown.isOpen">Davide Aresta</div>
+        <div *ngIf="dropdown2.isOpen">Davide Aresta</div>
       </div>
       <sbb-dropdown #dropdown2="sbbDropdown">
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
