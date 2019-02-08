@@ -15,6 +15,8 @@ export class CaptchaShowcaseComponent {
 
   formModel: FormModel = {};
 
+  testSiteKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+
   resolved(captchaResponse: string) {
     this.basicCaptchaResponse = captchaResponse;
   }
