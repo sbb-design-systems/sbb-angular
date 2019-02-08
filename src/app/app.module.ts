@@ -18,8 +18,7 @@ import { ContentComponent } from './content/content.component';
 import { IconViewerDirective } from './directives/icon-viewer.directive';
 
 import { ReplacePipe } from './shared/replace.pipe';
-import { IconComponents } from './sbb-components-mapping-export';
-import { IconCommonModule } from 'sbb-angular';
+import { IconCollectionModule } from 'sbb-angular';
 import { ComponentViewerDirective } from './directives/component-viewer.directive';
 import { ExamplesModule } from './examples/examples.module';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
@@ -51,6 +50,7 @@ import { RadioButtonPanelShowcaseComponent } from './examples/radio-button-panel
 import { NotificationShowcaseComponent } from './examples/notification-showcase/notification-showcase.component';
 import { TypographyComponent } from './typography/typography.component';
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
+import { iconComponentList } from './svg-icon-collection';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,7 @@ import { TableShowcaseComponent } from './examples/table-showcase/table-showcase
     NgbModule,
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     AppRoutingModule,
-    IconCommonModule,
+    IconCollectionModule,
     ExamplesModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     PerfectScrollbarModule,
@@ -108,7 +108,7 @@ import { TableShowcaseComponent } from './examples/table-showcase/table-showcase
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
-    ...IconComponents.types
+    ...iconComponentList
   ]
 })
 export class AppModule { }

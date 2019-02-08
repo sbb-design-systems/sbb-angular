@@ -13,7 +13,7 @@ import { IconBase } from '../../icon-base';
 })
 export class IconTrainformation1ClassComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 24 25' });
+    super({ viewBox: '0 0 24 25', width: '24', height: '25' });
   }
 }
 

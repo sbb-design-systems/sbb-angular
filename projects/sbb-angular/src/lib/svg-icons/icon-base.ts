@@ -11,8 +11,8 @@ export abstract class IconBase {
   constructor(values: Partial<IconBase> = {}) {
     this.viewBox = values.viewBox;
     this.preserveAspectRatio = values.preserveAspectRatio;
-    this.width = values.width || '100%';
-    this.height = values.height || '100%';
-    this.svgClass = values.svgClass;
+    this.width = values.width;
+    this.height = values.height;
+    this.svgClass = values.svgClass || '';
   }
 }

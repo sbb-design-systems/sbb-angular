@@ -13,7 +13,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconPlayButtonBigComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 17 18' });
+    super({ viewBox: '0 0 17 18', width: '17', height: '18' });
   }
 }
 

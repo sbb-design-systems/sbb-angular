@@ -4,11 +4,13 @@
     <td><code class="sbbsc-cards-card-icon-selector">{{ getSelector(uiIcon.selector) }}</code></td>
   </tr>
   <tr>
-    <th>Categories:</th>
+    <th>Modules:</th>
     <td>
-      <div class="sbbsc-cards-card-badge" *ngFor="let tag of uiIcon['tags']">
-        <span>{{ tag }} </span>
-      </div>
+      <code>
+        <ng-container *ngFor="let module of uiIcon.modules">
+          import {{ '{ ' + module + ' }' }} from 'sbb-angular';<br>
+        </ng-container>
+      </code>
     </td>
   </tr>
 
@@ -17,4 +19,4 @@
     <td><code>svgClass: CSS classes to change the underlying SVG style</code></td>
   </tr>
 </table>
-<ng-template [sbbIconViewer]="uiIcon" singleOrMultiple="multiple"></ng-template>
+<ng-template [sbbIconViewer]="uiIcon"></ng-template>

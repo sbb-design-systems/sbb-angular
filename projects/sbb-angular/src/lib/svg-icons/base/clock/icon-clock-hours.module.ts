@@ -13,7 +13,7 @@ import { IconBase } from '../../icon-base';
 })
 export class IconClockHoursComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 226 226' });
+    super({ viewBox: '0 0 226 226', width: '226', height: '226' });
   }
 }
 

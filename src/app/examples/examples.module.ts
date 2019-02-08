@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
-  IconCommonModule,
+  IconCollectionModule,
   TextareaModule,
   FieldModule,
   LinksModule,
@@ -109,7 +109,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     CheckboxModule,
     DatepickerModule,
     TimeInputModule,
-    IconCommonModule,
+    IconCollectionModule,
     TabsModule,
     LoadingModule,
     LightboxModule,

@@ -8,12 +8,12 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-product-ic-11',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M212 21.2V79h-11.5V41.1h-13.6v-8.4c2.3 0 4.6-.3 6.9-.9 1.8-.5 3.4-1.3 4.9-2.5 2.1-1.6 3.6-4.4 4.3-8.3l9 .2zm38.6 0V79H239V41.1h-13.6v-8.4c2.3 0 4.6-.3 6.9-.9 1.8-.5 3.4-1.3 4.9-2.5 2.1-1.6 3.6-4.4 4.3-8.3l9.1.2zM46.3 21h20.3L41.4 79H21l25.3-58zM80 21h72.2l-7.5 17.2H93.2L82.9 61.8h51.6L127.1 79H54.8L80 21z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M42.403 4.235V15.8h-2.31V8.23h-2.721V6.553c.564-.016 1.024-.074 1.38-.174.356-.1.682-.264.977-.49.427-.328.714-.879.862-1.654h1.812zM50.116 4.235V15.8h-2.31V8.23h-2.721V6.553c.565-.016 1.025-.074 1.38-.174.357-.1.682-.264.978-.49.427-.328.714-.879.862-1.654h1.811zM9.252 4.2h4.07L8.287 15.8H4.2zM16.002 4.2h14.444L28.95 7.645H18.635l-2.048 4.71h10.32L25.412 15.8H10.968l5.034-11.6z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconProductIc11Component extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 296 100' });
+    super({ viewBox: '0 0 59 20', width: '59', height: '20' });
   }
 }
 

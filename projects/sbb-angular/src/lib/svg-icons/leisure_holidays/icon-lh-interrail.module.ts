@@ -13,7 +13,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconLhInterrailComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 72 28' });
+    super({ viewBox: '0 0 72 28', width: '72', height: '28' });
   }
 }
 

@@ -108,8 +108,12 @@ import {
 ${iconComponentsDetails.map(d => `  ${d.name},`).join(EOL)}
 } from 'sbb-angular';
 
-export const iconComponents = [
+export const iconComponentDetails = [
 ${iconComponentsDetails.map(d => detailsTemplate(d)).join(EOL)}
+];
+
+export const iconComponentList = [
+${iconComponentsDetails.map(d => `  ${d.name},`).join(EOL)}
 ];
 `;
     await writeFileAsync(scriptPath, template, 'utf8');
