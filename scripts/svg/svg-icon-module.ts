@@ -1,11 +1,16 @@
-const { readFile } = require('fs');
-const { basename, dirname, relative, sep } = require('path');
-const { promisify } = require('util');
-const { svgo } = require('./svgo-configuration');
-const { IconModule } = require('./icon-module');
+import { readFile } from 'fs';
+import { basename, dirname, relative, sep } from 'path';
+import { promisify } from 'util';
+import { svgoConf } from './svgo-configuration';
+import { IconModule } from './icon-module';
+
 const readFileAsync = promisify(readFile);
 
-class SvgIconModule extends IconModule {
+export class SvgIconModule extends IconModule {
+  readonly filePath: any;
+  readonly selector: string;
+  readonly componentName: string;
+
   constructor(basePath, filePath) {
     super(
       dirname(relative(basePath, filePath))
@@ -22,15 +27,15 @@ class SvgIconModule extends IconModule {
     this.importPath = `./${this.outputFileBaseName}`;
   }
 
-  iconComponentDetails() {
+  iconComponentDetails(): { selector: string, name: string, modules: string[] }[] {
     return [{
       selector: this.selector,
       name: this.componentName,
-      tags: this.modules,
+      modules: [this.moduleName],
     }];
   }
 
-  async _angularTemplate() {
+  protected async _angularTemplate() {
     const svgContent = await readFileAsync(this.filePath, 'utf8');
     const optimizedSVG = await this._normaliseSvg(svgContent);
     const viewBoxRegex = / viewBox="([ \d,]+)"/g;
@@ -72,9 +77,7 @@ export class ${this.moduleName} { }
    * @param svgIconSource Source SVG mark-up
    * @return normalized SVG mark-up
    **/
-  async _normaliseSvg(svgIconSource) {
-    return await svgo.optimize(svgIconSource);
+  private async _normaliseSvg(svgIconSource) {
+    return await svgoConf.optimize(svgIconSource);
   }
 }
-
-module.exports.SvgIconModule = SvgIconModule;

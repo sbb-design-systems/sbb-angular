@@ -1,8 +1,9 @@
-const { EOL } = require('os');
-const { IconModule } = require('./icon-module');
+import { EOL } from 'os';
+import { IconModule } from './icon-module';
 
-class IconCollectionModule extends IconModule {
-  constructor(modules, kebabCaseName) {
+export class IconCollectionModule extends IconModule {
+  childModules: IconModule[];
+  constructor(modules: string[], kebabCaseName?: string) {
     super(
       modules,
       kebabCaseName || modules
@@ -18,12 +19,13 @@ class IconCollectionModule extends IconModule {
     return this;
   }
 
-  iconComponentDetails() {
+  iconComponentDetails(): { selector: string, name: string, modules: string[] }[] {
     return this.childModules
-      .reduce((current, next) => current.concat(next.iconComponentDetails()), []);
+      .reduce((current, next) => current.concat(next.iconComponentDetails()), [])
+      .map(d => ({ ...d, modules: [...d.modules, this.moduleName] }));
   }
 
-  async _angularTemplate() {
+  protected async _angularTemplate() {
     const modules = this.childModules
       .map(m => `    ${m.moduleName},`)
       .join(EOL);
@@ -50,5 +52,3 @@ export class ${this.moduleName} { }
 `;
   }
 }
-
-exports.IconCollectionModule = IconCollectionModule;
