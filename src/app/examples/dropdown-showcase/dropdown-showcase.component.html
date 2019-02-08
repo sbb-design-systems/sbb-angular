@@ -4,20 +4,24 @@
       <h4 class="sbbsc-block">Button trigger</h4>
       <button sbbButton type="button" [sbbDropdown]="dropdown">Dropdown-Liste öffnen</button>
       <sbb-dropdown #dropdown="sbbDropdown">
-        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
-        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
-        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
+        <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
+          [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+          {{ link.text }}
+        </a>
+
         <hr>
         <button sbbDropdownItem type="button" (click)="onClick()">Abmeldung</button>
       </sbb-dropdown>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-
+      <div class="row">
+        <div class="col-12 sbbsc-block">
+          <button type="button" sbbButton (click)="addNewLink()">Add new link</button>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div role="presentation" class="sbbsc-separator"></div>
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
@@ -30,16 +34,46 @@
         <div *ngIf="dropdown2.isOpen">William Tell</div>
       </div>
       <sbb-dropdown #dropdown2="sbbDropdown">
-        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
-        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
-        <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
+        <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
+          [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+          {{ link.text }}
+        </a>
+        <hr>
+        <button sbbDropdownItem type="button" (click)="onClick()">Abmeldung</button>
+      </sbb-dropdown>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Dropdown opened from elsewhere</h4>
+
+      <div sbbDropdownOrigin #dropdownOrigin="sbbDropdownOrigin" class="dropdown-avatar" tabindex="0"
+        [class.dropdown-avatar-active]="dropdown3.isOpen">
+        <div class="avatar-icon">
+          <sbb-icon-user></sbb-icon-user>
+        </div>
+        <div>William Tell</div>
+      </div>
+      <sbb-dropdown #dropdown3="sbbDropdown">
+        <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
+          [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+          {{ link.text }}
+        </a>
         <hr>
         <button sbbDropdownItem type="button" (click)="onClick()">Abmeldung</button>
       </sbb-dropdown>
     </div>
     <div class="col-lg-6">
-      <h4 class="sbbsc-block">Properties</h4>
-
+      <h4 class="sbbsc-block">Separate trigger from dropdown origin</h4>
+      <div class="row">
+        <div class="col-12 sbbsc-block">
+            <button mode="ghost" type="button" [sbbDropdownConnectedTo]="dropdownOrigin" [sbbDropdown]="dropdown3" sbbButton>Open
+              dropdown</button>
+          </div>
+      </div>
     </div>
   </div>
 </div>
