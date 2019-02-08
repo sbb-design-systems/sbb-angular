@@ -21,24 +21,24 @@ import {
 } from '@angular/core';
 
 /**
- * Autocomplete IDs need to be unique across components, so this counter exists outside of
+ * Dropdown IDs need to be unique across components, so this counter exists outside of
  * the component definition.
  */
-let _uniqueAutocompleteIdCounter = 0;
+let _uniqueDropdownIdCounter = 0;
 
-/** Event object that is emitted when an autocomplete option is selected. */
+/** Event object that is emitted when an dropdown option is selected. */
 export class DropdownSelectedEvent {
   constructor(
-    /** Reference to the autocomplete panel that emitted the event. */
+    /** Reference to the dropdown panel that emitted the event. */
     public source: DropdownComponent,
     /** Option that was selected. */
     public item: DropdownItemDirective) { }
 }
 
 
-/** Default `sbb-autocomplete` options that can be overridden. */
+/** Default `sbb-dropdown` options that can be overridden. */
 export interface DropdownDefaultOptions {
-  /** Whether the first option should be highlighted when an autocomplete panel is opened. */
+  /** Whether the first option should be highlighted when an dropdown panel is opened. */
   autoActiveFirstOption?: boolean;
 }
 
@@ -61,10 +61,10 @@ export class DropdownComponent implements AfterContentInit {
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<DropdownItemDirective>;
 
-  /** Whether the autocomplete panel should be visible, depending on option length. */
+  /** Whether the dropdown panel should be visible, depending on option length. */
   showPanel = false;
 
-  /** Whether the autocomplete panel is open. */
+  /** Whether the dropdown panel is open. */
   get isOpen(): boolean { return this._isOpen && this.showPanel; }
   _isOpen = false;
 
@@ -73,7 +73,7 @@ export class DropdownComponent implements AfterContentInit {
   /** @docs-private */
   @ViewChild(TemplateRef) template: TemplateRef<any>;
 
-  /** Element for the panel containing the autocomplete options. */
+  /** Element for the panel containing the dropdown options. */
   @ViewChild('panel') panel: ElementRef;
 
   /** Function that maps an option's control value to its display value in the trigger. */
@@ -81,7 +81,7 @@ export class DropdownComponent implements AfterContentInit {
 
 
   /**
-   * Whether the first option should be highlighted when the autocomplete panel is opened.
+   * Whether the first option should be highlighted when the dropdown panel is opened.
    */
   @Input()
   get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }
@@ -91,7 +91,7 @@ export class DropdownComponent implements AfterContentInit {
   private _autoActiveFirstOption: boolean;
 
   /**
-   * Specify the width of the autocomplete panel.  Can be any CSS sizing value, otherwise it will
+   * Specify the width of the dropdown panel.  Can be any CSS sizing value, otherwise it will
    * match the width of its host.
    */
   @Input() panelWidth: string | number;
@@ -100,14 +100,14 @@ export class DropdownComponent implements AfterContentInit {
   @Output() readonly optionSelected: EventEmitter<DropdownSelectedEvent> =
     new EventEmitter<DropdownSelectedEvent>();
 
-  /** Event that is emitted when the autocomplete panel is opened. */
+  /** Event that is emitted when the dropdown panel is opened. */
   @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
 
-  /** Event that is emitted when the autocomplete panel is closed. */
+  /** Event that is emitted when the dropdown panel is closed. */
   @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
   /**
-   * Takes classes set on the host sbb-autocomplete element and applies them to the panel
+   * Takes classes set on the host sbb-dropdown element and applies them to the panel
    * inside the overlay container to allow for easy styling.
    */
   @Input('class')
@@ -119,12 +119,13 @@ export class DropdownComponent implements AfterContentInit {
   }
   _classList: { [key: string]: boolean } = {};
 
-  /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
-  id = `sbb-dropdown-${_uniqueAutocompleteIdCounter++}`;
+  /** Unique ID to be used by dropdown trigger's "aria-owns" property. */
+  id = `sbb-dropdown-${_uniqueDropdownIdCounter++}`;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private elementRef: ElementRef<HTMLElement>) {
+    private elementRef: ElementRef<HTMLElement>
+  ) {
   }
 
   ngAfterContentInit() {

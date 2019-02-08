@@ -23,8 +23,7 @@ import {
   ViewContainerRef,
   HostBinding,
   HostListener,
-  InjectionToken,
-  OnInit
+  InjectionToken
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -34,6 +33,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { DropdownOriginDirective } from './dropdown-origin.directive';
 import { DropdownSelectionChange, DropdownItemDirective, getOptionScrollPosition } from './dropdown-item.directive';
+
 
 /**
  * Creates an error to be thrown when attempting to use an dropdown trigger without a panel.
@@ -76,6 +76,7 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   }]
 })
 export class DropdownTriggerDirective implements OnDestroy {
+
   private overlayRef: OverlayRef | null;
   private portal: TemplatePortal;
   private componentDestroyed = false;
@@ -96,7 +97,6 @@ export class DropdownTriggerDirective implements OnDestroy {
   /** Stream of keyboard events that can close the panel. */
   private readonly closeKeyEventStream = new Subject<void>();
   private overlayAttached = false;
-
 
   @HostBinding('attr.role') get role() {
     return this.dropdownDisabled ? null : 'combobox';
@@ -236,11 +236,12 @@ export class DropdownTriggerDirective implements OnDestroy {
   /** Opens the dropdown suggestion panel. */
   openPanel(): void {
     this.attachOverlay();
+
   }
 
   /** Closes the dropdown suggestion panel. */
   closePanel(): void {
-    console.log('closePanel');
+
     if (!this.overlayAttached) {
       return;
     }
@@ -288,7 +289,8 @@ export class DropdownTriggerDirective implements OnDestroy {
     );
   }
 
-  @HostBinding('attr.aria-activedescendant') get activeOptionId() {
+  @HostBinding('attr.aria-activedescendant')
+  get activeOptionId(): string | null {
     return this.activeOption ? this.activeOption.id : null;
   }
 

@@ -1,17 +1,19 @@
 $borderActive: solid 2px #666;
 $border: solid 2px white;
 .dropdown-avatar {
-    border: $border;
-    display: flex;
-    align-items: center;
-    padding: 14px;
-    img {
-        width: 36px;
-        height: 36px;
-    }
-    &-active {
-        border-top: $borderActive;
-        border-right: $borderActive;
-        border-left: $borderActive;
-    }
+  border: $border;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+
+  .avatar-icon {
+    width: 24px;
+    height: 24px;
+  }
+  &-active {
+    border-top: $borderActive;
+    border-right: $borderActive;
+    border-left: $borderActive;
+
+  }
 }

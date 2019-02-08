@@ -2,18 +2,18 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Button trigger</h4>
-      <button sbbButton type="button" [sbbDropdown]="dropdown" >Open dropdown</button>
+      <button sbbButton type="button" [sbbDropdown]="dropdown">Dropdown-Liste öffnen</button>
       <sbb-dropdown #dropdown="sbbDropdown">
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
         <hr>
-        <button sbbDropdownItem type="button" (click)="onClick()">Logout</button>
+        <button sbbDropdownItem type="button" (click)="onClick()">Abmeldung</button>
       </sbb-dropdown>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-     
+
     </div>
   </div>
 
@@ -22,20 +22,24 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Custom trigger</h4>
-      <div class="dropdown-avatar" [sbbDropdown]="dropdown2" tabindex="0" [class.dropdown-avatar-active]="dropdown2.isOpen" >
-        <img src="https://issues-ext.sbb.ch/secure/useravatar?ownerId=daresta">
-        <div *ngIf="dropdown2.isOpen">Mega Man</div>
+      <div class="dropdown-avatar" [sbbDropdown]="dropdown2" tabindex="0"
+        [class.dropdown-avatar-active]="dropdown2.isOpen">
+        <div class="avatar-icon">
+          <sbb-icon-user></sbb-icon-user>
+        </div>
+        <div *ngIf="dropdown2.isOpen">William Tell</div>
       </div>
       <sbb-dropdown #dropdown2="sbbDropdown">
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 1}" routerLinkActive="sbb-selected">Test</a>
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 2}" routerLinkActive="sbb-selected">Test 2</a>
         <a sbbDropdownItem [routerLink]="['.']" [queryParams]="{ page : 3}" routerLinkActive="sbb-selected">Test 3</a>
         <hr>
-        <button sbbDropdownItem type="button" (click)="onClick()">Logout</button>
-      </sbb-dropdown>    </div>
+        <button sbbDropdownItem type="button" (click)="onClick()">Abmeldung</button>
+      </sbb-dropdown>
+    </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-     
+
     </div>
   </div>
 </div>

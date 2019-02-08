@@ -2,7 +2,7 @@ import { Directive, ElementRef } from '@angular/core';
 
 /**
  * Directive applied to an element to make it usable
- * as a connection point for an autocomplete panel.
+ * as a connection point for an dropdown panel.
  */
 @Directive({
   selector: '[sbbDropdownOrigin]',
