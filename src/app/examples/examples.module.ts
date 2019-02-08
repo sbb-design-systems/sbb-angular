@@ -35,6 +35,7 @@ import {
   PaginationModule
 } from 'sbb-angular';
 
+
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
 import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase.component';
@@ -71,6 +72,9 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
+import { CaptchaModule } from 'projects/sbb-angular/src/lib/captcha/captcha';
+
 
 @NgModule({
   declarations: [
@@ -107,7 +111,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
-    TagShowcaseComponent
+    TagShowcaseComponent,
+    CaptchaShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +145,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationModule,
     TooltipModule,
     TextexpandModule,
-    TagModule
+    TagModule,
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,

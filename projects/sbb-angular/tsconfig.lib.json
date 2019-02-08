@@ -11,7 +11,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "types": [],
+    "types": [
+      "grecaptcha"
+    ],
     "lib": [
       "dom",
       "es2015"
