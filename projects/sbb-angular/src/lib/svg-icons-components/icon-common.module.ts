@@ -21,6 +21,9 @@ import { IconServiceModule } from './webshop/service/sbb-icon-service.module';
 import { IconTrainformationModule } from './webshop/trainformation/sbb-icon-trainformation.module';
 import { IconUtilizationModule } from './webshop/utilization/sbb-icon-utilization.module';
 
+/**
+ * @deprecated Use IconCollectionModule
+ */
 @NgModule({
   // tslint:disable-next-line:max-line-length
   imports: [IconArrowsModule, IconBaseModule, IconClockModule, IconDocumentsModule, IconHimModule, IconSocialMediaModule, IconGreenclassModule, IconLeisureHolidaysModule, IconProductsModule, IconWeatherModule, IconWebshopArrowsModule, IconEnvironmentcalculatorModule, IconOevModule, IconRealtimeModule, IconServiceModule, IconTrainformationModule, IconUtilizationModule],

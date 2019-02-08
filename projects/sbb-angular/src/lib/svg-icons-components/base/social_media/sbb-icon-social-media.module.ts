@@ -14,6 +14,9 @@ import { IconLinkedinComponent } from './sbb-icon-linkedin.component';
 import { IconPinterestComponent } from './sbb-icon-pinterest.component';
 import { IconXingComponent } from './sbb-icon-xing.component';
 
+/**
+ * @deprecated Use IconCollectionBaseSocialMediaModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

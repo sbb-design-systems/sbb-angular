@@ -16,6 +16,9 @@ import { IconOevBT23Component } from './sbb-icon-oev-b-t23.component';
 import { IconOevBT25Component } from './sbb-icon-oev-b-t25.component';
 import { IconOevBT29Component } from './sbb-icon-oev-b-t29.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopOevModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

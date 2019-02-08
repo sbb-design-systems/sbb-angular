@@ -74,6 +74,9 @@ import { IconWheelchairNotsureComponent } from './sbb-icon-wheelchair-notsure.co
 import { IconProzent078Component } from './sbb-icon-prozent-078.component';
 import { IconNoTicketComponent } from './sbb-icon-no-ticket.component';
 
+/**
+ * @deprecated Use IconCollectionBaseModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

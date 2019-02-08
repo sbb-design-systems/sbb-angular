@@ -10,6 +10,9 @@ import { IconHimDisruptionComponent } from './sbb-icon-him-disruption.component'
 import { IconHimInfoComponent } from './sbb-icon-him-info.component';
 import { IconHimReplacementbusComponent } from './sbb-icon-him-replacementbus.component';
 
+/**
+ * @deprecated Use IconCollectionBaseHimModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

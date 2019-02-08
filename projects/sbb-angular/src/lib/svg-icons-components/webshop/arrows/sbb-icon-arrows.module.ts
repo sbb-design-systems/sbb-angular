@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 
 import { IconArrowRightBoldComponent } from './sbb-icon-arrow-right-bold.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopArrowsModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

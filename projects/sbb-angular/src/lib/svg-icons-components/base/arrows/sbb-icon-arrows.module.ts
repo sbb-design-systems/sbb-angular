@@ -17,6 +17,9 @@ import { IconPlayButtonComponent } from './sbb-icon-play-button.component';
 import { IconArrowTinyDownComponent } from './sbb-icon-arrow-tiny-down.component';
 import { IconCircleComponent } from './sbb-icon-circle.component';
 
+/**
+ * @deprecated Use IconCollectionBaseArrowsModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

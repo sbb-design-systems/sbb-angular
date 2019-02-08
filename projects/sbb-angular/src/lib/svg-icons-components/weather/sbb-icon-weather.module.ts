@@ -29,6 +29,9 @@ import { IconSchneeComponent } from './sbb-icon-schnee.component';
 import { IconGewitterComponent } from './sbb-icon-gewitter.component';
 import { IconNebelComponent } from './sbb-icon-nebel.component';
 
+/**
+ * @deprecated Use IconCollectionWeatherModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

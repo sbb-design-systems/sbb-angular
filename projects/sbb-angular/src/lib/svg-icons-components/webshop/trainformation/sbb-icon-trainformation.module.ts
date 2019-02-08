@@ -20,6 +20,9 @@ import { IconTrainformationSleepingCarComponent } from './sbb-icon-trainformatio
 import { IconTrainformationSleepCouchetteComponent } from './sbb-icon-trainformation-sleep-couchette.component';
 import { IconTrainformationStrollerComponent } from './sbb-icon-trainformation-stroller.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopTrainformationModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

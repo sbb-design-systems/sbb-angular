@@ -13,6 +13,9 @@ import { IconRealtimeMissedConnectionComponent } from './sbb-icon-realtime-misse
 import { IconRealtimePlatformChangeComponent } from './sbb-icon-realtime-platform-change.component';
 import { IconRealtimeRerouteComponent } from './sbb-icon-realtime-reroute.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopRealtimeModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

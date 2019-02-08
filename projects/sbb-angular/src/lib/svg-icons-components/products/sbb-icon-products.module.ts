@@ -62,6 +62,9 @@ import { IconProductSnComponent } from './sbb-icon-product-sn.component';
 import { IconProductTgvComponent } from './sbb-icon-product-tgv.component';
 import { IconProductVaeComponent } from './sbb-icon-product-vae.component';
 
+/**
+ * @deprecated Use IconCollectionProductsModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

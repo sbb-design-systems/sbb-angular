@@ -17,6 +17,9 @@ import { IconGcSorglos48Component } from './sbb-icon-gc-sorglos-48.component';
 import { IconGcUmwelt48Component } from './sbb-icon-gc-umwelt-48.component';
 import { IconGcWallbox48Component } from './sbb-icon-gc-wallbox-48.component';
 
+/**
+ * @deprecated Use IconCollectionCampaignsGreenclassModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

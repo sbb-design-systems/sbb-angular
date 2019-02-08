@@ -9,6 +9,9 @@ import { IconUtilizationHighComponent } from './sbb-icon-utilization-high.compon
 import { IconUtilizationLowComponent } from './sbb-icon-utilization-low.component';
 import { IconUtilizationMediumComponent } from './sbb-icon-utilization-medium.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopUtilizationModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

@@ -11,6 +11,9 @@ import { IconSoundComponent } from './sbb-icon-sound.component';
 import { IconVideoComponent } from './sbb-icon-video.component';
 import { IconZipComponent } from './sbb-icon-zip.component';
 
+/**
+ * @deprecated Use IconCollectionBaseDocumentsModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

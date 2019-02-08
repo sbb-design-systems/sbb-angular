@@ -9,6 +9,9 @@ import { IconEnvironmentcalculatorCo2Component } from './sbb-icon-environmentcal
 import { IconEnvironmentcalculatorPetrolComponent } from './sbb-icon-environmentcalculator-petrol.component';
 import { IconEnvironmentcalculatorTimeComponent } from './sbb-icon-environmentcalculator-time.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopEnvironmentcalculatorModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

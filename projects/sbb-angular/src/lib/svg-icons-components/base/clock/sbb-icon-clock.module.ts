@@ -10,6 +10,9 @@ import { IconClockHoursComponent } from './sbb-icon-clock-hours.component';
 import { IconClockMinutesComponent } from './sbb-icon-clock-minutes.component';
 import { IconClockSecondsComponent } from './sbb-icon-clock-seconds.component';
 
+/**
+ * @deprecated Use IconCollectionBaseClockModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

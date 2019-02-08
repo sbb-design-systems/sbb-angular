@@ -31,6 +31,9 @@ import { IconLhTradeFairsFolkFestivalsComponent } from './sbb-icon-lh-trade-fair
 import { IconLhWellnessRelaxationComponent } from './sbb-icon-lh-wellness-relaxation.component';
 import { IconLhZooAnimalParksComponent } from './sbb-icon-lh-zoo-animal-parks.component';
 
+/**
+ * @deprecated Use IconCollectionLeisureHolidaysModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length

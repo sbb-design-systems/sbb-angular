@@ -92,6 +92,9 @@ import { IconServiceYtComponent } from './sbb-icon-service-yt.component';
 import { IconServiceZComponent } from './sbb-icon-service-z.component';
 import { IconServiceZmComponent } from './sbb-icon-service-zm.component';
 
+/**
+ * @deprecated Use IconCollectionWebshopServiceModule
+ */
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length
