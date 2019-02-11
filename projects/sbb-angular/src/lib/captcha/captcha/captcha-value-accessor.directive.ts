@@ -24,28 +24,29 @@ import { CaptchaComponent } from './captcha.component';
 })
 export class CaptchaValueAccessorDirective implements ControlValueAccessor {
   /** @internal */
-  private onChange: (value: string) => void;
+  private _onChange: (value: string) => void;
 
   /** @internal */
-  private onTouched: () => void;
+  private _onTouched: () => void;
 
-  constructor(private host: CaptchaComponent) { }
+  constructor(private _host: CaptchaComponent) { }
 
-  public writeValue(value: string): void {
+  writeValue(value: string): void {
     if (!value) {
-      this.host.reset();
+      this._host.reset();
     }
   }
 
-  public registerOnChange(fn: (value: string) => void): void { this.onChange = fn; }
-  public registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+  registerOnChange(fn: (value: string) => void): void { this._onChange = fn; }
+  registerOnTouched(fn: () => void): void { this._onTouched = fn; }
 
-  @HostListener('resolved', ['$event']) public onResolve($event: string) {
-    if (this.onChange) {
-      this.onChange($event);
+  @HostListener('resolved', ['$event'])
+  onResolve($event: string) {
+    if (this._onChange) {
+      this._onChange($event);
     }
-    if (this.onTouched) {
-      this.onTouched();
+    if (this._onTouched) {
+      this._onTouched();
     }
   }
 }

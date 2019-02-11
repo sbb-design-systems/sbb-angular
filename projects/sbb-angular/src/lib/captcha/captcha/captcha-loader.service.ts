@@ -21,14 +21,14 @@ export class CaptchaLoaderService {
    */
   private static ready: BehaviorSubject<ReCaptchaV2.ReCaptcha> = null;
 
-  public ready: Observable<ReCaptchaV2.ReCaptcha>;
+  ready: Observable<ReCaptchaV2.ReCaptcha>;
 
   /** @internal */
-  private language: string;
+  private _language: string;
   /** @internal */
-  private baseUrl: string;
+  private _baseUrl: string;
   /** @internal */
-  private nonce: string;
+  private _nonce: string;
 
   constructor(
     private _windowRef: WindowRef,
@@ -36,9 +36,9 @@ export class CaptchaLoaderService {
     @Optional() @Inject(RECAPTCHA_BASE_URL) baseUrl?: string,
     @Optional() @Inject(RECAPTCHA_NONCE) nonce?: string
   ) {
-    this.language = language;
-    this.baseUrl = baseUrl;
-    this.nonce = nonce;
+    this._language = language;
+    this._baseUrl = baseUrl;
+    this._nonce = nonce;
     this.init();
     this.ready = CaptchaLoaderService.ready.asObservable();
   }
@@ -54,11 +54,11 @@ export class CaptchaLoaderService {
     CaptchaLoaderService.ready = new BehaviorSubject<ReCaptchaV2.ReCaptcha>(null);
     const script = document.createElement('script') as HTMLScriptElement;
     script.innerHTML = '';
-    const langParam = this.language ? '&hl=' + this.language : '';
-    const baseUrl = this.baseUrl || RECAPTCHA_DEFAULT_BASE_URL;
+    const langParam = this._language ? '&hl=' + this._language : '';
+    const baseUrl = this._baseUrl || RECAPTCHA_DEFAULT_BASE_URL;
     script.src = `${baseUrl}?render=explicit&onload=${RECAPTCHA_CALLBACK_NAME}${langParam}`;
-    if (this.nonce) {
-      script.nonce = this.nonce;
+    if (this._nonce) {
+      script.nonce = this._nonce;
     }
     script.async = true;
     script.defer = true;
