@@ -10,6 +10,7 @@ import {
   OnDestroy,
   Optional,
   Output,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -21,7 +22,8 @@ let nextId = 0;
 @Component({
   exportAs: 'sbbCaptcha',
   selector: 'sbb-captcha',
-  template: ``
+  template: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CaptchaComponent implements AfterViewInit, OnDestroy {
   @Input()
