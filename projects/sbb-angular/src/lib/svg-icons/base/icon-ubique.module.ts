@@ -13,7 +13,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconUbiqueComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 270 66' });
+    super({ viewBox: '0 0 270 66', width: '270', height: '66' });
   }
 }
 

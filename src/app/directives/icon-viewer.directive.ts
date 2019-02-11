@@ -1,4 +1,4 @@
-import { Directive, ViewContainerRef, OnInit, Input, ComponentFactoryResolver, OnChanges, SimpleChanges } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { UiIcon } from '../shared/ui-icon';
 import { iconComponentDetails } from '../svg-icon-collection';
 
@@ -9,13 +9,17 @@ export class IconViewerDirective implements OnChanges {
 
 
   @Input() sbbIconViewer: UiIcon;
+  @Input() svgHeight: string;
 
   constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) { }
 
   loadIconComponent(): void {
     const component = iconComponentDetails.find(i => i.name === this.sbbIconViewer.name).component;
     const componentFactory = this.resolver.resolveComponentFactory(component);
-    this.viewContainer.createComponent(componentFactory);
+    const componentRef = this.viewContainer.createComponent(componentFactory);
+    if (this.svgHeight) {
+      componentRef.instance.height = this.svgHeight;
+    }
   }
 
   replaceIconcomponent(): any {

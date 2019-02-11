@@ -13,7 +13,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconLhRailplusComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 407 99' });
+    super({ viewBox: '0 0 407 99', width: '407', height: '99' });
   }
 }
 

@@ -111,7 +111,7 @@ export class ${this.moduleName} { }
       .map(a => a.resolveValue(optimizedSVG.data))
       .filter(a => a.hasValue())
       .map(a => a.toParameter())
-      .join(' ');
+      .join(', ');
     const bindings = this._attributeReplacements
       .map(a => a.attributeBinding())
       .join(' ');

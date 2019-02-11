@@ -13,7 +13,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconTimetabletouchComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 86 59' });
+    super({ viewBox: '0 0 86 59', width: '86', height: '59' });
   }
 }
 

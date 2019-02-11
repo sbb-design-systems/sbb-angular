@@ -13,7 +13,7 @@ import { IconBase } from '../../icon-base';
 })
 export class IconArrowRightBoldComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 32 32' });
+    super({ viewBox: '0 0 32 32', width: '32', height: '32' });
   }
 }
 

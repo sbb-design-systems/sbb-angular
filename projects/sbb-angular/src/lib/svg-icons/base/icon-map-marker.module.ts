@@ -13,7 +13,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconMapMarkerComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 32 47' });
+    super({ viewBox: '0 0 32 47', width: '32', height: '47' });
   }
 }
 
