@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Button trigger</h4>
-      <button sbbButton type="button" [sbbDropdown]="dropdown">Dropdown-Liste öffnen</button>
+      <button sbbButton type="button" [sbbDropdown]="dropdown">Open dropdown</button>
       <sbb-dropdown #dropdown="sbbDropdown">
         <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
           [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
@@ -67,11 +67,17 @@
       </sbb-dropdown>
     </div>
     <div class="col-lg-6">
-      <h4 class="sbbsc-block">Separate trigger from dropdown origin</h4>
+      <h4 class="sbbsc-block">Separated trigger from dropdown origin</h4>
       <div class="row">
         <div class="col-12 sbbsc-block">
-            <button mode="ghost" type="button" [sbbDropdownConnectedTo]="dropdownOrigin" [sbbDropdown]="dropdown3" sbbButton>Open
-              dropdown</button>
+            <button 
+              mode="ghost" 
+              type="button" 
+              [sbbDropdownConnectedTo]="dropdownOrigin" 
+              [sbbDropdown]="dropdown3" 
+              sbbButton>
+              Open dropdown from here
+            </button>
           </div>
       </div>
     </div>
