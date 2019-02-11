@@ -1,0 +1,86 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 sbbsc-v-sep no-fix-width">
+      <h4 id="group_label_2" class="sbbsc-block">Toggle buttons used as Reactive Forms</h4>
+      <form [formGroup]="form" novalidate>
+          <sbb-toggle aria-labelledby="group_label_2"  
+                      formControlName="test">
+            <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" 
+                                [infoText]="i === 0 ? 'info text' : undefined"
+                                [label]="option.label" 
+                                [value]="option.value">
+              <ng-container *ngIf="i === 0">
+                <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
+              </ng-container>
+              <ng-container *ngIf="i === 1">
+                  <sbb-icon-arrow-down-and-back *sbbToggleOptionIcon></sbb-icon-arrow-down-and-back>
+              </ng-container>
+              
+              <sbb-field mode="long" *ngIf="i === 1">
+                <sbb-label for="name1">Select date</sbb-label>
+                <sbb-datepicker></sbb-datepicker>
+              </sbb-field>
+            </sbb-toggle-option>
+          </sbb-toggle>
+        </form>
+    </div>
+    <div class="col-lg-4">
+      <h4 class="sbbsc-block">Model</h4>
+      {{ modelReactive | json }}
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-8 sbbsc-v-sep no-fix-width">
+      <h4 id="group_label_1" class="sbbsc-block">Toggle buttons used as Template driven Form</h4>
+      <sbb-toggle aria-labelledby="group_label_1" 
+                  [(ngModel)]="modelValue" 
+                  name="test-toggle-2">
+          <sbb-toggle-option *ngFor="let option of toggleOptions | async; let i = index;" 
+                             [label]="option.label" 
+                             [value]="option.value">
+            <ng-container *ngIf="i === 0">
+              <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
+            </ng-container>
+            <ng-container *ngIf="i === 1">
+                <sbb-icon-arrow-down-and-back *sbbToggleOptionIcon></sbb-icon-arrow-down-and-back>
+            </ng-container>
+            <sbb-field mode="long" *ngIf="i === 0">
+              <sbb-label for="name1">Select date</sbb-label>
+              <sbb-datepicker></sbb-datepicker>
+            </sbb-field>
+            <p *ngIf="i === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </sbb-toggle-option>
+        </sbb-toggle>
+    </div>
+    <div class="col-lg-4">
+      <h4 class="sbbsc-block">Model</h4>
+      {{ modelValue | json }}
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+  
+  <div class="row">
+    <div class="col-lg-8 sbbsc-v-sep no-fix-width">
+      <h4 id="group_label_3" class="sbbsc-block">Toggle buttons simple use case no Forms attached</h4>
+      <sbb-toggle aria-labelledby="group_label_3"
+                  (toggleChange)="toggleChange($event)">
+        <sbb-toggle-option label="2. Klasse" 
+                            infoText="- CHF 5.60"
+                            [value]="{ myObjectValue: true }">
+        </sbb-toggle-option>
+        <sbb-toggle-option label="1. Klasse" 
+                            infoText="+ CHF 39.00"
+                            [value]="{ myObjectValue: false }">
+        </sbb-toggle-option>
+      </sbb-toggle>
+    </div>
+    <div class="col-lg-4">
+        <h4 class="sbbsc-block">Model</h4>
+        {{ toggleValues | json }}
+      </div>
+  </div>
+</article>
