@@ -33,9 +33,8 @@ import {
   CheckboxModule,
   TagModule,
   PaginationModule,
-  CaptchaModule
+  CaptchaModule,
   ToggleModule,
-  PaginationModule
 } from 'sbb-angular';
 
 
