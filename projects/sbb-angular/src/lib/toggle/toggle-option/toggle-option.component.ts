@@ -104,6 +104,7 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
 
   /**
    * Name of a toggle parent of options.
+   * It should not be used here but it should be set on sbb-toggle.
    */
   @Input()
   get name() {
@@ -116,6 +117,7 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
 
   /**
    * @docs-private
+   * It should not be used here but it should be set on sbb-toggle.
    */
   @Input()
   get formControlName() {

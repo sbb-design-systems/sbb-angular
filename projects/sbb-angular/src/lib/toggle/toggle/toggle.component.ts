@@ -12,14 +12,13 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
-  NgZone,
-  ChangeDetectorRef
+  NgZone
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { Subscription, Observable, merge, of } from 'rxjs';
-import { switchMap, first } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { ToggleBase, SBB_TOGGLE_COMPONENT } from '../toggle.base';
 
 let counter = 0;
@@ -44,6 +43,7 @@ let counter = 0;
 })
 export class ToggleComponent extends RadioButton
   implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
+
   /**
      * Radio button panel identifier
      */
@@ -56,21 +56,25 @@ export class ToggleComponent extends RadioButton
    */
   @Input()
   formControlName: string;
+
   /**
    * Attribute name of sbb-toggle.
    */
   @Input()
   name: string;
+
   /**
    * Css class on sbb-toggle.
    */
   @HostBinding('class.sbb-toggle')
   toggleClass = true;
+
   /**
    * Role of sbb-toggle.
    */
   @HostBinding('attr.role')
   role = 'radiogroup';
+
   /**
    * Event generated on a change of sbb-toggle.
    */
@@ -83,7 +87,6 @@ export class ToggleComponent extends RadioButton
   @ContentChildren(forwardRef(() => ToggleOptionComponent))
   toggleOptions: QueryList<ToggleOptionComponent>;
 
-
   private _toggleValueChangesSubscription = Subscription.EMPTY;
   private _toggleValueChanges$: Observable<any>;
 
@@ -91,6 +94,7 @@ export class ToggleComponent extends RadioButton
    * Class property that represents a change on the radio button
    */
   onChange = (_: any) => { };
+
   /**
    * Class property that represents a touch on the radio button
    */
@@ -98,13 +102,6 @@ export class ToggleComponent extends RadioButton
 
   constructor(private zone: NgZone) {
     super();
-
-    this.zone.onStable.pipe(first()).subscribe(
-      () => this.zone.run(() => {
-        const defaultOption = this.toggleOptions.toArray()[0];
-        defaultOption.setToggleChecked(true);
-      })
-    );
   }
 
   ngOnInit() {
@@ -112,7 +109,14 @@ export class ToggleComponent extends RadioButton
   }
 
   ngAfterContentInit() {
-    this.checkNumOfOptions();
+    this.zone.onStable.pipe(first()).subscribe(
+      () => this.zone.run(() => {
+        this.checkNumOfOptions();
+        const defaultOption = this.toggleOptions.toArray()[0];
+        defaultOption.setToggleChecked(true);
+      })
+    );
+
 
     this._toggleValueChanges$ = merge(...this.toggleOptions.map(toggle => toggle.valueChange$));
     this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(
