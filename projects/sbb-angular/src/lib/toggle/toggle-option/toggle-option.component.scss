@@ -1,0 +1,45 @@
+@import "../../../styles/main";
+
+.sbb-toggle {
+  .sbb-toggle-option {
+    @include toggleOption();
+
+    &-button {
+      @include toggleOptionButton();
+
+      &-icon {
+        @include toggleOptionIcon();
+      }
+  
+      &-label-wrapper {
+        @include toggleOptionLabelWrapper();
+      }
+
+      &-label {
+        @include toggleOptionLabel();
+      }
+  
+      &-info-text {
+        @include toggleOptionInfoText();
+      }
+    }
+
+    &-content {
+      @include toggleOptionContent();
+    }
+
+    &.sbb-toggle-option-selected {
+      @include toggleOptionSelected();
+    }
+
+    &.sbb-toggle-option-has-icon {
+      @include toggleOptionHasIcon();
+    }
+
+    &:last-of-type {
+      .sbb-toggle-option-content {
+        @include toggleOptionContentLast();
+      }
+    }
+  }
+}

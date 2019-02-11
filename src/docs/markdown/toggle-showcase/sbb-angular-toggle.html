@@ -1,0 +1,88 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Toggle Overview</h1>
+  <p class="docs-markdown-p">Import toggle module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { ToggleModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and then you can use the toggle component as seen below. <br>
+    <br></p>
+  <h3 id="what-does-the-module-do-" class="docs-header-link docs-markdown-h3">
+    <span header-link="what-does-the-module-do-"></span> What does the module do? </h3>
+  <p class="docs-markdown-p">It offers the user a choice of exactly two options. <br>
+    <br></p>
+  <h3 id="characteristics" class="docs-header-link docs-markdown-h3">
+    <span header-link="characteristics"></span> Characteristics </h3>
+  <p class="docs-markdown-p">The toggle button has two states:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">First (first option chosen)</li>
+    <li class="docs-markdown-li">Second (second option selected)</li>
+  </ul>
+  <p class="docs-markdown-p">By default, the first option is always preselected.</p>
+  <p class="docs-markdown-p">First simple example</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"test"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option1.label"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option1.value"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option2.label"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option2.value"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">Toggle button is shown in three modes:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">with icon </li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Toggle buttons used as Reactive forms<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> [<span class="hljs-attr">formGroup</span>]=<span class="hljs-string">"form"</span> <span class="hljs-attr">novalidate</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_2"</span>  
+                <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"test"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of toggleOptions | async; let i = index;"</span> 
+                          [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.label"</span> 
+                          [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 0"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down-and-back</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down-and-back</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">with info text </li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Toggle buttons used without forms<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_3"</span>
+            (<span class="hljs-attr">toggleChange</span>)=<span class="hljs-string">"toggleChange($event)"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"2. Klasse"</span> 
+                       <span class="hljs-attr">infoText</span>=<span class="hljs-string">"- CHF 5.60"</span>
+                       [<span class="hljs-attr">value</span>]=<span class="hljs-string">"{ myObjectValue: true }"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"1. Klasse"</span> 
+                       <span class="hljs-attr">infoText</span>=<span class="hljs-string">"+ CHF 39.00"</span>
+                       [<span class="hljs-attr">value</span>]=<span class="hljs-string">"{ myObjectValue: false }"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">with additional input context</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Toggle buttons simple example with info content<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_1"</span> 
+            [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"modelValue"</span> 
+            <span class="hljs-attr">name</span>=<span class="hljs-string">"test-toggle-2"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of toggleOptions | async; let i = index;"</span> 
+                        [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.label"</span> 
+                        [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 0"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-down-and-back</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-down-and-back</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 0"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"name1"</span>&gt;</span>Select date<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle</span>&gt;</span></code></pre>
+</body>
+
+</html>

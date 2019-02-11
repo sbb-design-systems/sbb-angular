@@ -34,6 +34,8 @@ import {
   TagModule,
   PaginationModule,
   CaptchaModule
+  ToggleModule,
+  PaginationModule
 } from 'sbb-angular';
 
 
@@ -69,6 +71,7 @@ import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
+import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
@@ -108,6 +111,7 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
     TableShowcaseComponent,
+    ToggleShowcaseComponent,
     PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
@@ -142,6 +146,7 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
     CheckboxPanelModule,
     NotificationsModule,
     TableModule,
+    ToggleModule,
     PaginationModule,
     TooltipModule,
     TextexpandModule,
