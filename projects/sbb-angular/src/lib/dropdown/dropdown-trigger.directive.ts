@@ -32,7 +32,7 @@ import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Obs
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { DropdownOriginDirective } from './dropdown-origin.directive';
-import { DropdownSelectionChange, DropdownItemDirective, getOptionScrollPosition } from './dropdown-item.directive';
+import { DropdownSelectionChange, DropdownItemDirective, getDropdownItemScrollPosition } from './dropdown-item.directive';
 
 
 /**
@@ -82,8 +82,6 @@ export class DropdownTriggerDirective implements OnDestroy {
   private componentDestroyed = false;
   private _dropdownDisabled = false;
 
-
-
   /** Strategy that is used to position the panel. */
   private positionStrategy: FlexibleConnectedPositionStrategy;
 
@@ -126,9 +124,88 @@ export class DropdownTriggerDirective implements OnDestroy {
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
+  /**
+   * Whether the dropdown is disabled. When disabled, the element will
+   * act as a regular input and the user won't be able to open the panel.
+   */
+  @Input('sbbDropdownDisabled')
+  get dropdownDisabled(): boolean { return this._dropdownDisabled; }
+  set dropdownDisabled(value: boolean) {
+    this._dropdownDisabled = coerceBooleanProperty(value);
+  }
+
+  /** Whether or not the dropdown panel is open. */
+  get panelOpen(): boolean {
+    return this.overlayAttached && this.dropdown.showPanel;
+  }
+
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
+    return this.dropdownDisabled ? null : this.panelOpen.toString();
+  }
+
+  @HostBinding('attr.aria-owns') get ariaOwns(): string {
+    return (this.dropdownDisabled || !this.panelOpen) ? null : this.dropdown.id;
+  }
+
+  /**
+   * A stream of actions that should close the dropdown panel, including
+   * when an option is selected, on blur, and when TAB is pressed.
+   */
+  get panelClosingActions(): Observable<DropdownSelectionChange | null> {
+    return merge(
+      this.optionSelections,
+      this.dropdown.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
+      this.closeKeyEventStream,
+      this.getOutsideClickStream(),
+      this.overlayRef ?
+        this.overlayRef.detachments().pipe(filter(() => this.overlayAttached)) :
+        observableOf()
+    ).pipe(
+      // Normalize the output so we return a consistent type.
+      map(event => event instanceof DropdownSelectionChange ? event : null)
+    );
+  }
+
+  @HostBinding('attr.aria-activedescendant')
+  get activeOptionId(): string | null {
+    return this.activeOption ? this.activeOption.id : null;
+  }
+
+  /** The currently active option, coerced to SbbOption type. */
+  get activeOption(): DropdownItemDirective | null {
+    if (this.dropdown && this.dropdown.keyManager) {
+      return this.dropdown.keyManager.activeItem;
+    }
+
+    return null;
+  }
+
+  constructor(
+    private element: ElementRef<HTMLInputElement>,
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef,
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) private scrollStrategy,
+    @Optional() @Inject(DOCUMENT) private _document: any,
+    private viewportRuler?: ViewportRuler
+  ) {
+  }
+
+  ngOnDestroy() {
+    this.viewportSubscription.unsubscribe();
+    this.positionSubscription.unsubscribe();
+    this.componentDestroyed = true;
+    this.destroyPanel();
+    this.closeKeyEventStream.complete();
+  }
+
   @HostListener('blur')
   onBlur() {
     this.onTouched();
+    if (!!this.connectedTo) {
+      this.closePanel();
+    }
   }
 
   @HostListener('keydown', ['$event'])
@@ -183,55 +260,11 @@ export class DropdownTriggerDirective implements OnDestroy {
     }
   }
 
-
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
-    return this.dropdownDisabled ? null : this.panelOpen.toString();
-  }
-
-  @HostBinding('attr.aria-owns') get ariaOwns(): string {
-    return (this.dropdownDisabled || !this.panelOpen) ? null : this.dropdown.id;
-  }
-
   /** `View -> model callback called when value changes` */
   onChange: (value: any) => void = () => { };
 
   /** `View -> model callback called when dropdown has been touched` */
   onTouched = () => { };
-
-  /**
-   * Whether the dropdown is disabled. When disabled, the element will
-   * act as a regular input and the user won't be able to open the panel.
-   */
-  @Input('sbbDropdownDisabled')
-  get dropdownDisabled(): boolean { return this._dropdownDisabled; }
-  set dropdownDisabled(value: boolean) {
-    this._dropdownDisabled = coerceBooleanProperty(value);
-  }
-
-  constructor(
-    private element: ElementRef<HTMLInputElement>,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) private scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
-    private viewportRuler?: ViewportRuler
-  ) {
-  }
-
-  ngOnDestroy() {
-    this.viewportSubscription.unsubscribe();
-    this.positionSubscription.unsubscribe();
-    this.componentDestroyed = true;
-    this.destroyPanel();
-    this.closeKeyEventStream.complete();
-  }
-
-  /** Whether or not the dropdown panel is open. */
-  get panelOpen(): boolean {
-    return this.overlayAttached && this.dropdown.showPanel;
-  }
 
   /** Opens the dropdown suggestion panel. */
   openPanel(): void {
@@ -251,8 +284,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       this.dropdown.closed.emit();
     }
 
-    this.dropdown._isOpen = this.overlayAttached = false;
-
+    this.dropdown.isOpen = this.overlayAttached = false;
     if (this.overlayRef && this.overlayRef.hasAttached()) {
       this.overlayRef.detach();
       this.closingActionsSubscription.unsubscribe();
@@ -267,40 +299,6 @@ export class DropdownTriggerDirective implements OnDestroy {
       // user clicks outside.
       this.changeDetectorRef.detectChanges();
     }
-  }
-
-
-  /**
-   * A stream of actions that should close the dropdown panel, including
-   * when an option is selected, on blur, and when TAB is pressed.
-   */
-  get panelClosingActions(): Observable<DropdownSelectionChange | null> {
-    return merge(
-      this.optionSelections,
-      this.dropdown.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
-      this.closeKeyEventStream,
-      this.getOutsideClickStream(),
-      this.overlayRef ?
-        this.overlayRef.detachments().pipe(filter(() => this.overlayAttached)) :
-        observableOf()
-    ).pipe(
-      // Normalize the output so we return a consistent type.
-      map(event => event instanceof DropdownSelectionChange ? event : null)
-    );
-  }
-
-  @HostBinding('attr.aria-activedescendant')
-  get activeOptionId(): string | null {
-    return this.activeOption ? this.activeOption.id : null;
-  }
-
-  /** The currently active option, coerced to SbbOption type. */
-  get activeOption(): DropdownItemDirective | null {
-    if (this.dropdown && this.dropdown.keyManager) {
-      return this.dropdown.keyManager.activeItem;
-    }
-
-    return null;
   }
 
   /** Stream of clicks outside of the dropdown panel. */
@@ -329,7 +327,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     const index = this.dropdown.keyManager.activeItemIndex || 0;
     const labelCount = 0;
 
-    const newScrollPosition = getOptionScrollPosition(
+    const newScrollPosition = getDropdownItemScrollPosition(
       index + labelCount,
       DROPDOWN_OPTION_HEIGHT,
       this.dropdown.getScrollTop(),
@@ -481,7 +479,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     const wasOpen = this.panelOpen;
 
     this.dropdown.setVisibility();
-    this.dropdown._isOpen = this.overlayAttached = true;
+    this.dropdown.isOpen = this.overlayAttached = true;
 
     // We need to do an extra `panelOpen` check in here, because the
     // dropdown won't be shown if there are no options.

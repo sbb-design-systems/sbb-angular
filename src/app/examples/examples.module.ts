@@ -33,7 +33,8 @@ import {
   CheckboxModule,
   TagModule,
   ToggleModule,
-  PaginationModule
+  PaginationModule,
+  DropdownModule,
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -74,7 +75,6 @@ import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.co
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
-import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.module';
 
 @NgModule({
   declarations: [

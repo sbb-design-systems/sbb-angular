@@ -57,7 +57,6 @@ export class DropdownComponent implements AfterContentInit {
 
   @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
 
-
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<DropdownItemDirective>;
 
@@ -65,7 +64,14 @@ export class DropdownComponent implements AfterContentInit {
   showPanel = false;
 
   /** Whether the dropdown panel is open. */
-  get isOpen(): boolean { return this._isOpen && this.showPanel; }
+  get isOpen(): boolean {
+    console.log('isOpen', this._isOpen && this.showPanel);
+    return this._isOpen && this.showPanel;
+  }
+  set isOpen(value: boolean) {
+    this._isOpen = value;
+    this.changeDetectorRef.markForCheck();
+  }
   _isOpen = false;
 
   @HostBinding('class.sbb-dropdown') sbbDropdown = true;
@@ -78,7 +84,6 @@ export class DropdownComponent implements AfterContentInit {
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
-
 
   /**
    * Whether the first option should be highlighted when the dropdown panel is opened.
@@ -106,10 +111,6 @@ export class DropdownComponent implements AfterContentInit {
   /** Event that is emitted when the dropdown panel is closed. */
   @Output() readonly closed: EventEmitter<void> = new EventEmitter<void>();
 
-  /**
-   * Takes classes set on the host sbb-dropdown element and applies them to the panel
-   * inside the overlay container to allow for easy styling.
-   */
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
@@ -119,7 +120,6 @@ export class DropdownComponent implements AfterContentInit {
   }
   _classList: { [key: string]: boolean } = {};
 
-  /** Unique ID to be used by dropdown trigger's "aria-owns" property. */
   id = `sbb-dropdown-${_uniqueDropdownIdCounter++}`;
 
   constructor(
@@ -127,6 +127,14 @@ export class DropdownComponent implements AfterContentInit {
     private elementRef: ElementRef<HTMLElement>
   ) {
   }
+
+  /**
+   * Takes classes set on the host sbb-dropdown element and applies them to the panel
+   * inside the overlay container to allow for easy styling.
+   */
+
+  /** Unique ID to be used by dropdown trigger's "aria-owns" property. */
+
 
   ngAfterContentInit() {
     this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(this.options).withWrap();

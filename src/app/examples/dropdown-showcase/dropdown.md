@@ -38,4 +38,4 @@ In the case below, a button has been used:
 </sbb-dropdown>
 ```
 
-More details are available in the ```Overview``` page.
+More details are available in the ```Examples``` page.

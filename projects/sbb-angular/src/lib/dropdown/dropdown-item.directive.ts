@@ -35,7 +35,7 @@ export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT =
  * @param panelHeight Height of the panel.
  * @docs-private
  */
-export function getOptionScrollPosition(optionIndex: number, optionHeight: number,
+export function getDropdownItemScrollPosition(optionIndex: number, optionHeight: number,
   currentScrollPosition: number, panelHeight: number): number {
   const optionOffset = optionIndex * optionHeight;
 
@@ -66,12 +66,18 @@ export class DropdownItemDirective implements Highlightable {
   @HostBinding('class.sbb-active')
   active = false;
 
+  constructor(
+    private elementRef: ElementRef,
+    private changeDetectorRef: ChangeDetectorRef
+  ) { }
+
   setActiveStyles(): void {
     if (!this.active) {
       this.active = true;
       this.changeDetectorRef.markForCheck();
     }
   }
+
   setInactiveStyles(): void {
     if (this.active) {
       this.active = false;
@@ -82,11 +88,6 @@ export class DropdownItemDirective implements Highlightable {
   getLabel?(): string {
     return this.elementRef.nativeElement.textContent;
   }
-
-  constructor(
-    private elementRef: ElementRef,
-    private changeDetectorRef: ChangeDetectorRef
-  ) { }
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
