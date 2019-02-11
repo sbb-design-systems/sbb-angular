@@ -24,6 +24,13 @@ The toggle button has two states:
 
 By default, the first option is always preselected.
 
+First simple example
+```html
+<sbb-toggle formControlName="test">
+    <sbb-toggle-option [label]="option1.label" [value]="option1.value"></sbb-toggle-option>
+    <sbb-toggle-option [label]="option2.label" [value]="option2.value"></sbb-toggle-option>
+</sbb-toggle>
+```
 
 Toggle button is shown in three modes:
 
