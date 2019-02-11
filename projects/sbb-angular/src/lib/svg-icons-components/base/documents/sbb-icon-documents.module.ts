@@ -10,12 +10,14 @@ import { IconDocComponent } from './sbb-icon-doc.component';
 import { IconSoundComponent } from './sbb-icon-sound.component';
 import { IconVideoComponent } from './sbb-icon-video.component';
 import { IconZipComponent } from './sbb-icon-zip.component';
+import { IconPdfComponent } from './sbb-icon-pdf.component';
+import { IconDocGenericComponent } from './sbb-icon-doc-generic.component';
 
 @NgModule({
   imports: [ CommonModule ],
   // tslint:disable-next-line:max-line-length
-  declarations: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent],
+  declarations: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent, IconPdfComponent, IconDocGenericComponent],
   // tslint:disable-next-line:max-line-length
-  exports: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent]
+  exports: [IconImageComponent, IconDocComponent, IconSoundComponent, IconVideoComponent, IconZipComponent, IconPdfComponent, IconDocGenericComponent]
 })
 export class IconDocumentsModule { }

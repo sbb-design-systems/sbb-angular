@@ -110,6 +110,16 @@ export class SBBComponentsMapping {
     'tags': [ 'base', 'documents']
   },
   {
+    'selector': 'sbb-icon-pdf',
+    'name': 'IconPdfComponent',
+    'tags': [ 'base', 'documents']
+  },
+  {
+    'selector': 'sbb-icon-doc-generic',
+    'name': 'IconDocGenericComponent',
+    'tags': [ 'base', 'documents']
+  },
+  {
     'selector': 'sbb-icon-him-construction',
     'name': 'IconHimConstructionComponent',
     'tags': [ 'base', 'him']
@@ -407,11 +417,6 @@ export class SBBComponentsMapping {
   {
     'selector': 'sbb-icon-ticket',
     'name': 'IconTicketComponent',
-    'tags': [ 'base']
-  },
-  {
-    'selector': 'sbb-icon-pdf',
-    'name': 'IconPdfComponent',
     'tags': [ 'base']
   },
   {

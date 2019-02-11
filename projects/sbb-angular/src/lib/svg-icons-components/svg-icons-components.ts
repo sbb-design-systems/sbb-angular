@@ -143,8 +143,6 @@ export * from './base/sbb-icon-gps-off.component';
 // tslint:disable-next-line:max-line-length
 export * from './base/sbb-icon-ticket.component';
 // tslint:disable-next-line:max-line-length
-export * from './base/sbb-icon-pdf.component';
-// tslint:disable-next-line:max-line-length
 export * from './base/sbb-icon-pencil.component';
 // tslint:disable-next-line:max-line-length
 export * from './base/sbb-icon-touch.component';
@@ -186,6 +184,10 @@ export * from './base/documents/sbb-icon-sound.component';
 export * from './base/documents/sbb-icon-video.component';
 // tslint:disable-next-line:max-line-length
 export * from './base/documents/sbb-icon-zip.component';
+// tslint:disable-next-line:max-line-length
+export * from './base/documents/sbb-icon-pdf.component';
+// tslint:disable-next-line:max-line-length
+export * from './base/documents/sbb-icon-doc-generic.component';
 // tslint:disable-next-line:max-line-length
 export * from './base/him/sbb-icon-him.module';
 // tslint:disable-next-line:max-line-length
