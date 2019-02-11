@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'sbb-file-selector',
   templateUrl: './file-selector.component.html',
-  styleUrls: ['./file-selector.component.css']
+  styleUrls: ['./file-selector.component.scss']
 })
 export class FileSelectorComponent implements OnInit {
 
