@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
+
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
@@ -10,7 +12,6 @@ import {
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -26,7 +27,13 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  TooltipModule,
+  TextexpandModule,
+  CheckboxModule,
+  TagModule,
+  ToggleModule,
+  PaginationModule
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -61,6 +68,11 @@ import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
+import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
+import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
+import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 
 @NgModule({
   declarations: [
@@ -93,11 +105,17 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
-    TableShowcaseComponent
+    TableShowcaseComponent,
+    ToggleShowcaseComponent,
+    PaginationShowcaseComponent,
+    TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
+    TagShowcaseComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -121,7 +139,12 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
-    TableModule
+    TableModule,
+    ToggleModule,
+    PaginationModule,
+    TooltipModule,
+    TextexpandModule,
+    TagModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -140,12 +163,15 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    PaginationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
     OptionModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    TooltipShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

@@ -17,7 +17,7 @@
 .sbbsc-v-sep {
   @include mq($from: desktop) {
     border-right: 1px solid $colorGreyLight;
-    max-width: pxToEm(500);
+    max-width: pxToEm(800);
     padding-bottom: 1em;
 
     &.no-fix-width {

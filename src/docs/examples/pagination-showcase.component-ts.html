@@ -1,0 +1,78 @@
+<span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { ActivatedRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { LinkGeneratorResult, NavigationPageDescriptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-pagination-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./pagination-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./pagination-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> PaginationShowcaseComponent {
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> route: ActivatedRoute</span>) { }
+
+  maxPage = <span class="hljs-number">7</span>;
+  initialPage = <span class="hljs-number">5</span>;
+
+  pages = [
+    <span class="hljs-string">'Einführung'</span>,
+    <span class="hljs-string">'Kapitel 1'</span>,
+    <span class="hljs-string">'Kapitel 2'</span>,
+    <span class="hljs-string">'Kapitel 3'</span>
+  ].map(<span class="hljs-function">(<span class="hljs-params">page, index</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> { title: page, index: index };
+  });
+
+  hasPrevious: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">1</span>];
+  hasNext: NavigationPageDescriptor = <span class="hljs-keyword">this</span>.pages[<span class="hljs-number">2</span>];
+
+  <span class="hljs-keyword">get</span> previousPage(): <span class="hljs-built_in">string</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.hasPrevious ? <span class="hljs-keyword">this</span>.hasPrevious.title : <span class="hljs-literal">null</span>; }
+  <span class="hljs-keyword">get</span> nextPage(): <span class="hljs-built_in">string</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.hasNext ? <span class="hljs-keyword">this</span>.hasNext.title : <span class="hljs-literal">null</span>; }
+
+  newPage = { title: <span class="hljs-string">''</span> };
+
+  onPageChange($event) {
+    <span class="hljs-built_in">console</span>.log($event);
+  }
+
+  linkGenerator = (page: { displayNumber: <span class="hljs-built_in">number</span>, index: <span class="hljs-built_in">number</span> }): <span class="hljs-function"><span class="hljs-params">LinkGeneratorResult</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> {
+      routerLink: [<span class="hljs-string">'.'</span>],
+      queryParams: { page: page.displayNumber },
+      queryParamsHandling: <span class="hljs-string">'merge'</span>,
+      relativeTo: <span class="hljs-keyword">this</span>.route,
+    };
+  }
+
+
+  onPageChangeNavigation($event) {
+    <span class="hljs-keyword">if</span> ($event === <span class="hljs-string">'next'</span>) {
+      <span class="hljs-keyword">this</span>.hasPrevious = <span class="hljs-keyword">this</span>.hasNext;
+      <span class="hljs-keyword">this</span>.hasNext = <span class="hljs-keyword">this</span>.pages[<span class="hljs-keyword">this</span>.hasNext.index + <span class="hljs-number">1</span>];
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">this</span>.hasNext = <span class="hljs-keyword">this</span>.hasPrevious;
+      <span class="hljs-keyword">this</span>.hasPrevious = <span class="hljs-keyword">this</span>.pages[<span class="hljs-keyword">this</span>.hasPrevious.index - <span class="hljs-number">1</span>];
+    }
+  }
+
+  linkGeneratorNavigation = (direction: <span class="hljs-string">'previous'</span> | <span class="hljs-string">'next'</span>): <span class="hljs-function"><span class="hljs-params">LinkGeneratorResult</span> =&gt;</span> {
+    <span class="hljs-keyword">let</span> index = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (direction === <span class="hljs-string">'next'</span>) {
+      index = <span class="hljs-keyword">this</span>.hasNext.index;
+    } <span class="hljs-keyword">else</span> {
+      index = <span class="hljs-keyword">this</span>.hasPrevious.index;
+    }
+
+    <span class="hljs-keyword">return</span> {
+      routerLink: [<span class="hljs-string">'.'</span>],
+      queryParams: { page: index },
+      queryParamsHandling: <span class="hljs-string">'merge'</span>,
+      relativeTo: <span class="hljs-keyword">this</span>.route,
+    };
+  }
+
+  addPage() {
+    <span class="hljs-keyword">this</span>.pages.push({ title: <span class="hljs-keyword">this</span>.newPage.title, index: <span class="hljs-keyword">this</span>.pages.length });
+    <span class="hljs-keyword">this</span>.newPage.title = <span class="hljs-string">''</span>;
+  }
+}
