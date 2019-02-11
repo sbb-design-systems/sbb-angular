@@ -28,7 +28,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Whether the first option should be highlighted when the autocomplete panel is opened.</p>
+        <p>Whether the first option should be highlighted when the dropdown panel is opened.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -39,7 +39,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Takes classes set on the host sbb-autocomplete element and applies them to the panel inside the overlay container to allow for easy styling.</p>
+        <p>Takes classes set on the host sbb-dropdown element and applies them to the panel inside the overlay container to allow for easy styling.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -61,7 +61,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Specify the width of the autocomplete panel. Can be any CSS sizing value, otherwise it will match the width of its host.</p>
+        <p>Specify the width of the dropdown panel. Can be any CSS sizing value, otherwise it will match the width of its host.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -72,7 +72,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Event that is emitted when the autocomplete panel is closed.</p>
+        <p>Event that is emitted when the dropdown panel is closed.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -83,7 +83,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Event that is emitted when the autocomplete panel is opened.</p>
+        <p>Event that is emitted when the dropdown panel is opened.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -100,11 +100,11 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>id: `sbb-dropdown-${_uniqueAutocompleteIdCounter++}`</code>
+          <code>id: `sbb-dropdown-${_uniqueDropdownIdCounter++}`</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Unique ID to be used by autocomplete trigger&#39;s &quot;aria-owns&quot; property.</p>
+        <p>Unique ID to be used by dropdown trigger&#39;s &quot;aria-owns&quot; property.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -114,7 +114,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Whether the autocomplete panel is open.</p>
+        <p>Whether the dropdown panel is open.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -142,7 +142,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Element for the panel containing the autocomplete options.</p>
+        <p>Element for the panel containing the dropdown options.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -160,7 +160,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Whether the autocomplete panel should be visible, depending on option length.</p>
+        <p>Whether the dropdown panel should be visible, depending on option length.</p>
       </td>
     </tr>
   </table>
@@ -404,7 +404,7 @@
     <code>DropdownOriginDirective</code>
   </h4>
   <p class="docs-api-class-description">
-    <p>Directive applied to an element to make it usable as a connection point for an autocomplete panel.</p>
+    <p>Directive applied to an element to make it usable as a connection point for an dropdown panel.</p>
   </p>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
@@ -489,7 +489,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>activeOptionId: </code>
+          <code>activeOptionId: string | null</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -671,7 +671,7 @@
     <code>DropdownSelectedEvent</code>
   </h4>
   <p class="docs-api-class-description">
-    <p>Event object that is emitted when an autocomplete option is selected.</p>
+    <p>Event object that is emitted when an dropdown option is selected.</p>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -696,7 +696,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Reference to the autocomplete panel that emitted the event.</p>
+        <p>Reference to the dropdown panel that emitted the event.</p>
       </td>
     </tr>
   </table>
@@ -731,7 +731,7 @@
     <code>DropdownDefaultOptions</code>
   </h4>
   <p class="docs-api-interface-description">
-    <p>Default <code>sbb-autocomplete</code> options that can be overridden.</p>
+    <p>Default <code>sbb-dropdown</code> options that can be overridden.</p>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -746,7 +746,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Whether the first option should be highlighted when an autocomplete panel is opened.</p>
+        <p>Whether the first option should be highlighted when an dropdown panel is opened.</p>
       </td>
     </tr>
   </table>
