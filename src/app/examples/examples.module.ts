@@ -71,6 +71,10 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
+
+
+import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/file-selector';
 
 @NgModule({
   declarations: [
@@ -107,7 +111,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
-    TagShowcaseComponent
+    TagShowcaseComponent,
+    FileSelectorShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +145,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationModule,
     TooltipModule,
     TextexpandModule,
-    TagModule
+    TagModule,
+    FileSelectorModule
   ],
   exports: [
     TextareaShowcaseComponent,

@@ -26,3 +26,4 @@ export * from './lib/pagination/pagination';
 export * from './lib/tooltip/tooltip';
 export * from './lib/textexpand/textexpand';
 export * from './lib/tag/tag';
+export * from './lib/file-selector/file-selector';
