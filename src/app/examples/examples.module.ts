@@ -73,6 +73,8 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { SearchFieldShowcaseComponent } from './search-field-showcase/search-field-showcase.component';
+import { SearchFieldModule } from 'projects/sbb-angular/src/lib/search-field/search-field.module';
 
 @NgModule({
   declarations: [
@@ -110,7 +112,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
-    TagShowcaseComponent
+    TagShowcaseComponent,
+    SearchFieldShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +147,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationModule,
     TooltipModule,
     TextexpandModule,
-    TagModule
+    TagModule,
+    SearchFieldModule
   ],
   exports: [
     TextareaShowcaseComponent,
