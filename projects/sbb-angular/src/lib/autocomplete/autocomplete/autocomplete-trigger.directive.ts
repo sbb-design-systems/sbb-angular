@@ -140,7 +140,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   autocompleteAttribute = 'off';
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
+  readonly optionSelections: Observable<{SBBOptionSelectionChange}> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
     }
@@ -150,7 +150,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return this.zone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.optionSelections));
-  });
+  }) as Observable<{SBBOptionSelectionChange}>;
 
   @HostListener('blur')
   onBlur() {

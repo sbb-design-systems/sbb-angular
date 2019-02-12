@@ -33,8 +33,7 @@ import {
   CheckboxModule,
   TagModule,
   PaginationModule,
-  CaptchaModule,
-  ToggleModule,
+  ToggleModule
 } from 'sbb-angular';
 
 
@@ -76,7 +75,7 @@ import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.co
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
-
+import { CaptchaModule } from 'projects/sbb-angular/src/lib/captcha/captcha';
 
 @NgModule({
   declarations: [

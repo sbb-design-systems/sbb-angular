@@ -103,7 +103,7 @@
     "tsconfig-paths": "^3.7.0",
     "tsickle": "^0.33.1",
     "tslib": "^1.9.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.2.2"
+    "tslint": "~5.11.0",
+    "typescript": "~3.2.2"
   }
 }

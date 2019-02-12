@@ -11,11 +11,14 @@ import {
   Optional,
   Output,
   ChangeDetectionStrategy,
+  HostListener,
+  forwardRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from './captcha-settings';
 import { CaptchaLoaderService } from './captcha-loader.service';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 let nextId = 0;
 
@@ -23,9 +26,16 @@ let nextId = 0;
   exportAs: 'sbbCaptcha',
   selector: 'sbb-captcha',
   template: ``,
+  providers: [
+    {
+      multi: true,
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CaptchaComponent),
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CaptchaComponent implements AfterViewInit, OnDestroy {
+export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
   @Input()
   @HostBinding('attr.id')
   id = `sbbcaptcha-${nextId++}`;
@@ -48,6 +58,22 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy {
   /** @internal */
   private _executeRequested: boolean;
 
+  /** @internal */
+  private _onChange: (value: string) => void;
+
+  /** @internal */
+  private _onTouched: () => void;
+
+  @HostListener('resolved', ['$event'])
+  onResolve($event: string) {
+    if (this._onChange) {
+      this._onChange($event);
+    }
+    if (this._onTouched) {
+      this._onTouched();
+    }
+  }
+
   constructor(
     private _elementRef: ElementRef,
     private _loader: CaptchaLoaderService,
@@ -62,6 +88,15 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy {
       this.badge = settings.badge;
     }
   }
+
+  writeValue(value: string): void {
+    if (!value) {
+      this.reset();
+    }
+  }
+
+  registerOnChange(fn: (value: string) => void): void { this._onChange = fn; }
+  registerOnTouched(fn: () => void): void { this._onTouched = fn; }
 
   ngAfterViewInit() {
     this._subscription = this._loader.ready.subscribe((grecaptcha: ReCaptchaV2.ReCaptcha) => {
