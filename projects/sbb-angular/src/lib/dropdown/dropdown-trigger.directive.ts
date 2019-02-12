@@ -122,7 +122,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     return this.zone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.optionSelections));
-  });
+  }) as Observable<DropdownSelectionChange>;
 
   /**
    * Whether the dropdown is disabled. When disabled, the element will
