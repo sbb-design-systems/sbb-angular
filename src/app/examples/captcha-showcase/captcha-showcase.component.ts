@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -11,11 +11,12 @@ export interface FormModel {
   templateUrl: './captcha-showcase.component.html',
   styleUrls: ['./captcha-showcase.component.scss'],
 })
-export class CaptchaShowcaseComponent implements OnInit {
+export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
 
   basicCaptchaResponse: string;
 
   formModel: FormModel = {};
+  formModelReactive: FormModel = {};
 
   formCaptcha: FormGroup;
 
@@ -23,28 +24,32 @@ export class CaptchaShowcaseComponent implements OnInit {
 
   testSiteKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
-  captcha: FormControl = new FormControl('',[Validators.required]);
+  captcha: FormControl = new FormControl('', [Validators.required]);
 
   ngOnInit() {
 
     this.formCaptcha = new FormGroup({
-
       captcha: this.captcha
-
     });
 
-    this.captchaSubscription = this.formCaptcha.get('captcha').valueChanges.subscribe((value) => {
-
-      console.log(value);
-    });
+    this.captchaSubscription = this.formCaptcha.get('captcha')
+      .valueChanges.subscribe((value) => {
+        this.formModelReactive.captcha = value;
+      });
 
   }
+
+  ngOnDestroy() {
+    if (this.captchaSubscription) {
+      this.captchaSubscription.unsubscribe();
+    }
+  }
+
   resolved(captchaResponse: string) {
     this.basicCaptchaResponse = captchaResponse;
   }
 
   resetForm() {
-
     this.formCaptcha.reset();
   }
 
