@@ -96,6 +96,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   private readonly closeKeyEventStream = new Subject<void>();
   private overlayAttached = false;
 
+  /** Role on a dropdown trigger. */
   @HostBinding('attr.role') get role() {
     return this.dropdownDisabled ? null : 'combobox';
   }
@@ -138,11 +139,11 @@ export class DropdownTriggerDirective implements OnDestroy {
   get panelOpen(): boolean {
     return this.overlayAttached && this.dropdown.showPanel;
   }
-
+  /** Attribute that refers to the expansion of the dropdown panel. */
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.dropdownDisabled ? null : this.panelOpen.toString();
   }
-
+  /** Attribute whose value is associated to dropdown id. */
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
     return (this.dropdownDisabled || !this.panelOpen) ? null : this.dropdown.id;
   }
@@ -166,6 +167,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     );
   }
 
+  /** The currently active option identifier. */
   @HostBinding('attr.aria-activedescendant')
   get activeOptionId(): string | null {
     return this.activeOption ? this.activeOption.id : null;

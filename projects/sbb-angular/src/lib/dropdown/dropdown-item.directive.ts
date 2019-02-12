@@ -53,16 +53,32 @@ export function getDropdownItemScrollPosition(optionIndex: number, optionHeight:
 
 @Directive({ selector: '[sbbDropdownItem]' })
 export class DropdownItemDirective implements Highlightable {
+
+  /**
+   * Identifier of a dropdown item.
+   */
   id = 'sbb-dropdown-item-' + counter++;
 
+  /**
+   * Disable a specific dropdown item.
+   */
   disabled?= false;
 
+  /**
+   * Css class on a dropdown item selected.
+   */
   @HostBinding('class.sbb-selected')
   selected = false;
 
+  /**
+   * Event generated to click on a specific dropdown item.
+   */
   @Output()
   readonly selectionChange = new EventEmitter<DropdownSelectionChange>();
 
+  /**
+   * Css class associated to a dropdown item when it is active.
+   */
   @HostBinding('class.sbb-active')
   active = false;
 
