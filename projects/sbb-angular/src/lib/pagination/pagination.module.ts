@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent } from './pagination/pagination.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { IconCommonModule } from '../svg-icons-components/icon-common.module';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IconArrowSmallLeftModule, IconArrowSmallRightModule } from '../svg-icons/svg-icons';
+import { NavigationComponent } from './navigation/navigation.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -12,8 +12,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    IconCommonModule,
-    RouterModule
+    RouterModule,
+    IconArrowSmallLeftModule,
+    IconArrowSmallRightModule,
   ],
   exports: [
     PaginationComponent,

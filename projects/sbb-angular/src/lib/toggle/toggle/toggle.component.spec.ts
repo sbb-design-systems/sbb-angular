@@ -1,17 +1,14 @@
-import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
-
-import { ToggleComponent } from './toggle.component';
-import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { CommonModule } from '@angular/common';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
-import { Component, ContentChild, OnInit, ContentChildren, QueryList } from '@angular/core';
-import { ToggleModule } from '../toggle.module';
+import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatepickerModule } from '../../datepicker/datepicker';
 import { FieldModule } from '../../field/field';
-import { By } from '@angular/platform-browser';
-
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
+import { ToggleModule } from '../toggle.module';
 
 @Component({
   selector: 'sbb-toggle-test-reactive',
@@ -144,7 +141,7 @@ describe('ToggleComponent case reactive using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule, CommonModule, IconCommonModule, DatepickerModule, FieldModule, ReactiveFormsModule],
+      imports: [ToggleModule, CommonModule, IconCollectionModule, DatepickerModule, FieldModule, ReactiveFormsModule],
       declarations: [ToggleReactiveTestComponent]
     }).compileComponents();
   }));
@@ -248,7 +245,7 @@ describe('ToggleComponent case template driven using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule, CommonModule, IconCommonModule, DatepickerModule, FieldModule, FormsModule],
+      imports: [ToggleModule, CommonModule, IconCollectionModule, DatepickerModule, FieldModule, FormsModule],
       declarations: [ToggleTemplateDrivenTestComponent]
     }).compileComponents();
   }));
@@ -313,7 +310,7 @@ describe('ToggleComponent simple case using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule, CommonModule, IconCommonModule],
+      imports: [ToggleModule, CommonModule, IconCollectionModule],
       declarations: [ToggleSimpleCaseTestComponent]
     }).compileComponents();
   }));

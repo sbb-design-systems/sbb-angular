@@ -1,9 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { NavigationComponent } from './navigation.component';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 import { CommonModule } from '@angular/common';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { NavigationComponent } from './navigation.component';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -11,7 +10,7 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule, CommonModule, RouterTestingModule],
+      imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [NavigationComponent]
     })
       .compileComponents();

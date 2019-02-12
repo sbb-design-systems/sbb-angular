@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProcessflowComponent } from './processflow.component';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 import { Component, ViewChild } from '@angular/core';
-import { ProcessflowModule } from '../processflow.module';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
 import { dispatchMouseEvent } from '../../_common/testing/dispatch-events';
+import { ProcessflowModule } from '../processflow.module';
+import { ProcessflowComponent } from './processflow.component';
+
 
 @Component({
   selector: 'sbb-processflow-test',
@@ -37,7 +37,7 @@ describe('ProcessflowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule],
+      imports: [IconCollectionModule],
       declarations: [ProcessflowComponent]
     })
       .compileComponents();
@@ -61,7 +61,7 @@ describe('ProcessflowComponent user interaction', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule, ProcessflowModule],
+      imports: [IconCollectionModule, ProcessflowModule],
       declarations: [ProcessflowTestComponent]
     })
       .compileComponents();

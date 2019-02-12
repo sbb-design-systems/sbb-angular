@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
 import { LinkComponent } from './link.component';
 
 describe('IconLinkComponent', () => {
@@ -12,7 +11,7 @@ describe('IconLinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        IconCommonModule
+        IconCollectionModule
       ],
       declarations: [
         LinkComponent
