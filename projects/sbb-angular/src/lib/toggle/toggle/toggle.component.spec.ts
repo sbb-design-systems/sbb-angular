@@ -131,6 +131,8 @@ class ToggleSimpleCaseTestComponent {
     'value': 'Option_2'
   }]);
 
+  toggleChange() { }
+
 }
 
 
@@ -329,15 +331,15 @@ describe('ToggleComponent simple case using mock component', () => {
   it('it verifies the text content in the first toggle button selected', () => {
 
     const toggleOptionsComponentReference = fixtureTest
-    .debugElement
-    .queryAll(By.css('.sbb-toggle-option'));
+      .debugElement
+      .queryAll(By.css('.sbb-toggle-option'));
 
     const toggleOptions1Component = toggleOptionsComponentReference[0].nativeElement;
     expect(toggleOptions1Component.attributes['infotext'].value).toBe('- CHF 5.60');
 
   });
 
-  it('it verifies the click on the second toggle button is selected',() => {
+  it('it verifies the click on the second toggle button is selected', () => {
 
     const toggleOptionsReference = fixtureTest
       .debugElement
