@@ -50,8 +50,7 @@
           <form [formGroup]="formCaptcha">
               <sbb-captcha formControlName="captcha"
                            name="captcha"
-                           [siteKey]="testSiteKey"
-                           (resolved)="resolved($event)">
+                           [siteKey]="testSiteKey">
               </sbb-captcha>
           </form>
           <div class="sbbsc-block">

@@ -6,22 +6,27 @@ export interface RecaptchaSettings {
 
   /**
    * SiteKey of the user.
+   * It is optional.
    */
   siteKey?: string;
   /**
    * The color theme of the widget.
+   * It is optional.
    */
   theme?: ReCaptchaV2.Theme;
   /**
    * Type of the widget.
+   * It is optional.
    */
   type?: ReCaptchaV2.Type;
   /**
    * The size of the widget.
+   * It is optional.
    */
   size?: ReCaptchaV2.Size;
   /**
    * Badge of the widget.
+   * It is optional.
    */
   badge?: ReCaptchaV2.Badge;
 }

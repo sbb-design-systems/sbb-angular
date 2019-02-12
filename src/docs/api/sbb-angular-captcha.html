@@ -47,45 +47,6 @@
   </table>
   <h3 id="directives" class="docs-header-link docs-api-h3">
     <span header-link="directives"></span> Directives </h3>
-  <h4 id="CaptchaValueAccessorDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="CaptchaValueAccessorDirective"></span>
-    <code>CaptchaValueAccessorDirective</code>
-  </h4>
-  <p class="docs-api-directive-selectors">
-    <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-captcha[formControlName]</span>
-    <span class="docs-api-class-selector-name">sbb-captcha[formControl]</span>
-    <span class="docs-api-class-selector-name">sbb-captcha[ngModel]</span>
-  </p>
-  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">onResolve </th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Event generated on captcha checkbox.</p>
-      </td>
-    </tr>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> $event</p>
-        <code class="docs-api-method-parameter-type">string</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-          <p>Captcha response.</p>
-        </p>
-      </td>
-    </tr>
-  </table>
   <h4 id="CaptchaComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
     <span header-link="CaptchaComponent"></span>
     <code>CaptchaComponent</code>
@@ -109,7 +70,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Badge of the widget.</p>
+        <p>The badge of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -120,7 +81,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Identifier of a sbb-captcha.</p>
+        <p>Identifier of sbb-captcha.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -131,7 +92,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>SiteKey of the user.</p>
+        <p>SiteKey of the user. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -142,7 +103,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The size of the widget.</p>
+        <p>The size of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -153,7 +114,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The color theme of the widget.</p>
+        <p>The color theme of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -164,7 +125,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Type of the widget.</p>
+        <p>The type of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -195,6 +156,28 @@
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onResolve </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">string</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
         <th colspan="2" class="docs-api-method-name-cell">reset </th>
       </tr>
     </thead>
@@ -218,7 +201,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Badge of the widget.</p>
+        <p>Badge of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -228,7 +211,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>SiteKey of the user.</p>
+        <p>SiteKey of the user. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -238,7 +221,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The size of the widget.</p>
+        <p>The size of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -248,7 +231,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The color theme of the widget.</p>
+        <p>The color theme of the widget. It is optional.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -258,7 +241,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Type of the widget.</p>
+        <p>Type of the widget. It is optional.</p>
       </td>
     </tr>
   </table>

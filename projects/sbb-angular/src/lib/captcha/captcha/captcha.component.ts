@@ -36,17 +36,53 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+
+  /**
+   * Identifier of sbb-captcha.
+   */
   @Input()
   @HostBinding('attr.id')
   id = `sbbcaptcha-${nextId++}`;
 
+  /**
+   * SiteKey of the user.
+   * It is optional.
+   */
   @Input() siteKey: string;
+
+  /**
+   * The color theme of the widget.
+   * It is optional.
+   */
   @Input() theme: ReCaptchaV2.Theme;
+
+  /**
+   * The type of the widget.
+   * It is optional.
+   */
   @Input() type: ReCaptchaV2.Type;
+
+  /**
+   * The size of the widget.
+   * It is optional.
+   */
   @Input() size: ReCaptchaV2.Size;
+
+  /**
+   * The tabindex of the widget and challenge.
+   * It is optional.
+   */
   @Input() tabIndex: number;
+
+  /**
+   * The badge of the widget.
+   * It is optional.
+   */
   @Input() badge: ReCaptchaV2.Badge;
 
+  /**
+   * Event generated on captcha checkbox.
+   */
   @Output() resolved = new EventEmitter<string>();
 
   /** @internal */
