@@ -99,7 +99,9 @@ ${modules.map(m => `export * from '${m.rootImportPath}';`).join(EOL)}
     const detailsTemplate = (details: { selector: string, name: string, modules: string[] }) => `  {
     selector: '${details.selector}',
     name: '${details.name}',
-    modules: [${details.modules.map(t => `'${t}'`).join(', ')}],
+    modules: [
+${details.modules.map(t => `      '${t}',`).join(EOL)}
+    ],
     component: ${details.name},
   },`;
     const template = `/*
