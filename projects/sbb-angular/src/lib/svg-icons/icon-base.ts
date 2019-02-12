@@ -2,6 +2,13 @@ import { HostBinding, Input } from '@angular/core';
 
 export abstract class IconBase {
   /**
+   * Configure the size of the SVG.
+   * 'grow' will allow the SVG to grow or shrink to the parent size.
+   * 'fixed' will apply the default width and height of the SVG.
+   * Defaults to 'grow'.
+   */
+  @Input() size: 'grow' | 'fixed' = 'grow';
+  /**
    * The viewBox attribute that will be applied to the SVG element.
    * Defaults to the viewBox attribute value of the source SVG.
    */
@@ -16,14 +23,14 @@ export abstract class IconBase {
    * Defaults to the width attribute value of the source SVG.
    */
   @Input()
-  get width() { return this.hasDimensionInputValue() ? this.inputWidth : this.defaultWidth; }
+  get width() { return this.hasDimensionInputValueOrIsNotFixed() ? this.inputWidth : this.defaultWidth; }
   set width(value: string) { this.inputWidth = value; }
   /**
    * The height attribute that will be applied to the SVG element.
    * Defaults to the height attribute value of the source SVG.
    */
   @Input()
-  get height() { return this.hasDimensionInputValue() ? this.inputHeight : this.defaultHeight; }
+  get height() { return this.hasDimensionInputValueOrIsNotFixed() ? this.inputHeight : this.defaultHeight; }
   set height(value: string) { this.inputHeight = value; }
   /**
    * The given CSS class or classes will be applied to the SVG element.
@@ -43,7 +50,7 @@ export abstract class IconBase {
     this.svgClass = values.svgClass || '';
   }
 
-  private hasDimensionInputValue() {
-    return this.inputWidth !== undefined || this.inputHeight !== undefined;
+  private hasDimensionInputValueOrIsNotFixed() {
+    return this.size !== 'fixed' || this.inputWidth !== undefined || this.inputHeight !== undefined;
   }
 }

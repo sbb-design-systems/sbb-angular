@@ -11,7 +11,7 @@
   <h5 class="docs-api-h5">Selector</h5>
   <code class="sbbsc-cards-card-icon-selector">{{ getSelector(uiIcon.selector) }}</code>
 
-  <h5 class="docs-api-h5">Icon (Default Size)</h5>
+  <h5 class="docs-api-h5">Icon (Default fixed size)</h5>
   <ng-template [sbbIconViewer]="uiIcon"></ng-template>
 
   <h5 class="docs-api-h5">Icon (Height 60px)</h5>
@@ -22,6 +22,20 @@
     <tr class="docs-api-properties-header-row">
       <th class="docs-api-properties-th">Name</th>
       <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>size: 'grow' | 'fixed' = 'grow'</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Configure the size of the SVG.
+          'grow' will allow the SVG to grow or shrink to the parent size.
+          'fixed' will apply the default width and height of the SVG.
+          Defaults to 'grow'.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">

@@ -19,6 +19,8 @@ export class IconViewerDirective implements OnChanges {
     const componentRef = this.viewContainer.createComponent(componentFactory);
     if (this.svgHeight) {
       componentRef.instance.height = this.svgHeight;
+    } else {
+      componentRef.instance.size = 'fixed';
     }
   }
 
