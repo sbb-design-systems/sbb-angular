@@ -39,7 +39,10 @@ export class CaptchaValueAccessorDirective implements ControlValueAccessor {
 
   registerOnChange(fn: (value: string) => void): void { this._onChange = fn; }
   registerOnTouched(fn: () => void): void { this._onTouched = fn; }
-
+  /**
+   * Event generated on captcha checkbox.
+   * @param $event Captcha response.
+   */
   @HostListener('resolved', ['$event'])
   onResolve($event: string) {
     if (this._onChange) {

@@ -1,0 +1,265 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL captcha </h2>
+  <p class="docs-api-module-import">
+    <code> import { CaptchaModule } from 'sbb-angular'; </code>
+  </p>
+  <h3 id="services" class="docs-header-link docs-api-h3">
+    <span header-link="services"></span> Services </h3>
+  <h4 id="WindowRef" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="WindowRef"></span>
+    <code>WindowRef</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>nativeWindow: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The global native browser window object.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="CaptchaLoaderService" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="CaptchaLoaderService"></span>
+    <code>CaptchaLoaderService</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ready: Observable&lt;ReCaptchaV2.ReCaptcha&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="CaptchaValueAccessorDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="CaptchaValueAccessorDirective"></span>
+    <code>CaptchaValueAccessorDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-captcha[formControlName]</span>
+    <span class="docs-api-class-selector-name">sbb-captcha[formControl]</span>
+    <span class="docs-api-class-selector-name">sbb-captcha[ngModel]</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onResolve </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Event generated on captcha checkbox.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">string</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Captcha response.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="CaptchaComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="CaptchaComponent"></span>
+    <code>CaptchaComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-captcha</span>
+  </p><span class="docs-api-class-export-label">Exported as:</span>
+  <span class="docs-api-class-export-name">sbbCaptcha</span>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>badge: ReCaptchaV2.Badge</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Badge of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>id: `sbbcaptcha-${nextId++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of a sbb-captcha.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>siteKey: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>SiteKey of the user.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>size: ReCaptchaV2.Size</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The size of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>theme: ReCaptchaV2.Theme</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The color theme of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>type: ReCaptchaV2.Type</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Type of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>resolved: EventEmitter&lt;string&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event generated on captcha checkbox.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">execute </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Executes the invisible recaptcha. Does nothing if component&#39;s size is not set to &quot;invisible&quot;.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">reset </th>
+      </tr>
+    </thead>
+  </table>
+  <h3 id="additional_interfaces" class="docs-header-link docs-api-h3">
+    <span header-link="additional_interfaces"></span> Additional interfaces </h3>
+  <h4 id="RecaptchaSettings" class="docs-header-link docs-api-h4 docs-api-interface-name">
+    <span header-link="RecaptchaSettings"></span>
+    <code>RecaptchaSettings</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>badge: ReCaptchaV2.Badge</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Badge of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>siteKey: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>SiteKey of the user.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>size: ReCaptchaV2.Size</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The size of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>theme: ReCaptchaV2.Theme</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The color theme of the widget.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>type: ReCaptchaV2.Type</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Type of the widget.</p>
+      </td>
+    </tr>
+  </table>
+</div>
