@@ -69,7 +69,6 @@ export class DropdownComponent implements AfterContentInit {
   }
   set isOpen(value: boolean) {
     this._isOpen = value;
-    this.changeDetectorRef.markForCheck();
   }
   _isOpen = false;
 
