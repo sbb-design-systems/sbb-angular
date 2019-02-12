@@ -24,6 +24,7 @@ import { PaginationShowcaseComponent } from '../examples/pagination-showcase/pag
 import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
+import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 
 
 @Injectable({
@@ -378,6 +379,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         TagShowcaseComponent
+      ),
+      new UiComponent(
+        'Dropdown',
+        'dropdown',
+        'Dropdown',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        DropdownShowcaseComponent
       )
     ];
   }

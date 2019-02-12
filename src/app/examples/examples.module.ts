@@ -33,7 +33,8 @@ import {
   CheckboxModule,
   TagModule,
   ToggleModule,
-  PaginationModule
+  PaginationModule,
+  DropdownModule,
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -73,6 +74,7 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +112,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
-    TagShowcaseComponent
+    TagShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +147,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     PaginationModule,
     TooltipModule,
     TextexpandModule,
-    TagModule
+    TagModule,
+    DropdownModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -171,7 +175,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
     OptionModule,
     AccordionModule,
     TableModule,
-    TooltipShowcaseComponent
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
