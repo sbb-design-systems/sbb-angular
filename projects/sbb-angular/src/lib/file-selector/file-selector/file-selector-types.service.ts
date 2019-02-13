@@ -4,7 +4,7 @@ import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
 @Injectable()
 export class FileSelectorTypesService {
 
-  getFileTypeCategoryByMimeType(mimeType: string): number {
+  getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
     let cat = FileTypeCategory.GENERIC_DOC;
 
     const isDoc = this.findMimeType(['MS_WORD_DOC', 'MS_EXCEL', 'MS_POWERPOINT'], mimeType);
