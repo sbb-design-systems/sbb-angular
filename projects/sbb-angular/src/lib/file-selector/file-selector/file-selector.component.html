@@ -1,3 +1,9 @@
-<p>
-  file-selector works!
-</p>
+<input type="file"
+       [attr.accept]="accept"
+       [attr.capture]="capture"
+       [attr.multiple]="multiple"
+       (change)="fileChange($event.target.files)"
+       (blur)="onTouched()" />
+<ul>
+  <li *ngFor="let file of filesList">{{ file.name }} / {{ file.size }} / {{ getFileExtension(file) }}</li>
+</ul>
