@@ -12,6 +12,8 @@ import { FileSelectorOptions, FILE_SELECTOR_OPTIONS, FileTypeCategory } from './
 import { FileSelectorTypesService } from './file-selector-types.service';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
+let counter = 0;
+
 @Component({
   selector: 'sbb-file-selector',
   templateUrl: './file-selector.component.html',
@@ -32,6 +34,8 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   @Input() capture?: 'user' | 'environment';
 
   @Input() multiple?: boolean;
+
+  @Input() inputId = `sbb-file-selector-${counter++}`;
 
   @Output() fileChanged = new EventEmitter<FileList>();
 

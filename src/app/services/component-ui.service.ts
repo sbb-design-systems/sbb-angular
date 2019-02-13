@@ -26,6 +26,7 @@ import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/tex
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
 import { FileSelectorShowcaseComponent } from '../examples/file-selector-showcase/file-selector-showcase.component';
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
+import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
 
 
 @Injectable({
@@ -382,6 +383,19 @@ export class ComponentUiService {
         TagShowcaseComponent
       ),
       new UiComponent(
+        'Captcha',
+        'captcha',
+        'Captcha',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        CaptchaShowcaseComponent
+      ),
+      new UiComponent(
         'Dropdown',
         'dropdown',
         'Dropdown',
@@ -407,6 +421,7 @@ export class ComponentUiService {
         'Import text.',
         FileSelectorShowcaseComponent
       )
+
     ];
   }
 

@@ -32,10 +32,12 @@ import {
   TextexpandModule,
   CheckboxModule,
   TagModule,
-  ToggleModule,
   PaginationModule,
+  ToggleModule,
+  CaptchaModule,
   DropdownModule,
 } from 'sbb-angular';
+
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
@@ -75,6 +77,7 @@ import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.co
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
+import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
 
@@ -119,6 +122,7 @@ import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/f
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
     FileSelectorShowcaseComponent,
+    CaptchaShowcaseComponent,
     DropdownShowcaseComponent
   ],
   imports: [
@@ -155,7 +159,8 @@ import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/f
     TextexpandModule,
     TagModule,
     FileSelectorModule,
-    DropdownModule
+    DropdownModule,
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,
