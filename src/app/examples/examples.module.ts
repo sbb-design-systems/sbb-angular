@@ -34,7 +34,8 @@ import {
   TagModule,
   PaginationModule,
   ToggleModule,
-  CaptchaModule
+  CaptchaModule,
+  DropdownModule,
 } from 'sbb-angular';
 
 
@@ -76,6 +77,7 @@ import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.co
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
+import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,8 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
-    CaptchaShowcaseComponent
+    CaptchaShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -149,7 +152,7 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
     TooltipModule,
     TextexpandModule,
     TagModule,
-    CaptchaModule
+    DropdownModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -176,7 +179,8 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
     OptionModule,
     AccordionModule,
     TableModule,
-    TooltipShowcaseComponent
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

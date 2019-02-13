@@ -24,7 +24,7 @@ import { PaginationShowcaseComponent } from '../examples/pagination-showcase/pag
 import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
-import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
+import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 
 
 @Injectable({
@@ -381,9 +381,9 @@ export class ComponentUiService {
         TagShowcaseComponent
       ),
       new UiComponent(
-        'Captcha',
-        'captcha',
-        'Captcha',
+        'Dropdown',
+        'dropdown',
+        'Dropdown',
         'Subtitel goes here ...',
         true,
         false,
@@ -391,7 +391,7 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        CaptchaShowcaseComponent
+        DropdownShowcaseComponent
       )
     ];
   }
