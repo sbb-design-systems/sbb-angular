@@ -1,0 +1,19 @@
+<span class="hljs-variable">$borderActive</span>: solid <span class="hljs-number">2px</span> <span class="hljs-number">#666</span>;
+<span class="hljs-variable">$border</span>: solid <span class="hljs-number">2px</span> white;
+<span class="hljs-selector-class">.dropdown-avatar</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-variable">$border</span>;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">14px</span>;
+
+  <span class="hljs-selector-class">.avatar-icon</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">24px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">24px</span>;
+  }
+  &amp;-active {
+    <span class="hljs-attribute">border-top</span>: <span class="hljs-variable">$borderActive</span>;
+    <span class="hljs-attribute">border-right</span>: <span class="hljs-variable">$borderActive</span>;
+    <span class="hljs-attribute">border-left</span>: <span class="hljs-variable">$borderActive</span>;
+
+  }
+}

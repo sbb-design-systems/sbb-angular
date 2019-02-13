@@ -33,7 +33,7 @@
   CheckboxModule,
   TagModule,
   ToggleModule,
-  PaginationModule
+  PaginationModule,
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 <span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
@@ -73,6 +73,8 @@
 <span class="hljs-keyword">import</span> { TooltipShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tooltip-showcase/tooltip-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { DropdownModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/dropdown/dropdown.module'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -110,7 +112,8 @@
     PaginationShowcaseComponent,
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
-    TagShowcaseComponent
+    TagShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +147,8 @@
     PaginationModule,
     TooltipModule,
     TextexpandModule,
-    TagModule
+    TagModule,
+    DropdownModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -171,7 +175,8 @@
     OptionModule,
     AccordionModule,
     TableModule,
-    TooltipShowcaseComponent
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

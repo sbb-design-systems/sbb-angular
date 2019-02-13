@@ -33,7 +33,8 @@ import {
   CheckboxModule,
   TagModule,
   ToggleModule,
-  PaginationModule
+  PaginationModule,
+  DropdownModule,
 } from 'sbb-angular';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
@@ -74,9 +75,11 @@ import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.co
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
+import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
 
 import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/file-selector';
+
 
 @NgModule({
   declarations: [
@@ -115,7 +118,8 @@ import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/f
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
-    FileSelectorShowcaseComponent
+    FileSelectorShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +154,8 @@ import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/f
     TooltipModule,
     TextexpandModule,
     TagModule,
-    FileSelectorModule
+    FileSelectorModule,
+    DropdownModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -177,7 +182,8 @@ import { FileSelectorModule } from 'projects/sbb-angular/src/lib/file-selector/f
     OptionModule,
     AccordionModule,
     TableModule,
-    TooltipShowcaseComponent
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

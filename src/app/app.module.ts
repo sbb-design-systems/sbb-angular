@@ -57,6 +57,7 @@ import { TooltipShowcaseComponent } from './examples/tooltip-showcase/tooltip-sh
 import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase/file-selector-showcase.component';
+import { DropdownShowcaseComponent } from './examples/dropdown-showcase/dropdown-showcase.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
     FileSelectorShowcaseComponent,
+    DropdownShowcaseComponent,
     ...IconComponents.types
   ]
 })
