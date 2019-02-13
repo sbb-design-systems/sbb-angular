@@ -56,6 +56,7 @@ import { PaginationShowcaseComponent } from './examples/pagination-showcase/pagi
 import { TooltipShowcaseComponent } from './examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
+import { CaptchaShowcaseComponent } from './examples/captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './examples/dropdown-showcase/dropdown-showcase.component';
 
 @NgModule({
@@ -119,6 +120,7 @@ import { DropdownShowcaseComponent } from './examples/dropdown-showcase/dropdown
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
     ...IconComponents.types
   ]
