@@ -45,11 +45,23 @@ export class FileSelectorTypesService {
     return res[res.length - 1];
   }
 
-  formatFileSize(fileSizeBytes: number): string {
-    const i = Math.floor(Math.log(fileSizeBytes) / Math.log(1024));
-    const sizes = ['B', 'KB', 'MB', 'GB'];
+  getFileNameNoExtension(fileName: string): string {
+    const res = fileName.split('.');
+    res.pop();
+    return res.join('');
+  }
 
-    return (fileSizeBytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
+  formatFileSize(fileSizeBytes: number): string {
+    let res = '';
+
+    if (fileSizeBytes) {
+      const i = Math.floor(Math.log(fileSizeBytes) / Math.log(1024));
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+
+      res = Math.round(fileSizeBytes / Math.pow(1024, i)) + ' ' + sizes[i];
+    }
+
+    return res;
   }
 
   private setAcceptString(t: FileTypeCategory, acceptString: string): string {

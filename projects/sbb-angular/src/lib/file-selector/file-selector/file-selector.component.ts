@@ -8,7 +8,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { FileSelectorOptions, FILE_SELECTOR_OPTIONS } from './file-selector-base';
+import { FileSelectorOptions, FILE_SELECTOR_OPTIONS, FileTypeCategory } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -37,6 +37,8 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   filesList: FileList;
 
+  fileTypeCategory = FileTypeCategory;
+
   onChange = (_: FileList) => { };
   onTouched = () => { };
 
@@ -64,5 +66,17 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   getFileExtension(file: File): string {
     return this._fileTypeService.getFileExtensionFromFileName(file.name);
+  }
+
+  getFileSizeFormatted(file: File): string {
+    return this._fileTypeService.formatFileSize(file.size);
+  }
+
+  getFileNameNoExtension(file: File): string {
+    return this._fileTypeService.getFileNameNoExtension(file.name);
+  }
+
+  getFileTypeCat(file: File): FileTypeCategory {
+    return this._fileTypeService.getFileTypeCategoryByMimeType(file.type);
   }
 }

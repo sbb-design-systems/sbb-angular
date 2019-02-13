@@ -29,7 +29,7 @@ export const FILE_TYPES: { [key: string]: string[] } = {
 
   AUDIO: ['audio/*'],
   AUDIO_MP4: ['audio/mp4'],
-  AUDIO_MP3: ['audio/mpeg'],
+  AUDIO_MP3: ['audio/mpeg', 'audio/mp3'],
   AUDIO_OGG: ['audio/ogg'],
   AUDIO_WAVE: ['audio/wave'],
   AUDIO_WAV: ['audio/wav', 'audio/x-wav', 'audio/x-pn-wav', 'audio/webm'],

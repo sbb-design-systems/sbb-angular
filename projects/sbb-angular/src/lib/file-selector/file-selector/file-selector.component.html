@@ -5,5 +5,20 @@
        (change)="fileChange($event.target.files)"
        (blur)="onTouched()" />
 <ul>
-  <li *ngFor="let file of filesList">{{ file.name }} / {{ file.size }} / {{ getFileExtension(file) }}</li>
+  <li *ngFor="let file of filesList">
+    <ng-container [ngTemplateOutlet]="fileIcon" [ngTemplateOutletContext]="{file: file}"></ng-container>
+    {{ getFileNameNoExtension(file) }} ({{ getFileExtension(file) }}, {{ getFileSizeFormatted(file) }})
+  </li>
 </ul>
+
+<ng-template #fileIcon let-file='file'>
+  <div [ngSwitch]="getFileTypeCat(file)" style="width: 24px; height: 24px;display:inline-block;">
+    <sbb-icon-doc *ngSwitchCase="fileTypeCategory.DOC"></sbb-icon-doc>
+    <sbb-icon-image *ngSwitchCase="fileTypeCategory.IMAGE"></sbb-icon-image>
+    <sbb-icon-pdf *ngSwitchCase="fileTypeCategory.PDF"></sbb-icon-pdf>
+    <sbb-icon-sound *ngSwitchCase="fileTypeCategory.AUDIO"></sbb-icon-sound>
+    <sbb-icon-video *ngSwitchCase="fileTypeCategory.VIDEO"></sbb-icon-video>
+    <sbb-icon-zip *ngSwitchCase="fileTypeCategory.ZIP"></sbb-icon-zip>
+    <sbb-icon-doc-generic *ngSwitchDefault></sbb-icon-doc-generic>
+  </div>
+</ng-template>
