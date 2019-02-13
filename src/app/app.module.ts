@@ -56,7 +56,7 @@ import { PaginationShowcaseComponent } from './examples/pagination-showcase/pagi
 import { TooltipShowcaseComponent } from './examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
-import { SearchFieldShowcaseComponent } from './examples/search-field-showcase/search-field-showcase.component';
+import { SearchShowcaseComponent } from './examples/search-showcase/search-showcase.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +119,7 @@ import { SearchFieldShowcaseComponent } from './examples/search-field-showcase/s
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
-    SearchFieldShowcaseComponent,
+    SearchShowcaseComponent,
     ...IconComponents.types
   ]
 })

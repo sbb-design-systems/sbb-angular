@@ -1,0 +1,24 @@
+@import "../../../styles/main";
+
+.sbb-search {
+  display: flex;
+  height: 40px;
+  width: 280px;
+  > input {
+    border-right: none;
+  }
+  > button {
+    @include buttonResetFrameless;
+    fill: $colorWhite;
+    background-color: $colorRed100;
+    height: 100%;
+
+    width: 10%;
+    > * {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+
+}
