@@ -152,7 +152,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipModule,
     TextexpandModule,
     TagModule,
-    DropdownModule
+    DropdownModule,
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,
