@@ -54,7 +54,9 @@ export interface DropdownDefaultOptions {
   ]
 })
 export class DropdownComponent implements AfterContentInit {
-
+  /**
+   * Reference to the dropdown items.
+   */
   @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
 
   /** Manages active item in option list based on key events. */
@@ -71,7 +73,7 @@ export class DropdownComponent implements AfterContentInit {
     this._isOpen = value;
   }
   _isOpen = false;
-
+  /** Css class of sbb-dropdown. */
   @HostBinding('class.sbb-dropdown') sbbDropdown = true;
 
   /** @docs-private */
