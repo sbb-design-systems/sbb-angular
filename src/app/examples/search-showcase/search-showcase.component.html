@@ -1,6 +1,12 @@
-<sbb-search  [formControl]="myControl" [autocomplete]="auto"></sbb-search>
+<sbb-search [mode]="mode"  [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete" >
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option }}
   </sbb-option>
 </sbb-autocomplete>
+
+<pre>
+  {{ myControl.value | json}}
+</pre>
+
+<button sbbButton type="button" (click)="toggleMode()">Toggle mode</button>

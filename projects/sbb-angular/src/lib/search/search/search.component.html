@@ -1,4 +1,18 @@
-<input class="sbb-search-input" type="text"  [sbbAutocompleteConnectedTo]="origin" [sbbAutocomplete]="autocomplete">
-<button>
-  <sbb-icon-search></sbb-icon-search>
-</button>
+<ng-container *ngTemplateOutlet="mode === 'default' ? searchbox : searchicon"></ng-container>
+<ng-template #searchbox>
+  <input 
+    #input 
+    class="sbb-search-input" 
+    type="text" (focusin)="handleFocus()" 
+    (input)="handleInput($event)"
+    (keydown)="handleKeydown($event)">
+  <button>
+    <sbb-icon-search></sbb-icon-search>
+  </button>
+</ng-template>
+
+<ng-template #searchicon>
+  <div class="sbb-search-icon-wrapper" (click)="revealSearchbox()">
+    <sbb-icon-search></sbb-icon-search>
+  </div>
+</ng-template>

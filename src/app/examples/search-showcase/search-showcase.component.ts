@@ -15,6 +15,7 @@ export class SearchShowcaseComponent implements OnInit {
 
   options$: Subject<string[]>;
   searchNumbers: Subject<string>;
+  mode: 'header' | 'default' = 'default';
 
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filter: '';
@@ -42,4 +43,11 @@ export class SearchShowcaseComponent implements OnInit {
   }
 
 
+  toggleMode() {
+    if (this.mode === 'default') {
+      this.mode = 'header';
+    } else {
+      this.mode = 'default';
+    }
+  }
 }

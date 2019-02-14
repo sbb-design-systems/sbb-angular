@@ -18,9 +18,9 @@ import {
   LoadingModule,
   DatepickerModule,
   LightboxModule,
-  AutocompleteModule,
-  SelectModule,
-  OptionModule,
+  /* AutocompleteModule,
+  SelectModule, */
+/*   OptionModule, */
   AccordionModule,
   ProcessflowModule,
   RadioButtonModule,
@@ -75,6 +75,9 @@ import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-sh
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { SearchShowcaseComponent } from './search-showcase/search-showcase.component';
 import { SearchModule } from 'projects/sbb-angular/src/lib/search/search.module';
+import { OptionModule } from 'projects/sbb-angular/src/lib/option/option.module';
+import { AutocompleteModule } from 'projects/sbb-angular/src/lib/autocomplete/autocomplete.module';
+import { SelectModule } from 'projects/sbb-angular/src/lib/select/select.module';
 
 @NgModule({
   declarations: [
