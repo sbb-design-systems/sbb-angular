@@ -6,7 +6,10 @@ import {
   ChangeDetectionStrategy,
   forwardRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
 import { FileSelectorOptions, FILE_SELECTOR_OPTIONS, FileTypeCategory } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
@@ -37,17 +40,20 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   @Input() inputId = `sbb-file-selector-${counter++}`;
 
-  @Output() fileChanged = new EventEmitter<FileList>();
+  @Output() fileChanged = new EventEmitter<File[]>();
 
-  filesList: FileList;
+  @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
+
+  filesList: File[];
 
   fileTypeCategory = FileTypeCategory;
 
-  onChange = (_: FileList) => { };
+  onChange = (_: File[]) => { };
   onTouched = () => { };
 
   constructor(
     private _fileTypeService: FileSelectorTypesService,
+    private _renderer: Renderer2,
     @Optional() @Inject(FILE_SELECTOR_OPTIONS) options: FileSelectorOptions
   ) {
     if (options) {
@@ -57,12 +63,16 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     }
   }
 
-  writeValue(filesList: FileList) { this.filesList = filesList; }
+  writeValue(value: any) { this.filesList = value; }
   registerOnChange(fn: any) { this.onChange = fn; }
   registerOnTouched(fn: any) { this.onTouched = fn; }
 
   fileChange(files: FileList) {
-    console.log(files);
+    const arrayFiles: File[] = Array.from(files);
+    this.applyChanges(arrayFiles);
+  }
+
+  applyChanges(files: File[]): void {
     this.onChange(files);
     this.writeValue(files);
     this.fileChanged.emit(files);
@@ -82,5 +92,11 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   getFileTypeCat(file: File): FileTypeCategory {
     return this._fileTypeService.getFileTypeCategoryByMimeType(file.type);
+  }
+
+  removeFile(file: File): void {
+    this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
+    const filteredList = this.filesList.filter(f => f.name !== file.name);
+    this.applyChanges(filteredList);
   }
 }

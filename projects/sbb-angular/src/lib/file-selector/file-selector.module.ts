@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { FileSelectorTypesService } from './file-selector/file-selector-types.service';
-import { IconDocumentsModule } from '../svg-icons-components/svg-icons-components';
+import { IconCommonModule } from '../svg-icons-components/svg-icons-components';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { IconDocumentsModule } from '../svg-icons-components/svg-icons-component
   ],
   imports: [
     CommonModule,
-    IconDocumentsModule
+    IconCommonModule
   ],
   exports: [
     FileSelectorComponent
