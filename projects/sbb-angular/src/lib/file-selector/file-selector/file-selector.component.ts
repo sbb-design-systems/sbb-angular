@@ -9,7 +9,8 @@ import {
   EventEmitter,
   ViewChild,
   ElementRef,
-  Renderer2
+  Renderer2,
+  ViewEncapsulation
 } from '@angular/core';
 import { FileSelectorOptions, FILE_SELECTOR_OPTIONS, FileTypeCategory } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
@@ -22,6 +23,7 @@ let counter = 0;
   templateUrl: './file-selector.component.html',
   styleUrls: ['./file-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,25 +1,34 @@
-<input type="file"
-       #fileInput
-       [attr.id]="inputId"
-       [attr.accept]="accept"
-       [attr.capture]="capture"
-       [attr.multiple]="multiple"
-       (change)="fileChange($event.target.files)"
-       (blur)="onTouched()" />
-<ul>
-  <li *ngFor="let file of filesList">
-    <ng-container [ngTemplateOutlet]="fileIcon" [ngTemplateOutletContext]="{file: file}"></ng-container>
-    {{ getFileNameNoExtension(file) }} ({{ getFileExtension(file) }}, {{ getFileSizeFormatted(file) }})
-    <button (click)="removeFile(file)">
-      <span i18n class="visuallyhidden">Click to trash this file</span>
-      <sbb-icon-trash></sbb-icon-trash>
-    </button>
-  </li>
-</ul>
+<article class="sbb-file-selector">
+  <button sbbButton mode="secondary" class="sbb-file-selector-button" tabindex="-1">
+    <span i18n>Datei hochladen</span> <sbb-icon-upload *sbbButtonIcon></sbb-icon-upload>
+    <label class="sbb-file-selector-label" [for]="inputId">
+      <input type="file"
+              class="visuallyhidden"
+              #fileInput
+              [attr.id]="inputId"
+              [attr.accept]="accept"
+              [attr.capture]="capture"
+              [attr.multiple]="multiple"
+              (change)="fileChange($event.target.files)"
+              (blur)="onTouched()" />
+    </label>
+  </button>
+  
+  <ul class="sbb-file-selector-list">
+    <li *ngFor="let file of filesList">
+      <ng-container [ngTemplateOutlet]="fileIcon" [ngTemplateOutletContext]="{file: file}"></ng-container>
+      <span class="sbb-file-selector-list-desc">{{ getFileNameNoExtension(file) }} ({{ getFileExtension(file) }}, {{ getFileSizeFormatted(file) }})</span>
+      <button class="sbb-file-selector-list-remove-icon" (click)="removeFile(file)">
+        <span i18n class="visuallyhidden">Click to trash this file</span>
+        <sbb-icon-trash></sbb-icon-trash>
+      </button>
+    </li>
+  </ul>
+<article>
 
 
 <ng-template #fileIcon let-file='file'>
-  <div [ngSwitch]="getFileTypeCat(file)" style="width: 24px; height: 24px;display:inline-block;">
+  <div role="presentation" class="sbb-file-selector-list-type-icon" [ngSwitch]="getFileTypeCat(file)">
     <sbb-icon-doc *ngSwitchCase="fileTypeCategory.DOC"></sbb-icon-doc>
     <sbb-icon-image *ngSwitchCase="fileTypeCategory.IMAGE"></sbb-icon-image>
     <sbb-icon-pdf *ngSwitchCase="fileTypeCategory.PDF"></sbb-icon-pdf>
