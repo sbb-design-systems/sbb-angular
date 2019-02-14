@@ -1,18 +1,19 @@
 <article class="sbb-file-selector">
-  <button sbbButton mode="secondary" class="sbb-file-selector-button" tabindex="-1">
-    <span i18n>Datei hochladen</span> <sbb-icon-upload *sbbButtonIcon></sbb-icon-upload>
-    <label class="sbb-file-selector-label" [for]="inputId">
-      <input type="file"
-              class="visuallyhidden"
-              #fileInput
-              [attr.id]="inputId"
-              [attr.accept]="accept"
-              [attr.capture]="capture"
-              [attr.multiple]="multiple"
-              (change)="fileChange($event.target.files)"
-              (blur)="onTouched()" />
-    </label>
-  </button>
+  <label class="sbb-file-selector-label" [for]="inputId">
+    <input type="file"
+      class="visuallyhidden"
+      #fileInput
+      [attr.id]="inputId"
+      [attr.accept]="accept"
+      [attr.capture]="capture"
+      [attr.multiple]="multiple"
+      (change)="fileChange($event.target.files)"
+      (blur)="onTouched()" />
+    <span class="sbb-file-selector-button">
+      <span i18n>Datei hochladen</span>
+      <span class="sbb-svgsprite-icon"><sbb-icon-upload></sbb-icon-upload></span>
+    </span>
+  </label>
   
   <ul class="sbb-file-selector-list">
     <li *ngFor="let file of filesList">

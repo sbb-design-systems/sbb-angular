@@ -2,15 +2,32 @@
 
 .sbb-file-selector {
   &-button {
-    position: relative;
+
+    &:not(.sbb-file-selector-disabled) {
+      @include buttons;
+      @include secondaryButton;
+      @include arrowbuttons;
+
+      .sbb-svgsprite-icon {
+        fill: $buttonSecondaryColor;
+      }
+
+      &:hover,
+      &:focus {
+        .sbb-svgsprite-icon {
+          fill: $buttonSecondaryColor;
+        }
+      }
+    }
+    // Disabled button
+    &.sbb-file-selector-disabled {
+      @include disabledButton;
+    }
   }
 
   &-label {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    display: inline-block;
+    overflow: hidden;
 
     &:hover {
       cursor: pointer;
