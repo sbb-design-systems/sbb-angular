@@ -8,12 +8,12 @@ import { IconBase } from '../../icon-base';
 @Component({
   selector: 'sbb-icon-utilization-medium',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M6 5H1v6h1v6h3v-6h1V5z"/><circle cx="3.5" cy="2.5" r="1.5"/><path d="M13 5H8v6h1v6h3v-6h1V5z"/><circle cx="10.5" cy="2.5" r="1.5"/><path fill="#BCBCBC" d="M20 5h-5v6h1v6h3v-6h1V5z"/><circle cx="17.5" cy="2.5" r="1.5" fill="#BCBCBC"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 18"><path d="M6 5H1v6h1v6h3v-6h1V5z"/><circle cx="3.5" cy="2.5" r="1.5"/><path d="M13 5H8v6h1v6h3v-6h1V5z"/><circle cx="10.5" cy="2.5" r="1.5"/><path fill="#BCBCBC" d="M20 5h-5v6h1v6h3v-6h1V5z"/><circle cx="17.5" cy="2.5" r="1.5" fill="#BCBCBC"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconUtilizationMediumComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 21 18', width: '21', height: '18' });
+    super({ width: '21px', height: '18px', ratio: 1.1666666666666667 });
   }
 }
 

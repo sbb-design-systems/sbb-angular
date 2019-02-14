@@ -8,12 +8,12 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-laptop-smartphone-165',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M15 12v10h7V12h-7zm6 9h-5v-2h5v2zm0-3h-5v-5h5v5z"/><path d="M17.5 19.5h2v1h-2v-1zM19 4H6v9.2l-4 3V19h12v-1H3v-1h11v-1H4l2.7-2H14v-1H7V5h12v6h1V4z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 12v10h7V12h-7zm6 9h-5v-2h5v2zm0-3h-5v-5h5v5z"/><path d="M17.5 19.5h2v1h-2v-1zM19 4H6v9.2l-4 3V19h12v-1H3v-1h11v-1H4l2.7-2H14v-1H7V5h12v6h1V4z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLaptopSmartphone165Component extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 24 24', width: '24', height: '24' });
+    super({ width: '24px', height: '24px', ratio: 1 });
   }
 }
 

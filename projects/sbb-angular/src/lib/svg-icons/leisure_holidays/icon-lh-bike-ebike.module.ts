@@ -8,12 +8,12 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-lh-bike-ebike',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="30" r="7.5" fill="none" stroke="#000" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/><circle cx="34.001" cy="30" r="7.5" fill="none" stroke="#000" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/><path fill="none" stroke="#000" stroke-miterlimit="10" d="M14 30l4.5-11.5h10l4.5-6h-7M34.001 30L28.5 18.5m-13.5-4h5" vector-effect="non-scaling-stroke"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><circle cx="14" cy="30" r="7.5" fill="none" stroke="#000" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/><circle cx="34.001" cy="30" r="7.5" fill="none" stroke="#000" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/><path fill="none" stroke="#000" stroke-miterlimit="10" d="M14 30l4.5-11.5h10l4.5-6h-7M34.001 30L28.5 18.5m-13.5-4h5" vector-effect="non-scaling-stroke"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLhBikeEbikeComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 48 48', width: '48', height: '48' });
+    super({ width: '48px', height: '48px', ratio: 1 });
   }
 }
 

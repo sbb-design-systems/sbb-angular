@@ -8,12 +8,12 @@ import { IconBase } from '../../icon-base';
 @Component({
   selector: 'sbb-icon-sound',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M15 11h-2l-2 2H9v3h2l2 2h2v-7z"/><path d="M13 4H6v16h12V9l-5-5zm0 1.4L16.6 9H13V5.4zM7 19V5h5v5h5v9H7z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 11h-2l-2 2H9v3h2l2 2h2v-7z"/><path d="M13 4H6v16h12V9l-5-5zm0 1.4L16.6 9H13V5.4zM7 19V5h5v5h5v9H7z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconSoundComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 24 24', width: '24', height: '24' });
+    super({ width: '24px', height: '24px', ratio: 1 });
   }
 }
 

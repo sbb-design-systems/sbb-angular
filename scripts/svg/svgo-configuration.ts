@@ -34,6 +34,7 @@ export const svgoConf = new svgo({
     { mergePaths: true },
     { convertShapeToPath: true },
     { sortAttrs: true },
+    { removeDimensions: true },
     { removeAttrs: { attrs: '(font-family)' } },
   ]
 });

@@ -8,12 +8,12 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-arrow-down-and-back',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M5.7 15H19v1H5.7l2.6 2.7-.7.7-3.9-3.9 3.9-3.9.7.7L5.7 15zm8.9-3.4l.7.7 3.9-3.9-3.9-3.9-.7.7L17.3 8H4v1h13.3l-2.7 2.6z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.7 15H19v1H5.7l2.6 2.7-.7.7-3.9-3.9 3.9-3.9.7.7L5.7 15zm8.9-3.4l.7.7 3.9-3.9-3.9-3.9-.7.7L17.3 8H4v1h13.3l-2.7 2.6z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconArrowDownAndBackComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 24 24', width: '24', height: '24' });
+    super({ width: '24px', height: '24px', ratio: 1 });
   }
 }
 

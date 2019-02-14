@@ -9,48 +9,52 @@ export abstract class IconBase {
    */
   @Input() size: 'grow' | 'fixed' = 'grow';
   /**
-   * The viewBox attribute that will be applied to the SVG element.
-   * Defaults to the viewBox attribute value of the source SVG.
-   */
-  @Input() viewBox: string;
-  /**
-   * The preserveAspectRatio attribute that will be applied to the SVG element.
-   * Defaults to the preserveAspectRatio attribute value of the source SVG.
-   */
-  @Input() preserveAspectRatio: string;
-  /**
-   * The width attribute that will be applied to the SVG element.
-   * Defaults to the width attribute value of the source SVG.
+   * Width of the icon.
    */
   @Input()
-  get width() { return this.hasDimensionInputValueOrIsNotFixed() ? this.inputWidth : this.defaultWidth; }
-  set width(value: string) { this.inputWidth = value; }
+  @HostBinding('style.width')
+  get width() { return this.isFixed() ? this.dimension.width : this.inputWidth; }
+  set width(value: string) {
+    this.inputWidth = this.coerceDimensionValue(value);
+    if (!this.inputHeight) {
+      this.inputHeight = this.resolveInput(value, v => v / this.dimension.ratio);
+    }
+  }
   /**
-   * The height attribute that will be applied to the SVG element.
-   * Defaults to the height attribute value of the source SVG.
+   * Height of the icon.
    */
   @Input()
-  get height() { return this.hasDimensionInputValueOrIsNotFixed() ? this.inputHeight : this.defaultHeight; }
-  set height(value: string) { this.inputHeight = value; }
+  @HostBinding('style.height')
+  get height() { return this.isFixed() ? this.dimension.height : this.inputHeight; }
+  set height(value: string) {
+    this.inputHeight = this.coerceDimensionValue(value);
+    if (!this.inputWidth) {
+      this.inputWidth = this.resolveInput(value, v => v * this.dimension.ratio);
+    }
+  }
   /**
    * The given CSS class or classes will be applied to the SVG element.
    */
-  @Input() svgClass: string;
+  @Input() svgClass: string = '';
+  @HostBinding('style.display') get display() {
+    return this.isFixed() || this.inputHeight || this.inputWidth ? 'inline-block' : undefined;
+  }
   @HostBinding('class.sbb-icon-component') sbbIconComponent = true;
-  private defaultWidth: string;
-  private defaultHeight: string;
   private inputWidth: string;
   private inputHeight: string;
 
-  constructor(values: Partial<IconBase> = {}) {
-    this.viewBox = values.viewBox;
-    this.preserveAspectRatio = values.preserveAspectRatio;
-    this.defaultWidth = values.width;
-    this.defaultHeight = values.height;
-    this.svgClass = values.svgClass || '';
+  constructor(private readonly dimension: { width: string, height: string, ratio: number }) { }
+
+  private isFixed() {
+    return this.size === 'fixed';
   }
 
-  private hasDimensionInputValueOrIsNotFixed() {
-    return this.size !== 'fixed' || this.inputWidth !== undefined || this.inputHeight !== undefined;
+  private coerceDimensionValue(value: string) {
+    return Number.isNaN(+value) ? value : `${value}px`;
+  }
+
+  private resolveInput(input: string, operation: (value: number) => number) {
+    const match = /(\d*\.\d+|\d+)(\w*)/g.exec(input);
+    return match && match[1] ? `${operation(Number(match[1]))}${match[2] || 'px'}` : undefined;
   }
 }

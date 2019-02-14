@@ -8,12 +8,12 @@ import { IconBase } from '../../icon-base';
 @Component({
   selector: 'sbb-icon-environmentcalculator-time',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12zm0-22.5c-5.85 0-10.5 4.65-10.5 10.5S18.15 34.5 24 34.5 34.5 29.85 34.5 24 29.85 13.5 24 13.5zM31.5 24H24v-7.5h-1.5v9h9V24z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12zm0-22.5c-5.85 0-10.5 4.65-10.5 10.5S18.15 34.5 24 34.5 34.5 29.85 34.5 24 29.85 13.5 24 13.5zM31.5 24H24v-7.5h-1.5v9h9V24z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconEnvironmentcalculatorTimeComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 48 48', width: '48', height: '48' });
+    super({ width: '48px', height: '48px', ratio: 1 });
   }
 }
 

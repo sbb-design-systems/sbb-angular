@@ -9,6 +9,8 @@ export class IconViewerDirective implements OnChanges {
 
 
   @Input() sbbIconViewer: UiIcon;
+  @Input() size: 'fixed' | undefined;
+  @Input() svgWidth: string;
   @Input() svgHeight: string;
 
   constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) { }
@@ -17,10 +19,14 @@ export class IconViewerDirective implements OnChanges {
     const component = iconComponentDetails.find(i => i.name === this.sbbIconViewer.name).component;
     const componentFactory = this.resolver.resolveComponentFactory(component);
     const componentRef = this.viewContainer.createComponent(componentFactory);
+    if (this.size) {
+      componentRef.instance.size = 'fixed';
+    }
     if (this.svgHeight) {
       componentRef.instance.height = this.svgHeight;
-    } else {
-      componentRef.instance.size = 'fixed';
+    }
+    if (this.svgWidth) {
+      componentRef.instance.width = this.svgWidth;
     }
   }
 

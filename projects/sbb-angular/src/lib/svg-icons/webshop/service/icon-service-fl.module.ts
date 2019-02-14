@@ -8,12 +8,12 @@ import { IconBase } from '../../icon-base';
 @Component({
   selector: 'sbb-icon-service-fl',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M14.8 0h-2.5l1.8 1.8H14c-2.1 0-4 1.1-5.2 2.7-1.1-1.6-3-2.7-5.2-2.7L5.4 0H2.9L0 2.9l2.9 2.9h2.5L3.6 4h.1c2.2 0 4.1 1.8 4.1 4.1V13H10V8.1C10 5.8 11.8 4 14 4h.1l-1.8 1.8h2.5l2.9-2.9L14.8 0z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 13"><path d="M14.8 0h-2.5l1.8 1.8H14c-2.1 0-4 1.1-5.2 2.7-1.1-1.6-3-2.7-5.2-2.7L5.4 0H2.9L0 2.9l2.9 2.9h2.5L3.6 4h.1c2.2 0 4.1 1.8 4.1 4.1V13H10V8.1C10 5.8 11.8 4 14 4h.1l-1.8 1.8h2.5l2.9-2.9L14.8 0z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconServiceFlComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 18 13', width: '18', height: '13' });
+    super({ width: '18px', height: '13px', ratio: 1.3846153846153846 });
   }
 }
 

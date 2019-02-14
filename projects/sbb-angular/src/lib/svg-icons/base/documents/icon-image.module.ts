@@ -8,12 +8,12 @@ import { IconBase } from '../../icon-base';
 @Component({
   selector: 'sbb-icon-image',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M8 17l2-7 3 6 1-3 2 4H8zm10-8v11H6V4h7l5 5zm-5 0h3.6L13 5.4V9zm4 10v-9h-5V5H7v14h10z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 17l2-7 3 6 1-3 2 4H8zm10-8v11H6V4h7l5 5zm-5 0h3.6L13 5.4V9zm4 10v-9h-5V5H7v14h10z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconImageComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 24 24', width: '24', height: '24' });
+    super({ width: '24px', height: '24px', ratio: 1 });
   }
 }
 

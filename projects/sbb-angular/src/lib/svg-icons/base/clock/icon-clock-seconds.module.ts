@@ -8,12 +8,12 @@ import { IconBase } from '../../icon-base';
 @Component({
   selector: 'sbb-icon-clock-seconds',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M123.4 51.1c0-5.7-4.7-10.4-10.4-10.4s-10.4 4.7-10.4 10.4c0 5.3 3.9 9.6 9 10.3v84.3h2.8V61.4c5-.6 9-5 9-10.3z"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226 226"><path d="M123.4 51.1c0-5.7-4.7-10.4-10.4-10.4s-10.4 4.7-10.4 10.4c0 5.3 3.9 9.6 9 10.3v84.3h2.8V61.4c5-.6 9-5 9-10.3z"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconClockSecondsComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 226 226', width: '226', height: '226' });
+    super({ width: '226px', height: '226px', ratio: 1 });
   }
 }
 

@@ -12,7 +12,7 @@
   <code class="sbbsc-cards-card-icon-selector">{{ getSelector(uiIcon.selector) }}</code>
 
   <h5 class="docs-api-h5">Icon (Default fixed size)</h5>
-  <ng-template [sbbIconViewer]="uiIcon"></ng-template>
+  <ng-template [sbbIconViewer]="uiIcon" size="fixed"></ng-template>
 
   <h5 class="docs-api-h5">Icon (Height 60px)</h5>
   <ng-template [sbbIconViewer]="uiIcon" svgHeight="60"></ng-template>
@@ -45,8 +45,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The width attribute that will be applied to the SVG element.
-          Defaults to the width attribute value of the source SVG.</p>
+        <p>Width of the icon.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -57,32 +56,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The height attribute that will be applied to the SVG element.
-          Defaults to the height attribute value of the source SVG.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>viewBox: string</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>The viewBox attribute that will be applied to the SVG element.
-          Defaults to the viewBox attribute value of the source SVG.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>preserveAspectRatio: string</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>The preserveAspectRatio attribute that will be applied to the SVG element.
-          Defaults to the preserveAspectRatio attribute value of the source SVG.</p>
+        <p>Height of the icon.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">

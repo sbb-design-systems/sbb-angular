@@ -6,37 +6,16 @@ import { svgoConf } from './svgo-configuration';
 
 const readFileAsync = promisify(readFile);
 
-class SvgAttribute {
-  private _value: string;
-
+class DimensionAttribute {
   constructor(
     private readonly _name: string,
-    private readonly _regex: RegExp,
-    private readonly _fallback: RegExp = /^$/g,
-  ) { }
+    private readonly _regex: RegExp | [RegExp, RegExp]) { }
 
-  attributeBinding() {
-    return `[attr.${this._name}]="${this._name}"`;
-  }
-
-  removeAttribute(content: string) {
-    return content.replace(this._regex, '');
-  }
-
-  resolveValue(content: string) {
-    const value = this._regex.exec(content) || this._fallback.exec(content);
-    if (value) {
-      this._value = value[1];
-    }
-    return this;
-  }
-
-  hasValue() {
-    return !!this._value;
-  }
-
-  toParameter() {
-    return `${this._name}: '${this._value}'`;
+  toParameter(content: string) {
+    const value = Array.isArray(this._regex)
+      ? this._regex.map(r => r.exec(content)).filter(m => m).map(m => parseInt(m[2] || m[3])).reduce((current, next) => current / next)
+      : this._regex.exec(content).filter(m => m).filter((_, i, a) => i === a.length - 1).map(v => `'${Number.isNaN(+v) ? v : `${v}px`}'`)[0];
+    return `${this._name}: ${value}`;
   }
 }
 
@@ -45,10 +24,11 @@ export class SvgIconModule extends IconModule {
   readonly selector: string;
   readonly componentName: string;
   private _attributeReplacements = [
-    new SvgAttribute('viewBox', / viewBox="([ \d,]+)"/g),
-    new SvgAttribute('preserveAspectRatio', / preserveAspectRatio="([^"]+)"/g),
-    new SvgAttribute('width', / width="([^"]+)"/g, / viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+"/g),
-    new SvgAttribute('height', / height="([^"]+)"/g, / viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+)"/g),
+    new DimensionAttribute('width', /( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g),
+    new DimensionAttribute('height', /( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g),
+    new DimensionAttribute(
+      'ratio',
+      [/( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g, /( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g]),
   ];
 
   constructor(basePath, filePath) {
@@ -108,16 +88,10 @@ export class ${this.moduleName} { }
     const svgContent = await readFileAsync(this.filePath, 'utf8');
     const optimizedSVG = await this._normaliseSvg(svgContent);
     const attributes = this._attributeReplacements
-      .map(a => a.resolveValue(optimizedSVG.data))
-      .filter(a => a.hasValue())
-      .map(a => a.toParameter())
+      .map(a => a.toParameter(svgContent))
       .join(', ');
-    const bindings = this._attributeReplacements
-      .map(a => a.attributeBinding())
-      .join(' ');
-    const angularSvgTemplate = this._attributeReplacements
-      .reduce((current, next) => next.removeAttribute(current), optimizedSVG.data)
-      .replace(/^<svg/g, `<svg [attr.class]="'sbb-svg-icon ' + svgClass" ${bindings}`);
+    const angularSvgTemplate = optimizedSVG.data
+      .replace(/^<svg/g, `<svg [attr.class]="'sbb-svg-icon ' + svgClass"`);
     return { angularSvgTemplate, attributes };
   }
 

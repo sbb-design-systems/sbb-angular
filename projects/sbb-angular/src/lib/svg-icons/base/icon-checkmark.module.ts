@@ -8,12 +8,12 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-checkmark',
   // tslint:disable-next-line:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" [attr.viewBox]="viewBox" [attr.preserveAspectRatio]="preserveAspectRatio" [attr.width]="width" [attr.height]="height" xmlns="http://www.w3.org/2000/svg"><path d="M10.36 15.57L7.18 12.6l-.82.91 4.13 4.13 7.15-10.43-.83-.85-6.45 9.21"/></svg>`,
+  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.36 15.57L7.18 12.6l-.82.91 4.13 4.13 7.15-10.43-.83-.85-6.45 9.21"/></svg>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconCheckmarkComponent extends IconBase {
   constructor() {
-    super({ viewBox: '0 0 24 24', width: '24', height: '24' });
+    super({ width: '24px', height: '24px', ratio: 1 });
   }
 }
 
