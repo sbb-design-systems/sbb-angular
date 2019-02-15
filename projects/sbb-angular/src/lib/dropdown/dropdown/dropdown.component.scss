@@ -21,14 +21,18 @@
     @include buttonResetFrameless;
     @include optionBase;
     width: 100%;
+    &:hover,
+    &:focus,
     &.sbb-selected {
-      color: $colorRed100;
+      color: $colorRed125;
     }
   }
 
   hr {
     margin: 0;
     padding: 0;
+    border: none;
+    border-top: solid 1px $colorBlack10;
   }
 
   a[disabled],
