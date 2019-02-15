@@ -3,11 +3,11 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { IconCommonModule } from '../svg-icons-components/icon-common.module';
 import { AccordionComponent } from './accordion/accordion.component';
 import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
 import { ExpansionPanelHeaderComponent } from './expansion-panel-header/expansion-panel-header.component';
 import { ExpansionPanelContentDirective } from './expansion-panel/expansion-panel-content';
+import { IconPlusModule, IconMinusModule } from '../svg-icons/svg-icons';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { ExpansionPanelContentDirective } from './expansion-panel/expansion-pane
     CommonModule,
     CdkAccordionModule,
     PortalModule,
-    IconCommonModule
+    IconPlusModule,
+    IconMinusModule,
   ],
   exports: [
     AccordionComponent,

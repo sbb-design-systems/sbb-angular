@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
-  IconCommonModule,
+  IconCollectionModule,
   TextareaModule,
   FieldModule,
   LinksModule,
@@ -138,7 +138,7 @@ import { SelectModule } from 'projects/sbb-angular/src/lib/select/select.module'
     CheckboxModule,
     DatepickerModule,
     TimeInputModule,
-    IconCommonModule,
+    IconCollectionModule,
     TabsModule,
     LoadingModule,
     LightboxModule,

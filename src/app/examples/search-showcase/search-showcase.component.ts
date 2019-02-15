@@ -21,13 +21,15 @@ export class SearchShowcaseComponent implements OnInit {
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filter: '';
   filteredOptions = this.options.slice(0);
+  filteredOptions2 = this.options.slice(0);
+
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei']; ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
       this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
     this.myControl2.valueChanges.subscribe((newValue) => {
-      this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
+      this.filteredOptions2 = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
     this.options$ = new Subject<string[]>();

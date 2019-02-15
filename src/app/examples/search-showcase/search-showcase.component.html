@@ -11,7 +11,7 @@
 
 <sbb-search mode="header"  [formControl]="myControl2" [sbbAutocomplete]="auto2"></sbb-search>
 <sbb-autocomplete #auto2="sbbAutocomplete" >
-  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+  <sbb-option *ngFor="let option of filteredOptions2" [value]="option">
     {{ option }}
   </sbb-option>
 </sbb-autocomplete>
