@@ -21,7 +21,6 @@ module.exports = function (config) {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
       jasmine: {
         timeout: 20000,
-        
       }
     },
     coverageIstanbulReporter: {
@@ -37,6 +36,20 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+    customLaunchers: {
+      'BsChrome': {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Chrome'
+      },
+      'BsFirefox': {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Firefox'
+      }
+    },
     browsers: ['ChromeHeadless'],
     singleRun: false,
     browserDisconnectTolerance: 2,

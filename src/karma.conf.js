@@ -14,6 +14,7 @@ module.exports = function (config) {
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -30,7 +31,18 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     customLaunchers: {
-      // https://www.browserstack.com/automate/capabilities
+      'BsChrome': {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Chrome'
+      },
+      'BsFirefox': {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Firefox'
+      }
     },
     browsers: ['ChromeHeadless'],
     singleRun: false

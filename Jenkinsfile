@@ -19,16 +19,22 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh 'npm test'
-        sh 'npm run lint'
-        sh 'npm run build'
+        withCredentials([
+          usernamePassword(credentialsId: 'browserstack',
+            passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
+            usernameVariable: 'BROWSERSTACK_USERNAME')
+        ]) {
+          sh 'npm test'
+          sh 'npm run lint'
+          sh 'npm run build'
+        }
         withSonarQubeEnv('Sonar NextGen') {
           sh """${scannerHome}/bin/sonar-scanner -X \
             -Dsonar.projectKey=sbb-angular \
             -Dsonar.projectVersion=${libraryVersion} \
+            -Dsonar.language=ts \
             -Dsonar.branch=${BRANCH_NAME} \
             -Dsonar.sources=projects/sbb-angular/src \
-            -Dsonar.tests=projects/sbb-angular/src \
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/*.routes.ts \
             -Dsonar.test.inclusions=**/*.spec.ts \
             -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
