@@ -10,7 +10,8 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FileSelectorOptions, FILE_SELECTOR_OPTIONS, FileTypeCategory } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
@@ -40,6 +41,8 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   @Input() multiple?: boolean;
 
+  @Input() disabled?: boolean;
+
   @Input() inputId = `sbb-file-selector-${counter++}`;
 
   @Output() fileChanged = new EventEmitter<File[]>();
@@ -56,6 +59,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   constructor(
     private _fileTypeService: FileSelectorTypesService,
     private _renderer: Renderer2,
+    private _changeDetector: ChangeDetectorRef,
     @Optional() @Inject(FILE_SELECTOR_OPTIONS) options: FileSelectorOptions
   ) {
     if (options) {
@@ -100,5 +104,10 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
     const filteredList = this.filesList.filter(f => f.name !== file.name);
     this.applyChanges(filteredList);
+  }
+
+  setDisabledState?(isDisabled: boolean) {
+    this.disabled = isDisabled;
+    this._changeDetector.markForCheck();
   }
 }

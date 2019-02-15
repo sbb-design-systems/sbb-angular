@@ -16,6 +16,8 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
 
   filesList3: File[] = [];
 
+  disabled:boolean;
+
   fileControl = new FormControl();
   fileControlSubscription = Subscription.EMPTY;
 
@@ -44,14 +46,21 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
   }
 
   beautifyFileList(filesList: File[]) {
-    return filesList.map(f => {
-      return {
-        name: f.name,
-        size: f.size,
-        type: f.type,
-        lastModified: f.lastModified
-      };
-    });
+    if (filesList) {
+      return filesList.map(f => {
+        return {
+          name: f.name,
+          size: f.size,
+          type: f.type,
+          lastModified: f.lastModified
+        };
+      });
+    }
+  }
+
+  setDisabled($event:any) {
+
+    $event.target.checked ? this.fileControl.disable() : this.fileControl.enable();
   }
 
 }
