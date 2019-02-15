@@ -30,7 +30,8 @@ import {
   AfterContentInit,
   ViewChild,
   Component,
-  TemplateRef
+  TemplateRef,
+  ContentChild
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -121,6 +122,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   private portal: TemplatePortal;
   private headerOverlayRef: OverlayRef | null;
   private headerPortal: TemplatePortal;
+  private headerValue: any;
   private componentDestroyed = false;
   private _autocompleteDisabled = false;
 
@@ -194,9 +196,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
     if (this.mode === 'header') {
       if (this.headerOverlayRef && this.headerOverlayRef.hasAttached()) {
+        this.headerValue = this.input.nativeElement.value;
         this.headerOverlayRef.detach();
       }
-      this.headerOverlayRef.dispose();
     }
   }
 
@@ -402,6 +404,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
     // which means that the model value will be out of sync with the view.
     if (keyCode === ESCAPE) {
       event.preventDefault();
+      if (this.mode === 'header') {
+        this.headerOverlayRef.detach();
+      }
     }
 
     if (this.activeOption && keyCode === ENTER && this.panelOpen) {
@@ -550,8 +555,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
     // If it's used within a `SbbField`, we should set it through the property so it can go
     // through change detection.
-    this.input.nativeElement.value = inputValue;
-    this.previousValue = inputValue;
+    if (this.input) {
+      this.input.nativeElement.value = inputValue;
+      this.previousValue = inputValue;
+    }
   }
 
   /**
@@ -712,28 +719,33 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   }
 
   revealSearchbox() {
-    this.headerPortal = new TemplatePortal(this.searchboxTemplate, this.viewContainerRef);
-    this.headerOverlayRef = this.overlay.create(new OverlayConfig({
-      positionStrategy: this.overlay.position()
-        .flexibleConnectedTo(this.getConnectedElement())
-        .withFlexibleDimensions(false)
-        .withPush(false)
-        .withPositions([
-          {
-            originX: 'start',
-            originY: 'top',
-            overlayX: 'start',
-            overlayY: 'top',
-            panelClass: 'sbb-search-overlay'
-          },
-        ]),
-      scrollStrategy: this.scrollStrategy(),
-      width: this.getPanelWidth()
-    }));
+    if (!this.headerPortal) {
+
+      this.headerPortal = new TemplatePortal(this.searchboxTemplate, this.viewContainerRef);
+      this.headerOverlayRef = this.overlay.create(new OverlayConfig({
+        positionStrategy: this.overlay.position()
+          .flexibleConnectedTo(this.getConnectedElement())
+          .withFlexibleDimensions(false)
+          .withPush(false)
+          .withPositions([
+            {
+              originX: 'start',
+              originY: 'top',
+              overlayX: 'start',
+              overlayY: 'top',
+              panelClass: 'sbb-search-overlay'
+            },
+          ]),
+        scrollStrategy: this.scrollStrategy(),
+        width: this.getPanelWidth()
+      }));
+    }
 
     if (this.headerOverlayRef && !this.headerOverlayRef.hasAttached()) {
       this.headerOverlayRef.attach(this.headerPortal);
-      /* this.input.nativeElement.focus(); */
+      setTimeout(() =>  {
+        this.input.nativeElement.focus();
+      });
     }
 
   }
