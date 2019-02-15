@@ -1,0 +1,22 @@
+$borderActive: solid 2px #666;
+$border: solid 2px white;
+.dropdown-avatar {
+  border: $border;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+
+
+  .avatar-icon {
+    width: 24px;
+    height: 24px;
+  }
+  &-active {
+    border-top: $borderActive;
+    border-right: $borderActive;
+    border-left: $borderActive;
+    &.sbb-dropdown-trigger-above {
+      border-bottom: $borderActive;
+    }
+  }
+}

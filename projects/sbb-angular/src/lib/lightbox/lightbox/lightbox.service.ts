@@ -82,7 +82,7 @@ export class Lightbox {
    * Stream that emits when all open lightbox have finished closing.
    * Will emit on subscribe if there are no open lightboxes to begin with.
    */
-  readonly afterAllClosed: Observable<void> = defer<void>(() => this.openLightboxes.length ?
+  readonly afterAllClosed: Observable<any> = defer<any>(() => this.openLightboxes.length ?
     this._afterAllClosed :
     this._afterAllClosed.pipe(startWith(undefined)));
 

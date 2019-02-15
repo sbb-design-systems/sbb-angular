@@ -19,9 +19,11 @@ import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from './examples/autocomplete-showcase/autocomplete-showcase.component';
 import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
+import { CaptchaShowcaseComponent } from './examples/captcha-showcase/captcha-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
 import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/datepicker-showcase.component';
+import { DropdownShowcaseComponent } from './examples/dropdown-showcase/dropdown-showcase.component';
 import { ExamplesModule } from './examples/examples.module';
 import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox-showcase.component';
@@ -114,7 +116,9 @@ import { TypographyComponent } from './typography/typography.component';
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
-    ...iconComponentList
+    CaptchaShowcaseComponent,
+    DropdownShowcaseComponent,
+    ...iconComponentList,
   ]
 })
 export class AppModule { }

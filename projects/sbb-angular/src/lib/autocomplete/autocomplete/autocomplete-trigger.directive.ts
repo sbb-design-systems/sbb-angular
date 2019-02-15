@@ -142,7 +142,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   /** Stream of autocomplete option selections. */
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
-      return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
+      return merge<SBBOptionSelectionChange>(...this.autocomplete.options.map(option => option.onSelectionChange));
     }
 
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
