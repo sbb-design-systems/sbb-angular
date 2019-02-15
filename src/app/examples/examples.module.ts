@@ -32,10 +32,12 @@ import {
   TextexpandModule,
   CheckboxModule,
   TagModule,
-  ToggleModule,
   PaginationModule,
+  ToggleModule,
+  CaptchaModule,
   DropdownModule,
 } from 'sbb-angular';
+
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
@@ -74,6 +76,7 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
 @NgModule({
@@ -113,6 +116,7 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    CaptchaShowcaseComponent,
     DropdownShowcaseComponent
   ],
   imports: [
@@ -148,7 +152,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipModule,
     TextexpandModule,
     TagModule,
-    DropdownModule
+    DropdownModule,
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,

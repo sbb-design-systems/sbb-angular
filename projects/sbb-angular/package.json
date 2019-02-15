@@ -7,6 +7,7 @@
     "@angular/cdk": "^7.0.0"
   },
   "dependencies": {
-    "ngx-perfect-scrollbar": "^7.1.0"
+    "ngx-perfect-scrollbar": "^7.1.0",
+    "@types/grecaptcha": "^2.0.36"
   }
 }
