@@ -21,6 +21,7 @@
     @include buttonResetFrameless;
     @include optionBase;
     width: 100%;
+    color: $colorGrey;
     &:hover,
     &:focus,
     &.sbb-selected {
