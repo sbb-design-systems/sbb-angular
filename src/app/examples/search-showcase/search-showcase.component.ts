@@ -12,6 +12,7 @@ export class SearchShowcaseComponent implements OnInit {
 
   myControl = new FormControl('');
   myControlStatic = new FormControl('');
+  myControl2 = new FormControl('');
 
   options$: Subject<string[]>;
   searchNumbers: Subject<string>;
@@ -22,6 +23,10 @@ export class SearchShowcaseComponent implements OnInit {
   filteredOptions = this.options.slice(0);
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei']; ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
+      this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
+    });
+
+    this.myControl2.valueChanges.subscribe((newValue) => {
       this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 

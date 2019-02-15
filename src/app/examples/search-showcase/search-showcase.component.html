@@ -1,4 +1,4 @@
-<sbb-search [mode]="mode"  [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
+<sbb-search [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete" >
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option }}
@@ -9,4 +9,13 @@
   {{ myControl.value | json}}
 </pre>
 
-<button sbbButton type="button" (click)="toggleMode()">Toggle mode</button>
+<sbb-search mode="header"  [formControl]="myControl2" [sbbAutocomplete]="auto2"></sbb-search>
+<sbb-autocomplete #auto2="sbbAutocomplete" >
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+    {{ option }}
+  </sbb-option>
+</sbb-autocomplete>
+
+<pre>
+  {{ myControl2.value | json}}
+</pre>

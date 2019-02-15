@@ -101,9 +101,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   /** @docs-private */
   @ViewChild('searchbox') searchboxTemplate: TemplateRef<any>;
 
-   /**
-  * Identifier of search.
-  */
+  /**
+ * Identifier of search.
+ */
   @HostBinding('attr.id')
   searchFieldId = 'sbb-search-id-' + searchFieldCounter++;
 
@@ -189,9 +189,15 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       .pipe(first(), switchMap(() => this.optionSelections));
   });
 
-  @HostListener('blur')
+
   onBlur() {
     this.onTouched();
+    if (this.mode === 'header') {
+      if (this.headerOverlayRef && this.headerOverlayRef.hasAttached()) {
+        this.headerOverlayRef.detach();
+      }
+      this.headerOverlayRef.dispose();
+    }
   }
 
   onInput($event: KeyboardEvent) {
@@ -651,7 +657,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
   private getOverlayPosition(): PositionStrategy {
     this.positionStrategy = this.overlay.position()
-      .flexibleConnectedTo(this.getConnectedElement())
+      .flexibleConnectedTo(this.mode === 'default' ? this.getConnectedElement() : this.headerOverlayRef.overlayElement)
       .withFlexibleDimensions(false)
       .withPush(false)
       .withPositions([
@@ -705,35 +711,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       !this.autocompleteDisabled;
   }
 
-   /**
- * This method listens to a stream of panel closing actions and resets the
- * stream every time the option list changes.
- */
-private subscribeToHeaderClosingActions(): Subscription {
-  const firstStable = this.zone.onStable.asObservable().pipe(first());
-  const optionChanges = this.autocomplete.options.changes.pipe(
-    tap(() => this.positionStrategy.reapplyLastPosition()),
-    // Defer emitting to the stream until the next tick, because changing
-    // bindings in here will cause "changed after checked" errors.
-    delay(0)
-  );
-
-  // When the zone is stable initially, and when the option list changes...
-  return merge(firstStable, optionChanges)
-    .pipe(
-      // create a new stream of panelClosingActions, replacing any previous streams
-      // that were created, and flatten it so our stream only emits closing events...
-      switchMap(() => {
-        this.resetActiveItem();
-        return this.panelClosingActions;
-      }),
-      // when the first closing event occurs...
-      first()
-    )
-    // set the value, close the panel, and complete.
-    .subscribe(event => this.setValueAndClose(event));
-}
-
   revealSearchbox() {
     this.headerPortal = new TemplatePortal(this.searchboxTemplate, this.viewContainerRef);
     this.headerOverlayRef = this.overlay.create(new OverlayConfig({
@@ -746,7 +723,8 @@ private subscribeToHeaderClosingActions(): Subscription {
             originX: 'start',
             originY: 'top',
             overlayX: 'start',
-            overlayY: 'top'
+            overlayY: 'top',
+            panelClass: 'sbb-search-overlay'
           },
         ]),
       scrollStrategy: this.scrollStrategy(),
@@ -755,8 +733,7 @@ private subscribeToHeaderClosingActions(): Subscription {
 
     if (this.headerOverlayRef && !this.headerOverlayRef.hasAttached()) {
       this.headerOverlayRef.attach(this.headerPortal);
-      this.closingActionsHeaderModeSubscription = this.subscribeToHeaderClosingActions();
-
+      /* this.input.nativeElement.focus(); */
     }
 
   }

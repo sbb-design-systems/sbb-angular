@@ -5,7 +5,8 @@
     class="sbb-search-input" 
     type="text" (focusin)="handleFocus()" 
     (input)="handleInput($event)"
-    (keydown)="handleKeydown($event)">
+    (keydown)="handleKeydown($event)"
+    (blur)="onBlur()">
   <button>
     <sbb-icon-search></sbb-icon-search>
   </button>
