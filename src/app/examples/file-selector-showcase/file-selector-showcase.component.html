@@ -15,11 +15,17 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Example multiple files allowed and ngModel attached</h4>
-      <sbb-file-selector multiple="true" [(ngModel)]="filesList2"></sbb-file-selector>
+      <sbb-file-selector multiple="true" [(ngModel)]="filesList2" [disabled]="disabled"></sbb-file-selector>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-3 sbbsc-v-sep">
       <h4 class="sbbsc-block">Model</h4>
       <pre>{{ beautifyFileList(filesList2) | json }}</pre>
+    </div>
+    <div class="col-lg-3">
+      <div class="sbbsc-block">
+        <h4 class="sbbsc-block">Properties</h4>
+        <sbb-checkbox value="disabled" [(ngModel)]="disabled">Disabled</sbb-checkbox>
+      </div>
     </div>
   </div>
 
@@ -28,14 +34,18 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Example multiple files, accepted files filter and Reactive Form.</h4>
-      <sbb-file-selector [accept]="accept" 
-                         [formControl]="fileControl"
-                         multiple="true" 
-                         capture="user"></sbb-file-selector>
+      <sbb-file-selector [accept]="accept" [formControl]="fileControl" multiple="true" capture="user">
+      </sbb-file-selector>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-3 sbbsc-v-sep">
       <h4 class="sbbsc-block">Model</h4>
       <pre>{{ beautifyFileList(filesList3) | json }}</pre>
+    </div>
+    <div class="col-lg-3">
+      <div class="sbbsc-block">
+        <h4 class="sbbsc-block">Properties</h4>
+        <sbb-checkbox (change)="setDisabled($event)">Disabled</sbb-checkbox>
+      </div>
     </div>
   </div>
 </article>
