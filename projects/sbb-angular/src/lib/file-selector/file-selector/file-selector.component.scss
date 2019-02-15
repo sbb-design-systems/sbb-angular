@@ -2,9 +2,9 @@
 
 .sbb-file-selector {
   &-button {
+    @include buttons;
 
     &:not(.sbb-file-selector-disabled) {
-      @include buttons;
       @include secondaryButton;
       @include arrowbuttons;
 
