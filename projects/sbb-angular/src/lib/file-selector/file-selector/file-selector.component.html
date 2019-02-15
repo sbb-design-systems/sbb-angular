@@ -1,4 +1,4 @@
-<article class="sbb-file-selector">
+<div class="sbb-file-selector">
   <label class="sbb-file-selector-label" [for]="inputId">
     <input type="file"
       class="visuallyhidden"
@@ -17,25 +17,21 @@
   
   <ul class="sbb-file-selector-list">
     <li *ngFor="let file of filesList">
-      <ng-container [ngTemplateOutlet]="fileIcon" [ngTemplateOutletContext]="{file: file}"></ng-container>
+      <div role="presentation" class="sbb-file-selector-list-type-icon" [ngSwitch]="getFileTypeCat(file)">
+        <sbb-icon-doc *ngSwitchCase="fileTypeCategory.DOC"></sbb-icon-doc>
+        <sbb-icon-image *ngSwitchCase="fileTypeCategory.IMAGE"></sbb-icon-image>
+        <sbb-icon-pdf *ngSwitchCase="fileTypeCategory.PDF"></sbb-icon-pdf>
+        <sbb-icon-sound *ngSwitchCase="fileTypeCategory.AUDIO"></sbb-icon-sound>
+        <sbb-icon-video *ngSwitchCase="fileTypeCategory.VIDEO"></sbb-icon-video>
+        <sbb-icon-zip *ngSwitchCase="fileTypeCategory.ZIP"></sbb-icon-zip>
+        <sbb-icon-doc-generic *ngSwitchDefault></sbb-icon-doc-generic>
+      </div>
       <span class="sbb-file-selector-list-desc">{{ getFileNameNoExtension(file) }} ({{ getFileExtension(file) }}, {{ getFileSizeFormatted(file) }})</span>
       <button class="sbb-file-selector-list-remove-icon" (click)="removeFile(file)">
-        <span i18n class="visuallyhidden">Click to trash this file</span>
+        <span i18n class="visuallyhidden">Datei entfernen</span>
         <sbb-icon-trash></sbb-icon-trash>
       </button>
     </li>
   </ul>
-<article>
+<div>
 
-
-<ng-template #fileIcon let-file='file'>
-  <div role="presentation" class="sbb-file-selector-list-type-icon" [ngSwitch]="getFileTypeCat(file)">
-    <sbb-icon-doc *ngSwitchCase="fileTypeCategory.DOC"></sbb-icon-doc>
-    <sbb-icon-image *ngSwitchCase="fileTypeCategory.IMAGE"></sbb-icon-image>
-    <sbb-icon-pdf *ngSwitchCase="fileTypeCategory.PDF"></sbb-icon-pdf>
-    <sbb-icon-sound *ngSwitchCase="fileTypeCategory.AUDIO"></sbb-icon-sound>
-    <sbb-icon-video *ngSwitchCase="fileTypeCategory.VIDEO"></sbb-icon-video>
-    <sbb-icon-zip *ngSwitchCase="fileTypeCategory.ZIP"></sbb-icon-zip>
-    <sbb-icon-doc-generic *ngSwitchDefault></sbb-icon-doc-generic>
-  </div>
-</ng-template>

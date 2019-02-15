@@ -1,5 +1,32 @@
-
 @mixin fileSelectorLabel() {
-  display: block;
+  display: inline-block;
   overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin fileSelectorButton() {
+  @include buttons;
+
+  &:not(.sbb-file-selector-disabled) {
+    @include secondaryButton;
+    @include arrowbuttons;
+
+    .sbb-svgsprite-icon {
+      fill: $buttonSecondaryColor;
+    }
+
+    &:hover,
+    &:focus {
+      .sbb-svgsprite-icon {
+        fill: $buttonSecondaryColor;
+      }
+    }
+  }
+  // Disabled button
+  &.sbb-file-selector-disabled {
+    @include disabledButton;
+  }
 }

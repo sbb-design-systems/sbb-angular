@@ -1,42 +1,29 @@
 import { Injectable } from '@angular/core';
 import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FileSelectorTypesService {
 
   getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
-    let cat = FileTypeCategory.GENERIC_DOC;
 
-    const isDoc = this.findMimeType(['MS_WORD_DOC', 'MS_EXCEL', 'MS_POWERPOINT'], mimeType);
-    const isImage = this.findMimeType(['IMAGE_GIF', 'IMAGE_JPG', 'IMAGE_PNG', 'IMAGE_SVG'], mimeType);
-    const isPDF = this.findMimeType(['PDF'], mimeType);
-    const isAudio = this.findMimeType(['AUDIO_MP4', 'AUDIO_MP3', 'AUDIO_OGG', 'AUDIO_WAVE', 'AUDIO_WAV'], mimeType);
-    const isVideo = this.findMimeType([
-      'VIDEO_MP4', 'VIDEO_MPEG', 'VIDEO_OGG', 'VIDEO_MOV', 'VIDEO_WEBM', 'VIDEO_AVI', 'VIDEO_WMV'], mimeType);
-    const isZip = this.findMimeType(['ZIP'], mimeType);
+    for (const fileTypeCat in FileTypeCategory) {
+      if (this.findMimeType(this.getFileFormats(Number(fileTypeCat)), mimeType)) {
+        return Number(fileTypeCat);
+      }
+    }
 
-    if (isDoc) { cat = FileTypeCategory.DOC; }
-    if (isImage) { cat = FileTypeCategory.IMAGE; }
-    if (isPDF) { cat = FileTypeCategory.PDF; }
-    if (isAudio) { cat = FileTypeCategory.AUDIO; }
-    if (isVideo) { cat = FileTypeCategory.VIDEO; }
-    if (isZip) { cat = FileTypeCategory.ZIP; }
-
-    return cat;
+    return FileTypeCategory.GENERIC_DOC;
   }
 
   getAcceptString(typeCats: FileTypeCategory | FileTypeCategory[]): string {
-    let acceptString = '';
 
     if (Array.isArray(typeCats)) {
-      typeCats.forEach(t => {
-        acceptString = this.setAcceptString(t, acceptString);
-      });
+      return typeCats.reduce((current, next) => this.setAcceptString(next, current), '');
     } else {
-      acceptString = this.setAcceptString(typeCats, acceptString);
+      return this.setAcceptString(typeCats, '');
     }
-
-    return acceptString;
 
   }
 
@@ -93,6 +80,34 @@ export class FileSelectorTypesService {
     return typeNames.some((type: string) => {
       return FILE_TYPES[type].indexOf(mimeType) !== -1;
     });
+  }
+
+  private getFileFormats(formatType: FileTypeCategory): string[] {
+
+    let typeFormats: string[] = [];
+
+    switch (formatType) {
+      case FileTypeCategory.DOC:
+        typeFormats = ['MS_WORD_DOC', 'MS_EXCEL', 'MS_POWERPOINT'];
+        break;
+      case FileTypeCategory.AUDIO:
+        typeFormats = ['AUDIO_MP4', 'AUDIO_MP3', 'AUDIO_OGG', 'AUDIO_WAVE', 'AUDIO_WAV'];
+        break;
+      case FileTypeCategory.IMAGE:
+        typeFormats = ['IMAGE_GIF', 'IMAGE_JPG', 'IMAGE_PNG', 'IMAGE_SVG'];
+        break;
+      case FileTypeCategory.PDF:
+        typeFormats = ['PDF'];
+        break;
+      case FileTypeCategory.VIDEO:
+        typeFormats = ['VIDEO_MP4', 'VIDEO_MPEG', 'VIDEO_OGG', 'VIDEO_MOV', 'VIDEO_WEBM', 'VIDEO_AVI', 'VIDEO_WMV'];
+        break;
+      case FileTypeCategory.ZIP:
+        typeFormats = ['ZIP'];
+        break;
+    }
+
+    return typeFormats;
   }
 
 }
