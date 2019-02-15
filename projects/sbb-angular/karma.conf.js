@@ -28,6 +28,10 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
+    browserStack: {
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY
+    },
     preprocessors: {
       'dist/packages/**/*.js': ['sourcemap']
     },

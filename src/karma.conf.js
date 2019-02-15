@@ -25,6 +25,10 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
+    browserStack: {
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
