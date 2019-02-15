@@ -35,7 +35,7 @@ export abstract class IconBase {
   /**
    * The given CSS class or classes will be applied to the SVG element.
    */
-  @Input() svgClass: string = '';
+  @Input() svgClass = '';
   @HostBinding('style.display') get display() {
     return this.isFixed() || this.inputHeight || this.inputWidth ? 'inline-block' : undefined;
   }
