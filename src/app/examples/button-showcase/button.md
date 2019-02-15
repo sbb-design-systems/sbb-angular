@@ -4,7 +4,7 @@ Import button module into your application
 
 ```ts
 import {
-  IconCommonModule,
+  IconArrowDownModule,
   ButtonModule
 } from 'sbb-angular';
 ```

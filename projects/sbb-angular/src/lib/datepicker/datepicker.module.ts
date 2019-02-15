@@ -4,9 +4,6 @@ import {
   DatepickerEmbeddableComponent,
   SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './datepicker-embeddable/datepicker-embeddable.component';
-import {
-  IconCommonModule
-} from '../svg-icons-components/svg-icons-components';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
@@ -21,11 +18,14 @@ import { NativeDateAdapter } from './native-date-adapter';
 import { SBB_DATE_FORMATS } from './date-formats';
 import { DATE_PIPE_DATE_FORMATS } from './date-pipe-date-formats';
 import { DatepickerComponent } from './datepicker/datepicker.component';
+import { IconArrowSmallLeftModule, IconArrowSmallRightModule, IconCalendarModule } from '../svg-icons/svg-icons';
 
 @NgModule({
   imports: [
     CommonModule,
-    IconCommonModule,
+    IconArrowSmallLeftModule,
+    IconArrowSmallRightModule,
+    IconCalendarModule,
     PortalModule,
     A11yModule,
     OverlayModule

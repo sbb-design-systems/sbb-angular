@@ -1,11 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { NotificationComponent, NotificationType } from './notification.component';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { NotificationComponent, NotificationType } from './notification.component';
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -26,7 +25,7 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [IconCommonModule, CommonModule],
+        imports: [IconCollectionModule, CommonModule],
         declarations: [NotificationComponent]
       })
         .compileComponents();
@@ -50,7 +49,7 @@ describe('NotificationComponent', () => {
     beforeEach(async(() => {
 
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, IconCommonModule],
+        imports: [CommonModule, FormsModule, IconCollectionModule],
         declarations: [NotificationComponent, NotificationMockComponent]
       })
         .compileComponents();

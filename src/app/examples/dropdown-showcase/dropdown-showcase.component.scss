@@ -6,6 +6,7 @@ $border: solid 2px white;
   align-items: center;
   padding: 14px;
 
+
   .avatar-icon {
     width: 24px;
     height: 24px;
@@ -14,6 +15,8 @@ $border: solid 2px white;
     border-top: $borderActive;
     border-right: $borderActive;
     border-left: $borderActive;
-
+    &.sbb-dropdown-trigger-above {
+      border-bottom: $borderActive;
+    }
   }
 }

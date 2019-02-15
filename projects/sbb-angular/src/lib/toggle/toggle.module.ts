@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToggleComponent } from './toggle/toggle.component';
-import { ToggleOptionComponent } from './toggle-option/toggle-option.component';
+import { NgModule } from '@angular/core';
 import { ToggleOptionIconDirective } from './toggle-option/toggle-option-icon.directive';
-import { IconCommonModule } from '../svg-icons-components/icon-common.module';
+import { ToggleOptionComponent } from './toggle-option/toggle-option.component';
+import { ToggleComponent } from './toggle/toggle.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { IconCommonModule } from '../svg-icons-components/icon-common.module';
   ],
   imports: [
     CommonModule,
-    IconCommonModule
   ],
   exports: [
     ToggleComponent,

@@ -1,20 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DropdownComponent } from './dropdown.component';
-import {
-  DropdownTriggerDirective,
-  DropdownOriginDirective,
-  DropdownItemDirective,
-  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
-} from '../dropdown';
 import { CommonModule, Location } from '@angular/common';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
-import { ViewChildren, QueryList, Component, ViewChild } from '@angular/core';
-import { LinkGeneratorResult } from '../../pagination/page-descriptor.model';
-import { DropdownModule } from '../dropdown.module';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LinkGeneratorResult } from '../../pagination/page-descriptor.model';
+import {
+  DropdownItemDirective,
+  DropdownOriginDirective,
+  DropdownTriggerDirective,
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
+} from '../dropdown';
+import { DropdownModule } from '../dropdown.module';
+import { DropdownComponent } from './dropdown.component';
 
 @Component({
   selector: 'sbb-dropdown-test',
@@ -76,7 +74,6 @@ describe('DropdownComponent', () => {
       ],
       imports: [
         CommonModule,
-        IconCommonModule
       ],
       providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
     })
