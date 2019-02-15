@@ -106,7 +106,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     this.applyChanges(filteredList);
   }
 
-  setDisabledState?(isDisabled: boolean) {
+  setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
     this._changeDetector.markForCheck();
   }
