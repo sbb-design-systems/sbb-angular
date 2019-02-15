@@ -3,7 +3,8 @@
   "dest": "../../dist/sbb-angular",
   "whitelistedNonPeerDependencies": [
     "tslib",
-    "ngx-perfect-scrollbar"
+    "ngx-perfect-scrollbar",
+    "@types/grecaptcha"
   ],
   "lib": {
     "entryFile": "src/public_api.ts",

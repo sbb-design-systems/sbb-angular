@@ -1,0 +1,91 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Captcha Overview</h1>
+  <p class="docs-markdown-p">Import captcha module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { CaptchaModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and you can use captcha component as see below.</p>
+  <br>
+  <h3 id="what-does-captcha-do-" class="docs-header-link docs-markdown-h3">
+    <span header-link="what-does-captcha-do-"></span> What does captcha do? </h3>
+  <p class="docs-markdown-p">Provides a query to make sure that a webpage interacts with a real user. <br>
+    <br></p>
+  <h3 id="when-can-you-use-it-" class="docs-header-link docs-markdown-h3">
+    <span header-link="when-can-you-use-it-"></span> When can you use it? </h3>
+  <p class="docs-markdown-p">For forms that are accessible without login. <br>
+    <br></p>
+  <h4 class="docs-markdown-h4">Basic Example</h4>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Basic example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-captcha</span> (<span class="hljs-attr">resolved</span>)=<span class="hljs-string">"resolved($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-captcha</span>&gt;</span></code></pre>
+  <br>
+  <h3 id="characteristics-states-and-input-options" class="docs-header-link docs-markdown-h3">
+    <span header-link="characteristics-states-and-input-options"></span> Characteristics, states and input options </h3>
+  <p class="docs-markdown-p">The captcha element has two states:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">checked</li>
+    <li class="docs-markdown-li">unchecked</li>
+  </ul>
+  <p class="docs-markdown-p">The captcha component also supports the following options:</p>
+  <ol class="docs-markdown-ol">
+    <li class="docs-markdown-li">siteKey: the siteKey of the user.</li>
+    <li class="docs-markdown-li">theme: the color theme of the widget.</li>
+    <li class="docs-markdown-li">type: the type of the widget.</li>
+    <li class="docs-markdown-li">size: the size of the widget.</li>
+    <li class="docs-markdown-li">tabIndex: the tabindex of the widget and challenge.</li>
+    <li class="docs-markdown-li">badge: the badge of the widget.<br>
+    </li>
+  </ol>
+  <h3 id="events" class="docs-header-link docs-markdown-h3">
+    <span header-link="events"></span> Events </h3>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">resolved(captchaResponse: string). Occurs when the captcha resolution value changed. When user resolves captcha, use <code class="docs-markdown-code">response</code> parameter to send to the server for verification. If the captcha has expired prior to submitting its value to the server, the component will reset the captcha, and trigger the resolved event with response === null.</li>
+  </ul>
+  <h3 id="methods" class="docs-header-link docs-markdown-h3">
+    <span header-link="methods"></span> Methods </h3>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">
+      <p class="docs-markdown-p">reset() : Performs a manual captcha reset. This method might be useful if your form validation failed, and you need the user to re-enter the captcha.</p>
+    </li>
+    <li class="docs-markdown-li">
+      <p class="docs-markdown-p">execute() : Executes the invisible recaptcha. Does nothing if component's size is not set to "invisible". </p>
+    </li>
+  </ul>
+  <h3 id="configuring-the-component-globally" class="docs-header-link docs-markdown-h3">
+    <span header-link="configuring-the-component-globally"></span> Configuring the component globally </h3>
+  <p class="docs-markdown-p">Some properties as <code class="docs-markdown-code">siteKey</code>, <code class="docs-markdown-code">size</code> and others are globals. You can provide them at the module-level using the RECAPTCHA_SETTINGS provider as see below:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">const</span> globalSetting : RecaptchaSettings = { siteKey: <span class="hljs-string">'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'</span> }</code></pre>
+  <p class="docs-markdown-p">and set it in the providers section of your module:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"> providers: [{provide: RECAPTCHA_SETTINGS, useValue: globalSetting }]</code></pre>
+  <br>
+  <h3 id="specifing-a-different-language" class="docs-header-link docs-markdown-h3">
+    <span header-link="specifing-a-different-language"></span> Specifing a different language </h3>
+  <p class="docs-markdown-p">Captcha supports various languages. By default recaptcha will guess the user's language itself. But you can override this behavior and provide a specific language to use. You can set a specific language in your module in the providers section:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">providers: [{provide: RECAPTCHA_LANGUAGE, useValue: <span class="hljs-string">'fr'</span>,}]</code></pre>
+  <br>
+  <h3 id="advanced-examples" class="docs-header-link docs-markdown-h3">
+    <span header-link="advanced-examples"></span> Advanced Examples </h3>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Captcha with <code class="docs-markdown-code">[(ngModel)]</code> directive </li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> #<span class="hljs-attr">captchaProtectedForm</span>=<span class="hljs-string">"ngForm"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-captcha</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"formModel.captcha"</span>
+                 <span class="hljs-attr">name</span>=<span class="hljs-string">"captcha"</span>
+                 <span class="hljs-attr">required</span>
+                 [<span class="hljs-attr">siteKey</span>]=<span class="hljs-string">"testSiteKey"</span>
+                 #<span class="hljs-attr">captchaControl</span>=<span class="hljs-string">"ngModel"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-captcha</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Captcha with <code class="docs-markdown-code">reactiveForm</code></li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> [<span class="hljs-attr">formGroup</span>]=<span class="hljs-string">"formCaptcha"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-captcha</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"captcha"</span>
+                 <span class="hljs-attr">name</span>=<span class="hljs-string">"captcha"</span>
+                 [<span class="hljs-attr">siteKey</span>]=<span class="hljs-string">"testSiteKey"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-captcha</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</body>
+
+</html>

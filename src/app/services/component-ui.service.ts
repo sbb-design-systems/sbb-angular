@@ -25,6 +25,8 @@ import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-s
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
 import { SearchShowcaseComponent } from '../examples/search-showcase/search-showcase.component';
+import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
+import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
 
 
 @Injectable({
@@ -392,7 +394,35 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         SearchShowcaseComponent
+      ),
+      new UiComponent(
+        'Captcha',
+        'captcha',
+        'Captcha',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        CaptchaShowcaseComponent
+
+      ),
+      new UiComponent(
+        'Dropdown',
+        'dropdown',
+        'Dropdown',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        DropdownShowcaseComponent
       )
+
     ];
   }
 

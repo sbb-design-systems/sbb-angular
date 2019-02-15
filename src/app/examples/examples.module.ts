@@ -18,9 +18,6 @@ import {
   LoadingModule,
   DatepickerModule,
   LightboxModule,
-  /* AutocompleteModule,
-  SelectModule, */
-/*   OptionModule, */
   AccordionModule,
   ProcessflowModule,
   RadioButtonModule,
@@ -32,9 +29,12 @@ import {
   TextexpandModule,
   CheckboxModule,
   TagModule,
+  PaginationModule,
   ToggleModule,
-  PaginationModule
+  CaptchaModule,
+  DropdownModule,
 } from 'sbb-angular';
+
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
@@ -74,6 +74,9 @@ import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.co
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { SearchShowcaseComponent } from './search-showcase/search-showcase.component';
+import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
+import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+
 import { SearchModule } from 'projects/sbb-angular/src/lib/search/search.module';
 import { OptionModule } from 'projects/sbb-angular/src/lib/option/option.module';
 import { AutocompleteModule } from 'projects/sbb-angular/src/lib/autocomplete/autocomplete.module';
@@ -116,7 +119,9 @@ import { SelectModule } from 'projects/sbb-angular/src/lib/select/select.module'
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
-    SearchShowcaseComponent
+    SearchShowcaseComponent,
+    CaptchaShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +156,9 @@ import { SelectModule } from 'projects/sbb-angular/src/lib/select/select.module'
     TooltipModule,
     TextexpandModule,
     TagModule,
-    SearchModule
+    SearchModule,
+    DropdownModule,
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -178,7 +185,8 @@ import { SelectModule } from 'projects/sbb-angular/src/lib/select/select.module'
     OptionModule,
     AccordionModule,
     TableModule,
-    TooltipShowcaseComponent
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
