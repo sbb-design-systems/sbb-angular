@@ -6,6 +6,11 @@ import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
 })
 export class FileSelectorTypesService {
 
+  /**
+   * Returns the file type category/ies with mime Type in input.
+   * @param mimeType Mime type of a file.
+   * @returns File type category/ies.
+   */
   getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
 
     for (const fileTypeCat in FileTypeCategory) {
@@ -17,6 +22,11 @@ export class FileSelectorTypesService {
     return FileTypeCategory.GENERIC_DOC;
   }
 
+  /**
+   * Returns all formats accepted.
+   * @param typeCats File type category/ies.
+   * @returns All formats accepted.
+   */
   getAcceptString(typeCats: FileTypeCategory | FileTypeCategory[]): string {
 
     if (Array.isArray(typeCats)) {
@@ -27,17 +37,32 @@ export class FileSelectorTypesService {
 
   }
 
+  /**
+   * Returns the specific file with the name in input.
+   * @param fileName File name.
+   * @return File with the name in input.
+   */
   getFileExtensionFromFileName(fileName: string): string {
     const res = fileName.split('.');
     return res[res.length - 1];
   }
 
+  /**
+   * Returns the file extension of the file with name in input.
+   * @param fileName File name.
+   * @returns File extension.
+   */
   getFileNameNoExtension(fileName: string): string {
     const res = fileName.split('.');
     res.pop();
     return res.join('');
   }
 
+  /**
+   * Returns the file size with the correct unit of measure.
+   * @param fileSizeBytes File size in bytes.
+   * @returns File size with the correct unit of measure.
+   */
   formatFileSize(fileSizeBytes: number): string {
     let res = '';
 

@@ -3,8 +3,22 @@ import { InjectionToken } from '@angular/core';
 export const FILE_SELECTOR_OPTIONS = new InjectionToken<FileSelectorOptions>('FILE_SELECTOR_OPTIONS');
 
 export interface FileSelectorOptions {
+
+  /**
+   * Categories of file types accepted by sbb-file-selector component.
+   * It is optional.
+   */
   accept?: string;
+  /**
+   * Attribute whose state specifies the preferred facing mode for the media capture mechanism.
+   * The attribute's keywords are user and environment, which map to the respective states user and environment.
+   * It is optional.
+   */
   capture?: 'user' | 'environment';
+  /**
+   * Mode on file selector component to chose more files to upload.
+   * It is optional.
+   */
   multiple?: boolean;
 }
 

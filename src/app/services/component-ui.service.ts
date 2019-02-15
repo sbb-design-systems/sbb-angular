@@ -410,7 +410,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'File Selector',
-        'fileselector',
+        'file-selector',
         'File Selector',
         'Subtitel goes here ...',
         true,
