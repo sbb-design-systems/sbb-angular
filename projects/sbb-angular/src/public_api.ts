@@ -2,6 +2,7 @@
  * Public API Surface of sbb-angular
  */
 export * from './lib/svg-icons-components/svg-icons-components';
+export * from './lib/svg-icons/svg-icons';
 export * from './lib/field/field';
 export * from './lib/option/option';
 export * from './lib/textarea/textarea';

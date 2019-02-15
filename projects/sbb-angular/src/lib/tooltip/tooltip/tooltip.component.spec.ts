@@ -1,15 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TooltipComponent, SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from './tooltip.component';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
-import { CommonModule } from '@angular/common';
-import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { TooltipModule } from '../tooltip.module';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { FieldModule } from '../../field/field';
 import { ButtonModule } from '../../button/button';
+import { FieldModule } from '../../field/field';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { TooltipModule } from '../tooltip.module';
+import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER, TooltipComponent } from './tooltip.component';
 
 @Component({
   selector: 'sbb-tooltip-test',
@@ -56,7 +55,7 @@ describe('TooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule, CommonModule, PortalModule, OverlayModule],
+      imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
     })

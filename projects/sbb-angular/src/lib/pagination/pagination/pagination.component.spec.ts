@@ -1,20 +1,20 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
-import { PaginationComponent } from './pagination.component';
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
-import { PaginationModule } from '../pagination.module';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ButtonModule } from '../../button/button';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
-import { CommonModule, Location } from '@angular/common';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NavigationComponent } from '../navigation/navigation.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LinkGeneratorResult } from '../page-descriptor.model';
 import { NavigationPageDescriptor } from '../navigation-page-descriptor.model';
-import { ButtonModule } from '../../button/button';
-import { FormsModule } from '@angular/forms';
+import { NavigationComponent } from '../navigation/navigation.component';
+import { LinkGeneratorResult } from '../page-descriptor.model';
+import { PaginationModule } from '../pagination.module';
+import { PaginationComponent } from './pagination.component';
+
 
 @Component({
   selector: 'sbb-pagination-test',
@@ -71,7 +71,7 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule, CommonModule, RouterTestingModule],
+      imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [PaginationComponent]
     })
       .compileComponents();
@@ -481,7 +481,7 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCommonModule, CommonModule, RouterTestingModule],
+      imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [NavigationComponent]
     })
       .compileComponents();
