@@ -49,10 +49,16 @@ module.exports = function (config) {
       },
       'BsFirefox': {
         base: 'BrowserStack',
-        os: 'Windows',
-        os_version: '10',
+        os: 'OS X',
+        os_version: 'Mojave',
         browser: 'Firefox'
-      }
+      },
+      'BsSafari': {
+        base: 'BrowserStack',
+        os: 'OS X',
+        os_version: 'Mojave',
+        browser: 'Safari'
+      },
     },
     browsers: ['ChromeHeadless'],
     singleRun: false,
