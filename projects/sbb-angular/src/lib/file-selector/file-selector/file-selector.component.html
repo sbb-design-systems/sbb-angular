@@ -27,7 +27,7 @@
         <sbb-icon-zip *ngSwitchCase="fileTypeCategory.ZIP"></sbb-icon-zip>
         <sbb-icon-doc-generic *ngSwitchDefault></sbb-icon-doc-generic>
       </div>
-      <span class="sbb-file-selector-list-desc">{{ file | getFileNameNoExtension }} (<span class="sbb-file-selector-list-file-ext">{{ file | getFileExtension }}</span>, {{ file | getFileSizeFormatted }})</span>
+      <span class="sbb-file-selector-list-desc">{{ file | FileNameNoExtension }} (<span class="sbb-file-selector-list-file-ext">{{ file | FileExtension }}</span>, {{ file | FileSizeFormatted }})</span>
       <button class="sbb-file-selector-list-remove-icon" (click)="removeFile(file)">
         <span i18n class="visuallyhidden">Datei entfernen</span>
         <sbb-icon-trash></sbb-icon-trash>
