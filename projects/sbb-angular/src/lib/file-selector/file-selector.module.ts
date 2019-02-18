@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { ButtonModule } from '../button/button.module';
 import { IconCollectionBaseDocumentsModule, IconTrashModule, IconUploadModule } from '../svg-icons/svg-icons';
-import { GetFileExtension, GetFileNameNoExtension, GetFileSizeFormatted } from './file-selector/file-selector.pipes';
+import { FileExtension, FileNameNoExtension, FileSizeFormatted } from './file-selector/file-selector.pipes';
 
 @NgModule({
   declarations: [
     FileSelectorComponent,
-    GetFileExtension,
-    GetFileNameNoExtension,
-    GetFileSizeFormatted
+    FileExtension,
+    FileNameNoExtension,
+    FileSizeFormatted
   ],
   imports: [
     CommonModule,

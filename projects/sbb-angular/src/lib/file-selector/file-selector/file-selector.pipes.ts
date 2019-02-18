@@ -7,7 +7,7 @@ import { FileSelectorTypesService } from './file-selector-types.service';
  * @returns File extension of the file name in input.
  */
 @Pipe({ name: 'getFileNameNoExtension' })
-export class GetFileNameNoExtension implements PipeTransform {
+export class FileNameNoExtension implements PipeTransform {
 
     constructor(private _fileTypeService: FileSelectorTypesService) { }
 
@@ -23,7 +23,7 @@ export class GetFileNameNoExtension implements PipeTransform {
  * @returns File extension of the file in input.
  */
 @Pipe({ name: 'getFileExtension' })
-export class GetFileExtension implements PipeTransform {
+export class FileExtension implements PipeTransform {
 
     constructor(private _fileTypeService: FileSelectorTypesService) { }
 
@@ -39,7 +39,7 @@ export class GetFileExtension implements PipeTransform {
  * @returns File size formatted of the file in input.
  */
 @Pipe({ name: 'getFileSizeFormatted' })
-export class GetFileSizeFormatted implements PipeTransform {
+export class FileSizeFormatted implements PipeTransform {
 
     constructor(private _fileTypeService: FileSelectorTypesService) { }
 
