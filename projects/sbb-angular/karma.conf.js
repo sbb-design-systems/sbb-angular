@@ -56,8 +56,9 @@ module.exports = function (config) {
     },
     browsers: ['ChromeHeadless'],
     singleRun: false,
-    browserDisconnectTolerance: 2,
-    browserNoActivityTimeout: 50000,
-    browserDisconnectTimeout: 20000
+    captureTimeout: 3e5,
+    browserNoActivityTimeout: 3e5,
+    browserDisconnectTimeout: 3e5,
+    browserDisconnectTolerance: 3
   });
 };
