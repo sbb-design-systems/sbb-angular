@@ -54,6 +54,7 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
 import { ReplacePipe } from './shared/replace.pipe';
 import { iconComponentList } from './svg-icon-collection';
 import { TypographyComponent } from './typography/typography.component';
+import { UserMenuShowcaseComponent } from './examples/user-menu-showcase/user-menu-showcase.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { TypographyComponent } from './typography/typography.component';
     TagShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
+    UserMenuShowcaseComponent,
     ...iconComponentList,
   ]
 })

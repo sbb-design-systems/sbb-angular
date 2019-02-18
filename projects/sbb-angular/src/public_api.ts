@@ -30,3 +30,4 @@ export * from './lib/textexpand/textexpand';
 export * from './lib/tag/tag';
 export * from './lib/captcha/captcha';
 export * from './lib/dropdown/dropdown';
+export * from './lib/user-menu/user-menu';

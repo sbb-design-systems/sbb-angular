@@ -36,6 +36,7 @@
   ToggleModule,
   CaptchaModule,
   DropdownModule,
+  UserMenuModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 
@@ -78,6 +79,8 @@
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { UserMenuShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./user-menu-showcase/user-menu-showcase.component'</span>;
+
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -117,7 +120,8 @@
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -153,7 +157,8 @@
     TextexpandModule,
     TagModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    UserMenuModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -181,7 +186,8 @@
     AccordionModule,
     TableModule,
     TooltipShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
