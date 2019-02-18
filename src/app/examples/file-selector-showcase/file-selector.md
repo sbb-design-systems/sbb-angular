@@ -35,6 +35,20 @@ The module has two states:
 
 * disabled
 
+### Configuring the component globally
+
+It is possible to define the categories and the types of file accepted globally. You can provide them at the module-level using respectively ```FILE_TYPES``` and ```FILE_SELECTOR_OPTIONS``` providers as see below:
+
+```ts
+const fileCategories : FileTypeCategory[] = [FileTypeCategory_IMAGE,FileTypeCategory.VIDEO];
+const fileSelectorOptions : FileSelectorOptions = {accept:'image/jpeg'+','+'video.mp4', multiple:true, capture:'user'};
+```
+and set them in the providers section of your module:
+```ts
+ providers: [{provide: FILE_TYPES, useValue: fileCategories }, {provide: FILE_SELECTOR_OPTIONS, useValue: fileSelectorOptions}]
+```
+<br>
+
 ### Examples
 
 * Simple example (you can chose single file)

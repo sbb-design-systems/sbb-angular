@@ -33,6 +33,14 @@
       <p class="docs-markdown-p">disabled</p>
     </li>
   </ul>
+  <h3 id="configuring-the-component-globally" class="docs-header-link docs-markdown-h3">
+    <span header-link="configuring-the-component-globally"></span> Configuring the component globally </h3>
+  <p class="docs-markdown-p">It is possible to define the categories and the types of file accepted globally. You can provide them at the module-level using respectively <code class="docs-markdown-code">FILE_TYPES</code> and <code class="docs-markdown-code">FILE_SELECTOR_OPTIONS</code> providers as see below:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">const</span> fileCategories : FileTypeCategory[] = [FileTypeCategory_IMAGE,FileTypeCategory.VIDEO];
+<span class="hljs-keyword">const</span> fileSelectorOptions : FileSelectorOptions = {accept:<span class="hljs-string">'image/jpeg'</span>+<span class="hljs-string">','</span>+<span class="hljs-string">'video.mp4'</span>, multiple:<span class="hljs-literal">true</span>, capture:<span class="hljs-string">'user'</span>};</code></pre>
+  <p class="docs-markdown-p">and set them in the providers section of your module:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"> providers: [{provide: FILE_TYPES, useValue: fileCategories }, {provide: FILE_SELECTOR_OPTIONS, useValue: fileSelectorOptions}]</code></pre>
+  <br>
   <h3 id="examples" class="docs-header-link docs-markdown-h3">
     <span header-link="examples"></span> Examples </h3>
   <ul class="docs-markdown-ul">
