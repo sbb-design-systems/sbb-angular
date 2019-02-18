@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FileSelectorComponent } from './file-selector.component';
-import { IconCollectionBaseDocumentsModule, IconTrashModule, IconUploadModule } from '../../svg-icons/svg-icons';
 import { Component } from '@angular/core';
 import { FileSelectorModule } from '../file-selector.module';
 import { By } from '@angular/platform-browser';
@@ -79,28 +78,6 @@ const testFileList: File[] = [
   }
 ];
 
-describe('FileSelectorComponent', () => {
-  let component: FileSelectorComponent;
-  let fixture: ComponentFixture<FileSelectorComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [IconCollectionBaseDocumentsModule, IconTrashModule, IconUploadModule],
-      declarations: [FileSelectorComponent]
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FileSelectorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
 
 @Component({
   selector: 'sbb-file-test',
