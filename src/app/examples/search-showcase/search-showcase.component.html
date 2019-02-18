@@ -1,5 +1,5 @@
-<!-- <sbb-search [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
-<sbb-autocomplete #auto="sbbAutocomplete" >
+<sbb-search [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
+<sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option }}
   </sbb-option>
@@ -7,10 +7,10 @@
 
 <pre>
   {{ myControl.value | json}}
-</pre> -->
+</pre>
 
-<sbb-search mode="header"  [formControl]="myControl2" [sbbAutocomplete]="auto2"></sbb-search>
-<sbb-autocomplete #auto2="sbbAutocomplete" >
+<sbb-search mode="header" [formControl]="myControl2" [sbbAutocomplete]="auto2"></sbb-search>
+<sbb-autocomplete #auto2="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions2" [value]="option">
     {{ option }}
   </sbb-option>
@@ -18,4 +18,21 @@
 
 <pre>
   {{ myControl2.value | json}}
+</pre>
+
+
+<sbb-search [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic"></sbb-search>
+<sbb-autocomplete #autoStatic="sbbAutocomplete">
+  <sbb-option *ngFor="let option of options$ | async" [value]="option">
+    {{ option }}
+  </sbb-option>
+  <sbb-option-group label="Oft gesucht:">
+    <sbb-option *ngFor="let option of staticOptions" [value]="option">
+      {{ option }}
+    </sbb-option>
+  </sbb-option-group>
+</sbb-autocomplete>
+
+<pre>
+  {{ myControlStatic.value | json}}
 </pre>

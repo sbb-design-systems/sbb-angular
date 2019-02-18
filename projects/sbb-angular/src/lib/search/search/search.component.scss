@@ -1,31 +1,42 @@
 @import "../../../styles/main";
 
-.sbb-search, .sbb-search-overlay {
-  display: flex;
+.sbb-search {
   width: 280px;
-  > input {
-    border-right: none;
-    width: 100%;
-  }
-  > button {
-    @include buttonResetFrameless;
-    fill: $colorWhite;
-    background-color: $colorRed100;
+  display: block;
+  position: relative;
+  .sbb-search-box {
+    visibility: hidden;
+    display: flex;
+    /*     transition-duration: 0.3s;
+    transition-timing-function: ease;
+    transition-property: width, opacity;
+    opacity: 0;
+    width: 0; */
 
-    width: 10%;
-    > * {
-      width: 24px;
-      height: 24px;
+    > input {
+      border-right: none;
+      width: 100%;
     }
+    > button {
+      @include buttonResetFrameless;
+      fill: $colorWhite;
+      background-color: $colorRed100;
+      width: 10%;
+    }
+    /*     &.visible {
+      visibility: visible;
+      opacity: 1;
+      width: 280px;
+    } */
   }
 
   .sbb-search-icon-wrapper {
+    @include buttonResetFrameless;
+    @include absoluteCenterY;
+
+    margin-left: 20px;
     fill: $colorGrey;
     width: 24px;
     height: 24px;
-    > * {
-      width: 24px;
-      height: 24px;
-    }
   }
 }

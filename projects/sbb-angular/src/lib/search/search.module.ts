@@ -7,6 +7,7 @@ import { AutocompleteModule } from '../autocomplete/autocomplete';
 import { ButtonModule } from '../button/button.module';
 import { OptionModule } from '../option/option.module';
 import { IconSearchModule } from '../svg-icons/svg-icons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [SearchComponent],
@@ -17,12 +18,13 @@ import { IconSearchModule } from '../svg-icons/svg-icons';
     OverlayModule,
     AutocompleteModule,
     ButtonModule,
-    OptionModule
+    OptionModule,
+    BrowserAnimationsModule
   ],
   exports: [
     SearchComponent,
     PortalModule,
-    OverlayModule,
+    OverlayModule
   ],
   providers: [
     SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER

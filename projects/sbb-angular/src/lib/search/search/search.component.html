@@ -1,19 +1,10 @@
-<ng-container *ngTemplateOutlet="mode === 'default' ? searchbox : searchicon"></ng-container>
-<ng-template #searchbox>
-  <input 
-    #input 
-    class="sbb-search-input" 
-    type="text" (focusin)="handleFocus()" 
-    (input)="handleInput($event)"
-    (keydown)="handleKeydown($event)"
-    (blur)="onBlur()">
-  <button>
+<div [class.visible]="!hideSearch" class="sbb-search-box" #searchbox>
+  <input #input class="sbb-search-input" type="text" (focusin)="handleFocus()" (input)="handleInput($event)"
+    (keydown)="handleKeydown($event)" (blur)="onBlur($event)">
+  <button #button (blur)="onBlur($event)">
     <sbb-icon-search></sbb-icon-search>
   </button>
-</ng-template>
-
-<ng-template #searchicon>
-  <div class="sbb-search-icon-wrapper" (click)="revealSearchbox()">
-    <sbb-icon-search></sbb-icon-search>
-  </div>
-</ng-template>
+</div>
+<button [hidden]="!hideSearch" class="sbb-search-icon-wrapper" (click)="revealSearchbox()">
+  <sbb-icon-search></sbb-icon-search>
+</button>

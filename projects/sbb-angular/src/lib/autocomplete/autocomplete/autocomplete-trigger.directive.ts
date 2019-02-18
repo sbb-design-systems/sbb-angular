@@ -41,6 +41,7 @@ import {
   getOptionScrollPosition,
   OptionComponent
 } from '../../option/option/option.component';
+import { AnimationBuilder, style, animate } from '@angular/animations';
 
 /**
  * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.

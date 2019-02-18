@@ -9,6 +9,7 @@ import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.
 import {
   AutocompleteTriggerDirective, SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './autocomplete/autocomplete-trigger.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
