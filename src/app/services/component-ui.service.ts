@@ -19,6 +19,13 @@ import { RadioButtonPanelShowcaseComponent } from '../examples/radio-button-pane
 import { CheckboxPanelShowcaseComponent } from '../examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from '../examples/notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from '../examples/table-showcase/table-showcase.component';
+import { ToggleShowcaseComponent } from '../examples/toggle-showcase/toggle-showcase.component';
+import { PaginationShowcaseComponent } from '../examples/pagination-showcase/pagination-showcase.component';
+import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
+import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
+import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
 
 
 @Injectable({
@@ -43,18 +50,6 @@ export class ComponentUiService {
         'Import text.',
         ButtonShowcaseComponent
       ),
-      /* new UiComponent(
-        'List',
-        'list',
-        'List',
-        'Listbox is used to select one or more values from a list of items.',
-        true,
-        false,
-        ['Davide Aresta', 'Stefan Meili'],
-        'Description goes here ...',
-        'Source goes here ...',
-        'Import text.'
-      ), */
       new UiComponent(
         'Table',
         'table',
@@ -242,18 +237,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.'
       ), */
-      /*  new UiComponent(
-         'Light Box',
-         'lightBox',
-         'Light Box',
-         'Subtitel goes here ...',
-         true,
-         true,
-         ['Davide Aresta', 'Stefan Meili'],
-         'Description goes here ...',
-         'Source goes here ...',
-         'Import text.'
-       ), */
+      new UiComponent(
+        'Pagination',
+        'pagination',
+        'Pagination',
+        'Subtitel goes here ...',
+        true,
+        true,
+        ['Davide Aresta', 'Marco Sut', 'Davide Genchi'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        PaginationShowcaseComponent
+      ),
       new UiComponent(
         'Light Box',
         'lightbox',
@@ -281,7 +277,7 @@ export class ComponentUiService {
         'Import text.',
         NotificationShowcaseComponent
       ),
-       new UiComponent(
+      new UiComponent(
         'Process Flow',
         'processflow',
         'Process Flow',
@@ -332,7 +328,86 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         TimeInputShowcaseComponent
+      ),
+      new UiComponent(
+        'Toggle button',
+        'toggle',
+        'Toggle button',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        ToggleShowcaseComponent
+      ),
+      new UiComponent(
+        'Tooltip',
+        'tooltip',
+        'Tooltip',
+        'Subtitel goes here ...',
+        true,
+        false,
+        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TooltipShowcaseComponent
+      ),
+      new UiComponent(
+        'Text Expand',
+        'textexpand',
+        'Text Expand',
+        'Subtitel goes here ...',
+        true,
+        false,
+        ['Davide Aresta', 'Marco Sut', 'Davide Genchi'],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TextexpandShowcaseComponent
+      ),
+      new UiComponent(
+        'Tag',
+        'tag',
+        'Tag',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        TagShowcaseComponent
+      ),
+      new UiComponent(
+        'Captcha',
+        'captcha',
+        'Captcha',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        CaptchaShowcaseComponent
+      ),
+      new UiComponent(
+        'Dropdown',
+        'dropdown',
+        'Dropdown',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        DropdownShowcaseComponent
       )
+
     ];
   }
 

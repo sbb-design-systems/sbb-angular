@@ -1,6 +1,6 @@
-import { Directive, ViewContainerRef, OnInit, Input, ComponentFactoryResolver, OnChanges, SimpleChanges } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { UiIcon } from '../shared/ui-icon';
-import { IconComponents } from '../sbb-components-mapping-export';
+import { iconComponentDetails } from '../svg-icon-collection';
 
 @Directive({
   selector: '[sbbIconViewer]'
@@ -9,33 +9,24 @@ export class IconViewerDirective implements OnChanges {
 
 
   @Input() sbbIconViewer: UiIcon;
-  @Input() singleOrMultiple: string;
-
-  iconClasses = [
-    'icon-sm',
-    'icon-lg',
-    'icon-2x',
-    'icon-3x',
-    'icon-5x',
-    'icon-7x'
-  ];
+  @Input() size: 'fixed' | undefined;
+  @Input() svgWidth: string;
+  @Input() svgHeight: string;
 
   constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) { }
 
   loadIconComponent(): void {
-    if (!this.sbbIconViewer || !this.singleOrMultiple) {
-      console.error('The input parameter sbbIconViewer or singleOrMultiple is required');
-    } else {
-      const componentFactory = this.resolver.resolveComponentFactory(IconComponents.map[this.sbbIconViewer.name]);
-      if (this.singleOrMultiple.toLocaleLowerCase().startsWith('single')) {
-        const componentRef = this.viewContainer.createComponent(componentFactory);
-        componentRef.instance['svgClass'] = 'icon-flex-column icon-lg';
-      } else {
-        this.iconClasses.forEach(iconClass => {
-          const componentRef = this.viewContainer.createComponent(componentFactory);
-          componentRef.instance['svgClass'] = 'icon-flex-column ' + iconClass;
-        });
-      }
+    const component = iconComponentDetails.find(i => i.name === this.sbbIconViewer.name).component;
+    const componentFactory = this.resolver.resolveComponentFactory(component);
+    const componentRef = this.viewContainer.createComponent(componentFactory);
+    if (this.size) {
+      componentRef.instance.size = 'fixed';
+    }
+    if (this.svgHeight) {
+      componentRef.instance.height = this.svgHeight;
+    }
+    if (this.svgWidth) {
+      componentRef.instance.width = this.svgWidth;
     }
   }
 

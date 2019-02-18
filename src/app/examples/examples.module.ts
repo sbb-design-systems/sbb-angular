@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
+
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
-  IconCommonModule,
+  IconCollectionModule,
   TextareaModule,
   FieldModule,
   LinksModule,
-  CheckboxModule,
   ButtonModule,
   TabsModule,
   TimeInputModule,
@@ -26,8 +27,17 @@ import {
   NotificationsModule,
   TableModule,
   RadioButtonPanelModule,
-  CheckboxPanelModule
+  CheckboxPanelModule,
+  TooltipModule,
+  TextexpandModule,
+  CheckboxModule,
+  TagModule,
+  PaginationModule,
+  ToggleModule,
+  CaptchaModule,
+  DropdownModule,
 } from 'sbb-angular';
+
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
@@ -61,6 +71,13 @@ import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { NotificationShowcaseComponent } from './notification-showcase/notification-showcase.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
+import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
+import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
+import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
+import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
 @NgModule({
   declarations: [
@@ -93,11 +110,19 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
-    TableShowcaseComponent
+    TableShowcaseComponent,
+    ToggleShowcaseComponent,
+    PaginationShowcaseComponent,
+    TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
+    TagShowcaseComponent,
+    CaptchaShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     TextareaModule,
     FieldModule,
     LinksModule,
@@ -109,7 +134,7 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     CheckboxModule,
     DatepickerModule,
     TimeInputModule,
-    IconCommonModule,
+    IconCollectionModule,
     TabsModule,
     LoadingModule,
     LightboxModule,
@@ -121,7 +146,14 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelModule,
     CheckboxPanelModule,
     NotificationsModule,
-    TableModule
+    TableModule,
+    ToggleModule,
+    PaginationModule,
+    TooltipModule,
+    TextexpandModule,
+    TagModule,
+    DropdownModule,
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -140,12 +172,16 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
     RadioButtonPanelShowcaseComponent,
     CheckboxPanelShowcaseComponent,
     NotificationShowcaseComponent,
+    PaginationShowcaseComponent,
+    TextexpandShowcaseComponent,
     ButtonModule,
     LoadingModule,
     LightboxModule,
     OptionModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

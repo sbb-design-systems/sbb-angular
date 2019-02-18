@@ -1,11 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { IconCommonModule } from '../../svg-icons-components/icon-common.module';
-
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { IconCollectionModule } from '../../svg-icons/svg-icons';
 import { CheckboxComponent } from './checkbox.component';
 
 @Component({
@@ -26,7 +24,7 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, IconCommonModule],
+      imports: [CommonModule, IconCollectionModule],
       declarations: [ CheckboxComponent ]
     })
     .overrideComponent(CheckboxComponent, {
@@ -57,7 +55,7 @@ describe('CheckboxComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, IconCommonModule],
+      imports: [CommonModule, FormsModule, IconCollectionModule],
       declarations: [ CheckboxComponent, ModelCheckboxTestComponent ]
     })
     .overrideComponent(CheckboxComponent, {

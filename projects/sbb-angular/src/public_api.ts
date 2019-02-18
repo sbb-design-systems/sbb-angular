@@ -2,6 +2,7 @@
  * Public API Surface of sbb-angular
  */
 export * from './lib/svg-icons-components/svg-icons-components';
+export * from './lib/svg-icons/svg-icons';
 export * from './lib/field/field';
 export * from './lib/option/option';
 export * from './lib/textarea/textarea';
@@ -22,3 +23,10 @@ export * from './lib/radio-button-panel/radio-button-panel';
 export * from './lib/checkbox-panel/checkbox-panel';
 export * from './lib/notification/notification';
 export * from './lib/table/table';
+export * from './lib/toggle/toggle';
+export * from './lib/pagination/pagination';
+export * from './lib/tooltip/tooltip';
+export * from './lib/textexpand/textexpand';
+export * from './lib/tag/tag';
+export * from './lib/captcha/captcha';
+export * from './lib/dropdown/dropdown';

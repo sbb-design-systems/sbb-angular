@@ -1,11 +1,9 @@
-import { Type, Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, Type } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { ButtonComponent } from './button.component';
+import { IconArrowDownComponent as TestIconComponent, IconCollectionModule } from '../../svg-icons/svg-icons';
 import { ButtonIconDirective } from './button-icon.directive';
-import { IconCommonModule } from '../../svg-icons-components/svg-icons-components';
-import { IconArrowDownComponent as TestIconComponent } from '../../svg-icons-components/base/sbb-icon-arrow-down.component';
+import { ButtonComponent } from './button.component';
 
 @Component({
   selector: 'sbb-button-test',
@@ -28,7 +26,7 @@ describe('ButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        IconCommonModule
+        IconCollectionModule
       ],
       declarations: [ButtonComponent, ButtonTemplateTestComponent, ButtonIconDirective]
     })
