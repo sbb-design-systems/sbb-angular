@@ -1,11 +1,13 @@
 $borderActive: solid 2px #666;
 $border: solid 2px white;
+$colorGrey: #666;
 .dropdown-avatar {
   border: $border;
   display: flex;
   align-items: center;
   padding: 14px;
-
+  color: $colorGrey;
+  fill: $colorGrey;
 
   .avatar-icon {
     width: 24px;
