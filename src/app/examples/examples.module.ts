@@ -36,6 +36,7 @@ import {
   ToggleModule,
   CaptchaModule,
   DropdownModule,
+  FileSelectorModule,
 } from 'sbb-angular';
 
 
@@ -76,6 +77,7 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 
@@ -116,6 +118,7 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent
   ],
@@ -152,6 +155,7 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipModule,
     TextexpandModule,
     TagModule,
+    FileSelectorModule,
     DropdownModule,
     CaptchaModule
   ],
