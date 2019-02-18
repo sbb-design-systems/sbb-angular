@@ -126,33 +126,6 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   }
 
   /**
-   * Returns the file extension of the file in input.
-   * @param file File.
-   * @returns File extension of the file in input.
-   */
-  getFileExtension(file: File): string {
-    return this._fileTypeService.getFileExtensionFromFileName(file.name);
-  }
-
-  /**
-   * Returns the file size formatted of the file in input.
-   * @param file File.
-   * @returns File size formatted of the file in input.
-   */
-  getFileSizeFormatted(file: File): string {
-    return this._fileTypeService.formatFileSize(file.size);
-  }
-
-  /**
-   * Returns the file extension of the file name in input.
-   * @param file File.
-   * @returns File extension of the file name in input.
-   */
-  getFileNameNoExtension(file: File): string {
-    return this._fileTypeService.getFileNameNoExtension(file.name);
-  }
-
-  /**
    * Returns the file type category by the file type in input.
    * @param file File.
    * @returns File type category of the file type in input.
