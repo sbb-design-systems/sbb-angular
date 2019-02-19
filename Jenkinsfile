@@ -38,7 +38,8 @@ pipeline {
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/*.routes.ts \
             -Dsonar.test.inclusions=**/*.spec.ts \
             -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
-            -Dsonar.typescript.tslint.reportPaths=lintReport.json
+            -Dsonar.typescript.tslint.reportPaths=lintReport.json \
+            -Dsonar.testExecutionReportPaths=coverage/sonarqube.xml
           """
         }
       }

@@ -1,7 +1,9 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+if (process.env.BUILD_NUMBER) {
+  process.env.CHROME_BIN = require('puppeteer').executablePath();
+}
 
 module.exports = function (config) {
   config.set({
@@ -13,6 +15,7 @@ module.exports = function (config) {
       require('karma-firefox-launcher'),
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-sonarqube-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -22,6 +25,11 @@ module.exports = function (config) {
       jasmine: {
         timeout: 20000,
       }
+    },
+    sonarqubeReporter: {
+      basePath: 'projects/sbb-angular/src',
+      outputFolder: require('path').join(__dirname, '../../coverage'),
+      reportName: () => 'sonarqube.xml',
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../../coverage'),
@@ -35,7 +43,7 @@ module.exports = function (config) {
     preprocessors: {
       'dist/packages/**/*.js': ['sourcemap']
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'sonarqube'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
