@@ -29,18 +29,7 @@ pipeline {
           sh 'npm run build'
         }
         withSonarQubeEnv('Sonar NextGen') {
-          sh """${scannerHome}/bin/sonar-scanner -X \
-            -Dsonar.projectKey=sbb-angular \
-            -Dsonar.projectVersion=${libraryVersion} \
-            -Dsonar.language=ts \
-            -Dsonar.branch=${BRANCH_NAME} \
-            -Dsonar.sources=projects/sbb-angular/src \
-            -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/*.routes.ts \
-            -Dsonar.test.inclusions=**/*.spec.ts \
-            -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
-            -Dsonar.typescript.tslint.reportPaths=lintReport.json \
-            -Dsonar.testExecutionReportPaths=coverage/sonarqube.xml
-          """
+          sh 'npm run sonar'
         }
       }
     }

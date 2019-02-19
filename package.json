@@ -20,6 +20,8 @@
     "lint:library": "run-s lint:library:*",
     "lint:library:console": "ng lint sbb-angular",
     "lint:library:report": "ng lint sbb-angular --format=json > lintReport.json",
+    "presonar": "ts-node -P scripts/tsconfig.json ./scripts/sonar-config",
+    "sonar": "sonar-scanner",
     "sbb:publish": "node scripts/publish.js",
     "e2e": "ng e2e",
     "docs": "gulp docs"
@@ -99,12 +101,14 @@
     "run-sequence": "^2.2.1",
     "scss-bundle": "^2.4.0",
     "semver": "^5.6.0",
+    "sonar-scanner": "^3.1.0",
     "svgo": "^1.0.5",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
     "tsickle": "^0.33.1",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
+    "tslint-sonarts": "^1.9.0",
     "typescript": "~3.2.2"
   }
 }
