@@ -80,6 +80,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
+import { GhettoboxModule } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 
 @NgModule({
   declarations: [
@@ -120,7 +122,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TagShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    GhettoboxShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -157,7 +160,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TagModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    GhettoboxModule
   ],
   exports: [
     TextareaShowcaseComponent,

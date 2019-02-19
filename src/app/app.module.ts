@@ -55,6 +55,7 @@ import { ReplacePipe } from './shared/replace.pipe';
 import { iconComponentList } from './svg-icon-collection';
 import { TypographyComponent } from './typography/typography.component';
 import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase/file-selector-showcase.component';
+import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghettobox-showcase.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
     FileSelectorShowcaseComponent,
+    GhettoboxShowcaseComponent,
     ...iconComponentList,
   ]
 })
