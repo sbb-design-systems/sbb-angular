@@ -34,9 +34,7 @@ import {
   TagModule,
   PaginationModule,
   ToggleModule,
-  CaptchaModule,
-  DropdownModule,
-  UserMenuModule
+  CaptchaModule
 } from 'sbb-angular';
 
 
@@ -80,7 +78,8 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { UserMenuShowcaseComponent } from './user-menu-showcase/user-menu-showcase.component';
-
+import { UserMenuModule } from 'projects/sbb-angular/src/lib/user-menu/user-menu';
+import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.module';
 
 @NgModule({
   declarations: [

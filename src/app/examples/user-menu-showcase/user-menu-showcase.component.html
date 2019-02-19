@@ -1,3 +1,9 @@
-<p>
-  user-menu-showcase works!
-</p>
+
+ <sbb-user-menu>
+   <a *ngFor="let link of links" [routerLink]="linkGenerator(link.page).routerLink" sbbDropdownItem
+     [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+     {{ link.text }}
+   </a>
+   <hr>
+   <button type="button" (click)="onClick()" sbbDropdownItem>Abmeldung</button>
+ </sbb-user-menu>

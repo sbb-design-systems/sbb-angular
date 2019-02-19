@@ -1,3 +1,8 @@
-<p>
-  user-menu works!
-</p>
+<button sbbButton type="button" [sbbDropdown]="dropdown">Open dropdown</button>
+<sbb-dropdown #dropdown="sbbDropdown" [inputOptions]="content">
+
+</sbb-dropdown>
+<ng-container *ngFor="let item of items">
+  <span>{{ item.getLabel() }}</span>
+
+</ng-container>
