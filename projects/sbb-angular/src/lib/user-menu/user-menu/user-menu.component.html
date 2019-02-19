@@ -1,8 +1,6 @@
 <button sbbButton type="button" [sbbDropdown]="dropdown">Open dropdown</button>
 <sbb-dropdown #dropdown="sbbDropdown" [inputOptions]="content">
-
+  <ng-container ngProjectAs="a, button, hr">
+    <ng-content></ng-content>
+  </ng-container>
 </sbb-dropdown>
-<ng-container *ngFor="let item of content">
-  <span>{{ item.getLabel() }}</span>
-
-</ng-container>

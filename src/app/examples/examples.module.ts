@@ -79,7 +79,7 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { UserMenuShowcaseComponent } from './user-menu-showcase/user-menu-showcase.component';
 import { UserMenuModule } from 'projects/sbb-angular/src/lib/user-menu/user-menu';
-import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.module';
+import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown';
 
 @NgModule({
   declarations: [
