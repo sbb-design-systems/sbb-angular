@@ -15,6 +15,7 @@
     "test": "run-s build:library test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
     "test:library": "ng test sbb-angular -c ci",
+    "posttest": "ts-node -P scripts/tsconfig.json scripts/lcov-relative.ts",
     "lint": "run-s lint:*",
     "lint:showcase": "ng lint sbb-angular-showcase",
     "lint:library": "run-s lint:library:*",
