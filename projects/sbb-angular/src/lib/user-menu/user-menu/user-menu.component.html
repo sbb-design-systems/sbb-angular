@@ -2,7 +2,7 @@
 <sbb-dropdown #dropdown="sbbDropdown" [inputOptions]="content">
 
 </sbb-dropdown>
-<ng-container *ngFor="let item of items">
+<ng-container *ngFor="let item of content">
   <span>{{ item.getLabel() }}</span>
 
 </ng-container>

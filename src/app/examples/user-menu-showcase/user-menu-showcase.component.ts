@@ -29,4 +29,8 @@ export class UserMenuShowcaseComponent implements OnInit {
     };
   }
 
+  onClick() {
+
+    console.log('Button clicked');
+  }
 }
