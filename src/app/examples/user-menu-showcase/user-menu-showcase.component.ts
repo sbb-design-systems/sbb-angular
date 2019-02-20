@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { LinkGeneratorResult } from 'sbb-angular';
+import { Component, OnInit, ViewChildren, QueryList, ViewChild } from '@angular/core';
+import { LinkGeneratorResult, UserMenuComponent } from 'sbb-angular';
 import { DropdownTriggerDirective } from 'projects/sbb-angular/src/lib/dropdown/dropdown-trigger.directive';
 
 @Component({
@@ -10,6 +10,8 @@ import { DropdownTriggerDirective } from 'projects/sbb-angular/src/lib/dropdown/
 export class UserMenuShowcaseComponent implements OnInit {
 
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
+
+  loggedIn = false;
 
   links: Array<any> = [
     { page: 1, text: 'Test 1' },
@@ -29,8 +31,15 @@ export class UserMenuShowcaseComponent implements OnInit {
     };
   }
 
-  onClick() {
+  logout() {
 
     console.log('Button clicked');
+    this.loggedIn = false;
+
+  }
+
+  logIn() {
+    this.loggedIn = true;
+
   }
 }
