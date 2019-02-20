@@ -27,5 +27,11 @@ $borderActive: solid 2px #666;
       width: 24px;
       height: 24px;
     }
+
+    .sbb-arrow-rotate {
+      width: 24px;
+      height: 24px;
+      transform: rotate(180deg);
+    }
   }
 }

@@ -1,11 +1,19 @@
-<sbb-user-menu [loggedIn]="loggedIn">
-  <img class="image" src="https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123">
-  <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
-    [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
-    {{ link.text }}
-  </a>
-  <hr>
-  <button sbbDropdownItem type="button" (click)="logout()">Abmeldung</button>
-</sbb-user-menu>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="sbbsc-block">Basic Example</h4>
+      <sbb-user-menu [loggedIn]="loggedIn">
+        <img class="image" src="https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123">
+        <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
+          [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+          {{ link.text }}
+        </a>
+        <hr>
+        <button sbbDropdownItem type="button" (click)="logout()">Abmeldung</button>
+      </sbb-user-menu>
 
-<button sbbButton (click)="logIn()">Login!</button>
+      <button sbbButton (click)="logIn()">Login!</button>
+
+    </div>
+  </div>
+</div>
