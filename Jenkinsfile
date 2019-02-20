@@ -13,6 +13,12 @@ pipeline {
       }
     }
 
+    stage('Build library') {
+      steps {
+        sh 'npm run build:library'
+      }
+    }
+
     stage('Unit Tests') {
       steps {
         withCredentials([
@@ -20,7 +26,6 @@ pipeline {
             passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
             usernameVariable: 'BROWSERSTACK_USERNAME')
         ]) {
-          sh 'npm run build'
           sh 'npm test'
           sh 'npm run lint'
         }
@@ -30,6 +35,12 @@ pipeline {
             sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
           }
         }
+      }
+    }
+
+    stage('Build showcase') {
+      steps {
+        sh 'npm run build:showcase'
       }
     }
 
