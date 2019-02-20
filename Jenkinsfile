@@ -25,8 +25,10 @@ pipeline {
           sh 'npm run lint'
         }
         withSonarQubeEnv('Sonar NextGen') {
-          def props = readJSON file: 'package.json'
-          sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
+          script {
+            def props = readJSON file: 'package.json'
+            sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
+          }
         }
       }
     }
