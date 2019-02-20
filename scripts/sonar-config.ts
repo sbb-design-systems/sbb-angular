@@ -7,5 +7,5 @@ const branch = process.env.BRANCH_NAME || 'develop';
 console.log(`Sonar Config: Set version (${version}) and branch (${branch})`);
 const sonarConfig = readFileSync(sonarConfigPath, 'utf8')
     .replace(/sonar.projectVersion=[^\r\n]*/g, `sonar.projectVersion=${version}`)
-    .replace(/sonar.branch.name=[^\r\n]*/g, `sonar.branch.name=${branch}`);
+    .replace(/sonar.branch=[^\r\n]*/g, `sonar.branch=${branch}`);
 writeFileSync(sonarConfigPath, sonarConfig, 'utf8');

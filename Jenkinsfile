@@ -24,9 +24,9 @@ pipeline {
             passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
             usernameVariable: 'BROWSERSTACK_USERNAME')
         ]) {
+          sh 'npm run build'
           sh 'npm test'
           sh 'npm run lint'
-          sh 'npm run build'
         }
         withSonarQubeEnv('Sonar NextGen') {
           sh 'npm run sonar'

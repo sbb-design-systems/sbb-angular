@@ -12,7 +12,7 @@
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "build:icons": "ts-node -P scripts/tsconfig.json ./scripts/svg/svg-generator projects/sbb-angular/svgs projects/sbb-angular/src/lib/svg-icons src/app",
     "build:showcase": "ng build sbb-angular-showcase --prod",
-    "test": "run-s build:library test:*",
+    "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
     "test:library": "ng test sbb-angular -c ci",
     "lint": "run-s lint:*",
