@@ -5,10 +5,6 @@ String cron_string = BRANCH_NAME == 'develop' ? '@midnight' : ''
 pipeline {
   agent { label 'nodejs' }
   triggers { cron(cron_string) }
-  environment {
-    scannerHome = tool 'SonarRunner';
-    libraryVersion = """${sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"').trim()}"""
-  }
 
   stages {
     stage('Installation') {
@@ -29,7 +25,8 @@ pipeline {
           sh 'npm run lint'
         }
         withSonarQubeEnv('Sonar NextGen') {
-          sh 'npm run sonar'
+          def props = readJSON file: 'package.json'
+          sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
         }
       }
     }
