@@ -5,7 +5,22 @@
     </div>
   </div>
   <div class="sbb-ghettobox-content">
-    <ng-content></ng-content>
+    <ng-container *ngIf="ghettobox">
+      <ng-container *ngIf="ghettobox.link">
+        <a [routerLink]="ghettobox.link?.routerLink" [queryParams]="ghettobox.link?.queryParams"
+          [fragment]="ghettobox.link?.fragment" [preserveFragment]="ghettobox.link?.preserveFragment"
+          [skipLocationChange]="ghettobox.link?.skipLocationChange" [replaceUrl]="ghettobox.link?.replaceUrl"
+          [state]="ghettobox.link?.state"
+          [queryParamsHandling]="ghettobox.link?.queryParamsHandling">{{ ghettobox.message }}</a>
+      </ng-container>
+      <ng-container *ngIf="!ghettobox.link">
+        {{ ghettobox.message }}
+      </ng-container>
+
+    </ng-container>
+    <ng-container *ngIf="!ghettobox">
+      <ng-content></ng-content>
+    </ng-container>
   </div>
   <div class="sbb-ghettobox-close">
     <button class="sbb-ghettobox-close-button" (click)="deleteGhettobox($event)">
@@ -16,5 +31,5 @@
 </article>
 
 <ng-template #defaultIcon>
-  <sbb-icon-info with="24px" height="24px"></sbb-icon-info>
+  <sbb-icon-info width="24px" height="24px"></sbb-icon-info>
 </ng-template>
