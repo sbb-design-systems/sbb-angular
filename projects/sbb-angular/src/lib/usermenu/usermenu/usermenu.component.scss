@@ -1,0 +1,46 @@
+@import "../../../styles/main";
+
+$borderActive: solid 2px #666;
+
+.sbb-usermenu {
+  &-avatar {
+    @include usermenu-avatar;
+
+    &-active {
+      border-top: $borderActive;
+      border-right: $borderActive;
+      border-left: $borderActive;
+    }
+    .sbb-usermenu-avatar-content {
+      @include buttonResetFrameless;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+
+      .sbb-usermenu-username {
+        margin-left: 10px;
+        font-size: pxToRem(15);
+        font-family: $fontSbbRoman;
+        color: $colorGrey;
+        width: 118px;
+        height: 24px;
+      }
+    }
+    .sbb-arrow {
+      width: 24px;
+      height: 24px;
+    }
+
+    .sbb-arrow-rotate {
+      width: 24px;
+      height: 24px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .icon-user {
+    width:24px;
+    height:24px;
+    margin-left: 2px;
+  }
+}

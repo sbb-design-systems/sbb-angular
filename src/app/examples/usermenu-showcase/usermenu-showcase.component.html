@@ -2,17 +2,17 @@
   <div class="row">
     <div class="col-12">
       <h4 class="sbbsc-block">Basic Example</h4>
-      <sbb-user-menu [loggedIn]="loggedIn">
-        <img class="image" src="https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123">
+      <sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (eventLogin)="logIn($event)">
+        <img class="image" sbbIcon [src]="user.iconUrl"> 
         <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
           [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
           {{ link.text }}
         </a>
         <hr>
         <button sbbDropdownItem type="button" (click)="logout()">Abmeldung</button>
-      </sbb-user-menu>
+      </sbb-usermenu>
 
-      <button sbbButton (click)="logIn()">Login!</button>
+      <button sbbButton (click)="logIn($event)">Login!</button>
 
     </div>
   </div>

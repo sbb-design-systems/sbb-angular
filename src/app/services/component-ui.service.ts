@@ -26,7 +26,7 @@ import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/tex
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
-import { UserMenuShowcaseComponent } from '../examples/user-menu-showcase/user-menu-showcase.component';
+import { UserMenuShowcaseComponent } from '../examples/usermenu-showcase/usermenu-showcase.component';
 
 
 @Injectable({
@@ -410,7 +410,7 @@ export class ComponentUiService {
       ),
       new UiComponent(
         'User Menu',
-        'user-menu',
+        'usermenu',
         'User Menu',
         'Subtitel goes here ...',
         true,

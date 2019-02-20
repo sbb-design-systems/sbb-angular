@@ -1,17 +1,33 @@
-import { Component, OnInit, ViewChildren, QueryList, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ViewChild, EventEmitter, Output } from '@angular/core';
 import { LinkGeneratorResult, UserMenuComponent } from 'sbb-angular';
 import { DropdownTriggerDirective } from 'projects/sbb-angular/src/lib/dropdown/dropdown-trigger.directive';
 
+class User {
+
+  userName: string;
+  displayName?: string;
+  iconUrl?: string;
+
+}
+
 @Component({
-  selector: 'sbb-user-menu-showcase',
-  templateUrl: './user-menu-showcase.component.html',
-  styleUrls: ['./user-menu-showcase.component.scss']
+  selector: 'sbb-usermenu-showcase',
+  templateUrl: './usermenu-showcase.component.html',
+  styleUrls: ['./usermenu-showcase.component.scss']
 })
 export class UserMenuShowcaseComponent implements OnInit {
 
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
 
-  loggedIn = false;
+  loggedUser: User = {
+    userName: 'max 98',
+    displayName: 'Max Muster',
+    iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
+  };
+
+  user: User = {
+    userName: null
+  };
 
   links: Array<any> = [
     { page: 1, text: 'Test 1' },
@@ -19,7 +35,9 @@ export class UserMenuShowcaseComponent implements OnInit {
     { page: 3, text: 'Test 3' }
   ];
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
@@ -34,12 +52,12 @@ export class UserMenuShowcaseComponent implements OnInit {
   logout() {
 
     console.log('Button clicked');
-    this.loggedIn = false;
+    this.user.userName = null;
 
   }
 
-  logIn() {
-    this.loggedIn = true;
-
+  logIn($event:any) {
+    Object.assign(this.user, this.loggedUser);
   }
+
 }
