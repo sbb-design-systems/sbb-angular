@@ -1,7 +1,17 @@
 import {
   Component,
   ContentChildren,
-  QueryList, AfterContentInit, HostBinding, ViewChild, AfterViewInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter, ContentChild, ElementRef, ChangeDetectorRef, HostListener
+  QueryList,
+  AfterContentInit,
+  HostBinding,
+  ViewChild,
+  AfterViewInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef
 } from '@angular/core';
 import { DropdownItemDirective } from '../../dropdown/dropdown-item.directive';
 import { DropdownTriggerDirective } from '../../dropdown/dropdown';
@@ -18,11 +28,12 @@ let counter = 0;
 export class UserMenuComponent implements AfterContentInit, AfterViewInit {
 
   @HostBinding('class.sbb-usermenu') cssClass = true;
-  @HostBinding('attr.id') id = `sbb-usermenu-${counter++}`;
-  @ContentChild('[sbbIcon]') icon: ElementRef;
-  @ContentChildren(DropdownItemDirective) items: QueryList<DropdownItemDirective>;
-  @ViewChild(DropdownTriggerDirective) dropdownTrigger: DropdownTriggerDirective;
 
+  @HostBinding('attr.id') id = `sbb-usermenu-${counter++}`;
+
+  @ContentChildren(DropdownItemDirective) items: QueryList<DropdownItemDirective>;
+
+  @ViewChild(DropdownTriggerDirective) dropdownTrigger: DropdownTriggerDirective;
 
   @Input() displayName: string;
 
@@ -35,35 +46,36 @@ export class UserMenuComponent implements AfterContentInit, AfterViewInit {
   }
   private _userName: string;
 
-  initialLetters: string;
+  get initialLetters(): string {
+    return this.getInitialLetters();
+  }
 
   @Output() eventLogin = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private el: ElementRef) { }
 
   ngAfterContentInit() {
 
   }
 
   ngAfterViewInit() {
-    if (!this.icon) {
-      this.initialLetters = this.getInitialLetters();
-    }
+
   }
 
-  @HostListener('click')
   emitLogIn() {
     this.eventLogin.emit('log in done');
+
   }
 
   getInitialLetters(): string {
 
-    if(this.userName && this.userName.length !==0) {
+    if (this.userName && this.userName.length !== 0) {
       return this.userName
-      .split(' ')
-      .reduce((namePart1, namePart2) => {
-        return namePart1[0].toLocaleUpperCase() + namePart2[0].toLocaleUpperCase();
-      });
+        .split(' ')
+        .reduce((namePart1, namePart2) => {
+          return namePart1[0].toLocaleUpperCase() + namePart2[0].toLocaleUpperCase();
+        });
+
     }
   }
 

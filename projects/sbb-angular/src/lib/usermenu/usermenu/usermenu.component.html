@@ -1,11 +1,12 @@
-<!-- <button sbbButton type="button" [sbbDropdown]="dropdown">Open dropdown</button> -->
-
-<div class="sbb-usermenu-avatar" [sbbDropdown]="dropdown" tabindex="0" [class.sbb-usermenu-avatar-active]="dropdown.isOpen" [sbbDropdownDisabled]="!userName">
+<div class="sbb-usermenu-avatar" [sbbDropdown]="dropdown" tabindex="0"
+  [class.sbb-usermenu-avatar-active]="dropdown.isOpen" [sbbDropdownDisabled]="!userName" (click)="emitLogIn()">
   <span *ngIf="userName && userName.length" class="sbb-usermenu-avatar-content">
-    <ng-content select="[sbbIcon]"></ng-content>
-    <div class="sbb-usermenu-initials" *ngIf="!icon">{{ initialLetters }}</div>
+    <div #icon>
+      <ng-content select="[sbbIcon]"></ng-content>
+    </div>
+    <div class="sbb-usermenu-initialLetters" *ngIf="!icon.children.length">{{ initialLetters }}</div>
     <div class="sbb-usermenu-username" *ngIf="dropdown.isOpen">{{userName}}</div>
-    <small class="sbb-usermenu-account" *ngIf="dropdown.isOpen">{{displayName}}</small>
+    <small class="sbb-usermenu-name" *ngIf="dropdown.isOpen">{{displayName}}</small>
   </span>
   <div *ngIf="!userName" class="icon-user">
     <sbb-icon-user></sbb-icon-user>
@@ -21,6 +22,3 @@
 <sbb-dropdown #dropdown="sbbDropdown" [inputOptions]="items">
   <ng-content ngProjectAs="a, button, hr"></ng-content>
 </sbb-dropdown>
-
-
-{{initialLetters}}

@@ -51,13 +51,15 @@ export class UserMenuShowcaseComponent implements OnInit {
 
   logout() {
 
-    console.log('Button clicked');
+    console.log('Logout');
     this.user.userName = null;
 
   }
 
   logIn($event:any) {
     Object.assign(this.user, this.loggedUser);
+
+    console.log('login successful');
   }
 
 }
