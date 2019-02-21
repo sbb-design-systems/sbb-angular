@@ -5,6 +5,7 @@
     <sbb-icon-search></sbb-icon-search>
   </button>
 </div>
-<button #trigger [hidden]="!hideSearch" class="sbb-search-icon-wrapper" (click)="revealSearchbox()">
-  <sbb-icon-search></sbb-icon-search>
+<button #trigger [class.sbb-search-icon-wrapper-visible]="hideSearch" class="sbb-search-icon-wrapper" (click)="revealSearchbox()">
+  <span class="sbb-svgsprite-icon"><sbb-icon-search></sbb-icon-search></span>
+  <span class="sbb-search-icon-wrapper-label" i18n>Suchen</span>
 </button>

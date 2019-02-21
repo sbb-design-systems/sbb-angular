@@ -3,10 +3,11 @@
 .sbb-search {
   display: block;
   position: relative;
-  width: 280px;
+  width: 374px;
   height: 48px;
   .sbb-search-box {
     display: none;
+    height: 100%;
     width: 0;
     &-visible {
       width: 100%;
@@ -14,22 +15,41 @@
     }
     > input {
       border-right: none;
-      width: 240px;
+      width: 320px;
     }
     > button {
       @include buttonResetFrameless;
       fill: $colorWhite;
       background-color: $colorRed100;
-      width: 40px;
+      width: 56px;
+      position: relative;
+      > sbb-icon-search {
+        @include absoluteCenterXY;
+        width: pxToEm(24, $buttonSizeFontDefault);
+        height: pxToEm(24, $buttonSizeFontDefault);
+      }
     }
   }
 
   .sbb-search-icon-wrapper {
     @include buttonResetFrameless;
-    @include absoluteCenterY;
-
     fill: $colorGrey;
-    width: 24px;
-    height: 24px;
+    color: $colorGrey;
+    display: none;
+    height: 100%;
+    &-label {
+      position: relative;
+    }
+    &-visible {
+      display: flex;
+      align-items: center;
+    }
+    .sbb-svgsprite-icon {
+      position: relative;
+      width: pxToEm(24, $buttonSizeFontDefault);
+      height: pxToEm(24, $buttonSizeFontDefault);
+      backface-visibility: hidden;
+      pointer-events: none;
+    }
   }
 }

@@ -75,7 +75,8 @@ export class SearchChangeEvent {
 }
 
 let searchFieldCounter = 1;
-const ANIMATION_DURATION = 300;
+
+const ANIMATION_DURATION = 200;
 
 @Component({
   selector: 'sbb-search',
@@ -95,17 +96,18 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
   /** @docs-private */
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  /** @docs-private */
   @ViewChild('searchbox') searchbox: ElementRef<any>;
+  /** @docs-private */
   @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
-
-  @Input() mode: 'header' | 'default' = 'default';
-
   /** @docs-private */
   @ViewChild('searchbox') searchboxTemplate: TemplateRef<any>;
 
+  @Input() mode: 'header' | 'default' = 'default';
+
   /**
- * Identifier of search.
- */
+  * Identifier of search.
+  */
   @HostBinding('attr.id')
   searchFieldId = 'sbb-search-id-' + searchFieldCounter++;
 
@@ -124,13 +126,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   private componentDestroyed = false;
   private _autocompleteDisabled = false;
 
-  get hideSearch(): boolean {
-    if (this.mode === 'default') {
-      return false;
-    }
-    return this._hideSearch;
-  }
-  private _hideSearch = true;
+
 
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private previousValue: string | number | null;
@@ -138,12 +134,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   /** Strategy that is used to position the panel. */
   private positionStrategy: FlexibleConnectedPositionStrategy;
 
-  /** Whether or not the label state is being overridden. */
-  private manuallyFloatingLabel = false;
+
 
   /** The subscription for closing actions (some are bound to document). */
   private closingActionsSubscription: Subscription;
-  private closingSearchActionsSubscription: Subscription;
 
   /** Subscription to viewport size changes. */
   private viewportSubscription = Subscription.EMPTY;
@@ -157,25 +151,35 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
   /** Stream of keyboard events that can close the panel. */
   private readonly closeKeyEventStream = new Subject<void>();
-  private readonly closeKeyEventSearchStream = new Subject<void>();
 
   private overlayAttached = false;
   private highlightPipe = new HighlightPipe();
 
-  @HostBinding('attr.role') get role() {
+  get hideSearch(): boolean {
+    if (this.mode === 'default') {
+      return false;
+    }
+    return this._hideSearch;
+  }
+  private _hideSearch = true;
+
+  @HostBinding('attr.role')
+  get role() {
     return this._autocompleteDisabled ? null : 'combobox';
   }
 
   /** The autocomplete panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocomplete') autocomplete: AutocompleteComponent;
+  @Input('sbbAutocomplete')
+  autocomplete: AutocompleteComponent;
 
   /**
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocompleteConnectedTo') connectedTo: AutocompleteOriginDirective;
+  @Input('sbbAutocompleteConnectedTo')
+  connectedTo: AutocompleteOriginDirective;
 
   /**
    * `autocomplete` attribute to be set on the input element.
@@ -206,16 +210,15 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget)) {
         if (($event.target === this.input.nativeElement && $event.relatedTarget !== this.button.nativeElement)
           || ($event.target === this.button.nativeElement && $event.relatedTarget !== this.input.nativeElement)) {
-          this.closeAnimation(this.overlayRef.overlayElement);
-          this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
+          this.closeAnimation(this.overlayRef.overlayElement).onDone(() => {
             this._hideSearch = true;
             this.changeDetectorRef.markForCheck();
           });
+          this.closeAnimation(this.searchbox.nativeElement);
         }
       }
     }
   }
-
 
   onInput($event: KeyboardEvent) {
     this.handleInput($event);
@@ -307,8 +310,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
   /** Closes the autocomplete suggestion panel. */
   closePanel(): void {
-    this.resetLabel();
-
     if (!this.overlayAttached) {
       return;
     }
@@ -380,12 +381,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
     )
       .pipe(filter(event => {
         const clickTarget = event.target as HTMLElement;
-        const formField = null;
-        console.log(this.element.nativeElement.contains(clickTarget));
+
         return this.overlayAttached &&
           clickTarget !== this.element.nativeElement &&
           !this.element.nativeElement.contains(clickTarget) &&
-          (!formField || !formField.contains(clickTarget)) &&
           (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
       }));
   }
@@ -505,12 +504,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
-  /** If the label has been manually elevated, return it to its normal state. */
-  private resetLabel(): void {
-    if (this.manuallyFloatingLabel) {
-      this.manuallyFloatingLabel = false;
-    }
-  }
 
   /**
  * This method listens to a stream of panel closing actions and resets the
@@ -638,7 +631,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
           this.resetActiveItem();
           this.closeKeyEventStream.next();
-          this.closeKeyEventSearchStream.next();
         }
       });
 
@@ -759,8 +751,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   revealSearchbox() {
     this._hideSearch = false;
     this.attachOverlay();
-    this.openAnimation(this.searchbox.nativeElement).onDone(() => this.input.nativeElement.focus());
-    this.openAnimation(this.overlayRef.overlayElement);
+    this.openAnimation(this.searchbox.nativeElement);
+    this.openAnimation(this.overlayRef.overlayElement).onDone(() => this.input.nativeElement.focus());
 
   }
 
