@@ -75,6 +75,7 @@ export class SearchChangeEvent {
 }
 
 let searchFieldCounter = 1;
+const ANIMATION_DELAY = 300;
 
 @Component({
   selector: 'sbb-search',
@@ -661,26 +662,29 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
     if (this.panelOpen && wasOpen !== this.panelOpen) {
       this.autocomplete.opened.emit();
       if (this.mode === 'header') {
-        this.openAnimation(this.overlayRef.overlayElement);
+  
       }
+
+
     }
   }
 
   private openAnimation(element: HTMLElement) {
     const myAnimation = this.animationBuilder.build([
       style({ width: 0, opacity: 0, display: 'none' }),
-      animate(200, style({ width: '280px', opacity: 1, display: 'flex' }))
+      animate(ANIMATION_DELAY, style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }))
     ]);
 
     // use the returned factory object to create a player
     const player = myAnimation.create(element);
     player.play();
+    return player;
   }
 
   private closeAnimation(element: HTMLElement) {
     const myAnimation = this.animationBuilder.build([
-      style({ width: '280px', opacity: 1, display: 'flex' }),
-      animate(200, style({ width: 0, opacity: 0, display: 'none' }))
+      style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }),
+      animate(ANIMATION_DELAY, style({ width: 0, opacity: 0, display: 'none' }))
     ]);
 
     // use the returned factory object to create a player
@@ -757,10 +761,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   revealSearchbox() {
     this._hideSearch = false;
     this.closingSearchActionsSubscription = this.subscribeToSearchClosingActions();
-    this.openAnimation(this.searchbox.nativeElement);
-    setTimeout(() => {
-      this.input.nativeElement.focus();
-    });
   }
 
   get searchClosingActions(): Observable<any> {
@@ -791,7 +791,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
           if (this.mode === 'header') {
             return this.searchClosingActions;
           }
-
         }),
         // when the first closing event occurs...
         first(),
@@ -799,11 +798,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
           this.closeAnimation(this.autocomplete.panel.nativeElement);
           this.closeAnimation(this.searchbox.nativeElement);
         }),
-        delay(0)
+        delay(ANIMATION_DELAY)
       )
       // set the value, close the panel, and complete.
       .subscribe(event => {
         this._hideSearch = true;
+        this.changeDetectorRef.markForCheck();
       });
   }
 

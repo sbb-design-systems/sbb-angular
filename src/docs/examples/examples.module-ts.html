@@ -18,9 +18,6 @@
   LoadingModule,
   DatepickerModule,
   LightboxModule,
-  AutocompleteModule,
-  SelectModule,
-  OptionModule,
   AccordionModule,
   ProcessflowModule,
   RadioButtonModule,
@@ -76,8 +73,14 @@
 <span class="hljs-keyword">import</span> { TooltipShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tooltip-showcase/tooltip-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SearchShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./search-showcase/search-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+
+<span class="hljs-keyword">import</span> { SearchModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/search/search.module'</span>;
+<span class="hljs-keyword">import</span> { OptionModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/option/option.module'</span>;
+<span class="hljs-keyword">import</span> { AutocompleteModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/autocomplete/autocomplete.module'</span>;
+<span class="hljs-keyword">import</span> { SelectModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/select/select.module'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -116,6 +119,7 @@
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    SearchShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent
   ],
@@ -152,6 +156,7 @@
     TooltipModule,
     TextexpandModule,
     TagModule,
+    SearchModule,
     DropdownModule,
     CaptchaModule
   ],
