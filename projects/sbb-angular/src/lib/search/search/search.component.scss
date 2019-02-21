@@ -1,21 +1,26 @@
 @import "../../../styles/main";
 
 .sbb-search {
-  width: 280px;
   display: block;
   position: relative;
+  width: 280px;
+  height: 48px;
   .sbb-search-box {
-    display: flex;
-
+    display: none;
+    width: 0;
+    &-visible {
+      width: 100%;
+      display: flex;
+    }
     > input {
       border-right: none;
-      width: 100%;
+      width: 240px;
     }
     > button {
       @include buttonResetFrameless;
       fill: $colorWhite;
       background-color: $colorRed100;
-      width: 10%;
+      width: 40px;
     }
   }
 
@@ -23,7 +28,6 @@
     @include buttonResetFrameless;
     @include absoluteCenterY;
 
-    margin-left: 20px;
     fill: $colorGrey;
     width: 24px;
     height: 24px;

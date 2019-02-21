@@ -31,7 +31,7 @@ import {
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable } from 'rxjs';
+import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable, of } from 'rxjs';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { HighlightPipe } from '../../option/option/highlight.pipe';
@@ -75,7 +75,7 @@ export class SearchChangeEvent {
 }
 
 let searchFieldCounter = 1;
-const ANIMATION_DELAY = 300;
+const ANIMATION_DURATION = 300;
 
 @Component({
   selector: 'sbb-search',
@@ -95,7 +95,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
   /** @docs-private */
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
-  @ViewChild('searchbox') searchbox: ElementRef<HTMLElement>;
+  @ViewChild('searchbox') searchbox: ElementRef<any>;
+  @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
 
   @Input() mode: 'header' | 'default' = 'default';
 
@@ -201,11 +202,16 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
   onBlur($event) {
     this.onTouched();
-    if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget)) {
-
-      if (($event.target === this.input.nativeElement && $event.relatedTarget !== this.button.nativeElement)
-        || ($event.target === this.button.nativeElement && $event.relatedTarget !== this.input.nativeElement)) {
-        this.closeKeyEventSearchStream.next();
+    if (this.mode === 'header') {
+      if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget)) {
+        if (($event.target === this.input.nativeElement && $event.relatedTarget !== this.button.nativeElement)
+          || ($event.target === this.button.nativeElement && $event.relatedTarget !== this.input.nativeElement)) {
+          this.closeAnimation(this.overlayRef.overlayElement);
+          this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
+            this._hideSearch = true;
+            this.changeDetectorRef.markForCheck();
+          });
+        }
       }
     }
   }
@@ -331,9 +337,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   }
 
   /**
-   * A stream of actions that should close the autocomplete panel, including
-   * when an option is selected, on blur, and when TAB is pressed.
-   */
+    * A stream of actions that should close the autocomplete panel, including
+    * when an option is selected, on blur, and when TAB is pressed.
+    */
   get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
@@ -375,10 +381,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       .pipe(filter(event => {
         const clickTarget = event.target as HTMLElement;
         const formField = null;
-
+        console.log(this.element.nativeElement.contains(clickTarget));
         return this.overlayAttached &&
           clickTarget !== this.element.nativeElement &&
-          clickTarget !== this.input.nativeElement &&
+          !this.element.nativeElement.contains(clickTarget) &&
           (!formField || !formField.contains(clickTarget)) &&
           (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
       }));
@@ -531,6 +537,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
           if (this.panelOpen) {
             // tslint:disable-next-line:no-non-null-assertion
             this.overlayRef!.updatePosition();
+
           }
 
           return this.panelClosingActions;
@@ -661,21 +668,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
     // autocomplete won't be shown if there are no options.
     if (this.panelOpen && wasOpen !== this.panelOpen) {
       this.autocomplete.opened.emit();
-      if (this.mode === 'header') {
-  
-      }
-
-
     }
   }
 
   private openAnimation(element: HTMLElement) {
     const myAnimation = this.animationBuilder.build([
       style({ width: 0, opacity: 0, display: 'none' }),
-      animate(ANIMATION_DELAY, style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }))
+      animate(ANIMATION_DURATION, style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }))
     ]);
-
-    // use the returned factory object to create a player
     const player = myAnimation.create(element);
     player.play();
     return player;
@@ -684,12 +684,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   private closeAnimation(element: HTMLElement) {
     const myAnimation = this.animationBuilder.build([
       style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }),
-      animate(ANIMATION_DELAY, style({ width: 0, opacity: 0, display: 'none' }))
+      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0, display: 'none' }))
     ]);
-
-    // use the returned factory object to create a player
     const player = myAnimation.create(element);
     player.play();
+    return player;
   }
 
   private getOverlayConfig(): OverlayConfig {
@@ -703,7 +702,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
   private getOverlayPosition(): PositionStrategy {
     this.positionStrategy = this.overlay.position()
-      // .flexibleConnectedTo(this.mode === 'default' ? this.getConnectedElement() : this.headerOverlayRef.overlayElement)
       .flexibleConnectedTo(this.getConnectedElement())
       .withFlexibleDimensions(false)
       .withPush(false)
@@ -760,51 +758,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
 
   revealSearchbox() {
     this._hideSearch = false;
-    this.closingSearchActionsSubscription = this.subscribeToSearchClosingActions();
-  }
+    this.attachOverlay();
+    this.openAnimation(this.searchbox.nativeElement).onDone(() => this.input.nativeElement.focus());
+    this.openAnimation(this.overlayRef.overlayElement);
 
-  get searchClosingActions(): Observable<any> {
-    return merge(
-      this.closeKeyEventSearchStream,
-      this.getOutsideClickStream(),
-
-    ).pipe(
-      // Normalize the output so we return a consistent type.
-      map(event => event)
-    );
-  }
-
-
-  /**
-  * This method listens to a stream of panel closing actions and resets the
-  * stream every time the option list changes.
-  */
-  private subscribeToSearchClosingActions(): Subscription {
-    const firstStable = this.zone.onStable.asObservable().pipe(first());
-
-    // When the zone is stable initially, and when the option list changes...
-    return merge(firstStable)
-      .pipe(
-        // create a new stream of panelClosingActions, replacing any previous streams
-        // that were created, and flatten it so our stream only emits closing events...
-        switchMap(() => {
-          if (this.mode === 'header') {
-            return this.searchClosingActions;
-          }
-        }),
-        // when the first closing event occurs...
-        first(),
-        tap(() => {
-          this.closeAnimation(this.autocomplete.panel.nativeElement);
-          this.closeAnimation(this.searchbox.nativeElement);
-        }),
-        delay(ANIMATION_DELAY)
-      )
-      // set the value, close the panel, and complete.
-      .subscribe(event => {
-        this._hideSearch = true;
-        this.changeDetectorRef.markForCheck();
-      });
   }
 
 }
