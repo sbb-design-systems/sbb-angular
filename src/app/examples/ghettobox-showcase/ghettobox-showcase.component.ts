@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { GhettoboxService } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
+import { Component } from '@angular/core';
+import { GhettoboxService, } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 import { ActivatedRoute } from '@angular/router';
 import { LinkGeneratorResult } from 'sbb-angular';
 
@@ -8,23 +8,24 @@ import { LinkGeneratorResult } from 'sbb-angular';
   templateUrl: './ghettobox-showcase.component.html',
   styleUrls: ['./ghettobox-showcase.component.scss']
 })
-export class GhettoboxShowcaseComponent implements OnInit {
+export class GhettoboxShowcaseComponent {
 
   constructor(private _ghettoboxService: GhettoboxService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-  }
-
-  linkGenerator = (test: string): LinkGeneratorResult => {
+  linkGenerator = (randomParam: number): LinkGeneratorResult => {
     return {
       routerLink: ['.'],
-      queryParams: { test: test },
+      queryParams: { test: randomParam },
       queryParamsHandling: 'merge',
       relativeTo: this.route,
     };
   }
 
   addGhettobox() {
-    this._ghettoboxService.add({ message: 'Hello ghettobox', link: this.linkGenerator('test') });
+    this._ghettoboxService.add({ message: 'Hello ghettobox', link: this.linkGenerator(getRandomInt(10)) });
   }
+}
+
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * Math.floor(max));
 }

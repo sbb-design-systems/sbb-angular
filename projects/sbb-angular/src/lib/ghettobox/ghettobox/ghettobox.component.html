@@ -1,4 +1,4 @@
-<article class="sbb-ghettobox-wrapper">
+<article class="sbb-ghettobox-wrapper" *ngIf="visible">
   <div class="sbb-ghettobox-icon">
     <div class="sbb-ghettobox-icon-wrapper">
       <ng-container *ngTemplateOutlet="icon"></ng-container>
@@ -7,23 +7,25 @@
   <div class="sbb-ghettobox-content">
     <ng-container *ngIf="ghettobox">
       <ng-container *ngIf="ghettobox.link">
-        <a [routerLink]="ghettobox.link?.routerLink" [queryParams]="ghettobox.link?.queryParams"
-          [fragment]="ghettobox.link?.fragment" [preserveFragment]="ghettobox.link?.preserveFragment"
-          [skipLocationChange]="ghettobox.link?.skipLocationChange" [replaceUrl]="ghettobox.link?.replaceUrl"
-          [state]="ghettobox.link?.state"
-          [queryParamsHandling]="ghettobox.link?.queryParamsHandling">{{ ghettobox.message }}</a>
+        <a [routerLink]="ghettobox.link.routerLink" 
+          [queryParams]="ghettobox.link.queryParams"
+          [fragment]="ghettobox.link.fragment" 
+          [preserveFragment]="ghettobox.link.preserveFragment"
+          [skipLocationChange]="ghettobox.link.skipLocationChange" 
+          [replaceUrl]="ghettobox.link.replaceUrl"
+          [state]="ghettobox.link.state"
+          [queryParamsHandling]="ghettobox.link.queryParamsHandling">{{ ghettobox.message }}</a>
       </ng-container>
       <ng-container *ngIf="!ghettobox.link">
         {{ ghettobox.message }}
       </ng-container>
-
     </ng-container>
     <ng-container *ngIf="!ghettobox">
       <ng-content></ng-content>
     </ng-container>
   </div>
   <div class="sbb-ghettobox-close">
-    <button class="sbb-ghettobox-close-button" (click)="deleteGhettobox($event)">
+    <button (click)="delete($event)" class="sbb-ghettobox-close-button">
       <sbb-icon-close></sbb-icon-close>
       <span i18n class="visuallyhidden">Hinweismeldung schliessen</span>
     </button>

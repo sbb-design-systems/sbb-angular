@@ -1,27 +1,20 @@
 import {
   Component, ChangeDetectionStrategy, Input, HostBinding,
-  ViewChild, ComponentRef, EmbeddedViewRef, AfterViewInit
+  ViewChild, ComponentRef, EmbeddedViewRef, AfterViewInit, OnDestroy, ContentChild, ContentChildren, QueryList, AfterContentInit
 } from '@angular/core';
 import { CdkPortalOutlet, BasePortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';
+import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { GhettoboxRef } from '../ghettobox/ghettobox-ref';
 
 let counter = 0;
-
-/**
- * Throws an exception for the case when a ComponentPortal is
- * attached to a DomPortalOutlet without an origin.
- * @docs-private
- */
-export function throwGhettoboxContentAlreadyAttachedError() {
-  throw Error('Attempting to attach lightbox content after content is already attached');
-}
 
 @Component({
   selector: 'sbb-ghettobox-container',
   templateUrl: './ghettobox-container.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GhettoboxContainerComponent extends BasePortalOutlet {
+export class GhettoboxContainerComponent extends BasePortalOutlet implements AfterContentInit, OnDestroy {
 
   @Input() @HostBinding('attr.id')
   ghettoContainerId = `sbb-ghettobox-container-${counter++}`;
@@ -38,9 +31,25 @@ export class GhettoboxContainerComponent extends BasePortalOutlet {
 
   @ViewChild(CdkPortalOutlet) portalOutlet: CdkPortalOutlet;
 
+  @ContentChildren(GhettoboxComponent) initialGhettoboxes: QueryList<GhettoboxComponent>;
+
   constructor(private _ghettoboxService: GhettoboxService) {
     super();
-    this._ghettoboxService.containerInstance = this;
+    if (!this._ghettoboxService.containerInstance) {
+      this._ghettoboxService.containerInstance = this;
+    } else {
+      throw Error('Its allowed only one container at a time');
+    }
+  }
+
+  ngAfterContentInit() {
+    this._ghettoboxService
+      .loadInitialGhettoboxes(this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(undefined, g)));
+  }
+
+  ngOnDestroy() {
+    this._ghettoboxService.containerInstance = undefined;
+    this._ghettoboxService.clear();
   }
 
   /**
@@ -48,10 +57,6 @@ export class GhettoboxContainerComponent extends BasePortalOutlet {
    * @param portal Portal to be attached as the ghettobox content.
    */
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
-    // if (this.portalOutlet.hasAttached()) {
-    //   throwGhettoboxContentAlreadyAttachedError();
-    // }
-
     return this.portalOutlet.attachComponentPortal(portal);
   }
 
@@ -60,10 +65,6 @@ export class GhettoboxContainerComponent extends BasePortalOutlet {
    * @param portal Portal to be attached as the ghettobox content.
    */
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
-    // if (this.portalOutlet.hasAttached()) {
-    //   throwGhettoboxContentAlreadyAttachedError();
-    // }
-
     return this.portalOutlet.attachTemplatePortal(portal);
   }
 

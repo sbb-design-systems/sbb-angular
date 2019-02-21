@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ghettobox } from './ghettobox-ref';
+import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
 import { GhettoboxContainerComponent } from '../ghettobox-container/ghettobox-container.component';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { GhettoboxComponent } from './ghettobox.component';
@@ -10,11 +10,22 @@ import { GhettoboxComponent } from './ghettobox.component';
 export class GhettoboxService {
 
   containerInstance: GhettoboxContainerComponent;
+  attachedGhettoboxes: GhettoboxRef[] = [];
 
-  add(ghettobox: Ghettobox) {
+  loadInitialGhettoboxes(initialGhettoboxes: GhettoboxRef[]) {
+    this.attachedGhettoboxes.push(...initialGhettoboxes);
+  }
+
+  add(ghettobox: Ghettobox): GhettoboxRef {
     const ghettoboxComponentPortal = new ComponentPortal(GhettoboxComponent);
-    const ghettoboxRef = this.containerInstance.attachComponentPortal(ghettoboxComponentPortal);
-    ghettoboxRef.instance.ghettobox = ghettobox;
+    const ghettoboxComponentRef = this.containerInstance.attachComponentPortal(ghettoboxComponentPortal);
+    ghettoboxComponentRef.instance.ghettobox = ghettobox;
+    const ghettoboxRef = new GhettoboxRef(ghettoboxComponentRef);
+    this.attachedGhettoboxes.push(ghettoboxRef);
+
+    console.log(this.attachedGhettoboxes.length);
+
+    return ghettoboxRef;
   }
 
   delete() {
@@ -22,6 +33,7 @@ export class GhettoboxService {
   }
 
   clear() {
-
+    this.attachedGhettoboxes.forEach(g => g.delete());
+    this.attachedGhettoboxes = [];
   }
 }

@@ -1,5 +1,14 @@
 import {
-  Component, ChangeDetectionStrategy, ContentChild, AfterContentInit, TemplateRef, ViewChild, ElementRef, HostListener, Input, HostBinding, ChangeDetectorRef
+  Component,
+  ChangeDetectionStrategy,
+  ContentChild,
+  TemplateRef,
+  ViewChild,
+  ElementRef,
+  HostListener,
+  Input,
+  HostBinding,
+  ChangeDetectorRef
 } from '@angular/core';
 import { GhettoboxIconDirective, GhettoboxLinkDirective } from './ghettobox-content.directives';
 import { Ghettobox } from './ghettobox-ref';
@@ -13,14 +22,20 @@ let counter = 0;
   styleUrls: ['./ghettobox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GhettoboxComponent implements AfterContentInit {
+export class GhettoboxComponent {
+
+  visible = true;
 
   @Input() @HostBinding('attr.id')
   ghettoboxId = `sbb-ghettobox-${counter++}`;
 
   @HostBinding('attr.role') role = 'alert';
 
+  @HostBinding('attr.aria-hidden') ariaHidden = 'false';
+
   @ViewChild('defaultIcon') iconDefault: TemplateRef<any>;
+
+  private _icon: TemplateRef<any>;
   @ContentChild(GhettoboxIconDirective, { read: TemplateRef })
   set icon(value: TemplateRef<any>) {
     this._icon = value;
@@ -31,7 +46,6 @@ export class GhettoboxComponent implements AfterContentInit {
     }
     return this._icon;
   }
-  private _icon: TemplateRef<any>;
 
   private _ghettobox: Ghettobox;
   get ghettobox() {
@@ -42,7 +56,13 @@ export class GhettoboxComponent implements AfterContentInit {
     this._changeDetector.markForCheck();
   }
 
-  @ContentChild(GhettoboxLinkDirective, { read: ElementRef }) ghettoboxLink: ElementRef<any>;
+  @ContentChild(GhettoboxLinkDirective, { read: ElementRef })
+  ghettoboxLink: ElementRef<any>;
+
+  constructor(
+    private _changeDetector: ChangeDetectorRef,
+    private router: Router) {
+  }
 
   @HostListener('click')
   click() {
@@ -50,24 +70,27 @@ export class GhettoboxComponent implements AfterContentInit {
       this.ghettoboxLink.nativeElement.click();
     }
     if (this.ghettobox && this.ghettobox.link) {
-      if (Array.isArray(this.ghettobox.link.routerLink)) {
-        this.router.navigate(this.ghettobox.link.routerLink, this.ghettobox.link);
-      } else {
-        this.router.navigateByUrl(this.ghettobox.link.routerLink, this.ghettobox.link);
-      }
+      this.clickGhettoboxLinkFromService();
     }
   }
 
-  constructor(private _changeDetector: ChangeDetectorRef,
-    private router: Router) {
-  }
-
-  deleteGhettobox(evt: any) {
+  delete(evt: any): void {
     evt.stopPropagation();
-    console.log('DELETE');
+    this.destroy();
   }
 
-  ngAfterContentInit() {
+  destroy(): void {
+    this.visible = false;
+    this.role = undefined;
+    this.ariaHidden = 'true';
+  }
+
+  private clickGhettoboxLinkFromService(): void {
+    if (Array.isArray(this.ghettobox.link.routerLink)) {
+      this.router.navigate(this.ghettobox.link.routerLink, this.ghettobox.link);
+    } else {
+      this.router.navigateByUrl(this.ghettobox.link.routerLink, this.ghettobox.link);
+    }
   }
 
 }
