@@ -25,6 +25,7 @@ import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-s
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
 import { SearchShowcaseComponent } from '../examples/search-showcase/search-showcase.component';
+import { FileSelectorShowcaseComponent } from '../examples/file-selector-showcase/file-selector-showcase.component';
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
 
@@ -421,6 +422,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         DropdownShowcaseComponent
+      ),
+      new UiComponent(
+        'File Selector',
+        'file-selector',
+        'File Selector',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        FileSelectorShowcaseComponent
       )
 
     ];

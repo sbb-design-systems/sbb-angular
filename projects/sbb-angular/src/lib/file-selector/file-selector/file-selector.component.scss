@@ -1,0 +1,15 @@
+@import "../../../styles/main.scss";
+
+.sbb-file-selector {
+  &-button {
+    @include fileSelectorButton();
+  }
+
+  &-label {
+    @include fileSelectorLabel();
+  }
+
+  &-list {
+    @include fileSelectorList();
+  }
+}

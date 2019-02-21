@@ -1,0 +1,63 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">File Selector Overview</h1>
+  <p class="docs-markdown-p">Import file selector module in your application </p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { FileSelectorModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and you can use file selector component as see below. <br>
+    <br></p>
+  <h3 id="what-does-the-module-do-" class="docs-header-link docs-markdown-h3">
+    <span header-link="what-does-the-module-do-"></span> What does the module do? </h3>
+  <p class="docs-markdown-p">The main function of file selector module is upload files. <br>
+    <br></p>
+  <h3 id="when-can-you-use-it-" class="docs-header-link docs-markdown-h3">
+    <span header-link="when-can-you-use-it-"></span> When can you use it? </h3>
+  <p class="docs-markdown-p">You can use it in applications that require one or more files of a user. <br>
+    <br></p>
+  <h3 id="characteristics-and-states" class="docs-header-link docs-markdown-h3">
+    <span header-link="characteristics-and-states"></span> Characteristics and states </h3>
+  <ol class="docs-markdown-ol">
+    <li class="docs-markdown-li">By clicking on the "Datei hochladen" button, the file browser of the system opens. The uploaded files choosen by the user are displayed in a list.</li>
+    <li class="docs-markdown-li">The list entry includes the icon of the file type upload, the file name and in brackets the file type and the file size.</li>
+    <li class="docs-markdown-li">With the "Delete button" (as a trash icon) a single file can be removed from the list. </li>
+    <li class="docs-markdown-li">You can select more files together using the <code class="docs-markdown-code">multiple</code> property (by setting it at 'true' value) on file selector component. </li>
+  </ol>
+  <p class="docs-markdown-p">The module has two states:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">
+      <p class="docs-markdown-p">normal</p>
+    </li>
+    <li class="docs-markdown-li">
+      <p class="docs-markdown-p">disabled</p>
+    </li>
+  </ul>
+  <h3 id="configuring-the-component-globally" class="docs-header-link docs-markdown-h3">
+    <span header-link="configuring-the-component-globally"></span> Configuring the component globally </h3>
+  <p class="docs-markdown-p">It is possible to define the categories and the types of file accepted globally. You can provide them at the module-level using respectively <code class="docs-markdown-code">FILE_TYPES</code> and <code class="docs-markdown-code">FILE_SELECTOR_OPTIONS</code> providers as see below:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">const</span> fileCategories : FileTypeCategory[] = [FileTypeCategory_IMAGE,FileTypeCategory.VIDEO];
+<span class="hljs-keyword">const</span> fileSelectorOptions : FileSelectorOptions = {accept:<span class="hljs-string">'image/jpeg'</span>+<span class="hljs-string">','</span>+<span class="hljs-string">'video.mp4'</span>, multiple:<span class="hljs-literal">true</span>, capture:<span class="hljs-string">'user'</span>};</code></pre>
+  <p class="docs-markdown-p">and set them in the providers section of your module:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"> providers: [{provide: FILE_TYPES, useValue: fileCategories }, {provide: FILE_SELECTOR_OPTIONS, useValue: fileSelectorOptions}]</code></pre>
+  <br>
+  <h3 id="examples" class="docs-header-link docs-markdown-h3">
+    <span header-link="examples"></span> Examples </h3>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Simple example (you can chose single file)</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Simple example (single file)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-file-selector</span> (<span class="hljs-attr">fileChanged</span>)=<span class="hljs-string">"fileChanged($event)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-file-selector</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Advanced example (you can chose multiple files)</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Example multiple files allowed and ngModel attached<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-file-selector</span> <span class="hljs-attr">multiple</span>=<span class="hljs-string">"true"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"filesList2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-file-selector</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Advanced example (disable status)</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Example with disable status<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-file-selector</span> <span class="hljs-attr">multiple</span>=<span class="hljs-string">"true"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"filesList2"</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-file-selector</span>&gt;</span></code></pre>
+</body>
+
+</html>
