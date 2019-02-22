@@ -27,6 +27,9 @@ import {
   ViewChild,
   Component,
   TemplateRef,
+  EventEmitter,
+  Output,
+  AfterViewInit
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -90,7 +93,7 @@ const ANIMATION_DURATION = 300;
     multi: true
   }]
 })
-export class SearchComponent implements ControlValueAccessor, OnDestroy {
+export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
 
   /** @docs-private */
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
@@ -121,10 +124,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
    */
   @HostBinding('class.sbb-search') cssClass = true;
 
+  @Input() placeholder: string;
+
   private overlayRef: OverlayRef | null;
   private portal: TemplatePortal;
   private componentDestroyed = false;
-  private _autocompleteDisabled = false;
+  private _autocompleteDisabled = true;
 
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private previousValue: string | number | null;
@@ -167,7 +172,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   /** The autocomplete panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
   @Input('sbbAutocomplete')
-  autocomplete: AutocompleteComponent;
+  get autocomplete(): AutocompleteComponent {
+    return this._autocomplete;
+  }
+  set autocomplete(value: AutocompleteComponent) {
+    this._autocomplete = value;
+    this._autocompleteDisabled = false;
+  }
+  _autocomplete: AutocompleteComponent;
 
   /**
    * Reference relative to which to position the autocomplete panel.
@@ -187,6 +199,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   autocompleteAttribute = 'off';
 
 
+  @Output() search: EventEmitter<any> = new EventEmitter<any>();
 
 
   constructor(
@@ -221,8 +234,17 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       .pipe(first(), switchMap(() => this.optionSelections));
   });
 
-  isInputFocused(): boolean {
-    return this.input.nativeElement === this._document.activeElement;
+  ngAfterViewInit() {
+    if (this.autocomplete) {
+      this.autocomplete.optionSelected.subscribe(() => {
+        this.emitSearch();
+      });
+    }
+  }
+
+  isSearchBoxFocused(): boolean {
+    return this.input.nativeElement === this._document.activeElement ||
+      this.button.nativeElement === this._document.activeElement;
   }
 
   onBlur($event) {
@@ -441,6 +463,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
         this.scrollToOption();
       }
+    } else if (keyCode === ENTER) {
+      this.emitSearch();
     }
     this.zone.onStable
       .asObservable()
@@ -464,11 +488,17 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   }
 
   highlightOptionsByInput(value: number | string) {
-    this.autocomplete.options
-      .filter(option => !option.group)
-      .forEach(option => {
-        option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
-      });
+    if (!this.autocompleteDisabled) {
+      this.autocomplete.options
+        .filter(option => !option.group)
+        .forEach(option => {
+          option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
+        });
+    }
+  }
+
+  emitSearch() {
+    this.search.emit(this.input.nativeElement.value);
   }
 
   handleInput(event: KeyboardEvent): void {

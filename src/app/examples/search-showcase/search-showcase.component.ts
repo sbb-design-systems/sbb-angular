@@ -49,6 +49,9 @@ export class SearchShowcaseComponent implements OnInit {
 
   }
 
+  searchResults($event) {
+    console.log($event);
+  }
 
   toggleMode() {
     if (this.mode === 'default') {

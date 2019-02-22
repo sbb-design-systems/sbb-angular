@@ -1,4 +1,4 @@
-<sbb-search [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
+<sbb-search (search)="searchResults($event)" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option }}
@@ -35,4 +35,11 @@
 
 <pre>
   {{ myControlStatic.value | json}}
+</pre>
+
+
+<sbb-search (search)="searchResults($event)" placeholder="Suchen" [formControl]="myControl"></sbb-search>
+
+<pre>
+  {{ myControl.value | json}}
 </pre>
