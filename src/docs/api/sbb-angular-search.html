@@ -63,6 +63,24 @@
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>placeholder: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>search: EventEmitter&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
           <code>activeOption: OptionComponent | null</code>
         </p>
@@ -127,6 +145,14 @@
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
           <code>hideSearch: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>icon: TemplatePortal&lt;any&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -199,22 +225,6 @@
         <p>Identifier of search.</p>
       </td>
     </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>searchbox: ElementRef&lt;any&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>trigger: ElementRef&lt;HTMLElement&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
   <table class="docs-api-method-table">
@@ -228,6 +238,13 @@
         <p>Closes the autocomplete suggestion panel.</p>
       </td>
     </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">emitSearch </th>
+      </tr>
+    </thead>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -298,6 +315,27 @@
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">isSearchBoxFocused </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">boolean</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
         </p>
       </td>
     </tr>

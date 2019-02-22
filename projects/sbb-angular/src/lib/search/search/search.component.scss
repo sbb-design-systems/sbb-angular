@@ -23,7 +23,7 @@
       background-color: $colorRed100;
       width: 56px;
       position: relative;
-      > sbb-icon-search {
+      > .sbb-icon-component {
         @include absoluteCenterXY;
         width: pxToEm(24, $buttonSizeFontDefault);
         height: pxToEm(24, $buttonSizeFontDefault);

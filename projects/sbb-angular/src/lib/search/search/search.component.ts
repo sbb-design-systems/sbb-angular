@@ -7,7 +7,7 @@ import {
   PositionStrategy,
   ScrollStrategy
 } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { TemplatePortal, CdkPortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import { filter, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
@@ -29,7 +29,11 @@ import {
   TemplateRef,
   EventEmitter,
   Output,
-  AfterViewInit
+  AfterViewInit,
+  ContentChild,
+  QueryList,
+  ContentChildren,
+  ViewChildren
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -103,8 +107,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @ViewChild('searchbox') searchbox: ElementRef<any>;
   /** @docs-private */
   @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
-  /** @docs-private */
-  @ViewChild('searchbox') searchboxTemplate: TemplateRef<any>;
+
+  @ViewChild(CdkPortal) icon: TemplatePortal<any>;
+
 
   @Input() mode: 'header' | 'default' = 'default';
 
@@ -198,9 +203,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
 
-
   @Output() search: EventEmitter<any> = new EventEmitter<any>();
-
 
   constructor(
     private element: ElementRef<HTMLInputElement>,
@@ -240,6 +243,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         this.emitSearch();
       });
     }
+    console.log(this.icon);
+
   }
 
   isSearchBoxFocused(): boolean {
@@ -459,6 +464,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       } else if (isArrowKey && this.canOpen()) {
         this.openPanel();
 
+      }
+      if (keyCode === ENTER) {
+        this.emitSearch();
       }
       if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
         this.scrollToOption();

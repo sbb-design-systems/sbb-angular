@@ -19,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AutocompleteModule,
     ButtonModule,
     OptionModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   exports: [
     SearchComponent,

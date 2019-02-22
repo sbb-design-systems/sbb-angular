@@ -1,4 +1,6 @@
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchResults($event)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-checkmark</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-checkmark</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of filteredOptions"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
     {{ option }}
@@ -9,7 +11,9 @@
   {{ myControl.value | json}}
 <span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl2"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl2"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto2"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-checkmark</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-checkmark</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto2</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of filteredOptions2"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
     {{ option }}
@@ -35,4 +39,11 @@
 
 <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>
   {{ myControlStatic.value | json}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+
+
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchResults($event)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>
+  {{ myControl.value | json}}
 <span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>

@@ -1,4 +1,6 @@
-<sbb-search (search)="searchResults($event)" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto"></sbb-search>
+<sbb-search (search)="searchResults($event)" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto">
+  <sbb-icon-checkmark></sbb-icon-checkmark>
+</sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
     {{ option }}
@@ -9,7 +11,9 @@
   {{ myControl.value | json}}
 </pre>
 
-<sbb-search mode="header" [formControl]="myControl2" [sbbAutocomplete]="auto2"></sbb-search>
+<sbb-search mode="header" [formControl]="myControl2" [sbbAutocomplete]="auto2">
+  <sbb-icon-checkmark></sbb-icon-checkmark>
+</sbb-search>
 <sbb-autocomplete #auto2="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions2" [value]="option">
     {{ option }}
