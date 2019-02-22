@@ -1,23 +1,20 @@
-
 <div [class.sbb-search-box-visible]="mode === 'default' || !hideSearch" class="sbb-search-box" #searchbox>
   <input #input class="sbb-search-input" type="text" (focusin)="handleFocus()" (input)="handleInput($event)"
     (keydown)="handleKeydown($event)" (blur)="onBlur($event)" [attr.placeholder]="placeholder">
   <button #button (click)="emitSearch()" (blur)="onBlur($event)"
     [class.sbb-search-box-button-active]="isSearchBoxFocused()">
-    <ng-template [cdkPortalOutlet]="icon" ></ng-template>
+    <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
   </button>
 </div>
 <button #trigger [class.sbb-search-icon-wrapper-visible]="hideSearch" class="sbb-search-icon-wrapper"
   (click)="revealSearchbox()">
   <span class="sbb-svgsprite-icon">
-    <ng-template [cdkPortalOutlet]="icon"></ng-template>
+    <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
   </span>
   <span class="sbb-search-icon-wrapper-label" i18n>Suchen</span>
 </button>
 
-<ng-template cdkPortal>
-  <div #customIcon>
-    <ng-content></ng-content>
-  </div>
-  <sbb-icon-search *ngIf="!customIcon.children.length"></sbb-icon-search>
+<ng-template #defaultIcon>
+  <sbb-icon-search></sbb-icon-search>
 </ng-template>
+

@@ -8,9 +8,10 @@ import { ButtonModule } from '../button/button.module';
 import { OptionModule } from '../option/option.module';
 import { IconSearchModule } from '../svg-icons/svg-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchIconDirective } from './search-icon.directive';
 
 @NgModule({
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, SearchIconDirective],
   imports: [
     CommonModule,
     IconSearchModule,
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
     SearchComponent,
     PortalModule,
-    OverlayModule
+    OverlayModule,
+    SearchIconDirective
   ],
   providers: [
     SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER

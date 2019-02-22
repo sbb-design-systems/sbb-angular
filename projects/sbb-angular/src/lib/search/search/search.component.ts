@@ -55,6 +55,7 @@ import {
   AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT, getSbbAutocompleteMissingPanelError
 } from '../../autocomplete/autocomplete';
 import { AnimationBuilder, style, animate } from '@angular/animations';
+import { SearchIconDirective } from '../search-icon.directive';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_SEARCH_SCROLL_STRATEGY =
@@ -108,7 +109,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /** @docs-private */
   @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
 
-  @ViewChild(CdkPortal) icon: TemplatePortal<any>;
+  @ContentChild(SearchIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
 
   @Input() mode: 'header' | 'default' = 'default';

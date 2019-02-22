@@ -1,5 +1,5 @@
 <sbb-search (search)="searchResults($event)" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto">
-  <sbb-icon-checkmark></sbb-icon-checkmark>
+  <sbb-icon-checkmark *sbbSearchIcon></sbb-icon-checkmark>
 </sbb-search>
 <sbb-autocomplete #auto="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions" [value]="option">
@@ -12,7 +12,7 @@
 </pre>
 
 <sbb-search mode="header" [formControl]="myControl2" [sbbAutocomplete]="auto2">
-  <sbb-icon-checkmark></sbb-icon-checkmark>
+  <sbb-icon-checkmark *sbbSearchIcon></sbb-icon-checkmark>
 </sbb-search>
 <sbb-autocomplete #auto2="sbbAutocomplete">
   <sbb-option *ngFor="let option of filteredOptions2" [value]="option">
