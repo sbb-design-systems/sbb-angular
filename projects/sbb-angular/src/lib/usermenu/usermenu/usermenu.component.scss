@@ -2,22 +2,124 @@
 
 $borderActive: solid 2px #666;
 
+/* 
 .sbb-usermenu {
   &-login {
     @include usermenu-login;
+    .icon-user {
+      width: 24px;
+      height: 24px;
+      margin-left: 2px;
+    }
 
     &-active {
       border-top: $borderActive;
       border-right: $borderActive;
       border-left: $borderActive;
     }
-    .sbb-usermenu-login-content {
-      @include buttonResetFrameless;
+
+    .sbb-usermenu-logged-off{
+      .sbb-usermenu-login-content {
+        @include buttonResetFrameless;
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+        font-family: $fontFamilyBase;
+        height: 17px;
+        padding-right: 12px;
+      }
+    }
+    .sbb-usermenu-logged-in {
+      .sbb-usermenu-login-content {
+        @include buttonResetFrameless;
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+        font-family: $fontFamilyBase;
+        height: 17px;
+        padding-right: 12px;
+
+        .sbb-usermenu-initialLetters {
+          border-radius: 50%;
+          border: 1px solid $colorBlack72;
+          background-color: $colorBlack10;
+          font-family: $fontFamilyBase;
+          font-size: pxToRem(15);
+          color: $colorBlack60;
+          font-weight: 700;
+          width: 32px;
+          height: 32px;
+          position: relative;
+          > div {
+            @include absoluteCenterXY;
+          }
+        }
+        .sbb-usermenu-username {
+          margin-left: 20px;
+          font-size: pxToRem(15);
+          font-family: $fontSbbRoman;
+          color: $colorBlack60;
+          height: 24px;
+        }
+
+        .sbb-usermenu-name {
+          height: 14px;
+          font-family: $fontSbbRoman;
+          color: $colorBlack60;
+          display: inline-block;
+          position: absolute;
+          margin-top: 12px;
+          margin-left: 42px;
+        }
+      }
+
+      .sbb-arrow-rotate {
+        width: 24px;
+        height: 24px;
+        transform: rotate(180deg);
+      }
+    }
+
+    .sbb-arrow {
+      width: 24px;
+      height: 24px;
+      z-index: -1;
+    }
+  
+  }
+
+ 
+} */
+
+$borderActive: solid 2px #666;
+
+.sbb-usermenu {
+  &-logged-in {
+    @include usermenu-login;
+    &.sbb-usermenu-hidden {
+      display: none;
+    }
+    &-active {
+      border-top: $borderActive;
+      border-right: $borderActive;
+      border-left: $borderActive;
+    }
+
+    &-collapsed {
       display: flex;
       align-items: center;
-      margin-left: 20px;
+      &-icon {
+        position: relative;
+      }
 
-      .sbb-usermenu-initialLetters {
+      &-arrow {
+        width: 24px;
+        height: 24px;
+        z-index: -1;
+        position: relative;
+      }
+
+      &-initial-letters {
         border-radius: 50%;
         border: 1px solid $colorBlack72;
         background-color: $colorBlack10;
@@ -27,47 +129,48 @@ $borderActive: solid 2px #666;
         font-weight: 700;
         width: 32px;
         height: 32px;
+        text-align: center;
         position: relative;
         > div {
           @include absoluteCenterXY;
         }
       }
-      .sbb-usermenu-username {
-        margin-left: 10px;
+
+      .sbb-usermenu-logged-in-expanded-username {
         font-size: pxToRem(15);
         font-family: $fontSbbRoman;
         color: $colorBlack60;
-        width: 64px;
-        height: 24px;
       }
 
-      .sbb-usermenu-name {
-        width: 120px;
-        height: 14px;
+      .sbb-usermenu-logged-in-expanded-displayName {
         font-family: $fontSbbRoman;
         color: $colorBlack60;
-        display: inline-block;
-        position: absolute;
-        margin-top: 12px;
-        margin-left: 42px;
+      }
+
+      .sbb-usermenu-logged-in-expanded-arrow {
+        width: 24px;
+        height: 24px;
+        transform: rotate(180deg);
       }
     }
-    .sbb-arrow {
-      width: 24px;
-      height: 24px;
-      z-index: -1;
-    }
-
-    .sbb-arrow-rotate {
-      width: 24px;
-      height: 24px;
-      transform: rotate(180deg);
-    }
   }
+  .sbb-usermenu-logged-off {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 48px;
+    width: 156px;
+    &-icon-user {
+      width: 24px;
+      height: 24px;
+      margin-left: 2px;
+      position: relative;
+    }
 
-  .icon-user {
-    width: 24px;
-    height: 24px;
-    margin-left: 2px;
+    &-button {
+      @include buttonResetFrameless;
+      position: relative;
+      margin-left: 13.5px;
+    }
   }
 }

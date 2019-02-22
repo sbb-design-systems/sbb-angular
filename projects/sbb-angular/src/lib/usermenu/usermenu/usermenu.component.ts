@@ -62,6 +62,7 @@ export class UserMenuComponent implements AfterContentInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+    this.dropdownTrigger.dropdown.options.reset(this.items.toArray());
   }
 
   emitLogIn() {
