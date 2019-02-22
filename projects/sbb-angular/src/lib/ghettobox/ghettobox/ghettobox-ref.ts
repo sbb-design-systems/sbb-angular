@@ -9,26 +9,22 @@ export interface Ghettobox {
 }
 
 export class GhettoboxRef {
-  componentInstance: GhettoboxComponent;
-  componentRef: ComponentRef<GhettoboxComponent>;
 
-  constructor(
-    componentRef?: ComponentRef<GhettoboxComponent>,
-    componentInstance?: GhettoboxComponent) {
-
-    if (componentRef) {
-      this.componentRef = componentRef;
-    } else if (componentInstance) {
-      this.componentInstance = componentInstance;
+  get id(): string {
+    if (this._ref instanceof GhettoboxComponent) {
+      return this._ref.ghettoboxId;
+    } else {
+      return this._ref.instance.ghettoboxId;
     }
+  }
 
+  private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent;
+
+  constructor(ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent) {
+    this._ref = ref;
   }
 
   delete(): void {
-    if (this.componentRef) {
-      this.componentRef.destroy();
-    } else if (this.componentInstance) {
-      this.componentInstance.destroy();
-    }
+    this._ref.destroy();
   }
 }

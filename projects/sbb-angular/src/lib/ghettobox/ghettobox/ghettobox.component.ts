@@ -31,7 +31,7 @@ export class GhettoboxComponent {
 
   @HostBinding('attr.role') role = 'alert';
 
-  @HostBinding('attr.aria-hidden') ariaHidden = 'false';
+  @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
 
   @ViewChild('defaultIcon') iconDefault: TemplateRef<any>;
 

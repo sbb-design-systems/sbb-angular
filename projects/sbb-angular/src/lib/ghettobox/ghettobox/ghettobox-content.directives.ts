@@ -1,7 +1,4 @@
-import { Directive, HostBinding, Optional, ComponentRef,
-   ElementRef, ViewContainerRef, HostListener, TemplateRef, Host, Self, ViewRef } from '@angular/core';
-import { GhettoboxRef } from './ghettobox-ref';
-import { GhettoboxComponent } from './ghettobox.component';
+import { Directive } from '@angular/core';
 
 @Directive({ selector: '[sbbGhettoboxIcon]' })
 export class GhettoboxIconDirective {

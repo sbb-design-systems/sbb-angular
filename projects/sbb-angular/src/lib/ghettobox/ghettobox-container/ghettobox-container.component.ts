@@ -1,11 +1,20 @@
 import {
-  Component, ChangeDetectionStrategy, Input, HostBinding,
-  ViewChild, ComponentRef, EmbeddedViewRef, AfterViewInit, OnDestroy, ContentChild, ContentChildren, QueryList, AfterContentInit
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  HostBinding,
+  ViewChild,
+  ComponentRef,
+  EmbeddedViewRef,
+  OnDestroy,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
+  SimpleChanges
 } from '@angular/core';
 import { CdkPortalOutlet, BasePortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
-import { GhettoboxRef } from '../ghettobox/ghettobox-ref';
 
 let counter = 0;
 
@@ -35,20 +44,20 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
 
   constructor(private _ghettoboxService: GhettoboxService) {
     super();
-    if (!this._ghettoboxService.containerInstance) {
-      this._ghettoboxService.containerInstance = this;
+    if (!this._ghettoboxService.hasContainerLoaded) {
+      this._ghettoboxService.loadContainer(this);
     } else {
-      throw Error('Its allowed only one container at a time');
+      throw Error('Its allowed only one sbb-ghettobox-container at a time');
     }
   }
 
   ngAfterContentInit() {
     this._ghettoboxService
-      .loadInitialGhettoboxes(this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(undefined, g)));
+      .loadInitialGhettoboxes(this.initialGhettoboxes.toArray());
   }
 
   ngOnDestroy() {
-    this._ghettoboxService.containerInstance = undefined;
+    this._ghettoboxService.clearContainer();
     this._ghettoboxService.clear();
   }
 
@@ -69,4 +78,3 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
   }
 
 }
-
