@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserMenuComponent } from './usermenu.component';
+import { CommonModule } from '@angular/common';
+import { DropdownModule } from '../../dropdown/dropdown';
+import { IconArrowSmallDownModule } from '../../svg-icons/base/arrows/icon-arrow-small-down.module';
+import { IconUserModule } from '../../svg-icons/base/icon-user.module';
 
 describe('UserMenuComponent', () => {
   let component: UserMenuComponent;
@@ -8,9 +12,10 @@ describe('UserMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserMenuComponent ]
+      declarations: [UserMenuComponent],
+      imports: [CommonModule, DropdownModule, IconArrowSmallDownModule, IconUserModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -24,6 +24,7 @@ import { PaginationShowcaseComponent } from '../examples/pagination-showcase/pag
 import { TooltipShowcaseComponent } from '../examples/tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from '../examples/textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.component';
+import { FileSelectorShowcaseComponent } from '../examples/file-selector-showcase/file-selector-showcase.component';
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
 import { UserMenuShowcaseComponent } from '../examples/usermenu-showcase/usermenu-showcase.component';
@@ -420,7 +421,20 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         UserMenuShowcaseComponent
-      )
+        ),
+        new UiComponent(
+          'File Selector',
+          'file-selector',
+          'File Selector',
+          'Subtitel goes here ...',
+          true,
+          false,
+          [''],
+          'Description goes here ...',
+          'Source goes here ...',
+          'Import text.',
+          FileSelectorShowcaseComponent
+        )
     ];
   }
 

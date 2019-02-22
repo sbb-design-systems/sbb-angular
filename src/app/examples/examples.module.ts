@@ -34,7 +34,9 @@ import {
   TagModule,
   PaginationModule,
   ToggleModule,
-  CaptchaModule
+  CaptchaModule,
+  DropdownModule,
+  FileSelectorModule,
 } from 'sbb-angular';
 
 
@@ -75,11 +77,11 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 import { UserMenuModule } from 'projects/sbb-angular/src/lib/usermenu/usermenu';
-import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown';
 
 @NgModule({
   declarations: [
@@ -118,6 +120,7 @@ import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown';
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
     UserMenuShowcaseComponent
@@ -155,6 +158,7 @@ import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown';
     TooltipModule,
     TextexpandModule,
     TagModule,
+    FileSelectorModule,
     DropdownModule,
     CaptchaModule,
     UserMenuModule

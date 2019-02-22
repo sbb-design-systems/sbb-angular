@@ -85,11 +85,7 @@
 	}
 }
 
-/*** 
-* BUTTON WITH ARROWS PLACEHOLDER 
-* - Used placeholder instead mixin to improve compiled output size
-***/
-%arrowbuttons {
+@mixin arrowbuttons {
 	position: relative;
 	padding-left: toEm(40/$buttonSizeFontDefault);
 	padding-right: toEm(70/$buttonSizeFontDefault);
@@ -127,6 +123,14 @@
 		opacity: 1;
 		transform: translateX(0px);
 	}
+}
+
+/*** 
+* BUTTON WITH ARROWS PLACEHOLDER 
+* - Used placeholder instead mixin to improve compiled output size
+***/
+%arrowbuttons {
+	@include arrowbuttons;
 
 	&:not(:disabled) {
 		&:hover, &:focus {

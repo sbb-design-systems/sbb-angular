@@ -150,7 +150,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return this.zone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.optionSelections));
-  });
+  }) as Observable<SBBOptionSelectionChange>;
 
   @HostListener('blur')
   onBlur() {

@@ -143,8 +143,6 @@ export class DropdownComponent implements AfterContentInit {
     this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(this.options).withWrap();
     // Set the initial visibility state.
     this.setVisibility();
-    console.log(this.options);
-
   }
 
   /**
