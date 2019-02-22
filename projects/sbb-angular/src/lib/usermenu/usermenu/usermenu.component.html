@@ -1,24 +1,25 @@
-<div class="sbb-usermenu-avatar" [sbbDropdown]="dropdownMenu" tabindex="0"
-  [class.sbb-usermenu-avatar-active]="dropdownMenu.isOpen" [sbbDropdownDisabled]="!userName" (click)="emitLogIn()">
-  <span *ngIf="userName && userName.length" class="sbb-usermenu-avatar-content">
+<div class="sbb-usermenu-login" [sbbDropdown]="dropdown" tabindex="0" [class.sbb-usermenu-login-active]="dropdown.isOpen" [sbbDropdownDisabled]="!userName" (click)="emitLogIn()">
+  <span *ngIf="userName && userName.length" class="sbb-usermenu-login-content">
     <div #icon>
       <ng-content select="[sbbIcon]"></ng-content>
     </div>
-    <div class="sbb-usermenu-initialLetters" *ngIf="!icon.children.length">{{ initialLetters }}</div>
-    <div class="sbb-usermenu-username" *ngIf="dropdownMenu.isOpen">{{userName}}</div>
-    <small class="sbb-usermenu-name" *ngIf="dropdownMenu.isOpen">{{displayName}}</small>
+    <div class="sbb-usermenu-initialLetters" *ngIf="!icon.children.length">
+      <div>{{ initialLetters }}</div>
+    </div>
+    <div class="sbb-usermenu-username" *ngIf="dropdown.isOpen">{{userName}}</div>
+    <div class="sbb-usermenu-name" *ngIf="dropdown.isOpen">{{displayName}}</div>
   </span>
   <div *ngIf="!userName" class="icon-user">
     <sbb-icon-user></sbb-icon-user>
   </div>
-  <button class="sbb-usermenu-avatar-content" *ngIf="!userName" i18n>Login</button>
-  <div *ngIf="userName && userName.length && !dropdownMenu.isOpen" class="sbb-arrow">
+  <button class="sbb-usermenu-login-content" *ngIf="!userName" i18n>Login</button>
+  <div *ngIf="userName && userName.length && !dropdown.isOpen" class="sbb-arrow">
     <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
   </div>
-  <div *ngIf="dropdownMenu.isOpen" class="sbb-arrow-rotate">
+  <div *ngIf="dropdown.isOpen" class="sbb-arrow-rotate">
     <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
   </div>
 </div>
-<sbb-dropdown #dropdownMenu="sbbDropdown">
+<sbb-dropdown #dropdown="sbbDropdown">
   <ng-content ngProjectAs="a, button, hr"></ng-content>
 </sbb-dropdown>

@@ -11,7 +11,9 @@ import {
   Input,
   Output,
   EventEmitter,
-  ElementRef
+  ElementRef,
+  ContentChild,
+
 } from '@angular/core';
 import { DropdownItemDirective } from '../../dropdown/dropdown-item.directive';
 import { DropdownTriggerDirective } from '../../dropdown/dropdown';
@@ -75,7 +77,6 @@ export class UserMenuComponent implements AfterContentInit, AfterViewInit {
         .reduce((namePart1, namePart2) => {
           return namePart1[0].toLocaleUpperCase() + namePart2[0].toLocaleUpperCase();
         });
-
     }
   }
 

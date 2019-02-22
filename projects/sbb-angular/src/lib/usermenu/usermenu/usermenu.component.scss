@@ -3,32 +3,59 @@
 $borderActive: solid 2px #666;
 
 .sbb-usermenu {
-  &-avatar {
-    @include usermenu-avatar;
+  &-login {
+    @include usermenu-login;
 
     &-active {
       border-top: $borderActive;
       border-right: $borderActive;
       border-left: $borderActive;
     }
-    .sbb-usermenu-avatar-content {
+    .sbb-usermenu-login-content {
       @include buttonResetFrameless;
       display: flex;
       align-items: center;
       margin-left: 20px;
 
+      .sbb-usermenu-initialLetters {
+        border-radius: 50%;
+        border: 1px solid $colorBlack72;
+        background-color: $colorBlack10;
+        font-family: $fontFamilyBase;
+        font-size: pxToRem(15);
+        color: $colorBlack60;
+        font-weight: 700;
+        width: 32px;
+        height: 32px;
+        position: relative;
+        > div {
+          @include absoluteCenterXY;
+        }
+      }
       .sbb-usermenu-username {
         margin-left: 10px;
         font-size: pxToRem(15);
         font-family: $fontSbbRoman;
-        color: $colorGrey;
-        width: 118px;
+        color: $colorBlack60;
+        width: 64px;
         height: 24px;
+      }
+
+      .sbb-usermenu-name {
+        width: 120px;
+        height: 14px;
+        font-family: $fontSbbRoman;
+        color: $colorBlack60;
+        display: inline-block;
+        position: absolute;
+        margin-top: 12px;
+        margin-left: 42px;
       }
     }
     .sbb-arrow {
       width: 24px;
       height: 24px;
+      z-index: -1;
     }
 
     .sbb-arrow-rotate {
@@ -39,8 +66,8 @@ $borderActive: solid 2px #666;
   }
 
   .icon-user {
-    width:24px;
-    height:24px;
+    width: 24px;
+    height: 24px;
     margin-left: 2px;
   }
 }

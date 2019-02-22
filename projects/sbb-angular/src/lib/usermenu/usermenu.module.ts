@@ -9,6 +9,6 @@ import { IconArrowSmallDownModule, IconUserModule } from '../svg-icons/svg-icons
   imports: [
     CommonModule, DropdownModule,IconArrowSmallDownModule,IconUserModule
   ],
-  exports: [UserMenuComponent]
+  exports: [UserMenuComponent,DropdownModule]
 })
 export class UserMenuModule { }

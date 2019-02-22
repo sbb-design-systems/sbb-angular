@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChildren, QueryList, ViewChild, EventEmitter, Output } from '@angular/core';
-import { LinkGeneratorResult, UserMenuComponent } from 'sbb-angular';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { LinkGeneratorResult } from 'sbb-angular';
 import { DropdownTriggerDirective } from 'projects/sbb-angular/src/lib/dropdown/dropdown-trigger.directive';
 
 class User {
