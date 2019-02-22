@@ -76,7 +76,7 @@ export class SearchChangeEvent {
 
 let searchFieldCounter = 1;
 
-const ANIMATION_DURATION = 200;
+const ANIMATION_DURATION = 300;
 
 @Component({
   selector: 'sbb-search',
@@ -126,15 +126,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   private componentDestroyed = false;
   private _autocompleteDisabled = false;
 
-
-
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private previousValue: string | number | null;
 
   /** Strategy that is used to position the panel. */
   private positionStrategy: FlexibleConnectedPositionStrategy;
-
-
 
   /** The subscription for closing actions (some are bound to document). */
   private closingActionsSubscription: Subscription;
@@ -190,6 +186,28 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
 
+
+
+
+  constructor(
+    private element: ElementRef<HTMLInputElement>,
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef,
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
+    @Optional() @Inject(DOCUMENT) private _document: any,
+    private animationBuilder: AnimationBuilder,
+    private viewportRuler?: ViewportRuler
+  ) {
+
+    if (typeof window !== 'undefined') {
+      zone.runOutsideAngular(() => {
+        window.addEventListener('blur', this.windowBlurHandler);
+      });
+    }
+  }
+
   /** Stream of autocomplete option selections. */
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer<Observable<SBBOptionSelectionChange>>(() => {
     if (this.autocomplete && this.autocomplete.options) {
@@ -203,6 +221,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
       .pipe(first(), switchMap(() => this.optionSelections));
   });
 
+  isInputFocused(): boolean {
+    return this.input.nativeElement === this._document.activeElement;
+  }
 
   onBlur($event) {
     this.onTouched();
@@ -267,24 +288,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy {
   @HostBinding('attr.aria-autocomplete')
   get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
 
-  constructor(
-    private element: ElementRef<HTMLInputElement>,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
-    private animationBuilder: AnimationBuilder,
-    private viewportRuler?: ViewportRuler
-  ) {
 
-    if (typeof window !== 'undefined') {
-      zone.runOutsideAngular(() => {
-        window.addEventListener('blur', this.windowBlurHandler);
-      });
-    }
-  }
 
   ngOnDestroy() {
     if (typeof window !== 'undefined') {

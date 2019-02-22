@@ -1,7 +1,7 @@
 <div [class.sbb-search-box-visible]="mode === 'default' || !hideSearch"  class="sbb-search-box" #searchbox >
   <input #input class="sbb-search-input" type="text" (focusin)="handleFocus()" (input)="handleInput($event)"
     (keydown)="handleKeydown($event)" (blur)="onBlur($event)">
-  <button #button (blur)="onBlur($event)">
+  <button #button (blur)="onBlur($event)" [class.sbb-search-box-button-active]="isInputFocused()">
     <sbb-icon-search></sbb-icon-search>
   </button>
 </div>

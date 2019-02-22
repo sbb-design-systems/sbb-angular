@@ -28,6 +28,11 @@
         width: pxToEm(24, $buttonSizeFontDefault);
         height: pxToEm(24, $buttonSizeFontDefault);
       }
+
+      &.sbb-search-box-button-active {
+        border: 2px solid $colorGrey;
+        border-left: none;
+      }
     }
   }
 
@@ -44,12 +49,18 @@
       display: flex;
       align-items: center;
     }
+    &:hover,
+    &:focus {
+      fill: $colorRed125;
+      color: $colorRed125;
+    }
     .sbb-svgsprite-icon {
       position: relative;
       width: pxToEm(24, $buttonSizeFontDefault);
       height: pxToEm(24, $buttonSizeFontDefault);
       backface-visibility: hidden;
       pointer-events: none;
+      margin-right: 12px;
     }
   }
 }
