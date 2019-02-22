@@ -84,7 +84,7 @@ export class DropdownItemDirective implements Highlightable {
 
   constructor(
     private elementRef: ElementRef,
-    private changeDetectorRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   setActiveStyles(): void {
@@ -144,8 +144,5 @@ export class DropdownItemDirective implements Highlightable {
     }
   }
 
-  getType() {
-    return this.elementRef.nativeElement.tagName;
-  }
 
 }

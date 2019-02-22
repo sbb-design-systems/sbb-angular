@@ -59,9 +59,6 @@ export class DropdownComponent implements AfterContentInit {
    */
   @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
 
-  @Input() inputOptions: QueryList<DropdownItemDirective>;
-
-
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<DropdownItemDirective>;
 
@@ -137,9 +134,6 @@ export class DropdownComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    if (!this.options.length) {
-      this.options = this.inputOptions;
-    }
     this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(this.options).withWrap();
     // Set the initial visibility state.
     this.setVisibility();

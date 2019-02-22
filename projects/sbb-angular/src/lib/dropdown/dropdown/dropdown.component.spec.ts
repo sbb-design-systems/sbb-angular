@@ -13,7 +13,6 @@ import {
 } from '../dropdown';
 import { DropdownModule } from '../dropdown.module';
 import { DropdownComponent } from './dropdown.component';
-import { OverlayModule } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'sbb-dropdown-test',
@@ -74,7 +73,7 @@ describe('DropdownComponent', () => {
         DropdownTriggerDirective
       ],
       imports: [
-        CommonModule, OverlayModule
+        CommonModule,
       ],
       providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
     })
