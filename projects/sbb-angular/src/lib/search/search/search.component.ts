@@ -269,7 +269,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this.button.nativeElement === this._document.activeElement;
   }
 
-  onBlur($event) {
+  onBlur($event: any) {
     this.onTouched();
     if (this.mode === 'header') {
       if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget) || !this.autocomplete) {
