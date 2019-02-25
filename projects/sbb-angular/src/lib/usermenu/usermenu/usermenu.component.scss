@@ -1,6 +1,8 @@
 @import "../../../styles/main";
 
-$borderActive: solid 2px #666;
+$borderActive: solid 2px $colorGrey;
+$borderActive4K: solid 3px $colorGrey;
+$borderActive5K: solid 4px $colorGrey;
 
 .sbb-usermenu {
   &-logged-in {
@@ -12,37 +14,46 @@ $borderActive: solid 2px #666;
       border-top: $borderActive;
       border-right: $borderActive;
       border-left: $borderActive;
+
+      @include mq($from: desktop4k) {
+        border-top: $borderActive4K;
+        border-right: $borderActive4K;
+        border-left: $borderActive4K;
+      }
+
+      @include mq($from: desktop5k) {
+        border-top: $borderActive5K;
+        border-right: $borderActive5K;
+        border-left: $borderActive5K;
+      }
     }
 
     &-collapsed {
-
       display: flex;
       align-items: center;
       margin-left: 3px;
-      margin-top:3px;
+      margin-top: 3px;
 
       &-user-icon {
-
         flex-basis: 32px;
 
         .sbb-usermenu-logged-in-collapsed-icon {
           position: relative;
-          /* margin-top: 4px;
-          margin-left: 3px; */
+
+          @include mq($from: desktop4k) {
+            width: 48px;
+            height: 48px;
+          }
+
+          @include mq($from: desktop5k) {
+            width: 64px;
+            height: 64px;
+          }
         }
 
         .sbb-usermenu-logged-in-collapsed-initial-letters {
-          border-radius: 50%;
-          border: 1px solid $colorBlack72;
-          background-color: $colorBlack10;
-          font-family: $fontFamilyBase;
-          font-size: pxToRem(15);
-          color: $colorBlack60;
-          font-weight: 700;
-          width: 32px;
-          height: 32px;
-          text-align: center;
-          position: relative;
+          @include initial_letters;
+
           > div {
             @include absoluteCenterXY;
           }
@@ -56,9 +67,7 @@ $borderActive: solid 2px #666;
         position: relative;
       }
 
-
       .sbb-usermenu-logged-in-expanded-info-user {
-
         flex-grow: 1;
         padding-left: 4px;
 
@@ -67,32 +76,54 @@ $borderActive: solid 2px #666;
           font-family: $fontSbbRoman;
           color: $colorBlack60;
           margin-top: -5px;
+
+          @include mq($from: desktop4k) {
+            font-size: pxToRem(23);
+          }
+
+          @include mq($from: desktop5k) {
+            font-size: pxToRem(30);
+          }
         }
 
         .sbb-usermenu-logged-in-expanded-displayName {
           font-family: $fontSbbRoman;
           color: $colorBlack60;
-          font-size:pxToRem(13);
+          font-size: pxToRem(13);
           margin-top: -3px;
+
+          @include mq($from: desktop4k) {
+            font-size: pxToRem(23);
+          }
+
+          @include mq($from: desktop5k) {
+            font-size: pxToRem(30);
+          }
         }
-        
       }
 
       .sbb-usermenu-logged-in-expanded-arrow-above {
-
         flex-basis: 2px;
 
         .sbb-usermenu-logged-in-expanded-arrow {
           width: 24px;
           height: 24px;
           transform: rotate(180deg);
-          margin-left:60px;
+          margin-left: 60px;
+
+          @include mq($from: desktop4k) {
+            width: 36px;
+            height: 36px;
+          }
+
+          @include mq($from: desktop5k) {
+            width: 48px;
+            height: 48px;
+          }
         }
       }
-     
     }
   }
-
 
   .sbb-usermenu-logged-off {
     display: flex;
@@ -101,22 +132,42 @@ $borderActive: solid 2px #666;
     height: 48px;
     width: 156px;
 
+    @include mq($from: desktop4k) {
+      height: 72px;
+      width: 103px;
+    }
+
+    @include mq($from: desktop5k) {
+      height: 96px;
+      width: 134px;
+    }
+
     &-icon-user {
       width: 24px;
       height: 24px;
       margin-left: 2px;
       position: relative;
+
+      @include mq($from: desktop4k) {
+        height: 36px;
+        width: 36px;
+      }
+
+      @include mq($from: desktop5k) {
+        height: 48px;
+        width: 48px;
+      }
     }
 
     &-button {
       @include buttonResetFrameless;
       position: relative;
       margin-left: 13.5px;
-      margin-top:2px;
+      margin-top: 2px;
     }
   }
 }
 
 .collapsed-expanded {
-  width:100%;
+  width: 100%;
 }
