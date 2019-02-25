@@ -1,69 +1,8 @@
 @import "../../../styles/main";
 
 .sbb-search {
-  display: block;
-  position: relative;
-  width: 374px;
-  height: 48px;
-  .sbb-search-box {
-    display: none;
-    height: 100%;
-    width: 0;
-    &-visible {
-      width: 100%;
-      display: flex;
-    }
-    > input {
-      border-right: none;
-      width: 320px;
-    }
-    > button {
-      @include buttonResetFrameless;
-      fill: $colorWhite;
-      background-color: $colorRed100;
-      width: 56px;
-      position: relative;
-      > .sbb-icon-component {
-        @include absoluteCenterXY;
-        width: pxToEm(24, $buttonSizeFontDefault);
-        height: pxToEm(24, $buttonSizeFontDefault);
-      }
-
-      &.sbb-search-box-button-active {
-        border: 2px solid $colorGrey;
-        border-left: none;
-        > .sbb-icon-component {
-          left: calc(50% + 1px);
-        }
-      }
-    }
-  }
-
+  @include search;
   .sbb-search-icon-wrapper {
-    @include buttonResetFrameless;
-    fill: $colorGrey;
-    color: $colorGrey;
-    display: none;
-    height: 100%;
-    &-label {
-      position: relative;
-    }
-    &-visible {
-      display: flex;
-      align-items: center;
-    }
-    &:hover,
-    &:focus {
-      fill: $colorRed125;
-      color: $colorRed125;
-    }
-    .sbb-svgsprite-icon {
-      position: relative;
-      width: pxToEm(24, $buttonSizeFontDefault);
-      height: pxToEm(24, $buttonSizeFontDefault);
-      backface-visibility: hidden;
-      pointer-events: none;
-      margin-right: 12px;
-    }
+    @include searchIconWrapper;
   }
 }

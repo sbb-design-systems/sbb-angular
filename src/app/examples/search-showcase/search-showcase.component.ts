@@ -86,7 +86,7 @@ export class SearchShowcaseComponent implements OnInit {
               return {
                 'id': record.fields.filename.id,
                 'station': record.fields.bahnhof
-              }
+              };
             });
             this.showSpinner = false;
 
@@ -102,9 +102,5 @@ export class SearchShowcaseComponent implements OnInit {
   searchCounter() {
     this.searchCounterAmount++;
   }
-
-
-
-
 
 }
