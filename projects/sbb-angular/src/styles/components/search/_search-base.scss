@@ -93,6 +93,7 @@
 
 @mixin searchIconWrapper {
   @include buttonResetFrameless;
+  cursor: pointer;
   fill: $colorGrey;
   color: $colorGrey;
   @include mq($from: desktop4k) {
