@@ -23,9 +23,9 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Search field with autocomplete</h4>
-      <sbb-search (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto">
+      <sbb-search (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto1">
       </sbb-search>
-      <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-autocomplete #auto1="sbbAutocomplete">
         <sbb-option *ngFor="let option of filteredOptions" [value]="option">
           {{ option }}
         </sbb-option>
@@ -36,9 +36,9 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Search field with autocomplete (header mode)</h4>
       <sbb-search mode="header" (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl"
-        [sbbAutocomplete]="auto">
+        [sbbAutocomplete]="auto2">
       </sbb-search>
-      <sbb-autocomplete #auto="sbbAutocomplete">
+      <sbb-autocomplete #auto2="sbbAutocomplete">
         <sbb-option *ngFor="let option of filteredOptions" [value]="option">
           {{ option }}
         </sbb-option>
@@ -63,10 +63,10 @@
       <h4 class="sbbsc-block">Search results (only first 10 are shown)</h4>
       <ng-container *ngIf="!searchResults.length">No results</ng-container>
       <sbb-loading *ngIf="showSpinner" mode="fullbox"></sbb-loading>
-      <ng-container *ngFor="let image of searchResults">
+      <span [title]="image.station" *ngFor="let image of searchResults">
         <img width="300"
-          [attr.src]="'https://data.sbb.ch/explore/dataset/historische-bahnhofbilder/files/' + image + '/300/'">
-      </ng-container>
+          [attr.src]="'https://data.sbb.ch/explore/dataset/historische-bahnhofbilder/files/' + image.id + '/300/'">
+      </span>
     </div>
   </div>
 </div>

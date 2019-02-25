@@ -71,7 +71,6 @@ export class SearchShowcaseComponent implements OnInit {
       });
 
     this.searchSubject
-      .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
 
       .subscribe((searchTerm) => {
@@ -82,8 +81,13 @@ export class SearchShowcaseComponent implements OnInit {
           ('https://data.sbb.ch/api/records/1.0/search/?dataset=historische-bahnhofbilder&facet=ort&facet=datum_foto_1&q=' + searchT)
           .subscribe(results => {
             const searchResults = results;
-            this.searchResults = searchResults.records.map(record => record.fields.filename.id);
-            console.log(this.searchResults);
+            console.log(searchResults);
+            this.searchResults = searchResults.records.map(record => {
+              return {
+                'id': record.fields.filename.id,
+                'station': record.fields.bahnhof
+              }
+            });
             this.showSpinner = false;
 
           });
@@ -92,7 +96,6 @@ export class SearchShowcaseComponent implements OnInit {
   }
 
   search($event) {
-    console.log($event);
     this.searchSubject.next(this.myControl2.value);
   }
 

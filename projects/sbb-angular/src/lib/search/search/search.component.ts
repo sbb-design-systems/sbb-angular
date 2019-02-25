@@ -816,8 +816,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     }
     this.openAnimation(this.searchbox.nativeElement).onDone(() => {
       this.input.nativeElement.focus();
-      // tslint:disable-next-line: no-non-null-assertion
-      this.overlayRef!.updatePosition();
+      if (this.overlayRef !== undefined) {
+        this.overlayRef.updatePosition();
+      }
     });
 
   }
