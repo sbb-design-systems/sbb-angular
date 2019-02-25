@@ -253,10 +253,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         this.emitSearch();
       });
     }
-    console.log(this.icon);
-
   }
 
+  /**
+   * Checks if the search box is focused or not, depending on this, proper style is applied to the component
+   */
   isSearchBoxFocused(): boolean {
     return this.input.nativeElement === this._document.activeElement ||
       this.button.nativeElement === this._document.activeElement;
@@ -265,14 +266,17 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   onBlur($event) {
     this.onTouched();
     if (this.mode === 'header') {
-      if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget)) {
+      if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget) || !this.autocomplete) {
         if (($event.target === this.input.nativeElement && $event.relatedTarget !== this.button.nativeElement)
           || ($event.target === this.button.nativeElement && $event.relatedTarget !== this.input.nativeElement)) {
-          this.closeAnimation(this.overlayRef.overlayElement).onDone(() => {
+          if (this.autocomplete) {
+
+            this.closeAnimation(this.overlayRef.overlayElement)
+          }
+          this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
             this._hideSearch = true;
             this.changeDetectorRef.markForCheck();
-          });
-          this.closeAnimation(this.searchbox.nativeElement);
+          });;
         }
       }
     }
@@ -775,7 +779,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   private getPanelWidth(): number | string {
-    return this.autocomplete.panelWidth || this.getHostWidth();
+    return (this.autocomplete && this.autocomplete.panelWidth) || this.getHostWidth();
   }
 
   /** Returns the width of the input element, so the panel width can match it. */
@@ -804,9 +808,17 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    */
   revealSearchbox() {
     this._hideSearch = false;
-    this.attachOverlay();
-    this.openAnimation(this.searchbox.nativeElement);
-    this.openAnimation(this.overlayRef.overlayElement).onDone(() => this.input.nativeElement.focus());
+    if (this.autocomplete) {
+
+      this.attachOverlay();
+      this.openAnimation(this.overlayRef.overlayElement);
+
+    }
+    this.openAnimation(this.searchbox.nativeElement).onDone(() => {
+      this.input.nativeElement.focus();
+      // tslint:disable-next-line: no-non-null-assertion
+      this.overlayRef!.updatePosition();
+    });
 
   }
 
