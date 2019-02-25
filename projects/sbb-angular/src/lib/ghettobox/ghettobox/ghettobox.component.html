@@ -1,6 +1,6 @@
 <article class="sbb-ghettobox-wrapper" *ngIf="visible">
-  <div class="sbb-ghettobox-icon">
-    <div class="sbb-ghettobox-icon-wrapper">
+  <div class="sbb-ghettobox-icon-container">
+    <div class="sbb-ghettobox-icon">
       <ng-container *ngTemplateOutlet="icon"></ng-container>
     </div>
   </div>
@@ -14,7 +14,7 @@
           [skipLocationChange]="ghettobox.link.skipLocationChange" 
           [replaceUrl]="ghettobox.link.replaceUrl"
           [state]="ghettobox.link.state"
-          [queryParamsHandling]="ghettobox.link.queryParamsHandling">{{ ghettobox.message }}</a>
+          [queryParamsHandling]="ghettobox.link.queryParamsHandling">{{ ghettobox.message }} <sbb-icon-arrow-down class="sbb-ghettobox-content-link-icon"></sbb-icon-arrow-down></a>
       </ng-container>
       <ng-container *ngIf="!ghettobox.link">
         {{ ghettobox.message }}
@@ -22,6 +22,7 @@
     </ng-container>
     <ng-container *ngIf="!ghettobox">
       <ng-content></ng-content>
+      <sbb-icon-arrow-down *ngIf="ghettoboxLink" class="sbb-ghettobox-content-link-icon"></sbb-icon-arrow-down>
     </ng-container>
   </div>
   <div class="sbb-ghettobox-close">
@@ -33,5 +34,5 @@
 </article>
 
 <ng-template #defaultIcon>
-  <sbb-icon-info width="24px" height="24px"></sbb-icon-info>
+  <sbb-icon-him-info></sbb-icon-him-info>
 </ng-template>

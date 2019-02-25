@@ -1,0 +1,39 @@
+@import '../../../styles/main';
+
+.sbb-ghettobox-container {
+  @include ghettobox-container();
+}
+
+.sbb-ghettobox {
+  @include ghettobox();
+
+  .sbb-ghettobox-wrapper {
+    @include ghettobox-wrapper();
+
+    .sbb-ghettobox {
+      &-icon-container {
+        @include ghettobox-icon-container();
+      }
+
+      &-icon {
+        @include ghettobox-icon();
+      }
+      
+      &-content {
+        @include ghettobox-content();
+
+        &-link-icon {
+          @include ghettobox-content-link-icon();
+        }
+      }
+
+      &-close {
+        @include ghettobox-close();
+      }
+
+      &-close-button {
+        @include ghettobox-close-button();
+      }
+    }
+  }
+}

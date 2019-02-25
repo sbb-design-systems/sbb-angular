@@ -1,0 +1,90 @@
+
+@mixin ghettobox-container() {
+  
+}
+
+@mixin ghettobox() {
+  display: block;
+  background-color: $ghettobox-bg;
+  color: $ghettobox-color;
+}
+
+@mixin ghettobox-wrapper() {
+  position: relative;
+  margin-left: 1.6rem;
+  margin-right: 1.6rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: pxToEm(24) pxToEm(36) pxToEm(24) 0;
+
+  @include mq($from: desktop) {
+    margin-left: 5.5%;
+    margin-right: 5.5%;
+  }
+
+  @include mq($from: desktopLarge) {
+    margin-left: 8.5%;
+    margin-right: 8.5%;
+  }
+}
+
+@mixin ghettobox-icon-container() {
+  flex: 0 0 $ghettobox-icon-size;
+}
+
+@mixin ghettobox-icon() {
+  width: $ghettobox-icon-size;
+  height: $ghettobox-icon-size;
+  background-color: $ghettobox-icon-bg;
+  border-radius: $ghettobox-icon-radius;
+  fill: $ghettobox-color;
+
+  .sbb-icon-component {
+    display: block;
+    line-height: 0;
+    padding: pxToEm(2);
+  }
+}
+
+@mixin ghettobox-content() {
+  flex: 0 1 auto;
+  padding: 0 pxToEm(12);
+  fill: $ghettobox-color;
+
+  @include mq($from: desktop) {
+    padding: 0 pxToEm(24);
+  }
+
+  a {
+    text-decoration: none;
+    color: $ghettobox-color;
+    fill: $ghettobox-color;
+  }
+}
+
+@mixin ghettobox-close() {
+  flex: 0 0 $ghettobox-icon-size;
+}
+
+@mixin ghettobox-close-button() {
+  @include buttonResetFrameless();
+  width: $ghettobox-icon-size;
+  height: $ghettobox-icon-size;
+  fill: $ghettobox-color;
+  border: pxToEm(1) solid $ghettobox-color;
+  border-radius: 50%;
+
+  .sbb-icon-component {
+    padding: pxToEm(2);
+    display: block;
+    line-height: 0;
+  }
+}
+
+@mixin ghettobox-content-link-icon() {
+  width: $ghettobox-link-icon-size;
+  height: $ghettobox-link-icon-size;
+  display: inline-block;
+  vertical-align: middle;
+}

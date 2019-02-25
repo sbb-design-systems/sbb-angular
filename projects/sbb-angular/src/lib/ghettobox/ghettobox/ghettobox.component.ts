@@ -8,7 +8,8 @@ import {
   HostListener,
   Input,
   HostBinding,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewEncapsulation
 } from '@angular/core';
 import { GhettoboxIconDirective, GhettoboxLinkDirective } from './ghettobox-content.directives';
 import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
@@ -21,7 +22,8 @@ let counter = 0;
   selector: 'sbb-ghettobox',
   templateUrl: './ghettobox.component.html',
   styleUrls: ['./ghettobox.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class GhettoboxComponent {
 
@@ -29,6 +31,8 @@ export class GhettoboxComponent {
 
   @Input() @HostBinding('attr.id')
   ghettoboxId = `sbb-ghettobox-${counter++}`;
+
+  @HostBinding('class.sbb-ghettobox') ghettoboxClass = true;
 
   @HostBinding('attr.role') role = 'alert';
 

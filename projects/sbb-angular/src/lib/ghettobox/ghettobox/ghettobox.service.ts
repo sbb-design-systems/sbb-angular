@@ -35,6 +35,7 @@ export class GhettoboxService {
   }
 
   add(ghettobox: Ghettobox): GhettoboxRef {
+    this._checkIfContainerIsPresent();
     const ghettoboxRef = this._containerInstance.createGhettobox(ghettobox);
     this._attachedGhettoboxes.push(ghettoboxRef);
 
@@ -42,11 +43,11 @@ export class GhettoboxService {
   }
 
   deleteById(ghettoboxId: string): boolean {
-    return this.delete(this._attachedGhettoboxes.find(g => g.id === ghettoboxId));
+    return this._delete(this._attachedGhettoboxes.find(g => g.id === ghettoboxId));
   }
 
   deleteByIndex(index: number): boolean {
-    return this.delete(this._attachedGhettoboxes[index]);
+    return this._delete(this._attachedGhettoboxes[index]);
   }
 
   clearAll() {
@@ -58,12 +59,18 @@ export class GhettoboxService {
     this._attachedGhettoboxes.splice(this._attachedGhettoboxes.indexOf(ghettoboxToDelete), 1);
   }
 
-  private delete(ghettoboxToDelete: GhettoboxRef): boolean {
+  private _delete(ghettoboxToDelete: GhettoboxRef): boolean {
     if (ghettoboxToDelete) {
       ghettoboxToDelete.delete();
 
       return true;
     }
     return false;
+  }
+
+  private _checkIfContainerIsPresent() {
+    if (!this._containerInstance) {
+      throw Error('You must have a sbb-ghettobox-container in the page in order to add one or more Ghettoboxes dynamically');
+    }
   }
 }
