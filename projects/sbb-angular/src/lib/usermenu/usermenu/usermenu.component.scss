@@ -18,11 +18,35 @@ $borderActive: solid 2px #666;
 
       display: flex;
       align-items: center;
+      margin-left: 3px;
+      margin-top:3px;
 
-      &-icon {
-        position: relative;
-        margin-top: 4px;
-        margin-left: 3px;
+      &-user-icon {
+
+        flex-basis: 32px;
+
+        .sbb-usermenu-logged-in-collapsed-icon {
+          position: relative;
+          /* margin-top: 4px;
+          margin-left: 3px; */
+        }
+
+        .sbb-usermenu-logged-in-collapsed-initial-letters {
+          border-radius: 50%;
+          border: 1px solid $colorBlack72;
+          background-color: $colorBlack10;
+          font-family: $fontFamilyBase;
+          font-size: pxToRem(15);
+          color: $colorBlack60;
+          font-weight: 700;
+          width: 32px;
+          height: 32px;
+          text-align: center;
+          position: relative;
+          > div {
+            @include absoluteCenterXY;
+          }
+        }
       }
 
       &-arrow {
@@ -32,48 +56,44 @@ $borderActive: solid 2px #666;
         position: relative;
       }
 
-      &-initial-letters {
-        border-radius: 50%;
-        border: 1px solid $colorBlack72;
-        background-color: $colorBlack10;
-        font-family: $fontFamilyBase;
-        font-size: pxToRem(15);
-        color: $colorBlack60;
-        font-weight: 700;
-        width: 32px;
-        height: 32px;
-        text-align: center;
-        position: relative;
-        > div {
-          @include absoluteCenterXY;
+
+      .sbb-usermenu-logged-in-expanded-info-user {
+
+        flex-grow: 1;
+        padding-left: 4px;
+
+        .sbb-usermenu-logged-in-expanded-username {
+          font-size: pxToRem(15);
+          font-family: $fontSbbRoman;
+          color: $colorBlack60;
+          margin-top: -5px;
+        }
+
+        .sbb-usermenu-logged-in-expanded-displayName {
+          font-family: $fontSbbRoman;
+          color: $colorBlack60;
+          font-size:pxToRem(13);
+          margin-top: -3px;
+        }
+        
+      }
+
+      .sbb-usermenu-logged-in-expanded-arrow-above {
+
+        flex-basis: 2px;
+
+        .sbb-usermenu-logged-in-expanded-arrow {
+          width: 24px;
+          height: 24px;
+          transform: rotate(180deg);
+          margin-left:60px;
         }
       }
-
-      .sbb-usermenu-logged-in-expanded-username {
-        font-size: pxToRem(15);
-        font-family: $fontSbbRoman;
-        color: $colorBlack60;
-        margin-left:3px;
-        margin-top: -15px;
-      }
-
-      .sbb-usermenu-logged-in-expanded-displayName {
-        font-family: $fontSbbRoman;
-        color: $colorBlack60;
-        position: fixed;
-        margin-top:10px;
-        margin-left:38px;
-        font-size:pxToRem(13);
-      }
-
-      .sbb-usermenu-logged-in-expanded-arrow {
-        width: 24px;
-        height: 24px;
-        transform: rotate(180deg);
-        margin-left:60px;
-      }
+     
     }
   }
+
+
   .sbb-usermenu-logged-off {
     display: flex;
     align-items: center;
@@ -95,4 +115,8 @@ $borderActive: solid 2px #666;
       margin-top:2px;
     }
   }
+}
+
+.collapsed-expanded {
+  width:100%;
 }
