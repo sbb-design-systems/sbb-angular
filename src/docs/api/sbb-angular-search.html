@@ -59,7 +59,9 @@
           <code>mode: &#39;header&#39; | &#39;default&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Sets the search in default mode or in header mode, where the input field with the search button is shown only after clicking on a trigger</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -77,7 +79,14 @@
           <code>search: EventEmitter&lt;any&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Event emitted when:</p>
+        <ul>
+          <li>ENTER key is pressed on the input field</li>
+          <li>the search button is activated</li>
+          <li>an autocomplete option is selected</li>
+        </ul>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -152,7 +161,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>icon: TemplatePortal&lt;any&gt;</code>
+          <code>icon: TemplateRef&lt;any&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -409,6 +418,11 @@
         <th colspan="2" class="docs-api-method-name-cell">revealSearchbox </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Reveals the search box when using the &#39;header&#39; mode.</p>
+      </td>
+    </tr>
   </table>
   <table class="docs-api-method-table">
     <thead>
@@ -417,6 +431,14 @@
       </tr>
     </thead>
   </table>
+  <h4 id="SearchIconDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SearchIconDirective"></span>
+    <code>SearchIconDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbSearchIcon]</span>
+  </p>
   <h3 id="additional_classes" class="docs-header-link docs-api-h3">
     <span header-link="additional_classes"></span> Additional classes </h3>
   <h4 id="SearchChangeEvent" class="docs-header-link docs-api-h4 docs-api-class-name">

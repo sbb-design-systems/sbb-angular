@@ -111,7 +111,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   @ContentChild(SearchIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
-
+  /**
+   * Sets the search in default mode or in header mode,
+   * where the input field with the search button is shown only after clicking on a trigger
+   */
   @Input() mode: 'header' | 'default' = 'default';
 
   /**
@@ -204,6 +207,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
 
+  /**
+   * Event emitted when:
+   * - ENTER key is pressed on the input field
+   * - the search button is activated
+   * - an autocomplete option is selected
+   */
   @Output() search: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
@@ -269,6 +278,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     }
   }
 
+
   onInput($event: KeyboardEvent) {
     this.handleInput($event);
   }
@@ -315,8 +325,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   @HostBinding('attr.aria-autocomplete')
   get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
-
-
 
   ngOnDestroy() {
     if (typeof window !== 'undefined') {
@@ -791,6 +799,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       !this.autocompleteDisabled;
   }
 
+  /**
+   * Reveals the search box when using the 'header' mode.
+   */
   revealSearchbox() {
     this._hideSearch = false;
     this.attachOverlay();
