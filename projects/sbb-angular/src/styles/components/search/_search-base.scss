@@ -54,14 +54,19 @@
       @include buttonResetFrameless;
       fill: $colorWhite;
       background-color: $colorRed100;
+      border-radius: 0 2px 2px 0;
       width: toPx($searchButtonWidth);
 
       @include mq($from: desktop4k) {
         width: toPx($searchButtonWidth * $scalingFactor4k);
+        border-top-right-radius: toPx(2 * $scalingFactor4k);
+        border-bottom-right-radius: toPx(2 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         width: toPx($searchButtonWidth * $scalingFactor5k);
+        border-top-right-radius: toPx(2 * $scalingFactor5k);
+        border-bottom-right-radius: toPx(2 * $scalingFactor5k);
       }
 
       position: relative;
@@ -83,6 +88,14 @@
       &.sbb-search-box-button-active {
         border: 2px solid $colorGrey;
         border-left: none;
+
+        @include mq($from: desktop4k) {
+          border-width: toPx(2 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          border-width: toPx(2 * $scalingFactor5k);
+        }
         > .sbb-icon-component {
           left: calc(50% + 1px);
         }
