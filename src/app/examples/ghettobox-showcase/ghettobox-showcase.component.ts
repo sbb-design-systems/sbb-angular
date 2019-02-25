@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { GhettoboxService, } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
+import { Component, OnDestroy, ViewChild, TemplateRef } from '@angular/core';
+import { GhettoboxService, GhettoboxRef, } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 import { ActivatedRoute } from '@angular/router';
 import { LinkGeneratorResult } from 'sbb-angular';
 import { Subscription } from 'rxjs';
@@ -13,10 +13,16 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
 
   private _ghettoboxInitLoadSubscription = Subscription.EMPTY;
 
+  @ViewChild('testIcon1', { read: TemplateRef }) testIcon1;
+  @ViewChild('testIcon2', { read: TemplateRef }) testIcon2;
+
   constructor(private _ghettoboxService: GhettoboxService, private route: ActivatedRoute) {
     this._ghettoboxInitLoadSubscription =
       this._ghettoboxService.ready.subscribe(
-        () => this._ghettoboxService.add({ message: 'This ghettobox is loaded at page load', link: this.linkGenerator(getRandomInt(10)) })
+        () => {
+          this._ghettoboxService.add(
+            { message: 'This ghettobox is loaded at page load', link: this.linkGenerator(getRandomInt(10)), icon: this.testIcon1 });
+        }
       );
   }
 
@@ -33,18 +39,29 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
     };
   }
 
-  addGhettoboxes() {
-    this._ghettoboxService.add(
-      [
-        { message: 'Hello ghettobox', link: this.linkGenerator(getRandomInt(10)) },
-        { message: 'Hello ghettobox 2', link: this.linkGenerator(getRandomInt(10)) }
-      ]
-    );
+  addGhettobox() {
+    this._ghettoboxService.add({ message: 'Hello ghettobox', link: this.linkGenerator(getRandomInt(10)), icon: this.testIcon2 });
   }
 
   deleteById(id: string) {
     const deleted = this._ghettoboxService.deleteById(id);
     console.log(deleted);
+  }
+
+  deleteByIndex() {
+    const lastGhettoboxIndex = this._ghettoboxService.attachedGhettoboxes.length - 1;
+    const deleted = this._ghettoboxService.deleteByIndex(lastGhettoboxIndex);
+    console.log(deleted);
+  }
+
+  printAttachedGhettoboxesIDS() {
+    return this._ghettoboxService.attachedGhettoboxes.map(
+      g => {
+        return {
+          id: g.id
+        };
+      }
+    );
   }
 }
 

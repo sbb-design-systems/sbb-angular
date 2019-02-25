@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
 import { GhettoboxContainerComponent } from '../ghettobox-container/ghettobox-container.component';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { GhettoboxComponent } from './ghettobox.component';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GhettoboxService {
 
@@ -31,35 +29,24 @@ export class GhettoboxService {
     this._containerInstance = undefined;
   }
 
-  loadInitialGhettoboxes(initialGhettoboxes: GhettoboxComponent[]) {
-    this._attachedGhettoboxes.push(...initialGhettoboxes.map(g => new GhettoboxRef(g)));
+  loadInitialGhettoboxes(initialGhettoboxes: GhettoboxRef[]) {
+    this._attachedGhettoboxes.push(...initialGhettoboxes);
     this.ready.next();
   }
 
-  add(ghettobox: Ghettobox | Ghettobox[]): GhettoboxRef | GhettoboxRef[] {
-    let ghettoboxRef: GhettoboxRef | GhettoboxRef[];
-
-    if (Array.isArray(ghettobox)) {
-      ghettoboxRef = ghettobox.map(g => this.createGhettobox(g));
-    } else {
-      ghettoboxRef = this.createGhettobox(ghettobox);
-    }
+  add(ghettobox: Ghettobox): GhettoboxRef {
+    const ghettoboxRef = this._containerInstance.createGhettobox(ghettobox);
+    this._attachedGhettoboxes.push(ghettoboxRef);
 
     return ghettoboxRef;
   }
 
   deleteById(ghettoboxId: string): boolean {
-    let deleted = false;
+    return this.delete(this._attachedGhettoboxes.find(g => g.id === ghettoboxId));
+  }
 
-    const ghettoboxToDelete = this._attachedGhettoboxes.find(g => g.id === ghettoboxId);
-
-    if (ghettoboxToDelete) {
-      this._attachedGhettoboxes.splice(this._attachedGhettoboxes.indexOf(ghettoboxToDelete), 1);
-      ghettoboxToDelete.delete();
-      deleted = true;
-    }
-
-    return deleted;
+  deleteByIndex(index: number): boolean {
+    return this.delete(this._attachedGhettoboxes[index]);
   }
 
   clear() {
@@ -67,13 +54,16 @@ export class GhettoboxService {
     this._attachedGhettoboxes = [];
   }
 
-  private createGhettobox(ghettobox: Ghettobox): GhettoboxRef {
-    const ghettoboxComponentPortal = new ComponentPortal(GhettoboxComponent);
-    const ghettoboxComponentRef = this._containerInstance.attachComponentPortal(ghettoboxComponentPortal);
-    ghettoboxComponentRef.instance.ghettobox = ghettobox;
-    const ghettoboxRef = new GhettoboxRef(ghettoboxComponentRef);
-    this._attachedGhettoboxes.push(ghettoboxRef);
+  deleteFromAttachedGhettoboxesCollection(ghettoboxToDelete: GhettoboxRef): void {
+    this._attachedGhettoboxes.splice(this._attachedGhettoboxes.indexOf(ghettoboxToDelete), 1);
+  }
 
-    return ghettoboxRef;
+  private delete(ghettoboxToDelete: GhettoboxRef): boolean {
+    if (ghettoboxToDelete) {
+      ghettoboxToDelete.delete();
+
+      return true;
+    }
+    return false;
   }
 }

@@ -11,8 +11,9 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { GhettoboxIconDirective, GhettoboxLinkDirective } from './ghettobox-content.directives';
-import { Ghettobox } from './ghettobox-ref';
+import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
 import { Router } from '@angular/router';
+import { GhettoboxService } from './ghettobox.service';
 
 let counter = 0;
 
@@ -53,6 +54,10 @@ export class GhettoboxComponent {
   }
   set ghettobox(value: Ghettobox) {
     this._ghettobox = value;
+
+    if (this._ghettobox.icon) {
+      this.icon = this._ghettobox.icon;
+    }
     this._changeDetector.markForCheck();
   }
 
@@ -61,7 +66,8 @@ export class GhettoboxComponent {
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private router: Router) {
+    private router: Router,
+    private _ghettoboxService: GhettoboxService) {
   }
 
   @HostListener('click')
@@ -83,6 +89,11 @@ export class GhettoboxComponent {
     this.visible = false;
     this.role = undefined;
     this.ariaHidden = 'true';
+    this._changeDetector.markForCheck();
+
+    if (this._ghettoboxService.hasContainerLoaded) {
+      this._ghettoboxService.deleteFromAttachedGhettoboxesCollection(new GhettoboxRef(this));
+    }
   }
 
   private clickGhettoboxLinkFromService(): void {

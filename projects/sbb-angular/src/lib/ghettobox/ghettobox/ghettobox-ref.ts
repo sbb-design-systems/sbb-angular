@@ -1,6 +1,6 @@
 import { LinkGeneratorResult } from '../../pagination/pagination';
 import { GhettoboxComponent } from './ghettobox.component';
-import { TemplateRef, ComponentRef, EmbeddedViewRef } from '@angular/core';
+import { TemplateRef, ComponentRef } from '@angular/core';
 
 export interface Ghettobox {
   message: string;
@@ -11,11 +11,17 @@ export interface Ghettobox {
 export class GhettoboxRef {
 
   get id(): string {
-    if (this._ref instanceof GhettoboxComponent) {
-      return this._ref.ghettoboxId;
-    } else {
+    if (this._ref instanceof ComponentRef) {
       return this._ref.instance.ghettoboxId;
     }
+    return this._ref.ghettoboxId;
+  }
+
+  get componentInstance(): GhettoboxComponent {
+    if (this._ref instanceof ComponentRef) {
+      return this._ref.instance;
+    }
+    return this._ref;
   }
 
   private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent;
@@ -25,6 +31,10 @@ export class GhettoboxRef {
   }
 
   delete(): void {
-    this._ref.destroy();
+    this.componentInstance.destroy();
+
+    if (this._ref instanceof ComponentRef) {
+      this._ref.destroy();
+    }
   }
 }

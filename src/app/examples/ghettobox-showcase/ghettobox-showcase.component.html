@@ -72,11 +72,25 @@
     <div class="col-lg-4">
       <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
-        <button sbbButton (click)="addGhettoboxes()">Add a ghettobox Array</button>
+        <button sbbButton (click)="addGhettobox()">Add ghettobox</button>
       </div>
       <div class="sbbsc-block">
-        <button sbbButton (click)="deleteById('sbb-ghettobox-4')">Delete ghettoxbox width id sbb-ghettobox-4</button>
+        <input #ghettoId type="text" placeholder="Set ghettobox ID to delete" />
+        <button sbbButton (click)="deleteById(ghettoId.value)">Delete ghettoxbox by id sbb-ghettobox-4</button>
       </div>
+      <div class="sbbsc-block">
+        <button sbbButton (click)="deleteByIndex()">Delete ghettobox by index</button>
+      </div>
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>{{ printAttachedGhettoboxesIDS() | json }}</pre>
     </div>
   </div>
   <article>
+
+    <ng-template #testIcon1>
+      <sbb-icon-clock width="24px" height="24px"></sbb-icon-clock>
+    </ng-template>
+
+    <ng-template #testIcon2>
+      <sbb-icon-comfort width="24px" height="24px"></sbb-icon-comfort>
+    </ng-template>

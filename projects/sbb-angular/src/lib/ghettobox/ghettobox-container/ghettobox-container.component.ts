@@ -9,12 +9,12 @@ import {
   OnDestroy,
   ContentChildren,
   QueryList,
-  AfterContentInit,
-  SimpleChanges
+  AfterContentInit
 } from '@angular/core';
 import { CdkPortalOutlet, BasePortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { GhettoboxRef, Ghettobox } from '../ghettobox/ghettobox-ref';
 
 let counter = 0;
 
@@ -53,7 +53,7 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
 
   ngAfterContentInit() {
     this._ghettoboxService
-      .loadInitialGhettoboxes(this.initialGhettoboxes.toArray());
+      .loadInitialGhettoboxes(this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(g)));
   }
 
   ngOnDestroy() {
@@ -75,6 +75,14 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
    */
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
     return this.portalOutlet.attachTemplatePortal(portal);
+  }
+
+  createGhettobox(ghettobox: Ghettobox): GhettoboxRef {
+    const ghettoboxComponentPortal = new ComponentPortal(GhettoboxComponent);
+    const ghettoboxComponentRef = this.attachComponentPortal(ghettoboxComponentPortal);
+    ghettoboxComponentRef.instance.ghettobox = ghettobox;
+
+    return new GhettoboxRef(ghettoboxComponentRef);
   }
 
 }
