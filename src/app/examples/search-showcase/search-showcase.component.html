@@ -45,6 +45,26 @@
       </sbb-autocomplete>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Search field with autocomplete, static options, header mode and custom icon</h4>
+      <sbb-search mode="header" (search)="searchCounter()" placeholder="Suchen" [formControl]="myControlStatic"
+        [sbbAutocomplete]="auto2">
+        <sbb-icon-info *sbbSearchIcon></sbb-icon-info>
+      </sbb-search>
+      <sbb-autocomplete #auto2="sbbAutocomplete">
+        <sbb-option *ngFor="let option of options$ | async" [value]="option">
+          {{ option }}
+        </sbb-option>
+        <sbb-option-group label="Oft gesucht:">
+          <sbb-option *ngFor="let option of staticOptions" [value]="option">
+            {{ option }}
+          </sbb-option>
+        </sbb-option-group>
+      </sbb-autocomplete>
+    </div>
+  </div>
   <div role="presentation" class="sbbsc-separator"></div>
 
   <div class="row">

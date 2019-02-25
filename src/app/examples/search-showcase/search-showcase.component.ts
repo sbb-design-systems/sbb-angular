@@ -95,7 +95,7 @@ export class SearchShowcaseComponent implements OnInit {
 
   }
 
-  search($event) {
+  search() {
     this.searchSubject.next(this.myControl2.value);
   }
 
