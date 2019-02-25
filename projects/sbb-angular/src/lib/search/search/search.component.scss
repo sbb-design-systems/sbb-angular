@@ -32,6 +32,9 @@
       &.sbb-search-box-button-active {
         border: 2px solid $colorGrey;
         border-left: none;
+        > .sbb-icon-component {
+          left: calc(50% + 1px);
+        }
       }
     }
   }
