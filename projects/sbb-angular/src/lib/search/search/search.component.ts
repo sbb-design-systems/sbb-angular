@@ -271,12 +271,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
           || ($event.target === this.button.nativeElement && $event.relatedTarget !== this.input.nativeElement)) {
           if (this.autocomplete) {
 
-            this.closeAnimation(this.overlayRef.overlayElement)
+            this.closeAnimation(this.overlayRef.overlayElement);
           }
           this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
             this._hideSearch = true;
             this.changeDetectorRef.markForCheck();
-          });;
+          });
         }
       }
     }
