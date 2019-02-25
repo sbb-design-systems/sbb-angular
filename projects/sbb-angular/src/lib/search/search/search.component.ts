@@ -133,6 +133,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    */
   @HostBinding('class.sbb-search') cssClass = true;
 
+  /**
+   * Adds a placeholder to the component
+   */
   @Input() placeholder: string;
 
   private overlayRef: OverlayRef | null;
@@ -165,6 +168,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private overlayAttached = false;
   private highlightPipe = new HighlightPipe();
 
+  /**
+   * Used to switch from trigger to search box when in 'header' mode
+   */
   get hideSearch(): boolean {
     if (this.mode === 'default') {
       return false;
@@ -282,19 +288,22 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     }
   }
 
-
+  /** @docs-private */
   onInput($event: KeyboardEvent) {
     this.handleInput($event);
   }
 
+  /** @docs-private */
   onKeydown($event: KeyboardEvent) {
     this.handleKeydown($event);
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
     return (this.autocompleteDisabled || !this.panelOpen) ? null : this.autocomplete.id;
   }
@@ -327,6 +336,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-autocomplete')
   get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
 
@@ -400,6 +410,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     );
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-activedescendant') get activeOptionId() {
     return this.activeOption ? this.activeOption.id : null;
   }
@@ -493,6 +504,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       .subscribe(() => this.highlightOptionsByInput(this.input.nativeElement.value));
   }
 
+  /**
+   * Scrolls to the option when using arrow keys to navigate the autocomplete panel
+   */
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(index,
@@ -508,6 +522,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
+  /**
+   * Highlights options available into the autocomplete panel while typing
+   */
   highlightOptionsByInput(value: number | string) {
     if (!this.autocompleteDisabled) {
       this.autocomplete.options
@@ -518,10 +535,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     }
   }
 
+  /** @docs-private */
   emitSearch() {
     this.search.emit(this.input.nativeElement.value);
   }
 
+  /** @docs-private */
   handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
@@ -550,6 +569,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     }
   }
 
+  /** @docs-private */
   handleFocus(): void {
     if (!this.canOpenOnNextFocus) {
       this.canOpenOnNextFocus = true;
@@ -561,9 +581,9 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
 
   /**
- * This method listens to a stream of panel closing actions and resets the
- * stream every time the option list changes.
- */
+   * This method listens to a stream of panel closing actions and resets the
+   * stream every time the option list changes.
+   */
   private subscribeToClosingActions(): Subscription {
     const firstStable = this.zone.onStable.asObservable().pipe(first());
     const optionChanges = this.autocomplete.options.changes.pipe(
