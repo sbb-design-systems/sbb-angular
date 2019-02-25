@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { IconCheckmarkComponent } from 'sbb-angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'sbb-search-showcase',
@@ -17,21 +18,41 @@ export class SearchShowcaseComponent implements OnInit {
   myControl2 = new FormControl('');
 
   options$: Subject<string[]>;
-  searchNumbers: Subject<string>;
-  mode: 'header' | 'default' = 'default';
 
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filter: '';
   filteredOptions = this.options.slice(0);
-  filteredOptions2 = this.options.slice(0);
+  searchCounterAmount = 0;
+  showSpinner = false;
 
-  staticOptions: string[] = ['statische Option eins', 'statische Option zwei']; ngOnInit() {
+  searchSubject = new Subject<string>();
+  searchResults: Array<any> = [];
+
+  topics: string[] =
+    [
+      'Zurich',
+      'Bern',
+      'Basel',
+      'Lausanne',
+      'Lucerne',
+      'St. Gallen',
+      'Lugano',
+      'Thun',
+
+    ];
+
+  filteredOptions2 = this.topics.slice(0);
+  staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
     this.myControl.valueChanges.subscribe((newValue) => {
       this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
     this.myControl2.valueChanges.subscribe((newValue) => {
-      this.filteredOptions2 = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
+      this.filteredOptions2 = this.topics.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
     this.options$ = new Subject<string[]>();
@@ -49,17 +70,38 @@ export class SearchShowcaseComponent implements OnInit {
         }
       });
 
+    this.searchSubject
+      .pipe(debounceTime(500))
+      .pipe(distinctUntilChanged())
+
+      .subscribe((searchTerm) => {
+        this.showSpinner = true;
+        const searchT = searchTerm.trim().toLowerCase();
+        this.http
+          .get<any>
+          ('https://data.sbb.ch/api/records/1.0/search/?dataset=historische-bahnhofbilder&facet=ort&facet=datum_foto_1&q=' + searchT)
+          .subscribe(results => {
+            const searchResults = results;
+            this.searchResults = searchResults.records.map(record => record.fields.filename.id);
+            console.log(this.searchResults);
+            this.showSpinner = false;
+
+          });
+      });
+
   }
 
-  searchResults($event) {
+  search($event) {
     console.log($event);
+    this.searchSubject.next(this.myControl2.value);
   }
 
-  toggleMode() {
-    if (this.mode === 'default') {
-      this.mode = 'header';
-    } else {
-      this.mode = 'default';
-    }
+  searchCounter() {
+    this.searchCounterAmount++;
   }
+
+
+
+
+
 }
