@@ -57,8 +57,8 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
   }
 
   ngOnDestroy() {
-    this._ghettoboxService.clearContainer();
-    this._ghettoboxService.clear();
+    this._ghettoboxService.clearAll();
+    this._ghettoboxService._clearContainer();
   }
 
   /**

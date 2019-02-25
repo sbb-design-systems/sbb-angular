@@ -74,13 +74,25 @@
       <div class="sbbsc-block">
         <button sbbButton (click)="addGhettobox()">Add ghettobox</button>
       </div>
+      <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
-        <input #ghettoId type="text" placeholder="Set ghettobox ID to delete" />
-        <button sbbButton (click)="deleteById(ghettoId.value)">Delete ghettoxbox by id sbb-ghettobox-4</button>
+        <div class="sbbsc-block">
+          <input #ghettoId type="text" placeholder="ID to delete" />
+        </div>
+        <button sbbButton (click)="deleteById(ghettoId.value)">Delete ghettoxbox by ID</button>
       </div>
+      <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
-        <button sbbButton (click)="deleteByIndex()">Delete ghettobox by index</button>
+        <div class="sbbsc-block">
+          <input #ghettoIndex type="number" placeholder="Index to delete" />
+        </div>
+        <button sbbButton (click)="deleteByIndex(ghettoIndex.value)">Delete ghettobox by Index</button>
       </div>
+      <div role="presentation" class="sbbsc-separator"></div>
+      <div class="sbbsc-block">
+        <button sbbButton (click)="clear()">Clear All</button>
+      </div>
+      <div role="presentation" class="sbbsc-separator"></div>
       <h4 class="sbbsc-block">Model</h4>
       <pre>{{ printAttachedGhettoboxesIDS() | json }}</pre>
     </div>

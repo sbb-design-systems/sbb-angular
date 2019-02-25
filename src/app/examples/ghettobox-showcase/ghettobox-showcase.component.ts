@@ -13,8 +13,8 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
 
   private _ghettoboxInitLoadSubscription = Subscription.EMPTY;
 
-  @ViewChild('testIcon1', { read: TemplateRef }) testIcon1;
-  @ViewChild('testIcon2', { read: TemplateRef }) testIcon2;
+  @ViewChild('testIcon1', { read: TemplateRef }) testIcon1: TemplateRef<any>;
+  @ViewChild('testIcon2', { read: TemplateRef }) testIcon2: TemplateRef<any>;
 
   constructor(private _ghettoboxService: GhettoboxService, private route: ActivatedRoute) {
     this._ghettoboxInitLoadSubscription =
@@ -48,10 +48,13 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
     console.log(deleted);
   }
 
-  deleteByIndex() {
-    const lastGhettoboxIndex = this._ghettoboxService.attachedGhettoboxes.length - 1;
-    const deleted = this._ghettoboxService.deleteByIndex(lastGhettoboxIndex);
+  deleteByIndex(index: number) {
+    const deleted = this._ghettoboxService.deleteByIndex(index);
     console.log(deleted);
+  }
+
+  clear() {
+    this._ghettoboxService.clearAll();
   }
 
   printAttachedGhettoboxesIDS() {

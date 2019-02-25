@@ -25,7 +25,7 @@ export class GhettoboxService {
     this._containerInstance = ghettoboxContainer;
   }
 
-  clearContainer() {
+  _clearContainer() {
     this._containerInstance = undefined;
   }
 
@@ -49,9 +49,9 @@ export class GhettoboxService {
     return this.delete(this._attachedGhettoboxes[index]);
   }
 
-  clear() {
-    this._attachedGhettoboxes.forEach(g => g.delete());
-    this._attachedGhettoboxes = [];
+  clearAll() {
+    const attachedGettoboxCopy = this._attachedGhettoboxes.slice();
+    attachedGettoboxCopy.forEach(g => g.delete());
   }
 
   deleteFromAttachedGhettoboxesCollection(ghettoboxToDelete: GhettoboxRef): void {
