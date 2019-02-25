@@ -2,97 +2,6 @@
 
 $borderActive: solid 2px #666;
 
-/* 
-.sbb-usermenu {
-  &-login {
-    @include usermenu-login;
-    .icon-user {
-      width: 24px;
-      height: 24px;
-      margin-left: 2px;
-    }
-
-    &-active {
-      border-top: $borderActive;
-      border-right: $borderActive;
-      border-left: $borderActive;
-    }
-
-    .sbb-usermenu-logged-off{
-      .sbb-usermenu-login-content {
-        @include buttonResetFrameless;
-        display: flex;
-        align-items: center;
-        margin-left: 15px;
-        font-family: $fontFamilyBase;
-        height: 17px;
-        padding-right: 12px;
-      }
-    }
-    .sbb-usermenu-logged-in {
-      .sbb-usermenu-login-content {
-        @include buttonResetFrameless;
-        display: flex;
-        align-items: center;
-        margin-left: 15px;
-        font-family: $fontFamilyBase;
-        height: 17px;
-        padding-right: 12px;
-
-        .sbb-usermenu-initialLetters {
-          border-radius: 50%;
-          border: 1px solid $colorBlack72;
-          background-color: $colorBlack10;
-          font-family: $fontFamilyBase;
-          font-size: pxToRem(15);
-          color: $colorBlack60;
-          font-weight: 700;
-          width: 32px;
-          height: 32px;
-          position: relative;
-          > div {
-            @include absoluteCenterXY;
-          }
-        }
-        .sbb-usermenu-username {
-          margin-left: 20px;
-          font-size: pxToRem(15);
-          font-family: $fontSbbRoman;
-          color: $colorBlack60;
-          height: 24px;
-        }
-
-        .sbb-usermenu-name {
-          height: 14px;
-          font-family: $fontSbbRoman;
-          color: $colorBlack60;
-          display: inline-block;
-          position: absolute;
-          margin-top: 12px;
-          margin-left: 42px;
-        }
-      }
-
-      .sbb-arrow-rotate {
-        width: 24px;
-        height: 24px;
-        transform: rotate(180deg);
-      }
-    }
-
-    .sbb-arrow {
-      width: 24px;
-      height: 24px;
-      z-index: -1;
-    }
-  
-  }
-
- 
-} */
-
-$borderActive: solid 2px #666;
-
 .sbb-usermenu {
   &-logged-in {
     @include usermenu-login;
@@ -106,10 +15,14 @@ $borderActive: solid 2px #666;
     }
 
     &-collapsed {
+
       display: flex;
       align-items: center;
+
       &-icon {
         position: relative;
+        margin-top: 4px;
+        margin-left: 3px;
       }
 
       &-arrow {
@@ -140,17 +53,24 @@ $borderActive: solid 2px #666;
         font-size: pxToRem(15);
         font-family: $fontSbbRoman;
         color: $colorBlack60;
+        margin-left:3px;
+        margin-top: -15px;
       }
 
       .sbb-usermenu-logged-in-expanded-displayName {
         font-family: $fontSbbRoman;
         color: $colorBlack60;
+        position: fixed;
+        margin-top:10px;
+        margin-left:38px;
+        font-size:pxToRem(13);
       }
 
       .sbb-usermenu-logged-in-expanded-arrow {
         width: 24px;
         height: 24px;
         transform: rotate(180deg);
+        margin-left:60px;
       }
     }
   }
@@ -160,6 +80,7 @@ $borderActive: solid 2px #666;
     position: relative;
     height: 48px;
     width: 156px;
+
     &-icon-user {
       width: 24px;
       height: 24px;
@@ -171,6 +92,7 @@ $borderActive: solid 2px #666;
       @include buttonResetFrameless;
       position: relative;
       margin-left: 13.5px;
+      margin-top:2px;
     }
   }
 }

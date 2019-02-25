@@ -25,14 +25,34 @@ export class UserMenuShowcaseComponent implements OnInit {
     iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
   };
 
+  loggedUser2: User = {
+    userName: 'max 98',
+    displayName: 'Max Muster',
+    iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
+  };
+
+  loggedUser3: User = {
+    userName: 'max 98',
+    displayName: 'Max Muster',
+    iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
+  };
+
   user: User = {
     userName: null
   };
 
+  user2: User = {
+    userName: null
+  };
+
+  user3: User = {
+    userName: null
+  };
+
   links: Array<any> = [
-    { page: 1, text: 'Test 1' },
-    { page: 2, text: 'Test 2' },
-    { page: 3, text: 'Test 3' }
+    { page: 1, text: 'Benutzerkonto' },
+    { page: 2, text: 'Eintrag 2' },
+    { page: 3, text: 'Eintrag 3' }
   ];
 
   constructor() {
