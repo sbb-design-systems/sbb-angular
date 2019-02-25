@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <h4 class="sbbsc-block">Basic Example</h4>
-      <sbb-usermenu [userName]="user.userName" [displayName]="user.displayName" (eventLogin)="logIn($event)">
-       <!--  <img class="image" sbbIcon [src]="user.iconUrl"> -->
+      <h4 class="sbbsc-block">Basic Example with user image</h4>
+      <sbb-usermenu [userName]="user.userName" (eventLogin)="logIn($event)">
+        <img class="image" sbbIcon [src]="user.iconUrl">
         <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
           [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
           {{ link.text }}
@@ -13,4 +13,37 @@
       </sbb-usermenu>
     </div>
   </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="sbbsc-block">Example without user image</h4>
+      <sbb-usermenu [userName]="user2.userName" (eventLogin)="logIn2($event)">
+        <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
+          [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+          {{ link.text }}
+        </a>
+        <hr>
+        <button sbbDropdownItem type="button" (click)="logout2()">Abmeldung</button>
+      </sbb-usermenu>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="sbbsc-block">Example without user image and with displayName</h4>
+      <sbb-usermenu [userName]="user3.userName" [displayName]="user3.displayName" (eventLogin)="logIn3($event)">
+        <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
+          [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
+          {{ link.text }}
+        </a>
+        <hr>
+        <button sbbDropdownItem type="button" (click)="logout3()">Abmeldung</button>
+      </sbb-usermenu>
+    </div>
+  </div>
+
 </div>

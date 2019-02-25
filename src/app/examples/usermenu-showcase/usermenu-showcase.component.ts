@@ -20,21 +20,21 @@ export class UserMenuShowcaseComponent implements OnInit {
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
 
   loggedUser: User = {
-    userName: 'max 98',
-    displayName: 'Max Muster',
+    userName: 'ABB1234',
+    displayName: null,
     iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
   };
 
   loggedUser2: User = {
-    userName: 'max 98',
-    displayName: 'Max Muster',
-    iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
+    userName: 'ABB1234',
+    displayName: null,
+    iconUrl: null
   };
 
   loggedUser3: User = {
     userName: 'max 98',
     displayName: 'Max Muster',
-    iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
+    iconUrl: null
   };
 
   user: User = {
@@ -70,14 +70,33 @@ export class UserMenuShowcaseComponent implements OnInit {
   }
 
   logout() {
-
     console.log('Logout');
     this.user.userName = null;
-
   }
 
-  logIn($event:any) {
+  logout2() {
+    console.log('Logout');
+    this.user2.userName = null;
+  }
+
+  logout3() {
+    console.log('Logout');
+    this.user3.userName = null;
+  }
+
+  logIn($event: any) {
     Object.assign(this.user, this.loggedUser);
+
+    console.log('login successful');
+  }
+
+  logIn2($event: any) {
+    Object.assign(this.user2, this.loggedUser2);
+    console.log('login successful');
+  }
+
+  logIn3($event: any) {
+    Object.assign(this.user3, this.loggedUser3);
 
     console.log('login successful');
   }

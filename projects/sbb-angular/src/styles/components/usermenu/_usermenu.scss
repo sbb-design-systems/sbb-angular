@@ -11,13 +11,13 @@ $border5K: solid 4px $colorBlack72;
   line-height: 1.533;
 
   @include mq($from: desktop4k) {
-    width: 432px;
-    height: 72px;
+    width: toPx(432 * $scalingFactor4k);
+    height: toPx(72 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    width: 576px;
-    height: 96px;
+    width: toPx(576 * $scalingFactor5k);
+    height: toPx(96 * $scalingFactor5k);
   }
 }
 
@@ -26,7 +26,7 @@ $border5K: solid 4px $colorBlack72;
   border: $border;
   background-color: $colorBlack10;
   font-family: $fontFamilyBase;
-  font-size: pxToRem(15);
+  font-size: pxToRem(13);
   color: $colorBlack60;
   font-weight: 700;
   width: 32px;
@@ -35,16 +35,16 @@ $border5K: solid 4px $colorBlack72;
   position: relative;
 
   @include mq($from: desktop4k) {
-    font-size: pxToRem(23);
-    width: 180px;
-    height: 35px;
+    font-size: pxToRem(23 * $scalingFactor4k);
+    width: toPx(180 * $scalingFactor4k);
+    height: toPx(35 * $scalingFactor4k);
     border: $border4K;
   }
 
   @include mq($from: desktop5k) {
-    font-size: pxToRem(30);
-    width: 235px;
-    height: 45px;
+    font-size: pxToRem(30 * $scalingFactor5k);
+    width: toPx(235 * $scalingFactor5k);
+    height: toPx(45 * $scalingFactor5k);
     border: $border5K;
   }
 }

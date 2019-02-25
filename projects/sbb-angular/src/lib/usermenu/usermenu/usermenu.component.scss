@@ -1,8 +1,8 @@
 @import "../../../styles/main";
 
 $borderActive: solid 2px $colorGrey;
-$borderActive4K: solid 3px $colorGrey;
-$borderActive5K: solid 4px $colorGrey;
+$borderActive4K: solid toPx(3 * $scalingFactor4k) $colorGrey;
+$borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 
 .sbb-usermenu {
   &-logged-in {
@@ -34,25 +34,48 @@ $borderActive5K: solid 4px $colorGrey;
       margin-left: 3px;
       margin-top: 3px;
 
+      @include mq($from: desktop4k) {
+        display: inherit;
+        align-items: inherit;
+        margin-left: toPx(3 * $scalingFactor4k);
+        margin-top: toPx(3 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        display: inherit;
+        align-items: inherit;
+        margin-left: toPx(3 * $scalingFactor5k);
+        margin-top: toPx(3 * $scalingFactor5k);
+      }
+
       &-user-icon {
         flex-basis: 32px;
 
+        @include mq($from: desktop4k) {
+          flex-basis: toPx(32 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          flex-basis: toPx(32 * $scalingFactor5k);
+        }
         .sbb-usermenu-logged-in-collapsed-icon {
           position: relative;
 
           @include mq($from: desktop4k) {
-            width: 48px;
-            height: 48px;
+            width: toPx(48 * $scalingFactor4k);
+            height: toPx(48 * $scalingFactor4k);
+            position: inherit;
           }
 
           @include mq($from: desktop5k) {
-            width: 64px;
-            height: 64px;
+            width: toPx(64 * $scalingFactor5k);
+            height: toPx(64 * $scalingFactor5k);
+            position: inherit;
           }
         }
 
         .sbb-usermenu-logged-in-collapsed-initial-letters {
-          @include initial_letters;
+          @include initial-letters;
 
           > div {
             @include absoluteCenterXY;
@@ -65,11 +88,33 @@ $borderActive5K: solid 4px $colorGrey;
         height: 24px;
         z-index: -1;
         position: relative;
+
+        @include mq($from: desktop4k) {
+          width: toPx(36 * $scalingFactor4k);
+          height: toPx(36 * $scalingFactor4k);
+          position: inherit;
+          z-index: inherit;
+        }
+
+        @include mq($from: desktop5k) {
+          width: toPx(48 * $scalingFactor5k);
+          height: toPx(48 * $scalingFactor5k);
+          position: inherit;
+          z-index: inherit;
+        }
       }
 
       .sbb-usermenu-logged-in-expanded-info-user {
         flex-grow: 1;
         padding-left: 4px;
+
+        @include mq($from: desktop4k) {
+          padding-left: toPx(4 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          padding-left: toPx(4 * $scalingFactor5k);
+        }
 
         .sbb-usermenu-logged-in-expanded-username {
           font-size: pxToRem(15);
@@ -78,11 +123,13 @@ $borderActive5K: solid 4px $colorGrey;
           margin-top: -5px;
 
           @include mq($from: desktop4k) {
-            font-size: pxToRem(23);
+            font-size: pxToRem(23 * $scalingFactor4k);
+            margin-top: toPx(-5 * $scalingFactor4k);
           }
 
           @include mq($from: desktop5k) {
-            font-size: pxToRem(30);
+            font-size: pxToRem(30 * $scalingFactor5k);
+            margin-top: toPx(-5 * $scalingFactor5k);
           }
         }
 
@@ -93,11 +140,13 @@ $borderActive5K: solid 4px $colorGrey;
           margin-top: -3px;
 
           @include mq($from: desktop4k) {
-            font-size: pxToRem(23);
+            font-size: pxToRem(23 * $scalingFactor4k);
+            margin-top: toPx(-3 * $scalingFactor4k);
           }
 
           @include mq($from: desktop5k) {
-            font-size: pxToRem(30);
+            font-size: pxToRem(30 * $scalingFactor5k);
+            margin-top: toPx(-3 * $scalingFactor5k);
           }
         }
       }
@@ -112,13 +161,15 @@ $borderActive5K: solid 4px $colorGrey;
           margin-left: 60px;
 
           @include mq($from: desktop4k) {
-            width: 36px;
-            height: 36px;
+            width: toPx(36 * $scalingFactor4k);
+            height: toPx(36 * $scalingFactor4k);
+            margin-left: toPx(60 * $scalingFactor4k);
           }
 
           @include mq($from: desktop5k) {
-            width: 48px;
-            height: 48px;
+            width: toPx(48 * $scalingFactor5k);
+            height: toPx(48 * $scalingFactor5k);
+            margin-left: (60 * $scalingFactor5k);
           }
         }
       }
@@ -133,13 +184,19 @@ $borderActive5K: solid 4px $colorGrey;
     width: 156px;
 
     @include mq($from: desktop4k) {
-      height: 72px;
-      width: 103px;
+      height: toPx(72 * $scalingFactor4k);
+      width: toPx(103 * $scalingFactor4k);
+      display: inherit;
+      align-items: inherit;
+      position: inherit;
     }
 
     @include mq($from: desktop5k) {
-      height: 96px;
-      width: 134px;
+      height: toPx(96 * $scalingFactor5k);
+      width: toPx(134 * $scalingFactor5k);
+      display: inherit;
+      align-items: inherit;
+      position: inherit;
     }
 
     &-icon-user {
@@ -149,13 +206,17 @@ $borderActive5K: solid 4px $colorGrey;
       position: relative;
 
       @include mq($from: desktop4k) {
-        height: 36px;
-        width: 36px;
+        height: toPx(36 * $scalingFactor4k);
+        width: toPx(36 * $scalingFactor4k);
+        margin-left: toPx(2 * $scalingFactor4k);
+        position: inherit;
       }
 
       @include mq($from: desktop5k) {
-        height: 48px;
-        width: 48px;
+        height: toPx(48 * $scalingFactor5k);
+        width: toPx(48 * $scalingFactor5k);
+        margin-left: toPx(2 * $scalingFactor5k);
+        position: inherit;
       }
     }
 
@@ -164,6 +225,22 @@ $borderActive5K: solid 4px $colorGrey;
       position: relative;
       margin-left: 13.5px;
       margin-top: 2px;
+
+      @include mq($from: desktop4k) {
+        margin-left: toPx(13.5 * $scalingFactor4k);
+        position: inherit;
+        margin-top: toPx(2 * $scalingFactor4k);
+        max-width: toPx(53 * $scalingFactor4k);
+        max-height: toPx(26 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-left: toPx(13.5 * $scalingFactor5k);
+        position: inherit;
+        margin-top: toPx(2 * $scalingFactor5k);
+        max-width: toPx(70 * $scalingFactor5k);
+        max-height: toPx(35 * $scalingFactor5k);
+      }
     }
   }
 }
