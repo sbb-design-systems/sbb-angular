@@ -5,10 +5,6 @@ String cron_string = BRANCH_NAME == 'develop' ? '@midnight' : ''
 pipeline {
   agent { label 'nodejs' }
   triggers { cron(cron_string) }
-  environment {
-    scannerHome = tool 'SonarRunner';
-    libraryVersion = """${sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"').trim()}"""
-  }
 
   stages {
     stage('Installation') {
@@ -17,24 +13,34 @@ pipeline {
       }
     }
 
+    stage('Build library') {
+      steps {
+        sh 'npm run build:library'
+      }
+    }
+
     stage('Unit Tests') {
       steps {
-        sh 'npm test'
-        sh 'npm run lint'
-        sh 'npm run build'
-        withSonarQubeEnv('Sonar NextGen') {
-          sh """${scannerHome}/bin/sonar-scanner -X \
-            -Dsonar.projectKey=sbb-angular \
-            -Dsonar.projectVersion=${libraryVersion} \
-            -Dsonar.branch=${BRANCH_NAME} \
-            -Dsonar.sources=projects/sbb-angular/src \
-            -Dsonar.tests=projects/sbb-angular/src \
-            -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/*.routes.ts \
-            -Dsonar.test.inclusions=**/*.spec.ts \
-            -Dsonar.typescript.lvoc.reportPaths=coverage/lcov.info \
-            -Dsonar.typescript.tslint.reportPaths=lintReport.json
-          """
+        withCredentials([
+          usernamePassword(credentialsId: 'browserstack',
+            passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
+            usernameVariable: 'BROWSERSTACK_USERNAME')
+        ]) {
+          sh 'npm test'
+          sh 'npm run lint'
         }
+        withSonarQubeEnv('Sonar NextGen') {
+          script {
+            def props = readJSON file: 'package.json'
+            sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
+          }
+        }
+      }
+    }
+
+    stage('Build showcase') {
+      steps {
+        sh 'npm run build:showcase'
       }
     }
 
