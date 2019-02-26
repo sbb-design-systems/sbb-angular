@@ -29,6 +29,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
     }
 
     &-collapsed {
+
       display: flex;
       align-items: center;
       margin-left: 3px;
@@ -49,6 +50,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
       }
 
       &-user-icon {
+
         flex-basis: 32px;
 
         @include mq($from: desktop4k) {
@@ -81,6 +83,10 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
             @include absoluteCenterXY;
           }
         }
+      }
+
+      &-dropdown-expanded {
+        width:100%;
       }
 
       &-arrow {
@@ -245,6 +251,3 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-.collapsed-expanded {
-  width: 100%;
-}

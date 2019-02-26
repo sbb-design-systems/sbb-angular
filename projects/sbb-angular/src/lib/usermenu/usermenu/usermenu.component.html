@@ -1,6 +1,7 @@
 <div class="sbb-usermenu-logged-in" [sbbDropdown]="dropdown" tabindex="0" [class.sbb-usermenu-hidden]="!userName"
   [class.sbb-usermenu-logged-in-active]="dropdown.isOpen" [sbbDropdownDisabled]="!userName">
-  <div class="sbb-usermenu-logged-in-collapsed" [class.collapsed-expanded]="dropdown.isOpen">
+  <div class="sbb-usermenu-logged-in-collapsed"
+    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.isOpen">
     <ng-container *ngIf="userName && userName.length">
       <div class="sbb-usermenu-logged-in-collapsed-user-icon">
         <div #icon class="sbb-usermenu-logged-in-collapsed-icon">

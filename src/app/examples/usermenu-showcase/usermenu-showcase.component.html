@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <h4 class="sbbsc-block">Basic Example with user image</h4>
+      <h4 class="sbbsc-block">Basic Example with custom user image</h4>
       <sbb-usermenu [userName]="user.userName" (eventLogin)="logIn($event)">
         <img class="image" sbbIcon [src]="user.iconUrl">
         <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
