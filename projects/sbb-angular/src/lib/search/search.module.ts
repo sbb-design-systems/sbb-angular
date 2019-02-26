@@ -7,7 +7,6 @@ import { AutocompleteModule } from '../autocomplete/autocomplete';
 import { ButtonModule } from '../button/button.module';
 import { OptionModule } from '../option/option.module';
 import { IconSearchModule } from '../svg-icons/svg-icons';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchIconDirective } from './search-icon.directive';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { SearchIconDirective } from './search-icon.directive';
     AutocompleteModule,
     ButtonModule,
     OptionModule,
-    BrowserAnimationsModule,
   ],
   exports: [
     SearchComponent,

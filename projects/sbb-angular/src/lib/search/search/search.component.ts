@@ -7,7 +7,7 @@ import {
   PositionStrategy,
   ScrollStrategy
 } from '@angular/cdk/overlay';
-import { TemplatePortal, CdkPortal } from '@angular/cdk/portal';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import { filter, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
@@ -31,9 +31,6 @@ import {
   Output,
   AfterViewInit,
   ContentChild,
-  QueryList,
-  ContentChildren,
-  ViewChildren
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -219,7 +216,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * - the search button is activated
    * - an autocomplete option is selected
    */
-  @Output() search: EventEmitter<any> = new EventEmitter<any>();
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private element: ElementRef<HTMLInputElement>,
