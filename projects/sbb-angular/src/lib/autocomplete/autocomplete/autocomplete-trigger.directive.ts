@@ -85,6 +85,7 @@ export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDestroy {
   private overlayRef: OverlayRef | null;
   private portal: TemplatePortal;
+  private document: Document;
   private componentDestroyed = false;
   private _autocompleteDisabled = false;
 
@@ -150,7 +151,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return this.zone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.optionSelections));
-  }) as Observable<SBBOptionSelectionChange>;
+  });
 
   @HostListener('blur')
   onBlur() {
@@ -184,7 +185,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     // refocused when they come back. In this case we want to skip the first focus event, if the
     // pane was closed, in order to avoid reopening it unintentionally.
     this.canOpenOnNextFocus =
-      document.activeElement !== this.element.nativeElement || this.panelOpen;
+      this.document.activeElement !== this.element.nativeElement || this.panelOpen;
   }
 
   /** `View -> model callback called when value changes` */
@@ -213,10 +214,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
+    @Optional() @Inject(DOCUMENT) document: any,
     private viewportRuler?: ViewportRuler
   ) {
-
+    this.document = document;
     if (typeof window !== 'undefined') {
       zone.runOutsideAngular(() => {
         window.addEventListener('blur', this.windowBlurHandler);
@@ -311,13 +312,13 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Stream of clicks outside of the autocomplete panel. */
   private getOutsideClickStream(): Observable<any> {
-    if (!this._document) {
+    if (!this.document) {
       return observableOf(null);
     }
 
     return merge(
-      fromEvent<MouseEvent>(this._document, 'click'),
-      fromEvent<TouchEvent>(this._document, 'touchend')
+      fromEvent<MouseEvent>(this.document, 'click'),
+      fromEvent<TouchEvent>(this.document, 'touchend')
     )
       .pipe(filter(event => {
         const clickTarget = event.target as HTMLElement;

@@ -3,6 +3,7 @@
  */
 export * from './lib/svg-icons/svg-icons';
 export * from './lib/field/field';
+export * from './lib/form-field/form-field';
 export * from './lib/option/option';
 export * from './lib/textarea/textarea';
 export * from './lib/links/links';

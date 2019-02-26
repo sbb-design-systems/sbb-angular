@@ -1,13 +1,15 @@
-import { Component, ChangeDetectionStrategy, Input, HostBinding, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Self, OnChanges, SimpleChanges } from '@angular/core';
+import { HostClass } from '../../_common/common';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'a[sbbLink]',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [HostClass],
 })
-export class LinkComponent implements OnInit {
+export class LinkComponent implements OnChanges {
   /**
    * Link modes available for different purposes
    */
@@ -17,16 +19,13 @@ export class LinkComponent implements OnInit {
    */
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
-  /**
-   * Sets mode for all links
-   */
-  @Input() class = '';
-  /**
-   * Sets link mode on class property
-   */
-  @HostBinding('class') linkModeClass: string;
+  constructor(
+    @Self() private hostClass: HostClass,
+  ) { }
 
-  ngOnInit(): void {
-    this.linkModeClass =  `${this.class} sbb-link-${this.mode}`;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.mode && changes.mode.currentValue !== changes.mode.previousValue) {
+      this.hostClass.apply(`sbb-link-${this.mode}`);
+    }
   }
 }

@@ -105,8 +105,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   }
   attachedDatepicker: DatepickerComponent;
 
-  @HostBinding('class')
-  cssClass = 'sbb-datepicker';
+  @HostBinding('class.sbb-datepicker') cssClass = true;
 
   /**
    * Embedded input field connected to the datepicker
