@@ -1,37 +1,43 @@
-<article class="sbb-ghettobox-wrapper" *ngIf="visible">
-  <div class="sbb-ghettobox-icon-container">
-    <div class="sbb-ghettobox-icon">
-      <ng-container *ngTemplateOutlet="icon"></ng-container>
+<div class="sbb-ghettobox" [@addDelete]="state" 
+                           (@addDelete.done)="handleAnimation($event)">
+  <article class="sbb-ghettobox-wrapper" *ngIf="visible">
+    <div class="sbb-ghettobox-icon-container">
+      <div class="sbb-ghettobox-icon">
+        <ng-container *ngTemplateOutlet="icon"></ng-container>
+      </div>
     </div>
-  </div>
-  <div class="sbb-ghettobox-content">
-    <ng-container *ngIf="ghettobox">
-      <ng-container *ngIf="ghettobox.link">
-        <a [routerLink]="ghettobox.link.routerLink" 
-          [queryParams]="ghettobox.link.queryParams"
-          [fragment]="ghettobox.link.fragment" 
-          [preserveFragment]="ghettobox.link.preserveFragment"
-          [skipLocationChange]="ghettobox.link.skipLocationChange" 
-          [replaceUrl]="ghettobox.link.replaceUrl"
-          [state]="ghettobox.link.state"
-          [queryParamsHandling]="ghettobox.link.queryParamsHandling">{{ ghettobox.message }} <sbb-icon-arrow-down class="sbb-ghettobox-content-link-icon"></sbb-icon-arrow-down></a>
+    <div class="sbb-ghettobox-content">
+      <ng-container *ngIf="ghettobox">
+        <ng-container *ngIf="ghettobox.link">
+          <a [routerLink]="ghettobox.link.routerLink" 
+            [queryParams]="ghettobox.link.queryParams"
+            [fragment]="ghettobox.link.fragment" 
+            [preserveFragment]="ghettobox.link.preserveFragment"
+            [skipLocationChange]="ghettobox.link.skipLocationChange" 
+            [replaceUrl]="ghettobox.link.replaceUrl"
+            [state]="ghettobox.link.state"
+            [queryParamsHandling]="ghettobox.link.queryParamsHandling">{{ ghettobox.message }} <sbb-icon-arrow-down class="sbb-ghettobox-content-link-icon"></sbb-icon-arrow-down></a>
+        </ng-container>
+        <ng-container *ngIf="!ghettobox.link">
+          <span tabindex="0">{{ ghettobox.message }}</span>
+        </ng-container>
       </ng-container>
-      <ng-container *ngIf="!ghettobox.link">
-        {{ ghettobox.message }}
+      <ng-container *ngIf="!ghettobox">
+        <span [tabindex]="ghettoboxLink ? -1 : 0"><ng-content></ng-content></span>
+        <sbb-icon-arrow-down *ngIf="ghettoboxLink" class="sbb-ghettobox-content-link-icon"></sbb-icon-arrow-down>
       </ng-container>
-    </ng-container>
-    <ng-container *ngIf="!ghettobox">
-      <ng-content></ng-content>
-      <sbb-icon-arrow-down *ngIf="ghettoboxLink" class="sbb-ghettobox-content-link-icon"></sbb-icon-arrow-down>
-    </ng-container>
-  </div>
-  <div class="sbb-ghettobox-close">
-    <button (click)="delete($event)" class="sbb-ghettobox-close-button">
-      <sbb-icon-close></sbb-icon-close>
-      <span i18n class="visuallyhidden">Hinweismeldung schliessen</span>
-    </button>
-  </div>
-</article>
+    </div>
+    <div class="sbb-ghettobox-close">
+      <button (click)="delete($event)" class="sbb-ghettobox-close-button">
+        <sbb-icon-close></sbb-icon-close>
+        <span i18n class="visuallyhidden">
+            Close message
+          <!-- Hinweismeldung schliessen -->
+        </span>
+      </button>
+    </div>
+  </article>
+</div>
 
 <ng-template #defaultIcon>
   <sbb-icon-him-info></sbb-icon-him-info>

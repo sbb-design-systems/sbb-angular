@@ -32,6 +32,8 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
 
   @HostBinding('attr.aria-live') ariaLive = 'assertive';
 
+  @HostBinding('attr.aria-relevant') ariaRelevant = 'all';
+
   @HostBinding('class.sbb-ghettobox-container')
   containerClass = true;
 

@@ -1,6 +1,7 @@
 import { LinkGeneratorResult } from '../../pagination/pagination';
 import { GhettoboxComponent } from './ghettobox.component';
-import { TemplateRef, ComponentRef } from '@angular/core';
+import { TemplateRef, ComponentRef, OnDestroy } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 export interface Ghettobox {
   message: string;
@@ -28,13 +29,17 @@ export class GhettoboxRef {
 
   constructor(ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent) {
     this._ref = ref;
+
+    this.componentInstance.afterDelete.pipe(first()).subscribe(
+      () => {
+        if (this._ref instanceof ComponentRef) {
+          this._ref.destroy();
+        }
+      }
+    );
   }
 
   delete(): void {
     this.componentInstance.destroy();
-
-    if (this._ref instanceof ComponentRef) {
-      this._ref.destroy();
-    }
   }
 }

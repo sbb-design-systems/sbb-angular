@@ -1,8 +1,9 @@
 import { Component, OnDestroy, ViewChild, TemplateRef } from '@angular/core';
-import { GhettoboxService, } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 import { ActivatedRoute } from '@angular/router';
 import { LinkGeneratorResult } from 'sbb-angular';
+import { GhettoboxService, GhettoboxState, GhettoboxDeletedEvent } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-ghettobox-showcase',
@@ -10,6 +11,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./ghettobox-showcase.component.scss']
 })
 export class GhettoboxShowcaseComponent implements OnDestroy {
+
+  afterDeleteResponse1: any;
+  afterDeleteResponse2: any;
+  afterDeleteResponseContainer: any;
 
   private _ghettoboxInitLoadSubscription = Subscription.EMPTY;
 
@@ -40,21 +45,34 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
   }
 
   addGhettobox() {
-    this._ghettoboxService.add({ message: 'Hello ghettobox', link: this.linkGenerator(getRandomInt(10)), icon: this.testIcon2 });
+    const ghetto = this._ghettoboxService.add(
+      { message: 'Hello ghettobox', link: this.linkGenerator(getRandomInt(10)), icon: this.testIcon2 });
+
+    ghetto.componentInstance.afterDelete.pipe(first()).subscribe(
+      (evt: GhettoboxDeletedEvent) => {
+        this.afterDeleteResponseContainer = evt;
+      }
+    );
   }
 
   deleteById(id: string) {
-    const deleted = this._ghettoboxService.deleteById(id);
-    console.log(deleted);
+    this._ghettoboxService.deleteById(id);
   }
 
   deleteByIndex(index: number) {
-    const deleted = this._ghettoboxService.deleteByIndex(index);
-    console.log(deleted);
+    this._ghettoboxService.deleteByIndex(index);
   }
 
   clear() {
     this._ghettoboxService.clearAll();
+  }
+
+  afterDelete1(evt: GhettoboxDeletedEvent) {
+    this.afterDeleteResponse1 = evt;
+  }
+
+  afterDelete2(evt: GhettoboxDeletedEvent) {
+    this.afterDeleteResponse2 = evt;
   }
 
   printAttachedGhettoboxesIDS() {
@@ -66,6 +84,7 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
       }
     );
   }
+
 }
 
 function getRandomInt(max: number) {

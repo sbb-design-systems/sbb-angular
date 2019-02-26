@@ -36,7 +36,7 @@ import {
   ToggleModule,
   CaptchaModule,
   DropdownModule,
-  FileSelectorModule,
+  FileSelectorModule
 } from 'sbb-angular';
 
 

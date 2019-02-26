@@ -1,39 +1,44 @@
 @import '../../../styles/main';
 
-.sbb-ghettobox-container {
-  @include ghettoboxContainer();
-}
-
-.sbb-ghettobox {
-  @include ghettobox();
-
-  .sbb-ghettobox-wrapper {
-    @include ghettoboxWrapper();
-
-    .sbb-ghettobox {
-      &-icon-container {
-        @include ghettoboxIconContainer();
-      }
-
-      &-icon {
-        @include ghettoboxIcon();
-      }
-      
-      &-content {
-        @include ghettoboxContent();
-
-        &-link-icon {
-          @include ghettoboxContentLinkIcon();
+.sbb-ghettobox-outer-wrapper {
+  @include ghettoboxOuterWrapper();
+  
+  .sbb-ghettobox {
+    @include ghettobox();
+  
+    .sbb-ghettobox-wrapper {
+      @include ghettoboxWrapper();
+  
+      .sbb-ghettobox {
+        &-icon-container {
+          @include ghettoboxIconContainer();
+        }
+  
+        &-icon {
+          @include ghettoboxIcon();
+        }
+        
+        &-content {
+          @include ghettoboxContent();
+  
+          &-link-icon {
+            @include ghettoboxContentLinkIcon();
+          }
+        }
+  
+        &-close {
+          @include ghettoboxClose();
+        }
+  
+        &-close-button {
+          @include ghettoboxCloseButton();
         }
       }
-
-      &-close {
-        @include ghettoboxClose();
-      }
-
-      &-close-button {
-        @include ghettoboxCloseButton();
-      }
+    }
+  
+    &.sbb-ghettobox-islink {
+      @include ghettoboxLink();
     }
   }
 }
+

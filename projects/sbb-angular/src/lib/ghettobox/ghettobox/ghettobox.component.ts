@@ -9,12 +9,23 @@ import {
   Input,
   HostBinding,
   ChangeDetectorRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  EventEmitter,
+  Output
 } from '@angular/core';
+import { AnimationEvent } from '@angular/animations';
 import { GhettoboxIconDirective, GhettoboxLinkDirective } from './ghettobox-content.directives';
-import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
+import { Ghettobox } from './ghettobox-ref';
 import { Router } from '@angular/router';
 import { GhettoboxService } from './ghettobox.service';
+import { GhettoboxAnimations } from './ghettobox-animations';
+
+export type GhettoboxState = 'added' | 'deleted';
+
+export interface GhettoboxDeletedEvent {
+  state: GhettoboxState;
+  ghettoboxId: string;
+}
 
 let counter = 0;
 
@@ -23,11 +34,23 @@ let counter = 0;
   templateUrl: './ghettobox.component.html',
   styleUrls: ['./ghettobox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [GhettoboxAnimations.addDelete]
 })
 export class GhettoboxComponent {
 
   visible = true;
+
+  private _state: GhettoboxState = 'added';
+  get state() {
+    return this._state;
+  }
+  set state(value: GhettoboxState) {
+    this._state = value;
+    this._changeDetector.markForCheck();
+  }
+
+  @Output() afterDelete = new EventEmitter<GhettoboxDeletedEvent>();
 
   @HostBinding('hidden')
   get hidden() {
@@ -37,7 +60,7 @@ export class GhettoboxComponent {
   @Input() @HostBinding('attr.id')
   ghettoboxId = `sbb-ghettobox-${counter++}`;
 
-  @HostBinding('class.sbb-ghettobox') ghettoboxClass = true;
+  @HostBinding('class.sbb-ghettobox-outer-wrapper') ghettoboxClass = true;
 
   @HostBinding('attr.role') role = 'alert';
 
@@ -104,14 +127,27 @@ export class GhettoboxComponent {
   }
 
   destroy(): void {
+    this.state = 'deleted';
+
+    if (this._ghettoboxService.hasContainerLoaded) {
+      this._ghettoboxService.deleteFromAttachedGhettoboxesCollection(this.ghettoboxId);
+    }
+  }
+
+  handleAnimation(event: AnimationEvent) {
+    const { phaseName, toState } = event;
+
+    if (phaseName === 'done' && toState === 'deleted') {
+      this.deletedPhase();
+    }
+  }
+
+  private deletedPhase() {
     this.visible = false;
     this.role = undefined;
     this.ariaHidden = 'true';
     this._changeDetector.markForCheck();
-
-    if (this._ghettoboxService.hasContainerLoaded) {
-      this._ghettoboxService.deleteFromAttachedGhettoboxesCollection(new GhettoboxRef(this));
-    }
+    this.afterDelete.emit({ state: this.state, ghettoboxId: this.ghettoboxId });
   }
 
   private clickGhettoboxLinkFromService(): void {

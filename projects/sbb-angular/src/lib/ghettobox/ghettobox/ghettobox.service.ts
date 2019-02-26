@@ -42,12 +42,12 @@ export class GhettoboxService {
     return ghettoboxRef;
   }
 
-  deleteById(ghettoboxId: string): boolean {
-    return this._delete(this._attachedGhettoboxes.find(g => g.id === ghettoboxId));
+  deleteById(ghettoboxId: string) {
+    this._delete(this.getGhettoboxById(ghettoboxId));
   }
 
-  deleteByIndex(index: number): boolean {
-    return this._delete(this._attachedGhettoboxes[index]);
+  deleteByIndex(index: number) {
+    this._delete(this._attachedGhettoboxes[index]);
   }
 
   clearAll() {
@@ -55,17 +55,21 @@ export class GhettoboxService {
     attachedGettoboxCopy.forEach(g => g.delete());
   }
 
-  deleteFromAttachedGhettoboxesCollection(ghettoboxToDelete: GhettoboxRef): void {
-    this._attachedGhettoboxes.splice(this._attachedGhettoboxes.indexOf(ghettoboxToDelete), 1);
+  deleteFromAttachedGhettoboxesCollection(ghettoboxId: string): void {
+    const index = this._attachedGhettoboxes.indexOf(this.getGhettoboxById(ghettoboxId));
+    if (index !== -1) {
+      this._attachedGhettoboxes.splice(index, 1);
+    }
   }
 
-  private _delete(ghettoboxToDelete: GhettoboxRef): boolean {
+  private getGhettoboxById(ghettoboxId: string): GhettoboxRef {
+    return this._attachedGhettoboxes.find(g => g.id === ghettoboxId);
+  }
+
+  private _delete(ghettoboxToDelete: GhettoboxRef) {
     if (ghettoboxToDelete) {
       ghettoboxToDelete.delete();
-
-      return true;
     }
-    return false;
   }
 
   private _checkIfContainerIsPresent() {

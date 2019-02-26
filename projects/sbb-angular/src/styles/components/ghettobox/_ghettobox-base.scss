@@ -1,13 +1,23 @@
 
-@mixin ghettoboxContainer() {
-  
+@mixin ghettoboxOuterWrapper() {
+  display: block;
+  overflow: hidden;
 }
 
 @mixin ghettobox() {
   display: block;
   background-color: $ghettobox-bg;
   color: $ghettobox-color;
-  border-top: .06667em solid #666;
+  border-top: $ghettobox-border-top;
+}
+
+@mixin ghettoboxLink() {
+  transition: $ghettobox-link-transition;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: $colorBlack;
+  }
 }
 
 @mixin ghettoboxWrapper() {
@@ -36,6 +46,7 @@
 }
 
 @mixin ghettoboxIcon() {
+  position: relative;
   width: $ghettobox-icon-size;
   height: $ghettobox-icon-size;
   background-color: $ghettobox-icon-bg;
@@ -43,15 +54,16 @@
   fill: $ghettobox-color;
 
   .sbb-icon-component {
+    @include absoluteCenterXY();
     display: block;
-    line-height: 0;
-    padding: pxToEm(2);
+    width: $ghettobox-icon-inner-size;
+    height: $ghettobox-icon-inner-size;
   }
 }
 
 @mixin ghettoboxContent() {
   flex: 0 1 auto;
-  padding: 0 pxToEm(12);
+  padding: 0 $ghettobox-icon-size 0 pxToEm(12);
   fill: $ghettobox-color;
 
   @include mq($from: desktop) {
@@ -59,30 +71,43 @@
   }
 
   a {
-    text-decoration: none;
     color: $ghettobox-color;
     fill: $ghettobox-color;
+
+    &[sbbGhettoboxLink] {
+      text-decoration: none;
+    }
   }
 }
 
 @mixin ghettoboxClose() {
   position: absolute;
-  top: $ghettobox-wrapper-padding-desktop-y;
-  right: 0;
+  top: $ghettobox-wrapper-padding;
+  right: pxToEm(12);
+
+  @include mq($from: desktop) {
+    top: $ghettobox-wrapper-padding-desktop-y;
+  }
 }
 
 @mixin ghettoboxCloseButton() {
   @include buttonResetFrameless();
+  position: relative;
   width: $ghettobox-icon-size;
   height: $ghettobox-icon-size;
   fill: $ghettobox-color;
   border: pxToEm(1) solid $ghettobox-color;
   border-radius: 50%;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .sbb-icon-component {
-    padding: pxToEm(2);
+    @include absoluteCenterXY();
     display: block;
-    line-height: 0;
+    width: $ghettobox-icon-inner-size;
+    height: $ghettobox-icon-inner-size;
   }
 }
 
@@ -90,5 +115,5 @@
   width: $ghettobox-link-icon-size;
   height: $ghettobox-link-icon-size;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
 }
