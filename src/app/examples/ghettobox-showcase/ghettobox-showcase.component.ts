@@ -1,5 +1,5 @@
 import { Component, OnDestroy, ViewChild, TemplateRef } from '@angular/core';
-import { GhettoboxService, GhettoboxRef, } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
+import { GhettoboxService, } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 import { ActivatedRoute } from '@angular/router';
 import { LinkGeneratorResult } from 'sbb-angular';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
       this._ghettoboxService.ready.subscribe(
         () => {
           this._ghettoboxService.add(
-            { message: 'This ghettobox is loaded at page load', link: this.linkGenerator(getRandomInt(10)), icon: this.testIcon1 });
+            { message: 'This ghettobox is loaded at page load', icon: this.testIcon1 });
         }
       );
   }

@@ -29,6 +29,11 @@ export class GhettoboxComponent {
 
   visible = true;
 
+  @HostBinding('hidden')
+  get hidden() {
+    return !this.visible;
+  }
+
   @Input() @HostBinding('attr.id')
   ghettoboxId = `sbb-ghettobox-${counter++}`;
 
@@ -67,6 +72,15 @@ export class GhettoboxComponent {
 
   @ContentChild(GhettoboxLinkDirective, { read: ElementRef })
   ghettoboxLink: ElementRef<any>;
+
+  @HostBinding('class.sbb-ghettobox-islink')
+  get isLink() {
+    const ghettoboxObjHasLink = this.ghettobox ? this.ghettobox.link : false;
+    if (this.ghettoboxLink || ghettoboxObjHasLink) {
+      return true;
+    }
+    return false;
+  }
 
   constructor(
     private _changeDetector: ChangeDetectorRef,

@@ -1,5 +1,5 @@
 
-@mixin ghettobox-container() {
+@mixin ghettoboxContainer() {
   
 }
 
@@ -7,18 +7,20 @@
   display: block;
   background-color: $ghettobox-bg;
   color: $ghettobox-color;
+  border-top: .06667em solid #666;
 }
 
-@mixin ghettobox-wrapper() {
+@mixin ghettoboxWrapper() {
   position: relative;
   margin-left: 1.6rem;
   margin-right: 1.6rem;
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  padding: pxToEm(24) pxToEm(36) pxToEm(24) 0;
+  padding: $ghettobox-wrapper-padding;
 
   @include mq($from: desktop) {
+    padding: $ghettobox-wrapper-padding-desktop;
     margin-left: 5.5%;
     margin-right: 5.5%;
   }
@@ -29,11 +31,11 @@
   }
 }
 
-@mixin ghettobox-icon-container() {
+@mixin ghettoboxIconContainer() {
   flex: 0 0 $ghettobox-icon-size;
 }
 
-@mixin ghettobox-icon() {
+@mixin ghettoboxIcon() {
   width: $ghettobox-icon-size;
   height: $ghettobox-icon-size;
   background-color: $ghettobox-icon-bg;
@@ -47,7 +49,7 @@
   }
 }
 
-@mixin ghettobox-content() {
+@mixin ghettoboxContent() {
   flex: 0 1 auto;
   padding: 0 pxToEm(12);
   fill: $ghettobox-color;
@@ -63,11 +65,13 @@
   }
 }
 
-@mixin ghettobox-close() {
-  flex: 0 0 $ghettobox-icon-size;
+@mixin ghettoboxClose() {
+  position: absolute;
+  top: $ghettobox-wrapper-padding-desktop-y;
+  right: 0;
 }
 
-@mixin ghettobox-close-button() {
+@mixin ghettoboxCloseButton() {
   @include buttonResetFrameless();
   width: $ghettobox-icon-size;
   height: $ghettobox-icon-size;
@@ -82,7 +86,7 @@
   }
 }
 
-@mixin ghettobox-content-link-icon() {
+@mixin ghettoboxContentLinkIcon() {
   width: $ghettobox-link-icon-size;
   height: $ghettobox-link-icon-size;
   display: inline-block;

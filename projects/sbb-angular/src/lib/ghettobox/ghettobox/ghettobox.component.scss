@@ -1,38 +1,38 @@
 @import '../../../styles/main';
 
 .sbb-ghettobox-container {
-  @include ghettobox-container();
+  @include ghettoboxContainer();
 }
 
 .sbb-ghettobox {
   @include ghettobox();
 
   .sbb-ghettobox-wrapper {
-    @include ghettobox-wrapper();
+    @include ghettoboxWrapper();
 
     .sbb-ghettobox {
       &-icon-container {
-        @include ghettobox-icon-container();
+        @include ghettoboxIconContainer();
       }
 
       &-icon {
-        @include ghettobox-icon();
+        @include ghettoboxIcon();
       }
       
       &-content {
-        @include ghettobox-content();
+        @include ghettoboxContent();
 
         &-link-icon {
-          @include ghettobox-content-link-icon();
+          @include ghettoboxContentLinkIcon();
         }
       }
 
       &-close {
-        @include ghettobox-close();
+        @include ghettoboxClose();
       }
 
       &-close-button {
-        @include ghettobox-close-button();
+        @include ghettoboxCloseButton();
       }
     }
   }
