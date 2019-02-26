@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { SearchModule } from '../search.module';
 import { SearchComponent } from '../search';
 import { Component } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'sbb-simple-search-component',
@@ -14,13 +15,13 @@ export class SimpleSearchComponent {
 }
 
 
-fdescribe('SearchComponent', () => {
+describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SearchModule],
+      imports: [SearchModule, NoopAnimationsModule],
       declarations: [SimpleSearchComponent]
     }).compileComponents();
   }));
