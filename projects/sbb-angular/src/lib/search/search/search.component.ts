@@ -169,7 +169,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Used to switch from trigger to search box when in 'header' mode
    */
   get hideSearch(): boolean {
-    if (this.mode === 'default') {
+    if (!this.isHeaderMode()) {
       return false;
     }
     return this._hideSearch;
@@ -266,21 +266,30 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this.button.nativeElement === this._document.activeElement;
   }
 
+  private isHeaderMode() : boolean {
+    return this.mode === 'header';
+  }
+
   onBlur($event: any) {
     this.onTouched();
-    if (this.mode === 'header') {
-      if (!!this.overlayRef && !this.overlayRef.overlayElement.contains($event.relatedTarget) || !this.autocomplete) {
-        if (($event.target === this.input.nativeElement && $event.relatedTarget !== this.button.nativeElement)
-          || ($event.target === this.button.nativeElement && $event.relatedTarget !== this.input.nativeElement)) {
-          if (this.autocomplete) {
+    const relatedTarget = $event.relatedTarget;
+    const target = $event.target;
 
-            this.closeAnimation(this.overlayRef.overlayElement);
-          }
-          this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
-            this._hideSearch = true;
-            this.changeDetectorRef.markForCheck();
-          });
+    if (this.isHeaderMode()) {
+      if ((target === this.input.nativeElement &&
+          relatedTarget !== this.button.nativeElement) ||
+        (target === this.button.nativeElement &&
+          relatedTarget !== this.input.nativeElement)) {
+
+        if (this.autocomplete) {
+
+          this.closeAnimation(this.overlayRef.overlayElement);
         }
+        this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
+          this._hideSearch = true;
+          this.changeDetectorRef.markForCheck();
+        });
+
       }
     }
   }
