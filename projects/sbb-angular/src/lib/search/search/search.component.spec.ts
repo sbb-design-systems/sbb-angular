@@ -4,13 +4,18 @@ import { SearchComponent } from '../search';
 import { Component, ViewChild } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import { dispatchKeyboardEvent, dispatchFakeEvent } from '../../_common/testing/dispatch-events';
+import { ENTER } from '@angular/cdk/keycodes';
+import { AutocompleteModule } from '../../autocomplete/autocomplete';
+import { OptionModule } from '../../option/option';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'sbb-simple-search-component',
   template: `
   <sbb-search (search)="search()" placeholder="Suchen">
-  </sbb-search>  `
+  </sbb-search>
+  `
 })
 export class SimpleSearchComponent {
 
@@ -23,72 +28,116 @@ export class SimpleSearchComponent {
 
 }
 
+@Component({
+  selector: 'sbb-simple-search-autocomplete-component',
+  template: `
+  <sbb-search (search)="search()" placeholder="Suchen" [sbbAutocomplete]="auto1">
+  </sbb-search>
+  <sbb-autocomplete #auto1="sbbAutocomplete">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+    {{ option }}
+  </sbb-option>
+</sbb-autocomplete>
+`
+})
+export class SimpleSearchAutocompleteComponent {
+
+  searchCounter = 0;
+  @ViewChild(SearchComponent) searchComponent: SearchComponent;
+
+  options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
+  filteredOptions = this.options.slice(0);
+
+
+  search() {
+    this.searchCounter++;
+  }
+
+}
+
 describe('SearchComponent', () => {
-  let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
+  describe('without autocomplete', () => {
+    let component: SimpleSearchComponent;
+    let fixture: ComponentFixture<SimpleSearchComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SearchModule, NoopAnimationsModule],
-      declarations: []
-    }).compileComponents();
-  }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [SearchModule, NoopAnimationsModule],
+        declarations: [SimpleSearchComponent]
+      }).compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SimpleSearchComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should show a placeholder', () => {
+      expect(component.searchComponent.placeholder).toBe('Suchen');
+    });
+
+    describe('when pressing the ENTER key', () => {
+
+      it('should emit a search event', () => {
+        expect(component.searchCounter).toBe(0);
+        const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
+        dispatchKeyboardEvent(input.nativeElement, 'keydown', ENTER);
+        fixture.detectChanges();
+        expect(component.searchCounter).toBe(1);
+      });
+    });
+
+    describe('when clicking on the search button', () => {
+
+      it('should emit a search event', () => {
+        expect(component.searchCounter).toBe(0);
+        const searchButton = fixture.debugElement.query(By.css('.sbb-search-box > button'));
+        searchButton.nativeElement.click();
+        expect(component.searchCounter).toBe(1);
+      });
+
+    });
+
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('with autocomplete', () => {
+    let component: SimpleSearchAutocompleteComponent;
+    let fixture: ComponentFixture<SimpleSearchAutocompleteComponent>;
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OptionModule, OverlayModule],
+        declarations: [SimpleSearchAutocompleteComponent]
+      }).compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SimpleSearchAutocompleteComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    describe('when focusing input', () => {
+      it('should open the options panel', () => {
+        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+        const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
+        dispatchFakeEvent(input.nativeElement, 'focusin');
+        fixture.detectChanges();
+        expect(component.searchComponent.autocomplete.isOpen).toBe(true);
+      });
+
+    });
   });
-
-
 });
 
 
-fdescribe('SearchComponent without autocomplete', () => {
-  let component: SimpleSearchComponent;
-  let fixture: ComponentFixture<SimpleSearchComponent>;
-
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SearchModule, NoopAnimationsModule],
-      declarations: [SimpleSearchComponent]
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleSearchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should show a placeholder', () => {
-    expect(component.searchComponent.placeholder).toBe('Suchen');
-  });
-
-  describe('should emit a search event', () => {
-
-    it('when pressing the ENTER key', () => {
-      expect(component.searchCounter).toBe(0);
-      const searchButton = fixture.debugElement.query(By.css('.sbb-search-box > input'));
-/*       dispatchKeyboardEvent(searchButton.nativeElement, '')
- */      expect(component.searchCounter).toBe(1);
-    });
-
-    it('when clicking on the search icon button', () => {
-      expect(component.searchCounter).toBe(1);
-      const searchButton = fixture.debugElement.query(By.css('.sbb-search-box > button'));
-      searchButton.nativeElement.click();
-      expect(component.searchCounter).toBe(2);
-    });
-  });
-
-});
