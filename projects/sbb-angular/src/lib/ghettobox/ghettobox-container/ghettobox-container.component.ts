@@ -25,8 +25,8 @@ let counter = 0;
 })
 export class GhettoboxContainerComponent extends BasePortalOutlet implements AfterContentInit, OnDestroy {
 
-  @Input() @HostBinding('attr.id')
-  ghettoContainerId = `sbb-ghettobox-container-${counter++}`;
+  @Input() @HostBinding()
+  id = `sbb-ghettobox-container-${counter++}`;
 
   @HostBinding('attr.role') role = 'region';
 
@@ -49,7 +49,7 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
     if (!this._ghettoboxService.hasContainerLoaded) {
       this._ghettoboxService.loadContainer(this);
     } else {
-      throw Error('Its allowed only one sbb-ghettobox-container at a time');
+      throw Error('Only one sbb-ghettobox-container is allowed at a time');
     }
   }
 

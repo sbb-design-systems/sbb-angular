@@ -4,8 +4,6 @@ import {
   ContentChild,
   TemplateRef,
   ViewChild,
-  ElementRef,
-  HostListener,
   Input,
   HostBinding,
   ChangeDetectorRef,
@@ -14,16 +12,17 @@ import {
   Output
 } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
-import { GhettoboxIconDirective, GhettoboxLinkDirective } from './ghettobox-content.directives';
+import { GhettoboxIconDirective } from './ghettobox-content.directives';
 import { Ghettobox } from './ghettobox-ref';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { GhettoboxService } from './ghettobox.service';
 import { GhettoboxAnimations } from './ghettobox-animations';
+import { QueryParamsHandling } from '@angular/router/src/config';
 
 export type GhettoboxState = 'added' | 'deleted';
 
 export interface GhettoboxDeletedEvent {
-  state: GhettoboxState;
+  ghettoboxState: GhettoboxState;
   ghettoboxId: string;
 }
 
@@ -41,12 +40,30 @@ export class GhettoboxComponent {
 
   visible = true;
 
-  private _state: GhettoboxState = 'added';
-  get state() {
-    return this._state;
+  @Input() routerLink: RouterLink;
+
+  @Input() queryParams: { [k: string]: any };
+
+  @Input() fragment: string;
+
+  @Input() queryParamsHandling: QueryParamsHandling;
+
+  @Input() preserveFragment: boolean;
+
+  @Input() skipLocationChange: boolean;
+
+  @Input() replaceUrl: boolean;
+
+  @Input() state?: { [k: string]: any };
+
+  @HostBinding('attr.tabindex') tabIndex = '-1';
+
+  private _ghettoboxState: GhettoboxState = 'added';
+  get ghettoboxState() {
+    return this._ghettoboxState;
   }
-  set state(value: GhettoboxState) {
-    this._state = value;
+  set ghettoboxState(value: GhettoboxState) {
+    this._ghettoboxState = value;
     this._changeDetector.markForCheck();
   }
 
@@ -57,8 +74,8 @@ export class GhettoboxComponent {
     return !this.visible;
   }
 
-  @Input() @HostBinding('attr.id')
-  ghettoboxId = `sbb-ghettobox-${counter++}`;
+  @Input() @HostBinding()
+  id = `sbb-ghettobox-${counter++}`;
 
   @HostBinding('class.sbb-ghettobox-outer-wrapper') ghettoboxClass = true;
 
@@ -93,44 +110,26 @@ export class GhettoboxComponent {
     this._changeDetector.markForCheck();
   }
 
-  @ContentChild(GhettoboxLinkDirective, { read: ElementRef })
-  ghettoboxLink: ElementRef<any>;
-
-  @HostBinding('class.sbb-ghettobox-islink')
-  get isLink() {
-    const ghettoboxObjHasLink = this.ghettobox ? this.ghettobox.link : false;
-    if (this.ghettoboxLink || ghettoboxObjHasLink) {
-      return true;
-    }
-    return false;
+  get hasGettoboxLink() {
+    return this.ghettobox ? this.ghettobox.link : false;
   }
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private router: Router,
     private _ghettoboxService: GhettoboxService) {
   }
 
-  @HostListener('click')
-  click() {
-    if (this.ghettoboxLink) {
-      this.ghettoboxLink.nativeElement.click();
-    }
-    if (this.ghettobox && this.ghettobox.link) {
-      this.clickGhettoboxLinkFromService();
-    }
-  }
-
   delete(evt: any): void {
+    evt.preventDefault();
     evt.stopPropagation();
     this.destroy();
   }
 
   destroy(): void {
-    this.state = 'deleted';
+    this.ghettoboxState = 'deleted';
 
     if (this._ghettoboxService.hasContainerLoaded) {
-      this._ghettoboxService.deleteFromAttachedGhettoboxesCollection(this.ghettoboxId);
+      this._ghettoboxService.deleteFromAttachedGhettoboxesCollection(this.id);
     }
   }
 
@@ -147,15 +146,7 @@ export class GhettoboxComponent {
     this.role = undefined;
     this.ariaHidden = 'true';
     this._changeDetector.markForCheck();
-    this.afterDelete.emit({ state: this.state, ghettoboxId: this.ghettoboxId });
-  }
-
-  private clickGhettoboxLinkFromService(): void {
-    if (Array.isArray(this.ghettobox.link.routerLink)) {
-      this.router.navigate(this.ghettobox.link.routerLink, this.ghettobox.link);
-    } else {
-      this.router.navigateByUrl(this.ghettobox.link.routerLink, this.ghettobox.link);
-    }
+    this.afterDelete.emit({ ghettoboxState: this.ghettoboxState, ghettoboxId: this.id });
   }
 
 }

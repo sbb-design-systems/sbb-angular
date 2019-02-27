@@ -35,10 +35,10 @@
         }
       }
     }
-  }
 
-  &.sbb-ghettobox-islink .sbb-ghettobox {
-    @include ghettoboxLink();
+    .sbb-ghettobox-link {
+      @include ghettoboxLink();
+    }
   }
 }
 

@@ -12,15 +12,14 @@
 }
 
 @mixin ghettoboxLink() {
+  display: block;
   transition: $ghettobox-link-transition;
+  text-decoration: none;
+  color: $colorWhite;
 
   &:hover, &:focus {
-    cursor: pointer;
     background-color: $colorBlack;
-  }
-
-  a {
-    text-decoration: none;
+    color: $colorWhite;
   }
 }
 
