@@ -57,7 +57,11 @@
     <div class="col-lg-4">
       <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
-        <button sbbButton (click)="addGhettobox()">Add ghettobox</button>
+        <button sbbButton (click)="addGhettobox(ghettoMessage.value)">Add ghettobox</button>
+        <div class="sbbsc-block">
+          <textarea #ghettoMessage 
+                    style="width: 100%; height: 120px;">Der Zugang zum Ticket Shop ist vom 20.10.2015, 22:00 Uhr, bis zum 21.10.2015, 05:00 Uhr, wegen Wartungsarbeiten unterbrochen.</textarea>
+        </div>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
@@ -75,20 +79,25 @@
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
       <div class="sbbsc-block">
+        <button sbbButton (click)="deleteByRef()">Delete first ghettobox from GhettoboxRef</button>
+      </div>
+      <div role="presentation" class="sbbsc-separator"></div>
+      <div class="sbbsc-block">
         <button sbbButton (click)="clear()">Clear All</button>
       </div>
       <div role="presentation" class="sbbsc-separator"></div>
-      <pre class="sbbsc-block">{{ afterDeleteResponseContainer | json }}</pre>
       <h4 class="sbbsc-block">Model</h4>
       <pre>{{ printAttachedGhettoboxesIDS() | json }}</pre>
+      <h4 class="sbbsc-block">Last afterDelete response after deletion of an added ghettobox</h4>
+      <pre class="sbbsc-block">{{ afterDeleteResponseContainer | json }}</pre>
     </div>
   </div>
   <article>
 
     <ng-template #testIcon1>
-      <sbb-icon-clock></sbb-icon-clock>
+      <sbb-icon-him-replacementbus></sbb-icon-him-replacementbus>
     </ng-template>
 
     <ng-template #testIcon2>
-      <sbb-icon-comfort></sbb-icon-comfort>
+      <sbb-icon-him-construction></sbb-icon-him-construction>
     </ng-template>

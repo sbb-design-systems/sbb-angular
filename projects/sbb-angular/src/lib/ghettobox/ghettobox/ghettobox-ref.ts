@@ -1,7 +1,8 @@
 import { LinkGeneratorResult } from '../../pagination/pagination';
-import { GhettoboxComponent } from './ghettobox.component';
-import { TemplateRef, ComponentRef, OnDestroy } from '@angular/core';
+import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
+import { TemplateRef, ComponentRef } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export interface Ghettobox {
   message: string;
@@ -25,12 +26,16 @@ export class GhettoboxRef {
     return this._ref;
   }
 
+  get afterDelete(): Subject<GhettoboxDeletedEvent> {
+    return this.componentInstance.afterDelete;
+  }
+
   private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent;
 
   constructor(ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent) {
     this._ref = ref;
 
-    this.componentInstance.afterDelete.pipe(first()).subscribe(
+    this.afterDelete.pipe(first()).subscribe(
       () => {
         if (this._ref instanceof ComponentRef) {
           this._ref.destroy();

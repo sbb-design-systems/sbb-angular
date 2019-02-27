@@ -36,7 +36,8 @@ import {
   ToggleModule,
   CaptchaModule,
   DropdownModule,
-  FileSelectorModule
+  FileSelectorModule,
+  GhettoboxModule
 } from 'sbb-angular';
 
 
@@ -81,7 +82,6 @@ import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-sel
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
-import { GhettoboxModule } from 'projects/sbb-angular/src/lib/ghettobox/ghettobox';
 
 @NgModule({
   declarations: [

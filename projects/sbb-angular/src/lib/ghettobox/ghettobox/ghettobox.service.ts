@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class GhettoboxService {
 
-  readonly ready = new Subject<void>();
+  readonly containerReady = new Subject<void>();
 
   private _containerInstance: GhettoboxContainerComponent;
   private _attachedGhettoboxes: GhettoboxRef[] = [];
@@ -31,7 +31,7 @@ export class GhettoboxService {
 
   loadInitialGhettoboxes(initialGhettoboxes: GhettoboxRef[]) {
     this._attachedGhettoboxes.push(...initialGhettoboxes);
-    this.ready.next();
+    this.containerReady.next();
   }
 
   add(ghettobox: Ghettobox): GhettoboxRef {

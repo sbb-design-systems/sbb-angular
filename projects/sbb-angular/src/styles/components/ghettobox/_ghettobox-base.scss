@@ -18,6 +18,10 @@
     cursor: pointer;
     background-color: $colorBlack;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 @mixin ghettoboxWrapper() {
