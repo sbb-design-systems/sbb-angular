@@ -70,15 +70,15 @@ export class UserMenuComponent implements AfterContentInit, AfterViewInit {
 
   getInitialLetters(): string {
 
-    let names:string[];
+    let names: string[];
 
     if (this.userName && this.userName.length !== 0) {
 
       names = this.userName.split(' ');
 
-      if(names.length === 1) {
+      if (names.length === 1) {
 
-        return names[0].substring(0,3).toLocaleUpperCase();
+        return names[0].substring(0, 3).toLocaleUpperCase();
       }
 
       return this.userName

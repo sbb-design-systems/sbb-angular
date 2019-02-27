@@ -3,11 +3,9 @@ import { LinkGeneratorResult } from 'sbb-angular';
 import { DropdownTriggerDirective } from 'projects/sbb-angular/src/lib/dropdown/dropdown-trigger.directive';
 
 class User {
-
   userName: string;
   displayName?: string;
   iconUrl?: string;
-
 }
 
 @Component({
@@ -18,6 +16,18 @@ class User {
 export class UserMenuShowcaseComponent implements OnInit {
 
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
+
+  user: User = {
+    userName: null
+  };
+
+  user2: User = {
+    userName: null
+  };
+
+  user3: User = {
+    userName: null
+  };
 
   loggedUser: User = {
     userName: 'ABB1234',
@@ -35,18 +45,6 @@ export class UserMenuShowcaseComponent implements OnInit {
     userName: 'max 98',
     displayName: 'Max Muster',
     iconUrl: null
-  };
-
-  user: User = {
-    userName: null
-  };
-
-  user2: User = {
-    userName: null
-  };
-
-  user3: User = {
-    userName: null
   };
 
   links: Array<any> = [
@@ -69,21 +67,6 @@ export class UserMenuShowcaseComponent implements OnInit {
     };
   }
 
-  logout() {
-    console.log('Logout');
-    this.user.userName = null;
-  }
-
-  logout2() {
-    console.log('Logout');
-    this.user2.userName = null;
-  }
-
-  logout3() {
-    console.log('Logout');
-    this.user3.userName = null;
-  }
-
   logIn($event: any) {
     Object.assign(this.user, this.loggedUser);
 
@@ -99,6 +82,21 @@ export class UserMenuShowcaseComponent implements OnInit {
     Object.assign(this.user3, this.loggedUser3);
 
     console.log('login successful');
+  }
+
+  logout() {
+    console.log('Logout');
+    this.user.userName = null;
+  }
+
+  logout2() {
+    console.log('Logout');
+    this.user2.userName = null;
+  }
+
+  logout3() {
+    console.log('Logout');
+    this.user3.userName = null;
   }
 
 }
