@@ -106,6 +106,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /** @docs-private */
   @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
 
+  /** @docs-private */
   @ContentChild(SearchIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
   /**
@@ -266,7 +267,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this.button.nativeElement === this._document.activeElement;
   }
 
-  private isHeaderMode() : boolean {
+  private isHeaderMode(): boolean {
     return this.mode === 'header';
   }
 
@@ -277,7 +278,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     if (this.isHeaderMode()) {
       if ((target === this.input.nativeElement &&
-          relatedTarget !== this.button.nativeElement) ||
+        relatedTarget !== this.button.nativeElement) ||
         (target === this.button.nativeElement &&
           relatedTarget !== this.input.nativeElement)) {
 
