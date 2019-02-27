@@ -8,7 +8,7 @@
           <ng-content select="[sbbIcon]"></ng-content>
         </div>
         <div class="sbb-usermenu-logged-in-collapsed-initial-letters" *ngIf="!icon.children.length">
-          <div>{{ initialLetters }}</div>
+          <div>{{ getInitialLetters() }}</div>
         </div>
       </div>
       <div class="sbb-usermenu-logged-in-expanded-info-user">
@@ -30,8 +30,7 @@
   <div class="sbb-usermenu-logged-off-icon-user">
     <sbb-icon-user></sbb-icon-user>
   </div>
-  <button class="sbb-usermenu-logged-off-button" (click)="emitLogIn()" i18n>Login</button>
+  <button class="sbb-usermenu-logged-off-button" (click)="emitLogIn()" type="button" i18n>Login</button>
 </div>
-<sbb-dropdown #dropdown="sbbDropdown">
-  <ng-content ngProjectAs="a, button, hr"></ng-content>
-</sbb-dropdown>
+
+<ng-content select="sbb-dropdown"></ng-content>

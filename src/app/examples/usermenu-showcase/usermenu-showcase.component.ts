@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { LinkGeneratorResult } from 'sbb-angular';
-import { DropdownTriggerDirective } from 'projects/sbb-angular/src/lib/dropdown/dropdown-trigger.directive';
 
 class User {
   userName: string;
@@ -13,9 +12,7 @@ class User {
   templateUrl: './usermenu-showcase.component.html',
   styleUrls: ['./usermenu-showcase.component.scss']
 })
-export class UserMenuShowcaseComponent implements OnInit {
-
-  @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
+export class UserMenuShowcaseComponent {
 
   user: User = {
     userName: null
@@ -32,19 +29,16 @@ export class UserMenuShowcaseComponent implements OnInit {
   loggedUser: User = {
     userName: 'ABB1234',
     displayName: null,
-    iconUrl: 'https://issues-ext.sbb.ch/secure/useravatar?size=small&avatarId=10123'
   };
 
   loggedUser2: User = {
     userName: 'ABB1234',
     displayName: null,
-    iconUrl: null
   };
 
   loggedUser3: User = {
     userName: 'max 98',
     displayName: 'Max Muster',
-    iconUrl: null
   };
 
   links: Array<any> = [
@@ -52,13 +46,6 @@ export class UserMenuShowcaseComponent implements OnInit {
     { page: 2, text: 'Eintrag 2' },
     { page: 3, text: 'Eintrag 3' }
   ];
-
-  constructor() {
-
-  }
-
-  ngOnInit() {
-  }
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {

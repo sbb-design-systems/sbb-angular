@@ -1,20 +1,15 @@
 import {
   Component,
-  ContentChildren,
-  QueryList,
-  AfterContentInit,
   HostBinding,
-  ViewChild,
-  AfterViewInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Input,
   Output,
   EventEmitter,
-  ElementRef
+  ContentChild
 } from '@angular/core';
-import { DropdownItemDirective } from '../../dropdown/dropdown-item.directive';
-import { DropdownTriggerDirective } from '../../dropdown/dropdown';
+
+import { DropdownComponent } from '../../dropdown/dropdown';
 
 let counter = 0;
 
@@ -25,66 +20,39 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserMenuComponent implements AfterContentInit, AfterViewInit {
+export class UserMenuComponent {
 
   @HostBinding('class.sbb-usermenu') cssClass = true;
 
-  @HostBinding('attr.id') id = `sbb-usermenu-${counter++}`;
-
-  @ContentChildren(DropdownItemDirective) items: QueryList<DropdownItemDirective>;
-
-  @ViewChild(DropdownTriggerDirective) dropdownTrigger: DropdownTriggerDirective;
+  @HostBinding() id = `sbb-usermenu-${counter++}`;
 
   @Input() displayName: string;
 
-  @Input()
-  set userName(value: string) {
-    this._userName = value;
-  }
-  get userName(): string {
-    return this._userName;
-  }
-  private _userName: string;
+  @Input() userName: string;
 
-  get initialLetters(): string {
-    return this.getInitialLetters();
-  }
+  @Output() loginRequest = new EventEmitter<void>();
 
-  @Output() eventLogin = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngAfterContentInit() {
-
-  }
-
-  ngAfterViewInit() {
-
-    this.dropdownTrigger.dropdown.options.reset(this.items.toArray());
-  }
+  @ContentChild(DropdownComponent) dropdown: DropdownComponent;
 
   emitLogIn() {
-    this.eventLogin.emit('log in done');
+    this.loginRequest.emit();
 
   }
 
   getInitialLetters(): string {
 
-    let names: string[];
+    const names: string[] = this.userName.split(' ');
 
-    if (this.userName && this.userName.length !== 0) {
-
-      names = this.userName.split(' ');
+    if (this.userName) {
 
       if (names.length === 1) {
 
         return names[0].substring(0, 3).toLocaleUpperCase();
       }
 
-      return this.userName
-        .split(' ')
-        .reduce((namePart1, namePart2) => {
-          return namePart1[0].toLocaleUpperCase() + namePart2[0].toLocaleUpperCase();
+      return names
+        .reduce((current, next) => {
+          return (current[0] + next[0]).toLocaleUpperCase();
         });
     }
   }

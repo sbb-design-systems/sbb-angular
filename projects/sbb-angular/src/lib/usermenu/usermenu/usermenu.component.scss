@@ -1,83 +1,29 @@
 @import "../../../styles/main";
 
-$borderActive: solid 2px $colorGrey;
-$borderActive4K: solid toPx(3 * $scalingFactor4k) $colorGrey;
-$borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
-
 .sbb-usermenu {
   &-logged-in {
-    @include usermenu-login;
+    @include usermenu-logged-in;
+
     &.sbb-usermenu-hidden {
       display: none;
     }
+
     &-active {
-      border-top: $borderActive;
-      border-right: $borderActive;
-      border-left: $borderActive;
-
-      @include mq($from: desktop4k) {
-        border-top: $borderActive4K;
-        border-right: $borderActive4K;
-        border-left: $borderActive4K;
-      }
-
-      @include mq($from: desktop5k) {
-        border-top: $borderActive5K;
-        border-right: $borderActive5K;
-        border-left: $borderActive5K;
-      }
+      @include usermenu-logged-in-active;
     }
 
     &-collapsed {
-
-      display: flex;
-      align-items: center;
-      margin-left: 3px;
-      margin-top: 3px;
-
-      @include mq($from: desktop4k) {
-        display: inherit;
-        align-items: inherit;
-        margin-left: toPx(3 * $scalingFactor4k);
-        margin-top: toPx(3 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        display: inherit;
-        align-items: inherit;
-        margin-left: toPx(3 * $scalingFactor5k);
-        margin-top: toPx(3 * $scalingFactor5k);
-      }
+      @include usermenu-logged-in-collapsed;
 
       &-user-icon {
+        @include usermenu-user-icon;
 
-        flex-basis: 32px;
-
-        @include mq($from: desktop4k) {
-          flex-basis: toPx(32 * $scalingFactor4k);
-        }
-
-        @include mq($from: desktop5k) {
-          flex-basis: toPx(32 * $scalingFactor5k);
-        }
         .sbb-usermenu-logged-in-collapsed-icon {
-          position: relative;
-
-          @include mq($from: desktop4k) {
-            width: toPx(48 * $scalingFactor4k);
-            height: toPx(48 * $scalingFactor4k);
-            position: inherit;
-          }
-
-          @include mq($from: desktop5k) {
-            width: toPx(64 * $scalingFactor5k);
-            height: toPx(64 * $scalingFactor5k);
-            position: inherit;
-          }
+          @include usermenu-logged-in-collapsed-icon;
         }
 
         .sbb-usermenu-logged-in-collapsed-initial-letters {
-          @include initial-letters;
+          @include usermenu-logged-in-collapsed-initial-letters;
 
           > div {
             @include absoluteCenterXY;
@@ -86,74 +32,22 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
       }
 
       &-dropdown-expanded {
-        width:100%;
+        width: 100%;
       }
 
       &-arrow {
-        width: 24px;
-        height: 24px;
-        z-index: -1;
-        position: relative;
-
-        @include mq($from: desktop4k) {
-          width: toPx(36 * $scalingFactor4k);
-          height: toPx(36 * $scalingFactor4k);
-          position: inherit;
-          z-index: inherit;
-        }
-
-        @include mq($from: desktop5k) {
-          width: toPx(48 * $scalingFactor5k);
-          height: toPx(48 * $scalingFactor5k);
-          position: inherit;
-          z-index: inherit;
-        }
+        @include usermenu-logged-in-collapsed-arrow;
       }
 
       .sbb-usermenu-logged-in-expanded-info-user {
-        flex-grow: 1;
-        padding-left: 4px;
-
-        @include mq($from: desktop4k) {
-          padding-left: toPx(4 * $scalingFactor4k);
-        }
-
-        @include mq($from: desktop5k) {
-          padding-left: toPx(4 * $scalingFactor5k);
-        }
+        @include usermenu-logged-in-expanded-info-user;
 
         .sbb-usermenu-logged-in-expanded-username {
-          font-size: pxToRem(15);
-          font-family: $fontSbbRoman;
-          color: $colorBlack60;
-          margin-top: -5px;
-
-          @include mq($from: desktop4k) {
-            font-size: pxToRem(23 * $scalingFactor4k);
-            margin-top: toPx(-5 * $scalingFactor4k);
-          }
-
-          @include mq($from: desktop5k) {
-            font-size: pxToRem(30 * $scalingFactor5k);
-            margin-top: toPx(-5 * $scalingFactor5k);
-          }
+          @include usermenu-logged-in-expanded-username;
         }
 
         .sbb-usermenu-logged-in-expanded-displayName {
-          font-family: $fontSbbRoman;
-          color: $colorBlack60;
-          font-size: pxToRem(13);
-          margin-top: -3px;
-
-          @include mq($from: desktop4k) {
-            font-size: pxToRem(23 * $scalingFactor4k);
-            margin-top: toPx(-3 * $scalingFactor4k);
-          }
-
-          @include mq($from: desktop5k) {
-            font-size: pxToRem(30 * $scalingFactor5k);
-            margin-top: toPx(-3 * $scalingFactor5k);
-          }
+          @include usermenu-logged-in-expanded-displayName;
         }
       }
 
@@ -161,93 +55,21 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
         flex-basis: 2px;
 
         .sbb-usermenu-logged-in-expanded-arrow {
-          width: 24px;
-          height: 24px;
-          transform: rotate(180deg);
-          margin-left: 60px;
-
-          @include mq($from: desktop4k) {
-            width: toPx(36 * $scalingFactor4k);
-            height: toPx(36 * $scalingFactor4k);
-            margin-left: toPx(60 * $scalingFactor4k);
-          }
-
-          @include mq($from: desktop5k) {
-            width: toPx(48 * $scalingFactor5k);
-            height: toPx(48 * $scalingFactor5k);
-            margin-left: (60 * $scalingFactor5k);
-          }
+          @include usermenu-logged-in-expanded-arrow;
         }
       }
     }
   }
 
   .sbb-usermenu-logged-off {
-    display: flex;
-    align-items: center;
-    position: relative;
-    height: 48px;
-    width: 156px;
-
-    @include mq($from: desktop4k) {
-      height: toPx(72 * $scalingFactor4k);
-      width: toPx(103 * $scalingFactor4k);
-      display: inherit;
-      align-items: inherit;
-      position: inherit;
-    }
-
-    @include mq($from: desktop5k) {
-      height: toPx(96 * $scalingFactor5k);
-      width: toPx(134 * $scalingFactor5k);
-      display: inherit;
-      align-items: inherit;
-      position: inherit;
-    }
+    @include usermenu-logged-off;
 
     &-icon-user {
-      width: 24px;
-      height: 24px;
-      margin-left: 2px;
-      position: relative;
-
-      @include mq($from: desktop4k) {
-        height: toPx(36 * $scalingFactor4k);
-        width: toPx(36 * $scalingFactor4k);
-        margin-left: toPx(2 * $scalingFactor4k);
-        position: inherit;
-      }
-
-      @include mq($from: desktop5k) {
-        height: toPx(48 * $scalingFactor5k);
-        width: toPx(48 * $scalingFactor5k);
-        margin-left: toPx(2 * $scalingFactor5k);
-        position: inherit;
-      }
+      @include usermenu-logged-off-icon-user;
     }
 
     &-button {
-      @include buttonResetFrameless;
-      position: relative;
-      margin-left: 13.5px;
-      margin-top: 2px;
-
-      @include mq($from: desktop4k) {
-        margin-left: toPx(13.5 * $scalingFactor4k);
-        position: inherit;
-        margin-top: toPx(2 * $scalingFactor4k);
-        max-width: toPx(53 * $scalingFactor4k);
-        max-height: toPx(26 * $scalingFactor4k);
-      }
-
-      @include mq($from: desktop5k) {
-        margin-left: toPx(13.5 * $scalingFactor5k);
-        position: inherit;
-        margin-top: toPx(2 * $scalingFactor5k);
-        max-width: toPx(70 * $scalingFactor5k);
-        max-height: toPx(35 * $scalingFactor5k);
-      }
+      @include usermenu-logged-off-button;
     }
   }
 }
-
