@@ -50,10 +50,10 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Search field with autocomplete, static options, header mode and custom icon</h4>
       <sbb-search mode="header" (search)="searchCounter()" placeholder="Suchen" [formControl]="myControlStatic"
-        [sbbAutocomplete]="auto2">
+        [sbbAutocomplete]="auto3">
         <sbb-icon-info *sbbSearchIcon></sbb-icon-info>
       </sbb-search>
-      <sbb-autocomplete #auto2="sbbAutocomplete">
+      <sbb-autocomplete #auto3="sbbAutocomplete">
         <sbb-option *ngFor="let option of options$ | async" [value]="option">
           {{ option }}
         </sbb-option>
