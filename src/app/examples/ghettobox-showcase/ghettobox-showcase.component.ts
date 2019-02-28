@@ -1,7 +1,6 @@
 import { Component, OnDestroy, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LinkGeneratorResult } from 'sbb-angular';
-import { GhettoboxService, GhettoboxDeletedEvent, GhettoboxRef } from 'sbb-angular';
+import { LinkGeneratorResult, GhettoboxService, GhettoboxDeletedEvent, GhettoboxRef } from 'sbb-angular';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 

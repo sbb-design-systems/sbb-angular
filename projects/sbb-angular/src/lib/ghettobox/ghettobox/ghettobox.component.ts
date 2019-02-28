@@ -12,12 +12,12 @@ import {
   Output
 } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
-import { GhettoboxIconDirective } from './ghettobox-content.directives';
+import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 import { Ghettobox } from './ghettobox-ref';
 import { RouterLink } from '@angular/router';
-import { GhettoboxService } from './ghettobox.service';
 import { GhettoboxAnimations } from './ghettobox-animations';
 import { QueryParamsHandling } from '@angular/router/src/config';
+import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 
 export type GhettoboxState = 'added' | 'deleted';
 
@@ -116,7 +116,7 @@ export class GhettoboxComponent {
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private _ghettoboxService: GhettoboxService) {
+    private _ghettoboxContainerService: GhettoboxContainerService) {
   }
 
   delete(evt: any): void {
@@ -128,8 +128,8 @@ export class GhettoboxComponent {
   destroy(): void {
     this.ghettoboxState = 'deleted';
 
-    if (this._ghettoboxService.hasContainerLoaded) {
-      this._ghettoboxService.deleteFromAttachedGhettoboxesCollection(this.id);
+    if (this._ghettoboxContainerService.hasContainerLoaded) {
+      this._ghettoboxContainerService.deleteFromAttachedGhettoboxesCollection(this.id);
     }
   }
 

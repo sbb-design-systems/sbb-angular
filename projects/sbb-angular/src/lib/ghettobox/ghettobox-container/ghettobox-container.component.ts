@@ -12,9 +12,9 @@ import {
   AfterContentInit
 } from '@angular/core';
 import { CdkPortalOutlet, BasePortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
-import { GhettoboxService } from '../ghettobox/ghettobox.service';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 import { GhettoboxRef, Ghettobox } from '../ghettobox/ghettobox-ref';
+import { GhettoboxContainerService } from './ghettobox-container.service';
 
 let counter = 0;
 
@@ -44,23 +44,23 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
 
   @ContentChildren(GhettoboxComponent) initialGhettoboxes: QueryList<GhettoboxComponent>;
 
-  constructor(private _ghettoboxService: GhettoboxService) {
+  constructor(private _ghettoboxServiceContainer: GhettoboxContainerService) {
     super();
-    if (!this._ghettoboxService.hasContainerLoaded) {
-      this._ghettoboxService.loadContainer(this);
+    if (!this._ghettoboxServiceContainer.hasContainerLoaded) {
+      this._ghettoboxServiceContainer.loadContainer(this);
     } else {
       throw Error('Only one sbb-ghettobox-container is allowed at a time');
     }
   }
 
   ngAfterContentInit() {
-    this._ghettoboxService
+    this._ghettoboxServiceContainer
       .loadInitialGhettoboxes(this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(g)));
   }
 
   ngOnDestroy() {
-    this._ghettoboxService.clearAll();
-    this._ghettoboxService._clearContainer();
+    this._ghettoboxServiceContainer.clearAll();
+    this._ghettoboxServiceContainer.clearContainer();
   }
 
   /**

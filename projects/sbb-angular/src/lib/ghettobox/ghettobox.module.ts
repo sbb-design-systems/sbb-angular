@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { GhettoboxComponent } from './ghettobox/ghettobox.component';
 import { GhettoboxContainerComponent } from './ghettobox-container/ghettobox-container.component';
 import { IconCloseModule, IconArrowDownModule, IconHimInfoModule } from '../svg-icons/svg-icons';
-import { GhettoboxIconDirective, GhettoboxLinkDirective } from './ghettobox/ghettobox-content.directives';
+import { GhettoboxIconDirective } from './ghettobox/ghettobox-icon.directive';
 import { PortalModule } from '@angular/cdk/portal';
 import { RouterModule } from '@angular/router';
+import { GhettoboxContainerService } from './ghettobox-container/ghettobox-container.service';
 
 @NgModule({
   declarations: [
     GhettoboxComponent,
     GhettoboxContainerComponent,
-    GhettoboxIconDirective,
-    GhettoboxLinkDirective
+    GhettoboxIconDirective
   ],
   imports: [
     CommonModule,
@@ -25,8 +25,7 @@ import { RouterModule } from '@angular/router';
   exports: [
     GhettoboxComponent,
     GhettoboxContainerComponent,
-    GhettoboxIconDirective,
-    GhettoboxLinkDirective
+    GhettoboxIconDirective
   ],
   entryComponents: [
     GhettoboxComponent
