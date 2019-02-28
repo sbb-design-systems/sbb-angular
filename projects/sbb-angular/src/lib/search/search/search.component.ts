@@ -277,10 +277,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     const target = $event.target;
 
     if (this.isHeaderMode()) {
-      if ((target === this.input.nativeElement &&
+      if (((target === this.input.nativeElement &&
         relatedTarget !== this.button.nativeElement) ||
         (target === this.button.nativeElement &&
-          relatedTarget !== this.input.nativeElement)) {
+          relatedTarget !== this.input.nativeElement)) &&
+          (!!this.overlayRef && !this.overlayRef.overlayElement.contains(relatedTarget))) {
 
         if (this.autocomplete) {
 
