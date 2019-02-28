@@ -1,10 +1,9 @@
 <span class="hljs-keyword">import</span> { Component, OnInit, ViewChildren, QueryList } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { LinkGeneratorResult } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
-<span class="hljs-keyword">class</span> User {
+<span class="hljs-keyword">interface</span> User {
   userName: <span class="hljs-built_in">string</span>;
   displayName?: <span class="hljs-built_in">string</span>;
-  iconUrl?: <span class="hljs-built_in">string</span>;
 }
 
 <span class="hljs-meta">@Component</span>({
@@ -54,18 +53,18 @@
     };
   }
 
-  logIn($event: <span class="hljs-built_in">any</span>) {
+  login($event: <span class="hljs-built_in">any</span>) {
     <span class="hljs-built_in">Object</span>.assign(<span class="hljs-keyword">this</span>.user, <span class="hljs-keyword">this</span>.loggedUser);
 
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'login successful'</span>);
   }
 
-  logIn2($event: <span class="hljs-built_in">any</span>) {
+  login2($event: <span class="hljs-built_in">any</span>) {
     <span class="hljs-built_in">Object</span>.assign(<span class="hljs-keyword">this</span>.user2, <span class="hljs-keyword">this</span>.loggedUser2);
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'login successful'</span>);
   }
 
-  logIn3($event: <span class="hljs-built_in">any</span>) {
+  login3($event: <span class="hljs-built_in">any</span>) {
     <span class="hljs-built_in">Object</span>.assign(<span class="hljs-keyword">this</span>.user3, <span class="hljs-keyword">this</span>.loggedUser3);
 
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'login successful'</span>);

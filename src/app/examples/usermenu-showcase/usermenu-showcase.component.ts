@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { LinkGeneratorResult } from 'sbb-angular';
 
-class User {
+interface User {
   userName: string;
   displayName?: string;
-  iconUrl?: string;
 }
 
 @Component({
