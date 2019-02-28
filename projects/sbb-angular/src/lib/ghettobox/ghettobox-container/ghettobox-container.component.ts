@@ -44,23 +44,23 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
 
   @ContentChildren(GhettoboxComponent) initialGhettoboxes: QueryList<GhettoboxComponent>;
 
-  constructor(private _ghettoboxServiceContainer: GhettoboxContainerService) {
+  constructor(private _ghettoboxContainerService: GhettoboxContainerService) {
     super();
-    if (!this._ghettoboxServiceContainer.hasContainerLoaded) {
-      this._ghettoboxServiceContainer.loadContainer(this);
+    if (!this._ghettoboxContainerService.hasContainerLoaded) {
+      this._ghettoboxContainerService.loadContainer(this);
     } else {
       throw Error('Only one sbb-ghettobox-container is allowed at a time');
     }
   }
 
   ngAfterContentInit() {
-    this._ghettoboxServiceContainer
+    this._ghettoboxContainerService
       .loadInitialGhettoboxes(this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(g)));
   }
 
   ngOnDestroy() {
-    this._ghettoboxServiceContainer.clearAll();
-    this._ghettoboxServiceContainer.clearContainer();
+    this._ghettoboxContainerService.clearAll();
+    this._ghettoboxContainerService.clearContainer();
   }
 
   /**

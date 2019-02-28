@@ -2,7 +2,7 @@
 
 // import { GhettoboxComponent } from './ghettobox.component';
 
-// describe('GhettoboxComponent', () => {
+// fdescribe('GhettoboxComponent', () => {
 //   let component: GhettoboxComponent;
 //   let fixture: ComponentFixture<GhettoboxComponent>;
 
