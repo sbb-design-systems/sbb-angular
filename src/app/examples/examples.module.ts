@@ -36,6 +36,8 @@ import {
   ToggleModule,
   CaptchaModule,
   FileSelectorModule,
+  DropdownModule,
+  UserMenuModule
 } from 'sbb-angular';
 
 
@@ -80,8 +82,6 @@ import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-sel
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
-import { UserMenuModule } from 'projects/sbb-angular/src/lib/usermenu/usermenu';
-import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown';
 
 @NgModule({
   declarations: [
