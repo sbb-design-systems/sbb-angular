@@ -1,6 +1,5 @@
 <span class="hljs-keyword">import</span> { Component, OnInit, ViewChildren, QueryList } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { LinkGeneratorResult } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
-<span class="hljs-keyword">import</span> { DropdownTriggerDirective } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/dropdown/dropdown-trigger.directive'</span>;
 
 <span class="hljs-keyword">class</span> User {
   userName: <span class="hljs-built_in">string</span>;
@@ -13,9 +12,7 @@
   templateUrl: <span class="hljs-string">'./usermenu-showcase.component.html'</span>,
   styleUrls: [<span class="hljs-string">'./usermenu-showcase.component.scss'</span>]
 })
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserMenuShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
-
-  <span class="hljs-meta">@ViewChildren</span>(DropdownTriggerDirective) triggers: QueryList&lt;DropdownTriggerDirective&gt;;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserMenuShowcaseComponent {
 
   user: User = {
     userName: <span class="hljs-literal">null</span>
@@ -32,19 +29,16 @@
   loggedUser: User = {
     userName: <span class="hljs-string">'ABB1234'</span>,
     displayName: <span class="hljs-literal">null</span>,
-    iconUrl: <span class="hljs-string">'https://issues-ext.sbb.ch/secure/useravatar?size=small&amp;avatarId=10123'</span>
   };
 
   loggedUser2: User = {
     userName: <span class="hljs-string">'ABB1234'</span>,
     displayName: <span class="hljs-literal">null</span>,
-    iconUrl: <span class="hljs-literal">null</span>
   };
 
   loggedUser3: User = {
     userName: <span class="hljs-string">'max 98'</span>,
     displayName: <span class="hljs-string">'Max Muster'</span>,
-    iconUrl: <span class="hljs-literal">null</span>
   };
 
   links: <span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">any</span>&gt; = [
@@ -52,13 +46,6 @@
     { page: <span class="hljs-number">2</span>, text: <span class="hljs-string">'Eintrag 2'</span> },
     { page: <span class="hljs-number">3</span>, text: <span class="hljs-string">'Eintrag 3'</span> }
   ];
-
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
-
-  }
-
-  ngOnInit() {
-  }
 
   linkGenerator(page: <span class="hljs-built_in">string</span>): LinkGeneratorResult {
     <span class="hljs-keyword">return</span> {

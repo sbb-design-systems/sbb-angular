@@ -22,23 +22,44 @@ let counter = 0;
 })
 export class UserMenuComponent {
 
+  /**
+   * Css class of a sbb-usermenu.
+   */
   @HostBinding('class.sbb-usermenu') cssClass = true;
 
+  /**
+   * Identifier of a usermenu.
+   */
   @HostBinding() id = `sbb-usermenu-${counter++}`;
 
+  /**
+   * Name and surname of a user.
+   */
   @Input() displayName: string;
 
+  /**
+   * Username of a user.
+   */
   @Input() userName: string;
 
+  /**
+   * Event emitted on log in of a user.
+   */
   @Output() loginRequest = new EventEmitter<void>();
 
+  /**
+   * Reference to a dropdown istance.
+   */
   @ContentChild(DropdownComponent) dropdown: DropdownComponent;
 
-  emitLogIn() {
+  emitLogin() {
     this.loginRequest.emit();
-
   }
 
+  /**
+   * Get the initial letters of user's username.
+   * @return Initial letters of user's username.
+   */
   getInitialLetters(): string {
 
     const names: string[] = this.userName.split(' ');

@@ -26,7 +26,9 @@
           <code>displayName: string</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Name and surname of a user.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -35,16 +37,20 @@
           <code>userName: string</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Username of a user.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-output-marker"> @Output()</div>
         <p class="docs-api-property-name">
-          <code>eventLogin: EventEmitter&lt;string&gt;</code>
+          <code>loginRequest: EventEmitter&lt;void&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Event emitted on log in of a user.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -52,15 +58,19 @@
           <code>cssClass: true</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Css class of a sbb-usermenu.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>dropdownTrigger: DropdownTriggerDirective</code>
+          <code>dropdown: DropdownComponent</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Reference to a dropdown istance.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -68,23 +78,9 @@
           <code>id: `sbb-usermenu-${counter++}`</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>initialLetters: string</code>
-        </p>
+      <td class="docs-api-property-description">
+        <p>Identifier of a usermenu.</p>
       </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>items: QueryList&lt;DropdownItemDirective&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
@@ -101,6 +97,11 @@
         <th colspan="2" class="docs-api-method-name-cell">getInitialLetters </th>
       </tr>
     </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Get the initial letters of user&#39;s username.</p>
+      </td>
+    </tr>
     <thead>
       <tr class="docs-api-method-returns-header-row">
         <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
@@ -112,6 +113,7 @@
       </td>
       <td class="docs-api-method-returns-description-cell">
         <p class="docs-api-method-returns-description">
+          <p>Initial letters of user&#39;s username.</p>
         </p>
       </td>
     </tr>

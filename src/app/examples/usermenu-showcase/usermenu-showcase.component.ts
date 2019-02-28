@@ -54,18 +54,18 @@ export class UserMenuShowcaseComponent {
     };
   }
 
-  logIn($event: any) {
+  login($event: any) {
     Object.assign(this.user, this.loggedUser);
 
     console.log('login successful');
   }
 
-  logIn2($event: any) {
+  login2($event: any) {
     Object.assign(this.user2, this.loggedUser2);
     console.log('login successful');
   }
 
-  logIn3($event: any) {
+  login3($event: any) {
     Object.assign(this.user3, this.loggedUser3);
 
     console.log('login successful');
