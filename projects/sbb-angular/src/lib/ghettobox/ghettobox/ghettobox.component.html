@@ -3,31 +3,17 @@
      [@addDelete]="ghettoboxState" 
      (@addDelete.done)="handleAnimation($event)">
 
-  <ng-container *ngIf="routerLink || hasGettoboxLink; else content">
-    <a *ngIf="hasGettoboxLink" class="sbb-ghettobox-link"
-        [routerLink]="ghettobox.link.routerLink"
-        [queryParams]="ghettobox.link.queryParams" 
-        [fragment]="ghettobox.link.fragment"
-        [preserveFragment]="ghettobox.link.preserveFragment" 
-        [skipLocationChange]="ghettobox.link.skipLocationChange"
-        [replaceUrl]="ghettobox.link.replaceUrl"
-        [state]="ghettobox.link.state"
-        [queryParamsHandling]="ghettobox.link.queryParamsHandling">
-      <ng-container *ngTemplateOutlet="content"></ng-container>
-    </a>
-
-    <a *ngIf="routerLink" class="sbb-ghettobox-link"
-        [routerLink]="routerLink" 
-        [queryParams]="queryParams" 
-        [fragment]="fragment"
-        [preserveFragment]="preserveFragment" 
-        [skipLocationChange]="skipLocationChange" 
-        [replaceUrl]="replaceUrl"
-        [state]="state" 
-        [queryParamsHandling]="queryParamsHandling">
-      <ng-container *ngTemplateOutlet="content"></ng-container>
-    </a>
-  </ng-container>
+  <a *ngIf="routerLink; else content" class="sbb-ghettobox-link"
+      [routerLink]="routerLink"
+      [queryParams]="link.queryParams" 
+      [fragment]="link.fragment"
+      [preserveFragment]="link.preserveFragment" 
+      [skipLocationChange]="link.skipLocationChange"
+      [replaceUrl]="link.replaceUrl"
+      [state]="link.state"
+      [queryParamsHandling]="link.queryParamsHandling">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
 
   <ng-template #content>
     <article class="sbb-ghettobox-wrapper" *ngIf="visible">
@@ -43,11 +29,11 @@
         <ng-container *ngIf="!ghettobox">
           <ng-content></ng-content>
         </ng-container>
-        <sbb-icon-arrow-down *ngIf="routerLink || hasGettoboxLink" class="sbb-ghettobox-content-link-icon">
+        <sbb-icon-arrow-down *ngIf="routerLink" class="sbb-ghettobox-content-link-icon">
         </sbb-icon-arrow-down>
       </div>
       <div class="sbb-ghettobox-close">
-        <button (click)="delete($event)" class="sbb-ghettobox-close-button">
+        <button type="button" (click)="delete($event)" class="sbb-ghettobox-close-button">
           <sbb-icon-close></sbb-icon-close>
           <span i18n class="visuallyhidden">Hinweismeldung schliessen</span>
         </button>

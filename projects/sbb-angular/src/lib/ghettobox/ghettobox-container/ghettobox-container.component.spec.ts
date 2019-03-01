@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GhettoboxContainerComponent } from './ghettobox-container.component';
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef, DebugElement } from '@angular/core';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '../../svg-icons/svg-icons';
@@ -14,7 +14,7 @@ import { LinkGeneratorResult } from '../../pagination/pagination';
 import { PortalModule } from '@angular/cdk/portal';
 
 @Component({
-  selector: 'sbb-ghettobox-test',
+  selector: 'sbb-ghettobox-container-test',
   template: `
   <sbb-ghettobox-container>
     <sbb-ghettobox>
@@ -43,11 +43,10 @@ const linkGenerator = (): LinkGeneratorResult => {
   };
 };
 
-fdescribe('GhettoboxContainerComponent', () => {
+describe('GhettoboxContainerComponent', () => {
   let component: GhettoboxContainerTestComponent;
   let fixture: ComponentFixture<GhettoboxContainerTestComponent>;
   let ghettoboxService: GhettoboxService;
-  let ghettoboxContainerService: GhettoboxContainerService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -70,7 +69,6 @@ fdescribe('GhettoboxContainerComponent', () => {
       .compileComponents();
 
     ghettoboxService = TestBed.get(GhettoboxService);
-    ghettoboxContainerService = TestBed.get(GhettoboxContainerService);
   }));
 
   beforeEach(() => {
@@ -107,24 +105,112 @@ fdescribe('GhettoboxContainerComponent', () => {
     await fixture.whenStable();
 
     const ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
+    const icon = ghettoboxes[1].query(By.css('sbb-icon-him-replacementbus'));
+    const linkHref = ghettoboxes[1].query(By.css('.sbb-ghettobox-link')).nativeElement.getAttribute('href');
+
+    expect(ghettoboxes.length).toEqual(2);
+    expect(ghettoboxes[1].componentInstance.ghettobox.message).toBe('TEST MESSAGE');
+    expect(icon).toBeTruthy();
+    expect(linkHref).toBe('/?test=10#test');
+
+  });
+
+  it('should be able to delete a Ghettobox by ID via GhettoboxService', async () => {
+    let ghettoboxes: DebugElement[];
+    const ghettoboxToAdd: Ghettobox = { message: 'TEST MESSAGE', link: linkGenerator(), icon: component.testIcon };
+
+    ghettoboxService.add(ghettoboxToAdd);
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(2);
 
+    const addedGhettoboxID = ghettoboxes[1].nativeElement.getAttribute('id');
+
+    ghettoboxService.deleteById(addedGhettoboxID);
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
+
+    expect(ghettoboxes.length).toEqual(1);
+    expect(ghettoboxService.attachedGhettoboxes.length).toEqual(1);
   });
 
-  it('should be able to delete a Ghettobox by ID via GhettoboxService', () => {
+  it('should be able to delete a Ghettobox by INDEX via GhettoboxService', async () => {
+    let ghettoboxes: DebugElement[];
+    const ghettoboxToAdd: Ghettobox = { message: 'TEST MESSAGE', link: linkGenerator(), icon: component.testIcon };
 
+    ghettoboxService.add(ghettoboxToAdd);
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
+
+    expect(ghettoboxes.length).toEqual(2);
+
+    ghettoboxService.deleteByIndex(1);
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
+
+    expect(ghettoboxes.length).toEqual(1);
+    expect(ghettoboxService.attachedGhettoboxes.length).toEqual(1);
   });
 
-  it('should be able to delete a Ghettobox by INDEX via GhettoboxService', () => {
+  it('should be able to delete a Ghettobox from GhettoboxRef delete method', async () => {
+    let ghettoboxes: DebugElement[];
+    const ghettoboxToAdd: Ghettobox = { message: 'TEST MESSAGE', link: linkGenerator(), icon: component.testIcon };
 
+    const addedGhettobox = ghettoboxService.add(ghettoboxToAdd);
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
+
+    expect(ghettoboxes.length).toEqual(2);
+
+    addedGhettobox.delete();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
+
+    expect(ghettoboxes.length).toEqual(1);
+    expect(ghettoboxService.attachedGhettoboxes.length).toEqual(1);
   });
 
-  it('should be able to delete a Ghettobox from GhettoboxRef delete method', () => {
+  it('should be able to clear all Ghettoboxes via GhettoboxService', async () => {
+    const ghettoboxToAdd: Ghettobox = { message: 'TEST MESSAGE', link: linkGenerator(), icon: component.testIcon };
 
-  });
+    ghettoboxService.add(ghettoboxToAdd);
+    ghettoboxService.add(ghettoboxToAdd);
 
-  it('should be able to clear all Ghettoboxes via GhettoboxService', () => {
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxService.attachedGhettoboxes.forEach(g => {
+      spyOn(g.componentInstance, 'delete');
+    });
+
+    ghettoboxService.clearAll();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    ghettoboxService.attachedGhettoboxes.forEach(g => {
+      expect(g.componentInstance.delete).toHaveBeenCalled();
+      expect(g.componentInstance.visible).toBe(false);
+    });
 
   });
 

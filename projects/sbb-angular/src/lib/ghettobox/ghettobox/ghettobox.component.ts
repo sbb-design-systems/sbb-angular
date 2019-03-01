@@ -9,15 +9,17 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation,
   EventEmitter,
-  Output
+  Output,
+  Optional,
+  Self
 } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 import { Ghettobox } from './ghettobox-ref';
 import { RouterLink } from '@angular/router';
 import { GhettoboxAnimations } from './ghettobox-animations';
-import { QueryParamsHandling } from '@angular/router/src/config';
 import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
+import { QueryParamsHandling } from '@angular/router/src/config';
 
 export type GhettoboxState = 'added' | 'deleted';
 
@@ -40,7 +42,14 @@ export class GhettoboxComponent {
 
   visible = true;
 
-  @Input() routerLink: RouterLink;
+  @Input()
+  set routerLink(value: any[] | string) { this._routerLink = value; }
+  get routerLink() {
+    return this._routerLink || (this.ghettobox && this.ghettobox.link ? this.ghettobox.link.routerLink : undefined);
+  }
+  private _routerLink: any[] | string;
+
+  get link() { return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined); }
 
   @Input() queryParams: { [k: string]: any };
 
@@ -110,13 +119,10 @@ export class GhettoboxComponent {
     this._changeDetector.markForCheck();
   }
 
-  get hasGettoboxLink() {
-    return this.ghettobox ? this.ghettobox.link : false;
-  }
-
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private _ghettoboxContainerService: GhettoboxContainerService) {
+    private _ghettoboxContainerService: GhettoboxContainerService,
+    @Optional() @Self() private _routerLinkDirective: RouterLink) {
   }
 
   delete(evt: any): void {
