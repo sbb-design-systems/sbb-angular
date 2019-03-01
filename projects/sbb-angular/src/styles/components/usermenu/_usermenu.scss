@@ -6,7 +6,7 @@ $borderActive: solid 2px $colorGrey;
 $borderActive4K: solid toPx(3 * $scalingFactor4k) $colorGrey;
 $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 
-@mixin usermenu-logged-in {
+@mixin usermenuLoggedIn {
   position: relative;
   align-items: center;
   display: flex;
@@ -25,7 +25,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-active {
+@mixin usermenuLoggedInActive {
   border-top: $borderActive;
   border-right: $borderActive;
   border-left: $borderActive;
@@ -43,7 +43,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-collapsed {
+@mixin usermenuLoggedInCollapsed {
   display: flex;
   align-items: center;
   margin-left: 3px;
@@ -64,7 +64,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-user-icon {
+@mixin usermenuUserIcon {
   flex-basis: 32px;
 
   @include mq($from: desktop4k) {
@@ -76,7 +76,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-collapsed-icon {
+@mixin usermenuLoggedInCollapsedIcon {
   position: relative;
 
   @include mq($from: desktop4k) {
@@ -92,7 +92,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-collapsed-initial-letters {
+@mixin usermenuLoggedInCollapsedInitialLetters {
   border-radius: 50%;
   border: $border;
   background-color: $colorBlack10;
@@ -120,11 +120,22 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-collapsed-arrow {
+@mixin usernameLoggedInCollapsed {
+  @include mq($from: mobilePortrait, $to: tabletPortrait) {
+    display: none;
+  }
+
+}
+
+@mixin usermenuLoggedInCollapsedArrow {
   width: 24px;
   height: 24px;
   z-index: -1;
   position: relative;
+
+  @include mq($from: mobilePortrait, $to: tabletPortrait) {
+    display: none;
+  }
 
   @include mq($from: desktop4k) {
     width: toPx(36 * $scalingFactor4k);
@@ -141,7 +152,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-expanded-info-user {
+@mixin usermenuLoggedInExpandedInfoUser {
   flex-grow: 1;
   padding-left: 4px;
 
@@ -154,24 +165,27 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-expanded-username {
+@mixin usermenuLoggedInExpandedUsername {
   font-size: pxToRem(15);
   font-family: $fontSbbRoman;
   color: $colorBlack60;
   margin-top: -5px;
+  width:68px;
 
   @include mq($from: desktop4k) {
     font-size: pxToRem(23 * $scalingFactor4k);
     margin-top: toPx(-5 * $scalingFactor4k);
+    width:90px;
   }
 
   @include mq($from: desktop5k) {
     font-size: pxToRem(30 * $scalingFactor5k);
     margin-top: toPx(-5 * $scalingFactor5k);
+    width:119px;
   }
 }
 
-@mixin usermenu-logged-in-expanded-displayName {
+@mixin usermenuLoggedInExpandedDisplayName {
   font-family: $fontSbbRoman;
   color: $colorBlack60;
   font-size: pxToRem(13);
@@ -188,7 +202,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-in-expanded-arrow {
+@mixin usermenuLoggedInExpandedArrow {
   width: 24px;
   height: 24px;
   transform: rotate(180deg);
@@ -207,7 +221,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-off {
+@mixin usermenuLoggedOff {
   display: flex;
   align-items: center;
   position: relative;
@@ -231,7 +245,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-off-icon-user {
+@mixin usermenuLoggedOffIconUser {
   width: 24px;
   height: 24px;
   margin-left: 2px;
@@ -252,7 +266,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usermenu-logged-off-button {
+@mixin usermenuLoggedOffButton {
   @include buttonResetFrameless;
   position: relative;
   margin-left: 13.5px;

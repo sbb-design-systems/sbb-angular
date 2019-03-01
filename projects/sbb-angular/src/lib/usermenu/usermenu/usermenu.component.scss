@@ -2,28 +2,28 @@
 
 .sbb-usermenu {
   &-logged-in {
-    @include usermenu-logged-in;
+    @include usermenuLoggedIn;
 
     &.sbb-usermenu-hidden {
       display: none;
     }
 
     &-active {
-      @include usermenu-logged-in-active;
+      @include usermenuLoggedInActive;
     }
 
     &-collapsed {
-      @include usermenu-logged-in-collapsed;
+      @include usermenuLoggedInCollapsed;
 
       &-user-icon {
-        @include usermenu-user-icon;
+        @include usermenuUserIcon;
 
         .sbb-usermenu-logged-in-collapsed-icon {
-          @include usermenu-logged-in-collapsed-icon;
+          @include usermenuLoggedInCollapsedIcon;
         }
 
         .sbb-usermenu-logged-in-collapsed-initial-letters {
-          @include usermenu-logged-in-collapsed-initial-letters;
+          @include usermenuLoggedInCollapsedInitialLetters;
 
           > div {
             @include absoluteCenterXY;
@@ -36,18 +36,21 @@
       }
 
       &-arrow {
-        @include usermenu-logged-in-collapsed-arrow;
+        @include usermenuLoggedInCollapsedArrow;
       }
 
       .sbb-usermenu-logged-in-expanded-info-user {
-        @include usermenu-logged-in-expanded-info-user;
+        @include usermenuLoggedInExpandedInfoUser;
 
         .sbb-usermenu-logged-in-expanded-username {
-          @include usermenu-logged-in-expanded-username;
+          @include usermenuLoggedInExpandedUsername;
+          &.sbb-username-logged-in-collapsed {
+            @include usernameLoggedInCollapsed;
+          }
         }
 
         .sbb-usermenu-logged-in-expanded-displayName {
-          @include usermenu-logged-in-expanded-displayName;
+          @include usermenuLoggedInExpandedDisplayName;
         }
       }
 
@@ -55,21 +58,21 @@
         flex-basis: 2px;
 
         .sbb-usermenu-logged-in-expanded-arrow {
-          @include usermenu-logged-in-expanded-arrow;
+          @include usermenuLoggedInExpandedArrow;
         }
       }
     }
   }
 
   .sbb-usermenu-logged-off {
-    @include usermenu-logged-off;
+    @include usermenuLoggedOff;
 
     &-icon-user {
-      @include usermenu-logged-off-icon-user;
+      @include usermenuLoggedOffIconUser;
     }
 
     &-button {
-      @include usermenu-logged-off-button;
+      @include usermenuLoggedOffButton;
     }
   }
 }
