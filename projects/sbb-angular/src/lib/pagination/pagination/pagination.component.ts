@@ -188,7 +188,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
   }
 
-  linkClick(page) {
+  linkClick(page: PageDescriptor) {
     this.selectedPageSubject.next(page);
     this.changeDetectorRef.detectChanges();
   }

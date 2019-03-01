@@ -40,7 +40,7 @@ export class TimeInputDirective {
    * Method that sets the input value in 'hours:mins' format on blur event
    */
   @HostListener('blur', ['$event.target.value'])
-  onBlur(value) {
+  onBlur(value: any) {
     const regGroups = this.inputValidate(value);
     if (!regGroups || regGroups.length <= 2) {
       return;
