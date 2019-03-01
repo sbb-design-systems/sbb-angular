@@ -1,1 +1,27 @@
-<sbb-breadcrumb></sbb-breadcrumb>
+<sbb-breadcrumb>
+  <a routerLink="/">
+    <sbb-icon-home size="fixed"></sbb-icon-home>
+  </a>
+  <a routerLink="/level1">Level 1</a>
+  <a routerLink="/level1/level2">Level 2</a>
+</sbb-breadcrumb>
+
+<div role="presentation" class="sbbsc-separator"></div>
+
+<sbb-breadcrumb>
+  <a routerLink="/">
+    <sbb-icon-home size="fixed"></sbb-icon-home>
+  </a>
+  <button sbbButton type="button" [sbbDropdown]="dropdown" >Open dropdown</button>
+  <sbb-dropdown  #dropdown="sbbDropdown">
+    Level 1
+    <a sbbDropdownItem  routerLink="/level1" routerLinkActive="classForActive">Level 1</a>
+    <a sbbDropdownItem  routerLink="/level1b" routerLinkActive="classForActive">Level 1b</a>
+  </sbb-dropdown>
+  <button sbbButton type="button" [sbbDropdown]="dropdown2" >Open dropdown</button>
+  <sbb-dropdown #dropdown2="sbbDropdown">
+    Level 2
+    <a sbbDropdownItem  routerLink="/level1/level2" routerLinkActive="classForActive">Level 2</a>
+    <a sbbDropdownItem  routerLink="/level1/level2b" routerLinkActive="classForActive">Level 2b</a>
+  </sbb-dropdown>
+</sbb-breadcrumb>

@@ -1,0 +1,7 @@
+@mixin breadcrumbBase {
+  a:not(:nth-last-of-type()) {
+    &::after {
+      content: ">";
+    }
+  }
+}

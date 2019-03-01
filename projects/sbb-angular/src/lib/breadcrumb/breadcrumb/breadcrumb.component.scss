@@ -1,1 +1,5 @@
-@import '../../../styles/main';
+@import "../../../styles/main";
+
+sbb-breadcrumb {
+  @include breadcrumbBase;
+}
