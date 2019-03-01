@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { SearchModule } from '../search.module';
 import { SearchComponent } from '../search';
 import { Component, ViewChild } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { dispatchKeyboardEvent, dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { ENTER, DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
+import { ENTER, DOWN_ARROW, UP_ARROW, TAB } from '@angular/cdk/keycodes';
 import { AutocompleteModule } from '../../autocomplete/autocomplete';
 import { OptionModule } from '../../option/option';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -74,7 +74,34 @@ export class SimpleSearchHeaderComponent {
 
 }
 
-fdescribe('SearchComponent', () => {
+@Component({
+  selector: 'sbb-simple-search-autocomplete-header-component',
+  template: `
+  <sbb-search mode="header" (search)="search($event)" placeholder="Suchen" [sbbAutocomplete]="auto1">
+  </sbb-search>
+  <sbb-autocomplete #auto1="sbbAutocomplete">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+    {{ option }}
+  </sbb-option>
+</sbb-autocomplete>
+`
+})
+export class SimpleSearchAutocompleteHeaderComponent {
+
+  lastSearch = '';
+  @ViewChild(SearchComponent) searchComponent: SearchComponent;
+
+  options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
+  filteredOptions = this.options.slice(0);
+
+
+  search($event) {
+    this.lastSearch = $event;
+  }
+
+}
+
+describe('SearchComponent', () => {
   describe('without autocomplete', () => {
     let component: SimpleSearchComponent;
     let fixture: ComponentFixture<SimpleSearchComponent>;
@@ -265,12 +292,13 @@ fdescribe('SearchComponent', () => {
         expect(component).toBeTruthy();
       });
 
-
       describe('when clicking on the trigger', () => {
         it('should show the search box', () => {
           const searchBox = fixture.debugElement.query(By.css('.sbb-search-box'));
           expect(getComputedStyle(searchBox.nativeElement).display).toBe('none');
           const trigger = fixture.debugElement.query(By.css('.sbb-search-icon-wrapper'));
+          dispatchFakeEvent(trigger.nativeElement, 'focus');
+
           trigger.nativeElement.click();
           fixture.detectChanges();
           expect(getComputedStyle(searchBox.nativeElement).display).toBe('flex');
@@ -282,11 +310,59 @@ fdescribe('SearchComponent', () => {
           const trigger = fixture.debugElement.query(By.css('.sbb-search-icon-wrapper'));
           trigger.nativeElement.click();
           fixture.detectChanges();
-          expect(getComputedStyle(searchBox.nativeElement).display).toBe('flex');
+          expect(component.searchComponent.hideSearch).toBe(false);
+
         });
       });
+
+
+    });
+
+    describe('with autocomplete', () => {
+      let component: SimpleSearchAutocompleteHeaderComponent;
+      let fixture: ComponentFixture<SimpleSearchAutocompleteHeaderComponent>;
+
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OptionModule, OverlayModule],
+          declarations: [SimpleSearchAutocompleteHeaderComponent]
+        }).compileComponents();
+
+      }));
+
+      beforeEach(() => {
+        fixture = TestBed.createComponent(SimpleSearchAutocompleteHeaderComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
+
+      describe('when clicking on the trigger', () => {
+        it('should show the search box', () => {
+          const searchBox = fixture.debugElement.query(By.css('.sbb-search-box'));
+          expect(getComputedStyle(searchBox.nativeElement).display).toBe('none');
+          const trigger = fixture.debugElement.query(By.css('.sbb-search-icon-wrapper'));
+          dispatchFakeEvent(trigger.nativeElement, 'focus');
+
+          trigger.nativeElement.click();
+          fixture.detectChanges();
+          expect(getComputedStyle(searchBox.nativeElement).display).toBe('flex');
+        });
+
+        it('should hide the trigger itself', () => {
+          const searchBox = fixture.debugElement.query(By.css('.sbb-search-box'));
+          expect(getComputedStyle(searchBox.nativeElement).display).toBe('none');
+          const trigger = fixture.debugElement.query(By.css('.sbb-search-icon-wrapper'));
+          trigger.nativeElement.click();
+          fixture.detectChanges();
+          expect(component.searchComponent.hideSearch).toBe(false);
+        });
+      });
+
+
     });
   });
 });
-
-
