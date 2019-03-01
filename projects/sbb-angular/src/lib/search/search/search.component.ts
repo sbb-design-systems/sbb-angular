@@ -9,10 +9,9 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
-import { filter, take, switchMap, delay, tap, map, first } from 'rxjs/operators';
+import { filter, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
   ChangeDetectorRef,
-  Directive,
   ElementRef,
   forwardRef,
   Inject,
@@ -22,18 +21,23 @@ import {
   Optional,
   ViewContainerRef,
   HostBinding,
-  HostListener,
   InjectionToken,
-  OnInit
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ViewChild,
+  Component,
+  TemplateRef,
+  EventEmitter,
+  Output,
+  AfterViewInit,
+  ContentChild,
 } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable } from 'rxjs';
+import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable, of } from 'rxjs';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
-import { AutocompleteComponent } from './autocomplete.component';
 import { HighlightPipe } from '../../option/option/highlight.pipe';
 import {
   SBBOptionSelectionChange,
@@ -41,61 +45,107 @@ import {
   getOptionScrollPosition,
   OptionComponent
 } from '../../option/option/option.component';
+import {
+  AutocompleteComponent,
+  AutocompleteOriginDirective,
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
+  AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT, getSbbAutocompleteMissingPanelError
+} from '../../autocomplete/autocomplete';
+import { AnimationBuilder, style, animate } from '@angular/animations';
+import { SearchIconDirective } from '../search-icon.directive';
 
-/**
- * Creates an error to be thrown when attempting to use an autocomplete trigger without a panel.
- * @docs-private
- */
-export function getSbbAutocompleteMissingPanelError(): Error {
-  return Error('Attempting to open an undefined instance of `sbb-autocomplete`. ' +
-    'Make sure that the id passed to the `sbbAutocomplete` is correct and that ' +
-    'you\'re attempting to open it after the ngAfterContentInit hook.');
-}
-
-/** Injection token that determines the scroll handling while the autocomplete panel is open. */
-export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY =
-  new InjectionToken<() => ScrollStrategy>('sbb-autocomplete-scroll-strategy');
+/** Injection token that determines the scroll handling while the calendar is open. */
+export const SBB_SEARCH_SCROLL_STRATEGY =
+  new InjectionToken<() => ScrollStrategy>('sbb-search-scroll-strategy');
 
 /** @docs-private */
-export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
+export function SBB_SEARCH_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
-/** The height of each autocomplete option. */
-export const AUTOCOMPLETE_OPTION_HEIGHT = 40;
-
-/** The total height of the autocomplete panel. */
-export const AUTOCOMPLETE_PANEL_HEIGHT = 404;
-
-export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
+/** @docs-private */
+export const SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER = {
+  provide: SBB_SEARCH_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY,
+  useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY,
 };
 
-@Directive({
-  selector: `input[sbbAutocomplete]`,
-  exportAs: 'sbbAutocompleteTrigger',
+export class SearchChangeEvent {
+  constructor(
+    /** Instance of search field component. */
+    public instance: SearchComponent,
+    /** States if the search field has been opened by a click. */
+    public isUserInput = false
+  ) { }
+}
+
+let searchFieldCounter = 1;
+
+const ANIMATION_DURATION = 300;
+
+@Component({
+  selector: 'sbb-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AutocompleteTriggerDirective),
+    useExisting: forwardRef(() => SearchComponent),
     multi: true
   }]
 })
-export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDestroy {
+export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
+
+  /** @docs-private */
+  @ViewChild('input') input: ElementRef<HTMLInputElement>;
+  /** @docs-private */
+  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  /** @docs-private */
+  @ViewChild('searchbox') searchbox: ElementRef<any>;
+  /** @docs-private */
+  @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
+
+  /** @docs-private */
+  @ContentChild(SearchIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
+
+  /**
+   * Sets the search in default mode or in header mode,
+   * where the input field with the search button is shown only after clicking on a trigger
+   */
+  @Input() mode: 'header' | 'default' = 'default';
+
+  /**
+  * Identifier of search.
+  */
+  @HostBinding('attr.id')
+  searchFieldId = 'sbb-search-id-' + searchFieldCounter++;
+
+  /**
+   * Identifier of search content.
+   */
+  contentId = 'sbb-search-content-id-' + searchFieldCounter;
+
+  /**
+   * Css class on search component.
+   */
+  @HostBinding('class.sbb-search') cssClass = true;
+
+  /**
+   * Adds a placeholder to the component
+   */
+  @Input() placeholder = '';
+
   private overlayRef: OverlayRef | null;
   private portal: TemplatePortal;
   private componentDestroyed = false;
-  private _autocompleteDisabled = false;
+  private _autocompleteDisabled = true;
 
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
   private previousValue: string | number | null;
 
   /** Strategy that is used to position the panel. */
   private positionStrategy: FlexibleConnectedPositionStrategy;
-
-  /** Whether or not the label state is being overridden. */
-  private manuallyFloatingLabel = false;
 
   /** The subscription for closing actions (some are bound to document). */
   private closingActionsSubscription: Subscription;
@@ -112,23 +162,45 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Stream of keyboard events that can close the panel. */
   private readonly closeKeyEventStream = new Subject<void>();
+
   private overlayAttached = false;
   private highlightPipe = new HighlightPipe();
 
-  @HostBinding('attr.role') get role() {
+  /**
+   * Used to switch from trigger to search box when in 'header' mode
+   */
+  get hideSearch(): boolean {
+    if (!this.isHeaderMode()) {
+      return false;
+    }
+    return this._hideSearch;
+  }
+  private _hideSearch = true;
+
+  @HostBinding('attr.role')
+  get role() {
     return this._autocompleteDisabled ? null : 'combobox';
   }
 
   /** The autocomplete panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocomplete') autocomplete: AutocompleteComponent;
+  @Input('sbbAutocomplete')
+  get autocomplete(): AutocompleteComponent {
+    return this._autocomplete;
+  }
+  set autocomplete(value: AutocompleteComponent) {
+    this._autocomplete = value;
+    this._autocompleteDisabled = false;
+  }
+  _autocomplete: AutocompleteComponent;
 
   /**
    * Reference relative to which to position the autocomplete panel.
    * Defaults to the autocomplete trigger element.
    */
   // tslint:disable-next-line:no-input-rename
-  @Input('sbbAutocompleteConnectedTo') connectedTo: AutocompleteOriginDirective;
+  @Input('sbbAutocompleteConnectedTo')
+  connectedTo: AutocompleteOriginDirective;
 
   /**
    * `autocomplete` attribute to be set on the input element.
@@ -139,38 +211,106 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   @HostBinding('attr.autocomplete')
   autocompleteAttribute = 'off';
 
+  /**
+   * Event emitted when:
+   * - ENTER key is pressed on the input field
+   * - the search button is activated
+   * - an autocomplete option is selected
+   */
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor(
+    private element: ElementRef<HTMLInputElement>,
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef,
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
+    @Optional() @Inject(DOCUMENT) private _document: any,
+    private animationBuilder: AnimationBuilder,
+    private viewportRuler?: ViewportRuler
+  ) {
+
+    if (typeof window !== 'undefined') {
+      zone.runOutsideAngular(() => {
+        window.addEventListener('blur', this.windowBlurHandler);
+      });
+    }
+  }
+
   /** Stream of autocomplete option selections. */
   readonly optionSelections: Observable<SBBOptionSelectionChange> = defer<Observable<SBBOptionSelectionChange>>(() => {
     if (this.autocomplete && this.autocomplete.options) {
-      return merge<SBBOptionSelectionChange>(...this.autocomplete.options.map(option => option.onSelectionChange));
+      return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
     }
 
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
     return this.zone.onStable
       .asObservable()
-      .pipe(take(1), switchMap(() => this.optionSelections));
+      .pipe(first(), switchMap(() => this.optionSelections));
   });
 
-  @HostListener('blur')
-  onBlur() {
-    this.onTouched();
+  ngAfterViewInit() {
+    if (this.autocomplete) {
+      this.autocomplete.optionSelected.subscribe(() => {
+        this.emitSearch();
+      });
+    }
   }
 
-  @HostListener('input', ['$event'])
+  /**
+   * Checks if the search box is focused or not, depending on this, proper style is applied to the component
+   */
+  isSearchBoxFocused(): boolean {
+    return this.input.nativeElement === this._document.activeElement ||
+      this.button.nativeElement === this._document.activeElement;
+  }
+
+  private isHeaderMode(): boolean {
+    return this.mode === 'header';
+  }
+
+  onBlur($event: any) {
+    this.onTouched();
+    const relatedTarget = $event.relatedTarget;
+    const target = $event.target;
+    if (this.isHeaderMode() &&
+      ((target === this.input.nativeElement &&
+        relatedTarget !== this.button.nativeElement) ||
+        (target === this.button.nativeElement &&
+          relatedTarget !== this.input.nativeElement)) &&
+      (!!this.overlayRef && !this.overlayRef.overlayElement.contains(relatedTarget))) {
+
+      if (this.autocomplete) {
+
+        this.closeAnimation(this.overlayRef.overlayElement);
+      }
+      this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
+        this._hideSearch = true;
+        this.changeDetectorRef.markForCheck();
+      });
+
+
+    }
+  }
+
+  /** @docs-private */
   onInput($event: KeyboardEvent) {
     this.handleInput($event);
   }
 
-  @HostListener('keydown', ['$event'])
+  /** @docs-private */
   onKeydown($event: KeyboardEvent) {
     this.handleKeydown($event);
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
     return (this.autocompleteDisabled || !this.panelOpen) ? null : this.autocomplete.id;
   }
@@ -203,26 +343,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-autocomplete')
   get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
-
-  constructor(
-    private element: ElementRef<HTMLInputElement>,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
-    private viewportRuler?: ViewportRuler
-  ) {
-
-    if (typeof window !== 'undefined') {
-      zone.runOutsideAngular(() => {
-        window.addEventListener('blur', this.windowBlurHandler);
-      });
-    }
-  }
 
   ngOnDestroy() {
     if (typeof window !== 'undefined') {
@@ -248,8 +371,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Closes the autocomplete suggestion panel. */
   closePanel(): void {
-    this.resetLabel();
-
     if (!this.overlayAttached) {
       return;
     }
@@ -278,9 +399,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   /**
-   * A stream of actions that should close the autocomplete panel, including
-   * when an option is selected, on blur, and when TAB is pressed.
-   */
+    * A stream of actions that should close the autocomplete panel, including
+    * when an option is selected, on blur, and when TAB is pressed.
+    */
   get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
@@ -296,6 +417,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     );
   }
 
+  /** @docs-private */
   @HostBinding('attr.aria-activedescendant') get activeOptionId() {
     return this.activeOption ? this.activeOption.id : null;
   }
@@ -321,11 +443,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     )
       .pipe(filter(event => {
         const clickTarget = event.target as HTMLElement;
-        const formField = null;
 
         return this.overlayAttached &&
           clickTarget !== this.element.nativeElement &&
-          (!formField || !formField.contains(clickTarget)) &&
+          !this.element.nativeElement.contains(clickTarget) &&
           (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
       }));
   }
@@ -375,16 +496,24 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.openPanel();
 
       }
+      if (keyCode === ENTER) {
+        this.emitSearch();
+      }
       if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
         this.scrollToOption();
       }
+    } else if (keyCode === ENTER) {
+      this.emitSearch();
     }
     this.zone.onStable
       .asObservable()
       .pipe()
-      .subscribe(() => this.highlightOptionsByInput(this.element.nativeElement.value));
+      .subscribe(() => this.highlightOptionsByInput(this.input.nativeElement.value));
   }
 
+  /**
+   * Scrolls to the option when using arrow keys to navigate the autocomplete panel
+   */
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
     const labelCount = countGroupLabelsBeforeOption(index,
@@ -400,14 +529,25 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
+  /**
+   * Highlights options available into the autocomplete panel while typing
+   */
   highlightOptionsByInput(value: number | string) {
-    this.autocomplete.options
-      .filter(option => !option.group)
-      .forEach(option => {
-        option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
-      });
+    if (!this.autocompleteDisabled) {
+      this.autocomplete.options
+        .filter(option => !option.group)
+        .forEach(option => {
+          option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
+        });
+    }
   }
 
+  /** @docs-private */
+  emitSearch() {
+    this.search.emit(this.input.nativeElement.value);
+  }
+
+  /** @docs-private */
   handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
@@ -436,27 +576,21 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     }
   }
 
-  @HostListener('focusin')
+  /** @docs-private */
   handleFocus(): void {
     if (!this.canOpenOnNextFocus) {
       this.canOpenOnNextFocus = true;
     } else if (this.canOpen()) {
-      this.previousValue = this.element.nativeElement.value;
+      this.previousValue = this.input.nativeElement.value;
       this.attachOverlay();
     }
   }
 
-  /** If the label has been manually elevated, return it to its normal state. */
-  private resetLabel(): void {
-    if (this.manuallyFloatingLabel) {
-      this.manuallyFloatingLabel = false;
-    }
-  }
 
   /**
- * This method listens to a stream of panel closing actions and resets the
- * stream every time the option list changes.
- */
+   * This method listens to a stream of panel closing actions and resets the
+   * stream every time the option list changes.
+   */
   private subscribeToClosingActions(): Subscription {
     const firstStable = this.zone.onStable.asObservable().pipe(first());
     const optionChanges = this.autocomplete.options.changes.pipe(
@@ -478,6 +612,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           if (this.panelOpen) {
             // tslint:disable-next-line:no-non-null-assertion
             this.overlayRef!.updatePosition();
+
           }
 
           return this.panelClosingActions;
@@ -486,7 +621,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         first()
       )
       // set the value, close the panel, and complete.
-      .subscribe(event => this.setValueAndClose(event));
+      .subscribe(event => {
+        this.setValueAndClose(event);
+      });
   }
 
   /** Destroys the autocomplete suggestion panel. */
@@ -509,8 +646,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
     // If it's used within a `SbbField`, we should set it through the property so it can go
     // through change detection.
-    this.element.nativeElement.value = inputValue;
-    this.previousValue = inputValue;
+    if (this.input) {
+      this.input.nativeElement.value = inputValue;
+      this.previousValue = inputValue;
+    }
   }
 
   /**
@@ -523,7 +662,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       this.clearPreviousSelectedOption(event.source);
       this.setTriggerValue(event.source.value);
       this.onChange(event.source.value);
-      this.element.nativeElement.focus();
+      this.input.nativeElement.focus();
       this.autocomplete.emitSelectEvent(event.source);
     }
 
@@ -606,11 +745,32 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     }
   }
 
+  private openAnimation(element: HTMLElement) {
+    const myAnimation = this.animationBuilder.build([
+      style({ width: 0, opacity: 0, display: 'none' }),
+      animate(ANIMATION_DURATION, style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }))
+    ]);
+    const player = myAnimation.create(element);
+    player.play();
+    return player;
+  }
+
+  private closeAnimation(element: HTMLElement) {
+    const myAnimation = this.animationBuilder.build([
+      style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }),
+      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0, display: 'none' }))
+    ]);
+    const player = myAnimation.create(element);
+    player.play();
+    return player;
+  }
+
   private getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
       positionStrategy: this.getOverlayPosition(),
       scrollStrategy: this.scrollStrategy(),
-      width: this.getPanelWidth()
+      width: this.getPanelWidth(),
+      panelClass: 'sbb-search-panel'
     });
   }
 
@@ -646,7 +806,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   private getPanelWidth(): number | string {
-    return this.autocomplete.panelWidth || this.getHostWidth();
+    return (this.autocomplete && this.autocomplete.panelWidth) || this.getHostWidth();
   }
 
   /** Returns the width of the input element, so the panel width can match it. */
@@ -664,9 +824,30 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Determines whether the panel can be opened. */
   private canOpen(): boolean {
-    const element = this.element.nativeElement;
+    const element = this.input.nativeElement;
     return !element.readOnly &&
       !element.disabled &&
       !this.autocompleteDisabled;
   }
+
+  /**
+   * Reveals the search box when using the 'header' mode.
+   */
+  revealSearchbox() {
+    this._hideSearch = false;
+    if (this.autocomplete) {
+
+      this.attachOverlay();
+      this.openAnimation(this.overlayRef.overlayElement);
+
+    }
+    this.openAnimation(this.searchbox.nativeElement).onDone(() => {
+      this.input.nativeElement.focus();
+      if (this.overlayRef !== undefined) {
+        this.overlayRef.updatePosition();
+      }
+    });
+
+  }
+
 }
