@@ -81,6 +81,7 @@ import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-sel
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadcrumb';
+import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadc
     TagShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -187,7 +189,8 @@ import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadc
     AccordionModule,
     TableModule,
     TooltipShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

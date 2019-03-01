@@ -27,6 +27,7 @@ import { TagShowcaseComponent } from '../examples/tag-showcase/tag-showcase.comp
 import { FileSelectorShowcaseComponent } from '../examples/file-selector-showcase/file-selector-showcase.component';
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
+import { BreadcrumbShowcaseComponent } from '../examples/breadcrumb-showcase/breadcrumb-showcase.component';
 
 
 @Injectable({
@@ -158,22 +159,20 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         DatepickerShowcaseComponent
-      ), /*
+      ),
       new UiComponent(
-        'Time Chooser',
-        'timeChooser',
-        'Time Chooser',
+        'Breadcrumb',
+        'breadcrumb',
+        'Breadcrumb',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        [],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-
+        'Import text.',
+        BreadcrumbShowcaseComponent
       ),
-        'Import text.'
-      ), */
       new UiComponent(
         'Radio Button',
         'radio-button',
