@@ -35,8 +35,9 @@ import {
   DropdownModule,
   FileSelectorModule,
   OptionModule,
-  AutocompleteModule,
   SelectModule,
+  AutocompleteModule,
+  SearchModule,
 } from 'sbb-angular';
 
 
@@ -81,7 +82,7 @@ import { SearchShowcaseComponent } from './search-showcase/search-showcase.compo
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
-import { SearchModule } from 'projects/sbb-angular/src/lib/search/search';
+
 
 @NgModule({
   declarations: [

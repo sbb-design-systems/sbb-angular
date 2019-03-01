@@ -271,27 +271,33 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     return this.mode === 'header';
   }
 
+  private isNotSearchBoxElementToBeFocused(relatedTarget: any, target: any) {
+
+    if (!relatedTarget) {
+      return true;
+    }
+    return (target === this.input.nativeElement &&
+      relatedTarget !== this.button.nativeElement) ||
+      (target === this.button.nativeElement &&
+        relatedTarget !== this.input.nativeElement);
+  }
+
   onBlur($event: any) {
     this.onTouched();
     const relatedTarget = $event.relatedTarget;
     const target = $event.target;
+
     if (this.isHeaderMode() &&
-      ((target === this.input.nativeElement &&
-        relatedTarget !== this.button.nativeElement) ||
-        (target === this.button.nativeElement &&
-          relatedTarget !== this.input.nativeElement)) &&
-      (!!this.overlayRef && !this.overlayRef.overlayElement.contains(relatedTarget))) {
+      (this.isNotSearchBoxElementToBeFocused(relatedTarget, target))) {
 
-      if (this.autocomplete) {
-
+      if (this.autocomplete && !!this.overlayRef && this.overlayRef.overlayElement.contains(relatedTarget)) {
         this.closeAnimation(this.overlayRef.overlayElement);
+      } else {
+        this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
+          this._hideSearch = true;
+          this.changeDetectorRef.markForCheck();
+        });
       }
-      this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
-        this._hideSearch = true;
-        this.changeDetectorRef.markForCheck();
-      });
-
-
     }
   }
 
