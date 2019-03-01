@@ -134,7 +134,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /**
    * Adds a placeholder to the component
    */
-  @Input() placeholder: string;
+  @Input() placeholder = '';
 
   private overlayRef: OverlayRef | null;
   private portal: TemplatePortal;

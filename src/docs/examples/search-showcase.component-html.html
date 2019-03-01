@@ -50,10 +50,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Search field with autocomplete, static options, header mode and custom icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCounter()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControlStatic"</span>
-        [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto2"</span>&gt;</span>
+        [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto3"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-info</span> *<span class="hljs-attr">sbbSearchIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-info</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto2</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto3</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of options$ | async"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
           {{ option }}
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
@@ -68,7 +68,7 @@
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Common search scenario<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"search()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl2"</span>
         [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span>
