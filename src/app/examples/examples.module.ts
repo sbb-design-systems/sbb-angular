@@ -80,6 +80,7 @@ import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadcrumb';
 
 @NgModule({
   declarations: [
@@ -157,7 +158,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TagModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    BreadcrumbModule
   ],
   exports: [
     TextareaShowcaseComponent,
