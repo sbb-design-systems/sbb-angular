@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { LinkGeneratorResult } from 'sbb-angular';
-
-interface User {
-  userName: string;
-  displayName?: string;
-}
+import { LinkGeneratorResult, User } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-usermenu-showcase',
