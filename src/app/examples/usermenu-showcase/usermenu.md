@@ -35,7 +35,7 @@ In the expanded status, you can always see your icon / initial letters and addit
 
 ```html
 <h4 class="sbbsc-block">Basic Example with custom user image</h4>
-<sbb-usermenu [userName]="user.userName" (loginRequest)="logIn($event)">
+<sbb-usermenu [userName]="userName" (loginRequest)="logIn($event)">
   <img class="image" sbbIcon src="assets/images/user-avatar.png">
   <sbb-dropdown>
     <a *ngFor="let link of links" sbbDropdownItem 
@@ -53,7 +53,7 @@ In the expanded status, you can always see your icon / initial letters and addit
 
 ```html
 <h4 class="sbbsc-block">Example without user image</h4>
-<sbb-usermenu [userName]="user2.userName" (loginRequest)="logIn2($event)">
+<sbb-usermenu [userName]="userName2" (loginRequest)="logIn2($event)">
   <sbb-dropdown>
     <a *ngFor="let link of links" sbbDropdownItem 
                                   [routerLink]="linkGenerator(link.page).routerLink"
@@ -69,7 +69,7 @@ In the expanded status, you can always see your icon / initial letters and addit
 
 ```html
 <h4 class="sbbsc-block">Example without user image and with username and displayName</h4>
-  <sbb-usermenu [userName]="user3.userName" [displayName]="user3.displayName" (loginRequest)="logIn3($event)">
+  <sbb-usermenu [userName]="userName3" [displayName]="displayName3" (loginRequest)="logIn3($event)">
     <sbb-dropdown>
       <a *ngFor="let link of links" sbbDropdownItem 
                                     [routerLink]="linkGenerator(link.page).routerLink"

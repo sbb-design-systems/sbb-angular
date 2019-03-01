@@ -11,19 +11,6 @@ import {
 
 import { DropdownComponent } from '../../dropdown/dropdown';
 
-export interface User {
-  /**
-   * Username of a user.
-   * It is required.
-   */
-  userName: string;
-  /**
-   * Name and surname of a user.
-   * It is optional.
-   */
-  displayName?: string;
-}
-
 let counter = 0;
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { LinkGeneratorResult, User } from 'sbb-angular';
+import { LinkGeneratorResult } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-usermenu-showcase',
@@ -8,32 +8,18 @@ import { LinkGeneratorResult, User } from 'sbb-angular';
 })
 export class UserMenuShowcaseComponent {
 
-  user: User = {
-    userName: null
-  };
+  userName = null;
+  userName2 = null;
+  userName3 = null;
 
-  user2: User = {
-    userName: null
-  };
+  userNameLogged = 'ABB1234';
+  displayName = null;
 
-  user3: User = {
-    userName: null
-  };
+  userNameLogged2 = 'ABB1234';
+  displayName2 = null;
 
-  loggedUser: User = {
-    userName: 'ABB1234',
-    displayName: null,
-  };
-
-  loggedUser2: User = {
-    userName: 'ABB1234',
-    displayName: null,
-  };
-
-  loggedUser3: User = {
-    userName: 'max 98',
-    displayName: 'Max Muster',
-  };
+  userNameLogged3 = 'max 98';
+  displayName3 = 'Max Muster';
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
@@ -49,35 +35,33 @@ export class UserMenuShowcaseComponent {
   }
 
   login($event: any) {
-    Object.assign(this.user, this.loggedUser);
-
+    this.userName = this.userNameLogged;
     console.log('login successful');
   }
 
   login2($event: any) {
-    Object.assign(this.user2, this.loggedUser2);
+    this.userName2 = this.userNameLogged2;
     console.log('login successful');
   }
 
   login3($event: any) {
-    Object.assign(this.user3, this.loggedUser3);
-
+    this.userName3 = this.userNameLogged3;
     console.log('login successful');
   }
 
   logout() {
     console.log('Logout');
-    this.user.userName = null;
+    this.userName = null;
   }
 
   logout2() {
     console.log('Logout');
-    this.user2.userName = null;
+    this.userName2 = null;
   }
 
   logout3() {
     console.log('Logout');
-    this.user3.userName = null;
+    this.userName3 = null;
   }
 
 }

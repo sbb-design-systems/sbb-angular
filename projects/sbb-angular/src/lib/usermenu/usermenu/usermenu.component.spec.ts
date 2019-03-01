@@ -10,12 +10,11 @@ import { LinkGeneratorResult } from '../../pagination/pagination';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { User } from '../usermenu/usermenu.component';
 
 @Component({
   selector: 'sbb-usermenu-test',
   template: ` <h4 class="sbbsc-block">Basic Example with custom user image</h4>
-              <sbb-usermenu [userName]="user.userName" (loginRequest)="login($event)">
+              <sbb-usermenu [userName]="userName" (loginRequest)="login($event)">
                 <img class="image" sbbIcon src="assets/images/user-avatar.png">
                 <sbb-dropdown>
                   <a *ngFor="let link of links" sbbDropdownItem
@@ -30,9 +29,10 @@ import { User } from '../usermenu/usermenu.component';
 })
 class UsermenuTestComponent {
 
-  user: User = {
-    userName: null
-  };
+  userName = null;
+
+  userNameLogged = 'ABB1234';
+  displayName = null;
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
@@ -40,10 +40,6 @@ class UsermenuTestComponent {
     { page: 3, text: 'Eintrag 3' }
   ];
 
-  loggedUser: User = {
-    userName: 'ABB1234',
-    displayName: null,
-  };
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
@@ -53,21 +49,20 @@ class UsermenuTestComponent {
   }
 
   login($event: any) {
-    Object.assign(this.user, this.loggedUser);
-
+    this.userName = this.userNameLogged;
     console.log('login successful');
   }
 
   logout() {
     console.log('Logout');
-    this.user.userName = null;
+    this.userName = null;
   }
 }
 
 @Component({
   selector: 'sbb-usermenu-test2',
   template: `<h4 class="sbbsc-block">Example without user image</h4>
-             <sbb-usermenu [userName]="user2.userName" (loginRequest)="login2($event)">
+             <sbb-usermenu [userName]="userName2" (loginRequest)="login2($event)">
               <sbb-dropdown>
                 <a *ngFor="let link of links" sbbDropdownItem
                                               [routerLink]="linkGenerator(link.page).routerLink"
@@ -81,9 +76,10 @@ class UsermenuTestComponent {
 })
 class UsermenuTest2Component {
 
-  user2: User = {
-    userName: null
-  };
+  userName2 = null;
+
+  userNameLogged2 = 'ABB1234';
+  displayName2 = null;
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
@@ -91,10 +87,7 @@ class UsermenuTest2Component {
     { page: 3, text: 'Eintrag 3' }
   ];
 
-  loggedUser2: User = {
-    userName: 'ABB1234',
-    displayName: null,
-  };
+
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
@@ -104,21 +97,20 @@ class UsermenuTest2Component {
   }
 
   login2($event: any) {
-    Object.assign(this.user2, this.loggedUser2);
-
+    this.userName2 = this.userNameLogged2;
     console.log('login successful');
   }
 
   logout2() {
     console.log('Logout');
-    this.user2.userName = null;
+    this.userName2 = null;
   }
 }
 
 @Component({
   selector: 'sbb-usermenu-test3',
   template: `<h4 class="sbbsc-block">Example without user image and with username and displayName</h4>
-             <sbb-usermenu [userName]="user3.userName" [displayName]="user3.displayName" (loginRequest)="login3($event)">
+             <sbb-usermenu [userName]="userName3" [displayName]="displayName3" (loginRequest)="login3($event)">
               <sbb-dropdown>
                 <a *ngFor="let link of links" sbbDropdownItem
                                               [routerLink]="linkGenerator(link.page).routerLink"
@@ -132,9 +124,7 @@ class UsermenuTest2Component {
 })
 class UsermenuTest3Component {
 
-  user3: User = {
-    userName: null
-  };
+  userName3 = null;
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
@@ -142,10 +132,8 @@ class UsermenuTest3Component {
     { page: 3, text: 'Eintrag 3' }
   ];
 
-  loggedUser3: User = {
-    userName: 'max 98',
-    displayName: 'Max Muster',
-  };
+  userNameLogged3 = 'max 98';
+  displayName3 = 'Max Muster';
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
@@ -155,14 +143,13 @@ class UsermenuTest3Component {
   }
 
   login3($event: any) {
-    Object.assign(this.user3, this.loggedUser3);
-
+    this.userName3 = this.userNameLogged3;
     console.log('login successful');
   }
 
   logout3() {
     console.log('Logout');
-    this.user3.userName = null;
+    this.userName3 = null;
   }
 }
 

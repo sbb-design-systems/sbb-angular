@@ -30,7 +30,7 @@
     <li class="docs-markdown-li">Logged in with an image provided from user and username displayed.</li>
   </ul>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Basic Example with custom user image<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user.userName"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"logIn($event)"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"userName"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"logIn($event)"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"image"</span> <span class="hljs-attr">sbbIcon</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/images/user-avatar.png"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span> <span class="hljs-attr">sbbDropdownItem</span> 
@@ -46,7 +46,7 @@
     <li class="docs-markdown-li">Logged in with initial letters of username (if user doesn't provide an image) and username displayed.</li>
   </ul>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Example without user image<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user2.userName"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"logIn2($event)"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"userName2"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"logIn2($event)"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span> <span class="hljs-attr">sbbDropdownItem</span> 
                                   [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
@@ -60,7 +60,7 @@
     <li class="docs-markdown-li">Logged in with initial letters of username, username and name displayed. </li>
   </ul>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Example without user image and with username and displayName<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user3.userName"</span> [<span class="hljs-attr">displayName</span>]=<span class="hljs-string">"user3.displayName"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"logIn3($event)"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"userName3"</span> [<span class="hljs-attr">displayName</span>]=<span class="hljs-string">"displayName3"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"logIn3($event)"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">a</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span> <span class="hljs-attr">sbbDropdownItem</span> 
                                     [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
