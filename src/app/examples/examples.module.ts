@@ -35,9 +35,9 @@ import {
   DropdownModule,
   FileSelectorModule,
   OptionModule,
-  AutocompleteModule,
   SelectModule,
-  SearchModule
+  AutocompleteModule,
+  SearchModule,
 } from 'sbb-angular';
 
 
