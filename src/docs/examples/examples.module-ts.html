@@ -37,6 +37,7 @@
   CaptchaModule,
   DropdownModule,
   FileSelectorModule,
+  GhettoboxModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 
@@ -80,6 +81,7 @@
 <span class="hljs-keyword">import</span> { FileSelectorShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./file-selector-showcase/file-selector-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { GhettoboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ghettobox-showcase/ghettobox-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -120,7 +122,8 @@
     TagShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    GhettoboxShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -157,7 +160,8 @@
     TagModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    GhettoboxModule
   ],
   exports: [
     TextareaShowcaseComponent,

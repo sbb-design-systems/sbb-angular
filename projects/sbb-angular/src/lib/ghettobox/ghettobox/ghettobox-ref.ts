@@ -4,12 +4,20 @@ import { TemplateRef, ComponentRef } from '@angular/core';
 import { first, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+/**
+ * Describe a Ghettobox object accepted from the GhettoboxService's add method
+ */
 export interface Ghettobox {
   message: string;
   icon?: TemplateRef<any>;
   link?: LinkGeneratorResult;
 }
 
+/**
+ * Ghettobox Reference which expose common api to retrieve the ID, the component instance, the delete method.
+ * Expose and subscribe to afterDelete stream in order to dispose the component if its a ComponentRef of a dynamic component
+ * attached to the cdkPortalOutlet
+ */
 export class GhettoboxRef {
 
   get id(): string {

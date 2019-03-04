@@ -21,8 +21,10 @@ import { GhettoboxAnimations } from './ghettobox-animations';
 import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 import { QueryParamsHandling } from '@angular/router/src/config';
 
+/** Ghettobox states used for the animation */
 export type GhettoboxState = 'added' | 'deleted';
 
+/** Ghettobox deleted custom event  */
 export interface GhettoboxDeletedEvent {
   ghettoboxState: GhettoboxState;
   ghettoboxId: string;
@@ -42,6 +44,9 @@ export class GhettoboxComponent {
 
   visible = true;
 
+  /**
+   * RouterLink as input directive or routerlink from ghettobox object when added by the Service
+   */
   @Input()
   set routerLink(value: any[] | string) { this._routerLink = value; }
   get routerLink() {
@@ -49,6 +54,9 @@ export class GhettoboxComponent {
   }
   private _routerLink: any[] | string;
 
+  /**
+   * Retrive the routerLink from the proper source
+   */
   get link() { return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined); }
 
   @Input() queryParams: { [k: string]: any };
@@ -67,6 +75,9 @@ export class GhettoboxComponent {
 
   @HostBinding('attr.tabindex') tabIndex = '-1';
 
+  /**
+   * Get/Set ghettobox state
+   */
   private _ghettoboxState: GhettoboxState = 'added';
   get ghettoboxState() {
     return this._ghettoboxState;
@@ -76,6 +87,9 @@ export class GhettoboxComponent {
     this._changeDetector.markForCheck();
   }
 
+  /**
+   * Emit a GhettoboxDeletedEvent after every ghettobox deletion
+   */
   @Output() afterDelete = new EventEmitter<GhettoboxDeletedEvent>();
 
   @HostBinding('hidden')
@@ -92,8 +106,14 @@ export class GhettoboxComponent {
 
   @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
 
+  /**
+   * Ghettobox Default icon as a TemplateRef if any are not specified
+   */
   @ViewChild('defaultIcon') iconDefault: TemplateRef<any>;
 
+  /**
+   * Ghettobox Icon
+   */
   private _icon: TemplateRef<any>;
   @ContentChild(GhettoboxIconDirective, { read: TemplateRef })
   set icon(value: TemplateRef<any>) {
@@ -106,6 +126,9 @@ export class GhettoboxComponent {
     return this._icon;
   }
 
+  /**
+   * ghettobox object which construct the ghettobox when it's being created by the GhettoboxService
+   */
   private _ghettobox: Ghettobox;
   get ghettobox() {
     return this._ghettobox;
@@ -125,12 +148,20 @@ export class GhettoboxComponent {
     @Optional() @Self() private _routerLinkDirective: RouterLink) {
   }
 
+  /**
+   * Delete itself
+   * @param evt native dom event
+   */
   delete(evt: any): void {
     evt.preventDefault();
     evt.stopPropagation();
     this.destroy();
   }
 
+  /**
+   * The actual destroy action which set the state to 'deleted'
+   * and remove itself from the attachedGhettoboxes collection stored within the GhettoboxService
+   */
   destroy(): void {
     this.ghettoboxState = 'deleted';
 
@@ -139,6 +170,7 @@ export class GhettoboxComponent {
     }
   }
 
+  /** @docs-private */
   handleAnimation(event: AnimationEvent) {
     const { phaseName, toState } = event;
 
@@ -147,6 +179,7 @@ export class GhettoboxComponent {
     }
   }
 
+  /** @docs-private */
   private deletedPhase() {
     this.visible = false;
     this.role = undefined;
