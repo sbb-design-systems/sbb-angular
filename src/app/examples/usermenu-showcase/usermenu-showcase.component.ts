@@ -8,18 +8,27 @@ import { LinkGeneratorResult } from 'sbb-angular';
 })
 export class UserMenuShowcaseComponent {
 
-  userName = null;
-  userName2 = null;
-  userName3 = null;
+  userName1 = 'john_64';
+  userName2 = 'max_98';
+  userName3 = 'walter_14';
 
-  userNameLogged = 'ABB1234';
-  displayName = null;
+ /*  loggedUser = {}; */
 
-  userNameLogged2 = 'ABB1234';
-  displayName2 = null;
+  user1 = {
+    userName: null,
+    displayName: 'John Scott'
+  };
 
-  userNameLogged3 = 'max 98';
-  displayName3 = 'Max Muster';
+  user2 = {
+    userName: null,
+    displayName: 'Max Muster'
+  };
+
+  user3 = {
+    userName: null,
+    displayName: 'Walter Scotti'
+  };
+
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
@@ -34,34 +43,24 @@ export class UserMenuShowcaseComponent {
     };
   }
 
-  login($event: any) {
-    this.userName = this.userNameLogged;
+  login() {
+    this.user1.userName = this.userName1;
     console.log('login successful');
   }
 
-  login2($event: any) {
-    this.userName2 = this.userNameLogged2;
+  login2() {
+    this.user2.userName = this.userName2;
     console.log('login successful');
   }
 
-  login3($event: any) {
-    this.userName3 = this.userNameLogged3;
+  login3() {
+    this.user3.userName = this.userName3;
     console.log('login successful');
   }
 
-  logout() {
+  logout(user: any) {
     console.log('Logout');
-    this.userName = null;
-  }
-
-  logout2() {
-    console.log('Logout');
-    this.userName2 = null;
-  }
-
-  logout3() {
-    console.log('Logout');
-    this.userName3 = null;
+    user.userName = null;
   }
 
 }

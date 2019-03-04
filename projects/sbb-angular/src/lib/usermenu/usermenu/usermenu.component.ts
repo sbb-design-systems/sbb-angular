@@ -62,9 +62,9 @@ export class UserMenuComponent {
    */
   getInitialLetters(): string {
 
-    const names: string[] = this.userName.split(' ');
+    const names: string[] = this.displayName.split(' ');
 
-    if (this.userName) {
+    if (this.displayName) {
 
       if (names.length === 1) {
 

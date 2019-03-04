@@ -13,26 +13,28 @@ import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
 
 @Component({
   selector: 'sbb-usermenu-test',
-  template: ` <h4 class="sbbsc-block">Basic Example with custom user image</h4>
-              <sbb-usermenu [userName]="userName" (loginRequest)="login($event)">
-                <img class="image" sbbIcon src="assets/images/user-avatar.png">
-                <sbb-dropdown>
-                  <a *ngFor="let link of links" sbbDropdownItem
-                                                [routerLink]="linkGenerator(link.page).routerLink"
-                                                [queryParams]="linkGenerator(link.page).queryParams"
-                                                routerLinkActive="sbb-selected">{{ link.text }}
-                  </a>
-                  <hr>
-                  <button sbbDropdownItem type="button" (click)="logout()">Abmeldung</button>
-                </sbb-dropdown>
-              </sbb-usermenu>`
+  template: `<h4 class="sbbsc-block">Basic Example with custom user image</h4>
+             <sbb-usermenu [userName]="user1.userName" [displayName]="user1.displayName" (loginRequest)="login()">
+              <img class="image" sbbIcon src="assets/images/user-avatar.png">
+              <sbb-dropdown>
+                <a *ngFor="let link of links" sbbDropdownItem
+                                              [routerLink]="linkGenerator(link.page).routerLink"
+                                              [queryParams]="linkGenerator(link.page).queryParams"
+                                              routerLinkActive="sbb-selected">{{ link.text }}
+                </a>
+                <hr>
+                <button sbbDropdownItem type="button" (click)="logout(user1)">Abmeldung</button>
+              </sbb-dropdown>
+             </sbb-usermenu> `
 })
 class UsermenuTestComponent {
 
-  userName = null;
+  userName1 = 'john_64';
 
-  userNameLogged = 'ABB1234';
-  displayName = null;
+  user1 = {
+    userName: null,
+    displayName: 'John Scott'
+  };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
@@ -48,21 +50,21 @@ class UsermenuTestComponent {
     };
   }
 
-  login($event: any) {
-    this.userName = this.userNameLogged;
+  login() {
+    this.user1.userName = this.userName1;
     console.log('login successful');
   }
 
-  logout() {
+  logout(user: any) {
     console.log('Logout');
-    this.userName = null;
+    user.userName = null;
   }
 }
 
 @Component({
   selector: 'sbb-usermenu-test2',
   template: `<h4 class="sbbsc-block">Example without user image</h4>
-             <sbb-usermenu [userName]="userName2" (loginRequest)="login2($event)">
+             <sbb-usermenu [userName]="user2.userName" [displayName]="user2.displayName" (loginRequest)="login2()">
               <sbb-dropdown>
                 <a *ngFor="let link of links" sbbDropdownItem
                                               [routerLink]="linkGenerator(link.page).routerLink"
@@ -70,24 +72,24 @@ class UsermenuTestComponent {
                                               routerLinkActive="sbb-selected">{{ link.text }}
                 </a>
                 <hr>
-                <button sbbDropdownItem type="button" (click)="logout2()">Abmeldung</button>
+                <button sbbDropdownItem type="button" (click)="logout(user2)">Abmeldung</button>
               </sbb-dropdown>
              </sbb-usermenu>`
 })
 class UsermenuTest2Component {
 
-  userName2 = null;
+  userName2 = 'max_98';
 
-  userNameLogged2 = 'ABB1234';
-  displayName2 = null;
+  user2 = {
+    userName: null,
+    displayName: 'Max Muster'
+  };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
     { page: 2, text: 'Eintrag 2' },
     { page: 3, text: 'Eintrag 3' }
   ];
-
-
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
@@ -96,21 +98,21 @@ class UsermenuTest2Component {
     };
   }
 
-  login2($event: any) {
-    this.userName2 = this.userNameLogged2;
+  login2() {
+    this.user2.userName = this.userName2;
     console.log('login successful');
   }
 
-  logout2() {
+  logout(user: any) {
     console.log('Logout');
-    this.userName2 = null;
+    user.userName = null;
   }
 }
 
 @Component({
   selector: 'sbb-usermenu-test3',
   template: `<h4 class="sbbsc-block">Example without user image and with username and displayName</h4>
-             <sbb-usermenu [userName]="userName3" [displayName]="displayName3" (loginRequest)="login3($event)">
+             <sbb-usermenu [userName]="user3.userName" [displayName]="user3.displayName" (loginRequest)="login3()">
               <sbb-dropdown>
                 <a *ngFor="let link of links" sbbDropdownItem
                                               [routerLink]="linkGenerator(link.page).routerLink"
@@ -118,22 +120,24 @@ class UsermenuTest2Component {
                                               routerLinkActive="sbb-selected">{{ link.text }}
                 </a>
                 <hr>
-                <button sbbDropdownItem type="button" (click)="logout3()">Abmeldung</button>
+                <button sbbDropdownItem type="button" (click)="logout(user3)">Abmeldung</button>
               </sbb-dropdown>
              </sbb-usermenu>`
 })
 class UsermenuTest3Component {
 
-  userName3 = null;
+  userName3 = 'walter_14';
+
+  user3 = {
+    userName: null,
+    displayName: 'Walter Scotti'
+  };
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },
     { page: 2, text: 'Eintrag 2' },
     { page: 3, text: 'Eintrag 3' }
   ];
-
-  userNameLogged3 = 'max 98';
-  displayName3 = 'Max Muster';
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
@@ -142,14 +146,14 @@ class UsermenuTest3Component {
     };
   }
 
-  login3($event: any) {
-    this.userName3 = this.userNameLogged3;
+  login3() {
+    this.user3.userName = this.userName3;
     console.log('login successful');
   }
 
-  logout3() {
+  logout(user: any) {
     console.log('Logout');
-    this.userName3 = null;
+    user.userName = null;
   }
 }
 
@@ -239,7 +243,7 @@ describe('Usermenu test case: user with custom image using mock component', () =
     expect(contentCollapsed.attributes['aria-expanded']).toBe('false');
   });
 
-  it('user should be logged-in and he can see data (username) to a click on the arrow down in the collapsed status', () => {
+  it('user should be logged-in and he can see data (displayName) to a click on the arrow down in the collapsed status', () => {
 
     const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
     const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
@@ -257,8 +261,8 @@ describe('Usermenu test case: user with custom image using mock component', () =
     const contentCollapsed = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
     expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
 
-    const usernameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
-    expect(usernameUser.textContent).toContain('ABB1234');
+    const displayNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
+    expect(displayNameUser.textContent).toContain('John Scott');
   });
 
   it('user should be logged out when click on button logout in the expanded status', () => {
@@ -334,10 +338,10 @@ describe('Usermenu test case: usermenu without user image but with initial lette
 
     const initialLettersReference = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in-collapsed-initial-letters'));
     expect(initialLettersReference.nativeElement).toBeTruthy();
-    expect(initialLettersReference.nativeElement.textContent).toContain('ABB');
+    expect(initialLettersReference.nativeElement.textContent).toContain('MM');
   });
 
-  it('user should be logged-in and he can see data (username) to a click on the arrow down in the collapsed status', () => {
+  it('user should be logged-in and he can see data (userName) to a click on the arrow down in the collapsed status', () => {
 
     const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
     const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
@@ -355,8 +359,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     const contentCollapsed = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
     expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
 
-    const usernameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
-    expect(usernameUser.textContent).toContain('ABB1234');
+    const userNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
+    console.log(userNameUser);
+    expect(userNameUser.textContent).toContain('max_98');
   });
 
   it('user should be logged out when click on button logout in the expanded status', () => {
@@ -378,9 +383,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     buttonLogout.click();
     fixtureTest.detectChanges();
 
-    spyOn(componentTest, 'logout2');
+    spyOn(componentTest, 'logout');
     dispatchFakeEvent(buttonLogout, 'click');
-    expect(componentTest.logout2).toHaveBeenCalled();
+    expect(componentTest.logout).toHaveBeenCalled();
   });
 });
 
@@ -432,7 +437,7 @@ describe('Usermenu test case: usermenu without user image but with username and 
 
     const initialLettersReference = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in-collapsed-initial-letters'));
     expect(initialLettersReference.nativeElement).toBeTruthy();
-    expect(initialLettersReference.nativeElement.textContent).toContain('M9');
+    expect(initialLettersReference.nativeElement.textContent).toContain('WS');
   });
 
   it('user should be logged-in and he can see data (username & display name) to a click on the arrow down in the collapsed status', () => {
@@ -454,10 +459,10 @@ describe('Usermenu test case: usermenu without user image but with username and 
     expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
 
     const usernameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
-    expect(usernameUser.textContent).toContain('max 98');
+    expect(usernameUser.textContent).toContain('walter_14');
 
     const displayNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
-    expect(displayNameUser.textContent).toContain('Max Muster');
+    expect(displayNameUser.textContent).toContain('Walter Scott');
   });
 
   it('user should be logged out when clicks on button logout in the expanded status', () => {
@@ -479,8 +484,8 @@ describe('Usermenu test case: usermenu without user image but with username and 
     buttonLogout.click();
     fixtureTest.detectChanges();
 
-    spyOn(componentTest, 'logout3');
+    spyOn(componentTest, 'logout');
     dispatchFakeEvent(buttonLogout, 'click');
-    expect(componentTest.logout3).toHaveBeenCalled();
+    expect(componentTest.logout).toHaveBeenCalled();
   });
 });

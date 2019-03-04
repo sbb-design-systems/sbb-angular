@@ -12,8 +12,8 @@
         </div>
       </div>
       <div class="sbb-usermenu-logged-in-expanded-info-user">
-        <div class="sbb-usermenu-logged-in-expanded-username" [class.sbb-username-logged-in-collapsed]="!dropdown.isOpen" >{{userName}}</div>
-        <div class="sbb-usermenu-logged-in-expanded-displayName" *ngIf="dropdown.isOpen">{{displayName}}</div>
+        <div class="sbb-usermenu-logged-in-expanded-displayName" [class.sbb-displayName-logged-in-collapsed]="!dropdown.isOpen">{{displayName}}</div>
+        <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="dropdown.isOpen">{{userName}}</div>
       </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">

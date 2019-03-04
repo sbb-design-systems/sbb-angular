@@ -44,13 +44,13 @@
 
         .sbb-usermenu-logged-in-expanded-username {
           @include usermenuLoggedInExpandedUsername;
-          &.sbb-username-logged-in-collapsed {
-            @include usernameLoggedInCollapsed;
-          }
         }
 
         .sbb-usermenu-logged-in-expanded-displayName {
           @include usermenuLoggedInExpandedDisplayName;
+          &.sbb-displayName-logged-in-collapsed {
+            @include displayNameLoggedInCollapsed;
+          }
         }
       }
 
@@ -73,6 +73,10 @@
 
     &-button {
       @include usermenuLoggedOffButton;
+
+      &:hover {
+        color: $colorRed100;
+      }
     }
   }
 }

@@ -120,11 +120,10 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 }
 
-@mixin usernameLoggedInCollapsed {
+@mixin displayNameLoggedInCollapsed {
   @include mq($from: mobilePortrait, $to: tabletPortrait) {
     display: none;
   }
-
 }
 
 @mixin usermenuLoggedInCollapsedArrow {
@@ -166,26 +165,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 }
 
 @mixin usermenuLoggedInExpandedUsername {
-  font-size: pxToRem(15);
-  font-family: $fontSbbRoman;
-  color: $colorBlack60;
-  margin-top: -5px;
-  width:68px;
-
-  @include mq($from: desktop4k) {
-    font-size: pxToRem(23 * $scalingFactor4k);
-    margin-top: toPx(-5 * $scalingFactor4k);
-    width:90px;
-  }
-
-  @include mq($from: desktop5k) {
-    font-size: pxToRem(30 * $scalingFactor5k);
-    margin-top: toPx(-5 * $scalingFactor5k);
-    width:119px;
-  }
-}
-
-@mixin usermenuLoggedInExpandedDisplayName {
   font-family: $fontSbbRoman;
   color: $colorBlack60;
   font-size: pxToRem(13);
@@ -199,6 +178,26 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   @include mq($from: desktop5k) {
     font-size: pxToRem(30 * $scalingFactor5k);
     margin-top: toPx(-3 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuLoggedInExpandedDisplayName {
+  font-size: pxToRem(15);
+  font-family: $fontSbbRoman;
+  color: $colorBlack60;
+  margin-top: -5px;
+  width: 118px;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(23 * $scalingFactor4k);
+    margin-top: toPx(-5 * $scalingFactor4k);
+    width: 90px;
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(30 * $scalingFactor5k);
+    margin-top: toPx(-5 * $scalingFactor5k);
+    width: 119px;
   }
 }
 
