@@ -57,8 +57,8 @@ export class UserMenuComponent {
   }
 
   /**
-   * Get the initial letters of user's username.
-   * @return Initial letters of user's username.
+   * Get the initial letters of user's displayName.
+   * @return Initial letters of user's displayName.
    */
   getInitialLetters(): string {
 

@@ -440,7 +440,7 @@ describe('Usermenu test case: usermenu without user image but with username and 
     expect(initialLettersReference.nativeElement.textContent).toContain('WS');
   });
 
-  it('user should be logged-in and he can see data (username & display name) to a click on the arrow down in the collapsed status', () => {
+  it('user should be logged-in and he can see data (username & displayName) to a click on the arrow down in the collapsed status', () => {
 
     const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
     const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
