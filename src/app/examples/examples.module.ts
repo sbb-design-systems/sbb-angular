@@ -84,7 +84,6 @@ import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-sel
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
-import { SearchModule } from 'projects/sbb-angular/src/lib/search/search';
 
 
 @NgModule({
