@@ -170,3 +170,7 @@ table.sbb-table {
 select {
   @include nativeSelectBase;
 }
+
+[hidden] {
+  display: none !important;
+}
