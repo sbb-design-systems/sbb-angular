@@ -36,8 +36,9 @@ import {
   DropdownModule,
   UserMenuModule,
   OptionModule,
-  AutocompleteModule,
   SelectModule,
+  AutocompleteModule,
+  SearchModule,
 } from 'sbb-angular';
 
 
@@ -84,6 +85,7 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 import { SearchModule } from 'projects/sbb-angular/src/lib/search/search';
+
 
 @NgModule({
   declarations: [
