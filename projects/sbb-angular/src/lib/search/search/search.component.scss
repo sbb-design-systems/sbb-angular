@@ -1,0 +1,8 @@
+@import "../../../styles/main";
+
+.sbb-search {
+  @include search;
+  .sbb-search-icon-wrapper {
+    @include searchIconWrapper;
+  }
+}

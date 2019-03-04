@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Simple search field</h4>
+      <sbb-search (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl">
+      </sbb-search>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>{{ myControl.value | json}}</pre>
+      <h4 class="sbbsc-block">'Search' events triggered</h4>
+      <pre>{{ searchCounterAmount}}</pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Simple search field (header mode)</h4>
+      <sbb-search mode="header" (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl">
+      </sbb-search>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Search field with autocomplete</h4>
+      <sbb-search (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl" [sbbAutocomplete]="auto1">
+      </sbb-search>
+      <sbb-autocomplete #auto1="sbbAutocomplete">
+        <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+          {{ option }}
+        </sbb-option>
+      </sbb-autocomplete>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Search field with autocomplete (header mode)</h4>
+      <sbb-search mode="header" (search)="searchCounter()" placeholder="Suchen" [formControl]="myControl"
+        [sbbAutocomplete]="auto2">
+      </sbb-search>
+      <sbb-autocomplete #auto2="sbbAutocomplete">
+        <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+          {{ option }}
+        </sbb-option>
+      </sbb-autocomplete>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Search field with autocomplete, static options, header mode and custom icon</h4>
+      <sbb-search mode="header" (search)="searchCounter()" placeholder="Suchen" [formControl]="myControlStatic"
+        [sbbAutocomplete]="auto3">
+        <sbb-icon-info *sbbSearchIcon></sbb-icon-info>
+      </sbb-search>
+      <sbb-autocomplete #auto3="sbbAutocomplete">
+        <sbb-option *ngFor="let option of options$ | async" [value]="option">
+          {{ option }}
+        </sbb-option>
+        <sbb-option-group label="Oft gesucht:">
+          <sbb-option *ngFor="let option of staticOptions" [value]="option">
+            {{ option }}
+          </sbb-option>
+        </sbb-option-group>
+      </sbb-autocomplete>
+    </div>
+  </div>
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Common search scenario</h4>
+      <sbb-search mode="header" (search)="search()" placeholder="Suchen" [formControl]="myControl2"
+        [sbbAutocomplete]="auto">
+      </sbb-search>
+      <sbb-autocomplete #auto="sbbAutocomplete">
+        <sbb-option *ngFor="let option of filteredOptions2" [value]="option">
+          {{ option }}
+        </sbb-option>
+      </sbb-autocomplete>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Search results (only first 10 are shown)</h4>
+      <ng-container *ngIf="!searchResults.length">No results</ng-container>
+      <sbb-loading *ngIf="showSpinner" mode="fullbox"></sbb-loading>
+      <span [title]="image.station" *ngFor="let image of searchResults">
+        <img width="300"
+          [attr.src]="'https://data.sbb.ch/explore/dataset/historische-bahnhofbilder/files/' + image.id + '/300/'">
+      </span>
+    </div>
+  </div>
+</div>

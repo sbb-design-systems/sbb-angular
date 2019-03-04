@@ -18,9 +18,6 @@
   LoadingModule,
   DatepickerModule,
   LightboxModule,
-  AutocompleteModule,
-  SelectModule,
-  OptionModule,
   AccordionModule,
   ProcessflowModule,
   RadioButtonModule,
@@ -37,7 +34,9 @@
   CaptchaModule,
   DropdownModule,
   FileSelectorModule,
-  GhettoboxModule
+  OptionModule,
+  AutocompleteModule,
+  SelectModule,
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 
@@ -78,10 +77,11 @@
 <span class="hljs-keyword">import</span> { TooltipShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tooltip-showcase/tooltip-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SearchShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./search-showcase/search-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { FileSelectorShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./file-selector-showcase/file-selector-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
-<span class="hljs-keyword">import</span> { GhettoboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ghettobox-showcase/ghettobox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SearchModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/search/search'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -120,10 +120,10 @@
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    SearchShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent,
-    GhettoboxShowcaseComponent
+    DropdownShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -158,10 +158,10 @@
     TooltipModule,
     TextexpandModule,
     TagModule,
+    SearchModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule,
-    GhettoboxModule
+    CaptchaModule
   ],
   exports: [
     TextareaShowcaseComponent,

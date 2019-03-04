@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { IconCollectionModule } from 'sbb-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsListComponent } from './components-list/components-list.component';
@@ -19,11 +18,9 @@ import { ExamplesIconDocComponent } from './doc/examples-icon-doc/examples-icon-
 import { AccordionShowcaseComponent } from './examples/accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from './examples/autocomplete-showcase/autocomplete-showcase.component';
 import { ButtonShowcaseComponent } from './examples/button-showcase/button-showcase.component';
-import { CaptchaShowcaseComponent } from './examples/captcha-showcase/captcha-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { CheckboxShowcaseComponent } from './examples/checkbox-showcase/checkbox-showcase.component';
 import { DatepickerShowcaseComponent } from './examples/datepicker-showcase/datepicker-showcase.component';
-import { DropdownShowcaseComponent } from './examples/dropdown-showcase/dropdown-showcase.component';
 import { ExamplesModule } from './examples/examples.module';
 import { FieldShowcaseComponent } from './examples/field-showcase/field-showcase.component';
 import { LightboxShowcaseComponent } from './examples/lightbox-showcase/lightbox-showcase.component';
@@ -38,12 +35,15 @@ import { SelectShowcaseComponent } from './examples/select-showcase/select-showc
 import { TableShowcaseComponent } from './examples/table-showcase/table-showcase.component';
 import { PersonListComponent } from './examples/tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './examples/tabs-showcase/tabs-showcase.component';
-import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
 import { TextareaShowcaseComponent } from './examples/textarea-showcase/textarea-showcase.component';
-import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from './examples/time-input-showcase/time-input-showcase.component';
 import { ToggleShowcaseComponent } from './examples/toggle-showcase/toggle-showcase.component';
 import { TooltipShowcaseComponent } from './examples/tooltip-showcase/tooltip-showcase.component';
+import { TextexpandShowcaseComponent } from './examples/textexpand-showcase/textexpand-showcase.component';
+import { TagShowcaseComponent } from './examples/tag-showcase/tag-showcase.component';
+import { SearchShowcaseComponent } from './examples/search-showcase/search-showcase.component';
+import { CaptchaShowcaseComponent } from './examples/captcha-showcase/captcha-showcase.component';
+import { DropdownShowcaseComponent } from './examples/dropdown-showcase/dropdown-showcase.component';
 import { HomeComponent } from './home/home.component';
 import { IconsListComponent } from './icons-list/icons-list.component';
 import { NavlistComponent } from './navlist-component/navlist.component';
@@ -54,6 +54,7 @@ import { ComponentViewerComponent } from './shared/component-viewer/component-vi
 import { ReplacePipe } from './shared/replace.pipe';
 import { iconComponentList } from './svg-icon-collection';
 import { TypographyComponent } from './typography/typography.component';
+import { IconCollectionModule } from 'sbb-angular';
 import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase/file-selector-showcase.component';
 import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghettobox-showcase.component';
 
@@ -118,6 +119,7 @@ import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghetto
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    SearchShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
     FileSelectorShowcaseComponent,
