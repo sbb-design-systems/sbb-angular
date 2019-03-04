@@ -34,6 +34,7 @@ import {
   CaptchaModule,
   DropdownModule,
   FileSelectorModule,
+  GhettoboxModule,
   OptionModule,
   SelectModule,
   AutocompleteModule,
@@ -82,6 +83,7 @@ import { SearchShowcaseComponent } from './search-showcase/search-showcase.compo
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
 
 
 @NgModule({
@@ -124,7 +126,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     SearchShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    GhettoboxShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -162,7 +165,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     SearchModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    GhettoboxModule
   ],
   exports: [
     TextareaShowcaseComponent,
