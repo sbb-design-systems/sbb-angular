@@ -34,8 +34,9 @@ export class UserMenuComponent {
 
   /**
    * Name and surname of a user.
+   * It is optional.
    */
-  @Input() displayName: string;
+  @Input() displayName?: string;
 
   /**
    * Username of a user.
@@ -61,21 +62,18 @@ export class UserMenuComponent {
    * @return Initial letters of user's displayName.
    */
   getInitialLetters(): string {
+    const name = this.displayName ? this.displayName : this.userName;
+    const names: string[] = name.split(' ');
+    if (names.length === 1) {
 
-    const names: string[] = this.displayName.split(' ');
-
-    if (this.displayName) {
-
-      if (names.length === 1) {
-
-        return names[0].substring(0, 3).toLocaleUpperCase();
-      }
-
-      return names
-        .reduce((current, next) => {
-          return (current[0] + next[0]).toLocaleUpperCase();
-        });
+      return names[0].substring(0, 3).toLocaleUpperCase();
     }
+
+    return names
+      .reduce((current, next) => {
+        return (current[0] + next[0]);
+      }).toLocaleUpperCase();
   }
+
 
 }
