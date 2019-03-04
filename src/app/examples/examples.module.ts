@@ -39,7 +39,7 @@ import {
   OptionModule,
   SelectModule,
   AutocompleteModule,
-  SearchModule,
+  SearchModule
 } from 'sbb-angular';
 
 
@@ -169,7 +169,7 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     FileSelectorModule,
     DropdownModule,
     CaptchaModule,
-    UserMenuModule
+    UserMenuModule,
     GhettoboxModule
   ],
   exports: [
