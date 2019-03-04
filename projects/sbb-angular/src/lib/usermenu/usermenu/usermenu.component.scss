@@ -67,16 +67,20 @@
   .sbb-usermenu-logged-off {
     @include usermenuLoggedOff;
 
+    &:hover {
+      .sbb-usermenu-logged-off-icon-user,
+      .sbb-usermenu-logged-off-button {
+        color: $colorRed100;
+        fill: $colorRed100;
+      }
+    }
+
     &-icon-user {
       @include usermenuLoggedOffIconUser;
     }
 
     &-button {
       @include usermenuLoggedOffButton;
-
-      &:hover {
-        color: $colorRed100;
-      }
     }
   }
 }

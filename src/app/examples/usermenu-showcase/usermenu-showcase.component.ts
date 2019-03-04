@@ -12,8 +12,6 @@ export class UserMenuShowcaseComponent {
   userName2 = 'max_98';
   userName3 = 'walter_14';
 
- /*  loggedUser = {}; */
-
   user1 = {
     userName: null,
     displayName: 'John Scott'
