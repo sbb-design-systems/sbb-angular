@@ -1,7 +1,123 @@
 @mixin breadcrumbBase {
-  a:not(:nth-last-of-type()) {
-    &::after {
-      content: ">";
+  display: block;
+
+  .sbb-breadcrumb-header {
+    @include breadcrumbLevelBase;
+    list-style-type: none;
+  }
+  .sbb-breadcrumb-level {
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "";
     }
+    &-arrow {
+      width: toPx($breadcrumbArrowWidth);
+      height: toPx($breadcrumbArrowHeight);
+      fill: $colorGrey;
+      line-height: toPx($breadcrumbArrowLineHeight);
+
+      margin-left: toPx($breadcrumbArrowMarginsDT);
+      margin-right: toPx($breadcrumbArrowMarginsDT);
+
+      @include mq($from: desktop4k) {
+        margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+        margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+        width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+        height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+        margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+        width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+        height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+      }
+    }
+    a,
+    button,
+    .sbb-icon-home {
+      @include breadcrumbButton;
+      height: 24px;
+      
+    }
+ 
+    .sbb-breadcrumb-level-trigger-icon {
+      width: toPx(16);
+      height: toPx(16);
+      fill: $colorGrey;
+      line-height: toPx($breadcrumbArrowLineHeight);
+      margin-bottom: auto;
+      border: solid 1px $colorGrey;
+      border-radius: 50%;
+      display: none;
+      position: relative;
+    }
+
+    button.sbb-dropdown-trigger + .sbb-breadcrumb-level-trigger-icon {
+      display: block;
+      > sbb-icon-arrow-small-down {
+        @include absoluteCenterXY;
+        padding: 0;
+        width: toPx($breadcrumbArrowWidth);
+        height: toPx($breadcrumbArrowHeight);
+        @include mq($from: desktop4k) {
+          width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+          height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+          height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+        }
+      }
+    }
+  }
+}
+
+@mixin breadcrumbLevelBase {
+  display: flex;
+
+  height: toPx($breadcrumbHeight);
+
+  @include mq($from: desktop4k) {
+    height: toPx($breadcrumbHeight * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    height: toPx($breadcrumbHeight * $scalingFactor5k);
+  }
+}
+
+@mixin breadcrumbButton {
+  @include buttonResetFrameless();
+  display: block;
+  white-space: nowrap;
+  font-family: $fontSbbLight;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  font-size: toPx($breadcrumbStepButtonFontSizeDT);
+  line-height: toPx($breadcrumbStepButtonLineHeightDT);
+
+  @include mq($from: desktop4k) {
+    font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor4k);
+    line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor5k);
+    line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor5k);
+  }
+
+  &:hover,
+  &:focus {
+    color: $colorRed100;
+  }
+
+  &.sbb-active:hover,
+  &.sbb-active:focus {
+    color: currentColor;
   }
 }

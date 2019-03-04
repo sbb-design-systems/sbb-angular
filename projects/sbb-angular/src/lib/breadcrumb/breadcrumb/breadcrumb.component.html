@@ -1,1 +1,14 @@
-<ng-content></ng-content>
+<ul class="sbb-breadcrumb-header">
+  <li *ngFor="let level of levels; let i = index; let isLast = last" class="sbb-breadcrumb-level">
+    <ng-template *ngTemplateOutlet="level.templateRef">
+    </ng-template>
+    <div class="sbb-breadcrumb-level-trigger-icon">
+      <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
+    </div>
+    <ng-container *ngIf="!isLast">
+      <div class="sbb-breadcrumb-level-arrow">
+        <sbb-icon-arrow-left></sbb-icon-arrow-left>
+      </div>
+    </ng-container>
+  </li>
+</ul>

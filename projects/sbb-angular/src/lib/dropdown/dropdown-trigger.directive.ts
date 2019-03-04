@@ -101,6 +101,9 @@ export class DropdownTriggerDirective implements OnDestroy {
     return this.dropdownDisabled ? null : 'combobox';
   }
 
+  @HostBinding('class.sbb-dropdown-trigger')
+  cssClass = true;
+
   /** The dropdown panel to be attached to this trigger. */
   // tslint:disable-next-line:no-input-rename
   @Input('sbbDropdown') dropdown: DropdownComponent;

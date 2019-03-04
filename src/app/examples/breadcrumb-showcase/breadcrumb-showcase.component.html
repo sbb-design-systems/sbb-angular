@@ -1,27 +1,25 @@
 <sbb-breadcrumb>
-  <a routerLink="/">
+  <a *sbbBreadcrumbLevel routerLink="/">
     <sbb-icon-home size="fixed"></sbb-icon-home>
   </a>
-  <a routerLink="/level1">Level 1</a>
-  <a routerLink="/level1/level2">Level 2</a>
+  <a *sbbBreadcrumbLevel routerLink="/level1">Level 1</a>
+  <a *sbbBreadcrumbLevel routerLink="/level1/level2">Level 2</a>
 </sbb-breadcrumb>
 
 <div role="presentation" class="sbbsc-separator"></div>
 
 <sbb-breadcrumb>
-  <a routerLink="/">
+  <a *sbbBreadcrumbLevel routerLink="/">
     <sbb-icon-home size="fixed"></sbb-icon-home>
   </a>
-  <button sbbButton type="button" [sbbDropdown]="dropdown" >Open dropdown</button>
-  <sbb-dropdown  #dropdown="sbbDropdown">
-    Level 1
-    <a sbbDropdownItem  routerLink="/level1" routerLinkActive="classForActive">Level 1</a>
-    <a sbbDropdownItem  routerLink="/level1b" routerLinkActive="classForActive">Level 1b</a>
+  <button *sbbBreadcrumbLevel type="button" [sbbDropdown]="level1">Level 1</button>
+  <sbb-dropdown #level1="sbbDropdown">
+    <a sbbDropdownItem routerLink="/level1" routerLinkActive="classForActive">Level 1</a>
+    <a sbbDropdownItem routerLink="/level1b" routerLinkActive="classForActive">Level 1b</a>
   </sbb-dropdown>
-  <button sbbButton type="button" [sbbDropdown]="dropdown2" >Open dropdown</button>
-  <sbb-dropdown #dropdown2="sbbDropdown">
-    Level 2
-    <a sbbDropdownItem  routerLink="/level1/level2" routerLinkActive="classForActive">Level 2</a>
-    <a sbbDropdownItem  routerLink="/level1/level2b" routerLinkActive="classForActive">Level 2b</a>
+  <button *sbbBreadcrumbLevel type="button" [sbbDropdown]="level2">Level 2</button>
+  <sbb-dropdown #level2="sbbDropdown" [panelWidth]="400">
+    <a sbbDropdownItem routerLink="/level1/level2" routerLinkActive="classForActive">Level 2</a>
+    <a sbbDropdownItem routerLink="/level1/level2b" routerLinkActive="classForActive">Level 2b</a>
   </sbb-dropdown>
 </sbb-breadcrumb>

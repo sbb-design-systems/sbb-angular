@@ -32,7 +32,6 @@ import {
   PaginationModule,
   ToggleModule,
   CaptchaModule,
-  DropdownModule,
   FileSelectorModule,
   OptionModule,
   SelectModule,
@@ -84,6 +83,7 @@ import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.co
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadcrumb';
+import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.module';
 
 
 @NgModule({
