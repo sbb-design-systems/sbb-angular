@@ -32,8 +32,9 @@
   PaginationModule,
   ToggleModule,
   CaptchaModule,
-  DropdownModule,
   FileSelectorModule,
+  DropdownModule,
+  UserMenuModule
   OptionModule,
   AutocompleteModule,
   SelectModule,
@@ -81,6 +82,7 @@
 <span class="hljs-keyword">import</span> { FileSelectorShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./file-selector-showcase/file-selector-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { UserMenuShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./usermenu-showcase/usermenu-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { SearchModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'projects/sbb-angular/src/lib/search/search'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
@@ -123,7 +125,8 @@
     SearchShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -161,7 +164,8 @@
     SearchModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    UserMenuModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -189,7 +193,8 @@
     AccordionModule,
     TableModule,
     TooltipShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,

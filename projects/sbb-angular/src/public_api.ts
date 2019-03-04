@@ -30,5 +30,6 @@ export * from './lib/tag/tag';
 export * from './lib/file-selector/file-selector';
 export * from './lib/captcha/captcha';
 export * from './lib/dropdown/dropdown';
+export * from './lib/usermenu/usermenu';
 export * from './lib/ghettobox/ghettobox';
 export * from './lib/search/search';

@@ -32,13 +32,14 @@ import {
   PaginationModule,
   ToggleModule,
   CaptchaModule,
-  DropdownModule,
   FileSelectorModule,
+  DropdownModule,
+  UserMenuModule,
   GhettoboxModule,
   OptionModule,
   SelectModule,
   AutocompleteModule,
-  SearchModule,
+  SearchModule
 } from 'sbb-angular';
 
 
@@ -83,6 +84,7 @@ import { SearchShowcaseComponent } from './search-showcase/search-showcase.compo
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
 
 
@@ -127,6 +129,7 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
+    UserMenuShowcaseComponent,
     GhettoboxShowcaseComponent
   ],
   imports: [
@@ -166,6 +169,7 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     FileSelectorModule,
     DropdownModule,
     CaptchaModule,
+    UserMenuModule,
     GhettoboxModule
   ],
   exports: [
@@ -194,7 +198,8 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     AccordionModule,
     TableModule,
     TooltipShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
