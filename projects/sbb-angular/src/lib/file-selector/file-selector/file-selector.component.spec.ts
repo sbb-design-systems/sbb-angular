@@ -81,8 +81,7 @@ const testFileList: File[] = [
 
 @Component({
   selector: 'sbb-file-test',
-  template: `<h4 class="sbbsc-block">Simple example (single file)</h4>
-               <sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector>`
+  template: `<sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector>`
 })
 class FileSelectorTestComponent {
 
@@ -137,6 +136,29 @@ describe('FileSelectorComponent using mock component', () => {
     const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
 
     expect(filesItems.length).toBe(10);
+  });
+
+  it('should add files to File List when the multipleMode is set to "persistent"', () => {
+    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+
+    const firstList = testFileList.slice(0, 2);
+    const secondList = testFileList.slice(5, 7);
+
+    fileComponent.componentInstance.filesList = [];
+    fileComponent.componentInstance.multiple = true;
+    fileComponent.componentInstance.multipleMode = 'persistent';
+
+    fileComponent.componentInstance.applyChanges(firstList);
+
+    fixture.detectChanges();
+
+    fileComponent.componentInstance.applyChanges(secondList);
+
+    fixture.detectChanges();
+
+    const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
+
+    expect(filesItems.length).toBe(4);
   });
 
   it('should remove one item when clicking the remove button', () => {

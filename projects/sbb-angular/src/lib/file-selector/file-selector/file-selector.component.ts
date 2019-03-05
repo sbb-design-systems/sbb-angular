@@ -50,6 +50,11 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   @Input() multiple?: boolean;
 
   /**
+   * Set if the component should add files on top of the already selected ones or keep default input file behaviour.
+   */
+  @Input() multipleMode?: 'default' | 'persistent' = 'default';
+
+  /**
    * Mode to disable the choice of files to upload.
    */
   @Input() disabled?: boolean;
@@ -99,6 +104,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
       this.accept = options.accept;
       this.capture = options.capture;
       this.multiple = options.multiple;
+      this.multipleMode = options.multipleMode;
     }
   }
 
@@ -119,10 +125,19 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * Applies changes on sbb-file-selector.
    * @param files Files uploaded.
    */
-  applyChanges(files: File[]): void {
-    this.onChange(files);
-    this.writeValue(files);
-    this.fileChanged.emit(files);
+  applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
+    let filesToAdd: File[];
+
+    if (action === 'add') {
+      filesToAdd = this.getFileListByMode(files);
+    } else {
+      filesToAdd = files;
+    }
+
+    this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
+    this.onChange(filesToAdd);
+    this.writeValue(filesToAdd);
+    this.fileChanged.emit(filesToAdd);
   }
 
   /**
@@ -140,13 +155,29 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @returns List of files without the file deleted.
    */
   removeFile(file: File): void {
-    this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
-    const filteredList = this.filesList.filter(f => f.name !== file.name);
-    this.applyChanges(filteredList);
+    const filteredList = this.filesList.filter(f => !this.checkFileEquality(f, file));
+    this.applyChanges(filteredList, 'remove');
   }
 
   setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
     this._changeDetector.markForCheck();
+  }
+
+  private getFileListByMode(incomingFiles: File[]): File[] {
+    if (this.multiple && this.multipleMode === 'persistent') {
+      incomingFiles = incomingFiles.filter(f => {
+        return this.filesList.findIndex(flItem => this.checkFileEquality(f, flItem)) === -1;
+      });
+      incomingFiles.push(...this.filesList.slice());
+    }
+
+    return incomingFiles;
+  }
+
+  private checkFileEquality(file1: File, file2: File): boolean {
+    return (file1.name === file2.name)
+      && (file1.size === file2.size)
+      && (file1.lastModified === file2.lastModified);
   }
 }
