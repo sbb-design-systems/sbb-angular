@@ -49,7 +49,6 @@ export class IconUiService {
     }
 
     return this.getAll();
-
   }
 
   getAll(): Array<UiIcon> {
