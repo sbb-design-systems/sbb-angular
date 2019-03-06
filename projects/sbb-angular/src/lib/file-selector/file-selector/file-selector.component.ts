@@ -52,7 +52,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   /**
    * Set if the component should add files on top of the already selected ones or keep default input file behaviour.
    */
-  @Input() multipleMode?: 'default' | 'persistent' = 'default';
+  @Input() multipleMode: 'default' | 'persistent' = 'default';
 
   /**
    * Mode to disable the choice of files to upload.
@@ -126,14 +126,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @param files Files uploaded.
    */
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
-    let filesToAdd: File[];
-
-    if (action === 'add') {
-      filesToAdd = this.getFileListByMode(files);
-    } else {
-      filesToAdd = files;
-    }
-
+    const filesToAdd = action === 'add' ? this.getFileListByMode(files) : files;
     this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
     this.onChange(filesToAdd);
     this.writeValue(filesToAdd);
@@ -166,18 +159,18 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   private getFileListByMode(incomingFiles: File[]): File[] {
     if (this.multiple && this.multipleMode === 'persistent') {
-      incomingFiles = incomingFiles.filter(f => {
+      return incomingFiles.filter(f => {
         return this.filesList.findIndex(flItem => this.checkFileEquality(f, flItem)) === -1;
-      });
-      incomingFiles.push(...this.filesList.slice());
+      })
+        .concat(this.filesList);
     }
 
     return incomingFiles;
   }
 
   private checkFileEquality(file1: File, file2: File): boolean {
-    return (file1.name === file2.name)
-      && (file1.size === file2.size)
-      && (file1.lastModified === file2.lastModified);
+    return file1.name === file2.name
+      && file1.size === file2.size
+      && file1.lastModified === file2.lastModified;
   }
 }
