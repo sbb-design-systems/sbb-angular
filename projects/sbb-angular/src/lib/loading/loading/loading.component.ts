@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, Self } from '@angular/core';
 import { Mode } from './loading-mode.enum';
-import { HostClass } from '../../_common/common';
+import { HostClass } from '../../_common/host-class';
 
 const cssPrefix = 'sbb-loading-';
 

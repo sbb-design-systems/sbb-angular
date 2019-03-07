@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { ButtonIconDirective } from './button-icon.directive';
-import { HostClass } from '../../_common/common';
+import { HostClass } from '../../_common/host-class';
 
 @Component({
   // tslint:disable-next-line:component-selector

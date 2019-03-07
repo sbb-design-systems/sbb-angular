@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Self, OnChanges, SimpleChanges } from '@angular/core';
-import { HostClass } from '../../_common/common';
+import { HostClass } from '../../_common/host-class';
 
 @Component({
   // tslint:disable-next-line:component-selector

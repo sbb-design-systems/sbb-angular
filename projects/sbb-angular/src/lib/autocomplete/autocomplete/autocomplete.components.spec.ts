@@ -37,7 +37,7 @@ import {
     SBB_AUTOCOMPLETE_SCROLL_STRATEGY
 } from './autocomplete-trigger.directive';
 import { SbbAutocompleteSelectedEvent, AutocompleteComponent } from './autocomplete.component';
-import { SbbFieldComponent } from '../../field/sbb-field/sbb-field.component';
+import { FieldComponent } from '../../field/field/field.component';
 import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
 import { HighlightPipe } from '../../option/option/highlight.pipe';
 import { OptionModule } from '../../option/option.module';
@@ -71,7 +71,7 @@ class SimpleAutocompleteComponent implements OnDestroy {
 
     @ViewChild(AutocompleteTriggerDirective) trigger: AutocompleteTriggerDirective;
     @ViewChild(AutocompleteComponent) panel: AutocompleteComponent;
-    @ViewChild(SbbFieldComponent) formField: SbbFieldComponent;
+    @ViewChild(FieldComponent) formField: FieldComponent;
     @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
 
     numbers = [

@@ -13,24 +13,26 @@ import {
   ChangeDetectorRef,
   OnDestroy
 } from '@angular/core';
-import { HostClass, FormFieldControl } from '../../_common/common';
-import { LabelComponent, LABEL_CONTAINER } from '../label/label.component';
+import { HostClass } from '../../_common/host-class';
+import { LabelComponent } from '../label/label.component';
 import { FormErrorDirective } from '../form-error/form-error.directive';
 import { startWith, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { FORM_FIELD } from '../form-field-token';
+import { FormFieldControl } from '../form-field-control';
 
 @Component({
-  selector: 'sbb-form-field',
-  templateUrl: './form-field.component.html',
-  styleUrls: ['./form-field.component.scss'],
+  selector: 'sbb-field',
+  templateUrl: './field.component.html',
+  styleUrls: ['./field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [
     HostClass,
-    { provide: LABEL_CONTAINER, useExisting: FormFieldComponent },
+    { provide: FORM_FIELD, useExisting: FieldComponent },
   ],
 })
-export class FormFieldComponent implements AfterContentInit, OnChanges, OnDestroy {
+export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
   /**
    * The label text for the input.
    */
@@ -52,9 +54,7 @@ export class FormFieldComponent implements AfterContentInit, OnChanges, OnDestro
   ) { }
 
   ngAfterContentInit() {
-    if (!this.label && !this.contentLabel) {
-      throw new Error('sbb-form-field requires a label! Use [label] or <sbb-label>!');
-    } else if (this._control) {
+    if (this._control) {
       this._initializeFormFieldControl();
     }
   }

@@ -2,11 +2,13 @@ import {
   Directive, Input, OnInit, Optional, HostBinding, ElementRef, Self, Inject, OnChanges, DoCheck, OnDestroy, HostListener
 } from '@angular/core';
 import { NgControl, NgForm, FormGroupDirective } from '@angular/forms';
-import { FormFieldControl, ErrorStateMatcher, CanUpdateErrorStateCtor, mixinErrorState } from '../../_common/common';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { ErrorStateMatcher } from '../../_common/errors/error-services';
+import { CanUpdateErrorStateCtor, mixinErrorState } from '../../_common/errors/error-state';
+import { FormFieldControl } from '../../field/form-field-control';
 
 let nextId = 0;
 const SBB_INPUT_INVALID_TYPES = [
@@ -22,7 +24,7 @@ const SBB_INPUT_INVALID_TYPES = [
 ];
 
 /** @docs-private */
-export class SbbNativeInputBase {
+export class InputBase {
   constructor(
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
@@ -30,15 +32,15 @@ export class SbbNativeInputBase {
     /** @docs-private */
     public ngControl: NgControl) { }
 }
-export const _SbbNativeInputBase: CanUpdateErrorStateCtor & typeof SbbNativeInputBase =
-  mixinErrorState(SbbNativeInputBase);
+export const _SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase =
+  mixinErrorState(InputBase);
 
 @Directive({
-  selector: 'input[sbbNativeInput], select[sbbNativeInput], textarea[sbbNativeInput]',
-  exportAs: 'sbbNativeInput',
-  providers: [{ provide: FormFieldControl, useExisting: NativeInputDirective }],
+  selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
+  exportAs: 'sbbInput',
+  providers: [{ provide: FormFieldControl, useExisting: InputDirective }],
 })
-export class NativeInputDirective extends _SbbNativeInputBase implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
+export class InputDirective extends _SbbNativeInputBase implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
   /** The aria-describedby attribute on the input for improved a11y. */
@@ -268,7 +270,7 @@ export class NativeInputDirective extends _SbbNativeInputBase implements FormFie
   /** Make sure the input is a supported type. */
   private _validateType() {
     if (SBB_INPUT_INVALID_TYPES.indexOf(this._type) > -1) {
-      throw new Error(`Input type "${this._type}" is not supported by sbbNativeInput!`);
+      throw new Error(`Input type "${this._type}" is not supported by sbbInput!`);
     }
   }
 

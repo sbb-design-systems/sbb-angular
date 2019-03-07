@@ -1,7 +1,6 @@
-import { Component, Input, ChangeDetectionStrategy, InjectionToken, Optional, Inject, HostBinding } from '@angular/core';
-import { FormFieldControl } from '../../_common/common';
-
-export const LABEL_CONTAINER = new InjectionToken<{ _control: FormFieldControl<any> }>('SBB_LABEL_CONTAINER');
+import { Component, Input, ChangeDetectionStrategy, Optional, Inject } from '@angular/core';
+import { FORM_FIELD } from '../form-field-token';
+import { HasFormFieldControl } from '../has-form-field-control';
 
 @Component({
   selector: 'sbb-label',
@@ -19,7 +18,7 @@ export class LabelComponent {
   private _for: string;
 
   constructor(
-    @Inject(LABEL_CONTAINER) @Optional() private formField: { _control: FormFieldControl<any> },
+    @Inject(FORM_FIELD) @Optional() private formField: HasFormFieldControl,
   ) { }
 
   private inputId() {

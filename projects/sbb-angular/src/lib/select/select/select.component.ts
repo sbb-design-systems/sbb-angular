@@ -72,6 +72,7 @@ import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
 import { HasOptions } from '../../option/has-options';
 import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import { FormFieldControl } from '../../field/field';
 
 let nextUniqueId = 0;
 
@@ -158,7 +159,7 @@ export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
     { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent },
   ]
 })
-export class SelectComponent extends SbbSelectMixinBase implements AfterContentInit, OnChanges,
+export class SelectComponent extends SbbSelectMixinBase implements FormFieldControl<any>, AfterContentInit, OnChanges,
   OnDestroy, OnInit, DoCheck, ControlValueAccessor, CanUpdateErrorState, HasOptions {
 
   /** All of the defined select options. */
@@ -306,6 +307,12 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
     this.stateChanges.next();
   }
   private _id: string;
+
+  /**
+   * Implemented as part of FormFieldControl.
+   * @docs-private
+   */
+  get inputId() { return this.id; }
 
   /** Combined stream of all of the child options' change events. */
   readonly optionSelectionChanges: Observable<SBBOptionSelectionChange> = defer(() => {
@@ -797,6 +804,14 @@ export class SelectComponent extends SbbSelectMixinBase implements AfterContentI
   /** Whether the select has a value. */
   get empty(): boolean {
     return !this.selectionModel || this.selectionModel.isEmpty();
+  }
+
+  /**
+   * Implemented as part of FormFieldControl.
+   * @docs-private
+   */
+  setDescribedByIds(ids: string[]) {
+    this._ariaDescribedby = ids.join(' ');
   }
 
   private initializeSelection(): void {
