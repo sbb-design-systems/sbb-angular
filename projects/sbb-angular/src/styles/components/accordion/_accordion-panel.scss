@@ -2,8 +2,7 @@
   box-sizing: content-box;
   display: block;
   margin: 0;
-  transition: margin 225ms $sbb-accordion-timing-function, 
-              border 225ms $sbb-accordion-timing-function;
+  transition: margin 225ms $sbb-accordion-timing-function;
   border: 1px solid transparent;
 
   @include mq($from: desktop4k) {

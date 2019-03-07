@@ -17,7 +17,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
-import { Subscription, Observable, merge, of } from 'rxjs';
+import { Subscription, Observable, merge } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { ToggleBase, SBB_TOGGLE_COMPONENT } from '../toggle.base';
 

@@ -28,6 +28,7 @@ You can use it in applications that require one or more files of a user.
 2. The list entry includes the icon of the file type upload, the file name and in brackets the file type and the file size.
 3. With the "Delete button" (as a trash icon) a single file can be removed from the list. 
 4. You can select more files together using the ```multiple``` property (by setting it at 'true' value) on file selector component.  
+5. You can set the property ```multipleMode``` to ```persistent``` in order to change the default input file behaviour that replace already selected files with the new selection. With this option later selection will add files instead replacing.  
 
 The module has two states:
 
@@ -41,7 +42,7 @@ It is possible to define the categories and the types of file accepted globally.
 
 ```ts
 const fileCategories : FileTypeCategory[] = [FileTypeCategory_IMAGE,FileTypeCategory.VIDEO];
-const fileSelectorOptions : FileSelectorOptions = {accept:'image/jpeg'+','+'video.mp4', multiple:true, capture:'user'};
+const fileSelectorOptions : FileSelectorOptions = {accept: 'image/jpeg'+','+'video.mp4', multiple: true, multipleMode: 'persistent' capture: 'user'};
 ```
 and set them in the providers section of your module:
 ```ts
@@ -63,6 +64,12 @@ and set them in the providers section of your module:
 ```html
 <h4>Example multiple files allowed and ngModel attached</h4>
 <sbb-file-selector multiple="true" [(ngModel)]="filesList2"></sbb-file-selector>
+```
+
+* Advanced example (you can chose multiple files and allow adding new files to the collection instead replacing)
+```html
+<h4>Example multiple files allowed and ngModel attached</h4>
+<sbb-file-selector multiple="true" multipleMode="persistent" [(ngModel)]="filesList2"></sbb-file-selector>
 ```
 
 * Advanced example (disable status)

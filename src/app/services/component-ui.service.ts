@@ -29,6 +29,8 @@ import { FileSelectorShowcaseComponent } from '../examples/file-selector-showcas
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
 import { BreadcrumbShowcaseComponent } from '../examples/breadcrumb-showcase/breadcrumb-showcase.component';
+import { UserMenuShowcaseComponent } from '../examples/usermenu-showcase/usermenu-showcase.component';
+import { GhettoboxShowcaseComponent } from '../examples/ghettobox-showcase/ghettobox-showcase.component';
 
 
 @Injectable({
@@ -423,9 +425,9 @@ export class ComponentUiService {
         DropdownShowcaseComponent
       ),
       new UiComponent(
-        'File Selector',
-        'file-selector',
-        'File Selector',
+        'User Menu',
+        'usermenu',
+        'User Menu',
         'Subtitel goes here ...',
         true,
         false,
@@ -433,9 +435,34 @@ export class ComponentUiService {
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
-        FileSelectorShowcaseComponent
+        UserMenuShowcaseComponent
+        ),
+        new UiComponent(
+          'File Selector',
+          'file-selector',
+          'File Selector',
+          'Subtitel goes here ...',
+          true,
+          false,
+          [''],
+          'Description goes here ...',
+          'Source goes here ...',
+          'Import text.',
+          FileSelectorShowcaseComponent
+      ),
+      new UiComponent(
+        'Ghettobox',
+        'ghettobox',
+        'Ghettobox',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        GhettoboxShowcaseComponent
       )
-
     ];
   }
 

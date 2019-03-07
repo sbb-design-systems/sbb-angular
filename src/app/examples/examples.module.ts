@@ -33,10 +33,13 @@ import {
   ToggleModule,
   CaptchaModule,
   FileSelectorModule,
+  DropdownModule,
+  UserMenuModule,
+  GhettoboxModule,
   OptionModule,
   SelectModule,
   AutocompleteModule,
-  SearchModule,
+  SearchModule
 } from 'sbb-angular';
 
 
@@ -84,6 +87,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
 import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadcrumb';
 import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.module';
+import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
+import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
 
 
 @NgModule({
@@ -127,7 +132,9 @@ import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.m
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
-    BreadcrumbShowcaseComponent
+    BreadcrumbShowcaseComponent,
+    UserMenuShowcaseComponent,
+    GhettoboxShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -166,7 +173,9 @@ import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.m
     FileSelectorModule,
     DropdownModule,
     CaptchaModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    UserMenuModule,
+    GhettoboxModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -195,7 +204,8 @@ import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.m
     TableModule,
     TooltipShowcaseComponent,
     DropdownShowcaseComponent,
-    BreadcrumbShowcaseComponent
+    BreadcrumbShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
