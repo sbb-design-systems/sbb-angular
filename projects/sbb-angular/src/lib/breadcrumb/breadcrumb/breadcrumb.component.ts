@@ -5,14 +5,10 @@ import {
   ContentChildren,
   QueryList,
   TemplateRef,
-  AfterContentInit,
-  ViewContainerRef,
-  forwardRef,
-  ViewChildren,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
-import { BreadcrumbLevelDirective } from '../breadcrumb-level.directive';
-import { DropdownTriggerDirective } from '../../dropdown/dropdown';
+
+import { BreadcrumbLevelComponent } from '../breadcrumb-level/breadcrumb-level.component';
 
 @Component({
   selector: 'sbb-breadcrumb',
@@ -23,17 +19,12 @@ import { DropdownTriggerDirective } from '../../dropdown/dropdown';
 })
 export class BreadcrumbComponent implements AfterViewInit {
 
+  @ContentChildren(BreadcrumbLevelComponent) levels: QueryList<BreadcrumbLevelComponent>;
 
-  @ContentChildren(BreadcrumbLevelDirective) levels: QueryList<BreadcrumbLevelDirective>;
-
-
-  constructor(private viewContainerRef: ViewContainerRef) { }
 
   ngAfterViewInit() {
     console.log(this.levels);
   }
 
-  isDropdownTrigger(level: BreadcrumbLevelDirective) {
-    return level.elementRef.nativeElement.type === 'button';
-  }
+
 }

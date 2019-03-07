@@ -1,18 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BreadcrumbComponent } from './breadcrumb.component';
+import { BreadcrumbLevelComponent } from './breadcrumb-level.component';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from '../../dropdown/dropdown';
 import { IconArrowLeftModule, IconArrowSmallDownModule } from '../../svg-icons/svg-icons';
 
-
-describe('BreadcrumbComponent', () => {
-  let component: BreadcrumbComponent;
-  let fixture: ComponentFixture<BreadcrumbComponent>;
+describe('BreadcrumbLevelComponent', () => {
+  let component: BreadcrumbLevelComponent;
+  let fixture: ComponentFixture<BreadcrumbLevelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreadcrumbComponent ],
+      declarations: [BreadcrumbLevelComponent],
       imports: [
         CommonModule,
         DropdownModule,
@@ -20,11 +19,11 @@ describe('BreadcrumbComponent', () => {
         IconArrowSmallDownModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BreadcrumbComponent);
+    fixture = TestBed.createComponent(BreadcrumbLevelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

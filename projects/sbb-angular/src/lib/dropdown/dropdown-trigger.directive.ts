@@ -83,7 +83,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   private _dropdownDisabled = false;
 
   /** Strategy that is used to position the panel. */
-  private positionStrategy: FlexibleConnectedPositionStrategy;
+  protected positionStrategy: FlexibleConnectedPositionStrategy;
 
   /** The subscription for closing actions (some are bound to document). */
   private closingActionsSubscription: Subscription;
@@ -114,6 +114,10 @@ export class DropdownTriggerDirective implements OnDestroy {
    */
   // tslint:disable-next-line:no-input-rename
   @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
+
+
+  @Input()
+  panelClass = '';
 
   /** Stream of dropdown option selections. */
   readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
@@ -187,13 +191,13 @@ export class DropdownTriggerDirective implements OnDestroy {
 
   constructor(
     private element: ElementRef<HTMLInputElement>,
-    private overlay: Overlay,
+    protected overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
     private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef,
     @Inject(DROPDOWN_SCROLL_STRATEGY) private scrollStrategy,
     @Optional() @Inject(DOCUMENT) private _document: any,
-    private viewportRuler?: ViewportRuler
+    protected viewportRuler?: ViewportRuler
   ) {
   }
 
@@ -497,11 +501,12 @@ export class DropdownTriggerDirective implements OnDestroy {
     return new OverlayConfig({
       positionStrategy: this.getOverlayPosition(),
       scrollStrategy: this.scrollStrategy(),
-      width: this.getPanelWidth()
+      width: this.getPanelWidth(),
+      panelClass: this.panelClass
     });
   }
 
-  private getOverlayPosition(): PositionStrategy {
+  protected getOverlayPosition(): PositionStrategy {
     this.positionStrategy = this.overlay.position()
       .flexibleConnectedTo(this.getConnectedElement())
       .withFlexibleDimensions(false)
@@ -524,7 +529,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     return this.positionStrategy;
   }
 
-  private getConnectedElement(): ElementRef {
+  protected getConnectedElement(): ElementRef {
     if (this.connectedTo) {
       return this.connectedTo.elementRef;
     }
@@ -532,12 +537,12 @@ export class DropdownTriggerDirective implements OnDestroy {
     return this.element;
   }
 
-  private getPanelWidth(): number | string {
+  protected getPanelWidth(): number | string {
     return this.dropdown.panelWidth || this.getHostWidth();
   }
 
   /** Returns the width of the input element, so the panel width can match it. */
-  private getHostWidth(): number {
+  protected getHostWidth(): number {
     return this.getConnectedElement().nativeElement.getBoundingClientRect().width;
   }
 
