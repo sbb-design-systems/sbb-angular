@@ -33,14 +33,11 @@ import {
   ToggleModule,
   CaptchaModule,
   FileSelectorModule,
-  UserMenuModule,
   GhettoboxModule,
   OptionModule,
   SelectModule,
   AutocompleteModule,
-  SearchModule,
-  DropdownModule,
-  BreadcrumbModule
+  SearchModule
 } from 'sbb-angular';
 
 
@@ -88,6 +85,9 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
 import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
+import { DropdownModule } from 'projects/sbb-angular/src/lib/dropdown/dropdown.module';
+import { BreadcrumbModule } from 'projects/sbb-angular/src/lib/breadcrumb/breadcrumb.module';
+import { UserMenuModule } from 'projects/sbb-angular/src/lib/usermenu/usermenu.module';
 
 @NgModule({
   declarations: [

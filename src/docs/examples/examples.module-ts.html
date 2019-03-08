@@ -33,13 +33,14 @@
   ToggleModule,
   CaptchaModule,
   FileSelectorModule,
-  DropdownModule,
   UserMenuModule,
   GhettoboxModule,
   OptionModule,
   SelectModule,
   AutocompleteModule,
-  SearchModule
+  SearchModule,
+  DropdownModule,
+  BreadcrumbModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 
@@ -84,9 +85,9 @@
 <span class="hljs-keyword">import</span> { FileSelectorShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./file-selector-showcase/file-selector-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { BreadcrumbShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./breadcrumb-showcase/breadcrumb-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { UserMenuShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./usermenu-showcase/usermenu-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { GhettoboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ghettobox-showcase/ghettobox-showcase.component'</span>;
-
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -129,6 +130,7 @@
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent,
     UserMenuShowcaseComponent,
     GhettoboxShowcaseComponent
   ],
@@ -169,6 +171,7 @@
     FileSelectorModule,
     DropdownModule,
     CaptchaModule,
+    BreadcrumbModule,
     UserMenuModule,
     GhettoboxModule
   ],
@@ -199,6 +202,7 @@
     TableModule,
     TooltipShowcaseComponent,
     DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent,
     UserMenuShowcaseComponent
   ],
   entryComponents: [

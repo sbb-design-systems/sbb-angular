@@ -1,14 +1,15 @@
 @mixin breadcrumbBase {
   display: flex;
   align-items: center;
-  height: toPx($breadcrumbHeight);
+  flex-wrap: wrap;
+  min-height: toPx($breadcrumbHeight);
 
   @include mq($from: desktop4k) {
-    height: toPx($breadcrumbHeight * $scalingFactor4k);
+    min-height: toPx($breadcrumbHeight * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    height: toPx($breadcrumbHeight * $scalingFactor5k);
+    min-height: toPx($breadcrumbHeight * $scalingFactor5k);
   }
 }
 
@@ -25,21 +26,26 @@
   }
   .sbb-dropdown-panel {
     a {
-      font-size: 13px;  
+      font-size: 13px;
       white-space: normal;
       text-overflow: clip;
       padding-left: 30px;
       padding-right: 30px;
+
+      &.sbb-active {
+        color: $colorRed125;
+        fill: $colorRed125;
+      }
+
       @include mq($from: desktop4k) {
-        font-size: toPx(13 * $scalingFactor4k);  
+        font-size: toPx(13 * $scalingFactor4k);
         padding-left: toPx(30 * $scalingFactor4k);
         padding-right: toPx(30 * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
-        font-size: toPx(13 * $scalingFactor5k);  
+        font-size: toPx(13 * $scalingFactor5k);
         padding-left: toPx(30 * $scalingFactor5k);
         padding-right: toPx(30 * $scalingFactor5k);
-
       }
     }
   }
@@ -49,7 +55,18 @@
   display: flex;
   align-items: center;
   padding-left: 0;
-  height: 100%;
+  height: toPx($breadcrumbHeight);
+  margin-right: toPx($breadcrumbArrowMarginsDT);
+  @include mq($from: desktop4k) {
+    margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+    height: toPx($breadcrumbHeight * $scalingFactor4k);
+
+  }
+  @include mq($from: desktop5k) {
+    margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+    height: toPx($breadcrumbHeight  * $scalingFactor5k);
+
+  }
 
   .sbb-breadcrumb-level-trigger {
     display: flex;
@@ -57,8 +74,8 @@
     cursor: pointer;
     fill: $colorGrey;
     color: $colorGrey;
-    height: 100%;
     position: relative;
+    height: 100%;
     &:hover,
     &:focus {
       color: $colorRed125;
@@ -102,18 +119,15 @@
     fill: $colorGrey;
     line-height: toPx($breadcrumbArrowLineHeight);
 
-    margin-left: toPx($breadcrumbArrowMarginsDT);
     margin-right: toPx($breadcrumbArrowMarginsDT);
 
     @include mq($from: desktop4k) {
-      margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
       margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
       width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
       height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
       margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
       width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
       height: toPx($breadcrumbArrowHeight * $scalingFactor5k);

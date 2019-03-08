@@ -9,7 +9,10 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { DropdownTriggerDirective, DropdownComponent, DropdownOriginDirective } from '../../dropdown/dropdown';
+
+import { DropdownTriggerDirective } from '../../dropdown/dropdown-trigger.directive';
+import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
+import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
 
 @Component({
   selector: 'sbb-breadcrumb-level',
@@ -31,8 +34,8 @@ export class BreadcrumbLevelComponent extends DropdownTriggerDirective implement
 
   panelClass = 'sbb-breadcrumb-level-panel';
 
-  get isLast(): boolean {
-    return !this.getConnectedElement().nativeElement.nextSibling;
+  get isFirst(): boolean {
+    return !this.getConnectedElement().nativeElement.previousSibling;
   }
 
 
