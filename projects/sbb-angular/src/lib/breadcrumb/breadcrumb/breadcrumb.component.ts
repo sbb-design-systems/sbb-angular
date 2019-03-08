@@ -39,10 +39,13 @@ export class BreadcrumbComponent implements AfterViewInit {
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    this.levels.first.expandEvent.pipe(first()).subscribe(() => {
-      this._expanded = true;
-      this.changeDetectorRef.markForCheck();
-    });
+    if (this.levels && this.levels.first) {
+
+      this.levels.first.expandEvent.pipe(first()).subscribe(() => {
+        this._expanded = true;
+        this.changeDetectorRef.markForCheck();
+      });
+    }
   }
 
 }
