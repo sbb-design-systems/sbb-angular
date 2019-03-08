@@ -6,9 +6,12 @@ import {
   QueryList,
   TemplateRef,
   AfterViewInit,
+  HostBinding,
+  ChangeDetectorRef,
 } from '@angular/core';
 
 import { BreadcrumbLevelComponent } from '../breadcrumb-level/breadcrumb-level.component';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-breadcrumb',
@@ -21,10 +24,25 @@ export class BreadcrumbComponent implements AfterViewInit {
 
   @ContentChildren(BreadcrumbLevelComponent) levels: QueryList<BreadcrumbLevelComponent>;
 
+  @HostBinding('class.sbb-breadcrumb')
+  cssClass = true;
+
+  @HostBinding('class.sbb-breadcrumb-expanded')
+  get expanded(): boolean {
+    if (this.levels.length > 2) {
+      return this._expanded;
+    }
+    return true;
+  }
+  private _expanded = false;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    console.log(this.levels);
+    this.levels.first.expandEvent.pipe(first()).subscribe(() => {
+      this._expanded = true;
+      this.changeDetectorRef.markForCheck();
+    });
   }
-
 
 }

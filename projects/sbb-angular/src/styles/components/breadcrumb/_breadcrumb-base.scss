@@ -11,6 +11,15 @@
   @include mq($from: desktop5k) {
     min-height: toPx($breadcrumbHeight * $scalingFactor5k);
   }
+
+  &-expanded {
+    .sbb-breadcrumb-level {
+      display: flex;
+    }
+    .sbb-breadcrumb-level-dots {
+      display: none;
+    }
+  }
 }
 
 .sbb-breadcrumb-level-panel {
@@ -52,20 +61,29 @@
 }
 
 @mixin breadcrumbLevel {
-  display: flex;
+  display: none;
   align-items: center;
+
+  &:first-of-type,
+  &:last-of-type {
+    display: flex;
+  }
+
+  @include mq($from: tabletPortrait) {
+    display: flex;
+  }
+
   padding-left: 0;
   height: toPx($breadcrumbHeight);
   margin-right: toPx($breadcrumbArrowMarginsDT);
+
   @include mq($from: desktop4k) {
     margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
     height: toPx($breadcrumbHeight * $scalingFactor4k);
-
   }
   @include mq($from: desktop5k) {
     margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
-    height: toPx($breadcrumbHeight  * $scalingFactor5k);
-
+    height: toPx($breadcrumbHeight * $scalingFactor5k);
   }
 
   .sbb-breadcrumb-level-trigger {
@@ -154,6 +172,13 @@
       height: toPx(24 * $scalingFactor5k);
       min-width: toPx(24 * $scalingFactor5k);
     }
+    > .sbb-icon-component {
+      &:hover,
+      &:focus {
+        color: $colorRed125;
+        fill: $colorRed125;
+      }
+    }
   }
 
   .sbb-breadcrumb-level-trigger-icon {
@@ -228,5 +253,22 @@
   &:hover,
   &:focus {
     color: $colorRed125;
+  }
+}
+.sbb-breadcrumb-level-dots {
+  margin-left: toPx($breadcrumbArrowMarginsDT);
+  display: flex;
+  align-items: center;
+  @include mq($from: tabletPortrait) {
+    display: none;
+  }
+
+  @include mq($from: desktop4k) {
+    margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+
+  }
+  @include mq($from: desktop5k) {
+    margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+
   }
 }

@@ -7,7 +7,8 @@ import {
   Input,
   HostBinding,
   ViewChild,
-  ElementRef
+  ElementRef,
+  EventEmitter
 } from '@angular/core';
 
 import { DropdownTriggerDirective } from '../../dropdown/dropdown-trigger.directive';
@@ -38,6 +39,8 @@ export class BreadcrumbLevelComponent extends DropdownTriggerDirective implement
     return !this.getConnectedElement().nativeElement.previousSibling;
   }
 
+  expandEvent: EventEmitter<any> = new EventEmitter<any>();
+
 
   ngAfterViewInit() {
     if (this.dropdown) {
@@ -51,6 +54,11 @@ export class BreadcrumbLevelComponent extends DropdownTriggerDirective implement
     if (this.dropdown) {
       super.handleKeydown(event);
     }
+  }
+
+  expand($event: any) {
+    this.expandEvent.emit();
+    $event.stopPropagation();
   }
 
   protected getPanelWidth(): number | string {

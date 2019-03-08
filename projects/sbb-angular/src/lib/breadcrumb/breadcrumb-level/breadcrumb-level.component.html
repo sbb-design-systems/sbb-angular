@@ -4,9 +4,7 @@
   </div>
 </ng-container>
 <ng-content select="a, button"></ng-content>
-<span #breadcrumbTrigger *ngIf="label && dropdown" 
-  tabindex="0" 
-  class="sbb-breadcrumb-level-trigger" 
+<span #breadcrumbTrigger *ngIf="label && dropdown" tabindex="0" class="sbb-breadcrumb-level-trigger"
   [class.sbb-breadcrumb-level-trigger-open]="dropdown.isOpen">
   <span class="sbb-breadcrumb-level-label">{{ label }}</span>
   <div class="sbb-breadcrumb-level-trigger-icon sbb-breadcrumb-level-trigger-icon-visible"
@@ -14,3 +12,10 @@
     <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
   </div>
 </span>
+
+<div class="sbb-breadcrumb-level-dots" *ngIf="isFirst">
+  <div class="sbb-breadcrumb-level-arrow">
+    <sbb-icon-arrow-left></sbb-icon-arrow-left>
+  </div>
+  <button type="button" (click)="expand($event)">...</button>
+</div>
