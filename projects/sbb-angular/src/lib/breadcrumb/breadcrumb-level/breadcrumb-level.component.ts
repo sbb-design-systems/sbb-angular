@@ -15,6 +15,12 @@ import { DropdownTriggerDirective } from '../../dropdown/dropdown-trigger.direct
 import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
 import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
 
+const DESKTOP_4K_BREAKPOINT = 2561;
+const DESKTOP_5K_BREAKPOINT = 3841;
+const BREADCRUMB_LEVEL_OFFSET = 60;
+const SCALING_FACTOR_4K = 1.5;
+const SCALING_FACTOR_5K = 2;
+
 @Component({
   selector: 'sbb-breadcrumb-level',
   templateUrl: './breadcrumb-level.component.html',
@@ -63,13 +69,13 @@ export class BreadcrumbLevelComponent extends DropdownTriggerDirective implement
 
   protected getPanelWidth(): number | string {
     let scalingFactor = 1;
-    if (this.viewportRuler.getViewportSize().width > 2561) {
-      scalingFactor = 1.5;
+    if (this.viewportRuler.getViewportSize().width > DESKTOP_4K_BREAKPOINT) {
+      scalingFactor = SCALING_FACTOR_4K;
     }
-    if (this.viewportRuler.getViewportSize().width > 3841) {
-      scalingFactor = 2;
+    if (this.viewportRuler.getViewportSize().width > DESKTOP_5K_BREAKPOINT) {
+      scalingFactor = SCALING_FACTOR_5K;
     }
-    return this.getHostWidth() + (60 * scalingFactor);
+    return this.getHostWidth() + (BREADCRUMB_LEVEL_OFFSET * scalingFactor);
   }
 
 
