@@ -1,0 +1,48 @@
+
+<div class="sbb-ghettobox" 
+     [@addDelete]="ghettoboxState" 
+     (@addDelete.done)="handleAnimation($event)">
+
+  <a *ngIf="routerLink; else content" class="sbb-ghettobox-link"
+      [routerLink]="routerLink"
+      [queryParams]="link.queryParams" 
+      [fragment]="link.fragment"
+      [preserveFragment]="link.preserveFragment" 
+      [skipLocationChange]="link.skipLocationChange"
+      [replaceUrl]="link.replaceUrl"
+      [state]="link.state"
+      [queryParamsHandling]="link.queryParamsHandling">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+
+  <ng-template #content>
+    <article class="sbb-ghettobox-wrapper" *ngIf="visible">
+      <div class="sbb-ghettobox-icon-container">
+        <div class="sbb-ghettobox-icon">
+          <ng-container *ngTemplateOutlet="icon"></ng-container>
+        </div>
+      </div>
+      <div class="sbb-ghettobox-content" tabindex="0">
+        <ng-container *ngIf="ghettobox">
+          {{ ghettobox.message }}
+        </ng-container>
+        <ng-container *ngIf="!ghettobox">
+          <ng-content></ng-content>
+        </ng-container>
+        <sbb-icon-arrow-down *ngIf="routerLink" class="sbb-ghettobox-content-link-icon">
+        </sbb-icon-arrow-down>
+      </div>
+      <div class="sbb-ghettobox-close">
+        <button type="button" (click)="delete($event)" class="sbb-ghettobox-close-button">
+          <sbb-icon-close></sbb-icon-close>
+          <span i18n class="visuallyhidden">Hinweismeldung schliessen</span>
+        </button>
+      </div>
+    </article>
+  </ng-template>
+  
+  <ng-template #defaultIcon>
+    <sbb-icon-him-info></sbb-icon-him-info>
+  </ng-template>
+
+</div>

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'sbb-search',
+  selector: 'sbb-showcase-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })

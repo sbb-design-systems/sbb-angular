@@ -14,8 +14,8 @@
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4 class="sbbsc-block">Example multiple files allowed and ngModel attached</h4>
-      <sbb-file-selector multiple="true" [(ngModel)]="filesList2" [disabled]="disabled"></sbb-file-selector>
+      <h4 class="sbbsc-block">Example multiple files allowed, multipleMode 'persistent' and ngModel attached</h4>
+      <sbb-file-selector multiple="true" multipleMode="persistent" [(ngModel)]="filesList2" [disabled]="disabled"></sbb-file-selector>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
@@ -29,7 +29,7 @@
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4 class="sbbsc-block">Example multiple files, accepted files filter and Reactive Form.</h4>
+      <h4 class="sbbsc-block">Example multiple files, multipleMode 'default', accepted files filter and Reactive Form.</h4>
       <sbb-file-selector [accept]="accept" [formControl]="fileControl" multiple="true" capture="user">
       </sbb-file-selector>
     </div>

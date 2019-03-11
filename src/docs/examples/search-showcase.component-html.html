@@ -1,0 +1,92 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Simple search field<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCounter()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Model<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{ myControl.value | json}}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>'Search' events triggered<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{ searchCounterAmount}}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Simple search field (header mode)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCounter()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Search field with autocomplete<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCounter()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto1"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto1</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of filteredOptions"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
+          {{ option }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Search field with autocomplete (header mode)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCounter()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>
+        [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto2"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto2</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of filteredOptions"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
+          {{ option }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Search field with autocomplete, static options, header mode and custom icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCounter()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControlStatic"</span>
+        [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-info</span> *<span class="hljs-attr">sbbSearchIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-info</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto3</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of options$ | async"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
+          {{ option }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Oft gesucht:"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of staticOptions"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
+            {{ option }}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-group</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Common search scenario<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"search()"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl2"</span>
+        [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of filteredOptions2"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
+          {{ option }}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Search results (only first 10 are shown)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!searchResults.length"</span>&gt;</span>No results<span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-loading</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"showSpinner"</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"fullbox"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-loading</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> [<span class="hljs-attr">title</span>]=<span class="hljs-string">"image.station"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let image of searchResults"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"300"</span>
+          [<span class="hljs-attr">attr.src</span>]=<span class="hljs-string">"'https://data.sbb.ch/explore/dataset/historische-bahnhofbilder/files/' + image.id + '/300/'"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

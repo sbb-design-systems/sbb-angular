@@ -1,0 +1,289 @@
+$border: solid 1px $colorBlack72;
+$border4K: solid 3px $colorBlack72;
+$border5K: solid 4px $colorBlack72;
+
+$borderActive: solid 2px $colorGrey;
+$borderActive4K: solid toPx(3 * $scalingFactor4k) $colorGrey;
+$borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
+
+@mixin usermenuLoggedIn {
+  position: relative;
+  align-items: center;
+  display: flex;
+  width: 288px;
+  height: 48px;
+  line-height: 1.533;
+
+  @include mq($from: desktop4k) {
+    width: toPx(432 * $scalingFactor4k);
+    height: toPx(72 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(576 * $scalingFactor5k);
+    height: toPx(96 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuLoggedInActive {
+  border-top: $borderActive;
+  border-right: $borderActive;
+  border-left: $borderActive;
+
+  @include mq($from: desktop4k) {
+    border-top: $borderActive4K;
+    border-right: $borderActive4K;
+    border-left: $borderActive4K;
+  }
+
+  @include mq($from: desktop5k) {
+    border-top: $borderActive5K;
+    border-right: $borderActive5K;
+    border-left: $borderActive5K;
+  }
+}
+
+@mixin usermenuLoggedInCollapsed {
+  display: flex;
+  align-items: center;
+  margin-left: 3px;
+  margin-top: 3px;
+
+  @include mq($from: desktop4k) {
+    display: inherit;
+    align-items: inherit;
+    margin-left: toPx(3 * $scalingFactor4k);
+    margin-top: toPx(3 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    display: inherit;
+    align-items: inherit;
+    margin-left: toPx(3 * $scalingFactor5k);
+    margin-top: toPx(3 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuUserIcon {
+  flex-basis: 32px;
+
+  @include mq($from: desktop4k) {
+    flex-basis: toPx(32 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    flex-basis: toPx(32 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuLoggedInCollapsedIcon {
+  position: relative;
+
+  @include mq($from: desktop4k) {
+    width: toPx(48 * $scalingFactor4k);
+    height: toPx(48 * $scalingFactor4k);
+    position: inherit;
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(64 * $scalingFactor5k);
+    height: toPx(64 * $scalingFactor5k);
+    position: inherit;
+  }
+}
+
+@mixin usermenuLoggedInCollapsedInitialLetters {
+  border-radius: 50%;
+  border: $border;
+  background-color: $colorBlack10;
+  font-family: $fontFamilyBase;
+  font-size: pxToRem(13);
+  color: $colorBlack60;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  position: relative;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(23 * $scalingFactor4k);
+    width: toPx(180 * $scalingFactor4k);
+    height: toPx(35 * $scalingFactor4k);
+    border: $border4K;
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(30 * $scalingFactor5k);
+    width: toPx(235 * $scalingFactor5k);
+    height: toPx(45 * $scalingFactor5k);
+    border: $border5K;
+  }
+}
+
+@mixin displayNameLoggedInCollapsed {
+  @include mq($from: mobilePortrait, $to: tabletPortrait) {
+    display: none;
+  }
+}
+
+@mixin usermenuLoggedInCollapsedArrow {
+  width: 24px;
+  height: 24px;
+  z-index: -1;
+  position: relative;
+
+  @include mq($from: mobilePortrait, $to: tabletPortrait) {
+    display: none;
+  }
+
+  @include mq($from: desktop4k) {
+    width: toPx(36 * $scalingFactor4k);
+    height: toPx(36 * $scalingFactor4k);
+    position: inherit;
+    z-index: inherit;
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(48 * $scalingFactor5k);
+    height: toPx(48 * $scalingFactor5k);
+    position: inherit;
+    z-index: inherit;
+  }
+}
+
+@mixin usermenuLoggedInExpandedInfoUser {
+  flex-grow: 1;
+  padding-left: 4px;
+
+  @include mq($from: desktop4k) {
+    padding-left: toPx(4 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    padding-left: toPx(4 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuLoggedInExpandedUsername {
+  font-family: $fontSbbRoman;
+  color: $colorBlack60;
+  font-size: pxToRem(13);
+  margin-top: -3px;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(23 * $scalingFactor4k);
+    margin-top: toPx(-3 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(30 * $scalingFactor5k);
+    margin-top: toPx(-3 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuLoggedInExpandedDisplayName {
+  font-size: pxToRem(15);
+  font-family: $fontSbbRoman;
+  color: $colorBlack60;
+  margin-top: -5px;
+  width: 118px;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(23 * $scalingFactor4k);
+    margin-top: toPx(-5 * $scalingFactor4k);
+    width: 90px;
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(30 * $scalingFactor5k);
+    margin-top: toPx(-5 * $scalingFactor5k);
+    width: 119px;
+  }
+}
+
+@mixin usermenuLoggedInExpandedArrow {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+  margin-left: 60px;
+
+  @include mq($from: desktop4k) {
+    width: toPx(36 * $scalingFactor4k);
+    height: toPx(36 * $scalingFactor4k);
+    margin-left: toPx(60 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(48 * $scalingFactor5k);
+    height: toPx(48 * $scalingFactor5k);
+    margin-left: (60 * $scalingFactor5k);
+  }
+}
+
+@mixin usermenuLoggedOff {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 48px;
+  width: 156px;
+
+  @include mq($from: desktop4k) {
+    height: toPx(72 * $scalingFactor4k);
+    width: toPx(103 * $scalingFactor4k);
+    display: inherit;
+    align-items: inherit;
+    position: inherit;
+  }
+
+  @include mq($from: desktop5k) {
+    height: toPx(96 * $scalingFactor5k);
+    width: toPx(134 * $scalingFactor5k);
+    display: inherit;
+    align-items: inherit;
+    position: inherit;
+  }
+}
+
+@mixin usermenuLoggedOffIconUser {
+  width: 24px;
+  height: 24px;
+  margin-left: 2px;
+  position: relative;
+
+  @include mq($from: desktop4k) {
+    height: toPx(36 * $scalingFactor4k);
+    width: toPx(36 * $scalingFactor4k);
+    margin-left: toPx(2 * $scalingFactor4k);
+    position: inherit;
+  }
+
+  @include mq($from: desktop5k) {
+    height: toPx(48 * $scalingFactor5k);
+    width: toPx(48 * $scalingFactor5k);
+    margin-left: toPx(2 * $scalingFactor5k);
+    position: inherit;
+  }
+}
+
+@mixin usermenuLoggedOffButton {
+  @include buttonResetFrameless;
+  position: relative;
+  margin-left: 13.5px;
+  margin-top: 2px;
+
+  @include mq($from: desktop4k) {
+    margin-left: toPx(13.5 * $scalingFactor4k);
+    position: inherit;
+    margin-top: toPx(2 * $scalingFactor4k);
+    max-width: toPx(53 * $scalingFactor4k);
+    max-height: toPx(26 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    margin-left: toPx(13.5 * $scalingFactor5k);
+    position: inherit;
+    margin-top: toPx(2 * $scalingFactor5k);
+    max-width: toPx(70 * $scalingFactor5k);
+    max-height: toPx(35 * $scalingFactor5k);
+  }
+}

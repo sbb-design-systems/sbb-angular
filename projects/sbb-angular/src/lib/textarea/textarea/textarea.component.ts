@@ -128,7 +128,7 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Method that listens change in the textarea content
    */
-  onChange(event) {
+  onChange(event: any) {
     this.propagateChange(event.target.value);
     this.updateDigitsCounter(event.target.value);
   }
@@ -141,7 +141,7 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Method that updates the max number of digits available in the textarea content
    */
-  updateDigitsCounter(newValue) {
+  updateDigitsCounter(newValue: string) {
     if (!!this.maxlength) {
       this.counterObserver$.next(this.maxlength - newValue.length);
     }

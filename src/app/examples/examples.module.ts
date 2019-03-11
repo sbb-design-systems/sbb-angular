@@ -18,9 +18,6 @@ import {
   LoadingModule,
   DatepickerModule,
   LightboxModule,
-  AutocompleteModule,
-  SelectModule,
-  OptionModule,
   AccordionModule,
   ProcessflowModule,
   RadioButtonModule,
@@ -35,8 +32,14 @@ import {
   PaginationModule,
   ToggleModule,
   CaptchaModule,
-  DropdownModule,
   FileSelectorModule,
+  DropdownModule,
+  UserMenuModule,
+  GhettoboxModule,
+  OptionModule,
+  SelectModule,
+  AutocompleteModule,
+  SearchModule
 } from 'sbb-angular';
 
 
@@ -77,9 +80,13 @@ import { PaginationShowcaseComponent } from './pagination-showcase/pagination-sh
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
+import { SearchShowcaseComponent } from './search-showcase/search-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
+import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
+
 
 @NgModule({
   declarations: [
@@ -118,9 +125,12 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipShowcaseComponent,
     TextexpandShowcaseComponent,
     TagShowcaseComponent,
+    SearchShowcaseComponent,
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent,
+    GhettoboxShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -155,9 +165,12 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     TooltipModule,
     TextexpandModule,
     TagModule,
+    SearchModule,
     FileSelectorModule,
     DropdownModule,
-    CaptchaModule
+    CaptchaModule,
+    UserMenuModule,
+    GhettoboxModule
   ],
   exports: [
     TextareaShowcaseComponent,
@@ -185,7 +198,8 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
     AccordionModule,
     TableModule,
     TooltipShowcaseComponent,
-    DropdownShowcaseComponent
+    DropdownShowcaseComponent,
+    UserMenuShowcaseComponent
   ],
   entryComponents: [
     LightboxShowcaseExampleContentComponent,
