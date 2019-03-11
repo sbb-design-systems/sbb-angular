@@ -1,7 +1,7 @@
-
+  
 # Getting Started
 
-Basic steps to integrate the ACL library into your own project.
+Basic steps to integrate the ACL library into your own project.  
 
 ## Step 0: Prerequisites
 
