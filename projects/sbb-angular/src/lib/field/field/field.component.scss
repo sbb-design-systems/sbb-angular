@@ -26,4 +26,7 @@ sbb-field {
     }
   }
   
+  & > .sbb-form-error {
+    @include formError($colorCallToAction);
+  }
 }

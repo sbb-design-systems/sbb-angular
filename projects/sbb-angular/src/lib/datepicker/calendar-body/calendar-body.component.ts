@@ -36,14 +36,11 @@ export class CalendarCell {
 })
 export class CalendarBodyComponent {
 
-  @HostBinding('attr.role')
-  role = 'grid';
+  @HostBinding('attr.role') role = 'grid';
 
-  @HostBinding('attr.aria-readonly')
-  ariaReadonly = true;
+  @HostBinding('attr.aria-readonly') ariaReadonly = true;
 
-  @HostBinding('class')
-  cssClass = 'sbb-calendar-body';
+  @HostBinding('class.sbb-calendar-body') cssClass = true;
 
   /** The label for the table. (e.g. "Jan 2017"). */
   @Input() label: string;

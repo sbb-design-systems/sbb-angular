@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '../../svg-icons/svg-icons';
 import { LinkComponent } from './link.component';
 
-describe('IconLinkComponent', () => {
+describe('LinkComponent', () => {
   let component: LinkComponent;
   let fixture: ComponentFixture<LinkComponent>;
 
@@ -17,10 +17,10 @@ describe('IconLinkComponent', () => {
         LinkComponent
       ]
     })
-    .overrideComponent(LinkComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(LinkComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -72,7 +72,7 @@ describe('IconLinkComponent', () => {
 
   it('should have grey text and icon in form mode', () => {
     component.mode = 'form';
-    component.ngOnInit();
+    component.ngOnChanges({ mode: new SimpleChange('normal', 'form', false) });
     fixture.detectChanges();
 
     const elementStyle = getComputedStyle(fixture.debugElement.nativeElement);

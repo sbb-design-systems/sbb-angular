@@ -7,11 +7,11 @@ import {
   forwardRef,
   Optional,
   ChangeDetectorRef,
-  OnInit,
   Output,
   EventEmitter,
   HostBinding,
-  HostListener
+  Inject,
+  AfterViewInit
 } from '@angular/core';
 import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
 import {
@@ -26,6 +26,10 @@ import { DatepickerInputDirective, SbbDatepickerInputEvent } from '../datepicker
 import { DateAdapter } from '../date-adapter';
 import { DateRange } from '../date-range';
 import { DatepickerToggleComponent } from '../datepicker-toggle/datepicker-toggle.component';
+import { FORM_FIELD, FormFieldControl } from '../../field/field';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { InputDirective } from '../../input/input';
+import { HasFormFieldControl } from '../../field/has-form-field-control';
 
 
 export const SBB_DATEPICKER_VALUE_ACCESSOR: any = {
@@ -42,41 +46,63 @@ export const SBB_DATEPICKER_VALIDATORS: any = {
   multi: true
 };
 
+export function formFieldControlForwarder(datepicker: DatepickerComponent) {
+  return datepicker.nativeInput;
+}
+
+export const SBB_DATEPICKER_FORM_FIELD_CONTROL: any = {
+  provide: FormFieldControl,
+  useFactory: formFieldControlForwarder,
+  // tslint:disable-next-line:no-use-before-declare
+  deps: [forwardRef(() => DatepickerComponent)]
+};
+
 @Component({
   selector: 'sbb-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
   providers: [
     SBB_DATEPICKER_VALUE_ACCESSOR,
-    SBB_DATEPICKER_VALIDATORS
+    SBB_DATEPICKER_VALIDATORS,
+    SBB_DATEPICKER_FORM_FIELD_CONTROL,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class DatepickerComponent implements ControlValueAccessor, Validator, OnInit {
+export class DatepickerComponent implements ControlValueAccessor, Validator, AfterViewInit {
 
+  /** The value of the datepicker. */
+  @Input()
+  get value(): Date | null {
+    return this.datepickerInput ? this.datepickerInput.value : this._value;
+  }
+  set value(value: Date | null) {
+    this._value = value;
+    this.changeDetectorRef.markForCheck();
+  }
+  private _value;
+
+  /** @docs-private */
+  get forwardValue() { return this._value; }
 
   /** The minimum valid date. */
   @Input()
-  set min(value: Date) {
-    this.datepickerInput.min = value;
-  }
-  get min() {
-    return this.datepickerInput.min;
-  }
+  min: Date | null;
 
   /** The maximum valid date. */
   @Input()
-  set max(value: Date) {
-    this.datepickerInput.max = value;
-  }
-  get max() {
-    return this.datepickerInput.max;
-  }
+  max: Date | null;
 
   /** Whether the datepicker-input is disabled. */
   @Input()
-  disabled: boolean;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+    this.changeDetectorRef.markForCheck();
+  }
+  private _disabled = false;
 
   /**
    * Property active when a toDatepicker is defined
@@ -88,6 +114,7 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   */
   @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
   @ViewChild(DatepickerToggleComponent) datepickerToggle: DatepickerToggleComponent<Date>;
+  @ViewChild(InputDirective) nativeInput: InputDirective;
 
   /**
    * Second datepicker to be used in 2 datepickers use case
@@ -99,14 +126,14 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     }
     this.attachedDatepicker = value;
     this.dateRange = new DateRange();
-    this.datepickerInput.dateRange = this.dateRange;
-    this.attachedDatepicker.datepickerInput.dateRange = this.dateRange;
-
+    this.executeOrStoreAction(() => {
+      this.datepickerInput.dateRange = this.dateRange;
+      this.attachedDatepicker.datepickerInput.dateRange = this.dateRange;
+    });
   }
   attachedDatepicker: DatepickerComponent;
 
-  @HostBinding('class')
-  cssClass = 'sbb-datepicker';
+  @HostBinding('class.sbb-datepicker') cssClass = true;
 
   /**
    * Embedded input field connected to the datepicker
@@ -134,96 +161,61 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
   @Input()
   @HostBinding('class.sbb-datepicker-with-arrows')
   get withArrows() {
-    return this.isWithArrows;
+    return this._withArrows;
   }
   set withArrows(withArrows: any) {
-    this.isWithArrows = withArrows === '' ? true : Boolean(withArrows);
-    this.checkArrows();
-    this.embeddedDatepicker.withArrows = this.isWithArrows;
+    this._withArrows = coerceBooleanProperty(withArrows);
+    this.changeDetectorRef.markForCheck();
   }
-  private isWithArrows = false;
+  private _withArrows = false;
 
   @Input()
   @HostBinding('class.sbb-datepicker-without-toggle')
   get withoutToggle() {
-    return this.isWithoutToggle;
+    return this._withoutToggle;
   }
   set withoutToggle(withoutToggle: any) {
-    this.isWithoutToggle = withoutToggle === '' ? true : Boolean(withoutToggle);
+    this._withoutToggle = coerceBooleanProperty(withoutToggle);
   }
-  private isWithoutToggle = false;
+  private _withoutToggle = false;
 
-  leftArrow: boolean;
-  rightArrow: boolean;
+  get leftArrow(): boolean {
+    return this.isDayScrollApplicable()
+      && (!this.min || this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0);
+  }
+  get rightArrow(): boolean {
+    return this.isDayScrollApplicable()
+      && (!this.max || this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0);
+  }
 
   /** Function that can be used to filter out dates within the datepicker. */
   @Input()
   set validDateFilter(fn: (date: Date | null) => boolean) {
-    this.datepickerInput.dateFilter = fn;
-    this.datepickerInput.validatorOnChange();
+    this.executeOrStoreAction(() => {
+      this.datepickerInput.dateFilter = fn;
+      this.datepickerInput.validatorOnChange();
+    });
   }
 
-  private isDayScrollApplicable(): boolean {
-    return this.withArrows && !!this.datepickerInput.value;
+  get isInFormField() {
+    return !!this.formField;
   }
 
+  private afterViewInitActions: Array<() => void> = [];
 
   constructor(
-    @Optional() public dateAdapter: DateAdapter<Date>,
+    public dateAdapter: DateAdapter<Date>,
+    @Inject(FORM_FIELD) @Optional() private formField: HasFormFieldControl,
     private changeDetectorRef: ChangeDetectorRef) {
   }
 
-  private checkArrows() {
-    this.rightArrow = false;
-    this.leftArrow = false;
-    if (this.isDayScrollApplicable()) {
-      if (this.min) {
-        this.leftArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
-      } else {
-        this.leftArrow = true;
+  ngAfterViewInit(): void {
+    this.afterViewInitActions.forEach(a => a());
+    this.afterViewInitActions = [];
 
-      }
-      if (this.max) {
-        this.rightArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
-      } else {
-        this.rightArrow = true;
-      }
-    }
-  }
-
-  /**
-  * Manages the 2nd datepicker linked to this instance.
-  * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
-  */
-  private handleRangeDatepicker(beginDate: Date, arrowClick: boolean = false) {
-    if (this.attachedDatepicker) {
-      if (beginDate && this.dateAdapter.isValid(beginDate)) {
-        this.dateRange.begin = beginDate;
-        if (!this.attachedDatepicker.datepickerInput.value && !arrowClick) {
-          this.attachedDatepicker.embeddedDatepicker.open();
-        } else {
-          if (this.dateAdapter.compareDate(beginDate, this.attachedDatepicker.datepickerInput.value) > 0) {
-            this.attachedDatepicker.datepickerInput.value = null;
-            if (!arrowClick) {
-              this.attachedDatepicker.embeddedDatepicker.open();
-            }
-          } else {
-            this.dateRange.end = this.attachedDatepicker.datepickerInput.value;
-          }
-        }
-        this.attachedDatepicker.min = beginDate;
-      }
-    }
-  }
-
-  ngOnInit(): void {
     this.datepickerInput.valueChange.subscribe(newDateValue => {
       this.embeddedDatepicker.selected = newDateValue;
-      if (this.withArrows) {
-        this.checkArrows();
-      }
       this.changeDetectorRef.markForCheck();
-
     });
 
     this.embeddedDatepicker.closedStream.subscribe(() => {
@@ -231,21 +223,12 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
       this.handleRangeDatepicker(this.datepickerInput.value);
     });
 
-    this.embeddedDatepicker.openedStream.subscribe(() => {
-      this.opened.emit();
-    });
-
-    this.datepickerInput.dateChange.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
-      this.dateChange.emit(datepickerInputEvent);
-    });
-
-    this.datepickerInput.dateInput.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
-      this.dateInput.emit(datepickerInputEvent);
-    });
-
-    this.datepickerInput.inputBlurred.subscribe(() => {
-      this.handleRangeDatepicker(this.datepickerInput.value);
-    });
+    this.embeddedDatepicker.openedStream.subscribe(() => this.opened.emit());
+    this.datepickerInput.dateChange
+      .subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => this.dateChange.emit(datepickerInputEvent));
+    this.datepickerInput.dateInput
+      .subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => this.dateInput.emit(datepickerInputEvent));
+    this.datepickerInput.inputBlurred.subscribe(() => this.handleRangeDatepicker(this.datepickerInput.value));
 
     if (this.attachedDatepicker) {
       this.attachedDatepicker.datepickerInput.valueChange.subscribe(newEndDateValue => {
@@ -268,31 +251,63 @@ export class DatepickerComponent implements ControlValueAccessor, Validator, OnI
     this.scrollToDay('next');
   }
 
-  private scrollToDay(value: 'prev' | 'next') {
-    value === 'prev' ? this.embeddedDatepicker.prevDay() : this.embeddedDatepicker.nextDay();
-    this.checkArrows();
-    this.handleRangeDatepicker(this.datepickerInput.value, true);
-  }
-
   writeValue(obj: any): void {
-    this.datepickerInput.writeValue(obj);
+    this.value = obj;
   }
   registerOnChange(fn: any): void {
-    this.datepickerInput.registerOnChange(fn);
+    this.executeOrStoreAction(() => this.datepickerInput.registerOnChange(fn));
   }
   registerOnTouched(fn: any): void {
-    this.datepickerInput.registerOnTouched(fn);
+    this.executeOrStoreAction(() => this.datepickerInput.registerOnTouched(fn));
   }
   setDisabledState(isDisabled: boolean): void {
-    this.datepickerInput.setDisabledState(isDisabled);
+    this.disabled = isDisabled;
   }
 
   registerOnValidatorChange?(fn: () => void): void {
-    this.datepickerInput.registerOnValidatorChange(fn);
+    this.executeOrStoreAction(() => this.datepickerInput.registerOnValidatorChange(fn));
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
-    return this.datepickerInput.validate(c);
+    return this.datepickerInput ? this.datepickerInput.validate(c) : null;
   }
 
+  private isDayScrollApplicable(): boolean {
+    return this.withArrows && !!this.value;
+  }
+
+  private scrollToDay(value: 'prev' | 'next') {
+    value === 'prev' ? this.embeddedDatepicker.prevDay() : this.embeddedDatepicker.nextDay();
+    this.changeDetectorRef.markForCheck();
+    this.handleRangeDatepicker(this.datepickerInput.value, true);
+  }
+
+  /**
+  * Manages the 2nd datepicker linked to this instance.
+  * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
+  */
+  private handleRangeDatepicker(beginDate: Date, arrowClick: boolean = false) {
+    if (this.attachedDatepicker && beginDate && this.dateAdapter.isValid(beginDate)) {
+      this.dateRange.begin = beginDate;
+      if (!this.attachedDatepicker.datepickerInput.value && !arrowClick) {
+        this.attachedDatepicker.embeddedDatepicker.open();
+      } else if (this.dateAdapter.compareDate(beginDate, this.attachedDatepicker.datepickerInput.value) > 0) {
+        this.attachedDatepicker.datepickerInput.value = null;
+        if (!arrowClick) {
+          this.attachedDatepicker.embeddedDatepicker.open();
+        }
+      } else {
+        this.dateRange.end = this.attachedDatepicker.datepickerInput.value;
+      }
+      this.attachedDatepicker.min = beginDate;
+    }
+  }
+
+  private executeOrStoreAction(action: () => void) {
+    if (this.datepickerInput) {
+      action();
+    } else {
+      this.afterViewInitActions.push(action);
+    }
+  }
 }

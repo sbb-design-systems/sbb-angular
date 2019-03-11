@@ -19,7 +19,7 @@ import { CalendarComponent } from '../calendar/calendar.component';
 })
 export class DatepickerContentComponent<D> implements AfterViewInit {
 
-  @HostBinding('class') cssClass = 'sbb-datepicker-content';
+  @HostBinding('class.sbb-datepicker-content') cssClass = true;
 
   /** Reference to the internal calendar component. */
   @ViewChild(CalendarComponent) calendar: CalendarComponent<D>;
