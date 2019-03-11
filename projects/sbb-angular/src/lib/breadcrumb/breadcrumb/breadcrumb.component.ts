@@ -22,6 +22,9 @@ import { first } from 'rxjs/operators';
 })
 export class BreadcrumbComponent implements AfterViewInit {
 
+  /**
+   * Refers to BreadcrumbLevelComponents istance.
+   */
   @ContentChildren(BreadcrumbLevelComponent) levels: QueryList<BreadcrumbLevelComponent>;
 
   @HostBinding('class.sbb-breadcrumb')

@@ -1,18 +1,45 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-home</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-home</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2"</span>&gt;</span>Level 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-home</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-home</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Level 1 dasdasd  dasdasdas"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1b<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
+
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Level 2"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 2 asdasd as das dasdas
+        dasd asd ab<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
 
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
@@ -23,16 +50,8 @@
 
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Level 1 dasdasd  dasdasdas"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"classForActive"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"classForActive"</span>&gt;</span>Level 1b<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
-
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb-level</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Level 2"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"classForActive"</span>&gt;</span>Level 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"classForActive"</span>&gt;</span>Level 2 asdasd as das dasdas dasd asd ab<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1b<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb-level</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
