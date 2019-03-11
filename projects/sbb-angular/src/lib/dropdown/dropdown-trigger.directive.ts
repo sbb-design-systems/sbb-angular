@@ -340,7 +340,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   @HostListener('click', ['$event'])
-  handleClick(event): void {
+  handleClick(event: any): void {
     if (event instanceof MouseEvent) {
 
       if (!this.panelOpen) {

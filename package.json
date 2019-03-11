@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular-showcase",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,7 +12,7 @@
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "build:icons": "ts-node -P scripts/tsconfig.json ./scripts/svg/svg-generator projects/sbb-angular/svgs projects/sbb-angular/src/lib/svg-icons src/app",
     "build:showcase": "ng build sbb-angular-showcase --prod",
-    "test": "run-s build:library test:*",
+    "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
     "test:library": "ng test sbb-angular -c ci",
     "lint": "run-s lint:*",
@@ -20,6 +20,7 @@
     "lint:library": "run-s lint:library:*",
     "lint:library:console": "ng lint sbb-angular",
     "lint:library:report": "ng lint sbb-angular --format=json > lintReport.json",
+    "sonar": "sonar-scanner",
     "sbb:publish": "node scripts/publish.js",
     "e2e": "ng e2e",
     "docs": "gulp docs"
@@ -52,12 +53,12 @@
     "@angular/cli": "^7.2.1",
     "@angular/compiler-cli": "^7.2.0",
     "@angular/language-service": "^7.2.0",
+    "@types/grecaptcha": "^2.0.36",
     "@types/gulp": "^4.0.5",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "^2.0.4",
     "@types/node": "^8.10.37",
     "@types/run-sequence": "^0.0.30",
-    "@types/grecaptcha": "^2.0.36",
     "codelyzer": "^4.5.0",
     "dgeni": "^0.4.11",
     "dgeni-packages": "^0.27.1",
@@ -88,6 +89,7 @@
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-sonarqube-reporter": "^1.2.3",
     "karma-sourcemap-loader": "^0.3.7",
     "lodash": "^4.17.11",
     "ng-packagr": "^4.4.5",
@@ -98,12 +100,14 @@
     "run-sequence": "^2.2.1",
     "scss-bundle": "^2.4.0",
     "semver": "^5.6.0",
+    "sonar-scanner": "^3.1.0",
     "svgo": "^1.0.5",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
     "tsickle": "^0.33.1",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
+    "tslint-sonarts": "^1.9.0",
     "typescript": "~3.2.2"
   }
 }

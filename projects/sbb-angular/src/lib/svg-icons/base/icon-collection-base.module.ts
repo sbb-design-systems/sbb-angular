@@ -46,7 +46,6 @@ import { IconMapModule } from './icon-map.module';
 import { IconMinusModule } from './icon-minus.module';
 import { IconNoTicketModule } from './icon-no-ticket.module';
 import { IconParkAndRailModule } from './icon-park-and-rail.module';
-import { IconPdfModule } from './icon-pdf.module';
 import { IconPencilModule } from './icon-pencil.module';
 import { IconPercentModule } from './icon-percent.module';
 import { IconPlayButtonBigModule } from './icon-play-button-big.module';
@@ -119,7 +118,6 @@ import { IconCollectionBaseSocialMediaModule } from './social_media/icon-collect
     IconMinusModule,
     IconNoTicketModule,
     IconParkAndRailModule,
-    IconPdfModule,
     IconPencilModule,
     IconPercentModule,
     IconPlayButtonBigModule,
@@ -195,7 +193,6 @@ import { IconCollectionBaseSocialMediaModule } from './social_media/icon-collect
     IconMinusModule,
     IconNoTicketModule,
     IconParkAndRailModule,
-    IconPdfModule,
     IconPencilModule,
     IconPercentModule,
     IconPlayButtonBigModule,

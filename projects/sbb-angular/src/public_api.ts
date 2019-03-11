@@ -1,9 +1,11 @@
 /*
  * Public API Surface of sbb-angular
  */
-export * from './lib/svg-icons-components/svg-icons-components';
+export * from './lib/_common/common';
 export * from './lib/svg-icons/svg-icons';
 export * from './lib/field/field';
+export * from './lib/field/field';
+export * from './lib/input/input';
 export * from './lib/option/option';
 export * from './lib/textarea/textarea';
 export * from './lib/links/links';
@@ -28,5 +30,9 @@ export * from './lib/pagination/pagination';
 export * from './lib/tooltip/tooltip';
 export * from './lib/textexpand/textexpand';
 export * from './lib/tag/tag';
+export * from './lib/file-selector/file-selector';
 export * from './lib/captcha/captcha';
 export * from './lib/dropdown/dropdown';
+export * from './lib/usermenu/usermenu';
+export * from './lib/ghettobox/ghettobox';
+export * from './lib/search/search';

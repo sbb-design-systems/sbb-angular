@@ -1,7 +1,9 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+if (process.env.BUILD_NUMBER) {
+  process.env.CHROME_BIN = require('puppeteer').executablePath();
+}
 
 module.exports = function (config) {
   config.set({
@@ -14,6 +16,7 @@ module.exports = function (config) {
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -24,15 +27,39 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
+    browserStack: {
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     customLaunchers: {
-      // https://www.browserstack.com/automate/capabilities
+      'BsChrome': {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Chrome'
+      },
+      'BsFirefox': {
+        base: 'BrowserStack',
+        os: 'OS X',
+        os_version: 'Mojave',
+        browser: 'Firefox'
+      },
+      'BsSafari': {
+        base: 'BrowserStack',
+        os: 'OS X',
+        os_version: 'Mojave',
+        browser: 'Safari'
+      },
     },
     browsers: ['ChromeHeadless'],
-    singleRun: false
+    singleRun: false,
+    browserNoActivityTimeout: 50000,
+    browserDisconnectTimeout: 20000,
+    browserDisconnectTolerance: 3
   });
 };
