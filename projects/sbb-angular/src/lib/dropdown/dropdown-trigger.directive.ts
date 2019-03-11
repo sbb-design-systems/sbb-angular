@@ -433,7 +433,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     });
   }
 
-  private attachOverlay(): void {
+  protected attachOverlay(): void {
     if (!this.dropdown) {
       throw getSbbDropdownMissingPanelError();
     }

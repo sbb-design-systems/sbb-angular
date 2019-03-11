@@ -79,4 +79,10 @@ export class BreadcrumbLevelComponent extends DropdownTriggerDirective implement
   }
 
 
+  protected attachOverlay(): void {
+    if (this.dropdown) {
+      super.attachOverlay();
+    }
+  }
+
 }
