@@ -78,7 +78,6 @@ export class BreadcrumbLevelComponent extends DropdownTriggerDirective implement
     return this.getHostWidth() + (BREADCRUMB_LEVEL_OFFSET * scalingFactor);
   }
 
-
   protected attachOverlay(): void {
     if (this.dropdown) {
       super.attachOverlay();
