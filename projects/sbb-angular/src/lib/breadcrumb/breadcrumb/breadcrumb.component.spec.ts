@@ -89,7 +89,7 @@ export class BreadcrumbTest3Component {
 }
 
 
-fdescribe('BreadcrumbComponent', () => {
+describe('BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
   let fixture: ComponentFixture<BreadcrumbComponent>;
 
@@ -117,7 +117,7 @@ fdescribe('BreadcrumbComponent', () => {
   });
 });
 
-fdescribe('Breadcrumb behaviour Test', () => {
+describe('Breadcrumb behaviour Test', () => {
   let component: BreadcrumbTestComponent;
   let fixtureTest: ComponentFixture<BreadcrumbTestComponent>;
 
@@ -213,7 +213,7 @@ fdescribe('Breadcrumb behaviour Test', () => {
 
 });
 
-fdescribe('Breadcrumb behaviour Test 2', () => {
+describe('Breadcrumb behaviour Test 2', () => {
   let component: BreadcrumbTest2Component;
   let fixtureTest: ComponentFixture<BreadcrumbTest2Component>;
 
@@ -333,7 +333,7 @@ fdescribe('Breadcrumb behaviour Test 2', () => {
   });
 });
 
-fdescribe('Breadcrumb behaviour Test 3', () => {
+describe('Breadcrumb behaviour Test 3', () => {
   let component: BreadcrumbTest3Component;
   let fixtureTest: ComponentFixture<BreadcrumbTest3Component>;
 
