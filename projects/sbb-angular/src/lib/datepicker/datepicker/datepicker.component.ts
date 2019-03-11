@@ -53,6 +53,7 @@ export function formFieldControlForwarder(datepicker: DatepickerComponent) {
 export const SBB_DATEPICKER_FORM_FIELD_CONTROL: any = {
   provide: FormFieldControl,
   useFactory: formFieldControlForwarder,
+  // tslint:disable-next-line:no-use-before-declare
   deps: [forwardRef(() => DatepickerComponent)]
 };
 
