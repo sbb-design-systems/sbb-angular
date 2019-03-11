@@ -1,6 +1,7 @@
 /*
  * Public API Surface of sbb-angular
  */
+export * from './lib/_common/common';
 export * from './lib/svg-icons/svg-icons';
 export * from './lib/field/field';
 export * from './lib/field/field';
