@@ -1429,7 +1429,7 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>disabled: boolean</code>
+          <code>disabled: any</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -1440,7 +1440,7 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>max: Date</code>
+          <code>max: Date | null</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -1451,7 +1451,7 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>min: Date</code>
+          <code>min: Date | null</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -1467,6 +1467,17 @@
       </td>
       <td class="docs-api-property-description">
         <p>Function that can be used to filter out dates within the datepicker.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>value: Date | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The value of the datepicker.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -1544,7 +1555,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>cssClass: &#39;sbb-datepicker&#39;</code>
+          <code>cssClass: true</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -1598,7 +1609,23 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>isInFormField: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>leftArrow: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>nativeInput: InputDirective</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -1937,14 +1964,6 @@
       <td class="docs-api-property-description">
         <p>Emits when the disabled state has changed</p>
       </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>isDisabled: </code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -2432,7 +2451,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>cssClass: &#39;sbb-calendar-body&#39;</code>
+          <code>cssClass: true</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
