@@ -58,6 +58,7 @@ import { UserMenuShowcaseComponent } from './examples/usermenu-showcase/usermenu
 import { IconCollectionModule } from 'sbb-angular';
 import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase/file-selector-showcase.component';
 import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghettobox-showcase.component';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghetto
     ExamplesTabDocComponent,
     ExamplesIconDocComponent,
     ComponentViewerComponent,
-    TypographyComponent
+    TypographyComponent,
+    GettingStartedComponent
   ],
   imports: [
     BrowserModule,

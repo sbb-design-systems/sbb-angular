@@ -105,7 +105,7 @@ task('markdown-docs-sbb-angular', () => {
         }
     };
 
-    return src(['src/app/examples/**/*.+(md)'])
+    return src(['src/app/examples/**/*.+(md)', 'src/app/getting-started/getting-started.md'])
         .pipe(rename({
             prefix: 'sbb-angular-',
             extname: '.html'

@@ -26,7 +26,7 @@ export class DocDirective implements OnInit {
     this.componentType = this.sbbDoc.isComponent ? 'component' : 'directive';
     this.http
       .get(this.apiDocHTMLName, { responseType: 'text' })
-      .subscribe((html: any) => this.templateHtml = html ? html : '// No content');
+      .subscribe((html: any) => this.templateHtml = html ? html : '/* No content */');
 
   }
 
