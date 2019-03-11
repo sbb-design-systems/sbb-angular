@@ -55,16 +55,16 @@
     color: $autocompleteHoverColor;
   }
 
+  &.sbb-selected {
+    color: $colorBlack;
+  }
+
   &.sbb-active,
   &:hover,
   &:focus,
   &:hover .highlight,
   &:focus .highlight {
     color: $autocompleteOptionHoverColor;
-  }
-
-  &.sbb-selected {
-    color: $colorBlack;
   }
 
   .sbb-option-text {
