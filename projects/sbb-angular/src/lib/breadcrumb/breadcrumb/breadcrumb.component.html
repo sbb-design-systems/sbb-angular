@@ -4,9 +4,9 @@
   </div>
 </ng-container>
 <ng-content select="a, button"></ng-content>
-<span #breadcrumbTrigger *ngIf="label && dropdown" tabindex="0" class="sbb-breadcrumb-trigger"
+<span #breadcrumbTrigger *ngIf="dropdown" tabindex="0" class="sbb-breadcrumb-trigger"
   [class.sbb-breadcrumb-trigger-open]="dropdown.isOpen">
-  <span class="sbb-breadcrumb-label">{{ label }}</span>
+  <span class="sbb-breadcrumb-label"><ng-content></ng-content></span>
   <div class="sbb-breadcrumb-trigger-icon sbb-breadcrumb-trigger-icon-visible"
     [class.sbb-breadcrumb-trigger-icon-active]="dropdown.isOpen">
     <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>

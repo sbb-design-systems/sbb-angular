@@ -34,8 +34,6 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
 
   @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
 
-  @Input() label: string;
-
   @HostBinding('class.sbb-breadcrumb')
   cssClass = true;
 
