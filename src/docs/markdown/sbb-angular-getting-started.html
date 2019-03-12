@@ -38,7 +38,7 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TrainChooChooAppModule { }</code></pre>
   <h2 class="docs-markdown-h2">Step 3: Include typography CSS</h2>
   <p class="docs-markdown-p">Including typography is required to apply all SBB styles to your application. That is doable by editing the <code class="docs-markdown-code">styles.(s)css</code>:</p>
-  <pre class="docs-markdown-pre"><code class="language-css docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'./node_modules/sbb-angular/typography.css'</span>;</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-css docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'../node_modules/sbb-angular/typography.css'</span>;</code></pre>
   <p class="docs-markdown-p">or editing your <code class="docs-markdown-code">angular.json</code>:</p>
   <pre class="docs-markdown-pre"><code class="language-json docs-markdown-code">  ...
   "styles": [
@@ -68,7 +68,7 @@
   <p class="docs-markdown-p">Whichever approach you use, be sure to import the ACL modules after Angular's BrowserModule, as the import order matters for NgModules.</p>
   <h2 class="docs-markdown-h2">Step 5 (Optional): Use mixins and functions from the library</h2>
   <p class="docs-markdown-p">If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import <code class="docs-markdown-code">styles.scss</code> from the library into your <code class="docs-markdown-code">styles.scss</code>:</p>
-  <pre class="docs-markdown-pre"><code class="language-scss docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'./node_modules/sbb-angular/styles.scss'</span>;</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-scss docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'../node_modules/sbb-angular/styles.scss'</span>;</code></pre>
   <p class="docs-markdown-p">You can start building your app using <a href="./components-list" class="docs-markdown-a">components</a> or <a href="./icons-list" class="docs-markdown-a">icons</a>.</p>
 </body>
 
