@@ -4,34 +4,27 @@ import {
   ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   HostBinding,
   ViewChild,
   ElementRef,
   EventEmitter,
-  Host,
   ViewContainerRef,
   NgZone,
   ChangeDetectorRef,
   Inject,
   Optional,
   InjectionToken,
-  QueryList,
-  AfterContentInit
+  QueryList
 } from '@angular/core';
 
 import { DropdownTriggerDirective, DROPDOWN_SCROLL_STRATEGY } from '../../dropdown/dropdown-trigger.directive';
 import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
 import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
-import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { Overlay, ViewportRuler } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
+import { Breakpoints, ScalingFactor4k, ScalingFactor5k } from '../../breakpoints/breakpoints';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
-const DESKTOP_4K_BREAKPOINT = 2561;
-const DESKTOP_5K_BREAKPOINT = 3841;
-const BREADCRUMB_LEVEL_OFFSET = 60;
-const SCALING_FACTOR_4K = 1.5;
-const SCALING_FACTOR_5K = 2;
 
 /**
  * Describes a parent component that manages a list of options.
@@ -48,6 +41,8 @@ export interface BreadcrumbParentComponent {
 export const SBB_BREADCRUMB_PARENT_COMPONENT =
   new InjectionToken<BreadcrumbParentComponent>('SBB_BREADCRUMB_PARENT_COMPONENT');
 
+
+const BREADCRUMB_LEVEL_OFFSET = 60;
 
 @Component({
   selector: 'sbb-breadcrumb',
@@ -67,7 +62,11 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
 
   panelClass = 'sbb-breadcrumb-panel';
 
+  private breadcrumbPanelWidth: any;
+
+
   constructor(@Optional() @Inject(SBB_BREADCRUMB_PARENT_COMPONENT) private _parent: BreadcrumbParentComponent,
+    private breakpointObserver: BreakpointObserver,
     protected element: ElementRef<HTMLInputElement>,
     protected overlay: Overlay,
     protected viewContainerRef: ViewContainerRef,
@@ -93,6 +92,24 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     if (this.dropdown) {
       this.connectedTo = new DropdownOriginDirective(this.breadcrumbTrigger);
     }
+
+    this.breakpointObserver
+      .observe([Breakpoints.Desktop4k, Breakpoints.Desktop5k])
+      .subscribe((result: BreakpointState) => {
+        let scalingFactor = 1;
+
+        if (result.matches) {
+          if (result.breakpoints[Breakpoints.Desktop4k]) {
+            scalingFactor = ScalingFactor4k;
+          }
+          if (result.breakpoints[Breakpoints.Desktop5k]) {
+            scalingFactor = ScalingFactor5k;
+          }
+        }
+        this.breadcrumbPanelWidth = this.getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
+
+      });
+
   }
 
   /** Handles all keydown events on the select. */
@@ -108,14 +125,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
   }
 
   protected getPanelWidth(): number | string {
-    let scalingFactor = 1;
-    if (this.viewportRuler.getViewportSize().width > DESKTOP_4K_BREAKPOINT) {
-      scalingFactor = SCALING_FACTOR_4K;
-    }
-    if (this.viewportRuler.getViewportSize().width > DESKTOP_5K_BREAKPOINT) {
-      scalingFactor = SCALING_FACTOR_5K;
-    }
-    return this.getHostWidth() + (BREADCRUMB_LEVEL_OFFSET * scalingFactor);
+    return this.breadcrumbPanelWidth;
   }
 
   protected attachOverlay(): void {
