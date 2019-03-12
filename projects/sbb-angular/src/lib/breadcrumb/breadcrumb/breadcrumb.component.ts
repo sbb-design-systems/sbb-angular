@@ -1,17 +1,25 @@
 import {
   Component,
+  AfterViewInit,
+  ContentChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ContentChildren,
-  QueryList,
-  TemplateRef,
-  AfterViewInit,
+  Input,
   HostBinding,
-  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+  EventEmitter
 } from '@angular/core';
 
-import { BreadcrumbLevelComponent } from '../breadcrumb-level/breadcrumb-level.component';
-import { first } from 'rxjs/operators';
+import { DropdownTriggerDirective } from '../../dropdown/dropdown-trigger.directive';
+import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
+import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
+
+const DESKTOP_4K_BREAKPOINT = 2561;
+const DESKTOP_5K_BREAKPOINT = 3841;
+const BREADCRUMB_LEVEL_OFFSET = 60;
+const SCALING_FACTOR_4K = 1.5;
+const SCALING_FACTOR_5K = 2;
 
 @Component({
   selector: 'sbb-breadcrumb',
@@ -20,34 +28,59 @@ import { first } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BreadcrumbComponent implements AfterViewInit {
+export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
 
-  /**
-   * Refers to BreadcrumbLevelComponents istance.
-   */
-  @ContentChildren(BreadcrumbLevelComponent) levels: QueryList<BreadcrumbLevelComponent>;
+  @ContentChild(DropdownComponent) dropdown: DropdownComponent;
+
+  @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
+
+  @Input() label: string;
 
   @HostBinding('class.sbb-breadcrumb')
   cssClass = true;
 
-  @HostBinding('class.sbb-breadcrumb-expanded')
-  get expanded(): boolean {
-    if (this.levels.length > 2) {
-      return this._expanded;
-    }
-    return true;
-  }
-  private _expanded = false;
+  panelClass = 'sbb-breadcrumb-panel';
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  get isFirst(): boolean {
+    return !this.getConnectedElement().nativeElement.previousSibling;
+  }
+
+  expandEvent: EventEmitter<any> = new EventEmitter<any>();
+
 
   ngAfterViewInit() {
-    if (this.levels && this.levels.first) {
+    if (this.dropdown) {
+      this.connectedTo = new DropdownOriginDirective(this.breadcrumbTrigger);
+    }
+  }
 
-      this.levels.first.expandEvent.pipe(first()).subscribe(() => {
-        this._expanded = true;
-        this.changeDetectorRef.markForCheck();
-      });
+
+  /** Handles all keydown events on the select. */
+  handleKeydown(event: KeyboardEvent): void {
+    if (this.dropdown) {
+      super.handleKeydown(event);
+    }
+  }
+
+  expand($event: any) {
+    this.expandEvent.emit();
+    $event.stopPropagation();
+  }
+
+  protected getPanelWidth(): number | string {
+    let scalingFactor = 1;
+    if (this.viewportRuler.getViewportSize().width > DESKTOP_4K_BREAKPOINT) {
+      scalingFactor = SCALING_FACTOR_4K;
+    }
+    if (this.viewportRuler.getViewportSize().width > DESKTOP_5K_BREAKPOINT) {
+      scalingFactor = SCALING_FACTOR_5K;
+    }
+    return this.getHostWidth() + (BREADCRUMB_LEVEL_OFFSET * scalingFactor);
+  }
+
+  protected attachOverlay(): void {
+    if (this.dropdown) {
+      super.attachOverlay();
     }
   }
 

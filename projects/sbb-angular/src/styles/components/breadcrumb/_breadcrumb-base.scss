@@ -13,16 +13,16 @@
   }
 
   &-expanded {
-    .sbb-breadcrumb-level {
+    .sbb-breadcrumb {
       display: flex;
     }
-    .sbb-breadcrumb-level-dots {
+    .sbb-breadcrumb-dots {
       display: none;
     }
   }
 }
 
-.sbb-breadcrumb-level-panel {
+.sbb-breadcrumb-panel {
   min-width: 132px;
   transform: translateX(-30px);
   @include mq($from: desktop4k) {
@@ -86,7 +86,7 @@
     height: toPx($breadcrumbHeight * $scalingFactor5k);
   }
 
-  .sbb-breadcrumb-level-trigger {
+  .sbb-breadcrumb-trigger {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -158,7 +158,7 @@
   }
   a,
   button,
-  .sbb-breadcrumb-level-label {
+  .sbb-breadcrumb-label {
     @include breadcrumbButton;
     height: toPx(24);
     min-width: toPx(24);
@@ -181,7 +181,7 @@
     }
   }
 
-  .sbb-breadcrumb-level-trigger-icon {
+  .sbb-breadcrumb-trigger-icon {
     width: toPx(16);
     height: toPx(16);
     line-height: toPx($breadcrumbArrowLineHeight);
@@ -255,7 +255,7 @@
     color: $colorRed125;
   }
 }
-.sbb-breadcrumb-level-dots {
+.sbb-breadcrumb-dots {
   margin-left: toPx($breadcrumbArrowMarginsDT);
   display: flex;
   align-items: center;
