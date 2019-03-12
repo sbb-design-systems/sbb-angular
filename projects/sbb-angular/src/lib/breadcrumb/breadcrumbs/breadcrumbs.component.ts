@@ -30,9 +30,15 @@ export class BreadcrumbsComponent implements AfterViewInit {
    */
   @ContentChildren(BreadcrumbComponent) levels: QueryList<BreadcrumbComponent>;
 
+  /**
+   * Css class of a sbb-breadcrumbs.
+   */
   @HostBinding('class.sbb-breadcrumbs')
   cssClass = true;
 
+  /**
+   * Status expanded of a sbb-breadcrumbs.
+   */
   @HostBinding('class.sbb-breadcrumbs-expanded')
   get expanded(): boolean {
     if (this.levels.length > 2) {

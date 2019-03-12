@@ -5,13 +5,13 @@
   </p>
   <h3 id="directives" class="docs-header-link docs-api-h3">
     <span header-link="directives"></span> Directives </h3>
-  <h4 id="BreadcrumbComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="BreadcrumbComponent"></span>
-    <code>BreadcrumbComponent</code>
+  <h4 id="BreadcrumbsComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="BreadcrumbsComponent"></span>
+    <code>BreadcrumbsComponent</code>
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-breadcrumb</span>
+    <span class="docs-api-class-selector-name">sbb-breadcrumbs</span>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -25,7 +25,9 @@
           <code>cssClass: true</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Css class of a sbb-breadcrumbs.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -33,22 +35,24 @@
           <code>expanded: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Status expanded of a sbb-breadcrumbs.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>levels: QueryList&lt;BreadcrumbLevelComponent&gt;</code>
+          <code>levels: QueryList&lt;BreadcrumbComponent&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Refers to BreadcrumbLevelComponents istance.</p>
+        <p>Refers to BreadcrumbComponents istance.</p>
       </td>
     </tr>
   </table>
-  <h4 id="BreadcrumbLevelComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="BreadcrumbLevelComponent"></span>
-    <code>BreadcrumbLevelComponent</code>
+  <h4 id="BreadcrumbComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="BreadcrumbComponent"></span>
+    <code>BreadcrumbComponent</code>
     <span class="docs-api-class-extends-clauses">
       <span class="docs-api-class-extends-label">extends</span>
       <span class="docs-api-class-extends-type">DropdownTriggerDirective</span>
@@ -56,7 +60,7 @@
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-breadcrumb-level</span>
+    <span class="docs-api-class-selector-name">sbb-breadcrumb</span>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -85,15 +89,6 @@
       <td class="docs-api-property-description">
         <p>Whether the dropdown is disabled. When disabled, the element will act as a regular input and the user won&#39;t be able to open the panel.</p>
       </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>label: string</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -141,6 +136,16 @@
           <code>breadcrumbTrigger: ElementRef</code>
         </p>
       </td>
+      <td class="docs-api-property-description">
+        <p>Trigger on the open of the dropdown contained in breadcrumb.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>changeDetectorRef: ChangeDetectorRef</code>
+        </p>
+      </td>
       <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -149,12 +154,24 @@
           <code>cssClass: true</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Css class of a sbb-breadcrumb.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
           <code>dropdown: DropdownComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to a dropdown istance.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>element: ElementRef&lt;HTMLInputElement&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -165,7 +182,9 @@
           <code>expandEvent: EventEmitter&lt;any&gt;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Event emitted at the expansion of the dropdown.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -173,7 +192,9 @@
           <code>isFirst: boolean</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Checks if the current breadcrumb is the first child of his parent (breadcrumbs)</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -216,10 +237,12 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>panelClass: &#39;sbb-breadcrumb-level-panel&#39;</code>
+          <code>panelClass: &#39;sbb-breadcrumb-panel&#39;</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Css class on a breadcrumb panel.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -264,13 +287,44 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>scrollStrategy: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>viewContainerRef: ViewContainerRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>viewportRuler: ViewportRuler</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>zone: NgZone</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
     </tr>
   </table>
   <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">attachOverlay </th>
+      </tr>
+    </thead>
+  </table>
   <table class="docs-api-method-table">
     <thead>
       <tr class="docs-api-method-name-row">

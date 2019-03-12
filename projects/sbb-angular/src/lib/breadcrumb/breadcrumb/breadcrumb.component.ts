@@ -53,13 +53,25 @@ const BREADCRUMB_LEVEL_OFFSET = 60;
 })
 export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
 
+  /**
+   * Refers to a dropdown istance.
+   */
   @ContentChild(DropdownComponent) dropdown: DropdownComponent;
 
+  /**
+   * Trigger on the open of the dropdown contained in breadcrumb.
+   */
   @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
 
+  /**
+   * Css class of a sbb-breadcrumb.
+   */
   @HostBinding('class.sbb-breadcrumb')
   cssClass = true;
 
+  /**
+   * Css class on a breadcrumb panel.
+   */
   panelClass = 'sbb-breadcrumb-panel';
 
   private breadcrumbPanelWidth: any;
@@ -78,6 +90,9 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     super(element, overlay, viewContainerRef, zone, changeDetectorRef, scrollStrategy, _document, viewportRuler);
   }
 
+  /**
+   * Checks if the current breadcrumb is the first child of his parent (breadcrumbs)
+   */
   get isFirst(): boolean {
     if (this._parent && this._parent.levels.first) {
       return this === this._parent.levels.first;
@@ -85,6 +100,9 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     return false;
   }
 
+  /**
+   * Event emitted at the expansion of the dropdown.
+   */
   expandEvent: EventEmitter<any> = new EventEmitter<any>();
 
 
