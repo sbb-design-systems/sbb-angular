@@ -102,7 +102,7 @@ export class TrainChooChooAppModule { }
 Alternatively, you can create a separate NgModule that imports all of the ACL components that you will use in your application. You can then include this module wherever you'd like to use the components.
 
 ```ts
-import { ButtonModule, CheckboxModule } from '@angular/material';
+import { ButtonModule, CheckboxModule } from 'sbb-angular';
 
 @NgModule({
   imports: [ButtonModule, CheckboxModule],
