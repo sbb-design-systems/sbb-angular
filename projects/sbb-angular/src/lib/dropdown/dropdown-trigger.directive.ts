@@ -190,13 +190,13 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   constructor(
-    private element: ElementRef<HTMLInputElement>,
+    protected element: ElementRef<HTMLInputElement>,
     protected overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) private scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
+    protected viewContainerRef: ViewContainerRef,
+    protected zone: NgZone,
+    protected changeDetectorRef: ChangeDetectorRef,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected scrollStrategy,
+    @Optional() @Inject(DOCUMENT) protected _document: any,
     protected viewportRuler?: ViewportRuler
   ) {
   }

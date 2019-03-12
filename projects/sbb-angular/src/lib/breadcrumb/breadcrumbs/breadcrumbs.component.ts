@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent, SBB_BREADCRUMB_PARENT_COMPONENT } from '../breadcrumb/breadcrumb.component';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +18,10 @@ import { first } from 'rxjs/operators';
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    { provide: SBB_BREADCRUMB_PARENT_COMPONENT, useExisting: BreadcrumbsComponent },
+  ]
 })
 export class BreadcrumbsComponent implements AfterViewInit {
 
