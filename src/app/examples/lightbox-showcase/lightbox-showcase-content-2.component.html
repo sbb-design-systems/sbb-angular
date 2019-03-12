@@ -1,9 +1,11 @@
 <sbb-lightbox-header>
   <div>
-    <svg class="sbbsc-lightbox-example-icon-1" style="width: 20px; height: 20px;">
+    <svg class="sbbsc-lightbox-example-icon-1"
+         style="width: 20px; height: 20px;">
       <use xlink:href="#SBB_oev_b_t02"></use>
     </svg>
-    <svg class="sbbsc-lightbox-example-icon-2" style="width: 60px; height: 20px;">
+    <svg class="sbbsc-lightbox-example-icon-2"
+         style="width: 60px; height: 20px;">
       <use xlink:href="#SBB_product_ic-5"></use>
     </svg>
 
@@ -22,16 +24,30 @@
   </div>
 </sbb-lightbox-header>
 <sbb-lightbox-content>
-  <h2 sbbLightboxTitle cdkFocusInitial tabindex="0">Install Angular</h2>
+  <h2 sbbLightboxTitle
+      cdkFocusInitial
+      tabindex="0">Install Angular</h2>
   <h3>Set alignment of buttons in footer</h3>
-  <sbb-field mode="default" class="sbbsc-block">
-    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="left">LEFT</sbb-radio-button>
+  <sbb-field label="Alignment"
+             mode="default"
+             class="sbbsc-block">
+    <sbb-radio-button [(ngModel)]="alignment"
+                      name="alignment-radio"
+                      value="left">LEFT</sbb-radio-button>
   </sbb-field>
-  <sbb-field mode="default" class="sbbsc-block">
-    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="center">CENTER</sbb-radio-button>
+  <sbb-field label="Alignment"
+             mode="default"
+             class="sbbsc-block">
+    <sbb-radio-button [(ngModel)]="alignment"
+                      name="alignment-radio"
+                      value="center">CENTER</sbb-radio-button>
   </sbb-field>
-  <sbb-field mode="default" class="sbbsc-block">
-    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="right">RIGHT</sbb-radio-button>
+  <sbb-field label="Alignment"
+             mode="default"
+             class="sbbsc-block">
+    <sbb-radio-button [(ngModel)]="alignment"
+                      name="alignment-radio"
+                      value="right">RIGHT</sbb-radio-button>
   </sbb-field>
   <h3>Develop across all platforms</h3>
   <p>Learn one way to build applications with Angular and reuse your code and abilities to build
@@ -92,11 +108,14 @@
     sophisticated in-browser navigational capabilities. END</p>
 </sbb-lightbox-content>
 <sbb-lightbox-footer [alignment]="alignment">
-  <button sbbButton mode="secondary" sbbLightboxClose>
+  <button sbbButton
+          mode="secondary"
+          sbbLightboxClose>
     Abbrechen
     <sbb-icon-close *sbbButtonIcon></sbb-icon-close>
   </button>
-  <button sbbButton [sbbLightboxClose]="true">
+  <button sbbButton
+          [sbbLightboxClose]="true">
     Übernehmen
     <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
   </button>
@@ -104,11 +123,16 @@
 
 
 <svg>
-  <symbol id="SBB_oev_b_t02" viewBox="0 0 20 20">
+  <symbol id="SBB_oev_b_t02"
+          viewBox="0 0 20 20">
     <path d="M15.3 13.7c.2 0 .3-.1.3-.3l-.3-1.9h-3.2v2.2h3.2zM8.6 4.2L10.3 3 8 1.7 5.7 3l1.8 1.2h1.1zm3.3 3.3c0 .2.1.3.3.3h1.6c.2 0 .3-.1.3-.3l-.3-2.4c0-.2-.2-.3-.3-.3h-1.3c-.2 0-.3.1-.3.3v2.4zM7.7 4.8H.5v-.6h5.9L4.5 3 8 1l3.5 2-1.9 1.2h3.8c.5 0 .9.3.9.8l.8 5.9H.5V7.8h7.2c.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3H.5v-.6h7.2c.2 0 .3-.1.3-.3S7.9 6 7.7 6H.5v-.6h7.2c.2 0 .3-.1.3-.3 0-.1-.1-.3-.3-.3zM4.5 13c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6m3.7 0c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.7-1.6-1.6M.5.8h15V.5H.5v.3zm0 14.7h15v-.6H.5v.6zm0-3.9l3.4-.1v2.2H.5v-2.1z"
-      transform="translate(2 2)" id="sbb_oev_b_t02"></path>
+          transform="translate(2 2)"
+          id="sbb_oev_b_t02"></path>
   </symbol>
-  <symbol id="SBB_product_ic-5" viewBox="0 0 59 20">
-    <path d="M44.206 4.235v2.057h-4.66l-.497 2.603c.558-.591 1.273-.886 2.143-.886.854 0 1.598.229 2.231.688.939.69 1.408 1.74 1.408 3.148 0 1.382-.501 2.476-1.503 3.283-.78.633-1.714.949-2.8.949-1.224 0-2.207-.328-2.95-.985-.744-.656-1.137-1.544-1.18-2.662h2.27c.038.406.17.752.396 1.036.354.449.844.673 1.472.673.606 0 1.086-.219 1.44-.657.342-.427.513-.946.513-1.558 0-.664-.179-1.196-.537-1.594-.359-.398-.836-.597-1.432-.597-.728 0-1.295.327-1.7.98l-2.065-.031 1.1-6.447h6.351zM9.252 4.2h4.07L8.287 15.8H4.2zm6.75 0h14.444L28.95 7.645H18.635l-2.048 4.71h10.32L25.412 15.8H10.968l5.034-11.6z"></path>
+  <symbol id="SBB_product_ic-5"
+          viewBox="0 0 59 20">
+    <path
+          d="M44.206 4.235v2.057h-4.66l-.497 2.603c.558-.591 1.273-.886 2.143-.886.854 0 1.598.229 2.231.688.939.69 1.408 1.74 1.408 3.148 0 1.382-.501 2.476-1.503 3.283-.78.633-1.714.949-2.8.949-1.224 0-2.207-.328-2.95-.985-.744-.656-1.137-1.544-1.18-2.662h2.27c.038.406.17.752.396 1.036.354.449.844.673 1.472.673.606 0 1.086-.219 1.44-.657.342-.427.513-.946.513-1.558 0-.664-.179-1.196-.537-1.594-.359-.398-.836-.597-1.432-.597-.728 0-1.295.327-1.7.98l-2.065-.031 1.1-6.447h6.351zM9.252 4.2h4.07L8.287 15.8H4.2zm6.75 0h14.444L28.95 7.645H18.635l-2.048 4.71h10.32L25.412 15.8H10.968l5.034-11.6z">
+    </path>
   </symbol>
 </svg>

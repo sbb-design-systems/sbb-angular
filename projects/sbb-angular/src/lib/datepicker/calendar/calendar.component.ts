@@ -140,8 +140,7 @@ export class CalendarHeaderComponent<D> {
 export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
 
 
-  @HostBinding('class')
-  cssClass = 'sbb-calendar';
+  @HostBinding('class.sbb-calendar') cssClass = true;
 
   /** An input indicating the type of the header component, if set. */
   @Input() headerComponent: ComponentType<any>;

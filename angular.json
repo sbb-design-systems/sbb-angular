@@ -96,7 +96,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": false,
-              "browsers": "BsChrome",
+              "browsers": "ChromeHeadless",
               "sourceMap": true,
               "preserveSymlinks": false
             }
@@ -167,7 +167,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "BsChrome",
+              "browsers": "ChromeHeadless",
               "sourceMap": true
             },
             "local": {
