@@ -2,38 +2,50 @@
   <div class="row">
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Single Tooltip</h4>
-      <sbb-tooltip (opened)="onOpen($event)" (closed)="onClose($event)">
+      <sbb-tooltip (opened)="onOpen($event)"
+                   (closed)="onClose($event)">
         {{ tooltipContent }}
       </sbb-tooltip>
-      <small class="font-italic" style="margin-top: 100px;display: block;">* to open a tooltip you can use the ENTER key while focusing the question mark or you can click on it.</small>
-      <small class="font-italic" style="display: block;">** to close a tooltip you can use the ESCAPE key, click on the question mark, on the close button or click outside the tooltip content box.</small>
+      <small class="font-italic"
+             style="margin-top: 100px;display: block;">* to open a tooltip you can use the ENTER key while focusing the
+        question mark or you can click on it.</small>
+      <small class="font-italic"
+             style="display: block;">** to close a tooltip you can use the ESCAPE key, click on the question mark, on
+        the close button or click outside the tooltip content box.</small>
     </div>
     <div class="col-lg-6">
-        <h4 class="sbbsc-block">Properties</h4>
-        <sbb-field mode="long" label="Tooltip text content">
-          <input type="text" [(ngModel)]="tooltipContent">
-        </sbb-field>
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-field mode="long"
+                 label="Tooltip text content">
+        <input type="text"
+               [(ngModel)]="tooltipContent">
+      </sbb-field>
     </div>
   </div>
 
-  <div role="presentation" class="sbbsc-separator"></div>
+  <div role="presentation"
+       class="sbbsc-separator"></div>
 
   <div class="row">
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Double Tooltips</h4>
       <div class="row">
         <div class="col-lg-6">
-          <sbb-tooltip #t (opened)="onOpen($event)" (closed)="onClose($event)">
+          <sbb-tooltip #t
+                       (opened)="onOpen($event)"
+                       (closed)="onClose($event)">
             <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
-            <sbb-field mode="long">
-              <button mode="secondary" sbbButton (click)="t.close(true)">Diesen Tooltip schließen</button>
-            </sbb-field>
+            <button mode="secondary"
+                    sbbButton
+                    (click)="t.close(true)">Diesen Tooltip schließen</button>
           </sbb-tooltip>
         </div>
         <div class="col-lg-6">
-          <sbb-tooltip (opened)="onOpen($event)" (closed)="onClose($event)">            
+          <sbb-tooltip (opened)="onOpen($event)"
+                       (closed)="onClose($event)">
             <p>Dies ist ein weiterer Tooltip mit einem Link!</p>
-            <a href="#" sbbLink>Bezeichnung</a>
+            <a href="#"
+               sbbLink>Bezeichnung</a>
           </sbb-tooltip>
         </div>
       </div>

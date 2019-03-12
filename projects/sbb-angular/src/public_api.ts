@@ -1,8 +1,11 @@
 /*
  * Public API Surface of sbb-angular
  */
+export * from './lib/_common/common';
 export * from './lib/svg-icons/svg-icons';
 export * from './lib/field/field';
+export * from './lib/field/field';
+export * from './lib/input/input';
 export * from './lib/option/option';
 export * from './lib/textarea/textarea';
 export * from './lib/links/links';

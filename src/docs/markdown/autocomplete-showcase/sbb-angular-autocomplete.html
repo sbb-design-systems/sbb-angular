@@ -11,9 +11,9 @@
     <p class="docs-markdown-p">Note: It is possible to use template-driven forms instead, if you prefer. We use reactive forms in this example because it makes subscribing to changes in the input's value easy. For this example, be sure to import <code class="docs-markdown-code">ReactiveFormsModule</code> from <code class="docs-markdown-code">@angular/forms</code> into your <code class="docs-markdown-code">NgModule</code>. If you are unfamiliar with using reactive forms, you can read more about the subject in the <a href="https://angular.io/guide/reactive-forms" class="docs-markdown-a">Angular documentation</a>.</p>
   </blockquote>
   <p class="docs-markdown-p"><em>my-comp.html</em></p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-field</span>&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-field</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">Next, create the autocomplete panel and the options displayed inside it. Each option should be defined by a <code class="docs-markdown-code">sbb-option</code> tag. Set each option's value property to whatever you'd like the value of the text input to be upon that option's selection.</p>
   <p class="docs-markdown-p"><em>my-comp.html</em></p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span>&gt;</span>
@@ -23,9 +23,9 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">Now we'll need to link the text input to its panel. We can do this by exporting the autocomplete panel instance into a local template variable (here we called it "auto"), and binding that variable to the input's <code class="docs-markdown-code">sbbAutocomplete</code> property.</p>
   <p class="docs-markdown-p"><em>my-comp.html</em></p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-field</span>&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-field</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of options"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>{{option}}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
