@@ -68,7 +68,7 @@ export class TrainChooChooAppModule { }
 Including typography is required to apply all SBB styles to your application. That is doable by editing the ```styles.(s)css```:
 
 ```css
-@import './node_modules/sbb-angular/typography.css';
+@import '../node_modules/sbb-angular/typography.css';
 ```
 
 or editing your ```angular.json```:
@@ -118,7 +118,7 @@ Whichever approach you use, be sure to import the ACL modules after Angular's Br
 If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import ```styles.scss``` from the library into your ```styles.scss```:
 
 ```scss
-@import './node_modules/sbb-angular/styles.scss';
+@import '../node_modules/sbb-angular/styles.scss';
 ```
 
 You can start building your app using [components](./components-list) or [icons](./icons-list).
