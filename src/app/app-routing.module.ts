@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ComponentsListComponent } from './components-list/components-list.component';
 import { IconsListComponent } from './icons-list/icons-list.component';
 import { TypographyComponent } from './typography/typography.component';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,12 @@ const routes: Routes = [
     component: TypographyComponent,
     pathMatch: 'full',
     data: { page: 'typography' }
+  },
+  {
+    path: 'getting-started',
+    component: GettingStartedComponent,
+    pathMatch: 'full',
+    data: { page: 'getting-started' }
   },
   {
     path: '**',
