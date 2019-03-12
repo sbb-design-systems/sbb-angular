@@ -14,7 +14,8 @@ import {
   Inject,
   Optional,
   InjectionToken,
-  QueryList
+  QueryList,
+  Output
 } from '@angular/core';
 
 import { DropdownTriggerDirective, DROPDOWN_SCROLL_STRATEGY } from '../../dropdown/dropdown-trigger.directive';
@@ -76,20 +77,6 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
 
   private breadcrumbPanelWidth: any;
 
-
-  constructor(@Optional() @Inject(SBB_BREADCRUMB_PARENT_COMPONENT) private _parent: BreadcrumbParentComponent,
-    private breakpointObserver: BreakpointObserver,
-    protected element: ElementRef<HTMLInputElement>,
-    protected overlay: Overlay,
-    protected viewContainerRef: ViewContainerRef,
-    protected zone: NgZone,
-    protected changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected scrollStrategy,
-    @Optional() @Inject(DOCUMENT) protected _document: any,
-    protected viewportRuler?: ViewportRuler) {
-    super(element, overlay, viewContainerRef, zone, changeDetectorRef, scrollStrategy, _document, viewportRuler);
-  }
-
   /**
    * Checks if the current breadcrumb is the first child of his parent (breadcrumbs)
    */
@@ -103,7 +90,21 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
   /**
    * Event emitted at the expansion of the dropdown.
    */
-  expandEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() expandEvent: EventEmitter<any> = new EventEmitter<any>();
+
+
+  constructor(@Optional() @Inject(SBB_BREADCRUMB_PARENT_COMPONENT) private _parent: BreadcrumbParentComponent,
+    private breakpointObserver: BreakpointObserver,
+    protected element: ElementRef<HTMLInputElement>,
+    protected overlay: Overlay,
+    protected viewContainerRef: ViewContainerRef,
+    protected zone: NgZone,
+    protected changeDetectorRef: ChangeDetectorRef,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected scrollStrategy,
+    @Optional() @Inject(DOCUMENT) protected _document: any,
+    protected viewportRuler?: ViewportRuler) {
+    super(element, overlay, viewContainerRef, zone, changeDetectorRef, scrollStrategy, _document, viewportRuler);
+  }
 
 
   ngAfterViewInit() {
