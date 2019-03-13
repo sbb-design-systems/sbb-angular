@@ -33,13 +33,14 @@ import {
   ToggleModule,
   CaptchaModule,
   FileSelectorModule,
-  DropdownModule,
-  UserMenuModule,
   GhettoboxModule,
   OptionModule,
   SelectModule,
   AutocompleteModule,
-  SearchModule
+  SearchModule,
+  DropdownModule,
+  BreadcrumbModule,
+  UserMenuModule
 } from 'sbb-angular';
 
 
@@ -84,9 +85,9 @@ import { SearchShowcaseComponent } from './search-showcase/search-showcase.compo
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
+import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
-
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     FileSelectorShowcaseComponent,
     CaptchaShowcaseComponent,
     DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent,
     UserMenuShowcaseComponent,
     GhettoboxShowcaseComponent
   ],
@@ -169,6 +171,7 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     FileSelectorModule,
     DropdownModule,
     CaptchaModule,
+    BreadcrumbModule,
     UserMenuModule,
     GhettoboxModule
   ],
@@ -199,6 +202,7 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     TableModule,
     TooltipShowcaseComponent,
     DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent,
     UserMenuShowcaseComponent
   ],
   entryComponents: [
