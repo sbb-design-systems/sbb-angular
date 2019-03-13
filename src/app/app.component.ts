@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   aboutClicked: boolean;
   versionClicked: boolean;
   isSourceTabClicked: boolean;
+  gettingStartedClicked: boolean;
 
   @ViewChild('maincontent') maincontent: ElementRef;
 
