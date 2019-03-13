@@ -26,7 +26,7 @@ import { first } from 'rxjs/operators';
 export class BreadcrumbsComponent implements AfterViewInit {
 
   /**
-   * Refers to BreadcrumbComponents istance.
+   * Refers to BreadcrumbComponents instance.
    */
   @ContentChildren(BreadcrumbComponent) levels: QueryList<BreadcrumbComponent>;
 

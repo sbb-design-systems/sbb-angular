@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { CommonModule, Location } from '@angular/common';
 import { DropdownModule } from '../../dropdown/dropdown';
@@ -9,7 +9,7 @@ import { BreadcrumbModule } from '../breadcrumb.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
-import { dispatchEvent } from '../../_common/testing/dispatch-events';
+import { dispatchEvent, dispatchMouseEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
 
 @Component({
@@ -126,6 +126,7 @@ describe('Breadcrumb behaviour Test', () => {
 
   let location: Location = null;
   let router: Router;
+  let sbbLevelStyle: CSSStyleDeclaration;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -139,6 +140,7 @@ describe('Breadcrumb behaviour Test', () => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTestComponent);
     component = fixtureTest.componentInstance;
     router = TestBed.get(Router);
+    fixtureTest.detectChanges();
   });
 
   it('breadcrumb with navigation to home page', () => {
@@ -181,12 +183,24 @@ describe('Breadcrumb behaviour Test', () => {
       const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(BreadcrumbComponent))[1];
 
       const link1 = breadcrumbLevel1.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')).nativeElement;
+      console.log(link1);
 
       dispatchEvent(link1, createMouseEvent('click'));
       fixtureTest.detectChanges();
       await fixtureTest.whenStable();
 
       expect(location.path()).toContain('?level=1');
+    });
+  });
+
+  it('focus on level', () => {
+
+    const link1 = fixtureTest.debugElement.queryAll(By.css('.sbb-breadcrumb a'))[1].nativeElement;
+    link1.focus();
+    fixtureTest.detectChanges();
+    fixtureTest.whenStable().then(() => {
+      sbbLevelStyle = getComputedStyle(link1);
+      expect(sbbLevelStyle.getPropertyValue('color')).toBe('rgb(198, 0, 24)');
     });
   });
 

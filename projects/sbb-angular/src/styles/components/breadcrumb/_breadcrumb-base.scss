@@ -99,6 +99,7 @@
       color: $colorRed125;
       fill: $colorRed125;
     }
+
     &::before {
       border: $breadcrumbTriggerBorder;
     }
@@ -155,6 +156,11 @@
   button {
     color: $colorGrey;
     fill: $colorGrey;
+    &:hover,
+    &:focus {
+      color: $colorRed125;
+      fill: $colorRed125;
+    }
   }
   a,
   button,
@@ -198,17 +204,13 @@
       border-width: toPx(1 * $scalingFactor4k);
       height: toPx(16 * $scalingFactor4k);
       width: toPx(16 * $scalingFactor4k);
-      margin-left: toPx(
-        $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k
-      );
+      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
     }
     @include mq($from: desktop5k) {
       border-width: toPx(1 * $scalingFactor5k);
       height: toPx(16 * $scalingFactor5k);
       width: toPx(16 * $scalingFactor5k);
-      margin-left: toPx(
-        $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k
-      );
+      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
     }
     &-visible {
       display: block;
@@ -265,10 +267,8 @@
 
   @include mq($from: desktop4k) {
     margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
-
   }
   @include mq($from: desktop5k) {
     margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
-
   }
 }
