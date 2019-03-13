@@ -57,6 +57,7 @@ import { TypographyComponent } from './typography/typography.component';
 import { UserMenuShowcaseComponent } from './examples/usermenu-showcase/usermenu-showcase.component';
 import { IconCollectionModule } from 'sbb-angular';
 import { FileSelectorShowcaseComponent } from './examples/file-selector-showcase/file-selector-showcase.component';
+import { BreadcrumbShowcaseComponent } from './examples/breadcrumb-showcase/breadcrumb-showcase.component';
 import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghettobox-showcase.component';
 
 @NgModule({
@@ -125,6 +126,7 @@ import { GhettoboxShowcaseComponent } from './examples/ghettobox-showcase/ghetto
     DropdownShowcaseComponent,
     UserMenuShowcaseComponent,
     FileSelectorShowcaseComponent,
+    BreadcrumbShowcaseComponent,
     GhettoboxShowcaseComponent,
     ...iconComponentList,
   ]
