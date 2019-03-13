@@ -183,7 +183,6 @@ describe('Breadcrumb behaviour Test', () => {
       const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(By.directive(BreadcrumbComponent))[1];
 
       const link1 = breadcrumbLevel1.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')).nativeElement;
-      console.log(link1);
 
       dispatchEvent(link1, createMouseEvent('click'));
       fixtureTest.detectChanges();
