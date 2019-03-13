@@ -55,7 +55,7 @@ const BREADCRUMB_LEVEL_OFFSET = 60;
 export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
 
   /**
-   * Refers to a dropdown istance.
+   * Refers to a dropdown instance.
    */
   @ContentChild(DropdownComponent) dropdown: DropdownComponent;
 
