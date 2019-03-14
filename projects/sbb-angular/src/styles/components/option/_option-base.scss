@@ -1,3 +1,5 @@
+$dropdownPaddingBottom: 14px;
+
 @mixin optionBase($selectMode: false) {
   @include ellipsis;
 
@@ -19,7 +21,7 @@
     padding-top: $autocompletePaddingTop;
   }
   &:last-of-type {
-    padding-bottom: $autocompletePaddingBottom;
+    padding-bottom: $dropdownPaddingBottom;
   }
 
   @include mq($from: desktop4k) {
@@ -32,7 +34,7 @@
     }
 
     &:last-of-type {
-      padding-bottom: toPx($autocompletePaddingBottom * $scalingFactor4k);
+      padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor4k);
     }
   }
   @include mq($from: desktop5k) {
@@ -43,7 +45,7 @@
       padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
     }
     &:last-of-type {
-      padding-bottom: toPx($autocompletePaddingBottom * $scalingFactor5k);
+      padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor5k);
     }
   }
 

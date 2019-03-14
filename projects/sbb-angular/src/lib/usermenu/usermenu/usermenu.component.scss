@@ -70,8 +70,8 @@
     &:hover {
       .sbb-usermenu-logged-off-icon-user,
       .sbb-usermenu-logged-off-button {
-        color: $colorRed100;
-        fill: $colorRed100;
+        color: $colorRed125;
+        fill: $colorRed125;
       }
     }
 
@@ -83,4 +83,10 @@
       @include usermenuLoggedOffButton;
     }
   }
+
+  img {
+    @include imageStyle;
+  }
 }
+
+

@@ -22,7 +22,7 @@ import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
                                                              routerLinkActive="sbb-selected">{{ link.text }}
                </a>
                <hr>
-               <button sbbDropdownItem type="button" (click)="logout(user1)">Abmeldung</button>
+               <button sbbDropdownItem type="button" (click)="logout(user1)">Logout</button>
               </sbb-dropdown>
              </sbb-usermenu> `
 })
@@ -70,7 +70,7 @@ class UsermenuTestComponent {
                                                               routerLinkActive="sbb-selected">{{ link.text }}
                 </a>
                 <hr>
-                <button sbbDropdownItem type="button" (click)="logout(user2)">Abmeldung</button>
+                <button sbbDropdownItem type="button" (click)="logout(user2)">Logout</button>
               </sbb-dropdown>
             </sbb-usermenu>`
 })
@@ -117,7 +117,7 @@ class UsermenuTest2Component {
                                                               routerLinkActive="sbb-selected">{{ link.text }}
                 </a>
                 <hr>
-                <button sbbDropdownItem type="button" (click)="logout(user3)">Abmeldung</button>
+                <button sbbDropdownItem type="button" (click)="logout(user3)">Logout</button>
               </sbb-dropdown>
              </sbb-usermenu>`
 })
