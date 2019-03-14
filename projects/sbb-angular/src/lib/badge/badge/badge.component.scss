@@ -1,0 +1,14 @@
+@import "../../../styles/main";
+
+:host {
+  .sbb-badge-wrapper {
+    position: relative;
+    .sbb-badge-content {
+      @include sbbTabBadgePill;
+      &-top {
+        position: absolute;
+        transform: translate(120%, 50%);
+      }
+    }
+  }
+}

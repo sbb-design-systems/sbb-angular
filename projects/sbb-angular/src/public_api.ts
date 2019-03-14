@@ -37,3 +37,4 @@ export * from './lib/usermenu/usermenu';
 export * from './lib/ghettobox/ghettobox';
 export * from './lib/search/search';
 export * from './lib/breadcrumb/breadcrumb';
+export * from './lib/badge/badge';

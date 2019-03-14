@@ -3,9 +3,7 @@
 */
 @mixin sbbTabBadgePill($fontSize: $sizeFontDefault) {
   @include baseBadgePill();
-  position: absolute;
   top: 0;
   right: 0;
-  transform: translate(120%, 50%);
   background-color: $colorRed100;
 }
