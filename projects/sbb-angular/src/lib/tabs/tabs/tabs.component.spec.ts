@@ -7,8 +7,8 @@ import { createMouseEvent } from '../../_common/testing/event-objects';
 
 import { TabsComponent } from './tabs.component';
 import { TabComponent } from '../tab/tab.component';
-import { TabBadgePillComponent } from '../tab-badge-pill/tab-badge-pill.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { BadgeModule } from '../../badge/badge.module';
 
 @Component({
   template: `<sbb-tabs>
@@ -42,8 +42,8 @@ describe('TabsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TabsTestComponent, TabsComponent, TabComponent, TabBadgePillComponent],
-      imports: [PerfectScrollbarModule]
+      declarations: [TabsTestComponent, TabsComponent, TabComponent],
+      imports: [PerfectScrollbarModule, BadgeModule]
     })
     .compileComponents();
   }));

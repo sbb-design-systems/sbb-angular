@@ -16,7 +16,8 @@
               [disabled]="tab.disabled">
         {{ tab.label }}
       </button>
-      <sbb-badge class="sbb-badge-active" position="top" *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-badge>
+      <sbb-badge position="top" *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-badge>
+
     </li>
   </ul> 
 </perfect-scrollbar>
