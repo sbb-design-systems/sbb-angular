@@ -1,16 +1,5 @@
 @import "../../../styles/main";
 
 :host {
-  .sbb-badge-wrapper {
-    position: relative;
-    .sbb-badge-content {
-      @include sbbTabBadgePill;
-      margin-left: pxToEm(8);
-      &-top {
-        position: absolute;
-        transform: translate(120%, 50%);
-        margin-left: 0;
-      }
-    }
-  }
+  @include baseBadge();
 }

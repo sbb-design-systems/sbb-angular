@@ -1,0 +1,32 @@
+/**
+*	Tab Badge mixin
+*/
+@mixin sbbTabBadgePill($fontSize: $sizeFontDefault) {
+  @include baseBadgePill();
+  top: 0;
+  right: 0;
+  background-color: $colorBlack60;
+}
+
+@mixin baseBadge {
+  .sbb-badge-wrapper {
+    position: relative;
+    .sbb-badge-content {
+      @include sbbTabBadgePill;
+      margin-left: pxToEm(8);
+      &-top {
+        position: absolute;
+        transform: translate(120%, 50%);
+        margin-left: 0;
+      }
+    }
+  }
+
+  &.sbb-badge-active {
+    .sbb-badge-wrapper {
+      .sbb-badge-content {
+        background-color: $colorRed100;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
   <div class="sbb-tag-content">
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
-    <sbb-badge>{{ amount }}</sbb-badge>
+    <sbb-badge class="sbb-badge-active">{{ amount }}</sbb-badge>
   </div>
 </ng-container>
 
@@ -24,6 +24,6 @@
     <span style="display:none">&nbsp;</span>
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
-    <sbb-badge>{{ amount }}</sbb-badge>
+    <sbb-badge [class.sbb-badge-active]="checked">{{ amount }}</sbb-badge>
   </label>
 </ng-container>

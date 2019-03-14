@@ -1,9 +1,0 @@
-/**
-*	Tab Badge mixin
-*/
-@mixin sbbTabBadgePill($fontSize: $sizeFontDefault) {
-  @include baseBadgePill();
-  top: 0;
-  right: 0;
-  background-color: $colorRed100;
-}

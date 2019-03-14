@@ -7,8 +7,13 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class BadgeComponent { 
+export class BadgeComponent {
 
+  /**
+   * The position of the badge in a element.
+   * The 'default' value is used into <sbb-tag> component,
+   * while the 'top' one is used into <sbb-tabs> component.
+   */
   @Input() position: 'default' | 'top' = 'default';
 
 }
