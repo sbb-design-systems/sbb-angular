@@ -126,7 +126,6 @@ describe('Breadcrumb behaviour Test', () => {
 
   let location: Location = null;
   let router: Router;
-  let sbbLevelStyle: CSSStyleDeclaration;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
