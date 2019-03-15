@@ -192,17 +192,6 @@ describe('Breadcrumb behaviour Test', () => {
     });
   });
 
-  it('focus on level', () => {
-
-    const link1 = fixtureTest.debugElement.queryAll(By.css('.sbb-breadcrumb a'))[1].nativeElement;
-    link1.focus();
-    fixtureTest.detectChanges();
-    fixtureTest.whenStable().then(() => {
-      sbbLevelStyle = getComputedStyle(link1);
-      expect(sbbLevelStyle.getPropertyValue('color')).toBe('rgb(198, 0, 24)');
-    });
-  });
-
   it('breadcrumb with navigation to level 2 page', () => {
 
     fixtureTest.ngZone.run(async () => {
