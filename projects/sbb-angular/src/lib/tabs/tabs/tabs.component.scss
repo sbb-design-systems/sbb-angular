@@ -11,6 +11,9 @@ sbb-tabs {
     
     > .sbb-tabs-tablist-item {
       @include tabsItem();
+      .sbb-badge {
+        transform: translateY(-70%);
+      }
 
       .sbb-tabs-tablist-item-button {
         @include tabsButton();

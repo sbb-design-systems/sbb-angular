@@ -13,7 +13,6 @@
   FieldModule,
   LinksModule,
   ButtonModule,
-  TabsModule,
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
@@ -28,7 +27,6 @@
   TooltipModule,
   TextexpandModule,
   CheckboxModule,
-  TagModule,
   PaginationModule,
   ToggleModule,
   CaptchaModule,
@@ -40,7 +38,10 @@
   SearchModule,
   DropdownModule,
   BreadcrumbModule,
-  UserMenuModule
+  UserMenuModule,
+  BadgeModule,
+  TabsModule,
+  TagModule
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;
 
 
@@ -88,6 +89,7 @@
 <span class="hljs-keyword">import</span> { BreadcrumbShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./breadcrumb-showcase/breadcrumb-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { UserMenuShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./usermenu-showcase/usermenu-showcase.component'</span>;
 <span class="hljs-keyword">import</span> { GhettoboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ghettobox-showcase/ghettobox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { BadgeShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./badge-showcase/badge-showcase.component'</span>;
 
 <span class="hljs-meta">@NgModule</span>({
   declarations: [
@@ -132,7 +134,8 @@
     DropdownShowcaseComponent,
     BreadcrumbShowcaseComponent,
     UserMenuShowcaseComponent,
-    GhettoboxShowcaseComponent
+    GhettoboxShowcaseComponent,
+    BadgeShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -173,7 +176,8 @@
     CaptchaModule,
     BreadcrumbModule,
     UserMenuModule,
-    GhettoboxModule
+    GhettoboxModule,
+    BadgeModule
   ],
   exports: [
     TextareaShowcaseComponent,
