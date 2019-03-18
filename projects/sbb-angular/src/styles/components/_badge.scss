@@ -9,9 +9,6 @@
 @mixin baseBadge {
   @include sbbTabBadgePill;
   margin-left: pxToEm(8);
-  &-top {
-    transform: translateY(-70%);
-  }
 
   &.sbb-badge-active {
     background-color: $colorRed100;

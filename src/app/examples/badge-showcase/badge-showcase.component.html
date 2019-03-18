@@ -4,19 +4,13 @@
       <h4 class="sbbsc-block">Simple Example</h4>
       <div class="badge-example">
         Hi, I'm a badge
-        <sbb-badge [position]="position" [active]="active">123</sbb-badge>
+        <sbb-badge [active]="active">123</sbb-badge>
       </div>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
         <sbb-checkbox [(ngModel)]="active">Active</sbb-checkbox>
-      </div>
-      <div class="sbbsc-block">
-        <sbb-field label="Position">
-          <sbb-radio-button name="position" [(ngModel)]="position" value="default">Default</sbb-radio-button>
-          <sbb-radio-button name="position" [(ngModel)]="position" value="top">Top</sbb-radio-button>
-        </sbb-field>
       </div>
     </div>
   </div>

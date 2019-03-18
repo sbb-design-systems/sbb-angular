@@ -7,6 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BadgeShowcaseComponent {
 
-  position: 'default' | 'top' = 'default';
   active = true;
 }

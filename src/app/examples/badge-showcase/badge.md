@@ -17,12 +17,7 @@ and then you can use the badge component as seen below
 </div>
 ```
 
-Tha badge supports two properties: ```position``` and ```active```.
-```position``` can have two values (default | top), while ```active``` is a boolean (true is default).
-
-When ```position``` is set as "top", the badge will be show at the top right edge of the container.
-
-When ```active``` is set to "false", the badge will be grey colored.
+Tha badge supports a property called ```active```: it is a boolean (true is default). When ```active``` is set to "false", the badge will be grey colored.  
 
 ## Accessibility
 
