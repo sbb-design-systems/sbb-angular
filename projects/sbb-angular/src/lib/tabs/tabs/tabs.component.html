@@ -16,7 +16,7 @@
               [disabled]="tab.disabled">
         {{ tab.label }}
       </button>
-      <sbb-badge i18n-aria-label aria-label="{{ tab.badgePill }} Einträge" *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-badge>
+      <sbb-badge i18n-aria-label attr.aria-label="{{ tab.badgePill }} Einträge" *ngIf="tab.badgePill">{{ tab.badgePill }}</sbb-badge>
 
     </li>
   </ul> 
