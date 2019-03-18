@@ -26,6 +26,6 @@ In order to make this component accessible, you must use the ```aria-label``` at
 ```html
 <div class="badge-example">
   Billion people in the world
-  <sbb-badge aria-label="Billion people">7</sbb-badge>
+  <sbb-badge aria-label="7 billion people">7</sbb-badge>
 </div>
 ```
