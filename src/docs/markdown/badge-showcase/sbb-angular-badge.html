@@ -1,0 +1,25 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Badge Overview</h1>
+  <p class="docs-markdown-p">Import button module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> {
+  BadgeModule
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <p class="docs-markdown-p">and then you can use the badge component as seen below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge-example"</span>&gt;</span>
+  Hi, I'm a badge
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-badge</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-badge</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">Tha badge supports a property called <code class="docs-markdown-code">active</code>: it is a boolean (true is default). When <code class="docs-markdown-code">active</code> is set to "false", the badge will be grey colored. </p>
+  <h2 class="docs-markdown-h2">Accessibility</h2>
+  <p class="docs-markdown-p">In order to make this component accessible, you must use the <code class="docs-markdown-code">aria-label</code> attribute on the <code class="docs-markdown-code">&lt;sbb-badge&gt;</code> itself:</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge-example"</span>&gt;</span>
+  Billion people in the world
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-badge</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"7 billion people"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-badge</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+</body>
+
+</html>

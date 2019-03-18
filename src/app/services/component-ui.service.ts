@@ -31,6 +31,7 @@ import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-s
 import { BreadcrumbShowcaseComponent } from '../examples/breadcrumb-showcase/breadcrumb-showcase.component';
 import { UserMenuShowcaseComponent } from '../examples/usermenu-showcase/usermenu-showcase.component';
 import { GhettoboxShowcaseComponent } from '../examples/ghettobox-showcase/ghettobox-showcase.component';
+import { BadgeShowcaseComponent } from '../examples/badge-showcase/badge-showcase.component';
 
 
 @Injectable({
@@ -228,18 +229,19 @@ export class ComponentUiService {
         'Import text.',
         AccordionShowcaseComponent
       ),
-      /* new UiComponent(
-        'Section (Fieldset)',
-        'section',
-        'Section (Fieldset)',
+      new UiComponent(
+        'Badge',
+        'badge',
+        'Badge',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Aresta'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        BadgeShowcaseComponent
+      ),
       new UiComponent(
         'Pagination',
         'pagination',

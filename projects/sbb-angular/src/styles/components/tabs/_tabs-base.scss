@@ -6,6 +6,8 @@
 }
 
 @mixin tabsItem() {
+  display: flex;
+  align-items: baseline;
   padding-right: 3em;
   padding-left: 0;
 }

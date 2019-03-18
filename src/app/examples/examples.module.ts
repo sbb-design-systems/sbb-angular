@@ -13,7 +13,6 @@ import {
   FieldModule,
   LinksModule,
   ButtonModule,
-  TabsModule,
   TimeInputModule,
   LoadingModule,
   DatepickerModule,
@@ -28,7 +27,6 @@ import {
   TooltipModule,
   TextexpandModule,
   CheckboxModule,
-  TagModule,
   PaginationModule,
   ToggleModule,
   CaptchaModule,
@@ -40,7 +38,10 @@ import {
   SearchModule,
   DropdownModule,
   BreadcrumbModule,
-  UserMenuModule
+  UserMenuModule,
+  BadgeModule,
+  TabsModule,
+  TagModule
 } from 'sbb-angular';
 
 
@@ -88,6 +89,7 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
 import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
+import { BadgeShowcaseComponent } from './badge-showcase/badge-showcase.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +134,8 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     DropdownShowcaseComponent,
     BreadcrumbShowcaseComponent,
     UserMenuShowcaseComponent,
-    GhettoboxShowcaseComponent
+    GhettoboxShowcaseComponent,
+    BadgeShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -173,7 +176,8 @@ import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showc
     CaptchaModule,
     BreadcrumbModule,
     UserMenuModule,
-    GhettoboxModule
+    GhettoboxModule,
+    BadgeModule
   ],
   exports: [
     TextareaShowcaseComponent,
