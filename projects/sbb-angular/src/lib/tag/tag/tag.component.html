@@ -2,7 +2,7 @@
   <div class="sbb-tag-content">
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
-    <sbb-badge i18n-aria-label attr.aria-label="{{ amount }} Resultate verfügbar"  class="sbb-badge-active">{{ amount }}</sbb-badge>
+    <sbb-badge i18n-aria-label aria-label="{{ amount }} Resultate verfügbar"  class="sbb-badge-active">{{ amount }}</sbb-badge>
   </div>
 </ng-container>
 
@@ -24,6 +24,6 @@
     <span style="display:none">&nbsp;</span>
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
-    <sbb-badge i18n-aria-label  attr.aria-label="{{ amount }} Resultate verfügbar" [active]="checked">{{ amount }}</sbb-badge>
+    <sbb-badge i18n-aria-label  aria-label="{{ amount }} Resultate verfügbar" [active]="checked">{{ amount }}</sbb-badge>
   </label>
 </ng-container>

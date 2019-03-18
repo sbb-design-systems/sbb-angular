@@ -19,4 +19,7 @@ export class BadgeComponent {
   @HostBinding('class.sbb-badge')
   cssClass = true;
 
+  @Input('aria-label')
+  @HostBinding('attr.aria-label')
+  ariaLabel: string = null;
 }
