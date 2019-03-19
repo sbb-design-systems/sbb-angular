@@ -12,7 +12,10 @@ import {
   Optional,
   NgZone,
   ChangeDetectorRef,
-  OnDestroy
+  OnDestroy,
+  TemplateRef,
+  Input,
+  ContentChild
 } from '@angular/core';
 import { OverlayRef, Overlay, OverlayConfig, ScrollStrategy, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -20,6 +23,7 @@ import { DOCUMENT } from '@angular/common';
 import { merge, fromEvent, Observable, of, Subscription, Subject } from 'rxjs';
 import { filter, map, switchMap, first } from 'rxjs/operators';
 import { ESCAPE } from '@angular/cdk/keycodes';
+import { TooltipIconDirective } from './tooltip-icon.directive';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY =
@@ -85,6 +89,29 @@ export class TooltipComponent implements OnDestroy {
    * Refers to tooltip trigger element.
    */
   @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
+
+  /** @docs-private */
+  @ViewChild('defaultIcon', { read: TemplateRef })
+  defaultIcon: TemplateRef<any>;
+
+  /**
+   * The icon to be used as click target.
+   * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
+   */
+  @Input()
+  @ContentChild(TooltipIconDirective, { read: TemplateRef })
+  set icon(tooltipIcon: TemplateRef<any>) {
+    this._icon = tooltipIcon;
+  }
+  get icon() {
+    if (this._icon) {
+      return this._icon;
+    } else {
+      return this.defaultIcon;
+    }
+  }
+  _icon: TemplateRef<any>;
+
   /**
    * Open event to a click on tooltip element.
    */

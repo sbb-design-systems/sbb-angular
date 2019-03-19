@@ -6,7 +6,7 @@
   [attr.aria-describedby]="contentId"
   tabindex="0"
 >
-  <sbb-icon-question-mark></sbb-icon-question-mark>
+  <ng-container *ngTemplateOutlet="icon"></ng-container>
 </button>
 <ng-template cdkPortal #tooltipTemplate="cdkPortal">
   <div class="sbb-tooltip-content-body" [attr.id]="contentId">
@@ -16,4 +16,8 @@
   <button class="sbb-tooltip-icon" (click)="onClick()">
     <sbb-icon-close></sbb-icon-close>
   </button>
+</ng-template>
+
+<ng-template #defaultIcon>
+  <sbb-icon-question-mark></sbb-icon-question-mark>
 </ng-template>
