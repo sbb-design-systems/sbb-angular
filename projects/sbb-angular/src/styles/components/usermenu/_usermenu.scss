@@ -48,17 +48,14 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   align-items: center;
   margin-left: 3px;
   margin-top: 3px;
+  padding-left: 16px;
 
   @include mq($from: desktop4k) {
-    display: inherit;
-    align-items: inherit;
     margin-left: toPx(3 * $scalingFactor4k);
     margin-top: toPx(3 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    display: inherit;
-    align-items: inherit;
     margin-left: toPx(3 * $scalingFactor5k);
     margin-top: toPx(3 * $scalingFactor5k);
   }
@@ -66,6 +63,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 
 @mixin usermenuUserIcon {
   flex-basis: 32px;
+  width: 118px;
 
   @include mq($from: desktop4k) {
     flex-basis: toPx(32 * $scalingFactor4k);
@@ -78,23 +76,10 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 
 @mixin usermenuLoggedInCollapsedIcon {
   position: relative;
-
-  @include mq($from: desktop4k) {
-    width: toPx(48 * $scalingFactor4k);
-    height: toPx(48 * $scalingFactor4k);
-    position: inherit;
-  }
-
-  @include mq($from: desktop5k) {
-    width: toPx(64 * $scalingFactor5k);
-    height: toPx(64 * $scalingFactor5k);
-    position: inherit;
-  }
 }
 
 @mixin usermenuLoggedInCollapsedInitialLetters {
   border-radius: 50%;
-  border: $border;
   background-color: $colorBlack10;
   font-family: $fontFamilyBase;
   font-size: pxToRem(13);
@@ -106,17 +91,15 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   position: relative;
 
   @include mq($from: desktop4k) {
-    font-size: pxToRem(23 * $scalingFactor4k);
-    width: toPx(180 * $scalingFactor4k);
-    height: toPx(35 * $scalingFactor4k);
-    border: $border4K;
+    font-size: toPx(14 * $scalingFactor4k);
+    width: toPx(32 * $scalingFactor4k);
+    height: toPx(32 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    font-size: pxToRem(30 * $scalingFactor5k);
-    width: toPx(235 * $scalingFactor5k);
-    height: toPx(45 * $scalingFactor5k);
-    border: $border5K;
+    font-size: toPx(14 * $scalingFactor5k);
+    width: toPx(32 * $scalingFactor5k);
+    height: toPx(32 * $scalingFactor5k);
   }
 }
 
@@ -131,6 +114,8 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   height: 24px;
   z-index: -1;
   position: relative;
+  fill: $colorBlack60;
+  margin-left: toPx(-80);
 
   @include mq($from: mobilePortrait, $to: tabletPortrait) {
     display: none;
@@ -139,15 +124,19 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   @include mq($from: desktop4k) {
     width: toPx(36 * $scalingFactor4k);
     height: toPx(36 * $scalingFactor4k);
-    position: inherit;
-    z-index: inherit;
+    z-index: -1;
+    fill: $colorBlack60;
+    margin-left: toPx(-40 * $scalingFactor4k);
+    margin-bottom: toPx(3.335 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
     width: toPx(48 * $scalingFactor5k);
     height: toPx(48 * $scalingFactor5k);
-    position: inherit;
-    z-index: inherit;
+    z-index: -1;
+    fill: $colorBlack60;
+    margin-left: toPx(-35 * $scalingFactor5k);
+    margin-bottom: toPx(2.5 * $scalingFactor5k);
   }
 }
 
@@ -171,12 +160,12 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   margin-top: -3px;
 
   @include mq($from: desktop4k) {
-    font-size: pxToRem(23 * $scalingFactor4k);
+    font-size: toPx(13.5 * $scalingFactor4k);
     margin-top: toPx(-3 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    font-size: pxToRem(30 * $scalingFactor5k);
+    font-size: toPx(13 * $scalingFactor5k);
     margin-top: toPx(-3 * $scalingFactor5k);
   }
 }
@@ -186,18 +175,15 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   font-family: $fontSbbRoman;
   color: $colorBlack60;
   margin-top: -5px;
-  width: 118px;
 
   @include mq($from: desktop4k) {
-    font-size: pxToRem(23 * $scalingFactor4k);
+    font-size: toPx(15.35 * $scalingFactor4k);
     margin-top: toPx(-5 * $scalingFactor4k);
-    width: 90px;
   }
 
   @include mq($from: desktop5k) {
-    font-size: pxToRem(30 * $scalingFactor5k);
+    font-size: toPx(15 * $scalingFactor5k);
     margin-top: toPx(-5 * $scalingFactor5k);
-    width: 119px;
   }
 }
 
@@ -206,17 +192,20 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   height: 24px;
   transform: rotate(180deg);
   margin-left: 60px;
+  fill: $colorBlack60;
 
   @include mq($from: desktop4k) {
     width: toPx(36 * $scalingFactor4k);
     height: toPx(36 * $scalingFactor4k);
     margin-left: toPx(60 * $scalingFactor4k);
+    fill: $colorBlack60;
   }
 
   @include mq($from: desktop5k) {
     width: toPx(48 * $scalingFactor5k);
     height: toPx(48 * $scalingFactor5k);
     margin-left: (60 * $scalingFactor5k);
+    fill: $colorBlack60;
   }
 }
 
@@ -226,21 +215,17 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   position: relative;
   height: 48px;
   width: 156px;
+  color: $colorBlack60;
+  fill: $colorBlack60;
 
   @include mq($from: desktop4k) {
     height: toPx(72 * $scalingFactor4k);
     width: toPx(103 * $scalingFactor4k);
-    display: inherit;
-    align-items: inherit;
-    position: inherit;
   }
 
   @include mq($from: desktop5k) {
     height: toPx(96 * $scalingFactor5k);
     width: toPx(134 * $scalingFactor5k);
-    display: inherit;
-    align-items: inherit;
-    position: inherit;
   }
 }
 
@@ -249,19 +234,19 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   height: 24px;
   margin-left: 2px;
   position: relative;
+  color: inherit;
+  fill: inherit;
 
   @include mq($from: desktop4k) {
     height: toPx(36 * $scalingFactor4k);
     width: toPx(36 * $scalingFactor4k);
     margin-left: toPx(2 * $scalingFactor4k);
-    position: inherit;
   }
 
   @include mq($from: desktop5k) {
     height: toPx(48 * $scalingFactor5k);
     width: toPx(48 * $scalingFactor5k);
     margin-left: toPx(2 * $scalingFactor5k);
-    position: inherit;
   }
 }
 
@@ -270,20 +255,38 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   position: relative;
   margin-left: 13.5px;
   margin-top: 2px;
+  color: inherit;
+  fill: inherit;
 
   @include mq($from: desktop4k) {
     margin-left: toPx(13.5 * $scalingFactor4k);
-    position: inherit;
-    margin-top: toPx(2 * $scalingFactor4k);
+    margin-top: toPx(8 * $scalingFactor4k);
     max-width: toPx(53 * $scalingFactor4k);
     max-height: toPx(26 * $scalingFactor4k);
+    font-size: toPx(14 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
     margin-left: toPx(13.5 * $scalingFactor5k);
-    position: inherit;
-    margin-top: toPx(2 * $scalingFactor5k);
+    margin-top: toPx(6.5 * $scalingFactor5k);
     max-width: toPx(70 * $scalingFactor5k);
     max-height: toPx(35 * $scalingFactor5k);
+    font-size: toPx(14 * $scalingFactor5k);
+  }
+}
+
+@mixin imageStyle {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+
+  @include mq($from: desktop4k) {
+    width: toPx(32 * $scalingFactor4k);
+    height: toPx(32 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx(32 * $scalingFactor5k);
+    height: toPx(32 * $scalingFactor5k);
   }
 }

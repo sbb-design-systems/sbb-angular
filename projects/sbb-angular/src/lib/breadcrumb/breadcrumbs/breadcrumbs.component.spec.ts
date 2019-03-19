@@ -126,7 +126,6 @@ describe('Breadcrumb behaviour Test', () => {
 
   let location: Location = null;
   let router: Router;
-  let sbbLevelStyle: CSSStyleDeclaration;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -189,17 +188,6 @@ describe('Breadcrumb behaviour Test', () => {
       await fixtureTest.whenStable();
 
       expect(location.path()).toContain('?level=1');
-    });
-  });
-
-  it('focus on level', () => {
-
-    const link1 = fixtureTest.debugElement.queryAll(By.css('.sbb-breadcrumb a'))[1].nativeElement;
-    link1.focus();
-    fixtureTest.detectChanges();
-    fixtureTest.whenStable().then(() => {
-      sbbLevelStyle = getComputedStyle(link1);
-      expect(sbbLevelStyle.getPropertyValue('color')).toBe('rgb(198, 0, 24)');
     });
   });
 
