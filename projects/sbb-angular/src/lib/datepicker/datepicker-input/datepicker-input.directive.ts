@@ -25,7 +25,6 @@ import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { TitleCasePipe } from '@angular/common';
 import { DateRange } from '../date-range';
-import { SBB_INPUT_VALUE_ACCESSOR } from '../../input/input-value-accessor';
 
 /**
  * An event used for datepicker input and change events. We don't always have access to a native
@@ -47,8 +46,7 @@ export class SbbDatepickerInputEvent<D> {
 
 @Directive({
   selector: 'input[sbbDatepicker]',
-  exportAs: 'sbbDatepickerInput',
-  providers: [{ provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: DatepickerInputDirective }]
+  exportAs: 'sbbDatepickerInput'
 })
 export class DatepickerInputDirective<D> implements OnDestroy {
 
@@ -71,6 +69,12 @@ export class DatepickerInputDirective<D> implements OnDestroy {
   get maxAttr() {
     return this.max ? this.dateAdapter.toIso8601(this.max) : null;
   }
+
+  @HostBinding('disabled')
+  get isDisabled() {
+    return this.disabled;
+  }
+
 
   /** The datepicker that this input is associated with. */
   @Input()
@@ -134,7 +138,6 @@ export class DatepickerInputDirective<D> implements OnDestroy {
 
   /** Whether the datepicker-input is disabled. */
   @Input()
-  @HostBinding()
   get disabled(): boolean { return !!this._disabled; }
   set disabled(value: boolean) {
     const newValue = coerceBooleanProperty(value);

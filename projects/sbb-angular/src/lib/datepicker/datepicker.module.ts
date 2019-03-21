@@ -19,12 +19,10 @@ import { SBB_DATE_FORMATS } from './date-formats';
 import { DATE_PIPE_DATE_FORMATS } from './date-pipe-date-formats';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { IconArrowSmallLeftModule, IconArrowSmallRightModule, IconCalendarModule } from '../svg-icons/svg-icons';
-import { InputModule } from '../input/input';
 
 @NgModule({
   imports: [
     CommonModule,
-    InputModule,
     IconArrowSmallLeftModule,
     IconArrowSmallRightModule,
     IconCalendarModule,
