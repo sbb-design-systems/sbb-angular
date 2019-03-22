@@ -44,15 +44,27 @@ pipeline {
       }
     }
 
-    stage('When on feature branch, create feature branch showcase release') {
+    stage('SonarcloudIO test') {
       when {
-        branch 'feature/*'
+        branch 'feature/sonarcloud-io'
       }
       steps {
-        sh "npm run sbb:publish -- $BRANCH_NAME"
+        withSonarQubeEnv('SonarCloud IO SBB') {
+          //sh 'curl -v https://sonarcloud.io/batch/list'
+          //sh 'curl -v https://sonarcloud.io/batch/file?name=sonar-scanner-engine-shaded-developer-7.7.0.22107-all.jar -o data.jar'
+          sh 'npm run sonar -- -Dsonar.organization=sbb -Dsonar.branch=$BRANCH_NAME'
+          // sh 'mvn -X -f mavendemo-parent/pom.xml -B clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar '
+          //-Dsonar.cpd.exclusions=mavendemo-war/src/main/java/ch/sbb/mavendemo/web/MyServlet.java
+          //-Dsonar.organization=sbb
+          //-Dsonar.branch.target=master
+          //-Dsonar.projectkey=ch.sbb.wzu.mavendemo:mavendemo-parent:exclusion
+          //-Dsonar.branch.name=$BRANCH_NAME'
+        }
+
+        //sh "npm run sbb:publish -- $BRANCH_NAME"
       }
     }
-
+/*
     stage('When on develop, create develop showcase release') {
       when {
         branch 'develop'
@@ -90,6 +102,7 @@ pipeline {
         }
       }
     }
+    */
   }
 
   post {
