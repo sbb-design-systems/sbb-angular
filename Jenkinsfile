@@ -18,7 +18,7 @@ pipeline {
         sh 'npm run build:library'
       }
     }
-
+    /*
     stage('Unit Tests') {
       steps {
         withCredentials([
@@ -43,6 +43,7 @@ pipeline {
         sh 'npm run build:showcase'
       }
     }
+    */
 
     stage('SonarcloudIO test') {
       when {
