@@ -1,0 +1,63 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Breadcrumb Overview</h1>
+  <p class="docs-markdown-p">Import breadcrumb module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { BreadcrumbModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'sbb-angular'</span>;</code></pre>
+  <h3 id="what-does-the-breadcrumb-module-do-" class="docs-header-link docs-markdown-h3">
+    <span header-link="what-does-the-breadcrumb-module-do-"></span> What does the breadcrumb module do? </h3>
+  <p class="docs-markdown-p">It is used to display the navigation hierarchy of the current page. <br>
+    <br></p>
+  <h3 id="when-should-the-module-be-used-" class="docs-header-link docs-markdown-h3">
+    <span header-link="when-should-the-module-be-used-"></span> When should the module be used? </h3>
+  <p class="docs-markdown-p">On any page where the user should be able to quickly navigate to a sister or parent page. <br>
+    <br></p>
+  <h3 id="examples" class="docs-header-link docs-markdown-h3">
+    <span header-link="examples"></span> Examples </h3>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Basic breadcrumb without sister pages</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumbs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-home</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-home</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumbs</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Advanced breadcrumb with sister pages</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumbs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-home</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-home</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+    Level 1 with detail pages
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 1b<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+    Level 2
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/level1/level2b"</span> <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>&gt;</span>Level 2 with detail pages<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumb</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-breadcrumbs</span>&gt;</span></code></pre>
+</body>
+
+</html>

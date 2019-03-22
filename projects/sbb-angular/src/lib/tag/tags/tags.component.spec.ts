@@ -7,6 +7,7 @@ import { Tag, TagChange } from '../tag.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BadgeModule } from '../../badge/badge.module';
 
 @Component({
   selector: 'sbb-tags-test-fixture',
@@ -53,6 +54,7 @@ describe('TagsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [BadgeModule],
       declarations: [TagsComponent, TagComponent]
     })
       .compileComponents();
@@ -79,7 +81,7 @@ describe('TagsComponent with Model attached', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule],
+      imports: [CommonModule, FormsModule, BadgeModule],
       declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent]
     })
       .compileComponents();
@@ -226,6 +228,7 @@ describe('TagComponent as a Link Tag', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [BadgeModule],
       declarations: [TagComponent, TagLinkTestFixtureComponent]
     })
       .compileComponents();

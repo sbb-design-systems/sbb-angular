@@ -15,14 +15,14 @@
         <div class="sbb-usermenu-logged-in-expanded-displayName" [class.sbb-displayName-logged-in-collapsed]="!dropdown.isOpen">{{ displayName || userName }}</div>
         <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="dropdown.isOpen  && displayName">{{ userName }}</div>
       </div>
+      <div class="sbb-usermenu-logged-in-collapsed-arrow" *ngIf="userName && userName.length && !dropdown.isOpen">
+        <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
+      </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">
       <div class="sbb-usermenu-logged-in-expanded-arrow" *ngIf="dropdown.isOpen">
         <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
       </div>
-    </div>
-    <div class="sbb-usermenu-logged-in-collapsed-arrow" *ngIf="userName && userName.length && !dropdown.isOpen">
-      <sbb-icon-arrow-small-down></sbb-icon-arrow-small-down>
     </div>
   </div>
 </div>

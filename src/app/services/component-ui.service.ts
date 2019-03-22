@@ -28,8 +28,10 @@ import { SearchShowcaseComponent } from '../examples/search-showcase/search-show
 import { FileSelectorShowcaseComponent } from '../examples/file-selector-showcase/file-selector-showcase.component';
 import { DropdownShowcaseComponent } from '../examples/dropdown-showcase/dropdown-showcase.component';
 import { CaptchaShowcaseComponent } from '../examples/captcha-showcase/captcha-showcase.component';
+import { BreadcrumbShowcaseComponent } from '../examples/breadcrumb-showcase/breadcrumb-showcase.component';
 import { UserMenuShowcaseComponent } from '../examples/usermenu-showcase/usermenu-showcase.component';
 import { GhettoboxShowcaseComponent } from '../examples/ghettobox-showcase/ghettobox-showcase.component';
+import { BadgeShowcaseComponent } from '../examples/badge-showcase/badge-showcase.component';
 
 
 @Injectable({
@@ -161,22 +163,20 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         DatepickerShowcaseComponent
-      ), /*
+      ),
       new UiComponent(
-        'Time Chooser',
-        'timeChooser',
-        'Time Chooser',
+        'Breadcrumb',
+        'breadcrumb',
+        'Breadcrumb',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        [],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-
+        'Import text.',
+        BreadcrumbShowcaseComponent
       ),
-        'Import text.'
-      ), */
       new UiComponent(
         'Radio Button',
         'radio-button',
@@ -229,18 +229,19 @@ export class ComponentUiService {
         'Import text.',
         AccordionShowcaseComponent
       ),
-      /* new UiComponent(
-        'Section (Fieldset)',
-        'section',
-        'Section (Fieldset)',
+      new UiComponent(
+        'Badge',
+        'badge',
+        'Badge',
         'Subtitel goes here ...',
         true,
         true,
-        ['Davide Aresta', 'Stefan Meili'],
+        ['Davide Aresta'],
         'Description goes here ...',
         'Source goes here ...',
-        'Import text.'
-      ), */
+        'Import text.',
+        BadgeShowcaseComponent
+      ),
       new UiComponent(
         'Pagination',
         'pagination',
