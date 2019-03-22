@@ -104,11 +104,7 @@ export class TooltipComponent implements OnDestroy {
     this._icon = tooltipIcon;
   }
   get icon() {
-    if (this._icon) {
-      return this._icon;
-    } else {
-      return this.defaultIcon;
-    }
+    return this._icon || this.defaultIcon;
   }
   _icon: TemplateRef<any>;
 
