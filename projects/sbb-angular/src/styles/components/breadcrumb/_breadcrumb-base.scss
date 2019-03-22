@@ -40,6 +40,7 @@
       text-overflow: clip;
       padding-left: 30px;
       padding-right: 30px;
+      font-family: $fontSbbRoman;
 
       &.sbb-active {
         color: $colorRed125;
@@ -238,7 +239,7 @@
   @include buttonResetFrameless();
   display: block;
   white-space: nowrap;
-  font-family: $fontSbbLight;
+  font-family: $fontSbbRoman;
   text-decoration: none;
   position: relative;
   cursor: pointer;
