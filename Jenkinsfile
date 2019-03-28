@@ -29,10 +29,11 @@ pipeline {
           sh 'npm test'
           sh 'npm run lint'
         }
-        withSonarQubeEnv('Sonar NextGen') {
+        withSonarQubeEnv('SonarCloud IO SBB') {
           script {
             def props = readJSON file: 'package.json'
-            sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
+            sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.organization=sbb -Dsonar.branch.name=$BRANCH_NAME"
+            //-Dsonar.branch.target=master
           }
         }
       }
@@ -112,4 +113,3 @@ pipeline {
     }
   }
 }
-
