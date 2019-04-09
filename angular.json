@@ -161,7 +161,9 @@
           "options": {
             "main": "projects/sbb-angular/src/test.ts",
             "tsConfig": "projects/sbb-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-angular/karma.conf.js"
+            "karmaConfig": "projects/sbb-angular/karma.conf.js",
+            "watch": true,
+            "sourceMap": true
           },
           "configurations": {
             "ci": {
@@ -171,10 +173,10 @@
               "sourceMap": true
             },
             "local": {
-              "watch": true,
-              "codeCoverage": true,
-              "browsers": "Chrome",
-              "sourceMap": true
+              "codeCoverage": true
+            },
+            "datepicker": {
+              "main": "projects/sbb-angular/src/lib/datepicker/test.ts"
             }
           }
         },

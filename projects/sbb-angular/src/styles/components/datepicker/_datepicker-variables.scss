@@ -1,10 +1,9 @@
+$dateInputBorderWidth:                  2;
 $defaultPickerIconSize:                 24;
-$defaultPickerInputLeftPadding:         $defaultPickerIconSize + 20;
 $defaultToggleLeftOffset:               $defaultPickerIconSize / 2;
-$withArrowsToggleLeftOffset:            $defaultPickerIconSize;
 $pickerIconsHoverColor:                 $colorRed125;
-$withArrowsPickerInputLeftPadding:      ($defaultPickerIconSize * 2) + 24;
-$withArrowsPickerInputRightPadding:     $defaultPickerIconSize + 20;
+$dateInputOneIconPadding:               44;
+$dateInputTwoIconPadding:               72;
 $withArrowsToggleLeftOffset:            $defaultPickerIconSize + ($defaultPickerIconSize / 2) + 4;
 $withArrowsLeftArrowOffset:             $defaultPickerIconSize / 2;
 $withArrowsRightArrowOffset:            $defaultPickerIconSize / 2;

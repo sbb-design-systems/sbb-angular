@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
-import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
+import { DatepickerComponent } from '../datepicker/datepicker.component';
 import { CalendarComponent } from '../calendar/calendar.component';
 
 /**
@@ -25,7 +25,7 @@ export class DatepickerContentComponent<D> implements AfterViewInit {
   @ViewChild(CalendarComponent) calendar: CalendarComponent<D>;
 
   /** Reference to the datepicker that created the overlay. */
-  datepicker: DatepickerEmbeddableComponent<D>;
+  datepicker: DatepickerComponent<D>;
 
   /** Whether the datepicker is above or below the input. */
   isAbove: boolean;

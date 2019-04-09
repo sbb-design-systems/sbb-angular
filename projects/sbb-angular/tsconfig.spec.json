@@ -8,7 +8,8 @@
     ]
   },
   "files": [
-    "src/test.ts"
+    "src/test.ts",
+    "src/lib/datepicker/test.ts"
   ],
   "include": [
     "**/*.spec.ts",

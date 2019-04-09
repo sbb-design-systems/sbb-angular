@@ -56,7 +56,7 @@ module.exports = function (config) {
         browser: 'Safari'
       },
     },
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     singleRun: false,
     browserNoActivityTimeout: 50000,
     browserDisconnectTimeout: 20000,

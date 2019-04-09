@@ -1,4 +1,6 @@
 export class DateRange<D> {
-    begin: D;
-    end: D;
+    constructor(
+        readonly start: D,
+        readonly end: D,
+    ) { }
 }

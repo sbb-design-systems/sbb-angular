@@ -2,7 +2,13 @@ import { DateAdapter } from './date-adapter';
 import { DatePipe } from '@angular/common';
 import { LOCALE_ID, Inject, Injectable } from '@angular/core';
 
-const dateRegex = new RegExp('^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)[0-9]{2}|[0-9]{2})\s*$', 'g');
+/**
+ * Matches strings that have the form of a valid RFC 3339 string
+ * (https://tools.ietf.org/html/rfc3339). Note that the string may not actually be a valid date
+ * because the regex will match strings an with out of bounds month, date, etc.
+ */
+const ISO_8601_REGEX =
+  /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|(?:(?:\+|-)\d{2}:\d{2}))?)?$/;
 
 /** Creates an array and fills it with values. */
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
@@ -117,16 +123,13 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   parse(value: any): Date {
-    if (value) {
-      const splittedDate = value.split(',');
-      if (splittedDate.length > 1) {
-        value = splittedDate[1].trim();
-      }
-      const matches = (value as string).match(dateRegex);
-      if (matches) {
-        const dateParts = value.trim().split('.');
-        return new Date(toInteger(dateParts[2]), toInteger(dateParts[1]) - 1, toInteger(dateParts[0]));
-      }
+    if (typeof value === 'number') {
+      return new Date(value);
+    } else if (this.isDateInstance(value)) {
+      return this.clone(value);
+    } else if (typeof value === 'string') {
+      const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
+      return match ? new Date(+match[4], +match[3] - 1, +match[2], 0, 0, 0) : new Date(NaN);
     }
     return null;
   }
@@ -159,6 +162,28 @@ export class NativeDateAdapter extends DateAdapter<Date> {
 
   toIso8601(date: Date): string {
     return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
+
+  /**
+   * Returns the given value if given a valid Date or null. Deserializes valid ISO 8601 strings
+   * (https://www.ietf.org/rfc/rfc3339.txt) into valid Dates and empty string into null. Returns an
+   * invalid date for all other values.
+   */
+  deserialize(value: any): Date | null {
+    if (typeof value === 'string') {
+      if (!value) {
+        return null;
+      }
+      // The `Date` constructor accepts formats other than ISO 8601, so we need to make sure the
+      // string is the right format first.
+      if (ISO_8601_REGEX.test(value)) {
+        const date = new Date(value);
+        if (this.isValid(date)) {
+          return date;
+        }
+      }
+    }
+    return super.deserialize(value);
   }
 
   isDateInstance(obj: any): boolean {

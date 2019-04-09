@@ -11,58 +11,95 @@ The datepicker field accepts dates in the format of dd.MM.yyyy as seen below
 | ------------------ | -------------- |
 | 08.12.2018         | Sa, 08.12.2018 |
 
-You can use datepicker in three different modes:
-
-1. You can choose any date and also set a min and max date. The initial focus is the current date value.
+### Basic Usage
 ```html
-<h4>Simple Datepicker</h4>
+<sbb-datepicker>
+   <input sbbDateInput>
+</sbb-datepicker>
+```
+
+By default the datepicker has the toggle enabled and the arrows disabled. Toggle and arrows can 
+be enabled/disabled via attributes or property:
+
+```html
+<sbb-datepicker toggle="false" arrows>
+   <input sbbDateInput>
+</sbb-datepicker>
+
+<sbb-datepicker [toggle]="toggleEnabled" [arrows]="arrowsEnabled">
+   <input sbbDateInput>
+</sbb-datepicker>
+```
+
+
+### Full Field Example
+The date input supports min and max dates. The datepicker emits events for opening and closing the datepicker.
+The initial focus for the datepicker is the current date value.
+
+```html
 <sbb-field mode="long">
-  <sbb-label for="Datum">Datum</sbb-label> 
-  <sbb-datepicker [formControl]="laData"
-                  [withoutToggle]="withoutToggle"
-                  [min]="minDate"
-                  [max]="maxDate"
-                  (closed)="closedEvent()"
-                  (opened)="openedEvent()"
-                  (dateChange)="dateChangeEvent($event)"
-                  (dateInput)="dateInputEvent($event)"></sbb-datepicker>
+  <sbb-label>Datum</sbb-label> 
+  <sbb-datepicker (closed)="closedEvent()"
+                  (opened)="openedEvent()">
+      <input sbbDateInput
+             sbbInput
+             formControlName="date"
+             [min]="minDate"
+             [max]="maxDate"
+             (dateChange)="dateChangeEvent($event)"
+             (dateInput)="dateInputEvent($event)">
+   </sbb-datepicker>
 </sbb-field>
 ```
 
-2. To set a range of dates
+### Connected Datepickers
+Datepickers can be connected. On selecting a date in the first/master datepicker, the second/slave 
+datepicker will have its datepicker opened if it was empty or the value of the slave is before the 
+newly selected date. Also the value of the master is set to be the min value of the slave, if no 
+manual min has been set.
+
 ```html
-<h4>2 Datepickers</h4>
 <form [formGroup]="twoDatepickersForm">
    <sbb-field mode="medium">
       <sbb-label for="Datum">Datumsbereich innerhalb eines Monats</sbb-label>
-      <sbb-datepicker formControlName="firstDatepicker" [attachDatepicker]="datepickerTheSecond" withArrows></sbb-datepicker>
+      <sbb-datepicker [slave]="second" arrows>
+         <input sbbDateInput sbbInput formControlName="firstDatepicker">
+      </sbb-datepicker>
    </sbb-field>
    <sbb-field mode="medium">
-      <sbb-datepicker formControlName="secondDatepicker" #datepickerTheSecond withArrows></sbb-datepicker>
+      <sbb-datepicker #second arrows>
+         <input sbbDateInput sbbInput formControlName="secondDatepicker">
+      </sbb-datepicker>
    </sbb-field>
 </form>
 ```
 
-3. You can create a function to only be able to select the first day of each month as see below
+### Date Filter
+You can create a function to only enable certain dates. For example only enabling the first date 
+of each month as seen below.
+
 ```html
 <h4>Date filter</h4>
 <sbb-field>
-  <sbb-label for="Datum">Datum</sbb-label>  
-  <sbb-datepicker [formControl]="dateWithFilter" [validDateFilter]="filterDates" withArrows></sbb-datepicker>
+   <sbb-label for="Datum">Datum</sbb-label>  
+   <sbb-datepicker arrows>
+      <input sbbDateInput sbbInput [formControl]="dateWithFilter" [dateFilter]="filterDates">
+   </sbb-datepicker>
 </sbb-field>
 ```
-    ```ts
-    filterDates(date: Date): boolean {
-        return date.getDate() === 1;
-    }
-    ```
 
-4. You can choose a date with only input property (without arrows)
+```ts
+filterDates = (date: Date): boolean => {
+   return date.getDate() === 1;
+}
+```
+
+### Standalone Date Input
+The sbbDateInput can be used without a datepicker.
 ```html
-<h4>Simple Datepicker</h4>
 <sbb-field>
-  <sbb-label for="Datum">Datum</sbb-label> 
-  <sbb-datepicker withoutToggle></sbb-datepicker>
+  <sbb-label for="Datum">Datum</sbb-label>
+  <input sbbDateInput sbbInput [formControl]="standaloneDate">
 </sbb-field>
 ```
 
