@@ -2,8 +2,8 @@
   button {
     @include buttonResetFrameless();
 
-    &:hover,
-    &:focus {
+    &:hover:enabled,
+    &:focus:enabled {
       cursor: pointer;
       fill: $pickerIconsHoverColor;
     }

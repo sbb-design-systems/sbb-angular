@@ -107,6 +107,7 @@ export class DropdownItemDirective implements Highlightable {
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 

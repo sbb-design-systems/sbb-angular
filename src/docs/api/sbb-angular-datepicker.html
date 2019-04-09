@@ -386,7 +386,7 @@
     </thead>
     <tr class="docs-api-method-description-row">
       <td colspan="2" class="docs-api-method-description-cell">
-        <p>Attempts to deserialize a value to a valid date object. This is different from parsing in that deserialize should only accept non-ambiguous, locale-independent formats (e.g. a ISO 8601 string). The default implementation does not allow any deserialization, it simply checks that the given value is already a valid date object or null. The <code>&lt;sbb-datepicker&gt;</code> will call this method on all of it&#39;s <code>@Input()</code> properties that accept dates. It is therefore possible to support passing values from your backend directly to these properties by overriding this method to also deserialize the format used by your backend.</p>
+        <p>Returns the given value if given a valid Date or null. Deserializes valid ISO 8601 strings (<a href="https://www.ietf.org/rfc/rfc3339.txt">https://www.ietf.org/rfc/rfc3339.txt</a>) into valid Dates and empty string into null. Returns an invalid date for all other values.</p>
       </td>
     </tr>
     <thead>
@@ -401,7 +401,6 @@
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
-          <p>The value to be deserialized into a date object.</p>
         </p>
       </td>
     </tr>
@@ -412,11 +411,10 @@
     </thead>
     <tr>
       <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">D | null</code>
+        <code class="docs-api-method-returns-type">Date | null</code>
       </td>
       <td class="docs-api-method-returns-description-cell">
         <p class="docs-api-method-returns-description">
-          <p>The deserialized date object, either a valid date, null if the value can be deserialized into a null date (e.g. the empty string), or an invalid date.</p>
         </p>
       </td>
     </tr>
@@ -1089,20 +1087,31 @@
   </table>
   <h3 id="directives" class="docs-header-link docs-api-h3">
     <span header-link="directives"></span> Directives </h3>
-  <h4 id="DatepickerEmbeddableComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="DatepickerEmbeddableComponent"></span>
-    <code>DatepickerEmbeddableComponent</code>
+  <h4 id="DatepickerComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="DatepickerComponent"></span>
+    <code>DatepickerComponent</code>
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-datepicker-embeddable</span>
+    <span class="docs-api-class-selector-name">sbb-datepicker</span>
   </p><span class="docs-api-class-export-label">Exported as:</span>
-  <span class="docs-api-class-export-name">sbbDatepickerEmbeddable</span>
+  <span class="docs-api-class-export-name">sbbDatepicker</span>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
     <tr class="docs-api-properties-header-row">
       <th class="docs-api-properties-th">Name</th>
       <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>arrows: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether arrows are enabled, which allow navigation to the next/previous day. They also support min and max date limits. Defaults to false.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -1152,6 +1161,17 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
+          <code>slave: DatepickerComponent&lt;D&gt; | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Second datepicker to be used in 2 datepickers use case</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
           <code>startAt: D | null</code>
         </p>
       </td>
@@ -1174,10 +1194,12 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>withArrows: boolean</code>
+          <code>toggle: any</code>
         </p>
       </td>
-      <td class="docs-api-property-description"></td>
+      <td class="docs-api-property-description">
+        <p>Whether the datepicker toggle is enabled. Defaults to true.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -1204,6 +1226,14 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>dateFilter: (date: D | null) =&gt; boolean</code>
         </p>
       </td>
@@ -1212,15 +1242,7 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>dateRange: DateRange&lt;D&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>datepickerInput: DatepickerInputDirective&lt;D&gt;</code>
+          <code>datepickerInput: DateInputDirective&lt;D&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -1258,6 +1280,14 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>master: DatepickerComponent&lt;D&gt; | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>maxDate: D | null</code>
         </p>
       </td>
@@ -1278,12 +1308,28 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>nextDayActive: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>popupRef: OverlayRef</code>
         </p>
       </td>
       <td class="docs-api-property-description">
         <p>A reference to the overlay when the calendar is opened as a popup.</p>
       </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>prevDayActive: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -1364,7 +1410,7 @@
     <tr class="docs-api-method-parameter-row">
       <td class="docs-api-method-parameter-cell">
         <p class="docs-api-method-parameter-name"> input</p>
-        <code class="docs-api-method-parameter-type">DatepickerInputDirective&lt;D&gt;</code>
+        <code class="docs-api-method-parameter-type">DateInputDirective&lt;D&gt;</code>
       </td>
       <td class="docs-api-method-parameter-description-cell">
         <p class="docs-api-method-parameter-description">
@@ -1400,328 +1446,6 @@
       </td>
     </tr>
   </table>
-  <h4 id="DatepickerComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="DatepickerComponent"></span>
-    <code>DatepickerComponent</code>
-  </h4>
-  <p class="docs-api-directive-selectors">
-    <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">sbb-datepicker</span>
-  </p>
-  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
-  <table class="docs-api-properties-table">
-    <tr class="docs-api-properties-header-row">
-      <th class="docs-api-properties-th">Name</th>
-      <th class="docs-api-properties-th">Description</th>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>attachDatepicker: DatepickerComponent</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Second datepicker to be used in 2 datepickers use case</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>disabled: any</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Whether the datepicker-input is disabled.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>max: Date | null</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>The maximum valid date.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>min: Date | null</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>The minimum valid date.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>validDateFilter: (date: Date) =&gt; boolean</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Function that can be used to filter out dates within the datepicker.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>value: Date | null</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>The value of the datepicker.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>withArrows: any</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Scrolls used to go directly to the next/prev day. They also support min and max date limits.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
-          <code>withoutToggle: any</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-output-marker"> @Output()</div>
-        <p class="docs-api-property-name">
-          <code>closed: EventEmitter&lt;void&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Emits when the datepicker has been closed.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-output-marker"> @Output()</div>
-        <p class="docs-api-property-name">
-          <code>dateChange: EventEmitter&lt;SbbDatepickerInputEvent&lt;Date&gt;&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Emits when a <code>change</code> event is fired on this <code>&lt;input&gt;</code>.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-output-marker"> @Output()</div>
-        <p class="docs-api-property-name">
-          <code>dateInput: EventEmitter&lt;SbbDatepickerInputEvent&lt;Date&gt;&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Emits when an <code>input</code> event is fired on this <code>&lt;input&gt;</code>.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-output-marker"> @Output()</div>
-        <p class="docs-api-property-name">
-          <code>opened: EventEmitter&lt;void&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Emits when the datepicker has been opened.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>attachedDatepicker: DatepickerComponent</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>cssClass: true</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>dateAdapter: DateAdapter&lt;Date&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>dateRange: DateRange&lt;Date&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Property active when a toDatepicker is defined</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>datepickerInput: DatepickerInputDirective&lt;Date&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Embedded input field connected to the datepicker</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>datepickerToggle: DatepickerToggleComponent&lt;Date&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>embeddedDatepicker: DatepickerEmbeddableComponent&lt;Date&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Embedded datepicker with calendar header and body, switches for next/prev months and years</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>isInFormField: </code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>leftArrow: boolean</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>nativeInput: InputDirective</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>rightArrow: boolean</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-  </table>
-  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">registerOnValidatorChange </th>
-      </tr>
-    </thead>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> fn</p>
-        <code class="docs-api-method-parameter-type">() =&gt; void</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">scrollToNextDay </th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Adds or removes a day when clicking on the arrow buttons on the right/left of the input</p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">scrollToPreviousDay </th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-description-row">
-      <td colspan="2" class="docs-api-method-description-cell">
-        <p>Adds or removes a day when clicking on the arrow buttons on the left of the input</p>
-      </td>
-    </tr>
-  </table>
-  <table class="docs-api-method-table">
-    <thead>
-      <tr class="docs-api-method-name-row">
-        <th colspan="2" class="docs-api-method-name-cell">validate </th>
-      </tr>
-    </thead>
-    <thead>
-      <tr class="docs-api-method-parameters-header-row">
-        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-      </tr>
-    </thead>
-    <tr class="docs-api-method-parameter-row">
-      <td class="docs-api-method-parameter-cell">
-        <p class="docs-api-method-parameter-name"> c</p>
-        <code class="docs-api-method-parameter-type">AbstractControl</code>
-      </td>
-      <td class="docs-api-method-parameter-description-cell">
-        <p class="docs-api-method-parameter-description">
-        </p>
-      </td>
-    </tr>
-    <thead>
-      <tr class="docs-api-method-returns-header-row">
-        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-      </tr>
-    </thead>
-    <tr>
-      <td class="docs-api-method-returns-type-cell">
-        <code class="docs-api-method-returns-type">ValidationErrors | null</code>
-      </td>
-      <td class="docs-api-method-returns-description-cell">
-        <p class="docs-api-method-returns-description">
-        </p>
-      </td>
-    </tr>
-  </table>
   <h4 id="DatepickerToggleComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
     <span header-link="DatepickerToggleComponent"></span>
     <code>DatepickerToggleComponent</code>
@@ -1735,17 +1459,6 @@
     <tr class="docs-api-properties-header-row">
       <th class="docs-api-properties-th">Name</th>
       <th class="docs-api-properties-th">Description</th>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;for&#39;</span>) </div>
-        <p class="docs-api-property-name">
-          <code>datepicker: DatepickerEmbeddableComponent&lt;D&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>Datepicker instance that the button will toggle.</p>
-      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -1806,20 +1519,31 @@
       </td>
     </tr>
   </table>
-  <h4 id="DatepickerInputDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="DatepickerInputDirective"></span>
-    <code>DatepickerInputDirective</code>
+  <h4 id="DateInputDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="DateInputDirective"></span>
+    <code>DateInputDirective</code>
   </h4>
   <p class="docs-api-directive-selectors">
     <span class="docs-api-class-selector-label">Selector:</span>
-    <span class="docs-api-class-selector-name">input[sbbDatepicker]</span>
+    <span class="docs-api-class-selector-name">input[sbbDateInput]</span>
   </p><span class="docs-api-class-export-label">Exported as:</span>
-  <span class="docs-api-class-export-name">sbbDatepickerInput</span>
+  <span class="docs-api-class-export-name">sbbDateInput</span>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
     <tr class="docs-api-properties-header-row">
       <th class="docs-api-properties-th">Name</th>
       <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>dateFilter: (date: D) =&gt; boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Function that can be used to filter out dates within the datepicker.</p>
+      </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -1858,17 +1582,6 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>sbbDatepicker: DatepickerEmbeddableComponent&lt;D&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description">
-        <p>The datepicker that this input is associated with.</p>
-      </td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
           <code>value: D | null</code>
         </p>
       </td>
@@ -1880,7 +1593,7 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-output-marker"> @Output()</div>
         <p class="docs-api-property-name">
-          <code>dateChange: EventEmitter&lt;SbbDatepickerInputEvent&lt;D&gt;&gt;</code>
+          <code>dateChange: EventEmitter&lt;SbbDateInputEvent&lt;D&gt;&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -1891,7 +1604,7 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-output-marker"> @Output()</div>
         <p class="docs-api-property-name">
-          <code>dateInput: EventEmitter&lt;SbbDatepickerInputEvent&lt;D&gt;&gt;</code>
+          <code>dateInput: EventEmitter&lt;SbbDateInputEvent&lt;D&gt;&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
@@ -1926,31 +1639,15 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
           <code>dateAdapter: DateAdapter&lt;D&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>dateFilter: (date: D | null) =&gt; boolean</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>dateRange: DateRange&lt;D&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>datepicker: DatepickerEmbeddableComponent&lt;D&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -1964,6 +1661,14 @@
       <td class="docs-api-property-description">
         <p>Emits when the disabled state has changed</p>
       </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isDisabled: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
@@ -1985,14 +1690,6 @@
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
           <code>onTouched: () =&gt; { }</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <p class="docs-api-property-name">
-          <code>validatorOnChange: () =&gt; { }</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -2597,15 +2294,6 @@
       <td class="docs-api-properties-name-cell">
         <div class="docs-api-input-marker"> @Input()</div>
         <p class="docs-api-property-name">
-          <code>dateRange: DateRange&lt;D&gt;</code>
-        </p>
-      </td>
-      <td class="docs-api-property-description"></td>
-    </tr>
-    <tr class="docs-api-properties-row">
-      <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
-        <p class="docs-api-property-name">
           <code>maxDate: D | null</code>
         </p>
       </td>
@@ -2672,6 +2360,14 @@
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
           <code>dateAdapter: DateAdapter&lt;D&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>dateRange: DateRange&lt;D&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description"></td>
@@ -2836,12 +2532,12 @@
   </table>
   <h3 id="additional_classes" class="docs-header-link docs-api-h3">
     <span header-link="additional_classes"></span> Additional classes </h3>
-  <h4 id="SbbDatepickerInputEvent" class="docs-header-link docs-api-h4 docs-api-class-name">
-    <span header-link="SbbDatepickerInputEvent"></span>
-    <code>SbbDatepickerInputEvent</code>
+  <h4 id="SbbDateInputEvent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SbbDateInputEvent"></span>
+    <code>SbbDateInputEvent</code>
   </h4>
   <p class="docs-api-class-description">
-    <p>An event used for datepicker input and change events. We don&#39;t always have access to a native input or change event because the event may have been triggered by the user clicking on the calendar popup. For consistency, we always use SbbDatepickerInputEvent instead.</p>
+    <p>An event used for date input and change events. We don&#39;t always have access to a native input or change event because the event may have been triggered by the user clicking on the calendar popup. For consistency, we always use SbbDateInputEvent instead.</p>
   </p>
   <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
   <table class="docs-api-properties-table">
@@ -2852,11 +2548,11 @@
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
         <p class="docs-api-property-name">
-          <code>target: DatepickerInputDirective&lt;D&gt;</code>
+          <code>target: DateInputDirective&lt;D&gt;</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Reference to the datepicker input component that emitted the event.</p>
+        <p>Reference to the date input component that emitted the event.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -2866,7 +2562,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Reference to the native input element associated with the datepicker input.</p>
+        <p>Reference to the native input element associated with the date input.</p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
@@ -2876,7 +2572,7 @@
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The new value for the target datepicker input.</p>
+        <p>The new value for the target date input.</p>
       </td>
     </tr>
   </table>

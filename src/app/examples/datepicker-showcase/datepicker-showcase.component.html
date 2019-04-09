@@ -4,39 +4,45 @@
       <h4 class="sbbsc-block">Simple Datepicker</h4>
       <sbb-field label="Datepicker"
                  mode="long">
-        <sbb-datepicker [formControl]="laData"
-                        [withArrows]="withArrows"
-                        [withoutToggle]="withoutToggle"
-                        [min]="minDate"
-                        [max]="maxDate"
+        <sbb-datepicker [arrows]="arrows"
+                        [toggle]="toggle"
                         (closed)="closedEvent()"
-                        (opened)="openedEvent()"
-                        (dateChange)="dateChangeEvent($event)"
-                        (dateInput)="dateInputEvent($event)"></sbb-datepicker>
+                        (opened)="openedEvent()">
+          <input type="text"
+                 sbbDateInput
+                 [formControl]="laData"
+                 [min]="minDate"
+                 [max]="maxDate"
+                 (dateChange)="dateChangeEvent($event)"
+                 (dateInput)="dateInputEvent($event)">
+        </sbb-datepicker>
       </sbb-field>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-      <sbb-checkbox [(ngModel)]="withArrows"
-                    [disabled]="withArrowsDisabled"
-                    [value]="withArrows">Arrows</sbb-checkbox>
-      <sbb-checkbox [(ngModel)]="withoutToggle"
-                    [disabled]="withoutToggleDisabled"
-                    [value]="withoutToggle">Without
-        Toggle</sbb-checkbox>
-      <sbb-checkbox (click)="onlyInput($event)"
-                    value="false">Input only</sbb-checkbox>
+      <p>
+        <sbb-checkbox [(ngModel)]="arrows">Arrows</sbb-checkbox>
+        <sbb-checkbox [(ngModel)]="toggle">Toggle</sbb-checkbox>
+        <sbb-checkbox [(ngModel)]="disabled"
+                      (change)="onDisabled()">Disabled</sbb-checkbox>
+      </p>
 
       <sbb-field>
         <sbb-label for="minDate">Min Date</sbb-label>
-        <sbb-datepicker [(ngModel)]="minDate"
-                        withArrows></sbb-datepicker>
+        <sbb-datepicker arrows>
+          <input type="text"
+                 sbbDateInput
+                 [(ngModel)]="minDate">
+        </sbb-datepicker>
       </sbb-field>
 
       <sbb-field>
         <sbb-label for="maxDate">Max Date</sbb-label>
-        <sbb-datepicker [(ngModel)]="maxDate"
-                        withArrows></sbb-datepicker>
+        <sbb-datepicker arrows>
+          <input type="text"
+                 sbbDateInput
+                 [(ngModel)]="maxDate">
+        </sbb-datepicker>
       </sbb-field>
 
       <pre>model: {{ laData.value | json }}</pre>
@@ -52,16 +58,22 @@
         <sbb-field label="Datepicker"
                    mode="medium"
                    class="sbbsc-medium-field">
-          <sbb-datepicker formControlName="firstDatepicker"
-                          [attachDatepicker]="datepickerTheSecond"
-                          withArrows></sbb-datepicker>
+          <sbb-datepicker [slave]="datepickerTheSecond"
+                          arrows>
+            <input type="text"
+                   sbbDateInput
+                   formControlName="firstDatepicker">
+          </sbb-datepicker>
         </sbb-field>
         <sbb-field label="Datepicker"
                    mode="medium"
                    class="sbbsc-medium-field">
-          <sbb-datepicker formControlName="secondDatepicker"
-                          #datepickerTheSecond
-                          withArrows></sbb-datepicker>
+          <sbb-datepicker #datepickerTheSecond
+                          arrows>
+            <input type="text"
+                   sbbDateInput
+                   formControlName="secondDatepicker">
+          </sbb-datepicker>
         </sbb-field>
       </form>
     </div>
@@ -80,9 +92,12 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Date filter</h4>
       <sbb-field label="Datepicker">
-        <sbb-datepicker [formControl]="dateWithFilter"
-                        [validDateFilter]="filterDates"
-                        withArrows></sbb-datepicker>
+        <sbb-datepicker arrows>
+          <input type="text"
+                 sbbDateInput
+                 [formControl]="dateWithFilter"
+                 [dateFilter]="filterDates">
+        </sbb-datepicker>
       </sbb-field>
     </div>
     <div class="col-lg-6">
@@ -90,6 +105,23 @@
       <pre>model: {{ dateWithFilter.value | json }}</pre>
       <pre>form control validity: {{ dateWithFilter.valid }}</pre>
       <pre>form control errors: {{ dateWithFilter.errors |json }}</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Standalone Date Input</h4>
+      <sbb-field label="Datepicker">
+        <input type="text"
+               sbbDateInput
+               [formControl]="standaloneDate">
+      </sbb-field>
+    </div>
+    <div class="col-lg-6">
+      <h4>Properties</h4>
+      <pre>model: {{ standaloneDate.value | json }}</pre>
+      <pre>form control validity: {{ standaloneDate.valid }}</pre>
+      <pre>form control errors: {{ standaloneDate.errors |json }}</pre>
     </div>
   </div>
 </div>

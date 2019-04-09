@@ -74,10 +74,12 @@ export class LightboxRef<T, R = any> {
     });
 
     _overlayRef.keydownEvents()
+      // tslint:disable-next-line:deprecation
       .pipe(filter(event => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
 
     _overlayRef.keydownEvents()
+      // tslint:disable-next-line:deprecation
       .pipe(filter(event => event.keyCode === ESCAPE && this.disableClose))
       .subscribe(() => this.manualCloseAction.next(null));
 
