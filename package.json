@@ -12,6 +12,7 @@
     "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
     "build:icons": "ts-node -P scripts/tsconfig.json ./scripts/svg/svg-generator projects/sbb-angular/svgs projects/sbb-angular/src/lib/svg-icons src/app",
     "build:showcase": "ng build sbb-angular-showcase --prod",
+    "build:sbb-angular-icons:schematics": "rollup --config rollup.config.js",
     "test": "run-s test:*",
     "test:showcase": "ng test sbb-angular-showcase -c ci",
     "test:library": "ng test sbb-angular -c ci",
@@ -43,13 +44,15 @@
     "font-awesome": "^4.7.0",
     "ngx-monaco-editor": "^6.0.0",
     "ngx-perfect-scrollbar": "^7.2.0",
-    "rxjs": "^6.3.3",
+    "rxjs": "6.3.3",
     "util": "^0.10.4",
     "zone.js": "^0.8.27"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.1",
     "@angular-devkit/build-ng-packagr": "^0.12.1",
+    "@angular-devkit/core": "^7.3.8",
+    "@angular-devkit/schematics-cli": "^0.13.8",
     "@angular/cli": "^7.2.1",
     "@angular/compiler-cli": "^7.2.0",
     "@angular/language-service": "^7.2.0",
@@ -96,7 +99,8 @@
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
     "protractor": "^5.4.2",
-    "puppeteer": "^1.11.0",
+    "rollup": "^1.9.0",
+    "rollup-plugin-typescript2": "^0.20.1",
     "run-sequence": "^2.2.1",
     "scss-bundle": "^2.4.0",
     "semver": "^5.6.0",
@@ -109,5 +113,8 @@
     "tslint": "~5.11.0",
     "tslint-sonarts": "^1.9.0",
     "typescript": "~3.2.2"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^1.11.0"
   }
 }
