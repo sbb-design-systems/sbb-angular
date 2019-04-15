@@ -140,11 +140,11 @@ const rules = [
         .replace(/^\d+_/, '')),
     file => file.name = file.name
         .replace(/^sbb_construction/, 'under_construction')
-        .replace(/^sbb_/, '')
         .replace(/^fog_327/, 'cloud_fog_327')
         .replace(/^cloud_sun_197/, 'cloud_sunshine_197')
         .replace(/^user_group_row_056/, 'user_group_row_linear_056')
         .replace(/^bus_stop_242/, 'bus_sbb_242')
+        .replace(/^sbb_(\d+\_)?/i, '')
         .replace(/_[ ]?\d+_(small|medium|large)$/, '')
         .replace(/^auslastung_0$/, 'utilization_none')
         .replace(/^auslastung_1$/, 'utilization_low')

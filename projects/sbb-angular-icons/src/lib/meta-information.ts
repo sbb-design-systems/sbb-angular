@@ -477,6 +477,14 @@ import {
   IconConstructionComponent,
   IconRailwaySwitchComponent,
   IconCityComponent,
+  IconTwitterComponent,
+  IconFacebookComponent,
+  IconInstagramComponent,
+  IconGoogleplusComponent,
+  IconYoutubeComponent,
+  IconLinkedinComponent,
+  IconPinterestComponent,
+  IconXingComponent,
 } from './root';
 
 export const iconComponentsMetaInformation = [
@@ -6611,6 +6619,102 @@ export const iconComponentsMetaInformation = [
     ],
     component: IconCityComponent,
   },
+  {
+    selector: 'sbb-icon-twitter',
+    name: 'IconTwitterComponent',
+    modules: [
+      'IconTwitterModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconTwitterComponent,
+  },
+  {
+    selector: 'sbb-icon-facebook',
+    name: 'IconFacebookComponent',
+    modules: [
+      'IconFacebookModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconFacebookComponent,
+  },
+  {
+    selector: 'sbb-icon-instagram',
+    name: 'IconInstagramComponent',
+    modules: [
+      'IconInstagramModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconInstagramComponent,
+  },
+  {
+    selector: 'sbb-icon-googleplus',
+    name: 'IconGoogleplusComponent',
+    modules: [
+      'IconGoogleplusModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconGoogleplusComponent,
+  },
+  {
+    selector: 'sbb-icon-youtube',
+    name: 'IconYoutubeComponent',
+    modules: [
+      'IconYoutubeModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconYoutubeComponent,
+  },
+  {
+    selector: 'sbb-icon-linkedin',
+    name: 'IconLinkedinComponent',
+    modules: [
+      'IconLinkedinModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconLinkedinComponent,
+  },
+  {
+    selector: 'sbb-icon-pinterest',
+    name: 'IconPinterestComponent',
+    modules: [
+      'IconPinterestModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconPinterestComponent,
+  },
+  {
+    selector: 'sbb-icon-xing',
+    name: 'IconXingComponent',
+    modules: [
+      'IconXingModule',
+      'IconCollectionSocialMediaModule',
+      'IconCollectionModule',
+    ],
+    sizes: [
+    ],
+    component: IconXingComponent,
+  },
 ];
 
 export const iconComponentList = [
@@ -7089,4 +7193,12 @@ export const iconComponentList = [
   IconConstructionComponent,
   IconRailwaySwitchComponent,
   IconCityComponent,
+  IconTwitterComponent,
+  IconFacebookComponent,
+  IconInstagramComponent,
+  IconGoogleplusComponent,
+  IconYoutubeComponent,
+  IconLinkedinComponent,
+  IconPinterestComponent,
+  IconXingComponent,
 ];

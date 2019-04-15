@@ -23,4 +23,5 @@ export * from './audio/audio';
 export * from './leisure/leisure';
 export * from './installation/installation';
 export * from './building/building';
+export * from './social-media/social-media';
 export * from './icon-collection-root.module';

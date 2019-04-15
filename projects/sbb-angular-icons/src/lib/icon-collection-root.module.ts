@@ -25,6 +25,7 @@ import { IconCollectionAudioModule } from './audio/icon-collection-audio.module'
 import { IconCollectionLeisureModule } from './leisure/icon-collection-leisure.module';
 import { IconCollectionInstallationModule } from './installation/icon-collection-installation.module';
 import { IconCollectionBuildingModule } from './building/icon-collection-building.module';
+import { IconCollectionSocialMediaModule } from './social-media/icon-collection-social-media.module';
 
 
 const modules = [
@@ -50,6 +51,7 @@ const modules = [
   IconCollectionLeisureModule,
   IconCollectionInstallationModule,
   IconCollectionBuildingModule,
+  IconCollectionSocialMediaModule,
 ];
 
 @NgModule({
