@@ -13,6 +13,7 @@ import { IconCollectionWebshopServiceModule } from './service/icon-collection-we
 import { IconCollectionWebshopTrainformationModule } from './trainformation/icon-collection-webshop-trainformation.module';
 import { IconCollectionWebshopUtilizationModule } from './utilization/icon-collection-webshop-utilization.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconCollectionWebshopArrowsModule,

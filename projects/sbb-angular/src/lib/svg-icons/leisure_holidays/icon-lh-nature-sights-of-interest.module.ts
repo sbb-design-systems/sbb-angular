@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '../icon-base';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-lh-nature-sights-of-interest',
   // tslint:disable-next-line:max-line-length
@@ -17,6 +18,7 @@ export class IconLhNatureSightsOfInterestComponent extends IconBase {
   }
 }
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconLhNatureSightsOfInterestComponent],
   exports: [IconLhNatureSightsOfInterestComponent],

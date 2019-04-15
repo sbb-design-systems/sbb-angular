@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '../icon-base';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-product-ic-3',
   // tslint:disable-next-line:max-line-length
@@ -17,6 +18,7 @@ export class IconProductIc3Component extends IconBase {
   }
 }
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconProductIc3Component],
   exports: [IconProductIc3Component],

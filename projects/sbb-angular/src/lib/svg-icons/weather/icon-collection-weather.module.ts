@@ -27,6 +27,7 @@ import { IconStarkerRegenMitSonneModule } from './icon-starker-regen-mit-sonne.m
 import { IconStratusModule } from './icon-stratus.module';
 import { IconWolkeMondModule } from './icon-wolke-mond.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconBewoelktMitSonneModule,

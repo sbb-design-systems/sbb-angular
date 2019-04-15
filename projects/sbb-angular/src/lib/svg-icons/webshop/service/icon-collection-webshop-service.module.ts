@@ -90,6 +90,7 @@ import { IconServiceYtModule } from './icon-service-yt.module';
 import { IconServiceZModule } from './icon-service-z.module';
 import { IconServiceZmModule } from './icon-service-zm.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconService1Module,

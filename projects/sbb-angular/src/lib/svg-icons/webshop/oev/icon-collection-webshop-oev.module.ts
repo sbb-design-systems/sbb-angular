@@ -14,6 +14,7 @@ import { IconOevBT23Module } from './icon-oev-b-t23.module';
 import { IconOevBT25Module } from './icon-oev-b-t25.module';
 import { IconOevBT29Module } from './icon-oev-b-t29.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconOevBT02Module,

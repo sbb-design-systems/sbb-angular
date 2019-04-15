@@ -1,5 +1,8 @@
 import { HostBinding, Input } from '@angular/core';
 
+/**
+ * @deprecated Use `sbb-angular-icons` instead.
+ */
 export abstract class IconBase {
   /**
    * Configure the size of the SVG.

@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { IconCollectionCampaignsGreenclassModule } from './greenclass/icon-collection-campaigns-greenclass.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconCollectionCampaignsGreenclassModule,

@@ -7,6 +7,7 @@ import { IconEnvironmentcalculatorCo2Module } from './icon-environmentcalculator
 import { IconEnvironmentcalculatorPetrolModule } from './icon-environmentcalculator-petrol.module';
 import { IconEnvironmentcalculatorTimeModule } from './icon-environmentcalculator-time.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconEnvironmentcalculatorCo2Module,

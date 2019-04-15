@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '../../icon-base';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-arrow-right-bold',
   // tslint:disable-next-line:max-line-length
@@ -17,6 +18,7 @@ export class IconArrowRightBoldComponent extends IconBase {
   }
 }
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconArrowRightBoldComponent],
   exports: [IconArrowRightBoldComponent],

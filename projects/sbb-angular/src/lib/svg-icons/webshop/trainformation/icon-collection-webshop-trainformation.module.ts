@@ -18,6 +18,7 @@ import { IconTrainformationSleepCouchetteModule } from './icon-trainformation-sl
 import { IconTrainformationSleepingCarModule } from './icon-trainformation-sleeping-car.module';
 import { IconTrainformationStrollerModule } from './icon-trainformation-stroller.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconTrainformation1ClassModule,

@@ -12,6 +12,7 @@ import { IconTwitterModule } from './icon-twitter.module';
 import { IconXingModule } from './icon-xing.module';
 import { IconYoutubeModule } from './icon-youtube.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconFacebookModule,

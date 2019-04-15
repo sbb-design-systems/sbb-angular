@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { IconArrowRightBoldModule } from './icon-arrow-right-bold.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconArrowRightBoldModule,
