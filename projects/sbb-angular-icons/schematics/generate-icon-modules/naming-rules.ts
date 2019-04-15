@@ -13,12 +13,16 @@ const rules: Array<(svgFile: SvgFile) => void> = [
     .replace(/^Produkt$/, 'TimetableProducts')
     .replace(/^\d+_/, '')),
   file => file.name = file.name
-    .replace(/^sbb_construction/, 'under_construction')
     .replace(/^fog_327/, 'cloud_fog_327')
     .replace(/^cloud_sun_197/, 'cloud_sunshine_197')
     .replace(/^user_group_row_056/, 'user_group_row_linear_056')
     .replace(/^bus_stop_242/, 'bus_sbb_242')
+    .replace(/^sbb_info$/, 'him_info')
+    .replace(/^sbb_disruption$/, 'him_disruption')
+    .replace(/^sbb_construction$/, 'him_construction')
+    .replace(/^sbb_replacementbus$/, 'him_replacementbus')
     .replace(/^sbb_(\d+\_)?/i, '')
+    .replace(/moutain/, 'mountain')
     .replace(/_[ ]?\d+_(small|medium|large)$/, '')
     .replace(/^auslastung_0$/, 'utilization_none')
     .replace(/^auslastung_1$/, 'utilization_low')

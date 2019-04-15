@@ -4,10 +4,10 @@
 import { NgModule } from '@angular/core';
 
 
-import { IconMoutainSunModule } from './icon-moutain-sun.module';
+import { IconMountainSunModule } from './icon-mountain-sun.module';
 
 const modules = [
-  IconMoutainSunModule,
+  IconMountainSunModule,
 ];
 
 @NgModule({

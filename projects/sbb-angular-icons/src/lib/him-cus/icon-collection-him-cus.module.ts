@@ -11,13 +11,13 @@ import { IconUtilizationHighModule } from './icon-utilization-high.module';
 import { IconAddStopModule } from './icon-add-stop.module';
 import { IconAlternativeModule } from './icon-alternative.module';
 import { IconCancellationModule } from './icon-cancellation.module';
-import { IconUnderConstructionModule } from './icon-under-construction.module';
+import { IconHimConstructionModule } from './icon-him-construction.module';
 import { IconDelayModule } from './icon-delay.module';
-import { IconDisruptionModule } from './icon-disruption.module';
-import { IconInfoModule } from './icon-info.module';
+import { IconHimDisruptionModule } from './icon-him-disruption.module';
+import { IconHimInfoModule } from './icon-him-info.module';
 import { IconMissedConnectionModule } from './icon-missed-connection.module';
 import { IconPlatformChangeModule } from './icon-platform-change.module';
-import { IconReplacementbusModule } from './icon-replacementbus.module';
+import { IconHimReplacementbusModule } from './icon-him-replacementbus.module';
 import { IconRerouteModule } from './icon-reroute.module';
 
 const modules = [
@@ -28,13 +28,13 @@ const modules = [
   IconAddStopModule,
   IconAlternativeModule,
   IconCancellationModule,
-  IconUnderConstructionModule,
+  IconHimConstructionModule,
   IconDelayModule,
-  IconDisruptionModule,
-  IconInfoModule,
+  IconHimDisruptionModule,
+  IconHimInfoModule,
   IconMissedConnectionModule,
   IconPlatformChangeModule,
-  IconReplacementbusModule,
+  IconHimReplacementbusModule,
   IconRerouteModule,
 ];
 
