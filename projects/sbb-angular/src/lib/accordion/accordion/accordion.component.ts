@@ -56,6 +56,7 @@ export class AccordionComponent extends CdkAccordion implements IAccordionBase, 
 
   /** Handles keyboard events coming in from the panel headers. */
   handleHeaderKeydown(event: KeyboardEvent) {
+    // tslint:disable-next-line:deprecation
     const { keyCode } = event;
     const manager = this._keyManager;
 

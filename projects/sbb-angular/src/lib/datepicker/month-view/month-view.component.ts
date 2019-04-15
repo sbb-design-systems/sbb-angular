@@ -29,10 +29,10 @@ import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateAdapter } from '../date-adapter';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { DateRange } from '../date-range';
-
+import { SBB_DATEPICKER } from '../datepicker-token';
+import { DatepickerStructure } from '../datepicker-structure';
 
 const DAYS_PER_WEEK = 7;
-
 
 @Component({
   selector: 'sbb-month-view',
@@ -87,9 +87,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
-  @Input()
-  dateRange: DateRange<D>;
-
   /** Emits when a new date is selected. */
   @Output() readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
 
@@ -123,8 +120,11 @@ export class MonthViewComponent<D> implements AfterContentInit {
   /** The names of the weekdays. */
   weekdays: { long: string, narrow: string }[];
 
+  dateRange: DateRange<D> = null;
+
   constructor(private changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats,
+    @Optional() @Inject(SBB_DATEPICKER) datepicker: DatepickerStructure<D>,
     @Optional() public dateAdapter: DateAdapter<D>,
     @Inject(LOCALE_ID) public locale: string) {
 
@@ -132,7 +132,12 @@ export class MonthViewComponent<D> implements AfterContentInit {
       throw createMissingDateImplError('DateAdapter');
     }
     if (!this.dateFormats) {
-      throw createMissingDateImplError('MAT_DATE_FORMATS');
+      throw createMissingDateImplError('SBB_DATE_FORMATS');
+    }
+    if (datepicker && datepicker.slave && datepicker.datepickerInput.value && datepicker.slave.datepickerInput.value) {
+      this.dateRange = new DateRange(datepicker.datepickerInput.value, datepicker.slave.datepickerInput.value);
+    } else if (datepicker && datepicker.master && datepicker.datepickerInput.value && datepicker.master.datepickerInput.value) {
+      this.dateRange = new DateRange(datepicker.master.datepickerInput.value, datepicker.datepickerInput.value);
     }
 
     const firstDayOfWeek = this.dateAdapter.getFirstDayOfWeek();
@@ -169,6 +174,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
   handleCalendarBodyKeydown(event: KeyboardEvent): void {
     const oldActiveDate = this._activeDate;
 
+    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       case LEFT_ARROW:
         this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, -1);
@@ -246,16 +252,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
     this.sbbCalendarBody.focusActiveCell();
   }
 
-  private isRangeLimit(date: D) {
-    if (this.dateAdapter.compareDate(date, this.dateRange.begin) === 0) {
-      return 'begin';
-    }
-    if (this.dateAdapter.compareDate(date, this.dateRange.end) === 0) {
-      return 'end';
-    }
-    return null;
-  }
-
   /** Creates MatCalendarCells for the dates in this month. */
   private createWeekCells() {
     const daysInMonth = this.dateAdapter.getNumDaysInMonth(this.activeDate);
@@ -278,16 +274,26 @@ export class MonthViewComponent<D> implements AfterContentInit {
 
   private shouldApplyRangeBackground(date): string | null {
     if (this.dateRange &&
-      this.dateRange.begin &&
+      this.dateRange.start &&
       this.dateRange.end &&
-      !this.dateAdapter.sameDate(this.dateRange.begin, this.dateRange.end)) {
-      if (this.dateAdapter.compareDate(date, this.dateRange.begin) > 0 &&
+      !this.dateAdapter.sameDate(this.dateRange.start, this.dateRange.end)) {
+      if (this.dateAdapter.compareDate(date, this.dateRange.start) > 0 &&
         this.dateAdapter.compareDate(date, this.dateRange.end) < 0) {
         return 'range';
       }
       return this.isRangeLimit(date);
     }
     return null;
+  }
+
+  private isRangeLimit(date: D) {
+    if (this.dateAdapter.compareDate(date, this.dateRange.start) === 0) {
+      return 'begin';
+    } else if (this.dateAdapter.compareDate(date, this.dateRange.end) === 0) {
+      return 'end';
+    } else {
+      return null;
+    }
   }
 
   /** Date filter for the month */

@@ -7,14 +7,4 @@
   @include defaultDatePickerTheme();
   @include datePickerControls();
   @include datePickerInput();
-
-  &-with-arrows {
-    @include datePickerInput(withArrows);
-    @include datePickerControls(withArrows);
-  }
-
-  &-without-toggle {
-    @include datePickerInput(withoutToggle);
-    @include datePickerControls(withoutToggle);
-  }
 }

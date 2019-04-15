@@ -403,15 +403,6 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   get focused(): boolean {
     return this._focused || this._panelOpen;
   }
-  /**
-   * @deprecated Setter to be removed as this property is intended to be readonly.
-   * @breaking-change 8.0.0
-   */
-  set focused(value: boolean) {
-    this._focused = value;
-  }
-
-
 
   /** Placeholder to be shown if no value has been selected. */
   @Input()
@@ -708,6 +699,7 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Handles keyboard events while the select is closed. */
   private handleClosedKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW ||
       keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW;
@@ -724,6 +716,7 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Handles keyboard events when the selected is open. */
   private handleOpenKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line:deprecation
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
     const manager = this.keyManager;

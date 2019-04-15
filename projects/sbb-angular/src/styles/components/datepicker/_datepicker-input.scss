@@ -1,37 +1,43 @@
-@mixin datePickerInput($mode: default) {
-  @if ($mode == default) {
-    @include datePickerInputDefaults();
-  } @else if ($mode == withArrows) {
-    @include datePickerInputWithArrows();
-  } @else if ($mode == withoutToggle) {
-    @include datePickerInputWithoutToggle();
+@mixin datePickerInput() {
+  position: relative;
+
+  .sbb-date-input {
+    width: 100%;
   }
-}
 
-@mixin datePickerInputDefaults() {
-  .sbb-datepicker-input-wrapper {
-    position: relative;
+  &.sbb-datepicker-toggle-enabled > .sbb-date-input, &.sbb-datepicker-arrows-enabled > .sbb-date-input {
+    padding-left: pxToEm($dateInputOneIconPadding - $dateInputBorderWidth);
+    
+    @include mq($from: desktop4k) {
+      padding-left: pxToEm($dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k);
+    }
 
-    .sbb-datepicker-input {
-      width: 100%;
-      padding-left: pxToEm($defaultPickerInputLeftPadding);
+    @include mq($from: desktop5k) {
+      padding-left: pxToEm($dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k);
     }
   }
-}
+  
+  &.sbb-datepicker-arrows-enabled > .sbb-date-input {
+    padding-right: pxToEm($dateInputOneIconPadding - $dateInputBorderWidth);
+    
+    @include mq($from: desktop4k) {
+      padding-right: pxToEm($dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k);
+    }
 
-@mixin datePickerInputWithArrows() {
-  .sbb-datepicker-input-wrapper {
-    .sbb-datepicker-input {
-      padding-left: pxToEm($withArrowsPickerInputLeftPadding);
-      padding-right: pxToEm($withArrowsPickerInputRightPadding);
+    @include mq($from: desktop5k) {
+      padding-right: pxToEm($dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k);
     }
   }
-}
 
-@mixin datePickerInputWithoutToggle() {
-  .sbb-datepicker-input-wrapper {
-    .sbb-datepicker-input {
-      @include inputFieldPadding();
+  &.sbb-datepicker-arrows-enabled.sbb-datepicker-toggle-enabled > .sbb-date-input {
+    padding-left: pxToEm($dateInputTwoIconPadding - $dateInputBorderWidth);
+    
+    @include mq($from: desktop4k) {
+      padding-left: pxToEm($dateInputTwoIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: pxToEm($dateInputTwoIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k);
     }
   }
 }

@@ -29,10 +29,11 @@ pipeline {
           sh 'npm test'
           sh 'npm run lint'
         }
-        withSonarQubeEnv('Sonar NextGen') {
+        withSonarQubeEnv('SonarCloud IO SBB') {
           script {
             def props = readJSON file: 'package.json'
-            sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.branch=$BRANCH_NAME"
+            sh "npm run sonar -- -Dsonar.projectVersion=${props['version']} -Dsonar.organization=sbb -Dsonar.branch.name=$BRANCH_NAME"
+            //-Dsonar.branch.target=master
           }
         }
       }
@@ -99,7 +100,7 @@ pipeline {
         body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch")
     }
 
     fixed {
@@ -108,8 +109,7 @@ pipeline {
         body: """<p>FIXED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
           <p>See output in attachment.</p>""",
         attachLog: true,
-        to: "lukas.spirig@sbb.ch,davide.aresta@finconsgroup.com,marco.sut@finconsgroup.com,davide.genchi@finconsgroup.com")
+        to: "lukas.spirig@sbb.ch")
     }
   }
 }
-

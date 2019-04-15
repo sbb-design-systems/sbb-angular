@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DateAdapter } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-datepicker-showcase',
@@ -9,43 +10,33 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class DatepickerShowcaseComponent {
   today = new Date();
 
-  minDate = new Date('2018-06-20');
-  maxDate = new Date('2018-12-28');
+  minDate: Date;
+  maxDate: Date;
 
   laData = new FormControl(this.today);
-
+  twoDatepickersForm = new FormGroup({
+    firstDatepicker: new FormControl(),
+    secondDatepicker: new FormControl()
+  });
   dateWithFilter = new FormControl();
+  standaloneDate = new FormControl();
 
-  twoDatepickersForm = new FormGroup(
-    {
-      firstDatepicker: new FormControl(),
-      secondDatepicker: new FormControl()
-    }
-  );
+  toggle = true;
+  arrows = false;
+  disabled = false;
 
-  withoutToggle = false;
-  get withArrows(): boolean {
-    return this._withArrows;
+  constructor(dateAdapter: DateAdapter<Date>) {
+    this.minDate = dateAdapter.addCalendarMonths(dateAdapter.today(), -6);
+    this.maxDate = dateAdapter.addCalendarMonths(dateAdapter.today(), 6);
   }
-  set withArrows(useArrows: boolean) {
-    this._withArrows = useArrows;
-  }
-  private _withArrows = false;
 
-  withoutToggleDisabled = false;
-  withArrowsDisabled = false;
-
-  onlyInput($event) {
-    if ($event.target.checked) {
-      this.withoutToggle = true;
-      this.withArrows = false;
-      this.withoutToggleDisabled = true;
-      this.withArrowsDisabled = true;
+  async onDisabled() {
+    // Wait a tick to ensure this.disabled is updated
+    await Promise.resolve();
+    if (this.disabled) {
+      this.laData.disable();
     } else {
-      this.withoutToggle = false;
-      this.withArrows = true;
-      this.withoutToggleDisabled = false;
-      this.withArrowsDisabled = false;
+      this.laData.enable();
     }
   }
 
@@ -65,7 +56,7 @@ export class DatepickerShowcaseComponent {
     console.log('DATE_INPUT', $event);
   }
 
-  filterDates(date: Date): boolean {
+  filterDates = (date: Date): boolean => {
     return date.getDate() === 1;
   }
 }

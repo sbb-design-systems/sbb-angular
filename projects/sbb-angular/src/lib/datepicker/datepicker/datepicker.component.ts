@@ -1,298 +1,487 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import {
-  Component,
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+  PositionStrategy,
+  ScrollStrategy,
+} from '@angular/cdk/overlay';
+import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
+import { filter, first, map, tap } from 'rxjs/operators';
+import {
   ChangeDetectionStrategy,
-  ViewEncapsulation,
-  ViewChild,
-  Input,
-  forwardRef,
-  Optional,
-  ChangeDetectorRef,
-  OnInit,
-  Output,
+  Component,
+  ComponentRef,
   EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  NgZone,
+  Optional,
+  Output,
+  ViewContainerRef,
+  ViewEncapsulation,
+  OnDestroy,
+  LOCALE_ID,
   HostBinding,
-  HostListener
+  ChangeDetectorRef
 } from '@angular/core';
-import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
-import {
-  ControlValueAccessor,
-  Validator,
-  AbstractControl,
-  ValidationErrors,
-  NG_VALUE_ACCESSOR,
-  NG_VALIDATORS
-} from '@angular/forms';
-import { DatepickerInputDirective, SbbDatepickerInputEvent } from '../datepicker-input/datepicker-input.directive';
+import { merge, Subject, Subscription } from 'rxjs';
+import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
+import { DateInputDirective } from '../date-input/date-input.directive';
 import { DateAdapter } from '../date-adapter';
-import { DateRange } from '../date-range';
-import { DatepickerToggleComponent } from '../datepicker-toggle/datepicker-toggle.component';
+import { createMissingDateImplError } from '../datepicker-errors';
+import { SBB_DATEPICKER } from '../datepicker-token';
 
+/** Used to generate a unique ID for each datepicker instance. */
+let datepickerUid = 0;
 
-export const SBB_DATEPICKER_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line:no-use-before-declare
-  useExisting: forwardRef(() => DatepickerComponent),
-  multi: true
-};
+/** Injection token that determines the scroll handling while the calendar is open. */
+export const SBB_DATEPICKER_SCROLL_STRATEGY =
+  new InjectionToken<() => ScrollStrategy>('sbb-datepicker-scroll-strategy');
 
-export const SBB_DATEPICKER_VALIDATORS: any = {
-  provide: NG_VALIDATORS,
-  // tslint:disable-next-line:no-use-before-declare
-  useExisting: forwardRef(() => DatepickerComponent),
-  multi: true
+/** @docs-private */
+export function SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
+  return () => overlay.scrollStrategies.reposition();
+}
+
+/** @docs-private */
+export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
+  provide: SBB_DATEPICKER_SCROLL_STRATEGY,
+  deps: [Overlay],
+  useFactory: SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY,
 };
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'sbb-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
-  providers: [
-    SBB_DATEPICKER_VALUE_ACCESSOR,
-    SBB_DATEPICKER_VALIDATORS
-  ],
+  exportAs: 'sbbDatepicker',
+  providers: [{ provide: SBB_DATEPICKER, useExisting: DatepickerComponent }],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class DatepickerComponent implements ControlValueAccessor, Validator, OnInit {
+export class DatepickerComponent<D> implements OnDestroy {
+  /** An input indicating the type of the custom header component for the calendar, if set. */
+  @Input() calendarHeaderComponent: ComponentType<any>;
 
-
-  /** The minimum valid date. */
+  /** The date to open the calendar to initially. */
   @Input()
-  set min(value: Date) {
-    this.datepickerInput.min = value;
+  get startAt(): D | null {
+    // If an explicit startAt is set we start there, otherwise we start at whatever the currently
+    // selected value is.
+    return this._startAt || (this.datepickerInput ? this.datepickerInput.value : null);
   }
-  get min() {
-    return this.datepickerInput.min;
+  set startAt(value: D | null) {
+    this._startAt = this.getValidDateOrNull(this.dateAdapter.deserialize(value));
   }
+  private _startAt: D | null;
 
-  /** The maximum valid date. */
+  /** The view that the calendar should start in. */
+  @Input() startView = 'month';
+
+  /** Whether the datepicker pop-up should be disabled. */
   @Input()
-  set max(value: Date) {
-    this.datepickerInput.max = value;
+  get disabled(): boolean {
+    return this._disabled === undefined && this.datepickerInput ?
+      this.datepickerInput.disabled : !!this._disabled;
   }
-  get max() {
-    return this.datepickerInput.max;
+  set disabled(value: boolean) {
+    const newValue = coerceBooleanProperty(value);
+
+    if (newValue !== this._disabled) {
+      this._disabled = newValue;
+      this.disabledChange.next(newValue);
+    }
   }
+  private _disabled: boolean;
 
-  /** Whether the datepicker-input is disabled. */
-  @Input()
-  disabled: boolean;
-
-  /**
-   * Property active when a toDatepicker is defined
-   */
-  dateRange: DateRange<Date>;
-
-  /**
-  * Embedded datepicker with calendar header and body, switches for next/prev months and years
-  */
-  @ViewChild('picker') embeddedDatepicker: DatepickerEmbeddableComponent<Date>;
-  @ViewChild(DatepickerToggleComponent) datepickerToggle: DatepickerToggleComponent<Date>;
+  /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
+  @Input() panelClass: string | string[];
 
   /**
    * Second datepicker to be used in 2 datepickers use case
    */
   @Input()
-  set attachDatepicker(value: DatepickerComponent) {
-    if (!value) {
-      return;
+  set slave(value: DatepickerComponent<D> | null) {
+    if (value !== this._slave && this._slave) {
+      this._slave.master = null;
     }
-    this.attachedDatepicker = value;
-    this.dateRange = new DateRange();
-    this.datepickerInput.dateRange = this.dateRange;
-    this.attachedDatepicker.datepickerInput.dateRange = this.dateRange;
-
+    if (value) {
+      value.master = this;
+    }
+    this._slave = value;
   }
-  attachedDatepicker: DatepickerComponent;
+  get slave(): DatepickerComponent<D> | null { return this._slave; }
+  _slave: DatepickerComponent<D> | null;
 
-  @HostBinding('class')
-  cssClass = 'sbb-datepicker';
+  master: DatepickerComponent<D> | null;
+
+  @HostBinding('class.sbb-datepicker') cssClass = true;
 
   /**
-   * Embedded input field connected to the datepicker
+   * Whether arrows are enabled, which allow navigation to the next/previous day.
+   * They also support min and max date limits.
+   * Defaults to false.
    */
-  @ViewChild(DatepickerInputDirective) datepickerInput: DatepickerInputDirective<Date>;
+  @HostBinding('class.sbb-datepicker-arrows-enabled')
+  @Input()
+  set arrows(value: any) { this._arrows = coerceBooleanProperty(value); }
+  get arrows() { return this._arrows; }
+  private _arrows = false;
+
+  /**
+   * Whether the datepicker toggle is enabled. Defaults to true.
+   */
+  @HostBinding('class.sbb-datepicker-toggle-enabled')
+  @Input()
+  set toggle(value: any) { this._toggle = coerceBooleanProperty(value); }
+  get toggle() { return this._toggle; }
+  private _toggle = true;
 
   /** Emits when the datepicker has been opened. */
-  @Output() opened: EventEmitter<void> = new EventEmitter<void>();
+  // tslint:disable-next-line:no-output-rename
+  @Output('opened') openedStream: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the datepicker has been closed. */
-  @Output() closed: EventEmitter<void> = new EventEmitter<void>();
+  // tslint:disable-next-line:no-output-rename
+  @Output('closed') closedStream: EventEmitter<void> = new EventEmitter<void>();
 
 
-  /** Emits when a `change` event is fired on this `<input>`. */
-  @Output() readonly dateChange: EventEmitter<SbbDatepickerInputEvent<Date>> =
-    new EventEmitter<SbbDatepickerInputEvent<Date>>();
-
-  /** Emits when an `input` event is fired on this `<input>`. */
-  @Output() readonly dateInput: EventEmitter<SbbDatepickerInputEvent<Date>> =
-    new EventEmitter<SbbDatepickerInputEvent<Date>>();
-
-  /**
-   * Scrolls used to go directly to the next/prev day. They also support min and max date limits.
-   */
+  /** Whether the calendar is open. */
   @Input()
-  @HostBinding('class.sbb-datepicker-with-arrows')
-  get withArrows() {
-    return this.isWithArrows;
-  }
-  set withArrows(withArrows: any) {
-    this.isWithArrows = withArrows === '' ? true : Boolean(withArrows);
-    this.checkArrows();
-    this.embeddedDatepicker.withArrows = this.isWithArrows;
-  }
-  private isWithArrows = false;
+  get opened(): boolean { return this._opened; }
+  set opened(value: boolean) { value ? this.open() : this.close(); }
+  private _opened = false;
 
-  @Input()
-  @HostBinding('class.sbb-datepicker-without-toggle')
-  get withoutToggle() {
-    return this.isWithoutToggle;
-  }
-  set withoutToggle(withoutToggle: any) {
-    this.isWithoutToggle = withoutToggle === '' ? true : Boolean(withoutToggle);
-  }
-  private isWithoutToggle = false;
+  /** The id for the datepicker calendar. */
+  id = `sbb-datepicker-${datepickerUid++}`;
 
-  leftArrow: boolean;
-  rightArrow: boolean;
+  /** The currently selected date. */
+  get selected(): D | null { return this.validSelected; }
+  set selected(value: D | null) { this.validSelected = value; }
+  private validSelected: D | null = null;
 
-  /** Function that can be used to filter out dates within the datepicker. */
-  @Input()
-  set validDateFilter(fn: (date: Date | null) => boolean) {
-    this.datepickerInput.dateFilter = fn;
-    this.datepickerInput.validatorOnChange();
+  /** The minimum selectable date. */
+  get minDate(): D | null {
+    return this.datepickerInput && this.datepickerInput.min;
   }
 
-  private isDayScrollApplicable(): boolean {
-    return this.withArrows && !!this.datepickerInput.value;
+  /** The maximum selectable date. */
+  get maxDate(): D | null {
+    return this.datepickerInput && this.datepickerInput.max;
   }
 
+  get dateFilter(): (date: D | null) => boolean {
+    return this.datepickerInput && this.datepickerInput.dateFilter;
+  }
+
+  get prevDayActive() {
+    return this.arrows
+      && this.datepickerInput
+      && !!this.datepickerInput.value
+      && (!this.minDate || this.dateAdapter.compareDate(this.datepickerInput.value, this.minDate) > 0);
+  }
+
+  get nextDayActive() {
+    return this.arrows
+      && this.datepickerInput
+      && !!this.datepickerInput.value
+      && (!this.maxDate || this.dateAdapter.compareDate(this.datepickerInput.value, this.maxDate) < 0);
+  }
+
+  /** A reference to the overlay when the calendar is opened as a popup. */
+  popupRef: OverlayRef;
+
+  /** A portal containing the calendar for this datepicker. */
+  private calendarPortal: ComponentPortal<DatepickerContentComponent<D>>;
+
+  /** Reference to the component instantiated in popup mode. */
+  private popupComponentRef: ComponentRef<DatepickerContentComponent<D>> | null;
+
+  /** The element that was focused before the datepicker was opened. */
+  private focusedElementBeforeOpen: HTMLElement | null = null;
+
+  /** Subscription to value changes in the associated input element. */
+  private inputSubscription = Subscription.EMPTY;
+
+  private inputDisabledSubscription = Subscription.EMPTY;
+
+  private slaveSubscription = Subscription.EMPTY;
+
+  private posStrategySubsription = Subscription.EMPTY;
+
+  /** The input element this datepicker is associated with. */
+  datepickerInput: DateInputDirective<D>;
+
+  /** Emits when the datepicker is disabled. */
+  readonly disabledChange = new Subject<boolean>();
+
+  /** Emits new selected date when selected date changes. */
+  readonly selectedChanged = new Subject<D>();
 
   constructor(
-    @Optional() public dateAdapter: DateAdapter<Date>,
-    private changeDetectorRef: ChangeDetectorRef) {
+    private _overlay: Overlay,
+    private ngZone: NgZone,
+    private viewContainerRef: ViewContainerRef,
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private scrollStrategy,
+    @Optional() private dateAdapter: DateAdapter<D>,
+    @Optional() @Inject(DOCUMENT) private _document: any,
+    @Inject(LOCALE_ID) public locale: string
+  ) {
+    if (!this.dateAdapter) {
+      throw createMissingDateImplError('DateAdapter');
+    }
+    this.dateAdapter.setLocale(locale);
   }
 
-  private checkArrows() {
-    this.rightArrow = false;
-    this.leftArrow = false;
-    if (this.isDayScrollApplicable()) {
-      if (this.min) {
-        this.leftArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.min) > 0;
-      } else {
-        this.leftArrow = true;
+  ngOnDestroy() {
+    this.close();
+    this.inputSubscription.unsubscribe();
+    this.inputDisabledSubscription.unsubscribe();
+    this.slaveSubscription.unsubscribe();
+    this.disabledChange.complete();
 
-      }
-      if (this.max) {
-        this.rightArrow = this.dateAdapter.compareDate(this.embeddedDatepicker.selected, this.max) < 0;
-      } else {
-        this.rightArrow = true;
-      }
+    if (this.popupRef) {
+      this.posStrategySubsription.unsubscribe();
+      this.popupRef.dispose();
+      this.popupComponentRef = null;
     }
+  }
+
+  /** Selects the given date */
+  select(date: D): void {
+    const oldValue = this.selected;
+    this.selected = date;
+    if (!this.dateAdapter.sameDate(oldValue, this.selected)) {
+      this.selectedChanged.next(date);
+    }
+  }
+
+  nextDay() {
+    if (this.selected) {
+      this.selected = this.dateAdapter.addCalendarDays(this.selected, 1);
+      this.selectedChanged.next(this.selected);
+    }
+  }
+
+  prevDay() {
+    if (this.selected) {
+      this.selected = this.dateAdapter.addCalendarDays(this.selected, -1);
+      this.selectedChanged.next(this.selected);
+    }
+  }
+
+  /**
+   * Register an input with this datepicker.
+   * @param input The datepicker input to register with this datepicker.
+   */
+  registerInput(input: DateInputDirective<D>): void {
+    if (this.datepickerInput) {
+      throw Error('A SbbDatepicker can only be associated with a single input.');
+    }
+    this.datepickerInput = input;
+    this.inputSubscription =
+      this.datepickerInput.valueChange.subscribe((value: D | null) => this.selected = value);
+    this.inputDisabledSubscription =
+      this.datepickerInput.disabledChange.subscribe(() => this.changeDetectorRef.markForCheck());
+    this.slaveSubscription = merge(
+      this.closedStream,
+      this.datepickerInput.inputBlurred,
+      this.datepickerInput.valueChange)
+      .pipe(
+        map(() => this.datepickerInput.value),
+        filter(v => !!this.slave && !!v),
+        map(v => !!this.slave.selected && this.dateAdapter.compareDate(v, this.slave.selected) > 0),
+        tap(r => r ? this.slave.datepickerInput.value = null : undefined),
+        filter(() => !this.slave.datepickerInput.value))
+      .subscribe(() => this.slave.open());
+  }
+
+  /** Open the calendar. */
+  open(): void {
+    if (this._opened || this.disabled) {
+      return;
+    }
+    if (!this.datepickerInput) {
+      throw Error('Attempted to open an SbbDatepicker with no associated input.');
+    }
+    if (this._document) {
+      this.focusedElementBeforeOpen = this._document.activeElement;
+    }
+
+    this.openAsPopup();
+    this._opened = true;
+    this.openedStream.emit();
+  }
+
+  /** Close the calendar. */
+  close(): void {
+    if (!this._opened) {
+      return;
+    }
+    if (this.popupRef && this.popupRef.hasAttached()) {
+      this.popupRef.detach();
+    }
+    if (this.calendarPortal && this.calendarPortal.isAttached) {
+      this.calendarPortal.detach();
+    }
+
+    const completeClose = () => {
+      // The `_opened` could've been reset already if
+      // we got two events in quick succession.
+      if (this._opened) {
+        this._opened = false;
+        this.closedStream.emit();
+        this.focusedElementBeforeOpen = null;
+      }
+    };
+
+    if (this.focusedElementBeforeOpen &&
+      typeof this.focusedElementBeforeOpen.focus === 'function') {
+      // Because IE moves focus asynchronously, we can't count on it being restored before we've
+      // marked the datepicker as closed. If the event fires out of sequence and the element that
+      // we're refocusing opens the datepicker on focus, the user could be stuck with not being
+      // able to close the calendar at all. We work around it by making the logic, that marks
+      // the datepicker as closed, async as well.
+      this.focusedElementBeforeOpen.focus();
+      setTimeout(completeClose);
+    } else {
+      completeClose();
+    }
+  }
+
+  private getPanelClasses(): Array<string> {
+    return ['sbb-datepicker-popup', this.arrows ? 'sbb-datepicker-with-arrows' : 'sbb-datepicker-no-arrows'];
+  }
+
+  /** Open the calendar as a popup. */
+  private openAsPopup(): void {
+    if (!this.calendarPortal) {
+      this.calendarPortal = new ComponentPortal<DatepickerContentComponent<D>>(
+        DatepickerContentComponent, this.viewContainerRef);
+    }
+
+    if (!this.popupRef) {
+      this.createPopup();
+    } else {
+      this.popupRef.getConfig().panelClass = this.getPanelClasses();
+    }
+
+    if (!this.popupRef.hasAttached()) {
+      this.popupComponentRef = this.popupRef.attach(this.calendarPortal);
+      this.popupComponentRef.instance.datepicker = this;
+
+      // Update the position once the calendar has rendered.
+      this.ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
+        this.popupRef.updatePosition();
+      });
+    }
+  }
+
+  /** Create the popup. */
+  private createPopup(): void {
+    const overlayConfig = new OverlayConfig({
+      positionStrategy: this.createPopupPositionStrategy(),
+      hasBackdrop: true,
+      backdropClass: 'sbb-overlay-transparent-backdrop',
+      scrollStrategy: this.scrollStrategy(),
+      panelClass: this.getPanelClasses(),
+    });
+
+    this.popupRef = this._overlay.create(overlayConfig);
+    this.popupRef.overlayElement.setAttribute('role', 'dialog');
+
+    merge(
+      this.popupRef.backdropClick(),
+      this.popupRef.detachments(),
+      this.popupRef.keydownEvents().pipe(filter(event => {
+        // Closing on alt + up is only valid when there's an input associated with the datepicker.
+        // tslint:disable-next-line:deprecation
+        return event.keyCode === ESCAPE || (this.datepickerInput && event.altKey && event.keyCode === UP_ARROW);
+      }))
+    ).subscribe(() => this.close());
+  }
+
+  /** Create the popup PositionStrategy. */
+  private createPopupPositionStrategy(): PositionStrategy {
+    const posStrategy = this._overlay.position()
+      .flexibleConnectedTo(this.datepickerInput.getConnectedOverlayOrigin())
+      .withTransformOriginOn('.sbb-datepicker-content')
+      .withFlexibleDimensions(false)
+      .withViewportMargin(8)
+      .withPush(false)
+      .withPositions([
+        {
+          originX: 'start',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top'
+        },
+        {
+          originX: 'start',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom'
+        },
+        {
+          originX: 'end',
+          originY: 'bottom',
+          overlayX: 'end',
+          overlayY: 'top'
+        },
+        {
+          originX: 'end',
+          originY: 'top',
+          overlayX: 'end',
+          overlayY: 'bottom'
+        }
+      ]);
+
+    this.posStrategySubsription = posStrategy.positionChanges.subscribe((pos) => {
+      if (pos.connectionPair.originY === 'top') {
+        this.popupRef.hostElement.classList.add('sbb-datepicker-popup-above');
+      } else {
+        this.popupRef.hostElement.classList.remove('sbb-datepicker-popup-above');
+      }
+    });
+
+    return posStrategy;
+  }
+
+  /**
+   * @param obj The object to check.
+   * @returns The given object if it is both a date instance and valid, otherwise null.
+   */
+  private getValidDateOrNull(obj: any): D | null {
+    return (this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj)) ? obj : null;
   }
 
   /**
   * Manages the 2nd datepicker linked to this instance.
   * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
-  */
-  private handleRangeDatepicker(beginDate: Date, arrowClick: boolean = false) {
-    if (this.attachedDatepicker) {
-      if (beginDate && this.dateAdapter.isValid(beginDate)) {
-        this.dateRange.begin = beginDate;
-        if (!this.attachedDatepicker.datepickerInput.value && !arrowClick) {
-          this.attachedDatepicker.embeddedDatepicker.open();
-        } else {
-          if (this.dateAdapter.compareDate(beginDate, this.attachedDatepicker.datepickerInput.value) > 0) {
-            this.attachedDatepicker.datepickerInput.value = null;
-            if (!arrowClick) {
-              this.attachedDatepicker.embeddedDatepicker.open();
-            }
-          } else {
-            this.dateRange.end = this.attachedDatepicker.datepickerInput.value;
-          }
-        }
-        this.attachedDatepicker.min = beginDate;
+  private handleRangeDatepicker(beginDate: D, arrowClick: boolean = false) {
+    if (this.slave || !beginDate || !this.dateAdapter.isValid(beginDate)) {
+      return;
+    }
+
+    this.dateRange.begin = beginDate;
+    this.slave.datepickerInput.min = beginDate;
+    if (!this.slave.datepickerInput.value && !arrowClick) {
+      this.slave.open();
+    } else if (this.dateAdapter.compareDate(beginDate, this.slave.datepickerInput.value) > 0) {
+      this.slave.datepickerInput.value = null;
+      if (!arrowClick) {
+        this.slave.open();
       }
+    } else {
+      this.dateRange.end = this.slave.datepickerInput.value;
     }
   }
-
-  ngOnInit(): void {
-    this.datepickerInput.valueChange.subscribe(newDateValue => {
-      this.embeddedDatepicker.selected = newDateValue;
-      if (this.withArrows) {
-        this.checkArrows();
-      }
-      this.changeDetectorRef.markForCheck();
-
-    });
-
-    this.embeddedDatepicker.closedStream.subscribe(() => {
-      this.closed.emit();
-      this.handleRangeDatepicker(this.datepickerInput.value);
-    });
-
-    this.embeddedDatepicker.openedStream.subscribe(() => {
-      this.opened.emit();
-    });
-
-    this.datepickerInput.dateChange.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
-      this.dateChange.emit(datepickerInputEvent);
-    });
-
-    this.datepickerInput.dateInput.subscribe((datepickerInputEvent: SbbDatepickerInputEvent<Date>) => {
-      this.dateInput.emit(datepickerInputEvent);
-    });
-
-    this.datepickerInput.inputBlurred.subscribe(() => {
-      this.handleRangeDatepicker(this.datepickerInput.value);
-    });
-
-    if (this.attachedDatepicker) {
-      this.attachedDatepicker.datepickerInput.valueChange.subscribe(newEndDateValue => {
-        this.dateRange.end = newEndDateValue;
-      });
-    }
-  }
-
-  /**
-  * Adds or removes a day when clicking on the arrow buttons on the left of the input
   */
-  scrollToPreviousDay() {
-    this.scrollToDay('prev');
-  }
-
-  /**
-  * Adds or removes a day when clicking on the arrow buttons on the right/left of the input
-  */
-  scrollToNextDay() {
-    this.scrollToDay('next');
-  }
-
-  private scrollToDay(value: 'prev' | 'next') {
-    value === 'prev' ? this.embeddedDatepicker.prevDay() : this.embeddedDatepicker.nextDay();
-    this.checkArrows();
-    this.handleRangeDatepicker(this.datepickerInput.value, true);
-  }
-
-  writeValue(obj: any): void {
-    this.datepickerInput.writeValue(obj);
-  }
-  registerOnChange(fn: any): void {
-    this.datepickerInput.registerOnChange(fn);
-  }
-  registerOnTouched(fn: any): void {
-    this.datepickerInput.registerOnTouched(fn);
-  }
-  setDisabledState(isDisabled: boolean): void {
-    this.datepickerInput.setDisabledState(isDisabled);
-  }
-
-  registerOnValidatorChange?(fn: () => void): void {
-    this.datepickerInput.registerOnValidatorChange(fn);
-  }
-
-  validate(c: AbstractControl): ValidationErrors | null {
-    return this.datepickerInput.validate(c);
-  }
 
 }

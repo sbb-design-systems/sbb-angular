@@ -12,7 +12,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { Subscription, of, merge } from 'rxjs';
-import { DatepickerEmbeddableComponent } from '../datepicker-embeddable/datepicker-embeddable.component';
+import { DatepickerComponent } from '../datepicker/datepicker.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
@@ -24,9 +24,6 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
 
   private stateChanges = Subscription.EMPTY;
-  /** Datepicker instance that the button will toggle. */
-  // tslint:disable-next-line:no-input-rename
-  @Input('for') datepicker: DatepickerEmbeddableComponent<D>;
 
   /** Tabindex for the toggle. */
   @Input() tabIndex: number | null;
@@ -43,6 +40,7 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
+    private datepicker: DatepickerComponent<D>,
     @Attribute('tabindex') defaultTabIndex: string
   ) {
 

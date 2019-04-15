@@ -137,6 +137,7 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   /** Handle keydown event calling to toggle() if appropriate. */
   @HostListener('keydown', ['$event'])
   keydown(event: KeyboardEvent) {
+    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       // Toggle for space and enter keys.
       case SPACE:
