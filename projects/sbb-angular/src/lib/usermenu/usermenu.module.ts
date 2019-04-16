@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserMenuComponent } from './usermenu/usermenu.component';
 import { DropdownModule } from '../dropdown/dropdown';
-import { IconArrowSmallDownModule, IconUserModule } from '../svg-icons/svg-icons';
+import { IconChevronSmallDownModule, IconUserModule } from 'sbb-angular-icons';
 
 @NgModule({
   declarations: [UserMenuComponent],
   imports: [
-    CommonModule, DropdownModule,IconArrowSmallDownModule,IconUserModule
+    CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule
   ],
-  exports: [UserMenuComponent,DropdownModule]
+  exports: [UserMenuComponent, DropdownModule]
 })
 export class UserMenuModule { }

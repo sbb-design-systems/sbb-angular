@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular-icons",
-  "version": "0.0.1",
+  "version": "0.0.0-PLACEHOLDER",
   "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": "7.0.0-rc.0 || ^7.0.0",

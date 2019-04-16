@@ -4,12 +4,12 @@ import { HighlightPipe } from './option/highlight.pipe';
 import { OptionComponent } from './option/option.component';
 import { OptionGroupComponent } from './option-group/option-group.component';
 import { PseudoCheckboxComponent } from './option/pseudo-checkbox';
-import { IconCheckModule } from '../svg-icons/svg-icons';
+import { IconTickModule } from 'sbb-angular-icons';
 
 @NgModule({
   imports: [
     CommonModule,
-    IconCheckModule,
+    IconTickModule,
   ],
   declarations: [
     OptionComponent,

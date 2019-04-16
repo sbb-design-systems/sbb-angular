@@ -27,6 +27,6 @@ import { CheckboxPanelModule } from 'sbb-angular';
 ```html
 <h4>Multiple checkbox panel with a subtitle and an icon</h4>
 <sbb-checkbox-panel name="single-option" value="single-option" [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-    <sbb-icon-comfort icon></sbb-icon-comfort>
+    <sbb-icon-heart icon></sbb-icon-heart>
 </sbb-checkbox-panel>
 ```

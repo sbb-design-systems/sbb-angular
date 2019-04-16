@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import {
-  IconCollectionModule,
   TextareaModule,
   FieldModule,
   LinksModule,
@@ -43,7 +42,7 @@ import {
   TabsModule,
   TagModule
 } from 'sbb-angular';
-
+import { IconCollectionModule } from 'sbb-angular-icons';
 
 import { LinksShowcaseComponent } from './links-showcase/links-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';

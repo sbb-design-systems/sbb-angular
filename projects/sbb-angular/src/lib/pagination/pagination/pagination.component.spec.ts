@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ButtonModule } from '../../button/button';
-import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconCollectionModule } from 'sbb-angular-icons';
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
 import { NavigationPageDescriptor } from '../navigation-page-descriptor.model';

@@ -239,7 +239,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer<Observable<SBBOptionSelectionChange>>(() => {
+  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer<SBBOptionSelectionChange>(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
     }

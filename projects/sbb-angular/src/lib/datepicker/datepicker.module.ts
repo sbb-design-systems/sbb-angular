@@ -17,13 +17,13 @@ import { DateAdapter } from './date-adapter';
 import { NativeDateAdapter } from './native-date-adapter';
 import { SBB_DATE_FORMATS } from './date-formats';
 import { DATE_PIPE_DATE_FORMATS } from './date-pipe-date-formats';
-import { IconArrowSmallLeftModule, IconArrowSmallRightModule, IconCalendarModule } from '../svg-icons/svg-icons';
+import { IconChevronSmallLeftModule, IconChevronSmallRightModule, IconCalendarModule } from 'sbb-angular-icons';
 
 @NgModule({
   imports: [
     CommonModule,
-    IconArrowSmallLeftModule,
-    IconArrowSmallRightModule,
+    IconChevronSmallLeftModule,
+    IconChevronSmallRightModule,
     IconCalendarModule,
     PortalModule,
     A11yModule,

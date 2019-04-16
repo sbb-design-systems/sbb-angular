@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconCollectionModule } from 'sbb-angular-icons';
 import { NotificationComponent, NotificationType } from './notification.component';
 
 @Component({

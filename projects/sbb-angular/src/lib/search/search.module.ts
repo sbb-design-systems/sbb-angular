@@ -6,14 +6,14 @@ import { PortalModule } from '@angular/cdk/portal';
 import { AutocompleteModule } from '../autocomplete/autocomplete';
 import { ButtonModule } from '../button/button.module';
 import { OptionModule } from '../option/option.module';
-import { IconSearchModule } from '../svg-icons/svg-icons';
+import { IconMagnifyingGlassModule } from 'sbb-angular-icons';
 import { SearchIconDirective } from './search-icon.directive';
 
 @NgModule({
   declarations: [SearchComponent, SearchIconDirective],
   imports: [
     CommonModule,
-    IconSearchModule,
+    IconMagnifyingGlassModule,
     PortalModule,
     OverlayModule,
     AutocompleteModule,

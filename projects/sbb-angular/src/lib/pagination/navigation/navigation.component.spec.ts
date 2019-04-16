@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconCollectionModule } from 'sbb-angular-icons';
 import { NavigationComponent } from './navigation.component';
 
 describe('NavigationComponent', () => {

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconCollectionModule } from 'sbb-angular-icons';
 import { LinkComponent } from './link.component';
 
 describe('LinkComponent', () => {
@@ -33,11 +33,11 @@ describe('LinkComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have two sbb-icon-arrow-down components', () => {
+  it('should have two sbb-icon-arrow-right components', () => {
     component.icon = 'arrow';
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-down'));
+    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(2);
   });
@@ -61,11 +61,11 @@ describe('LinkComponent', () => {
     expect(icons.length).toBe(1);
   });
 
-  it('should have a sbb-icon-arrow-down components in stretch mode', () => {
+  it('should have a sbb-icon-arrow-right components in stretch mode', () => {
     component.mode = 'stretch';
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-down'));
+    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(1);
   });
@@ -80,7 +80,7 @@ describe('LinkComponent', () => {
     // #666666 == rgb(102,102,102)
     expect(elementStyle.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
 
-    const icon = fixture.debugElement.query(By.css('sbb-icon-arrow-down'));
+    const icon = fixture.debugElement.query(By.css('sbb-icon-arrow-right'));
     expect(icon).toBeTruthy();
 
     const iconStyle = getComputedStyle(icon.nativeElement);

@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, Directive, Input, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
+import { iconComponentsMetaInformation } from 'sbb-angular-icons';
 import { UiIcon } from '../shared/ui-icon';
-import { iconComponentDetails } from '../svg-icon-collection';
 
 @Directive({
   selector: '[sbbIconViewer]'
@@ -16,7 +16,7 @@ export class IconViewerDirective implements OnChanges {
   constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) { }
 
   loadIconComponent(): void {
-    const component = iconComponentDetails.find(i => i.name === this.sbbIconViewer.name).component;
+    const component = iconComponentsMetaInformation.find(i => i.name === this.sbbIconViewer.name).component;
     const componentFactory = this.resolver.resolveComponentFactory(component);
     const componentRef = this.viewContainer.createComponent(componentFactory);
     if (this.size) {

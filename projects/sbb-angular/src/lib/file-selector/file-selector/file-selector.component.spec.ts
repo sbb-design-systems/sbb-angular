@@ -188,15 +188,15 @@ describe('FileSelectorComponent using mock component', () => {
 
     const typeIconWrapper = fileComponent.queryAll(By.css('.sbb-file-selector-list-type-icon'));
 
-    expect(typeIconWrapper[0].query(By.css('sbb-icon-sound'))).toBeTruthy();
-    expect(typeIconWrapper[1].query(By.css('sbb-icon-doc'))).toBeTruthy();
-    expect(typeIconWrapper[2].query(By.css('sbb-icon-doc-generic'))).toBeTruthy();
-    expect(typeIconWrapper[3].query(By.css('sbb-icon-image'))).toBeTruthy();
-    expect(typeIconWrapper[4].query(By.css('sbb-icon-pdf'))).toBeTruthy();
-    expect(typeIconWrapper[5].query(By.css('sbb-icon-image'))).toBeTruthy();
-    expect(typeIconWrapper[6].query(By.css('sbb-icon-image'))).toBeTruthy();
-    expect(typeIconWrapper[7].query(By.css('sbb-icon-video'))).toBeTruthy();
-    expect(typeIconWrapper[8].query(By.css('sbb-icon-doc'))).toBeTruthy();
-    expect(typeIconWrapper[9].query(By.css('sbb-icon-zip'))).toBeTruthy();
+    expect(typeIconWrapper[0].query(By.css('sbb-icon-document-sound'))).toBeTruthy();
+    expect(typeIconWrapper[1].query(By.css('sbb-icon-document-text'))).toBeTruthy();
+    expect(typeIconWrapper[2].query(By.css('sbb-icon-document-standard'))).toBeTruthy();
+    expect(typeIconWrapper[3].query(By.css('sbb-icon-document-image'))).toBeTruthy();
+    expect(typeIconWrapper[4].query(By.css('sbb-icon-document-pdf'))).toBeTruthy();
+    expect(typeIconWrapper[5].query(By.css('sbb-icon-document-image'))).toBeTruthy();
+    expect(typeIconWrapper[6].query(By.css('sbb-icon-document-image'))).toBeTruthy();
+    expect(typeIconWrapper[7].query(By.css('sbb-icon-document-video'))).toBeTruthy();
+    expect(typeIconWrapper[8].query(By.css('sbb-icon-document-text'))).toBeTruthy();
+    expect(typeIconWrapper[9].query(By.css('sbb-icon-document-zip'))).toBeTruthy();
   });
 });

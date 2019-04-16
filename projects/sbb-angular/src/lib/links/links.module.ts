@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import {
-  IconArrowDownModule,
+  IconArrowRightModule,
   IconDownloadModule,
   IconFacebookModule,
   IconGoogleplusModule,
@@ -12,14 +12,14 @@ import {
   IconTwitterModule,
   IconXingModule,
   IconYoutubeModule,
-} from '../svg-icons/svg-icons';
+} from 'sbb-angular-icons';
 import { LinkComponent } from './link/link.component';
 import { SocialLinkComponent } from './social-link/social-link.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    IconArrowDownModule,
+    IconArrowRightModule,
     IconDownloadModule,
     IconFacebookModule,
     IconGoogleplusModule,

@@ -14,13 +14,13 @@ import {
   LightboxHeaderComponent,
   LightboxTitleDirective,
 } from './lightbox/lightbox-content';
-import { IconCloseModule } from '../svg-icons/svg-icons';
+import { IconCrossModule } from 'sbb-angular-icons';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    IconCloseModule,
+    IconCrossModule,
     OverlayModule,
     PortalModule,
     PerfectScrollbarModule

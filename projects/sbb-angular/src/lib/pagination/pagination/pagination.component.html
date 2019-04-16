@@ -7,7 +7,7 @@
       [attr.tabindex]="(hasPrevious() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasPrevious()" 
       (click)="selectPage(selectedPage.previousPage)">
-      <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+      <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
     </button>    
     <a *ngIf="linkGenerator" 
       i18n-aria-label="@@paginationPreviousPage" 
@@ -24,7 +24,7 @@
       [state]="selectedPage.previousLink?.state"
       [queryParamsHandling]="selectedPage.previousLink?.queryParamsHandling"
       (click)="previousLink(selectedPage)">
-      <sbb-icon-arrow-small-left></sbb-icon-arrow-small-left>
+      <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
     </a>
   </li>
   
@@ -71,7 +71,7 @@
       [attr.tabindex]="(hasNext() ? null : '-1')"
       [class.sbb-pagination-item-disabled]="!hasNext()" 
       (click)="selectPage(selectedPage.nextPage)">
-      <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
     </button>
     <a *ngIf="linkGenerator" 
       i18n-aria-label="@@paginationNextPage"      
@@ -88,7 +88,7 @@
       [state]="selectedPage.nextLink?.state"
       [queryParamsHandling]="selectedPage.nextLink?.queryParamsHandling"
       (click)="nextLink(selectedPage)">
-      <sbb-icon-arrow-small-right></sbb-icon-arrow-small-right>
+      <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
     </a>
   </li>
 </ul>

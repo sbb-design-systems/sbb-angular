@@ -4,11 +4,11 @@ import { OptionModule } from '../option/option.module';
 import { SelectComponent, SBB_SELECT_SCROLL_STRATEGY_PROVIDER } from './select/select.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { IconArrowSmallDownModule } from '../svg-icons/svg-icons';
+import { IconChevronSmallDownModule } from 'sbb-angular-icons';
 
 @NgModule({
   imports: [
-    IconArrowSmallDownModule,
+    IconChevronSmallDownModule,
     OptionModule,
     CommonModule,
     OverlayModule,

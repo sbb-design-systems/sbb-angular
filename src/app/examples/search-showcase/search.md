@@ -7,7 +7,7 @@ import { SearchModule } from 'sbb-angular';
 ```
 
 ```<sbb-search>``` is a form control used to display a search box (with a search field and relative search button), and, optionally, it can be used in combination with ```<sbb-autocomplete>``` to show search results suggestions.
-Moreover it's possible to use it in "header" mode, where a button trigger has to be clicked before the search field itself shows up and use a custom icon instead of the ```<sbb-icon-search>``` provided by default.
+Moreover it's possible to use it in "header" mode, where a button trigger has to be clicked before the search field itself shows up and use a custom icon instead of the ```<sbb-icon-magnifying-glass>``` provided by default.
 
 Everytime the enter key on the input field is pressed, the search button is clicked or an option is selected a ```search``` event, containing the search term, is emitted.
 
@@ -64,6 +64,6 @@ To set a custom icon to the search button (and to the trigger icon too when in '
 
 ```html
 <sbb-search mode="header" (search)="searchCallback(searchTerm)" placeholder="Suchen" [formControl]="myControlStatic">
-  <sbb-icon-info *sbbSearchIcon></sbb-icon-info>
+  <sbb-icon-circle-information *sbbSearchIcon></sbb-icon-circle-information>
 </sbb-search>
 ```

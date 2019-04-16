@@ -70,10 +70,10 @@ export class LightboxCloseDirective implements OnInit {
   template: `
     <ng-content></ng-content>
     <button sbbLightboxClose *ngIf="!isCloseDisabled" class="sbb-lightbox-close-btn">
-      <sbb-icon-close></sbb-icon-close>
+      <sbb-icon-cross></sbb-icon-cross>
     </button>
     <button *ngIf="isCloseDisabled" (click)="emitManualCloseAction()" class="sbb-lightbox-close-btn">
-      <sbb-icon-close></sbb-icon-close>
+      <sbb-icon-cross></sbb-icon-cross>
     </button>
   `,
   exportAs: 'sbbLightboxHeader',

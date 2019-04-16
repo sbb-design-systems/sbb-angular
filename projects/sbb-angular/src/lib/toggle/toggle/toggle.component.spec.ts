@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { DatepickerModule } from '../../datepicker/datepicker';
 import { FieldModule } from '../../field/field';
-import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconCollectionModule } from 'sbb-angular-icons';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { ToggleModule } from '../toggle.module';
 
@@ -19,10 +19,10 @@ import { ToggleModule } from '../toggle.module';
                                             [label]="option.label"
                                             [value]="option.value">
                             <ng-container *ngIf="i === 0">
-                                <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
+                                <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
                             </ng-container>
                             <ng-container *ngIf="i === 1">
-                                <sbb-icon-arrow-down-and-back *sbbToggleOptionIcon></sbb-icon-arrow-down-and-back>
+                                <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
                             </ng-container>
                             <sbb-field mode="long" *ngIf="i === 1">
                                 <sbb-label for="name1">Select date</sbb-label>
@@ -70,10 +70,10 @@ class ToggleReactiveTestComponent implements OnInit {
                                   [label]="option.label"
                                   [value]="option.value">
                 <ng-container *ngIf="i === 0">
-                  <sbb-icon-arrow-down *sbbToggleOptionIcon></sbb-icon-arrow-down>
+                  <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
                 </ng-container>
                 <ng-container *ngIf="i === 1">
-                  <sbb-icon-arrow-down-and-back *sbbToggleOptionIcon></sbb-icon-arrow-down-and-back>
+                  <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
                 </ng-container>
                 <sbb-field mode="long" *ngIf="i === 0">
                   <sbb-label for="name1">Select date</sbb-label>

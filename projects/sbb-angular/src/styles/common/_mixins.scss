@@ -525,3 +525,9 @@
     font-size: pxToRem(22);
   }
 }
+
+@mixin svgIconStrokeColor($color) {
+	svg.sbb-svg-icon > path {
+		stroke: $color;
+	}
+}

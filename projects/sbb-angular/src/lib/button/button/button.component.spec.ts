@@ -1,14 +1,14 @@
 import { Component, DebugElement, Type } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconArrowDownComponent as TestIconComponent, IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconArrowRightComponent as TestIconComponent, IconCollectionModule } from 'sbb-angular-icons';
 import { ButtonIconDirective } from './button-icon.directive';
 import { ButtonComponent } from './button.component';
 
 @Component({
   selector: 'sbb-button-test',
   template: '<button sbbButton [icon]="icon" [mode]="mode" [disabled]="disabled" (click)="testClick()">Bezeichnung</button>' +
-            '<ng-template #icon><sbb-icon-arrow-down></sbb-icon-arrow-down></ng-template>',
+            '<ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>',
   entryComponents: [TestIconComponent]
 })
 export class ButtonTemplateTestComponent {
@@ -47,7 +47,7 @@ describe('ButtonComponent', () => {
 
     fixture.detectChanges();
 
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-down'));
+    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
 
     expect(icons).toBeTruthy();
     expect(icons.length).toBe(2);
@@ -67,7 +67,7 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-down'));
+      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right'));
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
@@ -99,7 +99,7 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-down'));
+      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right'));
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
@@ -163,7 +163,7 @@ describe('ButtonComponent', () => {
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-down'));
+      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right'));
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
