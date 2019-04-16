@@ -6,7 +6,7 @@ Import the form field module into your application
 import { FormFieldModule } from 'sbb-angular';
 ```
 
-`<sbb-field>` works with `<input sbbInput>`, `<select sbbInput>`, `<sbb-select>` and `<sbb-datepicker>`.
+`<sbb-field>` works with `<input sbbInput>`, `<select sbbInput>`, `<sbb-select>` and `<input sbbInput sbbDateInput>`.
 
 ```html
 
