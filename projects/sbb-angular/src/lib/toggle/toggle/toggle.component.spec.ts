@@ -26,7 +26,9 @@ import { ToggleModule } from '../toggle.module';
                             </ng-container>
                             <sbb-field mode="long" *ngIf="i === 1">
                                 <sbb-label for="name1">Select date</sbb-label>
-                                <sbb-datepicker></sbb-datepicker>
+                                <sbb-datepicker>
+                                  <input sbbDateInput type="text">
+                                </sbb-datepicker>
                             </sbb-field>
                         </sbb-toggle-option>
                     </sbb-toggle>
@@ -77,7 +79,9 @@ class ToggleReactiveTestComponent implements OnInit {
                 </ng-container>
                 <sbb-field mode="long" *ngIf="i === 0">
                   <sbb-label for="name1">Select date</sbb-label>
-                  <sbb-datepicker></sbb-datepicker>
+                  <sbb-datepicker>
+                    <input sbbDateInput type="text">
+                  </sbb-datepicker>
                 </sbb-field>
                 <p *ngIf="i === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </sbb-toggle-option>
