@@ -5,7 +5,7 @@
   color: $colorBlack;
   line-height: pxToEm(23px);
   text-decoration: underline;
-  text-decoration-skip: ink; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
+  text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
 
   @include mq($from: desktop4k) {
     font-size: pxToRem($sizeFontDefault4k);
