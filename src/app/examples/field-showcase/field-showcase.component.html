@@ -68,8 +68,12 @@
           <h4 class="sbbsc-block">Field with sbb-datepicker</h4>
           <sbb-field label="Date"
                      [mode]="inputMode">
-            <sbb-datepicker formControlName="date"
-                            withArrows></sbb-datepicker>
+            <sbb-datepicker arrows>
+              <input sbbInput
+                     sbbDateInput
+                     formControlName="date"
+                     type="text">
+            </sbb-datepicker>
             <sbb-form-error *ngIf="form.get('date').touched && form.get('date').errors?.required">
               Date is required!</sbb-form-error>
           </sbb-field>

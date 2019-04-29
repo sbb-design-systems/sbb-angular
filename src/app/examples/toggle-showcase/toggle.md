@@ -90,7 +90,9 @@ Toggle button is shown in three modes:
         </ng-container>
         <sbb-field mode="long" *ngIf="i === 0">
             <sbb-label for="name1">Select date</sbb-label>
-            <sbb-datepicker></sbb-datepicker>
+            <sbb-datepicker>
+                <input sbbDateInput type="text">
+            </sbb-datepicker>
         </sbb-field>
         <p *ngIf="i === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </sbb-toggle-option>
