@@ -15,7 +15,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconProductEnComponent extends IconBase {
   constructor() {
-    super({ width: '59', height: '20', ratio: 2.95 });
+    super({ width: '59px', height: '20px', ratio: 2.95 });
   }
 }
 

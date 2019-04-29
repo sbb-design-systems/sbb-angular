@@ -15,7 +15,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconHimDisruptionComponent extends IconBase {
   constructor() {
-    super({ width: '16', height: '16', ratio: 1 });
+    super({ width: '16px', height: '16px', ratio: 1 });
   }
 }
 

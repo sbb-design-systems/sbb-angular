@@ -15,7 +15,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconYoutubeComponent extends IconBase {
   constructor() {
-    super({ width: '24', height: '24', ratio: 1 });
+    super({ width: '24px', height: '24px', ratio: 1 });
   }
 }
 
