@@ -526,8 +526,14 @@
   }
 }
 
-@mixin svgIconStrokeColor($color) {
+@mixin svgIconColor($color) {
 	svg.sbb-svg-icon > path {
-		stroke: $color;
+		&[fill="none"] {
+			stroke: $color;
+		}
+
+		&:not([fill]) {
+			fill: $color;
+		}
 	}
 }

@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, TemplateRef, ContentChild, ViewChild } from '@angular/core';
+import { Component, HostBinding, Input, TemplateRef, ContentChild, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { NotificationIconDirective } from '../notification-icon.directive';
 
 export enum NotificationType {
@@ -17,7 +17,9 @@ export interface JumpMark {
 @Component({
   selector: 'sbb-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss']
+  styleUrls: ['./notification.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationComponent {
 

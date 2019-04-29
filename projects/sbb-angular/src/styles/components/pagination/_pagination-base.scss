@@ -60,8 +60,8 @@
       }
       &:hover,
       &:focus {
+        @include svgIconColor($colorRed100);
         color: $colorRed100;
-        fill: $colorRed100;
       }
       
       &.sbb-pagination-item-boundary {
@@ -78,7 +78,7 @@
           height: toPx($paginationLiWidthHeight5K);
         }
         &:hover {
-          fill: $colorRed100;
+          @include svgIconColor($colorRed100);
         }
         > * {
           margin-top: toPx(1);
@@ -99,13 +99,12 @@
         }
       }
       &.sbb-pagination-item-disabled {
+        @include svgIconColor($colorGreyLight);
         color: $colorGreyLight;
-        fill: $colorGreyLight;
         cursor: default;
         pointer-events: none;
         &:hover {
           color: $colorGrey;
-          fill: $colorGreyLight;
           cursor: default;
         }
       }

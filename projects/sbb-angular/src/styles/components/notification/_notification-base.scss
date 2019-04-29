@@ -35,11 +35,11 @@
   }
 
   .sbb-notification-icon-wrapper {
+    @include svgIconColor($colorWhite);
     width: toPx($notificationIconWidth);
     height: toPx($notificationIconHeight);
     margin-left: toPx($notificationIconMarginLeft);
 
-    fill: $colorWhite;
     * {
       max-width: 100%;
       max-height: 100%;

@@ -43,8 +43,8 @@
       font-family: $fontSbbRoman;
 
       &.sbb-active {
+        @include svgIconColor($colorRed125);
         color: $colorRed125;
-        fill: $colorRed125;
       }
 
       @include mq($from: desktop4k) {
@@ -97,7 +97,6 @@
     &:hover,
     &:focus {
       color: $colorRed125;
-      fill: $colorRed125;
     }
 
     &::before {
@@ -133,9 +132,9 @@
   }
 
   &-arrow {
+    @include svgIconColor($colorGrey);
     width: toPx($breadcrumbArrowWidth);
     height: toPx($breadcrumbArrowHeight);
-    fill: $colorGrey;
     line-height: toPx($breadcrumbArrowLineHeight);
 
     margin-right: toPx($breadcrumbArrowMarginsDT);
@@ -154,12 +153,12 @@
   }
   a,
   button {
+    @include svgIconColor($colorGrey);
     color: $colorGrey;
-    fill: $colorGrey;
     &:hover,
     &:focus {
+      @include svgIconColor($colorRed125);
       color: $colorRed125;
-      fill: $colorRed125;
     }
   }
   a,
@@ -181,8 +180,8 @@
     > .sbb-icon-component {
       &:hover,
       &:focus {
+        @include svgIconColor($colorRed125);
         color: $colorRed125;
-        fill: $colorRed125;
       }
     }
   }
@@ -236,11 +235,11 @@
 
   .sbb-breadcrumb-trigger {
     &-icon {
-      @include svgIconStrokeColor($colorGrey);
+      @include svgIconColor($colorGrey);
     }
-    &:hover, &:active, &.sbb-breadcrumb-trigger-open {
+    &:hover, &:focus, &:active, &.sbb-breadcrumb-trigger-open {
       .sbb-breadcrumb-trigger-icon{
-        @include svgIconStrokeColor($colorRed125);
+        @include svgIconColor($colorRed125);
       }
     }
   }

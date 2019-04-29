@@ -18,8 +18,8 @@
       display: inline-block;
       vertical-align: middle;
 
-      svg {
-        fill: $colorGreyLight;
+      svg > path {
+        stroke: $colorGreyLight;
       }
     }
 

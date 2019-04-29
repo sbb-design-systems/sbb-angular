@@ -17,13 +17,13 @@
         height: toPx(40 * $scalingFactor5k);
     }
 
-    .mod-svgsprite-icon {
+    .sbb-svgsprite-icon {
+        @include svgIconColor($colorWhite);
         line-height: 1;
         position: absolute;
         width: toPx(24);
         height: toPx(24);
         opacity: 1;
-        fill: $colorWhite;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);

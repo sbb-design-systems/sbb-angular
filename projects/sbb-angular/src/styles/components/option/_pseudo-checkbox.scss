@@ -15,7 +15,7 @@
     background-color: $colorBlack5;
 
     & > .sbb-checkbox-checked {
-      fill: $colorGrey;
+      @include svgIconColor($colorGrey);
     }
   }
 }

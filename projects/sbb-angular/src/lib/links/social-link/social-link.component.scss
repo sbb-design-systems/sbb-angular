@@ -1,5 +1,5 @@
 @import '../../../styles/main.scss';
 
-:host {
+.sbb-social-link {
   @include socialLink();
 }

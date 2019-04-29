@@ -52,7 +52,7 @@
     }
     > button {
       @include buttonResetFrameless;
-      fill: $colorWhite;
+      @include svgIconColor($colorWhite);
       background-color: $colorRed100;
       border-radius: 0 2px 2px 0;
       width: toPx($searchButtonWidth);
@@ -106,8 +106,8 @@
 
 @mixin searchIconWrapper {
   @include buttonResetFrameless;
+  @include svgIconColor($colorGrey);
   cursor: pointer;
-  fill: $colorGrey;
   color: $colorGrey;
   @include mq($from: desktop4k) {
     font-size: toPx($sizeFontBase * $scalingFactor4k);
@@ -127,7 +127,7 @@
   }
   &:hover,
   &:focus {
-    fill: $colorRed125;
+    @include svgIconColor($colorRed125);
     color: $colorRed125;
   }
   .sbb-svgsprite-icon {

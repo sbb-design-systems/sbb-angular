@@ -164,13 +164,24 @@
 
 @mixin tooltipIcon {
   @include buttonResetFrameless();
+  @include svgIconColor($colorGrey);
   width: toPx($tooltipIconsSize);
   height: toPx($tooltipIconsSize);
+  cursor: pointer;
+  display: block;
+  border-color: $colorGrey;
+  border-width: pxToEm(1);
+  border-style: solid;
+  border-radius: 50%;
+  background-color: $colorWhite;
+  text-decoration: none;
+  outline: 0;
+  line-height: 1;
   
   &-active,
   &:hover,
   &:focus {
-    fill: $colorRed100;
+    @include svgIconColor($colorRed100);
     border-color: $colorRed100;
   }
   @include mq($from: desktop4k) {
@@ -183,17 +194,6 @@
     height: toPx($tooltipIconsSize * $scalingFactor5k);
   }
 
-  cursor: pointer;
-  display: block;
-  border-color: $colorGrey;
-  border-width: pxToEm(1);
-  border-style: solid;
-  border-radius: 50%;
-  background-color: $colorWhite;
-  text-decoration: none;
-  outline: 0;
-  line-height: 1;
-  fill: $colorGrey;
   > * {
     max-width: 100%;
     max-height: 100%;

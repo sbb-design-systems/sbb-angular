@@ -49,12 +49,12 @@
 }
 
 @mixin ghettoboxIcon() {
+  @include svgIconColor($ghettobox-color);
   position: relative;
   width: $ghettobox-icon-size;
   height: $ghettobox-icon-size;
   background-color: $ghettobox-icon-bg;
   border-radius: $ghettobox-icon-radius;
-  fill: $ghettobox-color;
 
   .sbb-icon-component {
     @include absoluteCenterXY();
@@ -65,9 +65,9 @@
 }
 
 @mixin ghettoboxContent() {
+  @include svgIconColor($ghettobox-color);
   flex: 0 1 auto;
   padding: 0 $ghettobox-icon-size 0 pxToEm(12);
-  fill: $ghettobox-color;
 
   @include mq($from: desktop) {
     padding: 0 pxToEm(24);
@@ -75,7 +75,6 @@
 
   a {
     color: $ghettobox-color;
-    fill: $ghettobox-color;
 
     &[sbbGhettoboxLink] {
       text-decoration: none;
@@ -95,10 +94,10 @@
 
 @mixin ghettoboxCloseButton() {
   @include buttonResetFrameless();
+  @include svgIconColor($ghettobox-color);
   position: relative;
   width: $ghettobox-icon-size;
   height: $ghettobox-icon-size;
-  fill: $ghettobox-color;
   border: pxToEm(1) solid $ghettobox-color;
   border-radius: 50%;
 

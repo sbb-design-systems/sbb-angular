@@ -15,14 +15,7 @@
     @include arrowbuttons;
 
     .sbb-svgsprite-icon {
-      fill: $buttonSecondaryColor;
-    }
-
-    &:hover,
-    &:focus {
-      .sbb-svgsprite-icon {
-        fill: $buttonSecondaryColor;
-      }
+      @include svgIconColor($buttonSecondaryColor);
     }
   }
   // Disabled button
@@ -67,6 +60,7 @@
 
   &-remove-icon {
     @include buttonResetFrameless();
+    @include svgIconColor($colorBlack80);
     margin-bottom: pxToEm(2);
     position: relative;
     width: pxToEm(32);
@@ -79,7 +73,6 @@
       @include absoluteCenterXY();
       width: pxToEm(24);
       height: pxToEm(24);
-      fill: $colorBlack80;
     }
   }
 
