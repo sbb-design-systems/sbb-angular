@@ -66,6 +66,11 @@ export class TextareaComponent implements ControlValueAccessor {
   @Input()
   required: boolean;
   /**
+   * Placeholder value for the textarea.
+   */
+  @Input()
+  placeholder: string;
+  /**
    * Identifier of textarea
    */
   @Input()
@@ -86,6 +91,20 @@ export class TextareaComponent implements ControlValueAccessor {
   @HostBinding('class.focused')
   focusedClass: boolean;
   /**
+   * Class property that represents a change caused by a new digit in a textarea
+   */
+  propagateChange: any = () => { };
+  /**
+   * The registered callback function called when a blur event occurs on the input element.
+   */
+  onTouched = () => { };
+
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private ngZone: NgZone,
+  ) { }
+
+  /**
    * Adds the focused CSS class to this element
    */
   onFocus() {
@@ -96,10 +115,8 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   onBlur() {
     this.focusedClass = false;
+    this.onTouched();
   }
-
-  constructor(private changeDetector: ChangeDetectorRef, private ngZone: NgZone) { }
-
   /**
    * Trigger the resize of the textarea to fit the content
    */
@@ -107,24 +124,20 @@ export class TextareaComponent implements ControlValueAccessor {
     this.ngZone.onStable.pipe(first())
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
-  /**
-   * Class property that represents a change caused by a new digit in a textarea
-   */
-  propagateChange: any = () => { };
 
   writeValue(newValue: any) {
-    if (newValue !== undefined) {
-      this.textContent = newValue;
-      this.propagateChange(newValue);
-      this.updateDigitsCounter(newValue);
-    }
+    this.textContent = newValue == null ? '' : newValue;
+    this.updateDigitsCounter(newValue);
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void { }
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
   /**
    * Method that listens change in the textarea content
    */
