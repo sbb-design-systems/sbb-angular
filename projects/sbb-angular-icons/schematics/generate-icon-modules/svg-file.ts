@@ -9,8 +9,8 @@ export class SvgFile {
     public modules: string[],
     readonly filepath: string,
     readonly template: string,
-    readonly width: number,
-    readonly height: number,
+    readonly width: string,
+    readonly height: string,
     readonly ratio: number,
   ) { }
 
@@ -25,7 +25,7 @@ export class SvgFile {
       /( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g, content, filepath);
     const height = SvgFile._determineDimension(
       /( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g, content, filepath);
-    return new SvgFile(name, modules, filepath, template, width, height, width / height);
+    return new SvgFile(name, modules, filepath, template, `${width}px`, `${height}px`, width / height);
   }
 
   private static _determineDimension(regex: RegExp, content: string, filepath: string) {

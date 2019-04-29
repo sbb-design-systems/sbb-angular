@@ -3,6 +3,7 @@ import { SvgFile } from './svg-file';
 import { namingRules } from './naming-rules';
 import { IconModule } from './icon-module';
 import { IconCollectionModule } from './icon-collection-module';
+import { filterRules } from './filter-rules';
 
 export class SvgSource {
   constructor(private _files: SvgFile[]) { }
@@ -15,6 +16,7 @@ export class SvgSource {
       }
     });
     const resolvedFiles = (await Promise.all(files))
+      .filter((f, _, a) => filterRules.every(r => r(f, a)))
       .map(f => namingRules.reduce((current, next) => next(current), f));
     return new SvgSource(resolvedFiles);
   }
