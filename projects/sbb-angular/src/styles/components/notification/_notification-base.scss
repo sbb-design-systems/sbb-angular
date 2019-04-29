@@ -10,7 +10,7 @@
     background-color: $notificationErrorBackgroundColor;
   }
 
-  &-success {
+  &-success, &-info {
     background-color: $notificationSuccessBackgroundColor;
   }
 
