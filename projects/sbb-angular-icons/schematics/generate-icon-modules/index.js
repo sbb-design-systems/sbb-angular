@@ -127,7 +127,7 @@ class SvgFile {
 }
 
 const sizes = ['small', 'medium', 'large'];
-const invalidModules = ['', 'svg', 'FPL', 'KOM', 'responsive', ...sizes];
+const invalidModules = ['', 'svg', 'FPL', 'KOM', 'non-responsive', 'responsive', ...sizes];
 const rules = [
     file => sizes
         .filter(size => file.name.endsWith(size))
@@ -149,7 +149,7 @@ const rules = [
         .replace(/^sbb_replacementbus$/, 'him_replacementbus')
         .replace(/^sbb_(\d+\_)?/i, '')
         .replace(/moutain/, 'mountain')
-        .replace(/_[ ]?\d+_(small|medium|large)$/, '')
+        .replace(/_[ ]?(\d{3}_)+(small|medium|large)$/, '')
         .replace(/^auslastung_0$/, 'utilization_none')
         .replace(/^auslastung_1$/, 'utilization_low')
         .replace(/^auslastung_2$/, 'utilization_medium')
@@ -214,11 +214,18 @@ class IconCollectionModule {
 }
 
 const filterRules = [
-    (file, files) => file.modules.includes('non-responsive')
-        ? files
+    (file, files) => {
+        if (!file.modules.includes('non-responsive')) {
+            return true;
+        }
+        const idNumberMatch = /\_\s*(\d+)\_/.exec(file.name);
+        if (!idNumberMatch || !idNumberMatch[1]) {
+            throw new schematics.SchematicsException(file.name);
+        }
+        return files
             .filter(f => f.modules.includes('responsive'))
-            .every(f => !f.name.startsWith(file.name.replace(/_(small|medium|large)$/, '')))
-        : true,
+            .every(f => !f.name.includes(idNumberMatch[1]));
+    },
 ];
 
 class SvgSource {

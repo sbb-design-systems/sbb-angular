@@ -1,7 +1,7 @@
 import { SvgFile } from './svg-file';
 
 const sizes = ['small', 'medium', 'large'];
-const invalidModules = ['', 'svg', 'FPL', 'KOM', 'responsive', ...sizes];
+const invalidModules = ['', 'svg', 'FPL', 'KOM', 'non-responsive', 'responsive', ...sizes];
 const rules: Array<(svgFile: SvgFile) => void> = [
   file => sizes
     .filter(size => file.name.endsWith(size))
@@ -23,7 +23,7 @@ const rules: Array<(svgFile: SvgFile) => void> = [
     .replace(/^sbb_replacementbus$/, 'him_replacementbus')
     .replace(/^sbb_(\d+\_)?/i, '')
     .replace(/moutain/, 'mountain')
-    .replace(/_[ ]?\d+_(small|medium|large)$/, '')
+    .replace(/_[ ]?(\d{3}_)+(small|medium|large)$/, '')
     .replace(/^auslastung_0$/, 'utilization_none')
     .replace(/^auslastung_1$/, 'utilization_low')
     .replace(/^auslastung_2$/, 'utilization_medium')
