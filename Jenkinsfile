@@ -21,6 +21,7 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
+        /*
         withCredentials([
           usernamePassword(credentialsId: 'browserstack',
             passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
@@ -36,6 +37,7 @@ pipeline {
             //-Dsonar.branch.target=master
           }
         }
+        */
       }
     }
 
