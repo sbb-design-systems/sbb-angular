@@ -21,7 +21,6 @@
       [preserveFragment]="previousLink.link?.preserveFragment"
       [skipLocationChange]="previousLink.link?.skipLocationChange"
       [replaceUrl]="previousLink.link?.replaceUrl"
-      [state]="previousLink.link?.state"
       [queryParamsHandling]="previousLink.link?.queryParamsHandling"
       (click)="pageChange.emit('previous')"
       [attr.title]="previousLink.title">
@@ -56,7 +55,6 @@
       [preserveFragment]="nextLink.link?.preserveFragment"
       [skipLocationChange]="nextLink.link?.skipLocationChange"
       [replaceUrl]="nextLink.link?.replaceUrl"
-      [state]="nextLink.link?.state"
       [queryParamsHandling]="nextLink.link?.queryParamsHandling"
       (click)="pageChange.emit('next')"
       [attr.title]="nextLink.title">

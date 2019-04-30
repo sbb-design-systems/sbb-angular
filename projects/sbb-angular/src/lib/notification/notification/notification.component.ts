@@ -28,7 +28,13 @@ export class NotificationComponent {
   /** @docs-private */
   @HostBinding('class.sbb-notification-success')
   get typeSuccess(): boolean {
-    return this.type === NotificationType.SUCCESS || this.type === NotificationType.INFO;
+    return this.type === NotificationType.SUCCESS;
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-notification-info')
+  get typeInfo(): boolean {
+    return this.type === NotificationType.INFO;
   }
 
   /** @docs-private */
@@ -62,22 +68,19 @@ export class NotificationComponent {
     this._icon = notificationIcon;
   }
   get icon() {
-    if (!this._icon) {
-      let icon = null;
-      switch (this.type) {
-        case NotificationType.SUCCESS:
-          icon = this.checkIcon;
-          break;
-        case NotificationType.ERROR:
-          icon = this.errorIcon;
-          break;
-        case NotificationType.INFO:
-          icon = this.infoIcon;
-          break;
-      }
-      return icon;
+    if (this._icon) {
+      return this._icon;
     }
-    return this._icon;
+    switch (this.type) {
+      case NotificationType.SUCCESS:
+        return this.checkIcon;
+      case NotificationType.ERROR:
+        return this.errorIcon;
+      case NotificationType.INFO:
+        return this.infoIcon;
+      default:
+        return null;
+    }
   }
   _icon: TemplateRef<any>;
 

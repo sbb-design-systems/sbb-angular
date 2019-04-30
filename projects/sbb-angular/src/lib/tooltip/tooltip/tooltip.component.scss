@@ -1,11 +1,9 @@
 @import "../../../styles/main.scss";
 
 sbb-tooltip {
-  
   .sbb-tooltip-trigger {
     @include tooltipTrigger;
   }
- 
 }
 
 @include tooltipArrowAbove;

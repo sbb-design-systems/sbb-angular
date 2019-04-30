@@ -141,7 +141,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   autocompleteAttribute = 'off';
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer<Observable<SBBOptionSelectionChange>>(() => {
+  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
     if (this.autocomplete && this.autocomplete.options) {
       return merge<SBBOptionSelectionChange>(...this.autocomplete.options.map(option => option.onSelectionChange));
     }
