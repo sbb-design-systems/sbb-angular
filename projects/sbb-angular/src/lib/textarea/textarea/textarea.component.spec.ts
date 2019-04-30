@@ -5,6 +5,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { typeInElement } from '../../_common/testing/type-in-element';
 
 
 @Component({
@@ -71,11 +72,11 @@ describe('TextareaComponent behaviour', () => {
 
   it('should be required', () => {
     component.required = true;
-    innerComponent.componentInstance.writeValue('');
+    const textarea = innerComponent.query(e => e.nativeElement.nodeName.toLowerCase() === 'textarea');
+    typeInElement('', textarea.nativeElement);
     fixture.detectChanges();
     expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
     expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor).toBe('rgb(235, 0, 0)');
-
   });
 
   it('should be readonly attribute', () => {
@@ -96,7 +97,8 @@ describe('TextareaComponent behaviour', () => {
 
   it('should have a min length attribute', () => {
     component.minlength = 20;
-    innerComponent.componentInstance.writeValue('SBB');
+    const textarea = innerComponent.query(e => e.nativeElement.nodeName.toLowerCase() === 'textarea');
+    typeInElement('SBB', textarea.nativeElement);
     fixture.detectChanges();
     expect(innerComponent.attributes['minlength']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();

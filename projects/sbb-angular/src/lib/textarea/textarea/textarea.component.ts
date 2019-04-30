@@ -39,18 +39,17 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that disables the textarea status
    */
+  @HostBinding('class.disabled')
   @Input()
   disabled: boolean;
   /**
    * Class property that sets readonly the textarea content
    */
-  @Input()
-  readonly: boolean;
+  @Input() readonly: boolean;
   /**
    * Class property that sets the maxlength of the textarea content
    */
-  @Input()
-  maxlength: number;
+  @Input() maxlength: number;
   /**
   * Class property that represents an observer on the number of digits in a textarea
   */
@@ -58,33 +57,41 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that sets the minlength of the textarea content
    */
-  @Input()
-  minlength: number;
+  @Input() minlength: number;
   /**
    * Class property that sets required the textarea
    */
-  @Input()
-  required: boolean;
+  @Input() required: boolean;
+  /**
+   * Placeholder value for the textarea.
+   */
+  @Input() placeholder: string;
   /**
    * Identifier of textarea
    */
-  @Input()
-  inputId: string;
+  @Input() inputId: string;
   /**
    * Class property that automatically resize a textarea to fit its content
    */
-  @ViewChild('autosize')
-  autosize: CdkTextareaAutosize;
-  /**
-   * Class property that represents the disabled class status
-   */
-  @HostBinding('class.disabled')
-  disabledClass: boolean;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
   /**
    * Class property that represents the focused class status
    */
-  @HostBinding('class.focused')
-  focusedClass: boolean;
+  @HostBinding('class.focused') focusedClass: boolean;
+  /**
+   * Class property that represents a change caused by a new digit in a textarea
+   */
+  propagateChange: any = () => { };
+  /**
+   * The registered callback function called when a blur event occurs on the input element.
+   */
+  onTouched = () => { };
+
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private ngZone: NgZone,
+  ) { }
+
   /**
    * Adds the focused CSS class to this element
    */
@@ -96,10 +103,8 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   onBlur() {
     this.focusedClass = false;
+    this.onTouched();
   }
-
-  constructor(private changeDetector: ChangeDetectorRef, private ngZone: NgZone) { }
-
   /**
    * Trigger the resize of the textarea to fit the content
    */
@@ -107,24 +112,20 @@ export class TextareaComponent implements ControlValueAccessor {
     this.ngZone.onStable.pipe(first())
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
-  /**
-   * Class property that represents a change caused by a new digit in a textarea
-   */
-  propagateChange: any = () => { };
 
   writeValue(newValue: any) {
-    if (newValue !== undefined) {
-      this.textContent = newValue;
-      this.propagateChange(newValue);
-      this.updateDigitsCounter(newValue);
-    }
+    this.textContent = newValue == null ? '' : newValue;
+    this.updateDigitsCounter(this.textContent);
+    this.changeDetector.markForCheck();
   }
 
   registerOnChange(fn) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void { }
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
   /**
    * Method that listens change in the textarea content
    */
@@ -135,7 +136,6 @@ export class TextareaComponent implements ControlValueAccessor {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    this.disabledClass = disabled;
     this.changeDetector.markForCheck();
   }
   /**

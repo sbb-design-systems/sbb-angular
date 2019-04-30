@@ -21,6 +21,8 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
+        sh 'echo "Temporarily disabled"'
+        /*
         withCredentials([
           usernamePassword(credentialsId: 'browserstack',
             passwordVariable: 'BROWSERSTACK_ACCESS_KEY',
@@ -36,6 +38,7 @@ pipeline {
             //-Dsonar.branch.target=master
           }
         }
+        */
       }
     }
 

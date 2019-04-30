@@ -15,7 +15,8 @@ import {
   OnDestroy,
   TemplateRef,
   Input,
-  ContentChild
+  ContentChild,
+  Injectable
 } from '@angular/core';
 import { OverlayRef, Overlay, OverlayConfig, ScrollStrategy, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -24,6 +25,7 @@ import { merge, fromEvent, Observable, of, Subscription, Subject } from 'rxjs';
 import { filter, map, switchMap, first } from 'rxjs/operators';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { TooltipIconDirective } from './tooltip-icon.directive';
+import { TooltipRegistryService } from './tooltip-registry.service';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_TOOLTIP_SCROLL_STRATEGY =
@@ -65,12 +67,11 @@ export class TooltipComponent implements OnDestroy {
   /**
    * Identifier of tooltip.
    */
-  @HostBinding('attr.id')
-  tooltipId = 'sbb-tooltip-id-' + tooltipCounter++;
+  @HostBinding('attr.id') tooltipId = `sbb-tooltip-id-${tooltipCounter++}`;
   /**
    * Identifier of tooltip content.
    */
-  contentId = 'sbb-tooltip-content-id-' + tooltipCounter++;
+  contentId = `sbb-tooltip-content-id-${tooltipCounter++}`;
   /**
    * Css class on tooltip component.
    */
@@ -91,8 +92,7 @@ export class TooltipComponent implements OnDestroy {
   @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
 
   /** @docs-private */
-  @ViewChild('defaultIcon', { read: TemplateRef })
-  defaultIcon: TemplateRef<any>;
+  @ViewChild('defaultIcon', { read: TemplateRef }) defaultIcon: TemplateRef<any>;
 
   /**
    * The icon to be used as click target.
@@ -122,6 +122,7 @@ export class TooltipComponent implements OnDestroy {
 
   constructor(
     private overlay: Overlay,
+    private tooltipRegistry: TooltipRegistryService,
     @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private scrollStrategy,
     @Optional() @Inject(DOCUMENT) private _document: any,
     private zone: NgZone,
@@ -130,7 +131,6 @@ export class TooltipComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
-
       this.tooltipRef.detach();
       this.tooltipRef.dispose();
       this.closingActionsSubscription.unsubscribe();
@@ -138,7 +138,8 @@ export class TooltipComponent implements OnDestroy {
   }
 
 
-  onClick() {
+  onClick(event: Event) {
+    event.stopPropagation();
     if (this.overlayAttached) {
       this.close(true);
     } else {
@@ -152,6 +153,7 @@ export class TooltipComponent implements OnDestroy {
    */
   open(isUserInput = false) {
     if (!this.overlayAttached) {
+      this.tooltipRegistry.activate();
       this.createPopup();
       this.tooltipRef.attach(this.tooltipContentPortal);
       this.closingActionsSubscription = this.subscribeToClosingActions();
@@ -247,6 +249,7 @@ export class TooltipComponent implements OnDestroy {
     return merge(
       this.closeKeyEventStream,
       this.getOutsideClickStream(),
+      this.tooltipRegistry.tooltipActivation,
       this.tooltipRef ?
         this.tooltipRef.detachments().pipe(filter(() => this.overlayAttached)) :
         of()

@@ -86,7 +86,7 @@ describe('NotificationComponent', () => {
 
       testComponent.type = NotificationType.INFO;
       testFixture.detectChanges();
-      notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
+      notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-info'));
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
