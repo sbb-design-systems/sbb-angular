@@ -77,6 +77,7 @@ import { IconWheelchairModule } from './icon-wheelchair.module';
 import { IconWifiModule } from './icon-wifi.module';
 import { IconCollectionBaseSocialMediaModule } from './social_media/icon-collection-base-social-media.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconArrowDownAndBackModule,

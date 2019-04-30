@@ -15,6 +15,7 @@ import { IconSorglos48Module } from './icon-sorglos-48.module';
 import { IconUmwelt48Module } from './icon-umwelt-48.module';
 import { IconWallbox48Module } from './icon-wallbox-48.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconEffizienz48Module,

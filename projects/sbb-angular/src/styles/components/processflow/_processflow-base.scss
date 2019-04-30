@@ -12,9 +12,9 @@
       content: "";
     }
     &-arrow {
+      @include svgIconColor($colorGrey);
       width: toPx($processflowArrowWidth);
       height: toPx($processflowArrowHeight);
-      fill: $colorGrey;
       line-height: toPx($processflowArrowLineHeight);
       margin-bottom: auto;
 

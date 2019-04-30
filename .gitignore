@@ -47,3 +47,6 @@ Thumbs.db
 projects/sbb-angular/output.log
 .history/
 yarn.lock
+.js
+.js.map
+.d.ts

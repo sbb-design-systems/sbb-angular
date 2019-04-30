@@ -10,6 +10,7 @@ import { IconCollectionProductsModule } from './products/icon-collection-product
 import { IconCollectionWeatherModule } from './weather/icon-collection-weather.module';
 import { IconCollectionWebshopModule } from './webshop/icon-collection-webshop.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconCollectionBaseModule,

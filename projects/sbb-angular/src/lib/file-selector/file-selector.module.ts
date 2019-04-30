@@ -2,7 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { ButtonModule } from '../button/button.module';
-import { IconCollectionBaseDocumentsModule, IconTrashModule, IconUploadModule } from '../svg-icons/svg-icons';
+import {
+  IconDocumentTextModule,
+  IconDocumentImageModule,
+  IconDocumentPdfModule,
+  IconDocumentSoundModule,
+  IconDocumentVideoModule,
+  IconDocumentZipModule,
+  IconDocumentStandardModule,
+  IconTrashModule,
+  IconUploadModule,
+} from 'sbb-angular-icons';
 import { FileExtension, FileNameNoExtension, FileSizeFormatted } from './file-selector/file-selector.pipes';
 
 @NgModule({
@@ -15,7 +25,13 @@ import { FileExtension, FileNameNoExtension, FileSizeFormatted } from './file-se
   imports: [
     CommonModule,
     ButtonModule,
-    IconCollectionBaseDocumentsModule,
+    IconDocumentTextModule,
+    IconDocumentImageModule,
+    IconDocumentPdfModule,
+    IconDocumentSoundModule,
+    IconDocumentVideoModule,
+    IconDocumentZipModule,
+    IconDocumentStandardModule,
     IconTrashModule,
     IconUploadModule
   ],

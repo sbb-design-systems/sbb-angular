@@ -8,6 +8,7 @@ import { IconClockHoursModule } from './icon-clock-hours.module';
 import { IconClockMinutesModule } from './icon-clock-minutes.module';
 import { IconClockSecondsModule } from './icon-clock-seconds.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconClockFaceModule,

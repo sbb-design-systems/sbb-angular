@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Self, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Self, OnChanges, SimpleChanges, ViewEncapsulation, HostBinding } from '@angular/core';
 import { HostClass } from '../../_common/host-class';
 
 @Component({
@@ -6,10 +6,13 @@ import { HostClass } from '../../_common/host-class';
   selector: 'a[sbbLink]',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [HostClass],
 })
 export class LinkComponent implements OnChanges {
+  /** @docs-private */
+  @HostBinding('class.sbb-link') linkClass = true;
   /**
    * Link modes available for different purposes
    */

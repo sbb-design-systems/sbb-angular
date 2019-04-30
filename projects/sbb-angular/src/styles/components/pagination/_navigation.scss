@@ -25,6 +25,7 @@
     > button,
     > a {
       @include buttonResetFrameless();
+      @include svgIconColor($colorGrey);
       cursor: pointer;
       background-color: $colorWhite;
       text-decoration: none;
@@ -34,13 +35,12 @@
       line-height: 1;
       outline: 0;
       color: $colorGrey;
-      fill: $colorGrey;
       border-color: $colorGrey;
 
       &:hover,
       &:focus {
+        @include svgIconColor($colorRed100);
         color: $colorRed100;
-        fill: $colorRed100;
         .sbb-navigation-item-boundary-arrow {
           border-color: $colorRed100;
         }
@@ -86,7 +86,7 @@
           }
           &:hover,
           &:focus {
-            fill: $colorRed100;
+            @include svgIconColor($colorRed100);
             border-color: $colorRed100;
           }
           > * {

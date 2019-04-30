@@ -1,6 +1,6 @@
 @import '../../../styles/main';
 
-:host {
+.sbb-button {
     // Kickstart basic button styles
     @include buttons();
 

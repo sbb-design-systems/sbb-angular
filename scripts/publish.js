@@ -1,7 +1,7 @@
 
 const { inc, prerelease, valid } = require('semver');
 const { writeFileSync } = require('fs');
-const { join } = require('path');
+const { join, basename } = require('path');
 const { execSync } = require('child_process');
 
 class Publisher {
@@ -15,7 +15,10 @@ class Publisher {
     this.dryRun = dryRun;
     const dist = join(__dirname, '..', 'dist');
     this.showcasePath = join(dist, 'sbb-angular-showcase');
-    this.libraryPath = join(dist, 'sbb-angular');
+    this.libraryPaths = [
+      join(dist, 'sbb-angular'),
+      join(dist, 'sbb-angular-icons'),
+    ];
   }
 
   static findVersions(packageName) {
@@ -60,13 +63,17 @@ class Publisher {
 
   publishLibrary() {
     if (!this.dryRun) {
-      execSync(
-        `npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/`,
-        { cwd: this.libraryPath });
-      console.log('Published library');
+      for (const libraryPath of this.libraryPaths) {
+        execSync(
+          `npm publish --tag ${this.tag} --registry https://bin.sbb.ch/artifactory/api/npm/kd_esta.npm/`,
+          { cwd: libraryPath });
+        console.log(`Published library ${basename(libraryPath)}`);
+      }
     } else {
-      execSync('npm pack', { cwd: this.libraryPath });
-      console.log('Packaged library');
+      for (const libraryPath of this.libraryPaths) {
+        execSync('npm pack', { cwd: libraryPath });
+        console.log('Packaged library');
+      }
     }
   }
 
@@ -84,8 +91,14 @@ class Publisher {
 
   updateVersionInPackageJson(file, version) {
     const packageJson = require(file);
-    packageJson.version = version;
-    this.savePackageJson(file, packageJson);
+    if (JSON.stringify(packageJson).includes('0.0.0-PLACEHOLDER')) {
+      const packageString = JSON.stringify(packageJson)
+        .replace(/0.0.0-PLACEHOLDER/g, version);
+      this.savePackageJson(file, JSON.parse(packageString));
+    } else {
+      packageJson.version = version;
+      this.savePackageJson(file, packageJson);
+    }
   }
 
   savePackageJson(file, content) {
@@ -118,8 +131,11 @@ class LibraryAndShowcasePublisher extends Publisher {
   }
 
   updateLibraryPackageJson() {
-    this.updateVersionInPackageJson(join(this.libraryPath, 'package.json'), this.version);
-    console.log(`Updated package.json for library with version ${this.version}`);
+    for (const libraryPath of this.libraryPaths) {
+      this.updateVersionInPackageJson(join(libraryPath, 'package.json'), this.version);
+      console.log(
+        `Updated package.json for library ${basename(libraryPath)} with version ${this.version}`);
+    }
   }
 
   gitflowRelease() {

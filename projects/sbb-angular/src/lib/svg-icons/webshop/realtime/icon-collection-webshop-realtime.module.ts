@@ -11,6 +11,7 @@ import { IconRealtimeMissedConnectionModule } from './icon-realtime-missed-conne
 import { IconRealtimePlatformChangeModule } from './icon-realtime-platform-change.module';
 import { IconRealtimeRerouteModule } from './icon-realtime-reroute.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconRealtimeAddStopModule,

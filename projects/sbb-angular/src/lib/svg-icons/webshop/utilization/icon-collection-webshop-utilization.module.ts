@@ -7,6 +7,7 @@ import { IconUtilizationHighModule } from './icon-utilization-high.module';
 import { IconUtilizationLowModule } from './icon-utilization-low.module';
 import { IconUtilizationMediumModule } from './icon-utilization-medium.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconUtilizationHighModule,

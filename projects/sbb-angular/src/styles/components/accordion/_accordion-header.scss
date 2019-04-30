@@ -70,6 +70,7 @@
 }
 
 @mixin expansionIndicator() {
+  @include svgIconColor($sbb-accordion-toggle-icon-color);
   position: absolute;
   top: 50%;
   right: pxToEm($sbb-accordion-toggle-size);
@@ -84,7 +85,6 @@
     width: pxToEm($sbb-accordion-toggle-icon-size);
     height: pxToEm($sbb-accordion-toggle-icon-size);
     vertical-align: middle;
-    fill: $sbb-accordion-toggle-icon-color;
     margin-top: pxToEm(2);
   }
 }

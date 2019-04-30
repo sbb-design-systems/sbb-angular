@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from '../../dropdown/dropdown';
-import { IconArrowLeftModule, IconArrowSmallDownModule } from '../../svg-icons/svg-icons';
+import { IconChevronRightModule, IconChevronSmallDownCircleModule } from 'sbb-angular-icons';
 import { BreadcrumbComponent } from './breadcrumb.component';
 
 describe('BreadcrumbComponent', () => {
@@ -15,8 +15,8 @@ describe('BreadcrumbComponent', () => {
       imports: [
         CommonModule,
         DropdownModule,
-        IconArrowLeftModule,
-        IconArrowSmallDownModule
+        IconChevronRightModule,
+        IconChevronSmallDownCircleModule,
       ]
     })
       .compileComponents();

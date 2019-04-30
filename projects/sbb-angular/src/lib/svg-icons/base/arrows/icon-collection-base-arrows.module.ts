@@ -14,6 +14,7 @@ import { IconPlayButtonModule } from './icon-play-button.module';
 import { IconRoundTripModule } from './icon-round-trip.module';
 import { IconUploadModule } from './icon-upload.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconArrowSmallDownModule,

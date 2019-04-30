@@ -11,6 +11,7 @@ import { IconSoundModule } from './icon-sound.module';
 import { IconVideoModule } from './icon-video.module';
 import { IconZipModule } from './icon-zip.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconDocGenericModule,

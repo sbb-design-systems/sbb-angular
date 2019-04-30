@@ -110,11 +110,11 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 }
 
 @mixin usermenuLoggedInCollapsedArrow {
-  width: 24px;
-  height: 24px;
+  @include svgIconColor($colorBlack60);
+  width: toPx(24);
+  height: toPx(24);
   z-index: -1;
   position: relative;
-  fill: $colorBlack60;
   margin-left: toPx(-80);
 
   @include mq($from: mobilePortrait, $to: tabletPortrait) {
@@ -122,19 +122,17 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   }
 
   @include mq($from: desktop4k) {
-    width: toPx(36 * $scalingFactor4k);
-    height: toPx(36 * $scalingFactor4k);
+    width: toPx(24 * $scalingFactor4k);
+    height: toPx(24 * $scalingFactor4k);
     z-index: -1;
-    fill: $colorBlack60;
     margin-left: toPx(-40 * $scalingFactor4k);
     margin-bottom: toPx(3.335 * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    width: toPx(48 * $scalingFactor5k);
-    height: toPx(48 * $scalingFactor5k);
+    width: toPx(24 * $scalingFactor5k);
+    height: toPx(24 * $scalingFactor5k);
     z-index: -1;
-    fill: $colorBlack60;
     margin-left: toPx(-35 * $scalingFactor5k);
     margin-bottom: toPx(2.5 * $scalingFactor5k);
   }
@@ -188,35 +186,33 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 }
 
 @mixin usermenuLoggedInExpandedArrow {
-  width: 24px;
-  height: 24px;
+  @include svgIconColor($colorBlack60);
+  width: toPx(24);
+  height: toPx(24);
   transform: rotate(180deg);
   margin-left: 60px;
-  fill: $colorBlack60;
 
   @include mq($from: desktop4k) {
-    width: toPx(36 * $scalingFactor4k);
-    height: toPx(36 * $scalingFactor4k);
+    width: toPx(24 * $scalingFactor4k);
+    height: toPx(24 * $scalingFactor4k);
     margin-left: toPx(60 * $scalingFactor4k);
-    fill: $colorBlack60;
   }
 
   @include mq($from: desktop5k) {
-    width: toPx(48 * $scalingFactor5k);
-    height: toPx(48 * $scalingFactor5k);
-    margin-left: (60 * $scalingFactor5k);
-    fill: $colorBlack60;
+    width: toPx(24 * $scalingFactor5k);
+    height: toPx(24 * $scalingFactor5k);
+    margin-left: toPx(60 * $scalingFactor5k);
   }
 }
 
 @mixin usermenuLoggedOff {
+  @include svgIconColor($colorBlack60);
   display: flex;
   align-items: center;
   position: relative;
   height: 48px;
   width: 156px;
   color: $colorBlack60;
-  fill: $colorBlack60;
 
   @include mq($from: desktop4k) {
     height: toPx(72 * $scalingFactor4k);
@@ -235,7 +231,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   margin-left: 2px;
   position: relative;
   color: inherit;
-  fill: inherit;
 
   @include mq($from: desktop4k) {
     height: toPx(36 * $scalingFactor4k);
@@ -256,7 +251,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
   margin-left: 13.5px;
   margin-top: 2px;
   color: inherit;
-  fill: inherit;
 
   @include mq($from: desktop4k) {
     margin-left: toPx(13.5 * $scalingFactor4k);

@@ -4,7 +4,7 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
 import { Component, ViewChild, TemplateRef, DebugElement } from '@angular/core';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IconCollectionModule } from '../../svg-icons/svg-icons';
+import { IconCollectionModule } from 'sbb-angular-icons';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { GhettoboxContainerService } from './ghettobox-container.service';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';

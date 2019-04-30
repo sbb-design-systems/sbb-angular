@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, HostBinding, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 let counter = 0;
@@ -12,9 +12,12 @@ let counter = 0;
     useExisting: forwardRef(() => CheckboxComponent),
     multi: true,
   }],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
+  /** @docs-private */
+  @HostBinding('class.sbb-checkbox') checkboxClass = true;
   /**
    * Identifier of a checkbox field
    */

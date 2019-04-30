@@ -8,6 +8,7 @@ import { IconHimDisruptionModule } from './icon-him-disruption.module';
 import { IconHimInfoModule } from './icon-him-info.module';
 import { IconHimReplacementbusModule } from './icon-him-replacementbus.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconHimConstructionModule,

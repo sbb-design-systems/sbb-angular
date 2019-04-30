@@ -108,7 +108,7 @@
 		margin-top: pxToEm(-12.5, $buttonSizeFontDefault);
 		transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
 		backface-visibility: hidden;
-		fill: $buttonDefaultColor;
+		@include svgIconColor($buttonDefaultColor);
 		pointer-events: none;
 	}
 

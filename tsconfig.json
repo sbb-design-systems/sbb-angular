@@ -24,6 +24,12 @@
       ],
       "sbb-angular/*": [
         "dist/sbb-angular/*"
+      ],
+      "sbb-angular-icons": [
+        "dist/sbb-angular-icons"
+      ],
+      "sbb-angular-icons/*": [
+        "dist/sbb-angular-icons/*"
       ]
     }
   },
@@ -31,6 +37,6 @@
     "./dist"
   ],
   "angularCompilerOptions": {
-    "strictMetadataEmit" : true
+    "strictMetadataEmit": true
   }
 }

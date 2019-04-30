@@ -15,8 +15,8 @@
 			border: none;
 			color: $buttonDefaultColor;
 
-			.mod-svgsprite-icon {
-				fill: $buttonDefaultColor;
+			.sbb-svgsprite-icon {
+				@include svgIconColor($buttonDefaultColor);
 			}
 		}
 	}
@@ -68,13 +68,13 @@
 	@extend %arrowbuttons;
 
 	.sbb-svgsprite-icon {
-		fill: $buttonSecondaryColor;
+		@include svgIconColor($buttonSecondaryColor);
 	}
 
 	&:hover,
 	&:focus {
 		.sbb-svgsprite-icon {
-			fill: $buttonSecondaryColor;
+			@include svgIconColor($buttonSecondaryColor);
 		}
 	}
 
@@ -100,7 +100,7 @@
 			border-color: $buttonGhostBorderColorHover;
 
 			.sbb-svgsprite-icon {
-				fill: $buttonGhostColorHover;
+				@include svgIconColor($buttonGhostColorHover);
 			}
 		}
 	}
@@ -121,13 +121,13 @@
 	@extend %arrowbuttons;
 
 	.sbb-svgsprite-icon {
-		fill: $buttonGhostColorHover;
+		@include svgIconColor($buttonGhostColorHover);
 	}
 
 	&:hover,
 	&:focus {
 		.sbb-svgsprite-icon {
-			fill: $buttonGhostColorHover;
+			@include svgIconColor($buttonGhostColorHover);
 		}
 	}
 }
@@ -168,7 +168,7 @@
 	padding-right: toEm(30/$fontSize);
 	
 	.sbb-svgsprite-icon {
-		fill: $buttonFramelessColor;
+		@include svgIconColor($buttonFramelessColor);
 	}
 
 	&:hover,
@@ -176,7 +176,7 @@
 		padding-left: toEm(30/$fontSize);
 
 		.sbb-svgsprite-icon {
-			fill: $buttonFramelessColorHover;
+			@include svgIconColor($buttonFramelessColorHover);
 		}
 	}
 }

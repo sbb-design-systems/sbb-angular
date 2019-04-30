@@ -27,9 +27,9 @@
     }
 
     .sbb-select-arrow-wrapper {
+      @include svgIconColor($colorGrey);
       width: toPx($selectArrowWidthHeight);
       height: toPx($selectArrowWidthHeight);
-      fill: $colorGrey;
 
       @include mq($from: desktop4k) {
         width: toPx($selectArrowWidthHeight * $scalingFactor4k);

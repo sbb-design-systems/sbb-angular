@@ -28,6 +28,6 @@ import { RadioButtonPanelModule } from 'sbb-angular';
 ```html
 <h4>Radio button panel with subtitle and an icon</h4>
 <sbb-radio-button-panel name="single-option" value="single-option" [checked]="checked" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-     <sbb-icon-comfort icon></sbb-icon-comfort>
+     <sbb-icon-heart icon></sbb-icon-heart>
 </sbb-radio-button-panel>
 ```

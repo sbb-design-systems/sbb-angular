@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '../../icon-base';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-wallbox-48',
   // tslint:disable-next-line:max-line-length
@@ -17,6 +18,7 @@ export class IconWallbox48Component extends IconBase {
   }
 }
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconWallbox48Component],
   exports: [IconWallbox48Component],

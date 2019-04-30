@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IconArrowSmallLeftModule, IconArrowSmallRightModule } from '../svg-icons/svg-icons';
+import { IconChevronSmallLeftModule, IconChevronSmallRightModule } from 'sbb-angular-icons';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginationComponent } from './pagination/pagination.component';
 
@@ -13,8 +13,8 @@ import { PaginationComponent } from './pagination/pagination.component';
   imports: [
     CommonModule,
     RouterModule,
-    IconArrowSmallLeftModule,
-    IconArrowSmallRightModule,
+    IconChevronSmallLeftModule,
+    IconChevronSmallRightModule,
   ],
   exports: [
     PaginationComponent,

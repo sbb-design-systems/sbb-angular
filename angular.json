@@ -194,6 +194,41 @@
           }
         }
       }
+    },
+    "sbb-angular-icons": {
+      "root": "projects/sbb-angular-icons",
+      "sourceRoot": "projects/sbb-angular-icons/src",
+      "projectType": "library",
+      "prefix": "sbb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-angular-icons/tsconfig.lib.json",
+            "project": "projects/sbb-angular-icons/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-angular-icons/src/test.ts",
+            "tsConfig": "projects/sbb-angular-icons/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-angular-icons/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-angular-icons/tsconfig.lib.json",
+              "projects/sbb-angular-icons/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "sbb-angular-showcase"

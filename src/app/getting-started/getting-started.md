@@ -23,16 +23,16 @@ You can create now your project as described in the official [Angular CLI docume
 
 ## Step 1: Install ACL library
 
-Just after you created your own Angular project, in order to include the ACL library, you have to install the ```sbb-angular``` and the ```@angular/cdk``` dependency:
+Just after you created your own Angular project, in order to include the ACL library, you have to install the ```sbb-angular```, ```sbb-angular-icons``` and ```@angular/cdk``` dependencies:
 
 ```sh
-npm install --save sbb-angular @angular/cdk
+npm install --save sbb-angular sbb-angular-icons @angular/cdk
 ```
 
 or, if using yarn:
 
 ```sh
-yarn add sbb-angular @angular/cdk
+yarn add sbb-angular sbb-angular-icons @angular/cdk
 ```
 
 ## Step 2: Configure animations

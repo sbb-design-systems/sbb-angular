@@ -84,6 +84,7 @@ $lightbox-footer-padding: 24;
 
 @mixin lightboxCloseBtn() {
   @include buttonResetFrameless();
+  @include svgIconColor($lighbox-close-icon-color);
 
   margin-left: auto;
   position: relative;
@@ -108,19 +109,15 @@ $lightbox-footer-padding: 24;
 
     width: pxToEm($lighbox-close-icon-size);
     height: pxToEm($lighbox-close-icon-size);
-    fill: $lighbox-close-icon-color;
   }
 
   &:hover,
   &:focus {
+    @include svgIconColor($lighbox-close-button-color-hover);
     cursor: pointer;
 
     &::before {
       border-color: $lighbox-close-button-color-hover;
-    }
-
-    svg {
-      fill: $lighbox-close-button-color-hover;
     }
   }
 }

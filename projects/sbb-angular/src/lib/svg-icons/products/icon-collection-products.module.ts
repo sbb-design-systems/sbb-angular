@@ -60,6 +60,7 @@ import { IconProductSnModule } from './icon-product-sn.module';
 import { IconProductTgvModule } from './icon-product-tgv.module';
 import { IconProductVaeModule } from './icon-product-vae.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconProductBexModule,

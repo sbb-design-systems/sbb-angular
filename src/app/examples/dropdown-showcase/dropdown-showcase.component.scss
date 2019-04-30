@@ -7,7 +7,10 @@ $colorGrey: #666;
   align-items: center;
   padding: 14px;
   color: $colorGrey;
-  fill: $colorGrey;
+
+  svg > path {
+    stroke: $colorGrey;
+  }
 
   .avatar-icon {
     width: 24px;

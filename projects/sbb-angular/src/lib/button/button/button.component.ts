@@ -7,7 +7,9 @@ import {
   Self,
   OnChanges,
   AfterContentInit,
-  SimpleChanges
+  SimpleChanges,
+  ViewEncapsulation,
+  HostBinding
 } from '@angular/core';
 
 import { ButtonIconDirective } from './button-icon.directive';
@@ -19,6 +21,7 @@ import { HostClass } from '../../_common/host-class';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: [HostClass],
 })
 export class ButtonComponent implements OnChanges, AfterContentInit {
@@ -34,6 +37,12 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
   */
   @Input() @ContentChild(ButtonIconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
+  /** @docs-private */
+  @HostBinding('class.sbb-button') buttonClass = true;
+
+  /** @docs-private */
+  @HostBinding('class.sbb-button-has-icon') get buttonHasIconClass() { return !!this.icon; }
+
   constructor(
     @Self() private hostClass: HostClass,
   ) { }
@@ -41,19 +50,15 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
   ngOnChanges(changes: SimpleChanges) {
     if ((changes.mode && changes.mode.currentValue !== changes.mode.previousValue)
       || (changes.icon && changes.icon.currentValue !== changes.icon.previousValue)) {
-      this.applyClasses();
+      this.applyClass();
     }
   }
 
   ngAfterContentInit(): void {
-    this.applyClasses();
+    this.applyClass();
   }
 
-  private applyClasses() {
-    const classes = {
-      'sbb-button-has-icon': !!this.icon,
-      [`sbb-button-${this.mode}`]: true,
-    };
-    this.hostClass.apply(classes);
+  private applyClass() {
+    this.hostClass.apply(`sbb-button-${this.mode}`);
   }
 }

@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '../icon-base';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-lh-adventure-panorama-trips',
   // tslint:disable-next-line:max-line-length
@@ -17,6 +18,7 @@ export class IconLhAdventurePanoramaTripsComponent extends IconBase {
   }
 }
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconLhAdventurePanoramaTripsComponent],
   exports: [IconLhAdventurePanoramaTripsComponent],

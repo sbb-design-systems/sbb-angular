@@ -207,7 +207,7 @@
               <button sbbButton (click)="logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')"
                 (keydown)="logAndPreventOpeningPanelKeyDown($event, 'activated button with keyboard and prevent panel to open')">
                 Test button
-                <sbb-icon-arrow-down *sbbButtonIcon></sbb-icon-arrow-down>
+                <sbb-icon-arrow-right *sbbButtonIcon></sbb-icon-arrow-right>
               </button>
             </div>
           </sbb-expansion-panel-header>
@@ -279,20 +279,16 @@
 
       <h4>Properties</h4>
       <div class="sbbsc-block">
-
-        <div class="sbbsc-block">
-
-          <div *ngFor="let option of radioOptions">
-            <sbb-radio-button formControlName="radioModes" [value]="option.value">{{option.name}}</sbb-radio-button>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="sbbsc-block">
         <label>Click to open the panels of the accordion together:</label>
         <br>
         <sbb-checkbox value="multi" formControlName="multi" style="display: inline-block;"> multi panel </sbb-checkbox>
+      </div>
+      <div class="sbbsc-block">
+        <div class="sbbsc-block">
+          <div *ngFor="let option of radioOptions">
+            <sbb-radio-button formControlName="radioModes" [value]="option.value">{{option.name}}</sbb-radio-button>
+          </div>
+        </div>
       </div>
       <div class="sbbsc-block">
         <label>Click to disable a panel of the accordion:</label>

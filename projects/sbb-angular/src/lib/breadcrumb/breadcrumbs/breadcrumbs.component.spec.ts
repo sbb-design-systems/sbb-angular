@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { CommonModule, Location } from '@angular/common';
 import { DropdownModule } from '../../dropdown/dropdown';
-import { IconArrowLeftModule, IconArrowSmallDownModule, IconHomeModule, IconLhMountainsViewsModule } from '../../svg-icons/svg-icons';
+import { IconChevronRightModule, IconChevronSmallDownCircleModule, IconHouseModule } from 'sbb-angular-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { BreadcrumbModule } from '../breadcrumb.module';
@@ -17,7 +17,7 @@ import { createMouseEvent } from '../../_common/testing/event-objects';
   template: `<sbb-breadcrumbs>
                 <sbb-breadcrumb>
                   <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
-                    <sbb-icon-home></sbb-icon-home>
+                    <sbb-icon-house></sbb-icon-house>
                   </a>
                 </sbb-breadcrumb>
                 <sbb-breadcrumb>
@@ -39,7 +39,7 @@ export class BreadcrumbsTestComponent {
   template: `<sbb-breadcrumbs>
               <sbb-breadcrumb>
                 <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
-                  <sbb-icon-home></sbb-icon-home>
+                  <sbb-icon-house></sbb-icon-house>
                 </a>
               </sbb-breadcrumb>
 
@@ -72,7 +72,7 @@ export class BreadcrumbsTest2Component {
   template: `<sbb-breadcrumbs>
               <sbb-breadcrumb>
                 <a routerLink="." [queryParams]="{ level: 'home' }">
-                  <sbb-icon-home></sbb-icon-home>
+                  <sbb-icon-house></sbb-icon-house>
                 </a>
               </sbb-breadcrumb>
 
@@ -101,8 +101,8 @@ describe('BreadcrumbsComponent', () => {
       imports: [
         CommonModule,
         DropdownModule,
-        IconArrowLeftModule,
-        IconArrowSmallDownModule,
+        IconChevronRightModule,
+        IconChevronSmallDownCircleModule,
       ]
     })
       .compileComponents();
@@ -129,7 +129,7 @@ describe('Breadcrumb behaviour Test', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHomeModule],
+      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule],
       declarations: [BreadcrumbsTestComponent],
     })
       .compileComponents();
@@ -227,7 +227,7 @@ describe('Breadcrumb behaviour Test 2', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHomeModule, DropdownModule],
+      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule, DropdownModule],
       declarations: [BreadcrumbsTest2Component],
     })
       .compileComponents();
@@ -344,7 +344,7 @@ describe('Breadcrumb behaviour Test 3', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHomeModule, DropdownModule],
+      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule, DropdownModule],
       declarations: [BreadcrumbsTest3Component],
     })
       .compileComponents();

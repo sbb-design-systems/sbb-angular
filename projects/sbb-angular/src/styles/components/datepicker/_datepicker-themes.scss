@@ -4,8 +4,8 @@
 
     &:hover:enabled,
     &:focus:enabled {
+      @include svgIconColor($pickerIconsHoverColor);
       cursor: pointer;
-      fill: $pickerIconsHoverColor;
     }
   }
 }

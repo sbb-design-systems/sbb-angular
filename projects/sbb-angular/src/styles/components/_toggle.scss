@@ -63,11 +63,11 @@ $toggleOptionContentBg:               $colorWhite;
 }
 
 @mixin toggleOptionIcon() {
+  @include svgIconColor($toggleOptionButtonColor);
   display: inline-block;
   vertical-align: middle;
   width: pxToEm($toggleOptionIconSize);
   height: pxToEm($toggleOptionIconSize);
-  fill: $toggleOptionButtonColor;
 }
 
 @mixin toggleOptionLabel() {
@@ -142,7 +142,7 @@ $toggleOptionContentBg:               $colorWhite;
     color: $toggleOptionButtonColorSelected;
 
     &-icon {
-      fill: $toggleOptionButtonColorSelected;
+      @include svgIconColor($toggleOptionButtonColorSelected);
     }
 
     &-info-text {

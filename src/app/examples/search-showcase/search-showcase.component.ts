@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { IconCheckmarkComponent } from 'sbb-angular';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'sbb-search-showcase',
   templateUrl: './search-showcase.component.html',
   styleUrls: ['./search-showcase.component.scss'],
-  entryComponents: [IconCheckmarkComponent]
 })
 export class SearchShowcaseComponent implements OnInit {
 

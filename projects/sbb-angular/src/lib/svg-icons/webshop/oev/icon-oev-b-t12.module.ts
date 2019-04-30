@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 
 import { IconBase } from '../../icon-base';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-oev-b-t12',
   // tslint:disable-next-line:max-line-length
@@ -17,6 +18,7 @@ export class IconOevBT12Component extends IconBase {
   }
 }
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconOevBT12Component],
   exports: [IconOevBT12Component],

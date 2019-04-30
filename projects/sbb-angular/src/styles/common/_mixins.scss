@@ -525,3 +525,15 @@
     font-size: pxToRem(22);
   }
 }
+
+@mixin svgIconColor($color) {
+	svg.sbb-svg-icon > path {
+		&[fill="none"] {
+			stroke: $color;
+		}
+
+		&:not([fill]) {
+			fill: $color;
+		}
+	}
+}

@@ -29,6 +29,7 @@ import { IconLhTradeFairsFolkFestivalsModule } from './icon-lh-trade-fairs-folk-
 import { IconLhWellnessRelaxationModule } from './icon-lh-wellness-relaxation.module';
 import { IconLhZooAnimalParksModule } from './icon-lh-zoo-animal-parks.module';
 
+/** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   imports: [
     IconLhAdventurePanoramaTripsModule,

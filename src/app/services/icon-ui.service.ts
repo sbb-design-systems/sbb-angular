@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { iconComponentsMetaInformation } from 'sbb-angular-icons';
 import { UiIcon } from '../shared/ui-icon';
 import { UiComponent } from '../shared/ui-component';
-import { iconComponentDetails } from '../svg-icon-collection';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +9,13 @@ import { iconComponentDetails } from '../svg-icon-collection';
 export class IconUiService {
 
   getUiIconByRouterLink(name: any): UiIcon {
-    return iconComponentDetails
+    return iconComponentsMetaInformation
       .map(item => new UiIcon(item.name, item.selector, item.modules))
       .find((uiIcon) => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
   }
 
   getUiComponentByRouterLink(name: any): UiComponent {
-    const foundUiIcon: UiIcon = iconComponentDetails
+    const foundUiIcon: UiIcon = iconComponentsMetaInformation
       .map(item => new UiIcon(item.name, item.selector, item.modules))
       .find(uiIcon => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
     return new UiComponent(foundUiIcon.name,
@@ -33,7 +33,7 @@ export class IconUiService {
   getUiIconsBySearchValue(searchValue: any) {
 
     if (searchValue.length > 0) {
-      return iconComponentDetails
+      return iconComponentsMetaInformation
         .filter(uiIcon =>
           (new RegExp(searchValue, 'ig').test(uiIcon.name)) ||
           (new RegExp(searchValue, 'ig').test(uiIcon.selector)) ||
@@ -52,7 +52,7 @@ export class IconUiService {
   }
 
   getAll(): Array<UiIcon> {
-    return iconComponentDetails
+    return iconComponentsMetaInformation
       .map(item => new UiIcon(item.name, item.selector, item.modules))
       .sort((a, b) => a.name.localeCompare(b.name));
   }

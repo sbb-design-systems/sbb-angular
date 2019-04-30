@@ -9,7 +9,8 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
-      "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
+      "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
+      "sbb-angular-icons": "sbbAngularIcons"
     }
   }
 }
