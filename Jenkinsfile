@@ -21,6 +21,7 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
+        sh 'echo "Temporarily disabled"'
         /*
         withCredentials([
           usernamePassword(credentialsId: 'browserstack',
