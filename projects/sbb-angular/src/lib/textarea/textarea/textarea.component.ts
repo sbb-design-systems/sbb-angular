@@ -39,18 +39,17 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that disables the textarea status
    */
+  @HostBinding('class.disabled')
   @Input()
   disabled: boolean;
   /**
    * Class property that sets readonly the textarea content
    */
-  @Input()
-  readonly: boolean;
+  @Input() readonly: boolean;
   /**
    * Class property that sets the maxlength of the textarea content
    */
-  @Input()
-  maxlength: number;
+  @Input() maxlength: number;
   /**
   * Class property that represents an observer on the number of digits in a textarea
   */
@@ -58,38 +57,27 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that sets the minlength of the textarea content
    */
-  @Input()
-  minlength: number;
+  @Input() minlength: number;
   /**
    * Class property that sets required the textarea
    */
-  @Input()
-  required: boolean;
+  @Input() required: boolean;
   /**
    * Placeholder value for the textarea.
    */
-  @Input()
-  placeholder: string;
+  @Input() placeholder: string;
   /**
    * Identifier of textarea
    */
-  @Input()
-  inputId: string;
+  @Input() inputId: string;
   /**
    * Class property that automatically resize a textarea to fit its content
    */
-  @ViewChild('autosize')
-  autosize: CdkTextareaAutosize;
-  /**
-   * Class property that represents the disabled class status
-   */
-  @HostBinding('class.disabled')
-  disabledClass: boolean;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
   /**
    * Class property that represents the focused class status
    */
-  @HostBinding('class.focused')
-  focusedClass: boolean;
+  @HostBinding('class.focused') focusedClass: boolean;
   /**
    * Class property that represents a change caused by a new digit in a textarea
    */
@@ -127,7 +115,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   writeValue(newValue: any) {
     this.textContent = newValue == null ? '' : newValue;
-    this.updateDigitsCounter(newValue);
+    this.updateDigitsCounter(this.textContent);
     this.changeDetector.markForCheck();
   }
 
@@ -148,7 +136,6 @@ export class TextareaComponent implements ControlValueAccessor {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    this.disabledClass = disabled;
     this.changeDetector.markForCheck();
   }
   /**
