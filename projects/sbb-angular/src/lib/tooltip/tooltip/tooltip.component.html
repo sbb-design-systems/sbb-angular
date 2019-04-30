@@ -1,19 +1,21 @@
-<button 
-  (click)="onClick()" 
-  #trigger 
-  class="sbb-tooltip-trigger" 
-  [class.sbb-tooltip-trigger-active]="overlayAttached"
-  [attr.aria-describedby]="contentId"
-  tabindex="0"
->
+<button (click)="onClick($event)"
+        #trigger
+        class="sbb-tooltip-trigger"
+        [class.sbb-tooltip-trigger-active]="overlayAttached"
+        [attr.aria-describedby]="contentId"
+        tabindex="0"
+        type="button">
   <ng-container *ngTemplateOutlet="icon"></ng-container>
 </button>
-<ng-template cdkPortal #tooltipTemplate="cdkPortal">
-  <div class="sbb-tooltip-content-body" [attr.id]="contentId">
+<ng-template cdkPortal
+             #tooltipTemplate="cdkPortal">
+  <div class="sbb-tooltip-content-body"
+       [attr.id]="contentId">
     <ng-content></ng-content>
   </div>
   <div class="sbb-tooltip-shadow"></div>
-  <button class="sbb-tooltip-icon" (click)="onClick()">
+  <button class="sbb-tooltip-icon"
+          (click)="onClick()">
     <sbb-icon-close></sbb-icon-close>
   </button>
 </ng-template>

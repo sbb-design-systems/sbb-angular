@@ -65,12 +65,11 @@ export class TooltipComponent implements OnDestroy {
   /**
    * Identifier of tooltip.
    */
-  @HostBinding('attr.id')
-  tooltipId = 'sbb-tooltip-id-' + tooltipCounter++;
+  @HostBinding('attr.id') tooltipId = `sbb-tooltip-id-${tooltipCounter++}`;
   /**
    * Identifier of tooltip content.
    */
-  contentId = 'sbb-tooltip-content-id-' + tooltipCounter++;
+  contentId = `sbb-tooltip-content-id-${tooltipCounter++}`;
   /**
    * Css class on tooltip component.
    */
@@ -91,8 +90,7 @@ export class TooltipComponent implements OnDestroy {
   @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
 
   /** @docs-private */
-  @ViewChild('defaultIcon', { read: TemplateRef })
-  defaultIcon: TemplateRef<any>;
+  @ViewChild('defaultIcon', { read: TemplateRef }) defaultIcon: TemplateRef<any>;
 
   /**
    * The icon to be used as click target.
@@ -138,7 +136,8 @@ export class TooltipComponent implements OnDestroy {
   }
 
 
-  onClick() {
+  onClick(event: Event) {
+    event.stopPropagation();
     if (this.overlayAttached) {
       this.close(true);
     } else {
