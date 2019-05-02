@@ -2,13 +2,15 @@ import { Component, DebugElement, Type } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconArrowRightComponent as TestIconComponent, IconCollectionModule } from 'sbb-angular-icons';
+
 import { ButtonIconDirective } from './button-icon.directive';
 import { ButtonComponent } from './button.component';
 
 @Component({
   selector: 'sbb-button-test',
-  template: '<button sbbButton [icon]="icon" [mode]="mode" [disabled]="disabled" (click)="testClick()">Bezeichnung</button>' +
-            '<ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>',
+  template: `
+    <button sbbButton [icon]="icon" [mode]="mode" [disabled]="disabled" (click)="testClick()">Bezeichnung</button>
+    <ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>`,
   entryComponents: [TestIconComponent]
 })
 export class ButtonTemplateTestComponent {
@@ -30,7 +32,7 @@ describe('ButtonComponent', () => {
       ],
       declarations: [ButtonComponent, ButtonTemplateTestComponent, ButtonIconDirective]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -140,10 +142,10 @@ describe('ButtonComponent', () => {
 
     it('should have a grey border color of rgb(168, 168, 168)/#A8A8A8', () => {
       expect(
-            sbbButtonStyle.getPropertyValue('border-top-color')
-         && sbbButtonStyle.getPropertyValue('border-right-color')
-         && sbbButtonStyle.getPropertyValue('border-bottom-color')
-         && sbbButtonStyle.getPropertyValue('border-left-color')
+        sbbButtonStyle.getPropertyValue('border-top-color')
+        && sbbButtonStyle.getPropertyValue('border-right-color')
+        && sbbButtonStyle.getPropertyValue('border-bottom-color')
+        && sbbButtonStyle.getPropertyValue('border-left-color')
       ).toBe('rgb(168, 168, 168)');
     });
 
@@ -185,7 +187,7 @@ describe('ButtonComponent', () => {
 
     it('should not have borders', () => {
       expect(
-           sbbButtonStyle.getPropertyValue('border-top-width')
+        sbbButtonStyle.getPropertyValue('border-top-width')
         && sbbButtonStyle.getPropertyValue('border-right-width')
         && sbbButtonStyle.getPropertyValue('border-bottom-width')
         && sbbButtonStyle.getPropertyValue('border-left-width')
@@ -223,10 +225,10 @@ describe('ButtonComponent', () => {
 
     it('should have a grey border color of rgb(151, 151, 151)/#979797', () => {
       expect(
-            sbbButtonStyle.getPropertyValue('border-top-color')
-         && sbbButtonStyle.getPropertyValue('border-right-color')
-         && sbbButtonStyle.getPropertyValue('border-bottom-color')
-         && sbbButtonStyle.getPropertyValue('border-left-color')
+        sbbButtonStyle.getPropertyValue('border-top-color')
+        && sbbButtonStyle.getPropertyValue('border-right-color')
+        && sbbButtonStyle.getPropertyValue('border-bottom-color')
+        && sbbButtonStyle.getPropertyValue('border-left-color')
       ).toBe('rgb(151, 151, 151)');
     });
 

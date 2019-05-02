@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserMenuComponent } from './usermenu/usermenu.component';
-import { DropdownModule } from '../dropdown/dropdown';
+import { NgModule } from '@angular/core';
 import { IconChevronSmallDownModule, IconUserModule } from 'sbb-angular-icons';
+
+import { DropdownModule } from '../dropdown/dropdown';
+
+import { UserMenuComponent } from './usermenu/usermenu.component';
 
 @NgModule({
   declarations: [UserMenuComponent],

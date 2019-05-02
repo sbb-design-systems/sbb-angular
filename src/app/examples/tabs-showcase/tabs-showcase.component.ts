@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsComponent } from 'sbb-angular';
 
 @Component({
@@ -41,7 +41,7 @@ export class TabsShowcaseComponent implements OnInit {
     this.person.push(this.personInitialLoad);
   }
 
-  private initialPersonArrayByAmount(amount: number): void {
+  private _initialPersonArrayByAmount(amount: number): void {
     let counter = 0;
     while (counter < amount) {
       for (const item of this.personList) {
@@ -79,10 +79,10 @@ export class TabsShowcaseComponent implements OnInit {
       this.person.push(this.personInitialLoad);
     }
     if (event.startsWith('50')) {
-      this.initialPersonArrayByAmount(50);
+      this._initialPersonArrayByAmount(50);
     }
     if (event.startsWith('550')) {
-      this.initialPersonArrayByAmount(550);
+      this._initialPersonArrayByAmount(550);
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, ChangeDetectorRef, ContentChildren, QueryList } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 
 let uniqueOptgroupIdCounter = 0;
 
@@ -19,12 +19,8 @@ export class OptionGroupComponent {
   @Input()
   @HostBinding('class.sbb-optgroup-disabled')
   @HostBinding('attr.aria-disabled')
-  get disabled(): boolean {
-    return this._disabled;
-  }
-  set disabled(value: boolean) {
-    this._disabled = value;
-  }
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value: boolean) { this._disabled = value; }
   private _disabled = false;
 
   @HostBinding('attr.aria-labelledby')

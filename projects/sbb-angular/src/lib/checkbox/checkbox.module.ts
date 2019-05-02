@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { IconTickModule } from 'sbb-angular-icons';
 
 import { CheckboxComponent } from './checkbox/checkbox.component';
-import { IconTickModule } from 'sbb-angular-icons';
 
 @NgModule({
   imports: [

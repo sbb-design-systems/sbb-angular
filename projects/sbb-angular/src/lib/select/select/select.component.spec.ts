@@ -1,4 +1,5 @@
 import {
+  A,
   DOWN_ARROW,
   END,
   ENTER,
@@ -8,7 +9,6 @@ import {
   SPACE,
   TAB,
   UP_ARROW,
-  A,
 } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
@@ -41,18 +41,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Subject, Subscription } from 'rxjs';
-import { SelectModule } from '../select.module';
-import { dispatchKeyboardEvent, dispatchEvent, dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
-import { SBBOptionSelectionChange, OptionComponent } from '../../option/option/option.component';
-import { SelectComponent } from './select.component';
-import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import { FieldModule } from '../../field/field.module';
 
+import { ErrorStateMatcher } from '../../_common/errors/error-services';
+import { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import { createKeyboardEvent } from '../../_common/testing/event-objects';
+import { FieldModule } from '../../field/field.module';
+import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
+import { SelectModule } from '../select.module';
+
+import { SelectComponent } from './select.component';
 
 @Component({
   selector: 'sbb-basic-select',
@@ -290,7 +290,6 @@ class BasicSelectOnPushPreselectedComponent {
   ];
   control = new FormControl('pizza-1');
 }
-
 
 @Component({
   selector: 'sbb-multi-select',
@@ -756,7 +755,6 @@ class SelectWithoutOptionCenteringComponent {
 class SelectWithFormFieldLabelComponent {
   placeholder: string;
 }
-
 
 describe('SelectComponent', () => {
 
@@ -1345,7 +1343,6 @@ describe('SelectComponent', () => {
 
           trigger.click();
           fixture.detectChanges();
-
 
           expect(options[0].getAttribute('aria-selected')).toEqual('false');
           expect(options[1].getAttribute('aria-selected')).toEqual('true');
@@ -1942,7 +1939,6 @@ describe('SelectComponent', () => {
           .not.toContain('sbb-selected', `Expected option w/ the old value not to be selected.`);
       }));
 
-
       it('should clear the selection when the control is reset', fakeAsync(() => {
         fixture.componentInstance.control.setValue('pizza-1');
         fixture.detectChanges();
@@ -2178,7 +2174,6 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       fixture.detectChanges();
-
 
       expect(getComputedStyle(trigger).getPropertyValue('cursor'))
         .toEqual('pointer', `Expected cursor to be a pointer on enabled control.`);
@@ -2507,7 +2502,6 @@ describe('SelectComponent', () => {
         .toBe('true', 'Expected aria-invalid to be set to true.');
     }));
 
-
   });
 
   describe('with preselected array values', () => {
@@ -2527,7 +2521,6 @@ describe('SelectComponent', () => {
       expect(fixture.componentInstance.options.toArray()[1].selected).toBe(true);
     }));
   });
-
 
   describe('with a falsy value', () => {
     beforeEach(async(() => configureSbbSelectTestingModule([FalsyValueSelectComponent])));
@@ -2732,7 +2725,6 @@ describe('SelectComponent', () => {
         expect(trigger.textContent).toContain('Steak, Pizza, Sandwich');
       });
     });
-
 
     it('should update the data binding before emitting the change event', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);

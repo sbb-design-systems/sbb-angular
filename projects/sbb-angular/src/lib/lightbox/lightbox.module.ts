@@ -1,21 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
-
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { IconCrossModule } from 'sbb-angular-icons';
 
-import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
 import { LightboxContainerComponent } from './lightbox/lightbox-container.component';
 import {
-  LightboxFooterComponent,
   LightboxCloseDirective,
   LightboxContentComponent,
+  LightboxFooterComponent,
   LightboxHeaderComponent,
   LightboxTitleDirective,
 } from './lightbox/lightbox-content';
-import { IconCrossModule } from 'sbb-angular-icons';
-
+import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
 
 @NgModule({
   imports: [

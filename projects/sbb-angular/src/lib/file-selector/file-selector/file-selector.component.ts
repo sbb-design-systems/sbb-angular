@@ -1,21 +1,22 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
   Inject,
   Input,
   Optional,
-  ChangeDetectionStrategy,
-  forwardRef,
   Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef,
   Renderer2,
-  ViewEncapsulation,
-  ChangeDetectorRef
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
-import { FileSelectorOptions, FILE_SELECTOR_OPTIONS, FileTypeCategory } from './file-selector-base';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { FILE_SELECTOR_OPTIONS, FileSelectorOptions, FileTypeCategory } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 let counter = 0;
 
@@ -126,7 +127,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @param files Files uploaded.
    */
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
-    const filesToAdd = action === 'add' ? this.getFileListByMode(files) : files;
+    const filesToAdd = action === 'add' ? this._getFileListByMode(files) : files;
     this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
     this.onChange(filesToAdd);
     this.writeValue(filesToAdd);
@@ -148,7 +149,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @returns List of files without the file deleted.
    */
   removeFile(file: File): void {
-    const filteredList = this.filesList.filter(f => !this.checkFileEquality(f, file));
+    const filteredList = this.filesList.filter(f => !this._checkFileEquality(f, file));
     this.applyChanges(filteredList, 'remove');
   }
 
@@ -157,10 +158,10 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     this._changeDetector.markForCheck();
   }
 
-  private getFileListByMode(incomingFiles: File[]): File[] {
+  private _getFileListByMode(incomingFiles: File[]): File[] {
     if (this.multiple && this.multipleMode === 'persistent') {
       return incomingFiles.filter(f => {
-        return this.filesList.findIndex(flItem => this.checkFileEquality(f, flItem)) === -1;
+        return this.filesList.findIndex(flItem => this._checkFileEquality(f, flItem)) === -1;
       })
         .concat(this.filesList);
     }
@@ -168,7 +169,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     return incomingFiles;
   }
 
-  private checkFileEquality(file1: File, file2: File): boolean {
+  private _checkFileEquality(file1: File, file2: File): boolean {
     return file1.name === file2.name
       && file1.size === file2.size
       && file1.lastModified === file2.lastModified;

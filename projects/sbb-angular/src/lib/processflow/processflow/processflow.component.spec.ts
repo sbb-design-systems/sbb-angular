@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { dispatchMouseEvent } from '../../_common/testing/dispatch-events';
 import { ProcessflowModule } from '../processflow.module';
-import { ProcessflowComponent } from './processflow.component';
 
+import { ProcessflowComponent } from './processflow.component';
 
 @Component({
   selector: 'sbb-processflow-test',
@@ -53,7 +54,6 @@ describe('ProcessflowComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
 
 describe('ProcessflowComponent user interaction', () => {
   let component: ProcessflowTestComponent;

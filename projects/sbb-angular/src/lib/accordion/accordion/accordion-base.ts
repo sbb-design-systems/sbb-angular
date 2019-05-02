@@ -1,5 +1,5 @@
-import { InjectionToken } from '@angular/core';
 import { CdkAccordion } from '@angular/cdk/accordion';
+import { InjectionToken } from '@angular/core';
 
 export interface IAccordionBase extends CdkAccordion {
   /** Whether the expansion indicator should be hidden. */

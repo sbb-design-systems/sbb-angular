@@ -1,25 +1,27 @@
+import { DOCUMENT } from '@angular/common';
 import {
-  Component,
-  Input,
-  ChangeDetectorRef,
+  AfterViewInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  forwardRef,
   HostBinding,
   Inject,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
-  ContentChild,
+  Input,
   TemplateRef,
-  forwardRef
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
-import { ToggleOptionIconDirective } from './toggle-option-icon.directive';
+
 import { RadioButtonComponent } from '../../radio-button/radio-button';
 import { RadioButtonRegistryService } from '../../radio-button/radio-button/radio-button-registry.service';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
+
+import { ToggleOptionIconDirective } from './toggle-option-icon.directive';
 
 let counter = 0;
 
@@ -166,9 +168,10 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
 
   constructor(
     @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
-    @Inject(DOCUMENT) document: any,
     private _registry: RadioButtonRegistryService,
-    private _changeDetector: ChangeDetectorRef) {
+    private _changeDetector: ChangeDetectorRef,
+    @Inject(DOCUMENT) document: any,
+  ) {
     super(_changeDetector, _registry);
     this._document = document;
   }

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, Self, OnChanges, SimpleChanges, ViewEncapsulation, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnChanges, Self, SimpleChanges, ViewEncapsulation } from '@angular/core';
+
 import { HostClass } from '../../_common/host-class';
 
 @Component({
@@ -23,12 +24,12 @@ export class LinkComponent implements OnChanges {
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
   constructor(
-    @Self() private hostClass: HostClass,
+    @Self() private _hostClass: HostClass,
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.mode && changes.mode.currentValue !== changes.mode.previousValue) {
-      this.hostClass.apply(`sbb-link-${this.mode}`);
+      this._hostClass.apply(`sbb-link-${this.mode}`);
     }
   }
 }

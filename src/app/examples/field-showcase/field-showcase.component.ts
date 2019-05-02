@@ -18,11 +18,11 @@ export class FieldShowcaseComponent implements OnInit {
     'long'
   ];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
-    this.form = this.formBuilder.group({
+    this.form = this._formBuilder.group({
       name1: ['', Validators.required],
       name2: ['', [Validators.required, Validators.minLength(3)]],
       select1: ['', Validators.required],

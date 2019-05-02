@@ -1,12 +1,7 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  flushMicrotasks,
-  inject,
-  TestBed,
-  tick,
-  flush,
-} from '@angular/core/testing';
+import { A, ESCAPE } from '@angular/cdk/keycodes';
+import { Overlay, OverlayContainer, ScrollDispatcher } from '@angular/cdk/overlay';
+import { Location } from '@angular/common';
+import { SpyLocation } from '@angular/common/testing';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,22 +13,28 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  flushMicrotasks,
+  inject,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Location } from '@angular/common';
-import { SpyLocation } from '@angular/common/testing';
-import { LightboxContainerComponent } from './lightbox-container.component';
-import { OverlayContainer, ScrollDispatcher, Overlay } from '@angular/cdk/overlay';
-import { A, ESCAPE } from '@angular/cdk/keycodes';
+import { Subject } from 'rxjs';
+
 import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import {
-  LIGHTBOX_DATA,
   Lightbox,
+  LIGHTBOX_DATA,
   LightboxModule,
   LightboxRef
 } from '../lightbox';
-import { Subject } from 'rxjs';
 
+import { LightboxContainerComponent } from './lightbox-container.component';
 
 @Directive({ selector: '[sbbDirWithViewContainer]' })
 class DirectiveWithViewContainerDirective {
@@ -896,4 +897,3 @@ describe('Lightbox with a parent Lightbox', () => {
     expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
   }));
 });
-

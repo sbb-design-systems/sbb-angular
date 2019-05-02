@@ -63,10 +63,10 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
     this._checked = value;
 
     if (this._checked) {
-      this.registry.select(this);
+      this._registry.select(this);
     }
 
-    this.changeDetector.markForCheck();
+    this._changeDetector.markForCheck();
   }
   private _checked = false;
   /**
@@ -78,17 +78,20 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   onTouched = () => { };
 
-  constructor(private changeDetector: ChangeDetectorRef, private registry: RadioButtonRegistryService) {
+  constructor(
+    private _changeDetector: ChangeDetectorRef,
+    private _registry: RadioButtonRegistryService,
+  ) {
     super();
   }
 
   ngOnInit(): void {
-    this.checkName();
-    this.registry.add(this);
+    this._checkName();
+    this._registry.add(this);
   }
 
   ngOnDestroy(): void {
-    this.registry.remove(this);
+    this._registry.remove(this);
   }
   writeValue(value: any): void {
     this.checked = this.value === value;
@@ -122,7 +125,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    */
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    this.changeDetector.markForCheck();
+    this._changeDetector.markForCheck();
   }
 
   /**
@@ -135,9 +138,9 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   /**
    * Verify that radio button name matches with radio button form control name
    */
-  private checkName(): void {
+  private _checkName(): void {
     if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this.throwNameError();
+      this._throwNameError();
     } else if (!this.name && this.formControlName) {
       this.name = this.formControlName;
     }
@@ -146,7 +149,7 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   /**
    * Throws an exception if the radio button name doesn't match with the radio button form control name
    */
-  private throwNameError(): void {
+  private _throwNameError(): void {
     throw new Error(`
       If you define both a name and a formControlName attribute on your radio button, their values
       must match. Ex: <sbb-radio-button formControlName="food" name="food"></sbb-radio-button>

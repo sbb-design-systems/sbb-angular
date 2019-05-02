@@ -1,14 +1,14 @@
-import { Component, DebugElement, OnInit, AfterViewInit } from '@angular/core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { AfterViewInit, Component, DebugElement, OnInit } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
+import { BadgeModule } from '../../badge/badge.module';
+import { TabComponent } from '../tab/tab.component';
 
 import { TabsComponent } from './tabs.component';
-import { TabComponent } from '../tab/tab.component';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { BadgeModule } from '../../badge/badge.module';
 
 @Component({
   template: `<sbb-tabs>

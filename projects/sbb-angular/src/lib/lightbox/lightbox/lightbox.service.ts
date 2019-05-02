@@ -1,13 +1,4 @@
 import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  Injector,
-  Optional,
-  SkipSelf,
-  TemplateRef,
-} from '@angular/core';
-import {
   Overlay,
   OverlayConfig,
   OverlayRef,
@@ -20,13 +11,21 @@ import {
   TemplatePortal
 } from '@angular/cdk/portal';
 import { Location } from '@angular/common';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  Injector,
+  Optional,
+  SkipSelf,
+  TemplateRef,
+} from '@angular/core';
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { LightboxConfig } from './lightbox-config';
 import { LightboxContainerComponent } from './lightbox-container.component';
 import { LightboxRef } from './lightbox-ref';
-
 
 /** Injection token that can be used to access the data that was passed in to a lightbox. */
 export const LIGHTBOX_DATA = new InjectionToken<any>('LightboxData');
@@ -40,7 +39,7 @@ export const LIGHTBOX_SCROLL_STRATEGY =
   new InjectionToken<() => ScrollStrategy>('LightboxScrollStrategy');
 
 /** @docs-private */
-export function LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
+export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
   () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
@@ -49,7 +48,7 @@ export function LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
 export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   provide: LIGHTBOX_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
+  useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
 /**
@@ -73,7 +72,8 @@ export class Lightbox {
     return this._parentLightbox ? this._parentLightbox.afterOpen : this._afterOpenAtThisLevel;
   }
 
-  get _afterAllClosed() {
+  // tslint:disable-next-line: naming-convention
+  get _afterAllClosed(): Subject<void> {
     const parent = this._parentLightbox;
     return parent ? parent._afterAllClosed : this._afterAllClosedAtThisLevel;
   }
@@ -103,9 +103,7 @@ export class Lightbox {
    */
   open<T, D = any, R = any>(componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: LightboxConfig<D>): LightboxRef<T, R> {
-
-    config = _applyConfigDefaults(config, this._defaultOptions || new LightboxConfig());
-
+    config = { ...(this._defaultOptions || new LightboxConfig()), ...config };
     if (config.id && this.getLightboxById(config.id)) {
       throw Error(`lightbox with id "${config.id}" exists already. The lightbox id must be unique.`);
     }
@@ -164,15 +162,13 @@ export class Lightbox {
    * @returns The overlay configuration.
    */
   private _getOverlayConfig(lightboxConfig: LightboxConfig): OverlayConfig {
-    const state = new OverlayConfig({
+    return new OverlayConfig({
       positionStrategy: this._overlay.position().global(),
       scrollStrategy: lightboxConfig.scrollStrategy || this._scrollStrategy(),
       panelClass: lightboxConfig.panelClass,
       width: lightboxConfig.width,
       height: lightboxConfig.height
     });
-
-    return state;
   }
 
   /**
@@ -210,7 +206,7 @@ export class Lightbox {
     // Create a reference to the lightbox we're creating in order to give the user a handle
     // to modify and close it.
     const lightboxRef =
-      new LightboxRef<T, R>(overlayRef, lightboxContainer, this._location, config.id);
+      new LightboxRef<T, R>(lightboxContainer, config.id, overlayRef, this._location);
 
     if (componentOrTemplateRef instanceof TemplateRef) {
       lightboxContainer.attachTemplatePortal(
@@ -270,16 +266,4 @@ export class Lightbox {
       }
     }
   }
-
-}
-
-/**
- * Applies default options to the lightbox config.
- * @param config Config to be modified.
- * @param defaultOptions Default options provided.
- * @returns The new configuration object.
- */
-function _applyConfigDefaults(
-  config?: LightboxConfig, defaultOptions?: LightboxConfig): LightboxConfig {
-  return { ...defaultOptions, ...config };
 }

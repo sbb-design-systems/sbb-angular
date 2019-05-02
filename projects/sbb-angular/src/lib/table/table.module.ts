@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table/table.component';
+import { NgModule } from '@angular/core';
+
 import { ScrollAreaDirective } from './table/table-scroll-area.directive';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   imports: [

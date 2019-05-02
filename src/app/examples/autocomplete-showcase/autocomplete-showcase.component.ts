@@ -22,20 +22,20 @@ export class AutocompleteShowcaseComponent implements OnInit {
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
 
   ngOnInit() {
-    this.myControl.valueChanges.subscribe((newValue) => {
-      this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
+    this.myControl.valueChanges.subscribe(newValue => {
+      this.filteredOptions = this.options
+        .filter(option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
     this.options$ = new Subject<string[]>();
 
-
     this.myControlStatic.valueChanges
       .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
-      .subscribe((newValue) => {
+      .subscribe(newValue => {
         if (newValue.length >= 2) {
           this.options$
-            .next(this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
+            .next(this.options.filter(option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
         } else {
           this.options$.next([]);
         }

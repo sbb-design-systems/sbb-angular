@@ -16,11 +16,11 @@ export abstract class IconBase {
    */
   @Input()
   @HostBinding('style.width')
-  get width() { return this.isFixed() ? this.dimension.width : this.inputWidth; }
+  get width() { return this._isFixed() ? this._dimension.width : this._inputWidth; }
   set width(value: string) {
-    this.inputWidth = this.coerceDimensionValue(value);
-    if (!this.inputHeight) {
-      this.inputHeight = this.resolveInput(value, v => v / this.dimension.ratio);
+    this._inputWidth = this._coerceDimensionValue(value);
+    if (!this._inputHeight) {
+      this._inputHeight = this._resolveInput(value, v => v / this._dimension.ratio);
     }
   }
   /**
@@ -28,11 +28,11 @@ export abstract class IconBase {
    */
   @Input()
   @HostBinding('style.height')
-  get height() { return this.isFixed() ? this.dimension.height : this.inputHeight; }
+  get height() { return this._isFixed() ? this._dimension.height : this._inputHeight; }
   set height(value: string) {
-    this.inputHeight = this.coerceDimensionValue(value);
-    if (!this.inputWidth) {
-      this.inputWidth = this.resolveInput(value, v => v * this.dimension.ratio);
+    this._inputHeight = this._coerceDimensionValue(value);
+    if (!this._inputWidth) {
+      this._inputWidth = this._resolveInput(value, v => v * this._dimension.ratio);
     }
   }
   /**
@@ -40,23 +40,23 @@ export abstract class IconBase {
    */
   @Input() svgClass = '';
   @HostBinding('style.display') get display() {
-    return this.isFixed() || this.inputHeight || this.inputWidth ? 'inline-block' : undefined;
+    return this._isFixed() || this._inputHeight || this._inputWidth ? 'inline-block' : undefined;
   }
   @HostBinding('class.sbb-icon-component') sbbIconComponent = true;
-  private inputWidth: string;
-  private inputHeight: string;
+  private _inputWidth: string;
+  private _inputHeight: string;
 
-  constructor(private readonly dimension: { width: string, height: string, ratio: number }) { }
+  constructor(private readonly _dimension: { width: string, height: string, ratio: number }) { }
 
-  private isFixed() {
+  private _isFixed() {
     return this.size === 'fixed';
   }
 
-  private coerceDimensionValue(value: string) {
+  private _coerceDimensionValue(value: string) {
     return Number.isNaN(+value) ? value : `${value}px`;
   }
 
-  private resolveInput(input: string, operation: (value: number) => number) {
+  private _resolveInput(input: string, operation: (value: number) => number) {
     const match = /(\d*\.\d+|\d+)(\w*)/g.exec(input);
     return match && match[1] ? `${operation(Number(match[1]))}${match[2] || 'px'}` : undefined;
   }

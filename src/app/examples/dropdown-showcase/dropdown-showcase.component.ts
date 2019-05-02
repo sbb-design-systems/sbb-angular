@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { LinkGeneratorResult, DropdownTriggerDirective } from 'sbb-angular';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { DropdownTriggerDirective, LinkGeneratorResult } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-dropdown-showcase',
@@ -22,7 +22,6 @@ export class DropdownShowcaseComponent {
       routerLink: ['.']
     };
   }
-
 
   onClick() {
     console.log('Button clicked');

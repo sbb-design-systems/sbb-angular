@@ -1,8 +1,10 @@
-import { LinkGeneratorResult } from '../../pagination/pagination';
-import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
-import { TemplateRef, ComponentRef } from '@angular/core';
-import { first, filter } from 'rxjs/operators';
+import { ComponentRef, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
+
+import { LinkGeneratorResult } from '../../pagination/pagination';
+
+import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
 
 /**
  * Describe a Ghettobox object accepted from the GhettoboxService's add method
@@ -14,9 +16,10 @@ export interface Ghettobox {
 }
 
 /**
- * Ghettobox Reference which expose common api to retrieve the ID, the component instance, the delete method.
- * Expose and subscribe to afterDelete stream in order to dispose the component if its a ComponentRef of a dynamic component
- * attached to the cdkPortalOutlet
+ * Ghettobox Reference which expose common api to retrieve the ID, the component instance, the
+ * delete method.
+ * Expose and subscribe to afterDelete stream in order to dispose the component if its a
+ * ComponentRef of a dynamic component attached to the cdkPortalOutlet
  */
 export class GhettoboxRef {
 

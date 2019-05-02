@@ -1,16 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ComponentUiService } from './services/component-ui.service';
-import { AccordionNotificationService } from './services/accordion-notification.service';
-import { IconUiService } from './services/icon-ui.service';
-import { routeAnimation } from './shared/animations';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { AccordionNotificationService } from './services/accordion-notification.service';
+import { ComponentUiService } from './services/component-ui.service';
+import { IconUiService } from './services/icon-ui.service';
+import { ROUTER_ANIMATION } from './shared/animations';
 
 @Component({
   selector: 'sbb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    routeAnimation
+    ROUTER_ANIMATION
   ]
 })
 export class AppComponent implements OnInit {
@@ -29,20 +30,21 @@ export class AppComponent implements OnInit {
 
   @ViewChild('maincontent') maincontent: ElementRef;
 
-  constructor(private componentUiService : ComponentUiService,
-              private iconUiService : IconUiService,
-              private accordionNotificationService : AccordionNotificationService) {
-  }
+  constructor(
+    private _componentUiService: ComponentUiService,
+    private _iconUiService: IconUiService,
+    private _accordionNotificationService: AccordionNotificationService,
+  ) { }
 
   ngOnInit() {
-    this.sizeOfUiIcons = this.iconUiService.getAll().length;
-    this.sizeOfUiComponents = this.componentUiService.getAll().length;
+    this.sizeOfUiIcons = this._iconUiService.getAll().length;
+    this.sizeOfUiComponents = this._componentUiService.getAll().length;
 
-    this.accordionNotificationService.openComponent.subscribe(value => {
-          this.componentsClicked = !this.componentsClicked;
+    this._accordionNotificationService.openComponent.subscribe(value => {
+      this.componentsClicked = !this.componentsClicked;
     });
 
-    this.accordionNotificationService.openIcon.subscribe(value => {
+    this._accordionNotificationService.openIcon.subscribe(value => {
       this.iconsClicked = !this.iconsClicked;
     });
   }

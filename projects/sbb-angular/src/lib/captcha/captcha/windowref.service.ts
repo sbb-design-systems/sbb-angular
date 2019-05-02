@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+// tslint:disable-next-line: naming-convention
 function _window(): any {
   // return the global native browser window object
   return window;

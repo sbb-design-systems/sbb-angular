@@ -1,5 +1,5 @@
-import { Component, OnInit, Injector, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 export interface FormModel {
@@ -33,7 +33,7 @@ export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
     });
 
     this.captchaSubscription = this.formCaptcha.get('captcha')
-      .valueChanges.subscribe((value) => {
+      .valueChanges.subscribe(value => {
         this.formModelReactive.captcha = value;
       });
 
@@ -52,6 +52,5 @@ export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
   resetForm() {
     this.formCaptcha.reset();
   }
-
 
 }

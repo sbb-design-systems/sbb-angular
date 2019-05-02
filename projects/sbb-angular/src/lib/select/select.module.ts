@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OptionModule } from '../option/option.module';
-import { SelectComponent, SBB_SELECT_SCROLL_STRATEGY_PROVIDER } from './select/select.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { IconChevronSmallDownModule } from 'sbb-angular-icons';
+
+import { OptionModule } from '../option/option.module';
+
+import { SBB_SELECT_SCROLL_STRATEGY_PROVIDER, SelectComponent } from './select/select.component';
 
 @NgModule({
   imports: [

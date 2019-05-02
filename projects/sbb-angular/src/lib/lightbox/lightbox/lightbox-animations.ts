@@ -1,14 +1,14 @@
 import {
   animate,
+  AnimationTriggerMetadata,
   state,
   style,
   transition,
   trigger,
-  AnimationTriggerMetadata,
 } from '@angular/animations';
 
 /** Animations used by Lightbox. */
-export const LightboxAnimations: {
+export const LIGHTBOX_ANIMATIONS: {
   readonly slideLightbox: AnimationTriggerMetadata;
 } = {
   /** Animation that slides the Lightbox in and out of view and fades the opacity. */

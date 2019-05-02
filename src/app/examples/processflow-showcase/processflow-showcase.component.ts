@@ -1,5 +1,5 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { ProcessflowStep, ProcessflowComponent } from 'projects/sbb-angular/src/public_api';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { ProcessflowComponent, ProcessflowStep } from 'projects/sbb-angular/src/public_api';
 
 @Component({
   selector: 'sbb-processflow-showcase',

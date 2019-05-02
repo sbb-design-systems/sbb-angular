@@ -1,14 +1,14 @@
 import {
-  Component,
-  ViewEncapsulation,
-  Inject, ViewChild,
-  TemplateRef,
-  OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component, Inject,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 
-import { Lightbox, LightboxRef, LIGHTBOX_DATA } from 'sbb-angular';
+import { Lightbox, LIGHTBOX_DATA, LightboxRef } from 'sbb-angular';
 
 export interface LightboxData {
   animal: string;
@@ -163,7 +163,7 @@ export class LightboxShowcaseExample4Component {
   openDialog() {
     const lightboxRef = this.lightbox.open(LightboxShowcaseExample4ContentComponent, { disableClose: true });
 
-    lightboxRef.afterClosed().subscribe((result) => {
+    lightboxRef.afterClosed().subscribe(result => {
       console.log(`Lightbox ${result}`);
     });
   }
@@ -245,7 +245,6 @@ export class LightboxShowcaseExample5Component {
   }
 
 }
-
 
 @Component({
   selector: 'sbb-lightbox-showcase',

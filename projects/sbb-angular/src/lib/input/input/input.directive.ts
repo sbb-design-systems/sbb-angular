@@ -1,14 +1,15 @@
-import {
-  Directive, Input, OnInit, Optional, HostBinding, ElementRef, Self, Inject, OnChanges, DoCheck, OnDestroy, HostListener
-} from '@angular/core';
-import { NgControl, NgForm, FormGroupDirective } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
-import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import {
+  Directive, DoCheck, ElementRef, HostBinding, HostListener, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Self
+} from '@angular/core';
+import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import { CanUpdateErrorStateCtor, mixinErrorState } from '../../_common/errors/error-state';
 import { FormFieldControl } from '../../field/form-field-control';
+import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 
 let nextId = 0;
 const SBB_INPUT_INVALID_TYPES = [
@@ -25,14 +26,16 @@ const SBB_INPUT_INVALID_TYPES = [
 
 /** @docs-private */
 export class InputBase {
+  // tslint:disable: naming-convention
   constructor(
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     /** @docs-private */
     public ngControl: NgControl) { }
+  // tslint:enable: naming-convention
 }
-export const _SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase =
+export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase =
   mixinErrorState(InputBase);
 
 @Directive({
@@ -40,15 +43,17 @@ export const _SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase =
   exportAs: 'sbbInput',
   providers: [{ provide: FormFieldControl, useExisting: InputDirective }],
 })
-export class InputDirective extends _SbbNativeInputBase implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
+export class InputDirective
+  extends SbbNativeInputBase
+  implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
   /** The aria-describedby attribute on the input for improved a11y. */
   @HostBinding('attr.aria-describedby')
-  _ariaDescribedby: string;
+  ariaDescribedby: string;
 
   /** Whether the component is a native html select. */
-  _isNativeSelect = false;
+  isNativeSelect = false;
 
   /** Whether the component is in an error state. */
   @HostBinding('attr.aria-invalid')
@@ -159,7 +164,7 @@ export class InputDirective extends _SbbNativeInputBase implements FormFieldCont
   private _readonly = false;
 
   @HostBinding('attr.readonly')
-  get readonlyAttribute() { return this.readonly && !this._isNativeSelect || undefined; }
+  get readonlyAttribute() { return this.readonly && !this.isNativeSelect || undefined; }
 
   /**
    * Implemented as part of FormFieldControl.
@@ -182,24 +187,24 @@ export class InputDirective extends _SbbNativeInputBase implements FormFieldCont
   ].filter(t => getSupportedInputTypes().has(t));
 
   constructor(
-    private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-    private _platform: Platform,
     /** @docs-private */
     @Optional() @Self() public ngControl: NgControl,
-    @Optional() _parentForm: NgForm,
-    @Optional() _parentFormGroup: FormGroupDirective,
-    _defaultErrorStateMatcher: ErrorStateMatcher,
-    @Optional() @Self() @Inject(SBB_INPUT_VALUE_ACCESSOR) inputValueAccessor: any,
+    private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    private _platform: Platform,
     private _autofillMonitor: AutofillMonitor,
+    @Optional() parentForm: NgForm,
+    @Optional() parentFormGroup: FormGroupDirective,
+    defaultErrorStateMatcher: ErrorStateMatcher,
+    @Optional() @Self() @Inject(SBB_INPUT_VALUE_ACCESSOR) inputValueAccessor: any,
   ) {
-    super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl);
+    super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     const element = this._elementRef.nativeElement;
 
     // If no input value accessor was explicitly specified, use the element as the input value
     // accessor.
     this._inputValueAccessor = inputValueAccessor || element;
     this._previousNativeValue = this.value;
-    this._isNativeSelect = element.nodeName.toLowerCase() === 'select';
+    this.isNativeSelect = element.nodeName.toLowerCase() === 'select';
   }
 
   ngOnInit() {
@@ -243,7 +248,7 @@ export class InputDirective extends _SbbNativeInputBase implements FormFieldCont
 
   @HostListener('blur', ['false'])
   @HostListener('focus', ['true'])
-  _focusChanged(isFocused: boolean) {
+  onFocusChanged(isFocused: boolean) {
     if (isFocused !== this.focused && (!this.readonly || !isFocused)) {
       this.focused = isFocused;
       this.stateChanges.next();
@@ -255,7 +260,7 @@ export class InputDirective extends _SbbNativeInputBase implements FormFieldCont
    * @docs-private
    */
   setDescribedByIds(ids: string[]) {
-    this._ariaDescribedby = ids.join(' ');
+    this.ariaDescribedby = ids.join(' ');
   }
 
   /** Does some manual dirty checking on the native input `value` property. */

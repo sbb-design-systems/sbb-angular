@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TextareaComponent } from './textarea.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+
 import { typeInElement } from '../../_common/testing/type-in-element';
 
+import { TextareaComponent } from './textarea.component';
 
 @Component({
   selector: 'sbb-textarea-test',
@@ -76,7 +76,8 @@ describe('TextareaComponent behaviour', () => {
     typeInElement('', textarea.nativeElement);
     fixture.detectChanges();
     expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
-    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor).toBe('rgb(235, 0, 0)');
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor)
+      .toBe('rgb(235, 0, 0)');
   });
 
   it('should be readonly attribute', () => {
@@ -92,7 +93,8 @@ describe('TextareaComponent behaviour', () => {
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeTruthy();
-    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderTopColor).toBe('rgb(210, 210, 210)');
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderTopColor)
+      .toBe('rgb(210, 210, 210)');
   });
 
   it('should have a min length attribute', () => {
@@ -102,10 +104,10 @@ describe('TextareaComponent behaviour', () => {
     fixture.detectChanges();
     expect(innerComponent.attributes['minlength']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
-    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor).toBe('rgb(235, 0, 0)');
+    expect(getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).borderTopColor)
+      .toBe('rgb(235, 0, 0)');
   });
 });
-
 
 describe('TextareaComponent digits counter', () => {
   let component: TextareaComponent;

@@ -1,5 +1,5 @@
-import { ViewContainerRef } from '@angular/core';
 import { ScrollStrategy } from '@angular/cdk/overlay';
+import { ViewContainerRef } from '@angular/core';
 
 /** Valid ARIA roles for a Lightbox element. */
 export type LightboxRole = 'dialog' | 'alertdialog';

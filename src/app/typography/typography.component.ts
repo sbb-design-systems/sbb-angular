@@ -1,11 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
-  ViewChildren,
+  ElementRef,
   QueryList,
-  ElementRef
+  ViewChildren
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'sbb-typography',
@@ -16,7 +16,7 @@ export class TypographyComponent {
 
   @ViewChildren('pageLink') pageLinks: QueryList<ElementRef>;
 
-  private editorOptionsBase = {
+  private _editorOptionsBase = {
     theme: 'vs-dark',
     codeLens: false,
     readOnly: true,
@@ -24,12 +24,11 @@ export class TypographyComponent {
     minimap: { enabled: false }
   };
 
-  DASH_CASE_REGEXP = RegExp('-([a-z])', 'g');
+  dashCaseRegexp = RegExp('-([a-z])', 'g');
 
+  editorOptionsHtml = Object.assign({}, this._editorOptionsBase, { language: 'html' });
 
-  editorOptionsHtml = Object.assign({}, this.editorOptionsBase, { language: 'html' });
-
-  editorOptionsScss = Object.assign({}, this.editorOptionsBase, { language: 'scss' });
+  editorOptionsScss = Object.assign({}, this._editorOptionsBase, { language: 'scss' });
 
   code = {
     globalSettings: '',
@@ -43,26 +42,27 @@ export class TypographyComponent {
     headings: ''
   };
 
-  constructor(private _sanitizer: DomSanitizer, private http: HttpClient) {
-    this.getSample('global-settings', 'scss');
-    this.getSample('unordered-list');
-    this.getSample('ordered-list');
-    this.getSample('nested-ordered-list');
-    this.getSample('nested-unordered-list');
-    this.getSample('mixed-list');
-    this.getSample('table');
-    this.getSample('fieldset');
-    this.getSample('headings');
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private _http: HttpClient,
+  ) {
+    this._getSample('global-settings', 'scss');
+    this._getSample('unordered-list');
+    this._getSample('ordered-list');
+    this._getSample('nested-ordered-list');
+    this._getSample('nested-unordered-list');
+    this._getSample('mixed-list');
+    this._getSample('table');
+    this._getSample('fieldset');
+    this._getSample('headings');
   }
 
   dashCaseToCamelCase(input: string): string {
-    return input.replace(this.DASH_CASE_REGEXP, (m) => {
-      return m[1].toUpperCase();
-    });
+    return input.replace(this.dashCaseRegexp, m => m[1].toUpperCase());
   }
 
-  private getSample(filename: string, type: 'html' | 'scss' = 'html') {
-    this.http
+  private _getSample(filename: string, type: 'html' | 'scss' = 'html') {
+    this._http
       .get(`docs/typography/samples/${filename}.${type}`, { responseType: 'text' })
       .subscribe((response: any) => this.code[this.dashCaseToCamelCase(filename)] = response);
   }

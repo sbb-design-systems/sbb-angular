@@ -84,4 +84,3 @@ describe('RadioButtonRegistryService', () => {
     expect(service.accessors['test-name']).toBeUndefined();
   });
 });
-

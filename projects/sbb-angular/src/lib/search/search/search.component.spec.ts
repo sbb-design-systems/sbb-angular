@@ -1,15 +1,16 @@
-import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { SearchModule } from '../search.module';
-import { SearchComponent } from '../search';
+import { DOWN_ARROW, ENTER, TAB, UP_ARROW } from '@angular/cdk/keycodes';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, ViewChild } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { dispatchKeyboardEvent, dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { ENTER, DOWN_ARROW, UP_ARROW, TAB } from '@angular/cdk/keycodes';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import { createKeyboardEvent } from '../../_common/testing/event-objects';
 import { AutocompleteModule } from '../../autocomplete/autocomplete';
 import { OptionModule } from '../../option/option';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
+import { SearchComponent } from '../search';
+import { SearchModule } from '../search.module';
 
 @Component({
   selector: 'sbb-simple-search-component',
@@ -48,7 +49,6 @@ export class SimpleSearchAutocompleteComponent {
 
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filteredOptions = this.options.slice(0);
-
 
   search($event) {
     this.lastSearch = $event;
@@ -94,7 +94,6 @@ export class SimpleSearchAutocompleteHeaderComponent {
   options: string[] = ['Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
   filteredOptions = this.options.slice(0);
 
-
   search($event) {
     this.lastSearch = $event;
   }
@@ -105,7 +104,6 @@ describe('SearchComponent', () => {
   describe('without autocomplete', () => {
     let component: SimpleSearchComponent;
     let fixture: ComponentFixture<SimpleSearchComponent>;
-
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -220,25 +218,24 @@ describe('SearchComponent', () => {
       });
     });
 
-
     describe('when selecting an option with ENTER key', () => {
-      let DOWN_ARROW_EVENT: KeyboardEvent;
-      let UP_ARROW_EVENT: KeyboardEvent;
-      let ENTER_EVENT: KeyboardEvent;
+      let downArrowEvent: KeyboardEvent;
+      let upArrowEvent: KeyboardEvent;
+      let enterEvent: KeyboardEvent;
 
       beforeEach(() => {
-        DOWN_ARROW_EVENT = createKeyboardEvent('keydown', DOWN_ARROW);
-        UP_ARROW_EVENT = createKeyboardEvent('keydown', UP_ARROW);
-        ENTER_EVENT = createKeyboardEvent('keydown', ENTER);
+        downArrowEvent = createKeyboardEvent('keydown', DOWN_ARROW);
+        upArrowEvent = createKeyboardEvent('keydown', UP_ARROW);
+        enterEvent = createKeyboardEvent('keydown', ENTER);
       });
 
       it('should emit a search event with the selected value', () => {
         const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
         fixture.detectChanges();
-        fixture.componentInstance.searchComponent.handleKeydown(DOWN_ARROW_EVENT);
+        fixture.componentInstance.searchComponent.handleKeydown(downArrowEvent);
         fixture.detectChanges();
-        fixture.componentInstance.searchComponent.handleKeydown(ENTER_EVENT);
+        fixture.componentInstance.searchComponent.handleKeydown(enterEvent);
         fixture.detectChanges();
         expect(component.lastSearch).toBe('Eins');
       });
@@ -248,9 +245,9 @@ describe('SearchComponent', () => {
         const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
         fixture.detectChanges();
-        fixture.componentInstance.searchComponent.handleKeydown(DOWN_ARROW_EVENT);
+        fixture.componentInstance.searchComponent.handleKeydown(downArrowEvent);
         fixture.detectChanges();
-        fixture.componentInstance.searchComponent.handleKeydown(ENTER_EVENT);
+        fixture.componentInstance.searchComponent.handleKeydown(enterEvent);
         fixture.detectChanges();
         expect(component.searchComponent.autocomplete.isOpen).toBe(false);
 
@@ -260,9 +257,9 @@ describe('SearchComponent', () => {
         const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
         fixture.detectChanges();
-        fixture.componentInstance.searchComponent.handleKeydown(DOWN_ARROW_EVENT);
+        fixture.componentInstance.searchComponent.handleKeydown(downArrowEvent);
         fixture.detectChanges();
-        fixture.componentInstance.searchComponent.handleKeydown(ENTER_EVENT);
+        fixture.componentInstance.searchComponent.handleKeydown(enterEvent);
         fixture.detectChanges();
         expect(input.nativeElement.value).toBe('Eins');
       });
@@ -315,7 +312,6 @@ describe('SearchComponent', () => {
         });
       });
 
-
     });
 
     describe('with autocomplete', () => {
@@ -361,7 +357,6 @@ describe('SearchComponent', () => {
           expect(component.searchComponent.hideSearch).toBe(false);
         });
       });
-
 
     });
   });

@@ -1,15 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserMenuComponent } from './usermenu.component';
 import { CommonModule } from '@angular/common';
-import { DropdownModule, DropdownComponent } from '../../dropdown/dropdown';
+import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
+import { DropdownComponent, DropdownModule } from '../../dropdown/dropdown';
+import { LinkGeneratorResult } from '../../pagination/pagination';
 import { IconArrowSmallDownModule } from '../../svg-icons/base/arrows/icon-arrow-small-down.module';
 import { IconUserModule } from '../../svg-icons/base/icon-user.module';
-import { Component } from '@angular/core';
 import { UserMenuModule } from '../usermenu.module';
-import { LinkGeneratorResult } from '../../pagination/pagination';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
-import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
+
+import { UserMenuComponent } from './usermenu.component';
 
 @Component({
   selector: 'sbb-usermenu-test',
@@ -40,7 +42,6 @@ class UsermenuTestComponent {
     { page: 2, text: 'Eintrag 2' },
     { page: 3, text: 'Eintrag 3' }
   ];
-
 
   linkGenerator(page: string): LinkGeneratorResult {
     return {
@@ -187,7 +188,6 @@ describe('UserMenuComponent', () => {
 
 });
 
-
 describe('Usermenu test case: user with custom image using mock component', () => {
 
   let componentTest: UsermenuTestComponent;
@@ -195,7 +195,14 @@ describe('Usermenu test case: user with custom image using mock component', () =
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UserMenuModule, CommonModule, DropdownModule, IconArrowSmallDownModule, IconUserModule, RouterTestingModule],
+      imports: [
+        UserMenuModule,
+        CommonModule,
+        DropdownModule,
+        IconArrowSmallDownModule,
+        IconUserModule,
+        RouterTestingModule,
+      ],
       declarations: [UsermenuTestComponent]
     }).compileComponents();
   }));
@@ -240,30 +247,37 @@ describe('Usermenu test case: user with custom image using mock component', () =
     expect(contentCollapsed.attributes['aria-expanded']).toBe('false');
   });
 
-  it('user should be logged-in and he can see data (displayName and username) to a click on the arrow down in the collapsed status', () => {
+  it(
+    'user should be logged-in and he can see data (displayName and username) to a click on' +
+    ' the arrow down in the collapsed status',
+    () => {
 
-    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
-    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
-    buttonLogin.click();
-    fixtureTest.detectChanges();
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
+      buttonLogin.click();
+      fixtureTest.detectChanges();
 
-    spyOn(componentTest, 'login');
-    dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
-    expect(componentTest.login).toHaveBeenCalled();
+      spyOn(componentTest, 'login');
+      dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
+      expect(componentTest.login).toHaveBeenCalled();
 
-    const displayNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
-    expect(displayNameUser.textContent).toContain('John Scott');
+      const displayNameUser = usermenuComponent
+        .queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
+      expect(displayNameUser.textContent).toContain('John Scott');
 
-    const arrowCollapsed = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
-    arrowCollapsed.click();
-    fixtureTest.detectChanges();
+      const arrowCollapsed = usermenuComponent
+        .queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
+      arrowCollapsed.click();
+      fixtureTest.detectChanges();
 
-    const contentCollapsed = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
-    expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
+      const contentCollapsed = fixtureTest.debugElement
+        .query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
+      expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
 
-    const userNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
-    expect(userNameUser.textContent).toContain('john_64');
-  });
+      const userNameUser = usermenuComponent
+        .queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
+      expect(userNameUser.textContent).toContain('john_64');
+    });
 
   it('user should be logged out when click on button logout in the expanded status', () => {
 
@@ -276,7 +290,8 @@ describe('Usermenu test case: user with custom image using mock component', () =
     dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
     expect(componentTest.login).toHaveBeenCalled();
 
-    const arrowCollapsed = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
+    const arrowCollapsed = usermenuComponent
+      .queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 
@@ -290,7 +305,6 @@ describe('Usermenu test case: user with custom image using mock component', () =
   });
 });
 
-
 describe('Usermenu test case: usermenu without user image but with initial letters using mock component', () => {
 
   let componentTest: UsermenuTest2Component;
@@ -298,7 +312,14 @@ describe('Usermenu test case: usermenu without user image but with initial lette
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UserMenuModule, CommonModule, DropdownModule, IconArrowSmallDownModule, IconUserModule, RouterTestingModule],
+      imports: [
+        UserMenuModule,
+        CommonModule,
+        DropdownModule,
+        IconArrowSmallDownModule,
+        IconUserModule,
+        RouterTestingModule,
+      ],
       declarations: [UsermenuTest2Component]
     }).compileComponents();
   }));
@@ -325,46 +346,57 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     expect(componentTest.login2).toHaveBeenCalled();
   });
 
-  it('user should be logged-in and he does not provide an image (in collapsed status) and he can see his initial letters ', () => {
+  it(
+    'user should be logged-in and he does not provide an image (in collapsed status) and he can' +
+    ' see his initial letters ',
+    () => {
 
-    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
-    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
-    buttonLogin.click();
-    fixtureTest.detectChanges();
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
+      buttonLogin.click();
+      fixtureTest.detectChanges();
 
-    spyOn(componentTest, 'login2');
-    dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
-    expect(componentTest.login2).toHaveBeenCalled();
+      spyOn(componentTest, 'login2');
+      dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
+      expect(componentTest.login2).toHaveBeenCalled();
 
-    const initialLettersReference = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in-collapsed-initial-letters'));
-    expect(initialLettersReference.nativeElement).toBeTruthy();
-    expect(initialLettersReference.nativeElement.textContent).toContain('MM');
-  });
+      const initialLettersReference = fixtureTest.debugElement
+        .query(By.css('.sbb-usermenu-logged-in-collapsed-initial-letters'));
+      expect(initialLettersReference.nativeElement).toBeTruthy();
+      expect(initialLettersReference.nativeElement.textContent).toContain('MM');
+    });
 
-  it('user should be logged-in and he can see data (userName and displayName) to a click on the arrow down in the collapsed status', () => {
+  it(
+    'user should be logged-in and he can see data (userName and displayName) to a click on the' +
+    ' arrow down in the collapsed status',
+    () => {
 
-    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
-    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
-    buttonLogin.click();
-    fixtureTest.detectChanges();
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
+      buttonLogin.click();
+      fixtureTest.detectChanges();
 
-    spyOn(componentTest, 'login2');
-    dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
-    expect(componentTest.login2).toHaveBeenCalled();
+      spyOn(componentTest, 'login2');
+      dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
+      expect(componentTest.login2).toHaveBeenCalled();
 
-    const displayNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
-    expect(displayNameUser.textContent).toContain('Max Muster');
+      const displayNameUser = usermenuComponent
+        .queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
+      expect(displayNameUser.textContent).toContain('Max Muster');
 
-    const arrowCollapsed = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
-    arrowCollapsed.click();
-    fixtureTest.detectChanges();
+      const arrowCollapsed = usermenuComponent
+        .queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
+      arrowCollapsed.click();
+      fixtureTest.detectChanges();
 
-    const contentCollapsed = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
-    expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
+      const contentCollapsed = fixtureTest.debugElement
+        .query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
+      expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
 
-    const userNameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
-    expect(userNameUser.textContent).toContain('max_98');
-  });
+      const userNameUser = usermenuComponent
+        .queryAll(By.css('.sbb-usermenu-logged-in-expanded-username'))[0].nativeElement;
+      expect(userNameUser.textContent).toContain('max_98');
+    });
 
   it('user should be logged out when click on button logout in the expanded status', () => {
 
@@ -377,7 +409,8 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
     expect(componentTest.login2).toHaveBeenCalled();
 
-    const arrowCollapsed = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
+    const arrowCollapsed = usermenuComponent
+      .queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 
@@ -391,7 +424,6 @@ describe('Usermenu test case: usermenu without user image but with initial lette
   });
 });
 
-
 describe('Usermenu test case: usermenu only with userName using mock component', () => {
 
   let componentTest: UsermenuTest3Component;
@@ -399,7 +431,14 @@ describe('Usermenu test case: usermenu only with userName using mock component',
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UserMenuModule, CommonModule, DropdownModule, IconArrowSmallDownModule, IconUserModule, RouterTestingModule],
+      imports: [
+        UserMenuModule,
+        CommonModule,
+        DropdownModule,
+        IconArrowSmallDownModule,
+        IconUserModule,
+        RouterTestingModule,
+      ],
       declarations: [UsermenuTest3Component]
     }).compileComponents();
   }));
@@ -426,21 +465,25 @@ describe('Usermenu test case: usermenu only with userName using mock component',
     expect(componentTest.login3).toHaveBeenCalled();
   });
 
-  it('user should be logged-in and he does not provide an image (in collapsed status) and he can see the initial letters', () => {
+  it(
+    'user should be logged-in and he does not provide an image (in collapsed status) and he can' +
+    ' see the initial letters',
+    () => {
 
-    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
-    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
-    buttonLogin.click();
-    fixtureTest.detectChanges();
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0].nativeElement;
+      buttonLogin.click();
+      fixtureTest.detectChanges();
 
-    spyOn(componentTest, 'login3');
-    dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
-    expect(componentTest.login3).toHaveBeenCalled();
+      spyOn(componentTest, 'login3');
+      dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
+      expect(componentTest.login3).toHaveBeenCalled();
 
-    const initialLettersReference = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in-collapsed-initial-letters'));
-    expect(initialLettersReference.nativeElement).toBeTruthy();
-    expect(initialLettersReference.nativeElement.textContent).toContain('WAL');
-  });
+      const initialLettersReference = fixtureTest.debugElement
+        .query(By.css('.sbb-usermenu-logged-in-collapsed-initial-letters'));
+      expect(initialLettersReference.nativeElement).toBeTruthy();
+      expect(initialLettersReference.nativeElement.textContent).toContain('WAL');
+    });
 
   it('user should be logged-in and he can see data only username', () => {
 
@@ -453,14 +496,17 @@ describe('Usermenu test case: usermenu only with userName using mock component',
     dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
     expect(componentTest.login3).toHaveBeenCalled();
 
-    const usernameUser = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
+    const usernameUser = usermenuComponent
+      .queryAll(By.css('.sbb-usermenu-logged-in-expanded-displayName'))[0].nativeElement;
     expect(usernameUser.textContent).toContain('walter_14');
 
-    const arrowCollapsed = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
+    const arrowCollapsed = usermenuComponent
+      .queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 
-    const contentCollapsed = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
+    const contentCollapsed = fixtureTest.debugElement
+      .query(By.css('.sbb-usermenu-logged-in.sbb-usermenu-logged-in-active'));
     expect(contentCollapsed.attributes['aria-expanded']).toBe('true');
 
   });
@@ -476,7 +522,8 @@ describe('Usermenu test case: usermenu only with userName using mock component',
     dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
     expect(componentTest.login3).toHaveBeenCalled();
 
-    const arrowCollapsed = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
+    const arrowCollapsed = usermenuComponent
+      .queryAll(By.css('.sbb-usermenu-logged-in-collapsed-arrow'))[0].nativeElement;
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 

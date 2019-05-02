@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, ViewChild, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
-import { DatepickerComponent } from '../datepicker/datepicker.component';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, ViewChild, ViewEncapsulation } from '@angular/core';
+
 import { CalendarComponent } from '../calendar/calendar.component';
+import { DatepickerComponent } from '../datepicker/datepicker.component';
 
 /**
  * Component used as the content for the datepicker dialog and popup. We use this instead of using

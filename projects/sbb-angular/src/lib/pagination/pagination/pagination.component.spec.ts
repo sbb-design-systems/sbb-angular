@@ -5,16 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ButtonModule } from '../../button/button';
 import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
+import { ButtonModule } from '../../button/button';
 import { NavigationPageDescriptor } from '../navigation-page-descriptor.model';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { LinkGeneratorResult } from '../page-descriptor.model';
 import { PaginationModule } from '../pagination.module';
-import { PaginationComponent } from './pagination.component';
 
+import { PaginationComponent } from './pagination.component';
 
 @Component({
   selector: 'sbb-pagination-test',
@@ -49,14 +50,14 @@ export class PaginationLinkTestComponent {
 
   maxPage = 10;
   @ViewChild('paginationLink') paginationLink: PaginationComponent;
-  private route: ActivatedRoute;
+  private _route: ActivatedRoute;
 
   linkGenerator = (page: { displayNumber: number, index: number }): LinkGeneratorResult => {
     return {
       routerLink: ['.'],
       queryParams: { page: page.displayNumber },
       queryParamsHandling: 'merge',
-      relativeTo: this.route,
+      relativeTo: this._route,
     };
   }
 
@@ -88,7 +89,6 @@ describe('PaginationComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
 
 describe('PaginationComponent behaviour', () => {
   let component: PaginationTestComponent;
@@ -191,7 +191,7 @@ describe('Pagination as links behaviour ', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule,RouterTestingModule],
+      imports: [PaginationModule, RouterTestingModule],
       declarations: [PaginationLinkTestComponent],
     })
       .compileComponents();
@@ -348,7 +348,8 @@ describe('Pagination as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const itemSelected = fixture.debugElement.query(By.css('ng-star-inserted.sbb-pagination-item-selected')).nativeElement;
+      const itemSelected = fixture.debugElement
+        .query(By.css('ng-star-inserted.sbb-pagination-item-selected')).nativeElement;
 
       expect(itemSelected).toContain('1');
       expect(itemSelected.attributes['aria-current']).toBeTruthy();
@@ -436,7 +437,7 @@ export class NavigationLinkTestComponent {
   hasPrevious: NavigationPageDescriptor = this.pages[1];
   hasNext: NavigationPageDescriptor = this.pages[2];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute) { }
 
   get previousPage(): string { return this.hasPrevious ? this.hasPrevious.title : null; }
   get nextPage(): string { return this.hasNext ? this.hasNext.title : null; }
@@ -454,7 +455,7 @@ export class NavigationLinkTestComponent {
       routerLink: ['.'],
       queryParams: { page: index },
       queryParamsHandling: 'merge',
-      relativeTo: this.route,
+      relativeTo: this._route,
     };
   }
 
@@ -611,8 +612,10 @@ describe('Navigation as links behaviour ', () => {
 
   it('it controls the initial state of link chapters', () => {
 
-    const linkReferenceLeft = fixture.debugElement.query(By.css('.sbb-navigation-item.sbb-navigation-item-left > a')).nativeElement;
-    const linkReferenceRight = fixture.debugElement.query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
+    const linkReferenceLeft = fixture.debugElement
+      .query(By.css('.sbb-navigation-item.sbb-navigation-item-left > a')).nativeElement;
+    const linkReferenceRight = fixture.debugElement
+      .query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
 
     expect(linkReferenceLeft.attributes['title'].value).toBe('Kapitel 1');
     expect(linkReferenceRight.attributes['title'].value).toBe('Kapitel 2');
@@ -630,7 +633,8 @@ describe('Navigation as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const linkReferenceRight = fixture.debugElement.query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
+      const linkReferenceRight = fixture.debugElement
+        .query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
       dispatchEvent(linkReferenceRight, createMouseEvent('click'));
       fixture.detectChanges();
 
@@ -654,7 +658,8 @@ describe('Navigation as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const linkReferenceLeft = fixture.debugElement.query(By.css('.sbb-navigation-item.sbb-navigation-item-left > a')).nativeElement;
+      const linkReferenceLeft = fixture.debugElement
+        .query(By.css('.sbb-navigation-item.sbb-navigation-item-left > a')).nativeElement;
       dispatchEvent(linkReferenceLeft, createMouseEvent('click'));
       fixture.detectChanges();
 
@@ -684,7 +689,8 @@ describe('Navigation as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const arrowPage = fixture.debugElement.query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
+      const arrowPage = fixture.debugElement
+        .query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
       dispatchEvent(arrowPage, createMouseEvent('click'));
       fixture.detectChanges();
 
@@ -693,7 +699,8 @@ describe('Navigation as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const linkReferenceRight = fixture.debugElement.query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
+      const linkReferenceRight = fixture.debugElement
+        .query(By.css('.sbb-navigation-item.sbb-navigation-item-right > a')).nativeElement;
 
       expect(linkReferenceRight.attributes['title'].value).toBe('provaTest');
 

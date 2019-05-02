@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotificationComponent } from './notification/notification.component';
-import { NotificationIconDirective } from './notification-icon.directive';
-import { IconTickModule, IconSignExclamationPointModule, IconCircleInformationModule } from 'sbb-angular-icons';
+import { NgModule } from '@angular/core';
+import { IconCircleInformationModule, IconSignExclamationPointModule, IconTickModule } from 'sbb-angular-icons';
 
+import { NotificationIconDirective } from './notification-icon.directive';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   imports: [

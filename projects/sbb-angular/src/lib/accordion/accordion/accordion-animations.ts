@@ -1,10 +1,10 @@
 import {
   animate,
+  AnimationTriggerMetadata,
   state,
   style,
   transition,
   trigger,
-  AnimationTriggerMetadata,
 } from '@angular/animations';
 
 /** Time and timing curve for expansion panel animations. */

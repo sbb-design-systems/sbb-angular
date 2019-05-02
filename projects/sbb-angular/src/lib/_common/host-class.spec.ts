@@ -1,6 +1,7 @@
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { HostClass } from './host-class';
-import { ElementRef, Component, ViewChild } from '@angular/core';
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 
 describe('HostClass', () => {
 

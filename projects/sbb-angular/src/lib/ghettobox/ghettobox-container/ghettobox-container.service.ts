@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+
+import { Ghettobox, GhettoboxRef } from '../ghettobox/ghettobox-ref';
+
 import { GhettoboxContainerComponent } from './ghettobox-container.component';
-import { GhettoboxRef, Ghettobox } from '../ghettobox/ghettobox-ref';
 
 /**
  * Internal service that operate on ghettobox container.
@@ -101,7 +103,8 @@ export class GhettoboxContainerService {
   /** @docs-private */
   checkIfContainerIsPresent() {
     if (!this._containerInstance) {
-      throw Error('You must have a sbb-ghettobox-container in the page in order to add one or more Ghettoboxes dynamically');
+      throw Error(
+        'You must have a sbb-ghettobox-container in the page in order to add one or more Ghettoboxes dynamically');
     }
   }
 

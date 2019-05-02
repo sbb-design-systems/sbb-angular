@@ -13,17 +13,17 @@ import {
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DatepickerModule } from '../datepicker.module';
-import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
-import { MonthViewComponent } from './month-view.component';
 
-import { JAN, DEC, MAR, NOV, FEB } from '../../_common/testing/dates-constants';
+import { DEC, FEB, JAN, MAR, NOV } from '../../_common/testing/dates-constants';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
 import { DateAdapter } from '../date-adapter';
-import { NativeDateAdapter } from '../native-date-adapter';
 import { SBB_DATE_FORMATS } from '../date-formats';
 import { DATE_PIPE_DATE_FORMATS } from '../date-pipe-date-formats';
+import { DatepickerModule } from '../datepicker.module';
+import { NativeDateAdapter } from '../native-date-adapter';
 
+import { MonthViewComponent } from './month-view.component';
 
 @Component({
   template: `<sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view>`,
@@ -32,7 +32,6 @@ class StandardMonthViewComponent {
   date = new Date(2017, JAN, 5);
   selected = new Date(2017, JAN, 10);
 }
-
 
 @Component({
   template: `<sbb-month-view [activeDate]="activeDate" [dateFilter]="dateFilter"></sbb-month-view>`
@@ -142,7 +141,6 @@ describe('MonthViewComponent', () => {
 
           expect(calendarInstance.date).toEqual(new Date(2016, DEC, 31));
         });
-
 
         it('should increment date on right arrow press', () => {
           dispatchKeyboardEvent(calendarBodyEl, 'keydown', RIGHT_ARROW);
@@ -267,5 +265,3 @@ describe('MonthViewComponent', () => {
     });
   });
 });
-
-

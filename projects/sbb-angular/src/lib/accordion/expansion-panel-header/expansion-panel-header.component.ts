@@ -1,4 +1,4 @@
-import { FocusMonitor, FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
+import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import {
   ChangeDetectionStrategy,
@@ -6,15 +6,15 @@ import {
   Component,
   ElementRef,
   Host,
-  OnDestroy,
-  ViewEncapsulation,
   HostBinding,
   HostListener,
+  OnDestroy,
+  ViewEncapsulation,
 } from '@angular/core';
-import { merge, Subscription, EMPTY } from 'rxjs';
+import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
 
+import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
 
 /**
  * `<sbb-expansion-panel-header>`
@@ -110,7 +110,6 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     return this.panel.expanded;
   }
 
-
   /** Gets the expanded state string of the panel. */
   getExpandedState(): string {
     return this.panel.getExpandedState();
@@ -137,7 +136,6 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   /** Handle keydown event calling to toggle() if appropriate. */
   @HostListener('keydown', ['$event'])
   keydown(event: KeyboardEvent) {
-    // tslint:disable-next-line:deprecation
     switch (event.keyCode) {
       // Toggle for space and enter keys.
       case SPACE:

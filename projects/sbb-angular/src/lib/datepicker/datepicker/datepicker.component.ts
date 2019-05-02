@@ -9,29 +9,30 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
-import { filter, first, map, tap } from 'rxjs/operators';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentRef,
   EventEmitter,
+  HostBinding,
   Inject,
   InjectionToken,
   Input,
+  LOCALE_ID,
   NgZone,
+  OnDestroy,
   Optional,
   Output,
   ViewContainerRef,
-  ViewEncapsulation,
-  OnDestroy,
-  LOCALE_ID,
-  HostBinding,
-  ChangeDetectorRef
+  ViewEncapsulation
 } from '@angular/core';
 import { merge, Subject, Subscription } from 'rxjs';
-import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
-import { DateInputDirective } from '../date-input/date-input.directive';
+import { filter, first, map, tap } from 'rxjs/operators';
+
 import { DateAdapter } from '../date-adapter';
+import { DateInputDirective } from '../date-input/date-input.directive';
+import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { SBB_DATEPICKER } from '../datepicker-token';
 
@@ -76,7 +77,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     return this._startAt || (this.datepickerInput ? this.datepickerInput.value : null);
   }
   set startAt(value: D | null) {
-    this._startAt = this.getValidDateOrNull(this.dateAdapter.deserialize(value));
+    this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _startAt: D | null;
 
@@ -116,7 +117,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     this._slave = value;
   }
   get slave(): DatepickerComponent<D> | null { return this._slave; }
-  _slave: DatepickerComponent<D> | null;
+  private _slave: DatepickerComponent<D> | null;
 
   master: DatepickerComponent<D> | null;
 
@@ -150,7 +151,6 @@ export class DatepickerComponent<D> implements OnDestroy {
   // tslint:disable-next-line:no-output-rename
   @Output('closed') closedStream: EventEmitter<void> = new EventEmitter<void>();
 
-
   /** Whether the calendar is open. */
   @Input()
   get opened(): boolean { return this._opened; }
@@ -161,9 +161,9 @@ export class DatepickerComponent<D> implements OnDestroy {
   id = `sbb-datepicker-${datepickerUid++}`;
 
   /** The currently selected date. */
-  get selected(): D | null { return this.validSelected; }
-  set selected(value: D | null) { this.validSelected = value; }
-  private validSelected: D | null = null;
+  get selected(): D | null { return this._validSelected; }
+  set selected(value: D | null) { this._validSelected = value; }
+  private _validSelected: D | null = null;
 
   /** The minimum selectable date. */
   get minDate(): D | null {
@@ -183,36 +183,36 @@ export class DatepickerComponent<D> implements OnDestroy {
     return this.arrows
       && this.datepickerInput
       && !!this.datepickerInput.value
-      && (!this.minDate || this.dateAdapter.compareDate(this.datepickerInput.value, this.minDate) > 0);
+      && (!this.minDate || this._dateAdapter.compareDate(this.datepickerInput.value, this.minDate) > 0);
   }
 
   get nextDayActive() {
     return this.arrows
       && this.datepickerInput
       && !!this.datepickerInput.value
-      && (!this.maxDate || this.dateAdapter.compareDate(this.datepickerInput.value, this.maxDate) < 0);
+      && (!this.maxDate || this._dateAdapter.compareDate(this.datepickerInput.value, this.maxDate) < 0);
   }
 
   /** A reference to the overlay when the calendar is opened as a popup. */
   popupRef: OverlayRef;
 
   /** A portal containing the calendar for this datepicker. */
-  private calendarPortal: ComponentPortal<DatepickerContentComponent<D>>;
+  private _calendarPortal: ComponentPortal<DatepickerContentComponent<D>>;
 
   /** Reference to the component instantiated in popup mode. */
-  private popupComponentRef: ComponentRef<DatepickerContentComponent<D>> | null;
+  private _popupComponentRef: ComponentRef<DatepickerContentComponent<D>> | null;
 
   /** The element that was focused before the datepicker was opened. */
-  private focusedElementBeforeOpen: HTMLElement | null = null;
+  private _focusedElementBeforeOpen: HTMLElement | null = null;
 
   /** Subscription to value changes in the associated input element. */
-  private inputSubscription = Subscription.EMPTY;
+  private _inputSubscription = Subscription.EMPTY;
 
-  private inputDisabledSubscription = Subscription.EMPTY;
+  private _inputDisabledSubscription = Subscription.EMPTY;
 
-  private slaveSubscription = Subscription.EMPTY;
+  private _slaveSubscription = Subscription.EMPTY;
 
-  private posStrategySubsription = Subscription.EMPTY;
+  private _posStrategySubsription = Subscription.EMPTY;
 
   /** The input element this datepicker is associated with. */
   datepickerInput: DateInputDirective<D>;
@@ -225,31 +225,31 @@ export class DatepickerComponent<D> implements OnDestroy {
 
   constructor(
     private _overlay: Overlay,
-    private ngZone: NgZone,
-    private viewContainerRef: ViewContainerRef,
-    private changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private scrollStrategy,
-    @Optional() private dateAdapter: DateAdapter<D>,
+    private _ngZone: NgZone,
+    private _viewContainerRef: ViewContainerRef,
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy,
+    @Optional() private _dateAdapter: DateAdapter<D>,
     @Optional() @Inject(DOCUMENT) private _document: any,
     @Inject(LOCALE_ID) public locale: string
   ) {
-    if (!this.dateAdapter) {
+    if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
     }
-    this.dateAdapter.setLocale(locale);
+    this._dateAdapter.setLocale(locale);
   }
 
   ngOnDestroy() {
     this.close();
-    this.inputSubscription.unsubscribe();
-    this.inputDisabledSubscription.unsubscribe();
-    this.slaveSubscription.unsubscribe();
+    this._inputSubscription.unsubscribe();
+    this._inputDisabledSubscription.unsubscribe();
+    this._slaveSubscription.unsubscribe();
     this.disabledChange.complete();
 
     if (this.popupRef) {
-      this.posStrategySubsription.unsubscribe();
+      this._posStrategySubsription.unsubscribe();
       this.popupRef.dispose();
-      this.popupComponentRef = null;
+      this._popupComponentRef = null;
     }
   }
 
@@ -257,21 +257,21 @@ export class DatepickerComponent<D> implements OnDestroy {
   select(date: D): void {
     const oldValue = this.selected;
     this.selected = date;
-    if (!this.dateAdapter.sameDate(oldValue, this.selected)) {
+    if (!this._dateAdapter.sameDate(oldValue, this.selected)) {
       this.selectedChanged.next(date);
     }
   }
 
   nextDay() {
     if (this.selected) {
-      this.selected = this.dateAdapter.addCalendarDays(this.selected, 1);
+      this.selected = this._dateAdapter.addCalendarDays(this.selected, 1);
       this.selectedChanged.next(this.selected);
     }
   }
 
   prevDay() {
     if (this.selected) {
-      this.selected = this.dateAdapter.addCalendarDays(this.selected, -1);
+      this.selected = this._dateAdapter.addCalendarDays(this.selected, -1);
       this.selectedChanged.next(this.selected);
     }
   }
@@ -285,18 +285,18 @@ export class DatepickerComponent<D> implements OnDestroy {
       throw Error('A SbbDatepicker can only be associated with a single input.');
     }
     this.datepickerInput = input;
-    this.inputSubscription =
+    this._inputSubscription =
       this.datepickerInput.valueChange.subscribe((value: D | null) => this.selected = value);
-    this.inputDisabledSubscription =
-      this.datepickerInput.disabledChange.subscribe(() => this.changeDetectorRef.markForCheck());
-    this.slaveSubscription = merge(
+    this._inputDisabledSubscription =
+      this.datepickerInput.disabledChange.subscribe(() => this._changeDetectorRef.markForCheck());
+    this._slaveSubscription = merge(
       this.closedStream,
       this.datepickerInput.inputBlurred,
       this.datepickerInput.valueChange)
       .pipe(
         map(() => this.datepickerInput.value),
         filter(v => !!this.slave && !!v),
-        map(v => !!this.slave.selected && this.dateAdapter.compareDate(v, this.slave.selected) > 0),
+        map(v => !!this.slave.selected && this._dateAdapter.compareDate(v, this.slave.selected) > 0),
         tap(r => r ? this.slave.datepickerInput.value = null : undefined),
         filter(() => !this.slave.datepickerInput.value))
       .subscribe(() => this.slave.open());
@@ -311,10 +311,10 @@ export class DatepickerComponent<D> implements OnDestroy {
       throw Error('Attempted to open an SbbDatepicker with no associated input.');
     }
     if (this._document) {
-      this.focusedElementBeforeOpen = this._document.activeElement;
+      this._focusedElementBeforeOpen = this._document.activeElement;
     }
 
-    this.openAsPopup();
+    this._openAsPopup();
     this._opened = true;
     this.openedStream.emit();
   }
@@ -327,8 +327,8 @@ export class DatepickerComponent<D> implements OnDestroy {
     if (this.popupRef && this.popupRef.hasAttached()) {
       this.popupRef.detach();
     }
-    if (this.calendarPortal && this.calendarPortal.isAttached) {
-      this.calendarPortal.detach();
+    if (this._calendarPortal && this._calendarPortal.isAttached) {
+      this._calendarPortal.detach();
     }
 
     const completeClose = () => {
@@ -337,60 +337,60 @@ export class DatepickerComponent<D> implements OnDestroy {
       if (this._opened) {
         this._opened = false;
         this.closedStream.emit();
-        this.focusedElementBeforeOpen = null;
+        this._focusedElementBeforeOpen = null;
       }
     };
 
-    if (this.focusedElementBeforeOpen &&
-      typeof this.focusedElementBeforeOpen.focus === 'function') {
+    if (this._focusedElementBeforeOpen &&
+      typeof this._focusedElementBeforeOpen.focus === 'function') {
       // Because IE moves focus asynchronously, we can't count on it being restored before we've
       // marked the datepicker as closed. If the event fires out of sequence and the element that
       // we're refocusing opens the datepicker on focus, the user could be stuck with not being
       // able to close the calendar at all. We work around it by making the logic, that marks
       // the datepicker as closed, async as well.
-      this.focusedElementBeforeOpen.focus();
+      this._focusedElementBeforeOpen.focus();
       setTimeout(completeClose);
     } else {
       completeClose();
     }
   }
 
-  private getPanelClasses(): Array<string> {
+  private _getPanelClasses(): Array<string> {
     return ['sbb-datepicker-popup', this.arrows ? 'sbb-datepicker-with-arrows' : 'sbb-datepicker-no-arrows'];
   }
 
   /** Open the calendar as a popup. */
-  private openAsPopup(): void {
-    if (!this.calendarPortal) {
-      this.calendarPortal = new ComponentPortal<DatepickerContentComponent<D>>(
-        DatepickerContentComponent, this.viewContainerRef);
+  private _openAsPopup(): void {
+    if (!this._calendarPortal) {
+      this._calendarPortal = new ComponentPortal<DatepickerContentComponent<D>>(
+        DatepickerContentComponent, this._viewContainerRef);
     }
 
     if (!this.popupRef) {
-      this.createPopup();
+      this._createPopup();
     } else {
-      this.popupRef.getConfig().panelClass = this.getPanelClasses();
+      this.popupRef.getConfig().panelClass = this._getPanelClasses();
     }
 
     if (!this.popupRef.hasAttached()) {
-      this.popupComponentRef = this.popupRef.attach(this.calendarPortal);
-      this.popupComponentRef.instance.datepicker = this;
+      this._popupComponentRef = this.popupRef.attach(this._calendarPortal);
+      this._popupComponentRef.instance.datepicker = this;
 
       // Update the position once the calendar has rendered.
-      this.ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
+      this._ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
         this.popupRef.updatePosition();
       });
     }
   }
 
   /** Create the popup. */
-  private createPopup(): void {
+  private _createPopup(): void {
     const overlayConfig = new OverlayConfig({
-      positionStrategy: this.createPopupPositionStrategy(),
+      positionStrategy: this._createPopupPositionStrategy(),
       hasBackdrop: true,
       backdropClass: 'sbb-overlay-transparent-backdrop',
-      scrollStrategy: this.scrollStrategy(),
-      panelClass: this.getPanelClasses(),
+      scrollStrategy: this._scrollStrategy(),
+      panelClass: this._getPanelClasses(),
     });
 
     this.popupRef = this._overlay.create(overlayConfig);
@@ -401,14 +401,13 @@ export class DatepickerComponent<D> implements OnDestroy {
       this.popupRef.detachments(),
       this.popupRef.keydownEvents().pipe(filter(event => {
         // Closing on alt + up is only valid when there's an input associated with the datepicker.
-        // tslint:disable-next-line:deprecation
         return event.keyCode === ESCAPE || (this.datepickerInput && event.altKey && event.keyCode === UP_ARROW);
       }))
     ).subscribe(() => this.close());
   }
 
   /** Create the popup PositionStrategy. */
-  private createPopupPositionStrategy(): PositionStrategy {
+  private _createPopupPositionStrategy(): PositionStrategy {
     const posStrategy = this._overlay.position()
       .flexibleConnectedTo(this.datepickerInput.getConnectedOverlayOrigin())
       .withTransformOriginOn('.sbb-datepicker-content')
@@ -442,7 +441,7 @@ export class DatepickerComponent<D> implements OnDestroy {
         }
       ]);
 
-    this.posStrategySubsription = posStrategy.positionChanges.subscribe((pos) => {
+    this._posStrategySubsription = posStrategy.positionChanges.subscribe(pos => {
       if (pos.connectionPair.originY === 'top') {
         this.popupRef.hostElement.classList.add('sbb-datepicker-popup-above');
       } else {
@@ -457,8 +456,8 @@ export class DatepickerComponent<D> implements OnDestroy {
    * @param obj The object to check.
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
-  private getValidDateOrNull(obj: any): D | null {
-    return (this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj)) ? obj : null;
+  private _getValidDateOrNull(obj: any): D | null {
+    return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
   }
 
   /**

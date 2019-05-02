@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { AccordionNotificationService } from '../services/accordion-notification.service';
 
 @Component({
@@ -6,21 +7,16 @@ import { AccordionNotificationService } from '../services/accordion-notification
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor(private accordionNotificationService : AccordionNotificationService) {}
-
-  ngOnInit() {
-  }
+  constructor(private _accordionNotificationService : AccordionNotificationService) {}
 
   openComponents() {
-    // set event ...
-    this.accordionNotificationService.setOpenComponent(true);
+    this._accordionNotificationService.setOpenComponent(true);
   }
 
   openIcons() {
-    // set event ...
-    this.accordionNotificationService.setOpenIcon(true);
+    this._accordionNotificationService.setOpenIcon(true);
   }
 
 }

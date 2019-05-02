@@ -1,9 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FileSelectorComponent } from './file-selector.component';
 import { Component } from '@angular/core';
-import { FileSelectorModule } from '../file-selector.module';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
+import { FileSelectorModule } from '../file-selector.module';
+
+import { FileSelectorComponent } from './file-selector.component';
 
 const testFileList: File[] = [
   {
@@ -77,7 +79,6 @@ const testFileList: File[] = [
     slice: null
   }
 ];
-
 
 @Component({
   selector: 'sbb-file-test',

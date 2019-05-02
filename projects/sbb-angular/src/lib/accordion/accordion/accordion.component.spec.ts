@@ -1,15 +1,16 @@
-import { async, TestBed, inject } from '@angular/core/testing';
-import { Component, ViewChild, QueryList, ViewChildren } from '@angular/core';
+import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { dispatchEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import {
-  AccordionModule,
   AccordionComponent,
+  AccordionModule,
   ExpansionPanelComponent,
   ExpansionPanelHeaderComponent,
 } from '../accordion';
-import { DOWN_ARROW, UP_ARROW, HOME, END } from '@angular/cdk/keycodes';
-import { dispatchKeyboardEvent, dispatchEvent } from '../../_common/testing/dispatch-events';
 
 @Component({
   template: `
@@ -55,7 +56,6 @@ class NestedPanelComponent {
 class AccordionWithHideToggleComponent {
   hideToggle = false;
 }
-
 
 describe('AccordionComponent', () => {
 

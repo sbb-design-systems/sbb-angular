@@ -1,20 +1,19 @@
-import { ENTER, ESCAPE, UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import { Overlay, OverlayContainer, ScrollDispatcher, ScrollStrategy } from '@angular/cdk/overlay';
-
-import { Component, FactoryProvider, Type, ValueProvider, ViewChild, InjectionToken, LOCALE_ID } from '@angular/core';
+import { Component, FactoryProvider, InjectionToken, LOCALE_ID, Type, ValueProvider, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { DatepickerModule } from '../datepicker.module';
-import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchEvent, dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { JAN } from '../../_common/testing/dates-constants';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
-import { DatepickerComponent } from './datepicker.component';
-import { DatepickerToggleComponent, DateInputDirective } from '../datepicker';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { JAN } from '../../_common/testing/dates-constants';
+import { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent } from '../../_common/testing/dispatch-events';
+import { createKeyboardEvent } from '../../_common/testing/event-objects';
+import { DateInputDirective, DatepickerToggleComponent } from '../datepicker';
+import { DatepickerModule } from '../datepicker.module';
+
+import { DatepickerComponent } from './datepicker.component';
 
 @Component({
   template: `
@@ -32,7 +31,6 @@ class StandardDatepickerComponent {
   @ViewChild(DateInputDirective) datepickerInput: DateInputDirective<Date>;
 }
 
-
 @Component({
   template: `
     <sbb-datepicker>
@@ -43,14 +41,12 @@ class StandardDatepickerComponent {
 })
 class MultiInputDatepickerComponent { }
 
-
 @Component({
   template: `<sbb-datepicker #d></sbb-datepicker>`,
 })
 class NoInputDatepickerComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
 }
-
 
 @Component({
   template: `
@@ -65,7 +61,6 @@ class DatepickerWithStartAtComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
 }
 
-
 @Component({
   template: `
     <sbb-datepicker #d>
@@ -79,7 +74,6 @@ class DatepickerWithNgModelComponent {
   @ViewChild(DateInputDirective) datepickerInput: DateInputDirective<Date>;
 }
 
-
 @Component({
   template: `
     <sbb-datepicker #d>
@@ -92,7 +86,6 @@ class DatepickerWithFormControlComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
   @ViewChild(DateInputDirective) datepickerInput: DateInputDirective<Date>;
 }
-
 
 @Component({
   template: `
@@ -120,7 +113,6 @@ class DatepickerWithMinAndMaxValidationComponent {
   maxDate = new Date(2020, JAN, 1);
 }
 
-
 @Component({
   template: `
     <sbb-datepicker #d>
@@ -133,7 +125,6 @@ class DatepickerWithFilterAndValidationComponent {
   date: Date;
   filter = (date: Date) => date.getDate() !== 1;
 }
-
 
 @Component({
   template: `
@@ -154,7 +145,6 @@ class DatepickerWithChangeAndInputEventsComponent {
 
   onDateInput() { }
 }
-
 
 @Component({
   template: `
@@ -183,7 +173,6 @@ class DatepickerWithEventsComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
 }
 
-
 @Component({
   template: `
     <sbb-datepicker #d>
@@ -194,7 +183,6 @@ class DatepickerWithEventsComponent {
 class DatepickerOpeningOnFocusComponent {
   @ViewChild(DatepickerComponent) datepicker: DatepickerComponent<Date>;
 }
-
 
 describe('DatepickerComponent', () => {
 
@@ -256,7 +244,6 @@ describe('DatepickerComponent', () => {
 
         expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).not.toBeNull();
       });
-
 
       it('should open datepicker if opened input is set to true', fakeAsync(() => {
         testComponent.opened = true;
@@ -539,7 +526,6 @@ describe('DatepickerComponent', () => {
         fixture.detectChanges();
       }));
 
-
       it('should mark input dirty after input event', () => {
         const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
 
@@ -611,7 +597,6 @@ describe('DatepickerComponent', () => {
         testComponent.datepicker.close();
         fixture.detectChanges();
       }));
-
 
     });
 

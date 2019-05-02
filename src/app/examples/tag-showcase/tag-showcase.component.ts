@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { Tag, TagChange } from 'sbb-angular';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Tag, TagChange } from 'sbb-angular';
 
 const tagItems: Tag[] = [
   {
@@ -79,10 +79,10 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
   private _changeAmountSubscription = Subscription.EMPTY;
   private _changeAmountReactiveSubscription = Subscription.EMPTY;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
+    this.form = this._formBuilder.group({
       tags: this.buildTags()
     });
 
@@ -108,8 +108,7 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
 
   subscribeOnChangeAmount(): Subscription {
     return this.changeAmount
-      .valueChanges.subscribe(
-        (val) => {
+      .valueChanges.subscribe(val => {
           this.tagItems[0].amount = val;
         }
       );
@@ -117,8 +116,7 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
 
   subscribeOnChangeAmountReactive(): Subscription {
     return this.changeAmountReactive
-      .valueChanges.subscribe(
-        (val) => {
+      .valueChanges.subscribe(val => {
           this.tagItemsReactive[0].amount = val;
         }
       );
@@ -126,10 +124,10 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
 
   buildTags(): FormArray {
     const arr = this.tagItemsReactive.map(tag => {
-      return this.formBuilder.control(tag.selected);
+      return this._formBuilder.control(tag.selected);
     });
 
-    return this.formBuilder.array(arr);
+    return this._formBuilder.array(arr);
   }
 
   removeOneItem(mode: string) {

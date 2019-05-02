@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { iconComponentsMetaInformation } from 'sbb-angular-icons';
-import { UiIcon } from '../shared/ui-icon';
+
 import { UiComponent } from '../shared/ui-component';
+import { UiIcon } from '../shared/ui-icon';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class IconUiService {
   getUiIconByRouterLink(name: any): UiIcon {
     return iconComponentsMetaInformation
       .map(item => new UiIcon(item.name, item.selector, item.modules))
-      .find((uiIcon) => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
+      .find(uiIcon => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
   }
 
   getUiComponentByRouterLink(name: any): UiComponent {

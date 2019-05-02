@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector

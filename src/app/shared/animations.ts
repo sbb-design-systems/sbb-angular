@@ -1,17 +1,15 @@
 import {
-  trigger,
-  style,
   animate,
-  transition,
-  keyframes,
-  group,
   animateChild,
+  group,
+  keyframes,
   query,
-  state,
-  stagger
+  style,
+  transition,
+  trigger
 } from '@angular/animations';
 
-export const fadeAnimation = trigger('fadeAnimation', [
+export const FADE_ANIMATION = trigger('fadeAnimation', [
   transition(':enter', [
     style({ opacity: 0 }),
     animate(400, style({ opacity: 1 }))
@@ -22,8 +20,7 @@ export const fadeAnimation = trigger('fadeAnimation', [
   ])
 ]);
 
-
-export const fadePositionAnimation = trigger('fadePositionAnimation', [
+export const FADE_POSITION_ANIMATION = trigger('fadePositionAnimation', [
   transition('* => *', [
     style({ opacity: 0 }),
     animate(400, style({ opacity: 1 })),
@@ -31,7 +28,7 @@ export const fadePositionAnimation = trigger('fadePositionAnimation', [
   ]),
 ]);
 
-export const slideAnimation = trigger('slideAnimation', [
+export const SLIDE_ANIMATION = trigger('slideAnimation', [
   transition(':enter', [
     style({ opacity: 0, transform: 'translateX(50%)' }),
     animate(250, keyframes([
@@ -52,7 +49,7 @@ export const slideAnimation = trigger('slideAnimation', [
   ])
 ]);
 
-export const routeAnimation = trigger('animRoutes', [
+export const ROUTER_ANIMATION = trigger('animRoutes', [
   transition('* <=> *', [
     group([
       query(

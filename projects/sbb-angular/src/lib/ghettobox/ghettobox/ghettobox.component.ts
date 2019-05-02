@@ -1,25 +1,27 @@
+import { AnimationEvent } from '@angular/animations';
 import {
-  Component,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   ContentChild,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Optional,
+  Output,
+  Self,
   TemplateRef,
   ViewChild,
-  Input,
-  HostBinding,
-  ChangeDetectorRef,
-  ViewEncapsulation,
-  EventEmitter,
-  Output,
-  Optional,
-  Self
+  ViewEncapsulation
 } from '@angular/core';
-import { AnimationEvent } from '@angular/animations';
+import { RouterLink } from '@angular/router';
+import { QueryParamsHandling } from '@angular/router/src/config';
+
+import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
+
+import { GHETTOBOX_ANIMATIONS } from './ghettobox-animations';
 import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 import { Ghettobox } from './ghettobox-ref';
-import { RouterLink } from '@angular/router';
-import { GhettoboxAnimations } from './ghettobox-animations';
-import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
-import { QueryParamsHandling } from '@angular/router/src/config';
 
 /** Ghettobox states used for the animation */
 export type GhettoboxState = 'added' | 'deleted';
@@ -38,7 +40,7 @@ let counter = 0;
   styleUrls: ['./ghettobox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [GhettoboxAnimations.addDelete]
+  animations: [GHETTOBOX_ANIMATIONS.addDelete]
 })
 export class GhettoboxComponent {
 
@@ -175,12 +177,12 @@ export class GhettoboxComponent {
     const { phaseName, toState } = event;
 
     if (phaseName === 'done' && toState === 'deleted') {
-      this.deletedPhase();
+      this._deletedPhase();
     }
   }
 
   /** @docs-private */
-  private deletedPhase() {
+  private _deletedPhase() {
     this.visible = false;
     this.role = undefined;
     this.ariaHidden = 'true';

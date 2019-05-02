@@ -1,24 +1,24 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
+  forwardRef,
   HostBinding,
+  HostListener,
   Inject,
   Input,
   NgZone,
   OnDestroy,
   Optional,
   Output,
-  ChangeDetectionStrategy,
-  HostListener,
-  forwardRef,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RECAPTCHA_SETTINGS, RecaptchaSettings } from './captcha-settings';
 import { CaptchaLoaderService } from './captcha-loader.service';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from './captcha-settings';
 
 let nextId = 0;
 

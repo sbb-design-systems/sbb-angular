@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input, TemplateRef, ContentChild, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+
 import { NotificationIconDirective } from '../notification-icon.directive';
 
 export enum NotificationType {
@@ -84,7 +85,7 @@ export class NotificationComponent {
         return null;
     }
   }
-  _icon: TemplateRef<any>;
+  private _icon: TemplateRef<any>;
 
   /** Message displayed into the notification content */
   @Input() message: string;

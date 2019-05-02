@@ -1,29 +1,30 @@
-import {
-  Component,
-  HostBinding,
-  Output,
-  EventEmitter,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  ViewChild,
-  InjectionToken,
-  Inject,
-  ElementRef,
-  Optional,
-  NgZone,
-  ChangeDetectorRef,
-  OnDestroy,
-  TemplateRef,
-  Input,
-  ContentChild,
-  Injectable
-} from '@angular/core';
-import { OverlayRef, Overlay, OverlayConfig, ScrollStrategy, PositionStrategy } from '@angular/cdk/overlay';
+import { ESCAPE } from '@angular/cdk/keycodes';
+import { Overlay, OverlayConfig, OverlayRef, PositionStrategy, ScrollStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
-import { merge, fromEvent, Observable, of, Subscription, Subject } from 'rxjs';
-import { filter, map, switchMap, first } from 'rxjs/operators';
-import { ESCAPE } from '@angular/cdk/keycodes';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Inject,
+  Injectable,
+  InjectionToken,
+  Input,
+  NgZone,
+  OnDestroy,
+  Optional,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
+import { filter, first, map, switchMap } from 'rxjs/operators';
+
 import { TooltipIconDirective } from './tooltip-icon.directive';
 import { TooltipRegistryService } from './tooltip-registry.service';
 
@@ -32,6 +33,7 @@ export const SBB_TOOLTIP_SCROLL_STRATEGY =
   new InjectionToken<() => ScrollStrategy>('sbb-tooltip-scroll-strategy');
 
 /** @docs-private */
+// tslint:disable-next-line: naming-convention
 export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
@@ -106,7 +108,7 @@ export class TooltipComponent implements OnDestroy {
   get icon() {
     return this._icon || this.defaultIcon;
   }
-  _icon: TemplateRef<any>;
+  private _icon: TemplateRef<any>;
 
   /**
    * Open event to a click on tooltip element.
@@ -117,26 +119,25 @@ export class TooltipComponent implements OnDestroy {
    */
   @Output() readonly closed = new EventEmitter<SbbTooltipChangeEvent>();
 
-  private readonly closeKeyEventStream = new Subject<void>();
-  private closingActionsSubscription: Subscription;
+  private readonly _closeKeyEventStream = new Subject<void>();
+  private _closingActionsSubscription: Subscription;
 
   constructor(
-    private overlay: Overlay,
-    private tooltipRegistry: TooltipRegistryService,
-    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private scrollStrategy,
+    private _overlay: Overlay,
+    private _tooltipRegistry: TooltipRegistryService,
+    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private _scrollStrategy,
     @Optional() @Inject(DOCUMENT) private _document: any,
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef
+    private _zone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
       this.tooltipRef.detach();
       this.tooltipRef.dispose();
-      this.closingActionsSubscription.unsubscribe();
+      this._closingActionsSubscription.unsubscribe();
     }
   }
-
 
   onClick(event: Event) {
     event.stopPropagation();
@@ -153,10 +154,10 @@ export class TooltipComponent implements OnDestroy {
    */
   open(isUserInput = false) {
     if (!this.overlayAttached) {
-      this.tooltipRegistry.activate();
-      this.createPopup();
+      this._tooltipRegistry.activate();
+      this._createPopup();
       this.tooltipRef.attach(this.tooltipContentPortal);
-      this.closingActionsSubscription = this.subscribeToClosingActions();
+      this._closingActionsSubscription = this._subscribeToClosingActions();
       this.opened.emit(new SbbTooltipChangeEvent(this, isUserInput));
     }
   }
@@ -169,9 +170,9 @@ export class TooltipComponent implements OnDestroy {
     if (this.overlayAttached) {
       this.tooltipRef.detach();
       this.tooltipRef.dispose();
-      this.closingActionsSubscription.unsubscribe();
+      this._closingActionsSubscription.unsubscribe();
       this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
-      this.changeDetectorRef.detectChanges();
+      this._changeDetectorRef.detectChanges();
     }
   }
 
@@ -182,8 +183,8 @@ export class TooltipComponent implements OnDestroy {
   }
 
   /** Create the popup PositionStrategy. */
-  private createTooltipPositionStrategy(): PositionStrategy {
-    const posStrategy = this.overlay.position()
+  private _createTooltipPositionStrategy(): PositionStrategy {
+    return this._overlay.position()
       .flexibleConnectedTo(this.tooltipTrigger)
       .withTransformOriginOn('.sbb-tooltip-content')
       .withFlexibleDimensions(false)
@@ -217,12 +218,10 @@ export class TooltipComponent implements OnDestroy {
           overlayY: 'bottom'
         }
       ]);
-
-    return posStrategy;
   }
 
   /** Stream of clicks outside of the tooltip panel. */
-  private getOutsideClickStream(): Observable<any> {
+  private _getOutsideClickStream(): Observable<any> {
     if (!this._document) {
       return of(null);
     }
@@ -247,9 +246,9 @@ export class TooltipComponent implements OnDestroy {
     */
   get panelClosingActions(): Observable<SbbTooltipChangeEvent | null> {
     return merge(
-      this.closeKeyEventStream,
-      this.getOutsideClickStream(),
-      this.tooltipRegistry.tooltipActivation,
+      this._closeKeyEventStream,
+      this._getOutsideClickStream(),
+      this._tooltipRegistry.tooltipActivation,
       this.tooltipRef ?
         this.tooltipRef.detachments().pipe(filter(() => this.overlayAttached)) :
         of()
@@ -259,13 +258,12 @@ export class TooltipComponent implements OnDestroy {
     );
   }
 
-
   /**
   * This method listens to a stream of panel closing actions and resets the
   * stream every time the option list changes.
   */
-  private subscribeToClosingActions(): Subscription {
-    const firstStable = this.zone.onStable.asObservable().pipe(first());
+  private _subscribeToClosingActions(): Subscription {
+    const firstStable = this._zone.onStable.asObservable().pipe(first());
 
     // When the zone is stable initially, and when the option list changes...
     return merge(firstStable)
@@ -284,15 +282,15 @@ export class TooltipComponent implements OnDestroy {
       });
   }
 
-  private createPopup(): void {
+  private _createPopup(): void {
     const overlayConfig = new OverlayConfig({
-      positionStrategy: this.createTooltipPositionStrategy(),
+      positionStrategy: this._createTooltipPositionStrategy(),
       hasBackdrop: false,
-      scrollStrategy: this.scrollStrategy(),
+      scrollStrategy: this._scrollStrategy(),
       panelClass: 'sbb-tooltip-content',
     });
 
-    this.tooltipRef = this.overlay.create(overlayConfig);
+    this.tooltipRef = this._overlay.create(overlayConfig);
     this.tooltipRef.overlayElement.setAttribute('role', 'tooltip');
 
     // Use the `keydownEvents` in order to take advantage of
@@ -300,9 +298,8 @@ export class TooltipComponent implements OnDestroy {
     this.tooltipRef.keydownEvents().subscribe(event => {
       // Close when pressing ESCAPE, based on the a11y guidelines.
       // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-      // tslint:disable-next-line
       if (event.keyCode === ESCAPE) {
-        this.closeKeyEventStream.next();
+        this._closeKeyEventStream.next();
       }
     });
   }

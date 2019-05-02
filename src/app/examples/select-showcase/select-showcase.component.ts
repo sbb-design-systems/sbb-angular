@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectComponent } from 'sbb-angular';
 
 export class Food {
   constructor(public value: string, public viewValue: string, public disabled: boolean = false) { }
 }
-
 
 @Component({
   selector: 'sbb-select-showcase',

@@ -18,5 +18,4 @@ export class TooltipShowcaseComponent {
     console.log('closed', $event);
   }
 
-
 }

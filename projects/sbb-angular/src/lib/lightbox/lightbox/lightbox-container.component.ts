@@ -1,32 +1,29 @@
+import { AnimationEvent } from '@angular/animations';
+import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
 import {
+  BasePortalOutlet,
+  CdkPortalOutlet,
+  ComponentPortal,
+  TemplatePortal
+} from '@angular/cdk/portal';
+import { DOCUMENT } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentRef,
   ElementRef,
   EmbeddedViewRef,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Inject,
   Optional,
-  ChangeDetectorRef,
   ViewChild,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  HostBinding,
-  HostListener
+  ViewEncapsulation
 } from '@angular/core';
 
-import { DOCUMENT } from '@angular/common';
-import { AnimationEvent } from '@angular/animations';
-import { LightboxAnimations } from './lightbox-animations';
-
-import {
-  BasePortalOutlet,
-  ComponentPortal,
-  CdkPortalOutlet,
-  TemplatePortal
-} from '@angular/cdk/portal';
-
-import { FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
-
+import { LIGHTBOX_ANIMATIONS } from './lightbox-animations';
 import { LightboxConfig } from './lightbox-config';
 
 /**
@@ -48,7 +45,7 @@ export function throwLightboxContentAlreadyAttachedError() {
   styleUrls: ['lightbox-container.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [LightboxAnimations.slideLightbox]
+  animations: [LIGHTBOX_ANIMATIONS.slideLightbox]
 })
 export class LightboxContainerComponent extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the lightbox content will be loaded. */

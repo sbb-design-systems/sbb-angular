@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { ButtonComponent } from './button/button.component';
 import { ButtonIconDirective } from './button/button-icon.directive';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   imports: [

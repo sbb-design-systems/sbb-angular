@@ -1,20 +1,20 @@
-import {
-  Input,
-  ContentChildren,
-  QueryList,
-  AfterContentInit,
-  HostBinding,
-  Component,
-  ChangeDetectionStrategy
-} from '@angular/core';
-import { CdkAccordion } from '@angular/cdk/accordion';
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { HOME, END } from '@angular/cdk/keycodes';
+import { CdkAccordion } from '@angular/cdk/accordion';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { END, HOME } from '@angular/cdk/keycodes';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  HostBinding,
+  Input,
+  QueryList
+} from '@angular/core';
+
+import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
 
 import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
-import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansion-panel-header.component';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
 
 @Component({
   selector: 'sbb-accordion',

@@ -1,31 +1,30 @@
-import {
-  Component,
-  AfterViewInit,
-  ContentChild,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  HostBinding,
-  ViewChild,
-  ElementRef,
-  EventEmitter,
-  ViewContainerRef,
-  NgZone,
-  ChangeDetectorRef,
-  Inject,
-  Optional,
-  InjectionToken,
-  QueryList,
-  Output
-} from '@angular/core';
-
-import { DropdownTriggerDirective, DROPDOWN_SCROLL_STRATEGY } from '../../dropdown/dropdown-trigger.directive';
-import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
-import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Overlay, ViewportRuler } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
-import { Breakpoints, ScalingFactor4k, ScalingFactor5k } from '../../breakpoints/breakpoints';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Inject,
+  InjectionToken,
+  NgZone,
+  Optional,
+  Output,
+  QueryList,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation
+} from '@angular/core';
 
+import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '../../breakpoints/breakpoints';
+import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
+import { DROPDOWN_SCROLL_STRATEGY, DropdownTriggerDirective } from '../../dropdown/dropdown-trigger.directive';
+import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
 
 /**
  * Describes a parent component that manages a list of options.
@@ -41,7 +40,6 @@ export interface BreadcrumbParentComponent {
  */
 export const SBB_BREADCRUMB_PARENT_COMPONENT =
   new InjectionToken<BreadcrumbParentComponent>('SBB_BREADCRUMB_PARENT_COMPONENT');
-
 
 const BREADCRUMB_LEVEL_OFFSET = 60;
 
@@ -75,7 +73,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
    */
   panelClass = 'sbb-breadcrumb-panel';
 
-  private breadcrumbPanelWidth: any;
+  private _breadcrumbPanelWidth: any;
 
   /**
    * Checks if the current breadcrumb is the first child of his parent (breadcrumbs)
@@ -92,40 +90,39 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
    */
   @Output() expandEvent: EventEmitter<any> = new EventEmitter<any>();
 
-
   constructor(@Optional() @Inject(SBB_BREADCRUMB_PARENT_COMPONENT) private _parent: BreadcrumbParentComponent,
-    private breakpointObserver: BreakpointObserver,
-    protected element: ElementRef<HTMLInputElement>,
-    protected overlay: Overlay,
-    protected viewContainerRef: ViewContainerRef,
-    protected zone: NgZone,
-    protected changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected scrollStrategy,
+    private _breakpointObserver: BreakpointObserver,
+    protected _elementRef: ElementRef<HTMLInputElement>,
+    protected _overlay: Overlay,
+    protected _viewContainerRef: ViewContainerRef,
+    protected _zone: NgZone,
+    protected _changeDetectorRef: ChangeDetectorRef,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
     @Optional() @Inject(DOCUMENT) protected _document: any,
-    protected viewportRuler?: ViewportRuler) {
-    super(element, overlay, viewContainerRef, zone, changeDetectorRef, scrollStrategy, _document, viewportRuler);
+    protected _viewportRuler?: ViewportRuler) {
+    super(
+      _elementRef, _overlay, _viewContainerRef, _zone, _changeDetectorRef, _scrollStrategy, _document, _viewportRuler);
   }
-
 
   ngAfterViewInit() {
     if (this.dropdown) {
       this.connectedTo = new DropdownOriginDirective(this.breadcrumbTrigger);
     }
 
-    this.breakpointObserver
+    this._breakpointObserver
       .observe([Breakpoints.Desktop4k, Breakpoints.Desktop5k])
       .subscribe((result: BreakpointState) => {
         let scalingFactor = 1;
 
         if (result.matches) {
           if (result.breakpoints[Breakpoints.Desktop4k]) {
-            scalingFactor = ScalingFactor4k;
+            scalingFactor = SCALING_FACTOR_4K;
           }
           if (result.breakpoints[Breakpoints.Desktop5k]) {
-            scalingFactor = ScalingFactor5k;
+            scalingFactor = SCALING_FACTOR_5K;
           }
         }
-        this.breadcrumbPanelWidth = this.getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
+        this._breadcrumbPanelWidth = this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
 
       });
 
@@ -143,13 +140,13 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     $event.stopPropagation();
   }
 
-  protected getPanelWidth(): number | string {
-    return this.breadcrumbPanelWidth;
+  protected _getPanelWidth(): number | string {
+    return this._breadcrumbPanelWidth;
   }
 
-  protected attachOverlay(): void {
+  protected _attachOverlay(): void {
     if (this.dropdown) {
-      super.attachOverlay();
+      super._attachOverlay();
     }
   }
 

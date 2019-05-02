@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
+
 import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
+
+import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
 
 /**
  * Service in charge to add/delete ghettoboxes from/to the container

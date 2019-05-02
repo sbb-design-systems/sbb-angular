@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Component, DebugElement } from '@angular/core';
-import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from 'sbb-angular-icons';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
+
+import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+
 import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 
 @Component({

@@ -1,25 +1,26 @@
 import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
-  SimpleChanges,
-  OnChanges,
-  ViewEncapsulation,
-  OnInit,
-  ElementRef,
-  ViewChildren,
-  QueryList,
   AfterViewInit,
-  HostBinding,
-  NgZone,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  NgZone,
+  OnChanges,
+  OnInit,
+  Output,
+  QueryList,
+  SimpleChanges,
+  ViewChildren,
+  ViewEncapsulation,
 } from '@angular/core';
-import { Router, NavigationEnd, RouterLinkActive } from '@angular/router';
-import { PageDescriptor, PageChangeEvent, LinkGeneratorResult } from '../page-descriptor.model';
-import { filter, debounceTime } from 'rxjs/operators';
+import { NavigationEnd, Router, RouterLinkActive } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
+
+import { LinkGeneratorResult, PageChangeEvent, PageDescriptor } from '../page-descriptor.model';
 
 @Component({
   selector: 'sbb-pagination',
@@ -50,7 +51,6 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
    */
   @Output()
   pageChange: EventEmitter<PageChangeEvent> = new EventEmitter<PageChangeEvent>();
-
 
   /**
    * A custom function called everytime a new pagination item has been clicked.
@@ -91,12 +91,11 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   hasNext(): boolean { return this.initialPage < this.maxPage; }
 
   constructor(
-    private router: Router,
-    private changeDetectorRef: ChangeDetectorRef
+    private _router: Router,
+    private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
-
-  private getSelectedLinkPage() {
+  private _getSelectedLinkPage() {
     const selectedPageIndex = this.activeLinks.toArray()
       .findIndex(page => page.isActive);
     if (selectedPageIndex === -1) {
@@ -105,7 +104,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     return this.pageDescriptors.find(page => page.index === selectedPageIndex);
   }
 
-  private getSelectedButtonPage() {
+  private _getSelectedButtonPage() {
     return this.pageDescriptors.find(page => page.displayNumber === this.initialPage);
   }
 
@@ -115,7 +114,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
    */
   selectPage(page: PageDescriptor): void {
     if (this.initialPage !== page.displayNumber || this.linkGenerator) {
-      this.updatePages(page.displayNumber);
+      this._updatePages(page.displayNumber);
     }
   }
 
@@ -128,25 +127,25 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.updatePages(this.initialPage);
+    this._updatePages(this.initialPage);
   }
 
   ngAfterViewInit() {
     if (this.links.length) {
       this.selectedPage$
-        .subscribe((selectedPage) => {
+        .subscribe(selectedPage => {
           this.selectPage(selectedPage);
           const selectedPageIndex = this.activeLinks.toArray()
             .findIndex(page => page.isActive);
           if (selectedPageIndex === -1) {
-            this.navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
+            this._navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
           }
         });
-      this.selectedPageSubject.next(this.getSelectedLinkPage());
-      this.router.events
+      this.selectedPageSubject.next(this._getSelectedLinkPage());
+      this._router.events
         .pipe(filter(event => event instanceof NavigationEnd))
         .pipe().subscribe((event: NavigationEnd) => {
-          this.changeDetectorRef.detectChanges();
+          this._changeDetectorRef.detectChanges();
         });
 
       this.activeLinks.changes
@@ -159,11 +158,11 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
           }
         });
     } else {
-      this.selectedPageSubject.next(this.getSelectedButtonPage());
+      this.selectedPageSubject.next(this._getSelectedButtonPage());
       this.buttons.changes.subscribe(() => {
-        this.buttons.toArray()[this.getSelectedButtonPage().index].nativeElement.focus();
+        this.buttons.toArray()[this._getSelectedButtonPage().index].nativeElement.focus();
       });
-      this.changeDetectorRef.detectChanges();
+      this._changeDetectorRef.detectChanges();
 
     }
   }
@@ -171,7 +170,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   /**
    * Appends ellipses and first/last page number to the displayed pages.
    */
-  private applyEllipses(start: number, end: number) {
+  private _applyEllipses(start: number, end: number) {
 
     if (start > 0) {
       if (start > 1) {
@@ -190,7 +189,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
   linkClick(page: PageDescriptor) {
     this.selectedPageSubject.next(page);
-    this.changeDetectorRef.detectChanges();
+    this._changeDetectorRef.detectChanges();
   }
 
   /**
@@ -201,7 +200,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
    * [5,*6*,7] for maxSize = 3
    * [4,5,*6*,7] for maxSize = 4
    */
-  private applyRotation(): [number, number] {
+  private _applyRotation(): [number, number] {
     let start = 0;
     let end = this.maxPage;
     const leftOffset = Math.floor(this.maxSize / 2);
@@ -224,22 +223,23 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     return [start, end];
   }
 
-  private getValueInRange(value: number, max: number, min = 0): number {
+  private _getValueInRange(value: number, max: number, min = 0): number {
     return Math.max(Math.min(value, max), min);
   }
 
-  private setPageInRange(newPageNo) {
+  private _setPageInRange(newPageNo) {
     const prevPageNo = this.initialPage;
-    this.initialPage = this.getValueInRange(newPageNo, this.maxPage, 1);
+    this.initialPage = this._getValueInRange(newPageNo, this.maxPage, 1);
 
     if (this.initialPage !== prevPageNo) {
       if (!this.linkGenerator) {
-        this.selectedPageSubject.next(this.getSelectedButtonPage());
+        this.selectedPageSubject.next(this._getSelectedButtonPage());
       }
       this.pageChange.emit({ currentPage: prevPageNo, selectedPage: this.initialPage });
     }
   }
-  private updatePages(newPage: number) {
+
+  private _updatePages(newPage: number) {
     // fill-in model needed to render pages
     this.pages.length = 0;
     for (let i = 1; i <= this.maxPage; i++) {
@@ -247,34 +247,36 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     }
 
     // set page within 1..max range
-    this.setPageInRange(newPage);
+    this._setPageInRange(newPage);
 
     // apply maxSize if necessary
     if (this.maxSize > 0 && this.maxPage > this.maxSize) {
       let start = 0;
       let end = this.maxPage;
 
-      [start, end] = this.applyRotation();
+      [start, end] = this._applyRotation();
 
       this.pages = this.pages.slice(start, end);
       // adding ellipses
-      this.applyEllipses(start, end);
+      this._applyEllipses(start, end);
     }
-    this.buildPageDescriptors(this.pages);
+    this._buildPageDescriptors(this.pages);
   }
 
-  private buildPageDescriptors(pages: Array<number>) {
+  private _buildPageDescriptors(pages: Array<number>) {
     let index = -1;
-    this.pageDescriptors = pages.map((pageNumber) => {
+    this.pageDescriptors = pages.map(pageNumber => {
       if (pageNumber !== -1) {
         index++;
       }
       const pageDescr = new PageDescriptor(pageNumber, index, this.maxPage, this.initialPage, this.linkGenerator);
       if (pageDescr.hasPrevious) {
-        pageDescr.previousPage = new PageDescriptor(pageNumber - 1, index - 1, this.maxPage, this.initialPage, this.linkGenerator);
+        pageDescr.previousPage =
+          new PageDescriptor(pageNumber - 1, index - 1, this.maxPage, this.initialPage, this.linkGenerator);
       }
       if (pageDescr.hasNext) {
-        pageDescr.nextPage = new PageDescriptor(pageNumber + 1, index + 1, this.maxPage, this.initialPage, this.linkGenerator);
+        pageDescr.nextPage =
+          new PageDescriptor(pageNumber + 1, index + 1, this.maxPage, this.initialPage, this.linkGenerator);
       }
       return pageDescr;
     });
@@ -289,22 +291,24 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     this.selectPage(page);
   }
 
-  private navigateToLink(linkGeneratorResult: LinkGeneratorResult) {
+  private _navigateToLink(linkGeneratorResult: LinkGeneratorResult) {
     let routerLink = linkGeneratorResult.routerLink;
     if (typeof linkGeneratorResult.routerLink === 'string') {
       routerLink = (linkGeneratorResult.routerLink as string).split('/');
     }
-    return this.router.navigate(routerLink as any[], linkGeneratorResult);
+    return this._router.navigate(routerLink as any[], linkGeneratorResult);
 
   }
 
   nextLink(page: PageDescriptor) {
-    this.selectedPageSubject
-      .next(new PageDescriptor(page.displayNumber + 1, page.index + 1, this.maxPage, page.displayNumber, this.linkGenerator));
+    this.selectedPageSubject.next(
+      new PageDescriptor(
+        page.displayNumber + 1, page.index + 1, this.maxPage, page.displayNumber, this.linkGenerator));
   }
 
   previousLink(page: PageDescriptor) {
-    this.selectedPageSubject
-      .next(new PageDescriptor(page.displayNumber - 1, page.index - 1, this.maxPage, page.displayNumber, this.linkGenerator));
+    this.selectedPageSubject.next(
+      new PageDescriptor(
+        page.displayNumber - 1, page.index - 1, this.maxPage, page.displayNumber, this.linkGenerator));
   }
 }

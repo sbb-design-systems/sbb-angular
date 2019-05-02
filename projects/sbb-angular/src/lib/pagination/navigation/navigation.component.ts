@@ -1,19 +1,20 @@
 import {
-  Component,
-  Input,
-  EventEmitter,
-  Output,
-  HostBinding,
-  OnChanges,
-  SimpleChanges,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
-import { LinkGeneratorResult } from '../page-descriptor.model';
-import { isString } from 'util';
 import { Router } from '@angular/router';
-import { NavigationPageDescriptor, NavigationPageChangeEvent } from '../navigation-page-descriptor.model';
+import { isString } from 'util';
+
+import { NavigationPageChangeEvent, NavigationPageDescriptor } from '../navigation-page-descriptor.model';
+import { LinkGeneratorResult } from '../page-descriptor.model';
 
 @Component({
   selector: 'sbb-navigation',
@@ -53,25 +54,20 @@ export class NavigationComponent implements OnChanges {
   @Input()
   linkGenerator?: (direction: 'previous' | 'next') => LinkGeneratorResult;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.nextPage && !this.previousPage) {
       throw Error('At least hasNext or hasPrevious must be defined in <sbb-navigation>');
-    } else {
-
-      if (this.linkGenerator) {
-        if (this.previousPage) {
-          this.previousLink = { title: this.previousPage, link: this.linkGenerator('previous') };
-
-        }
-        if (this.nextPage) {
-          this.nextLink = { title: this.nextPage, link: this.linkGenerator('next') };
-
-        }
+    } else if (this.linkGenerator) {
+      if (this.previousPage) {
+        this.previousLink = { title: this.previousPage, link: this.linkGenerator('previous') };
+      }
+      if (this.nextPage) {
+        this.nextLink = { title: this.nextPage, link: this.linkGenerator('next') };
       }
     }
-    this.changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
 }

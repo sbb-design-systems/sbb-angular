@@ -1,8 +1,8 @@
-import { Component, OnDestroy, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LinkGeneratorResult, GhettoboxService, GhettoboxDeletedEvent, GhettoboxRef } from 'sbb-angular';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { GhettoboxDeletedEvent, GhettoboxRef, GhettoboxService, LinkGeneratorResult } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-ghettobox-showcase',
@@ -20,7 +20,10 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
   @ViewChild('testIcon1', { read: TemplateRef }) testIcon1: TemplateRef<any>;
   @ViewChild('testIcon2', { read: TemplateRef }) testIcon2: TemplateRef<any>;
 
-  constructor(private _ghettoboxService: GhettoboxService, private route: ActivatedRoute) {
+  constructor(
+    private _ghettoboxService: GhettoboxService,
+    private _route: ActivatedRoute,
+  ) {
     this._ghettoboxInitLoadSubscription =
       this._ghettoboxService.containerReady.subscribe(
         () => {
@@ -39,7 +42,7 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
       routerLink: ['.'],
       queryParams: { test: randomParam },
       queryParamsHandling: 'merge',
-      relativeTo: this.route,
+      relativeTo: this._route,
     };
   }
 

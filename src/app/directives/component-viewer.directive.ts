@@ -1,23 +1,26 @@
-import { Directive, ViewContainerRef, OnInit, Input, ComponentFactoryResolver, Component, Type } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef } from '@angular/core';
+
 import { UiComponent } from '../shared/ui-component';
 
-
 @Directive({
-    selector: '[sbbComponentViewer]'
+  selector: '[sbbComponentViewer]'
 })
 export class ComponentViewerDirective implements OnInit {
 
-    @Input() sbbComponentViewer: UiComponent;
+  @Input() sbbComponentViewer: UiComponent;
 
-    constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) { }
+  constructor(
+    private _viewContainer: ViewContainerRef,
+    private _resolver: ComponentFactoryResolver,
+  ) { }
 
-    ngOnInit() {
-        this.loadComponent();
-    }
+  ngOnInit() {
+    this.loadComponent();
+  }
 
-    loadComponent(): void {
-        const componentFactory = this.resolver.resolveComponentFactory(this.sbbComponentViewer.component);
-        this.viewContainer.createComponent(componentFactory);
-    }
+  loadComponent(): void {
+    const componentFactory = this._resolver.resolveComponentFactory(this.sbbComponentViewer.component);
+    this._viewContainer.createComponent(componentFactory);
+  }
 
 }

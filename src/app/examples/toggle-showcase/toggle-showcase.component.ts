@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { of, Observable } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'sbb-toggle-showcase',
@@ -28,8 +28,7 @@ export class ToggleShowcaseComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.form.get('test').valueChanges.subscribe(
-      (val) => {
+    this.form.get('test').valueChanges.subscribe(val => {
         this.modelReactive = val;
       }
     );

@@ -1,13 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TagsComponent } from './tags.component';
-import { TagComponent } from '../tag/tag.component';
-import { Component } from '@angular/core';
-import { Tag, TagChange } from '../tag.model';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+
 import { BadgeModule } from '../../badge/badge.module';
+import { Tag, TagChange } from '../tag.model';
+import { TagComponent } from '../tag/tag.component';
+
+import { TagsComponent } from './tags.component';
 
 @Component({
   selector: 'sbb-tags-test-fixture',

@@ -1,18 +1,18 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   Directive,
-  Input,
-  OnInit,
-  Optional,
   ElementRef,
   HostBinding,
   HostListener,
-  Component,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
+  Input,
+  OnInit,
+  Optional
 } from '@angular/core';
 
-import { Lightbox } from './lightbox.service';
 import { LightboxRef } from './lightbox-ref';
+import { Lightbox } from './lightbox.service';
 
 /** Counter used to generate unique IDs for lightbox elements. */
 let lightboxElementUid = 0;
@@ -118,7 +118,6 @@ export class LightboxHeaderComponent implements OnInit {
   }
 }
 
-
 @Directive({
   selector: `[sbbLightboxTitle]`
 })
@@ -153,7 +152,6 @@ export class LightboxTitleDirective implements OnInit {
   }
 }
 
-
 /**
  * Scrollable content container of a lightbox.
  */
@@ -171,7 +169,6 @@ export class LightboxContentComponent {
   @HostBinding('class.sbb-lightbox-content')
   lightboxContentClass = true;
 }
-
 
 /**
  * Container for the bottom action buttons in a lightbox.
@@ -230,7 +227,6 @@ export class LightboxFooterComponent implements OnInit {
     }
   }
 }
-
 
 /**
  * Finds the closest LightboxRef to an element by looking at the DOM.

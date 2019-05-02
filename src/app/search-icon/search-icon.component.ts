@@ -1,9 +1,10 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { UiIcon } from '../shared/ui-icon';
-import { IconUiService } from '../services/icon-ui.service';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+
+import { IconUiService } from '../services/icon-ui.service';
+import { UiIcon } from '../shared/ui-icon';
 
 @Component({
   selector: 'sbb-search-icon',
@@ -19,15 +20,14 @@ export class SearchIconComponent implements OnInit {
 
   foundUiIcons = new Subject<UiIcon[]>();
 
-  constructor(private iconUiService: IconUiService) {
+  constructor(private _iconUiService: IconUiService) {
     this.inputValue.valueChanges
       .pipe(debounceTime(250))
       .pipe(distinctUntilChanged())
       .subscribe(searchTerm => {
-        this.foundUiIcons.next(this.iconUiService.getUiIconsBySearchValue(searchTerm));
+        this.foundUiIcons.next(this._iconUiService.getUiIconsBySearchValue(searchTerm));
       });
   }
-
 
   ngOnInit() {
     this.inputValue.setValue('');

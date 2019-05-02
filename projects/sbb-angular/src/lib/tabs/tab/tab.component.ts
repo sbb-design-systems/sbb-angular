@@ -1,15 +1,15 @@
 import {
-  Component,
-  Input,
-  HostBinding,
-  OnInit,
-  ViewEncapsulation,
-  OnChanges,
-  OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
   Output,
-  EventEmitter
+  ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -36,9 +36,9 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   @HostBinding('attr.aria-labelledby')
   @Input() labelId: string;
 
-   /**
-   * Initial index tab
-   */
+  /**
+  * Initial index tab
+  */
   @HostBinding('attr.tabindex')
   @Input() tabindex = -1;
 
@@ -94,6 +94,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   @Output() removeChange = new EventEmitter();
 
   /** Emits whenever the internal state of the tab changes. */
+  // tslint:disable-next-line: naming-convention
   readonly _stateChanges = new Subject<void>();
 
   constructor(private _changeDetector: ChangeDetectorRef) { }

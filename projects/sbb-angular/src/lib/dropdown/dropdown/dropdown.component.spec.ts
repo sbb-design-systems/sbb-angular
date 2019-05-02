@@ -4,14 +4,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { LinkGeneratorResult } from '../../pagination/page-descriptor.model';
 import {
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
   DropdownItemDirective,
   DropdownOriginDirective,
-  DropdownTriggerDirective,
-  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
+  DropdownTriggerDirective
 } from '../dropdown';
 import { DropdownModule } from '../dropdown.module';
+
 import { DropdownComponent } from './dropdown.component';
 
 @Component({
@@ -58,7 +60,6 @@ export class DropdownTestComponent {
   }
 
 }
-
 
 describe('DropdownComponent', () => {
   let component: DropdownComponent;

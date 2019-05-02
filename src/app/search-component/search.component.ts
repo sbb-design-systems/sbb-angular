@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UiComponent } from '../shared/ui-component';
-import { ComponentUiService } from '../services/component-ui.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+import { ComponentUiService } from '../services/component-ui.service';
+import { UiComponent } from '../shared/ui-component';
 
 @Component({
   selector: 'sbb-showcase-search',
@@ -18,8 +19,7 @@ export class SearchComponent implements OnInit {
 
   foundUiComponents: UiComponent[] = [];
 
-  constructor(private componentUiService: ComponentUiService) {
-  }
+  constructor(private _componentUiService: ComponentUiService) { }
 
   ngOnInit() {
     this.foundUiComponents = this.allUiComponents;
@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
         .pipe(distinctUntilChanged())
         .pipe(switchMap(searchTerm => {
           this.foundUiComponents = [];
-          return this.componentUiService.getUiComponentsBySearchValue(searchTerm);
+          return this._componentUiService.getUiComponentsBySearchValue(searchTerm);
         }))
         .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
     }

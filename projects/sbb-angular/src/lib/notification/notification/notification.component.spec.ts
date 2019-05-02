@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { NotificationComponent, NotificationType } from './notification.component';
 
 @Component({
@@ -60,7 +61,6 @@ describe('NotificationComponent', () => {
       testComponent = testFixture.componentInstance;
       testFixture.detectChanges();
     });
-
 
     it('should have red background when type is ERROR', () => {
       testComponent.type = NotificationType.ERROR;

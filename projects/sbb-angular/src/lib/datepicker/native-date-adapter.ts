@@ -1,6 +1,7 @@
-import { DateAdapter } from './date-adapter';
 import { DatePipe } from '@angular/common';
-import { LOCALE_ID, Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
+
+import { DateAdapter } from './date-adapter';
 
 /**
  * Matches strings that have the form of a valid RFC 3339 string
@@ -30,11 +31,11 @@ export function isNumber(value: any): value is number {
 @Injectable()
 export class NativeDateAdapter extends DateAdapter<Date> {
 
-  private datePipe: DatePipe;
+  private _datePipe: DatePipe;
 
-  constructor(@Inject(LOCALE_ID) protected locale: string) {
+  constructor(@Inject(LOCALE_ID) protected _locale: string) {
     super();
-    this.datePipe = new DatePipe(locale);
+    this._datePipe = new DatePipe(_locale);
   }
 
   getYear(date: Date): number {
@@ -51,7 +52,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   getMonthName(date: Date) {
-    return this.datePipe.transform(date, 'LLLL');
+    return this._datePipe.transform(date, 'LLLL');
   }
 
   getMonthNames(style: 'long' | 'short' | 'narrow'): string[] {
@@ -68,12 +69,12 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         break;
     }
     return range(12, i =>
-      this.datePipe.transform(new Date(2017, i, 1), format));
+      this._datePipe.transform(new Date(2017, i, 1), format));
   }
 
   getDateNames(): string[] {
     return range(31, i =>
-      this.datePipe.transform(new Date(2017, 0, i + 1), 'd'));
+      this._datePipe.transform(new Date(2017, 0, i + 1), 'd'));
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
@@ -90,11 +91,11 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         break;
     }
     return range(7, i =>
-      this.datePipe.transform(new Date(2017, 0, i + 1), format));
+      this._datePipe.transform(new Date(2017, 0, i + 1), format));
   }
 
   getYearName(date: Date): string {
-    return this.datePipe.transform(date, 'yyyy');
+    return this._datePipe.transform(date, 'yyyy');
   }
 
   getFirstDayOfWeek(): number {
@@ -135,7 +136,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   format(date: Date, displayFormat: any): string {
-    return this.datePipe.transform(date, displayFormat);
+    return this._datePipe.transform(date, displayFormat);
   }
 
   addCalendarYears(date: Date, years: number): Date {
@@ -161,7 +162,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   toIso8601(date: Date): string {
-    return this.datePipe.transform(date, 'yyyy-MM-dd');
+    return this._datePipe.transform(date, 'yyyy-MM-dd');
   }
 
   /**
@@ -199,4 +200,3 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
 }
-

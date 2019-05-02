@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { LinkGeneratorResult } from 'sbb-angular';
 
 @Component({
@@ -26,7 +26,6 @@ export class UserMenuShowcaseComponent {
     userName: null,
     displayName: 'Walter Scotti'
   };
-
 
   links: Array<any> = [
     { page: 1, text: 'Benutzerkonto' },

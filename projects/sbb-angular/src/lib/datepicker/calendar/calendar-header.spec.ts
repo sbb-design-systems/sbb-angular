@@ -1,10 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
+import { FEB, JAN } from '../../_common/testing/dates-constants';
 import { DatepickerModule } from '../datepicker.module';
+
 import { CalendarComponent } from './calendar.component';
-import { JAN, FEB } from '../../_common/testing/dates-constants';
 
 @Component({
     template: `

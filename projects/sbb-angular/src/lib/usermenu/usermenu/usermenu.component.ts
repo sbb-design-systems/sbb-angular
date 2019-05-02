@@ -1,12 +1,12 @@
 import {
-  Component,
-  HostBinding,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  EventEmitter,
+  HostBinding,
   Input,
   Output,
-  EventEmitter,
-  ContentChild
+  ViewEncapsulation
 } from '@angular/core';
 
 import { DropdownComponent } from '../../dropdown/dropdown';
@@ -74,6 +74,5 @@ export class UserMenuComponent {
         return (current[0] + next[0]);
       }).toLocaleUpperCase();
   }
-
 
 }

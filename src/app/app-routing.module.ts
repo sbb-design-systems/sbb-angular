@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ContentComponent } from './content/content.component';
-import { HomeComponent } from './home/home.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { ComponentsListComponent } from './components-list/components-list.component';
+import { ContentComponent } from './content/content.component';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { HomeComponent } from './home/home.component';
 import { IconsListComponent } from './icons-list/icons-list.component';
 import { TypographyComponent } from './typography/typography.component';
-import { GettingStartedComponent } from './getting-started/getting-started.component';
 
 const routes: Routes = [
   {

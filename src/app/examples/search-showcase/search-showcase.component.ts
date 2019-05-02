@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'sbb-search-showcase',
@@ -42,27 +42,28 @@ export class SearchShowcaseComponent implements OnInit {
   filteredOptions2 = this.topics.slice(0);
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
   ngOnInit() {
-    this.myControl.valueChanges.subscribe((newValue) => {
-      this.filteredOptions = this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
+    this.myControl.valueChanges.subscribe(newValue => {
+      this.filteredOptions = this.options
+        .filter(option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
-    this.myControl2.valueChanges.subscribe((newValue) => {
-      this.filteredOptions2 = this.topics.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
+    this.myControl2.valueChanges.subscribe(newValue => {
+      this.filteredOptions2 = this.topics
+        .filter(option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1);
     });
 
     this.options$ = new Subject<string[]>();
 
-
     this.myControlStatic.valueChanges
       .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
-      .subscribe((newValue) => {
+      .subscribe(newValue => {
         if (newValue.length >= 2) {
           this.options$
-            .next(this.options.filter((option) => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
+            .next(this.options.filter(option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1));
         } else {
           this.options$.next([]);
         }
@@ -70,13 +71,12 @@ export class SearchShowcaseComponent implements OnInit {
 
     this.searchSubject
       .pipe(distinctUntilChanged())
-
-      .subscribe((searchTerm) => {
+      .subscribe(searchTerm => {
         this.showSpinner = true;
-        const searchT = searchTerm.trim().toLowerCase();
-        this.http
-          .get<any>
-          ('https://data.sbb.ch/api/records/1.0/search/?dataset=historische-bahnhofbilder&facet=ort&facet=datum_foto_1&q=' + searchT)
+        this._http
+          .get<any>(
+            'https://data.sbb.ch/api/records/1.0/search/' +
+            `?dataset=historische-bahnhofbilder&facet=ort&facet=datum_foto_1&q=${searchTerm.trim().toLowerCase()}`)
           .subscribe(results => {
             const searchResults = results;
             console.log(searchResults);
@@ -87,7 +87,6 @@ export class SearchShowcaseComponent implements OnInit {
               };
             });
             this.showSpinner = false;
-
           });
       });
 

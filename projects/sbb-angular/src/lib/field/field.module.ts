@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LabelComponent } from './label/label.component';
+import { NgModule } from '@angular/core';
+
+import { InputModule } from '../input/input.module';
+
 import { FieldComponent } from './field/field.component';
 import { FormErrorDirective } from './form-error/form-error.directive';
-import { InputModule } from '../input/input.module';
+import { LabelComponent } from './label/label.component';
 
 @NgModule({
   imports: [

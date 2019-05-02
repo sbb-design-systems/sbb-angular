@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
 import {
   IconArrowRightModule,
   IconDownloadModule,
@@ -13,6 +12,7 @@ import {
   IconXingModule,
   IconYoutubeModule,
 } from 'sbb-angular-icons';
+
 import { LinkComponent } from './link/link.component';
 import { SocialLinkComponent } from './social-link/social-link.component';
 

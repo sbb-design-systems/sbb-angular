@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 
 export class ProcessflowStep {
   /** Title of a step in a process flow. */
@@ -31,7 +31,7 @@ export class ProcessflowStepComponent {
   @Input()
   set active(value: boolean) {
     this.descriptor.active = coerceBooleanProperty(value);
-    this.changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
   get active() {
     return this.descriptor.active;
@@ -40,12 +40,12 @@ export class ProcessflowStepComponent {
   @Input()
   set disabled(value: boolean) {
     this.descriptor.disabled = coerceBooleanProperty(value);
-    this.changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   get disabled() {
     return this.descriptor.disabled;
   }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 }

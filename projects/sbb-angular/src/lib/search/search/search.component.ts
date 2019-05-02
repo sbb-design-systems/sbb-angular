@@ -1,3 +1,5 @@
+import { animate, AnimationBuilder, style } from '@angular/animations';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
@@ -8,50 +10,47 @@ import {
   ScrollStrategy
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
-import { filter, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  ContentChild,
   ElementRef,
+  EventEmitter,
   forwardRef,
+  HostBinding,
   Inject,
+  InjectionToken,
   Input,
   NgZone,
   OnDestroy,
   Optional,
-  ViewContainerRef,
-  HostBinding,
-  InjectionToken,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  ViewChild,
-  Component,
-  TemplateRef,
-  EventEmitter,
   Output,
-  AfterViewInit,
-  ContentChild,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
-import { ViewportRuler } from '@angular/cdk/scrolling';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { defer, fromEvent, merge, Observable, of, of as observableOf, Subject, Subscription } from 'rxjs';
+import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
 
-import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable, of } from 'rxjs';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
+import {
+  AUTOCOMPLETE_OPTION_HEIGHT,
+  AUTOCOMPLETE_PANEL_HEIGHT,
+  AutocompleteComponent,
+  AutocompleteOriginDirective, getSbbAutocompleteMissingPanelError, SBB_AUTOCOMPLETE_SCROLL_STRATEGY
+} from '../../autocomplete/autocomplete';
 import { HighlightPipe } from '../../option/option/highlight.pipe';
 import {
-  SBBOptionSelectionChange,
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  OptionComponent
+  OptionComponent,
+  SBBOptionSelectionChange
 } from '../../option/option/option.component';
-import {
-  AutocompleteComponent,
-  AutocompleteOriginDirective,
-  SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
-  AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT, getSbbAutocompleteMissingPanelError
-} from '../../autocomplete/autocomplete';
-import { AnimationBuilder, style, animate } from '@angular/animations';
 import { SearchIconDirective } from '../search-icon.directive';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
@@ -136,41 +135,41 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    */
   @Input() placeholder = '';
 
-  private overlayRef: OverlayRef | null;
-  private portal: TemplatePortal;
-  private componentDestroyed = false;
+  private _overlayRef: OverlayRef | null;
+  private _portal: TemplatePortal;
+  private _componentDestroyed = false;
   private _autocompleteDisabled = true;
 
   /** Old value of the native input. Used to work around issues with the `input` event on IE. */
-  private previousValue: string | number | null;
+  private _previousValue: string | number | null;
 
   /** Strategy that is used to position the panel. */
-  private positionStrategy: FlexibleConnectedPositionStrategy;
+  private _positionStrategy: FlexibleConnectedPositionStrategy;
 
   /** The subscription for closing actions (some are bound to document). */
-  private closingActionsSubscription: Subscription;
+  private _closingActionsSubscription: Subscription;
 
   /** Subscription to viewport size changes. */
-  private viewportSubscription = Subscription.EMPTY;
-  private positionSubscription = Subscription.EMPTY;
+  private _viewportSubscription = Subscription.EMPTY;
+  private _positionSubscription = Subscription.EMPTY;
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused,
    * closed autocomplete from being reopened if the user switches to another browser tab and then
    * comes back.
    */
-  private canOpenOnNextFocus = true;
+  private _canOpenOnNextFocus = true;
 
   /** Stream of keyboard events that can close the panel. */
-  private readonly closeKeyEventStream = new Subject<void>();
+  private readonly _closeKeyEventStream = new Subject<void>();
 
-  private overlayAttached = false;
-  private highlightPipe = new HighlightPipe();
+  private _overlayAttached = false;
+  private _highlightPipe = new HighlightPipe();
 
   /**
    * Used to switch from trigger to search box when in 'header' mode
    */
   get hideSearch(): boolean {
-    if (!this.isHeaderMode()) {
+    if (!this._isHeaderMode()) {
       return false;
     }
     return this._hideSearch;
@@ -192,7 +191,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this._autocomplete = value;
     this._autocompleteDisabled = false;
   }
-  _autocomplete: AutocompleteComponent;
+  private _autocomplete: AutocompleteComponent;
 
   /**
    * Reference relative to which to position the autocomplete panel.
@@ -220,20 +219,20 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
-    private element: ElementRef<HTMLInputElement>,
-    private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef,
-    private zone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private scrollStrategy,
+    private _elementRef: ElementRef<HTMLInputElement>,
+    private _overlay: Overlay,
+    private _viewContainerRef: ViewContainerRef,
+    private _zone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy,
     @Optional() @Inject(DOCUMENT) private _document: any,
-    private animationBuilder: AnimationBuilder,
-    private viewportRuler?: ViewportRuler
+    private _animationBuilder: AnimationBuilder,
+    private _viewportRuler?: ViewportRuler
   ) {
 
     if (typeof window !== 'undefined') {
-      zone.runOutsideAngular(() => {
-        window.addEventListener('blur', this.windowBlurHandler);
+      _zone.runOutsideAngular(() => {
+        window.addEventListener('blur', this._windowBlurHandler);
       });
     }
   }
@@ -246,7 +245,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
-    return this.zone.onStable
+    return this._zone.onStable
       .asObservable()
       .pipe(first(), switchMap(() => this.optionSelections));
   });
@@ -267,11 +266,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this.button.nativeElement === this._document.activeElement;
   }
 
-  private isHeaderMode(): boolean {
+  private _isHeaderMode(): boolean {
     return this.mode === 'header';
   }
 
-  private isNotSearchBoxElementToBeFocused(relatedTarget: any, target: any) {
+  private _isNotSearchBoxElementToBeFocused(relatedTarget: any, target: any) {
 
     if (!relatedTarget) {
       return true;
@@ -287,15 +286,15 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     const relatedTarget = $event.relatedTarget;
     const target = $event.target;
 
-    if (this.isHeaderMode() &&
-      (this.isNotSearchBoxElementToBeFocused(relatedTarget, target))) {
+    if (this._isHeaderMode() &&
+      (this._isNotSearchBoxElementToBeFocused(relatedTarget, target))) {
 
-      if (this.autocomplete && !!this.overlayRef && this.overlayRef.overlayElement.contains(relatedTarget)) {
-        this.closeAnimation(this.overlayRef.overlayElement);
+      if (this.autocomplete && !!this._overlayRef && this._overlayRef.overlayElement.contains(relatedTarget)) {
+        this._closeAnimation(this._overlayRef.overlayElement);
       } else {
-        this.closeAnimation(this.searchbox.nativeElement).onDone(() => {
+        this._closeAnimation(this.searchbox.nativeElement).onDone(() => {
           this._hideSearch = true;
-          this.changeDetectorRef.markForCheck();
+          this._changeDetectorRef.markForCheck();
         });
       }
     }
@@ -325,12 +324,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * Event handler for when the window is blurred. Needs to be an
    * arrow function in order to preserve the context.
    */
-  private windowBlurHandler = () => {
+  private _windowBlurHandler = () => {
     // If the user blurred the window while the autocomplete is focused, it means that it'll be
     // refocused when they come back. In this case we want to skip the first focus event, if the
     // pane was closed, in order to avoid reopening it unintentionally.
-    this.canOpenOnNextFocus =
-      document.activeElement !== this.element.nativeElement || this.panelOpen;
+    this._canOpenOnNextFocus =
+      document.activeElement !== this._elementRef.nativeElement || this.panelOpen;
   }
 
   /** `View -> model callback called when value changes` */
@@ -355,29 +354,29 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   ngOnDestroy() {
     if (typeof window !== 'undefined') {
-      window.removeEventListener('blur', this.windowBlurHandler);
+      window.removeEventListener('blur', this._windowBlurHandler);
     }
 
-    this.viewportSubscription.unsubscribe();
-    this.positionSubscription.unsubscribe();
-    this.componentDestroyed = true;
-    this.destroyPanel();
-    this.closeKeyEventStream.complete();
+    this._viewportSubscription.unsubscribe();
+    this._positionSubscription.unsubscribe();
+    this._componentDestroyed = true;
+    this._destroyPanel();
+    this._closeKeyEventStream.complete();
   }
 
   /** Whether or not the autocomplete panel is open. */
   get panelOpen(): boolean {
-    return this.overlayAttached && this.autocomplete.showPanel;
+    return this._overlayAttached && this.autocomplete.showPanel;
   }
 
   /** Opens the autocomplete suggestion panel. */
   openPanel(): void {
-    this.attachOverlay();
+    this._attachOverlay();
   }
 
   /** Closes the autocomplete suggestion panel. */
   closePanel(): void {
-    if (!this.overlayAttached) {
+    if (!this._overlayAttached) {
       return;
     }
 
@@ -386,21 +385,21 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this.autocomplete.closed.emit();
     }
 
-    this.autocomplete._isOpen = this.overlayAttached = false;
+    this.autocomplete._isOpen = this._overlayAttached = false;
 
-    if (this.overlayRef && this.overlayRef.hasAttached()) {
-      this.overlayRef.detach();
-      this.closingActionsSubscription.unsubscribe();
+    if (this._overlayRef && this._overlayRef.hasAttached()) {
+      this._overlayRef.detach();
+      this._closingActionsSubscription.unsubscribe();
     }
 
     // Note that in some cases this can end up being called after the component is destroyed.
     // Add a check to ensure that we don't try to run change detection on a destroyed view.
-    if (!this.componentDestroyed) {
+    if (!this._componentDestroyed) {
       // We need to trigger change detection manually, because
       // `fromEvent` doesn't seem to do it at the proper time.
       // This ensures that the label is reset when the
       // user clicks outside.
-      this.changeDetectorRef.detectChanges();
+      this._changeDetectorRef.detectChanges();
     }
   }
 
@@ -411,11 +410,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
-      this.autocomplete.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
-      this.closeKeyEventStream,
-      this.getOutsideClickStream(),
-      this.overlayRef ?
-        this.overlayRef.detachments().pipe(filter(() => this.overlayAttached)) :
+      this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
+      this._closeKeyEventStream,
+      this._getOutsideClickStream(),
+      this._overlayRef ?
+        this._overlayRef.detachments().pipe(filter(() => this._overlayAttached)) :
         observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
@@ -438,7 +437,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /** Stream of clicks outside of the autocomplete panel. */
-  private getOutsideClickStream(): Observable<any> {
+  private _getOutsideClickStream(): Observable<any> {
     if (!this._document) {
       return observableOf(null);
     }
@@ -450,16 +449,16 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       .pipe(filter(event => {
         const clickTarget = event.target as HTMLElement;
 
-        return this.overlayAttached &&
-          clickTarget !== this.element.nativeElement &&
-          !this.element.nativeElement.contains(clickTarget) &&
-          (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
+        return this._overlayAttached &&
+          clickTarget !== this._elementRef.nativeElement &&
+          !this._elementRef.nativeElement.contains(clickTarget) &&
+          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget));
       }));
   }
 
   // Implemented as part of ControlValueAccessor.
   writeValue(value: any): void {
-    Promise.resolve(null).then(() => this.setTriggerValue(value));
+    Promise.resolve(null).then(() => this._setTriggerValue(value));
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -474,11 +473,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   // Implemented as part of ControlValueAccessor.
   setDisabledState(isDisabled: boolean) {
-    this.element.nativeElement.disabled = isDisabled;
+    this._elementRef.nativeElement.disabled = isDisabled;
   }
 
   handleKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line
     const keyCode = event.keyCode;
 
     // Prevent the default action on all escape key presses. This is here primarily to bring IE
@@ -491,14 +489,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
     if (this.activeOption && keyCode === ENTER && this.panelOpen) {
       this.activeOption.selectViaInteraction();
-      this.resetActiveItem();
+      this._resetActiveItem();
       event.preventDefault();
     } else if (this.autocomplete) {
       const prevActiveItem = this.autocomplete.keyManager.activeItem;
       const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
       if (this.panelOpen || keyCode === TAB) {
         this.autocomplete.keyManager.onKeydown(event);
-      } else if (isArrowKey && this.canOpen()) {
+      } else if (isArrowKey && this._canOpen()) {
         this.openPanel();
 
       }
@@ -511,7 +509,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     } else if (keyCode === ENTER) {
       this.emitSearch();
     }
-    this.zone.onStable
+    this._zone.onStable
       .asObservable()
       .pipe()
       .subscribe(() => this.highlightOptionsByInput(this.input.nativeElement.value));
@@ -543,7 +541,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this.autocomplete.options
         .filter(option => !option.group)
         .forEach(option => {
-          option.getHostElement().innerHTML = this.highlightPipe.transform(option.getHostElement().textContent, value);
+          option.getHostElement().innerHTML = this._highlightPipe.transform(option.getHostElement().textContent, value);
         });
     }
   }
@@ -569,11 +567,11 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     // filter out all of the extra events, we save the value on focus and between
     // `input` events, and we check whether it changed.
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
-    if (this.previousValue !== value && document.activeElement === event.target) {
-      this.previousValue = value;
+    if (this._previousValue !== value && document.activeElement === event.target) {
+      this._previousValue = value;
       this.onChange(value);
 
-      if (this.canOpen()) {
+      if (this._canOpen()) {
         this.openPanel();
       } else {
         this.closePanel();
@@ -584,23 +582,22 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   /** @docs-private */
   handleFocus(): void {
-    if (!this.canOpenOnNextFocus) {
-      this.canOpenOnNextFocus = true;
-    } else if (this.canOpen()) {
-      this.previousValue = this.input.nativeElement.value;
-      this.attachOverlay();
+    if (!this._canOpenOnNextFocus) {
+      this._canOpenOnNextFocus = true;
+    } else if (this._canOpen()) {
+      this._previousValue = this.input.nativeElement.value;
+      this._attachOverlay();
     }
   }
-
 
   /**
    * This method listens to a stream of panel closing actions and resets the
    * stream every time the option list changes.
    */
-  private subscribeToClosingActions(): Subscription {
-    const firstStable = this.zone.onStable.asObservable().pipe(first());
+  private _subscribeToClosingActions(): Subscription {
+    const firstStable = this._zone.onStable.asObservable().pipe(first());
     const optionChanges = this.autocomplete.options.changes.pipe(
-      tap(() => this.positionStrategy.reapplyLastPosition()),
+      tap(() => this._positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
       // bindings in here will cause "changed after checked" errors.
       delay(0)
@@ -612,12 +609,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         // create a new stream of panelClosingActions, replacing any previous streams
         // that were created, and flatten it so our stream only emits closing events...
         switchMap(() => {
-          this.resetActiveItem();
+          this._resetActiveItem();
           this.autocomplete.setVisibility();
 
           if (this.panelOpen) {
             // tslint:disable-next-line:no-non-null-assertion
-            this.overlayRef!.updatePosition();
+            this._overlayRef!.updatePosition();
 
           }
 
@@ -628,20 +625,20 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       )
       // set the value, close the panel, and complete.
       .subscribe(event => {
-        this.setValueAndClose(event);
+        this._setValueAndClose(event);
       });
   }
 
   /** Destroys the autocomplete suggestion panel. */
-  private destroyPanel(): void {
-    if (this.overlayRef) {
+  private _destroyPanel(): void {
+    if (this._overlayRef) {
       this.closePanel();
-      this.overlayRef.dispose();
-      this.overlayRef = null;
+      this._overlayRef.dispose();
+      this._overlayRef = null;
     }
   }
 
-  private setTriggerValue(value: any): void {
+  private _setTriggerValue(value: any): void {
     const toDisplay = this.autocomplete && this.autocomplete.displayWith ?
       this.autocomplete.displayWith(value) :
       value;
@@ -654,7 +651,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     // through change detection.
     if (this.input) {
       this.input.nativeElement.value = inputValue;
-      this.previousValue = inputValue;
+      this._previousValue = inputValue;
     }
   }
 
@@ -663,10 +660,10 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
    */
-  private setValueAndClose(event: SBBOptionSelectionChange | null): void {
+  private _setValueAndClose(event: SBBOptionSelectionChange | null): void {
     if (event && event.source) {
-      this.clearPreviousSelectedOption(event.source);
-      this.setTriggerValue(event.source.value);
+      this._clearPreviousSelectedOption(event.source);
+      this._setTriggerValue(event.source.value);
       this.onChange(event.source.value);
       this.input.nativeElement.focus();
       this.autocomplete.emitSelectEvent(event.source);
@@ -678,7 +675,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private clearPreviousSelectedOption(skip: OptionComponent) {
+  private _clearPreviousSelectedOption(skip: OptionComponent) {
     this.autocomplete.options.forEach(option => {
       // tslint:disable-next-line:triple-equals
       if (option != skip && option.selected) {
@@ -687,23 +684,23 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     });
   }
 
-  private attachOverlay(): void {
+  private _attachOverlay(): void {
     if (!this.autocomplete) {
       throw getSbbAutocompleteMissingPanelError();
     }
-    if (!this.overlayRef) {
-      this.portal = new TemplatePortal(this.autocomplete.template, this.viewContainerRef);
-      this.overlayRef = this.overlay.create(this.getOverlayConfig());
+    if (!this._overlayRef) {
+      this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef);
+      this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
-      if (this.positionStrategy) {
-        this.positionSubscription = this.positionStrategy.positionChanges.subscribe(position => {
+      if (this._positionStrategy) {
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
           if (this.autocomplete.panel) {
             if (position.connectionPair.originY === 'top') {
               this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
-              this.getConnectedElement().nativeElement.classList.add('sbb-autocomplete-input-above');
+              this._getConnectedElement().nativeElement.classList.add('sbb-autocomplete-input-above');
             } else {
               this.autocomplete.panel.nativeElement.classList.remove('sbb-autocomplete-panel-above');
-              this.getConnectedElement().nativeElement.classList.remove('sbb-autocomplete-input-above');
+              this._getConnectedElement().nativeElement.classList.remove('sbb-autocomplete-input-above');
             }
           }
 
@@ -712,37 +709,36 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
-      this.overlayRef.keydownEvents().subscribe(event => {
+      this._overlayRef.keydownEvents().subscribe(event => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-        // tslint:disable-next-line
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
-          this.resetActiveItem();
-          this.closeKeyEventStream.next();
+          this._resetActiveItem();
+          this._closeKeyEventStream.next();
         }
       });
 
-      if (this.viewportRuler) {
-        this.viewportSubscription = this.viewportRuler.change().subscribe(() => {
-          if (this.panelOpen && this.overlayRef) {
-            this.overlayRef.updateSize({ width: this.getPanelWidth() });
+      if (this._viewportRuler) {
+        this._viewportSubscription = this._viewportRuler.change().subscribe(() => {
+          if (this.panelOpen && this._overlayRef) {
+            this._overlayRef.updateSize({ width: this._getPanelWidth() });
           }
         });
       }
     } else {
       // Update the panel width and direction, in case anything has changed.
-      this.overlayRef.updateSize({ width: this.getPanelWidth() });
+      this._overlayRef.updateSize({ width: this._getPanelWidth() });
     }
 
-    if (this.overlayRef && !this.overlayRef.hasAttached()) {
-      this.overlayRef.attach(this.portal);
-      this.closingActionsSubscription = this.subscribeToClosingActions();
+    if (this._overlayRef && !this._overlayRef.hasAttached()) {
+      this._overlayRef.attach(this._portal);
+      this._closingActionsSubscription = this._subscribeToClosingActions();
     }
 
     const wasOpen = this.panelOpen;
 
     this.autocomplete.setVisibility();
-    this.autocomplete._isOpen = this.overlayAttached = true;
+    this.autocomplete._isOpen = this._overlayAttached = true;
 
     // We need to do an extra `panelOpen` check in here, because the
     // autocomplete won't be shown if there are no options.
@@ -751,19 +747,19 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     }
   }
 
-  private openAnimation(element: HTMLElement) {
-    const myAnimation = this.animationBuilder.build([
+  private _openAnimation(element: HTMLElement) {
+    const myAnimation = this._animationBuilder.build([
       style({ width: 0, opacity: 0, display: 'none' }),
-      animate(ANIMATION_DURATION, style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }))
+      animate(ANIMATION_DURATION, style({ width: this._getPanelWidth(), opacity: 1, display: 'flex' }))
     ]);
     const player = myAnimation.create(element);
     player.play();
     return player;
   }
 
-  private closeAnimation(element: HTMLElement) {
-    const myAnimation = this.animationBuilder.build([
-      style({ width: this.getPanelWidth(), opacity: 1, display: 'flex' }),
+  private _closeAnimation(element: HTMLElement) {
+    const myAnimation = this._animationBuilder.build([
+      style({ width: this._getPanelWidth(), opacity: 1, display: 'flex' }),
       animate(ANIMATION_DURATION, style({ width: 0, opacity: 0, display: 'none' }))
     ]);
     const player = myAnimation.create(element);
@@ -771,18 +767,18 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     return player;
   }
 
-  private getOverlayConfig(): OverlayConfig {
+  private _getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
-      positionStrategy: this.getOverlayPosition(),
-      scrollStrategy: this.scrollStrategy(),
-      width: this.getPanelWidth(),
+      positionStrategy: this._getOverlayPosition(),
+      scrollStrategy: this._scrollStrategy(),
+      width: this._getPanelWidth(),
       panelClass: 'sbb-search-panel'
     });
   }
 
-  private getOverlayPosition(): PositionStrategy {
-    this.positionStrategy = this.overlay.position()
-      .flexibleConnectedTo(this.getConnectedElement())
+  private _getOverlayPosition(): PositionStrategy {
+    this._positionStrategy = this._overlay.position()
+      .flexibleConnectedTo(this._getConnectedElement())
       .withFlexibleDimensions(false)
       .withPush(false)
       .withPositions([
@@ -800,36 +796,36 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
         }
       ]);
 
-    return this.positionStrategy;
+    return this._positionStrategy;
   }
 
-  private getConnectedElement(): ElementRef {
+  private _getConnectedElement(): ElementRef {
     if (this.connectedTo) {
       return this.connectedTo.elementRef;
     }
 
-    return this.element;
+    return this._elementRef;
   }
 
-  private getPanelWidth(): number | string {
-    return (this.autocomplete && this.autocomplete.panelWidth) || this.getHostWidth();
+  private _getPanelWidth(): number | string {
+    return (this.autocomplete && this.autocomplete.panelWidth) || this._getHostWidth();
   }
 
   /** Returns the width of the input element, so the panel width can match it. */
-  private getHostWidth(): number {
-    return this.getConnectedElement().nativeElement.getBoundingClientRect().width;
+  private _getHostWidth(): number {
+    return this._getConnectedElement().nativeElement.getBoundingClientRect().width;
   }
 
   /**
    * Resets the active item to -1 so arrow events will activate the
    * correct options, or to 0 if the consumer opted into it.
    */
-  private resetActiveItem(): void {
+  private _resetActiveItem(): void {
     this.autocomplete.keyManager.setActiveItem(this.autocomplete.autoActiveFirstOption ? 0 : -1);
   }
 
   /** Determines whether the panel can be opened. */
-  private canOpen(): boolean {
+  private _canOpen(): boolean {
     const element = this.input.nativeElement;
     return !element.readOnly &&
       !element.disabled &&
@@ -843,14 +839,14 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this._hideSearch = false;
     if (this.autocomplete) {
 
-      this.attachOverlay();
-      this.openAnimation(this.overlayRef.overlayElement);
+      this._attachOverlay();
+      this._openAnimation(this._overlayRef.overlayElement);
 
     }
-    this.openAnimation(this.searchbox.nativeElement).onDone(() => {
+    this._openAnimation(this.searchbox.nativeElement).onDone(() => {
       this.input.nativeElement.focus();
-      if (this.overlayRef !== undefined) {
-        this.overlayRef.updatePosition();
+      if (this._overlayRef !== undefined) {
+        this._overlayRef.updatePosition();
       }
     });
 

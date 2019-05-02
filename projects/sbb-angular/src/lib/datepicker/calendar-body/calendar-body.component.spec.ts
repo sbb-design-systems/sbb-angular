@@ -1,11 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
+
 import { DateAdapter } from '../date-adapter';
-import { NativeDateAdapter } from '../native-date-adapter';
 import { SBB_DATE_FORMATS } from '../date-formats';
 import { DATE_PIPE_DATE_FORMATS } from '../date-pipe-date-formats';
+import { NativeDateAdapter } from '../native-date-adapter';
+
+import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
 
 @Component({
   template: `<table sbb-calendar-body
@@ -32,7 +34,6 @@ class StandardCalendarBodyComponent {
   }
 }
 
-
 @Component({
   template: `<table sbb-calendar-body
                     [rows]="rows"
@@ -50,11 +51,9 @@ class CalendarBodyWithDisabledCellsComponent {
   selected: number;
 }
 
-
 function createCell(value: number) {
   return new CalendarCell(value, `${value}`, true);
 }
-
 
 describe('SbbCalendarBody', () => {
   beforeEach(async(() => {
@@ -108,14 +107,16 @@ describe('SbbCalendarBody', () => {
 
     it('highlights today', () => {
       // tslint:disable-next-line:no-non-null-assertion
-      const todayCell = calendarBodyNativeElement.querySelector('.sbb-calendar-body-today .sbb-calendar-body-cell-content')!;
+      const todayCell = calendarBodyNativeElement
+        .querySelector('.sbb-calendar-body-today .sbb-calendar-body-cell-content')!;
       expect(todayCell).not.toBeNull();
       expect(todayCell.innerHTML.trim()).toBe('3');
     });
 
     it('highlights selected', () => {
       // tslint:disable-next-line:no-non-null-assertion
-      const selectedCell = calendarBodyNativeElement.querySelector('.sbb-calendar-body-selected .sbb-calendar-body-cell-content')!;
+      const selectedCell = calendarBodyNativeElement
+        .querySelector('.sbb-calendar-body-selected .sbb-calendar-body-cell-content')!;
       expect(selectedCell).not.toBeNull();
       expect(selectedCell.innerHTML.trim()).toBe('4');
     });

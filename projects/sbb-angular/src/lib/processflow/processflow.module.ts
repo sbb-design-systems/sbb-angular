@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProcessflowComponent } from './processflow/processflow.component';
-import { ProcessflowStepComponent } from './processflow-step/processflow-step.component';
+import { NgModule } from '@angular/core';
 import { IconChevronRightModule } from 'sbb-angular-icons';
+
+import { ProcessflowStepComponent } from './processflow-step/processflow-step.component';
+import { ProcessflowComponent } from './processflow/processflow.component';
 
 @NgModule({
   imports: [

@@ -1,14 +1,14 @@
 import {
-  Component, ChangeDetectionStrategy, ContentChildren, QueryList,
-  AfterContentInit,
+  AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren,
   forwardRef,
-  OnDestroy,
-  ViewChild,
   HostBinding,
+  OnDestroy,
+  QueryList,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
-import { Subscription, merge, Observable, of } from 'rxjs';
+import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';

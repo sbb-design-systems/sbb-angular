@@ -1,12 +1,13 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   forwardRef,
-  Input,
   HostBinding,
+  Input,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
 
 let counter = 0;

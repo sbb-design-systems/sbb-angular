@@ -1,8 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CommonModule } from '@angular/common';
-import { DropdownModule } from '../../dropdown/dropdown';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconChevronRightModule, IconChevronSmallDownCircleModule } from 'sbb-angular-icons';
+
+import { DropdownModule } from '../../dropdown/dropdown';
+
 import { BreadcrumbComponent } from './breadcrumb.component';
 
 describe('BreadcrumbComponent', () => {

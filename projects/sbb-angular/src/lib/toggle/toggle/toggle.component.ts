@@ -1,25 +1,26 @@
 import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  forwardRef,
-  ViewEncapsulation,
-  Input,
-  HostBinding,
   AfterContentInit,
-  QueryList,
+  ChangeDetectionStrategy,
+  Component,
   ContentChildren,
-  OnDestroy,
-  Output,
   EventEmitter,
-  NgZone
+  forwardRef,
+  HostBinding,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  ViewEncapsulation
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { merge, Observable, Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+
 import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
-import { Subscription, Observable, merge } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { ToggleBase, SBB_TOGGLE_COMPONENT } from '../toggle.base';
+import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
 
 let counter = 0;
 
@@ -100,32 +101,30 @@ export class ToggleComponent extends RadioButton
    */
   onTouched = () => { };
 
-  constructor(private zone: NgZone) {
+  constructor(private _zone: NgZone) {
     super();
   }
 
   ngOnInit() {
-    this.checkName();
+    this._checkName();
   }
 
   ngAfterContentInit() {
-    this.zone.onStable.pipe(first()).subscribe(
-      () => this.zone.run(() => {
-        this.checkNumOfOptions();
+    this._zone.onStable.pipe(first()).subscribe(
+      () => this._zone.run(() => {
+        this._checkNumOfOptions();
         const defaultOption = this.toggleOptions.toArray()[0];
         defaultOption.setToggleChecked(true);
       })
     );
 
-
     this._toggleValueChanges$ = merge(...this.toggleOptions.map(toggle => toggle.valueChange$));
-    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(
-      (value) => {
-        this.onChange(value);
-        this.onTouched();
-        this.writeValue(value);
-        this.toggleChange.emit(value);
-      }
+    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(value => {
+      this.onChange(value);
+      this.onTouched();
+      this.writeValue(value);
+      this.toggleChange.emit(value);
+    }
     );
   }
 
@@ -147,9 +146,9 @@ export class ToggleComponent extends RadioButton
 
   uncheck() { }
 
-  private checkName(): void {
+  private _checkName(): void {
     if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this.throwNameError();
+      this._throwNameError();
     } else if (!this.name && this.formControlName) {
       this.name = this.formControlName;
     }
@@ -158,22 +157,23 @@ export class ToggleComponent extends RadioButton
   /**
    * Throws an exception if the Toggle name doesn't match with the Toggle form control name
    */
-  private throwNameError(): void {
+  private _throwNameError(): void {
     throw new Error(`
       If you define both a name and a formControlName attribute on your Toggle, their values
       must match. Ex: <sbb-toggle formControlName="food" name="food"></sbb-toggle>
     `);
   }
 
-  private checkNumOfOptions(): void {
+  private _checkNumOfOptions(): void {
     if (this.toggleOptions.length !== 2) {
-      this.throwNotTwoOptionsError();
+      this._throwNotTwoOptionsError();
     }
   }
 
-  private throwNotTwoOptionsError(): void {
-    throw new Error(`You must set two sbb-toggle-option into the sbb-toggle component. You set ${this.toggleOptions.length} options.`);
+  private _throwNotTwoOptionsError(): void {
+    throw new Error(
+      `You must set two sbb-toggle-option into the sbb-toggle component. ` +
+      `You set ${this.toggleOptions.length} options.`);
   }
-
 
 }

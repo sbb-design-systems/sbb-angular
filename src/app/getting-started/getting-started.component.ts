@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef, HostBinding, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sbb-getting-started',
@@ -14,12 +14,15 @@ export class GettingStartedComponent implements OnInit {
 
   hostElement: HTMLElement;
 
-  constructor(private http: HttpClient, elementRef: ElementRef) {
+  constructor(
+    private _http: HttpClient,
+    elementRef: ElementRef,
+  ) {
     this.hostElement = elementRef.nativeElement;
   }
 
   ngOnInit(): void {
-    this.http
+    this._http
       .get('docs/markdown/sbb-angular-getting-started.html', { responseType: 'text' })
       .subscribe((html: any) => this.templateHtml = html ? html : '/* No content */');
 

@@ -2,14 +2,14 @@ import {
   ENTER,
   RIGHT_ARROW,
 } from '@angular/cdk/keycodes';
-
 import { Component, NgZone } from '@angular/core';
-import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { MockNgZone } from '../../_common/testing/mock-ng-zone';
-import { DatepickerModule, CalendarComponent } from '../datepicker';
+
+import { DEC, FEB, JAN, JUL, NOV } from '../../_common/testing/dates-constants';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
-import { JAN, NOV, DEC, FEB, JUL } from '../../_common/testing/dates-constants';
+import { MockNgZone } from '../../_common/testing/mock-ng-zone';
+import { CalendarComponent, DatepickerModule } from '../datepicker';
 
 @Component({
   template: `
@@ -27,7 +27,6 @@ class StandardCalendarComponent {
   startDate = new Date(2017, JAN, 31);
 }
 
-
 @Component({
   template: `
     <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
@@ -38,7 +37,6 @@ class CalendarWithMinMaxComponent {
   minDate = new Date(2016, JAN, 1);
   maxDate = new Date(2018, JAN, 1);
 }
-
 
 @Component({
   template: `
@@ -54,7 +52,6 @@ class CalendarWithDateFilterComponent {
     return !(date.getDate() % 2) && date.getMonth() !== NOV;
   }
 }
-
 
 @Component({
   template: `
@@ -79,7 +76,6 @@ class CalendarWithSelectableMinDateComponent {
     this.minDate = this.selected = value;
   }
 }
-
 
 describe('CalendarComponent', () => {
   let zone: MockNgZone;
@@ -278,7 +274,6 @@ describe('CalendarComponent', () => {
 
       expect(calendarInstance.monthView.init).toHaveBeenCalled();
     });
-
 
     it('should update the minDate in the child view if it changed after an interaction', () => {
       fixture.destroy();

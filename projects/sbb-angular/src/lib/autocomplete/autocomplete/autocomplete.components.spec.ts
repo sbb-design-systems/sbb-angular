@@ -9,9 +9,9 @@ import {
     OnInit,
     Provider,
     QueryList,
+    Type,
     ViewChild,
     ViewChildren,
-    Type,
 } from '@angular/core';
 import {
     async,
@@ -26,23 +26,24 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { AutocompleteModule } from '../autocomplete.module';
-import { MockNgZone } from '../../_common/testing/mock-ng-zone';
-import { dispatchFakeEvent, dispatchKeyboardEvent, dispatchEvent } from '../../_common/testing/dispatch-events';
-import { typeInElement } from '../../_common/testing/type-in-element';
+
+import { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import { createKeyboardEvent } from '../../_common/testing/event-objects';
+import { MockNgZone } from '../../_common/testing/mock-ng-zone';
+import { typeInElement } from '../../_common/testing/type-in-element';
+import { FieldModule } from '../../field/field.module';
+import { FieldComponent } from '../../field/field/field.component';
+import { OptionModule } from '../../option/option.module';
+import { HighlightPipe } from '../../option/option/highlight.pipe';
+import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
+import { AutocompleteModule } from '../autocomplete.module';
+
 import {
     AutocompleteTriggerDirective,
     getSbbAutocompleteMissingPanelError,
     SBB_AUTOCOMPLETE_SCROLL_STRATEGY
 } from './autocomplete-trigger.directive';
-import { SbbAutocompleteSelectedEvent, AutocompleteComponent } from './autocomplete.component';
-import { FieldComponent } from '../../field/field/field.component';
-import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
-import { HighlightPipe } from '../../option/option/highlight.pipe';
-import { OptionModule } from '../../option/option.module';
-import { FieldModule } from '../../field/field.module';
-
+import { AutocompleteComponent, SbbAutocompleteSelectedEvent } from './autocomplete.component';
 
 @Component({
     template: `
@@ -87,11 +88,10 @@ class SimpleAutocompleteComponent implements OnDestroy {
         { code: '10', name: 'Zehn' },
     ];
 
-
     constructor() {
         this.filteredNumbers = this.numbers;
         this.valueSub = this.numberCtrl.valueChanges.subscribe(val => {
-            this.filteredNumbers = val ? this.numbers.filter((s) => s.name.match(new RegExp(val, 'gi')))
+            this.filteredNumbers = val ? this.numbers.filter(s => s.name.match(new RegExp(val, 'gi')))
                 : this.numbers;
         });
     }
@@ -893,18 +893,18 @@ describe('AutocompleteComponent', () => {
     describe('keyboard events', () => {
         let fixture: ComponentFixture<SimpleAutocompleteComponent>;
         let input: HTMLInputElement;
-        let DOWN_ARROW_EVENT: KeyboardEvent;
-        let UP_ARROW_EVENT: KeyboardEvent;
-        let ENTER_EVENT: KeyboardEvent;
+        let downArrowEvent: KeyboardEvent;
+        let upArrowEvent: KeyboardEvent;
+        let enterEvent: KeyboardEvent;
 
         beforeEach(fakeAsync(() => {
             fixture = createComponent(SimpleAutocompleteComponent);
             fixture.detectChanges();
 
             input = fixture.debugElement.query(By.css('input')).nativeElement;
-            DOWN_ARROW_EVENT = createKeyboardEvent('keydown', DOWN_ARROW);
-            UP_ARROW_EVENT = createKeyboardEvent('keydown', UP_ARROW);
-            ENTER_EVENT = createKeyboardEvent('keydown', ENTER);
+            downArrowEvent = createKeyboardEvent('keydown', DOWN_ARROW);
+            upArrowEvent = createKeyboardEvent('keydown', UP_ARROW);
+            enterEvent = createKeyboardEvent('keydown', ENTER);
 
             fixture.componentInstance.trigger.openPanel();
             fixture.detectChanges();
@@ -915,12 +915,12 @@ describe('AutocompleteComponent', () => {
             fixture.detectChanges();
             spyOn(fixture.componentInstance.options.first, 'focus');
 
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             expect(fixture.componentInstance.options.first.focus).not.toHaveBeenCalled();
         });
 
         it('should not close the panel when DOWN key is pressed', () => {
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
 
             expect(fixture.componentInstance.trigger.panelOpen)
                 .toBe(true, `Expected panel state to stay open when DOWN key is pressed.`);
@@ -938,7 +938,7 @@ describe('AutocompleteComponent', () => {
             expect(componentInstance.trigger.panelOpen)
                 .toBe(true, 'Expected first down press to open the pane.');
 
-            componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            componentInstance.trigger.handleKeydown(downArrowEvent);
             fixture.detectChanges();
 
             expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id)
@@ -946,7 +946,7 @@ describe('AutocompleteComponent', () => {
             expect(optionEls[0].classList).toContain('sbb-active');
             expect(optionEls[1].classList).not.toContain('sbb-active');
 
-            componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            componentInstance.trigger.handleKeydown(downArrowEvent);
             fixture.detectChanges();
 
             expect(componentInstance.trigger.activeOption.id === componentInstance.options.toArray()[1].id)
@@ -963,7 +963,7 @@ describe('AutocompleteComponent', () => {
             expect(componentInstance.trigger.panelOpen)
                 .toBe(true, 'Expected first up press to open the pane.');
 
-            componentInstance.trigger.handleKeydown(UP_ARROW_EVENT);
+            componentInstance.trigger.handleKeydown(upArrowEvent);
             fixture.detectChanges();
 
             expect(componentInstance.trigger.activeOption.id === componentInstance.options.last.id)
@@ -971,7 +971,7 @@ describe('AutocompleteComponent', () => {
             expect(optionEls[9].classList).toContain('sbb-active');
             expect(optionEls[0].classList).not.toContain('sbb-active');
 
-            componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            componentInstance.trigger.handleKeydown(downArrowEvent);
             fixture.detectChanges();
 
             expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id)
@@ -982,7 +982,7 @@ describe('AutocompleteComponent', () => {
         it('should set the active item properly after filtering', fakeAsync(() => {
             const componentInstance = fixture.componentInstance;
 
-            componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            componentInstance.trigger.handleKeydown(downArrowEvent);
             tick();
             fixture.detectChanges();
         }));
@@ -993,7 +993,7 @@ describe('AutocompleteComponent', () => {
             typeInElement('e', input);
             fixture.detectChanges();
 
-            componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            componentInstance.trigger.handleKeydown(downArrowEvent);
             fixture.detectChanges();
 
             const optionEls =
@@ -1006,46 +1006,46 @@ describe('AutocompleteComponent', () => {
         });
 
         it('should fill the text field when an option is selected with ENTER', fakeAsync(() => {
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             flush();
             fixture.detectChanges();
 
-            fixture.componentInstance.trigger.handleKeydown(ENTER_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(enterEvent);
             fixture.detectChanges();
             expect(input.value)
                 .toContain('Eins', `Expected text field to fill with selected value on ENTER.`);
         }));
 
         it('should prevent the default enter key action', fakeAsync(() => {
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             flush();
 
-            fixture.componentInstance.trigger.handleKeydown(ENTER_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(enterEvent);
 
-            expect(ENTER_EVENT.defaultPrevented)
+            expect(enterEvent.defaultPrevented)
                 .toBe(true, 'Expected the default action to have been prevented.');
         }));
 
         it('should not prevent the default enter action for a closed panel after a user action', () => {
-            fixture.componentInstance.trigger.handleKeydown(UP_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(upArrowEvent);
             fixture.detectChanges();
 
             fixture.componentInstance.trigger.closePanel();
             fixture.detectChanges();
-            fixture.componentInstance.trigger.handleKeydown(ENTER_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(enterEvent);
 
-            expect(ENTER_EVENT.defaultPrevented).toBe(false, 'Default action should not be prevented.');
+            expect(enterEvent.defaultPrevented).toBe(false, 'Default action should not be prevented.');
         });
 
         it('should fill the text field, not select an option, when SPACE is entered', () => {
             typeInElement('New', input);
             fixture.detectChanges();
 
-            const SPACE_EVENT = createKeyboardEvent('keydown', SPACE);
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            const spaceEvent = createKeyboardEvent('keydown', SPACE);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             fixture.detectChanges();
 
-            fixture.componentInstance.trigger.handleKeydown(SPACE_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(spaceEvent);
             fixture.detectChanges();
 
             expect(input.value).not.toContain('New York', `Expected option not to be selected on SPACE.`);
@@ -1055,9 +1055,9 @@ describe('AutocompleteComponent', () => {
             expect(fixture.componentInstance.numberCtrl.dirty)
                 .toBe(false, `Expected control to start out pristine.`);
 
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             flush();
-            fixture.componentInstance.trigger.handleKeydown(ENTER_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(enterEvent);
             fixture.detectChanges();
 
             expect(fixture.componentInstance.numberCtrl.dirty)
@@ -1065,9 +1065,9 @@ describe('AutocompleteComponent', () => {
         }));
 
         it('should open the panel again when typing after making a selection', fakeAsync(() => {
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             flush();
-            fixture.componentInstance.trigger.handleKeydown(ENTER_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(enterEvent);
             fixture.detectChanges();
 
             expect(fixture.componentInstance.trigger.panelOpen)
@@ -1137,8 +1137,8 @@ describe('AutocompleteComponent', () => {
 
         it('should close the panel when pressing ALT + UP_ARROW', fakeAsync(() => {
             const trigger = fixture.componentInstance.trigger;
-            const upArrowEvent = createKeyboardEvent('keydown', UP_ARROW);
-            Object.defineProperty(upArrowEvent, 'altKey', { get: () => true });
+            const innerUpArrowEvent = createKeyboardEvent('keydown', UP_ARROW);
+            Object.defineProperty(innerUpArrowEvent, 'altKey', { get: () => true });
 
             input.focus();
             flush();
@@ -1147,7 +1147,7 @@ describe('AutocompleteComponent', () => {
             expect(document.activeElement).toBe(input, 'Expected input to be focused.');
             expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
 
-            dispatchEvent(document.body, upArrowEvent);
+            dispatchEvent(document.body, innerUpArrowEvent);
             fixture.detectChanges();
 
             expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
@@ -1183,7 +1183,7 @@ describe('AutocompleteComponent', () => {
 
             // Press the down arrow a few times.
             [1, 2, 3].forEach(() => {
-                trigger.handleKeydown(DOWN_ARROW_EVENT);
+                trigger.handleKeydown(downArrowEvent);
                 tick();
                 fixture.detectChanges();
             });
@@ -1210,7 +1210,7 @@ describe('AutocompleteComponent', () => {
 
             // Press the down arrow a few times.
             [1, 2, 3].forEach(() => {
-                trigger.handleKeydown(DOWN_ARROW_EVENT);
+                trigger.handleKeydown(downArrowEvent);
                 tick();
                 fixture.detectChanges();
             });
@@ -1219,7 +1219,7 @@ describe('AutocompleteComponent', () => {
             // from crashing when trying to stringify the option if the test fails.
             expect(!!trigger.activeOption).toBe(true, 'Expected to find an active option.');
 
-            trigger.handleKeydown(ENTER_EVENT);
+            trigger.handleKeydown(enterEvent);
             tick();
 
             expect(!!trigger.activeOption).toBe(false, 'Expected no active options.');
@@ -1265,9 +1265,9 @@ describe('AutocompleteComponent', () => {
             expect(input.hasAttribute('aria-activedescendant'))
                 .toBe(false, 'Expected aria-activedescendant to be absent if no active item.');
 
-            const DOWN_ARROW_EVENT = createKeyboardEvent('keydown', DOWN_ARROW);
+            const downArrowEvent = createKeyboardEvent('keydown', DOWN_ARROW);
 
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             tick();
             fixture.detectChanges();
 
@@ -1275,7 +1275,7 @@ describe('AutocompleteComponent', () => {
                 .toEqual(fixture.componentInstance.options.first.id,
                     'Expected aria-activedescendant to match the active item after 1 down arrow.');
 
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             tick();
             fixture.detectChanges();
 
@@ -1610,8 +1610,8 @@ describe('AutocompleteComponent', () => {
             fixture.componentInstance.trigger.openPanel();
             fixture.detectChanges();
 
-            const DOWN_ARROW_EVENT = createKeyboardEvent('keydown', DOWN_ARROW);
-            fixture.componentInstance.trigger.handleKeydown(DOWN_ARROW_EVENT);
+            const downArrowEvent = createKeyboardEvent('keydown', DOWN_ARROW);
+            fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
             fixture.detectChanges();
 
             const input = fixture.debugElement.query(By.css('input')).nativeElement;

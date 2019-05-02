@@ -1,5 +1,6 @@
 // tslint:disable-next-line:max-line-length
-import { Component, OnInit, HostBinding, Output, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, EventEmitter, ContentChild, AfterContentInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmitter, HostBinding, OnInit, Output, ViewChild } from '@angular/core';
+
 import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
 import { TextexpandExpandedComponent } from '../textexpand-expanded/textexpand-expanded.component';
 

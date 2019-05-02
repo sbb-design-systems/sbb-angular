@@ -1,19 +1,20 @@
-import {
-  Component,
-  Input,
-  ChangeDetectorRef,
-  Attribute,
-  OnDestroy,
-  OnChanges,
-  SimpleChanges,
-  AfterContentInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  HostBinding
-} from '@angular/core';
-import { Subscription, of, merge } from 'rxjs';
-import { DatepickerComponent } from '../datepicker/datepicker.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+  AfterContentInit,
+  Attribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
+import { merge, of, Subscription } from 'rxjs';
+
+import { DatepickerComponent } from '../datepicker/datepicker.component';
 
 @Component({
   selector: 'sbb-datepicker-toggle',
@@ -23,7 +24,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
 
-  private stateChanges = Subscription.EMPTY;
+  private _stateChanges = Subscription.EMPTY;
 
   /** Tabindex for the toggle. */
   @Input() tabIndex: number | null;
@@ -31,7 +32,7 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   /** Whether the toggle button is disabled. */
   @Input()
   get disabled(): boolean {
-    return this._disabled === undefined ? this.datepicker.disabled : !!this._disabled;
+    return this._disabled === undefined ? this._datepicker.disabled : !!this._disabled;
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
@@ -39,9 +40,9 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   private _disabled: boolean;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private datepicker: DatepickerComponent<D>,
-    @Attribute('tabindex') defaultTabIndex: string
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _datepicker: DatepickerComponent<D>,
+    @Attribute('tabindex') defaultTabIndex: string,
   ) {
 
     const parsedTabIndex = Number(defaultTabIndex);
@@ -56,44 +57,44 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
 
   @HostBinding('class.sbb-datepicker-toggle-active')
   get datepickerToggleActive() {
-    return this.datepicker && this.datepicker.opened;
+    return this._datepicker && this._datepicker.opened;
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.datepicker) {
-      this.watchStateChanges();
+      this._watchStateChanges();
     }
   }
 
   ngOnDestroy() {
-    this.stateChanges.unsubscribe();
+    this._stateChanges.unsubscribe();
   }
 
   ngAfterContentInit() {
-    this.watchStateChanges();
+    this._watchStateChanges();
   }
 
   open(event: Event): void {
-    if (this.datepicker && !this.disabled) {
-      this.datepicker.open();
+    if (this._datepicker && !this.disabled) {
+      this._datepicker.open();
       event.stopPropagation();
     }
   }
 
-  private watchStateChanges() {
-    const datepickerDisabled = this.datepicker ? this.datepicker.disabledChange : of();
-    const inputDisabled = this.datepicker && this.datepicker.datepickerInput ?
-      this.datepicker.datepickerInput.disabledChange : of();
-    const datepickerToggled = this.datepicker ?
-      merge(this.datepicker.openedStream, this.datepicker.closedStream) :
+  private _watchStateChanges() {
+    const datepickerDisabled = this._datepicker ? this._datepicker.disabledChange : of();
+    const inputDisabled = this._datepicker && this._datepicker.datepickerInput ?
+      this._datepicker.datepickerInput.disabledChange : of();
+    const datepickerToggled = this._datepicker ?
+      merge(this._datepicker.openedStream, this._datepicker.closedStream) :
       of();
 
-    this.stateChanges.unsubscribe();
-    this.stateChanges = merge(
+    this._stateChanges.unsubscribe();
+    this._stateChanges = merge(
       datepickerDisabled,
       inputDisabled,
       datepickerToggled
-    ).subscribe(() => this.changeDetectorRef.markForCheck());
+    ).subscribe(() => this._changeDetectorRef.markForCheck());
   }
 
 }

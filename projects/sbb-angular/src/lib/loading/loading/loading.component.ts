@@ -1,6 +1,8 @@
-import { Component, HostBinding, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, Self } from '@angular/core';
-import { Mode } from './loading-mode.enum';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnChanges, Self, SimpleChanges } from '@angular/core';
+
 import { HostClass } from '../../_common/host-class';
+
+import { Mode } from './loading-mode.enum';
 
 const cssPrefix = 'sbb-loading-';
 
@@ -20,17 +22,17 @@ export class LoadingComponent implements OnChanges {
   @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' = 'medium';
 
   constructor(
-    @Self() private hostClass: HostClass,
+    @Self() private _hostClass: HostClass,
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.mode) {
       if (changes.mode.currentValue === Mode.FULLSCREEN) {
-        this.hostClass.apply(cssPrefix + 'fullscreen-container');
+        this._hostClass.apply(cssPrefix + 'fullscreen-container');
       } else if (changes.mode.currentValue === Mode.FULLBOX) {
-        this.hostClass.apply(cssPrefix + 'fullbox-container');
+        this._hostClass.apply(cssPrefix + 'fullbox-container');
       } else {
-        this.hostClass.apply(cssPrefix + changes.mode.currentValue);
+        this._hostClass.apply(cssPrefix + changes.mode.currentValue);
       }
     }
   }

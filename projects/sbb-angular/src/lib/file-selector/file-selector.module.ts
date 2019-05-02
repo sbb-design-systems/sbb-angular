@@ -1,18 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FileSelectorComponent } from './file-selector/file-selector.component';
-import { ButtonModule } from '../button/button.module';
+import { NgModule } from '@angular/core';
 import {
-  IconDocumentTextModule,
   IconDocumentImageModule,
   IconDocumentPdfModule,
   IconDocumentSoundModule,
+  IconDocumentStandardModule,
+  IconDocumentTextModule,
   IconDocumentVideoModule,
   IconDocumentZipModule,
-  IconDocumentStandardModule,
   IconTrashModule,
   IconUploadModule,
 } from 'sbb-angular-icons';
+
+import { ButtonModule } from '../button/button.module';
+
+import { FileSelectorComponent } from './file-selector/file-selector.component';
 import { FileExtension, FileNameNoExtension, FileSizeFormatted } from './file-selector/file-selector.pipes';
 
 @NgModule({

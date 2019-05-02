@@ -1,17 +1,18 @@
+import { PortalModule } from '@angular/cdk/portal';
+import { Component, DebugElement, TemplateRef, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GhettoboxContainerComponent } from './ghettobox-container.component';
-import { Component, ViewChild, TemplateRef, DebugElement } from '@angular/core';
-import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from 'sbb-angular-icons';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { GhettoboxContainerService } from './ghettobox-container.service';
-import { GhettoboxService } from '../ghettobox/ghettobox.service';
-import { By } from '@angular/platform-browser';
-import { Ghettobox } from '../ghettobox/ghettobox-ref';
+
 import { LinkGeneratorResult } from '../../pagination/pagination';
-import { PortalModule } from '@angular/cdk/portal';
+import { Ghettobox } from '../ghettobox/ghettobox-ref';
+import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { GhettoboxService } from '../ghettobox/ghettobox.service';
+
+import { GhettoboxContainerComponent } from './ghettobox-container.component';
+import { GhettoboxContainerService } from './ghettobox-container.service';
 
 @Component({
   selector: 'sbb-ghettobox-container-test',

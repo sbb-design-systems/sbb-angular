@@ -9,7 +9,7 @@ import { LinkGeneratorResult, NavigationPageDescriptor } from 'sbb-angular';
 })
 export class PaginationShowcaseComponent {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute) { }
 
   maxPage = 7;
   initialPage = 5;
@@ -40,10 +40,9 @@ export class PaginationShowcaseComponent {
       routerLink: ['.'],
       queryParams: { page: page.displayNumber },
       queryParamsHandling: 'merge',
-      relativeTo: this.route,
+      relativeTo: this._route,
     };
   }
-
 
   onPageChangeNavigation($event) {
     if ($event === 'next') {
@@ -67,7 +66,7 @@ export class PaginationShowcaseComponent {
       routerLink: ['.'],
       queryParams: { page: index },
       queryParamsHandling: 'merge',
-      relativeTo: this.route,
+      relativeTo: this._route,
     };
   }
 

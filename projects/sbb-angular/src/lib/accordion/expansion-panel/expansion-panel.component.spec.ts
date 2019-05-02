@@ -1,10 +1,11 @@
-import { async, TestBed, fakeAsync, tick, ComponentFixture, flush } from '@angular/core/testing';
+import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, ViewChild } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AccordionModule, ExpansionPanelComponent } from '../accordion';
-import { SPACE, ENTER } from '@angular/cdk/keycodes';
+
 import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import { AccordionModule, ExpansionPanelComponent } from '../accordion';
 
 @Component({
   template: `
@@ -83,7 +84,6 @@ class LazyPanelWithContentComponent {
 })
 class LazyPanelOpenOnLoadComponent { }
 
-
 @Component({
   template: `
   <sbb-expansion-panel [(expanded)]="expanded">
@@ -93,7 +93,6 @@ class LazyPanelOpenOnLoadComponent { }
 class PanelWithTwoWayBindingComponent {
   expanded = false;
 }
-
 
 describe('ExpansionPanelComponent', () => {
   let originalTimeout;

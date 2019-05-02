@@ -1,4 +1,5 @@
-import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, SPACE, HOME, END, A } from '@angular/cdk/keycodes';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { A, DOWN_ARROW, END, ENTER, ESCAPE, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
   Overlay,
@@ -8,32 +9,30 @@ import {
   ScrollStrategy
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
-import { filter, take, switchMap, delay, tap, map, first } from 'rxjs/operators';
 import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
   forwardRef,
+  HostBinding,
+  HostListener,
   Inject,
+  InjectionToken,
   Input,
   NgZone,
   OnDestroy,
   Optional,
-  ViewContainerRef,
-  HostBinding,
-  HostListener,
-  InjectionToken
+  ViewContainerRef
 } from '@angular/core';
-import { ViewportRuler } from '@angular/cdk/scrolling';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { defer, fromEvent, merge, Observable, of as observableOf, Subject, Subscription } from 'rxjs';
+import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
 
-import { Subscription, defer, fromEvent, merge, of as observableOf, Subject, Observable } from 'rxjs';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { DropdownComponent } from './dropdown/dropdown.component';
+import { DropdownItemDirective, DropdownSelectionChange, getDropdownItemScrollPosition } from './dropdown-item.directive';
 import { DropdownOriginDirective } from './dropdown-origin.directive';
-import { DropdownSelectionChange, DropdownItemDirective, getDropdownItemScrollPosition } from './dropdown-item.directive';
-
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 /**
  * Creates an error to be thrown when attempting to use an dropdown trigger without a panel.
@@ -50,7 +49,7 @@ export const DROPDOWN_SCROLL_STRATEGY =
   new InjectionToken<() => ScrollStrategy>('sbb-dropdown-scroll-strategy');
 
 /** @docs-private */
-export function DROPDOWN_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
+export function SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
@@ -63,7 +62,7 @@ export const DROPDOWN_PANEL_HEIGHT = 404;
 export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: DROPDOWN_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: DROPDOWN_SCROLL_STRATEGY_FACTORY,
+  useFactory: SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY,
 };
 
 @Directive({
@@ -77,24 +76,24 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 })
 export class DropdownTriggerDirective implements OnDestroy {
 
-  private overlayRef: OverlayRef | null;
-  private portal: TemplatePortal;
-  private componentDestroyed = false;
+  private _overlayRef: OverlayRef | null;
+  private _portal: TemplatePortal;
+  private _componentDestroyed = false;
   private _dropdownDisabled = false;
 
   /** Strategy that is used to position the panel. */
-  protected positionStrategy: FlexibleConnectedPositionStrategy;
+  protected _positionStrategy: FlexibleConnectedPositionStrategy;
 
   /** The subscription for closing actions (some are bound to document). */
-  private closingActionsSubscription: Subscription;
+  private _closingActionsSubscription: Subscription;
 
   /** Subscription to viewport size changes. */
-  private viewportSubscription = Subscription.EMPTY;
-  private positionSubscription = Subscription.EMPTY;
+  private _viewportSubscription = Subscription.EMPTY;
+  private _positionSubscription = Subscription.EMPTY;
 
   /** Stream of keyboard events that can close the panel. */
-  private readonly closeKeyEventStream = new Subject<void>();
-  private overlayAttached = false;
+  private readonly _closeKeyEventStream = new Subject<void>();
+  private _overlayAttached = false;
 
   /** Role on a dropdown trigger. */
   @HostBinding('attr.role') get role() {
@@ -115,7 +114,6 @@ export class DropdownTriggerDirective implements OnDestroy {
   // tslint:disable-next-line:no-input-rename
   @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
 
-
   @Input()
   panelClass = '';
 
@@ -127,7 +125,7 @@ export class DropdownTriggerDirective implements OnDestroy {
 
     // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
-    return this.zone.onStable
+    return this._zone.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.optionSelections));
   }) as Observable<DropdownSelectionChange>;
@@ -144,7 +142,7 @@ export class DropdownTriggerDirective implements OnDestroy {
 
   /** Whether or not the dropdown panel is open. */
   get panelOpen(): boolean {
-    return this.overlayAttached && this.dropdown.showPanel;
+    return this._overlayAttached && this.dropdown.showPanel;
   }
   /** Attribute that refers to the expansion of the dropdown panel. */
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
@@ -162,11 +160,11 @@ export class DropdownTriggerDirective implements OnDestroy {
   get panelClosingActions(): Observable<DropdownSelectionChange | null> {
     return merge(
       this.optionSelections,
-      this.dropdown.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
-      this.closeKeyEventStream,
-      this.getOutsideClickStream(),
-      this.overlayRef ?
-        this.overlayRef.detachments().pipe(filter(() => this.overlayAttached)) :
+      this.dropdown.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
+      this._closeKeyEventStream,
+      this._getOutsideClickStream(),
+      this._overlayRef ?
+        this._overlayRef.detachments().pipe(filter(() => this._overlayAttached)) :
         observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
@@ -182,31 +180,26 @@ export class DropdownTriggerDirective implements OnDestroy {
 
   /** The currently active option, coerced to SbbOption type. */
   get activeOption(): DropdownItemDirective | null {
-    if (this.dropdown && this.dropdown.keyManager) {
-      return this.dropdown.keyManager.activeItem;
-    }
-
-    return null;
+    return this.dropdown && this.dropdown.keyManager ? this.dropdown.keyManager.activeItem : null;
   }
 
   constructor(
-    protected element: ElementRef<HTMLInputElement>,
-    protected overlay: Overlay,
-    protected viewContainerRef: ViewContainerRef,
-    protected zone: NgZone,
-    protected changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected scrollStrategy,
+    protected _elementRef: ElementRef<HTMLInputElement>,
+    protected _overlay: Overlay,
+    protected _viewContainerRef: ViewContainerRef,
+    protected _zone: NgZone,
+    protected _changeDetectorRef: ChangeDetectorRef,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
     @Optional() @Inject(DOCUMENT) protected _document: any,
-    protected viewportRuler?: ViewportRuler
-  ) {
-  }
+    protected _viewportRuler?: ViewportRuler,
+  ) { }
 
   ngOnDestroy() {
-    this.viewportSubscription.unsubscribe();
-    this.positionSubscription.unsubscribe();
-    this.componentDestroyed = true;
-    this.destroyPanel();
-    this.closeKeyEventStream.complete();
+    this._viewportSubscription.unsubscribe();
+    this._positionSubscription.unsubscribe();
+    this._componentDestroyed = true;
+    this._destroyPanel();
+    this._closeKeyEventStream.complete();
   }
 
   @HostListener('blur')
@@ -222,17 +215,15 @@ export class DropdownTriggerDirective implements OnDestroy {
     this.handleKeydown($event);
   }
 
-
   /** Handles all keydown events on the select. */
   handleKeydown(event: KeyboardEvent): void {
     if (!this.dropdownDisabled) {
-      this.panelOpen ? this.handleOpenKeydown(event) : this.handleClosedKeydown(event);
+      this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
     }
   }
 
   /** Handles keyboard events while the select is closed. */
-  private handleClosedKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
+  private _handleClosedKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW ||
       keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW;
@@ -250,8 +241,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   /** Handles keyboard events when the selected is open. */
-  private handleOpenKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
+  private _handleOpenKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
     const manager = this.dropdown.keyManager;
@@ -279,14 +269,14 @@ export class DropdownTriggerDirective implements OnDestroy {
 
   /** Opens the dropdown suggestion panel. */
   openPanel(): void {
-    this.attachOverlay();
+    this._attachOverlay();
 
   }
 
   /** Closes the dropdown suggestion panel. */
   closePanel(): void {
 
-    if (!this.overlayAttached) {
+    if (!this._overlayAttached) {
       return;
     }
 
@@ -295,25 +285,25 @@ export class DropdownTriggerDirective implements OnDestroy {
       this.dropdown.closed.emit();
     }
 
-    this.dropdown.isOpen = this.overlayAttached = false;
-    if (this.overlayRef && this.overlayRef.hasAttached()) {
-      this.overlayRef.detach();
-      this.closingActionsSubscription.unsubscribe();
+    this.dropdown.isOpen = this._overlayAttached = false;
+    if (this._overlayRef && this._overlayRef.hasAttached()) {
+      this._overlayRef.detach();
+      this._closingActionsSubscription.unsubscribe();
     }
 
     // Note that in some cases this can end up being called after the component is destroyed.
     // Add a check to ensure that we don't try to run change detection on a destroyed view.
-    if (!this.componentDestroyed) {
+    if (!this._componentDestroyed) {
       // We need to trigger change detection manually, because
       // `fromEvent` doesn't seem to do it at the proper time.
       // This ensures that the label is reset when the
       // user clicks outside.
-      this.changeDetectorRef.detectChanges();
+      this._changeDetectorRef.detectChanges();
     }
   }
 
   /** Stream of clicks outside of the dropdown panel. */
-  private getOutsideClickStream(): Observable<any> {
+  private _getOutsideClickStream(): Observable<any> {
     if (!this._document) {
       return observableOf(null);
     }
@@ -326,11 +316,11 @@ export class DropdownTriggerDirective implements OnDestroy {
         const clickTarget = event.target as HTMLElement;
         const formField = null;
 
-        return this.overlayAttached &&
-          clickTarget !== this.element.nativeElement &&
+        return this._overlayAttached &&
+          clickTarget !== this._elementRef.nativeElement &&
           (!formField || !formField.contains(clickTarget)) &&
-          !this.element.nativeElement.contains(clickTarget) &&
-          (!!this.overlayRef && !this.overlayRef.overlayElement.contains(clickTarget));
+          !this._elementRef.nativeElement.contains(clickTarget) &&
+          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget));
       }));
   }
 
@@ -353,7 +343,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     if (event instanceof MouseEvent) {
 
       if (!this.panelOpen) {
-        if (this.canOpen()) {
+        if (this._canOpen()) {
           this.openPanel();
         }
       } else {
@@ -362,15 +352,14 @@ export class DropdownTriggerDirective implements OnDestroy {
     }
   }
 
-
   /**
  * This method listens to a stream of panel closing actions and resets the
  * stream every time the option list changes.
  */
-  private subscribeToClosingActions(): Subscription {
-    const firstStable = this.zone.onStable.asObservable().pipe(first());
+  private _subscribeToClosingActions(): Subscription {
+    const firstStable = this._zone.onStable.asObservable().pipe(first());
     const optionChanges = this.dropdown.options.changes.pipe(
-      tap(() => this.positionStrategy.reapplyLastPosition()),
+      tap(() => this._positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing
       // bindings in here will cause "changed after checked" errors.
       delay(0)
@@ -382,12 +371,12 @@ export class DropdownTriggerDirective implements OnDestroy {
         // create a new stream of panelClosingActions, replacing any previous streams
         // that were created, and flatten it so our stream only emits closing events...
         switchMap(() => {
-          this.resetActiveItem();
+          this._resetActiveItem();
           this.dropdown.setVisibility();
 
           if (this.panelOpen) {
             // tslint:disable-next-line:no-non-null-assertion
-            this.overlayRef!.updatePosition();
+            this._overlayRef!.updatePosition();
           }
 
           return this.panelClosingActions;
@@ -396,15 +385,15 @@ export class DropdownTriggerDirective implements OnDestroy {
         first()
       )
       // set the value, close the panel, and complete.
-      .subscribe(event => this.setValueAndClose(event));
+      .subscribe(event => this._setValueAndClose(event));
   }
 
   /** Destroys the dropdown suggestion panel. */
-  private destroyPanel(): void {
-    if (this.overlayRef) {
+  private _destroyPanel(): void {
+    if (this._overlayRef) {
       this.closePanel();
-      this.overlayRef.dispose();
-      this.overlayRef = null;
+      this._overlayRef.dispose();
+      this._overlayRef = null;
     }
   }
 
@@ -413,10 +402,10 @@ export class DropdownTriggerDirective implements OnDestroy {
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
    */
-  private setValueAndClose(event: DropdownSelectionChange | null): void {
+  private _setValueAndClose(event: DropdownSelectionChange | null): void {
     if (event && event.source) {
-      this.clearPreviousSelectedOption(event.source);
-      this.element.nativeElement.focus();
+      this._clearPreviousSelectedOption(event.source);
+      this._elementRef.nativeElement.focus();
       this.dropdown.emitSelectEvent(event.source);
     }
 
@@ -426,7 +415,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   /**
    * Clear any previous selected option and emit a selection change event for this option
    */
-  private clearPreviousSelectedOption(skip: DropdownItemDirective) {
+  private _clearPreviousSelectedOption(skip: DropdownItemDirective) {
     this.dropdown.options.forEach(item => {
       // tslint:disable-next-line:triple-equals
       if (item != skip && item.selected) {
@@ -435,23 +424,23 @@ export class DropdownTriggerDirective implements OnDestroy {
     });
   }
 
-  protected attachOverlay(): void {
+  protected _attachOverlay(): void {
     if (!this.dropdown) {
       throw getSbbDropdownMissingPanelError();
     }
-    if (!this.overlayRef) {
-      this.portal = new TemplatePortal(this.dropdown.template, this.viewContainerRef);
-      this.overlayRef = this.overlay.create(this.getOverlayConfig());
+    if (!this._overlayRef) {
+      this._portal = new TemplatePortal(this.dropdown.template, this._viewContainerRef);
+      this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
-      if (this.positionStrategy) {
-        this.positionSubscription = this.positionStrategy.positionChanges.subscribe(position => {
+      if (this._positionStrategy) {
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
           if (this.dropdown.panel) {
             if (position.connectionPair.originY === 'top') {
               this.dropdown.panel.nativeElement.classList.add('sbb-dropdown-panel-above');
-              this.getConnectedElement().nativeElement.classList.add('sbb-dropdown-trigger-above');
+              this._getConnectedElement().nativeElement.classList.add('sbb-dropdown-trigger-above');
             } else {
               this.dropdown.panel.nativeElement.classList.remove('sbb-dropdown-panel-above');
-              this.getConnectedElement().nativeElement.classList.remove('sbb-dropdown-trigger-above');
+              this._getConnectedElement().nativeElement.classList.remove('sbb-dropdown-trigger-above');
             }
           }
 
@@ -460,37 +449,36 @@ export class DropdownTriggerDirective implements OnDestroy {
 
       // Use the `keydownEvents` in order to take advantage of
       // the overlay event targeting provided by the CDK overlay.
-      this.overlayRef.keydownEvents().subscribe(event => {
+      this._overlayRef.keydownEvents().subscribe(event => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-        // tslint:disable-next-line
         if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
-          this.resetActiveItem();
-          this.closeKeyEventStream.next();
+          this._resetActiveItem();
+          this._closeKeyEventStream.next();
         }
       });
 
-      if (this.viewportRuler) {
-        this.viewportSubscription = this.viewportRuler.change().subscribe(() => {
-          if (this.panelOpen && this.overlayRef) {
-            this.overlayRef.updateSize({ width: this.getPanelWidth() });
+      if (this._viewportRuler) {
+        this._viewportSubscription = this._viewportRuler.change().subscribe(() => {
+          if (this.panelOpen && this._overlayRef) {
+            this._overlayRef.updateSize({ width: this._getPanelWidth() });
           }
         });
       }
     } else {
       // Update the panel width and direction, in case anything has changed.
-      this.overlayRef.updateSize({ width: this.getPanelWidth() });
+      this._overlayRef.updateSize({ width: this._getPanelWidth() });
     }
 
-    if (this.overlayRef && !this.overlayRef.hasAttached()) {
-      this.overlayRef.attach(this.portal);
-      this.closingActionsSubscription = this.subscribeToClosingActions();
+    if (this._overlayRef && !this._overlayRef.hasAttached()) {
+      this._overlayRef.attach(this._portal);
+      this._closingActionsSubscription = this._subscribeToClosingActions();
     }
 
     const wasOpen = this.panelOpen;
 
     this.dropdown.setVisibility();
-    this.dropdown.isOpen = this.overlayAttached = true;
+    this.dropdown.isOpen = this._overlayAttached = true;
 
     // We need to do an extra `panelOpen` check in here, because the
     // dropdown won't be shown if there are no options.
@@ -499,18 +487,18 @@ export class DropdownTriggerDirective implements OnDestroy {
     }
   }
 
-  private getOverlayConfig(): OverlayConfig {
+  private _getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
-      positionStrategy: this.getOverlayPosition(),
-      scrollStrategy: this.scrollStrategy(),
-      width: this.getPanelWidth(),
+      positionStrategy: this._getOverlayPosition(),
+      scrollStrategy: this._scrollStrategy(),
+      width: this._getPanelWidth(),
       panelClass: this.panelClass
     });
   }
 
-  protected getOverlayPosition(): PositionStrategy {
-    this.positionStrategy = this.overlay.position()
-      .flexibleConnectedTo(this.getConnectedElement())
+  protected _getOverlayPosition(): PositionStrategy {
+    this._positionStrategy = this._overlay.position()
+      .flexibleConnectedTo(this._getConnectedElement())
       .withFlexibleDimensions(false)
       .withPush(false)
       .withPositions([
@@ -528,37 +516,37 @@ export class DropdownTriggerDirective implements OnDestroy {
         }
       ]);
 
-    return this.positionStrategy;
+    return this._positionStrategy;
   }
 
-  protected getConnectedElement(): ElementRef {
+  protected _getConnectedElement(): ElementRef {
     if (this.connectedTo) {
       return this.connectedTo.elementRef;
     }
 
-    return this.element;
+    return this._elementRef;
   }
 
-  protected getPanelWidth(): number | string {
-    return this.dropdown.panelWidth || this.getHostWidth();
+  protected _getPanelWidth(): number | string {
+    return this.dropdown.panelWidth || this._getHostWidth();
   }
 
   /** Returns the width of the input element, so the panel width can match it. */
-  protected getHostWidth(): number {
-    return this.getConnectedElement().nativeElement.getBoundingClientRect().width;
+  protected _getHostWidth(): number {
+    return this._getConnectedElement().nativeElement.getBoundingClientRect().width;
   }
 
   /**
    * Resets the active item to -1 so arrow events will activate the
    * correct options, or to 0 if the consumer opted into it.
    */
-  private resetActiveItem(): void {
+  private _resetActiveItem(): void {
     this.dropdown.keyManager.setActiveItem(this.dropdown.autoActiveFirstOption ? 0 : -1);
   }
 
   /** Determines whether the panel can be opened. */
-  private canOpen(): boolean {
-    const element = this.element.nativeElement;
+  private _canOpen(): boolean {
+    const element = this._elementRef.nativeElement;
     return !element.readOnly &&
       !element.disabled &&
       !this.dropdownDisabled;

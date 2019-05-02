@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { GhettoboxComponent } from './ghettobox/ghettobox.component';
-import { GhettoboxContainerComponent } from './ghettobox-container/ghettobox-container.component';
-import { IconCrossModule, IconArrowRightModule, IconHimInfoModule } from 'sbb-angular-icons';
-import { GhettoboxIconDirective } from './ghettobox/ghettobox-icon.directive';
 import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IconArrowRightModule, IconCrossModule, IconHimInfoModule } from 'sbb-angular-icons';
+
+import { GhettoboxContainerComponent } from './ghettobox-container/ghettobox-container.component';
+import { GhettoboxIconDirective } from './ghettobox/ghettobox-icon.directive';
+import { GhettoboxComponent } from './ghettobox/ghettobox.component';
 
 @NgModule({
   declarations: [

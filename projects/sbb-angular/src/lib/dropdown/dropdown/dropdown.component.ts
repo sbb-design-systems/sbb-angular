@@ -1,6 +1,4 @@
 
-import { DropdownItemDirective, SBB_DROPDOWN_ITEM_PARENT_COMPONENT } from '../dropdown-item.directive';
-
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
@@ -8,23 +6,25 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   Output,
+  QueryList,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
-  HostBinding,
-  ContentChildren,
-  QueryList,
 } from '@angular/core';
+
+import { DropdownItemDirective, SBB_DROPDOWN_ITEM_PARENT_COMPONENT } from '../dropdown-item.directive';
 
 /**
  * Dropdown IDs need to be unique across components, so this counter exists outside of
  * the component definition.
  */
-let _uniqueDropdownIdCounter = 0;
+let nextId = 0;
 
 /** Event object that is emitted when an dropdown option is selected. */
 export class DropdownSelectedEvent {
@@ -34,7 +34,6 @@ export class DropdownSelectedEvent {
     /** Option that was selected. */
     public item: DropdownItemDirective) { }
 }
-
 
 /** Default `sbb-dropdown` options that can be overridden. */
 export interface DropdownDefaultOptions {
@@ -66,13 +65,10 @@ export class DropdownComponent implements AfterContentInit {
   showPanel = false;
 
   /** Whether the dropdown panel is open. */
-  get isOpen(): boolean {
-    return this._isOpen && this.showPanel;
-  }
-  set isOpen(value: boolean) {
-    this._isOpen = value;
-  }
-  _isOpen = false;
+  get isOpen(): boolean { return this._isOpen && this.showPanel; }
+  set isOpen(value: boolean) { this._isOpen = value; }
+  private _isOpen = false;
+
   /** Css class of sbb-dropdown. */
   @HostBinding('class.sbb-dropdown') sbbDropdown = true;
 
@@ -119,17 +115,18 @@ export class DropdownComponent implements AfterContentInit {
   set classList(value: string) {
     if (value && value.length) {
       value.split(' ').forEach(className => this._classList[className.trim()] = true);
-      this.elementRef.nativeElement.className = '';
+      this._elementRef.nativeElement.className = '';
     }
   }
+  // tslint:disable-next-line: naming-convention
   _classList: { [key: string]: boolean } = {};
 
   /** Unique ID to be used by dropdown trigger's "aria-owns" property. */
-  id = `sbb-dropdown-${_uniqueDropdownIdCounter++}`;
+  id = `sbb-dropdown-${nextId++}`;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private elementRef: ElementRef<HTMLElement>
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>
   ) {
   }
 
@@ -159,7 +156,7 @@ export class DropdownComponent implements AfterContentInit {
     this.showPanel = !!this.options.length;
     this._classList['sbb-dropdown-visible'] = this.showPanel;
     this._classList['sbb-dropdown-hidden'] = !this.showPanel;
-    this.changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   /** Emits the `select` event. */

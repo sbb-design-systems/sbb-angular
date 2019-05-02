@@ -20,4 +20,3 @@ export class LoadingShowcaseComponent {
     setTimeout(() => this.showSpinner = false, 3500);
   }
 }
-

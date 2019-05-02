@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CaptchaComponent } from './captcha/captcha.component';
+import { NgModule } from '@angular/core';
+
 import { CaptchaLoaderService } from './captcha/captcha-loader.service';
+import { CaptchaComponent } from './captcha/captcha.component';
 import { WindowRef } from './captcha/windowref.service';
 
 @NgModule({

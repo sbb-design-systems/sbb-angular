@@ -1,11 +1,12 @@
+import { ChangeDetectionStrategy, Component, ContentChild, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import { TextexpandComponent } from './textexpand.component';
-import { TextexpandModule } from '../textexpand.module';
 import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
 import { TextexpandExpandedComponent } from '../textexpand-expanded/textexpand-expanded.component';
-import { ContentChild, Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { TextexpandModule } from '../textexpand.module';
+
+import { TextexpandComponent } from './textexpand.component';
 
 @Component({
   selector: 'sbb-textexpand-test',
@@ -88,7 +89,6 @@ class TextexpandTestComponent {
   });
 
 });
-
 
  describe('TextexpandComponent using mock component', () => {
 

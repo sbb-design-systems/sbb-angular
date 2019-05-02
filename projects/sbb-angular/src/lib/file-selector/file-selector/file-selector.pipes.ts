@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+
 import { FileSelectorTypesService } from './file-selector-types.service';
 
 /**
@@ -48,5 +49,3 @@ export class FileSizeFormatted implements PipeTransform {
         return this._fileTypeService.formatFileSize(file.size);
     }
 }
-
-

@@ -1,22 +1,23 @@
 import {
-  Component,
-  forwardRef,
   ChangeDetectionStrategy,
-  Input, ChangeDetectorRef, HostBinding, OnDestroy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter, forwardRef, HostBinding, Inject,
+  InjectionToken,
+  Input,
   NgZone,
   OnChanges,
-  ViewEncapsulation,
-  Output,
-  EventEmitter,
-  Optional,
+  OnDestroy,
   OnInit,
-  InjectionToken,
-  Inject
+  Optional,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
+
+import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
 import { TagChange } from '../tag.model';
 
 let counter = 0;
@@ -123,11 +124,11 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
   constructor(
     private _changeDetector: ChangeDetectorRef,
     @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer,
-    private zone: NgZone) {
+    private _zone: NgZone) {
     super(_changeDetector);
 
-    this.zone.onStable.pipe(first()).subscribe(
-      () => this.zone.run(() => this.tagChecking$.next(this.checked))
+    this._zone.onStable.pipe(first()).subscribe(
+      () => this._zone.run(() => this.tagChecking$.next(this.checked))
     );
   }
 

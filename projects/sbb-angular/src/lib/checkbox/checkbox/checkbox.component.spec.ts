@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { CheckboxComponent } from './checkbox.component';
 
 @Component({

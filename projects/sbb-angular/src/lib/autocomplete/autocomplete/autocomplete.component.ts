@@ -5,26 +5,27 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   Output,
+  QueryList,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
-  HostBinding,
-  ContentChildren,
-  QueryList,
 } from '@angular/core';
-import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
+
 import { HasOptions } from '../../option/has-options';
 import { OptionGroupComponent } from '../../option/option-group/option-group.component';
+import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
  * the component definition.
  */
-let _uniqueAutocompleteIdCounter = 0;
+let nextId = 0;
 
 /** Event object that is emitted when an autocomplete option is selected. */
 export class SbbAutocompleteSelectedEvent {
@@ -34,7 +35,6 @@ export class SbbAutocompleteSelectedEvent {
     /** Option that was selected. */
     public option: OptionComponent) { }
 }
-
 
 /** Default `sbb-autocomplete` options that can be overridden. */
 export interface SbbAutocompleteDefaultOptions {
@@ -60,7 +60,6 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   /** All of the defined groups of options. */
   @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
 
-
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<OptionComponent>;
 
@@ -69,6 +68,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
 
   /** Whether the autocomplete panel is open. */
   get isOpen(): boolean { return this._isOpen && this.showPanel; }
+  // tslint:disable-next-line: naming-convention
   _isOpen = false;
 
   @HostBinding('class.sbb-autocomplete') sbbAutocomplete = false;
@@ -81,7 +81,6 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
-
 
   /**
    * Whether the first option should be highlighted when the autocomplete panel is opened.
@@ -117,17 +116,18 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   set classList(value: string) {
     if (value && value.length) {
       value.split(' ').forEach(className => this._classList[className.trim()] = true);
-      this.elementRef.nativeElement.className = '';
+      this._elementRef.nativeElement.className = '';
     }
   }
+  // tslint:disable-next-line: naming-convention
   _classList: { [key: string]: boolean } = {};
 
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */
-  id = `sbb-autocomplete-${_uniqueAutocompleteIdCounter++}`;
+  id = `sbb-autocomplete-${nextId++}`;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private elementRef: ElementRef<HTMLElement>) {
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>) {
   }
 
   ngAfterContentInit() {
@@ -156,7 +156,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
     this.showPanel = !!this.options.length;
     this._classList['sbb-autocomplete-visible'] = this.showPanel;
     this._classList['sbb-autocomplete-hidden'] = !this.showPanel;
-    this.changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   /** Emits the `select` event. */

@@ -1,17 +1,17 @@
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
-  ChangeDetectionStrategy,
-  Input,
-  ViewChild,
-  NgZone,
   HostBinding,
-  ChangeDetectorRef
+  Input,
+  NgZone,
+  ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { first } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-textarea',
@@ -88,8 +88,8 @@ export class TextareaComponent implements ControlValueAccessor {
   onTouched = () => { };
 
   constructor(
-    private changeDetector: ChangeDetectorRef,
-    private ngZone: NgZone,
+    private _changeDetector: ChangeDetectorRef,
+    private _ngZone: NgZone,
   ) { }
 
   /**
@@ -109,14 +109,14 @@ export class TextareaComponent implements ControlValueAccessor {
    * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
-    this.ngZone.onStable.pipe(first())
+    this._ngZone.onStable.pipe(first())
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
   writeValue(newValue: any) {
     this.textContent = newValue == null ? '' : newValue;
     this.updateDigitsCounter(this.textContent);
-    this.changeDetector.markForCheck();
+    this._changeDetector.markForCheck();
   }
 
   registerOnChange(fn) {
@@ -136,7 +136,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    this.changeDetector.markForCheck();
+    this._changeDetector.markForCheck();
   }
   /**
    * Method that updates the max number of digits available in the textarea content

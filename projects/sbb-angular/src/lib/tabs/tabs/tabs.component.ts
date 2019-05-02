@@ -1,18 +1,18 @@
+import { DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
-  Component,
-  ContentChildren,
-  QueryList,
   AfterContentInit,
-  ComponentFactoryResolver,
-  ElementRef,
   ChangeDetectionStrategy,
-  OnDestroy,
   ChangeDetectorRef,
-  ViewEncapsulation,
-  ViewChildren
+  Component,
+  ComponentFactoryResolver,
+  ContentChildren,
+  ElementRef,
+  OnDestroy,
+  QueryList,
+  ViewChildren,
+  ViewEncapsulation
 } from '@angular/core';
-import { LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB } from '@angular/cdk/keycodes';
-import { Observable, merge, of, Subscription } from 'rxjs';
+import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { TabComponent } from '../tab/tab.component';
@@ -38,7 +38,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
    * Option keys available to move between tabs
    */
-  private allowedKeyCodes = [
+  private _allowedKeyCodes = [
     LEFT_ARROW,
     RIGHT_ARROW,
     UP_ARROW,
@@ -62,7 +62,9 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
    */
   private _tabsSubscription = Subscription.EMPTY;
 
-  constructor(/** * Class property that manages different events */ public componentFactoryResolver: ComponentFactoryResolver,
+  constructor(
+    /** * Class property that manages different events */
+    public componentFactoryResolver: ComponentFactoryResolver,
     /**
      * Class property that refers to the component object
      */
@@ -71,7 +73,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit() {
 
-    this.checkNumberOfTabs();
+    this._checkNumberOfTabs();
 
     this.initTabs();
 
@@ -134,31 +136,31 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
    * Method that responds only to arrows and tab event
    */
-  onKeyUp(event : any) {
+  onKeyUp(event: any) {
     // respond only to arrows and tab
-    if (this.allowedKeyCodes.indexOf(event.keyCode) !== -1) {
+    if (this._allowedKeyCodes.indexOf(event.keyCode) !== -1) {
       if (event.keyCode === TAB) {
         this.tabListIndex = this.tabs.map(t => t.active).indexOf(true);
       } else {
-        this.handleKeyUp(event.keyCode);
+        this._handleKeyUp(event.keyCode);
       }
     }
   }
 
-  private handleKeyUp(keyCode) {
+  private _handleKeyUp(keyCode) {
     const tabLabels = this.labels.toArray();
-    const hasReachEnd = this.handleKeyCodeReturnHasReachEnd(keyCode);
+    const hasReachEnd = this._handleKeyCodeReturnHasReachEnd(keyCode);
     const tabToFocus = tabLabels[this.tabListIndex];
 
     if (tabToFocus.nativeElement.disabled && !hasReachEnd) {
       // go to next
-      this.handleKeyUp(keyCode);
+      this._handleKeyUp(keyCode);
     } else if (tabToFocus.nativeElement.disabled && hasReachEnd) {
       // reached end and no focusable tabs found. reverse direction to find a focusable one
       if (keyCode === LEFT_ARROW || keyCode === UP_ARROW) {
-        this.handleKeyUp(RIGHT_ARROW);
+        this._handleKeyUp(RIGHT_ARROW);
       } else {
-        this.handleKeyUp(LEFT_ARROW);
+        this._handleKeyUp(LEFT_ARROW);
       }
     } else {
       tabLabels[this.tabListIndex].nativeElement.focus();
@@ -166,7 +168,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   }
 
-  private handleKeyCodeReturnHasReachEnd(keyCode): boolean {
+  private _handleKeyCodeReturnHasReachEnd(keyCode): boolean {
     let hasReachEnd = false;
 
     switch (keyCode) {
@@ -194,10 +196,11 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
     return hasReachEnd;
   }
+
   /**
    * Method that controls if the activated tab number is at least two
    */
-  private checkNumberOfTabs(): void {
+  private _checkNumberOfTabs(): void {
     if (this.tabs.length < 2) {
       throw new Error(`The number of tabs must be at least 2`);
     }

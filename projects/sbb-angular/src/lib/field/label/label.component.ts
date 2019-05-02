@@ -1,4 +1,5 @@
-import { Component, Input, ChangeDetectionStrategy, Optional, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, Optional } from '@angular/core';
+
 import { FORM_FIELD } from '../form-field-token';
 import { HasFormFieldControl } from '../has-form-field-control';
 
@@ -13,15 +14,15 @@ export class LabelComponent {
    * Label of a input text
    */
   @Input()
-  get for() { return this._for || this.inputId(); }
+  get for() { return this._for || this._inputId(); }
   set for(value: string) { this._for = value; }
   private _for: string;
 
   constructor(
-    @Inject(FORM_FIELD) @Optional() private formField: HasFormFieldControl,
+    @Inject(FORM_FIELD) @Optional() private _formField: HasFormFieldControl,
   ) { }
 
-  private inputId() {
-    return this.formField && this.formField._control ? this.formField._control.id : undefined;
+  private _inputId() {
+    return this._formField && this._formField._control ? this._formField._control.id : undefined;
   }
 }

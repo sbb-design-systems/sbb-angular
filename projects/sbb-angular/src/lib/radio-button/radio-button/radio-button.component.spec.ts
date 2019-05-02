@@ -1,17 +1,21 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
-import { RadioButtonComponent } from './radio-button.component';
 import { RadioButtonRegistryService } from './radio-button-registry.service';
+import { RadioButtonComponent } from './radio-button.component';
 
 @Component({
   selector: 'sbb-model-radio-button-test',
   template: `
-  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">Test radio button 1</sbb-radio-button>
-  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">Test radio button 2</sbb-radio-button>
+  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">
+    Test radio button 1
+  </sbb-radio-button>
+  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">
+    Test radio button 2
+  </sbb-radio-button>
   `
 })
 class ModelRadioButtonTestComponent {
@@ -25,13 +29,13 @@ describe('RadioButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
-      declarations: [ RadioButtonComponent ],
-      providers: [ RadioButtonRegistryService ]
+      declarations: [RadioButtonComponent],
+      providers: [RadioButtonRegistryService]
     })
-    .overrideComponent(RadioButtonComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(RadioButtonComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -57,13 +61,13 @@ describe('RadioButtonComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
-      declarations: [ RadioButtonComponent, ModelRadioButtonTestComponent ],
+      declarations: [RadioButtonComponent, ModelRadioButtonTestComponent],
       providers: [RadioButtonRegistryService]
     })
-    .overrideComponent(RadioButtonComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(RadioButtonComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

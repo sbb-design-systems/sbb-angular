@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
+
+import { FILE_TYPES, FileTypeCategory } from './file-selector-base';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class FileSelectorTypesService {
   getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
 
     for (const fileTypeCat in FileTypeCategory) {
-      if (this.findMimeType(this.getFileFormats(Number(fileTypeCat)), mimeType)) {
+      if (this._findMimeType(this._getFileFormats(Number(fileTypeCat)), mimeType)) {
         return Number(fileTypeCat);
       }
     }
@@ -30,9 +31,9 @@ export class FileSelectorTypesService {
   getAcceptString(typeCats: FileTypeCategory | FileTypeCategory[]): string {
 
     if (Array.isArray(typeCats)) {
-      return typeCats.reduce((current, next) => this.setAcceptString(next, current), '');
+      return typeCats.reduce((current, next) => this._setAcceptString(next, current), '');
     } else {
-      return this.setAcceptString(typeCats, '');
+      return this._setAcceptString(typeCats, '');
     }
 
   }
@@ -76,7 +77,7 @@ export class FileSelectorTypesService {
     return res;
   }
 
-  private setAcceptString(t: FileTypeCategory, acceptString: string): string {
+  private _setAcceptString(t: FileTypeCategory, acceptString: string): string {
     switch (t) {
       case FileTypeCategory.DOC:
         acceptString += FILE_TYPES.MS_WORD_DOC.concat(FILE_TYPES.MS_EXCEL, FILE_TYPES.MS_POWERPOINT).join() + ',';
@@ -101,13 +102,13 @@ export class FileSelectorTypesService {
     return acceptString;
   }
 
-  private findMimeType(typeNames: string[], mimeType: string): boolean {
+  private _findMimeType(typeNames: string[], mimeType: string): boolean {
     return typeNames.some((type: string) => {
       return FILE_TYPES[type].indexOf(mimeType) !== -1;
     });
   }
 
-  private getFileFormats(formatType: FileTypeCategory): string[] {
+  private _getFileFormats(formatType: FileTypeCategory): string[] {
 
     let typeFormats: string[] = [];
 

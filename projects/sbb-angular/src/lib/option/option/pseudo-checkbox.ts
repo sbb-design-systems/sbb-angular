@@ -1,4 +1,4 @@
-import { ViewEncapsulation, ChangeDetectionStrategy, Input, Optional, Inject, HostBinding, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, Optional, ViewEncapsulation } from '@angular/core';
 
 export type SbbPseudoCheckboxState = 'unchecked' | 'checked';
 

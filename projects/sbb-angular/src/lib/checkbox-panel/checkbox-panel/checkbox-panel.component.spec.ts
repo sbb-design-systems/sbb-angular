@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CheckboxPanelComponent } from './checkbox-panel.component';
 import { CommonModule } from '@angular/common';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Component, ViewChildren, QueryList } from '@angular/core';
+
 import { CheckboxPanelModule } from '../checkbox-panel.module';
+
+import { CheckboxPanelComponent } from './checkbox-panel.component';
 
 @Component({
   selector: 'sbb-model-sbb-checkbox-panel-test',
@@ -31,8 +32,6 @@ class ModelOptionSelectionMultipleTestComponent {
   checkValue2 = false;
   @ViewChildren(CheckboxPanelComponent) optionSelections: QueryList<CheckboxPanelComponent>;
 }
-
-
 
 describe('CheckboxPanelComponent', () => {
   let component: CheckboxPanelComponent;
@@ -129,4 +128,3 @@ describe('CheckboxPanelComponent using mock component', () => {
     expect(modelComponent.checkValue2).toBe(true);
   });
 });
-

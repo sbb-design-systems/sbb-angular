@@ -1,17 +1,17 @@
 import {
-  Component,
-  ViewEncapsulation,
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   ContentChildren,
+  HostBinding,
   QueryList,
   TemplateRef,
-  AfterViewInit,
-  HostBinding,
-  ChangeDetectorRef,
+  ViewEncapsulation,
 } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 import { BreadcrumbComponent, SBB_BREADCRUMB_PARENT_COMPONENT } from '../breadcrumb/breadcrumb.component';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-breadcrumbs',
@@ -48,14 +48,14 @@ export class BreadcrumbsComponent implements AfterViewInit {
   }
   private _expanded = false;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     if (this.levels && this.levels.first) {
 
       this.levels.first.expandEvent.pipe(first()).subscribe(() => {
         this._expanded = true;
-        this.changeDetectorRef.markForCheck();
+        this._changeDetectorRef.markForCheck();
       });
     }
   }

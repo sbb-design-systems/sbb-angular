@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, OnDestroy, ViewChildren, QueryList } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AccordionComponent } from 'sbb-angular';
 
@@ -46,8 +46,7 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.onRadioChange = this.accordionForm.get('radioModes').valueChanges.subscribe(
-      (value) => {
+    this.onRadioChange = this.accordionForm.get('radioModes').valueChanges.subscribe(value => {
 
         switch (value) {
           case 'openAll':
@@ -61,8 +60,7 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.onMultiChange = this.accordionForm.get('multi').valueChanges.subscribe(
-      (value) => {
+    this.onMultiChange = this.accordionForm.get('multi').valueChanges.subscribe(value => {
 
         this.multi = value;
 
@@ -79,21 +77,18 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
 
     );
 
-    this.onDisabledChange = this.accordionForm.get('disabled').valueChanges.subscribe(
-      (value) => {
+    this.onDisabledChange = this.accordionForm.get('disabled').valueChanges.subscribe(value => {
 
         this.disabled = value;
       }
     );
 
-    this.onHideToggle = this.accordionForm.get('hideToggle').valueChanges.subscribe(
-      (value) => {
+    this.onHideToggle = this.accordionForm.get('hideToggle').valueChanges.subscribe(value => {
         this.hideToggle = value;
       }
     );
 
-    this.onModeChange = this.accordionForm.get('panelMode').valueChanges.subscribe(
-      (value) => {
+    this.onModeChange = this.accordionForm.get('panelMode').valueChanges.subscribe(value => {
         this.panelMode = value;
       }
     );

@@ -1,12 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { RadioButtonPanelComponent } from './radio-button-panel.component';
 import { CommonModule } from '@angular/common';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Component, ViewChildren, QueryList } from '@angular/core';
+
 import { createFakeEvent } from '../../_common/testing/event-objects';
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
+
+import { RadioButtonPanelComponent } from './radio-button-panel.component';
 
 @Component({
   selector: 'sbb-model-radio-button-panel-test',
@@ -83,12 +84,13 @@ describe('RadioButtonPanelComponent using mock component', () => {
   it('should create mock component and should contain two sbb-radio-button-panel components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(By.directive(RadioButtonPanelComponent));
+    const optionSelectionComponents = modelComponentFixture.debugElement
+      .queryAll(By.directive(RadioButtonPanelComponent));
     expect(optionSelectionComponents).toBeTruthy();
     expect(optionSelectionComponents.length).toBe(2);
   });
 
-  it('should be mutual exclusive', async() => {
+  it('should be mutual exclusive', async () => {
     const opt1: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[0];
     const opt2: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[1];
 
@@ -97,17 +99,17 @@ describe('RadioButtonPanelComponent using mock component', () => {
     opt1.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter( o => o.checked === true);
+    let checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
     expect(checkedComponents.length).toBe(1);
 
     opt2.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter( o => o.checked === true);
+    checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
     expect(checkedComponents.length).toBe(1);
   });
 
-  it('should checked if model is equal to value', async() => {
+  it('should checked if model is equal to value', async () => {
     const opt1: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[0];
     const opt2: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[1];
 
@@ -126,4 +128,3 @@ describe('RadioButtonPanelComponent using mock component', () => {
     expect(modelComponent.testValue).toBe(opt2.value);
   });
 });
-

@@ -27,6 +27,7 @@ export interface FileSelectorOptions {
 }
 
 export enum FileTypeCategory {
+  // tslint:disable-next-line: naming-convention
   GENERIC_DOC = 1,
   DOC,
   IMAGE,
@@ -105,7 +106,3 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/zip',
     'application/x-bzip2']
 };
-
-
-
-

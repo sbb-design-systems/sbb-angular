@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, HostBinding, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 let counter = 0;
@@ -58,7 +58,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
   set checked(value: any) {
     this._checked = value;
-    this.changeDetector.markForCheck();
+    this._changeDetector.markForCheck();
   }
   private _checked = false;
   /**
@@ -70,7 +70,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   onTouched = () => { };
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  constructor(private _changeDetector: ChangeDetectorRef) { }
 
   /**
    * Sets the value in input in the checkbox field
@@ -108,7 +108,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
-    this.changeDetector.markForCheck();
+    this._changeDetector.markForCheck();
   }
 
 }

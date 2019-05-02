@@ -7,7 +7,7 @@ import { Directive, TemplateRef } from '@angular/core';
 @Directive({
   selector: 'ng-template[sbbExpansionPanelContent]'
 })
-
 export class ExpansionPanelContentDirective {
+  // tslint:disable-next-line: naming-convention
   constructor(public _template: TemplateRef<any>) { }
 }

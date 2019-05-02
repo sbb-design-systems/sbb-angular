@@ -3,15 +3,16 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation,
-  NgZone,
   HostBinding,
   Inject,
+  Input,
+  NgZone,
   Optional,
+  Output,
+  ViewEncapsulation,
 } from '@angular/core';
-import { take, first } from 'rxjs/operators';
+import { first, take } from 'rxjs/operators';
+
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 
 /**
@@ -24,7 +25,6 @@ export class CalendarCell {
     public enabled: boolean,
     public rangeBackground?: string | null) { }
 }
-
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -80,9 +80,9 @@ export class CalendarBodyComponent {
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _ngZone: NgZone,
-    @Optional() @Inject(SBB_DATE_FORMATS) private dateFormats: DateFormats
+    @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats
   ) {
-    this.a11yFormat = this.dateFormats.dateA11yLabel;
+    this.a11yFormat = this._dateFormats.dateA11yLabel;
   }
 
   cellClicked(cell: CalendarCell): void {

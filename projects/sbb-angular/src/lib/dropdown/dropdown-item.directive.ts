@@ -1,6 +1,6 @@
-import { Directive, ElementRef, HostBinding, ChangeDetectorRef, HostListener, InjectionToken, Output, EventEmitter } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, HostListener, InjectionToken, Output } from '@angular/core';
 
 let counter = 0;
 
@@ -50,7 +50,6 @@ export function getDropdownItemScrollPosition(optionIndex: number, optionHeight:
   return currentScrollPosition;
 }
 
-
 @Directive({ selector: '[sbbDropdownItem]' })
 export class DropdownItemDirective implements Highlightable {
 
@@ -83,31 +82,30 @@ export class DropdownItemDirective implements Highlightable {
   active = false;
 
   constructor(
-    private elementRef: ElementRef,
-    private changeDetectorRef: ChangeDetectorRef
+    private _elementRef: ElementRef,
+    private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
   setActiveStyles(): void {
     if (!this.active) {
       this.active = true;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
   setInactiveStyles(): void {
     if (this.active) {
       this.active = false;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
   getLabel?(): string {
-    return this.elementRef.nativeElement.textContent;
+    return this._elementRef.nativeElement.textContent;
   }
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 
@@ -118,32 +116,31 @@ export class DropdownItemDirective implements Highlightable {
 
   @HostListener('click')
   onClick(): void {
-    this.emitSelectionChangeEvent();
+    this._emitSelectionChangeEvent();
   }
 
   selectViaInteraction(): void {
-    this.elementRef.nativeElement.click();
+    this._elementRef.nativeElement.click();
   }
 
-  private emitSelectionChangeEvent(): void {
+  private _emitSelectionChangeEvent(): void {
     this.selectionChange.emit(new DropdownSelectionChange(this));
   }
 
   select(): void {
     if (!this.selected) {
       this.selected = true;
-      this.changeDetectorRef.markForCheck();
-      this.emitSelectionChangeEvent();
+      this._changeDetectorRef.markForCheck();
+      this._emitSelectionChangeEvent();
     }
   }
 
   deselect(): void {
     if (this.selected) {
       this.selected = false;
-      this.changeDetectorRef.markForCheck();
-      this.emitSelectionChangeEvent();
+      this._changeDetectorRef.markForCheck();
+      this._emitSelectionChangeEvent();
     }
   }
-
 
 }

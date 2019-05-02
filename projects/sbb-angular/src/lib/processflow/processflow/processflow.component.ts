@@ -1,15 +1,16 @@
 import {
-  Component,
+  AfterContentInit,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
   ChangeDetectorRef,
-  HostBinding,
+  Component,
   ContentChildren,
-  QueryList,
-  AfterContentInit
+  EventEmitter,
+  HostBinding,
+  Output,
+  QueryList
 } from '@angular/core';
-import { ProcessflowStepComponent, ProcessflowStep } from '../processflow-step/processflow-step.component';
+
+import { ProcessflowStep, ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
 
 @Component({
   selector: 'sbb-processflow',
@@ -29,7 +30,9 @@ export class ProcessflowComponent implements AfterContentInit {
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+  ) { }
 
   ngAfterContentInit(): void {
     if (this.steps && this.steps.length) {
@@ -39,7 +42,7 @@ export class ProcessflowComponent implements AfterContentInit {
   }
 
   nextStep() {
-    const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+    const activeStepIndex = this._findActiveStepIndex(this.steps.toArray());
     let activatedStep = false;
     if (activeStepIndex < this.steps.length - 1) {
       this.steps.forEach((s, i) => {
@@ -51,20 +54,20 @@ export class ProcessflowComponent implements AfterContentInit {
           s.active = false;
         }
       });
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
       this.stepChange.emit(this.steps.toArray()[activeStepIndex + 1]);
     }
   }
 
   prevStep() {
-    const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+    const activeStepIndex = this._findActiveStepIndex(this.steps.toArray());
     if (activeStepIndex > 0) {
       this.disableStep(activeStepIndex);
       this.changeStep(activeStepIndex - 1);
     }
   }
 
-  private findActiveStepIndex(steps: ProcessflowStepComponent[]) {
+  private _findActiveStepIndex(steps: ProcessflowStepComponent[]) {
     return steps.findIndex(s => !!s.active);
   }
   /**
@@ -90,7 +93,7 @@ export class ProcessflowComponent implements AfterContentInit {
         }
       });
       step.active = true;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
       this.stepChange.emit(step.descriptor);
     }
   }
@@ -101,7 +104,7 @@ export class ProcessflowComponent implements AfterContentInit {
     const step = this.steps.toArray()[index];
     if (step) {
       step.disabled = true;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
@@ -111,12 +114,12 @@ export class ProcessflowComponent implements AfterContentInit {
       s.disabled = true;
     });
     this.ngAfterContentInit();
-    this.changeDetectorRef.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
 
   getActiveStep() {
     if (this.steps && this.steps.length) {
-      const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+      const activeStepIndex = this._findActiveStepIndex(this.steps.toArray());
       if (activeStepIndex > -1) {
         return this.steps.toArray()[activeStepIndex];
       }

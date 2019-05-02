@@ -1,23 +1,25 @@
-import { Directive, ElementRef, HostBinding, HostListener, Optional, Renderer2, Self, Inject } from '@angular/core';
-import { NgControl } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
+import { Directive, ElementRef, HostBinding, HostListener, Inject, Optional, Renderer2, Self } from '@angular/core';
+import { NgControl } from '@angular/forms';
+
+const REGEX_PATTERN = /[0-9]{3,4}/;
+const REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
+const REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
 
 @Directive({
   selector: 'input[sbbTimeInput]'
 })
 export class TimeInputDirective {
 
-  private REGEX_PATTERN = /[0-9]{3,4}/;
-  private REGEX_GROUPS_WITH_COLON = /([0-9]{1,2})[.:,\-;_hH]?([0-9]{1,2})?/;
-  private REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
-  private document: Document;
+  private _document: Document;
 
   constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-    @Self() @Optional() private control: NgControl,
-    @Inject(DOCUMENT) document: any) {
-    this.document = document;
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    @Self() @Optional() private _control: NgControl,
+    @Inject(DOCUMENT) document: any,
+  ) {
+    this._document = document;
   }
   /**
    * Value type allowed
@@ -41,37 +43,37 @@ export class TimeInputDirective {
    */
   @HostListener('blur', ['$event.target.value'])
   onBlur(value: any) {
-    const regGroups = this.inputValidate(value);
+    const regGroups = this._inputValidate(value);
     if (!regGroups || regGroups.length <= 2) {
       return;
     }
 
-    const hours = this.parseHour(regGroups[1]);
-    const mins = this.parseMinute(regGroups[2]);
-    if (this.control && this.control.control) {
-      this.control.control.setValue(`${hours}:${mins}`);
+    const hours = this._parseHour(regGroups[1]);
+    const mins = this._parseMinute(regGroups[2]);
+    if (this._control && this._control.control) {
+      this._control.control.setValue(`${hours}:${mins}`);
     } else {
-      this.renderer.setProperty(this.el.nativeElement, 'value', `${hours}:${mins}`);
-      const event = this.document.createEvent('Event');
+      this._renderer.setProperty(this._elementRef.nativeElement, 'value', `${hours}:${mins}`);
+      const event = this._document.createEvent('Event');
       event.initEvent('input', true, true);
-      this.el.nativeElement.dispatchEvent(event);
+      this._elementRef.nativeElement.dispatchEvent(event);
     }
   }
 
-  private inputValidate(value: string) {
-    if (this.REGEX_PATTERN.test(value)) {
+  private _inputValidate(value: string) {
+    if (REGEX_PATTERN.test(value)) {
       // special case: the input is 3 or 4 digits; split like so: AB?:CD
-      return value.match(this.REGEX_GROUPS_WO_COLON);
+      return value.match(REGEX_GROUPS_WO_COLON);
     } else if (value) {
-      return value.match(this.REGEX_GROUPS_WITH_COLON);
+      return value.match(REGEX_GROUPS_WITH_COLON);
     }
   }
 
-  private parseHour(regGroupHours) {
+  private _parseHour(regGroupHours: string) {
     return regGroupHours.length > 1 ? regGroupHours : '0' + regGroupHours;
   }
 
-  private parseMinute(regGroupMin) {
+  private _parseMinute(regGroupMin: string) {
     regGroupMin = regGroupMin || '00';
     return regGroupMin.length > 1 ? regGroupMin : '0' + regGroupMin;
   }

@@ -1,19 +1,21 @@
+import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import {
-  Component,
+  AfterContentInit,
   ChangeDetectionStrategy,
-  Input,
-  HostBinding,
-  ViewChild,
+  Component,
   ComponentRef,
-  EmbeddedViewRef,
-  OnDestroy,
   ContentChildren,
+  EmbeddedViewRef,
+  HostBinding,
+  Input,
+  OnDestroy,
   QueryList,
-  AfterContentInit
+  ViewChild
 } from '@angular/core';
-import { CdkPortalOutlet, BasePortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
+
+import { Ghettobox, GhettoboxRef } from '../ghettobox/ghettobox-ref';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
-import { GhettoboxRef, Ghettobox } from '../ghettobox/ghettobox-ref';
+
 import { GhettoboxContainerService } from './ghettobox-container.service';
 
 let counter = 0;

@@ -4,9 +4,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
+import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { DatepickerModule } from '../../datepicker/datepicker';
 import { FieldModule } from '../../field/field';
-import { IconCollectionModule } from 'sbb-angular-icons';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { ToggleModule } from '../toggle.module';
 
@@ -54,14 +55,12 @@ class ToggleReactiveTestComponent implements OnInit {
   }]);
 
   ngOnInit() {
-    this.form.get('test').valueChanges.subscribe(
-      (val) => {
+    this.form.get('test').valueChanges.subscribe(val => {
         this.modelReactive = val;
       }
     );
   }
 }
-
 
 @Component({
   selector: 'sbb-toggle-test-template-driven',
@@ -104,8 +103,6 @@ class ToggleTemplateDrivenTestComponent {
 
 }
 
-
-
 @Component({
   selector: 'sbb-toggle-test-simple-case',
   template: `<sbb-toggle aria-labelledby="group_label_3"
@@ -138,7 +135,6 @@ class ToggleSimpleCaseTestComponent {
   toggleChange() { }
 
 }
-
 
 describe('ToggleComponent case reactive using mock component', () => {
 
@@ -177,7 +173,6 @@ describe('ToggleComponent case reactive using mock component', () => {
 
   });
 
-
   it('it verifies that first toggle button has class sbb-toggle-option-selected', () => {
 
     const toggleOptionsReference = fixtureTest.debugElement.queryAll(By.css('.sbb-toggle-option'));
@@ -187,7 +182,6 @@ describe('ToggleComponent case reactive using mock component', () => {
     expect(toggleOption1Element.attributes['class'].value).toContain('sbb-toggle-option-selected');
 
   });
-
 
   it('it verifies the click on the second toggle option selected ', () => {
 
@@ -215,7 +209,6 @@ describe('ToggleComponent case reactive using mock component', () => {
 
   });
 
-
   it('it verifies the text content into a toggle button to click on another toggle button', () => {
 
     fixtureTest.detectChanges();
@@ -242,7 +235,6 @@ describe('ToggleComponent case reactive using mock component', () => {
   });
 
 });
-
 
 describe('ToggleComponent case template driven using mock component', () => {
 
@@ -308,7 +300,6 @@ describe('ToggleComponent case template driven using mock component', () => {
 
 });
 
-
 describe('ToggleComponent simple case using mock component', () => {
 
   let componentTest: ToggleSimpleCaseTestComponent;
@@ -363,36 +354,5 @@ describe('ToggleComponent simple case using mock component', () => {
     const toggleOptionsComponent2 = toggleOptionsComponent[1].nativeElement;
 
     expect(toggleOptionsComponent2.attributes['class'].value).toContain('sbb-toggle-option-selected');
-
   });
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

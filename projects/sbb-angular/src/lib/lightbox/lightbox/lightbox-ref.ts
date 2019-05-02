@@ -37,12 +37,13 @@ export class LightboxRef<T, R = any> {
   private _locationChanges: SubscriptionLike = Subscription.EMPTY;
 
   constructor(
-    private _overlayRef: OverlayRef,
-    /** The istance of the container component. */
+    /** The instance of the container component. */
     public containerInstance: LightboxContainerComponent,
-    location?: Location,
     /** Identifier of lightbox. */
-    readonly id: string = `sbb-lightbox-${uniqueId++}`) {
+    readonly id: string = `sbb-lightbox-${uniqueId++}`,
+    private _overlayRef: OverlayRef,
+    location?: Location,
+  ) {
 
     // Pass the id along to the container.
     containerInstance.id = id;
@@ -74,12 +75,10 @@ export class LightboxRef<T, R = any> {
     });
 
     _overlayRef.keydownEvents()
-      // tslint:disable-next-line:deprecation
       .pipe(filter(event => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
 
     _overlayRef.keydownEvents()
-      // tslint:disable-next-line:deprecation
       .pipe(filter(event => event.keyCode === ESCAPE && this.disableClose))
       .subscribe(() => this.manualCloseAction.next(null));
 

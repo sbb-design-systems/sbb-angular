@@ -5,19 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class HighlightPipe implements PipeTransform {
 
-  private escape(value: any = '') {
+  transform(value: any, args?: any): any {
     if (typeof value === 'string') {
-      return value.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const re = new RegExp(this._escape(args), 'gi');
+      return value.replace(re, m => `<span #highlight class='highlight'>${m}</span>`);
     }
+
     return value;
   }
 
-  transform(value: any, args?: any): any {
-    let result = value;
-    if (value) {
-      const re = new RegExp(this.escape(args), 'gi');
-      result = value.replace(re, m => `<span #highlight class='highlight'>${m}</span>`);
-    }
-    return result;
+  private _escape(value: any = '') {
+    return typeof value === 'string' ? value.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') : value;
   }
 }

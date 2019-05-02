@@ -1,5 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkAccordionItem } from '@angular/cdk/accordion';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -10,26 +11,27 @@ import {
   Component,
   ContentChild,
   ElementRef,
+  EventEmitter,
+  HostBinding,
   Inject,
   Input,
   OnChanges,
   OnDestroy,
   Optional,
+  Output,
   SimpleChanges,
   SkipSelf,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation,
-  EventEmitter,
-  Output,
-  HostBinding
+  ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { filter, startWith, first } from 'rxjs/operators';
+import { filter, first, startWith } from 'rxjs/operators';
+
 import { sbbExpansionAnimations } from '../accordion/accordion-animations';
+import { IAccordionBase, SBB_ACCORDION } from '../accordion/accordion-base';
+
 import { ExpansionPanelContentDirective } from './expansion-panel-content';
-import { SBB_ACCORDION, IAccordionBase } from '../accordion/accordion-base';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 /** SbbExpansionPanel's states. */
 export type ExpansionPanelState = 'expanded' | 'collapsed';
@@ -105,6 +107,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
   private _document: Document;
 
   /** Stream that emits for changes in `@Input` properties. */
+  // tslint:disable-next-line: naming-convention
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
@@ -122,14 +125,16 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
   /** ID for the associated header element. Used for a11y labelling. */
   headerId = `sbb-expansion-panel-header-${uniqueId++}`;
 
-  constructor(@Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: IAccordionBase,
+  constructor(
+    private _viewContainerRef: ViewContainerRef,
+    @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: IAccordionBase,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
-    private _viewContainerRef: ViewContainerRef,
-    @Inject(DOCUMENT) _document?: any) {
+    @Inject(DOCUMENT) document?: any,
+  ) {
     super(accordion, changeDetectorRef, uniqueSelectionDispatcher);
     this.accordion = accordion;
-    this._document = _document;
+    this._document = document;
   }
 
   /** Gets the expanded state string. */
@@ -186,4 +191,3 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
     return false;
   }
 }
-

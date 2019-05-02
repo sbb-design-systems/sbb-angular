@@ -1,11 +1,10 @@
 import { Observable, Subject } from 'rxjs';
 
-
 /** Adapts type `D` to be usable as a date by cdk-based components that work with dates. */
 export abstract class DateAdapter<D> {
 
     /** The locale to use for all dates. */
-    protected locale: any;
+    protected _locale: any;
 
     /**
      * Gets the year component of the given date.
@@ -197,7 +196,7 @@ export abstract class DateAdapter<D> {
      * @param locale The new locale.
      */
     setLocale(locale: any) {
-        this.locale = locale;
+        this._locale = locale;
     }
 
     /**

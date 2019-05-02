@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { NavlistComponent } from '../navlist-component/navlist.component';
 
 @Component({

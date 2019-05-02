@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { LinkComponent } from './link.component';
 
 describe('LinkComponent', () => {

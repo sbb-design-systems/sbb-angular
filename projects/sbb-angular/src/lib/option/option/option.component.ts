@@ -1,3 +1,4 @@
+import { Highlightable } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import {
@@ -7,22 +8,21 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostBinding,
+  HostListener,
+  Inject,
+  InjectionToken,
   Input,
   OnDestroy,
-  Output,
-  HostBinding,
-  ViewEncapsulation,
-  HostListener,
-  ViewChild,
-  QueryList,
   Optional,
-  InjectionToken,
-  Inject
+  Output,
+  QueryList,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Highlightable } from '@angular/cdk/a11y';
-import { OptionGroupComponent } from '../option-group/option-group.component';
 
+import { OptionGroupComponent } from '../option-group/option-group.component';
 
 /**
  * Option IDs need to be unique across components, so this counter exists outside of
@@ -62,46 +62,41 @@ export const SBB_OPTION_PARENT_COMPONENT =
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
-  _disabled = false;
   mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
   selected = false;
 
   @HostBinding('class.sbb-option-multiple')
-  get multiple() {
-    return this._parent && this._parent.multiple;
-  }
+  get multiple() { return this._parent && this._parent.multiple; }
 
   @HostBinding('attr.role')
   role = 'option';
 
   @HostBinding('attr.aria-selected')
-  get selectedString(): string { return this.selected.toString(); }
+  get ariaSelected() { return this.selected || null; }
 
   @HostBinding('attr.aria-disabled')
-  get disabledString(): string { return this._disabled.toString(); }
+  get ariaDisabled() { return this._disabled || null; }
 
   @Input()
   @HostBinding('class.sbb-option-disabled')
-  get disabled() {
-    this.changeDetectorRef.markForCheck();
-    return (this.group && this.group.disabled) || this._disabled;
-  }
+  get disabled() { return (this.group && this.group.disabled) || this._disabled; }
   set disabled(value: any) {
+    this._changeDetectorRef.markForCheck();
     this._disabled = coerceBooleanProperty(value);
   }
+  private _disabled = false;
 
   @HostBinding('attr.tabIndex')
-  get _getTabIndex(): string { return this.disabled ? '-1' : '0'; }
+  get tabIndex(): string { return this.disabled ? '-1' : '0'; }
 
   @HostBinding('class.sbb-active')
   active = false;
 
   @HostBinding('class.sbb-option-text') baseClass = true;
 
-  @Input()
-  value: any;
+  @Input() value: any;
 
   @Input()
   @HostBinding('attr.id')
@@ -115,15 +110,14 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   readonly stateChanges = new Subject<void>();
 
   constructor(
-    private element: ElementRef<HTMLElement>,
-    private changeDetectorRef: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>,
+    private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(SBB_OPTION_PARENT_COMPONENT) private _parent: SbbOptionParentComponent,
     @Optional() readonly group: OptionGroupComponent
   ) { }
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
-    // tslint:disable-next-line
     if (event.keyCode === ENTER || event.keyCode === SPACE) {
       this.selectViaInteraction();
 
@@ -136,7 +130,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   selectViaInteraction(): void {
     if (!this.disabled) {
       this.selected = this.multiple ? !this.selected : true;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent(true);
     }
   }
@@ -148,7 +142,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   select(): void {
     if (!this.selected) {
       this.selected = true;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent();
     }
   }
@@ -156,7 +150,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   deselect(): void {
     if (this.selected) {
       this.selected = false;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
       this._emitSelectionChangeEvent();
     }
   }
@@ -172,14 +166,14 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   setActiveStyles(): void {
     if (!this.active) {
       this.active = true;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
   setInactiveStyles(): void {
     if (this.active) {
       this.active = false;
-      this.changeDetectorRef.markForCheck();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
@@ -188,7 +182,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   getHostElement(): HTMLElement {
-    return this.element.nativeElement;
+    return this._elementRef.nativeElement;
   }
 
   ngAfterViewChecked() {

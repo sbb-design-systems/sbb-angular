@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { TimeInputDirective } from './time-input.directive';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
+
+import { TimeInputDirective } from './time-input.directive';
 
 @Component({
   template: `<input sbbTimeInput>`

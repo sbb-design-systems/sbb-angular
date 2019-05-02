@@ -1,8 +1,7 @@
 import { QueryList } from '@angular/core';
-import { OptionComponent, OptionGroupComponent } from '../option/option';
 
 import { Constructor } from '../_common/constructor';
-
+import { OptionComponent, OptionGroupComponent } from '../option/option';
 
 /** @docs-private */
 export interface HasOptions {
@@ -24,10 +23,10 @@ const mediaQueriesBreakpoints = [
 export class MediaQueryResizableComponent {
 
   get ems(): number {
-    return this.getEmByWindowWidth();
+    return this._getEmByWindowWidth();
   }
 
-  private getEmByWindowWidth(): number {
+  private _getEmByWindowWidth(): number {
     const windowWidth = window.innerWidth;
     const em = mediaQueriesBreakpoints.find((mediaQuery, index) => {
       if (index < mediaQueriesBreakpoints.length - 1) {

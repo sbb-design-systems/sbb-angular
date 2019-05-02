@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { IconCollectionModule } from 'sbb-angular-icons';
+
 import { ButtonModule } from '../../button/button';
 import { FieldModule } from '../../field/field';
-import { IconCollectionModule } from 'sbb-angular-icons';
 import { TooltipModule } from '../tooltip.module';
+
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER, TooltipComponent } from './tooltip.component';
 
 @Component({
@@ -77,7 +79,6 @@ describe('TooltipComponent', () => {
     expect(component.cssClass).toEqual(true);
   });
 });
-
 
 describe('TooltipComponent using mock component for single tooltip', () => {
 
@@ -205,9 +206,5 @@ describe('TooltipComponent using mock component for double tooltip', () => {
 
     expect(doubleComponentTest.t1.overlayAttached).toBeFalsy();
     expect(doubleComponentTest.t2.overlayAttached).toBe(true);
-
   });
-
-
 });
-

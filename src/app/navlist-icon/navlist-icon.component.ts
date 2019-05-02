@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { IconUiService } from '../services/icon-ui.service';
 import { UiIcon } from '../shared/ui-icon';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sbb-navlist-icon',
@@ -12,10 +13,10 @@ export class NavlistIconComponent implements OnInit {
 
   foundUiIcons: UiIcon[] = [];
 
-  constructor(private iconUiService: IconUiService) { }
+  constructor(private _iconUiService: IconUiService) { }
 
   ngOnInit() {
-    this.foundUiIcons = this.iconUiService.getAll();
+    this.foundUiIcons = this._iconUiService.getAll();
 
   }
 

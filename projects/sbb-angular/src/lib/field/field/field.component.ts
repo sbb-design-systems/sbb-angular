@@ -1,25 +1,26 @@
 import {
-  Component,
-  Input,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
-  Self,
-  ContentChild,
   AfterContentInit,
-  ContentChildren,
-  QueryList,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnDestroy
+  Component,
+  ContentChild,
+  ContentChildren,
+  Input,
+  OnChanges,
+  OnDestroy,
+  QueryList,
+  Self,
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
-import { HostClass } from '../../_common/host-class';
-import { LabelComponent } from '../label/label.component';
-import { FormErrorDirective } from '../form-error/form-error.directive';
-import { startWith, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FORM_FIELD } from '../form-field-token';
+import { startWith, takeUntil } from 'rxjs/operators';
+
+import { HostClass } from '../../_common/host-class';
+import { FormErrorDirective } from '../form-error/form-error.directive';
 import { FormFieldControl } from '../form-field-control';
+import { FORM_FIELD } from '../form-field-token';
+import { LabelComponent } from '../label/label.component';
 
 @Component({
   selector: 'sbb-field',
@@ -42,6 +43,7 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
   */
   @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
+  // tslint:disable-next-line: naming-convention
   @ContentChild(FormFieldControl) _control: FormFieldControl<any>;
   @ContentChild(LabelComponent) contentLabel: LabelComponent;
   @ContentChildren(FormErrorDirective) formErrors: QueryList<FormErrorDirective>;
@@ -49,7 +51,7 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
-    @Self() private hostClass: HostClass,
+    @Self() private _hostClass: HostClass,
     private _changeDetectorRef: ChangeDetectorRef,
   ) { }
 
@@ -61,7 +63,7 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.mode && changes.mode.currentValue !== changes.mode.previousValue) {
-      this.hostClass.apply(`sbb-input-field-${this.mode}`);
+      this._hostClass.apply(`sbb-input-field-${this.mode}`);
     }
   }
 

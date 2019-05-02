@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroupDirective, NgForm, FormControl } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 
 /** Provider that defines how form controls behave with regards to displaying error messages. */
 @Injectable({ providedIn: 'root' })
