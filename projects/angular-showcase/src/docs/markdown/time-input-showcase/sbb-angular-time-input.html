@@ -1,0 +1,61 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Time Input Overview</h1>
+  <p class="docs-markdown-p">Import time input module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { TimeInputModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <p class="docs-markdown-p">and then you can use the time input directive as seen below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">sbbTimeInput</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">The time input field accepts any numeric values and one character (for example a "." or "," or "-") but automatically formats them in the correct format "hh:mm". <br></p>
+  <p class="docs-markdown-p"><b>Attention, the time input doesn't apply any validation. This is up to the consumer.</b></p>
+  <p class="docs-markdown-p">To understand how the time input works, see the following cases:</p>
+  <table class="docs-markdown-table">
+    <thead>
+      <tr class="docs-markdown-tr">
+        <th class="docs-markdown-th">Input</th>
+        <th class="docs-markdown-th">Output</th>
+      </tr>
+    </thead>
+    <tbody class="docs-markdown-tbody">
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">16:30</td>
+        <td class="docs-markdown-td">16:30</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">1</td>
+        <td class="docs-markdown-td">01:00</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">12</td>
+        <td class="docs-markdown-td">12:00</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">123</td>
+        <td class="docs-markdown-td">12:30</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">1234</td>
+        <td class="docs-markdown-td">12:34</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">13567</td>
+        <td class="docs-markdown-td">13:56</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">3.56</td>
+        <td class="docs-markdown-td">03:56</td>
+      </tr>
+      <tr class="docs-markdown-tr">
+        <td class="docs-markdown-td">23,40</td>
+        <td class="docs-markdown-td">23:40</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

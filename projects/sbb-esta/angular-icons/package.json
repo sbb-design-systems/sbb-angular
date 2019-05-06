@@ -1,0 +1,15 @@
+{
+  "name": "@sbb-esta/angular-icons",
+  "version": "0.0.0-PLACEHOLDER",
+  "scripts": {
+    "lint": "ng lint @sbb-esta/angular-icons",
+    "test": "ng test @sbb-esta/angular-icons -c ci",
+    "build": "ng build @sbb-esta/angular-icons",
+    "build:schematics": "rollup --config rollup.config.js"
+  },
+  "schematics": "./schematics/collection.json",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  }
+}

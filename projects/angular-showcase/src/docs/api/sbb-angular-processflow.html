@@ -1,0 +1,269 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL processflow </h2>
+  <p class="docs-api-module-import">
+    <code> import { ProcessflowModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="ProcessflowComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ProcessflowComponent"></span>
+    <code>ProcessflowComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-processflow</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>stepChange: EventEmitter&lt;ProcessflowStep&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted to the change of step in the process flow.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>steps: QueryList&lt;ProcessflowStepComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the steps of process flow.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">changeStep </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Method to change a step in a process flow.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> index</p>
+        <code class="docs-api-method-parameter-type">number</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Index of the step to change.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">disableStep </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Method to disable a step in a process flow.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> index</p>
+        <code class="docs-api-method-parameter-type">number</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Index of the step to disable.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getActiveStep </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">nextStep </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">prevStep </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">reset </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">stepClick </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Method to change on a step with a click.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">any</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Event generated at the click on a step.</p>
+        </p>
+      </td>
+    </tr>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> stepIndex</p>
+        <code class="docs-api-method-parameter-type">number</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Index of a step.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="ProcessflowStepComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ProcessflowStepComponent"></span>
+    <code>ProcessflowStepComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-processflow-step</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>active: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the active status of a step in a process flow.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the disable status of a step in a process flow.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>title: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Title of a step in a process flow.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>descriptor: ProcessflowStep</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the processFlowStep istance.</p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="additional_classes" class="docs-header-link docs-api-h3">
+    <span header-link="additional_classes"></span> Additional classes </h3>
+  <h4 id="ProcessflowStep" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ProcessflowStep"></span>
+    <code>ProcessflowStep</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>active: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the active status of a step in a process flow.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>disabled: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the disable status of a step in a process flow.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>title: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Title of a step in a process flow.</p>
+      </td>
+    </tr>
+  </table>
+</div>

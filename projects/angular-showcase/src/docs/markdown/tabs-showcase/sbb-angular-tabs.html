@@ -1,0 +1,28 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Tabs Overview</h1>
+  <p class="docs-markdown-p"> Import tabs module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { TabsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <p class="docs-markdown-p">and then you can use the tab component as seen below (in this simple example you can navigate between tabs with left and right arrow)</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-tabs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tab</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Tab 1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content1-tab"</span> <span class="hljs-attr">labelId</span>=<span class="hljs-string">"content1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Content 1<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here comes the content for tab 1 ...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tab</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tab</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Tab 2"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content2-tab"</span> <span class="hljs-attr">labelId</span>=<span class="hljs-string">"content2"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Content 2<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here comes the content for tab 2 ...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tab</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tabs</span>&gt;</span>
+</code></pre>
+</body>
+
+</html>

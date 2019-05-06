@@ -1,0 +1,59 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Process Flow Overview</h1>
+  <p class="docs-markdown-p">Import process flow module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { ProcessflowModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <p class="docs-markdown-p">You can use process flow component as a workflow divided into step as see below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-processflow</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-processflow-step</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Schritt 1"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            Schrittinhalt 1
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-processflow-step</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-processflow-step</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Schritt 2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            Schrittinhalt 2
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-processflow-step</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-processflow-step</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Schritt 3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            Schrittinhalt 3
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-processflow-step</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-processflow</span>&gt;</span></code></pre>
+  <h4 class="docs-markdown-h4"> Move between steps in a process flow </h4>
+  <p class="docs-markdown-p">You can also use prevStep() and nextStep() functions to move respectively between previous and next step:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"> prevStep() {
+    <span class="hljs-keyword">const</span> activeStepIndex = <span class="hljs-keyword">this</span>.findActiveStepIndex(<span class="hljs-keyword">this</span>.steps.toArray());
+    <span class="hljs-keyword">if</span> (activeStepIndex &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">this</span>.disableStep(activeStepIndex);
+      <span class="hljs-keyword">this</span>.changeStep(activeStepIndex - <span class="hljs-number">1</span>);
+    }
+  }</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">nextStep() {
+    <span class="hljs-keyword">const</span> activeStepIndex = <span class="hljs-keyword">this</span>.findActiveStepIndex(<span class="hljs-keyword">this</span>.steps.toArray());
+    <span class="hljs-keyword">let</span> activatedStep = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">if</span> (activeStepIndex &lt; <span class="hljs-keyword">this</span>.steps.length - <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">this</span>.steps.forEach(<span class="hljs-function">(<span class="hljs-params">s, i</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (i &gt; activeStepIndex &amp;&amp; !activatedStep) {
+          s.active = <span class="hljs-literal">true</span>;
+          s.disabled = <span class="hljs-literal">false</span>;
+          activatedStep = <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span> {
+          s.active = <span class="hljs-literal">false</span>;
+        }
+      });
+      <span class="hljs-keyword">this</span>.changeDetectorRef.markForCheck();
+      <span class="hljs-keyword">this</span>.stepChange.emit(<span class="hljs-keyword">this</span>.steps.toArray()[activeStepIndex + <span class="hljs-number">1</span>]);
+    }
+  }</code></pre>
+  <p class="docs-markdown-p">or to reset the entire process flow with reset() function:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">reset() {
+    <span class="hljs-keyword">this</span>.processflow.reset();
+  }</code></pre>
+</body>
+
+</html>

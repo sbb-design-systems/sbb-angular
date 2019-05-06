@@ -1,0 +1,30 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Checkbox panel Overview</h1>
+  <p class="docs-markdown-p">Import checkbox panel module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { CheckboxPanelModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Multiple checkbox panel </li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of checkboxOptions; index as i"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox-panel</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"option.selected"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox-panel</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Multiple checkbox panel with subtitle</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Multiple checkbox panel with a subtitle<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox-panel</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span> [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked2"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span> <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox-panel</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Multiple checkbox panel with an icon</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Multiple checkbox panel with a subtitle and an icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox-panel</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span> [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked2"</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span> <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-heart</span> <span class="hljs-attr">icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-heart</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox-panel</span>&gt;</span></code></pre>
+</body>
+
+</html>

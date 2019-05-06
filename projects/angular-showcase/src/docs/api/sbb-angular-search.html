@@ -1,0 +1,389 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL search </h2>
+  <p class="docs-api-module-import">
+    <code> import { SearchModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="SearchComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SearchComponent"></span>
+    <code>SearchComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-search</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbAutocomplete&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>autocomplete: AutocompleteComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The autocomplete panel to be attached to this trigger.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbAutocompleteDisabled&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>autocompleteDisabled: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the autocomplete is disabled. When disabled, the element will act as a regular input and the user won&#39;t be able to open the panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbAutocompleteConnectedTo&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>connectedTo: AutocompleteOriginDirective</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Reference relative to which to position the autocomplete panel. Defaults to the autocomplete trigger element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>mode: &#39;header&#39; | &#39;default&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Sets the search in default mode or in header mode, where the input field with the search button is shown only after clicking on a trigger</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>placeholder: &#39;&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Adds a placeholder to the component</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>search: EventEmitter&lt;string&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted when:</p>
+        <ul>
+          <li>ENTER key is pressed on the input field</li>
+          <li>the search button is activated</li>
+          <li>an autocomplete option is selected</li>
+        </ul>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>activeOption: OptionComponent | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The currently active option, coerced to SbbOption type.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>contentId: &#39;sbb-search-content-id-&#39; + searchFieldCounter</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of search content.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class on search component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hideSearch: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Used to switch from trigger to search box when in &#39;header&#39; mode</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (value: any) =&gt; void</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p><code>View -&gt; model callback called when value changes</code></p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p><code>View -&gt; model callback called when autocomplete has been touched</code></p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>optionSelections: Observable&lt;SBBOptionSelectionChange&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Stream of autocomplete option selections.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelClosingActions: Observable&lt;SBBOptionSelectionChange | null&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A stream of actions that should close the autocomplete panel, including when an option is selected, on blur, and when TAB is pressed.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelOpen: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether or not the autocomplete panel is open.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>searchFieldId: &#39;sbb-search-id-&#39; + searchFieldCounter++</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of search.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">closePanel </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Closes the autocomplete suggestion panel.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">handleKeydown </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">KeyboardEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">highlightOptionsByInput </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Highlights options available into the autocomplete panel while typing</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> value</p>
+        <code class="docs-api-method-parameter-type">string | number</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">isSearchBoxFocused </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Checks if the search box is focused or not, depending on this, proper style is applied to the component</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">boolean</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onBlur </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">any</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">openPanel </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Opens the autocomplete suggestion panel.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">revealSearchbox </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Reveals the search box when using the &#39;header&#39; mode.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">scrollToOption </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Scrolls to the option when using arrow keys to navigate the autocomplete panel</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="SearchIconDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SearchIconDirective"></span>
+    <code>SearchIconDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbSearchIcon]</span>
+  </p>
+  <h3 id="additional_classes" class="docs-header-link docs-api-h3">
+    <span header-link="additional_classes"></span> Additional classes </h3>
+  <h4 id="SearchChangeEvent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="SearchChangeEvent"></span>
+    <code>SearchChangeEvent</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>instance: SearchComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Instance of search field component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isUserInput: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>States if the search field has been opened by a click.</p>
+      </td>
+    </tr>
+  </table>
+</div>

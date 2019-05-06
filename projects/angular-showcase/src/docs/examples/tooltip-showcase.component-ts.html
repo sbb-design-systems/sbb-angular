@@ -1,0 +1,18 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-tooltip-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./tooltip-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./tooltip-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TooltipShowcaseComponent {
+  tooltipContent = <span class="hljs-string">'Tooltip-Inhalt'</span>;
+
+  onOpen($event) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'opened'</span>, $event);
+  }
+
+  onClose($event) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'closed'</span>, $event);
+  }
+}

@@ -1,0 +1,30 @@
+<span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-checkbox-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./checkbox-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./checkbox-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> CheckboxShowcaseComponent {
+  required: <span class="hljs-built_in">boolean</span>;
+  disabled: <span class="hljs-built_in">boolean</span>;
+  checked: <span class="hljs-built_in">boolean</span>;
+
+  checkboxOptions = [
+    {
+      name: <span class="hljs-string">'Check 1'</span>,
+      value: <span class="hljs-string">'value1'</span>,
+      selected: <span class="hljs-literal">true</span>
+    },
+    {
+      name: <span class="hljs-string">'Check 2'</span>,
+      value: <span class="hljs-string">'value2'</span>,
+      selected: <span class="hljs-literal">false</span>
+    },
+    {
+      name: <span class="hljs-string">'Check 3'</span>,
+      value: <span class="hljs-string">'value3'</span>,
+      selected: <span class="hljs-literal">false</span>
+    }
+  ];
+}

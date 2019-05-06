@@ -1,0 +1,462 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL toggle </h2>
+  <p class="docs-api-module-import">
+    <code> import { ToggleModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="ToggleComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ToggleComponent"></span>
+    <code>ToggleComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-toggle</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>formControlName: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Indicates radio button name in formControl</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>inputId: `sbb-toggle-${counter++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Radio button panel identifier</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>name: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Attribute name of sbb-toggle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>toggleChange: EventEmitter&lt;any[]&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event generated on a change of sbb-toggle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (_: any) =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a change on the radio button</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a touch on the radio button</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: &#39;radiogroup&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Role of sbb-toggle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>toggleClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class on sbb-toggle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>toggleOptions: QueryList&lt;ToggleOptionComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Reference to sbb-toggle-options.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">uncheck </th>
+      </tr>
+    </thead>
+  </table>
+  <h4 id="ToggleOptionIconDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ToggleOptionIconDirective"></span>
+    <code>ToggleOptionIconDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbToggleOptionIcon]</span>
+  </p>
+  <h4 id="ToggleOptionComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ToggleOptionComponent"></span>
+    <code>ToggleOptionComponent</code>
+    <span class="docs-api-class-extends-clauses">
+      <span class="docs-api-class-extends-label">extends</span>
+      <span class="docs-api-class-extends-type">RadioButtonComponent</span>
+    </span>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-toggle-option</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-describedby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaDescribedby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-describedby&#39; attribute is read after the element&#39;s label and field type.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-label&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabel: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Used to set the &#39;aria-label&#39; attribute on the underlying input element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-labelledby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabelledby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-labelledby&#39; attribute takes precedence as the element&#39;s text alternative.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>checked: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Verifies if a sbb-toggle-option is selected.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Verifies if a toggle option is disabled.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>icon: TemplateRef&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the icon optionally contained in a toggle option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>infoText: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Information text in a sbb-toggle-option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>inputId: `sbb-toggle-option-${counter++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of a sbb-toggle-option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Label of a sbb-toggle-option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>name: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Name of a toggle parent of options. It should not be used here but it should be set on sbb-toggle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>required: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Indicates that the radio button field is required</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>value: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Value of a sbb-toggle-option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaControls: string | undefined</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Aria controls associated to toggle option content.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaExpandedValue: boolean | undefined</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Aria expanded value is true when a toggle button is selected.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>contentContainer: ElementRef&lt;Element&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the content of a toggle option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>contentId: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of sbb-toggle content.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>filteredContentNodes: ChildNode[]</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Filter on a toggle option content.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>labelId: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of sbb-toggle label.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (_: any) =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a change on the radio button</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a touch on the radio button</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>toggleOptionClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of sbb-toggle-option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>toggleOptionHasContent: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Verifies the presence of text in a toggle option.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>valueChange$: Subject&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Observable on change of the value of a toggle option.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">click </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Manage the event click on the radio button</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">Event</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">setToggleChecked </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Set value of a toggle option to checked.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> checked</p>
+        <code class="docs-api-method-parameter-type">boolean</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>Value checked.</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">uncheck </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Unchecks the radio button</p>
+      </td>
+    </tr>
+  </table>
+</div>

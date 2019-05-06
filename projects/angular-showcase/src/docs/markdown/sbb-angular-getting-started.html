@@ -1,0 +1,75 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Getting Started</h1>
+  <p class="docs-markdown-p">Basic steps to integrate the ACL library into your own project. </p>
+  <h2 class="docs-markdown-h2">Step 0: Prerequisites</h2>
+  <p class="docs-markdown-p">You need to install <a href="https://nodejs.org/it/" class="docs-markdown-a">Node.js</a> first, and assure yourself to have a working javascript dependency manager like <a href="https://www.npmjs.com/" class="docs-markdown-a">npm</a> or <a href="https://yarnpkg.com/lang/en/" class="docs-markdown-a">yarn</a>.</p>
+  <p class="docs-markdown-p">Also we recommend to install globally the latest Angular CLI using the following command:</p>
+  <pre class="docs-markdown-pre"><code class="language-sh docs-markdown-code">npm install -g @angular/cli</code></pre>
+  <p class="docs-markdown-p">or using yarn:</p>
+  <pre class="docs-markdown-pre"><code class="language-sh docs-markdown-code">yarn global add @angular/cli</code></pre>
+  <p class="docs-markdown-p">You can create now your project as described in the official <a href="https://cli.angular.io/" class="docs-markdown-a">Angular CLI documentation</a>.</p>
+  <h2 class="docs-markdown-h2">Step 1: Install ACL library</h2>
+  <p class="docs-markdown-p">Just after you created your own Angular project, in order to include the ACL library, you have to install the <code class="docs-markdown-code">@sbb-esta/angular-public</code>, <code class="docs-markdown-code">@sbb-esta/angular-icons</code> and <code class="docs-markdown-code">@angular/cdk</code> dependencies:</p>
+  <pre class="docs-markdown-pre"><code class="language-sh docs-markdown-code">npm install --save @sbb-esta/angular-public @sbb-esta/angular-icons @angular/cdk</code></pre>
+  <p class="docs-markdown-p">or, if using yarn:</p>
+  <pre class="docs-markdown-pre"><code class="language-sh docs-markdown-code">yarn add @sbb-esta/angular-public @sbb-esta/angular-icons @angular/cdk</code></pre>
+  <h2 class="docs-markdown-h2">Step 2: Configure animations</h2>
+  <p class="docs-markdown-p">Once the "@sbb-esta/angular-public" package is installed, you have to configure your application to enable animations support:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { BrowserAnimationsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser/animations'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  ...
+  imports: [BrowserAnimationsModule],
+  ...
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TrainChooChooAppModule { }</code></pre>
+  <p class="docs-markdown-p">if you prefer not to have the animations, you have to configure your application with the <code class="docs-markdown-code">NoopAnimationsModule</code>:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { NoopAnimationsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser/animations'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  ...
+  imports: [NoopAnimationsModule],
+  ...
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TrainChooChooAppModule { }</code></pre>
+  <h2 class="docs-markdown-h2">Step 3: Include typography CSS</h2>
+  <p class="docs-markdown-p">Including typography is required to apply all SBB styles to your application. That is doable by editing the <code class="docs-markdown-code">styles.(s)css</code>:</p>
+  <pre class="docs-markdown-pre"><code class="language-css docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'../node_modules/@sbb-esta/angular-public/typography.css'</span>;</code></pre>
+  <p class="docs-markdown-p">or editing your <code class="docs-markdown-code">angular.json</code>:</p>
+  <pre class="docs-markdown-pre"><code class="language-json docs-markdown-code">  ...
+  "styles": [
+    "src/styles.scss",
+    "node_modules/@sbb-esta/angular-public/typography.css"
+  ],
+  ...</code></pre>
+  <p class="docs-markdown-p">If you need more details about what the typography offers to you, you can get to <a href="./typography" class="docs-markdown-a">typography</a>.</p>
+  <h2 class="docs-markdown-h2">Step 4: Import the component modules</h2>
+  <p class="docs-markdown-p">Import the NgModule for each component you want to use:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { ButtonModule, CheckboxModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  ...
+  imports: [ButtonModule, CheckboxModule],
+  ...
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TrainChooChooAppModule { }</code></pre>
+  <p class="docs-markdown-p">Alternatively, you can create a separate NgModule that imports all of the ACL components that you will use in your application. You can then include this module wherever you'd like to use the components.</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { ButtonModule, CheckboxModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  imports: [ButtonModule, CheckboxModule],
+  exports: [ButtonModule, CheckboxModule],
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyOwnCustomACLModule { }</code></pre>
+  <p class="docs-markdown-p">Whichever approach you use, be sure to import the ACL modules after Angular's BrowserModule, as the import order matters for NgModules.</p>
+  <h2 class="docs-markdown-h2">Step 5 (Optional): Use mixins and functions from the library</h2>
+  <p class="docs-markdown-p">If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import <code class="docs-markdown-code">styles.scss</code> from the library into your <code class="docs-markdown-code">styles.scss</code>:</p>
+  <pre class="docs-markdown-pre"><code class="language-scss docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'../node_modules/@sbb-esta/angular-public/styles.scss'</span>;</code></pre>
+  <p class="docs-markdown-p">You can start building your app using <a href="./components-list" class="docs-markdown-a">components</a> or <a href="./icons-list" class="docs-markdown-a">icons</a>.</p>
+</body>
+
+</html>

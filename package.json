@@ -1,32 +1,20 @@
 {
-  "name": "sbb-angular-showcase",
-  "version": "1.1.0",
+  "name": "@sbb-esta/angular-showcase",
+  "version": "0.0.0-PLACEHOLDER",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "clean": "rimraf dist coverage lintReport.json",
-    "build": "run-s build:sbb-angular-icons build:sbb-angular build:sbb-angular-showcase",
-    "build:sbb-angular": "run-s build:sbb-angular:ng build:sbb-angular:styles build:sbb-angular:typography",
-    "build:sbb-angular:ng": "ng build sbb-angular",
-    "build:sbb-angular:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
-    "build:sbb-angular:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
-    "build:sbb-angular-icons": "run-s build:sbb-angular-icons:*",
-    "build:sbb-angular-icons:ng": "ng build sbb-angular-icons",
-    "build:sbb-angular-icons:schematics": "rollup --config rollup.config.js",
-    "build:sbb-angular-showcase": "ng build sbb-angular-showcase --prod",
-    "test": "run-s test:*",
-    "test:sbb-angular-showcase": "ng test sbb-angular-showcase -c ci",
-    "test:sbb-angular": "ng test sbb-angular -c ci",
-    "lint": "run-s lint:*",
-    "lint:sbb-angular-showcase": "ng lint sbb-angular-showcase",
-    "lint:sbb-angular": "run-s lint:sbb-angular:*",
-    "lint:sbb-angular:console": "ng lint sbb-angular",
-    "lint:sbb-angular:report": "ng lint sbb-angular --format=json > lintReport.json",
-    "sonar": "cross-env-shell \"sonar-scanner -Dsonar.projectVersion=$npm_package_version -Dsonar.branch.name=$BRANCH_NAME\"",
-    "e2e": "ng e2e",
+    "lint": "ng lint angular-showcase",
+    "test": "ng test angular-showcase -c ci",
+    "build": "ng build angular-showcase --prod",
+    "build:angular-icons": "cd projects/sbb-esta/angular-icons && npm run build",
+    "build:angular-icons:schematics": "cd projects/sbb-esta/angular-icons && npm run build:schematics",
+    "build:angular-public": "cd projects/sbb-esta/angular-public && npm run build",
+    "e2e": "ng e2e angular-showcase",
     "docs": "gulp docs"
   },
-  "private": true,
+  "files": "./dist/angular-showcase/**/*",
   "dependencies": {
     "@angular/animations": "^7.2.0",
     "@angular/cdk": "^7.2.1",
@@ -49,12 +37,12 @@
     "zone.js": "^0.8.27"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.12.1",
-    "@angular-devkit/build-ng-packagr": "^0.12.1",
+    "@angular-devkit/build-angular": "0.13.8",
+    "@angular-devkit/build-ng-packagr": "0.13.8",
     "@angular-devkit/core": "^7.3.8",
     "@angular-devkit/schematics": "^7.3.8",
-    "@angular-devkit/schematics-cli": "^0.13.8",
-    "@angular/cli": "^7.2.1",
+    "@angular-devkit/schematics-cli": "0.13.8",
+    "@angular/cli": "7.3.8",
     "@angular/compiler-cli": "^7.2.0",
     "@angular/language-service": "^7.2.0",
     "@types/grecaptcha": "^2.0.36",
@@ -123,6 +111,9 @@
   "optionalDependencies": {
     "puppeteer": "^1.11.0"
   },
+  "staging": {
+    "root": "./dist/angular-showcase"
+  },
   "prettier": {
     "singleQuote": true,
     "overrides": [
@@ -143,7 +134,7 @@
     "*.{js,ts,css,scss,json,md,html}": [
       "prettier --write",
       "git add",
-      "npx ng lint sbb-angular"
+      "npx ng lint @sbb-esta/angular-public"
     ]
   }
 }

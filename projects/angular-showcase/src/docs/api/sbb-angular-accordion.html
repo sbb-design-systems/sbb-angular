@@ -1,0 +1,610 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL accordion </h2>
+  <p class="docs-api-module-import">
+    <code> import { AccordionModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="AccordionComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="AccordionComponent"></span>
+    <code>AccordionComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-accordion</span>
+  </p><span class="docs-api-class-export-label">Exported as:</span>
+  <span class="docs-api-class-export-name">sbbAccordion</span>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>hideToggle: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the expansion indicator should be hidden.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>multi: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the accordion should allow multiple expanded accordion items.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>headers: QueryList&lt;ExpansionPanelHeaderComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the headers of the panels of the accordion.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>sbbAccordionClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the attribute class of the accordion.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">handleHeaderFocus </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Handles a event coming on a header of a panel associated at a specific item.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> header</p>
+        <code class="docs-api-method-parameter-type">ExpansionPanelHeaderComponent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">handleHeaderKeydown </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Handles keyboard events coming in from the panel headers.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">KeyboardEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="ExpansionPanelComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ExpansionPanelComponent"></span>
+    <code>ExpansionPanelComponent</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p><code>&lt;sbb-expansion-panel&gt;</code></p>
+    <p>This component can be used as a single element to show expandable content, or as one of multiple children of an element with the SbbAccordion component attached.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-expansion-panel</span>
+  </p><span class="docs-api-class-export-label">Exported as:</span>
+  <span class="docs-api-class-export-name">sbbExpansionPanel</span>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property to disable a specific panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>expanded: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property to expand a specific panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>hideToggle: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the toggle indicator should be hidden.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>closed: EventEmitter&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>An event generated when a panel is closed.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>expandedChange: EventEmitter&lt;boolean&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>An event generated when change the status of the expansion panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>opened: EventEmitter&lt;void&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>An event generated when a panel is opened.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>accordion: IAccordionBase</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Optionally defined accordion the expansion panel belongs to.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>body: ElementRef&lt;HTMLElement&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Element containing the panel&#39;s user-provided content.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>expandedPanelClass: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the status of expansion of the panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>headerId: `sbb-expansion-panel-header-${uniqueId++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>ID for the associated header element. Used for a11y labelling.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>lazyContent: ExpansionPanelContentDirective</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Content that will be rendered lazily.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>portal: TemplatePortal</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Portal holding the user&#39;s content.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>sbbExpansionPanelClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the attribute class of the panel.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">bodyAnimation </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">AnimationEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">containsFocus </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Checks whether the expansion panel&#39;s content contains the currently-focused element.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">boolean</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getExpandedState </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets the expanded state string.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">ExpansionPanelState</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="ExpansionPanelHeaderComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ExpansionPanelHeaderComponent"></span>
+    <code>ExpansionPanelHeaderComponent</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p><code>&lt;sbb-expansion-panel-header&gt;</code></p>
+    <p>This component corresponds to the header element of an <code>&lt;sbb-expansion-panel&gt;</code>.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-expansion-panel-header</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaDisabled: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that gets the status disabled of the panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>getPanelId: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Gets the panel id.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hasNoToggle: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that identifies a header panel without toggle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isExpanded: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Gets whether the panel is expanded.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panel: ExpansionPanelComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the ExpansionPanelComponent.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelHeaderAttrId: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the identifier of the header panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelHeaderClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the attribute class of the header panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelHeaderRole: &#39;button&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that refers to the role of the header panel.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getExpandedState </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets the expanded state string of the panel.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">string</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">keydown </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Handle keydown event calling to toggle() if appropriate.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">KeyboardEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">showToggle </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Gets whether the expand indicator should be shown.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">boolean</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">toggle </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Toggles the expanded state of the panel.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="ExpansionPanelContentDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ExpansionPanelContentDirective"></span>
+    <code>ExpansionPanelContentDirective</code>
+  </h4>
+  <p class="docs-api-class-description">
+    <p>Expansion panel content that will be rendered lazily after the panel is opened for the first time.</p>
+  </p>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">ng-template[sbbExpansionPanelContent]</span>
+  </p>
+  <h3 id="additional_interfaces" class="docs-header-link docs-api-h3">
+    <span header-link="additional_interfaces"></span> Additional interfaces </h3>
+  <h4 id="IAccordionBase" class="docs-header-link docs-api-h4 docs-api-interface-name">
+    <span header-link="IAccordionBase"></span>
+    <code>IAccordionBase</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>handleHeaderFocus: (header: any) =&gt; void</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Handles focus events on the panel headers.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>handleHeaderKeydown: (event: KeyboardEvent) =&gt; void</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Handles keyboard events coming in from the panel headers.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hideToggle: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the expansion indicator should be hidden.</p>
+      </td>
+    </tr>
+  </table>
+  <h3 id="additional_type_aliases" class="docs-header-link docs-api-h3">
+    <span header-link="additional_type_aliases"></span> Additional type aliases </h3>
+  <h4 id="ExpansionPanelState" class="docs-header-link docs-api-h4 docs-api-type-alias-name">
+    <span header-link="ExpansionPanelState"></span>
+    <code>ExpansionPanelState</code>
+  </h4>
+  <p class="docs-api-type-alias-description">
+    <p>SbbExpansionPanel&#39;s states.</p>
+  </p>
+  <p class="docs-api-type-alias-value">
+    <span class="docs-api-type-alias-value-label">Type:</span>
+    <code class="docs-api-type-alias-value">&#39;expanded&#39; | &#39;collapsed&#39;</code>
+  </p>
+</div>

@@ -1,0 +1,91 @@
+<span class="hljs-keyword">import</span> { Component, OnInit, ViewChild } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { TabsComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-tabs-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./tabs-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./tabs-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TabsShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'tabs'</span>) tabsComponent: TabsComponent;
+
+  disabled = <span class="hljs-literal">false</span>;
+  removed = <span class="hljs-literal">false</span>;
+
+  dataSet = <span class="hljs-string">'1'</span>;
+  data = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'50'</span>, <span class="hljs-string">'550'</span>];
+
+  personInitialLoad = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">'Max'</span>, surname: <span class="hljs-string">'Muster'</span> };
+
+  person = [];
+
+  personList = [
+    { name: <span class="hljs-string">'Peter'</span>, surname: <span class="hljs-string">'Hahn'</span> },
+    { name: <span class="hljs-string">'Andreas'</span>, surname: <span class="hljs-string">'Hofstetter'</span> },
+    { name: <span class="hljs-string">'Paul'</span>, surname: <span class="hljs-string">'Walker'</span> },
+    { name: <span class="hljs-string">'Urs'</span>, surname: <span class="hljs-string">'Fischer'</span> },
+    { name: <span class="hljs-string">'Antonio'</span>, surname: <span class="hljs-string">'Conte'</span> },
+    { name: <span class="hljs-string">'Miriam'</span>, surname: <span class="hljs-string">'Höller'</span> },
+    { name: <span class="hljs-string">'Veronika'</span>, surname: <span class="hljs-string">'Schmidt'</span> },
+    { name: <span class="hljs-string">'Petra'</span>, surname: <span class="hljs-string">'Ivanov'</span> },
+    { name: <span class="hljs-string">'Alexandra'</span>, surname: <span class="hljs-string">'Maurer'</span> },
+    { name: <span class="hljs-string">'Adriana'</span>, surname: <span class="hljs-string">'Lima'</span> }
+  ];
+
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.person.push(<span class="hljs-keyword">this</span>.personInitialLoad);
+  }
+
+  <span class="hljs-keyword">private</span> _initialPersonArrayByAmount(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (counter &lt; amount) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item of <span class="hljs-keyword">this</span>.personList) {
+        counter++;
+        <span class="hljs-keyword">this</span>.person.push({
+          id: counter,
+          name: item.name,
+          surname: item.surname
+        });
+      }
+    }
+  }
+
+  removeChange(removedTabId: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">this</span>.openPrevTabByTabIdOrDefault(removedTabId);
+  }
+
+  disableChange(disabledTabId: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">this</span>.openPrevTabByTabIdOrDefault(disabledTabId);
+  }
+
+  openPrevTabByTabIdOrDefault(tabId: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">const</span> tabsArray = <span class="hljs-keyword">this</span>.tabsComponent.tabs.toArray();
+    <span class="hljs-keyword">const</span> activeTab = tabsArray.findIndex(<span class="hljs-function"><span class="hljs-params">currTab</span> =&gt;</span> currTab.active);
+    <span class="hljs-keyword">const</span> selectedTabIndex = tabsArray.findIndex(<span class="hljs-function"><span class="hljs-params">tab</span> =&gt;</span> tab.id === tabId);
+
+    <span class="hljs-keyword">if</span> (activeTab === selectedTabIndex) {
+      <span class="hljs-keyword">if</span> (selectedTabIndex &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">this</span>.tabsComponent.openTabByIndex(selectedTabIndex - <span class="hljs-number">1</span>);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.tabsComponent.openFirstTab();
+      }
+    }
+  }
+
+  onChangeOfDataSet(event) {
+    <span class="hljs-keyword">this</span>.person = [];
+    <span class="hljs-keyword">if</span> (event.startsWith(<span class="hljs-string">'1'</span>)) {
+      <span class="hljs-keyword">this</span>.person.push(<span class="hljs-keyword">this</span>.personInitialLoad);
+    }
+    <span class="hljs-keyword">if</span> (event.startsWith(<span class="hljs-string">'50'</span>)) {
+      <span class="hljs-keyword">this</span>._initialPersonArrayByAmount(<span class="hljs-number">50</span>);
+    }
+    <span class="hljs-keyword">if</span> (event.startsWith(<span class="hljs-string">'550'</span>)) {
+      <span class="hljs-keyword">this</span>._initialPersonArrayByAmount(<span class="hljs-number">550</span>);
+    }
+  }
+
+  getCountOfPersons(): <span class="hljs-built_in">number</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(<span class="hljs-keyword">this</span>.person).length;
+  }
+}

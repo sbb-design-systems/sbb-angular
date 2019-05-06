@@ -1,0 +1,69 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Ghettobox Overview</h1>
+  <p class="docs-markdown-p">Import ghettobox module in your application </p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { GhettoboxModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <h2 class="docs-markdown-h2">Standalone Ghettobox</h2>
+  <h3 id="simple-ghettobox" class="docs-header-link docs-markdown-h3">
+    <span header-link="simple-ghettobox"></span> Simple Ghettobox </h3>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span>&gt;</span>
+  This is a simple message with a simple <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> inside.
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox</span>&gt;</span></code></pre>
+  <h3 id="ghettobox-with-code-routerlink-code-set-and-custom-icon" class="docs-header-link docs-markdown-h3">
+    <span header-link="ghettobox-with-code-routerlink-code-set-and-custom-icon"></span> Ghettobox with <code class="docs-markdown-code">routerLink</code> set and custom icon </h3>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span> (<span class="hljs-attr">afterDelete</span>)=<span class="hljs-string">"afterDelete($event)"</span>
+               [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.', 'test']"</span> 
+               [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{debug: false}"</span> 
+               <span class="hljs-attr">fragment</span>=<span class="hljs-string">"test"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-him-disruption</span> *<span class="hljs-attr">sbbGhettoboxIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-him-disruption</span>&gt;</span>
+  This is a Link ghettobox with custom icon.
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">You can subscribe to the <code class="docs-markdown-code">afterDelete</code> stream to get notified when the ghettobox is being deleted.</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">afterDelete(evt: GhettoboxDeletedEvent) {
+  <span class="hljs-comment">// Do something with evt.ghettoboxState and evt.ghettoboxId</span>
+}</code></pre>
+  <h2 class="docs-markdown-h2">Ghettobox within a Ghettobox container (operable by <code class="docs-markdown-code">GhettoboxService</code>)</h2>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox-container</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.', 'test']"</span> [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{debug: true}"</span> <span class="hljs-attr">fragment</span>=<span class="hljs-string">"test"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-him-disruption</span> *<span class="hljs-attr">sbbGhettoboxIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-him-disruption</span>&gt;</span>
+    This is an initial ghettobox into a container.
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox-container</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">You can use the <code class="docs-markdown-code">GhettoboxService</code> API to add | delete | clear and more. For instance.</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">addGhettobox(message: <span class="hljs-built_in">string</span>) {
+  <span class="hljs-keyword">const</span> ghettobox: Ghettobox = { message: <span class="hljs-string">'message'</span>, link: LinkGeneratorResult, icon: TemplateRef }
+  <span class="hljs-keyword">const</span> ghettoboxRef = <span class="hljs-keyword">this</span>._ghettoboxService.add(ghettobox);
+
+  ghettoboxRef.afterDelete.pipe(first()).subscribe(
+    <span class="hljs-function">(<span class="hljs-params">evt: GhettoboxDeletedEvent</span>) =&gt;</span> {
+      <span class="hljs-comment">// Do something with evt.ghettoboxState and evt.ghettoboxId</span>
+    }
+  );
+}</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">deleteById(id: <span class="hljs-built_in">string</span>) {
+  <span class="hljs-keyword">this</span>._ghettoboxService.deleteById(id);
+}</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">deleteByIndex(index: <span class="hljs-built_in">number</span>) {
+  <span class="hljs-keyword">this</span>._ghettoboxService.deleteByIndex(index);
+}</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">deleteByRef() {
+  <span class="hljs-keyword">const</span> ghettoboxRef: GhettoboxRef = <span class="hljs-keyword">this</span>._ghettoboxService.attachedGhettoboxes[<span class="hljs-number">0</span>];
+  ghettoboxRef.delete();
+}</code></pre>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">clear() {
+  <span class="hljs-keyword">this</span>._ghettoboxService.clearAll();
+}</code></pre>
+  <p class="docs-markdown-p">You can also subscribe on <code class="docs-markdown-code">containerReady</code> Observable if you want to do something at page load. For Instance.</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> _ghettoboxService: GhettoboxService</span>) {
+  <span class="hljs-keyword">this</span>._ghettoboxService.containerReady.subscribe(
+    <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">this</span>._ghettoboxService.add({ message: <span class="hljs-string">'This ghettobox is loaded at page load'</span> });
+    }
+  );
+}</code></pre>
+</body>
+
+</html>

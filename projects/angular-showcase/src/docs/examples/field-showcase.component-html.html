@@ -1,0 +1,121 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span> [<span class="hljs-attr">formGroup</span>]=<span class="hljs-string">"form"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+            Field with attribute label (Input is required)
+          <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Name"</span> [<span class="hljs-attr">mode</span>]=<span class="hljs-string">"inputMode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+              <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+              <span class="hljs-attr">sbbInput</span>
+              <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"name1"</span>
+              <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>
+              <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Name"</span>
+              <span class="hljs-attr">spellcheck</span>=<span class="hljs-string">"false"</span>
+            /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name1').errors?.required"</span>
+              &gt;</span>Name is required!<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+            &gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Model: {{ form.get('name1').value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+            Field with sbb-label (Input is required and must be at least 3
+            characters)
+          <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> [<span class="hljs-attr">mode</span>]=<span class="hljs-string">"inputMode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+              <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+              <span class="hljs-attr">sbbInput</span>
+              <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"name2"</span>
+              <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>
+              <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Name"</span>
+              <span class="hljs-attr">spellcheck</span>=<span class="hljs-string">"false"</span>
+              <span class="hljs-attr">required</span>
+              <span class="hljs-attr">minlength</span>=<span class="hljs-string">"3"</span>
+            /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name2').errors?.required"</span>
+              &gt;</span>Name is required!<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+            &gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name2').errors?.minlength"</span>
+              &gt;</span>Name must contain at least 3 characters!
+            <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Model: {{ form.get('name2').value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Field with select<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Number"</span> [<span class="hljs-attr">mode</span>]=<span class="hljs-string">"inputMode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">sbbInput</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"select1"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Eins<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Zwei<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Drei<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('select1').errors?.required"</span>
+              &gt;</span>Number is required!<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+            &gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Model: {{ form.get('select1').value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Field with sbb-select<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Variant"</span> [<span class="hljs-attr">mode</span>]=<span class="hljs-string">"inputMode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-select</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Select a number"</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"select2"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let value of [1, 2, 3]"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"value"</span>
+                &gt;</span>Variant {{ value }}<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>
+              &gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-select</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span>
+              *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"
+                form.get('select2').touched &amp;&amp;
+                form.get('select2').errors?.required
+              "</span>
+            &gt;</span>
+              Variant is required!<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+            &gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Model: {{ form.get('select2').value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Field with sbb-datepicker<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Date"</span> [<span class="hljs-attr">mode</span>]=<span class="hljs-string">"inputMode"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> <span class="hljs-attr">arrows</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">sbbInput</span> <span class="hljs-attr">sbbDateInput</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"date"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span>
+              *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"
+                form.get('date').touched &amp;&amp; form.get('date').errors?.required
+              "</span>
+            &gt;</span>
+              Date is required!<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+            &gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Model: {{ form.get('date').value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Modes :<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">select</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"inputMode"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let mode of modes"</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"mode"</span>&gt;</span>{{
+            mode
+          }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
+        <span class="hljs-attr">inputId</span>=<span class="hljs-string">"disabled"</span>
+        <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>
+        (<span class="hljs-attr">click</span>)=<span class="hljs-string">"toggleDisabled($event)"</span>
+        &gt;</span>Disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
+      &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"reset()"</span>&gt;</span>Reset<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
