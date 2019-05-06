@@ -7,8 +7,6 @@
 
 # dependencies
 /node_modules
-/docker/node_modules
-/docker/yarn.lock
 
 # IDEs and editors
 /.idea

@@ -22,8 +22,7 @@
     "lint:sbb-angular": "run-s lint:sbb-angular:*",
     "lint:sbb-angular:console": "ng lint sbb-angular",
     "lint:sbb-angular:report": "ng lint sbb-angular --format=json > lintReport.json",
-    "sonar": "sonar-scanner",
-    "sbb:publish": "node scripts/publish.js",
+    "sonar": "cross-env-shell \"sonar-scanner -Dsonar.projectVersion=$npm_package_version -Dsonar.branch.name=$BRANCH_NAME\"",
     "e2e": "ng e2e",
     "docs": "gulp docs"
   },
@@ -65,6 +64,7 @@
     "@types/node": "^8.10.37",
     "@types/run-sequence": "^0.0.30",
     "codelyzer": "^4.5.0",
+    "cross-env": "^5.2.0",
     "dgeni": "^0.4.11",
     "dgeni-packages": "^0.27.1",
     "gulp": "^3.9.1",
