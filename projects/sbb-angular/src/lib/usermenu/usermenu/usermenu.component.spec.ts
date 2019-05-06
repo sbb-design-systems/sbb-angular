@@ -13,6 +13,7 @@ import { UserMenuModule } from '../usermenu.module';
 
 import { UserMenuComponent } from './usermenu.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-usermenu-test',
   template: `

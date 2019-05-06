@@ -9,6 +9,7 @@ import {
 import { ButtonIconDirective } from './button-icon.directive';
 import { ButtonComponent } from './button.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-button-test',
   template: `

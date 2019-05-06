@@ -27,6 +27,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-breadcrumbs-test',
   template: `

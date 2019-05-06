@@ -17,6 +17,7 @@ import { PaginationModule } from '../pagination.module';
 
 import { PaginationComponent } from './pagination.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-pagination-test',
   template: `

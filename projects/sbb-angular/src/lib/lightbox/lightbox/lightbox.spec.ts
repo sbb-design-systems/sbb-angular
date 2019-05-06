@@ -40,6 +40,7 @@ import {
 
 import { LightboxContainerComponent } from './lightbox-container.component';
 
+// tslint:disable:i18n
 @Directive({ selector: '[sbbDirWithViewContainer]' })
 class DirectiveWithViewContainerDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}

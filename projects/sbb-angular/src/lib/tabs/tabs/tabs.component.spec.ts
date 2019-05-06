@@ -10,6 +10,7 @@ import { TabComponent } from '../tab/tab.component';
 
 import { TabsComponent } from './tabs.component';
 
+// tslint:disable:i18n
 @Component({
   template: `
     <sbb-tabs>

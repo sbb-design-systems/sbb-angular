@@ -15,6 +15,7 @@ import {
   TooltipComponent
 } from './tooltip.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-tooltip-test',
   template: `

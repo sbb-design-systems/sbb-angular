@@ -7,6 +7,7 @@ import { IconCollectionModule } from 'sbb-angular-icons';
 
 import { CheckboxComponent } from './checkbox.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-model-checkbox-test',
   template: `

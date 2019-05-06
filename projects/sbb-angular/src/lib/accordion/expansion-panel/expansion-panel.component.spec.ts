@@ -14,6 +14,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import { AccordionModule, ExpansionPanelComponent } from '../accordion';
 
+// tslint:disable:i18n
 @Component({
   template: `
     <sbb-expansion-panel

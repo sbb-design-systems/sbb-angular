@@ -12,6 +12,7 @@ import { By } from '@angular/platform-browser';
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 import { RadioButtonComponent } from './radio-button.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-model-radio-button-test',
   template: `

@@ -15,6 +15,7 @@ import {
   ExpansionPanelHeaderComponent
 } from '../accordion';
 
+// tslint:disable:i18n
 @Component({
   template: `
     <sbb-accordion [multi]="multi">

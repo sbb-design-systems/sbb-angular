@@ -9,6 +9,7 @@ import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 
 import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-ghettobox-test',
   template: `

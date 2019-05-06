@@ -13,6 +13,7 @@ import { TextexpandModule } from '../textexpand.module';
 
 import { TextexpandComponent } from './textexpand.component';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-textexpand-test',
   template: `

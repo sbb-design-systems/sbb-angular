@@ -40,6 +40,7 @@ import { DatepickerModule } from '../datepicker.module';
 
 import { DatepickerComponent } from './datepicker.component';
 
+// tslint:disable:i18n
 @Component({
   template: `
     <sbb-datepicker #d [disabled]="disabled" [opened]="opened">

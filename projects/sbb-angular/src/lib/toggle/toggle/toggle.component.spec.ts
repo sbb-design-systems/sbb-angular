@@ -16,6 +16,7 @@ import { FieldModule } from '../../field/field';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { ToggleModule } from '../toggle.module';
 
+// tslint:disable:i18n
 @Component({
   selector: 'sbb-toggle-test-reactive',
   template: `
