@@ -8,8 +8,7 @@ import { DateAdapter } from './date-adapter';
  * (https://tools.ietf.org/html/rfc3339). Note that the string may not actually be a valid date
  * because the regex will match strings an with out of bounds month, date, etc.
  */
-const ISO_8601_REGEX =
-  /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|(?:(?:\+|-)\d{2}:\d{2}))?)?$/;
+const ISO_8601_REGEX = /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|(?:(?:\+|-)\d{2}:\d{2}))?)?$/;
 
 /** Creates an array and fills it with values. */
 function range<T>(length: number, valueFunction: (index: number) => T): T[] {
@@ -30,7 +29,6 @@ export function isNumber(value: any): value is number {
 
 @Injectable()
 export class NativeDateAdapter extends DateAdapter<Date> {
-
   private _datePipe: DatePipe;
 
   constructor(@Inject(LOCALE_ID) protected _locale: string) {
@@ -69,12 +67,14 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         break;
     }
     return range(12, i =>
-      this._datePipe.transform(new Date(2017, i, 1), format));
+      this._datePipe.transform(new Date(2017, i, 1), format)
+    );
   }
 
   getDateNames(): string[] {
     return range(31, i =>
-      this._datePipe.transform(new Date(2017, 0, i + 1), 'd'));
+      this._datePipe.transform(new Date(2017, 0, i + 1), 'd')
+    );
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
@@ -91,7 +91,8 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         break;
     }
     return range(7, i =>
-      this._datePipe.transform(new Date(2017, 0, i + 1), format));
+      this._datePipe.transform(new Date(2017, 0, i + 1), format)
+    );
   }
 
   getYearName(date: Date): string {
@@ -130,7 +131,9 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       return this.clone(value);
     } else if (typeof value === 'string') {
       const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
-      return match ? new Date(+match[4], +match[3] - 1, +match[2], 0, 0, 0) : new Date(NaN);
+      return match
+        ? new Date(+match[4], +match[3] - 1, +match[2], 0, 0, 0)
+        : new Date(NaN);
     }
     return null;
   }
@@ -198,5 +201,4 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   invalid(): Date {
     return new Date(NaN);
   }
-
 }

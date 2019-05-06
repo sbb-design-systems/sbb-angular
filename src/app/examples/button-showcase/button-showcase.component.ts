@@ -19,20 +19,11 @@ export class ButtonShowcaseComponent implements OnInit, OnDestroy {
 
   showButton = true;
 
-  icons = [
-    'arrow',
-    'plus',
-    'download'
-  ];
+  icons = ['arrow', 'plus', 'download'];
 
-  modes = [
-    'primary',
-    'secondary',
-    'ghost',
-    'frameless'
-  ];
+  modes = ['primary', 'secondary', 'ghost', 'frameless'];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.buttonForm = new FormGroup({
@@ -41,23 +32,26 @@ export class ButtonShowcaseComponent implements OnInit, OnDestroy {
       disabled: new FormControl(this.buttonDisabled)
     });
 
-    this.onModeChange = this.buttonForm.get('mode').valueChanges.subscribe(value => {
+    this.onModeChange = this.buttonForm
+      .get('mode')
+      .valueChanges.subscribe(value => {
         this.buttonMode = value;
         this.reRender();
-      }
-    );
+      });
 
-    this.onIconChange = this.buttonForm.get('icon').valueChanges.subscribe(value => {
+    this.onIconChange = this.buttonForm
+      .get('icon')
+      .valueChanges.subscribe(value => {
         this.buttonIcon = value;
         this.reRender();
-      }
-    );
+      });
 
-    this.onDisabledChange = this.buttonForm.get('disabled').valueChanges.subscribe(value => {
+    this.onDisabledChange = this.buttonForm
+      .get('disabled')
+      .valueChanges.subscribe(value => {
         this.buttonDisabled = value;
         this.reRender();
-      }
-    );
+      });
   }
 
   ngOnDestroy() {
@@ -68,7 +62,6 @@ export class ButtonShowcaseComponent implements OnInit, OnDestroy {
 
   reRender() {
     this.showButton = false;
-    setTimeout(() => this.showButton = true);
+    setTimeout(() => (this.showButton = true));
   }
-
 }

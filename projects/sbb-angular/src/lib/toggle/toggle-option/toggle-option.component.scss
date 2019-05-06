@@ -1,4 +1,4 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 .sbb-toggle {
   .sbb-toggle-option {
@@ -10,7 +10,7 @@
       &-icon {
         @include toggleOptionIcon();
       }
-  
+
       &-label-wrapper {
         @include toggleOptionLabelWrapper();
       }
@@ -18,7 +18,7 @@
       &-label {
         @include toggleOptionLabel();
       }
-  
+
       &-info-text {
         @include toggleOptionInfoText();
       }

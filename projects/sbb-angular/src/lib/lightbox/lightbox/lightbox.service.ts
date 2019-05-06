@@ -18,7 +18,7 @@ import {
   Injector,
   Optional,
   SkipSelf,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
@@ -31,16 +31,19 @@ import { LightboxRef } from './lightbox-ref';
 export const LIGHTBOX_DATA = new InjectionToken<any>('LightboxData');
 
 /** Injection token that can be used to specify default lightbox options. */
-export const LIGHTBOX_DEFAULT_OPTIONS =
-  new InjectionToken<LightboxConfig>('LightboxDefaultOptions');
+export const LIGHTBOX_DEFAULT_OPTIONS = new InjectionToken<LightboxConfig>(
+  'LightboxDefaultOptions'
+);
 
 /** Injection token that determines the scroll handling while the dialog is open. */
-export const LIGHTBOX_SCROLL_STRATEGY =
-  new InjectionToken<() => ScrollStrategy>('LightboxScrollStrategy');
+export const LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<
+  () => ScrollStrategy
+>('LightboxScrollStrategy');
 
 /** @docs-private */
-export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
-  () => ScrollStrategy {
+export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
+  overlay: Overlay
+): () => ScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
 
@@ -48,14 +51,14 @@ export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
 export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
   provide: LIGHTBOX_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY,
+  useFactory: SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY
 };
 
 /**
  * Service to open SBB Design modal lightboxes.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class Lightbox {
   private _openLightboxesAtThisLevel: LightboxRef<any>[] = [];
@@ -64,12 +67,16 @@ export class Lightbox {
 
   /** Keeps track of the currently-open lightboxes. */
   get openLightboxes(): LightboxRef<any>[] {
-    return this._parentLightbox ? this._parentLightbox.openLightboxes : this._openLightboxesAtThisLevel;
+    return this._parentLightbox
+      ? this._parentLightbox.openLightboxes
+      : this._openLightboxesAtThisLevel;
   }
 
   /** Stream that emits when a lightbox has been opened. */
   get afterOpen(): Subject<LightboxRef<any>> {
-    return this._parentLightbox ? this._parentLightbox.afterOpen : this._afterOpenAtThisLevel;
+    return this._parentLightbox
+      ? this._parentLightbox.afterOpen
+      : this._afterOpenAtThisLevel;
   }
 
   // tslint:disable-next-line: naming-convention
@@ -82,9 +89,11 @@ export class Lightbox {
    * Stream that emits when all open lightbox have finished closing.
    * Will emit on subscribe if there are no open lightboxes to begin with.
    */
-  readonly afterAllClosed: Observable<any> = defer<any>(() => this.openLightboxes.length ?
-    this._afterAllClosed :
-    this._afterAllClosed.pipe(startWith(undefined)));
+  readonly afterAllClosed: Observable<any> = defer<any>(() =>
+    this.openLightboxes.length
+      ? this._afterAllClosed
+      : this._afterAllClosed.pipe(startWith(undefined))
+  );
 
   constructor(
     private _overlay: Overlay,
@@ -92,7 +101,8 @@ export class Lightbox {
     @Optional() private _location: Location,
     @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions,
     @Inject(LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy,
-    @Optional() @SkipSelf() private _parentLightbox: Lightbox) { }
+    @Optional() @SkipSelf() private _parentLightbox: Lightbox
+  ) {}
 
   /**
    * Opens a modal lightbox containing the given component.
@@ -101,22 +111,32 @@ export class Lightbox {
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened lightbox.
    */
-  open<T, D = any, R = any>(componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
-    config?: LightboxConfig<D>): LightboxRef<T, R> {
+  open<T, D = any, R = any>(
+    componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
+    config?: LightboxConfig<D>
+  ): LightboxRef<T, R> {
     config = { ...(this._defaultOptions || new LightboxConfig()), ...config };
     if (config.id && this.getLightboxById(config.id)) {
-      throw Error(`lightbox with id "${config.id}" exists already. The lightbox id must be unique.`);
+      throw Error(
+        `lightbox with id "${
+          config.id
+        }" exists already. The lightbox id must be unique.`
+      );
     }
 
     const overlayRef = this._createOverlay(config);
     const lightboxContainer = this._attachLightboxContainer(overlayRef, config);
-    const lightboxRef = this._attachLightboxContent<T, R>(componentOrTemplateRef,
+    const lightboxRef = this._attachLightboxContent<T, R>(
+      componentOrTemplateRef,
       lightboxContainer,
       overlayRef,
-      config);
+      config
+    );
 
     this.openLightboxes.push(lightboxRef);
-    lightboxRef.afterClosed().subscribe(() => this._removeOpenLightbox(lightboxRef));
+    lightboxRef
+      .afterClosed()
+      .subscribe(() => this._removeOpenLightbox(lightboxRef));
     this.afterOpen.next(lightboxRef);
 
     return lightboxRef;
@@ -177,13 +197,24 @@ export class Lightbox {
    * @param config The lightbox configuration.
    * @returns A promise resolving to a ComponentRef for the attached container.
    */
-  private _attachLightboxContainer(overlay: OverlayRef, config: LightboxConfig): LightboxContainerComponent {
-    const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
-    const injector = new PortalInjector(userInjector || this._injector, new WeakMap([
-      [LightboxConfig, config]
-    ]));
-    const containerPortal = new ComponentPortal(LightboxContainerComponent, config.viewContainerRef, injector);
-    const containerRef = overlay.attach<LightboxContainerComponent>(containerPortal);
+  private _attachLightboxContainer(
+    overlay: OverlayRef,
+    config: LightboxConfig
+  ): LightboxContainerComponent {
+    const userInjector =
+      config && config.viewContainerRef && config.viewContainerRef.injector;
+    const injector = new PortalInjector(
+      userInjector || this._injector,
+      new WeakMap([[LightboxConfig, config]])
+    );
+    const containerPortal = new ComponentPortal(
+      LightboxContainerComponent,
+      config.viewContainerRef,
+      injector
+    );
+    const containerRef = overlay.attach<LightboxContainerComponent>(
+      containerPortal
+    );
 
     return containerRef.instance;
   }
@@ -201,21 +232,33 @@ export class Lightbox {
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     lightboxContainer: LightboxContainerComponent,
     overlayRef: OverlayRef,
-    config: LightboxConfig): LightboxRef<T, R> {
-
+    config: LightboxConfig
+  ): LightboxRef<T, R> {
     // Create a reference to the lightbox we're creating in order to give the user a handle
     // to modify and close it.
-    const lightboxRef =
-      new LightboxRef<T, R>(lightboxContainer, config.id, overlayRef, this._location);
+    const lightboxRef = new LightboxRef<T, R>(
+      lightboxContainer,
+      config.id,
+      overlayRef,
+      this._location
+    );
 
     if (componentOrTemplateRef instanceof TemplateRef) {
       lightboxContainer.attachTemplatePortal(
-        new TemplatePortal<T>(componentOrTemplateRef, null,
-          <any>{ $implicit: config.data, lightboxRef }));
+        new TemplatePortal<T>(componentOrTemplateRef, null, <any>{
+          $implicit: config.data,
+          lightboxRef
+        })
+      );
     } else {
-      const injector = this._createInjector<T>(config, lightboxRef, lightboxContainer);
+      const injector = this._createInjector<T>(
+        config,
+        lightboxRef,
+        lightboxContainer
+      );
       const contentRef = lightboxContainer.attachComponentPortal<T>(
-        new ComponentPortal(componentOrTemplateRef, undefined, injector));
+        new ComponentPortal(componentOrTemplateRef, undefined, injector)
+      );
       lightboxRef.componentInstance = contentRef.instance;
     }
 
@@ -233,9 +276,10 @@ export class Lightbox {
   private _createInjector<T>(
     config: LightboxConfig,
     lightboxRef: LightboxRef<T>,
-    lightboxContainer: LightboxContainerComponent): PortalInjector {
-
-    const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
+    lightboxContainer: LightboxContainerComponent
+  ): PortalInjector {
+    const userInjector =
+      config && config.viewContainerRef && config.viewContainerRef.injector;
 
     // The LightboxContainer is injected in the portal as the LightboxContainer and the lightbox's
     // content are created out of the same ViewContainerRef and as such, are siblings for injector

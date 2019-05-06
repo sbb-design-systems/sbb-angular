@@ -4,41 +4,52 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { dispatchEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import {
+  dispatchEvent,
+  dispatchKeyboardEvent
+} from '../../_common/testing/dispatch-events';
 import {
   AccordionComponent,
   AccordionModule,
   ExpansionPanelComponent,
-  ExpansionPanelHeaderComponent,
+  ExpansionPanelHeaderComponent
 } from '../accordion';
 
 @Component({
   template: `
-  <sbb-accordion [multi]="multi">
-    <sbb-expansion-panel *ngFor="let i of [0, 1, 2, 3]">
-      <sbb-expansion-panel-header>Summary {{i}}</sbb-expansion-panel-header>
-      <p>Content</p>
-    </sbb-expansion-panel>
-  </sbb-accordion>`})
+    <sbb-accordion [multi]="multi">
+      <sbb-expansion-panel *ngFor="let i of [0, 1, 2, 3]">
+        <sbb-expansion-panel-header>Summary {{ i }}</sbb-expansion-panel-header>
+        <p>Content</p>
+      </sbb-expansion-panel>
+    </sbb-accordion>
+  `
+})
 class SetOfItemsComponent {
   @ViewChild(AccordionComponent) accordion: AccordionComponent;
-  @ViewChildren(ExpansionPanelComponent) panels: QueryList<ExpansionPanelComponent>;
-  @ViewChildren(ExpansionPanelHeaderComponent) headers: QueryList<ExpansionPanelHeaderComponent>;
+  @ViewChildren(ExpansionPanelComponent) panels: QueryList<
+    ExpansionPanelComponent
+  >;
+  @ViewChildren(ExpansionPanelHeaderComponent) headers: QueryList<
+    ExpansionPanelHeaderComponent
+  >;
 
   multi = true;
 }
 
 @Component({
   template: `
-  <sbb-accordion>
-    <sbb-expansion-panel #outerPanel="sbbExpansionPanel">
-      <sbb-expansion-panel-header>Outer Panel</sbb-expansion-panel-header>
-      <sbb-expansion-panel #innerPanel="sbbExpansionPanel">
-        <sbb-expansion-panel-header>Inner Panel</sbb-expansion-panel-header>
-        <p>Content</p>
+    <sbb-accordion>
+      <sbb-expansion-panel #outerPanel="sbbExpansionPanel">
+        <sbb-expansion-panel-header>Outer Panel</sbb-expansion-panel-header>
+        <sbb-expansion-panel #innerPanel="sbbExpansionPanel">
+          <sbb-expansion-panel-header>Inner Panel</sbb-expansion-panel-header>
+          <p>Content</p>
+        </sbb-expansion-panel>
       </sbb-expansion-panel>
-    </sbb-expansion-panel>
-  </sbb-accordion>`})
+    </sbb-accordion>
+  `
+})
 class NestedPanelComponent {
   @ViewChild('outerPanel') outerPanel: ExpansionPanelComponent;
   @ViewChild('innerPanel') innerPanel: ExpansionPanelComponent;
@@ -46,30 +57,27 @@ class NestedPanelComponent {
 
 @Component({
   template: `
-  <sbb-accordion [hideToggle]="hideToggle">
-    <sbb-expansion-panel>
-      <sbb-expansion-panel-header>Header</sbb-expansion-panel-header>
-      <p>Content</p>
-    </sbb-expansion-panel>
-  </sbb-accordion>`
+    <sbb-accordion [hideToggle]="hideToggle">
+      <sbb-expansion-panel>
+        <sbb-expansion-panel-header>Header</sbb-expansion-panel-header>
+        <p>Content</p>
+      </sbb-expansion-panel>
+    </sbb-accordion>
+  `
 })
 class AccordionWithHideToggleComponent {
   hideToggle = false;
 }
 
 describe('AccordionComponent', () => {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        AccordionModule
-      ],
+      imports: [BrowserAnimationsModule, AccordionModule],
       declarations: [
         AccordionWithHideToggleComponent,
         NestedPanelComponent,
-        SetOfItemsComponent,
-      ],
+        SetOfItemsComponent
+      ]
     });
     TestBed.compileComponents();
   }));
@@ -78,7 +86,9 @@ describe('AccordionComponent', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const panels = fixture.debugElement.queryAll(By.css('.sbb-expansion-panel'));
+    const panels = fixture.debugElement.queryAll(
+      By.css('.sbb-expansion-panel')
+    );
     const panelInstances = fixture.componentInstance.panels.toArray();
 
     panelInstances[0].expanded = true;
@@ -111,7 +121,9 @@ describe('AccordionComponent', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const panels = fixture.debugElement.queryAll(By.css('.sbb-expansion-panel'));
+    const panels = fixture.debugElement.queryAll(
+      By.css('.sbb-expansion-panel')
+    );
 
     fixture.componentInstance.multi = true;
     fixture.componentInstance.panels.toArray()[1].expanded = true;
@@ -134,7 +146,9 @@ describe('AccordionComponent', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const panels = fixture.debugElement.queryAll(By.css('.sbb-expansion-panel'));
+    const panels = fixture.debugElement.queryAll(
+      By.css('.sbb-expansion-panel')
+    );
 
     fixture.componentInstance.multi = true;
     fixture.componentInstance.panels.toArray()[1].disabled = true;
@@ -160,25 +174,31 @@ describe('AccordionComponent', () => {
 
   it('should update the expansion panel if hideToggle changed', () => {
     const fixture = TestBed.createComponent(AccordionWithHideToggleComponent);
-    const panel = fixture.debugElement.query(By.directive(ExpansionPanelComponent));
+    const panel = fixture.debugElement.query(
+      By.directive(ExpansionPanelComponent)
+    );
 
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-expansion-indicator'))
-      .toBeTruthy('Expected the expansion indicator to be present.');
+    expect(
+      panel.nativeElement.querySelector('.sbb-expansion-indicator')
+    ).toBeTruthy('Expected the expansion indicator to be present.');
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-expansion-indicator'))
-      .toBeFalsy('Expected the expansion indicator to be removed.');
+    expect(
+      panel.nativeElement.querySelector('.sbb-expansion-indicator')
+    ).toBeFalsy('Expected the expansion indicator to be removed.');
   });
 
   it('should move focus to the next header when pressing the down arrow', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
+    const headerElements = fixture.debugElement.queryAll(
+      By.css('sbb-expansion-panel-header')
+    );
     const headers = fixture.componentInstance.headers.toArray();
 
     dispatchEvent(headerElements[0].nativeElement, new KeyboardEvent('focus'));
@@ -188,29 +208,41 @@ describe('AccordionComponent', () => {
 
     // Stop at the second-last header so focus doesn't wrap around.
     for (let i = 0; i < headerElements.length - 1; i++) {
-      dispatchKeyboardEvent(headerElements[i].nativeElement, 'keydown', DOWN_ARROW);
+      dispatchKeyboardEvent(
+        headerElements[i].nativeElement,
+        'keydown',
+        DOWN_ARROW
+      );
       fixture.detectChanges();
 
       expect(headers[i + 1].focus).toHaveBeenCalledTimes(1);
     }
-
   });
 
   it('should move focus to the next header when pressing the up arrow', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
+    const headerElements = fixture.debugElement.queryAll(
+      By.css('sbb-expansion-panel-header')
+    );
     const headers = fixture.componentInstance.headers.toArray();
 
-    dispatchEvent(headerElements[headerElements.length - 1].nativeElement, new KeyboardEvent('focus'));
+    dispatchEvent(
+      headerElements[headerElements.length - 1].nativeElement,
+      new KeyboardEvent('focus')
+    );
     fixture.detectChanges();
 
     headers.forEach(header => spyOn(header, 'focus'));
 
     // Stop before the first header
     for (let i = headers.length - 1; i > 0; i--) {
-      dispatchKeyboardEvent(headerElements[i].nativeElement, 'keydown', UP_ARROW);
+      dispatchKeyboardEvent(
+        headerElements[i].nativeElement,
+        'keydown',
+        UP_ARROW
+      );
       fixture.detectChanges();
       expect(headers[i - 1].focus).toHaveBeenCalledTimes(1);
     }
@@ -220,7 +252,9 @@ describe('AccordionComponent', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
+    const headerElements = fixture.debugElement.queryAll(
+      By.css('sbb-expansion-panel-header')
+    );
     const panels = fixture.componentInstance.panels.toArray();
     const headers = fixture.componentInstance.headers.toArray();
 
@@ -231,7 +265,11 @@ describe('AccordionComponent', () => {
     panels[1].disabled = true;
     fixture.detectChanges();
 
-    dispatchKeyboardEvent(headerElements[0].nativeElement, 'keydown', DOWN_ARROW);
+    dispatchKeyboardEvent(
+      headerElements[0].nativeElement,
+      'keydown',
+      DOWN_ARROW
+    );
     fixture.detectChanges();
 
     expect(headers[1].focus).not.toHaveBeenCalled();
@@ -242,11 +280,17 @@ describe('AccordionComponent', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
+    const headerElements = fixture.debugElement.queryAll(
+      By.css('sbb-expansion-panel-header')
+    );
     const headers = fixture.componentInstance.headers.toArray();
 
     headers.forEach(header => spyOn(header, 'focus'));
-    dispatchKeyboardEvent(headerElements[headerElements.length - 1].nativeElement, 'keydown', HOME);
+    dispatchKeyboardEvent(
+      headerElements[headerElements.length - 1].nativeElement,
+      'keydown',
+      HOME
+    );
     fixture.detectChanges();
 
     expect(headers[0].focus).toHaveBeenCalledTimes(1);
@@ -256,7 +300,9 @@ describe('AccordionComponent', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);
     fixture.detectChanges();
 
-    const headerElements = fixture.debugElement.queryAll(By.css('sbb-expansion-panel-header'));
+    const headerElements = fixture.debugElement.queryAll(
+      By.css('sbb-expansion-panel-header')
+    );
     const headers = fixture.componentInstance.headers.toArray();
 
     headers.forEach(header => spyOn(header, 'focus'));
@@ -265,5 +311,4 @@ describe('AccordionComponent', () => {
 
     expect(headers[headers.length - 1].focus).toHaveBeenCalledTimes(1);
   });
-
 });

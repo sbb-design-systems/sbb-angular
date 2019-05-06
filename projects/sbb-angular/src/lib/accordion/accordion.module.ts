@@ -15,7 +15,7 @@ import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.compo
     CdkAccordionModule,
     PortalModule,
     IconPlusModule,
-    IconMinusModule,
+    IconMinusModule
   ],
   exports: [
     AccordionComponent,
@@ -28,6 +28,6 @@ import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.compo
     ExpansionPanelComponent,
     ExpansionPanelHeaderComponent,
     ExpansionPanelContentDirective
-  ],
+  ]
 })
-export class AccordionModule { }
+export class AccordionModule {}

@@ -1,15 +1,17 @@
 <label [attr.for]="inputId">
-  <input type="checkbox"
-         [id]="inputId"
-         [value]="value"
-         [required]="required"
-         [checked]="checked"
-         [attr.aria-checked]="checked"
-         [attr.aria-label]="ariaLabel"
-         [attr.aria-labelledby]="ariaLabelledby"
-         [attr.aria-describedby]="ariaDescribedby"
-         [disabled]="disabled"
-         (click)="click()" />
+  <input
+    type="checkbox"
+    [id]="inputId"
+    [value]="value"
+    [required]="required"
+    [checked]="checked"
+    [attr.aria-checked]="checked"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledby"
+    [attr.aria-describedby]="ariaDescribedby"
+    [disabled]="disabled"
+    (click)="click()"
+  />
 
   <div class="sbb-checkbox-container">
     <sbb-icon-tick class="sbb-checkbox-checked"></sbb-icon-tick>

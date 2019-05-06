@@ -1,18 +1,34 @@
 <div class="container-fluid">
-
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Multiple Option Selection with img</h4>
 
-      <sbb-checkbox-panel name="single-option" value="single-option" [disabled]="disabled2" [required]="required2"
-        [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-        <img icon src="https://support.hipay.com/hc/article_attachments/115011468665/BC_logo_ORGNL_RGB.png" />
+      <sbb-checkbox-panel
+        name="single-option"
+        value="single-option"
+        [disabled]="disabled2"
+        [required]="required2"
+        [checked]="checked2"
+        label="SBB - Finanzen"
+        subtitle="Armin Burgermeister"
+      >
+        <img
+          icon
+          src="https://support.hipay.com/hc/article_attachments/115011468665/BC_logo_ORGNL_RGB.png"
+        />
       </sbb-checkbox-panel>
 
       <h4 class="sbbsc-block">Multiple Option Selection with icon component</h4>
 
-      <sbb-checkbox-panel name="single-option" value="single-option" [disabled]="disabled2" [required]="required2"
-        [checked]="checked2" label="SBB - Finanzen" subtitle="Armin Burgermeister">
+      <sbb-checkbox-panel
+        name="single-option"
+        value="single-option"
+        [disabled]="disabled2"
+        [required]="required2"
+        [checked]="checked2"
+        label="SBB - Finanzen"
+        subtitle="Armin Burgermeister"
+      >
         <sbb-icon-heart icon></sbb-icon-heart>
       </sbb-checkbox-panel>
     </div>
@@ -37,7 +53,11 @@
       <h4 class="sbbsc-block">Multiple option selections</h4>
       <ng-container *ngFor="let option of checkboxOptions; index as i">
         <div class="sbbsc-block">
-          <sbb-checkbox-panel [(ngModel)]="option.selected" [value]="option.value" [label]="option.name"></sbb-checkbox-panel>
+          <sbb-checkbox-panel
+            [(ngModel)]="option.selected"
+            [value]="option.value"
+            [label]="option.name"
+          ></sbb-checkbox-panel>
         </div>
       </ng-container>
     </div>

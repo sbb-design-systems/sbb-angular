@@ -1,12 +1,14 @@
 <ng-content select="sbb-expansion-panel-header"></ng-content>
-<div class="sbb-expansion-panel-content"
-     role="region"
-     [@bodyExpansion]="getExpandedState()"
-     (@bodyExpansion.done)="bodyAnimation($event)"
-     (@bodyExpansion.start)="bodyAnimation($event)"
-     [attr.aria-labelledby]="headerId"
-     [id]="id"
-     #body>
+<div
+  class="sbb-expansion-panel-content"
+  role="region"
+  [@bodyExpansion]="getExpandedState()"
+  (@bodyExpansion.done)="bodyAnimation($event)"
+  (@bodyExpansion.start)="bodyAnimation($event)"
+  [attr.aria-labelledby]="headerId"
+  [id]="id"
+  #body
+>
   <div class="sbb-expansion-panel-body">
     <ng-content></ng-content>
     <ng-template [cdkPortalOutlet]="portal"></ng-template>

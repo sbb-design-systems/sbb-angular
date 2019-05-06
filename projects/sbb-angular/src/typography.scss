@@ -1,7 +1,7 @@
-@import "./styles/main";
-@import "./styles/fonts";
-@import "~@angular/cdk/a11y-prebuilt.css";
-@import "~@angular/cdk/overlay-prebuilt.css";
+@import './styles/main';
+@import './styles/fonts';
+@import '~@angular/cdk/a11y-prebuilt.css';
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 *,
 *::before,
@@ -28,12 +28,12 @@ html {
   font-family: $fontSbbRoman;
   font-size: $sizeFontBase / 16px * 100%;
   line-height: $sizeLineHeightBase;
-  
+
   @include fontSmoothing;
-  
+
   b,
   strong,
-  optgroup[label="*"] {
+  optgroup[label='*'] {
     font-family: $fontSbbBold;
     font-weight: normal;
   }
@@ -48,7 +48,7 @@ body {
 // might still respond to pointer events.
 //
 // Credit: https://github.com/suitcss/base
-[tabindex="-1"]:focus {
+[tabindex='-1']:focus {
   outline: 0 !important;
 }
 
@@ -120,16 +120,16 @@ a {
   @include clearfix;
 }
 
-input[type="email"],
-input[type="password"],
-input[type="search"],
-input[type="text"],
-input[type="number"],
-input[type="tel"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="url"] {
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='text'],
+input[type='number'],
+input[type='tel'],
+input[type='time'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='url'] {
   @include inputfields;
 }
 
@@ -137,10 +137,10 @@ input[placeholder] {
   text-overflow: ellipsis;
 }
 
-input[type="number"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"] {
+input[type='number'],
+input[type='time'],
+input[type='datetime'],
+input[type='datetime-local'] {
   -moz-appearance: textfield;
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button,

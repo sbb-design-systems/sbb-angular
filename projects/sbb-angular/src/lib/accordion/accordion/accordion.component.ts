@@ -19,14 +19,19 @@ import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
 @Component({
   selector: 'sbb-accordion',
   exportAs: 'sbbAccordion',
-  providers: [{
-    provide: SBB_ACCORDION,
-    useExisting: AccordionComponent
-  }],
-  template: `<ng-content></ng-content>`,
+  providers: [
+    {
+      provide: SBB_ACCORDION,
+      useExisting: AccordionComponent
+    }
+  ],
+  template: `
+    <ng-content></ng-content>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccordionComponent extends CdkAccordion implements IAccordionBase, AfterContentInit {
+export class AccordionComponent extends CdkAccordion
+  implements IAccordionBase, AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
   /**
    * Whether the accordion should allow multiple expanded accordion items.
@@ -41,8 +46,12 @@ export class AccordionComponent extends CdkAccordion implements IAccordionBase, 
 
   /** Whether the expansion indicator should be hidden. */
   @Input()
-  get hideToggle(): boolean { return this._hideToggle; }
-  set hideToggle(show: boolean) { this._hideToggle = coerceBooleanProperty(show); }
+  get hideToggle(): boolean {
+    return this._hideToggle;
+  }
+  set hideToggle(show: boolean) {
+    this._hideToggle = coerceBooleanProperty(show);
+  }
   private _hideToggle = false;
 
   /**

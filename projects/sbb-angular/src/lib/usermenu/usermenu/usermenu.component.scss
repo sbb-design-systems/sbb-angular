@@ -1,4 +1,4 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 .sbb-usermenu {
   &-logged-in {
@@ -71,7 +71,7 @@
       .sbb-usermenu-logged-off-icon-user {
         @include svgIconColor($colorRed125);
       }
-      
+
       .sbb-usermenu-logged-off-button {
         color: $colorRed125;
       }
@@ -90,5 +90,3 @@
     @include imageStyle;
   }
 }
-
-

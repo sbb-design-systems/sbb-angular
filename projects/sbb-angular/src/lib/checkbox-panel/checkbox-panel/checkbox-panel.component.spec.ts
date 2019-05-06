@@ -11,26 +11,30 @@ import { CheckboxPanelComponent } from './checkbox-panel.component';
 @Component({
   selector: 'sbb-model-sbb-checkbox-panel-test',
   template: `
-  <sbb-checkbox-panel
-    [(ngModel)]="checkValue1"
-    inputId="test-option-1"
-    name="test-option"
-    value="1">
-    Test option selection 1
-  </sbb-checkbox-panel>
-  <sbb-checkbox-panel
-    [(ngModel)]="checkValue2"
-    inputId="test-option-2"
-    name="test-option"
-    value="2">
-    Test option selection 2
-  </sbb-checkbox-panel>
+    <sbb-checkbox-panel
+      [(ngModel)]="checkValue1"
+      inputId="test-option-1"
+      name="test-option"
+      value="1"
+    >
+      Test option selection 1
+    </sbb-checkbox-panel>
+    <sbb-checkbox-panel
+      [(ngModel)]="checkValue2"
+      inputId="test-option-2"
+      name="test-option"
+      value="2"
+    >
+      Test option selection 2
+    </sbb-checkbox-panel>
   `
 })
 class ModelOptionSelectionMultipleTestComponent {
   checkValue1 = false;
   checkValue2 = false;
-  @ViewChildren(CheckboxPanelComponent) optionSelections: QueryList<CheckboxPanelComponent>;
+  @ViewChildren(CheckboxPanelComponent) optionSelections: QueryList<
+    CheckboxPanelComponent
+  >;
 }
 
 describe('CheckboxPanelComponent', () => {
@@ -61,7 +65,9 @@ describe('CheckboxPanelComponent', () => {
 
 describe('CheckboxPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionMultipleTestComponent;
-  let modelComponentFixture: ComponentFixture<ModelOptionSelectionMultipleTestComponent>;
+  let modelComponentFixture: ComponentFixture<
+    ModelOptionSelectionMultipleTestComponent
+  >;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -71,7 +77,9 @@ describe('CheckboxPanelComponent using mock component', () => {
   }));
 
   beforeEach(() => {
-    modelComponentFixture = TestBed.createComponent(ModelOptionSelectionMultipleTestComponent);
+    modelComponentFixture = TestBed.createComponent(
+      ModelOptionSelectionMultipleTestComponent
+    );
     modelComponent = modelComponentFixture.componentInstance;
 
     modelComponentFixture.detectChanges();
@@ -84,7 +92,9 @@ describe('CheckboxPanelComponent using mock component', () => {
   it('should create mock component and should contain two sbb-checkbox-panel components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(By.directive(CheckboxPanelComponent));
+    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(
+      By.directive(CheckboxPanelComponent)
+    );
     expect(optionSelectionComponents).toBeTruthy();
     expect(optionSelectionComponents.length).toBe(2);
   });
@@ -98,13 +108,17 @@ describe('CheckboxPanelComponent using mock component', () => {
     opt1.click();
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
+    let checkedComponents = modelComponent.optionSelections.filter(
+      o => !!o.checked
+    );
     expect(checkedComponents.length).toBe(1);
 
     opt2.click();
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
+    checkedComponents = modelComponent.optionSelections.filter(
+      o => !!o.checked
+    );
     expect(checkedComponents.length).toBe(2);
   });
 

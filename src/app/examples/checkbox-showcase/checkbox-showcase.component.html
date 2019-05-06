@@ -2,10 +2,13 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Single Checkbox</h4>
-      <sbb-checkbox value="single-checkbox"
-                    [disabled]="disabled"
-                    [required]="required"
-                    [checked]="checked">Test label</sbb-checkbox>
+      <sbb-checkbox
+        value="single-checkbox"
+        [disabled]="disabled"
+        [required]="required"
+        [checked]="checked"
+        >Test label</sbb-checkbox
+      >
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
@@ -21,15 +24,16 @@
     </div>
   </div>
 
-  <div role="presentation"
-       class="sbbsc-separator"></div>
+  <div role="presentation" class="sbbsc-separator"></div>
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Checkboxes Group</h4>
       <ng-container *ngFor="let option of checkboxOptions; index as i">
         <div class="sbbsc-block">
-          <sbb-checkbox [(ngModel)]="option.selected">{{option.name}}</sbb-checkbox>
+          <sbb-checkbox [(ngModel)]="option.selected">{{
+            option.name
+          }}</sbb-checkbox>
         </div>
       </ng-container>
     </div>

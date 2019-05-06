@@ -12,12 +12,16 @@ import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 @Component({
   selector: 'sbb-ghettobox-test',
   template: `
-    <sbb-ghettobox id="simple-ghettobox" (afterDelete)="afterDelete()">TEST</sbb-ghettobox>
+    <sbb-ghettobox id="simple-ghettobox" (afterDelete)="afterDelete()"
+      >TEST</sbb-ghettobox
+    >
 
-    <sbb-ghettobox id="link-icon-ghettobox"
-                    [routerLink]="['.', 'test']"
-                    [queryParams]="{debug: false}"
-                    fragment="test">
+    <sbb-ghettobox
+      id="link-icon-ghettobox"
+      [routerLink]="['.', 'test']"
+      [queryParams]="{ debug: false }"
+      fragment="test"
+    >
       <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
       This is a simple link text with custom icon
     </sbb-ghettobox>
@@ -25,10 +29,7 @@ import { GhettoboxIconDirective } from './ghettobox-icon.directive';
   entryComponents: [GhettoboxComponent]
 })
 export class GhettoboxTestComponent {
-
-  afterDelete() {
-  }
-
+  afterDelete() {}
 }
 
 describe('GhettoboxComponent', () => {
@@ -47,8 +48,7 @@ describe('GhettoboxComponent', () => {
         GhettoboxComponent,
         GhettoboxIconDirective
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -65,28 +65,40 @@ describe('GhettoboxComponent', () => {
     let ghettoboxDebugElement: DebugElement;
 
     beforeEach(() => {
-      ghettoboxDebugElement = fixture.debugElement.query(By.css('[id="simple-ghettobox"]'));
+      ghettoboxDebugElement = fixture.debugElement.query(
+        By.css('[id="simple-ghettobox"]')
+      );
     });
 
     it('should bind proper accessibility attributes', () => {
-      expect(ghettoboxDebugElement.nativeElement.getAttribute('role')).toEqual('alert');
-      expect(ghettoboxDebugElement.nativeElement.getAttribute('tabindex')).toEqual('-1');
+      expect(ghettoboxDebugElement.nativeElement.getAttribute('role')).toEqual(
+        'alert'
+      );
+      expect(
+        ghettoboxDebugElement.nativeElement.getAttribute('tabindex')
+      ).toEqual('-1');
     });
 
     it('should have the info default icon', () => {
-      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon-him-info'));
+      const ghettoboxIcon = ghettoboxDebugElement.query(
+        By.css('sbb-icon-him-info')
+      );
 
       expect(ghettoboxIcon).toBeTruthy();
     });
 
     it('should have "TEST" as message', () => {
-      const ghettoboxMessage = ghettoboxDebugElement.query(By.css('.sbb-ghettobox-content')).nativeElement.innerText;
+      const ghettoboxMessage = ghettoboxDebugElement.query(
+        By.css('.sbb-ghettobox-content')
+      ).nativeElement.innerText;
 
       expect(ghettoboxMessage).toBe('TEST');
     });
 
     it('should delete the ghettobox on close button click', async () => {
-      const closeButton = ghettoboxDebugElement.query(By.css('.sbb-ghettobox-close-button'));
+      const closeButton = ghettoboxDebugElement.query(
+        By.css('.sbb-ghettobox-close-button')
+      );
 
       spyOn(component, 'afterDelete');
 
@@ -97,7 +109,6 @@ describe('GhettoboxComponent', () => {
 
       expect(ghettoboxDebugElement.componentInstance.visible).toBe(false);
       expect(component.afterDelete).toHaveBeenCalled();
-
     });
   });
 
@@ -105,18 +116,23 @@ describe('GhettoboxComponent', () => {
     let ghettoboxDebugElement: DebugElement;
 
     beforeEach(() => {
-      ghettoboxDebugElement = fixture.debugElement.query(By.css('[id="link-icon-ghettobox"]'));
+      ghettoboxDebugElement = fixture.debugElement.query(
+        By.css('[id="link-icon-ghettobox"]')
+      );
     });
 
     it('should have a custom icon', async () => {
-      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon-him-disruption'));
+      const ghettoboxIcon = ghettoboxDebugElement.query(
+        By.css('sbb-icon-him-disruption')
+      );
       expect(ghettoboxIcon).toBeTruthy();
     });
 
     it('should be wrapped with an <a> tag with href=/test?debug=false#test', () => {
-      const linkHref = ghettoboxDebugElement.query(By.css('.sbb-ghettobox-link')).nativeElement.getAttribute('href');
+      const linkHref = ghettoboxDebugElement
+        .query(By.css('.sbb-ghettobox-link'))
+        .nativeElement.getAttribute('href');
       expect(linkHref).toBe('/test?debug=false#test');
     });
   });
-
 });

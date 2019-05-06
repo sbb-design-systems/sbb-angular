@@ -1,5 +1,8 @@
 import {
-  AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren,
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
   forwardRef,
   HostBinding,
   OnDestroy,
@@ -17,10 +20,12 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
   selector: 'sbb-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
-  providers: [{
-    provide: TAGS_CONTAINER,
-    useExisting: TagsComponent
-  }],
+  providers: [
+    {
+      provide: TAGS_CONTAINER,
+      useExisting: TagsComponent
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -80,21 +85,22 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   tagsHandleChecking(): Subscription {
-    this._tagChecking$ = merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes);
+    this._tagChecking$ = merge<TagComponent[]>(
+      of(this.tags.toArray()),
+      this.tags.changes
+    );
 
     return this._tagChecking$
       .pipe(
         map(tags => tags.map(t => merge(t.tagChecking$, t.stateChange$))),
         switchMap(tagStateChecking$ => merge(...tagStateChecking$))
       )
-      .subscribe(
-        () => {
-          this.setAllTagState();
-        });
+      .subscribe(() => {
+        this.setAllTagState();
+      });
   }
 
   allTagClick() {
     this.tags.forEach(t => t.setTagChecked(false));
   }
-
 }

@@ -9,7 +9,7 @@
   .sbb-processflow-step {
     display: flex;
     &::before {
-      content: "";
+      content: '';
     }
     &-arrow {
       @include svgIconColor($colorGrey);
@@ -97,7 +97,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     bottom: 0;

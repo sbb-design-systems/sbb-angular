@@ -216,4 +216,4 @@ import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase
     LightboxShowcaseExample6ContentComponent
   ]
 })
-export class ExamplesModule { }
+export class ExamplesModule {}

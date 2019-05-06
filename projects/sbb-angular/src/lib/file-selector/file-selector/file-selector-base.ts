@@ -1,9 +1,10 @@
 import { InjectionToken } from '@angular/core';
 
-export const FILE_SELECTOR_OPTIONS = new InjectionToken<FileSelectorOptions>('FILE_SELECTOR_OPTIONS');
+export const FILE_SELECTOR_OPTIONS = new InjectionToken<FileSelectorOptions>(
+  'FILE_SELECTOR_OPTIONS'
+);
 
 export interface FileSelectorOptions {
-
   /**
    * Categories of file types accepted by sbb-file-selector component.
    * It is optional.
@@ -64,14 +65,17 @@ export const FILE_TYPES: { [key: string]: string[] } = {
 
   PDF: ['application/pdf'],
 
-  MS_WORD_DOC: ['application/msword',
+  MS_WORD_DOC: [
+    'application/msword',
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
     'application/vnd.ms-word.document.macroEnabled.12',
-    'application/vnd.ms-word.template.macroEnabled.12'],
+    'application/vnd.ms-word.template.macroEnabled.12'
+  ],
 
-  MS_EXCEL: ['application/vnd.ms-excel',
+  MS_EXCEL: [
+    'application/vnd.ms-excel',
     'application/vnd.ms-excel',
     'application/vnd.ms-excel',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -79,9 +83,11 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/vnd.ms-excel.sheet.macroEnabled.12',
     'application/vnd.ms-excel.template.macroEnabled.12',
     'application/vnd.ms-excel.addin.macroEnabled.12',
-    'application/vnd.ms-excel.sheet.binary.macroEnabled.12'],
+    'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+  ],
 
-  MS_POWERPOINT: ['application/vnd.ms-powerpoint',
+  MS_POWERPOINT: [
+    'application/vnd.ms-powerpoint',
     'application/vnd.ms-powerpoint',
     'application/vnd.ms-powerpoint',
     'application/vnd.ms-powerpoint',
@@ -91,9 +97,11 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/vnd.ms-powerpoint.addin.macroEnabled.12',
     'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
     'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
-    'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'],
+    'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'
+  ],
 
-  ZIP: ['application/x-gtar',
+  ZIP: [
+    'application/x-gtar',
     'application/x-gcompress',
     'application/compress',
     'application/x-tar',
@@ -104,5 +112,6 @@ export const FILE_TYPES: { [key: string]: string[] } = {
     'application/x-7z-compressed',
     'application/gzip',
     'application/zip',
-    'application/x-bzip2']
+    'application/x-bzip2'
+  ]
 };

@@ -1,5 +1,14 @@
 import { strings, fragment } from '@angular-devkit/core';
-import { DirEntry, url, apply, template, move, mergeWith, chain, Rule } from '@angular-devkit/schematics';
+import {
+  DirEntry,
+  url,
+  apply,
+  template,
+  move,
+  mergeWith,
+  chain,
+  Rule
+} from '@angular-devkit/schematics';
 import { IconModule } from './icon-module';
 
 const ICON_ROOT = 'root';
@@ -12,7 +21,10 @@ export class IconCollectionModule {
     return [
       ...this.icons,
       ...this.collections.reduce(
-        (current, next) => [...current, ...next.iconsRecursive], [])];
+        (current, next) => [...current, ...next.iconsRecursive],
+        []
+      )
+    ];
   }
 
   constructor(readonly name: string = '') {
@@ -23,16 +35,16 @@ export class IconCollectionModule {
     const directory = this.name ? root.dir(fragment(this.filename)) : root;
     return chain([
       mergeWith(
-        apply(
-          url('./files/collection'), [
-            template({
-              ...strings,
-              ...this,
-            }),
-            move(directory.path)
-          ])),
+        apply(url('./files/collection'), [
+          template({
+            ...strings,
+            ...this
+          }),
+          move(directory.path)
+        ])
+      ),
       ...this.collections.map(c => c.apply(directory)),
-      ...this.icons.map(i => i.apply(directory)),
+      ...this.icons.map(i => i.apply(directory))
     ]);
   }
 }

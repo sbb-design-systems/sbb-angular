@@ -58,5 +58,5 @@ export class DatepickerShowcaseComponent {
 
   filterDates = (date: Date): boolean => {
     return date.getDate() === 1;
-  }
+  };
 }

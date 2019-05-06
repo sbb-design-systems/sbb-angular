@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'sbb-textexpand-collapsed',
@@ -6,7 +11,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angula
   styleUrls: ['./textexpand-collapsed.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextexpandCollapsedComponent  {
+export class TextexpandCollapsedComponent {
   /**
    * Describes if textexpand-collapsed is hidden or not. Initially it isn't hidden.
    */

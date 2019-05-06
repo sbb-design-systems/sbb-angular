@@ -1,21 +1,23 @@
 <div class="sbbsc-spacer"></div>
-<sbb-table tableId="testID"
-           tableClass="testClass testClass2"
-           [tableAlignment]="currentAlignment"
-           [pinMode]="isFirstColumnPinned ? 'on' : 'off'"
-           tableLabelledBy="caption">
-  <caption class="visuallyhidden">UIC-Statistik</caption>
+<sbb-table
+  tableId="testID"
+  tableClass="testClass testClass2"
+  [tableAlignment]="currentAlignment"
+  [pinMode]="isFirstColumnPinned ? 'on' : 'off'"
+  tableLabelledBy="caption"
+>
+  <caption class="visuallyhidden">
+    UIC-Statistik
+  </caption>
   <thead>
     <tr>
-      <th scope="col"
-          *ngFor="let header of headers">{{ header }}</th>
+      <th scope="col" *ngFor="let header of headers">{{ header }}</th>
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let row of rows">
-      <th [attr.scope]="row.scope"
-          [attr.aria-describedby]="row.describedby">
+      <th [attr.scope]="row.scope" [attr.aria-describedby]="row.describedby">
         {{ row.text1 }}
       </th>
       <td>{{ row.text2 }}</td>
@@ -26,16 +28,13 @@
   </tbody>
   <ng-container sbbTableCaption>
     <ol>
-      <li id="legend_item_1"
-          tabindex="-1">
+      <li id="legend_item_1" tabindex="-1">
         Eisenbahnverkehrsunternehmen
       </li>
-      <li id="legend_item_2"
-          tabindex="-1">
+      <li id="legend_item_2" tabindex="-1">
         Eisenbahninfrastrukturbetreiberin
       </li>
-      <li id="legend_item_3"
-          tabindex="-1">
+      <li id="legend_item_3" tabindex="-1">
         Integriertes Bahnunternehmen/Holding
       </li>
     </ol>
@@ -43,48 +42,52 @@
   </ng-container>
 </sbb-table>
 
-<div role="presentation"
-     class="sbbsc-separator"></div>
+<div role="presentation" class="sbbsc-separator"></div>
 
 <h4 class="sbbsc-block">Properties</h4>
-<button sbbButton
-        mode="ghost"
-        (click)="removeRow()">Remove a row</button>
+<button sbbButton mode="ghost" (click)="removeRow()">Remove a row</button>
 &nbsp;
-<button sbbButton
-        mode="ghost"
-        (click)="resetRows()">Reset rows</button>
+<button sbbButton mode="ghost" (click)="resetRows()">Reset rows</button>
 
-<sbb-field mode="default"
-           class="sbbsc-block">
+<sbb-field mode="default" class="sbbsc-block">
   <sbb-label for="filter">Set a filter</sbb-label>
-  <input type="text"
-         placeholder="Filter table"
-         id="filter"
-         (keyup)="filterTable($event)">
+  <input
+    type="text"
+    placeholder="Filter table"
+    id="filter"
+    (keyup)="filterTable($event)"
+  />
 </sbb-field>
 
 <h4 class="sbbsc-block">Pin Mode</h4>
-<sbb-field label="Pin Mode"
-           mode="default"
-           class="sbbsc-block">
-  <sbb-checkbox [(ngModel)]="isFirstColumnPinned">Pin the first column</sbb-checkbox>
+<sbb-field label="Pin Mode" mode="default" class="sbbsc-block">
+  <sbb-checkbox [(ngModel)]="isFirstColumnPinned"
+    >Pin the first column</sbb-checkbox
+  >
 </sbb-field>
 
 <h4 class="sbbsc-block">Text Alignment *</h4>
-<sbb-field label="Text Alignment"
-           mode="default"
-           class="sbbsc-block">
-  <sbb-radio-button name="radio-alignment"
-                    *ngFor="let alignment of alignments"
-                    [(ngModel)]="currentAlignment"
-                    [value]="alignment">{{ alignment }}</sbb-radio-button>
+<sbb-field label="Text Alignment" mode="default" class="sbbsc-block">
+  <sbb-radio-button
+    name="radio-alignment"
+    *ngFor="let alignment of alignments"
+    [(ngModel)]="currentAlignment"
+    [value]="alignment"
+    >{{ alignment }}</sbb-radio-button
+  >
 </sbb-field>
 <em>
-  * The property <strong><code>tableAlignment</code></strong> set the text alignment for the overall table.
-  You can use it in a single <strong><code>tr, th, td</code></strong> tag the alignment classes:
-  <strong><code>sbb-table-align-center | sbb-table-align-left | sbb-table-align-right</code></strong>.
-  <br>
-  In this example it has been used <strong><code>sbb-table-align-right</code></strong> to fix the text alignment of the
-  last column to right.
+  * The property <strong><code>tableAlignment</code></strong> set the text
+  alignment for the overall table. You can use it in a single
+  <strong><code>tr, th, td</code></strong> tag the alignment classes:
+  <strong
+    ><code
+      >sbb-table-align-center | sbb-table-align-left |
+      sbb-table-align-right</code
+    ></strong
+  >.
+  <br />
+  In this example it has been used
+  <strong><code>sbb-table-align-right</code></strong> to fix the text alignment
+  of the last column to right.
 </em>

@@ -29,7 +29,7 @@
 
   code,
   pre {
-    font-family: "Roboto Mono", monospace;
+    font-family: 'Roboto Mono', monospace;
   }
   pre {
     font-size: pxToRem(14);
@@ -88,7 +88,7 @@
     &-method-name-row,
     &-method-parameter-row,
     &-properties-name-cell {
-      font-family: "Roboto Mono", monospace;
+      font-family: 'Roboto Mono', monospace;
       font-weight: 600;
     }
 
@@ -129,7 +129,7 @@
     &-class-export-name,
     &-class-selector-name,
     &-module-import {
-      font-family: "Roboto Mono", monospace;
+      font-family: 'Roboto Mono', monospace;
       padding: toEm(3 / $sizeFontDefault);
     }
 
@@ -194,7 +194,10 @@
     font-size: pxToRem(18);
   }
 
-  &-markdown-h1, &-markdown-h2, &-markdown-h3, &-markdown-h4 {
+  &-markdown-h1,
+  &-markdown-h2,
+  &-markdown-h3,
+  &-markdown-h4 {
     &:first-of-type {
       margin-top: 0;
     }
@@ -223,7 +226,7 @@
   &-markdown-code {
     padding: 3px;
   }
-  
+
   &-markdown-table {
     border-collapse: collapse;
     border-radius: 2px;
@@ -232,37 +235,36 @@
     width: 100%;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   }
-  
+
   &-markdown-th {
     font-weight: 400;
     max-width: 100px;
     padding: 13px 32px;
     text-align: left;
   }
-  
+
   &-markdown-td {
     font-weight: 400;
     padding: 8px 16px;
   }
   @include mq($to: tabletLandscape) {
-  
     &-markdown-table {
       margin: 0 0 32px;
     }
-  
+
     &-markdown-th {
       padding: 6px 16px;
     }
-  
+
     &-markdown-td {
       padding: 4px 8px;
     }
   }
-  
+
   &-markdown-pre code {
     font-size: 100%;
   }
-  
+
   &-markdown-a {
     text-decoration: none;
     color: #3f51b5;
@@ -281,10 +283,8 @@
   &-markdown-code {
     background: rgba($colorGreyLight, 0.5);
   }
-  
 }
 
 #sbbsc-overview-tab-panel {
   @extend %baseDocsTheme;
 }
-

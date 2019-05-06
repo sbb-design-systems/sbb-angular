@@ -7,7 +7,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class TableShowcaseComponent {
-
   headers = [
     'Unternehmen und Land *1',
     'Personenkilometer (Mio. Pkm)',
@@ -18,9 +17,11 @@ export class TableShowcaseComponent {
 
   private _rows = [
     {
-      text1: 'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1',
+      text1:
+        'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1',
       text2: '6 907',
-      text3: 'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.',
+      text3:
+        'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.',
       text4: 'Langer Text um zu sehen wie genau die Zelle umbricht',
       text5: '24 882',
       scope: 'row',
@@ -77,12 +78,7 @@ export class TableShowcaseComponent {
 
   currentAlignment = 'center';
 
-  alignments = [
-    'none',
-    'left',
-    'center',
-    'right'
-  ];
+  alignments = ['none', 'left', 'center', 'right'];
 
   isFirstColumnPinned = false;
 
@@ -99,11 +95,21 @@ export class TableShowcaseComponent {
 
     if (value !== '') {
       this.rows = this._rows.filter(row => {
-        if (row.text1.indexOf(value) !== -1) { return true; }
-        if (row.text2.indexOf(value) !== -1) { return true; }
-        if (row.text3.indexOf(value) !== -1) { return true; }
-        if (row.text4.indexOf(value) !== -1) { return true; }
-        if (row.text5.indexOf(value) !== -1) { return true; }
+        if (row.text1.indexOf(value) !== -1) {
+          return true;
+        }
+        if (row.text2.indexOf(value) !== -1) {
+          return true;
+        }
+        if (row.text3.indexOf(value) !== -1) {
+          return true;
+        }
+        if (row.text4.indexOf(value) !== -1) {
+          return true;
+        }
+        if (row.text5.indexOf(value) !== -1) {
+          return true;
+        }
 
         return false;
       });
@@ -111,5 +117,4 @@ export class TableShowcaseComponent {
       this.rows = this._rows.slice();
     }
   }
-
 }

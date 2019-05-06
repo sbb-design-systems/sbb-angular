@@ -4,19 +4,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HostClass } from './host-class';
 
 describe('HostClass', () => {
-
   @Component({
     selector: 'sbb-test',
     template: '',
-    providers: [HostClass],
+    providers: [HostClass]
   })
   class TestComponent {
-    get classList() { return Array.from(this.elementRef.nativeElement.classList); }
+    get classList() {
+      return Array.from(this.elementRef.nativeElement.classList);
+    }
 
     constructor(
       public readonly hostClass: HostClass,
-      public readonly elementRef: ElementRef,
-    ) { }
+      public readonly elementRef: ElementRef
+    ) {}
   }
 
   describe('standalone mode', () => {
@@ -25,9 +26,8 @@ describe('HostClass', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [TestComponent],
-      })
-        .compileComponents();
+        declarations: [TestComponent]
+      }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -55,8 +55,9 @@ describe('HostClass', () => {
       const expectedClasses = { test: true, test1: false };
       expect(component.classList.length).toBe(0);
       component.hostClass.apply(expectedClasses);
-      expect(component.classList)
-        .toEqual(Object.keys(expectedClasses).filter(k => expectedClasses[k]));
+      expect(component.classList).toEqual(
+        Object.keys(expectedClasses).filter(k => expectedClasses[k])
+      );
     });
   });
 
@@ -68,22 +69,27 @@ describe('HostClass', () => {
     @Component({
       selector: 'sbb-wrapped-test',
       template: `
-        <sbb-test class="attributeClass"
-                  [ngClass]="{ ngClass: true, ngClassFalse: false }"
-                  [class.bindingClass]="true"></sbb-test>
-      `,
+        <sbb-test
+          class="attributeClass"
+          [ngClass]="{ ngClass: true, ngClassFalse: false }"
+          [class.bindingClass]="true"
+        ></sbb-test>
+      `
     })
     class WrappedTestComponent {
       @ViewChild(TestComponent) test: TestComponent;
-      get classList() { return this.test.classList; }
-      get hostClass() { return this.test.hostClass; }
+      get classList() {
+        return this.test.classList;
+      }
+      get hostClass() {
+        return this.test.hostClass;
+      }
     }
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [TestComponent, WrappedTestComponent],
-      })
-        .compileComponents();
+        declarations: [TestComponent, WrappedTestComponent]
+      }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -103,15 +109,20 @@ describe('HostClass', () => {
       const expectedClasses = ['test', 'test2'];
       expect(component.classList).toEqual(existingClasses);
       component.hostClass.apply(expectedClasses);
-      expect(component.classList).toEqual([...existingClasses, ...expectedClasses]);
+      expect(component.classList).toEqual([
+        ...existingClasses,
+        ...expectedClasses
+      ]);
     });
 
     it('should have given class object after applying', () => {
       const expectedClasses = { test: true, test1: false };
       expect(component.classList).toEqual(existingClasses);
       component.hostClass.apply(expectedClasses);
-      expect(component.classList)
-        .toEqual([...existingClasses, ...Object.keys(expectedClasses).filter(k => expectedClasses[k])]);
+      expect(component.classList).toEqual([
+        ...existingClasses,
+        ...Object.keys(expectedClasses).filter(k => expectedClasses[k])
+      ]);
     });
   });
 });

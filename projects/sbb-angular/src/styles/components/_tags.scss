@@ -38,7 +38,7 @@ $tagPadding: pxToEm(7) pxToEm(8) pxToEm(7) pxToEm(16);
       border-width: toPx(1 * $scalingFactor5k);
     }
 
-    input[type="checkbox"] {
+    input[type='checkbox'] {
       @include visuallyhidden;
 
       &:focus ~ .sbb-tag-label {

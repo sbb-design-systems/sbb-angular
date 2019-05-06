@@ -32,7 +32,9 @@ import { LightboxConfig } from './lightbox-config';
  * @docs-private
  */
 export function throwLightboxContentAlreadyAttachedError() {
-  throw Error('Attempting to attach lightbox content after content is already attached');
+  throw Error(
+    'Attempting to attach lightbox content after content is already attached'
+  );
 }
 
 /**
@@ -128,8 +130,8 @@ export class LightboxContainerComponent extends BasePortalOutlet {
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional() @Inject(DOCUMENT) private _document: any,
     /** The dialog configuration. */
-    public config: LightboxConfig) {
-
+    public config: LightboxConfig
+  ) {
     super();
   }
 
@@ -162,7 +164,9 @@ export class LightboxContainerComponent extends BasePortalOutlet {
   /** Moves the focus inside the focus trap. */
   private _trapFocus() {
     if (!this._focusTrap) {
-      this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
+      this._focusTrap = this._focusTrapFactory.create(
+        this._elementRef.nativeElement
+      );
     }
 
     // If were to attempt to focus immediately, then the content of the lightbox would not yet be
@@ -190,7 +194,8 @@ export class LightboxContainerComponent extends BasePortalOutlet {
   /** Saves a reference to the element that was focused before the lightbox was opened. */
   private _savePreviouslyFocusedElement() {
     if (this._document) {
-      this._elementFocusedBeforeLightboxWasOpened = this._document.activeElement as HTMLElement;
+      this._elementFocusedBeforeLightboxWasOpened = this._document
+        .activeElement as HTMLElement;
 
       // Note that there is no focus method when rendering on the server.
       if (this._elementRef.nativeElement.focus) {

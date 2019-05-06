@@ -12,25 +12,29 @@ import { RadioButtonPanelComponent } from './radio-button-panel.component';
 @Component({
   selector: 'sbb-model-radio-button-panel-test',
   template: `
-  <sbb-radio-button-panel
-    [(ngModel)]="testValue"
-    inputId="test-option-1"
-    name="test-option"
-    value="1">
-    Test option selection 1
-  </sbb-radio-button-panel>
-  <sbb-radio-button-panel
-    [(ngModel)]="testValue"
-    inputId="test-option-2"
-    name="test-option"
-    value="2">
-    Test option selection 2
-  </sbb-radio-button-panel>
+    <sbb-radio-button-panel
+      [(ngModel)]="testValue"
+      inputId="test-option-1"
+      name="test-option"
+      value="1"
+    >
+      Test option selection 1
+    </sbb-radio-button-panel>
+    <sbb-radio-button-panel
+      [(ngModel)]="testValue"
+      inputId="test-option-2"
+      name="test-option"
+      value="2"
+    >
+      Test option selection 2
+    </sbb-radio-button-panel>
   `
 })
 class ModelOptionSelectionTestComponent {
   testValue = '2';
-  @ViewChildren(RadioButtonPanelComponent) optionSelections: QueryList<RadioButtonPanelComponent>;
+  @ViewChildren(RadioButtonPanelComponent) optionSelections: QueryList<
+    RadioButtonPanelComponent
+  >;
 }
 
 describe('RadioButtonPanelComponent', () => {
@@ -61,7 +65,9 @@ describe('RadioButtonPanelComponent', () => {
 
 describe('RadioButtonPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionTestComponent;
-  let modelComponentFixture: ComponentFixture<ModelOptionSelectionTestComponent>;
+  let modelComponentFixture: ComponentFixture<
+    ModelOptionSelectionTestComponent
+  >;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -71,7 +77,9 @@ describe('RadioButtonPanelComponent using mock component', () => {
   }));
 
   beforeEach(() => {
-    modelComponentFixture = TestBed.createComponent(ModelOptionSelectionTestComponent);
+    modelComponentFixture = TestBed.createComponent(
+      ModelOptionSelectionTestComponent
+    );
     modelComponent = modelComponentFixture.componentInstance;
 
     modelComponentFixture.detectChanges();
@@ -84,8 +92,9 @@ describe('RadioButtonPanelComponent using mock component', () => {
   it('should create mock component and should contain two sbb-radio-button-panel components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const optionSelectionComponents = modelComponentFixture.debugElement
-      .queryAll(By.directive(RadioButtonPanelComponent));
+    const optionSelectionComponents = modelComponentFixture.debugElement.queryAll(
+      By.directive(RadioButtonPanelComponent)
+    );
     expect(optionSelectionComponents).toBeTruthy();
     expect(optionSelectionComponents.length).toBe(2);
   });
@@ -99,13 +108,17 @@ describe('RadioButtonPanelComponent using mock component', () => {
     opt1.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
+    let checkedComponents = modelComponent.optionSelections.filter(
+      o => o.checked === true
+    );
     expect(checkedComponents.length).toBe(1);
 
     opt2.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
+    checkedComponents = modelComponent.optionSelections.filter(
+      o => o.checked === true
+    );
     expect(checkedComponents.length).toBe(1);
   });
 

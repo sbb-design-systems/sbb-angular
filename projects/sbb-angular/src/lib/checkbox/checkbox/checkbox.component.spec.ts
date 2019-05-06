@@ -10,8 +10,12 @@ import { CheckboxComponent } from './checkbox.component';
 @Component({
   selector: 'sbb-model-checkbox-test',
   template: `
-  <sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" value="1">Test check 1</sbb-checkbox>
-  <sbb-checkbox [(ngModel)]="checkValue2" inputId="test-check-2" value="2">Test check button 2</sbb-checkbox>
+    <sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" value="1"
+      >Test check 1</sbb-checkbox
+    >
+    <sbb-checkbox [(ngModel)]="checkValue2" inputId="test-check-2" value="2"
+      >Test check button 2</sbb-checkbox
+    >
   `
 })
 class ModelCheckboxTestComponent {
@@ -26,12 +30,12 @@ describe('CheckboxComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, IconCollectionModule],
-      declarations: [ CheckboxComponent ]
+      declarations: [CheckboxComponent]
     })
-    .overrideComponent(CheckboxComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(CheckboxComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -57,12 +61,12 @@ describe('CheckboxComponent using mock component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, IconCollectionModule],
-      declarations: [ CheckboxComponent, ModelCheckboxTestComponent ]
+      declarations: [CheckboxComponent, ModelCheckboxTestComponent]
     })
-    .overrideComponent(CheckboxComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(CheckboxComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -79,18 +83,24 @@ describe('CheckboxComponent using mock component', () => {
   it('should create mock component and should contain two sbb-checkbox components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const checkboxComponents = modelComponentFixture.debugElement.queryAll(By.directive(CheckboxComponent));
+    const checkboxComponents = modelComponentFixture.debugElement.queryAll(
+      By.directive(CheckboxComponent)
+    );
     expect(checkboxComponents).toBeTruthy();
     expect(checkboxComponents.length).toBe(2);
   });
 
   it('should check when click the label', () => {
-    const checkboxLabel = modelComponentFixture.debugElement.query(By.css('label[for="test-check-1"]'));
+    const checkboxLabel = modelComponentFixture.debugElement.query(
+      By.css('label[for="test-check-1"]')
+    );
     expect(checkboxLabel).toBeTruthy();
 
     checkboxLabel.nativeElement.click();
 
-    const checkboxComponent = modelComponentFixture.debugElement.query(By.directive(CheckboxComponent));
+    const checkboxComponent = modelComponentFixture.debugElement.query(
+      By.directive(CheckboxComponent)
+    );
     expect(checkboxComponent).toBeTruthy();
 
     const checkboxChecked = checkboxComponent.queryAll(By.css('input:checked'));
@@ -99,7 +109,9 @@ describe('CheckboxComponent using mock component', () => {
   });
 
   it('should checked if model is true', async () => {
-    const checkboxLabel = modelComponentFixture.debugElement.query(By.css('label[for="test-check-1"]'));
+    const checkboxLabel = modelComponentFixture.debugElement.query(
+      By.css('label[for="test-check-1"]')
+    );
     expect(checkboxLabel).toBeTruthy();
 
     modelComponent.checkValue1 = true;
@@ -107,11 +119,15 @@ describe('CheckboxComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
 
-    const components = modelComponentFixture.debugElement.queryAll(By.directive(CheckboxComponent));
+    const components = modelComponentFixture.debugElement.queryAll(
+      By.directive(CheckboxComponent)
+    );
     expect(components[0].componentInstance._checked).toBe(true);
     expect(modelComponent.checkValue1).toBe(true);
 
-    const checkboxLabel2 = modelComponentFixture.debugElement.query(By.css('label[for="test-check-2"]'));
+    const checkboxLabel2 = modelComponentFixture.debugElement.query(
+      By.css('label[for="test-check-2"]')
+    );
     expect(checkboxLabel2).toBeTruthy();
 
     checkboxLabel2.nativeElement.click();

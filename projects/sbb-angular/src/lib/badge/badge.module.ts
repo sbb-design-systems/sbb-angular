@@ -5,9 +5,7 @@ import { BadgeComponent } from './badge/badge.component';
 
 @NgModule({
   declarations: [BadgeComponent],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [BadgeComponent]
 })
-export class BadgeModule { }
+export class BadgeModule {}

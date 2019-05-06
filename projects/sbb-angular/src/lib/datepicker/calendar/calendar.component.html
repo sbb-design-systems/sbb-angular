@@ -1,16 +1,19 @@
 <ng-template [cdkPortalOutlet]="calendarHeaderPortal"></ng-template>
 
-<div class="sbb-calendar-content"
-     [ngSwitch]="currentView"
-     cdkMonitorSubtreeFocus
-     tabindex="-1">
-  <sbb-month-view [(activeDate)]="activeDate"
-                  [selected]="selected"
-                  [dateFilter]="dateFilter"
-                  [maxDate]="maxDate"
-                  [minDate]="minDate"
-                  (selectedChange)="dateSelected($event)"
-                  (userSelection)="userSelected()">
+<div
+  class="sbb-calendar-content"
+  [ngSwitch]="currentView"
+  cdkMonitorSubtreeFocus
+  tabindex="-1"
+>
+  <sbb-month-view
+    [(activeDate)]="activeDate"
+    [selected]="selected"
+    [dateFilter]="dateFilter"
+    [maxDate]="maxDate"
+    [minDate]="minDate"
+    (selectedChange)="dateSelected($event)"
+    (userSelection)="userSelected()"
+  >
   </sbb-month-view>
-
 </div>

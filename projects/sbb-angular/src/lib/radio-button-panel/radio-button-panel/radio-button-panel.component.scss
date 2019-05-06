@@ -1,9 +1,8 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 sbb-radio-button-panel {
   @include checkboxRadioButtonPanel;
   .sbb-checkbox-radio-button-panel-image {
     @include checkboxRadioButtonPanelImage;
-
   }
 }

@@ -1,5 +1,11 @@
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { Overlay, OverlayConfig, OverlayRef, PositionStrategy, ScrollStrategy } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayConfig,
+  OverlayRef,
+  PositionStrategy,
+  ScrollStrategy
+} from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -29,12 +35,15 @@ import { TooltipIconDirective } from './tooltip-icon.directive';
 import { TooltipRegistryService } from './tooltip-registry.service';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
-export const SBB_TOOLTIP_SCROLL_STRATEGY =
-  new InjectionToken<() => ScrollStrategy>('sbb-tooltip-scroll-strategy');
+export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<
+  () => ScrollStrategy
+>('sbb-tooltip-scroll-strategy');
 
 /** @docs-private */
 // tslint:disable-next-line: naming-convention
-export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
+export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(
+  overlay: Overlay
+): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
@@ -42,7 +51,7 @@ export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => Scr
 export const SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_TOOLTIP_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY,
+  useFactory: SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY
 };
 
 export class SbbTooltipChangeEvent {
@@ -51,8 +60,7 @@ export class SbbTooltipChangeEvent {
     public instance: TooltipComponent,
     /** States if the tooltip has been opened by a click. */
     public isUserInput = false
-  ) { }
-
+  ) {}
 }
 
 let tooltipCounter = 1;
@@ -65,7 +73,6 @@ let tooltipCounter = 1;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent implements OnDestroy {
-
   /**
    * Identifier of tooltip.
    */
@@ -94,7 +101,9 @@ export class TooltipComponent implements OnDestroy {
   @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
 
   /** @docs-private */
-  @ViewChild('defaultIcon', { read: TemplateRef }) defaultIcon: TemplateRef<any>;
+  @ViewChild('defaultIcon', { read: TemplateRef }) defaultIcon: TemplateRef<
+    any
+  >;
 
   /**
    * The icon to be used as click target.
@@ -129,7 +138,7 @@ export class TooltipComponent implements OnDestroy {
     @Optional() @Inject(DOCUMENT) private _document: any,
     private _zone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
@@ -184,7 +193,8 @@ export class TooltipComponent implements OnDestroy {
 
   /** Create the popup PositionStrategy. */
   private _createTooltipPositionStrategy(): PositionStrategy {
-    return this._overlay.position()
+    return this._overlay
+      .position()
       .flexibleConnectedTo(this.tooltipTrigger)
       .withTransformOriginOn('.sbb-tooltip-content')
       .withFlexibleDimensions(false)
@@ -229,57 +239,63 @@ export class TooltipComponent implements OnDestroy {
     return merge(
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
-    )
-      .pipe(filter(event => {
+    ).pipe(
+      filter(event => {
         const clickTarget = event.target as HTMLElement;
 
-        return this.overlayAttached &&
+        return (
+          this.overlayAttached &&
           clickTarget !== this.tooltipTrigger.nativeElement &&
           !this.tooltipTrigger.nativeElement.contains(clickTarget) &&
-          (!!this.tooltipRef && !this.tooltipRef.overlayElement.contains(clickTarget));
-      }));
+          (!!this.tooltipRef &&
+            !this.tooltipRef.overlayElement.contains(clickTarget))
+        );
+      })
+    );
   }
 
   /**
-    * A stream of actions that should close the autocomplete panel, including
-    * on blur events.
-    */
+   * A stream of actions that should close the autocomplete panel, including
+   * on blur events.
+   */
   get panelClosingActions(): Observable<SbbTooltipChangeEvent | null> {
     return merge(
       this._closeKeyEventStream,
       this._getOutsideClickStream(),
       this._tooltipRegistry.tooltipActivation,
-      this.tooltipRef ?
-        this.tooltipRef.detachments().pipe(filter(() => this.overlayAttached)) :
-        of()
+      this.tooltipRef
+        ? this.tooltipRef.detachments().pipe(filter(() => this.overlayAttached))
+        : of()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => event instanceof SbbTooltipChangeEvent ? event : null)
+      map(event => (event instanceof SbbTooltipChangeEvent ? event : null))
     );
   }
 
   /**
-  * This method listens to a stream of panel closing actions and resets the
-  * stream every time the option list changes.
-  */
+   * This method listens to a stream of panel closing actions and resets the
+   * stream every time the option list changes.
+   */
   private _subscribeToClosingActions(): Subscription {
     const firstStable = this._zone.onStable.asObservable().pipe(first());
 
     // When the zone is stable initially, and when the option list changes...
-    return merge(firstStable)
-      .pipe(
-        // create a new stream of panelClosingActions, replacing any previous streams
-        // that were created, and flatten it so our stream only emits closing events...
-        switchMap(() => {
-          return this.panelClosingActions;
-        }),
-        // when the first closing event occurs...
-        first()
-      )
-      // set the value, close the panel, and complete.
-      .subscribe(event => {
-        this.close();
-      });
+    return (
+      merge(firstStable)
+        .pipe(
+          // create a new stream of panelClosingActions, replacing any previous streams
+          // that were created, and flatten it so our stream only emits closing events...
+          switchMap(() => {
+            return this.panelClosingActions;
+          }),
+          // when the first closing event occurs...
+          first()
+        )
+        // set the value, close the panel, and complete.
+        .subscribe(event => {
+          this.close();
+        })
+    );
   }
 
   private _createPopup(): void {
@@ -287,7 +303,7 @@ export class TooltipComponent implements OnDestroy {
       positionStrategy: this._createTooltipPositionStrategy(),
       hasBackdrop: false,
       scrollStrategy: this._scrollStrategy(),
-      panelClass: 'sbb-tooltip-content',
+      panelClass: 'sbb-tooltip-content'
     });
 
     this.tooltipRef = this._overlay.create(overlayConfig);

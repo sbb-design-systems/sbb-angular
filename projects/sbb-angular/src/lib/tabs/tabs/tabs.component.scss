@@ -1,14 +1,13 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 sbb-tabs {
   display: block;
 }
 
 .sbb-tabs {
-
   &-tablist {
     @include tabsBase();
-    
+
     > .sbb-tabs-tablist-item {
       @include tabsItem();
       .sbb-badge {
@@ -20,5 +19,4 @@ sbb-tabs {
       }
     }
   }
-
 }

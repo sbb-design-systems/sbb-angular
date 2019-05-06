@@ -20,10 +20,10 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   selector: 'sbb-datepicker-toggle',
   templateUrl: './datepicker-toggle.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
-
+export class DatepickerToggleComponent<D>
+  implements OnDestroy, OnChanges, AfterContentInit {
   private _stateChanges = Subscription.EMPTY;
 
   /** Tabindex for the toggle. */
@@ -32,7 +32,9 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   /** Whether the toggle button is disabled. */
   @Input()
   get disabled(): boolean {
-    return this._disabled === undefined ? this._datepicker.disabled : !!this._disabled;
+    return this._disabled === undefined
+      ? this._datepicker.disabled
+      : !!this._disabled;
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
@@ -42,11 +44,11 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _datepicker: DatepickerComponent<D>,
-    @Attribute('tabindex') defaultTabIndex: string,
+    @Attribute('tabindex') defaultTabIndex: string
   ) {
-
     const parsedTabIndex = Number(defaultTabIndex);
-    this.tabIndex = (parsedTabIndex || parsedTabIndex === 0) ? parsedTabIndex : null;
+    this.tabIndex =
+      parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
   }
 
   @HostBinding('class.sbb-datepicker-toggle')
@@ -82,12 +84,16 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
   }
 
   private _watchStateChanges() {
-    const datepickerDisabled = this._datepicker ? this._datepicker.disabledChange : of();
-    const inputDisabled = this._datepicker && this._datepicker.datepickerInput ?
-      this._datepicker.datepickerInput.disabledChange : of();
-    const datepickerToggled = this._datepicker ?
-      merge(this._datepicker.openedStream, this._datepicker.closedStream) :
-      of();
+    const datepickerDisabled = this._datepicker
+      ? this._datepicker.disabledChange
+      : of();
+    const inputDisabled =
+      this._datepicker && this._datepicker.datepickerInput
+        ? this._datepicker.datepickerInput.disabledChange
+        : of();
+    const datepickerToggled = this._datepicker
+      ? merge(this._datepicker.openedStream, this._datepicker.closedStream)
+      : of();
 
     this._stateChanges.unsubscribe();
     this._stateChanges = merge(
@@ -96,5 +102,4 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
       datepickerToggled
     ).subscribe(() => this._changeDetectorRef.markForCheck());
   }
-
 }

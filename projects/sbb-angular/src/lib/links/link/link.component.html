@@ -1,11 +1,23 @@
 <ng-container *ngIf="mode !== 'stretch'" [ngSwitch]="icon">
-    <sbb-icon-arrow-right *ngSwitchCase="'arrow'" class="sbb-svgsprite-icon"></sbb-icon-arrow-right>
-    <sbb-icon-download *ngSwitchCase="'download'" class="sbb-svgsprite-icon"></sbb-icon-download>
+  <sbb-icon-arrow-right
+    *ngSwitchCase="'arrow'"
+    class="sbb-svgsprite-icon"
+  ></sbb-icon-arrow-right>
+  <sbb-icon-download
+    *ngSwitchCase="'download'"
+    class="sbb-svgsprite-icon"
+  ></sbb-icon-download>
 </ng-container>
 
 <ng-content></ng-content>
 
 <ng-container [ngSwitch]="icon">
-    <sbb-icon-arrow-right *ngSwitchCase="'arrow'" class="sbb-svgsprite-icon"></sbb-icon-arrow-right>
-    <sbb-icon-download *ngSwitchCase="'download'" class="sbb-svgsprite-icon"></sbb-icon-download>
+  <sbb-icon-arrow-right
+    *ngSwitchCase="'arrow'"
+    class="sbb-svgsprite-icon"
+  ></sbb-icon-arrow-right>
+  <sbb-icon-download
+    *ngSwitchCase="'download'"
+    class="sbb-svgsprite-icon"
+  ></sbb-icon-download>
 </ng-container>

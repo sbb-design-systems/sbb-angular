@@ -3,7 +3,11 @@ import { FormControl } from '@angular/forms';
 import { SelectComponent } from 'sbb-angular';
 
 export class Food {
-  constructor(public value: string, public viewValue: string, public disabled: boolean = false) { }
+  constructor(
+    public value: string,
+    public viewValue: string,
+    public disabled: boolean = false
+  ) {}
 }
 
 @Component({
@@ -23,29 +27,32 @@ export class SelectShowcaseComponent {
     new Food('nudeln-2', 'Nudeln')
   ];
 
-  foodFromTheWorld = [{
-    nation: 'Italien',
-    food: [
-      { value: 'lasagna', viewValue: 'Lasagna' },
-      { value: 'parmigiana', viewValue: 'Parmigiana' },
-      { value: 'krm', viewValue: 'Kartoffeln, Reis und Muscheln' }
-    ]
-  }, {
-    nation: 'Deutschland',
-    food: [
-      { value: 'weißwurst', viewValue: 'Weißwurst' },
-      { value: 'eisbein', viewValue: 'Eisbein' },
-      { value: 'rheinische-muscheln', viewValue: 'Rheinische Muscheln' }
-    ]
-  },
-  {
-    nation: 'Swiss',
-    food: [
-      { value: 'bircherműesli', viewValue: 'Bircherműesli' },
-      { value: 'rösti', viewValue: 'Rösti' },
-      { value: 'bűndnernusstorte', viewValue: 'Bűndnernusstorte' }
-    ]
-  }];
+  foodFromTheWorld = [
+    {
+      nation: 'Italien',
+      food: [
+        { value: 'lasagna', viewValue: 'Lasagna' },
+        { value: 'parmigiana', viewValue: 'Parmigiana' },
+        { value: 'krm', viewValue: 'Kartoffeln, Reis und Muscheln' }
+      ]
+    },
+    {
+      nation: 'Deutschland',
+      food: [
+        { value: 'weißwurst', viewValue: 'Weißwurst' },
+        { value: 'eisbein', viewValue: 'Eisbein' },
+        { value: 'rheinische-muscheln', viewValue: 'Rheinische Muscheln' }
+      ]
+    },
+    {
+      nation: 'Swiss',
+      food: [
+        { value: 'bircherműesli', viewValue: 'Bircherműesli' },
+        { value: 'rösti', viewValue: 'Rösti' },
+        { value: 'bűndnernusstorte', viewValue: 'Bűndnernusstorte' }
+      ]
+    }
+  ];
 
   basicExampleFormControl = new FormControl();
 
@@ -61,12 +68,15 @@ export class SelectShowcaseComponent {
     $event.target.checked ? control.disable() : control.enable();
   }
 
-  toggleDisabledOptions($event: any, component: SelectComponent | 'select', mode: 'options' | 'optionGroups') {
+  toggleDisabledOptions(
+    $event: any,
+    component: SelectComponent | 'select',
+    mode: 'options' | 'optionGroups'
+  ) {
     if (component === 'select') {
       this.foods[1].disabled = $event.target.checked;
     } else {
       component[mode].toArray()[1].disabled = $event.target.checked;
     }
-
   }
 }

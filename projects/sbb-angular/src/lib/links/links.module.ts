@@ -10,7 +10,7 @@ import {
   IconPinterestModule,
   IconTwitterModule,
   IconXingModule,
-  IconYoutubeModule,
+  IconYoutubeModule
 } from 'sbb-angular-icons';
 
 import { LinkComponent } from './link/link.component';
@@ -28,15 +28,9 @@ import { SocialLinkComponent } from './social-link/social-link.component';
     IconTwitterModule,
     IconYoutubeModule,
     IconXingModule,
-    IconLinkedinModule,
+    IconLinkedinModule
   ],
-  declarations: [
-    LinkComponent,
-    SocialLinkComponent
-  ],
-  exports: [
-    LinkComponent,
-    SocialLinkComponent
-  ]
+  declarations: [LinkComponent, SocialLinkComponent],
+  exports: [LinkComponent, SocialLinkComponent]
 })
-export class LinksModule { }
+export class LinksModule {}

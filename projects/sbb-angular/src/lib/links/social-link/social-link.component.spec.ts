@@ -11,21 +11,16 @@ describe('SocialLinkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        SocialLinkComponent
-      ],
-      imports: [
-        IconCollectionModule
-      ]
+      declarations: [SocialLinkComponent],
+      imports: [IconCollectionModule]
     })
-    .overrideComponent(SocialLinkComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(SocialLinkComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
-
     fixture = TestBed.createComponent(SocialLinkComponent);
 
     component = fixture.componentInstance;
@@ -43,7 +38,9 @@ describe('SocialLinkComponent', () => {
     const elementStyle = getComputedStyle(fixture.debugElement.nativeElement);
 
     // #66666 == rgb(102,102,102)
-    expect(elementStyle.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');
+    expect(elementStyle.getPropertyValue('background-color')).toBe(
+      'rgb(102, 102, 102)'
+    );
 
     const icon = fixture.debugElement.query(By.css('sbb-icon-facebook'));
     expect(icon).toBeTruthy();

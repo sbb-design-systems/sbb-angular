@@ -1,20 +1,18 @@
-$toggleOptionIconSize:                31;
-$toggleOptionButtonBg:                $colorBlack5;
-$toggleOptionButtonColor:             $colorGrey;
-$toggleOptionRadius:                  2;
-$toggleOptionButtonPadding:           pxToEm(8) pxToEm(23) pxToEm(9);
-$toggleOptionInfoTextFontSize:        13;
-$toggleOptionButtonBgSelected:        $colorWhite;
-$toggleOptionButtonBorderSelected:    $colorBlack;
-$toggleOptionButtonColorSelected:     $colorBlack;
-$toggleOptionButtonMinHeight:         pxToEm(65);
-$toggleOptionInfoTextTransition:      max-height .25s linear, opacity .25s ease;
-$toggleOptionContentTransition:       opacity 0.25s ease, 
-                                      visibility 0.25s ease, 
-                                      padding 0.2s ease,
-                                      max-height 0.2s ease;
-$toggleOptionContentPadding:          24;
-$toggleOptionContentBg:               $colorWhite;
+$toggleOptionIconSize: 31;
+$toggleOptionButtonBg: $colorBlack5;
+$toggleOptionButtonColor: $colorGrey;
+$toggleOptionRadius: 2;
+$toggleOptionButtonPadding: pxToEm(8) pxToEm(23) pxToEm(9);
+$toggleOptionInfoTextFontSize: 13;
+$toggleOptionButtonBgSelected: $colorWhite;
+$toggleOptionButtonBorderSelected: $colorBlack;
+$toggleOptionButtonColorSelected: $colorBlack;
+$toggleOptionButtonMinHeight: pxToEm(65);
+$toggleOptionInfoTextTransition: max-height 0.25s linear, opacity 0.25s ease;
+$toggleOptionContentTransition: opacity 0.25s ease, visibility 0.25s ease,
+  padding 0.2s ease, max-height 0.2s ease;
+$toggleOptionContentPadding: 24;
+$toggleOptionContentBg: $colorWhite;
 
 @mixin toggleContainer() {
   display: flex;
@@ -52,7 +50,7 @@ $toggleOptionContentBg:               $colorWhite;
     cursor: pointer;
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     @include visuallyhidden();
   }
 }
@@ -100,8 +98,9 @@ $toggleOptionContentBg:               $colorWhite;
   border: pxToEm(1) solid $colorBlack;
   border-top-color: transparent;
 
-  &::before, &::after {
-    content: "";
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
     height: 0;
     top: pxToEm(-1);
@@ -135,7 +134,6 @@ $toggleOptionContentBg:               $colorWhite;
 }
 
 @mixin toggleOptionSelected() {
-
   .sbb-toggle-option-button {
     background-color: $toggleOptionButtonBgSelected;
     border-color: $toggleOptionButtonBorderSelected;
@@ -157,7 +155,6 @@ $toggleOptionContentBg:               $colorWhite;
     visibility: visible;
     opacity: 1;
   }
-
 }
 
 @mixin toggleOptionHasIcon() {

@@ -2,14 +2,16 @@
   <p>Import any of the following modules to use this icon</p>
   <p class="docs-api-module-import">
     <code>
-    <ng-container *ngFor="let module of uiIcon.modules">
-      import {{ '{ ' + module + ' }' }} from 'sbb-angular';<br>
-    </ng-container>
-  </code>
+      <ng-container *ngFor="let module of uiIcon.modules">
+        import {{ '{ ' + module + ' }' }} from 'sbb-angular';<br />
+      </ng-container>
+    </code>
   </p>
 
   <h5 class="docs-api-h5">Selector</h5>
-  <code class="sbbsc-cards-card-icon-selector">{{ getSelector(uiIcon.selector) }}</code>
+  <code class="sbbsc-cards-card-icon-selector">{{
+    getSelector(uiIcon.selector)
+  }}</code>
 
   <h5 class="docs-api-h5">Icon (Default fixed size)</h5>
   <ng-template [sbbIconViewer]="uiIcon" size="fixed"></ng-template>
@@ -25,21 +27,22 @@
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
+        <div class="docs-api-input-marker">@Input()</div>
         <p class="docs-api-property-name">
           <code>size: 'grow' | 'fixed' = 'grow'</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>Configure the size of the SVG.
-          'grow' will allow the SVG to grow or shrink to the parent size.
-          'fixed' will apply the default width and height of the SVG.
-          Defaults to 'grow'.</p>
+        <p>
+          Configure the size of the SVG. 'grow' will allow the SVG to grow or
+          shrink to the parent size. 'fixed' will apply the default width and
+          height of the SVG. Defaults to 'grow'.
+        </p>
       </td>
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
+        <div class="docs-api-input-marker">@Input()</div>
         <p class="docs-api-property-name">
           <code>width: string</code>
         </p>
@@ -50,7 +53,7 @@
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
+        <div class="docs-api-input-marker">@Input()</div>
         <p class="docs-api-property-name">
           <code>height: string</code>
         </p>
@@ -61,13 +64,15 @@
     </tr>
     <tr class="docs-api-properties-row">
       <td class="docs-api-properties-name-cell">
-        <div class="docs-api-input-marker"> @Input()</div>
+        <div class="docs-api-input-marker">@Input()</div>
         <p class="docs-api-property-name">
           <code>svgClass: string</code>
         </p>
       </td>
       <td class="docs-api-property-description">
-        <p>The given CSS class or classes will be applied to the SVG element.</p>
+        <p>
+          The given CSS class or classes will be applied to the SVG element.
+        </p>
       </td>
     </tr>
   </table>

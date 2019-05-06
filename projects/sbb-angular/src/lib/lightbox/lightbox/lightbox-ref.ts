@@ -17,7 +17,8 @@ export class LightboxRef<T, R = any> {
   componentInstance: T;
 
   /** Whether the user is allowed to close the dialog. */
-  disableClose: boolean | undefined = this.containerInstance.config.disableClose;
+  disableClose: boolean | undefined = this.containerInstance.config
+    .disableClose;
   /** Observable to close manually a lightbox. */
   manualCloseAction = new Subject<void>();
 
@@ -42,27 +43,31 @@ export class LightboxRef<T, R = any> {
     /** Identifier of lightbox. */
     readonly id: string = `sbb-lightbox-${uniqueId++}`,
     private _overlayRef: OverlayRef,
-    location?: Location,
+    location?: Location
   ) {
-
     // Pass the id along to the container.
     containerInstance.id = id;
 
     // Emit when opening animation completes
-    containerInstance.animationStateChanged.pipe(
-      filter(event => event.phaseName === 'done' && event.toState === 'enter'),
-      first()
-    )
+    containerInstance.animationStateChanged
+      .pipe(
+        filter(
+          event => event.phaseName === 'done' && event.toState === 'enter'
+        ),
+        first()
+      )
       .subscribe(() => {
         this._afterOpen.next();
         this._afterOpen.complete();
       });
 
     // Dispose overlay when closing animation is complete
-    containerInstance.animationStateChanged.pipe(
-      filter(event => event.phaseName === 'done' && event.toState === 'exit'),
-      first()
-    ).subscribe(() => this._overlayRef.dispose());
+    containerInstance.animationStateChanged
+      .pipe(
+        filter(event => event.phaseName === 'done' && event.toState === 'exit'),
+        first()
+      )
+      .subscribe(() => this._overlayRef.dispose());
 
     _overlayRef.detachments().subscribe(() => {
       this._beforeClose.next(this._result);
@@ -74,11 +79,13 @@ export class LightboxRef<T, R = any> {
       this._overlayRef.dispose();
     });
 
-    _overlayRef.keydownEvents()
+    _overlayRef
+      .keydownEvents()
       .pipe(filter(event => event.keyCode === ESCAPE && !this.disableClose))
       .subscribe(() => this.close());
 
-    _overlayRef.keydownEvents()
+    _overlayRef
+      .keydownEvents()
       .pipe(filter(event => event.keyCode === ESCAPE && this.disableClose))
       .subscribe(() => this.manualCloseAction.next(null));
 
@@ -102,10 +109,11 @@ export class LightboxRef<T, R = any> {
     this._result = lightboxResult;
 
     // Transition the backdrop in parallel to the lightbox.
-    this.containerInstance.animationStateChanged.pipe(
-      filter(event => event.phaseName === 'start'),
-      first()
-    )
+    this.containerInstance.animationStateChanged
+      .pipe(
+        filter(event => event.phaseName === 'start'),
+        first()
+      )
       .subscribe(() => {
         this._beforeClose.next(lightboxResult);
         this._beforeClose.complete();

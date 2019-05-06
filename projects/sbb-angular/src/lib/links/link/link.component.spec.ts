@@ -11,12 +11,8 @@ describe('LinkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IconCollectionModule
-      ],
-      declarations: [
-        LinkComponent
-      ]
+      imports: [IconCollectionModule],
+      declarations: [LinkComponent]
     })
       .overrideComponent(LinkComponent, {
         set: { changeDetection: ChangeDetectionStrategy.Default }
@@ -89,5 +85,4 @@ describe('LinkComponent', () => {
     // #666666 == rgb(102, 102, 102)
     expect(iconStyle.getPropertyValue('fill')).toBe('rgb(102, 102, 102)');
   });
-
 });

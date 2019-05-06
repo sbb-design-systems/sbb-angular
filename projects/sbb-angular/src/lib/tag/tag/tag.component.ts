@@ -2,7 +2,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter, forwardRef, HostBinding, Inject,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  Inject,
   InjectionToken,
   Input,
   NgZone,
@@ -31,15 +34,18 @@ export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
   selector: 'sbb-tag',
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TagComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TagComponent),
+      multi: true
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class TagComponent extends CheckboxComponent implements OnInit, OnChanges, OnDestroy {
+export class TagComponent extends CheckboxComponent
+  implements OnInit, OnChanges, OnDestroy {
   /**
    * A subject on a state change of a tag.
    */
@@ -124,16 +130,19 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
   constructor(
     private _changeDetector: ChangeDetectorRef,
     @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer,
-    private _zone: NgZone) {
+    private _zone: NgZone
+  ) {
     super(_changeDetector);
 
-    this._zone.onStable.pipe(first()).subscribe(
-      () => this._zone.run(() => this.tagChecking$.next(this.checked))
-    );
+    this._zone.onStable
+      .pipe(first())
+      .subscribe(() =>
+        this._zone.run(() => this.tagChecking$.next(this.checked))
+      );
   }
 
   ngOnInit() {
-    if(!this._tagsContainer) {
+    if (!this._tagsContainer) {
       this.linkMode = true;
     }
   }
@@ -156,5 +165,4 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
     this.onTouched();
     this.writeValue(checked);
   }
-
 }

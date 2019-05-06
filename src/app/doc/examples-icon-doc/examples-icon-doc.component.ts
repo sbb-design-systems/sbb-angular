@@ -8,7 +8,6 @@ import { UiIcon } from '../../shared/ui-icon';
   styleUrls: ['./examples-icon-doc.component.scss']
 })
 export class ExamplesIconDocComponent {
-
   @Input() uiIcon: UiIcon;
 
   getSelector(selector: string) {

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FileSelectorTypesService, FileTypeCategory } from 'projects/sbb-angular/src/lib/file-selector/file-selector';
+import { FileSelectorTypesService, FileTypeCategory } from 'sbb-angular';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,14 +9,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./file-selector-showcase.component.scss']
 })
 export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
-
   filesList1: File[] = [];
 
   filesList2: File[] = [];
 
   filesList3: File[] = [];
 
-  disabled:boolean;
+  disabled: boolean;
 
   fileControl = new FormControl();
   fileControlSubscription = Subscription.EMPTY;
@@ -24,17 +23,18 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
   accept: string;
 
   constructor(private _fileTypeService: FileSelectorTypesService) {
-    this.accept = this._fileTypeService.getAcceptString([FileTypeCategory.IMAGE, FileTypeCategory.ZIP]);
+    this.accept = this._fileTypeService.getAcceptString([
+      FileTypeCategory.IMAGE,
+      FileTypeCategory.ZIP
+    ]);
   }
 
   ngOnInit() {
-    this.fileControlSubscription = this.fileControl
-      .valueChanges
-      .subscribe(
-        (files: File[]) => {
-          this.filesList3 = files;
-        }
-      );
+    this.fileControlSubscription = this.fileControl.valueChanges.subscribe(
+      (files: File[]) => {
+        this.filesList3 = files;
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -58,9 +58,9 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
     }
   }
 
-  setDisabled($event:any) {
-
-    $event.target.checked ? this.fileControl.disable() : this.fileControl.enable();
+  setDisabled($event: any) {
+    $event.target.checked
+      ? this.fileControl.disable()
+      : this.fileControl.enable();
   }
-
 }

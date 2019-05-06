@@ -18,20 +18,29 @@ import { DropdownComponent } from './dropdown.component';
 
 @Component({
   selector: 'sbb-dropdown-test',
-  template: `<button sbbButton type="button" [sbbDropdown]="dropdown">Open dropdown</button>
-  <sbb-dropdown #dropdown="sbbDropdown">
-    <a *ngFor="let link of links" sbbDropdownItem [routerLink]="linkGenerator(link.page).routerLink"
-      [queryParams]="linkGenerator(link.page).queryParams" routerLinkActive="sbb-selected">
-      {{ link.text }}
-    </a>
+  template: `
+    <button sbbButton type="button" [sbbDropdown]="dropdown">
+      Open dropdown
+    </button>
+    <sbb-dropdown #dropdown="sbbDropdown">
+      <a
+        *ngFor="let link of links"
+        sbbDropdownItem
+        [routerLink]="linkGenerator(link.page).routerLink"
+        [queryParams]="linkGenerator(link.page).queryParams"
+        routerLinkActive="sbb-selected"
+      >
+        {{ link.text }}
+      </a>
 
-    <hr>
-    <button sbbDropdownItem type="button" (click)="onClick()">Abmeldung</button>
-  </sbb-dropdown>`
-
+      <hr />
+      <button sbbDropdownItem type="button" (click)="onClick()">
+        Abmeldung
+      </button>
+    </sbb-dropdown>
+  `
 })
 export class DropdownTestComponent {
-
   @ViewChildren(DropdownTriggerDirective)
   triggers: QueryList<DropdownTriggerDirective>;
 
@@ -56,9 +65,11 @@ export class DropdownTestComponent {
   }
 
   addNewLink() {
-    this.links.push({ page: this.links.length + 1, text: 'Test ' + (this.links.length + 1) });
+    this.links.push({
+      page: this.links.length + 1,
+      text: 'Test ' + (this.links.length + 1)
+    });
   }
-
 }
 
 describe('DropdownComponent', () => {
@@ -73,12 +84,9 @@ describe('DropdownComponent', () => {
         DropdownOriginDirective,
         DropdownTriggerDirective
       ],
-      imports: [
-        CommonModule,
-      ],
+      imports: [CommonModule],
       providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -100,22 +108,15 @@ describe('DropdownComponent test', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DropdownTestComponent
-      ],
-      imports: [
-        DropdownModule,
-        RouterTestingModule
-      ]
-    })
-      .compileComponents();
+      declarations: [DropdownTestComponent],
+      imports: [DropdownModule, RouterTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
   });
 
   it('should have four options', () => {
@@ -155,9 +156,7 @@ describe('DropdownComponent test', () => {
   });
 
   describe('clicking on the second option', () => {
-
     it('should change location to have page 2 query parameter', async(() => {
-
       fixture.ngZone.run(async () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
@@ -167,7 +166,9 @@ describe('DropdownComponent test', () => {
         location = TestBed.get(Location);
         fixture.detectChanges();
         await fixture.whenStable();
-        const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));
+        const links = fixture.debugElement.queryAll(
+          By.css('[sbbDropdownItem]')
+        );
         fixture.detectChanges();
         links[1].nativeElement.click();
         await fixture.whenStable();
@@ -176,7 +177,6 @@ describe('DropdownComponent test', () => {
     }));
 
     it('should apply sbb-selected class on the 2nd option', async(() => {
-
       fixture.ngZone.run(async () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
@@ -186,14 +186,15 @@ describe('DropdownComponent test', () => {
         location = TestBed.get(Location);
         fixture.detectChanges();
         await fixture.whenStable();
-        const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));
+        const links = fixture.debugElement.queryAll(
+          By.css('[sbbDropdownItem]')
+        );
         fixture.detectChanges();
         links[1].nativeElement.click();
         await fixture.whenStable();
         expect(links[1].classes['sbb-selected']).toBeTruthy();
       });
     }));
-
   });
 
   describe('adding a new link', () => {
@@ -204,5 +205,4 @@ describe('DropdownComponent test', () => {
       expect(component.dropdown.options.length).toBe(5);
     });
   });
-
 });

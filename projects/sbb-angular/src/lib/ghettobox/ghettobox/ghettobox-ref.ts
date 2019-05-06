@@ -4,7 +4,10 @@ import { filter, first } from 'rxjs/operators';
 
 import { LinkGeneratorResult } from '../../pagination/pagination';
 
-import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
+import {
+  GhettoboxComponent,
+  GhettoboxDeletedEvent
+} from './ghettobox.component';
 
 /**
  * Describe a Ghettobox object accepted from the GhettoboxService's add method
@@ -22,7 +25,6 @@ export interface Ghettobox {
  * ComponentRef of a dynamic component attached to the cdkPortalOutlet
  */
 export class GhettoboxRef {
-
   get id(): string {
     if (this._ref instanceof ComponentRef) {
       return this._ref.instance.id;
@@ -41,10 +43,14 @@ export class GhettoboxRef {
     return this.componentInstance.afterDelete;
   }
 
-  constructor(private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent) {
-    this.afterDelete.pipe(
-      first(),
-      filter(() => this._ref instanceof ComponentRef))
+  constructor(
+    private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent
+  ) {
+    this.afterDelete
+      .pipe(
+        first(),
+        filter(() => this._ref instanceof ComponentRef)
+      )
       .subscribe(() => this._ref.destroy());
   }
 

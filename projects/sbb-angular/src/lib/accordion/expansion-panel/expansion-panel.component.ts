@@ -55,14 +55,15 @@ let uniqueId = 0;
   animations: [sbbExpansionAnimations.bodyExpansion],
   // Provide SbbAccordion as undefined to prevent nested expansion panels from registering
   // to the same accordion.
-  providers: [{
-    provide: SBB_ACCORDION,
-    useValue: undefined
-  }],
+  providers: [
+    {
+      provide: SBB_ACCORDION,
+      useValue: undefined
+    }
+  ]
 })
-
-export class ExpansionPanelComponent extends CdkAccordionItem implements AfterContentInit, OnChanges,
-  OnDestroy {
+export class ExpansionPanelComponent extends CdkAccordionItem
+  implements AfterContentInit, OnChanges, OnDestroy {
   /**
    * Class property to disable a specific panel.
    */
@@ -92,7 +93,9 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
    * Class property that refers to the status of expansion of the panel.
    */
   @HostBinding('class.sbb-expanded')
-  get expandedPanelClass() { return this.expanded; }
+  get expandedPanelClass() {
+    return this.expanded;
+  }
 
   /** Whether the toggle indicator should be hidden. */
   @Input()
@@ -114,7 +117,8 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
   accordion: IAccordionBase;
 
   /** Content that will be rendered lazily. */
-  @ContentChild(ExpansionPanelContentDirective) lazyContent: ExpansionPanelContentDirective;
+  @ContentChild(ExpansionPanelContentDirective)
+  lazyContent: ExpansionPanelContentDirective;
 
   /** Element containing the panel's user-provided content. */
   @ViewChild('body') body: ElementRef<HTMLElement>;
@@ -130,7 +134,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
     @Optional() @SkipSelf() @Inject(SBB_ACCORDION) accordion: IAccordionBase,
     changeDetectorRef: ChangeDetectorRef,
     uniqueSelectionDispatcher: UniqueSelectionDispatcher,
-    @Inject(DOCUMENT) document?: any,
+    @Inject(DOCUMENT) document?: any
   ) {
     super(accordion, changeDetectorRef, uniqueSelectionDispatcher);
     this.accordion = accordion;
@@ -145,13 +149,18 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
   ngAfterContentInit() {
     if (this.lazyContent) {
       // Render the content as soon as the panel becomes open.
-      this.opened.pipe(
-        startWith(true),
-        filter(() => this.expanded && !this.portal),
-        first()
-      ).subscribe(() => {
-        this.portal = new TemplatePortal(this.lazyContent._template, this._viewContainerRef);
-      });
+      this.opened
+        .pipe(
+          startWith(true),
+          filter(() => this.expanded && !this.portal),
+          first()
+        )
+        .subscribe(() => {
+          this.portal = new TemplatePortal(
+            this.lazyContent._template,
+            this._viewContainerRef
+          );
+        });
     }
   }
 
@@ -185,7 +194,9 @@ export class ExpansionPanelComponent extends CdkAccordionItem implements AfterCo
     if (this.body && this._document) {
       const focusedElement = this._document.activeElement;
       const bodyElement = this.body.nativeElement;
-      return focusedElement === bodyElement || bodyElement.contains(focusedElement);
+      return (
+        focusedElement === bodyElement || bodyElement.contains(focusedElement)
+      );
     }
 
     return false;

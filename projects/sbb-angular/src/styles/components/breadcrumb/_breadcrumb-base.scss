@@ -105,7 +105,7 @@
 
     &-open {
       &::before {
-        content: "";
+        content: '';
         border-top: $breadcrumbTriggerBorderActive;
         border-right: $breadcrumbTriggerBorderActive;
         border-left: $breadcrumbTriggerBorderActive;
@@ -203,13 +203,17 @@
       border-width: toPx(1 * $scalingFactor4k);
       height: toPx(16 * $scalingFactor4k);
       width: toPx(16 * $scalingFactor4k);
-      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
+      margin-left: toPx(
+        $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k
+      );
     }
     @include mq($from: desktop5k) {
       border-width: toPx(1 * $scalingFactor5k);
       height: toPx(16 * $scalingFactor5k);
       width: toPx(16 * $scalingFactor5k);
-      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
+      margin-left: toPx(
+        $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k
+      );
     }
     &-visible {
       display: block;
@@ -237,8 +241,11 @@
     &-icon {
       @include svgIconColor($colorGrey);
     }
-    &:hover, &:focus, &:active, &.sbb-breadcrumb-trigger-open {
-      .sbb-breadcrumb-trigger-icon{
+    &:hover,
+    &:focus,
+    &:active,
+    &.sbb-breadcrumb-trigger-open {
+      .sbb-breadcrumb-trigger-icon {
         @include svgIconColor($colorRed125);
       }
     }

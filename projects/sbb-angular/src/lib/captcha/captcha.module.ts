@@ -6,18 +6,9 @@ import { CaptchaComponent } from './captcha/captcha.component';
 import { WindowRef } from './captcha/windowref.service';
 
 @NgModule({
-  declarations: [
-    CaptchaComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    CaptchaComponent
-  ],
-  providers: [
-    CaptchaLoaderService,
-    WindowRef
-  ]
+  declarations: [CaptchaComponent],
+  imports: [CommonModule],
+  exports: [CaptchaComponent],
+  providers: [CaptchaLoaderService, WindowRef]
 })
-export class CaptchaModule { }
+export class CaptchaModule {}

@@ -5,6 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './textexpand-showcase.component.html',
   styleUrls: ['./textexpand-showcase.component.scss']
 })
-export class TextexpandShowcaseComponent {
-
-}
+export class TextexpandShowcaseComponent {}

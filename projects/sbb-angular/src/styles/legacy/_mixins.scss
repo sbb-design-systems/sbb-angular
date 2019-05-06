@@ -9,580 +9,570 @@
 // Component-Styles
 // ----------------------------------------------------------------------------------------------------
 @mixin component_default() {
-	margin-left: pxToRem($offsetMedium);
-	margin-right: pxToRem($offsetMedium);
+  margin-left: pxToRem($offsetMedium);
+  margin-right: pxToRem($offsetMedium);
 
-	// TODO PS & MB: what about 769-1024
+  // TODO PS & MB: what about 769-1024
 
-	@include mq($from: desktop) {
-		margin-left: $offsetPreLarge;
-		margin-right: $offsetPreLarge;
-	}
+  @include mq($from: desktop) {
+    margin-left: $offsetPreLarge;
+    margin-right: $offsetPreLarge;
+  }
 
-	@include mq($from: desktopLarge) {
-		margin-left: $offsetLarge;
-		margin-right: $offsetLarge;
-	}
+  @include mq($from: desktopLarge) {
+    margin-left: $offsetLarge;
+    margin-right: $offsetLarge;
+  }
 
-	@include mq($from: desktopMaxWidth) {
-		max-width: pxToRem($maxWidthContentDesktop);
-		margin-left: auto;
-		margin-right: auto;
-	}
+  @include mq($from: desktopMaxWidth) {
+    max-width: pxToRem($maxWidthContentDesktop);
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-	@include mq($from: desktop4k) {
-		max-width: none;
-		margin-left: $offset5k;
-		margin-right: $offset5k;
-	}
+  @include mq($from: desktop4k) {
+    max-width: none;
+    margin-left: $offset5k;
+    margin-right: $offset5k;
+  }
 
-	@include mq($from: desktop5k) {
-		max-width: pxToRem($maxWidthContentDesktop5k);
-		margin-left: auto;
-		margin-right: auto;
-	}
+  @include mq($from: desktop5k) {
+    max-width: pxToRem($maxWidthContentDesktop5k);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @mixin moduleBleedTillTablet {
-	.layout-center & {
-		margin-left: pxToRem(-$offsetMedium);
-		margin-right: pxToRem(-$offsetMedium);
+  .layout-center & {
+    margin-left: pxToRem(-$offsetMedium);
+    margin-right: pxToRem(-$offsetMedium);
 
-		@include mq($from: tabletPortrait) {
-			margin-left: pxToRem(-$offsetMedium * 2);
-			margin-right: pxToRem(-$offsetMedium * 2);
-		}
+    @include mq($from: tabletPortrait) {
+      margin-left: pxToRem(-$offsetMedium * 2);
+      margin-right: pxToRem(-$offsetMedium * 2);
+    }
 
-		@include mq($from: desktop) {
-			margin-left: 0;
-			margin-right: 0;
-		}
-	}
+    @include mq($from: desktop) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 }
 
 @mixin component_doublebleed() {
-	padding-left: pxToRem(2*$offsetSmall);
-	padding-right: pxToRem(2*$offsetSmall);
+  padding-left: pxToRem(2 * $offsetSmall);
+  padding-right: pxToRem(2 * $offsetSmall);
 
-	@include mq($from: tabletPortrait) {
-		padding-left: pxToRem(2*$offsetMedium);
-		padding-right: pxToRem(2*$offsetMedium);
-	}
+  @include mq($from: tabletPortrait) {
+    padding-left: pxToRem(2 * $offsetMedium);
+    padding-right: pxToRem(2 * $offsetMedium);
+  }
 
-	@include mq($from: desktop) {
-		max-width: pxToRem($maxWidthContentDesktop);
-		margin-left: auto;
-		margin-right: auto;
-		padding-left: $offsetPreLarge;
-		padding-right: $offsetPreLarge;
-	}
+  @include mq($from: desktop) {
+    max-width: pxToRem($maxWidthContentDesktop);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $offsetPreLarge;
+    padding-right: $offsetPreLarge;
+  }
 
-	@include mq($from: desktopLarge) {
-		padding-left: $offsetLarge;
-		padding-right: $offsetLarge;
-	}
+  @include mq($from: desktopLarge) {
+    padding-left: $offsetLarge;
+    padding-right: $offsetLarge;
+  }
 
-	@include mq($from: desktopMaxWidth) {
-		margin-left: auto;
-		margin-right: auto;
-	}
+  @include mq($from: desktopMaxWidth) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-	@include mq($from: desktop4k) {
-		max-width: pxToRem($maxWidthContentDesktop5k);
-		padding-left: $offsetLarge;
-		padding-right: $offsetLarge;
-	}
+  @include mq($from: desktop4k) {
+    max-width: pxToRem($maxWidthContentDesktop5k);
+    padding-left: $offsetLarge;
+    padding-right: $offsetLarge;
+  }
 }
 
 @mixin component_centered {
-	@include mq($from: desktop) {
-		max-width: toEm(992/$sizeFontDefault); // !!! TODO: define relative width
-		margin-left: auto;
-		margin-right: auto;
-	}
+  @include mq($from: desktop) {
+    max-width: toEm(992 / $sizeFontDefault); // !!! TODO: define relative width
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 // Content Components
 // ----------------------------------------------------------------------------------------------------
 @mixin component_content_75() {
-
-	@include mq($from: desktop) {
-		width: 74.69879%;
-	}
-
+  @include mq($from: desktop) {
+    width: 74.69879%;
+  }
 }
 
 @mixin overviewPageLead() {
-	font-size: pxToEm(17);
+  font-size: pxToEm(17);
 
-	@include mq($from: tabletPortrait) {
-		font-size: pxToEm(19);
-	}
+  @include mq($from: tabletPortrait) {
+    font-size: pxToEm(19);
+  }
 
-	@include mq($from: desktop) {
-		font-size: pxToEm(21);
-	}
-
+  @include mq($from: desktop) {
+    font-size: pxToEm(21);
+  }
 }
 
 @mixin additionalinfo {
-	font-weight: normal;
-	color: $colorGrey;
-	font-size: pxToEm(13);
-	margin: 1em 0 0; // paragraph as default
+  font-weight: normal;
+  color: $colorGrey;
+  font-size: pxToEm(13);
+  margin: 1em 0 0; // paragraph as default
 
-	a {
-		color: currentColor;
-	}
+  a {
+    color: currentColor;
+  }
 }
 
 @mixin moduleTitle {
-	font-family: $fontSbbThin;
-	font-weight: normal;
-	font-size: pxToEm($sizeFontH1Mobile);
-	margin-bottom: pxToEm($interComponentSpacingSmall - 7, $sizeFontH1Mobile);
-	line-height: 1.166667;
+  font-family: $fontSbbThin;
+  font-weight: normal;
+  font-size: pxToEm($sizeFontH1Mobile);
+  margin-bottom: pxToEm($interComponentSpacingSmall - 7, $sizeFontH1Mobile);
+  line-height: 1.166667;
 
-	@include mq($from: tabletPortrait) {
-		font-size: pxToEm($sizeFontH1Tablet);
-		margin-top: pxToEm(-8, $sizeFontH1Tablet);
-		margin-bottom: pxToEm($interComponentSpacingSmall - 10, $sizeFontH1Tablet);
-	}
+  @include mq($from: tabletPortrait) {
+    font-size: pxToEm($sizeFontH1Tablet);
+    margin-top: pxToEm(-8, $sizeFontH1Tablet);
+    margin-bottom: pxToEm($interComponentSpacingSmall - 10, $sizeFontH1Tablet);
+  }
 
-	@include mq($from: desktop) {
-		margin-top: pxToEm(-11, $sizeFontH1Default);
-		margin-bottom: pxToEm(48 - 7, $sizeFontH1Default);
-		font-size: pxToEm($sizeFontH1Default);
-		line-height: 1.1875;
-	}
+  @include mq($from: desktop) {
+    margin-top: pxToEm(-11, $sizeFontH1Default);
+    margin-bottom: pxToEm(48 - 7, $sizeFontH1Default);
+    font-size: pxToEm($sizeFontH1Default);
+    line-height: 1.1875;
+  }
 
-	.page-centered & {
-		text-align: center;
-	}
+  .page-centered & {
+    text-align: center;
+  }
 
-	.page-centered .mod-accordion & {
-		text-align: left;
-	}
-
+  .page-centered .mod-accordion & {
+    text-align: left;
+  }
 }
 
 @mixin overviewLink {
-	position: relative;
+  position: relative;
 
-	display: block;
-	padding: pxToEm(20 - $gutterHeight, $sizeFontDefault) pxToEm(24, $sizeFontDefault) pxToEm(21 - $gutterHeight, $sizeFontDefault) 0;
+  display: block;
+  padding: pxToEm(20 - $gutterHeight, $sizeFontDefault)
+    pxToEm(24, $sizeFontDefault) pxToEm(21 - $gutterHeight, $sizeFontDefault) 0;
 
-	border-top: 1px solid $colorBlack10;
-	text-decoration: none;
-	word-wrap: break-word;
+  border-top: 1px solid $colorBlack10;
+  text-decoration: none;
+  word-wrap: break-word;
 
-	hyphens: auto;
+  hyphens: auto;
 
-	transition: height $linkiconAnimation,
-				padding-left $linkiconAnimation,
-				padding-right $linkiconAnimation,
-				color $linkiconAnimation;
+  transition: height $linkiconAnimation, padding-left $linkiconAnimation,
+    padding-right $linkiconAnimation, color $linkiconAnimation;
 
-	&:before,
-	&:after {
-		content: '';
-		position: absolute;
-		top: 50%;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
 
-		display: block;
-		width: pxToEm(24, $sizeFontDefault);
-		height: pxToEm(24, $sizeFontDefault);
+    display: block;
+    width: pxToEm(24, $sizeFontDefault);
+    height: pxToEm(24, $sizeFontDefault);
 
-		margin-top: pxToEm(-11.5, $sizeFontDefault);
-		backface-visibility: hidden;
-		background-size: contain;
+    margin-top: pxToEm(-11.5, $sizeFontDefault);
+    backface-visibility: hidden;
+    background-size: contain;
 
-		transition: opacity $linkiconAnimation,
-					transform $linkiconAnimation;
-	}
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation;
+  }
 
-	&:before {
-		left: 0;
-		margin-left: 0;
-		opacity: 0;
-		transform: translateX(pxToEm(-26, $sizeFontDefault));
-		background: url(../../modules/l02_-_megadropdown/media/SBB_174_cta_arrow_hover.svg) no-repeat;
-	}
+  &:before {
+    left: 0;
+    margin-left: 0;
+    opacity: 0;
+    transform: translateX(pxToEm(-26, $sizeFontDefault));
+    background: url(../../modules/l02_-_megadropdown/media/SBB_174_cta_arrow_hover.svg)
+      no-repeat;
+  }
 
-	&:after {
-		right: 0;
-		margin-left: pxToEm(4, $sizeFontDefault);
-		opacity: 1;
-		transform: translateX(0);
-		background: url(../../assets/media/svgsprites/base/SBB_08_arrow_down.svg) no-repeat;
-	}
+  &:after {
+    right: 0;
+    margin-left: pxToEm(4, $sizeFontDefault);
+    opacity: 1;
+    transform: translateX(0);
+    background: url(../../assets/media/svgsprites/base/SBB_08_arrow_down.svg)
+      no-repeat;
+  }
 
-	&:hover,
-	&:focus {
-		padding-left: pxToEm(28, $sizeFontDefault);
-		padding-right: 0;
+  &:hover,
+  &:focus {
+    padding-left: pxToEm(28, $sizeFontDefault);
+    padding-right: 0;
 
-		transition: padding-left $linkiconAnimation,
-					padding-right $linkiconAnimation,
-					color $linkiconAnimation;
+    transition: padding-left $linkiconAnimation,
+      padding-right $linkiconAnimation, color $linkiconAnimation;
 
-		&:before,
-		&:after {
-			transition: opacity $linkiconAnimation,
-						transform $linkiconAnimation;
-		}
+    &:before,
+    &:after {
+      transition: opacity $linkiconAnimation, transform $linkiconAnimation;
+    }
 
-		&:before {
-			opacity: 1;
-			transform: translateX(0);
-		}
+    &:before {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-		&:after {
-			opacity: 0;
-			transform: translateX(pxToEm(26, $sizeFontDefault));
-		}
-	}
-
+    &:after {
+      opacity: 0;
+      transform: translateX(pxToEm(26, $sizeFontDefault));
+    }
+  }
 }
 
 // Discount Label
 // ----------------------------------------------------------------------------------------------------
 @mixin discountLabel() {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	width: 0;
-	height: 0;
-	border-style: solid; // eventually inset for non-retina in firefox
-	border-width: toEm(24/$sizeFontDefault) toEm(24/$sizeFontDefault) 0 0;
-	border-color: $colorBlack transparent transparent transparent;
-	overflow: hidden;
-	backface-visibility: hidden;
-	-webkit-transform: rotate(360deg); // should smoothen border in chrome
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-style: solid; // eventually inset for non-retina in firefox
+  border-width: toEm(24 / $sizeFontDefault) toEm(24 / $sizeFontDefault) 0 0;
+  border-color: $colorBlack transparent transparent transparent;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: rotate(360deg); // should smoothen border in chrome
 
-	@include mq($from: tabletPortrait) {
-		border-width: toEm(36/$sizeFontDefault) toEm(36/$sizeFontDefault) 0 0;
-	}
+  @include mq($from: tabletPortrait) {
+    border-width: toEm(36 / $sizeFontDefault) toEm(36 / $sizeFontDefault) 0 0;
+  }
 
-	@include mq($from: desktop) {
-		border-width: toEm(40/$sizeFontDefault) toEm(40/$sizeFontDefault) 0 0;
-	}
+  @include mq($from: desktop) {
+    border-width: toEm(40 / $sizeFontDefault) toEm(40 / $sizeFontDefault) 0 0;
+  }
 }
 
 @mixin discountIcon() {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	fill: $colorWhite;
-	height: toEm(16/$sizeFontDefault);
-	width: toEm(16/$sizeFontDefault);
-	margin: pxToEm(-(1.5/$sizeFontDefault)) 0 0 toEm(-2.5/$sizeFontDefault);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  fill: $colorWhite;
+  height: toEm(16 / $sizeFontDefault);
+  width: toEm(16 / $sizeFontDefault);
+  margin: pxToEm(-(1.5 / $sizeFontDefault)) 0 0 toEm(-2.5 / $sizeFontDefault);
 
-	@include mq($from: tabletPortrait) {
-		height: toEm(28/$sizeFontDefault);
-		width: toEm(28/$sizeFontDefault);
-		margin: toEm(-(3.5/$sizeFontDefault)) 0 0 toEm(-4/$sizeFontDefault);
-	}
+  @include mq($from: tabletPortrait) {
+    height: toEm(28 / $sizeFontDefault);
+    width: toEm(28 / $sizeFontDefault);
+    margin: toEm(-(3.5 / $sizeFontDefault)) 0 0 toEm(-4 / $sizeFontDefault);
+  }
 
-	@include mq($from: desktop) {
-		margin: toEm(-(2/$sizeFontDefault)) 0 0 toEm(-3/$sizeFontDefault);
-	}
-
+  @include mq($from: desktop) {
+    margin: toEm(-(2 / $sizeFontDefault)) 0 0 toEm(-3 / $sizeFontDefault);
+  }
 }
 
 // Ads Disclaimer link
 // ----------------------------------------------------------------------------------------------------
 @mixin adsDisclaimerLink() {
-	background: $colorWhite;
-	display: inline-block;
-	color: $colorBlack60;
-	padding: pxToEm(3,11) pxToEm(8,11);
-	font-size: pxToEm(11);
-	text-decoration: none;
-	border: pxToEm(1,11) solid $colorGreyLight;
-	border-bottom: 0;
-	border-top-left-radius: pxToEm(2,11);
-	border-top-right-radius: pxToEm(2,11);
-	flex: 0 0 auto;
+  background: $colorWhite;
+  display: inline-block;
+  color: $colorBlack60;
+  padding: pxToEm(3, 11) pxToEm(8, 11);
+  font-size: pxToEm(11);
+  text-decoration: none;
+  border: pxToEm(1, 11) solid $colorGreyLight;
+  border-bottom: 0;
+  border-top-left-radius: pxToEm(2, 11);
+  border-top-right-radius: pxToEm(2, 11);
+  flex: 0 0 auto;
 }
 
 // Module Spacing
 // ----------------------------------------------------------------------------------------------------
 @mixin moduleSpacingWithinAccordion($fontSize: $sizeFontDefault) {
-	margin-bottom: innerComponentBottomSpacingSmall($fontSize);
+  margin-bottom: innerComponentBottomSpacingSmall($fontSize);
 }
 
 @mixin moduleSpacing($fontSize: $sizeFontDefault) {
-	margin-bottom: interComponentSpacingSmall($fontSize);
+  margin-bottom: interComponentSpacingSmall($fontSize);
 
-	@include mq($from: tabletPortrait) {
-		margin-bottom: interComponentSpacingTablet($fontSize);
-	}
+  @include mq($from: tabletPortrait) {
+    margin-bottom: interComponentSpacingTablet($fontSize);
+  }
 
-	@include mq($from: desktop) {
-		margin-bottom: interComponentSpacing($fontSize);
-	}
+  @include mq($from: desktop) {
+    margin-bottom: interComponentSpacing($fontSize);
+  }
 }
 
 @mixin moduleSpacingDouble($fontSize: $sizeFontDefault) {
-	margin-bottom: pxToEm($interComponentSpacing, $fontSize);
+  margin-bottom: pxToEm($interComponentSpacing, $fontSize);
 
-	@include mq($from: tabletPortrait) {
-		margin-bottom: pxToEm($innerComponentSpacing * 4, $fontSize);
-	}
+  @include mq($from: tabletPortrait) {
+    margin-bottom: pxToEm($innerComponentSpacing * 4, $fontSize);
+  }
 
-	@include mq($from: desktop) {
-		margin-bottom: pxToEm($interComponentSpacing * 2, $fontSize);
-	}
+  @include mq($from: desktop) {
+    margin-bottom: pxToEm($interComponentSpacing * 2, $fontSize);
+  }
 }
 
 @mixin moduleSpacingSmall($fontSize: $sizeFontDefault) {
-	margin-bottom: interComponentSpacingTiny($fontSize);
+  margin-bottom: interComponentSpacingTiny($fontSize);
 
-	@include mq($from: tabletPortrait) {
-		margin-bottom: interComponentSpacingSmall($fontSize);
-	}
+  @include mq($from: tabletPortrait) {
+    margin-bottom: interComponentSpacingSmall($fontSize);
+  }
 }
 
 @mixin negativeCopyToModuleSpacing($fontSize: $sizeFontDefault) {
-	margin-top: pxToEm(-($interComponentSpacingSmall/2));
+  margin-top: pxToEm(-($interComponentSpacingSmall/2));
 
-	@include mq($from: desktop) {
-		margin-top: pxToEm(-$interComponentSpacingSmall);
-	}
+  @include mq($from: desktop) {
+    margin-top: pxToEm(-$interComponentSpacingSmall);
+  }
 }
 
 @mixin negativeCopyToModuleSpacingSmall($fontSize: $sizeFontDefault) {
-	margin-top: pxToEm(-($innerComponentSpacing/2));
+  margin-top: pxToEm(-($innerComponentSpacing/2));
 
-	@include mq($from: desktop) {
-		margin-top: pxToEm(-$interComponentSpacingSmall);
-	}
+  @include mq($from: desktop) {
+    margin-top: pxToEm(-$interComponentSpacingSmall);
+  }
 }
 
 @mixin negativeCopyToBottomSpacing($fontSize: $sizeFontDefault) {
-	margin-top: pxToEm(-38);
+  margin-top: pxToEm(-38);
 
-	@include mq($from: desktop) {
-		margin-top: pxToEm(-70);
-	}
+  @include mq($from: desktop) {
+    margin-top: pxToEm(-70);
+  }
 }
 
 // Horizontal Scrollarea Side Gradients
 // ----------------------------------------------------------------------------------------------------
 @mixin scrollAreaGradients($fontSize: $sizeFontDefault) {
+  &:after,
+  &:before {
+    position: absolute;
+    top: 0;
+    content: '';
+    z-index: 1;
+    width: toEm($offsetSmall/$fontSize);
+    height: calc(100% - 0.5rem);
+    transition: transform 0.25s ease;
 
-	&:after,
-	&:before {
-		position: absolute;
-		top: 0;
-		content: '';
-		z-index: 1;
-		width: toEm($offsetSmall/$fontSize);
-		height: calc(100% - 0.5rem);
-		transition: transform .25s ease;
+    @include mq($from: tabletPortrait) {
+      width: toEm($offsetMedium/$fontSize);
+    }
+  }
 
-		@include mq($from: tabletPortrait) {
-			width: toEm($offsetMedium/$fontSize);
-		}
+  &:before {
+    left: 0;
+    transform: translateX(0%);
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.37) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
 
-	}
-
-	&:before {
-		left: 0;
-		transform: translateX(0%);
-		background: linear-gradient(to left, rgba(255,255,255,0.37) 0%, rgba(255,255,255,1) 100%);
-	}
-
-	&:after {
-		right: 0;
-		transform: translateX(0%);
-		background: linear-gradient(to right, rgba(255,255,255,0.37) 0%, rgba(255,255,255,1) 100%);
-	}
-
+  &:after {
+    right: 0;
+    transform: translateX(0%);
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.37) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
 }
 
 @mixin scrollAreaGradientsStart() {
-
-	&:before {
-		transform: translateX(-100%);
-	}
+  &:before {
+    transform: translateX(-100%);
+  }
 }
 
-
 @mixin scrollAreaGradientsEnd() {
-
-	&:after {
-		transform: translateX(100%);
-
-	}
+  &:after {
+    transform: translateX(100%);
+  }
 }
 
 @mixin mediaCaption() {
-	@include additionalinfo;
+  @include additionalinfo;
 
-	position: relative;
-	z-index: 4; // One above play button
-	font-size: pxToEm(13);
-	margin: pxToEm(23, 13) 0;
+  position: relative;
+  z-index: 4; // One above play button
+  font-size: pxToEm(13);
+  margin: pxToEm(23, 13) 0;
 
-	a {
-		color: $colorGrey;
-	}
-
+  a {
+    color: $colorGrey;
+  }
 }
 
 @mixin skeletonBG() {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	content: '';
-	border-radius: 60%;
-	background: linear-gradient(-45deg, $colorWhite 0%, $colorBlack5 100%);
-	transition: opacity .225s cubic-bezier(0.4, 0.0, 0.2, 1);
-	opacity: 1;
-	z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: '';
+  border-radius: 60%;
+  background: linear-gradient(-45deg, $colorWhite 0%, $colorBlack5 100%);
+  transition: opacity 0.225s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  z-index: 0;
 
-	.svgSpritesLoaded & {
-		opacity: 0;
-	}
+  .svgSpritesLoaded & {
+    opacity: 0;
+  }
 }
 
 // Component arrow
 // ----------------------------------------------------------------------------------------------------
 @mixin componentArrow() {
-	// arrow on bottom of tooltip and footnote window. In total, there are 3
-	// triangles need to create the desired effect.
-	// a) triangle with white background from the tooltip
-	// b) triangle with dark grey border color from the tooltip
-	// c) triangle with light grey box shadow from the tooltip
+  // arrow on bottom of tooltip and footnote window. In total, there are 3
+  // triangles need to create the desired effect.
+  // a) triangle with white background from the tooltip
+  // b) triangle with dark grey border color from the tooltip
+  // c) triangle with light grey box shadow from the tooltip
 
-	// c)
-	&-arrow {
-		position: absolute;
-		bottom: pxToEm(-23.25);
-		left: calc(50% - #{pxToEm(13)}); // by default, place the arrow in the
-		// center. the exact position for edge cases is handled in javascript.
-		width: 0;
-		height: 0;
-		border-left: pxToEm(13) solid transparent;
-		border-right: pxToEm(13) solid transparent;
-		border-top: pxToEm(13) solid rgba($colorBlack, .15);
+  // c)
+  &-arrow {
+    position: absolute;
+    bottom: pxToEm(-23.25);
+    left: calc(50% - #{pxToEm(13)}); // by default, place the arrow in the
+    // center. the exact position for edge cases is handled in javascript.
+    width: 0;
+    height: 0;
+    border-left: pxToEm(13) solid transparent;
+    border-right: pxToEm(13) solid transparent;
+    border-top: pxToEm(13) solid rgba($colorBlack, 0.15);
 
-		.mod_tooltip.var-below & {
-			bottom: auto;
-			top: pxToEm(-23.25);
-			border-color: transparent;
-			transform: rotate(180deg);
-		}
-	}
+    .mod_tooltip.var-below & {
+      bottom: auto;
+      top: pxToEm(-23.25);
+      border-color: transparent;
+      transform: rotate(180deg);
+    }
+  }
 
-	// a) & b)
-	&-arrow:before,
-	&-arrow:after {
-		position: absolute;
-		content: '';
-		width: 0;
-		height: 0;
-	}
+  // a) & b)
+  &-arrow:before,
+  &-arrow:after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+  }
 
-	// b)
-	&-arrow:before {
-		top: pxToEm(-23);
-		left: pxToEm(-14);
-		border-left: pxToEm(14) solid transparent;
-		border-right: pxToEm(14) solid transparent;
-		border-top: pxToEm(14) solid $colorGrey;
-	}
+  // b)
+  &-arrow:before {
+    top: pxToEm(-23);
+    left: pxToEm(-14);
+    border-left: pxToEm(14) solid transparent;
+    border-right: pxToEm(14) solid transparent;
+    border-top: pxToEm(14) solid $colorGrey;
+  }
 
-	// a)
-	&-arrow:after {
-		top: pxToEm(-23);
-		left: pxToEm(-11);
-		border-left: pxToEm(11) solid transparent;
-		border-right: pxToEm(11) solid transparent;
-		border-top: pxToEm(11) solid $colorWhite;
-	}
+  // a)
+  &-arrow:after {
+    top: pxToEm(-23);
+    left: pxToEm(-11);
+    border-left: pxToEm(11) solid transparent;
+    border-right: pxToEm(11) solid transparent;
+    border-top: pxToEm(11) solid $colorWhite;
+  }
 
-	@include doNotPrint();
-
+  @include doNotPrint();
 }
 
 // Table mixins
 // ----------------------------------------------------------------------------------------------------
 
 @mixin tableMultilineBorderCover {
-	position: absolute;
-	top: pxToEm(-2);
-	width: pxToEm(16);
-	height: pxToEm(3);
-	display: block;
-	content: "";
-	background: $colorWhite;
+  position: absolute;
+  top: pxToEm(-2);
+  width: pxToEm(16);
+  height: pxToEm(3);
+  display: block;
+  content: '';
+  background: $colorWhite;
 }
 
 @mixin tableMultilineBorderCoverLeft {
-	@include tableMultilineBorderCover();
-	left: 0;
+  @include tableMultilineBorderCover();
+  left: 0;
 
-	@include mq($from: tabletPortrait) {
-		width: pxToEm(20);
-	}
+  @include mq($from: tabletPortrait) {
+    width: pxToEm(20);
+  }
 }
 
 @mixin tableMultilineBorderCoverRight {
-	@include tableMultilineBorderCover();
-	right: 0;
+  @include tableMultilineBorderCover();
+  right: 0;
 
-	@include mq($from: tabletPortrait) {
-		right: pxToEm(-16);
-		width: pxToEm(32);
-	}
+  @include mq($from: tabletPortrait) {
+    right: pxToEm(-16);
+    width: pxToEm(32);
+  }
 }
 
 @mixin timeTableCell {
-	display: flex;
-	position: relative;
-	z-index: 1;
-	line-height: 1;
-	pointer-events: none;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+  pointer-events: none;
 }
-
 
 // Print mixins
 // ----------------------------------------------------------------------------------------------------
 @mixin doNotPrint() {
-	@media print {
-		display: none !important;
-	}
+  @media print {
+    display: none !important;
+  }
 }
 
 // mixins for searches
 @mixin searchResultsCountTopper() {
-	font-family: $fontSbbRoman;
-	color: $colorGrey;
-	font-size: pxToEm(13);
+  font-family: $fontSbbRoman;
+  color: $colorGrey;
+  font-size: pxToEm(13);
 
-	&:before {
-		content: '';
-		display: block;
-		width: 100%;
-		height: pxToEm(1);
-		margin-bottom: pxToEm(26);
-		background: $colorGreyLight;
-	}
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: pxToEm(1);
+    margin-bottom: pxToEm(26);
+    background: $colorGreyLight;
+  }
 }
 
 @mixin scrollAnimationSlideUp {
-	// used in conjunction with helpers/scroll_animation.js
-	opacity: 0;
-	transform: translate3d(0, 50px, 0);
-	&.is_animating_scroll {
-		transition: opacity .3s, transform .3s;
-			transition: opacity .3s, transform .3s;
-			opacity: 1;
-			transform: translate3d(0, 0, 0);
-	}
+  // used in conjunction with helpers/scroll_animation.js
+  opacity: 0;
+  transform: translate3d(0, 50px, 0);
+  &.is_animating_scroll {
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }

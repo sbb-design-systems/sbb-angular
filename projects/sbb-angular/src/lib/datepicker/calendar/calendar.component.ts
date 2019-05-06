@@ -16,7 +16,7 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -35,23 +35,25 @@ export type CalendarView = 'month';
   selector: 'sbb-calendar-header',
   templateUrl: './calendar-header.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarHeaderComponent<D> {
   constructor(
     // tslint:disable-next-line:no-use-before-declare
-    @Inject(forwardRef(() => CalendarComponent)) public calendar: CalendarComponent<D>,
+    @Inject(forwardRef(() => CalendarComponent))
+    public calendar: CalendarComponent<D>,
     @Optional() private _dateAdapter: DateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
-    changeDetectorRef: ChangeDetectorRef,
+    changeDetectorRef: ChangeDetectorRef
   ) {
-    this.calendar.stateChanges.subscribe(() => changeDetectorRef.markForCheck());
+    this.calendar.stateChanges.subscribe(() =>
+      changeDetectorRef.markForCheck()
+    );
   }
 
   /** The label for the current calendar view. */
   get monthText(): string {
     return this._dateAdapter.getMonthName(this.calendar.activeDate);
-
   }
 
   /** The label for the current calendar view. */
@@ -66,12 +68,18 @@ export class CalendarHeaderComponent<D> {
 
   /** Handles user clicks on the previous button. */
   previousMonthClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(this.calendar.activeDate, -1);
+    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(
+      this.calendar.activeDate,
+      -1
+    );
   }
 
   /** Handles user clicks on the next button. */
   nextMonthClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(this.calendar.activeDate, 1);
+    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(
+      this.calendar.activeDate,
+      1
+    );
   }
 
   /** Whether the previous period button is enabled. */
@@ -79,30 +87,41 @@ export class CalendarHeaderComponent<D> {
     if (!this.calendar.minDate) {
       return true;
     }
-    return !this.calendar.minDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
+    return (
+      !this.calendar.minDate ||
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate)
+    );
   }
 
   /** Whether the next period button is enabled. */
   nextMonthEnabled(): boolean {
-    return !this.calendar.maxDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
+    return (
+      !this.calendar.maxDate ||
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate)
+    );
   }
 
   /** Whether the two dates represent the same view in the current view mode (month or year). */
   private _isSameMonthView(date1: D, date2: D): boolean {
-
-    return this._dateAdapter.getMonth(date1) === this._dateAdapter.getMonth(date2);
+    return (
+      this._dateAdapter.getMonth(date1) === this._dateAdapter.getMonth(date2)
+    );
   }
 
   /** Handles user clicks on the previous button. */
   previousYearClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarYears(this.calendar.activeDate, -1);
+    this.calendar.activeDate = this._dateAdapter.addCalendarYears(
+      this.calendar.activeDate,
+      -1
+    );
   }
 
   /** Handles user clicks on the next button. */
   nextYearClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarYears(this.calendar.activeDate, 1);
+    this.calendar.activeDate = this._dateAdapter.addCalendarYears(
+      this.calendar.activeDate,
+      1
+    );
   }
 
   /** Whether the previous period button is enabled. */
@@ -110,14 +129,18 @@ export class CalendarHeaderComponent<D> {
     if (!this.calendar.minDate) {
       return true;
     }
-    return !this.calendar.minDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate);
+    return (
+      !this.calendar.minDate ||
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate)
+    );
   }
 
   /** Whether the next period button is enabled. */
   nextYearEnabled(): boolean {
-    return !this.calendar.maxDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate);
+    return (
+      !this.calendar.maxDate ||
+      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate)
+    );
   }
 }
 
@@ -130,10 +153,10 @@ export class CalendarHeaderComponent<D> {
   templateUrl: 'calendar.component.html',
   exportAs: 'sbbCalendar',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
-
+export class CalendarComponent<D>
+  implements AfterContentInit, AfterViewChecked, OnDestroy, OnChanges {
   @HostBinding('class.sbb-calendar') cssClass = true;
 
   /** An input indicating the type of the header component, if set. */
@@ -151,9 +174,13 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
 
   /** A date representing the period (month or year) to start the calendar in. */
   @Input()
-  get startAt(): D | null { return this._startAt; }
+  get startAt(): D | null {
+    return this._startAt;
+  }
   set startAt(value: D | null) {
-    this._startAt = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._startAt = this._getValidDateOrNull(
+      this._dateAdapter.deserialize(value)
+    );
   }
   private _startAt: D | null;
 
@@ -162,25 +189,37 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
 
   /** The currently selected date. */
   @Input()
-  get selected(): D | null { return this._selected; }
+  get selected(): D | null {
+    return this._selected;
+  }
   set selected(value: D | null) {
-    this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._selected = this._getValidDateOrNull(
+      this._dateAdapter.deserialize(value)
+    );
   }
   private _selected: D | null;
 
   /** The minimum selectable date. */
   @Input()
-  get minDate(): D | null { return this._minDate; }
+  get minDate(): D | null {
+    return this._minDate;
+  }
   set minDate(value: D | null) {
-    this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._minDate = this._getValidDateOrNull(
+      this._dateAdapter.deserialize(value)
+    );
   }
   private _minDate: D | null;
 
   /** The maximum selectable date. */
   @Input()
-  get maxDate(): D | null { return this._maxDate; }
+  get maxDate(): D | null {
+    return this._maxDate;
+  }
   set maxDate(value: D | null) {
-    this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
+    this._maxDate = this._getValidDateOrNull(
+      this._dateAdapter.deserialize(value)
+    );
   }
   private _maxDate: D | null;
 
@@ -191,7 +230,9 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** Emits when any date is selected. */
-  @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
+  @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<
+    void
+  >();
 
   /** Reference to the current month view component. */
   @ViewChild(MonthViewComponent) monthView: MonthViewComponent<D>;
@@ -200,15 +241,23 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
    * The current active date. This determines which time period is shown and which date is
    * highlighted when using keyboard navigation.
    */
-  get activeDate(): D { return this._clampedActiveDate; }
+  get activeDate(): D {
+    return this._clampedActiveDate;
+  }
   set activeDate(value: D) {
-    this._clampedActiveDate = this._dateAdapter.clampDate(value, this.minDate, this.maxDate);
+    this._clampedActiveDate = this._dateAdapter.clampDate(
+      value,
+      this.minDate,
+      this.maxDate
+    );
     this.stateChanges.next();
   }
   private _clampedActiveDate: D;
 
   /** Whether the calendar is in month view. */
-  get currentView(): CalendarView { return this._currentView; }
+  get currentView(): CalendarView {
+    return this._currentView;
+  }
   set currentView(value: CalendarView) {
     this._currentView = value;
     this._moveFocusOnNextTick = true;
@@ -223,7 +272,7 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
   constructor(
     @Optional() private _dateAdapter: DateAdapter<D>,
     @Optional() @Inject(SBB_DATE_FORMATS) private _dateFormats: DateFormats,
-    private _changeDetectorRef: ChangeDetectorRef,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     if (!this._dateAdapter) {
       throw createMissingDateImplError('DateAdapter');
@@ -232,11 +281,12 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
     if (!this._dateFormats) {
       throw createMissingDateImplError('SBB_DATE_FORMATS');
     }
-
   }
 
   ngAfterContentInit() {
-    this.calendarHeaderPortal = new ComponentPortal(this.headerComponent || CalendarHeaderComponent);
+    this.calendarHeaderPortal = new ComponentPortal(
+      this.headerComponent || CalendarHeaderComponent
+    );
     this.activeDate = this.startAt || this._dateAdapter.today();
 
     // Assign to the private property since we don't want to move focus on init.
@@ -291,7 +341,10 @@ export class CalendarComponent<D> implements AfterContentInit, AfterViewChecked,
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return (this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj)) ? obj : null;
+    return this._dateAdapter.isDateInstance(obj) &&
+      this._dateAdapter.isValid(obj)
+      ? obj
+      : null;
   }
 
   /** Returns the component instance that corresponds to the current calendar view. */

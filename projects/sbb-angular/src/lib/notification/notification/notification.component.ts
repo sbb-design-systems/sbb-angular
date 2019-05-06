@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  HostBinding,
+  Input,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 
 import { NotificationIconDirective } from '../notification-icon.directive';
 
@@ -20,10 +29,9 @@ export interface JumpMark {
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationComponent {
-
   /** @docs-private */
   @HostBinding('class.sbb-notification')
   baseCssClass = true;
@@ -107,6 +115,8 @@ export class NotificationComponent {
    */
   scrollTo($event: any, jumpMark: JumpMark) {
     $event.preventDefault();
-    document.querySelector(jumpMark.elementId).scrollIntoView({ behavior: 'smooth' });
+    document
+      .querySelector(jumpMark.elementId)
+      .scrollIntoView({ behavior: 'smooth' });
   }
 }

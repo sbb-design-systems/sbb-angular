@@ -16,11 +16,13 @@ let counter = 0;
   selector: 'sbb-radio-button-panel',
   templateUrl: './radio-button-panel.component.html',
   styleUrls: ['./radio-button-panel.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => RadioButtonPanelComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => RadioButtonPanelComponent),
+      multi: true
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -37,8 +39,8 @@ export class RadioButtonPanelComponent extends RadioButtonComponent {
   subtitle?: string;
 
   /**
-     * Radio button panel identifier
-     */
+   * Radio button panel identifier
+   */
   @Input()
   @HostBinding('id')
   inputId = `sbb-radio-button-panel-${counter++}`;
@@ -49,5 +51,4 @@ export class RadioButtonPanelComponent extends RadioButtonComponent {
   get hasSubtitle() {
     return !!this.subtitle;
   }
-
 }

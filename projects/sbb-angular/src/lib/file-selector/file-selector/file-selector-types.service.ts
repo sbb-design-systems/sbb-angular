@@ -6,16 +6,16 @@ import { FILE_TYPES, FileTypeCategory } from './file-selector-base';
   providedIn: 'root'
 })
 export class FileSelectorTypesService {
-
   /**
    * Returns the file type category/ies with mime Type in input.
    * @param mimeType Mime type of a file.
    * @returns File type category/ies.
    */
   getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
-
     for (const fileTypeCat in FileTypeCategory) {
-      if (this._findMimeType(this._getFileFormats(Number(fileTypeCat)), mimeType)) {
+      if (
+        this._findMimeType(this._getFileFormats(Number(fileTypeCat)), mimeType)
+      ) {
         return Number(fileTypeCat);
       }
     }
@@ -29,13 +29,14 @@ export class FileSelectorTypesService {
    * @returns All formats accepted.
    */
   getAcceptString(typeCats: FileTypeCategory | FileTypeCategory[]): string {
-
     if (Array.isArray(typeCats)) {
-      return typeCats.reduce((current, next) => this._setAcceptString(next, current), '');
+      return typeCats.reduce(
+        (current, next) => this._setAcceptString(next, current),
+        ''
+      );
     } else {
       return this._setAcceptString(typeCats, '');
     }
-
   }
 
   /**
@@ -80,7 +81,11 @@ export class FileSelectorTypesService {
   private _setAcceptString(t: FileTypeCategory, acceptString: string): string {
     switch (t) {
       case FileTypeCategory.DOC:
-        acceptString += FILE_TYPES.MS_WORD_DOC.concat(FILE_TYPES.MS_EXCEL, FILE_TYPES.MS_POWERPOINT).join() + ',';
+        acceptString +=
+          FILE_TYPES.MS_WORD_DOC.concat(
+            FILE_TYPES.MS_EXCEL,
+            FILE_TYPES.MS_POWERPOINT
+          ).join() + ',';
         break;
       case FileTypeCategory.IMAGE:
         acceptString += FILE_TYPES.IMAGE.join() + ',';
@@ -109,7 +114,6 @@ export class FileSelectorTypesService {
   }
 
   private _getFileFormats(formatType: FileTypeCategory): string[] {
-
     let typeFormats: string[] = [];
 
     switch (formatType) {
@@ -117,7 +121,13 @@ export class FileSelectorTypesService {
         typeFormats = ['MS_WORD_DOC', 'MS_EXCEL', 'MS_POWERPOINT'];
         break;
       case FileTypeCategory.AUDIO:
-        typeFormats = ['AUDIO_MP4', 'AUDIO_MP3', 'AUDIO_OGG', 'AUDIO_WAVE', 'AUDIO_WAV'];
+        typeFormats = [
+          'AUDIO_MP4',
+          'AUDIO_MP3',
+          'AUDIO_OGG',
+          'AUDIO_WAVE',
+          'AUDIO_WAV'
+        ];
         break;
       case FileTypeCategory.IMAGE:
         typeFormats = ['IMAGE_GIF', 'IMAGE_JPG', 'IMAGE_PNG', 'IMAGE_SVG'];
@@ -126,7 +136,15 @@ export class FileSelectorTypesService {
         typeFormats = ['PDF'];
         break;
       case FileTypeCategory.VIDEO:
-        typeFormats = ['VIDEO_MP4', 'VIDEO_MPEG', 'VIDEO_OGG', 'VIDEO_MOV', 'VIDEO_WEBM', 'VIDEO_AVI', 'VIDEO_WMV'];
+        typeFormats = [
+          'VIDEO_MP4',
+          'VIDEO_MPEG',
+          'VIDEO_OGG',
+          'VIDEO_MOV',
+          'VIDEO_WEBM',
+          'VIDEO_AVI',
+          'VIDEO_WMV'
+        ];
         break;
       case FileTypeCategory.ZIP:
         typeFormats = ['ZIP'];
@@ -135,5 +153,4 @@ export class FileSelectorTypesService {
 
     return typeFormats;
   }
-
 }

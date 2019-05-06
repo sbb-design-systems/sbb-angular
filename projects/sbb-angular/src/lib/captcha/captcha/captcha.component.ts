@@ -12,7 +12,7 @@ import {
   NgZone,
   OnDestroy,
   Optional,
-  Output,
+  Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -30,13 +30,13 @@ let nextId = 0;
     {
       multi: true,
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CaptchaComponent),
-    },
+      useExisting: forwardRef(() => CaptchaComponent)
+    }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
-
+export class CaptchaComponent
+  implements AfterViewInit, OnDestroy, ControlValueAccessor {
   /**
    * Identifier of sbb-captcha.
    */
@@ -114,7 +114,7 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
     private _elementRef: ElementRef,
     private _loader: CaptchaLoaderService,
     private _zone: NgZone,
-    @Optional() @Inject(RECAPTCHA_SETTINGS) settings?: RecaptchaSettings,
+    @Optional() @Inject(RECAPTCHA_SETTINGS) settings?: RecaptchaSettings
   ) {
     if (settings) {
       this.siteKey = settings.siteKey;
@@ -131,16 +131,22 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
     }
   }
 
-  registerOnChange(fn: (value: string) => void): void { this._onChange = fn; }
-  registerOnTouched(fn: () => void): void { this._onTouched = fn; }
+  registerOnChange(fn: (value: string) => void): void {
+    this._onChange = fn;
+  }
+  registerOnTouched(fn: () => void): void {
+    this._onTouched = fn;
+  }
 
   ngAfterViewInit() {
-    this._subscription = this._loader.ready.subscribe((grecaptcha: ReCaptchaV2.ReCaptcha) => {
-      if (grecaptcha != null && grecaptcha.render instanceof Function) {
-        this._grecaptcha = grecaptcha;
-        this._renderRecaptcha();
+    this._subscription = this._loader.ready.subscribe(
+      (grecaptcha: ReCaptchaV2.ReCaptcha) => {
+        if (grecaptcha != null && grecaptcha.render instanceof Function) {
+          this._grecaptcha = grecaptcha;
+          this._renderRecaptcha();
+        }
       }
-    });
+    );
   }
 
   ngOnDestroy() {
@@ -213,7 +219,7 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
       size: this.size,
       tabindex: this.tabIndex,
       theme: this.theme,
-      type: this.type,
+      type: this.type
     });
 
     if (this._executeRequested === true) {

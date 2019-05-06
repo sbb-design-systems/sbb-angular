@@ -1,24 +1,31 @@
-import {
-  ENTER,
-  RIGHT_ARROW,
-} from '@angular/cdk/keycodes';
+import { ENTER, RIGHT_ARROW } from '@angular/cdk/keycodes';
 import { Component, NgZone } from '@angular/core';
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  inject,
+  TestBed
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DEC, FEB, JAN, JUL, NOV } from '../../_common/testing/dates-constants';
-import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import {
+  dispatchFakeEvent,
+  dispatchKeyboardEvent
+} from '../../_common/testing/dispatch-events';
 import { MockNgZone } from '../../_common/testing/mock-ng-zone';
 import { CalendarComponent, DatepickerModule } from '../datepicker';
 
 @Component({
   template: `
     <sbb-calendar
-        [startAt]="startDate"
-        [(selected)]="selected"
-        (yearSelected)="selectedYear=$event"
-        (monthSelected)="selectedMonth=$event">
-    </sbb-calendar>`
+      [startAt]="startDate"
+      [(selected)]="selected"
+      (yearSelected)="selectedYear = $event"
+      (monthSelected)="selectedMonth = $event"
+    >
+    </sbb-calendar>
+  `
 })
 class StandardCalendarComponent {
   selected: Date;
@@ -29,7 +36,11 @@ class StandardCalendarComponent {
 
 @Component({
   template: `
-    <sbb-calendar [startAt]="startAt" [minDate]="minDate" [maxDate]="maxDate"></sbb-calendar>
+    <sbb-calendar
+      [startAt]="startAt"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+    ></sbb-calendar>
   `
 })
 class CalendarWithMinMaxComponent {
@@ -40,7 +51,11 @@ class CalendarWithMinMaxComponent {
 
 @Component({
   template: `
-    <sbb-calendar [startAt]="startDate" [(selected)]="selected" [dateFilter]="dateFilter">
+    <sbb-calendar
+      [startAt]="startDate"
+      [(selected)]="selected"
+      [dateFilter]="dateFilter"
+    >
     </sbb-calendar>
   `
 })
@@ -59,7 +74,8 @@ class CalendarWithDateFilterComponent {
       [startAt]="startAt"
       (selectedChange)="select($event)"
       [selected]="selected"
-      [minDate]="selected">
+      [minDate]="selected"
+    >
     </sbb-calendar>
   `
 })
@@ -82,19 +98,17 @@ describe('CalendarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DatepickerModule,
-      ],
+      imports: [DatepickerModule],
       declarations: [
         // Test components.
         StandardCalendarComponent,
         CalendarWithMinMaxComponent,
         CalendarWithDateFilterComponent,
-        CalendarWithSelectableMinDateComponent,
+        CalendarWithSelectableMinDateComponent
       ],
       providers: [
-        { provide: NgZone, useFactory: () => zone = new MockNgZone() }
-      ],
+        { provide: NgZone, useFactory: () => (zone = new MockNgZone()) }
+      ]
     });
 
     TestBed.compileComponents();
@@ -110,7 +124,9 @@ describe('CalendarComponent', () => {
       fixture = TestBed.createComponent(StandardCalendarComponent);
       fixture.detectChanges();
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(
+        By.directive(CalendarComponent)
+      );
       calendarElement = calendarDebugElement.nativeElement;
 
       calendarInstance = calendarDebugElement.componentInstance;
@@ -123,7 +139,9 @@ describe('CalendarComponent', () => {
     });
 
     it('should select date in month view', () => {
-      const monthCells = calendarElement.querySelectorAll('.sbb-calendar-body-cell');
+      const monthCells = calendarElement.querySelectorAll(
+        '.sbb-calendar-body-cell'
+      );
       (monthCells[monthCells.length - 1] as HTMLElement).click();
       fixture.detectChanges();
 
@@ -132,13 +150,17 @@ describe('CalendarComponent', () => {
     });
 
     it('should set all buttons to be `type="button"`', () => {
-      const invalidButtons = calendarElement.querySelectorAll('button:not([type="button"])');
+      const invalidButtons = calendarElement.querySelectorAll(
+        'button:not([type="button"])'
+      );
       expect(invalidButtons.length).toBe(0);
     });
 
     it('should complete the stateChanges stream', () => {
       const spy = jasmine.createSpy('complete spy');
-      const subscription = calendarInstance.stateChanges.subscribe({ complete: spy });
+      const subscription = calendarInstance.stateChanges.subscribe({
+        complete: spy
+      });
 
       fixture.destroy();
 
@@ -151,7 +173,9 @@ describe('CalendarComponent', () => {
         let calendarBodyEl: HTMLElement;
 
         beforeEach(() => {
-          calendarBodyEl = calendarElement.querySelector('.sbb-calendar-content') as HTMLElement;
+          calendarBodyEl = calendarElement.querySelector(
+            '.sbb-calendar-content'
+          ) as HTMLElement;
           expect(calendarBodyEl).not.toBeNull();
 
           dispatchFakeEvent(calendarBodyEl, 'focus');
@@ -169,7 +193,9 @@ describe('CalendarComponent', () => {
         it('should not move focus to the active cell on init', () => {
           const activeCell =
             // tslint:disable-next-line:no-non-null-assertion
-            calendarBodyEl.querySelector('.sbb-calendar-body-active')! as HTMLElement;
+            calendarBodyEl.querySelector(
+              '.sbb-calendar-body-active'
+            )! as HTMLElement;
 
           spyOn(activeCell, 'focus').and.callThrough();
           fixture.detectChanges();
@@ -179,7 +205,6 @@ describe('CalendarComponent', () => {
         });
       });
     });
-
   });
 
   describe('calendar with min and max date', () => {
@@ -191,7 +216,9 @@ describe('CalendarComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(CalendarWithMinMaxComponent);
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(
+        By.directive(CalendarComponent)
+      );
       calendarElement = calendarDebugElement.nativeElement;
       calendarInstance = calendarDebugElement.componentInstance;
       testComponent = fixture.componentInstance;
@@ -215,16 +242,23 @@ describe('CalendarComponent', () => {
       testComponent.startAt = new Date(2016, FEB, 1);
       fixture.detectChanges();
 
-      const prevButton =
-        calendarElement.querySelector('.sbb-calendar-controls-left-arrow') as HTMLButtonElement;
+      const prevButton = calendarElement.querySelector(
+        '.sbb-calendar-controls-left-arrow'
+      ) as HTMLButtonElement;
 
-      expect(prevButton.disabled).toBe(false, 'previous button should not be disabled');
+      expect(prevButton.disabled).toBe(
+        false,
+        'previous button should not be disabled'
+      );
       expect(calendarInstance.activeDate).toEqual(new Date(2016, FEB, 1));
 
       prevButton.click();
       fixture.detectChanges();
 
-      expect(prevButton.disabled).toBe(true, 'previous button should be disabled');
+      expect(prevButton.disabled).toBe(
+        true,
+        'previous button should be disabled'
+      );
       expect(calendarInstance.activeDate).toEqual(new Date(2016, JAN, 1));
 
       prevButton.click();
@@ -237,10 +271,14 @@ describe('CalendarComponent', () => {
       testComponent.startAt = new Date(2017, DEC, 1);
       fixture.detectChanges();
 
-      const nextButton =
-        calendarElement.querySelector('.sbb-calendar-controls-right-arrow') as HTMLButtonElement;
+      const nextButton = calendarElement.querySelector(
+        '.sbb-calendar-controls-right-arrow'
+      ) as HTMLButtonElement;
 
-      expect(nextButton.disabled).toBe(false, 'next button should not be disabled');
+      expect(nextButton.disabled).toBe(
+        false,
+        'next button should not be disabled'
+      );
       expect(calendarInstance.activeDate).toEqual(new Date(2017, DEC, 1));
 
       nextButton.click();
@@ -278,33 +316,44 @@ describe('CalendarComponent', () => {
     it('should update the minDate in the child view if it changed after an interaction', () => {
       fixture.destroy();
 
-      const dynamicFixture = TestBed.createComponent(CalendarWithSelectableMinDateComponent);
+      const dynamicFixture = TestBed.createComponent(
+        CalendarWithSelectableMinDateComponent
+      );
       dynamicFixture.detectChanges();
 
-      const calendarDebugElement = dynamicFixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = dynamicFixture.debugElement.query(
+        By.directive(CalendarComponent)
+      );
       const disabledClass = 'sbb-calendar-body-disabled';
       calendarElement = calendarDebugElement.nativeElement;
       calendarInstance = calendarDebugElement.componentInstance;
 
-      let cells = Array.from(calendarElement.querySelectorAll('.sbb-calendar-body-cell'));
+      let cells = Array.from(
+        calendarElement.querySelectorAll('.sbb-calendar-body-cell')
+      );
 
-      expect(cells.slice(0, 9).every(c => c.classList.contains(disabledClass)))
-        .toBe(true, 'Expected dates up to the 10th to be disabled.');
+      expect(
+        cells.slice(0, 9).every(c => c.classList.contains(disabledClass))
+      ).toBe(true, 'Expected dates up to the 10th to be disabled.');
 
-      expect(cells.slice(9).every(c => c.classList.contains(disabledClass)))
-        .toBe(false, 'Expected dates after the 10th to be enabled.');
+      expect(
+        cells.slice(9).every(c => c.classList.contains(disabledClass))
+      ).toBe(false, 'Expected dates after the 10th to be enabled.');
 
       (cells[14] as HTMLElement).click();
       dynamicFixture.detectChanges();
-      cells = Array.from(calendarElement.querySelectorAll('.sbb-calendar-body-cell'));
+      cells = Array.from(
+        calendarElement.querySelectorAll('.sbb-calendar-body-cell')
+      );
 
-      expect(cells.slice(0, 14).every(c => c.classList.contains(disabledClass)))
-        .toBe(true, 'Expected dates up to the 14th to be disabled.');
+      expect(
+        cells.slice(0, 14).every(c => c.classList.contains(disabledClass))
+      ).toBe(true, 'Expected dates up to the 14th to be disabled.');
 
-      expect(cells.slice(14).every(c => c.classList.contains(disabledClass)))
-        .toBe(false, 'Expected dates after the 14th to be enabled.');
+      expect(
+        cells.slice(14).every(c => c.classList.contains(disabledClass))
+      ).toBe(false, 'Expected dates after the 14th to be enabled.');
     });
-
   });
 
   describe('calendar with date filter', () => {
@@ -317,7 +366,9 @@ describe('CalendarComponent', () => {
       fixture = TestBed.createComponent(CalendarWithDateFilterComponent);
       fixture.detectChanges();
 
-      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
+      const calendarDebugElement = fixture.debugElement.query(
+        By.directive(CalendarComponent)
+      );
       calendarElement = calendarDebugElement.nativeElement;
       calendarInstance = calendarDebugElement.componentInstance;
       testComponent = fixture.componentInstance;
@@ -340,7 +391,9 @@ describe('CalendarComponent', () => {
       let tableBodyEl: HTMLElement;
 
       beforeEach(() => {
-        tableBodyEl = calendarElement.querySelector('.sbb-calendar-body') as HTMLElement;
+        tableBodyEl = calendarElement.querySelector(
+          '.sbb-calendar-body'
+        ) as HTMLElement;
         expect(tableBodyEl).not.toBeNull();
 
         dispatchFakeEvent(tableBodyEl, 'focus');
@@ -356,8 +409,6 @@ describe('CalendarComponent', () => {
 
         expect(testComponent.selected).toBeUndefined();
       });
-
     });
-
   });
 });

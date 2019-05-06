@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
 
   foundUiComponents: UiComponent[] = [];
 
-  constructor(private _componentUiService: ComponentUiService) { }
+  constructor(private _componentUiService: ComponentUiService) {}
 
   ngOnInit() {
     this.foundUiComponents = this.allUiComponents;
@@ -31,10 +31,14 @@ export class SearchComponent implements OnInit {
       this.searchChangeObserver
         .pipe(debounceTime(250))
         .pipe(distinctUntilChanged())
-        .pipe(switchMap(searchTerm => {
-          this.foundUiComponents = [];
-          return this._componentUiService.getUiComponentsBySearchValue(searchTerm);
-        }))
+        .pipe(
+          switchMap(searchTerm => {
+            this.foundUiComponents = [];
+            return this._componentUiService.getUiComponentsBySearchValue(
+              searchTerm
+            );
+          })
+        )
         .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
     }
     this.searchChangeObserver.next(searchValue);

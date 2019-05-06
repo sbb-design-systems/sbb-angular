@@ -7,18 +7,13 @@ import { TabsComponent } from 'sbb-angular';
   styleUrls: ['./tabs-showcase.component.scss']
 })
 export class TabsShowcaseComponent implements OnInit {
-
   @ViewChild('tabs') tabsComponent: TabsComponent;
 
   disabled = false;
   removed = false;
 
   dataSet = '1';
-  data = [
-    '1',
-    '50',
-    '550'
-  ];
+  data = ['1', '50', '550'];
 
   personInitialLoad = { id: 1, name: 'Max', surname: 'Muster' };
 
@@ -34,7 +29,7 @@ export class TabsShowcaseComponent implements OnInit {
     { name: 'Veronika', surname: 'Schmidt' },
     { name: 'Petra', surname: 'Ivanov' },
     { name: 'Alexandra', surname: 'Maurer' },
-    { name: 'Adriana', surname: 'Lima' },
+    { name: 'Adriana', surname: 'Lima' }
   ];
 
   ngOnInit() {
@@ -46,7 +41,11 @@ export class TabsShowcaseComponent implements OnInit {
     while (counter < amount) {
       for (const item of this.personList) {
         counter++;
-        this.person.push({ id: counter, name: item.name, surname: item.surname });
+        this.person.push({
+          id: counter,
+          name: item.name,
+          surname: item.surname
+        });
       }
     }
   }

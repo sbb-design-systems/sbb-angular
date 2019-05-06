@@ -6,5 +6,6 @@ import { InjectionToken } from '@angular/core';
  * themselves for this token, in order to make `InputDirective` delegate the getting and setting of the
  * value to them.
  */
-export const SBB_INPUT_VALUE_ACCESSOR =
-  new InjectionToken<{ value: any }>('SBB_INPUT_VALUE_ACCESSOR');
+export const SBB_INPUT_VALUE_ACCESSOR = new InjectionToken<{ value: any }>(
+  'SBB_INPUT_VALUE_ACCESSOR'
+);

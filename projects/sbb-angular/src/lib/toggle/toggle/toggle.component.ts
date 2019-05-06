@@ -32,7 +32,7 @@ let counter = 0;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ToggleComponent),
-      multi: true,
+      multi: true
     },
     {
       provide: SBB_TOGGLE_COMPONENT,
@@ -43,11 +43,15 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleComponent extends RadioButton
-  implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
-
+  implements
+    ToggleBase,
+    ControlValueAccessor,
+    OnInit,
+    OnDestroy,
+    AfterContentInit {
   /**
-     * Radio button panel identifier
-     */
+   * Radio button panel identifier
+   */
   @Input()
   @HostBinding('id')
   inputId = `sbb-toggle-${counter++}`;
@@ -94,12 +98,12 @@ export class ToggleComponent extends RadioButton
   /**
    * Class property that represents a change on the radio button
    */
-  onChange = (_: any) => { };
+  onChange = (_: any) => {};
 
   /**
    * Class property that represents a touch on the radio button
    */
-  onTouched = () => { };
+  onTouched = () => {};
 
   constructor(private _zone: NgZone) {
     super();
@@ -110,21 +114,24 @@ export class ToggleComponent extends RadioButton
   }
 
   ngAfterContentInit() {
-    this._zone.onStable.pipe(first()).subscribe(
-      () => this._zone.run(() => {
+    this._zone.onStable.pipe(first()).subscribe(() =>
+      this._zone.run(() => {
         this._checkNumOfOptions();
         const defaultOption = this.toggleOptions.toArray()[0];
         defaultOption.setToggleChecked(true);
       })
     );
 
-    this._toggleValueChanges$ = merge(...this.toggleOptions.map(toggle => toggle.valueChange$));
-    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(value => {
-      this.onChange(value);
-      this.onTouched();
-      this.writeValue(value);
-      this.toggleChange.emit(value);
-    }
+    this._toggleValueChanges$ = merge(
+      ...this.toggleOptions.map(toggle => toggle.valueChange$)
+    );
+    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(
+      value => {
+        this.onChange(value);
+        this.onTouched();
+        this.writeValue(value);
+        this.toggleChange.emit(value);
+      }
     );
   }
 
@@ -144,10 +151,14 @@ export class ToggleComponent extends RadioButton
     this.onTouched = fn;
   }
 
-  uncheck() { }
+  uncheck() {}
 
   private _checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
+    if (
+      this.name &&
+      this.formControlName &&
+      this.name !== this.formControlName
+    ) {
       this._throwNameError();
     } else if (!this.name && this.formControlName) {
       this.name = this.formControlName;
@@ -173,7 +184,7 @@ export class ToggleComponent extends RadioButton
   private _throwNotTwoOptionsError(): void {
     throw new Error(
       `You must set two sbb-toggle-option into the sbb-toggle component. ` +
-      `You set ${this.toggleOptions.length} options.`);
+        `You set ${this.toggleOptions.length} options.`
+    );
   }
-
 }

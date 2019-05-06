@@ -8,12 +8,15 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { isString } from 'util';
 
-import { NavigationPageChangeEvent, NavigationPageDescriptor } from '../navigation-page-descriptor.model';
+import {
+  NavigationPageChangeEvent,
+  NavigationPageDescriptor
+} from '../navigation-page-descriptor.model';
 import { LinkGeneratorResult } from '../page-descriptor.model';
 
 @Component({
@@ -46,7 +49,9 @@ export class NavigationComponent implements OnChanges {
    * This event can be used by parent components to handle events on page change.
    */
   @Output()
-  pageChange: EventEmitter<NavigationPageChangeEvent> = new EventEmitter<NavigationPageChangeEvent>();
+  pageChange: EventEmitter<NavigationPageChangeEvent> = new EventEmitter<
+    NavigationPageChangeEvent
+  >();
 
   /**
    * A custom function called everytime a new pagination item has been clicked.
@@ -54,20 +59,27 @@ export class NavigationComponent implements OnChanges {
   @Input()
   linkGenerator?: (direction: 'previous' | 'next') => LinkGeneratorResult;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.nextPage && !this.previousPage) {
-      throw Error('At least hasNext or hasPrevious must be defined in <sbb-navigation>');
+      throw Error(
+        'At least hasNext or hasPrevious must be defined in <sbb-navigation>'
+      );
     } else if (this.linkGenerator) {
       if (this.previousPage) {
-        this.previousLink = { title: this.previousPage, link: this.linkGenerator('previous') };
+        this.previousLink = {
+          title: this.previousPage,
+          link: this.linkGenerator('previous')
+        };
       }
       if (this.nextPage) {
-        this.nextLink = { title: this.nextPage, link: this.linkGenerator('next') };
+        this.nextLink = {
+          title: this.nextPage,
+          link: this.linkGenerator('next')
+        };
       }
     }
     this._changeDetectorRef.markForCheck();
   }
-
 }

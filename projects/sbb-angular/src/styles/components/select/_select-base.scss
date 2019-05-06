@@ -6,7 +6,7 @@
     align-items: center;
     padding-right: 12px;
 
-    &[aria-expanded="true"] {
+    &[aria-expanded='true'] {
       @include autocompleteInputActive();
 
       &.sbb-select-input-above {
@@ -67,7 +67,6 @@
   width: 100%;
   &:disabled {
     cursor: default;
-
   }
   background: url($selectNativeBackground) 97.5% no-repeat;
   background-size: toPx($selectArrowWidthHeight);

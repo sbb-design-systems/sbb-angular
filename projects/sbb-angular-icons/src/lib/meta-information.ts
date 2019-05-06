@@ -484,7 +484,7 @@ import {
   IconYoutubeComponent,
   IconLinkedinComponent,
   IconPinterestComponent,
-  IconXingComponent,
+  IconXingComponent
 } from './root';
 
 export const iconComponentsMetaInformation = [
@@ -494,11 +494,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSa1Module',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSa1Component,
+    sizes: [],
+    component: IconSa1Component
   },
   {
     selector: 'sbb-icon-sa-2',
@@ -506,11 +505,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSa2Module',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSa2Component,
+    sizes: [],
+    component: IconSa2Component
   },
   {
     selector: 'sbb-icon-sa-aw',
@@ -518,11 +516,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaAwModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaAwComponent,
+    sizes: [],
+    component: IconSaAwComponent
   },
   {
     selector: 'sbb-icon-sa-b',
@@ -530,11 +527,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBComponent,
+    sizes: [],
+    component: IconSaBComponent
   },
   {
     selector: 'sbb-icon-sa-be',
@@ -542,11 +538,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBeModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBeComponent,
+    sizes: [],
+    component: IconSaBeComponent
   },
   {
     selector: 'sbb-icon-sa-bk',
@@ -554,11 +549,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBkModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBkComponent,
+    sizes: [],
+    component: IconSaBkComponent
   },
   {
     selector: 'sbb-icon-sa-bl',
@@ -566,11 +560,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBlComponent,
+    sizes: [],
+    component: IconSaBlComponent
   },
   {
     selector: 'sbb-icon-sa-br',
@@ -578,11 +571,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBrComponent,
+    sizes: [],
+    component: IconSaBrComponent
   },
   {
     selector: 'sbb-icon-sa-bv',
@@ -590,11 +582,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBvModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBvComponent,
+    sizes: [],
+    component: IconSaBvComponent
   },
   {
     selector: 'sbb-icon-sa-bz',
@@ -602,11 +593,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaBzModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaBzComponent,
+    sizes: [],
+    component: IconSaBzComponent
   },
   {
     selector: 'sbb-icon-sa-cc',
@@ -614,11 +604,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaCcModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaCcComponent,
+    sizes: [],
+    component: IconSaCcComponent
   },
   {
     selector: 'sbb-icon-sa-dz',
@@ -626,11 +615,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaDzModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaDzComponent,
+    sizes: [],
+    component: IconSaDzComponent
   },
   {
     selector: 'sbb-icon-sa-ep',
@@ -638,11 +626,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaEpModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaEpComponent,
+    sizes: [],
+    component: IconSaEpComponent
   },
   {
     selector: 'sbb-icon-sa-fa',
@@ -650,11 +637,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaFaModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaFaComponent,
+    sizes: [],
+    component: IconSaFaComponent
   },
   {
     selector: 'sbb-icon-sa-fl',
@@ -662,11 +648,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaFlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaFlComponent,
+    sizes: [],
+    component: IconSaFlComponent
   },
   {
     selector: 'sbb-icon-sa-fw',
@@ -674,11 +659,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaFwModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaFwComponent,
+    sizes: [],
+    component: IconSaFwComponent
   },
   {
     selector: 'sbb-icon-sa-fz',
@@ -686,11 +670,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaFzModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaFzComponent,
+    sizes: [],
+    component: IconSaFzComponent
   },
   {
     selector: 'sbb-icon-sa-gl',
@@ -698,11 +681,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaGlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaGlComponent,
+    sizes: [],
+    component: IconSaGlComponent
   },
   {
     selector: 'sbb-icon-sa-gn',
@@ -710,11 +692,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaGnModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaGnComponent,
+    sizes: [],
+    component: IconSaGnComponent
   },
   {
     selector: 'sbb-icon-sa-gp',
@@ -722,11 +703,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaGpModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaGpComponent,
+    sizes: [],
+    component: IconSaGpComponent
   },
   {
     selector: 'sbb-icon-sa-gr',
@@ -734,11 +714,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaGrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaGrComponent,
+    sizes: [],
+    component: IconSaGrComponent
   },
   {
     selector: 'sbb-icon-sa-gz',
@@ -746,11 +725,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaGzModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaGzComponent,
+    sizes: [],
+    component: IconSaGzComponent
   },
   {
     selector: 'sbb-icon-sa-hk',
@@ -758,11 +736,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaHkModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaHkComponent,
+    sizes: [],
+    component: IconSaHkComponent
   },
   {
     selector: 'sbb-icon-sa-hn',
@@ -770,11 +747,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaHnModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaHnComponent,
+    sizes: [],
+    component: IconSaHnComponent
   },
   {
     selector: 'sbb-icon-sa-je',
@@ -782,11 +758,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaJeModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaJeComponent,
+    sizes: [],
+    component: IconSaJeComponent
   },
   {
     selector: 'sbb-icon-sa-kw',
@@ -794,11 +769,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaKwModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaKwComponent,
+    sizes: [],
+    component: IconSaKwComponent
   },
   {
     selector: 'sbb-icon-sa-lc',
@@ -806,11 +780,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaLcModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaLcComponent,
+    sizes: [],
+    component: IconSaLcComponent
   },
   {
     selector: 'sbb-icon-sa-le',
@@ -818,11 +791,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaLeModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaLeComponent,
+    sizes: [],
+    component: IconSaLeComponent
   },
   {
     selector: 'sbb-icon-sa-me',
@@ -830,11 +802,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaMeModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaMeComponent,
+    sizes: [],
+    component: IconSaMeComponent
   },
   {
     selector: 'sbb-icon-sa-mi',
@@ -842,11 +813,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaMiModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaMiComponent,
+    sizes: [],
+    component: IconSaMiComponent
   },
   {
     selector: 'sbb-icon-sa-mp',
@@ -854,11 +824,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaMpModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaMpComponent,
+    sizes: [],
+    component: IconSaMpComponent
   },
   {
     selector: 'sbb-icon-sa-nf',
@@ -866,11 +835,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaNfModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaNfComponent,
+    sizes: [],
+    component: IconSaNfComponent
   },
   {
     selector: 'sbb-icon-sa-nj',
@@ -878,11 +846,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaNjModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaNjComponent,
+    sizes: [],
+    component: IconSaNjComponent
   },
   {
     selector: 'sbb-icon-sa-p',
@@ -890,11 +857,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaPModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaPComponent,
+    sizes: [],
+    component: IconSaPComponent
   },
   {
     selector: 'sbb-icon-sa-pa',
@@ -902,11 +868,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaPaModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaPaComponent,
+    sizes: [],
+    component: IconSaPaComponent
   },
   {
     selector: 'sbb-icon-sa-pl',
@@ -914,11 +879,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaPlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaPlComponent,
+    sizes: [],
+    component: IconSaPlComponent
   },
   {
     selector: 'sbb-icon-sa-pr',
@@ -926,11 +890,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaPrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaPrComponent,
+    sizes: [],
+    component: IconSaPrComponent
   },
   {
     selector: 'sbb-icon-sa-r',
@@ -938,11 +901,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRComponent,
+    sizes: [],
+    component: IconSaRComponent
   },
   {
     selector: 'sbb-icon-sa-rb',
@@ -950,11 +912,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRbModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRbComponent,
+    sizes: [],
+    component: IconSaRbComponent
   },
   {
     selector: 'sbb-icon-sa-rc',
@@ -962,11 +923,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRcModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRcComponent,
+    sizes: [],
+    component: IconSaRcComponent
   },
   {
     selector: 'sbb-icon-sa-re',
@@ -974,11 +934,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaReModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaReComponent,
+    sizes: [],
+    component: IconSaReComponent
   },
   {
     selector: 'sbb-icon-sa-rq',
@@ -986,11 +945,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRqModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRqComponent,
+    sizes: [],
+    component: IconSaRqComponent
   },
   {
     selector: 'sbb-icon-sa-rr',
@@ -998,11 +956,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRrComponent,
+    sizes: [],
+    component: IconSaRrComponent
   },
   {
     selector: 'sbb-icon-sa-rt',
@@ -1010,11 +967,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRtModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRtComponent,
+    sizes: [],
+    component: IconSaRtComponent
   },
   {
     selector: 'sbb-icon-sa-ry',
@@ -1022,11 +978,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRyModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRyComponent,
+    sizes: [],
+    component: IconSaRyComponent
   },
   {
     selector: 'sbb-icon-sa-rz',
@@ -1034,11 +989,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaRzModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaRzComponent,
+    sizes: [],
+    component: IconSaRzComponent
   },
   {
     selector: 'sbb-icon-sa-s',
@@ -1046,11 +1000,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSComponent,
+    sizes: [],
+    component: IconSaSComponent
   },
   {
     selector: 'sbb-icon-sa-sb',
@@ -1058,11 +1011,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSbModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSbComponent,
+    sizes: [],
+    component: IconSaSbComponent
   },
   {
     selector: 'sbb-icon-sa-sc',
@@ -1070,11 +1022,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaScModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaScComponent,
+    sizes: [],
+    component: IconSaScComponent
   },
   {
     selector: 'sbb-icon-sa-sd',
@@ -1082,11 +1033,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSdModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSdComponent,
+    sizes: [],
+    component: IconSaSdComponent
   },
   {
     selector: 'sbb-icon-sa-sh',
@@ -1094,11 +1044,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaShModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaShComponent,
+    sizes: [],
+    component: IconSaShComponent
   },
   {
     selector: 'sbb-icon-sa-sl',
@@ -1106,11 +1055,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSlComponent,
+    sizes: [],
+    component: IconSaSlComponent
   },
   {
     selector: 'sbb-icon-sa-sm',
@@ -1118,11 +1066,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSmModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSmComponent,
+    sizes: [],
+    component: IconSaSmComponent
   },
   {
     selector: 'sbb-icon-sa-sn',
@@ -1130,11 +1077,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSnModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSnComponent,
+    sizes: [],
+    component: IconSaSnComponent
   },
   {
     selector: 'sbb-icon-sa-sv',
@@ -1142,11 +1088,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSvModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSvComponent,
+    sizes: [],
+    component: IconSaSvComponent
   },
   {
     selector: 'sbb-icon-sa-sz',
@@ -1154,11 +1099,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaSzModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaSzComponent,
+    sizes: [],
+    component: IconSaSzComponent
   },
   {
     selector: 'sbb-icon-sa-tc',
@@ -1166,11 +1110,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaTcModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaTcComponent,
+    sizes: [],
+    component: IconSaTcComponent
   },
   {
     selector: 'sbb-icon-sa-tf',
@@ -1178,11 +1121,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaTfModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaTfComponent,
+    sizes: [],
+    component: IconSaTfComponent
   },
   {
     selector: 'sbb-icon-sa-tg',
@@ -1190,11 +1132,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaTgModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaTgComponent,
+    sizes: [],
+    component: IconSaTgComponent
   },
   {
     selector: 'sbb-icon-sa-tk',
@@ -1202,11 +1143,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaTkModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaTkComponent,
+    sizes: [],
+    component: IconSaTkComponent
   },
   {
     selector: 'sbb-icon-sa-ts',
@@ -1214,11 +1154,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaTsModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaTsComponent,
+    sizes: [],
+    component: IconSaTsComponent
   },
   {
     selector: 'sbb-icon-sa-tt',
@@ -1226,11 +1165,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaTtModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaTtComponent,
+    sizes: [],
+    component: IconSaTtComponent
   },
   {
     selector: 'sbb-icon-sa-vi',
@@ -1238,11 +1176,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaViModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaViComponent,
+    sizes: [],
+    component: IconSaViComponent
   },
   {
     selector: 'sbb-icon-sa-vl',
@@ -1250,11 +1187,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaVlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaVlComponent,
+    sizes: [],
+    component: IconSaVlComponent
   },
   {
     selector: 'sbb-icon-sa-vn',
@@ -1262,11 +1198,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaVnModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaVnComponent,
+    sizes: [],
+    component: IconSaVnComponent
   },
   {
     selector: 'sbb-icon-sa-vp',
@@ -1274,11 +1209,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaVpModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaVpComponent,
+    sizes: [],
+    component: IconSaVpComponent
   },
   {
     selector: 'sbb-icon-sa-vr',
@@ -1286,11 +1220,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaVrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaVrComponent,
+    sizes: [],
+    component: IconSaVrComponent
   },
   {
     selector: 'sbb-icon-sa-vx',
@@ -1298,11 +1231,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaVxModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaVxComponent,
+    sizes: [],
+    component: IconSaVxComponent
   },
   {
     selector: 'sbb-icon-sa-wl',
@@ -1310,11 +1242,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaWlModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaWlComponent,
+    sizes: [],
+    component: IconSaWlComponent
   },
   {
     selector: 'sbb-icon-sa-wr',
@@ -1322,11 +1253,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaWrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaWrComponent,
+    sizes: [],
+    component: IconSaWrComponent
   },
   {
     selector: 'sbb-icon-sa-ws',
@@ -1334,11 +1264,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaWsModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaWsComponent,
+    sizes: [],
+    component: IconSaWsComponent
   },
   {
     selector: 'sbb-icon-sa-wv',
@@ -1346,11 +1275,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaWvModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaWvComponent,
+    sizes: [],
+    component: IconSaWvComponent
   },
   {
     selector: 'sbb-icon-sa-x',
@@ -1358,11 +1286,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaXModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaXComponent,
+    sizes: [],
+    component: IconSaXComponent
   },
   {
     selector: 'sbb-icon-sa-xp',
@@ -1370,11 +1297,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaXpModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaXpComponent,
+    sizes: [],
+    component: IconSaXpComponent
   },
   {
     selector: 'sbb-icon-sa-xr',
@@ -1382,11 +1308,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaXrModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaXrComponent,
+    sizes: [],
+    component: IconSaXrComponent
   },
   {
     selector: 'sbb-icon-sa-xt',
@@ -1394,11 +1319,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaXtModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaXtComponent,
+    sizes: [],
+    component: IconSaXtComponent
   },
   {
     selector: 'sbb-icon-sa-y',
@@ -1406,11 +1330,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaYModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaYComponent,
+    sizes: [],
+    component: IconSaYComponent
   },
   {
     selector: 'sbb-icon-sa-yb',
@@ -1418,11 +1341,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaYbModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaYbComponent,
+    sizes: [],
+    component: IconSaYbComponent
   },
   {
     selector: 'sbb-icon-sa-ym',
@@ -1430,11 +1352,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaYmModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaYmComponent,
+    sizes: [],
+    component: IconSaYmComponent
   },
   {
     selector: 'sbb-icon-sa-yt',
@@ -1442,11 +1363,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaYtModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaYtComponent,
+    sizes: [],
+    component: IconSaYtComponent
   },
   {
     selector: 'sbb-icon-sa-z',
@@ -1454,11 +1374,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaZModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaZComponent,
+    sizes: [],
+    component: IconSaZComponent
   },
   {
     selector: 'sbb-icon-sa-zm',
@@ -1466,11 +1385,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSaZmModule',
       'IconCollectionTimetableAttributesModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconSaZmComponent,
+    sizes: [],
+    component: IconSaZmComponent
   },
   {
     selector: 'sbb-icon-utilization-none',
@@ -1478,11 +1396,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUtilizationNoneModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconUtilizationNoneComponent,
+    sizes: [],
+    component: IconUtilizationNoneComponent
   },
   {
     selector: 'sbb-icon-utilization-low',
@@ -1490,11 +1407,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUtilizationLowModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconUtilizationLowComponent,
+    sizes: [],
+    component: IconUtilizationLowComponent
   },
   {
     selector: 'sbb-icon-utilization-medium',
@@ -1502,11 +1418,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUtilizationMediumModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconUtilizationMediumComponent,
+    sizes: [],
+    component: IconUtilizationMediumComponent
   },
   {
     selector: 'sbb-icon-utilization-high',
@@ -1514,11 +1429,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUtilizationHighModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconUtilizationHighComponent,
+    sizes: [],
+    component: IconUtilizationHighComponent
   },
   {
     selector: 'sbb-icon-add-stop',
@@ -1526,11 +1440,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAddStopModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconAddStopComponent,
+    sizes: [],
+    component: IconAddStopComponent
   },
   {
     selector: 'sbb-icon-alternative',
@@ -1538,11 +1451,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAlternativeModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconAlternativeComponent,
+    sizes: [],
+    component: IconAlternativeComponent
   },
   {
     selector: 'sbb-icon-cancellation',
@@ -1550,11 +1462,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCancellationModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconCancellationComponent,
+    sizes: [],
+    component: IconCancellationComponent
   },
   {
     selector: 'sbb-icon-him-construction',
@@ -1562,11 +1473,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHimConstructionModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconHimConstructionComponent,
+    sizes: [],
+    component: IconHimConstructionComponent
   },
   {
     selector: 'sbb-icon-delay',
@@ -1574,11 +1484,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDelayModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconDelayComponent,
+    sizes: [],
+    component: IconDelayComponent
   },
   {
     selector: 'sbb-icon-him-disruption',
@@ -1586,11 +1495,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHimDisruptionModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconHimDisruptionComponent,
+    sizes: [],
+    component: IconHimDisruptionComponent
   },
   {
     selector: 'sbb-icon-him-info',
@@ -1598,11 +1506,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHimInfoModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconHimInfoComponent,
+    sizes: [],
+    component: IconHimInfoComponent
   },
   {
     selector: 'sbb-icon-missed-connection',
@@ -1610,11 +1517,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMissedConnectionModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconMissedConnectionComponent,
+    sizes: [],
+    component: IconMissedConnectionComponent
   },
   {
     selector: 'sbb-icon-platform-change',
@@ -1622,11 +1528,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPlatformChangeModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconPlatformChangeComponent,
+    sizes: [],
+    component: IconPlatformChangeComponent
   },
   {
     selector: 'sbb-icon-him-replacementbus',
@@ -1634,11 +1539,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHimReplacementbusModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconHimReplacementbusComponent,
+    sizes: [],
+    component: IconHimReplacementbusComponent
   },
   {
     selector: 'sbb-icon-reroute',
@@ -1646,11 +1550,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRerouteModule',
       'IconCollectionHimCusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconRerouteComponent,
+    sizes: [],
+    component: IconRerouteComponent
   },
   {
     selector: 'sbb-icon-product-bex',
@@ -1658,11 +1561,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductBexModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductBexComponent,
+    sizes: [],
+    component: IconProductBexComponent
   },
   {
     selector: 'sbb-icon-product-cnl',
@@ -1670,11 +1572,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductCnlModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductCnlComponent,
+    sizes: [],
+    component: IconProductCnlComponent
   },
   {
     selector: 'sbb-icon-product-ec',
@@ -1682,11 +1583,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductEcModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductEcComponent,
+    sizes: [],
+    component: IconProductEcComponent
   },
   {
     selector: 'sbb-icon-product-en',
@@ -1694,11 +1594,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductEnModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductEnComponent,
+    sizes: [],
+    component: IconProductEnComponent
   },
   {
     selector: 'sbb-icon-product-gex',
@@ -1706,11 +1605,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductGexModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductGexComponent,
+    sizes: [],
+    component: IconProductGexComponent
   },
   {
     selector: 'sbb-icon-product-ic',
@@ -1718,11 +1616,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIcModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIcComponent,
+    sizes: [],
+    component: IconProductIcComponent
   },
   {
     selector: 'sbb-icon-product-ice',
@@ -1730,11 +1627,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIceModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIceComponent,
+    sizes: [],
+    component: IconProductIceComponent
   },
   {
     selector: 'sbb-icon-product-icn',
@@ -1742,11 +1638,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIcnModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIcnComponent,
+    sizes: [],
+    component: IconProductIcnComponent
   },
   {
     selector: 'sbb-icon-product-ic-1',
@@ -1754,11 +1649,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc1Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc1Component,
+    sizes: [],
+    component: IconProductIc1Component
   },
   {
     selector: 'sbb-icon-product-ic-11',
@@ -1766,11 +1660,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc11Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc11Component,
+    sizes: [],
+    component: IconProductIc11Component
   },
   {
     selector: 'sbb-icon-product-ic-2',
@@ -1778,11 +1671,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc2Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc2Component,
+    sizes: [],
+    component: IconProductIc2Component
   },
   {
     selector: 'sbb-icon-product-ic-21',
@@ -1790,11 +1682,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc21Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc21Component,
+    sizes: [],
+    component: IconProductIc21Component
   },
   {
     selector: 'sbb-icon-product-ic-3',
@@ -1802,11 +1693,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc3Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc3Component,
+    sizes: [],
+    component: IconProductIc3Component
   },
   {
     selector: 'sbb-icon-product-ic-4',
@@ -1814,11 +1704,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc4Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc4Component,
+    sizes: [],
+    component: IconProductIc4Component
   },
   {
     selector: 'sbb-icon-product-ic-5',
@@ -1826,11 +1715,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc5Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc5Component,
+    sizes: [],
+    component: IconProductIc5Component
   },
   {
     selector: 'sbb-icon-product-ic-51',
@@ -1838,11 +1726,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc51Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc51Component,
+    sizes: [],
+    component: IconProductIc51Component
   },
   {
     selector: 'sbb-icon-product-ic-6',
@@ -1850,11 +1737,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc6Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc6Component,
+    sizes: [],
+    component: IconProductIc6Component
   },
   {
     selector: 'sbb-icon-product-ic-61',
@@ -1862,11 +1748,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc61Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc61Component,
+    sizes: [],
+    component: IconProductIc61Component
   },
   {
     selector: 'sbb-icon-product-ic-7',
@@ -1874,11 +1759,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc7Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc7Component,
+    sizes: [],
+    component: IconProductIc7Component
   },
   {
     selector: 'sbb-icon-product-ic-8',
@@ -1886,11 +1770,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc8Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc8Component,
+    sizes: [],
+    component: IconProductIc8Component
   },
   {
     selector: 'sbb-icon-product-ic-9',
@@ -1898,11 +1781,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIc9Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIc9Component,
+    sizes: [],
+    component: IconProductIc9Component
   },
   {
     selector: 'sbb-icon-product-ir',
@@ -1910,11 +1792,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIrModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIrComponent,
+    sizes: [],
+    component: IconProductIrComponent
   },
   {
     selector: 'sbb-icon-product-ir-13',
@@ -1922,11 +1803,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr13Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr13Component,
+    sizes: [],
+    component: IconProductIr13Component
   },
   {
     selector: 'sbb-icon-product-ir-15',
@@ -1934,11 +1814,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr15Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr15Component,
+    sizes: [],
+    component: IconProductIr15Component
   },
   {
     selector: 'sbb-icon-product-ir-16',
@@ -1946,11 +1825,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr16Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr16Component,
+    sizes: [],
+    component: IconProductIr16Component
   },
   {
     selector: 'sbb-icon-product-ir-17',
@@ -1958,11 +1836,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr17Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr17Component,
+    sizes: [],
+    component: IconProductIr17Component
   },
   {
     selector: 'sbb-icon-product-ir-25',
@@ -1970,11 +1847,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr25Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr25Component,
+    sizes: [],
+    component: IconProductIr25Component
   },
   {
     selector: 'sbb-icon-product-ir-26',
@@ -1982,11 +1858,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr26Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr26Component,
+    sizes: [],
+    component: IconProductIr26Component
   },
   {
     selector: 'sbb-icon-product-ir-27',
@@ -1994,11 +1869,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr27Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr27Component,
+    sizes: [],
+    component: IconProductIr27Component
   },
   {
     selector: 'sbb-icon-product-ir-35',
@@ -2006,11 +1880,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr35Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr35Component,
+    sizes: [],
+    component: IconProductIr35Component
   },
   {
     selector: 'sbb-icon-product-ir-36',
@@ -2018,11 +1891,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr36Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr36Component,
+    sizes: [],
+    component: IconProductIr36Component
   },
   {
     selector: 'sbb-icon-product-ir-37',
@@ -2030,11 +1902,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr37Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr37Component,
+    sizes: [],
+    component: IconProductIr37Component
   },
   {
     selector: 'sbb-icon-product-ir-45',
@@ -2042,11 +1913,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr45Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr45Component,
+    sizes: [],
+    component: IconProductIr45Component
   },
   {
     selector: 'sbb-icon-product-ir-46',
@@ -2054,11 +1924,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr46Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr46Component,
+    sizes: [],
+    component: IconProductIr46Component
   },
   {
     selector: 'sbb-icon-product-ir-55',
@@ -2066,11 +1935,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr55Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr55Component,
+    sizes: [],
+    component: IconProductIr55Component
   },
   {
     selector: 'sbb-icon-product-ir-56',
@@ -2078,11 +1946,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr56Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr56Component,
+    sizes: [],
+    component: IconProductIr56Component
   },
   {
     selector: 'sbb-icon-product-ir-65',
@@ -2090,11 +1957,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr65Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr65Component,
+    sizes: [],
+    component: IconProductIr65Component
   },
   {
     selector: 'sbb-icon-product-ir-66',
@@ -2102,11 +1968,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr66Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr66Component,
+    sizes: [],
+    component: IconProductIr66Component
   },
   {
     selector: 'sbb-icon-product-ir-70',
@@ -2114,11 +1979,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr70Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr70Component,
+    sizes: [],
+    component: IconProductIr70Component
   },
   {
     selector: 'sbb-icon-product-ir-75',
@@ -2126,11 +1990,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr75Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr75Component,
+    sizes: [],
+    component: IconProductIr75Component
   },
   {
     selector: 'sbb-icon-product-ir-90',
@@ -2138,11 +2001,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr90Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr90Component,
+    sizes: [],
+    component: IconProductIr90Component
   },
   {
     selector: 'sbb-icon-product-ir-95',
@@ -2150,11 +2012,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductIr95Module',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductIr95Component,
+    sizes: [],
+    component: IconProductIr95Component
   },
   {
     selector: 'sbb-icon-product-nj',
@@ -2162,11 +2023,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductNjModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductNjComponent,
+    sizes: [],
+    component: IconProductNjComponent
   },
   {
     selector: 'sbb-icon-product-pe',
@@ -2174,11 +2034,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductPeModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductPeComponent,
+    sizes: [],
+    component: IconProductPeComponent
   },
   {
     selector: 'sbb-icon-product-re',
@@ -2186,11 +2045,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductReModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductReComponent,
+    sizes: [],
+    component: IconProductReComponent
   },
   {
     selector: 'sbb-icon-product-rj',
@@ -2198,11 +2056,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductRjModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductRjComponent,
+    sizes: [],
+    component: IconProductRjComponent
   },
   {
     selector: 'sbb-icon-product-rjx',
@@ -2210,11 +2067,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductRjxModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductRjxComponent,
+    sizes: [],
+    component: IconProductRjxComponent
   },
   {
     selector: 'sbb-icon-product-rx',
@@ -2222,11 +2078,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductRxModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductRxComponent,
+    sizes: [],
+    component: IconProductRxComponent
   },
   {
     selector: 'sbb-icon-product-sn',
@@ -2234,11 +2089,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductSnModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductSnComponent,
+    sizes: [],
+    component: IconProductSnComponent
   },
   {
     selector: 'sbb-icon-product-tgv',
@@ -2246,11 +2100,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductTgvModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductTgvComponent,
+    sizes: [],
+    component: IconProductTgvComponent
   },
   {
     selector: 'sbb-icon-product-vae',
@@ -2258,11 +2111,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconProductVaeModule',
       'IconCollectionTimetableProductsModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconProductVaeComponent,
+    sizes: [],
+    component: IconProductVaeComponent
   },
   {
     selector: 'sbb-icon-chart-column-trend',
@@ -2270,13 +2122,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChartColumnTrendModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconChartColumnTrendComponent,
+    sizes: ['large', 'medium'],
+    component: IconChartColumnTrendComponent
   },
   {
     selector: 'sbb-icon-coins',
@@ -2284,12 +2133,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCoinsModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-    ],
-    component: IconCoinsComponent,
+    sizes: ['large'],
+    component: IconCoinsComponent
   },
   {
     selector: 'sbb-icon-alarm-clock',
@@ -2297,13 +2144,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAlarmClockModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconAlarmClockComponent,
+    sizes: ['medium', 'small'],
+    component: IconAlarmClockComponent
   },
   {
     selector: 'sbb-icon-apple-bag',
@@ -2311,12 +2155,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAppleBagModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconAppleBagComponent,
+    sizes: ['medium'],
+    component: IconAppleBagComponent
   },
   {
     selector: 'sbb-icon-app-icon',
@@ -2324,13 +2166,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAppIconModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconAppIconComponent,
+    sizes: ['medium', 'small'],
+    component: IconAppIconComponent
   },
   {
     selector: 'sbb-icon-backpack',
@@ -2338,12 +2177,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBackpackModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBackpackComponent,
+    sizes: ['medium'],
+    component: IconBackpackComponent
   },
   {
     selector: 'sbb-icon-bell',
@@ -2351,13 +2188,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBellModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconBellComponent,
+    sizes: ['medium', 'small'],
+    component: IconBellComponent
   },
   {
     selector: 'sbb-icon-binoculars',
@@ -2365,13 +2199,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBinocularsModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconBinocularsComponent,
+    sizes: ['medium', 'small'],
+    component: IconBinocularsComponent
   },
   {
     selector: 'sbb-icon-browser',
@@ -2379,13 +2210,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBrowserModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconBrowserComponent,
+    sizes: ['medium', 'small'],
+    component: IconBrowserComponent
   },
   {
     selector: 'sbb-icon-calendar',
@@ -2393,12 +2221,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCalendarModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCalendarComponent,
+    sizes: ['medium'],
+    component: IconCalendarComponent
   },
   {
     selector: 'sbb-icon-camera',
@@ -2406,12 +2232,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCameraModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCameraComponent,
+    sizes: ['medium'],
+    component: IconCameraComponent
   },
   {
     selector: 'sbb-icon-chart-column',
@@ -2419,12 +2243,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChartColumnModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconChartColumnComponent,
+    sizes: ['medium'],
+    component: IconChartColumnComponent
   },
   {
     selector: 'sbb-icon-chart-line',
@@ -2432,13 +2254,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChartLineModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChartLineComponent,
+    sizes: ['medium', 'small'],
+    component: IconChartLineComponent
   },
   {
     selector: 'sbb-icon-chart-pie',
@@ -2446,13 +2265,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChartPieModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChartPieComponent,
+    sizes: ['medium', 'small'],
+    component: IconChartPieComponent
   },
   {
     selector: 'sbb-icon-circle-information',
@@ -2460,13 +2276,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCircleInformationModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconCircleInformationComponent,
+    sizes: ['medium', 'small'],
+    component: IconCircleInformationComponent
   },
   {
     selector: 'sbb-icon-circle-information-small',
@@ -2474,13 +2287,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCircleInformationSmallModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconCircleInformationSmallComponent,
+    sizes: ['medium', 'small'],
+    component: IconCircleInformationSmallComponent
   },
   {
     selector: 'sbb-icon-circle-play',
@@ -2488,13 +2298,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCirclePlayModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconCirclePlayComponent,
+    sizes: ['medium', 'small'],
+    component: IconCirclePlayComponent
   },
   {
     selector: 'sbb-icon-circle-question-mark',
@@ -2502,13 +2309,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCircleQuestionMarkModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconCircleQuestionMarkComponent,
+    sizes: ['medium', 'small'],
+    component: IconCircleQuestionMarkComponent
   },
   {
     selector: 'sbb-icon-contact',
@@ -2516,13 +2320,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconContactModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconContactComponent,
+    sizes: ['medium', 'small'],
+    component: IconContactComponent
   },
   {
     selector: 'sbb-icon-controls',
@@ -2530,12 +2331,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconControlsModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconControlsComponent,
+    sizes: ['medium'],
+    component: IconControlsComponent
   },
   {
     selector: 'sbb-icon-cutlery',
@@ -2543,13 +2342,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCutleryModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconCutleryComponent,
+    sizes: ['medium', 'small'],
+    component: IconCutleryComponent
   },
   {
     selector: 'sbb-icon-database',
@@ -2557,13 +2353,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDatabaseModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDatabaseComponent,
+    sizes: ['medium', 'small'],
+    component: IconDatabaseComponent
   },
   {
     selector: 'sbb-icon-dog',
@@ -2571,13 +2364,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDogModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDogComponent,
+    sizes: ['medium', 'small'],
+    component: IconDogComponent
   },
   {
     selector: 'sbb-icon-download',
@@ -2585,13 +2375,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDownloadModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDownloadComponent,
+    sizes: ['medium', 'small'],
+    component: IconDownloadComponent
   },
   {
     selector: 'sbb-icon-download-large-data',
@@ -2599,13 +2386,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDownloadLargeDataModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDownloadLargeDataComponent,
+    sizes: ['medium', 'small'],
+    component: IconDownloadLargeDataComponent
   },
   {
     selector: 'sbb-icon-download-small-data',
@@ -2613,12 +2397,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDownloadSmallDataModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDownloadSmallDataComponent,
+    sizes: ['medium'],
+    component: IconDownloadSmallDataComponent
   },
   {
     selector: 'sbb-icon-entrance',
@@ -2626,13 +2408,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEntranceModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconEntranceComponent,
+    sizes: ['medium', 'small'],
+    component: IconEntranceComponent
   },
   {
     selector: 'sbb-icon-envelope',
@@ -2640,12 +2419,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEnvelopeModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconEnvelopeComponent,
+    sizes: ['medium'],
+    component: IconEnvelopeComponent
   },
   {
     selector: 'sbb-icon-envelope-open',
@@ -2653,13 +2430,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEnvelopeOpenModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconEnvelopeOpenComponent,
+    sizes: ['medium', 'small'],
+    component: IconEnvelopeOpenComponent
   },
   {
     selector: 'sbb-icon-exit',
@@ -2667,13 +2441,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconExitModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconExitComponent,
+    sizes: ['medium', 'small'],
+    component: IconExitComponent
   },
   {
     selector: 'sbb-icon-face-king',
@@ -2681,13 +2452,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFaceKingModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFaceKingComponent,
+    sizes: ['medium', 'small'],
+    component: IconFaceKingComponent
   },
   {
     selector: 'sbb-icon-face-worker',
@@ -2695,12 +2463,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFaceWorkerModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFaceWorkerComponent,
+    sizes: ['medium'],
+    component: IconFaceWorkerComponent
   },
   {
     selector: 'sbb-icon-factory',
@@ -2708,13 +2474,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFactoryModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFactoryComponent,
+    sizes: ['medium', 'small'],
+    component: IconFactoryComponent
   },
   {
     selector: 'sbb-icon-filter',
@@ -2722,13 +2485,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFilterModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFilterComponent,
+    sizes: ['medium', 'small'],
+    component: IconFilterComponent
   },
   {
     selector: 'sbb-icon-filter-x',
@@ -2736,13 +2496,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFilterXModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFilterXComponent,
+    sizes: ['medium', 'small'],
+    component: IconFilterXComponent
   },
   {
     selector: 'sbb-icon-flashlight-on',
@@ -2750,13 +2507,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFlashlightOnModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFlashlightOnComponent,
+    sizes: ['medium', 'small'],
+    component: IconFlashlightOnComponent
   },
   {
     selector: 'sbb-icon-form',
@@ -2764,13 +2518,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFormModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFormComponent,
+    sizes: ['medium', 'small'],
+    component: IconFormComponent
   },
   {
     selector: 'sbb-icon-gears',
@@ -2778,13 +2529,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGearsModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconGearsComponent,
+    sizes: ['medium', 'small'],
+    component: IconGearsComponent
   },
   {
     selector: 'sbb-icon-gift',
@@ -2792,13 +2540,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGiftModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconGiftComponent,
+    sizes: ['medium', 'small'],
+    component: IconGiftComponent
   },
   {
     selector: 'sbb-icon-globe',
@@ -2806,13 +2551,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGlobeModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconGlobeComponent,
+    sizes: ['medium', 'small'],
+    component: IconGlobeComponent
   },
   {
     selector: 'sbb-icon-hand-heart',
@@ -2820,13 +2562,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHandHeartModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconHandHeartComponent,
+    sizes: ['medium', 'small'],
+    component: IconHandHeartComponent
   },
   {
     selector: 'sbb-icon-hand-with-service-bell',
@@ -2834,13 +2573,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHandWithServiceBellModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconHandWithServiceBellComponent,
+    sizes: ['medium', 'small'],
+    component: IconHandWithServiceBellComponent
   },
   {
     selector: 'sbb-icon-heart',
@@ -2848,13 +2584,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHeartModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconHeartComponent,
+    sizes: ['medium', 'small'],
+    component: IconHeartComponent
   },
   {
     selector: 'sbb-icon-hierarchy',
@@ -2862,13 +2595,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHierarchyModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconHierarchyComponent,
+    sizes: ['medium', 'small'],
+    component: IconHierarchyComponent
   },
   {
     selector: 'sbb-icon-kaffe',
@@ -2876,12 +2606,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconKaffeModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconKaffeComponent,
+    sizes: ['medium'],
+    component: IconKaffeComponent
   },
   {
     selector: 'sbb-icon-kaffe-2',
@@ -2889,12 +2617,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconKaffe2Module',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconKaffe2Component,
+    sizes: ['medium'],
+    component: IconKaffe2Component
   },
   {
     selector: 'sbb-icon-lighthouse',
@@ -2902,13 +2628,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLighthouseModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconLighthouseComponent,
+    sizes: ['medium', 'small'],
+    component: IconLighthouseComponent
   },
   {
     selector: 'sbb-icon-link',
@@ -2916,12 +2639,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLinkModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLinkComponent,
+    sizes: ['medium'],
+    component: IconLinkComponent
   },
   {
     selector: 'sbb-icon-link-external',
@@ -2929,12 +2650,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLinkExternalModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLinkExternalComponent,
+    sizes: ['medium'],
+    component: IconLinkExternalComponent
   },
   {
     selector: 'sbb-icon-list',
@@ -2942,13 +2661,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconListModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconListComponent,
+    sizes: ['medium', 'small'],
+    component: IconListComponent
   },
   {
     selector: 'sbb-icon-magnifying-glass',
@@ -2956,13 +2672,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMagnifyingGlassModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconMagnifyingGlassComponent,
+    sizes: ['medium', 'small'],
+    component: IconMagnifyingGlassComponent
   },
   {
     selector: 'sbb-icon-newspaper',
@@ -2970,12 +2683,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconNewspaperModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconNewspaperComponent,
+    sizes: ['medium'],
+    component: IconNewspaperComponent
   },
   {
     selector: 'sbb-icon-paper-aeroplane',
@@ -2983,12 +2694,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPaperAeroplaneModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPaperAeroplaneComponent,
+    sizes: ['medium'],
+    component: IconPaperAeroplaneComponent
   },
   {
     selector: 'sbb-icon-paper-clip',
@@ -2996,13 +2705,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPaperClipModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconPaperClipComponent,
+    sizes: ['medium', 'small'],
+    component: IconPaperClipComponent
   },
   {
     selector: 'sbb-icon-pen',
@@ -3010,13 +2716,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPenModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconPenComponent,
+    sizes: ['medium', 'small'],
+    component: IconPenComponent
   },
   {
     selector: 'sbb-icon-picture',
@@ -3024,12 +2727,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPictureModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPictureComponent,
+    sizes: ['medium'],
+    component: IconPictureComponent
   },
   {
     selector: 'sbb-icon-pin',
@@ -3037,13 +2738,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPinModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconPinComponent,
+    sizes: ['medium', 'small'],
+    component: IconPinComponent
   },
   {
     selector: 'sbb-icon-rss',
@@ -3051,13 +2749,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRssModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconRssComponent,
+    sizes: ['medium', 'small'],
+    component: IconRssComponent
   },
   {
     selector: 'sbb-icon-service-bell',
@@ -3065,13 +2760,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconServiceBellModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconServiceBellComponent,
+    sizes: ['medium', 'small'],
+    component: IconServiceBellComponent
   },
   {
     selector: 'sbb-icon-shopping-cart',
@@ -3079,12 +2771,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShoppingCartModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShoppingCartComponent,
+    sizes: ['medium'],
+    component: IconShoppingCartComponent
   },
   {
     selector: 'sbb-icon-sign-exclamation-point',
@@ -3092,12 +2782,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSignExclamationPointModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSignExclamationPointComponent,
+    sizes: ['medium'],
+    component: IconSignExclamationPointComponent
   },
   {
     selector: 'sbb-icon-sign-x',
@@ -3105,13 +2793,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSignXModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconSignXComponent,
+    sizes: ['medium', 'small'],
+    component: IconSignXComponent
   },
   {
     selector: 'sbb-icon-spanner',
@@ -3119,12 +2804,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSpannerModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSpannerComponent,
+    sizes: ['medium'],
+    component: IconSpannerComponent
   },
   {
     selector: 'sbb-icon-star',
@@ -3132,12 +2815,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconStarModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconStarComponent,
+    sizes: ['medium'],
+    component: IconStarComponent
   },
   {
     selector: 'sbb-icon-switzerland',
@@ -3145,13 +2826,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSwitzerlandModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconSwitzerlandComponent,
+    sizes: ['medium', 'small'],
+    component: IconSwitzerlandComponent
   },
   {
     selector: 'sbb-icon-tag',
@@ -3159,12 +2837,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTagModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTagComponent,
+    sizes: ['medium'],
+    component: IconTagComponent
   },
   {
     selector: 'sbb-icon-target',
@@ -3172,13 +2848,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTargetModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconTargetComponent,
+    sizes: ['medium', 'small'],
+    component: IconTargetComponent
   },
   {
     selector: 'sbb-icon-torch',
@@ -3186,12 +2859,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTorchModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTorchComponent,
+    sizes: ['medium'],
+    component: IconTorchComponent
   },
   {
     selector: 'sbb-icon-trash',
@@ -3199,12 +2870,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTrashModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTrashComponent,
+    sizes: ['medium'],
+    component: IconTrashComponent
   },
   {
     selector: 'sbb-icon-tree',
@@ -3212,13 +2881,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTreeModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconTreeComponent,
+    sizes: ['medium', 'small'],
+    component: IconTreeComponent
   },
   {
     selector: 'sbb-icon-upload',
@@ -3226,13 +2892,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUploadModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconUploadComponent,
+    sizes: ['medium', 'small'],
+    component: IconUploadComponent
   },
   {
     selector: 'sbb-icon-wallet',
@@ -3240,13 +2903,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWalletModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconWalletComponent,
+    sizes: ['medium', 'small'],
+    component: IconWalletComponent
   },
   {
     selector: 'sbb-icon-warning-light',
@@ -3254,13 +2914,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWarningLightModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconWarningLightComponent,
+    sizes: ['medium', 'small'],
+    component: IconWarningLightComponent
   },
   {
     selector: 'sbb-icon-wifi',
@@ -3268,13 +2925,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWifiModule',
       'IconCollectionBasicModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconWifiComponent,
+    sizes: ['medium', 'small'],
+    component: IconWifiComponent
   },
   {
     selector: 'sbb-icon-bulb-on',
@@ -3282,13 +2936,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBulbOnModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconBulbOnComponent,
+    sizes: ['large', 'medium'],
+    component: IconBulbOnComponent
   },
   {
     selector: 'sbb-icon-handshake',
@@ -3296,13 +2947,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHandshakeModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconHandshakeComponent,
+    sizes: ['large', 'medium'],
+    component: IconHandshakeComponent
   },
   {
     selector: 'sbb-icon-network',
@@ -3310,13 +2958,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconNetworkModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconNetworkComponent,
+    sizes: ['large', 'medium'],
+    component: IconNetworkComponent
   },
   {
     selector: 'sbb-icon-two-speech-bubbles',
@@ -3324,13 +2969,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTwoSpeechBubblesModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconTwoSpeechBubblesComponent,
+    sizes: ['large', 'medium'],
+    component: IconTwoSpeechBubblesComponent
   },
   {
     selector: 'sbb-icon-bulb-off',
@@ -3338,12 +2980,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBulbOffModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBulbOffComponent,
+    sizes: ['medium'],
+    component: IconBulbOffComponent
   },
   {
     selector: 'sbb-icon-face-grinning',
@@ -3351,12 +2991,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFaceGrinningModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFaceGrinningComponent,
+    sizes: ['medium'],
+    component: IconFaceGrinningComponent
   },
   {
     selector: 'sbb-icon-face-neutral',
@@ -3364,12 +3002,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFaceNeutralModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFaceNeutralComponent,
+    sizes: ['medium'],
+    component: IconFaceNeutralComponent
   },
   {
     selector: 'sbb-icon-face-sad',
@@ -3377,12 +3013,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFaceSadModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFaceSadComponent,
+    sizes: ['medium'],
+    component: IconFaceSadComponent
   },
   {
     selector: 'sbb-icon-face-smiling',
@@ -3390,12 +3024,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFaceSmilingModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFaceSmilingComponent,
+    sizes: ['medium'],
+    component: IconFaceSmilingComponent
   },
   {
     selector: 'sbb-icon-onboarding',
@@ -3403,12 +3035,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconOnboardingModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconOnboardingComponent,
+    sizes: ['medium'],
+    component: IconOnboardingComponent
   },
   {
     selector: 'sbb-icon-question-answer',
@@ -3416,12 +3046,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconQuestionAnswerModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconQuestionAnswerComponent,
+    sizes: ['medium'],
+    component: IconQuestionAnswerComponent
   },
   {
     selector: 'sbb-icon-share',
@@ -3429,12 +3057,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShareModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShareComponent,
+    sizes: ['medium'],
+    component: IconShareComponent
   },
   {
     selector: 'sbb-icon-speech-bubble',
@@ -3442,12 +3068,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSpeechBubbleModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSpeechBubbleComponent,
+    sizes: ['medium'],
+    component: IconSpeechBubbleComponent
   },
   {
     selector: 'sbb-icon-speech-bubble-group-empty',
@@ -3455,12 +3079,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSpeechBubbleGroupEmptyModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSpeechBubbleGroupEmptyComponent,
+    sizes: ['medium'],
+    component: IconSpeechBubbleGroupEmptyComponent
   },
   {
     selector: 'sbb-icon-thumb-down',
@@ -3468,12 +3090,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconThumbDownModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconThumbDownComponent,
+    sizes: ['medium'],
+    component: IconThumbDownComponent
   },
   {
     selector: 'sbb-icon-thumb-up',
@@ -3481,12 +3101,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconThumbUpModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconThumbUpComponent,
+    sizes: ['medium'],
+    component: IconThumbUpComponent
   },
   {
     selector: 'sbb-icon-translate',
@@ -3494,12 +3112,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTranslateModule',
       'IconCollectionCommunityModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTranslateComponent,
+    sizes: ['medium'],
+    component: IconTranslateComponent
   },
   {
     selector: 'sbb-icon-employees-sbb',
@@ -3507,12 +3123,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEmployeesSbbModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-    ],
-    component: IconEmployeesSbbComponent,
+    sizes: ['large'],
+    component: IconEmployeesSbbComponent
   },
   {
     selector: 'sbb-icon-user-group-row',
@@ -3520,13 +3134,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserGroupRowModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconUserGroupRowComponent,
+    sizes: ['large', 'medium'],
+    component: IconUserGroupRowComponent
   },
   {
     selector: 'sbb-icon-avatar-police',
@@ -3534,12 +3145,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAvatarPoliceModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconAvatarPoliceComponent,
+    sizes: ['medium'],
+    component: IconAvatarPoliceComponent
   },
   {
     selector: 'sbb-icon-key',
@@ -3547,12 +3156,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconKeyModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconKeyComponent,
+    sizes: ['medium'],
+    component: IconKeyComponent
   },
   {
     selector: 'sbb-icon-pie',
@@ -3560,12 +3167,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPieModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPieComponent,
+    sizes: ['medium'],
+    component: IconPieComponent
   },
   {
     selector: 'sbb-icon-two-users',
@@ -3573,12 +3178,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTwoUsersModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTwoUsersComponent,
+    sizes: ['medium'],
+    component: IconTwoUsersComponent
   },
   {
     selector: 'sbb-icon-user',
@@ -3586,12 +3189,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserComponent,
+    sizes: ['medium'],
+    component: IconUserComponent
   },
   {
     selector: 'sbb-icon-user-change',
@@ -3599,12 +3200,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserChangeModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserChangeComponent,
+    sizes: ['medium'],
+    component: IconUserChangeComponent
   },
   {
     selector: 'sbb-icon-user-group-round-table',
@@ -3612,12 +3211,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserGroupRoundTableModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserGroupRoundTableComponent,
+    sizes: ['medium'],
+    component: IconUserGroupRoundTableComponent
   },
   {
     selector: 'sbb-icon-user-group-row-linear',
@@ -3625,12 +3222,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserGroupRowLinearModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserGroupRowLinearComponent,
+    sizes: ['medium'],
+    component: IconUserGroupRowLinearComponent
   },
   {
     selector: 'sbb-icon-user-hat',
@@ -3638,12 +3233,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserHatModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserHatComponent,
+    sizes: ['medium'],
+    component: IconUserHatComponent
   },
   {
     selector: 'sbb-icon-user-headset',
@@ -3651,12 +3244,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserHeadsetModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserHeadsetComponent,
+    sizes: ['medium'],
+    component: IconUserHeadsetComponent
   },
   {
     selector: 'sbb-icon-user-key',
@@ -3664,12 +3255,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserKeyModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserKeyComponent,
+    sizes: ['medium'],
+    component: IconUserKeyComponent
   },
   {
     selector: 'sbb-icon-user-plus',
@@ -3677,12 +3266,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserPlusModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserPlusComponent,
+    sizes: ['medium'],
+    component: IconUserPlusComponent
   },
   {
     selector: 'sbb-icon-user-tie',
@@ -3690,12 +3277,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconUserTieModule',
       'IconCollectionUserModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconUserTieComponent,
+    sizes: ['medium'],
+    component: IconUserTieComponent
   },
   {
     selector: 'sbb-icon-percent',
@@ -3703,13 +3288,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPercentModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconPercentComponent,
+    sizes: ['large', 'medium'],
+    component: IconPercentComponent
   },
   {
     selector: 'sbb-icon-switzerland-route',
@@ -3717,13 +3299,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSwitzerlandRouteModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconSwitzerlandRouteComponent,
+    sizes: ['large', 'medium'],
+    component: IconSwitzerlandRouteComponent
   },
   {
     selector: 'sbb-icon-arrow-change',
@@ -3731,12 +3310,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowChangeModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconArrowChangeComponent,
+    sizes: ['medium'],
+    component: IconArrowChangeComponent
   },
   {
     selector: 'sbb-icon-avatar-train-staff',
@@ -3744,12 +3321,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAvatarTrainStaffModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconAvatarTrainStaffComponent,
+    sizes: ['medium'],
+    component: IconAvatarTrainStaffComponent
   },
   {
     selector: 'sbb-icon-avatar-train-staff-disabled',
@@ -3757,12 +3332,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAvatarTrainStaffDisabledModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconAvatarTrainStaffDisabledComponent,
+    sizes: ['medium'],
+    component: IconAvatarTrainStaffDisabledComponent
   },
   {
     selector: 'sbb-icon-clock',
@@ -3770,12 +3343,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconClockModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconClockComponent,
+    sizes: ['medium'],
+    component: IconClockComponent
   },
   {
     selector: 'sbb-icon-hourglass',
@@ -3783,12 +3354,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHourglassModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconHourglassComponent,
+    sizes: ['medium'],
+    component: IconHourglassComponent
   },
   {
     selector: 'sbb-icon-locomotive',
@@ -3796,12 +3365,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocomotiveModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocomotiveComponent,
+    sizes: ['medium'],
+    component: IconLocomotiveComponent
   },
   {
     selector: 'sbb-icon-percent-tag',
@@ -3809,12 +3376,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPercentTagModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPercentTagComponent,
+    sizes: ['medium'],
+    component: IconPercentTagComponent
   },
   {
     selector: 'sbb-icon-punctuality',
@@ -3822,12 +3387,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPunctualityModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPunctualityComponent,
+    sizes: ['medium'],
+    component: IconPunctualityComponent
   },
   {
     selector: 'sbb-icon-route-circle-end',
@@ -3835,12 +3398,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRouteCircleEndModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconRouteCircleEndComponent,
+    sizes: ['medium'],
+    component: IconRouteCircleEndComponent
   },
   {
     selector: 'sbb-icon-route-circle-start',
@@ -3848,12 +3409,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRouteCircleStartModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconRouteCircleStartComponent,
+    sizes: ['medium'],
+    component: IconRouteCircleStartComponent
   },
   {
     selector: 'sbb-icon-seat-window',
@@ -3861,12 +3420,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSeatWindowModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSeatWindowComponent,
+    sizes: ['medium'],
+    component: IconSeatWindowComponent
   },
   {
     selector: 'sbb-icon-timetable',
@@ -3874,12 +3431,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTimetableModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTimetableComponent,
+    sizes: ['medium'],
+    component: IconTimetableComponent
   },
   {
     selector: 'sbb-icon-walk',
@@ -3887,12 +3442,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWalkModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWalkComponent,
+    sizes: ['medium'],
+    component: IconWalkComponent
   },
   {
     selector: 'sbb-icon-walk-fast',
@@ -3900,12 +3453,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWalkFastModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWalkFastComponent,
+    sizes: ['medium'],
+    component: IconWalkFastComponent
   },
   {
     selector: 'sbb-icon-walk-slow',
@@ -3913,12 +3464,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWalkSlowModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWalkSlowComponent,
+    sizes: ['medium'],
+    component: IconWalkSlowComponent
   },
   {
     selector: 'sbb-icon-wheelchair',
@@ -3926,12 +3475,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWheelchairModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWheelchairComponent,
+    sizes: ['medium'],
+    component: IconWheelchairComponent
   },
   {
     selector: 'sbb-icon-wheelchair-inaccessible',
@@ -3939,12 +3486,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWheelchairInaccessibleModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWheelchairInaccessibleComponent,
+    sizes: ['medium'],
+    component: IconWheelchairInaccessibleComponent
   },
   {
     selector: 'sbb-icon-wheelchair-partially',
@@ -3952,12 +3497,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWheelchairPartiallyModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWheelchairPartiallyComponent,
+    sizes: ['medium'],
+    component: IconWheelchairPartiallyComponent
   },
   {
     selector: 'sbb-icon-wheelchair-reservation',
@@ -3965,12 +3508,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWheelchairReservationModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWheelchairReservationComponent,
+    sizes: ['medium'],
+    component: IconWheelchairReservationComponent
   },
   {
     selector: 'sbb-icon-wheelchair-uncertain',
@@ -3978,12 +3519,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWheelchairUncertainModule',
       'IconCollectionTimetableModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWheelchairUncertainComponent,
+    sizes: ['medium'],
+    component: IconWheelchairUncertainComponent
   },
   {
     selector: 'sbb-icon-laptop-smartphone',
@@ -3991,13 +3530,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLaptopSmartphoneModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconLaptopSmartphoneComponent,
+    sizes: ['large', 'medium'],
+    component: IconLaptopSmartphoneComponent
   },
   {
     selector: 'sbb-icon-archive-box',
@@ -4005,12 +3541,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArchiveBoxModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconArchiveBoxComponent,
+    sizes: ['medium'],
+    component: IconArchiveBoxComponent
   },
   {
     selector: 'sbb-icon-briefcase',
@@ -4018,12 +3552,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBriefcaseModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBriefcaseComponent,
+    sizes: ['medium'],
+    component: IconBriefcaseComponent
   },
   {
     selector: 'sbb-icon-brochure',
@@ -4031,12 +3563,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBrochureModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBrochureComponent,
+    sizes: ['medium'],
+    component: IconBrochureComponent
   },
   {
     selector: 'sbb-icon-desk',
@@ -4044,12 +3574,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDeskModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDeskComponent,
+    sizes: ['medium'],
+    component: IconDeskComponent
   },
   {
     selector: 'sbb-icon-desk-adjustable',
@@ -4057,12 +3585,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDeskAdjustableModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDeskAdjustableComponent,
+    sizes: ['medium'],
+    component: IconDeskAdjustableComponent
   },
   {
     selector: 'sbb-icon-display',
@@ -4070,12 +3596,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDisplayModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDisplayComponent,
+    sizes: ['medium'],
+    component: IconDisplayComponent
   },
   {
     selector: 'sbb-icon-keyboard',
@@ -4083,12 +3607,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconKeyboardModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconKeyboardComponent,
+    sizes: ['medium'],
+    component: IconKeyboardComponent
   },
   {
     selector: 'sbb-icon-laptop',
@@ -4096,12 +3618,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLaptopModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLaptopComponent,
+    sizes: ['medium'],
+    component: IconLaptopComponent
   },
   {
     selector: 'sbb-icon-megaphone',
@@ -4109,12 +3629,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMegaphoneModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMegaphoneComponent,
+    sizes: ['medium'],
+    component: IconMegaphoneComponent
   },
   {
     selector: 'sbb-icon-office-chair',
@@ -4122,12 +3640,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconOfficeChairModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconOfficeChairComponent,
+    sizes: ['medium'],
+    component: IconOfficeChairComponent
   },
   {
     selector: 'sbb-icon-power-plug',
@@ -4135,12 +3651,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPowerPlugModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPowerPlugComponent,
+    sizes: ['medium'],
+    component: IconPowerPlugComponent
   },
   {
     selector: 'sbb-icon-printer',
@@ -4148,12 +3662,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPrinterModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPrinterComponent,
+    sizes: ['medium'],
+    component: IconPrinterComponent
   },
   {
     selector: 'sbb-icon-scanner',
@@ -4161,12 +3673,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconScannerModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconScannerComponent,
+    sizes: ['medium'],
+    component: IconScannerComponent
   },
   {
     selector: 'sbb-icon-smartphone',
@@ -4174,12 +3684,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSmartphoneModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSmartphoneComponent,
+    sizes: ['medium'],
+    component: IconSmartphoneComponent
   },
   {
     selector: 'sbb-icon-speaker',
@@ -4187,12 +3695,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSpeakerModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSpeakerComponent,
+    sizes: ['medium'],
+    component: IconSpeakerComponent
   },
   {
     selector: 'sbb-icon-suitcase',
@@ -4200,12 +3706,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSuitcaseModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSuitcaseComponent,
+    sizes: ['medium'],
+    component: IconSuitcaseComponent
   },
   {
     selector: 'sbb-icon-suitcase-disabled',
@@ -4213,12 +3717,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSuitcaseDisabledModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSuitcaseDisabledComponent,
+    sizes: ['medium'],
+    component: IconSuitcaseDisabledComponent
   },
   {
     selector: 'sbb-icon-telephone-gsm',
@@ -4226,12 +3728,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTelephoneGsmModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTelephoneGsmComponent,
+    sizes: ['medium'],
+    component: IconTelephoneGsmComponent
   },
   {
     selector: 'sbb-icon-telephone-receiver',
@@ -4239,12 +3739,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTelephoneReceiverModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTelephoneReceiverComponent,
+    sizes: ['medium'],
+    component: IconTelephoneReceiverComponent
   },
   {
     selector: 'sbb-icon-walkie-talkie',
@@ -4252,12 +3750,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWalkieTalkieModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWalkieTalkieComponent,
+    sizes: ['medium'],
+    component: IconWalkieTalkieComponent
   },
   {
     selector: 'sbb-icon-weight',
@@ -4265,12 +3761,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWeightModule',
       'IconCollectionHardwareModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWeightComponent,
+    sizes: ['medium'],
+    component: IconWeightComponent
   },
   {
     selector: 'sbb-icon-bicycle',
@@ -4278,13 +3772,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBicycleModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconBicycleComponent,
+    sizes: ['large', 'medium'],
+    component: IconBicycleComponent
   },
   {
     selector: 'sbb-icon-train',
@@ -4292,13 +3783,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTrainModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-      'medium',
-    ],
-    component: IconTrainComponent,
+    sizes: ['large', 'medium'],
+    component: IconTrainComponent
   },
   {
     selector: 'sbb-icon-airplane',
@@ -4306,12 +3794,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconAirplaneModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconAirplaneComponent,
+    sizes: ['medium'],
+    component: IconAirplaneComponent
   },
   {
     selector: 'sbb-icon-bus',
@@ -4319,12 +3805,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBusModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBusComponent,
+    sizes: ['medium'],
+    component: IconBusComponent
   },
   {
     selector: 'sbb-icon-bus-circle',
@@ -4332,12 +3816,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBusCircleModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBusCircleComponent,
+    sizes: ['medium'],
+    component: IconBusCircleComponent
   },
   {
     selector: 'sbb-icon-bus-stop',
@@ -4345,12 +3827,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBusStopModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBusStopComponent,
+    sizes: ['medium'],
+    component: IconBusStopComponent
   },
   {
     selector: 'sbb-icon-bus-sbb',
@@ -4358,12 +3838,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBusSbbModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBusSbbComponent,
+    sizes: ['medium'],
+    component: IconBusSbbComponent
   },
   {
     selector: 'sbb-icon-car',
@@ -4371,12 +3849,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCarModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCarComponent,
+    sizes: ['medium'],
+    component: IconCarComponent
   },
   {
     selector: 'sbb-icon-car-parking',
@@ -4384,12 +3860,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCarParkingModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCarParkingComponent,
+    sizes: ['medium'],
+    component: IconCarParkingComponent
   },
   {
     selector: 'sbb-icon-charging-station',
@@ -4397,12 +3871,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChargingStationModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconChargingStationComponent,
+    sizes: ['medium'],
+    component: IconChargingStationComponent
   },
   {
     selector: 'sbb-icon-combined-mobility',
@@ -4410,12 +3882,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCombinedMobilityModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCombinedMobilityComponent,
+    sizes: ['medium'],
+    component: IconCombinedMobilityComponent
   },
   {
     selector: 'sbb-icon-container',
@@ -4423,12 +3893,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconContainerModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconContainerComponent,
+    sizes: ['medium'],
+    component: IconContainerComponent
   },
   {
     selector: 'sbb-icon-driverless-bus',
@@ -4436,12 +3904,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDriverlessBusModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDriverlessBusComponent,
+    sizes: ['medium'],
+    component: IconDriverlessBusComponent
   },
   {
     selector: 'sbb-icon-freight-wagon',
@@ -4449,12 +3915,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFreightWagonModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFreightWagonComponent,
+    sizes: ['medium'],
+    component: IconFreightWagonComponent
   },
   {
     selector: 'sbb-icon-k-r',
@@ -4462,12 +3926,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconKRModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconKRComponent,
+    sizes: ['medium'],
+    component: IconKRComponent
   },
   {
     selector: 'sbb-icon-petrol-station',
@@ -4475,12 +3937,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPetrolStationModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPetrolStationComponent,
+    sizes: ['medium'],
+    component: IconPetrolStationComponent
   },
   {
     selector: 'sbb-icon-p-r',
@@ -4488,12 +3948,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPRModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPRComponent,
+    sizes: ['medium'],
+    component: IconPRComponent
   },
   {
     selector: 'sbb-icon-shuttle',
@@ -4501,12 +3959,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShuttleModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShuttleComponent,
+    sizes: ['medium'],
+    component: IconShuttleComponent
   },
   {
     selector: 'sbb-icon-taxi',
@@ -4514,12 +3970,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTaxiModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTaxiComponent,
+    sizes: ['medium'],
+    component: IconTaxiComponent
   },
   {
     selector: 'sbb-icon-tram',
@@ -4527,12 +3981,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTramModule',
       'IconCollectionTransportModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTramComponent,
+    sizes: ['medium'],
+    component: IconTramComponent
   },
   {
     selector: 'sbb-icon-curriculum-vitae',
@@ -4540,12 +3992,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCurriculumVitaeModule',
       'IconCollectionCareerModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-    ],
-    component: IconCurriculumVitaeComponent,
+    sizes: ['large'],
+    component: IconCurriculumVitaeComponent
   },
   {
     selector: 'sbb-icon-hand-graduation-cap',
@@ -4553,12 +4003,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHandGraduationCapModule',
       'IconCollectionCareerModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'large',
-    ],
-    component: IconHandGraduationCapComponent,
+    sizes: ['large'],
+    component: IconHandGraduationCapComponent
   },
   {
     selector: 'sbb-icon-ship-steering-wheel',
@@ -4566,12 +4014,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShipSteeringWheelModule',
       'IconCollectionCareerModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShipSteeringWheelComponent,
+    sizes: ['medium'],
+    component: IconShipSteeringWheelComponent
   },
   {
     selector: 'sbb-icon-arrows-circle',
@@ -4579,12 +4025,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowsCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconArrowsCircleComponent,
+    sizes: ['medium'],
+    component: IconArrowsCircleComponent
   },
   {
     selector: 'sbb-icon-arrows-left-right',
@@ -4592,13 +4036,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowsLeftRightModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconArrowsLeftRightComponent,
+    sizes: ['medium', 'small'],
+    component: IconArrowsLeftRightComponent
   },
   {
     selector: 'sbb-icon-arrows-right-left',
@@ -4606,13 +4047,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowsRightLeftModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconArrowsRightLeftComponent,
+    sizes: ['medium', 'small'],
+    component: IconArrowsRightLeftComponent
   },
   {
     selector: 'sbb-icon-arrows-up-down',
@@ -4620,13 +4058,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowsUpDownModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconArrowsUpDownComponent,
+    sizes: ['medium', 'small'],
+    component: IconArrowsUpDownComponent
   },
   {
     selector: 'sbb-icon-arrow-circle',
@@ -4634,13 +4069,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconArrowCircleComponent,
+    sizes: ['medium', 'small'],
+    component: IconArrowCircleComponent
   },
   {
     selector: 'sbb-icon-arrow-long-left',
@@ -4648,12 +4080,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowLongLeftModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconArrowLongLeftComponent,
+    sizes: ['medium'],
+    component: IconArrowLongLeftComponent
   },
   {
     selector: 'sbb-icon-arrow-long-right',
@@ -4661,13 +4091,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowLongRightModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconArrowLongRightComponent,
+    sizes: ['medium', 'small'],
+    component: IconArrowLongRightComponent
   },
   {
     selector: 'sbb-icon-arrow-right',
@@ -4675,12 +4102,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowRightModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconArrowRightComponent,
+    sizes: ['medium'],
+    component: IconArrowRightComponent
   },
   {
     selector: 'sbb-icon-chevron-right',
@@ -4688,12 +4113,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronRightModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconChevronRightComponent,
+    sizes: ['medium'],
+    component: IconChevronRightComponent
   },
   {
     selector: 'sbb-icon-chevron-small-down',
@@ -4701,13 +4124,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallDownModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallDownComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallDownComponent
   },
   {
     selector: 'sbb-icon-chevron-small-down-circle',
@@ -4715,13 +4135,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallDownCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallDownCircleComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallDownCircleComponent
   },
   {
     selector: 'sbb-icon-chevron-small-left',
@@ -4729,13 +4146,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallLeftModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallLeftComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallLeftComponent
   },
   {
     selector: 'sbb-icon-chevron-small-left-circle',
@@ -4743,13 +4157,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallLeftCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallLeftCircleComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallLeftCircleComponent
   },
   {
     selector: 'sbb-icon-chevron-small-right',
@@ -4757,13 +4168,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallRightModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallRightComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallRightComponent
   },
   {
     selector: 'sbb-icon-chevron-small-right-circle',
@@ -4771,13 +4179,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallRightCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallRightCircleComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallRightCircleComponent
   },
   {
     selector: 'sbb-icon-chevron-small-up',
@@ -4785,13 +4190,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallUpModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallUpComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallUpComponent
   },
   {
     selector: 'sbb-icon-chevron-small-up-circle',
@@ -4799,13 +4201,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconChevronSmallUpCircleModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconChevronSmallUpCircleComponent,
+    sizes: ['medium', 'small'],
+    component: IconChevronSmallUpCircleComponent
   },
   {
     selector: 'sbb-icon-increase-size',
@@ -4813,13 +4212,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconIncreaseSizeModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconIncreaseSizeComponent,
+    sizes: ['medium', 'small'],
+    component: IconIncreaseSizeComponent
   },
   {
     selector: 'sbb-icon-reduce-size',
@@ -4827,12 +4223,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconReduceSizeModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconReduceSizeComponent,
+    sizes: ['medium'],
+    component: IconReduceSizeComponent
   },
   {
     selector: 'sbb-icon-arrows-left-right-down-up',
@@ -4840,12 +4234,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowsLeftRightDownUpModule',
       'IconCollectionArrowModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'small',
-    ],
-    component: IconArrowsLeftRightDownUpComponent,
+    sizes: ['small'],
+    component: IconArrowsLeftRightDownUpComponent
   },
   {
     selector: 'sbb-icon-button-power',
@@ -4853,12 +4245,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconButtonPowerModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconButtonPowerComponent,
+    sizes: ['medium'],
+    component: IconButtonPowerComponent
   },
   {
     selector: 'sbb-icon-exclamation-point',
@@ -4866,12 +4256,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconExclamationPointModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconExclamationPointComponent,
+    sizes: ['medium'],
+    component: IconExclamationPointComponent
   },
   {
     selector: 'sbb-icon-eye',
@@ -4879,12 +4267,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEyeModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconEyeComponent,
+    sizes: ['medium'],
+    component: IconEyeComponent
   },
   {
     selector: 'sbb-icon-eye-disabled',
@@ -4892,12 +4278,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEyeDisabledModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconEyeDisabledComponent,
+    sizes: ['medium'],
+    component: IconEyeDisabledComponent
   },
   {
     selector: 'sbb-icon-lock-closed',
@@ -4905,12 +4289,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLockClosedModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLockClosedComponent,
+    sizes: ['medium'],
+    component: IconLockClosedComponent
   },
   {
     selector: 'sbb-icon-lock-open',
@@ -4918,13 +4300,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLockOpenModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconLockOpenComponent,
+    sizes: ['medium', 'small'],
+    component: IconLockOpenComponent
   },
   {
     selector: 'sbb-icon-question-mark',
@@ -4932,13 +4311,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconQuestionMarkModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconQuestionMarkComponent,
+    sizes: ['medium', 'small'],
+    component: IconQuestionMarkComponent
   },
   {
     selector: 'sbb-icon-tick',
@@ -4946,13 +4322,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTickModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconTickComponent,
+    sizes: ['medium', 'small'],
+    component: IconTickComponent
   },
   {
     selector: 'sbb-icon-tick-clipboard',
@@ -4960,12 +4333,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTickClipboardModule',
       'IconCollectionStatusModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTickClipboardComponent,
+    sizes: ['medium'],
+    component: IconTickClipboardComponent
   },
   {
     selector: 'sbb-icon-circle-minus',
@@ -4973,12 +4344,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCircleMinusModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCircleMinusComponent,
+    sizes: ['medium'],
+    component: IconCircleMinusComponent
   },
   {
     selector: 'sbb-icon-circle-plus',
@@ -4986,12 +4355,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCirclePlusModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCirclePlusComponent,
+    sizes: ['medium'],
+    component: IconCirclePlusComponent
   },
   {
     selector: 'sbb-icon-context-menu',
@@ -4999,12 +4366,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconContextMenuModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconContextMenuComponent,
+    sizes: ['medium'],
+    component: IconContextMenuComponent
   },
   {
     selector: 'sbb-icon-cross',
@@ -5012,12 +4377,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCrossModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCrossComponent,
+    sizes: ['medium'],
+    component: IconCrossComponent
   },
   {
     selector: 'sbb-icon-drag',
@@ -5025,12 +4388,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDragModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDragComponent,
+    sizes: ['medium'],
+    component: IconDragComponent
   },
   {
     selector: 'sbb-icon-hamburger-menu',
@@ -5038,12 +4399,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHamburgerMenuModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconHamburgerMenuComponent,
+    sizes: ['medium'],
+    component: IconHamburgerMenuComponent
   },
   {
     selector: 'sbb-icon-house',
@@ -5051,12 +4410,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHouseModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconHouseComponent,
+    sizes: ['medium'],
+    component: IconHouseComponent
   },
   {
     selector: 'sbb-icon-layers',
@@ -5064,12 +4421,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLayersModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLayersComponent,
+    sizes: ['medium'],
+    component: IconLayersComponent
   },
   {
     selector: 'sbb-icon-minus',
@@ -5077,12 +4432,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMinusModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMinusComponent,
+    sizes: ['medium'],
+    component: IconMinusComponent
   },
   {
     selector: 'sbb-icon-plus',
@@ -5090,12 +4443,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPlusModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPlusComponent,
+    sizes: ['medium'],
+    component: IconPlusComponent
   },
   {
     selector: 'sbb-icon-two-finger-tap',
@@ -5103,12 +4454,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTwoFingerTapModule',
       'IconCollectionNavigationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTwoFingerTapComponent,
+    sizes: ['medium'],
+    component: IconTwoFingerTapComponent
   },
   {
     selector: 'sbb-icon-document-check',
@@ -5116,13 +4465,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentCheckModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentCheckComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentCheckComponent
   },
   {
     selector: 'sbb-icon-document-image',
@@ -5130,13 +4476,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentImageModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentImageComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentImageComponent
   },
   {
     selector: 'sbb-icon-document-lock',
@@ -5144,13 +4487,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentLockModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentLockComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentLockComponent
   },
   {
     selector: 'sbb-icon-document-pdf',
@@ -5158,13 +4498,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentPdfModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentPdfComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentPdfComponent
   },
   {
     selector: 'sbb-icon-document-plus',
@@ -5172,13 +4509,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentPlusModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentPlusComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentPlusComponent
   },
   {
     selector: 'sbb-icon-document-ppt',
@@ -5186,13 +4520,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentPptModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentPptComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentPptComponent
   },
   {
     selector: 'sbb-icon-document-sbb',
@@ -5200,13 +4531,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentSbbModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentSbbComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentSbbComponent
   },
   {
     selector: 'sbb-icon-document-sound',
@@ -5214,13 +4542,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentSoundModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentSoundComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentSoundComponent
   },
   {
     selector: 'sbb-icon-document-standard',
@@ -5228,13 +4553,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentStandardModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentStandardComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentStandardComponent
   },
   {
     selector: 'sbb-icon-document-text',
@@ -5242,13 +4564,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentTextModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentTextComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentTextComponent
   },
   {
     selector: 'sbb-icon-document-video',
@@ -5256,13 +4575,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentVideoModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentVideoComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentVideoComponent
   },
   {
     selector: 'sbb-icon-document-zip',
@@ -5270,13 +4586,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDocumentZipModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconDocumentZipComponent,
+    sizes: ['medium', 'small'],
+    component: IconDocumentZipComponent
   },
   {
     selector: 'sbb-icon-folder-info',
@@ -5284,13 +4597,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFolderInfoModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFolderInfoComponent,
+    sizes: ['medium', 'small'],
+    component: IconFolderInfoComponent
   },
   {
     selector: 'sbb-icon-folder-lock',
@@ -5298,13 +4608,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFolderLockModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFolderLockComponent,
+    sizes: ['medium', 'small'],
+    component: IconFolderLockComponent
   },
   {
     selector: 'sbb-icon-folder-open',
@@ -5312,13 +4619,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFolderOpenModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFolderOpenComponent,
+    sizes: ['medium', 'small'],
+    component: IconFolderOpenComponent
   },
   {
     selector: 'sbb-icon-folder-open-arrow',
@@ -5326,13 +4630,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFolderOpenArrowModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFolderOpenArrowComponent,
+    sizes: ['medium', 'small'],
+    component: IconFolderOpenArrowComponent
   },
   {
     selector: 'sbb-icon-folder-plus',
@@ -5340,13 +4641,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFolderPlusModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFolderPlusComponent,
+    sizes: ['medium', 'small'],
+    component: IconFolderPlusComponent
   },
   {
     selector: 'sbb-icon-metadata',
@@ -5354,13 +4652,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMetadataModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconMetadataComponent,
+    sizes: ['medium', 'small'],
+    component: IconMetadataComponent
   },
   {
     selector: 'sbb-icon-two-folders',
@@ -5368,13 +4663,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTwoFoldersModule',
       'IconCollectionDocumentModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconTwoFoldersComponent,
+    sizes: ['medium', 'small'],
+    component: IconTwoFoldersComponent
   },
   {
     selector: 'sbb-icon-qrcode',
@@ -5382,12 +4674,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconQrcodeModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconQrcodeComponent,
+    sizes: ['medium'],
+    component: IconQrcodeComponent
   },
   {
     selector: 'sbb-icon-qrcode-disabled',
@@ -5395,12 +4685,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconQrcodeDisabledModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconQrcodeDisabledComponent,
+    sizes: ['medium'],
+    component: IconQrcodeDisabledComponent
   },
   {
     selector: 'sbb-icon-swisspass',
@@ -5408,12 +4696,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSwisspassModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSwisspassComponent,
+    sizes: ['medium'],
+    component: IconSwisspassComponent
   },
   {
     selector: 'sbb-icon-swisspass-temporary',
@@ -5421,12 +4707,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSwisspassTemporaryModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSwisspassTemporaryComponent,
+    sizes: ['medium'],
+    component: IconSwisspassTemporaryComponent
   },
   {
     selector: 'sbb-icon-tickets-class',
@@ -5434,12 +4718,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketsClassModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketsClassComponent,
+    sizes: ['medium'],
+    component: IconTicketsClassComponent
   },
   {
     selector: 'sbb-icon-ticket-day',
@@ -5447,13 +4729,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketDayModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconTicketDayComponent,
+    sizes: ['medium', 'small'],
+    component: IconTicketDayComponent
   },
   {
     selector: 'sbb-icon-ticket-disabled',
@@ -5461,12 +4740,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketDisabledModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketDisabledComponent,
+    sizes: ['medium'],
+    component: IconTicketDisabledComponent
   },
   {
     selector: 'sbb-icon-ticket-heart',
@@ -5474,12 +4751,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketHeartModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketHeartComponent,
+    sizes: ['medium'],
+    component: IconTicketHeartComponent
   },
   {
     selector: 'sbb-icon-ticket-journey',
@@ -5487,12 +4762,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketJourneyModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketJourneyComponent,
+    sizes: ['medium'],
+    component: IconTicketJourneyComponent
   },
   {
     selector: 'sbb-icon-ticket-parking',
@@ -5500,12 +4773,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketParkingModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketParkingComponent,
+    sizes: ['medium'],
+    component: IconTicketParkingComponent
   },
   {
     selector: 'sbb-icon-ticket-percent',
@@ -5513,12 +4784,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketPercentModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketPercentComponent,
+    sizes: ['medium'],
+    component: IconTicketPercentComponent
   },
   {
     selector: 'sbb-icon-ticket-route',
@@ -5526,12 +4795,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketRouteModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketRouteComponent,
+    sizes: ['medium'],
+    component: IconTicketRouteComponent
   },
   {
     selector: 'sbb-icon-ticket-star',
@@ -5539,12 +4806,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketStarModule',
       'IconCollectionTicketModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketStarComponent,
+    sizes: ['medium'],
+    component: IconTicketStarComponent
   },
   {
     selector: 'sbb-icon-book',
@@ -5552,12 +4817,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBookModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBookComponent,
+    sizes: ['medium'],
+    component: IconBookComponent
   },
   {
     selector: 'sbb-icon-bottle-apple',
@@ -5565,12 +4828,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconBottleAppleModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconBottleAppleComponent,
+    sizes: ['medium'],
+    component: IconBottleAppleComponent
   },
   {
     selector: 'sbb-icon-customer-assistance-sbb',
@@ -5578,12 +4839,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCustomerAssistanceSbbModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCustomerAssistanceSbbComponent,
+    sizes: ['medium'],
+    component: IconCustomerAssistanceSbbComponent
   },
   {
     selector: 'sbb-icon-escalator',
@@ -5591,12 +4850,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconEscalatorModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconEscalatorComponent,
+    sizes: ['medium'],
+    component: IconEscalatorComponent
   },
   {
     selector: 'sbb-icon-general-display',
@@ -5604,12 +4861,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGeneralDisplayModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconGeneralDisplayComponent,
+    sizes: ['medium'],
+    component: IconGeneralDisplayComponent
   },
   {
     selector: 'sbb-icon-hand-plus-circle',
@@ -5617,12 +4872,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHandPlusCircleModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconHandPlusCircleComponent,
+    sizes: ['medium'],
+    component: IconHandPlusCircleComponent
   },
   {
     selector: 'sbb-icon-hand-sbb',
@@ -5630,12 +4883,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHandSbbModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconHandSbbComponent,
+    sizes: ['medium'],
+    component: IconHandSbbComponent
   },
   {
     selector: 'sbb-icon-hostel',
@@ -5643,12 +4894,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconHostelModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconHostelComponent,
+    sizes: ['medium'],
+    component: IconHostelComponent
   },
   {
     selector: 'sbb-icon-lift',
@@ -5656,12 +4905,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLiftModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLiftComponent,
+    sizes: ['medium'],
+    component: IconLiftComponent
   },
   {
     selector: 'sbb-icon-locker',
@@ -5669,12 +4916,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLockerModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLockerComponent,
+    sizes: ['medium'],
+    component: IconLockerComponent
   },
   {
     selector: 'sbb-icon-lotus',
@@ -5682,12 +4927,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLotusModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLotusComponent,
+    sizes: ['medium'],
+    component: IconLotusComponent
   },
   {
     selector: 'sbb-icon-meeting-point',
@@ -5695,12 +4938,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMeetingPointModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMeetingPointComponent,
+    sizes: ['medium'],
+    component: IconMeetingPointComponent
   },
   {
     selector: 'sbb-icon-money-exchange',
@@ -5708,12 +4949,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMoneyExchangeModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMoneyExchangeComponent,
+    sizes: ['medium'],
+    component: IconMoneyExchangeComponent
   },
   {
     selector: 'sbb-icon-platform-display',
@@ -5721,12 +4960,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPlatformDisplayModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconPlatformDisplayComponent,
+    sizes: ['medium'],
+    component: IconPlatformDisplayComponent
   },
   {
     selector: 'sbb-icon-screen-inside-train',
@@ -5734,12 +4971,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconScreenInsideTrainModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconScreenInsideTrainComponent,
+    sizes: ['medium'],
+    component: IconScreenInsideTrainComponent
   },
   {
     selector: 'sbb-icon-shirt-shoe',
@@ -5747,12 +4982,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShirtShoeModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShirtShoeComponent,
+    sizes: ['medium'],
+    component: IconShirtShoeComponent
   },
   {
     selector: 'sbb-icon-shopping-bag',
@@ -5760,12 +4993,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShoppingBagModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShoppingBagComponent,
+    sizes: ['medium'],
+    component: IconShoppingBagComponent
   },
   {
     selector: 'sbb-icon-shopping-bag-coupon',
@@ -5773,12 +5004,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShoppingBagCouponModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShoppingBagCouponComponent,
+    sizes: ['medium'],
+    component: IconShoppingBagCouponComponent
   },
   {
     selector: 'sbb-icon-shopping-bag-fast',
@@ -5786,12 +5015,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconShoppingBagFastModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconShoppingBagFastComponent,
+    sizes: ['medium'],
+    component: IconShoppingBagFastComponent
   },
   {
     selector: 'sbb-icon-station',
@@ -5799,12 +5026,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconStationModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconStationComponent,
+    sizes: ['medium'],
+    component: IconStationComponent
   },
   {
     selector: 'sbb-icon-station-surrounding-area',
@@ -5812,12 +5037,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconStationSurroundingAreaModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconStationSurroundingAreaComponent,
+    sizes: ['medium'],
+    component: IconStationSurroundingAreaComponent
   },
   {
     selector: 'sbb-icon-ticket-machine',
@@ -5825,12 +5048,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketMachineModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketMachineComponent,
+    sizes: ['medium'],
+    component: IconTicketMachineComponent
   },
   {
     selector: 'sbb-icon-ticket-machine-ticket',
@@ -5838,12 +5059,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTicketMachineTicketModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTicketMachineTicketComponent,
+    sizes: ['medium'],
+    component: IconTicketMachineTicketComponent
   },
   {
     selector: 'sbb-icon-toilet',
@@ -5851,12 +5070,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconToiletModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconToiletComponent,
+    sizes: ['medium'],
+    component: IconToiletComponent
   },
   {
     selector: 'sbb-icon-train-station',
@@ -5864,12 +5081,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTrainStationModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconTrainStationComponent,
+    sizes: ['medium'],
+    component: IconTrainStationComponent
   },
   {
     selector: 'sbb-icon-waiting-room',
@@ -5877,12 +5092,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWaitingRoomModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWaitingRoomComponent,
+    sizes: ['medium'],
+    component: IconWaitingRoomComponent
   },
   {
     selector: 'sbb-icon-wine-cheese',
@@ -5890,12 +5103,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWineCheeseModule',
       'IconCollectionStationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWineCheeseComponent,
+    sizes: ['medium'],
+    component: IconWineCheeseComponent
   },
   {
     selector: 'sbb-icon-arrow-compass',
@@ -5903,12 +5114,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconArrowCompassModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconArrowCompassComponent,
+    sizes: ['medium'],
+    component: IconArrowCompassComponent
   },
   {
     selector: 'sbb-icon-gps',
@@ -5916,12 +5125,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGpsModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconGpsComponent,
+    sizes: ['medium'],
+    component: IconGpsComponent
   },
   {
     selector: 'sbb-icon-gps-disabled',
@@ -5929,12 +5136,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGpsDisabledModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconGpsDisabledComponent,
+    sizes: ['medium'],
+    component: IconGpsDisabledComponent
   },
   {
     selector: 'sbb-icon-location-pin',
@@ -5942,12 +5147,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocationPinModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocationPinComponent,
+    sizes: ['medium'],
+    component: IconLocationPinComponent
   },
   {
     selector: 'sbb-icon-location-pin-a',
@@ -5955,12 +5158,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocationPinAModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocationPinAComponent,
+    sizes: ['medium'],
+    component: IconLocationPinAComponent
   },
   {
     selector: 'sbb-icon-location-pin-b',
@@ -5968,12 +5169,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocationPinBModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocationPinBComponent,
+    sizes: ['medium'],
+    component: IconLocationPinBComponent
   },
   {
     selector: 'sbb-icon-location-pin-map',
@@ -5981,12 +5180,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocationPinMapModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocationPinMapComponent,
+    sizes: ['medium'],
+    component: IconLocationPinMapComponent
   },
   {
     selector: 'sbb-icon-location-pin-pulse-surrounding-area',
@@ -5994,12 +5191,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocationPinPulseSurroundingAreaModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocationPinPulseSurroundingAreaComponent,
+    sizes: ['medium'],
+    component: IconLocationPinPulseSurroundingAreaComponent
   },
   {
     selector: 'sbb-icon-location-pin-surrounding-area',
@@ -6007,12 +5202,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLocationPinSurroundingAreaModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconLocationPinSurroundingAreaComponent,
+    sizes: ['medium'],
+    component: IconLocationPinSurroundingAreaComponent
   },
   {
     selector: 'sbb-icon-mountain-minus',
@@ -6020,12 +5213,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMountainMinusModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMountainMinusComponent,
+    sizes: ['medium'],
+    component: IconMountainMinusComponent
   },
   {
     selector: 'sbb-icon-mountain-plus',
@@ -6033,12 +5224,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMountainPlusModule',
       'IconCollectionLocationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMountainPlusComponent,
+    sizes: ['medium'],
+    component: IconMountainPlusComponent
   },
   {
     selector: 'sbb-icon-cloud',
@@ -6046,12 +5235,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudComponent,
+    sizes: ['medium'],
+    component: IconCloudComponent
   },
   {
     selector: 'sbb-icon-cloud-drops',
@@ -6059,12 +5246,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudDropsModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudDropsComponent,
+    sizes: ['medium'],
+    component: IconCloudDropsComponent
   },
   {
     selector: 'sbb-icon-cloud-drops-moon',
@@ -6072,12 +5257,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudDropsMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudDropsMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudDropsMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-ice',
@@ -6085,12 +5268,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudIceModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudIceComponent,
+    sizes: ['medium'],
+    component: IconCloudIceComponent
   },
   {
     selector: 'sbb-icon-cloud-lightning',
@@ -6098,12 +5279,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudLightningModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudLightningComponent,
+    sizes: ['medium'],
+    component: IconCloudLightningComponent
   },
   {
     selector: 'sbb-icon-cloud-lightning-moon',
@@ -6111,12 +5290,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudLightningMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudLightningMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudLightningMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-little-snow-moon',
@@ -6124,12 +5301,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudLittleSnowMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudLittleSnowMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudLittleSnowMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-little-snow-sun',
@@ -6137,12 +5312,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudLittleSnowSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudLittleSnowSunComponent,
+    sizes: ['medium'],
+    component: IconCloudLittleSnowSunComponent
   },
   {
     selector: 'sbb-icon-cloud-moon',
@@ -6150,12 +5323,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-rain',
@@ -6163,12 +5334,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudRainModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudRainComponent,
+    sizes: ['medium'],
+    component: IconCloudRainComponent
   },
   {
     selector: 'sbb-icon-cloud-rain-snow',
@@ -6176,12 +5345,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudRainSnowModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudRainSnowComponent,
+    sizes: ['medium'],
+    component: IconCloudRainSnowComponent
   },
   {
     selector: 'sbb-icon-cloud-rain-snow-moon',
@@ -6189,12 +5356,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudRainSnowMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudRainSnowMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudRainSnowMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-rain-snow-sun',
@@ -6202,12 +5367,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudRainSnowSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudRainSnowSunComponent,
+    sizes: ['medium'],
+    component: IconCloudRainSnowSunComponent
   },
   {
     selector: 'sbb-icon-cloud-rain-sun',
@@ -6215,12 +5378,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudRainSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudRainSunComponent,
+    sizes: ['medium'],
+    component: IconCloudRainSunComponent
   },
   {
     selector: 'sbb-icon-cloud-snowflake',
@@ -6228,12 +5389,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSnowflakeModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSnowflakeComponent,
+    sizes: ['medium'],
+    component: IconCloudSnowflakeComponent
   },
   {
     selector: 'sbb-icon-cloud-snowflake-sun',
@@ -6241,12 +5400,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSnowflakeSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSnowflakeSunComponent,
+    sizes: ['medium'],
+    component: IconCloudSnowflakeSunComponent
   },
   {
     selector: 'sbb-icon-cloud-snow',
@@ -6254,12 +5411,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSnowModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSnowComponent,
+    sizes: ['medium'],
+    component: IconCloudSnowComponent
   },
   {
     selector: 'sbb-icon-cloud-snow-lightning',
@@ -6267,12 +5422,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSnowLightningModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSnowLightningComponent,
+    sizes: ['medium'],
+    component: IconCloudSnowLightningComponent
   },
   {
     selector: 'sbb-icon-cloud-snow-moon',
@@ -6280,12 +5433,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSnowMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSnowMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudSnowMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-snow-sun',
@@ -6293,12 +5444,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSnowSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSnowSunComponent,
+    sizes: ['medium'],
+    component: IconCloudSnowSunComponent
   },
   {
     selector: 'sbb-icon-cloud-strong-rain-moon',
@@ -6306,12 +5455,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudStrongRainMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudStrongRainMoonComponent,
+    sizes: ['medium'],
+    component: IconCloudStrongRainMoonComponent
   },
   {
     selector: 'sbb-icon-cloud-strong-rain-sun',
@@ -6319,12 +5466,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudStrongRainSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudStrongRainSunComponent,
+    sizes: ['medium'],
+    component: IconCloudStrongRainSunComponent
   },
   {
     selector: 'sbb-icon-cloud-sun',
@@ -6332,12 +5477,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSunModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSunComponent,
+    sizes: ['medium'],
+    component: IconCloudSunComponent
   },
   {
     selector: 'sbb-icon-cloud-sunshine',
@@ -6345,12 +5488,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudSunshineModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudSunshineComponent,
+    sizes: ['medium'],
+    component: IconCloudSunshineComponent
   },
   {
     selector: 'sbb-icon-dense-fog',
@@ -6358,12 +5499,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconDenseFogModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconDenseFogComponent,
+    sizes: ['medium'],
+    component: IconDenseFogComponent
   },
   {
     selector: 'sbb-icon-fog',
@@ -6371,12 +5510,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFogModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconFogComponent,
+    sizes: ['medium'],
+    component: IconFogComponent
   },
   {
     selector: 'sbb-icon-cloud-fog',
@@ -6384,12 +5521,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCloudFogModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCloudFogComponent,
+    sizes: ['medium'],
+    component: IconCloudFogComponent
   },
   {
     selector: 'sbb-icon-moon',
@@ -6397,12 +5532,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMoonComponent,
+    sizes: ['medium'],
+    component: IconMoonComponent
   },
   {
     selector: 'sbb-icon-sunrise',
@@ -6410,12 +5543,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSunriseModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSunriseComponent,
+    sizes: ['medium'],
+    component: IconSunriseComponent
   },
   {
     selector: 'sbb-icon-sunshine',
@@ -6423,12 +5554,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSunshineModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSunshineComponent,
+    sizes: ['medium'],
+    component: IconSunshineComponent
   },
   {
     selector: 'sbb-icon-sun-moon',
@@ -6436,12 +5565,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconSunMoonModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconSunMoonComponent,
+    sizes: ['medium'],
+    component: IconSunMoonComponent
   },
   {
     selector: 'sbb-icon-weather-unknown',
@@ -6449,12 +5576,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconWeatherUnknownModule',
       'IconCollectionWeatherModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconWeatherUnknownComponent,
+    sizes: ['medium'],
+    component: IconWeatherUnknownComponent
   },
   {
     selector: 'sbb-icon-fast-forward',
@@ -6462,13 +5587,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFastForwardModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconFastForwardComponent,
+    sizes: ['medium', 'small'],
+    component: IconFastForwardComponent
   },
   {
     selector: 'sbb-icon-next',
@@ -6476,13 +5598,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconNextModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconNextComponent,
+    sizes: ['medium', 'small'],
+    component: IconNextComponent
   },
   {
     selector: 'sbb-icon-pause',
@@ -6490,13 +5609,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPauseModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconPauseComponent,
+    sizes: ['medium', 'small'],
+    component: IconPauseComponent
   },
   {
     selector: 'sbb-icon-play',
@@ -6504,13 +5620,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPlayModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconPlayComponent,
+    sizes: ['medium', 'small'],
+    component: IconPlayComponent
   },
   {
     selector: 'sbb-icon-previous',
@@ -6518,13 +5631,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPreviousModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconPreviousComponent,
+    sizes: ['medium', 'small'],
+    component: IconPreviousComponent
   },
   {
     selector: 'sbb-icon-record',
@@ -6532,13 +5642,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRecordModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconRecordComponent,
+    sizes: ['medium', 'small'],
+    component: IconRecordComponent
   },
   {
     selector: 'sbb-icon-rewind',
@@ -6546,13 +5653,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRewindModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-      'small',
-    ],
-    component: IconRewindComponent,
+    sizes: ['medium', 'small'],
+    component: IconRewindComponent
   },
   {
     selector: 'sbb-icon-stop',
@@ -6560,12 +5664,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconStopModule',
       'IconCollectionAudioModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconStopComponent,
+    sizes: ['medium'],
+    component: IconStopComponent
   },
   {
     selector: 'sbb-icon-mountain-sun',
@@ -6573,12 +5675,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconMountainSunModule',
       'IconCollectionLeisureModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconMountainSunComponent,
+    sizes: ['medium'],
+    component: IconMountainSunComponent
   },
   {
     selector: 'sbb-icon-construction',
@@ -6586,12 +5686,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconConstructionModule',
       'IconCollectionInstallationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconConstructionComponent,
+    sizes: ['medium'],
+    component: IconConstructionComponent
   },
   {
     selector: 'sbb-icon-railway-switch',
@@ -6599,12 +5697,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconRailwaySwitchModule',
       'IconCollectionInstallationModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconRailwaySwitchComponent,
+    sizes: ['medium'],
+    component: IconRailwaySwitchComponent
   },
   {
     selector: 'sbb-icon-city',
@@ -6612,12 +5708,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconCityModule',
       'IconCollectionBuildingModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-      'medium',
-    ],
-    component: IconCityComponent,
+    sizes: ['medium'],
+    component: IconCityComponent
   },
   {
     selector: 'sbb-icon-twitter',
@@ -6625,11 +5719,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconTwitterModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconTwitterComponent,
+    sizes: [],
+    component: IconTwitterComponent
   },
   {
     selector: 'sbb-icon-facebook',
@@ -6637,11 +5730,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconFacebookModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconFacebookComponent,
+    sizes: [],
+    component: IconFacebookComponent
   },
   {
     selector: 'sbb-icon-instagram',
@@ -6649,11 +5741,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconInstagramModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconInstagramComponent,
+    sizes: [],
+    component: IconInstagramComponent
   },
   {
     selector: 'sbb-icon-googleplus',
@@ -6661,11 +5752,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconGoogleplusModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconGoogleplusComponent,
+    sizes: [],
+    component: IconGoogleplusComponent
   },
   {
     selector: 'sbb-icon-youtube',
@@ -6673,11 +5763,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconYoutubeModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconYoutubeComponent,
+    sizes: [],
+    component: IconYoutubeComponent
   },
   {
     selector: 'sbb-icon-linkedin',
@@ -6685,11 +5774,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconLinkedinModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconLinkedinComponent,
+    sizes: [],
+    component: IconLinkedinComponent
   },
   {
     selector: 'sbb-icon-pinterest',
@@ -6697,11 +5785,10 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconPinterestModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconPinterestComponent,
+    sizes: [],
+    component: IconPinterestComponent
   },
   {
     selector: 'sbb-icon-xing',
@@ -6709,12 +5796,11 @@ export const iconComponentsMetaInformation = [
     modules: [
       'IconXingModule',
       'IconCollectionSocialMediaModule',
-      'IconCollectionModule',
+      'IconCollectionModule'
     ],
-    sizes: [
-    ],
-    component: IconXingComponent,
-  },
+    sizes: [],
+    component: IconXingComponent
+  }
 ];
 
 export const iconComponentList = [
@@ -7200,5 +6286,5 @@ export const iconComponentList = [
   IconYoutubeComponent,
   IconLinkedinComponent,
   IconPinterestComponent,
-  IconXingComponent,
+  IconXingComponent
 ];

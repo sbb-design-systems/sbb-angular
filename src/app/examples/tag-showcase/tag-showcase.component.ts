@@ -64,7 +64,6 @@ const tagItems2: Tag[] = [
   encapsulation: ViewEncapsulation.None
 })
 export class TagShowcaseComponent implements OnInit, OnDestroy {
-
   form: FormGroup;
   tagItems: Tag[] = tagItems.slice();
   tagItemsReactive: Tag[] = tagItems2.slice();
@@ -79,7 +78,7 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
   private _changeAmountSubscription = Subscription.EMPTY;
   private _changeAmountReactiveSubscription = Subscription.EMPTY;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.form = this._formBuilder.group({
@@ -98,28 +97,23 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
   }
 
   subscribeOnTags(): Subscription {
-    return this.tags.valueChanges
-      .subscribe(() => {
-        this.tags.controls.map((c, i) => {
-          this.tagItemsReactive[i].selected = c.value;
-        });
+    return this.tags.valueChanges.subscribe(() => {
+      this.tags.controls.map((c, i) => {
+        this.tagItemsReactive[i].selected = c.value;
       });
+    });
   }
 
   subscribeOnChangeAmount(): Subscription {
-    return this.changeAmount
-      .valueChanges.subscribe(val => {
-          this.tagItems[0].amount = val;
-        }
-      );
+    return this.changeAmount.valueChanges.subscribe(val => {
+      this.tagItems[0].amount = val;
+    });
   }
 
   subscribeOnChangeAmountReactive(): Subscription {
-    return this.changeAmountReactive
-      .valueChanges.subscribe(val => {
-          this.tagItemsReactive[0].amount = val;
-        }
-      );
+    return this.changeAmountReactive.valueChanges.subscribe(val => {
+      this.tagItemsReactive[0].amount = val;
+    });
   }
 
   buildTags(): FormArray {
@@ -158,7 +152,6 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
         this.tags.push(new FormControl(itemToAdd.selected));
         break;
     }
-
   }
 
   reset(mode: string) {
@@ -172,11 +165,9 @@ export class TagShowcaseComponent implements OnInit, OnDestroy {
         this._tagFormSubscription = this.subscribeOnTags();
         break;
     }
-
   }
 
   change(evt: TagChange) {
     console.log(evt);
   }
-
 }

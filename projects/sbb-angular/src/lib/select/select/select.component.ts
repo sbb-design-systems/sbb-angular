@@ -1,4 +1,3 @@
-
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -11,14 +10,14 @@ import {
   LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,
-  UP_ARROW,
+  UP_ARROW
 } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay,
   Overlay,
   RepositionScrollStrategy,
   ScrollStrategy,
-  ViewportRuler,
+  ViewportRuler
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
@@ -48,7 +47,12 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormGroupDirective,
+  NgControl,
+  NgForm
+} from '@angular/forms';
 import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 import { defer, merge, Observable, Subject } from 'rxjs';
 import {
@@ -58,11 +62,14 @@ import {
   startWith,
   switchMap,
   take,
-  takeUntil,
+  takeUntil
 } from 'rxjs/operators';
 
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
+import {
+  CanUpdateErrorState,
+  mixinErrorState
+} from '../../_common/errors/error-state';
 import { FormFieldControl } from '../../field/field';
 import { HasOptions } from '../../option/has-options';
 import {
@@ -110,12 +117,14 @@ export const SELECT_MULTIPLE_PANEL_PADDING_X = SELECT_PANEL_PADDING_X * 1.5 + 0;
 export const SELECT_PANEL_VIEWPORT_PADDING = 8;
 
 /** Injection token that determines the scroll handling while a select is open. */
-export const SBB_SELECT_SCROLL_STRATEGY =
-  new InjectionToken<() => ScrollStrategy>('sbb-select-scroll-strategy');
+export const SBB_SELECT_SCROLL_STRATEGY = new InjectionToken<
+  () => ScrollStrategy
+>('sbb-select-scroll-strategy');
 
 /** @docs-private */
-export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
-  () => RepositionScrollStrategy {
+export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(
+  overlay: Overlay
+): () => RepositionScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
@@ -123,7 +132,7 @@ export function SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
 export const SBB_SELECT_SCROLL_STRATEGY_PROVIDER = {
   provide: SBB_SELECT_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY,
+  useFactory: SBB_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY
 };
 
 /** Change event object that is emitted when the select value has changed. */
@@ -132,7 +141,8 @@ export class SbbSelectChange {
     /** Reference to the select that emitted the change event. */
     public source: SelectComponent,
     /** Current value of the select that emitted the event. */
-    public value: any) { }
+    public value: any
+  ) {}
 }
 
 // Boilerplate for applying mixins to SelectComponent.
@@ -144,8 +154,8 @@ export class SbbSelectBase {
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
-    public ngControl: NgControl,
-  ) { }
+    public ngControl: NgControl
+  ) {}
   // tslint:enable: naming-convention
 }
 
@@ -159,17 +169,29 @@ export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent },
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent }
   ]
 })
-export class SelectComponent extends SbbSelectMixinBase implements FormFieldControl<any>, AfterContentInit, OnChanges,
-  OnDestroy, OnInit, DoCheck, ControlValueAccessor, CanUpdateErrorState, HasOptions {
-
+export class SelectComponent extends SbbSelectMixinBase
+  implements
+    FormFieldControl<any>,
+    AfterContentInit,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    DoCheck,
+    ControlValueAccessor,
+    CanUpdateErrorState,
+    HasOptions {
   /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<
+    OptionComponent
+  >;
 
   /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<
+    OptionGroupComponent
+  >;
   /**
    * Role of select field
    */
@@ -180,7 +202,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   perfectScrollbarScrollTop = 0;
 
   @Input()
-  get tabIndex(): number { return this.disabled ? -1 : this._tabIndex; }
+  get tabIndex(): number {
+    return this.disabled ? -1 : this._tabIndex;
+  }
   set tabIndex(value: number) {
     // If the specified tabIndex value is null or undefined, fall back to the default value.
     this._tabIndex = value != null ? value : 0;
@@ -250,8 +274,12 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
    * Disables a select field
    */
   @Input()
-  get disabled() { return this._disabled; }
-  set disabled(value: any) { this._disabled = coerceBooleanProperty(value); }
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
   private _disabled = false;
 
   /**
@@ -292,7 +320,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Value of the select control. */
   @Input()
-  get value(): any { return this._value; }
+  get value(): any {
+    return this._value;
+  }
   set value(newValue: any) {
     if (newValue !== this._value) {
       this.writeValue(newValue);
@@ -304,7 +334,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   /** Unique id of the element. */
   @Input()
   @HostBinding('attr.id')
-  get id(): string { return this._id; }
+  get id(): string {
+    return this._id;
+  }
   set id(value: string) {
     this._id = value || this._uid;
     this.stateChanges.next();
@@ -315,33 +347,45 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
    * Implemented as part of FormFieldControl.
    * @docs-private
    */
-  get inputId() { return this.id; }
+  get inputId() {
+    return this.id;
+  }
 
   /** Combined stream of all of the child options' change events. */
-  readonly optionSelectionChanges: Observable<SBBOptionSelectionChange> = defer(() => {
-    if (this.options) {
-      return merge(...this.options.map(option => option.onSelectionChange));
-    }
+  readonly optionSelectionChanges: Observable<SBBOptionSelectionChange> = defer(
+    () => {
+      if (this.options) {
+        return merge(...this.options.map(option => option.onSelectionChange));
+      }
 
-    return this._ngZone.onStable
-      .asObservable()
-      .pipe(first(), switchMap(() => this.optionSelectionChanges));
-  }) as Observable<SBBOptionSelectionChange>;
+      return this._ngZone.onStable.asObservable().pipe(
+        first(),
+        switchMap(() => this.optionSelectionChanges)
+      );
+    }
+  ) as Observable<SBBOptionSelectionChange>;
 
   /** Event emitted when the select panel has been toggled. */
-  @Output() readonly openedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() readonly openedChange: EventEmitter<boolean> = new EventEmitter<
+    boolean
+  >();
 
   /** Event emitted when the select has been opened. */
-  @Output() readonly opened: Observable<void> =
-    this.openedChange.pipe(filter(o => o), map(() => { }));
+  @Output() readonly opened: Observable<void> = this.openedChange.pipe(
+    filter(o => o),
+    map(() => {})
+  );
 
   /** Event emitted when the select has been closed. */
-  @Output() readonly closed: Observable<void> =
-    this.openedChange.pipe(filter(o => !o), map(() => { }));
+  @Output() readonly closed: Observable<void> = this.openedChange.pipe(
+    filter(o => !o),
+    map(() => {})
+  );
 
   /** Event emitted when the selected value has been changed by the user. */
-  @Output() readonly selectionChange: EventEmitter<SbbSelectChange> =
-    new EventEmitter<SbbSelectChange>();
+  @Output() readonly selectionChange: EventEmitter<
+    SbbSelectChange
+  > = new EventEmitter<SbbSelectChange>();
 
   /**
    * Event that emits whenever the raw value of the select changes. This is here primarily
@@ -397,10 +441,10 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
   /** `View -> model callback called when value changes` */
-  onChange: (value: any) => void = () => { };
+  onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when select has been touched` */
-  onTouched = () => { };
+  onTouched = () => {};
 
   /** Whether the select is focused. */
   get focused(): boolean {
@@ -409,7 +453,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Placeholder to be shown if no value has been selected. */
   @Input()
-  get placeholder(): string { return this._placeholder; }
+  get placeholder(): string {
+    return this._placeholder;
+  }
   set placeholder(value: string) {
     this._placeholder = value;
     this.stateChanges.next();
@@ -418,7 +464,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   /** Whether the component is required. */
   @HostBinding('class.sbb-select-required')
   @Input()
-  get required(): boolean { return this._required; }
+  get required(): boolean {
+    return this._required;
+  }
   set required(value: boolean) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
@@ -427,10 +475,14 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   /** Whether the user should be allowed to select multiple options. */
   @HostBinding('attr.aria-multiselectable')
   @Input()
-  get multiple(): boolean { return this._multiple; }
+  get multiple(): boolean {
+    return this._multiple;
+  }
   set multiple(value: boolean) {
     if (this.selectionModel) {
-      throw Error('Cannot change `multiple` mode of select after initialization.');
+      throw Error(
+        'Cannot change `multiple` mode of select after initialization.'
+      );
     }
 
     this._multiple = coerceBooleanProperty(value);
@@ -438,7 +490,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Whether to center the active option over the trigger. */
   @Input()
-  get disableOptionCentering(): boolean { return this._disableOptionCentering; }
+  get disableOptionCentering(): boolean {
+    return this._disableOptionCentering;
+  }
   set disableOptionCentering(value: boolean) {
     this._disableOptionCentering = coerceBooleanProperty(value);
   }
@@ -449,7 +503,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
    * should be returned.
    */
   @Input()
-  get compareWith() { return this._compareWith; }
+  get compareWith() {
+    return this._compareWith;
+  }
   set compareWith(fn: (o1: any, o2: any) => boolean) {
     if (typeof fn !== 'function') {
       throw Error('`compareWith` must be a function.');
@@ -509,7 +565,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   /** Determines the `aria-activedescendant` to be set on the host. */
   @HostBinding('attr.aria-activedescendant')
   get getAriaActiveDescendant(): string | null {
-    return this.panelOpen && this.keyManager && this.keyManager.activeItem ? this.keyManager.activeItem.id : null;
+    return this.panelOpen && this.keyManager && this.keyManager.activeItem
+      ? this.keyManager.activeItem.id
+      : null;
   }
 
   constructor(
@@ -522,13 +580,15 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     defaultErrorStateMatcher: ErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
-    @Attribute('tabindex') tabIndex: string,
+    @Attribute('tabindex') tabIndex: string
   ) {
-    super(_elementRef,
+    super(
+      _elementRef,
       defaultErrorStateMatcher,
       parentForm,
       parentFormGroup,
-      ngControl);
+      ngControl
+    );
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
@@ -555,22 +615,28 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
       this.overlayDir.offsetX = 0;
       this._changeDetectorRef.markForCheck();
     }
-
   }
 
   ngAfterContentInit() {
     this._initKeyManager();
 
     // tslint:disable-next-line:no-non-null-assertion
-    this.selectionModel.changed!.pipe(takeUntil(this._destroy)).subscribe(event => {
-      event.added.forEach(option => option.select());
-      event.removed.forEach(option => option.deselect());
-    });
+    this.selectionModel
+      .changed!.pipe(takeUntil(this._destroy))
+      .subscribe(event => {
+        event.added.forEach(option => option.select());
+        event.removed.forEach(option => option.deselect());
+      });
 
-    this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
-      this._resetOptions();
-      this._initializeSelection();
-    });
+    this.options.changes
+      .pipe(
+        startWith(null),
+        takeUntil(this._destroy)
+      )
+      .subscribe(() => {
+        this._resetOptions();
+        this._initializeSelection();
+      });
   }
 
   ngDoCheck() {
@@ -600,7 +666,12 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Opens the overlay panel. */
   open(): void {
-    if (this.disabled || !this.options || !this.options.length || this._panelOpen) {
+    if (
+      this.disabled ||
+      !this.options ||
+      !this.options.length ||
+      this._panelOpen
+    ) {
       return;
     }
 
@@ -608,7 +679,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     // Note: The computed font-size will be a string pixel value (e.g. "16px").
     // `parseInt` ignores the trailing 'px' and converts this to a number.
     // tslint:disable-next-line:radix
-    this.triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement)['font-size']);
+    this.triggerFontSize = parseInt(
+      getComputedStyle(this.trigger.nativeElement)['font-size']
+    );
     this.rotateIcon = true;
     this._panelOpen = true;
     this.keyManager.withHorizontalOrientation(null);
@@ -616,12 +689,20 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     this._changeDetectorRef.markForCheck();
 
     // Set the font size on the panel element once it exists.
-    this._ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
-      if (this.triggerFontSize && this.overlayDir.overlayRef &&
-        this.overlayDir.overlayRef.overlayElement) {
-        this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
-      }
-    });
+    this._ngZone.onStable
+      .asObservable()
+      .pipe(first())
+      .subscribe(() => {
+        if (
+          this.triggerFontSize &&
+          this.overlayDir.overlayRef &&
+          this.overlayDir.overlayRef.overlayElement
+        ) {
+          this.overlayDir.overlayRef.overlayElement.style.fontSize = `${
+            this.triggerFontSize
+          }px`;
+        }
+      });
   }
 
   /** Closes the overlay panel and focuses the host element. */
@@ -687,7 +768,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** The currently selected option. */
   get selected(): OptionComponent | OptionComponent[] {
-    return this.multiple ? this.selectionModel.selected : this.selectionModel.selected[0];
+    return this.multiple
+      ? this.selectionModel.selected
+      : this.selectionModel.selected[0];
   }
 
   /** The value displayed in the trigger. */
@@ -697,7 +780,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     }
 
     if (this._multiple) {
-      const selectedOptions = this.selectionModel.selected.map(option => option.viewValue);
+      const selectedOptions = this.selectionModel.selected.map(
+        option => option.viewValue
+      );
 
       // TODO(crisbeto): delimiter should be configurable for proper localization.
       return selectedOptions.join(', ');
@@ -710,15 +795,20 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
     if (!this.disabled) {
-      this.panelOpen ? this._handleOpenKeydown(event) : this._handleClosedKeydown(event);
+      this.panelOpen
+        ? this._handleOpenKeydown(event)
+        : this._handleClosedKeydown(event);
     }
   }
 
   /** Handles keyboard events while the select is closed. */
   private _handleClosedKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
-    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW ||
-      keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW;
+    const isArrowKey =
+      keyCode === DOWN_ARROW ||
+      keyCode === UP_ARROW ||
+      keyCode === LEFT_ARROW ||
+      keyCode === RIGHT_ARROW;
     const isOpenKey = keyCode === ENTER || keyCode === SPACE;
 
     // Open the select on ALT + arrow key to match the native <select>
@@ -738,7 +828,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
     if (keyCode === HOME || keyCode === END) {
       event.preventDefault();
-      keyCode === HOME ? manager.setFirstItemActive() : manager.setLastItemActive();
+      keyCode === HOME
+        ? manager.setFirstItemActive()
+        : manager.setLastItemActive();
     } else if (isArrowKey && event.altKey) {
       // Close the select on ALT + arrow key to match the native <select>
       event.preventDefault();
@@ -748,7 +840,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
       manager.activeItem.selectViaInteraction();
     } else if (this._multiple && keyCode === A && event.ctrlKey) {
       event.preventDefault();
-      const hasDeselectedOptions = this.options.some(opt => !opt.disabled && !opt.selected);
+      const hasDeselectedOptions = this.options.some(
+        opt => !opt.disabled && !opt.selected
+      );
 
       this.options.forEach(option => {
         if (!option.disabled) {
@@ -760,8 +854,13 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
       manager.onKeydown(event);
 
-      if (this._multiple && isArrowKey && event.shiftKey && manager.activeItem &&
-        manager.activeItemIndex !== previouslyFocusedIndex) {
+      if (
+        this._multiple &&
+        isArrowKey &&
+        event.shiftKey &&
+        manager.activeItem &&
+        manager.activeItemIndex !== previouslyFocusedIndex
+      ) {
         manager.activeItem.selectViaInteraction();
       }
     }
@@ -805,7 +904,6 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
       this._changeDetectorRef.detectChanges();
 
       this._scrollActiveOptionIntoView();
-
     });
   }
 
@@ -831,7 +929,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     // Defer setting the value in order to avoid the "Expression
     // has changed after it was checked" errors from Angular.
     Promise.resolve().then(() => {
-      this._setSelectionByValue(this.ngControl ? this.ngControl.value : this._value);
+      this._setSelectionByValue(
+        this.ngControl ? this.ngControl.value : this._value
+      );
     });
   }
 
@@ -889,7 +989,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
 
   /** Sets up a key manager to listen to keyboard events on the overlay panel. */
   private _initKeyManager() {
-    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options)
+    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(
+      this.options
+    )
       .withTypeAhead()
       .withVerticalOrientation()
       .withAllowedModifierKeys(['shiftKey']);
@@ -904,7 +1006,11 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     this.keyManager.change.pipe(takeUntil(this._destroy)).subscribe(() => {
       if (this._panelOpen && this.panel) {
         this._scrollActiveOptionIntoView();
-      } else if (!this._panelOpen && !this.multiple && this.keyManager.activeItem) {
+      } else if (
+        !this._panelOpen &&
+        !this.multiple &&
+        this.keyManager.activeItem
+      ) {
         this.keyManager.activeItem.selectViaInteraction();
       }
     });
@@ -914,14 +1020,16 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   private _resetOptions(): void {
     const changedOrDestroyed = merge(this.options.changes, this._destroy);
 
-    this.optionSelectionChanges.pipe(takeUntil(changedOrDestroyed)).subscribe(event => {
-      this._onSelect(event.source, event.isUserInput);
+    this.optionSelectionChanges
+      .pipe(takeUntil(changedOrDestroyed))
+      .subscribe(event => {
+        this._onSelect(event.source, event.isUserInput);
 
-      if (event.isUserInput && !this.multiple && this._panelOpen) {
-        this.close();
-        this.focus();
-      }
-    });
+        if (event.isUserInput && !this.multiple && this._panelOpen) {
+          this.close();
+          this.focus();
+        }
+      });
 
     // Listen to changes in the internal state of the options and react accordingly.
     // Handles cases like the labels of the selected options changing.
@@ -944,7 +1052,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
       this.selectionModel.clear();
       this._propagateChanges(option.value);
     } else {
-      option.selected ? this.selectionModel.select(option) : this.selectionModel.deselect(option);
+      option.selected
+        ? this.selectionModel.select(option)
+        : this.selectionModel.deselect(option);
 
       if (isUserInput) {
         this.keyManager.setActiveItem(option);
@@ -974,7 +1084,9 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   private _sortValues() {
     if (this.multiple) {
       const options = this.options.toArray();
-      this.selectionModel.sort((a, b) => options.indexOf(a) - options.indexOf(b));
+      this.selectionModel.sort(
+        (a, b) => options.indexOf(a) - options.indexOf(b)
+      );
       this.stateChanges.next();
     }
   }
@@ -984,9 +1096,13 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
     let valueToEmit: any = null;
 
     if (this.multiple) {
-      valueToEmit = (this.selected as OptionComponent[]).map(option => option.value);
+      valueToEmit = (this.selected as OptionComponent[]).map(
+        option => option.value
+      );
     } else {
-      valueToEmit = this.selected ? (this.selected as OptionComponent).value : fallbackValue;
+      valueToEmit = this.selected
+        ? (this.selected as OptionComponent).value
+        : fallbackValue;
     }
 
     this._value = valueToEmit;
@@ -1018,8 +1134,11 @@ export class SelectComponent extends SbbSelectMixinBase implements FormFieldCont
   /** Scrolls the active option into view. */
   private _scrollActiveOptionIntoView(): void {
     const activeOptionIndex = this.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(activeOptionIndex, this.options,
-      this.optionGroups);
+    const labelCount = countGroupLabelsBeforeOption(
+      activeOptionIndex,
+      this.options,
+      this.optionGroups
+    );
 
     const optionScrollPosition = getOptionScrollPosition(
       activeOptionIndex + labelCount,

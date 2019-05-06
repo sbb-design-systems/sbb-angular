@@ -1,4 +1,9 @@
-import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
+import {
+  BasePortalOutlet,
+  CdkPortalOutlet,
+  ComponentPortal,
+  TemplatePortal
+} from '@angular/cdk/portal';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -30,9 +35,10 @@ let counter = 0;
   templateUrl: './ghettobox-container.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GhettoboxContainerComponent extends BasePortalOutlet implements AfterContentInit, OnDestroy {
-
-  @Input() @HostBinding()
+export class GhettoboxContainerComponent extends BasePortalOutlet
+  implements AfterContentInit, OnDestroy {
+  @Input()
+  @HostBinding()
   id = `sbb-ghettobox-container-${counter++}`;
 
   @HostBinding('attr.role') role = 'region';
@@ -53,7 +59,9 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
   /**
    * Initial entries projected from the consumer
    */
-  @ContentChildren(GhettoboxComponent) initialGhettoboxes: QueryList<GhettoboxComponent>;
+  @ContentChildren(GhettoboxComponent) initialGhettoboxes: QueryList<
+    GhettoboxComponent
+  >;
 
   constructor(private _ghettoboxContainerService: GhettoboxContainerService) {
     super();
@@ -67,8 +75,9 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
 
   ngAfterContentInit() {
     // Load inital entries into the attached ghettobox collection kept in the GhettoboxService
-    this._ghettoboxContainerService
-      .loadInitialGhettoboxes(this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(g)));
+    this._ghettoboxContainerService.loadInitialGhettoboxes(
+      this.initialGhettoboxes.toArray().map(g => new GhettoboxRef(g))
+    );
   }
 
   ngOnDestroy() {
@@ -97,10 +106,11 @@ export class GhettoboxContainerComponent extends BasePortalOutlet implements Aft
    */
   createGhettobox(ghettobox: Ghettobox): GhettoboxRef {
     const ghettoboxComponentPortal = new ComponentPortal(GhettoboxComponent);
-    const ghettoboxComponentRef = this.attachComponentPortal(ghettoboxComponentPortal);
+    const ghettoboxComponentRef = this.attachComponentPortal(
+      ghettoboxComponentPortal
+    );
     ghettoboxComponentRef.instance.ghettobox = ghettobox;
 
     return new GhettoboxRef(ghettoboxComponentRef);
   }
-
 }

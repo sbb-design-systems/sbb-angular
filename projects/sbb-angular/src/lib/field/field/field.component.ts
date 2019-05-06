@@ -28,10 +28,7 @@ import { LabelComponent } from '../label/label.component';
   styleUrls: ['./field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [
-    HostClass,
-    { provide: FORM_FIELD, useExisting: FieldComponent },
-  ],
+  providers: [HostClass, { provide: FORM_FIELD, useExisting: FieldComponent }]
 })
 export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
   /**
@@ -39,21 +36,23 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
    */
   @Input() label?: string;
   /**
-  * mode set the length of the input field
-  */
+   * mode set the length of the input field
+   */
   @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
   // tslint:disable-next-line: naming-convention
   @ContentChild(FormFieldControl) _control: FormFieldControl<any>;
   @ContentChild(LabelComponent) contentLabel: LabelComponent;
-  @ContentChildren(FormErrorDirective) formErrors: QueryList<FormErrorDirective>;
+  @ContentChildren(FormErrorDirective) formErrors: QueryList<
+    FormErrorDirective
+  >;
 
   private _destroyed = new Subject<void>();
 
   constructor(
     @Self() private _hostClass: HostClass,
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) { }
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngAfterContentInit() {
     if (this._control) {
@@ -62,7 +61,10 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.mode && changes.mode.currentValue !== changes.mode.previousValue) {
+    if (
+      changes.mode &&
+      changes.mode.currentValue !== changes.mode.previousValue
+    ) {
       this._hostClass.apply(`sbb-input-field-${this.mode}`);
     }
   }
@@ -76,12 +78,10 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
     const control = this._control;
 
     // Subscribe to changes in the child control state in order to update the form field UI.
-    control.stateChanges
-      .pipe(startWith<void>(null))
-      .subscribe(() => {
-        this._syncDescribedByIds();
-        this._changeDetectorRef.markForCheck();
-      });
+    control.stateChanges.pipe(startWith<void>(null)).subscribe(() => {
+      this._syncDescribedByIds();
+      this._changeDetectorRef.markForCheck();
+    });
 
     // Run change detection if the value changes.
     if (control.ngControl && control.ngControl.valueChanges) {
@@ -91,12 +91,10 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
     }
 
     // Update the aria-described by when the number of errors changes.
-    this.formErrors.changes
-      .pipe(startWith(null))
-      .subscribe(() => {
-        this._syncDescribedByIds();
-        this._changeDetectorRef.markForCheck();
-      });
+    this.formErrors.changes.pipe(startWith(null)).subscribe(() => {
+      this._syncDescribedByIds();
+      this._changeDetectorRef.markForCheck();
+    });
   }
 
   /**
@@ -105,8 +103,10 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
    */
   private _syncDescribedByIds() {
     if (this._control) {
-      const ids: string[] = this.formErrors && this.formErrors.length && this._control.errorState
-        ? this.formErrors.map(e => e.id) : [];
+      const ids: string[] =
+        this.formErrors && this.formErrors.length && this._control.errorState
+          ? this.formErrors.map(e => e.id)
+          : [];
       this._control.setDescribedByIds(ids);
     }
   }

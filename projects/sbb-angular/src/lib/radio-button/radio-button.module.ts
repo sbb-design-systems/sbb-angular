@@ -4,12 +4,8 @@ import { NgModule } from '@angular/core';
 import { RadioButtonComponent } from './radio-button/radio-button.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    RadioButtonComponent
-  ],
-  declarations: [RadioButtonComponent],
+  imports: [CommonModule],
+  exports: [RadioButtonComponent],
+  declarations: [RadioButtonComponent]
 })
-export class RadioButtonModule { }
+export class RadioButtonModule {}

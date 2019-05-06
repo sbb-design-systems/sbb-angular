@@ -51,9 +51,11 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   @Input() maxlength: number;
   /**
-  * Class property that represents an observer on the number of digits in a textarea
-  */
-  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
+   * Class property that represents an observer on the number of digits in a textarea
+   */
+  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(
+    this.maxlength
+  );
   /**
    * Class property that sets the minlength of the textarea content
    */
@@ -81,16 +83,16 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that represents a change caused by a new digit in a textarea
    */
-  propagateChange: any = () => { };
+  propagateChange: any = () => {};
   /**
    * The registered callback function called when a blur event occurs on the input element.
    */
-  onTouched = () => { };
+  onTouched = () => {};
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private _ngZone: NgZone,
-  ) { }
+    private _ngZone: NgZone
+  ) {}
 
   /**
    * Adds the focused CSS class to this element
@@ -109,7 +111,8 @@ export class TextareaComponent implements ControlValueAccessor {
    * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
-    this._ngZone.onStable.pipe(first())
+    this._ngZone.onStable
+      .pipe(first())
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 

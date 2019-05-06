@@ -1,49 +1,56 @@
-<div 
-  cdk-overlay-origin class="sbb-select-trigger" 
-  aria-hidden="true" 
+<div
+  cdk-overlay-origin
+  class="sbb-select-trigger"
+  aria-hidden="true"
   (click)="toggle()"
   #origin="cdkOverlayOrigin"
-  #trigger 
-  [attr.tabindex]="tabIndex" 
+  #trigger
+  [attr.tabindex]="tabIndex"
   [attr.aria-expanded]="panelOpen"
-  [class.sbb-select-disabled]="disabled">
+  [class.sbb-select-disabled]="disabled"
+>
   <div class="sbb-select-value" [ngSwitch]="empty">
-    <span class="sbb-select-placeholder" *ngSwitchCase="true">{{placeholder || '\u00A0'}}</span>
+    <span class="sbb-select-placeholder" *ngSwitchCase="true">{{
+      placeholder || '\u00A0'
+    }}</span>
     <span class="sbb-select-value-text" *ngSwitchCase="false">
-      <span>{{triggerValue || '\u00A0'}}</span>
+      <span>{{ triggerValue || '\u00A0' }}</span>
     </span>
   </div>
 
-  <div class="sbb-select-arrow-wrapper" [class.sbb-select-arrow-wrapper-rotate]="rotateIcon">
+  <div
+    class="sbb-select-arrow-wrapper"
+    [class.sbb-select-arrow-wrapper-rotate]="rotateIcon"
+  >
     <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
   </div>
 </div>
 
-<ng-template cdk-connected-overlay 
-  cdkConnectedOverlayLockPosition 
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
   cdkConnectedOverlayHasBackdrop
-  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" 
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
   [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
-  [cdkConnectedOverlayOrigin]="origin" 
+  [cdkConnectedOverlayOrigin]="origin"
   [cdkConnectedOverlayOpen]="panelOpen"
   [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayMinWidth]="triggerRect?.width" 
-  [cdkConnectedOverlayOffsetY]="offsetY" 
+  [cdkConnectedOverlayMinWidth]="triggerRect?.width"
+  [cdkConnectedOverlayOffsetY]="offsetY"
   (backdropClick)="close()"
-  (attach)="onAttached()" 
+  (attach)="onAttached()"
   (detach)="close()"
+>
+  <div
+    #panel
+    class="sbb-select-panel"
+    [ngClass]="panelClass"
+    [style.transformOrigin]="transformOrigin"
+    [style.font-size.px]="triggerFontSize"
+    (keydown)="handleKeydown($event)"
   >
-  
-    <div
-      #panel 
-      class="sbb-select-panel" 
-      [ngClass]="panelClass" 
-      [style.transformOrigin]="transformOrigin"
-      [style.font-size.px]="triggerFontSize"
-      (keydown)="handleKeydown($event)">
-      
-      <perfect-scrollbar #scrollbar class="sbb-select-content"> 
-        <ng-content></ng-content>
-      </perfect-scrollbar>
-    </div>
+    <perfect-scrollbar #scrollbar class="sbb-select-content">
+      <ng-content></ng-content>
+    </perfect-scrollbar>
+  </div>
 </ng-template>

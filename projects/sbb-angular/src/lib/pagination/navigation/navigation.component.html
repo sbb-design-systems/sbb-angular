@@ -1,20 +1,27 @@
 <ul class="sbb-navigation">
   <li class="sbb-navigation-item sbb-navigation-item-left" *ngIf="previousPage">
-    <button *ngIf="!linkGenerator" 
-      i18n-aria-label="@@navigationPreviousPage" 
-      aria-label="Vorherige Seite" 
+    <button
+      *ngIf="!linkGenerator"
+      i18n-aria-label="@@navigationPreviousPage"
+      aria-label="Vorherige Seite"
       (click)="pageChange.emit('previous')"
-      [attr.title]="previousPage">
-      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
+      [attr.title]="previousPage"
+    >
+      <span
+        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left"
+      >
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
         </span>
-        <span class="sbb-navigation-item-boundary-text">{{ previousPage }}</span>
+        <span class="sbb-navigation-item-boundary-text">{{
+          previousPage
+        }}</span>
       </span>
     </button>
-    <a *ngIf="linkGenerator" 
-      i18n-aria-label="@@navigationPreviousPage" 
-      aria-label="Vorherige Seite" 
+    <a
+      *ngIf="linkGenerator"
+      i18n-aria-label="@@navigationPreviousPage"
+      aria-label="Vorherige Seite"
       [routerLink]="previousLink.link?.routerLink"
       [queryParams]="previousLink.link?.queryParams"
       [fragment]="previousLink.link?.fragment"
@@ -23,31 +30,40 @@
       [replaceUrl]="previousLink.link?.replaceUrl"
       [queryParamsHandling]="previousLink.link?.queryParamsHandling"
       (click)="pageChange.emit('previous')"
-      [attr.title]="previousLink.title">
-      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
-
+      [attr.title]="previousLink.title"
+    >
+      <span
+        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left"
+      >
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
         </span>
-        <span class="sbb-navigation-item-boundary-text">{{ previousLink.title }}</span>
+        <span class="sbb-navigation-item-boundary-text">{{
+          previousLink.title
+        }}</span>
       </span>
     </a>
   </li>
-    <li class="sbb-navigation-item sbb-navigation-item-right" *ngIf="nextPage">
-    <button *ngIf="!linkGenerator" 
-      i18n-aria-label="@@navigationNextPage" 
+  <li class="sbb-navigation-item sbb-navigation-item-right" *ngIf="nextPage">
+    <button
+      *ngIf="!linkGenerator"
+      i18n-aria-label="@@navigationNextPage"
       aria-label="Nächste Seite"
       (click)="pageChange.emit('next')"
-      [attr.title]="nextPage">
-      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
+      [attr.title]="nextPage"
+    >
+      <span
+        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right"
+      >
         <span class="sbb-navigation-item-boundary-text">{{ nextPage }}</span>
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
         </span>
       </span>
     </button>
-    <a *ngIf="linkGenerator" 
-      i18n-aria-label="@@navigationNextPage" 
+    <a
+      *ngIf="linkGenerator"
+      i18n-aria-label="@@navigationNextPage"
       aria-label="Nächste Seite"
       [routerLink]="nextLink.link?.routerLink"
       [queryParams]="nextLink.link?.queryParams"
@@ -57,9 +73,14 @@
       [replaceUrl]="nextLink.link?.replaceUrl"
       [queryParamsHandling]="nextLink.link?.queryParamsHandling"
       (click)="pageChange.emit('next')"
-      [attr.title]="nextLink.title">
-      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
-        <span class="sbb-navigation-item-boundary-text">{{ nextLink.title }}</span>
+      [attr.title]="nextLink.title"
+    >
+      <span
+        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right"
+      >
+        <span class="sbb-navigation-item-boundary-text">{{
+          nextLink.title
+        }}</span>
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
         </span>

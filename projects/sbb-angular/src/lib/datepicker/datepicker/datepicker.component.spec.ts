@@ -1,14 +1,39 @@
 import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
-import { Overlay, OverlayContainer, ScrollDispatcher, ScrollStrategy } from '@angular/cdk/overlay';
-import { Component, FactoryProvider, InjectionToken, LOCALE_ID, Type, ValueProvider, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
+import {
+  Overlay,
+  OverlayContainer,
+  ScrollDispatcher,
+  ScrollStrategy
+} from '@angular/cdk/overlay';
+import {
+  Component,
+  FactoryProvider,
+  InjectionToken,
+  LOCALE_ID,
+  Type,
+  ValueProvider,
+  ViewChild
+} from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  inject,
+  TestBed,
+  tick
+} from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { JAN } from '../../_common/testing/dates-constants';
-import { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent } from '../../_common/testing/dispatch-events';
+import {
+  dispatchEvent,
+  dispatchFakeEvent,
+  dispatchKeyboardEvent,
+  dispatchMouseEvent
+} from '../../_common/testing/dispatch-events';
 import { createKeyboardEvent } from '../../_common/testing/event-objects';
 import { DateInputDirective, DatepickerToggleComponent } from '../datepicker';
 import { DatepickerModule } from '../datepicker.module';
@@ -18,9 +43,9 @@ import { DatepickerComponent } from './datepicker.component';
 @Component({
   template: `
     <sbb-datepicker #d [disabled]="disabled" [opened]="opened">
-      <input sbbDateInput [value]="date">
+      <input sbbDateInput [value]="date" />
     </sbb-datepicker>
-  `,
+  `
 })
 class StandardDatepickerComponent {
   opened = false;
@@ -34,15 +59,17 @@ class StandardDatepickerComponent {
 @Component({
   template: `
     <sbb-datepicker>
-      <input sbbDateInput>
-      <input sbbDateInput>
+      <input sbbDateInput />
+      <input sbbDateInput />
     </sbb-datepicker>
-  `,
+  `
 })
-class MultiInputDatepickerComponent { }
+class MultiInputDatepickerComponent {}
 
 @Component({
-  template: `<sbb-datepicker #d></sbb-datepicker>`,
+  template: `
+    <sbb-datepicker #d></sbb-datepicker>
+  `
 })
 class NoInputDatepickerComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
@@ -53,7 +80,7 @@ class NoInputDatepickerComponent {
     <sbb-datepicker #d [startAt]="startDate">
       <input sbbDateInput [value]="date>
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithStartAtComponent {
   date = new Date(2020, JAN, 1);
@@ -64,9 +91,9 @@ class DatepickerWithStartAtComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input [(ngModel)]="selected" sbbDateInput>
+      <input [(ngModel)]="selected" sbbDateInput />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithNgModelComponent {
   selected: Date | null = null;
@@ -77,9 +104,9 @@ class DatepickerWithNgModelComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input [formControl]="formControl" sbbDateInput>
+      <input [formControl]="formControl" sbbDateInput />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithFormControlComponent {
   formControl = new FormControl();
@@ -90,9 +117,9 @@ class DatepickerWithFormControlComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input sbbDateInput>
+      <input sbbDateInput />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithToggleComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
@@ -102,9 +129,9 @@ class DatepickerWithToggleComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input sbbDateInput [(ngModel)]="date" [min]="minDate" [max]="maxDate">
+      <input sbbDateInput [(ngModel)]="date" [min]="minDate" [max]="maxDate" />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithMinAndMaxValidationComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
@@ -116,9 +143,9 @@ class DatepickerWithMinAndMaxValidationComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input sbbDateInput [(ngModel)]="date">
+      <input sbbDateInput [(ngModel)]="date" />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithFilterAndValidationComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
@@ -129,27 +156,32 @@ class DatepickerWithFilterAndValidationComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input sbbDateInput (change)="onChange()" (input)="onInput()"
-            (dateChange)="onDateChange()" (dateInput)="onDateInput()">
+      <input
+        sbbDateInput
+        (change)="onChange()"
+        (input)="onInput()"
+        (dateChange)="onDateChange()"
+        (dateInput)="onDateInput()"
+      />
     </sbb-datepicker>
   `
 })
 class DatepickerWithChangeAndInputEventsComponent {
   @ViewChild('d') datepicker: DatepickerComponent<Date>;
 
-  onChange() { }
+  onChange() {}
 
-  onInput() { }
+  onInput() {}
 
-  onDateChange() { }
+  onDateChange() {}
 
-  onDateInput() { }
+  onDateInput() {}
 }
 
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input sbbDateInput [(ngModel)]="date">
+      <input sbbDateInput [(ngModel)]="date" />
     </sbb-datepicker>
   `
 })
@@ -162,9 +194,9 @@ class DatepickerWithi18nComponent {
 @Component({
   template: `
     <sbb-datepicker (opened)="openedSpy()" (closed)="closedSpy()" #d>
-      <input [(ngModel)]="selected" sbbDateInput>
+      <input [(ngModel)]="selected" sbbDateInput />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerWithEventsComponent {
   selected: Date | null = null;
@@ -176,23 +208,22 @@ class DatepickerWithEventsComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input (focus)="d.open()" sbbDateInput>
+      <input (focus)="d.open()" sbbDateInput />
     </sbb-datepicker>
-  `,
+  `
 })
 class DatepickerOpeningOnFocusComponent {
   @ViewChild(DatepickerComponent) datepicker: DatepickerComponent<Date>;
 }
 
 describe('DatepickerComponent', () => {
-
   // Creates a test component fixture.
   function createComponent(
     component: Type<any>,
     imports: Type<any>[] = [],
     providers: (FactoryProvider | ValueProvider)[] = [],
-    entryComponents: Type<any>[] = []): ComponentFixture<any> {
-
+    entryComponents: Type<any>[] = []
+  ): ComponentFixture<any> {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
@@ -202,7 +233,7 @@ describe('DatepickerComponent', () => {
         ...imports
       ],
       providers,
-      declarations: [component, ...entryComponents],
+      declarations: [component, ...entryComponents]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
@@ -237,12 +268,16 @@ describe('DatepickerComponent', () => {
       }));
 
       it('open non-touch should open popup', () => {
-        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).toBeNull();
+        expect(
+          document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')
+        ).toBeNull();
 
         testComponent.datepicker.open();
         fixture.detectChanges();
 
-        expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).not.toBeNull();
+        expect(
+          document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')
+        ).not.toBeNull();
       });
 
       it('should open datepicker if opened input is set to true', fakeAsync(() => {
@@ -250,7 +285,9 @@ describe('DatepickerComponent', () => {
         fixture.detectChanges();
         flush();
 
-        expect(document.querySelector('.sbb-datepicker-content')).not.toBeNull();
+        expect(
+          document.querySelector('.sbb-datepicker-content')
+        ).not.toBeNull();
 
         testComponent.opened = false;
         fixture.detectChanges();
@@ -295,13 +332,19 @@ describe('DatepickerComponent', () => {
         testComponent.datepicker.open();
         fixture.detectChanges();
 
-        expect(testComponent.datepicker.opened).toBe(true, 'Expected datepicker to be open.');
+        expect(testComponent.datepicker.opened).toBe(
+          true,
+          'Expected datepicker to be open.'
+        );
 
         dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
         fixture.detectChanges();
         flush();
 
-        expect(testComponent.datepicker.opened).toBe(false, 'Expected datepicker to be closed.');
+        expect(testComponent.datepicker.opened).toBe(
+          false,
+          'Expected datepicker to be closed.'
+        );
       }));
 
       it('should set the proper role on the popup', fakeAsync(() => {
@@ -315,18 +358,26 @@ describe('DatepickerComponent', () => {
         expect(popup.getAttribute('role')).toBe('dialog');
       }));
 
-      it('clicking the currently selected date should close the calendar ' +
-        'without firing selectedChanged', fakeAsync(() => {
-          const selectedChangedSpy =
-            spyOn(testComponent.datepicker.selectedChanged, 'next').and.callThrough();
+      it(
+        'clicking the currently selected date should close the calendar ' +
+          'without firing selectedChanged',
+        fakeAsync(() => {
+          const selectedChangedSpy = spyOn(
+            testComponent.datepicker.selectedChanged,
+            'next'
+          ).and.callThrough();
 
           for (let changeCount = 1; changeCount < 3; changeCount++) {
             const currentDay = changeCount;
             testComponent.datepicker.open();
             fixture.detectChanges();
 
-            expect(document.querySelector('sbb-datepicker-content')).not.toBeNull();
-            expect(testComponent.datepickerInput.value).toEqual(new Date(2020, JAN, currentDay));
+            expect(
+              document.querySelector('sbb-datepicker-content')
+            ).not.toBeNull();
+            expect(testComponent.datepickerInput.value).toEqual(
+              new Date(2020, JAN, currentDay)
+            );
 
             const cells = document.querySelectorAll('.sbb-calendar-body-cell');
             dispatchMouseEvent(cells[1], 'click');
@@ -336,21 +387,32 @@ describe('DatepickerComponent', () => {
 
           expect(selectedChangedSpy.calls.count()).toEqual(1);
           expect(document.querySelector('sbb-dialog-container')).toBeNull();
-          expect(testComponent.datepickerInput.value).toEqual(new Date(2020, JAN, 2));
-        }));
+          expect(testComponent.datepickerInput.value).toEqual(
+            new Date(2020, JAN, 2)
+          );
+        })
+      );
 
-      it('pressing enter on the currently selected date should close the calendar without ' +
-        'firing selectedChanged', fakeAsync(() => {
-          const selectedChangedSpy =
-            spyOn(testComponent.datepicker.selectedChanged, 'next').and.callThrough();
+      it(
+        'pressing enter on the currently selected date should close the calendar without ' +
+          'firing selectedChanged',
+        fakeAsync(() => {
+          const selectedChangedSpy = spyOn(
+            testComponent.datepicker.selectedChanged,
+            'next'
+          ).and.callThrough();
 
           for (let changeCount = 1; changeCount <= 3; changeCount++) {
             testComponent.datepicker.open();
             fixture.detectChanges();
 
-            const calendarBodyEl = document.querySelector('.sbb-calendar-body') as HTMLElement;
+            const calendarBodyEl = document.querySelector(
+              '.sbb-calendar-body'
+            ) as HTMLElement;
             expect(calendarBodyEl).not.toBeNull();
-            expect(testComponent.datepickerInput.value).toEqual(new Date(2020, JAN, 1));
+            expect(testComponent.datepickerInput.value).toEqual(
+              new Date(2020, JAN, 1)
+            );
 
             dispatchKeyboardEvent(calendarBodyEl, 'keydown', ENTER);
             fixture.detectChanges();
@@ -359,21 +421,29 @@ describe('DatepickerComponent', () => {
 
           expect(selectedChangedSpy.calls.count()).toEqual(1);
           expect(document.querySelector('sbb-dialog-container')).toBeNull();
-          expect(testComponent.datepickerInput.value).toEqual(new Date(2020, JAN, 1));
-        }));
+          expect(testComponent.datepickerInput.value).toEqual(
+            new Date(2020, JAN, 1)
+          );
+        })
+      );
 
       it('startAt should fallback to input value', () => {
-        expect(testComponent.datepicker.startAt).toEqual(new Date(2020, JAN, 1));
+        expect(testComponent.datepicker.startAt).toEqual(
+          new Date(2020, JAN, 1)
+        );
       });
 
       it('should attach popup to native input', () => {
         const attachToRef = testComponent.datepickerInput.getConnectedOverlayOrigin();
-        expect(attachToRef.nativeElement.tagName.toLowerCase())
-          .toBe('input', 'popup should be attached to native input');
+        expect(attachToRef.nativeElement.tagName.toLowerCase()).toBe(
+          'input',
+          'popup should be attached to native input'
+        );
       });
 
       it('input should aria-owns calendar after opened in non-touch mode', fakeAsync(() => {
-        const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+        const inputEl = fixture.debugElement.query(By.css('input'))
+          .nativeElement;
         expect(inputEl.getAttribute('aria-owns')).toBeNull();
 
         testComponent.datepicker.open();
@@ -385,7 +455,9 @@ describe('DatepickerComponent', () => {
 
         const ownedElement = document.getElementById(ownedElementId);
         expect(ownedElement).not.toBeNull();
-        expect((ownedElement as Element).tagName.toLowerCase()).toBe('sbb-calendar');
+        expect((ownedElement as Element).tagName.toLowerCase()).toBe(
+          'sbb-calendar'
+        );
       }));
 
       it('should not throw when given wrong data type', () => {
@@ -407,9 +479,13 @@ describe('DatepickerComponent', () => {
         fixture.detectChanges();
 
         const spy = jasmine.createSpy('close event spy');
-        const subscription = testComponent.datepicker.closedStream.subscribe(spy);
+        const subscription = testComponent.datepicker.closedStream.subscribe(
+          spy
+        );
         // tslint:disable-next-line:no-non-null-assertion
-        const backdrop = document.querySelector('.cdk-overlay-backdrop')! as HTMLElement;
+        const backdrop = document.querySelector(
+          '.cdk-overlay-backdrop'
+        )! as HTMLElement;
 
         backdrop.click();
         fixture.detectChanges();
@@ -450,7 +526,6 @@ describe('DatepickerComponent', () => {
         expect(testComponent.datepicker.opened).toBe(true);
         expect(event.defaultPrevented).toBe(true);
       }));
-
     });
 
     describe('datepicker with too many inputs', () => {
@@ -502,7 +577,9 @@ describe('DatepickerComponent', () => {
       }));
 
       it('explicit startAt should override input value', () => {
-        expect(testComponent.datepicker.startAt).toEqual(new Date(2010, JAN, 1));
+        expect(testComponent.datepicker.startAt).toEqual(
+          new Date(2010, JAN, 1)
+        );
       });
     });
 
@@ -527,7 +604,8 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should mark input dirty after input event', () => {
-        const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+        const inputEl = fixture.debugElement.query(By.css('input'))
+          .nativeElement;
 
         expect(inputEl.classList).toContain('ng-pristine');
 
@@ -539,7 +617,8 @@ describe('DatepickerComponent', () => {
       });
 
       it('should not mark dirty after model change', fakeAsync(() => {
-        const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+        const inputEl = fixture.debugElement.query(By.css('input'))
+          .nativeElement;
 
         expect(inputEl.classList).toContain('ng-pristine');
 
@@ -552,7 +631,8 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should mark input touched on blur', () => {
-        const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+        const inputEl = fixture.debugElement.query(By.css('input'))
+          .nativeElement;
 
         expect(inputEl.classList).toContain('ng-untouched');
 
@@ -568,7 +648,8 @@ describe('DatepickerComponent', () => {
       });
 
       it('should not reformat invalid dates on blur', () => {
-        const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
+        const inputEl = fixture.debugElement.query(By.css('input'))
+          .nativeElement;
 
         inputEl.value = 'very-valid-date';
         dispatchFakeEvent(inputEl, 'input');
@@ -579,7 +660,6 @@ describe('DatepickerComponent', () => {
 
         expect(inputEl.value).toBe('very-valid-date');
       });
-
     });
 
     describe('datepicker with formControl', () => {
@@ -597,7 +677,6 @@ describe('DatepickerComponent', () => {
         testComponent.datepicker.close();
         fixture.detectChanges();
       }));
-
     });
 
     describe('datepicker with sbb-datepicker-toggle', () => {
@@ -620,7 +699,8 @@ describe('DatepickerComponent', () => {
       it('should not open calendar when toggle clicked if datepicker is disabled', () => {
         testComponent.datepicker.disabled = true;
         fixture.detectChanges();
-        const toggle = fixture.debugElement.query(By.css('button')).nativeElement;
+        const toggle = fixture.debugElement.query(By.css('button'))
+          .nativeElement;
 
         expect(toggle.hasAttribute('disabled')).toBe(true);
         expect(document.querySelector('sbb-dialog-container')).toBeNull();
@@ -636,7 +716,8 @@ describe('DatepickerComponent', () => {
 
         testComponent.input.disabled = true;
         fixture.detectChanges();
-        const toggle = fixture.debugElement.query(By.css('button')).nativeElement;
+        const toggle = fixture.debugElement.query(By.css('button'))
+          .nativeElement;
 
         expect(toggle.hasAttribute('disabled')).toBe(true);
         expect(document.querySelector('sbb-dialog-container')).toBeNull();
@@ -648,17 +729,22 @@ describe('DatepickerComponent', () => {
       });
 
       it('should set the `button` type on the trigger to prevent form submissions', () => {
-        const toggle = fixture.debugElement.query(By.css('button')).nativeElement;
+        const toggle = fixture.debugElement.query(By.css('button'))
+          .nativeElement;
         expect(toggle.getAttribute('type')).toBe('button');
       });
 
       it('should restore focus to the toggle after the calendar is closed', () => {
-        const toggle = fixture.debugElement.query(By.css('button')).nativeElement;
+        const toggle = fixture.debugElement.query(By.css('button'))
+          .nativeElement;
 
         fixture.detectChanges();
 
         toggle.focus();
-        expect(document.activeElement).toBe(toggle, 'Expected toggle to be focused.');
+        expect(document.activeElement).toBe(
+          toggle,
+          'Expected toggle to be focused.'
+        );
 
         fixture.componentInstance.datepicker.open();
         fixture.detectChanges();
@@ -667,17 +753,24 @@ describe('DatepickerComponent', () => {
         const pane = document.querySelector('.cdk-overlay-pane')!;
 
         expect(pane).toBeTruthy('Expected calendar to be open.');
-        expect(pane.contains(document.activeElement))
-          .toBe(true, 'Expected focus to be inside the calendar.');
+        expect(pane.contains(document.activeElement)).toBe(
+          true,
+          'Expected focus to be inside the calendar.'
+        );
 
         fixture.componentInstance.datepicker.close();
         fixture.detectChanges();
 
-        expect(document.activeElement).toBe(toggle, 'Expected focus to be restored to toggle.');
+        expect(document.activeElement).toBe(
+          toggle,
+          'Expected focus to be restored to toggle.'
+        );
       });
 
       it('should toggle the active state of the datepicker toggle', fakeAsync(() => {
-        const toggle = fixture.debugElement.query(By.css('sbb-datepicker-toggle')).nativeElement;
+        const toggle = fixture.debugElement.query(
+          By.css('sbb-datepicker-toggle')
+        ).nativeElement;
 
         expect(toggle.classList).not.toContain('sbb-datepicker-toggle-active');
 
@@ -713,10 +806,13 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should use min and max dates specified by the input', () => {
-        expect(testComponent.datepicker.minDate).toEqual(new Date(2010, JAN, 1));
-        expect(testComponent.datepicker.maxDate).toEqual(new Date(2020, JAN, 1));
+        expect(testComponent.datepicker.minDate).toEqual(
+          new Date(2010, JAN, 1)
+        );
+        expect(testComponent.datepicker.maxDate).toEqual(
+          new Date(2020, JAN, 1)
+        );
       });
-
     });
 
     describe('with events', () => {
@@ -746,7 +842,6 @@ describe('DatepickerComponent', () => {
 
         expect(testComponent.closedSpy).toHaveBeenCalled();
       }));
-
     });
 
     describe('datepicker that opens on focus', () => {
@@ -775,10 +870,14 @@ describe('DatepickerComponent', () => {
 
         // Due to some browser limitations we can't install a stub on `document.activeElement`
         // so instead we have to override the previously-focused element manually.
-        (fixture.componentInstance.datepicker as any)._focusedElementBeforeOpen = input;
+        (fixture.componentInstance
+          .datepicker as any)._focusedElementBeforeOpen = input;
 
         // Ensure that the datepicker is actually open.
-        expect(testComponent.datepicker.opened).toBe(true, 'Expected datepicker to be open.');
+        expect(testComponent.datepicker.opened).toBe(
+          true,
+          'Expected datepicker to be open.'
+        );
 
         // Close the datepicker.
         testComponent.datepicker.close();
@@ -791,7 +890,10 @@ describe('DatepickerComponent', () => {
         // Flush out the scheduled tasks.
         flush();
 
-        expect(testComponent.datepicker.opened).toBe(false, 'Expected datepicker to be closed.');
+        expect(testComponent.datepicker.opened).toBe(
+          false,
+          'Expected datepicker to be closed.'
+        );
       }));
     });
   });

@@ -11,24 +11,47 @@ export class SvgFile {
     readonly template: string,
     readonly width: string,
     readonly height: string,
-    readonly ratio: number,
-  ) { }
+    readonly ratio: number
+  ) {}
 
   static async from(filepath: string, entry: Readonly<FileEntry>) {
     const lastSlashIndex = filepath.lastIndexOf('/');
-    const name = filepath.substring(lastSlashIndex + 1, filepath.lastIndexOf('.'));
+    const name = filepath.substring(
+      lastSlashIndex + 1,
+      filepath.lastIndexOf('.')
+    );
     const modules = filepath.substring(0, lastSlashIndex).split('/');
     const content = entry.content.toString('utf8');
-    const template = (await Svgo.optimize(content))
-      .replace('<svg ', `<svg [attr.class]="'sbb-svg-icon ' + svgClass" `);
+    const template = (await Svgo.optimize(content)).replace(
+      '<svg ',
+      `<svg [attr.class]="'sbb-svg-icon ' + svgClass" `
+    );
     const width = SvgFile._determineDimension(
-      /( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g, content, filepath);
+      /( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g,
+      content,
+      filepath
+    );
     const height = SvgFile._determineDimension(
-      /( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g, content, filepath);
-    return new SvgFile(name, modules, filepath, template, `${width}px`, `${height}px`, width / height);
+      /( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g,
+      content,
+      filepath
+    );
+    return new SvgFile(
+      name,
+      modules,
+      filepath,
+      template,
+      `${width}px`,
+      `${height}px`,
+      width / height
+    );
   }
 
-  private static _determineDimension(regex: RegExp, content: string, filepath: string) {
+  private static _determineDimension(
+    regex: RegExp,
+    content: string,
+    filepath: string
+  ) {
     const match = regex.exec(content);
     if (!match) {
       throw new SchematicsException(`No width found in ${filepath}`);

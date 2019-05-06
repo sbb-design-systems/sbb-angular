@@ -1,4 +1,10 @@
-import { DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, TAB, UP_ARROW } from '@angular/cdk/keycodes';
+import {
+  DOWN_ARROW,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  TAB,
+  UP_ARROW
+} from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -69,10 +75,10 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
      * Class property that refers to the component object
      */
     public elementRef: ElementRef,
-    private _changeDetector: ChangeDetectorRef) { }
+    private _changeDetector: ChangeDetectorRef
+  ) {}
 
   ngAfterContentInit() {
-
     this._checkNumberOfTabs();
 
     this.initTabs();
@@ -80,15 +86,18 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     this._tabsSubscription = this.tabs$
       .pipe(
         map(tabs => tabs.map(t => t._stateChanges)),
-        switchMap(stateChanges => merge(...stateChanges)))
+        switchMap(stateChanges => merge(...stateChanges))
+      )
       .subscribe(() => this._changeDetector.markForCheck());
-
   }
   /**
    * Method that verifies the initial tabs state
    */
   initTabs() {
-    this.tabs$ = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes);
+    this.tabs$ = merge<TabComponent[]>(
+      of(this.tabs.toArray()),
+      this.tabs.changes
+    );
 
     const activeTabs = this.tabs.filter(tab => tab.active);
 
@@ -165,7 +174,6 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     } else {
       tabLabels[this.tabListIndex].nativeElement.focus();
     }
-
   }
 
   private _handleKeyCodeReturnHasReachEnd(keyCode): boolean {
@@ -205,5 +213,4 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       throw new Error(`The number of tabs must be at least 2`);
     }
   }
-
 }

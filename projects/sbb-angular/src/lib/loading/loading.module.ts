@@ -4,11 +4,8 @@ import { NgModule } from '@angular/core';
 import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [LoadingComponent],
   exports: [LoadingComponent]
 })
-export class LoadingModule {
-}
+export class LoadingModule {}

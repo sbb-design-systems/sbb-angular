@@ -4,7 +4,7 @@ import {
   state,
   style,
   transition,
-  trigger,
+  trigger
 } from '@angular/animations';
 
 /** Animations used by Lightbox. */
@@ -18,8 +18,11 @@ export const LIGHTBOX_ANIMATIONS: {
     // to blur the dialog content and decimate the animation performance. Leaving it as `none`
     // solves both issues.
     state('enter', style({ transform: 'none', opacity: 1 })),
-    state('void', style({ transform: 'translate3d(0, 25%, 0) scale(0.9)', opacity: 0 })),
+    state(
+      'void',
+      style({ transform: 'translate3d(0, 25%, 0) scale(0.9)', opacity: 0 })
+    ),
     state('exit', style({ transform: 'translate3d(0, 25%, 0)', opacity: 0 })),
-    transition('* => *', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
+    transition('* => *', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
   ])
 };

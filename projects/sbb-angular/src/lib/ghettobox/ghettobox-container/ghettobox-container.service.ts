@@ -13,7 +13,6 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
   providedIn: 'root'
 })
 export class GhettoboxContainerService {
-
   /**
    * Observable you can subscribe to know if sbb-ghettobox-container has been loaded
    */
@@ -94,7 +93,9 @@ export class GhettoboxContainerService {
 
   /** @docs-private */
   deleteFromAttachedGhettoboxesCollection(ghettoboxId: string): void {
-    const index = this._attachedGhettoboxes.indexOf(this._getGhettoboxById(ghettoboxId));
+    const index = this._attachedGhettoboxes.indexOf(
+      this._getGhettoboxById(ghettoboxId)
+    );
     if (index !== -1) {
       this._attachedGhettoboxes.splice(index, 1);
     }
@@ -104,7 +105,8 @@ export class GhettoboxContainerService {
   checkIfContainerIsPresent() {
     if (!this._containerInstance) {
       throw Error(
-        'You must have a sbb-ghettobox-container in the page in order to add one or more Ghettoboxes dynamically');
+        'You must have a sbb-ghettobox-container in the page in order to add one or more Ghettoboxes dynamically'
+      );
     }
   }
 
@@ -119,5 +121,4 @@ export class GhettoboxContainerService {
       ghettoboxToDelete.delete();
     }
   }
-
 }

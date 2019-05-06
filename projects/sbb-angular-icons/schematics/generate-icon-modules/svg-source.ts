@@ -6,7 +6,7 @@ import { IconCollectionModule } from './icon-collection-module';
 import { filterRules } from './filter-rules';
 
 export class SvgSource {
-  constructor(private _files: SvgFile[]) { }
+  constructor(private _files: SvgFile[]) {}
 
   static async from(svgDirectory: DirEntry) {
     const files: Promise<SvgFile>[] = [];
@@ -23,8 +23,11 @@ export class SvgSource {
 
   assertNoDuplicates() {
     const duplicates = this._files
-      .map((file, i, a) => i === a.findIndex(f => f.name === file.name && f.size === file.size)
-        ? a.filter(f => f.name === file.name && f.size === file.size) : [])
+      .map((file, i, a) =>
+        i === a.findIndex(f => f.name === file.name && f.size === file.size)
+          ? a.filter(f => f.name === file.name && f.size === file.size)
+          : []
+      )
       .filter(f => f.length > 1);
     if (duplicates.length) {
       const duplicateOutput = duplicates
@@ -40,13 +43,17 @@ export class SvgSource {
     const iconModules = this._toIconModules();
     const moduleTrees = iconModules
       .map(i => i.modules)
-      .filter((v, i, a) => i === a.findIndex(vi => vi.join(',') === v.join(',')));
+      .filter(
+        (v, i, a) => i === a.findIndex(vi => vi.join(',') === v.join(','))
+      );
     const collectionMap = new Map<string, IconCollectionModule>();
     const rootCollection = new IconCollectionModule();
     for (const moduleTree of moduleTrees) {
       let collection = rootCollection;
       for (const moduleName of moduleTree) {
-        let localCollection = collection.collections.find(c => c.name === moduleName);
+        let localCollection = collection.collections.find(
+          c => c.name === moduleName
+        );
         if (!localCollection) {
           localCollection = new IconCollectionModule(moduleName);
           collectionMap.set(moduleTree.join(','), localCollection);
@@ -57,17 +64,18 @@ export class SvgSource {
       }
     }
     // tslint:disable-next-line:no-non-null-assertion
-    iconModules.forEach(i => collectionMap.get(i.modules.join(','))!.icons.push(i));
+    iconModules.forEach(i =>
+      collectionMap.get(i.modules.join(','))!.icons.push(i)
+    );
     return rootCollection;
   }
 
   private _toIconModules() {
-    const svgMap = this._files
-      .reduce(
-        (current, next) => current
-          .set(next.name, [...(current.get(next.name) || []), next]),
-        new Map<string, SvgFile[]>());
-    return Array.from(svgMap.values())
-      .map(g => new IconModule(g));
+    const svgMap = this._files.reduce(
+      (current, next) =>
+        current.set(next.name, [...(current.get(next.name) || []), next]),
+      new Map<string, SvgFile[]>()
+    );
+    return Array.from(svgMap.values()).map(g => new IconModule(g));
   }
 }

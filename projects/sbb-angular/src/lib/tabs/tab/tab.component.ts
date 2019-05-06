@@ -23,24 +23,26 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class TabComponent implements OnInit, OnChanges, OnDestroy {
-
   /**
    * Tab identifier
    */
   @HostBinding('attr.id')
-  @Input() id: string;
+  @Input()
+  id: string;
 
   /**
    * Label identifier of a tab
    */
   @HostBinding('attr.aria-labelledby')
-  @Input() labelId: string;
+  @Input()
+  labelId: string;
 
   /**
-  * Initial index tab
-  */
+   * Initial index tab
+   */
   @HostBinding('attr.tabindex')
-  @Input() tabindex = -1;
+  @Input()
+  tabindex = -1;
 
   /**
    * Role of tab
@@ -97,7 +99,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   // tslint:disable-next-line: naming-convention
   readonly _stateChanges = new Subject<void>();
 
-  constructor(private _changeDetector: ChangeDetectorRef) { }
+  constructor(private _changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (!this.id) {

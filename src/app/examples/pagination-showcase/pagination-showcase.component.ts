@@ -8,26 +8,26 @@ import { LinkGeneratorResult, NavigationPageDescriptor } from 'sbb-angular';
   styleUrls: ['./pagination-showcase.component.scss']
 })
 export class PaginationShowcaseComponent {
-
-  constructor(private _route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute) {}
 
   maxPage = 7;
   initialPage = 5;
 
-  pages = [
-    'Einführung',
-    'Kapitel 1',
-    'Kapitel 2',
-    'Kapitel 3'
-  ].map((page, index) => {
-    return { title: page, index: index };
-  });
+  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map(
+    (page, index) => {
+      return { title: page, index: index };
+    }
+  );
 
   hasPrevious: NavigationPageDescriptor = this.pages[1];
   hasNext: NavigationPageDescriptor = this.pages[2];
 
-  get previousPage(): string { return this.hasPrevious ? this.hasPrevious.title : null; }
-  get nextPage(): string { return this.hasNext ? this.hasNext.title : null; }
+  get previousPage(): string {
+    return this.hasPrevious ? this.hasPrevious.title : null;
+  }
+  get nextPage(): string {
+    return this.hasNext ? this.hasNext.title : null;
+  }
 
   newPage = { title: '' };
 
@@ -35,14 +35,17 @@ export class PaginationShowcaseComponent {
     console.log($event);
   }
 
-  linkGenerator = (page: { displayNumber: number, index: number }): LinkGeneratorResult => {
+  linkGenerator = (page: {
+    displayNumber: number;
+    index: number;
+  }): LinkGeneratorResult => {
     return {
       routerLink: ['.'],
       queryParams: { page: page.displayNumber },
       queryParamsHandling: 'merge',
-      relativeTo: this._route,
+      relativeTo: this._route
     };
-  }
+  };
 
   onPageChangeNavigation($event) {
     if ($event === 'next') {
@@ -54,7 +57,9 @@ export class PaginationShowcaseComponent {
     }
   }
 
-  linkGeneratorNavigation = (direction: 'previous' | 'next'): LinkGeneratorResult => {
+  linkGeneratorNavigation = (
+    direction: 'previous' | 'next'
+  ): LinkGeneratorResult => {
     let index = null;
     if (direction === 'next') {
       index = this.hasNext.index;
@@ -66,9 +71,9 @@ export class PaginationShowcaseComponent {
       routerLink: ['.'],
       queryParams: { page: index },
       queryParamsHandling: 'merge',
-      relativeTo: this._route,
+      relativeTo: this._route
     };
-  }
+  };
 
   addPage() {
     this.pages.push({ title: this.newPage.title, index: this.pages.length });

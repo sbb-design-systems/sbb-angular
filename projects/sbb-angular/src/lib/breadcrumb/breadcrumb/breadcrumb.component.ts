@@ -21,9 +21,16 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '../../breakpoints/breakpoints';
+import {
+  Breakpoints,
+  SCALING_FACTOR_4K,
+  SCALING_FACTOR_5K
+} from '../../breakpoints/breakpoints';
 import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
-import { DROPDOWN_SCROLL_STRATEGY, DropdownTriggerDirective } from '../../dropdown/dropdown-trigger.directive';
+import {
+  DROPDOWN_SCROLL_STRATEGY,
+  DropdownTriggerDirective
+} from '../../dropdown/dropdown-trigger.directive';
 import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
 
 /**
@@ -38,8 +45,9 @@ export interface BreadcrumbParentComponent {
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_BREADCRUMB_PARENT_COMPONENT =
-  new InjectionToken<BreadcrumbParentComponent>('SBB_BREADCRUMB_PARENT_COMPONENT');
+export const SBB_BREADCRUMB_PARENT_COMPONENT = new InjectionToken<
+  BreadcrumbParentComponent
+>('SBB_BREADCRUMB_PARENT_COMPONENT');
 
 const BREADCRUMB_LEVEL_OFFSET = 60;
 
@@ -50,8 +58,8 @@ const BREADCRUMB_LEVEL_OFFSET = 60;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
-
+export class BreadcrumbComponent extends DropdownTriggerDirective
+  implements AfterViewInit {
   /**
    * Refers to a dropdown instance.
    */
@@ -90,7 +98,10 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
    */
   @Output() expandEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(@Optional() @Inject(SBB_BREADCRUMB_PARENT_COMPONENT) private _parent: BreadcrumbParentComponent,
+  constructor(
+    @Optional()
+    @Inject(SBB_BREADCRUMB_PARENT_COMPONENT)
+    private _parent: BreadcrumbParentComponent,
     private _breakpointObserver: BreakpointObserver,
     protected _elementRef: ElementRef<HTMLInputElement>,
     protected _overlay: Overlay,
@@ -99,9 +110,18 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     protected _changeDetectorRef: ChangeDetectorRef,
     @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
     @Optional() @Inject(DOCUMENT) protected _document: any,
-    protected _viewportRuler?: ViewportRuler) {
+    protected _viewportRuler?: ViewportRuler
+  ) {
     super(
-      _elementRef, _overlay, _viewContainerRef, _zone, _changeDetectorRef, _scrollStrategy, _document, _viewportRuler);
+      _elementRef,
+      _overlay,
+      _viewContainerRef,
+      _zone,
+      _changeDetectorRef,
+      _scrollStrategy,
+      _document,
+      _viewportRuler
+    );
   }
 
   ngAfterViewInit() {
@@ -122,10 +142,9 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
             scalingFactor = SCALING_FACTOR_5K;
           }
         }
-        this._breadcrumbPanelWidth = this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
-
+        this._breadcrumbPanelWidth =
+          this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
       });
-
   }
 
   /** Handles all keydown events on the select. */
@@ -149,5 +168,4 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
       super._attachOverlay();
     }
   }
-
 }

@@ -6,21 +6,20 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-    let component: AppComponent;
-    let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [AppRoutingModule, AppModule],
-            providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
-        })
-            .compileComponents();
-        fixture = TestBed.createComponent(AppComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [AppRoutingModule, AppModule],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+    }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

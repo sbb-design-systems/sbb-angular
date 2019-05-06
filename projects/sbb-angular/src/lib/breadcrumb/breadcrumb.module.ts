@@ -1,7 +1,10 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconChevronRightModule, IconChevronSmallDownModule } from 'sbb-angular-icons';
+import {
+  IconChevronRightModule,
+  IconChevronSmallDownModule
+} from 'sbb-angular-icons';
 
 import { DropdownModule } from '../dropdown/dropdown';
 
@@ -19,4 +22,4 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
   ],
   exports: [BreadcrumbsComponent, BreadcrumbComponent]
 })
-export class BreadcrumbModule { }
+export class BreadcrumbModule {}

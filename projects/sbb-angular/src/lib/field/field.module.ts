@@ -8,20 +8,8 @@ import { FormErrorDirective } from './form-error/form-error.directive';
 import { LabelComponent } from './label/label.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    InputModule,
-  ],
-  declarations: [
-    FieldComponent,
-    FormErrorDirective,
-    LabelComponent,
-  ],
-  exports: [
-    FieldComponent,
-    FormErrorDirective,
-    LabelComponent,
-    InputModule,
-  ]
+  imports: [CommonModule, InputModule],
+  declarations: [FieldComponent, FormErrorDirective, LabelComponent],
+  exports: [FieldComponent, FormErrorDirective, LabelComponent, InputModule]
 })
-export class FieldModule { }
+export class FieldModule {}

@@ -43,23 +43,34 @@ let counter = 0;
   animations: [GHETTOBOX_ANIMATIONS.addDelete]
 })
 export class GhettoboxComponent {
-
   visible = true;
 
   /**
    * RouterLink as input directive or routerlink from ghettobox object when added by the Service
    */
   @Input()
-  set routerLink(value: any[] | string) { this._routerLink = value; }
+  set routerLink(value: any[] | string) {
+    this._routerLink = value;
+  }
   get routerLink() {
-    return this._routerLink || (this.ghettobox && this.ghettobox.link ? this.ghettobox.link.routerLink : undefined);
+    return (
+      this._routerLink ||
+      (this.ghettobox && this.ghettobox.link
+        ? this.ghettobox.link.routerLink
+        : undefined)
+    );
   }
   private _routerLink: any[] | string;
 
   /**
    * Retrive the routerLink from the proper source
    */
-  get link() { return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined); }
+  get link() {
+    return (
+      this._routerLinkDirective ||
+      (this.ghettobox ? this.ghettobox.link : undefined)
+    );
+  }
 
   @Input() queryParams: { [k: string]: any };
 
@@ -99,7 +110,8 @@ export class GhettoboxComponent {
     return !this.visible;
   }
 
-  @Input() @HostBinding()
+  @Input()
+  @HostBinding()
   id = `sbb-ghettobox-${counter++}`;
 
   @HostBinding('class.sbb-ghettobox-outer-wrapper') ghettoboxClass = true;
@@ -147,8 +159,8 @@ export class GhettoboxComponent {
   constructor(
     private _changeDetector: ChangeDetectorRef,
     private _ghettoboxContainerService: GhettoboxContainerService,
-    @Optional() @Self() private _routerLinkDirective: RouterLink) {
-  }
+    @Optional() @Self() private _routerLinkDirective: RouterLink
+  ) {}
 
   /**
    * Delete itself
@@ -168,7 +180,9 @@ export class GhettoboxComponent {
     this.ghettoboxState = 'deleted';
 
     if (this._ghettoboxContainerService.hasContainerLoaded) {
-      this._ghettoboxContainerService.deleteFromAttachedGhettoboxesCollection(this.id);
+      this._ghettoboxContainerService.deleteFromAttachedGhettoboxesCollection(
+        this.id
+      );
     }
   }
 
@@ -187,7 +201,9 @@ export class GhettoboxComponent {
     this.role = undefined;
     this.ariaHidden = 'true';
     this._changeDetector.markForCheck();
-    this.afterDelete.emit({ ghettoboxState: this.ghettoboxState, ghettoboxId: this.id });
+    this.afterDelete.emit({
+      ghettoboxState: this.ghettoboxState,
+      ghettoboxId: this.id
+    });
   }
-
 }

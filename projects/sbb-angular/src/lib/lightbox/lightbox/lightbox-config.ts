@@ -8,7 +8,6 @@ export type LightboxRole = 'dialog' | 'alertdialog';
  * Configuration for opening a modal lightbox with the Lightbox service.
  */
 export class LightboxConfig<D = any> {
-
   /**
    * Where the attached component should live in Angular's *logical* component tree.
    * This affects what is available for injection and the change detection order for the
@@ -52,5 +51,4 @@ export class LightboxConfig<D = any> {
 
   /** Whether the Lightbox should close when the user goes backwards/forwards in history. */
   closeOnNavigation? = true;
-
 }

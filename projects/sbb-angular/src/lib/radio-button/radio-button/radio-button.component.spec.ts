@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
@@ -10,12 +15,22 @@ import { RadioButtonComponent } from './radio-button.component';
 @Component({
   selector: 'sbb-model-radio-button-test',
   template: `
-  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">
-    Test radio button 1
-  </sbb-radio-button>
-  <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">
-    Test radio button 2
-  </sbb-radio-button>
+    <sbb-radio-button
+      [(ngModel)]="testValue"
+      inputId="test-radio-1"
+      name="test-radio"
+      value="1"
+    >
+      Test radio button 1
+    </sbb-radio-button>
+    <sbb-radio-button
+      [(ngModel)]="testValue"
+      inputId="test-radio-2"
+      name="test-radio"
+      value="2"
+    >
+      Test radio button 2
+    </sbb-radio-button>
   `
 })
 class ModelRadioButtonTestComponent {
@@ -71,7 +86,9 @@ describe('RadioButtonComponent using mock component', () => {
   }));
 
   beforeEach(() => {
-    modelComponentFixture = TestBed.createComponent(ModelRadioButtonTestComponent);
+    modelComponentFixture = TestBed.createComponent(
+      ModelRadioButtonTestComponent
+    );
     modelComponent = modelComponentFixture.componentInstance;
 
     modelComponentFixture.detectChanges();
@@ -84,40 +101,56 @@ describe('RadioButtonComponent using mock component', () => {
   it('should create mock component and should contain two sbb-radio-button components', () => {
     expect(modelComponent).toBeTruthy();
 
-    const radiobuttonComponents = modelComponentFixture.debugElement.queryAll(By.directive(RadioButtonComponent));
+    const radiobuttonComponents = modelComponentFixture.debugElement.queryAll(
+      By.directive(RadioButtonComponent)
+    );
     expect(radiobuttonComponents).toBeTruthy();
     expect(radiobuttonComponents.length).toBe(2);
   });
 
   it('should check the radio button when click the label', () => {
-    const radiobuttonLabel = modelComponentFixture.debugElement.query(By.css('label[for="test-radio-1"]'));
+    const radiobuttonLabel = modelComponentFixture.debugElement.query(
+      By.css('label[for="test-radio-1"]')
+    );
     expect(radiobuttonLabel).toBeTruthy();
 
     radiobuttonLabel.nativeElement.click();
 
-    const radioButtonComponent = modelComponentFixture.debugElement.query(By.directive(RadioButtonComponent));
+    const radioButtonComponent = modelComponentFixture.debugElement.query(
+      By.directive(RadioButtonComponent)
+    );
     expect(radioButtonComponent).toBeTruthy();
 
-    const radioButtonChecked = radioButtonComponent.queryAll(By.css('input:checked'));
+    const radioButtonChecked = radioButtonComponent.queryAll(
+      By.css('input:checked')
+    );
     expect(radioButtonChecked).toBeTruthy();
     expect(radioButtonChecked.length).toBe(1);
   });
 
   it('should be mutual exclusive', () => {
-    const radioButtons = modelComponentFixture.debugElement.queryAll(By.directive(RadioButtonComponent));
+    const radioButtons = modelComponentFixture.debugElement.queryAll(
+      By.directive(RadioButtonComponent)
+    );
     radioButtons[0].query(By.css('input[type="radio"]')).nativeElement.click();
 
-    let radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
+    let radioButtonChecked = modelComponentFixture.debugElement.queryAll(
+      By.css('input:checked')
+    );
     expect(radioButtonChecked.length).toBe(1);
 
     radioButtons[1].query(By.css('input[type="radio"]')).nativeElement.click();
 
-    radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
+    radioButtonChecked = modelComponentFixture.debugElement.queryAll(
+      By.css('input:checked')
+    );
     expect(radioButtonChecked.length).toBe(1);
   });
 
   it('should checked if model is equal to value', async () => {
-    const radiobuttonLabel = modelComponentFixture.debugElement.query(By.css('label[for="test-radio-1"]'));
+    const radiobuttonLabel = modelComponentFixture.debugElement.query(
+      By.css('label[for="test-radio-1"]')
+    );
     expect(radiobuttonLabel).toBeTruthy();
 
     modelComponent.testValue = '1';
@@ -125,10 +158,14 @@ describe('RadioButtonComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
 
-    const components = modelComponentFixture.debugElement.queryAll(By.directive(RadioButtonComponent));
+    const components = modelComponentFixture.debugElement.queryAll(
+      By.directive(RadioButtonComponent)
+    );
     expect(components[0].componentInstance._checked).toBe(true);
 
-    const radiobuttonLabel2 = modelComponentFixture.debugElement.query(By.css('label[for="test-radio-2"]'));
+    const radiobuttonLabel2 = modelComponentFixture.debugElement.query(
+      By.css('label[for="test-radio-2"]')
+    );
     expect(radiobuttonLabel2).toBeTruthy();
 
     radiobuttonLabel2.nativeElement.click();
@@ -136,6 +173,8 @@ describe('RadioButtonComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
     expect(components[1].componentInstance._checked).toBe(true);
-    expect(modelComponent.testValue).toBe(components[1].componentInstance.value);
+    expect(modelComponent.testValue).toBe(
+      components[1].componentInstance.value
+    );
   });
 });

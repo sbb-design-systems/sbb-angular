@@ -4,9 +4,13 @@
       <h4 class="sbbsc-block">Basic Example</h4>
       <sbb-field mode="long">
         <sbb-label>Lieblingsessen</sbb-label>
-        <sbb-select placeholder="Lieblingsessen" [formControl]="basicExampleFormControl" #basicSelect>
+        <sbb-select
+          placeholder="Lieblingsessen"
+          [formControl]="basicExampleFormControl"
+          #basicSelect
+        >
           <sbb-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+            {{ food.viewValue }}
           </sbb-option>
         </sbb-select>
       </sbb-field>
@@ -14,8 +18,13 @@
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <pre>{{ basicExampleFormControl.value | json }}</pre>
-      <sbb-checkbox (change)="toggleDisabled($event,basicExampleFormControl)">disabled</sbb-checkbox>
-      <sbb-checkbox (change)="toggleDisabledOptions($event, basicSelect, 'options' )">disabled option</sbb-checkbox>
+      <sbb-checkbox (change)="toggleDisabled($event, basicExampleFormControl)"
+        >disabled</sbb-checkbox
+      >
+      <sbb-checkbox
+        (change)="toggleDisabledOptions($event, basicSelect, 'options')"
+        >disabled option</sbb-checkbox
+      >
     </div>
   </div>
   <div role="presentation" class="sbbsc-separator"></div>
@@ -25,9 +34,17 @@
       <h4 class="sbbsc-block">Basic Example (native version)</h4>
       <sbb-field mode="long">
         <sbb-label>Lieblingsessen</sbb-label>
-        <select class="sbb-select" [formControl]="nativeExampleFormControl" #nativeExample>
-          <option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-            {{food.viewValue}}
+        <select
+          class="sbb-select"
+          [formControl]="nativeExampleFormControl"
+          #nativeExample
+        >
+          <option
+            *ngFor="let food of foods"
+            [value]="food.value"
+            [disabled]="food.disabled"
+          >
+            {{ food.viewValue }}
           </option>
         </select>
       </sbb-field>
@@ -35,8 +52,13 @@
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <pre>{{ nativeExampleFormControl.value | json }}</pre>
-      <sbb-checkbox (change)="toggleDisabled($event,nativeExampleFormControl)">disabled</sbb-checkbox>
-      <sbb-checkbox (change)="toggleDisabledOptions($event, 'select', 'options')">disabled option</sbb-checkbox>
+      <sbb-checkbox (change)="toggleDisabled($event, nativeExampleFormControl)"
+        >disabled</sbb-checkbox
+      >
+      <sbb-checkbox
+        (change)="toggleDisabledOptions($event, 'select', 'options')"
+        >disabled option</sbb-checkbox
+      >
     </div>
   </div>
   <div role="presentation" class="sbbsc-separator"></div>
@@ -46,9 +68,14 @@
       <h4 class="sbbsc-block">Multiple Example</h4>
       <sbb-field mode="long">
         <sbb-label>Viele Lieblingsgerichte</sbb-label>
-        <sbb-select placeholder="Beliebteste Lebensmittel" multiple [formControl]="multipleExampleFormControl" #multiSelect>
+        <sbb-select
+          placeholder="Beliebteste Lebensmittel"
+          multiple
+          [formControl]="multipleExampleFormControl"
+          #multiSelect
+        >
           <sbb-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+            {{ food.viewValue }}
           </sbb-option>
         </sbb-select>
       </sbb-field>
@@ -56,8 +83,14 @@
     <div class="col-lg-6">
       <h4>Properties</h4>
       <pre>{{ multipleExampleFormControl.value | json }}</pre>
-      <sbb-checkbox (change)="toggleDisabled($event,multipleExampleFormControl)">disabled</sbb-checkbox>
-      <sbb-checkbox (change)="toggleDisabledOptions($event, multiSelect, 'options')">disabled option</sbb-checkbox>
+      <sbb-checkbox
+        (change)="toggleDisabled($event, multipleExampleFormControl)"
+        >disabled</sbb-checkbox
+      >
+      <sbb-checkbox
+        (change)="toggleDisabledOptions($event, multiSelect, 'options')"
+        >disabled option</sbb-checkbox
+      >
     </div>
   </div>
   <div role="presentation" class="sbbsc-separator"></div>
@@ -67,13 +100,23 @@
       <h4 class="sbbsc-block">With option groups</h4>
       <sbb-field mode="long">
         <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
-        <sbb-select placeholder="Lebensmittel aus der ganzen Welt" [formControl]="withOptionGroupsExampleFormControl" #withOptionGroup>
+        <sbb-select
+          placeholder="Lebensmittel aus der ganzen Welt"
+          [formControl]="withOptionGroupsExampleFormControl"
+          #withOptionGroup
+        >
           <sbb-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+            {{ food.viewValue }}
           </sbb-option>
-          <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
-            <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
-              {{food.viewValue}}
+          <sbb-option-group
+            *ngFor="let foodNation of foodFromTheWorld"
+            [label]="foodNation.nation"
+          >
+            <sbb-option
+              *ngFor="let food of foodNation.food"
+              [value]="food.value"
+            >
+              {{ food.viewValue }}
             </sbb-option>
           </sbb-option-group>
         </sbb-select>
@@ -81,9 +124,17 @@
     </div>
     <div class="col-lg-6">
       <h4>Properties</h4>
-      <pre>{{withOptionGroupsExampleFormControl.value | json}}</pre>
-      <sbb-checkbox (change)="toggleDisabled($event,withOptionGroupsExampleFormControl)">disabled</sbb-checkbox>
-      <sbb-checkbox (change)="toggleDisabledOptions($event, withOptionGroup, 'optionGroups')">disabled option group</sbb-checkbox>
+      <pre>{{ withOptionGroupsExampleFormControl.value | json }}</pre>
+      <sbb-checkbox
+        (change)="toggleDisabled($event, withOptionGroupsExampleFormControl)"
+        >disabled</sbb-checkbox
+      >
+      <sbb-checkbox
+        (change)="
+          toggleDisabledOptions($event, withOptionGroup, 'optionGroups')
+        "
+        >disabled option group</sbb-checkbox
+      >
     </div>
   </div>
   <div role="presentation" class="sbbsc-separator"></div>
@@ -93,13 +144,24 @@
       <h4 class="sbbsc-block">Multiple with option groups</h4>
       <sbb-field mode="long">
         <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
-        <sbb-select placeholder="Lebensmittel aus der ganzen Welt" multiple [formControl]="multipleWithOptionGroupsExampleFormControl" #multiWithOptionGroup>
+        <sbb-select
+          placeholder="Lebensmittel aus der ganzen Welt"
+          multiple
+          [formControl]="multipleWithOptionGroupsExampleFormControl"
+          #multiWithOptionGroup
+        >
           <sbb-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+            {{ food.viewValue }}
           </sbb-option>
-          <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
-            <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
-              {{food.viewValue}}
+          <sbb-option-group
+            *ngFor="let foodNation of foodFromTheWorld"
+            [label]="foodNation.nation"
+          >
+            <sbb-option
+              *ngFor="let food of foodNation.food"
+              [value]="food.value"
+            >
+              {{ food.viewValue }}
             </sbb-option>
           </sbb-option-group>
         </sbb-select>
@@ -107,9 +169,19 @@
     </div>
     <div class="col-lg-6">
       <h4>Properties</h4>
-      <pre>{{multipleWithOptionGroupsExampleFormControl.value | json }}</pre>
-      <sbb-checkbox (change)="toggleDisabled($event,multipleWithOptionGroupsExampleFormControl)">disabled</sbb-checkbox>
-      <sbb-checkbox (change)="toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')">disabled option group</sbb-checkbox>
+      <pre>{{ multipleWithOptionGroupsExampleFormControl.value | json }}</pre>
+      <sbb-checkbox
+        (change)="
+          toggleDisabled($event, multipleWithOptionGroupsExampleFormControl)
+        "
+        >disabled</sbb-checkbox
+      >
+      <sbb-checkbox
+        (change)="
+          toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')
+        "
+        >disabled option group</sbb-checkbox
+      >
     </div>
   </div>
 </article>

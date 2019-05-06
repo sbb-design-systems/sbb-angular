@@ -11,7 +11,6 @@ import { Ghettobox, GhettoboxRef } from './ghettobox-ref';
   providedIn: 'root'
 })
 export class GhettoboxService {
-
   /**
    * Observable you can subscribe to know if sbb-ghettobox-container has been loaded
    */
@@ -32,8 +31,12 @@ export class GhettoboxService {
    */
   add(ghettobox: Ghettobox): GhettoboxRef {
     this._ghettoboxContainerService.checkIfContainerIsPresent();
-    const ghettoboxRef = this._ghettoboxContainerService.createGhettobox(ghettobox);
-    this._ghettoboxContainerService.pushGettoboxRefIntoAttachedCollection(ghettoboxRef);
+    const ghettoboxRef = this._ghettoboxContainerService.createGhettobox(
+      ghettobox
+    );
+    this._ghettoboxContainerService.pushGettoboxRefIntoAttachedCollection(
+      ghettoboxRef
+    );
 
     return ghettoboxRef;
   }
@@ -58,5 +61,4 @@ export class GhettoboxService {
   clearAll() {
     this._ghettoboxContainerService.clearAll();
   }
-
 }

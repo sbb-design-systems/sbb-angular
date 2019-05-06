@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { ProcessflowComponent, ProcessflowStep } from 'projects/sbb-angular/src/public_api';
+import { ProcessflowComponent, ProcessflowStep } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-processflow-showcase',
@@ -7,7 +7,6 @@ import { ProcessflowComponent, ProcessflowStep } from 'projects/sbb-angular/src/
   styleUrls: ['./processflow-showcase.component.scss']
 })
 export class ProcessflowShowcaseComponent implements AfterViewInit {
-
   @ViewChild('processflow') processflow: ProcessflowComponent;
 
   ngAfterViewInit(): void {
@@ -19,5 +18,4 @@ export class ProcessflowShowcaseComponent implements AfterViewInit {
   reset() {
     this.processflow.reset();
   }
-
 }

@@ -82,20 +82,19 @@ const testFileList: File[] = [
 
 @Component({
   selector: 'sbb-file-test',
-  template: `<sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector>`
+  template: `
+    <sbb-file-selector (fileChanged)="fileChanged($event)"></sbb-file-selector>
+  `
 })
 class FileSelectorTestComponent {
-
   filesList1: File[] = [];
 
   fileChanged(filesList: File[]) {
     this.filesList1 = filesList;
   }
-
 }
 
 describe('FileSelectorComponent using mock component', () => {
-
   let component: FileSelectorTestComponent;
   let fixture: ComponentFixture<FileSelectorTestComponent>;
 
@@ -112,12 +111,14 @@ describe('FileSelectorComponent using mock component', () => {
     fixture.detectChanges();
   });
 
-  it('component test is created', (async () => {
+  it('component test is created', async () => {
     expect(component).toBeTruthy();
-  }));
+  });
 
   it('should call fileChanged event when change event is triggered on input file', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(
+      By.directive(FileSelectorComponent)
+    );
     const fileInput = fileComponent.query(By.css('input[type="file"]'));
 
     spyOn(component, 'fileChanged');
@@ -128,19 +129,25 @@ describe('FileSelectorComponent using mock component', () => {
   });
 
   it('should create a File List after calling the applyChanges method', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(
+      By.directive(FileSelectorComponent)
+    );
 
     fileComponent.componentInstance.applyChanges(testFileList);
 
     fixture.detectChanges();
 
-    const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
+    const filesItems = fileComponent.queryAll(
+      By.css('.sbb-file-selector-list > li')
+    );
 
     expect(filesItems.length).toBe(10);
   });
 
   it('should add files to File List when the multipleMode is set to "persistent"', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(
+      By.directive(FileSelectorComponent)
+    );
 
     const firstList = testFileList.slice(0, 2);
     const secondList = testFileList.slice(5, 7);
@@ -157,47 +164,79 @@ describe('FileSelectorComponent using mock component', () => {
 
     fixture.detectChanges();
 
-    const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
+    const filesItems = fileComponent.queryAll(
+      By.css('.sbb-file-selector-list > li')
+    );
 
     expect(filesItems.length).toBe(4);
   });
 
   it('should remove one item when clicking the remove button', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(
+      By.directive(FileSelectorComponent)
+    );
 
     fileComponent.componentInstance.applyChanges(testFileList);
 
     fixture.detectChanges();
 
-    const firstRemoveButton = fileComponent.queryAll(By.css('.sbb-file-selector-list-remove-icon'))[0];
+    const firstRemoveButton = fileComponent.queryAll(
+      By.css('.sbb-file-selector-list-remove-icon')
+    )[0];
 
     firstRemoveButton.nativeElement.click();
 
     fixture.detectChanges();
 
-    const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
+    const filesItems = fileComponent.queryAll(
+      By.css('.sbb-file-selector-list > li')
+    );
 
     expect(filesItems.length).toBe(9);
   });
 
   it('should put proper file type icon', () => {
-    const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
+    const fileComponent = fixture.debugElement.query(
+      By.directive(FileSelectorComponent)
+    );
 
     fileComponent.componentInstance.applyChanges(testFileList);
 
     fixture.detectChanges();
 
-    const typeIconWrapper = fileComponent.queryAll(By.css('.sbb-file-selector-list-type-icon'));
+    const typeIconWrapper = fileComponent.queryAll(
+      By.css('.sbb-file-selector-list-type-icon')
+    );
 
-    expect(typeIconWrapper[0].query(By.css('sbb-icon-document-sound'))).toBeTruthy();
-    expect(typeIconWrapper[1].query(By.css('sbb-icon-document-text'))).toBeTruthy();
-    expect(typeIconWrapper[2].query(By.css('sbb-icon-document-standard'))).toBeTruthy();
-    expect(typeIconWrapper[3].query(By.css('sbb-icon-document-image'))).toBeTruthy();
-    expect(typeIconWrapper[4].query(By.css('sbb-icon-document-pdf'))).toBeTruthy();
-    expect(typeIconWrapper[5].query(By.css('sbb-icon-document-image'))).toBeTruthy();
-    expect(typeIconWrapper[6].query(By.css('sbb-icon-document-image'))).toBeTruthy();
-    expect(typeIconWrapper[7].query(By.css('sbb-icon-document-video'))).toBeTruthy();
-    expect(typeIconWrapper[8].query(By.css('sbb-icon-document-text'))).toBeTruthy();
-    expect(typeIconWrapper[9].query(By.css('sbb-icon-document-zip'))).toBeTruthy();
+    expect(
+      typeIconWrapper[0].query(By.css('sbb-icon-document-sound'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[1].query(By.css('sbb-icon-document-text'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[2].query(By.css('sbb-icon-document-standard'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[3].query(By.css('sbb-icon-document-image'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[4].query(By.css('sbb-icon-document-pdf'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[5].query(By.css('sbb-icon-document-image'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[6].query(By.css('sbb-icon-document-image'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[7].query(By.css('sbb-icon-document-video'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[8].query(By.css('sbb-icon-document-text'))
+    ).toBeTruthy();
+    expect(
+      typeIconWrapper[9].query(By.css('sbb-icon-document-zip'))
+    ).toBeTruthy();
   });
 });

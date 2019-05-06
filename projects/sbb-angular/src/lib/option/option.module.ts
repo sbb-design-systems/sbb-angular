@@ -8,10 +8,7 @@ import { OptionComponent } from './option/option.component';
 import { PseudoCheckboxComponent } from './option/pseudo-checkbox';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IconTickModule,
-  ],
+  imports: [CommonModule, IconTickModule],
   declarations: [
     OptionComponent,
     OptionGroupComponent,
@@ -25,4 +22,4 @@ import { PseudoCheckboxComponent } from './option/pseudo-checkbox';
     PseudoCheckboxComponent
   ]
 })
-export class OptionModule { }
+export class OptionModule {}

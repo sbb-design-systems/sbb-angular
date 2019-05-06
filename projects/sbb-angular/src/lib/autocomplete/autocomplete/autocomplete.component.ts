@@ -14,12 +14,15 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { HasOptions } from '../../option/has-options';
 import { OptionGroupComponent } from '../../option/option-group/option-group.component';
-import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
+import {
+  OptionComponent,
+  SBB_OPTION_PARENT_COMPONENT
+} from '../../option/option/option.component';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of
@@ -33,7 +36,8 @@ export class SbbAutocompleteSelectedEvent {
     /** Reference to the autocomplete panel that emitted the event. */
     public source: AutocompleteComponent,
     /** Option that was selected. */
-    public option: OptionComponent) { }
+    public option: OptionComponent
+  ) {}
 }
 
 /** Default `sbb-autocomplete` options that can be overridden. */
@@ -50,15 +54,22 @@ export interface SbbAutocompleteDefaultOptions {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: AutocompleteComponent },
+    {
+      provide: SBB_OPTION_PARENT_COMPONENT,
+      useExisting: AutocompleteComponent
+    }
   ]
 })
 export class AutocompleteComponent implements AfterContentInit, HasOptions {
   /** All of the defined select options. */
-  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<OptionComponent>;
+  @ContentChildren(OptionComponent, { descendants: true }) options: QueryList<
+    OptionComponent
+  >;
 
   /** All of the defined groups of options. */
-  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<OptionGroupComponent>;
+  @ContentChildren(OptionGroupComponent) optionGroups: QueryList<
+    OptionGroupComponent
+  >;
 
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<OptionComponent>;
@@ -67,7 +78,9 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   showPanel = false;
 
   /** Whether the autocomplete panel is open. */
-  get isOpen(): boolean { return this._isOpen && this.showPanel; }
+  get isOpen(): boolean {
+    return this._isOpen && this.showPanel;
+  }
   // tslint:disable-next-line: naming-convention
   _isOpen = false;
 
@@ -86,7 +99,9 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
    * Whether the first option should be highlighted when the autocomplete panel is opened.
    */
   @Input()
-  get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }
+  get autoActiveFirstOption(): boolean {
+    return this._autoActiveFirstOption;
+  }
   set autoActiveFirstOption(value: boolean) {
     this._autoActiveFirstOption = coerceBooleanProperty(value);
   }
@@ -99,8 +114,9 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @Input() panelWidth: string | number;
 
   /** Event that is emitted whenever an option from the list is selected. */
-  @Output() readonly optionSelected: EventEmitter<SbbAutocompleteSelectedEvent> =
-    new EventEmitter<SbbAutocompleteSelectedEvent>();
+  @Output() readonly optionSelected: EventEmitter<
+    SbbAutocompleteSelectedEvent
+  > = new EventEmitter<SbbAutocompleteSelectedEvent>();
 
   /** Event that is emitted when the autocomplete panel is opened. */
   @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
@@ -115,7 +131,9 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
-      value.split(' ').forEach(className => this._classList[className.trim()] = true);
+      value
+        .split(' ')
+        .forEach(className => (this._classList[className.trim()] = true));
       this._elementRef.nativeElement.className = '';
     }
   }
@@ -127,11 +145,13 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>) {
-  }
+    private _elementRef: ElementRef<HTMLElement>
+  ) {}
 
   ngAfterContentInit() {
-    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(this.options).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<OptionComponent>(
+      this.options
+    ).withWrap();
     // Set the initial visibility state.
     this.setVisibility();
   }

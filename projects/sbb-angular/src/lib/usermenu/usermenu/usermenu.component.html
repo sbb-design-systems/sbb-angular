@@ -1,26 +1,53 @@
-<div class="sbb-usermenu-logged-in" [sbbDropdown]="dropdown" tabindex="0" [class.sbb-usermenu-hidden]="!userName"
-  [class.sbb-usermenu-logged-in-active]="dropdown.isOpen" [sbbDropdownDisabled]="!userName">
-  <div class="sbb-usermenu-logged-in-collapsed"
-    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.isOpen">
+<div
+  class="sbb-usermenu-logged-in"
+  [sbbDropdown]="dropdown"
+  tabindex="0"
+  [class.sbb-usermenu-hidden]="!userName"
+  [class.sbb-usermenu-logged-in-active]="dropdown.isOpen"
+  [sbbDropdownDisabled]="!userName"
+>
+  <div
+    class="sbb-usermenu-logged-in-collapsed"
+    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.isOpen"
+  >
     <ng-container *ngIf="userName && userName.length">
       <div class="sbb-usermenu-logged-in-collapsed-user-icon">
         <div #icon class="sbb-usermenu-logged-in-collapsed-icon">
           <ng-content select="[sbbIcon]"></ng-content>
         </div>
-        <div class="sbb-usermenu-logged-in-collapsed-initial-letters" *ngIf="!icon.children.length">
+        <div
+          class="sbb-usermenu-logged-in-collapsed-initial-letters"
+          *ngIf="!icon.children.length"
+        >
           <div>{{ getInitialLetters() }}</div>
         </div>
       </div>
       <div class="sbb-usermenu-logged-in-expanded-info-user">
-        <div class="sbb-usermenu-logged-in-expanded-displayName" [class.sbb-displayName-logged-in-collapsed]="!dropdown.isOpen">{{ displayName || userName }}</div>
-        <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="dropdown.isOpen  && displayName">{{ userName }}</div>
+        <div
+          class="sbb-usermenu-logged-in-expanded-displayName"
+          [class.sbb-displayName-logged-in-collapsed]="!dropdown.isOpen"
+        >
+          {{ displayName || userName }}
+        </div>
+        <div
+          class="sbb-usermenu-logged-in-expanded-username"
+          *ngIf="dropdown.isOpen && displayName"
+        >
+          {{ userName }}
+        </div>
       </div>
-      <div class="sbb-usermenu-logged-in-collapsed-arrow" *ngIf="userName && userName.length && !dropdown.isOpen">
+      <div
+        class="sbb-usermenu-logged-in-collapsed-arrow"
+        *ngIf="userName && userName.length && !dropdown.isOpen"
+      >
         <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
       </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">
-      <div class="sbb-usermenu-logged-in-expanded-arrow" *ngIf="dropdown.isOpen">
+      <div
+        class="sbb-usermenu-logged-in-expanded-arrow"
+        *ngIf="dropdown.isOpen"
+      >
         <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
       </div>
     </div>
@@ -30,7 +57,14 @@
   <div class="sbb-usermenu-logged-off-icon-user">
     <sbb-icon-user></sbb-icon-user>
   </div>
-  <button class="sbb-usermenu-logged-off-button" (click)="emitLogin()" type="button" i18n>Login</button>
+  <button
+    class="sbb-usermenu-logged-off-button"
+    (click)="emitLogin()"
+    type="button"
+    i18n
+  >
+    Login
+  </button>
 </div>
 
 <ng-content select="sbb-dropdown"></ng-content>

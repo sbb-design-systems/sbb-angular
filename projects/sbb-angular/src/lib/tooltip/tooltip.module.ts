@@ -5,7 +5,10 @@ import { NgModule } from '@angular/core';
 import { IconCrossModule, IconQuestionMarkModule } from 'sbb-angular-icons';
 
 import { TooltipIconDirective } from './tooltip/tooltip-icon.directive';
-import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER, TooltipComponent } from './tooltip/tooltip.component';
+import {
+  SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  TooltipComponent
+} from './tooltip/tooltip.component';
 
 @NgModule({
   declarations: [TooltipComponent, TooltipIconDirective],
@@ -14,9 +17,9 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER, TooltipComponent } from '
     PortalModule,
     OverlayModule,
     IconQuestionMarkModule,
-    IconCrossModule,
+    IconCrossModule
   ],
   providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
   exports: [TooltipComponent, TooltipIconDirective]
 })
-export class TooltipModule { }
+export class TooltipModule {}

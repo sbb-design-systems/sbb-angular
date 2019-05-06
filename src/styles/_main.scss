@@ -4,22 +4,21 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
- /***
+/***
  * Custom import to get rid of not useful features
  ***/
 
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/transitions";
-@import "../node_modules/bootstrap/scss/utilities";
-
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/grid';
+@import '../node_modules/bootstrap/scss/transitions';
+@import '../node_modules/bootstrap/scss/utilities';
 
 /***
 * highlightjs styles
 ***/
-@import "../node_modules/highlight.js/styles/atom-one-light.css";
+@import '../node_modules/highlight.js/styles/atom-one-light.css';
 
 /***
 * sbb-angular mixins

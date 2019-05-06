@@ -1,13 +1,35 @@
-<div [class.sbb-search-box-visible]="mode === 'default' || !hideSearch" class="sbb-search-box" #searchbox>
-  <input #input class="sbb-search-input" type="text" (focusin)="handleFocus()" (input)="handleInput($event)"
-    (keydown)="handleKeydown($event)" (blur)="onBlur($event)" [attr.placeholder]="placeholder">
-  <button type="button" #button (click)="emitSearch()" (blur)="onBlur($event)"
-    [class.sbb-search-box-button-active]="isSearchBoxFocused()">
+<div
+  [class.sbb-search-box-visible]="mode === 'default' || !hideSearch"
+  class="sbb-search-box"
+  #searchbox
+>
+  <input
+    #input
+    class="sbb-search-input"
+    type="text"
+    (focusin)="handleFocus()"
+    (input)="handleInput($event)"
+    (keydown)="handleKeydown($event)"
+    (blur)="onBlur($event)"
+    [attr.placeholder]="placeholder"
+  />
+  <button
+    type="button"
+    #button
+    (click)="emitSearch()"
+    (blur)="onBlur($event)"
+    [class.sbb-search-box-button-active]="isSearchBoxFocused()"
+  >
     <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
   </button>
 </div>
-<button type="button" #trigger [class.sbb-search-icon-wrapper-visible]="hideSearch" class="sbb-search-icon-wrapper"
-  (click)="revealSearchbox()">
+<button
+  type="button"
+  #trigger
+  [class.sbb-search-icon-wrapper-visible]="hideSearch"
+  class="sbb-search-icon-wrapper"
+  (click)="revealSearchbox()"
+>
   <span class="sbb-svgsprite-icon">
     <ng-container *ngTemplateOutlet="icon ? icon : defaultIcon"></ng-container>
   </span>
@@ -17,4 +39,3 @@
 <ng-template #defaultIcon>
   <sbb-icon-magnifying-glass></sbb-icon-magnifying-glass>
 </ng-template>
-

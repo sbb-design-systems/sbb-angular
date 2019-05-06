@@ -7,17 +7,8 @@ import { TagComponent } from './tag/tag.component';
 import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BadgeModule
-  ],
-  declarations: [
-    TagComponent,
-    TagsComponent
-  ],
-  exports: [
-    TagComponent,
-    TagsComponent
-  ]
+  imports: [CommonModule, BadgeModule],
+  declarations: [TagComponent, TagsComponent],
+  exports: [TagComponent, TagsComponent]
 })
-export class TagModule { }
+export class TagModule {}

@@ -25,7 +25,7 @@
 
   &.sbb-expanded {
     &::after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       height: 0;
@@ -50,11 +50,11 @@
     background: inherit;
   }
 
-  &[aria-disabled="true"] {
+  &[aria-disabled='true'] {
     opacity: 0.75;
   }
 
-  &:not([aria-disabled="true"]) {
+  &:not([aria-disabled='true']) {
     cursor: pointer;
   }
 

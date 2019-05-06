@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Basic Example</h4>
-      <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
+      <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
       <sbb-autocomplete #auto="sbbAutocomplete">
         <sbb-option *ngFor="let option of filteredOptions" [value]="option">
           {{ option }}
@@ -17,7 +17,11 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Basic Example</h4>
-      <input type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic">
+      <input
+        type="text"
+        [formControl]="myControlStatic"
+        [sbbAutocomplete]="autoStatic"
+      />
       <sbb-autocomplete #autoStatic="sbbAutocomplete">
         <sbb-option *ngFor="let option of options$ | async" [value]="option">
           {{ option }}
@@ -33,7 +37,7 @@
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
       <p>
-        The async call is emulated by a 500ms delay.<br>
+        The async call is emulated by a 500ms delay.<br />
         Two digits are needed at least to trigger the async function call.
       </p>
     </div>

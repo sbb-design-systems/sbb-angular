@@ -8,7 +8,7 @@ import {
   RIGHT_ARROW,
   SPACE,
   TAB,
-  UP_ARROW,
+  UP_ARROW
 } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
@@ -20,7 +20,7 @@ import {
   OnInit,
   QueryList,
   ViewChild,
-  ViewChildren,
+  ViewChildren
 } from '@angular/core';
 import {
   async,
@@ -29,7 +29,7 @@ import {
   flush,
   inject,
   TestBed,
-  tick,
+  tick
 } from '@angular/core/testing';
 import {
   ControlValueAccessor,
@@ -39,17 +39,24 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Subject, Subscription } from 'rxjs';
 
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
+import {
+  dispatchEvent,
+  dispatchFakeEvent,
+  dispatchKeyboardEvent
+} from '../../_common/testing/dispatch-events';
 import { createKeyboardEvent } from '../../_common/testing/event-objects';
 import { FieldModule } from '../../field/field.module';
-import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
+import {
+  OptionComponent,
+  SBBOptionSelectionChange
+} from '../../option/option/option.component';
 import { SelectModule } from '../select.module';
 
 import { SelectComponent } from './select.component';
@@ -59,10 +66,20 @@ import { SelectComponent } from './select.component';
   template: `
     <div [style.height.px]="heightAbove"></div>
     <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control" [required]="isRequired"
-        [tabIndex]="tabIndexOverride" [attr.aria-label]="ariaLabel" [attr.aria-labelledby]="ariaLabelledby"
-        [panelClass]="panelClass">
-        <sbb-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
+      <sbb-select
+        placeholder="Food"
+        [formControl]="control"
+        [required]="isRequired"
+        [tabIndex]="tabIndexOverride"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledby"
+        [panelClass]="panelClass"
+      >
+        <sbb-option
+          *ngFor="let food of foods"
+          [value]="food.value"
+          [disabled]="food.disabled"
+        >
           {{ food.viewValue }}
         </sbb-option>
       </sbb-select>
@@ -79,7 +96,7 @@ class BasicSelectComponent {
     { value: 'chips-4', viewValue: 'Chips' },
     { value: 'eggs-5', viewValue: 'Eggs' },
     { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' },
+    { value: 'sushi-7', viewValue: 'Sushi' }
   ];
   control = new FormControl();
   isRequired: boolean;
@@ -99,8 +116,8 @@ class BasicSelectComponent {
   template: `
     <sbb-field>
       <sbb-select placeholder="Food" ngModel [disabled]="isDisabled">
-        <sbb-option *ngFor="let food of foods"
-                    [value]="food.value">{{ food.viewValue }}
+        <sbb-option *ngFor="let food of foods" [value]="food.value"
+          >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
     </sbb-field>
@@ -110,7 +127,7 @@ class NgModelSelectComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
   ];
   isDisabled: boolean;
 
@@ -135,21 +152,24 @@ class NgModelSelectComponent {
     </sbb-field>
   `
 })
-class ManySelectsComponent { }
+class ManySelectsComponent {}
 
 @Component({
   selector: 'sbb-ng-if-select',
   template: `
     <div *ngIf="isShowing">
       <sbb-field>
-        <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
+        <sbb-select
+          placeholder="Food I want to eat right now"
+          [formControl]="control"
+        >
           <sbb-option *ngFor="let food of foods" [value]="food.value">
             {{ food.viewValue }}
           </sbb-option>
         </sbb-select>
       </sbb-field>
     </div>
-  `,
+  `
 })
 class NgIfSelectComponent {
   isShowing = false;
@@ -168,7 +188,9 @@ class NgIfSelectComponent {
   template: `
     <sbb-field>
       <sbb-select (selectionChange)="changeListener($event)">
-        <sbb-option *ngFor="let food of foods" [value]="food">{{ food }}</sbb-option>
+        <sbb-option *ngFor="let food of foods" [value]="food">{{
+          food
+        }}</sbb-option>
       </sbb-select>
     </sbb-field>
   `
@@ -192,7 +214,10 @@ class SelectWithChangeEventComponent {
   selector: 'sbb-select-init-without-options',
   template: `
     <sbb-field>
-      <sbb-select placeholder="Food I want to eat right now" [formControl]="control">
+      <sbb-select
+        placeholder="Food I want to eat right now"
+        [formControl]="control"
+      >
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
@@ -218,33 +243,42 @@ class SelectInitWithoutOptionsComponent {
 
 @Component({
   selector: 'sbb-custom-select-accessor',
-  template: `<sbb-field><sbb-select></sbb-select></sbb-field>`,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: CustomSelectAccessorComponent,
-    multi: true
-  }]
+  template: `
+    <sbb-field><sbb-select></sbb-select></sbb-field>
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: CustomSelectAccessorComponent,
+      multi: true
+    }
+  ]
 })
 class CustomSelectAccessorComponent implements ControlValueAccessor {
   @ViewChild(SelectComponent) select: SelectComponent;
 
-  writeValue: (value?: any) => void = () => { };
-  registerOnChange: (changeFn?: (value: any) => void) => void = () => { };
-  registerOnTouched: (touchedFn?: () => void) => void = () => { };
+  writeValue: (value?: any) => void = () => {};
+  registerOnChange: (changeFn?: (value: any) => void) => void = () => {};
+  registerOnTouched: (touchedFn?: () => void) => void = () => {};
 }
 
 @Component({
   selector: 'sbb-comp-with-custom-select',
-  template: `<custom-select-accessor [formControl]="ctrl"></custom-select-accessor>`,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: CustomSelectAccessorComponent,
-    multi: true
-  }]
+  template: `
+    <custom-select-accessor [formControl]="ctrl"></custom-select-accessor>
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: CustomSelectAccessorComponent,
+      multi: true
+    }
+  ]
 })
 class CompWithCustomSelectComponent {
   ctrl = new FormControl('initial value');
-  @ViewChild(CustomSelectAccessorComponent) customAccessor: CustomSelectAccessorComponent;
+  @ViewChild(CustomSelectAccessorComponent)
+  customAccessor: CustomSelectAccessorComponent;
 }
 
 @Component({
@@ -264,7 +298,7 @@ class BasicSelectOnPushComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
   ];
   control = new FormControl();
 }
@@ -286,7 +320,7 @@ class BasicSelectOnPushPreselectedComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
   ];
   control = new FormControl('pizza-1');
 }
@@ -296,8 +330,8 @@ class BasicSelectOnPushPreselectedComponent {
   template: `
     <sbb-field>
       <sbb-select multiple placeholder="Food" [formControl]="control">
-        <sbb-option *ngFor="let food of foods"
-                    [value]="food.value">{{ food.viewValue }}
+        <sbb-option *ngFor="let food of foods" [value]="food.value"
+          >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
     </sbb-field>
@@ -312,7 +346,7 @@ class MultiSelectComponent {
     { value: 'chips-4', viewValue: 'Chips' },
     { value: 'eggs-5', viewValue: 'Eggs' },
     { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' },
+    { value: 'sushi-7', viewValue: 'Sushi' }
   ];
   control = new FormControl();
 
@@ -322,9 +356,11 @@ class MultiSelectComponent {
 
 @Component({
   selector: 'sbb-select-with-plain-tabindex',
-  template: `<sbb-field><sbb-select tabindex="5"></sbb-select></sbb-field>`
+  template: `
+    <sbb-field><sbb-select tabindex="5"></sbb-select></sbb-field>
+  `
 })
-class SelectWithPlainTabindexComponent { }
+class SelectWithPlainTabindexComponent {}
 
 @Component({
   selector: 'sbb-select-early-sibling-access',
@@ -335,7 +371,7 @@ class SelectWithPlainTabindexComponent { }
     <div *ngIf="select.selected"></div>
   `
 })
-class SelectEarlyAccessSiblingComponent { }
+class SelectEarlyAccessSiblingComponent {}
 
 @Component({
   selector: 'sbb-basic-select-initially-hidden',
@@ -361,7 +397,7 @@ class BasicSelectInitiallyHiddenComponent {
     </sbb-field>
   `
 })
-class BasicSelectNoPlaceholderComponent { }
+class BasicSelectNoPlaceholderComponent {}
 
 @Component({
   selector: 'sbb-basic-select-with-theming',
@@ -399,7 +435,7 @@ class ResetValuesSelectComponent {
     { value: 'tacos-2', viewValue: 'Tacos' },
     { value: false, viewValue: 'Falsy' },
     { viewValue: 'Undefined' },
-    { value: null, viewValue: 'Null' },
+    { value: null, viewValue: 'Null' }
   ];
   control = new FormControl();
 
@@ -410,8 +446,8 @@ class ResetValuesSelectComponent {
   template: `
     <sbb-field>
       <sbb-select [formControl]="control">
-        <sbb-option *ngFor="let food of foods"
-                    [value]="food.value">{{ food.viewValue }}
+        <sbb-option *ngFor="let food of foods" [value]="food.value"
+          >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
     </sbb-field>
@@ -420,7 +456,7 @@ class ResetValuesSelectComponent {
 class FalsyValueSelectComponent {
   foods: any[] = [
     { value: 0, viewValue: 'Steak' },
-    { value: 1, viewValue: 'Pizza' },
+    { value: 1, viewValue: 'Pizza' }
   ];
   control = new FormControl();
   @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
@@ -431,9 +467,15 @@ class FalsyValueSelectComponent {
   template: `
     <sbb-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
-        <sbb-option-group *ngFor="let group of pokemonTypes" [label]="group.name"
-          [disabled]="group.disabled">
-          <sbb-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+        <sbb-option-group
+          *ngFor="let group of pokemonTypes"
+          [label]="group.name"
+          [disabled]="group.disabled"
+        >
+          <sbb-option
+            *ngFor="let pokemon of group.pokemon"
+            [value]="pokemon.value"
+          >
             {{ pokemon.viewValue }}
           </sbb-option>
         </sbb-option-group>
@@ -474,7 +516,7 @@ class SelectWithGroupsComponent {
       name: 'Psychic',
       pokemon: [
         { value: 'mew-9', viewValue: 'Mew' },
-        { value: 'mewtwo-10', viewValue: 'Mewtwo' },
+        { value: 'mewtwo-10', viewValue: 'Mewtwo' }
       ]
     }
   ];
@@ -488,9 +530,14 @@ class SelectWithGroupsComponent {
   template: `
     <sbb-field>
       <sbb-select placeholder="Pokemon" [formControl]="control">
-        <sbb-option-group *ngFor="let group of pokemonTypes" [label]="group.name">
+        <sbb-option-group
+          *ngFor="let group of pokemonTypes"
+          [label]="group.name"
+        >
           <ng-container *ngFor="let pokemon of group.pokemon">
-            <sbb-option [value]="pokemon.value">{{ pokemon.viewValue }}</sbb-option>
+            <sbb-option [value]="pokemon.value">{{
+              pokemon.viewValue
+            }}</sbb-option>
           </ng-container>
         </sbb-option-group>
       </sbb-select>
@@ -559,7 +606,7 @@ class BasicSelectWithoutFormsComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'sandwich-2', viewValue: 'Sandwich' },
+    { value: 'sandwich-2', viewValue: 'Sandwich' }
   ];
 
   @ViewChild(SelectComponent) select: SelectComponent;
@@ -580,7 +627,7 @@ class BasicSelectWithoutFormsPreselectedComponent {
   selectedFood = 'pizza-1';
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'pizza-1', viewValue: 'Pizza' }
   ];
 
   @ViewChild(SelectComponent) select: SelectComponent;
@@ -602,7 +649,7 @@ class BasicSelectWithoutFormsMultipleComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'sandwich-2', viewValue: 'Sandwich' },
+    { value: 'sandwich-2', viewValue: 'Sandwich' }
   ];
 
   @ViewChild(SelectComponent) select: SelectComponent;
@@ -612,9 +659,18 @@ class BasicSelectWithoutFormsMultipleComponent {
   selector: 'sbb-select-with-custom-trigger',
   template: `
     <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control" #select="sbbSelect">
+      <sbb-select
+        placeholder="Food"
+        [formControl]="control"
+        #select="sbbSelect"
+      >
         <sbb-select-trigger>
-          {{ select.selected?.viewValue.split('').reverse().join('') }}
+          {{
+            select.selected?.viewValue
+              .split('')
+              .reverse()
+              .join('')
+          }}
         </sbb-select-trigger>
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
@@ -626,7 +682,7 @@ class BasicSelectWithoutFormsMultipleComponent {
 class SelectWithCustomTriggerComponent {
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'pizza-1', viewValue: 'Pizza' }
   ];
   control = new FormControl();
 }
@@ -635,43 +691,65 @@ class SelectWithCustomTriggerComponent {
   selector: 'sbb-ng-model-compare-with',
   template: `
     <sbb-field>
-      <sbb-select [ngModel]="selectedFood" (ngModelChange)="setFoodByCopy($event)"
-                 [compareWith]="comparator">
-        <sbb-option *ngFor="let food of foods" [value]="food">{{ food.viewValue }}</sbb-option>
+      <sbb-select
+        [ngModel]="selectedFood"
+        (ngModelChange)="setFoodByCopy($event)"
+        [compareWith]="comparator"
+      >
+        <sbb-option *ngFor="let food of foods" [value]="food">{{
+          food.viewValue
+        }}</sbb-option>
       </sbb-select>
     </sbb-field>
   `
 })
 class NgModelCompareWithSelectComponent {
-  foods: ({ value: string, viewValue: string })[] = [
+  foods: ({ value: string; viewValue: string })[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
   ];
-  selectedFood: { value: string, viewValue: string } = { value: 'pizza-1', viewValue: 'Pizza' };
+  selectedFood: { value: string; viewValue: string } = {
+    value: 'pizza-1',
+    viewValue: 'Pizza'
+  };
   comparator: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
   @ViewChild(SelectComponent) select: SelectComponent;
   @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
 
-  useCompareByValue() { this.comparator = this.compareByValue; }
+  useCompareByValue() {
+    this.comparator = this.compareByValue;
+  }
 
-  useCompareByReference() { this.comparator = this.compareByReference; }
+  useCompareByReference() {
+    this.comparator = this.compareByReference;
+  }
 
-  useNullComparator() { this.comparator = null; }
+  useNullComparator() {
+    this.comparator = null;
+  }
 
-  compareByValue(f1: any, f2: any) { return f1 && f2 && f1.value === f2.value; }
+  compareByValue(f1: any, f2: any) {
+    return f1 && f2 && f1.value === f2.value;
+  }
 
-  compareByReference(f1: any, f2: any) { return f1 === f2; }
+  compareByReference(f1: any, f2: any) {
+    return f1 === f2;
+  }
 
-  setFoodByCopy(newValue: { value: string, viewValue: string }) {
+  setFoodByCopy(newValue: { value: string; viewValue: string }) {
     this.selectedFood = { ...{}, ...newValue };
   }
 }
 
 @Component({
   template: `
-    <sbb-select placeholder="Food" [formControl]="control" [errorStateMatcher]="errorStateMatcher">
+    <sbb-select
+      placeholder="Food"
+      [formControl]="control"
+      [errorStateMatcher]="errorStateMatcher"
+    >
       <sbb-option *ngFor="let food of foods" [value]="food.value">
         {{ food.viewValue }}
       </sbb-option>
@@ -683,7 +761,7 @@ class CustomErrorBehaviorSelectComponent {
   control = new FormControl();
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'pizza-1', viewValue: 'Pizza' }
   ];
   errorStateMatcher: ErrorStateMatcher;
 }
@@ -692,8 +770,8 @@ class CustomErrorBehaviorSelectComponent {
   template: `
     <sbb-field>
       <sbb-select placeholder="Food" [(ngModel)]="selectedFoods">
-        <sbb-option *ngFor="let food of foods"
-                    [value]="food.value">{{ food.viewValue }}
+        <sbb-option *ngFor="let food of foods" [value]="food.value"
+          >{{ food.viewValue }}
         </sbb-option>
       </sbb-select>
     </sbb-field>
@@ -703,7 +781,7 @@ class SingleSelectWithPreselectedArrayValuesComponent {
   foods: any[] = [
     { value: ['steak-0', 'steak-1'], viewValue: 'Steak' },
     { value: ['pizza-1', 'pizza-2'], viewValue: 'Pizza' },
-    { value: ['tacos-2', 'tacos-3'], viewValue: 'Tacos' },
+    { value: ['tacos-2', 'tacos-3'], viewValue: 'Tacos' }
   ];
 
   selectedFoods = this.foods[1].value;
@@ -716,7 +794,11 @@ class SingleSelectWithPreselectedArrayValuesComponent {
   selector: 'sbb-select-without-option-centering',
   template: `
     <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control" disableOptionCentering>
+      <sbb-select
+        placeholder="Food"
+        [formControl]="control"
+        disableOptionCentering
+      >
         <sbb-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
         </sbb-option>
@@ -733,7 +815,7 @@ class SelectWithoutOptionCenteringComponent {
     { value: 'chips-4', viewValue: 'Chips' },
     { value: 'eggs-5', viewValue: 'Eggs' },
     { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' },
+    { value: 'sushi-7', viewValue: 'Sushi' }
   ];
   control = new FormControl('pizza-1');
 
@@ -757,7 +839,6 @@ class SelectWithFormFieldLabelComponent {
 }
 
 describe('SelectComponent', () => {
-
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   const scrolledSubject = new Subject();
@@ -776,23 +857,27 @@ describe('SelectComponent', () => {
         FieldModule,
         ReactiveFormsModule,
         FormsModule,
-        NoopAnimationsModule,
+        NoopAnimationsModule
       ],
       declarations: declarations,
       providers: [
         {
-          provide: ScrollDispatcher, useFactory: () => ({
-            scrolled: () => scrolledSubject.asObservable(),
-          }),
-        },
-      ],
+          provide: ScrollDispatcher,
+          useFactory: () => ({
+            scrolled: () => scrolledSubject.asObservable()
+          })
+        }
+      ]
     }).compileComponents();
 
-    inject([OverlayContainer, Platform], (oc: OverlayContainer, p: Platform) => {
-      overlayContainer = oc;
-      overlayContainerElement = oc.getContainerElement();
-      platform = p;
-    })();
+    inject(
+      [OverlayContainer, Platform],
+      (oc: OverlayContainer, p: Platform) => {
+        overlayContainer = oc;
+        overlayContainerElement = oc.getContainerElement();
+        platform = p;
+      }
+    )();
   }
 
   afterEach(() => {
@@ -807,7 +892,7 @@ describe('SelectComponent', () => {
         SelectWithGroupsComponent,
         SelectWithGroupsAndNgContainerComponent,
         SelectWithFormFieldLabelComponent,
-        SelectWithChangeEventComponent,
+        SelectWithChangeEventComponent
       ]);
     }));
 
@@ -820,8 +905,10 @@ describe('SelectComponent', () => {
         beforeEach(fakeAsync(() => {
           fixture = TestBed.createComponent(BasicSelectComponent);
           fixture.detectChanges();
-          select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
-          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+          select = fixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
+          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+            .nativeElement;
         }));
 
         it('should set the role of the select to listbox', fakeAsync(() => {
@@ -844,7 +931,9 @@ describe('SelectComponent', () => {
           fixture.componentInstance.ariaLabelledby = 'myLabelId';
           fixture.detectChanges();
 
-          expect(select.getAttribute('aria-label')).toBeFalsy('Expected no aria-label to be set.');
+          expect(select.getAttribute('aria-label')).toBeFalsy(
+            'Expected no aria-label to be set.'
+          );
           expect(select.getAttribute('aria-labelledby')).toBe('myLabelId');
         }));
 
@@ -865,37 +954,49 @@ describe('SelectComponent', () => {
         }));
 
         it('should set aria-required for required selects', fakeAsync(() => {
-          expect(select.getAttribute('aria-required'))
-            .toEqual('false', `Expected aria-required attr to be false for normal selects.`);
+          expect(select.getAttribute('aria-required')).toEqual(
+            'false',
+            `Expected aria-required attr to be false for normal selects.`
+          );
 
           fixture.componentInstance.isRequired = true;
           fixture.detectChanges();
 
-          expect(select.getAttribute('aria-required'))
-            .toEqual('true', `Expected aria-required attr to be true for required selects.`);
+          expect(select.getAttribute('aria-required')).toEqual(
+            'true',
+            `Expected aria-required attr to be true for required selects.`
+          );
         }));
 
         it('should set the sbb-select-required class for required selects', fakeAsync(() => {
           expect(select.classList).not.toContain(
-            'sbb-select-required', `Expected the sbb-select-required class not to be set.`);
+            'sbb-select-required',
+            `Expected the sbb-select-required class not to be set.`
+          );
 
           fixture.componentInstance.isRequired = true;
           fixture.detectChanges();
 
           expect(select.classList).toContain(
-            'sbb-select-required', `Expected the sbb-select-required class to be set.`);
+            'sbb-select-required',
+            `Expected the sbb-select-required class to be set.`
+          );
         }));
 
         it('should set aria-invalid for selects that are invalid and touched', fakeAsync(() => {
-          expect(select.getAttribute('aria-invalid'))
-            .toEqual('false', `Expected aria-invalid attr to be false for valid selects.`);
+          expect(select.getAttribute('aria-invalid')).toEqual(
+            'false',
+            `Expected aria-invalid attr to be false for valid selects.`
+          );
 
           fixture.componentInstance.isRequired = true;
           fixture.componentInstance.control.markAsTouched();
           fixture.detectChanges();
 
-          expect(select.getAttribute('aria-invalid'))
-            .toEqual('true', `Expected aria-invalid attr to be true for invalid selects.`);
+          expect(select.getAttribute('aria-invalid')).toEqual(
+            'true',
+            `Expected aria-invalid attr to be true for invalid selects.`
+          );
         }));
 
         it('should set aria-disabled for disabled selects', fakeAsync(() => {
@@ -921,10 +1022,13 @@ describe('SelectComponent', () => {
         it('should not set `aria-labelledby` if there is a placeholder', () => {
           fixture.destroy();
 
-          const labelFixture = TestBed.createComponent(SelectWithFormFieldLabelComponent);
+          const labelFixture = TestBed.createComponent(
+            SelectWithFormFieldLabelComponent
+          );
           labelFixture.componentInstance.placeholder = 'Thing selector';
           labelFixture.detectChanges();
-          select = labelFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          select = labelFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
           expect(select.getAttribute('aria-labelledby')).toBeFalsy();
         });
@@ -932,9 +1036,12 @@ describe('SelectComponent', () => {
         it('should not set `aria-labelledby` if there is no form field label', () => {
           fixture.destroy();
 
-          const labelFixture = TestBed.createComponent(SelectWithChangeEventComponent);
+          const labelFixture = TestBed.createComponent(
+            SelectWithChangeEventComponent
+          );
           labelFixture.detectChanges();
-          select = labelFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          select = labelFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
           expect(select.getAttribute('aria-labelledby')).toBeFalsy();
         });
@@ -947,23 +1054,38 @@ describe('SelectComponent', () => {
 
           dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
-          expect(options[0].selected).toBe(true, 'Expected first option to be selected.');
-          expect(formControl.value).toBe(options[0].value,
-            'Expected value from first option to have been set on the model.');
+          expect(options[0].selected).toBe(
+            true,
+            'Expected first option to be selected.'
+          );
+          expect(formControl.value).toBe(
+            options[0].value,
+            'Expected value from first option to have been set on the model.'
+          );
 
           dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
           dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
           // Note that the third option is skipped, because it is disabled.
-          expect(options[3].selected).toBe(true, 'Expected fourth option to be selected.');
-          expect(formControl.value).toBe(options[3].value,
-            'Expected value from fourth option to have been set on the model.');
+          expect(options[3].selected).toBe(
+            true,
+            'Expected fourth option to be selected.'
+          );
+          expect(formControl.value).toBe(
+            options[3].value,
+            'Expected value from fourth option to have been set on the model.'
+          );
 
           dispatchKeyboardEvent(select, 'keydown', UP_ARROW);
 
-          expect(options[1].selected).toBe(true, 'Expected second option to be selected.');
-          expect(formControl.value).toBe(options[1].value,
-            'Expected value from second option to have been set on the model.');
+          expect(options[1].selected).toBe(
+            true,
+            'Expected second option to be selected.'
+          );
+          expect(formControl.value).toBe(
+            options[1].value,
+            'Expected value from second option to have been set on the model.'
+          );
         }));
 
         it('should resume focus from selected item after selecting via click', fakeAsync(() => {
@@ -976,7 +1098,9 @@ describe('SelectComponent', () => {
           fixture.detectChanges();
           flush();
 
-          (overlayContainerElement.querySelectorAll('sbb-option')[3] as HTMLElement).click();
+          (overlayContainerElement.querySelectorAll(
+            'sbb-option'
+          )[3] as HTMLElement).click();
           fixture.detectChanges();
           flush();
 
@@ -989,9 +1113,15 @@ describe('SelectComponent', () => {
         }));
 
         it('should open a single-selection select using ALT + DOWN_ARROW', fakeAsync(() => {
-          const { control: formControl, select: selectInstance } = fixture.componentInstance;
+          const {
+            control: formControl,
+            select: selectInstance
+          } = fixture.componentInstance;
 
-          expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
+          expect(selectInstance.panelOpen).toBe(
+            false,
+            'Expected select to be closed.'
+          );
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
           const event = createKeyboardEvent('keydown', DOWN_ARROW);
@@ -999,14 +1129,25 @@ describe('SelectComponent', () => {
 
           dispatchEvent(select, event);
 
-          expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
-          expect(formControl.value).toBeFalsy('Expected value not to have changed.');
+          expect(selectInstance.panelOpen).toBe(
+            true,
+            'Expected select to be open.'
+          );
+          expect(formControl.value).toBeFalsy(
+            'Expected value not to have changed.'
+          );
         }));
 
         it('should open a single-selection select using ALT + UP_ARROW', fakeAsync(() => {
-          const { control: formControl, select: selectInstance } = fixture.componentInstance;
+          const {
+            control: formControl,
+            select: selectInstance
+          } = fixture.componentInstance;
 
-          expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
+          expect(selectInstance.panelOpen).toBe(
+            false,
+            'Expected select to be closed.'
+          );
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
           const event = createKeyboardEvent('keydown', UP_ARROW);
@@ -1014,8 +1155,13 @@ describe('SelectComponent', () => {
 
           dispatchEvent(select, event);
 
-          expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
-          expect(formControl.value).toBeFalsy('Expected value not to have changed.');
+          expect(selectInstance.panelOpen).toBe(
+            true,
+            'Expected select to be open.'
+          );
+          expect(formControl.value).toBeFalsy(
+            'Expected value not to have changed.'
+          );
         }));
 
         it('should close when pressing ALT + DOWN_ARROW', () => {
@@ -1024,14 +1170,23 @@ describe('SelectComponent', () => {
           selectInstance.open();
           fixture.detectChanges();
 
-          expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
+          expect(selectInstance.panelOpen).toBe(
+            true,
+            'Expected select to be open.'
+          );
 
           const event = createKeyboardEvent('keydown', DOWN_ARROW);
           Object.defineProperty(event, 'altKey', { get: () => true });
           dispatchEvent(select, event);
 
-          expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
-          expect(event.defaultPrevented).toBe(true, 'Expected default action to be prevented.');
+          expect(selectInstance.panelOpen).toBe(
+            false,
+            'Expected select to be closed.'
+          );
+          expect(event.defaultPrevented).toBe(
+            true,
+            'Expected default action to be prevented.'
+          );
         });
 
         it('should close when pressing ALT + UP_ARROW', () => {
@@ -1040,14 +1195,23 @@ describe('SelectComponent', () => {
           selectInstance.open();
           fixture.detectChanges();
 
-          expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
+          expect(selectInstance.panelOpen).toBe(
+            true,
+            'Expected select to be open.'
+          );
 
           const event = createKeyboardEvent('keydown', UP_ARROW);
           Object.defineProperty(event, 'altKey', { get: () => true });
           dispatchEvent(select, event);
 
-          expect(selectInstance.panelOpen).toBe(false, 'Expected select to be closed.');
-          expect(event.defaultPrevented).toBe(true, 'Expected default action to be prevented.');
+          expect(selectInstance.panelOpen).toBe(
+            false,
+            'Expected select to be closed.'
+          );
+          expect(event.defaultPrevented).toBe(
+            true,
+            'Expected default action to be prevented.'
+          );
         });
 
         it('should be able to select options by typing on a closed select', fakeAsync(() => {
@@ -1056,62 +1220,102 @@ describe('SelectComponent', () => {
 
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
-          dispatchEvent(select, createKeyboardEvent('keydown', 80, undefined, 'p'));
+          dispatchEvent(
+            select,
+            createKeyboardEvent('keydown', 80, undefined, 'p')
+          );
           tick(200);
 
-          expect(options[1].selected).toBe(true, 'Expected second option to be selected.');
-          expect(formControl.value).toBe(options[1].value,
-            'Expected value from second option to have been set on the model.');
+          expect(options[1].selected).toBe(
+            true,
+            'Expected second option to be selected.'
+          );
+          expect(formControl.value).toBe(
+            options[1].value,
+            'Expected value from second option to have been set on the model.'
+          );
 
-          dispatchEvent(select, createKeyboardEvent('keydown', 69, undefined, 'e'));
+          dispatchEvent(
+            select,
+            createKeyboardEvent('keydown', 69, undefined, 'e')
+          );
           tick(200);
 
-          expect(options[5].selected).toBe(true, 'Expected sixth option to be selected.');
-          expect(formControl.value).toBe(options[5].value,
-            'Expected value from sixth option to have been set on the model.');
+          expect(options[5].selected).toBe(
+            true,
+            'Expected sixth option to be selected.'
+          );
+          expect(formControl.value).toBe(
+            options[5].value,
+            'Expected value from sixth option to have been set on the model.'
+          );
         }));
 
-        it('should open the panel when pressing a vertical arrow key on a closed multiple select',
-          fakeAsync(() => {
-            fixture.destroy();
+        it('should open the panel when pressing a vertical arrow key on a closed multiple select', fakeAsync(() => {
+          fixture.destroy();
 
-            const multiFixture = TestBed.createComponent(MultiSelectComponent);
-            const instance = multiFixture.componentInstance;
+          const multiFixture = TestBed.createComponent(MultiSelectComponent);
+          const instance = multiFixture.componentInstance;
 
-            multiFixture.detectChanges();
-            select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          multiFixture.detectChanges();
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
-            const initialValue = instance.control.value;
+          const initialValue = instance.control.value;
 
-            expect(instance.select.panelOpen).toBe(false, 'Expected panel to be closed.');
+          expect(instance.select.panelOpen).toBe(
+            false,
+            'Expected panel to be closed.'
+          );
 
-            const event = dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
+          const event = dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
-            expect(instance.select.panelOpen).toBe(true, 'Expected panel to be open.');
-            expect(instance.control.value).toBe(initialValue, 'Expected value to stay the same.');
-            expect(event.defaultPrevented).toBe(true, 'Expected default to be prevented.');
-          }));
+          expect(instance.select.panelOpen).toBe(
+            true,
+            'Expected panel to be open.'
+          );
+          expect(instance.control.value).toBe(
+            initialValue,
+            'Expected value to stay the same.'
+          );
+          expect(event.defaultPrevented).toBe(
+            true,
+            'Expected default to be prevented.'
+          );
+        }));
 
-        it('should open the panel when pressing a horizontal arrow key on closed multiple select',
-          fakeAsync(() => {
-            fixture.destroy();
+        it('should open the panel when pressing a horizontal arrow key on closed multiple select', fakeAsync(() => {
+          fixture.destroy();
 
-            const multiFixture = TestBed.createComponent(MultiSelectComponent);
-            const instance = multiFixture.componentInstance;
+          const multiFixture = TestBed.createComponent(MultiSelectComponent);
+          const instance = multiFixture.componentInstance;
 
-            multiFixture.detectChanges();
-            select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          multiFixture.detectChanges();
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
-            const initialValue = instance.control.value;
+          const initialValue = instance.control.value;
 
-            expect(instance.select.panelOpen).toBe(false, 'Expected panel to be closed.');
+          expect(instance.select.panelOpen).toBe(
+            false,
+            'Expected panel to be closed.'
+          );
 
-            const event = dispatchKeyboardEvent(select, 'keydown', RIGHT_ARROW);
+          const event = dispatchKeyboardEvent(select, 'keydown', RIGHT_ARROW);
 
-            expect(instance.select.panelOpen).toBe(true, 'Expected panel to be open.');
-            expect(instance.control.value).toBe(initialValue, 'Expected value to stay the same.');
-            expect(event.defaultPrevented).toBe(true, 'Expected default to be prevented.');
-          }));
+          expect(instance.select.panelOpen).toBe(
+            true,
+            'Expected panel to be open.'
+          );
+          expect(instance.control.value).toBe(
+            initialValue,
+            'Expected value to stay the same.'
+          );
+          expect(event.defaultPrevented).toBe(
+            true,
+            'Expected default to be prevented.'
+          );
+        }));
 
         it('should do nothing when typing on a closed multi-select', fakeAsync(() => {
           fixture.destroy();
@@ -1120,65 +1324,102 @@ describe('SelectComponent', () => {
           const instance = multiFixture.componentInstance;
 
           multiFixture.detectChanges();
-          select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
           const initialValue = instance.control.value;
 
-          expect(instance.select.panelOpen).toBe(false, 'Expected panel to be closed.');
+          expect(instance.select.panelOpen).toBe(
+            false,
+            'Expected panel to be closed.'
+          );
 
-          dispatchEvent(select, createKeyboardEvent('keydown', 80, undefined, 'p'));
+          dispatchEvent(
+            select,
+            createKeyboardEvent('keydown', 80, undefined, 'p')
+          );
 
-          expect(instance.select.panelOpen).toBe(false, 'Expected panel to stay closed.');
-          expect(instance.control.value).toBe(initialValue, 'Expected value to stay the same.');
+          expect(instance.select.panelOpen).toBe(
+            false,
+            'Expected panel to stay closed.'
+          );
+          expect(instance.control.value).toBe(
+            initialValue,
+            'Expected value to stay the same.'
+          );
         }));
 
         it('should do nothing if the key manager did not change the active item', fakeAsync(() => {
           const formControl = fixture.componentInstance.control;
 
-          expect(formControl.value).toBeNull('Expected form control value to be empty.');
-          expect(formControl.pristine).toBe(true, 'Expected form control to be clean.');
+          expect(formControl.value).toBeNull(
+            'Expected form control value to be empty.'
+          );
+          expect(formControl.pristine).toBe(
+            true,
+            'Expected form control to be clean.'
+          );
 
           dispatchKeyboardEvent(select, 'keydown', 16); // Press a random key.
 
-          expect(formControl.value).toBeNull('Expected form control value to stay empty.');
-          expect(formControl.pristine).toBe(true, 'Expected form control to stay clean.');
+          expect(formControl.value).toBeNull(
+            'Expected form control value to stay empty.'
+          );
+          expect(formControl.pristine).toBe(
+            true,
+            'Expected form control to stay clean.'
+          );
         }));
 
-        it('should continue from the selected option when the value is set programmatically',
-          fakeAsync(() => {
-            const formControl = fixture.componentInstance.control;
+        it('should continue from the selected option when the value is set programmatically', fakeAsync(() => {
+          const formControl = fixture.componentInstance.control;
 
-            formControl.setValue('eggs-5');
-            fixture.detectChanges();
+          formControl.setValue('eggs-5');
+          fixture.detectChanges();
 
-            dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
+          dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
-            expect(formControl.value).toBe('pasta-6');
-            expect(fixture.componentInstance.options.toArray()[6].selected).toBe(true);
-          }));
+          expect(formControl.value).toBe('pasta-6');
+          expect(fixture.componentInstance.options.toArray()[6].selected).toBe(
+            true
+          );
+        }));
 
-        it('should not shift focus when the selected options are updated programmatically ' +
-          'in a multi select', () => {
+        it(
+          'should not shift focus when the selected options are updated programmatically ' +
+            'in a multi select',
+          () => {
             fixture.destroy();
 
             const multiFixture = TestBed.createComponent(MultiSelectComponent);
             multiFixture.detectChanges();
-            select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+            select = multiFixture.debugElement.query(By.css('sbb-select'))
+              .nativeElement;
             multiFixture.componentInstance.select.open();
             multiFixture.detectChanges();
 
-            const options =
-              overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+            const options = overlayContainerElement.querySelectorAll(
+              'sbb-option'
+            ) as NodeListOf<HTMLElement>;
 
             options[3].focus();
-            expect(document.activeElement).toBe(options[3], 'Expected fourth option to be focused.');
+            expect(document.activeElement).toBe(
+              options[3],
+              'Expected fourth option to be focused.'
+            );
 
-            multiFixture.componentInstance.control.setValue(['steak-0', 'sushi-7']);
+            multiFixture.componentInstance.control.setValue([
+              'steak-0',
+              'sushi-7'
+            ]);
             multiFixture.detectChanges();
 
-            expect(document.activeElement)
-              .toBe(options[3], 'Expected fourth option to remain focused.');
-          });
+            expect(document.activeElement).toBe(
+              options[3],
+              'Expected fourth option to remain focused.'
+            );
+          }
+        );
 
         it('should not cycle through the options if the control is disabled', fakeAsync(() => {
           const formControl = fixture.componentInstance.control;
@@ -1188,7 +1429,10 @@ describe('SelectComponent', () => {
 
           dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
-          expect(formControl.value).toBe('eggs-5', 'Expected value to remain unchaged.');
+          expect(formControl.value).toBe(
+            'eggs-5',
+            'Expected value to remain unchaged.'
+          );
         }));
 
         it('should not wrap selection after reaching the end of the options', fakeAsync(() => {
@@ -1198,11 +1442,17 @@ describe('SelectComponent', () => {
             dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
           });
 
-          expect(lastOption.selected).toBe(true, 'Expected last option to be selected.');
+          expect(lastOption.selected).toBe(
+            true,
+            'Expected last option to be selected.'
+          );
 
           dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
-          expect(lastOption.selected).toBe(true, 'Expected last option to stay selected.');
+          expect(lastOption.selected).toBe(
+            true,
+            'Expected last option to stay selected.'
+          );
         }));
 
         it('should not open a multiple select when tabbing through', fakeAsync(() => {
@@ -1211,76 +1461,91 @@ describe('SelectComponent', () => {
           const multiFixture = TestBed.createComponent(MultiSelectComponent);
 
           multiFixture.detectChanges();
-          select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
-          expect(multiFixture.componentInstance.select.panelOpen)
-            .toBe(false, 'Expected panel to be closed initially.');
+          expect(multiFixture.componentInstance.select.panelOpen).toBe(
+            false,
+            'Expected panel to be closed initially.'
+          );
 
           dispatchKeyboardEvent(select, 'keydown', TAB);
 
-          expect(multiFixture.componentInstance.select.panelOpen)
-            .toBe(false, 'Expected panel to stay closed.');
+          expect(multiFixture.componentInstance.select.panelOpen).toBe(
+            false,
+            'Expected panel to stay closed.'
+          );
         }));
 
-        it('should toggle the next option when pressing shift + DOWN_ARROW on a multi-select',
-          () => {
-            fixture.destroy();
+        it('should toggle the next option when pressing shift + DOWN_ARROW on a multi-select', () => {
+          fixture.destroy();
 
-            const multiFixture = TestBed.createComponent(MultiSelectComponent);
-            const event = createKeyboardEvent('keydown', DOWN_ARROW);
-            Object.defineProperty(event, 'shiftKey', { get: () => true });
+          const multiFixture = TestBed.createComponent(MultiSelectComponent);
+          const event = createKeyboardEvent('keydown', DOWN_ARROW);
+          Object.defineProperty(event, 'shiftKey', { get: () => true });
 
+          multiFixture.detectChanges();
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
+
+          multiFixture.componentInstance.select.open();
+          multiFixture.detectChanges();
+
+          expect(multiFixture.componentInstance.select.value).toBeFalsy();
+
+          dispatchEvent(select, event);
+          multiFixture.detectChanges();
+
+          expect(multiFixture.componentInstance.select.value).toEqual([
+            'pizza-1'
+          ]);
+
+          dispatchEvent(select, event);
+          multiFixture.detectChanges();
+
+          expect(multiFixture.componentInstance.select.value).toEqual([
+            'pizza-1',
+            'tacos-2'
+          ]);
+        });
+
+        it('should toggle the previous option when pressing shift + UP_ARROW on a multi-select', () => {
+          fixture.destroy();
+
+          const multiFixture = TestBed.createComponent(MultiSelectComponent);
+          const event = createKeyboardEvent('keydown', UP_ARROW);
+          Object.defineProperty(event, 'shiftKey', { get: () => true });
+
+          multiFixture.detectChanges();
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
+
+          multiFixture.componentInstance.select.open();
+          multiFixture.detectChanges();
+
+          // Move focus down first.
+          for (let i = 0; i < 5; i++) {
+            dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
             multiFixture.detectChanges();
-            select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          }
 
-            multiFixture.componentInstance.select.open();
-            multiFixture.detectChanges();
+          expect(multiFixture.componentInstance.select.value).toBeFalsy();
 
-            expect(multiFixture.componentInstance.select.value).toBeFalsy();
+          dispatchEvent(select, event);
+          multiFixture.detectChanges();
 
-            dispatchEvent(select, event);
-            multiFixture.detectChanges();
+          expect(multiFixture.componentInstance.select.value).toEqual([
+            'chips-4'
+          ]);
 
-            expect(multiFixture.componentInstance.select.value).toEqual(['pizza-1']);
+          dispatchEvent(select, event);
+          multiFixture.detectChanges();
 
-            dispatchEvent(select, event);
-            multiFixture.detectChanges();
-
-            expect(multiFixture.componentInstance.select.value).toEqual(['pizza-1', 'tacos-2']);
-          });
-
-        it('should toggle the previous option when pressing shift + UP_ARROW on a multi-select',
-          () => {
-            fixture.destroy();
-
-            const multiFixture = TestBed.createComponent(MultiSelectComponent);
-            const event = createKeyboardEvent('keydown', UP_ARROW);
-            Object.defineProperty(event, 'shiftKey', { get: () => true });
-
-            multiFixture.detectChanges();
-            select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
-
-            multiFixture.componentInstance.select.open();
-            multiFixture.detectChanges();
-
-            // Move focus down first.
-            for (let i = 0; i < 5; i++) {
-              dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
-              multiFixture.detectChanges();
-            }
-
-            expect(multiFixture.componentInstance.select.value).toBeFalsy();
-
-            dispatchEvent(select, event);
-            multiFixture.detectChanges();
-
-            expect(multiFixture.componentInstance.select.value).toEqual(['chips-4']);
-
-            dispatchEvent(select, event);
-            multiFixture.detectChanges();
-
-            expect(multiFixture.componentInstance.select.value).toEqual(['sandwich-3', 'chips-4']);
-          });
+          expect(multiFixture.componentInstance.select.value).toEqual([
+            'sandwich-3',
+            'chips-4'
+          ]);
+        });
 
         it('should prevent the default action when pressing space', fakeAsync(() => {
           const event = dispatchKeyboardEvent(select, 'keydown', SPACE);
@@ -1290,9 +1555,10 @@ describe('SelectComponent', () => {
         // Having `aria-hidden` on the trigger avoids issues where
         // screen readers read out the wrong amount of options.
         it('should set aria-hidden on the trigger element', fakeAsync(() => {
-
-          expect(trigger.getAttribute('aria-hidden'))
-            .toBe('true', 'Expected aria-hidden to be true when the select is open.');
+          expect(trigger.getAttribute('aria-hidden')).toBe(
+            'true',
+            'Expected aria-hidden to be true when the select is open.'
+          );
         }));
 
         it('should set `aria-multiselectable` to true on multi-select instances', fakeAsync(() => {
@@ -1301,7 +1567,8 @@ describe('SelectComponent', () => {
           const multiFixture = TestBed.createComponent(MultiSelectComponent);
 
           multiFixture.detectChanges();
-          select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
+          select = multiFixture.debugElement.query(By.css('sbb-select'))
+            .nativeElement;
 
           expect(select.getAttribute('aria-multiselectable')).toBe('true');
         }));
@@ -1309,7 +1576,6 @@ describe('SelectComponent', () => {
         it('should set aria-multiselectable false on single-selection instances', fakeAsync(() => {
           expect(select.getAttribute('aria-multiselectable')).toBe('false');
         }));
-
       });
 
       describe('for options', () => {
@@ -1320,11 +1586,13 @@ describe('SelectComponent', () => {
         beforeEach(() => {
           fixture = TestBed.createComponent(BasicSelectComponent);
           fixture.detectChanges();
-          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+            .nativeElement;
           trigger.click();
           fixture.detectChanges();
-          options =
-            overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+          options = overlayContainerElement.querySelectorAll(
+            'sbb-option'
+          ) as NodeListOf<HTMLElement>;
         });
 
         it('should set the role of sbb-option to option', () => {
@@ -1377,11 +1645,13 @@ describe('SelectComponent', () => {
         beforeEach(() => {
           fixture = TestBed.createComponent(SelectWithGroupsComponent);
           fixture.detectChanges();
-          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+          trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+            .nativeElement;
           trigger.click();
           fixture.detectChanges();
-          groups =
-            overlayContainerElement.querySelectorAll('sbb-option-group') as NodeListOf<HTMLElement>;
+          groups = overlayContainerElement.querySelectorAll(
+            'sbb-option-group'
+          ) as NodeListOf<HTMLElement>;
         });
 
         it('should set the appropriate role', () => {
@@ -1393,9 +1663,13 @@ describe('SelectComponent', () => {
           // tslint:disable-next-line:no-non-null-assertion
           const label = group.querySelector('label')!;
 
-          expect(label.getAttribute('id')).toBeTruthy('Expected label to have an id.');
-          expect(group.getAttribute('aria-labelledby'))
-            .toBe(label.getAttribute('id'), 'Expected `aria-labelledby` to match the label id.');
+          expect(label.getAttribute('id')).toBeTruthy(
+            'Expected label to have an id.'
+          );
+          expect(group.getAttribute('aria-labelledby')).toBe(
+            label.getAttribute('id'),
+            'Expected `aria-labelledby` to match the label id.'
+          );
         }));
 
         it('should set the `aria-disabled` attribute if the group is disabled', () => {
@@ -1411,7 +1685,8 @@ describe('SelectComponent', () => {
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
-        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+          .nativeElement;
       });
 
       it('should not throw when attempting to open too early', () => {
@@ -1435,7 +1710,9 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        const option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
         option.click();
         fixture.detectChanges();
         flush();
@@ -1449,8 +1726,9 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        const backdrop =
-          overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+        const backdrop = overlayContainerElement.querySelector(
+          '.cdk-overlay-backdrop'
+        ) as HTMLElement;
 
         backdrop.click();
         fixture.detectChanges();
@@ -1511,7 +1789,9 @@ describe('SelectComponent', () => {
         expect(fixture.componentInstance.select.panelOpen).toBe(true);
 
         // tslint:disable-next-line:no-non-null-assertion
-        const panel = overlayContainerElement.querySelector('.sbb-select-panel')!;
+        const panel = overlayContainerElement.querySelector(
+          '.sbb-select-panel'
+        )!;
         dispatchKeyboardEvent(panel, 'keydown', TAB);
         fixture.detectChanges();
         flush();
@@ -1529,7 +1809,9 @@ describe('SelectComponent', () => {
         const event = dispatchKeyboardEvent(trigger, 'keydown', HOME);
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(0);
+        expect(
+          fixture.componentInstance.select.keyManager.activeItemIndex
+        ).toBe(0);
         expect(event.defaultPrevented).toBe(true);
       });
 
@@ -1543,7 +1825,9 @@ describe('SelectComponent', () => {
         const event = dispatchKeyboardEvent(trigger, 'keydown', END);
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(7);
+        expect(
+          fixture.componentInstance.select.keyManager.activeItemIndex
+        ).toBe(7);
         expect(event.defaultPrevented).toBe(true);
       });
 
@@ -1551,7 +1835,9 @@ describe('SelectComponent', () => {
         trigger.click();
         fixture.detectChanges();
         flush();
-        const panel = overlayContainerElement.querySelector('.sbb-select-panel') as HTMLElement;
+        const panel = overlayContainerElement.querySelector(
+          '.sbb-select-panel'
+        ) as HTMLElement;
 
         expect(panel.classList).toContain('custom-one');
         expect(panel.classList).toContain('custom-two');
@@ -1580,16 +1866,23 @@ describe('SelectComponent', () => {
         expect(event.defaultPrevented).toBe(true);
       }));
 
-      it('should not consider itself as blurred if the trigger loses focus while the ' +
-        'panel is still open', fakeAsync(() => {
-          const selectElement = fixture.nativeElement.querySelector('.sbb-select');
+      it(
+        'should not consider itself as blurred if the trigger loses focus while the ' +
+          'panel is still open',
+        fakeAsync(() => {
+          const selectElement = fixture.nativeElement.querySelector(
+            '.sbb-select'
+          );
           const selectInstance = fixture.componentInstance.select;
 
           dispatchFakeEvent(selectElement, 'focus');
           fixture.detectChanges();
           flush();
 
-          expect(selectInstance.focused).toBe(true, 'Expected select to be focused.');
+          expect(selectInstance.focused).toBe(
+            true,
+            'Expected select to be focused.'
+          );
 
           selectInstance.open();
           fixture.detectChanges();
@@ -1597,9 +1890,12 @@ describe('SelectComponent', () => {
           dispatchFakeEvent(selectElement, 'blur');
           fixture.detectChanges();
 
-          expect(selectInstance.focused).toBe(true, 'Expected select element to remain focused.');
-        }));
-
+          expect(selectInstance.focused).toBe(
+            true,
+            'Expected select element to remain focused.'
+          );
+        })
+      );
     });
 
     describe('selection logic', () => {
@@ -1610,27 +1906,34 @@ describe('SelectComponent', () => {
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
-        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        formField = fixture.debugElement.query(By.css('sbb-field')).nativeElement;
+        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+          .nativeElement;
+        formField = fixture.debugElement.query(By.css('sbb-field'))
+          .nativeElement;
       });
 
       it('should select an option when it is clicked', () => {
         trigger.click();
         fixture.detectChanges();
 
-        let option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        let option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
         option.click();
         fixture.detectChanges();
 
         trigger.click();
         fixture.detectChanges();
 
-        option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
 
         expect(option.classList).toContain('sbb-selected');
         expect(fixture.componentInstance.options.first.selected).toBe(true);
-        expect(fixture.componentInstance.select.selected)
-          .toBe(fixture.componentInstance.options.first);
+        expect(fixture.componentInstance.select.selected).toBe(
+          fixture.componentInstance.options.first
+        );
       });
 
       it('should be able to select an option using the OptionComponent API', () => {
@@ -1638,23 +1941,27 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         const optionInstances = fixture.componentInstance.options.toArray();
-        const optionNodes: NodeListOf<HTMLElement> =
-          overlayContainerElement.querySelectorAll('sbb-option');
+        const optionNodes: NodeListOf<
+          HTMLElement
+        > = overlayContainerElement.querySelectorAll('sbb-option');
 
         optionInstances[1].select();
         fixture.detectChanges();
 
         expect(optionNodes[1].classList).toContain('sbb-selected');
         expect(optionInstances[1].selected).toBe(true);
-        expect(fixture.componentInstance.select.selected).toBe(optionInstances[1]);
+        expect(fixture.componentInstance.select.selected).toBe(
+          optionInstances[1]
+        );
       });
 
       it('should deselect other options when one is selected', () => {
         trigger.click();
         fixture.detectChanges();
 
-        let options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        let options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
 
         options[0].click();
         fixture.detectChanges();
@@ -1662,8 +1969,9 @@ describe('SelectComponent', () => {
         trigger.click();
         fixture.detectChanges();
 
-        options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).not.toContain('sbb-selected');
         expect(options[2].classList).not.toContain('sbb-selected');
 
@@ -1680,8 +1988,9 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        let options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        let options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
 
         options[0].click();
         fixture.detectChanges();
@@ -1694,19 +2003,29 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
 
-        expect(options[0].classList)
-          .not.toContain('sbb-selected', 'Expected first option to no longer be selected');
-        expect(options[1].classList)
-          .toContain('sbb-selected', 'Expected second option to be selected');
+        expect(options[0].classList).not.toContain(
+          'sbb-selected',
+          'Expected first option to no longer be selected'
+        );
+        expect(options[1].classList).toContain(
+          'sbb-selected',
+          'Expected second option to be selected'
+        );
 
         const optionInstances = fixture.componentInstance.options.toArray();
 
-        expect(optionInstances[0].selected)
-          .toBe(false, 'Expected first option to no longer be selected');
-        expect(optionInstances[1].selected)
-          .toBe(true, 'Expected second option to be selected');
+        expect(optionInstances[0].selected).toBe(
+          false,
+          'Expected first option to no longer be selected'
+        );
+        expect(optionInstances[1].selected).toBe(
+          true,
+          'Expected second option to be selected'
+        );
       }));
 
       it('should remove selection if option has been removed', fakeAsync(() => {
@@ -1716,19 +2035,25 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        const firstOption = overlayContainerElement.querySelectorAll('sbb-option')[0] as HTMLElement;
+        const firstOption = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        )[0] as HTMLElement;
 
         firstOption.click();
         fixture.detectChanges();
 
-        expect(select.selected).toBe(select.options.first, 'Expected first option to be selected.');
+        expect(select.selected).toBe(
+          select.options.first,
+          'Expected first option to be selected.'
+        );
 
         fixture.componentInstance.foods = [];
         fixture.detectChanges();
         flush();
 
-        expect(select.selected)
-          .toBeUndefined('Expected selection to be removed when option no longer exists.');
+        expect(select.selected).toBeUndefined(
+          'Expected selection to be removed when option no longer exists.'
+        );
       }));
 
       it('should display the selected option in the trigger', fakeAsync(() => {
@@ -1736,12 +2061,15 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        const option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
         option.click();
         fixture.detectChanges();
         flush();
 
-        const value = fixture.debugElement.query(By.css('.sbb-select-value')).nativeElement;
+        const value = fixture.debugElement.query(By.css('.sbb-select-value'))
+          .nativeElement;
 
         expect(value.textContent).toContain('Steak');
       }));
@@ -1759,24 +2087,31 @@ describe('SelectComponent', () => {
 
         // must wait for animation to finish
         fixture.detectChanges();
-        expect(fixture.componentInstance.select.keyManager.activeItemIndex).toEqual(1);
+        expect(
+          fixture.componentInstance.select.keyManager.activeItemIndex
+        ).toEqual(1);
       }));
 
       it('should select an option that was added after initialization', fakeAsync(() => {
-        fixture.componentInstance.foods.push({ viewValue: 'Potatoes', value: 'potatoes-8' });
+        fixture.componentInstance.foods.push({
+          viewValue: 'Potatoes',
+          value: 'potatoes-8'
+        });
         trigger.click();
         fixture.detectChanges();
         flush();
 
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         options[8].click();
         fixture.detectChanges();
         flush();
 
         expect(trigger.textContent).toContain('Potatoes');
-        expect(fixture.componentInstance.select.selected)
-          .toBe(fixture.componentInstance.options.last);
+        expect(fixture.componentInstance.select.selected).toBe(
+          fixture.componentInstance.options.last
+        );
       }));
 
       it('should update the trigger when the selected option label is changed', fakeAsync(() => {
@@ -1798,8 +2133,9 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
         flush();
 
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         options[2].click();
         fixture.detectChanges();
         flush();
@@ -1814,10 +2150,14 @@ describe('SelectComponent', () => {
 
         const groupFixture = TestBed.createComponent(SelectWithGroupsComponent);
         groupFixture.detectChanges();
-        groupFixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement.click();
+        groupFixture.debugElement
+          .query(By.css('.sbb-select-trigger'))
+          .nativeElement.click();
         groupFixture.detectChanges();
 
-        const disabledGroup = overlayContainerElement.querySelectorAll('sbb-option-group')[1];
+        const disabledGroup = overlayContainerElement.querySelectorAll(
+          'sbb-option-group'
+        )[1];
         const options = disabledGroup.querySelectorAll('sbb-option');
 
         (options[0] as HTMLElement).click();
@@ -1830,7 +2170,9 @@ describe('SelectComponent', () => {
       }));
 
       it('should not throw if triggerValue accessed with no selected value', fakeAsync(() => {
-        expect(() => fixture.componentInstance.select.triggerValue).not.toThrow();
+        expect(
+          () => fixture.componentInstance.select.triggerValue
+        ).not.toThrow();
       }));
 
       it('should emit to `optionSelectionChanges` when an option is selected', fakeAsync(() => {
@@ -1839,8 +2181,12 @@ describe('SelectComponent', () => {
         flush();
 
         const spy = jasmine.createSpy('option selection spy');
-        const subscription = fixture.componentInstance.select.optionSelectionChanges.subscribe(spy);
-        const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        const subscription = fixture.componentInstance.select.optionSelectionChanges.subscribe(
+          spy
+        );
+        const option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
         option.click();
         fixture.detectChanges();
         flush();
@@ -1849,7 +2195,6 @@ describe('SelectComponent', () => {
 
         subscription.unsubscribe();
       }));
-
     });
 
     describe('forms integration', () => {
@@ -1859,7 +2204,8 @@ describe('SelectComponent', () => {
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
-        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+          .nativeElement;
       });
 
       it('should take an initial view value with reactive forms', () => {
@@ -1867,18 +2213,23 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
-        expect(value.nativeElement.textContent)
-          .toContain('Pizza', `Expected trigger to be populated by the control's initial value.`);
+        expect(value.nativeElement.textContent).toContain(
+          'Pizza',
+          `Expected trigger to be populated by the control's initial value.`
+        );
 
-        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+          .nativeElement;
         trigger.click();
         fixture.detectChanges();
 
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
-        expect(options[1].classList)
-          .toContain('sbb-selected',
-            `Expected option with the control's initial value to be selected.`);
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
+        expect(options[1].classList).toContain(
+          'sbb-selected',
+          `Expected option with the control's initial value to be selected.`
+        );
       });
 
       it('should set the view value from the form', () => {
@@ -1889,31 +2240,42 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         value = fixture.debugElement.query(By.css('.sbb-select-value'));
-        expect(value.nativeElement.textContent)
-          .toContain('Pizza', `Expected trigger to be populated by the control's new value.`);
+        expect(value.nativeElement.textContent).toContain(
+          'Pizza',
+          `Expected trigger to be populated by the control's new value.`
+        );
 
         trigger.click();
         fixture.detectChanges();
 
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
         expect(options[1].classList).toContain(
-          'sbb-selected', `Expected option with the control's new value to be selected.`);
+          'sbb-selected',
+          `Expected option with the control's new value to be selected.`
+        );
       });
 
       it('should update the form value when the view changes', () => {
-        expect(fixture.componentInstance.control.value)
-          .toEqual(null, `Expected the control's value to be empty initially.`);
+        expect(fixture.componentInstance.control.value).toEqual(
+          null,
+          `Expected the control's value to be empty initially.`
+        );
 
         trigger.click();
         fixture.detectChanges();
 
-        const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        const option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
         option.click();
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.control.value)
-          .toEqual('steak-0', `Expected control's value to be set to the new option.`);
+        expect(fixture.componentInstance.control.value).toEqual(
+          'steak-0',
+          `Expected control's value to be set to the new option.`
+        );
       });
 
       it('should clear the selection when a nonexistent option value is selected', fakeAsync(() => {
@@ -1924,19 +2286,26 @@ describe('SelectComponent', () => {
         fixture.detectChanges();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
-        expect(value.nativeElement.textContent.trim())
-          .toBe('Food', `Expected trigger to show the placeholder.`);
-        expect(trigger.textContent)
-          .not.toContain('Pizza', `Expected trigger is cleared when option value is not found.`);
+        expect(value.nativeElement.textContent.trim()).toBe(
+          'Food',
+          `Expected trigger to show the placeholder.`
+        );
+        expect(trigger.textContent).not.toContain(
+          'Pizza',
+          `Expected trigger is cleared when option value is not found.`
+        );
 
         trigger.click();
         fixture.detectChanges();
         flush();
 
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
-        expect(options[1].classList)
-          .not.toContain('sbb-selected', `Expected option w/ the old value not to be selected.`);
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
+        expect(options[1].classList).not.toContain(
+          'sbb-selected',
+          `Expected option w/ the old value not to be selected.`
+        );
       }));
 
       it('should clear the selection when the control is reset', fakeAsync(() => {
@@ -1949,103 +2318,135 @@ describe('SelectComponent', () => {
         flush();
 
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
-        expect(value.nativeElement.textContent.trim())
-          .toBe('Food', `Expected trigger to show the placeholder.`);
-        expect(trigger.textContent)
-          .not.toContain('Pizza', `Expected trigger is cleared when option value is not found.`);
+        expect(value.nativeElement.textContent.trim()).toBe(
+          'Food',
+          `Expected trigger to show the placeholder.`
+        );
+        expect(trigger.textContent).not.toContain(
+          'Pizza',
+          `Expected trigger is cleared when option value is not found.`
+        );
 
         trigger.click();
         fixture.detectChanges();
         flush();
 
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
-        expect(options[1].classList)
-          .not.toContain('sbb-selected', `Expected option w/ the old value not to be selected.`);
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
+        expect(options[1].classList).not.toContain(
+          'sbb-selected',
+          `Expected option w/ the old value not to be selected.`
+        );
       }));
 
       it('should set the control to touched when the select is blurred', fakeAsync(() => {
-        expect(fixture.componentInstance.control.touched)
-          .toEqual(false, `Expected the control to start off as untouched.`);
+        expect(fixture.componentInstance.control.touched).toEqual(
+          false,
+          `Expected the control to start off as untouched.`
+        );
 
         trigger.click();
         dispatchFakeEvent(trigger, 'blur');
         fixture.detectChanges();
         flush();
 
-        expect(fixture.componentInstance.control.touched)
-          .toEqual(false, `Expected the control to stay untouched when menu opened.`);
+        expect(fixture.componentInstance.control.touched).toEqual(
+          false,
+          `Expected the control to stay untouched when menu opened.`
+        );
 
-        const backdrop =
-          overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+        const backdrop = overlayContainerElement.querySelector(
+          '.cdk-overlay-backdrop'
+        ) as HTMLElement;
         backdrop.click();
         dispatchFakeEvent(trigger, 'blur');
         fixture.detectChanges();
         flush();
 
-        expect(fixture.componentInstance.control.touched)
-          .toEqual(true, `Expected the control to be touched as soon as focus left the select.`);
+        expect(fixture.componentInstance.control.touched).toEqual(
+          true,
+          `Expected the control to be touched as soon as focus left the select.`
+        );
       }));
 
       it('should set the control to touched when the panel is closed', fakeAsync(() => {
-        expect(fixture.componentInstance.control.touched)
-          .toBe(false, 'Expected the control to start off as untouched.');
+        expect(fixture.componentInstance.control.touched).toBe(
+          false,
+          'Expected the control to start off as untouched.'
+        );
 
         trigger.click();
         dispatchFakeEvent(trigger, 'blur');
         fixture.detectChanges();
         flush();
 
-        expect(fixture.componentInstance.control.touched)
-          .toBe(false, 'Expected the control to stay untouched when menu opened.');
+        expect(fixture.componentInstance.control.touched).toBe(
+          false,
+          'Expected the control to stay untouched when menu opened.'
+        );
 
         fixture.componentInstance.select.close();
         fixture.detectChanges();
         flush();
 
-        expect(fixture.componentInstance.control.touched)
-          .toBe(true, 'Expected the control to be touched when the panel was closed.');
+        expect(fixture.componentInstance.control.touched).toBe(
+          true,
+          'Expected the control to be touched when the panel was closed.'
+        );
       }));
 
       it('should not set touched when a disabled select is touched', fakeAsync(() => {
-        expect(fixture.componentInstance.control.touched)
-          .toBe(false, 'Expected the control to start off as untouched.');
+        expect(fixture.componentInstance.control.touched).toBe(
+          false,
+          'Expected the control to start off as untouched.'
+        );
 
         fixture.componentInstance.control.disable();
         dispatchFakeEvent(trigger, 'blur');
 
-        expect(fixture.componentInstance.control.touched)
-          .toBe(false, 'Expected the control to stay untouched.');
+        expect(fixture.componentInstance.control.touched).toBe(
+          false,
+          'Expected the control to stay untouched.'
+        );
       }));
 
       it('should set the control to dirty when the select value changes in DOM', fakeAsync(() => {
-        expect(fixture.componentInstance.control.dirty)
-          .toEqual(false, `Expected control to start out pristine.`);
+        expect(fixture.componentInstance.control.dirty).toEqual(
+          false,
+          `Expected control to start out pristine.`
+        );
 
         trigger.click();
         fixture.detectChanges();
         flush();
 
-        const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+        const option = overlayContainerElement.querySelector(
+          'sbb-option'
+        ) as HTMLElement;
         option.click();
         fixture.detectChanges();
         flush();
 
-        expect(fixture.componentInstance.control.dirty)
-          .toEqual(true, `Expected control to be dirty after value was changed by user.`);
+        expect(fixture.componentInstance.control.dirty).toEqual(
+          true,
+          `Expected control to be dirty after value was changed by user.`
+        );
       }));
 
-      it('should not set the control to dirty when the value changes programmatically',
-        fakeAsync(() => {
-          expect(fixture.componentInstance.control.dirty)
-            .toEqual(false, `Expected control to start out pristine.`);
+      it('should not set the control to dirty when the value changes programmatically', fakeAsync(() => {
+        expect(fixture.componentInstance.control.dirty).toEqual(
+          false,
+          `Expected control to start out pristine.`
+        );
 
-          fixture.componentInstance.control.setValue('pizza-1');
+        fixture.componentInstance.control.setValue('pizza-1');
 
-          expect(fixture.componentInstance.control.dirty)
-            .toEqual(false, `Expected control to stay pristine after programmatic change.`);
-        }));
-
+        expect(fixture.componentInstance.control.dirty).toEqual(
+          false,
+          `Expected control to stay pristine after programmatic change.`
+        );
+      }));
     });
 
     describe('disabled behavior', () => {
@@ -2056,39 +2457,55 @@ describe('SelectComponent', () => {
         fixture.componentInstance.control.disable();
         fixture.detectChanges();
 
-        const trigger =
-          fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        expect(getComputedStyle(trigger).getPropertyValue('cursor'))
-          .toEqual('default', `Expected cursor to be default arrow on disabled control.`);
+        const trigger = fixture.debugElement.query(
+          By.css('.sbb-select-trigger')
+        ).nativeElement;
+        expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+          'default',
+          `Expected cursor to be default arrow on disabled control.`
+        );
 
         trigger.click();
         fixture.detectChanges();
 
-        expect(overlayContainerElement.textContent)
-          .toEqual('', `Expected select panel to stay closed.`);
-        expect(fixture.componentInstance.select.panelOpen)
-          .toBe(false, `Expected select panelOpen property to stay false.`);
+        expect(overlayContainerElement.textContent).toEqual(
+          '',
+          `Expected select panel to stay closed.`
+        );
+        expect(fixture.componentInstance.select.panelOpen).toBe(
+          false,
+          `Expected select panelOpen property to stay false.`
+        );
 
         fixture.componentInstance.control.enable();
         fixture.detectChanges();
-        expect(getComputedStyle(trigger).getPropertyValue('cursor'))
-          .toEqual('pointer', `Expected cursor to be a pointer on enabled control.`);
+        expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+          'pointer',
+          `Expected cursor to be a pointer on enabled control.`
+        );
 
         trigger.click();
         fixture.detectChanges();
-        expect(overlayContainerElement.textContent)
-          .toContain('Steak', `Expected select panel to open normally on re-enabled control`);
-        expect(fixture.componentInstance.select.panelOpen)
-          .toBe(true, `Expected select panelOpen property to become true.`);
+        expect(overlayContainerElement.textContent).toContain(
+          'Steak',
+          `Expected select panel to open normally on re-enabled control`
+        );
+        expect(fixture.componentInstance.select.panelOpen).toBe(
+          true,
+          `Expected select panelOpen property to become true.`
+        );
       });
     });
   });
 
   describe('when initialized without options', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectInitWithoutOptionsComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([SelectInitWithoutOptionsComponent])));
 
     it('should select the proper option when option list is initialized later', fakeAsync(() => {
-      const fixture = TestBed.createComponent(SelectInitWithoutOptionsComponent);
+      const fixture = TestBed.createComponent(
+        SelectInitWithoutOptionsComponent
+      );
       const instance = fixture.componentInstance;
 
       fixture.detectChanges();
@@ -2107,7 +2524,8 @@ describe('SelectComponent', () => {
   });
 
   describe('with a selectionChange event handler', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectWithChangeEventComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([SelectWithChangeEventComponent])));
 
     let fixture: ComponentFixture<SelectWithChangeEventComponent>;
     let trigger: HTMLElement;
@@ -2116,13 +2534,16 @@ describe('SelectComponent', () => {
       fixture = TestBed.createComponent(SelectWithChangeEventComponent);
       fixture.detectChanges();
       flush();
-      trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
     }));
 
     it('should emit an event when the selected option has changed', () => {
       trigger.click();
       fixture.detectChanges();
-      (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
+      (overlayContainerElement.querySelector(
+        'sbb-option'
+      ) as HTMLElement).click();
 
       expect(fixture.componentInstance.changeListener).toHaveBeenCalled();
     });
@@ -2131,7 +2552,9 @@ describe('SelectComponent', () => {
       trigger.click();
       fixture.detectChanges();
 
-      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+      const option = overlayContainerElement.querySelector(
+        'sbb-option'
+      ) as HTMLElement;
 
       option.click();
       option.click();
@@ -2140,7 +2563,8 @@ describe('SelectComponent', () => {
     });
 
     it('should only emit one event when pressing arrow keys on closed select', fakeAsync(() => {
-      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+      const select = fixture.debugElement.query(By.css('sbb-select'))
+        .nativeElement;
       dispatchKeyboardEvent(select, 'keydown', DOWN_ARROW);
 
       expect(fixture.componentInstance.changeListener).toHaveBeenCalledTimes(1);
@@ -2148,7 +2572,8 @@ describe('SelectComponent', () => {
   });
 
   describe('with ngModel', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([NgModelSelectComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([NgModelSelectComponent])));
 
     it('should disable itself when control is disabled using the property', () => {
       const fixture = TestBed.createComponent(NgModelSelectComponent);
@@ -2158,38 +2583,51 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       fixture.detectChanges();
-      const trigger =
-        fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      expect(getComputedStyle(trigger).getPropertyValue('cursor'))
-        .toEqual('default', `Expected cursor to be default arrow on disabled control.`);
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
+      expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+        'default',
+        `Expected cursor to be default arrow on disabled control.`
+      );
 
       trigger.click();
       fixture.detectChanges();
-      expect(overlayContainerElement.textContent)
-        .toEqual('', `Expected select panel to stay closed.`);
-      expect(fixture.componentInstance.select.panelOpen)
-        .toBe(false, `Expected select panelOpen property to stay false.`);
+      expect(overlayContainerElement.textContent).toEqual(
+        '',
+        `Expected select panel to stay closed.`
+      );
+      expect(fixture.componentInstance.select.panelOpen).toBe(
+        false,
+        `Expected select panelOpen property to stay false.`
+      );
 
       fixture.componentInstance.isDisabled = false;
       fixture.detectChanges();
 
       fixture.detectChanges();
 
-      expect(getComputedStyle(trigger).getPropertyValue('cursor'))
-        .toEqual('pointer', `Expected cursor to be a pointer on enabled control.`);
+      expect(getComputedStyle(trigger).getPropertyValue('cursor')).toEqual(
+        'pointer',
+        `Expected cursor to be a pointer on enabled control.`
+      );
 
       trigger.click();
       fixture.detectChanges();
 
-      expect(overlayContainerElement.textContent)
-        .toContain('Steak', `Expected select panel to open normally on re-enabled control`);
-      expect(fixture.componentInstance.select.panelOpen)
-        .toBe(true, `Expected select panelOpen property to become true.`);
+      expect(overlayContainerElement.textContent).toContain(
+        'Steak',
+        `Expected select panel to open normally on re-enabled control`
+      );
+      expect(fixture.componentInstance.select.panelOpen).toBe(
+        true,
+        `Expected select panelOpen property to become true.`
+      );
     });
   });
 
   describe('with ngIf', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([NgIfSelectComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([NgIfSelectComponent])));
 
     it('should handle nesting in an ngIf', async(() => {
       const fixture = TestBed.createComponent(NgIfSelectComponent);
@@ -2198,17 +2636,22 @@ describe('SelectComponent', () => {
       fixture.componentInstance.isShowing = true;
       fixture.detectChanges();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
       trigger.style.width = '300px';
 
       trigger.click();
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const value = fixture.debugElement.query(By.css('.sbb-select-value'));
-        expect(value.nativeElement.textContent)
-          .toContain('Pizza', `Expected trigger to be populated by the control's initial value.`);
+        expect(value.nativeElement.textContent).toContain(
+          'Pizza',
+          `Expected trigger to be populated by the control's initial value.`
+        );
 
-        const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+        const pane = overlayContainerElement.querySelector(
+          '.cdk-overlay-pane'
+        ) as HTMLElement;
         expect(pane.style.minWidth).toEqual('330px');
 
         expect(fixture.componentInstance.select.panelOpen).toBe(true);
@@ -2220,7 +2663,8 @@ describe('SelectComponent', () => {
   });
 
   describe('with multiple sbb-select elements in one view', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([ManySelectsComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([ManySelectsComponent])));
 
     let fixture: ComponentFixture<ManySelectsComponent>;
     let triggers: DebugElement[];
@@ -2234,19 +2678,26 @@ describe('SelectComponent', () => {
       triggers[0].nativeElement.click();
       fixture.detectChanges();
 
-      options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+      options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
     });
 
     it('should set aria-owns properly', fakeAsync(() => {
       const selects = fixture.debugElement.queryAll(By.css('sbb-select'));
 
-      expect(selects[0].nativeElement.getAttribute('aria-owns'))
-        .toContain(options[0].id, `Expected aria-owns to contain IDs of its child options.`);
-      expect(selects[0].nativeElement.getAttribute('aria-owns'))
-        .toContain(options[1].id, `Expected aria-owns to contain IDs of its child options.`);
+      expect(selects[0].nativeElement.getAttribute('aria-owns')).toContain(
+        options[0].id,
+        `Expected aria-owns to contain IDs of its child options.`
+      );
+      expect(selects[0].nativeElement.getAttribute('aria-owns')).toContain(
+        options[1].id,
+        `Expected aria-owns to contain IDs of its child options.`
+      );
 
-      const backdrop =
-        overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+      const backdrop = overlayContainerElement.querySelector(
+        '.cdk-overlay-backdrop'
+      ) as HTMLElement;
       backdrop.click();
       fixture.detectChanges();
       flush();
@@ -2255,39 +2706,55 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       flush();
 
-      options =
-        overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
-      expect(selects[1].nativeElement.getAttribute('aria-owns'))
-        .toContain(options[0].id, `Expected aria-owns to contain IDs of its child options.`);
-      expect(selects[1].nativeElement.getAttribute('aria-owns'))
-        .toContain(options[1].id, `Expected aria-owns to contain IDs of its child options.`);
+      options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
+      expect(selects[1].nativeElement.getAttribute('aria-owns')).toContain(
+        options[0].id,
+        `Expected aria-owns to contain IDs of its child options.`
+      );
+      expect(selects[1].nativeElement.getAttribute('aria-owns')).toContain(
+        options[1].id,
+        `Expected aria-owns to contain IDs of its child options.`
+      );
     }));
 
     it('should remove aria-owns when the options are not visible', fakeAsync(() => {
       const select = fixture.debugElement.query(By.css('sbb-select'));
 
-      expect(select.nativeElement.hasAttribute('aria-owns'))
-        .toBe(true, 'Expected select to have aria-owns while open.');
+      expect(select.nativeElement.hasAttribute('aria-owns')).toBe(
+        true,
+        'Expected select to have aria-owns while open.'
+      );
 
-      const backdrop =
-        overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+      const backdrop = overlayContainerElement.querySelector(
+        '.cdk-overlay-backdrop'
+      ) as HTMLElement;
       backdrop.click();
       fixture.detectChanges();
       flush();
 
-      expect(select.nativeElement.hasAttribute('aria-owns'))
-        .toBe(false, 'Expected select not to have aria-owns when closed.');
+      expect(select.nativeElement.hasAttribute('aria-owns')).toBe(
+        false,
+        'Expected select not to have aria-owns when closed.'
+      );
     }));
 
     it('should set the option id properly', fakeAsync(() => {
       const firstOptionID = options[0].id;
 
-      expect(options[0].id)
-        .toContain('sbb-option', `Expected option ID to have the correct prefix.`);
-      expect(options[0].id).not.toEqual(options[1].id, `Expected option IDs to be unique.`);
+      expect(options[0].id).toContain(
+        'sbb-option',
+        `Expected option ID to have the correct prefix.`
+      );
+      expect(options[0].id).not.toEqual(
+        options[1].id,
+        `Expected option IDs to be unique.`
+      );
 
-      const backdrop =
-        overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+      const backdrop = overlayContainerElement.querySelector(
+        '.cdk-overlay-backdrop'
+      ) as HTMLElement;
       backdrop.click();
       fixture.detectChanges();
       flush();
@@ -2296,39 +2763,57 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       flush();
 
-      options =
-        overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
-      expect(options[0].id)
-        .toContain('sbb-option', `Expected option ID to have the correct prefix.`);
-      expect(options[0].id).not.toEqual(firstOptionID, `Expected option IDs to be unique.`);
-      expect(options[0].id).not.toEqual(options[1].id, `Expected option IDs to be unique.`);
+      options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
+      expect(options[0].id).toContain(
+        'sbb-option',
+        `Expected option ID to have the correct prefix.`
+      );
+      expect(options[0].id).not.toEqual(
+        firstOptionID,
+        `Expected option IDs to be unique.`
+      );
+      expect(options[0].id).not.toEqual(
+        options[1].id,
+        `Expected option IDs to be unique.`
+      );
     }));
   });
 
   describe('with tabindex', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectWithPlainTabindexComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([SelectWithPlainTabindexComponent])));
 
     it('should be able to set the tabindex via the native attribute', fakeAsync(() => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindexComponent);
       fixture.detectChanges();
 
-      const select = fixture.debugElement.query(By.css('sbb-select')).nativeElement;
+      const select = fixture.debugElement.query(By.css('sbb-select'))
+        .nativeElement;
       expect(select.getAttribute('tabindex')).toBe('5');
     }));
   });
 
   describe('change events', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectWithPlainTabindexComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([SelectWithPlainTabindexComponent])));
 
     it('should complete the stateChanges stream on destroy', () => {
       const fixture = TestBed.createComponent(SelectWithPlainTabindexComponent);
       fixture.detectChanges();
 
-      const debugElement = fixture.debugElement.query(By.directive(SelectComponent));
+      const debugElement = fixture.debugElement.query(
+        By.directive(SelectComponent)
+      );
       const select = debugElement.componentInstance;
 
       const spy = jasmine.createSpy('stateChanges complete');
-      const subscription = select.stateChanges.subscribe(undefined, undefined, spy);
+      const subscription = select.stateChanges.subscribe(
+        undefined,
+        undefined,
+        spy
+      );
 
       fixture.destroy();
       expect(spy).toHaveBeenCalled();
@@ -2337,13 +2822,17 @@ describe('SelectComponent', () => {
   });
 
   describe('when initially hidden', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectInitiallyHiddenComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([BasicSelectInitiallyHiddenComponent])));
 
     it('should set the width of the overlay if the element was hidden initially', () => {
-      const fixture = TestBed.createComponent(BasicSelectInitiallyHiddenComponent);
+      const fixture = TestBed.createComponent(
+        BasicSelectInitiallyHiddenComponent
+      );
       fixture.detectChanges();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
       trigger.style.width = '200px';
       fixture.componentInstance.isVisible = true;
       fixture.detectChanges();
@@ -2351,37 +2840,48 @@ describe('SelectComponent', () => {
       trigger.click();
       fixture.detectChanges();
 
-      const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+      const pane = overlayContainerElement.querySelector(
+        '.cdk-overlay-pane'
+      ) as HTMLElement;
       expect(pane.style.minWidth).toBe('230px');
     });
   });
 
   describe('with no placeholder', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectNoPlaceholderComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([BasicSelectNoPlaceholderComponent])));
 
     it('should set the width of the overlay if there is no placeholder', () => {
-      const fixture = TestBed.createComponent(BasicSelectNoPlaceholderComponent);
+      const fixture = TestBed.createComponent(
+        BasicSelectNoPlaceholderComponent
+      );
 
       fixture.detectChanges();
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
 
       trigger.click();
       fixture.detectChanges();
 
-      const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
+      const pane = overlayContainerElement.querySelector(
+        '.cdk-overlay-pane'
+      ) as HTMLElement;
       // tslint:disable-next-line:radix
       expect(parseInt(pane.style.minWidth as string)).toBeGreaterThan(0);
     });
   });
 
   describe('when invalid inside a form', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([InvalidSelectInFormComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([InvalidSelectInFormComponent])));
 
     it('should not throw SelectionModel errors in addition to ngModel errors', fakeAsync(() => {
       const fixture = TestBed.createComponent(InvalidSelectInFormComponent);
 
       // The first change detection run will throw the "ngModel is missing a name" error.
-      expect(() => fixture.detectChanges()).toThrowError(/the name attribute must be set/g);
+      expect(() => fixture.detectChanges()).toThrowError(
+        /the name attribute must be set/g
+      );
 
       // The second run shouldn't throw selection-model related errors.
       expect(() => fixture.detectChanges()).not.toThrow();
@@ -2389,7 +2889,8 @@ describe('SelectComponent', () => {
   });
 
   describe('with ngModel using compareWith', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([NgModelCompareWithSelectComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([NgModelCompareWithSelectComponent])));
 
     let fixture: ComponentFixture<NgModelCompareWithSelectComponent>;
     let instance: NgModelCompareWithSelectComponent;
@@ -2402,7 +2903,6 @@ describe('SelectComponent', () => {
     }));
 
     describe('comparing by value', () => {
-
       it('should have a selection', fakeAsync(() => {
         const selectedOption = instance.select.selected as OptionComponent;
         expect(selectedOption.value.value).toEqual('pizza-1');
@@ -2421,17 +2921,21 @@ describe('SelectComponent', () => {
   });
 
   describe(`when the select's value is accessed on initialization`, () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectEarlyAccessSiblingComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([SelectEarlyAccessSiblingComponent])));
 
     it('should not throw when trying to access the selected value on init', fakeAsync(() => {
       expect(() => {
-        TestBed.createComponent(SelectEarlyAccessSiblingComponent).detectChanges();
+        TestBed.createComponent(
+          SelectEarlyAccessSiblingComponent
+        ).detectChanges();
       }).not.toThrow();
     }));
   });
 
   describe('inside of a form group', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([SelectInsideFormGroupComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([SelectInsideFormGroupComponent])));
 
     let fixture: ComponentFixture<SelectInsideFormGroupComponent>;
     let testComponent: SelectInsideFormGroupComponent;
@@ -2446,113 +2950,165 @@ describe('SelectComponent', () => {
     }));
 
     it('should not set the invalid class on a clean select', fakeAsync(() => {
-      expect(testComponent.formGroup.untouched).toBe(true, 'Expected the form to be untouched.');
-      expect(testComponent.formControl.invalid).toBe(true, 'Expected form control to be invalid.');
-      expect(select.classList)
-        .not.toContain('sbb-select-invalid', 'Expected select not to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('false', 'Expected aria-invalid to be set to false.');
+      expect(testComponent.formGroup.untouched).toBe(
+        true,
+        'Expected the form to be untouched.'
+      );
+      expect(testComponent.formControl.invalid).toBe(
+        true,
+        'Expected form control to be invalid.'
+      );
+      expect(select.classList).not.toContain(
+        'sbb-select-invalid',
+        'Expected select not to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'false',
+        'Expected aria-invalid to be set to false.'
+      );
     }));
 
     it('should appear as invalid if it becomes touched', fakeAsync(() => {
-      expect(select.classList)
-        .not.toContain('sbb-select-invalid', 'Expected select not to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('false', 'Expected aria-invalid to be set to false.');
+      expect(select.classList).not.toContain(
+        'sbb-select-invalid',
+        'Expected select not to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'false',
+        'Expected aria-invalid to be set to false.'
+      );
 
       testComponent.formControl.markAsTouched();
       fixture.detectChanges();
 
-      expect(select.classList)
-        .toContain('sbb-select-invalid', 'Expected select to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('true', 'Expected aria-invalid to be set to true.');
+      expect(select.classList).toContain(
+        'sbb-select-invalid',
+        'Expected select to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'true',
+        'Expected aria-invalid to be set to true.'
+      );
     }));
 
     it('should not have the invalid class when the select becomes valid', fakeAsync(() => {
       testComponent.formControl.markAsTouched();
       fixture.detectChanges();
 
-      expect(select.classList)
-        .toContain('sbb-select-invalid', 'Expected select to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('true', 'Expected aria-invalid to be set to true.');
+      expect(select.classList).toContain(
+        'sbb-select-invalid',
+        'Expected select to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'true',
+        'Expected aria-invalid to be set to true.'
+      );
 
       testComponent.formControl.setValue('pizza-1');
       fixture.detectChanges();
 
-      expect(select.classList)
-        .not.toContain('sbb-select-invalid', 'Expected select not to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('false', 'Expected aria-invalid to be set to false.');
+      expect(select.classList).not.toContain(
+        'sbb-select-invalid',
+        'Expected select not to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'false',
+        'Expected aria-invalid to be set to false.'
+      );
     }));
 
     it('should appear as invalid when the parent form group is submitted', fakeAsync(() => {
-      expect(select.classList)
-        .not.toContain('sbb-select-invalid', 'Expected select not to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('false', 'Expected aria-invalid to be set to false.');
+      expect(select.classList).not.toContain(
+        'sbb-select-invalid',
+        'Expected select not to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'false',
+        'Expected aria-invalid to be set to false.'
+      );
 
-      dispatchFakeEvent(fixture.debugElement.query(By.css('form')).nativeElement, 'submit');
+      dispatchFakeEvent(
+        fixture.debugElement.query(By.css('form')).nativeElement,
+        'submit'
+      );
       fixture.detectChanges();
 
-      expect(select.classList)
-        .toContain('sbb-select-invalid', 'Expected select to appear invalid.');
-      expect(select.getAttribute('aria-invalid'))
-        .toBe('true', 'Expected aria-invalid to be set to true.');
+      expect(select.classList).toContain(
+        'sbb-select-invalid',
+        'Expected select to appear invalid.'
+      );
+      expect(select.getAttribute('aria-invalid')).toBe(
+        'true',
+        'Expected aria-invalid to be set to true.'
+      );
     }));
-
   });
 
   describe('with preselected array values', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      SingleSelectWithPreselectedArrayValuesComponent,
-    ])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([
+        SingleSelectWithPreselectedArrayValuesComponent
+      ])));
 
     it('should be able to preselect an array value in single-selection mode', fakeAsync(() => {
-      const fixture = TestBed.createComponent(SingleSelectWithPreselectedArrayValuesComponent);
+      const fixture = TestBed.createComponent(
+        SingleSelectWithPreselectedArrayValuesComponent
+      );
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
 
       expect(trigger.textContent).toContain('Pizza');
-      expect(fixture.componentInstance.options.toArray()[1].selected).toBe(true);
+      expect(fixture.componentInstance.options.toArray()[1].selected).toBe(
+        true
+      );
     }));
   });
 
   describe('with a falsy value', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([FalsyValueSelectComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([FalsyValueSelectComponent])));
 
     it('should be able to programmatically select a falsy option', () => {
       const fixture = TestBed.createComponent(FalsyValueSelectComponent);
 
       fixture.detectChanges();
-      fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement.click();
+      fixture.debugElement
+        .query(By.css('.sbb-select-trigger'))
+        .nativeElement.click();
       fixture.componentInstance.control.setValue(0);
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.options.first.selected)
-        .toBe(true, 'Expected first option to be selected');
-      expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList)
-        .toContain('sbb-selected', 'Expected first option to be selected');
+      expect(fixture.componentInstance.options.first.selected).toBe(
+        true,
+        'Expected first option to be selected'
+      );
+      expect(
+        overlayContainerElement.querySelectorAll('sbb-option')[0].classList
+      ).toContain('sbb-selected', 'Expected first option to be selected');
     });
   });
 
   describe('with OnPush', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      BasicSelectOnPushComponent,
-      BasicSelectOnPushPreselectedComponent,
-    ])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([
+        BasicSelectOnPushComponent,
+        BasicSelectOnPushPreselectedComponent
+      ])));
 
     it('should set the trigger text based on the value when initialized', fakeAsync(() => {
-      const fixture = TestBed.createComponent(BasicSelectOnPushPreselectedComponent);
+      const fixture = TestBed.createComponent(
+        BasicSelectOnPushPreselectedComponent
+      );
 
       fixture.detectChanges();
       flush();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
 
       fixture.detectChanges();
       flush();
@@ -2564,7 +3120,8 @@ describe('SelectComponent', () => {
       const fixture = TestBed.createComponent(BasicSelectOnPushComponent);
       fixture.detectChanges();
       flush();
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
 
       fixture.componentInstance.control.setValue('pizza-1');
       fixture.detectChanges();
@@ -2581,11 +3138,12 @@ describe('SelectComponent', () => {
   });
 
   describe('without Angular forms', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([
-      BasicSelectWithoutFormsComponent,
-      BasicSelectWithoutFormsPreselectedComponent,
-      BasicSelectWithoutFormsMultipleComponent,
-    ])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([
+        BasicSelectWithoutFormsComponent,
+        BasicSelectWithoutFormsPreselectedComponent,
+        BasicSelectWithoutFormsMultipleComponent
+      ])));
 
     it('should set the value when options are clicked', fakeAsync(() => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsComponent);
@@ -2593,13 +3151,16 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       expect(fixture.componentInstance.selectedFood).toBeFalsy();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
 
       trigger.click();
       fixture.detectChanges();
       flush();
 
-      (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
+      (overlayContainerElement.querySelector(
+        'sbb-option'
+      ) as HTMLElement).click();
       fixture.detectChanges();
       flush();
 
@@ -2611,7 +3172,9 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       flush();
 
-      (overlayContainerElement.querySelectorAll('sbb-option')[2] as HTMLElement).click();
+      (overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      )[2] as HTMLElement).click();
       fixture.detectChanges();
       flush();
 
@@ -2628,7 +3191,8 @@ describe('SelectComponent', () => {
       fixture.componentInstance.selectedFood = 'sandwich-2';
       fixture.detectChanges();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
       expect(trigger.textContent).toContain('Sandwich');
 
       trigger.click();
@@ -2647,13 +3211,16 @@ describe('SelectComponent', () => {
       flush();
       expect(fixture.componentInstance.selectedFood).toBeFalsy();
 
-      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
 
       trigger.click();
       fixture.detectChanges();
       flush();
 
-      (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
+      (overlayContainerElement.querySelector(
+        'sbb-option'
+      ) as HTMLElement).click();
       fixture.detectChanges();
       flush();
 
@@ -2670,10 +3237,14 @@ describe('SelectComponent', () => {
     }));
 
     it('should reflect the preselected value', () => {
-      const fixture = TestBed.createComponent(BasicSelectWithoutFormsPreselectedComponent);
+      const fixture = TestBed.createComponent(
+        BasicSelectWithoutFormsPreselectedComponent
+      );
       fixture.detectChanges();
       fixture.whenRenderingDone().then(() => {
-        const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        const trigger = fixture.debugElement.query(
+          By.css('.sbb-select-trigger')
+        ).nativeElement;
         fixture.detectChanges();
 
         expect(trigger.textContent).toContain('Pizza');
@@ -2681,27 +3252,33 @@ describe('SelectComponent', () => {
         trigger.click();
         fixture.detectChanges();
 
-        const option = overlayContainerElement.querySelectorAll('sbb-option')[1];
+        const option = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        )[1];
 
         expect(option.classList).toContain('sbb-selected');
         expect(fixture.componentInstance.select.value).toBe('pizza-1');
       });
-
     });
 
     it('should be able to select multiple values', () => {
-      const fixture = TestBed.createComponent(BasicSelectWithoutFormsMultipleComponent);
+      const fixture = TestBed.createComponent(
+        BasicSelectWithoutFormsMultipleComponent
+      );
 
       fixture.detectChanges();
       fixture.whenRenderingDone().then(() => {
         expect(fixture.componentInstance.selectedFoods).toBeFalsy();
 
-        const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+        const trigger = fixture.debugElement.query(
+          By.css('.sbb-select-trigger')
+        ).nativeElement;
 
         trigger.click();
         fixture.detectChanges();
-        const options =
-          overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
+        const options = overlayContainerElement.querySelectorAll(
+          'sbb-option'
+        ) as NodeListOf<HTMLElement>;
 
         options[0].click();
         fixture.detectChanges();
@@ -2713,15 +3290,29 @@ describe('SelectComponent', () => {
         options[2].click();
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'sandwich-2']);
-        expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'sandwich-2']);
+        expect(fixture.componentInstance.selectedFoods).toEqual([
+          'steak-0',
+          'sandwich-2'
+        ]);
+        expect(fixture.componentInstance.select.value).toEqual([
+          'steak-0',
+          'sandwich-2'
+        ]);
         expect(trigger.textContent).toContain('Steak, Sandwich');
 
         options[1].click();
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
-        expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
+        expect(fixture.componentInstance.selectedFoods).toEqual([
+          'steak-0',
+          'pizza-1',
+          'sandwich-2'
+        ]);
+        expect(fixture.componentInstance.select.value).toEqual([
+          'steak-0',
+          'pizza-1',
+          'sandwich-2'
+        ]);
         expect(trigger.textContent).toContain('Steak, Pizza, Sandwich');
       });
     });
@@ -2733,26 +3324,32 @@ describe('SelectComponent', () => {
 
       fixture.detectChanges();
       flush();
-      instance.select.selectionChange.subscribe(() => spy(instance.selectedFood));
+      instance.select.selectionChange.subscribe(() =>
+        spy(instance.selectedFood)
+      );
 
       expect(instance.selectedFood).toBeFalsy();
 
-      fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement.click();
+      fixture.debugElement
+        .query(By.css('.sbb-select-trigger'))
+        .nativeElement.click();
       fixture.detectChanges();
       flush();
 
-      (overlayContainerElement.querySelector('sbb-option') as HTMLElement).click();
+      (overlayContainerElement.querySelector(
+        'sbb-option'
+      ) as HTMLElement).click();
       fixture.detectChanges();
       flush();
 
       expect(instance.selectedFood).toBe('steak-0');
       expect(spy).toHaveBeenCalledWith('steak-0');
     }));
-
   });
 
   describe('with multiple selection', () => {
-    beforeEach(async(() => configureSbbSelectTestingModule([MultiSelectComponent])));
+    beforeEach(async(() =>
+      configureSbbSelectTestingModule([MultiSelectComponent])));
 
     let fixture: ComponentFixture<MultiSelectComponent>;
     let testInstance: MultiSelectComponent;
@@ -2762,27 +3359,35 @@ describe('SelectComponent', () => {
       fixture = TestBed.createComponent(MultiSelectComponent);
       testInstance = fixture.componentInstance;
       fixture.detectChanges();
-      trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.sbb-select-trigger'))
+        .nativeElement;
     });
 
     it('should be able to select multiple values', () => {
       trigger.click();
       fixture.detectChanges();
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[2].click();
       options[5].click();
       fixture.detectChanges();
-      expect(testInstance.control.value).toEqual(['steak-0', 'tacos-2', 'eggs-5']);
+      expect(testInstance.control.value).toEqual([
+        'steak-0',
+        'tacos-2',
+        'eggs-5'
+      ]);
     });
 
     it('should be able to toggle an option on and off', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
       flush();
-      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
+      const option = overlayContainerElement.querySelector(
+        'sbb-option'
+      ) as HTMLElement;
 
       option.click();
       fixture.detectChanges();
@@ -2799,8 +3404,9 @@ describe('SelectComponent', () => {
       trigger.click();
       fixture.detectChanges();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[2].click();
@@ -2820,8 +3426,9 @@ describe('SelectComponent', () => {
       testInstance.control.setValue(['steak-0', 'eggs-5']);
       fixture.detectChanges();
       flush();
-      const optionNodes = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const optionNodes = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       const optionInstances = testInstance.options.toArray();
 
@@ -2836,8 +3443,9 @@ describe('SelectComponent', () => {
       trigger.click();
       fixture.detectChanges();
       flush();
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       fixture.detectChanges();
@@ -2857,8 +3465,9 @@ describe('SelectComponent', () => {
 
       expect(testInstance.select.panelOpen).toBe(true);
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[1].click();
@@ -2871,8 +3480,9 @@ describe('SelectComponent', () => {
       trigger.click();
       fixture.detectChanges();
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[2].click();
       options[0].click();
@@ -2880,61 +3490,78 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
-      expect(fixture.componentInstance.control.value).toEqual(['steak-0', 'pizza-1', 'tacos-2']);
+      expect(fixture.componentInstance.control.value).toEqual([
+        'steak-0',
+        'pizza-1',
+        'tacos-2'
+      ]);
     });
 
-    it('should sort the values that get set via the model based on the panel order',
-      fakeAsync(() => {
-        trigger.click();
-        fixture.detectChanges();
-        flush();
-        testInstance.control.setValue(['tacos-2', 'steak-0', 'pizza-1']);
-        fixture.detectChanges();
-        flush();
-        expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
-      }));
+    it('should sort the values that get set via the model based on the panel order', fakeAsync(() => {
+      trigger.click();
+      fixture.detectChanges();
+      flush();
+      testInstance.control.setValue(['tacos-2', 'steak-0', 'pizza-1']);
+      fixture.detectChanges();
+      flush();
+      expect(trigger.textContent).toContain('Steak, Pizza, Tacos');
+    }));
 
     it('should pass the `multiple` value to all of the option instances', fakeAsync(() => {
       trigger.click();
       fixture.detectChanges();
       flush();
 
-      expect(testInstance.options.toArray().every(option => !!option.multiple)).toBe(true,
-        'Expected `multiple` to have been added to initial set of options.');
+      expect(
+        testInstance.options.toArray().every(option => !!option.multiple)
+      ).toBe(
+        true,
+        'Expected `multiple` to have been added to initial set of options.'
+      );
 
       testInstance.foods.push({ value: 'cake-8', viewValue: 'Cake' });
       fixture.detectChanges();
       flush();
-      expect(testInstance.options.toArray().every(option => !!option.multiple)).toBe(true,
-        'Expected `multiple` to have been set on dynamically-added option.');
+      expect(
+        testInstance.options.toArray().every(option => !!option.multiple)
+      ).toBe(
+        true,
+        'Expected `multiple` to have been set on dynamically-added option.'
+      );
     }));
 
     it('should update the active item index on click', () => {
       trigger.click();
       fixture.detectChanges();
 
-      expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(0);
+      expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(
+        0
+      );
 
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[2].click();
       fixture.detectChanges();
-      expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(2);
+      expect(fixture.componentInstance.select.keyManager.activeItemIndex).toBe(
+        2
+      );
     });
 
     it('should be to select an option with a `null` value', () => {
       fixture.componentInstance.foods = [
         { value: null, viewValue: 'Steak' },
         { value: 'pizza-1', viewValue: 'Pizza' },
-        { value: null, viewValue: 'Tacos' },
+        { value: null, viewValue: 'Tacos' }
       ];
 
       fixture.detectChanges();
       trigger.click();
       fixture.detectChanges();
-      const options = overlayContainerElement.querySelectorAll('sbb-option') as
-        NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll(
+        'sbb-option'
+      ) as NodeListOf<HTMLElement>;
 
       options[0].click();
       options[1].click();
@@ -3060,6 +3687,5 @@ describe('SelectComponent', () => {
       expect(options.some(option => option.selected)).toBe(false);
       expect(testInstance.control.value).toEqual([]);
     }));
-
   });
 });

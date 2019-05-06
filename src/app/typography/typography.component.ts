@@ -1,10 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  ElementRef,
-  QueryList,
-  ViewChildren
-} from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -13,7 +8,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./typography.component.scss']
 })
 export class TypographyComponent {
-
   @ViewChildren('pageLink') pageLinks: QueryList<ElementRef>;
 
   private _editorOptionsBase = {
@@ -26,9 +20,13 @@ export class TypographyComponent {
 
   dashCaseRegexp = RegExp('-([a-z])', 'g');
 
-  editorOptionsHtml = Object.assign({}, this._editorOptionsBase, { language: 'html' });
+  editorOptionsHtml = Object.assign({}, this._editorOptionsBase, {
+    language: 'html'
+  });
 
-  editorOptionsScss = Object.assign({}, this._editorOptionsBase, { language: 'scss' });
+  editorOptionsScss = Object.assign({}, this._editorOptionsBase, {
+    language: 'scss'
+  });
 
   code = {
     globalSettings: '',
@@ -42,10 +40,7 @@ export class TypographyComponent {
     headings: ''
   };
 
-  constructor(
-    private _sanitizer: DomSanitizer,
-    private _http: HttpClient,
-  ) {
+  constructor(private _sanitizer: DomSanitizer, private _http: HttpClient) {
     this._getSample('global-settings', 'scss');
     this._getSample('unordered-list');
     this._getSample('ordered-list');
@@ -63,8 +58,13 @@ export class TypographyComponent {
 
   private _getSample(filename: string, type: 'html' | 'scss' = 'html') {
     this._http
-      .get(`docs/typography/samples/${filename}.${type}`, { responseType: 'text' })
-      .subscribe((response: any) => this.code[this.dashCaseToCamelCase(filename)] = response);
+      .get(`docs/typography/samples/${filename}.${type}`, {
+        responseType: 'text'
+      })
+      .subscribe(
+        (response: any) =>
+          (this.code[this.dashCaseToCamelCase(filename)] = response)
+      );
   }
 
   getRawHTML(htmlString: string) {

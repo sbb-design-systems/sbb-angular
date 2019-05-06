@@ -9,7 +9,10 @@ import { ButtonModule } from '../button/button.module';
 import { OptionModule } from '../option/option.module';
 
 import { SearchIconDirective } from './search-icon.directive';
-import { SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER, SearchComponent } from './search/search.component';
+import {
+  SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  SearchComponent
+} from './search/search.component';
 
 @NgModule({
   declarations: [SearchComponent, SearchIconDirective],
@@ -20,17 +23,9 @@ import { SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER, SearchComponent } from './
     OverlayModule,
     AutocompleteModule,
     ButtonModule,
-    OptionModule,
+    OptionModule
   ],
-  exports: [
-    SearchComponent,
-    PortalModule,
-    OverlayModule,
-    SearchIconDirective
-  ],
-  providers: [
-    SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER
-
-  ]
+  exports: [SearchComponent, PortalModule, OverlayModule, SearchIconDirective],
+  providers: [SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
-export class SearchModule { }
+export class SearchModule {}

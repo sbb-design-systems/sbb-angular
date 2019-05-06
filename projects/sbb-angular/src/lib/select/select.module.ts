@@ -6,7 +6,10 @@ import { IconChevronSmallDownModule } from 'sbb-angular-icons';
 
 import { OptionModule } from '../option/option.module';
 
-import { SBB_SELECT_SCROLL_STRATEGY_PROVIDER, SelectComponent } from './select/select.component';
+import {
+  SBB_SELECT_SCROLL_STRATEGY_PROVIDER,
+  SelectComponent
+} from './select/select.component';
 
 @NgModule({
   imports: [
@@ -16,17 +19,13 @@ import { SBB_SELECT_SCROLL_STRATEGY_PROVIDER, SelectComponent } from './select/s
     OverlayModule,
     PerfectScrollbarModule
   ],
-  declarations: [
-    SelectComponent
-  ],
+  declarations: [SelectComponent],
   exports: [
     OptionModule,
     OverlayModule,
     SelectComponent,
     PerfectScrollbarModule
   ],
-  providers: [
-    SBB_SELECT_SCROLL_STRATEGY_PROVIDER
-  ]
+  providers: [SBB_SELECT_SCROLL_STRATEGY_PROVIDER]
 })
-export class SelectModule { }
+export class SelectModule {}

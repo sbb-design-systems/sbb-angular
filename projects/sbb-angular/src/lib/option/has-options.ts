@@ -8,7 +8,6 @@ export interface HasOptions {
   /** Whether the component is disabled. */
   options: QueryList<OptionComponent>;
   optionGroups: QueryList<OptionGroupComponent>;
-
 }
 
 /** Mixin to augment a directive with a `disabled` property. */
@@ -21,7 +20,6 @@ const mediaQueriesBreakpoints = [
 ];
 
 export class MediaQueryResizableComponent {
-
   get ems(): number {
     return this._getEmByWindowWidth();
   }
@@ -30,7 +28,10 @@ export class MediaQueryResizableComponent {
     const windowWidth = window.innerWidth;
     const em = mediaQueriesBreakpoints.find((mediaQuery, index) => {
       if (index < mediaQueriesBreakpoints.length - 1) {
-        return mediaQuery.min <= windowWidth && mediaQueriesBreakpoints[index + 1].min > windowWidth;
+        return (
+          mediaQuery.min <= windowWidth &&
+          mediaQueriesBreakpoints[index + 1].min > windowWidth
+        );
       } else {
         return mediaQuery.min <= windowWidth;
       }
@@ -40,5 +41,4 @@ export class MediaQueryResizableComponent {
     }
     return em;
   }
-
 }

@@ -5,5 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './icons-list.component.html',
   styleUrls: ['./icons-list.component.scss']
 })
-export class IconsListComponent {
-}
+export class IconsListComponent {}

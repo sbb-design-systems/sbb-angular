@@ -3,14 +3,31 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Single Option Selection with img</h4>
 
-      <sbb-radio-button-panel name="single-option" value="single-option" [disabled]="disabled" [required]="required"
-        [checked]="checked" label="SBB - Finanzen" subtitle="Armin Burgermeister">
-        <img icon src="https://support.hipay.com/hc/article_attachments/115011468665/BC_logo_ORGNL_RGB.png" />
+      <sbb-radio-button-panel
+        name="single-option"
+        value="single-option"
+        [disabled]="disabled"
+        [required]="required"
+        [checked]="checked"
+        label="SBB - Finanzen"
+        subtitle="Armin Burgermeister"
+      >
+        <img
+          icon
+          src="https://support.hipay.com/hc/article_attachments/115011468665/BC_logo_ORGNL_RGB.png"
+        />
       </sbb-radio-button-panel>
 
       <h4 class="sbbsc-block">Single Option Selection with icon component</h4>
-      <sbb-radio-button-panel name="single-option-svg" value="single-option" label="SBB - Finanzen" subtitle="Armin Burgermeister"
-        [disabled]="disabled" [required]="required" [checked]="checked">
+      <sbb-radio-button-panel
+        name="single-option-svg"
+        value="single-option"
+        label="SBB - Finanzen"
+        subtitle="Armin Burgermeister"
+        [disabled]="disabled"
+        [required]="required"
+        [checked]="checked"
+      >
         <sbb-icon-heart icon></sbb-icon-heart>
       </sbb-radio-button-panel>
     </div>
@@ -35,7 +52,12 @@
       <h4 class="sbbsc-block">Option selections</h4>
       <ng-container *ngFor="let option of radioOptions; index as i">
         <div class="sbbsc-block">
-          <sbb-radio-button-panel [(ngModel)]="modelValue" name="model-option-selection" [value]="option.value" [label]="option.name"></sbb-radio-button-panel>
+          <sbb-radio-button-panel
+            [(ngModel)]="modelValue"
+            name="model-option-selection"
+            [value]="option.value"
+            [label]="option.name"
+          ></sbb-radio-button-panel>
         </div>
       </ng-container>
     </div>

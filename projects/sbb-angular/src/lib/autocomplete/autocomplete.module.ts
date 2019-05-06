@@ -7,17 +7,13 @@ import { OptionModule } from '../option/option.module';
 
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {
-  AutocompleteTriggerDirective, SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
+  AutocompleteTriggerDirective,
+  SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './autocomplete/autocomplete-trigger.directive';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 @NgModule({
-  imports: [
-    OptionModule,
-    CommonModule,
-    A11yModule,
-    OverlayModule
-  ],
+  imports: [OptionModule, CommonModule, A11yModule, OverlayModule],
   declarations: [
     AutocompleteComponent,
     AutocompleteOriginDirective,
@@ -32,4 +28,4 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
   ],
   providers: [SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
-export class AutocompleteModule { }
+export class AutocompleteModule {}

@@ -11,9 +11,12 @@ import {
   LightboxContentComponent,
   LightboxFooterComponent,
   LightboxHeaderComponent,
-  LightboxTitleDirective,
+  LightboxTitleDirective
 } from './lightbox/lightbox-content';
-import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
+import {
+  Lightbox,
+  LIGHTBOX_SCROLL_STRATEGY_PROVIDER
+} from './lightbox/lightbox.service';
 
 @NgModule({
   imports: [
@@ -39,12 +42,7 @@ import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox
     LightboxContentComponent,
     LightboxTitleDirective
   ],
-  providers: [
-    Lightbox,
-    LIGHTBOX_SCROLL_STRATEGY_PROVIDER
-  ],
-  entryComponents: [
-    LightboxContainerComponent
-  ]
+  providers: [Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER],
+  entryComponents: [LightboxContainerComponent]
 })
-export class LightboxModule { }
+export class LightboxModule {}

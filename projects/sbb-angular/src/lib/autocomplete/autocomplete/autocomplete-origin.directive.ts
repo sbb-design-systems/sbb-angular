@@ -11,5 +11,6 @@ import { Directive, ElementRef } from '@angular/core';
 export class AutocompleteOriginDirective {
   constructor(
     /** Reference to the element on which the directive is applied. */
-    public elementRef: ElementRef<HTMLElement>) { }
+    public elementRef: ElementRef<HTMLElement>
+  ) {}
 }

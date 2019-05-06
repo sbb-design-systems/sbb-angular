@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AccordionComponent } from 'sbb-angular';
@@ -26,17 +33,20 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
   multi = false;
   hideToggle = false;
 
-  radioOptions = [{
-    'name': 'Open all',
-    'value': 'openAll'
-  }, {
-    'name': 'Close all',
-    'value': 'closeAll'
-  }];
+  radioOptions = [
+    {
+      name: 'Open all',
+      value: 'openAll'
+    },
+    {
+      name: 'Close all',
+      value: 'closeAll'
+    }
+  ];
 
   constructor() {
     this.accordionForm = new FormGroup({
-      radioModes: new FormControl({value: null, disabled: true}),
+      radioModes: new FormControl({ value: null, disabled: true }),
       disabled: new FormControl(this.disabled),
       multi: new FormControl(this.multi),
       panelMode: new FormControl(this.panelMode),
@@ -45,9 +55,9 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    this.onRadioChange = this.accordionForm.get('radioModes').valueChanges.subscribe(value => {
-
+    this.onRadioChange = this.accordionForm
+      .get('radioModes')
+      .valueChanges.subscribe(value => {
         switch (value) {
           case 'openAll':
             this.firstAccordion.openAll();
@@ -56,43 +66,39 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
             this.firstAccordion.closeAll();
             break;
         }
+      });
 
-      }
-    );
-
-    this.onMultiChange = this.accordionForm.get('multi').valueChanges.subscribe(value => {
-
+    this.onMultiChange = this.accordionForm
+      .get('multi')
+      .valueChanges.subscribe(value => {
         this.multi = value;
 
         if (this.multi === true) {
           this.accordionForm.get('radioModes').enable();
           this.accordionForm.get('panelMode').disable();
-
         } else {
           this.accordionForm.get('radioModes').disable();
           this.accordionForm.get('panelMode').enable();
         }
+      });
 
-      }
-
-    );
-
-    this.onDisabledChange = this.accordionForm.get('disabled').valueChanges.subscribe(value => {
-
+    this.onDisabledChange = this.accordionForm
+      .get('disabled')
+      .valueChanges.subscribe(value => {
         this.disabled = value;
-      }
-    );
+      });
 
-    this.onHideToggle = this.accordionForm.get('hideToggle').valueChanges.subscribe(value => {
+    this.onHideToggle = this.accordionForm
+      .get('hideToggle')
+      .valueChanges.subscribe(value => {
         this.hideToggle = value;
-      }
-    );
+      });
 
-    this.onModeChange = this.accordionForm.get('panelMode').valueChanges.subscribe(value => {
+    this.onModeChange = this.accordionForm
+      .get('panelMode')
+      .valueChanges.subscribe(value => {
         this.panelMode = value;
-      }
-    );
-
+      });
   }
 
   setStep(index: number) {
@@ -131,7 +137,5 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
     this.onMultiChange.unsubscribe();
     this.onHideToggle.unsubscribe();
     this.onModeChange.unsubscribe();
-
   }
-
 }

@@ -35,7 +35,7 @@
     border-color: $colorGrey;
   }
 
-  &.ng-touched.ng-invalid:not([aria-expanded="true"]) {
+  &.ng-touched.ng-invalid:not([aria-expanded='true']) {
     color: $colorError;
     border-color: $colorError;
   }

@@ -11,39 +11,41 @@ import { UiIcon } from '../shared/ui-icon';
   selector: 'sbb-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
-  animations: [
-    FADE_ANIMATION
-  ]
+  animations: [FADE_ANIMATION]
 })
 export class ContentComponent implements OnInit {
-
   id: string;
 
   uiComponent: UiComponent;
   uiIcon: UiIcon;
   isSourceTabClicked: boolean;
-  options = { theme: 'default', language: 'typescript', readOnly: true, automaticLayout: true };
+  options = {
+    theme: 'default',
+    language: 'typescript',
+    readOnly: true,
+    automaticLayout: true
+  };
   componentDocLoaded: boolean;
 
   constructor(
     private _componentUiService: ComponentUiService,
     private _iconUiService: IconUiService,
-    private _route: ActivatedRoute,
-  ) { }
+    private _route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.componentDocLoaded = false;
     this._route.params.subscribe(params => {
       this.id = params['id'];
 
-      this.uiComponent = this._componentUiService.getUiComponentByRouterLink(this.id);
+      this.uiComponent = this._componentUiService.getUiComponentByRouterLink(
+        this.id
+      );
 
       if (!this.uiComponent) {
         this.uiIcon = this._iconUiService.getUiIconByRouterLink(this.id);
       }
       this.componentDocLoaded = true;
-
     });
   }
-
 }

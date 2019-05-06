@@ -3,7 +3,8 @@
 :host {
   @include loadingBase();
 
-  &.sbb-loading-fullbox-container, &.sbb-loading-fullscreen-container {
+  &.sbb-loading-fullbox-container,
+  &.sbb-loading-fullscreen-container {
     @include setLoadingArea();
   }
 
@@ -14,8 +15,4 @@
   &.sbb-loading-fullscreen-container {
     @include setLoadingArea(fullscreen);
   }
-
 }
-
-
-

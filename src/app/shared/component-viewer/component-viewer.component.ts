@@ -8,11 +8,9 @@ import { UiComponent } from '../ui-component';
   styleUrls: ['./component-viewer.component.scss']
 })
 export class ComponentViewerComponent implements OnInit {
-
   toggleSrcVisible = false;
 
   @Input() component: UiComponent;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

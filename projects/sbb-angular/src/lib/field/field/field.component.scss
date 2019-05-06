@@ -1,4 +1,4 @@
-@import "../../../styles/main.scss";
+@import '../../../styles/main.scss';
 
 sbb-field {
   display: inline-block;
@@ -7,25 +7,27 @@ sbb-field {
     &-short {
       @include inputMode(short);
     }
-  
+
     &-medium {
       @include inputMode(medium);
     }
-  
+
     &-long {
       @include inputMode(long);
     }
-  
-    &-short, &-medium, &-long {
+
+    &-short,
+    &-medium,
+    &-long {
       input {
-        &:not([type="checkbox"]),
-        &:not([type="radio"]) {
+        &:not([type='checkbox']),
+        &:not([type='radio']) {
           width: 100%;
         }
       }
     }
   }
-  
+
   & > .sbb-form-error {
     @include formError($colorCallToAction);
   }

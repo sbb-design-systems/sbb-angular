@@ -5,13 +5,8 @@ import { IconTickModule } from 'sbb-angular-icons';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IconTickModule,
-  ],
+  imports: [CommonModule, IconTickModule],
   declarations: [CheckboxComponent],
-  exports: [
-    CheckboxComponent
-  ]
+  exports: [CheckboxComponent]
 })
-export class CheckboxModule { }
+export class CheckboxModule {}

@@ -36,7 +36,8 @@ export class SBBOptionSelectionChange {
     /** Reference to the option that emitted the event. */
     public source: OptionComponent,
     /** Whether the change in the option's value was a result of a user action. */
-    public isUserInput = false) { }
+    public isUserInput = false
+  ) {}
 }
 
 /**
@@ -51,8 +52,9 @@ export interface SbbOptionParentComponent {
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_OPTION_PARENT_COMPONENT =
-  new InjectionToken<SbbOptionParentComponent>('SBB_OPTION_PARENT_COMPONENT');
+export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<
+  SbbOptionParentComponent
+>('SBB_OPTION_PARENT_COMPONENT');
 
 @Component({
   selector: 'sbb-option',
@@ -61,27 +63,36 @@ export const SBB_OPTION_PARENT_COMPONENT =
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
+export class OptionComponent
+  implements AfterViewChecked, OnDestroy, Highlightable {
   mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
   selected = false;
 
   @HostBinding('class.sbb-option-multiple')
-  get multiple() { return this._parent && this._parent.multiple; }
+  get multiple() {
+    return this._parent && this._parent.multiple;
+  }
 
   @HostBinding('attr.role')
   role = 'option';
 
   @HostBinding('attr.aria-selected')
-  get ariaSelected() { return this.selected || null; }
+  get ariaSelected() {
+    return this.selected || null;
+  }
 
   @HostBinding('attr.aria-disabled')
-  get ariaDisabled() { return this._disabled || null; }
+  get ariaDisabled() {
+    return this._disabled || null;
+  }
 
   @Input()
   @HostBinding('class.sbb-option-disabled')
-  get disabled() { return (this.group && this.group.disabled) || this._disabled; }
+  get disabled() {
+    return (this.group && this.group.disabled) || this._disabled;
+  }
   set disabled(value: any) {
     this._changeDetectorRef.markForCheck();
     this._disabled = coerceBooleanProperty(value);
@@ -89,7 +100,9 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   private _disabled = false;
 
   @HostBinding('attr.tabIndex')
-  get tabIndex(): string { return this.disabled ? '-1' : '0'; }
+  get tabIndex(): string {
+    return this.disabled ? '-1' : '0';
+  }
 
   @HostBinding('class.sbb-active')
   active = false;
@@ -112,9 +125,11 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(SBB_OPTION_PARENT_COMPONENT) private _parent: SbbOptionParentComponent,
+    @Optional()
+    @Inject(SBB_OPTION_PARENT_COMPONENT)
+    private _parent: SbbOptionParentComponent,
     @Optional() readonly group: OptionGroupComponent
-  ) { }
+  ) {}
 
   @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
@@ -205,7 +220,9 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(new SBBOptionSelectionChange(this, isUserInput));
+    this.onSelectionChange.emit(
+      new SBBOptionSelectionChange(this, isUserInput)
+    );
   }
 }
 
@@ -217,8 +234,12 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
  * @param panelHeight Height of the panel.
  * @docs-private
  */
-export function getOptionScrollPosition(optionIndex: number, optionHeight: number,
-  currentScrollPosition: number, panelHeight: number): number {
+export function getOptionScrollPosition(
+  optionIndex: number,
+  optionHeight: number,
+  currentScrollPosition: number,
+  panelHeight: number
+): number {
   const optionOffset = optionIndex * optionHeight;
 
   if (optionOffset < currentScrollPosition) {
@@ -244,14 +265,16 @@ export function countGroupLabelsBeforeOption(
   options: QueryList<OptionComponent>,
   optionGroups: QueryList<OptionGroupComponent>
 ): number {
-
   if (optionGroups.length) {
     const optionsArray = options.toArray();
     const groups = optionGroups.toArray();
     let groupCounter = 0;
 
     for (let i = 0; i < optionIndex + 1; i++) {
-      if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
+      if (
+        optionsArray[i].group &&
+        optionsArray[i].group === groups[groupCounter]
+      ) {
         groupCounter++;
       }
     }

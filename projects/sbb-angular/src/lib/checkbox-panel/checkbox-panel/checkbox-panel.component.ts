@@ -16,16 +16,17 @@ let counter = 0;
   selector: 'sbb-checkbox-panel',
   templateUrl: './checkbox-panel.component.html',
   styleUrls: ['./checkbox-panel.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CheckboxPanelComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CheckboxPanelComponent),
+      multi: true
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class CheckboxPanelComponent extends CheckboxComponent {
-
   /**
    * Label of a multiple checkbox panel.
    */
@@ -38,8 +39,8 @@ export class CheckboxPanelComponent extends CheckboxComponent {
   subtitle?: string;
 
   /**
-     * Multiple checkbox panel identifier.
-     */
+   * Multiple checkbox panel identifier.
+   */
   @Input()
   @HostBinding('id')
   inputId = `sbb-checkbox-panel-${counter++}`;
@@ -50,5 +51,4 @@ export class CheckboxPanelComponent extends CheckboxComponent {
   get hasSubtitle() {
     return !!this.subtitle;
   }
-
 }

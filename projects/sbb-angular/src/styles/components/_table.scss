@@ -85,7 +85,7 @@ $tableCaptionColor: $colorGrey;
           &::after {
             opacity: 0;
             transition: all 0.2s ease-in;
-            content: "";
+            content: '';
             position: absolute;
             width: pxToEm(8);
             height: 100%;

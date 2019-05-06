@@ -31,14 +31,16 @@ let counter = 0;
   styleUrls: ['./toggle-option.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => ToggleOptionComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleOptionComponent),
+      multi: true
+    }
+  ]
 })
-export class ToggleOptionComponent extends RadioButtonComponent implements ToggleBase, AfterViewInit {
-
+export class ToggleOptionComponent extends RadioButtonComponent
+  implements ToggleBase, AfterViewInit {
   /**
    * Identifier of a sbb-toggle-option.
    */
@@ -170,7 +172,7 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
     @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
     private _registry: RadioButtonRegistryService,
     private _changeDetector: ChangeDetectorRef,
-    @Inject(DOCUMENT) document: any,
+    @Inject(DOCUMENT) document: any
   ) {
     super(_changeDetector, _registry);
     this._document = document;
@@ -218,5 +220,4 @@ export class ToggleOptionComponent extends RadioButtonComponent implements Toggl
     this.writeValue(checked);
     this.checked = checked;
   }
-
 }

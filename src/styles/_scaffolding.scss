@@ -11,8 +11,9 @@
 
 .sbbsc-sr-only-focusable {
   @extend .sbbsc-sr-only;
-  
-  &:active, &:focus {
+
+  &:active,
+  &:focus {
     position: static;
     width: auto;
     height: auto;
@@ -26,7 +27,7 @@
   padding: 0;
 }
 
-@-ms-viewport{
+@-ms-viewport {
   width: device-width;
 }
 
@@ -51,7 +52,7 @@ body {
     display: block;
     float: right;
     padding: 14px 50px;
-    
+
     svg {
       width: 178px;
       height: 20px;
@@ -73,7 +74,8 @@ perfect-scrollbar.sbbsc-perfect-scrollbar {
   max-height: calc(100vh - #{$headerHeight});
 }
 
-.sbbsc-content-section-left, .sbbsc-nav {
+.sbbsc-content-section-left,
+.sbbsc-nav {
   @include mq($from: tabletLandscape) {
     max-width: $left-nav-width;
   }

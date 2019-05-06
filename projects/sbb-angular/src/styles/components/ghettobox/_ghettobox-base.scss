@@ -1,4 +1,3 @@
-
 @mixin ghettoboxOuterWrapper() {
   display: block;
   overflow: hidden;
@@ -17,7 +16,8 @@
   text-decoration: none;
   color: $colorWhite;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: $colorBlack;
     color: $colorWhite;
   }

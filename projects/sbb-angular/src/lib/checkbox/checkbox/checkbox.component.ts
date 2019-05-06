@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  HostBinding,
+  Input,
+  ViewEncapsulation
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 let counter = 0;
@@ -7,11 +15,13 @@ let counter = 0;
   selector: 'sbb-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CheckboxComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CheckboxComponent),
+      multi: true
+    }
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -64,13 +74,13 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * Property that describes the status change of a checkbox field
    */
-  onChange = (_: any) => { };
+  onChange = (_: any) => {};
   /**
    * Property that describes an updating of checkbox
    */
-  onTouched = () => { };
+  onTouched = () => {};
 
-  constructor(private _changeDetector: ChangeDetectorRef) { }
+  constructor(private _changeDetector: ChangeDetectorRef) {}
 
   /**
    * Sets the value in input in the checkbox field
@@ -110,5 +120,4 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.disabled = disabled;
     this._changeDetector.markForCheck();
   }
-
 }

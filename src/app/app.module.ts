@@ -132,7 +132,7 @@ import { TypographyComponent } from './typography/typography.component';
     BreadcrumbShowcaseComponent,
     GhettoboxShowcaseComponent,
     BadgeShowcaseComponent,
-    ...iconComponentList,
+    ...iconComponentList
   ]
 })
-export class AppModule { }
+export class AppModule {}

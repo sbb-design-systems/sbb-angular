@@ -7,34 +7,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./field-showcase.component.scss']
 })
 export class FieldShowcaseComponent implements OnInit {
-
   form: FormGroup;
 
   inputMode = 'default';
-  modes = [
-    'default',
-    'short',
-    'medium',
-    'long'
-  ];
+  modes = ['default', 'short', 'medium', 'long'];
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-
     this.form = this._formBuilder.group({
       name1: ['', Validators.required],
       name2: ['', [Validators.required, Validators.minLength(3)]],
       select1: ['', Validators.required],
       select2: [undefined, Validators.required],
-      date: [new Date()],
+      date: [new Date()]
     });
   }
 
   toggleDisabled(evt) {
     Object.keys(this.form.controls)
       .map(n => this.form.get(n))
-      .forEach(c => evt.target.checked ? c.disable() : c.enable());
+      .forEach(c => (evt.target.checked ? c.disable() : c.enable()));
   }
 
   reset() {

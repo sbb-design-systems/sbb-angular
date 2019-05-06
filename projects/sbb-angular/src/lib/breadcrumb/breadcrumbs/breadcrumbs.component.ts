@@ -7,11 +7,14 @@ import {
   HostBinding,
   QueryList,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { BreadcrumbComponent, SBB_BREADCRUMB_PARENT_COMPONENT } from '../breadcrumb/breadcrumb.component';
+import {
+  BreadcrumbComponent,
+  SBB_BREADCRUMB_PARENT_COMPONENT
+} from '../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'sbb-breadcrumbs',
@@ -20,11 +23,13 @@ import { BreadcrumbComponent, SBB_BREADCRUMB_PARENT_COMPONENT } from '../breadcr
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: SBB_BREADCRUMB_PARENT_COMPONENT, useExisting: BreadcrumbsComponent },
+    {
+      provide: SBB_BREADCRUMB_PARENT_COMPONENT,
+      useExisting: BreadcrumbsComponent
+    }
   ]
 })
 export class BreadcrumbsComponent implements AfterViewInit {
-
   /**
    * Refers to BreadcrumbComponents instance.
    */
@@ -48,16 +53,14 @@ export class BreadcrumbsComponent implements AfterViewInit {
   }
   private _expanded = false;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     if (this.levels && this.levels.first) {
-
       this.levels.first.expandEvent.pipe(first()).subscribe(() => {
         this._expanded = true;
         this._changeDetectorRef.markForCheck();
       });
     }
   }
-
 }

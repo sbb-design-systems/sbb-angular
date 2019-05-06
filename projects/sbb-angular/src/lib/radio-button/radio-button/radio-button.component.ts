@@ -1,6 +1,11 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef,
-  Input, OnDestroy, OnInit
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  Input,
+  OnDestroy,
+  OnInit
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -13,14 +18,17 @@ let counter = 0;
   selector: 'sbb-radio-button',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => RadioButtonComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => RadioButtonComponent),
+      multi: true
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent extends RadioButton implements ControlValueAccessor, OnInit, OnDestroy {
+export class RadioButtonComponent extends RadioButton
+  implements ControlValueAccessor, OnInit, OnDestroy {
   /**
    * Radio button identifier
    */
@@ -72,15 +80,15 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
   /**
    * Class property that represents a change on the radio button
    */
-  onChange = (_: any) => { };
+  onChange = (_: any) => {};
   /**
    * Class property that represents a touch on the radio button
    */
-  onTouched = () => { };
+  onTouched = () => {};
 
   constructor(
     private _changeDetector: ChangeDetectorRef,
-    private _registry: RadioButtonRegistryService,
+    private _registry: RadioButtonRegistryService
   ) {
     super();
   }
@@ -139,7 +147,11 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
    * Verify that radio button name matches with radio button form control name
    */
   private _checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
+    if (
+      this.name &&
+      this.formControlName &&
+      this.name !== this.formControlName
+    ) {
       this._throwNameError();
     } else if (!this.name && this.formControlName) {
       this.name = this.formControlName;
@@ -155,5 +167,4 @@ export class RadioButtonComponent extends RadioButton implements ControlValueAcc
       must match. Ex: <sbb-radio-button formControlName="food" name="food"></sbb-radio-button>
     `);
   }
-
 }

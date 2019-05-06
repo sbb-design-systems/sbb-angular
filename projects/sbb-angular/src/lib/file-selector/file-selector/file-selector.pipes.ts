@@ -9,13 +9,11 @@ import { FileSelectorTypesService } from './file-selector-types.service';
  */
 @Pipe({ name: 'fileNameNoExtension' })
 export class FileNameNoExtension implements PipeTransform {
+  constructor(private _fileTypeService: FileSelectorTypesService) {}
 
-    constructor(private _fileTypeService: FileSelectorTypesService) { }
-
-    transform(file: File): string {
-
-        return this._fileTypeService.getFileNameNoExtension(file.name);
-    }
+  transform(file: File): string {
+    return this._fileTypeService.getFileNameNoExtension(file.name);
+  }
 }
 
 /**
@@ -25,13 +23,11 @@ export class FileNameNoExtension implements PipeTransform {
  */
 @Pipe({ name: 'fileExtension' })
 export class FileExtension implements PipeTransform {
+  constructor(private _fileTypeService: FileSelectorTypesService) {}
 
-    constructor(private _fileTypeService: FileSelectorTypesService) { }
-
-    transform(file: File): string {
-
-        return this._fileTypeService.getFileExtensionFromFileName(file.name);
-    }
+  transform(file: File): string {
+    return this._fileTypeService.getFileExtensionFromFileName(file.name);
+  }
 }
 
 /**
@@ -41,11 +37,9 @@ export class FileExtension implements PipeTransform {
  */
 @Pipe({ name: 'fileSizeFormatted' })
 export class FileSizeFormatted implements PipeTransform {
+  constructor(private _fileTypeService: FileSelectorTypesService) {}
 
-    constructor(private _fileTypeService: FileSelectorTypesService) { }
-
-    transform(file: File): string {
-
-        return this._fileTypeService.formatFileSize(file.size);
-    }
+  transform(file: File): string {
+    return this._fileTypeService.formatFileSize(file.size);
+  }
 }

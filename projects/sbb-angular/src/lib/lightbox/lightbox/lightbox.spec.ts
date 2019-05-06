@@ -1,5 +1,9 @@
 import { A, ESCAPE } from '@angular/cdk/keycodes';
-import { Overlay, OverlayContainer, ScrollDispatcher } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayContainer,
+  ScrollDispatcher
+} from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import { SpyLocation } from '@angular/common/testing';
 import {
@@ -20,7 +24,7 @@ import {
   flushMicrotasks,
   inject,
   TestBed,
-  tick,
+  tick
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,23 +42,26 @@ import { LightboxContainerComponent } from './lightbox-container.component';
 
 @Directive({ selector: '[sbbDirWithViewContainer]' })
 class DirectiveWithViewContainerDirective {
-  constructor(public viewContainerRef: ViewContainerRef) { }
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: 'hello',
+  template: 'hello'
 })
 class ComponentWithOnPushViewContainerComponent {
-  constructor(public viewContainerRef: ViewContainerRef) { }
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }
 
 @Component({
   selector: 'sbb-arbitrary-component',
-  template: `<div sbbDirWithViewContainer></div>`,
+  template: `
+    <div sbbDirWithViewContainer></div>
+  `
 })
 class ComponentWithChildViewContainerComponent {
-  @ViewChild(DirectiveWithViewContainerDirective) childWithViewContainer: DirectiveWithViewContainerDirective;
+  @ViewChild(DirectiveWithViewContainerDirective)
+  childWithViewContainer: DirectiveWithViewContainerDirective;
 
   get childViewContainer() {
     return this.childWithViewContainer.viewContainerRef;
@@ -63,8 +70,12 @@ class ComponentWithChildViewContainerComponent {
 
 @Component({
   selector: 'sbb-rbitrary-component-with-template-ref',
-  template: `<ng-template let-data let-lightboxRef="lightboxRef">
-      Cheese {{localValue}} {{data?.value}}{{setLightboxRef(lightboxRef)}}</ng-template>`,
+  template: `
+    <ng-template let-data let-lightboxRef="lightboxRef">
+      Cheese {{ localValue }} {{ data?.value
+      }}{{ setLightboxRef(lightboxRef) }}</ng-template
+    >
+  `
 })
 class ComponentWithTemplateRefComponent {
   localValue: string;
@@ -81,8 +92,10 @@ class ComponentWithTemplateRefComponent {
 /** Simple component for testing ComponentPortal. */
 @Component({ template: '<p>Pizza</p> <input> <button>Close</button>' })
 class PizzaMsgComponent {
-  constructor(public lightboxRef: LightboxRef<PizzaMsgComponent>,
-    public lightboxInjector: Injector) { }
+  constructor(
+    public lightboxRef: LightboxRef<PizzaMsgComponent>,
+    public lightboxInjector: Injector
+  ) {}
 }
 
 @Component({
@@ -91,16 +104,21 @@ class PizzaMsgComponent {
     <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
     <sbb-lightbox-footer>
       <button sbbLightboxClose>Close</button>
-      <button class="close-with-true" [sbbLightboxClose]="true">Close and return true</button>
+      <button class="close-with-true" [sbbLightboxClose]="true">
+        Close and return true
+      </button>
       <button
         class="close-with-aria-label"
         aria-label="Best close button ever"
-        [sbbLightboxClose]="true">Close</button>
+        [sbbLightboxClose]="true"
+      >
+        Close
+      </button>
       <div sbbLightboxClose>Should not close</div>
     </sbb-lightbox-footer>
   `
 })
-class ContentElementLightboxComponent { }
+class ContentElementLightboxComponent {}
 
 @Component({
   template: `
@@ -109,11 +127,16 @@ class ContentElementLightboxComponent { }
       <sbb-lightbox-content>Lorem ipsum dolor sit amet.</sbb-lightbox-content>
       <sbb-lightbox-footer>
         <button sbbLightboxClose>Close</button>
-        <button class="close-with-true" [sbbLightboxClose]="true">Close and return true</button>
+        <button class="close-with-true" [sbbLightboxClose]="true">
+          Close and return true
+        </button>
         <button
           class="close-with-aria-label"
           aria-label="Best close button ever"
-          [sbbLightboxClose]="true">Close</button>
+          [sbbLightboxClose]="true"
+        >
+          Close
+        </button>
         <div sbbLightboxClose>Should not close</div>
       </sbb-lightbox-footer>
     </ng-template>
@@ -128,17 +151,17 @@ class ComponentWithContentElementTemplateRefComponent {
   providers: [Lightbox]
 })
 class ComponentThatProvidesLightboxComponent {
-  constructor(public lightbox: Lightbox) { }
+  constructor(public lightbox: Lightbox) {}
 }
 
 /** Simple component for testing ComponentPortal. */
 @Component({ template: '' })
 class LightboxWithInjectedDataComponent {
-  constructor(@Inject(LIGHTBOX_DATA) public data: any) { }
+  constructor(@Inject(LIGHTBOX_DATA) public data: any) {}
 }
 
 @Component({ template: '<p>Pasta</p>' })
-class LightboxWithoutFocusableElementsComponent { }
+class LightboxWithoutFocusableElementsComponent {}
 
 // Create a real (non-test) NgModule as a workaround for
 // https://github.com/angular/angular/issues/10760
@@ -151,7 +174,7 @@ const TEST_DIRECTIVES = [
   ContentElementLightboxComponent,
   LightboxWithInjectedDataComponent,
   LightboxWithoutFocusableElementsComponent,
-  ComponentWithContentElementTemplateRefComponent,
+  ComponentWithContentElementTemplateRefComponent
 ];
 
 @NgModule({
@@ -164,10 +187,10 @@ const TEST_DIRECTIVES = [
     PizzaMsgComponent,
     ContentElementLightboxComponent,
     LightboxWithInjectedDataComponent,
-    LightboxWithoutFocusableElementsComponent,
-  ],
+    LightboxWithoutFocusableElementsComponent
+  ]
 })
-class LightboxTestModule { }
+class LightboxTestModule {}
 
 describe('Lightbox', () => {
   let lightbox: Lightbox;
@@ -176,7 +199,9 @@ describe('Lightbox', () => {
   const scrolledSubject = new Subject();
 
   let testViewContainerRef: ViewContainerRef;
-  let viewContainerFixture: ComponentFixture<ComponentWithChildViewContainerComponent>;
+  let viewContainerFixture: ComponentFixture<
+    ComponentWithChildViewContainerComponent
+  >;
   let mockLocation: SpyLocation;
 
   beforeEach(fakeAsync(() => {
@@ -185,33 +210,39 @@ describe('Lightbox', () => {
       providers: [
         { provide: Location, useClass: SpyLocation },
         {
-          provide: ScrollDispatcher, useFactory: () => ({
+          provide: ScrollDispatcher,
+          useFactory: () => ({
             scrolled: () => scrolledSubject.asObservable()
           })
-        },
-      ],
+        }
+      ]
     });
 
     TestBed.compileComponents();
   }));
 
-  beforeEach(inject([Lightbox, Location, OverlayContainer],
+  beforeEach(inject(
+    [Lightbox, Location, OverlayContainer],
     (l: Lightbox, loc: Location, oc: OverlayContainer) => {
       lightbox = l;
       mockLocation = loc as SpyLocation;
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
-    }));
+    }
+  ));
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
   });
 
   beforeEach(() => {
-    viewContainerFixture = TestBed.createComponent(ComponentWithChildViewContainerComponent);
+    viewContainerFixture = TestBed.createComponent(
+      ComponentWithChildViewContainerComponent
+    );
 
     viewContainerFixture.detectChanges();
-    testViewContainerRef = viewContainerFixture.componentInstance.childViewContainer;
+    testViewContainerRef =
+      viewContainerFixture.componentInstance.childViewContainer;
   });
 
   it('should open a lightbox with a component', () => {
@@ -222,22 +253,31 @@ describe('Lightbox', () => {
     viewContainerFixture.detectChanges();
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
-    expect(lightboxRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
+    expect(lightboxRef.componentInstance instanceof PizzaMsgComponent).toBe(
+      true
+    );
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
-    const lightboxContainerElement = overlayContainerElement.querySelector('sbb-lightbox-container');
+    const lightboxContainerElement = overlayContainerElement.querySelector(
+      'sbb-lightbox-container'
+    );
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
   });
 
   it('should open a lightbox with a template', () => {
-    const templateRefFixture = TestBed.createComponent(ComponentWithTemplateRefComponent);
+    const templateRefFixture = TestBed.createComponent(
+      ComponentWithTemplateRefComponent
+    );
     templateRefFixture.componentInstance.localValue = 'Bees';
     templateRefFixture.detectChanges();
 
     const data = { value: 'Knees' };
 
-    const lightboxRef = lightbox.open(templateRefFixture.componentInstance.templateRef, { data });
+    const lightboxRef = lightbox.open(
+      templateRefFixture.componentInstance.templateRef,
+      { data }
+    );
 
     viewContainerFixture.detectChanges();
 
@@ -246,14 +286,18 @@ describe('Lightbox', () => {
 
     viewContainerFixture.detectChanges();
 
-    const lightboxContainerElement = overlayContainerElement.querySelector('sbb-lightbox-container');
+    const lightboxContainerElement = overlayContainerElement.querySelector(
+      'sbb-lightbox-container'
+    );
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
 
     lightboxRef.close();
   });
 
   it('should emit when lightbox opening animation is complete', fakeAsync(() => {
-    const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
+    });
     const spy = jasmine.createSpy('afterOpen spy');
 
     lightboxRef.afterOpen().subscribe(spy);
@@ -277,7 +321,11 @@ describe('Lightbox', () => {
     const lightboxInjector = lightboxRef.componentInstance.lightboxInjector;
 
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
-    expect(lightboxInjector.get<DirectiveWithViewContainerDirective>(DirectiveWithViewContainerDirective)).toBeTruthy(
+    expect(
+      lightboxInjector.get<DirectiveWithViewContainerDirective>(
+        DirectiveWithViewContainerDirective
+      )
+    ).toBeTruthy(
       'Expected the lightbox component to be created with the injector from the viewContainerRef.'
     );
   });
@@ -288,11 +336,15 @@ describe('Lightbox', () => {
     viewContainerFixture.detectChanges();
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
-    expect(lightboxRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
+    expect(lightboxRef.componentInstance instanceof PizzaMsgComponent).toBe(
+      true
+    );
     expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
-    const lightboxContainerElement = overlayContainerElement.querySelector('sbb-lightbox-container');
+    const lightboxContainerElement = overlayContainerElement.querySelector(
+      'sbb-lightbox-container'
+    );
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
   });
 
@@ -301,21 +353,31 @@ describe('Lightbox', () => {
 
     viewContainerFixture.detectChanges();
 
-    const lightboxContainerElement = overlayContainerElement.querySelector('sbb-lightbox-container');
+    const lightboxContainerElement = overlayContainerElement.querySelector(
+      'sbb-lightbox-container'
+    );
     expect(lightboxContainerElement.getAttribute('role')).toBe('alertdialog');
   });
 
   it('should apply the specified `aria-describedby`', () => {
-    lightbox.open(PizzaMsgComponent, { ariaDescribedBy: 'description-element' });
+    lightbox.open(PizzaMsgComponent, {
+      ariaDescribedBy: 'description-element'
+    });
 
     viewContainerFixture.detectChanges();
 
-    const lightboxContainerElement = overlayContainerElement.querySelector('sbb-lightbox-container');
-    expect(lightboxContainerElement.getAttribute('aria-describedby')).toBe('description-element');
+    const lightboxContainerElement = overlayContainerElement.querySelector(
+      'sbb-lightbox-container'
+    );
+    expect(lightboxContainerElement.getAttribute('aria-describedby')).toBe(
+      'description-element'
+    );
   });
 
   it('should close a lightbox and get back a result', fakeAsync(() => {
-    const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
+    });
     const afterCloseCallback = jasmine.createSpy('afterClose callback');
 
     lightboxRef.afterClosed().subscribe(afterCloseCallback);
@@ -324,11 +386,13 @@ describe('Lightbox', () => {
     flush();
 
     expect(afterCloseCallback).toHaveBeenCalledWith('Goofy');
-    expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
+    expect(
+      overlayContainerElement.querySelector('sbb-lightbox-container')
+    ).toBeNull();
   }));
 
-  it('should dispatch the beforeClose and afterClose events when the overlay is detached externally',
-      fakeAsync(inject([Overlay], (overlay: Overlay) => {
+  it('should dispatch the beforeClose and afterClose events when the overlay is detached externally', fakeAsync(
+    inject([Overlay], (overlay: Overlay) => {
       const lightboxRef = lightbox.open(PizzaMsgComponent, {
         viewContainerRef: testViewContainerRef,
         scrollStrategy: overlay.scrollStrategies.close()
@@ -345,19 +409,25 @@ describe('Lightbox', () => {
 
       expect(beforeCloseCallback).toHaveBeenCalledTimes(1);
       expect(afterCloseCallback).toHaveBeenCalledTimes(1);
-    })));
+    })
+  ));
 
   it('should close a lightbox and get back a result before it is closed', fakeAsync(() => {
-    const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
+    });
 
     flush();
     viewContainerFixture.detectChanges();
 
     // beforeClose should emit before lightbox container is destroyed
-    const beforeCloseHandler = jasmine.createSpy('beforeClose callback').and.callFake(() => {
-      expect(overlayContainerElement.querySelector('sbb-lightbox-container'))
-        .not.toBeNull('lightbox container exists when beforeClose is called');
-    });
+    const beforeCloseHandler = jasmine
+      .createSpy('beforeClose callback')
+      .and.callFake(() => {
+        expect(
+          overlayContainerElement.querySelector('sbb-lightbox-container')
+        ).not.toBeNull('lightbox container exists when beforeClose is called');
+      });
 
     lightboxRef.beforeClose().subscribe(beforeCloseHandler);
     lightboxRef.close('Bulbasaur');
@@ -365,7 +435,9 @@ describe('Lightbox', () => {
     flush();
 
     expect(beforeCloseHandler).toHaveBeenCalledWith('Bulbasaur');
-    expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
+    expect(
+      overlayContainerElement.querySelector('sbb-lightbox-container')
+    ).toBeNull();
   }));
 
   it('should close a lightbox via the escape key', fakeAsync(() => {
@@ -377,11 +449,15 @@ describe('Lightbox', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
+    expect(
+      overlayContainerElement.querySelector('sbb-lightbox-container')
+    ).toBeNull();
   }));
 
   it('should close from a ViewContainerRef with OnPush change detection', fakeAsync(() => {
-    const onPushFixture = TestBed.createComponent(ComponentWithOnPushViewContainerComponent);
+    const onPushFixture = TestBed.createComponent(
+      ComponentWithOnPushViewContainerComponent
+    );
 
     onPushFixture.detectChanges();
 
@@ -393,27 +469,33 @@ describe('Lightbox', () => {
     onPushFixture.detectChanges();
     flushMicrotasks();
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length)
-      .toBe(1, 'Expected one open lightbox.');
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(1, 'Expected one open lightbox.');
 
     lightboxRef.close();
     flushMicrotasks();
     onPushFixture.detectChanges();
     tick(500);
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length)
-      .toBe(0, 'Expected no open lightboxes.');
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(0, 'Expected no open lightboxes.');
   }));
 
   it('should emit the keyboardEvent stream when key events target the overlay', fakeAsync(() => {
-    const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
+    });
 
     const spy = jasmine.createSpy('keyboardEvent spy');
     lightboxRef.keydownEvents().subscribe(spy);
 
     viewContainerFixture.detectChanges();
 
-    const container = overlayContainerElement.querySelector('sbb-lightbox-container') as HTMLElement;
+    const container = overlayContainerElement.querySelector(
+      'sbb-lightbox-container'
+    ) as HTMLElement;
     dispatchKeyboardEvent(document.body, 'keydown', A);
     dispatchKeyboardEvent(document.body, 'keydown', A, container);
 
@@ -422,15 +504,21 @@ describe('Lightbox', () => {
 
   it('should notify the observers if a lightbox has been opened', () => {
     lightbox.afterOpen.subscribe(ref => {
-      expect(lightbox.open(PizzaMsgComponent, {
-        viewContainerRef: testViewContainerRef
-      })).toBe(ref);
+      expect(
+        lightbox.open(PizzaMsgComponent, {
+          viewContainerRef: testViewContainerRef
+        })
+      ).toBe(ref);
     });
   });
 
   it('should notify the observers if all open lightboxes have finished closing', fakeAsync(() => {
-    const ref1 = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
-    const ref2 = lightbox.open(ContentElementLightboxComponent, { viewContainerRef: testViewContainerRef });
+    const ref1 = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
+    });
+    const ref2 = lightbox.open(ContentElementLightboxComponent, {
+      viewContainerRef: testViewContainerRef
+    });
     const spy = jasmine.createSpy('afterAllClosed spy');
 
     lightbox.afterAllClosed.subscribe(spy);
@@ -460,19 +548,26 @@ describe('Lightbox', () => {
     lightbox.open(PizzaMsgComponent);
     lightbox.open(PizzaMsgComponent);
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(3);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(3);
 
     lightbox.closeAll();
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(0);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(0);
   }));
 
   it('should set the proper animation states', () => {
-    const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
-    const lightboxContainer: LightboxContainerComponent =
-      viewContainerFixture.debugElement.query(By.directive(LightboxContainerComponent)).componentInstance;
+    const lightboxRef = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
+    });
+    const lightboxContainer: LightboxContainerComponent = viewContainerFixture.debugElement.query(
+      By.directive(LightboxContainerComponent)
+    ).componentInstance;
 
     expect(lightboxContainer.state).toBe('enter');
 
@@ -485,39 +580,51 @@ describe('Lightbox', () => {
     lightbox.open(PizzaMsgComponent);
     lightbox.open(PizzaMsgComponent);
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(2);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(2);
 
     mockLocation.simulateUrlPop('');
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(0);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(0);
   }));
 
   it('should close all open lightboxes when the location hash changes', fakeAsync(() => {
     lightbox.open(PizzaMsgComponent);
     lightbox.open(PizzaMsgComponent);
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(2);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(2);
 
     mockLocation.simulateHashChange('');
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(0);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(0);
   }));
 
   it('should allow the consumer to disable closing a lightbox on navigation', fakeAsync(() => {
     lightbox.open(PizzaMsgComponent);
     lightbox.open(PizzaMsgComponent, { closeOnNavigation: false });
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(2);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(2);
 
     mockLocation.simulateUrlPop('');
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(1);
+    expect(
+      overlayContainerElement.querySelectorAll('sbb-lightbox-container').length
+    ).toBe(1);
   }));
 
   it('should have the componentInstance available in the afterClosed callback', fakeAsync(() => {
@@ -530,7 +637,9 @@ describe('Lightbox', () => {
 
     lightboxRef.afterClosed().subscribe(() => {
       spy();
-      expect(lightboxRef.componentInstance).toBeTruthy('Expected component instance to be defined.');
+      expect(lightboxRef.componentInstance).toBeTruthy(
+        'Expected component instance to be defined.'
+      );
     });
 
     lightboxRef.close();
@@ -552,7 +661,8 @@ describe('Lightbox', () => {
         }
       };
 
-      const instance = lightbox.open(LightboxWithInjectedDataComponent, config).componentInstance;
+      const instance = lightbox.open(LightboxWithInjectedDataComponent, config)
+        .componentInstance;
 
       expect(instance.data.stringParam).toBe(config.data.stringParam);
       expect(instance.data.dateParam).toBe(config.data.dateParam);
@@ -575,7 +685,9 @@ describe('Lightbox', () => {
     viewContainerFixture.detectChanges();
     flush();
 
-    expect(lightboxRef.componentInstance).toBeFalsy('Expected reference to have been cleared.');
+    expect(lightboxRef.componentInstance).toBeFalsy(
+      'Expected reference to have been cleared.'
+    );
   }));
 
   it('should assign a unique id to each lightbox', () => {
@@ -594,7 +706,9 @@ describe('Lightbox', () => {
 
   it('should throw an error when trying to open a lightbox with the same id as another lightbox', () => {
     lightbox.open(PizzaMsgComponent, { id: 'pizza' });
-    expect(() => lightbox.open(PizzaMsgComponent, { id: 'pizza' })).toThrowError(/must be unique/g);
+    expect(() =>
+      lightbox.open(PizzaMsgComponent, { id: 'pizza' })
+    ).toThrowError(/must be unique/g);
   });
 
   it('should be able to find a lightbox by id', () => {
@@ -611,7 +725,9 @@ describe('Lightbox', () => {
 
       viewContainerFixture.detectChanges();
 
-      expect(overlayContainerElement.querySelector('.custom-panel-class')).toBeTruthy();
+      expect(
+        overlayContainerElement.querySelector('.custom-panel-class')
+      ).toBeTruthy();
     });
   });
 
@@ -628,8 +744,10 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.tagName)
-        .toBe('INPUT', 'Expected first tabbable element (input) in the lightbox to be focused.');
+      expect(document.activeElement.tagName).toBe(
+        'INPUT',
+        'Expected first tabbable element (input) in the lightbox to be focused.'
+      );
     }));
 
     it('should allow disabling focus of the first tabbable element', fakeAsync(() => {
@@ -651,25 +769,33 @@ describe('Lightbox', () => {
       document.body.appendChild(button);
       button.focus();
 
-      const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
+      const lightboxRef = lightbox.open(PizzaMsgComponent, {
+        viewContainerRef: testViewContainerRef
+      });
 
       flushMicrotasks();
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.id)
-        .not.toBe('lightbox-trigger', 'Expected the focus to change when lightbox was opened.');
+      expect(document.activeElement.id).not.toBe(
+        'lightbox-trigger',
+        'Expected the focus to change when lightbox was opened.'
+      );
 
       lightboxRef.close();
-      expect(document.activeElement.id).not.toBe('lightbox-trigger',
-        'Expcted the focus not to have changed before the animation finishes.');
+      expect(document.activeElement.id).not.toBe(
+        'lightbox-trigger',
+        'Expcted the focus not to have changed before the animation finishes.'
+      );
 
       flushMicrotasks();
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(document.activeElement.id).toBe('lightbox-trigger',
-        'Expected that the trigger was refocused after the lightbox is closed.');
+      expect(document.activeElement.id).toBe(
+        'lightbox-trigger',
+        'Expected that the trigger was refocused after the lightbox is closed.'
+      );
 
       document.body.removeChild(button);
     }));
@@ -686,7 +812,9 @@ describe('Lightbox', () => {
       document.body.appendChild(input);
       button.focus();
 
-      const lightboxRef = lightbox.open(PizzaMsgComponent, { viewContainerRef: testViewContainerRef });
+      const lightboxRef = lightbox.open(PizzaMsgComponent, {
+        viewContainerRef: testViewContainerRef
+      });
 
       tick(500);
       viewContainerFixture.detectChanges();
@@ -698,24 +826,26 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.id).toBe('input-to-be-focused',
-        'Expected that the trigger was refocused after the lightbox is closed.');
+      expect(document.activeElement.id).toBe(
+        'input-to-be-focused',
+        'Expected that the trigger was refocused after the lightbox is closed.'
+      );
 
       document.body.removeChild(button);
       document.body.removeChild(input);
     }));
 
-    it('should move focus to the container if there are no focusable elements in the lightbox',
-      fakeAsync(() => {
-        lightbox.open(LightboxWithoutFocusableElementsComponent);
+    it('should move focus to the container if there are no focusable elements in the lightbox', fakeAsync(() => {
+      lightbox.open(LightboxWithoutFocusableElementsComponent);
 
-        viewContainerFixture.detectChanges();
-        flushMicrotasks();
+      viewContainerFixture.detectChanges();
+      flushMicrotasks();
 
-        expect(document.activeElement.tagName)
-          .toBe('SBB-LIGHTBOX-CONTAINER', 'Expected lightbox container to be focused.');
-      }));
-
+      expect(document.activeElement.tagName).toBe(
+        'SBB-LIGHTBOX-CONTAINER',
+        'Expected lightbox container to be focused.'
+      );
+    }));
   });
 
   describe('lightbox content elements', () => {
@@ -723,7 +853,9 @@ describe('Lightbox', () => {
 
     describe('inside component lightbox', () => {
       beforeEach(fakeAsync(() => {
-        lightboxRef = lightbox.open(ContentElementLightboxComponent, { viewContainerRef: testViewContainerRef });
+        lightboxRef = lightbox.open(ContentElementLightboxComponent, {
+          viewContainerRef: testViewContainerRef
+        });
         viewContainerFixture.detectChanges();
         flush();
       }));
@@ -733,7 +865,9 @@ describe('Lightbox', () => {
 
     describe('inside template portal', () => {
       beforeEach(fakeAsync(() => {
-        const fixture = TestBed.createComponent(ComponentWithContentElementTemplateRefComponent);
+        const fixture = TestBed.createComponent(
+          ComponentWithContentElementTemplateRefComponent
+        );
         fixture.detectChanges();
 
         lightboxRef = lightbox.open(fixture.componentInstance.templateRef, {
@@ -749,43 +883,60 @@ describe('Lightbox', () => {
 
     function runContentElementTests() {
       it('should close the lightbox when clicking on the close button', fakeAsync(() => {
-        expect(overlayContainerElement.querySelectorAll('sbb-lightbox-container').length).toBe(1);
+        expect(
+          overlayContainerElement.querySelectorAll('sbb-lightbox-container')
+            .length
+        ).toBe(1);
 
-        (overlayContainerElement.querySelector('button[sbbLightboxClose]') as HTMLElement).click();
+        (overlayContainerElement.querySelector(
+          'button[sbbLightboxClose]'
+        ) as HTMLElement).click();
         viewContainerFixture.detectChanges();
         flush();
 
-        expect(overlayContainerElement.querySelectorAll('.sbb-lightbox-container').length).toBe(0);
+        expect(
+          overlayContainerElement.querySelectorAll('.sbb-lightbox-container')
+            .length
+        ).toBe(0);
       }));
 
       it('should override the "type" attribute of the close button', () => {
-        const button = overlayContainerElement.querySelector('button[sbbLightboxClose]');
+        const button = overlayContainerElement.querySelector(
+          'button[sbbLightboxClose]'
+        );
 
         expect(button.getAttribute('type')).toBe('button');
       });
 
-      it('should return the [sbbLightboxClose] result when clicking the close button',
-        fakeAsync(() => {
-          const afterCloseCallback = jasmine.createSpy('afterClose callback');
-          lightboxRef.afterClosed().subscribe(afterCloseCallback);
+      it('should return the [sbbLightboxClose] result when clicking the close button', fakeAsync(() => {
+        const afterCloseCallback = jasmine.createSpy('afterClose callback');
+        lightboxRef.afterClosed().subscribe(afterCloseCallback);
 
-          (overlayContainerElement.querySelector('button.close-with-true') as HTMLElement).click();
-          viewContainerFixture.detectChanges();
-          flush();
+        (overlayContainerElement.querySelector(
+          'button.close-with-true'
+        ) as HTMLElement).click();
+        viewContainerFixture.detectChanges();
+        flush();
 
-          expect(afterCloseCallback).toHaveBeenCalledWith(true);
-        }));
+        expect(afterCloseCallback).toHaveBeenCalledWith(true);
+      }));
 
       it('should set the aria-labelledby attribute to the id of the title', fakeAsync(() => {
-        const title = overlayContainerElement.querySelector('[sbbLightboxTitle]');
-        const container = overlayContainerElement.querySelector('sbb-lightbox-container');
+        const title = overlayContainerElement.querySelector(
+          '[sbbLightboxTitle]'
+        );
+        const container = overlayContainerElement.querySelector(
+          'sbb-lightbox-container'
+        );
 
         flush();
         viewContainerFixture.detectChanges();
 
         expect(title.id).toBeTruthy('Expected title element to have an id.');
-        expect(container.getAttribute('aria-labelledby'))
-          .toBe(title.id, 'Expected the aria-labelledby to match the title id.');
+        expect(container.getAttribute('aria-labelledby')).toBe(
+          title.id,
+          'Expected the aria-labelledby to match the title id.'
+        );
       }));
     }
   });
@@ -798,7 +949,9 @@ describe('Lightbox', () => {
       });
       viewContainerFixture.detectChanges();
 
-      const container = overlayContainerElement.querySelector('sbb-lightbox-container');
+      const container = overlayContainerElement.querySelector(
+        'sbb-lightbox-container'
+      );
       expect(container.getAttribute('aria-label')).toBe('Hello there');
     });
 
@@ -811,11 +964,12 @@ describe('Lightbox', () => {
       tick();
       viewContainerFixture.detectChanges();
 
-      const container = overlayContainerElement.querySelector('sbb-lightbox-container');
+      const container = overlayContainerElement.querySelector(
+        'sbb-lightbox-container'
+      );
       expect(container.hasAttribute('aria-labelledby')).toBe(false);
     }));
   });
-
 });
 
 describe('Lightbox with a parent Lightbox', () => {
@@ -830,13 +984,14 @@ describe('Lightbox with a parent Lightbox', () => {
       declarations: [ComponentThatProvidesLightboxComponent],
       providers: [
         {
-          provide: OverlayContainer, useFactory: () => {
+          provide: OverlayContainer,
+          useFactory: () => {
             overlayContainerElement = document.createElement('div');
             return { getContainerElement: () => overlayContainerElement };
           }
         },
         { provide: Location, useClass: SpyLocation }
-      ],
+      ]
     });
 
     TestBed.compileComponents();
@@ -854,38 +1009,44 @@ describe('Lightbox with a parent Lightbox', () => {
     overlayContainerElement.innerHTML = '';
   });
 
-  it('should close lightboxes opened by a parent when calling closeAll on a child Lightbox',
-    fakeAsync(() => {
-      parentLightbox.open(PizzaMsgComponent);
-      fixture.detectChanges();
-      flush();
+  it('should close lightboxes opened by a parent when calling closeAll on a child Lightbox', fakeAsync(() => {
+    parentLightbox.open(PizzaMsgComponent);
+    fixture.detectChanges();
+    flush();
 
-      expect(overlayContainerElement.textContent)
-        .toContain('Pizza', 'Expected a lightbox to be opened');
+    expect(overlayContainerElement.textContent).toContain(
+      'Pizza',
+      'Expected a lightbox to be opened'
+    );
 
-      childLightbox.closeAll();
-      fixture.detectChanges();
-      flush();
+    childLightbox.closeAll();
+    fixture.detectChanges();
+    flush();
 
-      expect(overlayContainerElement.textContent.trim())
-        .toBe('', 'Expected closeAll on child Lightbox to close lightbox opened by parent');
-    }));
+    expect(overlayContainerElement.textContent.trim()).toBe(
+      '',
+      'Expected closeAll on child Lightbox to close lightbox opened by parent'
+    );
+  }));
 
-  it('should close lightboxes opened by a child when calling closeAll on a parent Lightbox',
-    fakeAsync(() => {
-      childLightbox.open(PizzaMsgComponent);
-      fixture.detectChanges();
+  it('should close lightboxes opened by a child when calling closeAll on a parent Lightbox', fakeAsync(() => {
+    childLightbox.open(PizzaMsgComponent);
+    fixture.detectChanges();
 
-      expect(overlayContainerElement.textContent)
-        .toContain('Pizza', 'Expected a lightbox to be opened');
+    expect(overlayContainerElement.textContent).toContain(
+      'Pizza',
+      'Expected a lightbox to be opened'
+    );
 
-      parentLightbox.closeAll();
-      fixture.detectChanges();
-      flush();
+    parentLightbox.closeAll();
+    fixture.detectChanges();
+    flush();
 
-      expect(overlayContainerElement.textContent.trim())
-        .toBe('', 'Expected closeAll on parent Lightbox to close lightbox opened by child');
-    }));
+    expect(overlayContainerElement.textContent.trim()).toBe(
+      '',
+      'Expected closeAll on parent Lightbox to close lightbox opened by child'
+    );
+  }));
 
   it('should close the top lightbox via the escape key', fakeAsync(() => {
     childLightbox.open(PizzaMsgComponent);
@@ -894,6 +1055,8 @@ describe('Lightbox with a parent Lightbox', () => {
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.querySelector('sbb-lightbox-container')).toBeNull();
+    expect(
+      overlayContainerElement.querySelector('sbb-lightbox-container')
+    ).toBeNull();
   }));
 });

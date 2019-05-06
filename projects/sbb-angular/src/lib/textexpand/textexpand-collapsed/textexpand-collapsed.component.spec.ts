@@ -8,9 +8,8 @@ describe('TextexpandCollapsedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextexpandCollapsedComponent ]
-    })
-    .compileComponents();
+      declarations: [TextexpandCollapsedComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

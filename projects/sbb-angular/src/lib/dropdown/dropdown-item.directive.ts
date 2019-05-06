@@ -1,6 +1,15 @@
 import { Highlightable } from '@angular/cdk/a11y';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
-import { ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, HostListener, InjectionToken, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  InjectionToken,
+  Output
+} from '@angular/core';
 
 let counter = 0;
 
@@ -9,7 +18,7 @@ export class DropdownSelectionChange {
   constructor(
     /** Reference to the option that emitted the event. */
     public source: DropdownItemDirective
-  ) { }
+  ) {}
 }
 
 /**
@@ -24,8 +33,9 @@ export interface DropdownParentComponent {
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT =
-  new InjectionToken<DropdownParentComponent>('SBB_DROPDOWN_ITEM_PARENT_COMPONENT');
+export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT = new InjectionToken<
+  DropdownParentComponent
+>('SBB_DROPDOWN_ITEM_PARENT_COMPONENT');
 
 /**
  * Determines the position to which to scroll a panel in order for an option to be into view.
@@ -35,8 +45,12 @@ export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT =
  * @param panelHeight Height of the panel.
  * @docs-private
  */
-export function getDropdownItemScrollPosition(optionIndex: number, optionHeight: number,
-  currentScrollPosition: number, panelHeight: number): number {
+export function getDropdownItemScrollPosition(
+  optionIndex: number,
+  optionHeight: number,
+  currentScrollPosition: number,
+  panelHeight: number
+): number {
   const optionOffset = optionIndex * optionHeight;
 
   if (optionOffset < currentScrollPosition) {
@@ -52,7 +66,6 @@ export function getDropdownItemScrollPosition(optionIndex: number, optionHeight:
 
 @Directive({ selector: '[sbbDropdownItem]' })
 export class DropdownItemDirective implements Highlightable {
-
   /**
    * Identifier of a dropdown item.
    */
@@ -61,7 +74,7 @@ export class DropdownItemDirective implements Highlightable {
   /**
    * Disable a specific dropdown item.
    */
-  disabled?= false;
+  disabled? = false;
 
   /**
    * Css class on a dropdown item selected.
@@ -84,7 +97,7 @@ export class DropdownItemDirective implements Highlightable {
   constructor(
     private _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {}
 
   setActiveStyles(): void {
     if (!this.active) {
@@ -142,5 +155,4 @@ export class DropdownItemDirective implements Highlightable {
       this._emitSelectionChangeEvent();
     }
   }
-
 }

@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnChanges, Self, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  Self,
+  SimpleChanges
+} from '@angular/core';
 
 import { HostClass } from '../../_common/host-class';
 
@@ -11,7 +19,7 @@ const cssPrefix = 'sbb-loading-';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HostClass],
+  providers: [HostClass]
 })
 export class LoadingComponent implements OnChanges {
   /** The aria-busy of loading component. */
@@ -19,11 +27,15 @@ export class LoadingComponent implements OnChanges {
   /** The role of loading component. */
   @HostBinding('attr.role') role = 'progressbar';
   /** Types of mode for loading indicator. */
-  @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' = 'medium';
+  @Input() mode:
+    | 'tiny'
+    | 'small'
+    | 'medium'
+    | 'big'
+    | 'fullscreen'
+    | 'fullbox' = 'medium';
 
-  constructor(
-    @Self() private _hostClass: HostClass,
-  ) { }
+  constructor(@Self() private _hostClass: HostClass) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.mode) {

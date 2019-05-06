@@ -17,5 +17,6 @@ export class TagChange {
     /** The Tag that emits the change event. */
     public source: TagComponent,
     /** The checked prop of Tag. */
-    public checked: boolean) {}
+    public checked: boolean
+  ) {}
 }

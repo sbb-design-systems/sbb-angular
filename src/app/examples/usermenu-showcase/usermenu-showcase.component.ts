@@ -7,7 +7,6 @@ import { LinkGeneratorResult } from 'sbb-angular';
   styleUrls: ['./usermenu-showcase.component.scss']
 })
 export class UserMenuShowcaseComponent {
-
   userName1 = 'john_64';
   userName2 = 'max_98';
   userName3 = 'walter_14';
@@ -59,5 +58,4 @@ export class UserMenuShowcaseComponent {
     console.log('Logout');
     user.userName = null;
   }
-
 }

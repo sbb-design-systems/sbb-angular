@@ -8,76 +8,80 @@ import { DatepickerModule } from '../datepicker.module';
 import { CalendarComponent } from './calendar.component';
 
 @Component({
-    template: `
+  template: `
     <sbb-calendar
-        [startAt]="startDate"
-        [(selected)]="selected"
-        (yearSelected)="selectedYear=$event"
-        (monthSelected)="selectedMonth=$event">
-    </sbb-calendar>`
+      [startAt]="startDate"
+      [(selected)]="selected"
+      (yearSelected)="selectedYear = $event"
+      (monthSelected)="selectedMonth = $event"
+    >
+    </sbb-calendar>
+  `
 })
 class StandardCalendarComponent {
-    selected: Date;
-    selectedYear: Date;
-    selectedMonth: Date;
-    startDate = new Date(2017, JAN, 31);
+  selected: Date;
+  selectedYear: Date;
+  selectedMonth: Date;
+  startDate = new Date(2017, JAN, 31);
 }
 
 describe('CalendarHeaderComponent', () => {
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                DatepickerModule,
-            ],
-            declarations: [
-                // Test components.
-                StandardCalendarComponent
-            ]
-        });
-
-        TestBed.compileComponents();
-    }));
-
-    describe('standard calendar', () => {
-        let fixture: ComponentFixture<StandardCalendarComponent>;
-        let testComponent: StandardCalendarComponent;
-        let calendarElement: HTMLElement;
-        let prevButton: HTMLElement;
-        let nextButton: HTMLElement;
-        let calendarInstance: CalendarComponent<Date>;
-
-        beforeEach(() => {
-            fixture = TestBed.createComponent(StandardCalendarComponent);
-            fixture.detectChanges();
-
-            const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
-            calendarElement = calendarDebugElement.nativeElement;
-            prevButton = calendarElement.querySelector('.sbb-calendar-controls-left-arrow') as HTMLElement;
-            nextButton = calendarElement.querySelector('.sbb-calendar-controls-right-arrow') as HTMLElement;
-
-            calendarInstance = calendarDebugElement.componentInstance;
-            testComponent = fixture.componentInstance;
-        });
-
-        it('should be in month view with specified month active', () => {
-            expect(calendarInstance.currentView).toBe('month');
-            expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
-        });
-
-        it('should go to next and previous month', () => {
-            expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
-
-            nextButton.click();
-            fixture.detectChanges();
-
-            expect(calendarInstance.activeDate).toEqual(new Date(2017, FEB, 28));
-
-            prevButton.click();
-            fixture.detectChanges();
-
-            expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 28));
-        });
-
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [DatepickerModule],
+      declarations: [
+        // Test components.
+        StandardCalendarComponent
+      ]
     });
+
+    TestBed.compileComponents();
+  }));
+
+  describe('standard calendar', () => {
+    let fixture: ComponentFixture<StandardCalendarComponent>;
+    let testComponent: StandardCalendarComponent;
+    let calendarElement: HTMLElement;
+    let prevButton: HTMLElement;
+    let nextButton: HTMLElement;
+    let calendarInstance: CalendarComponent<Date>;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(StandardCalendarComponent);
+      fixture.detectChanges();
+
+      const calendarDebugElement = fixture.debugElement.query(
+        By.directive(CalendarComponent)
+      );
+      calendarElement = calendarDebugElement.nativeElement;
+      prevButton = calendarElement.querySelector(
+        '.sbb-calendar-controls-left-arrow'
+      ) as HTMLElement;
+      nextButton = calendarElement.querySelector(
+        '.sbb-calendar-controls-right-arrow'
+      ) as HTMLElement;
+
+      calendarInstance = calendarDebugElement.componentInstance;
+      testComponent = fixture.componentInstance;
+    });
+
+    it('should be in month view with specified month active', () => {
+      expect(calendarInstance.currentView).toBe('month');
+      expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
+    });
+
+    it('should go to next and previous month', () => {
+      expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 31));
+
+      nextButton.click();
+      fixture.detectChanges();
+
+      expect(calendarInstance.activeDate).toEqual(new Date(2017, FEB, 28));
+
+      prevButton.click();
+      fixture.detectChanges();
+
+      expect(calendarInstance.activeDate).toEqual(new Date(2017, JAN, 28));
+    });
+  });
 });

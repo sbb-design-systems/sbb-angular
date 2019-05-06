@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, ContentChild, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ViewChild
+} from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -10,22 +15,24 @@ import { TextexpandComponent } from './textexpand.component';
 
 @Component({
   selector: 'sbb-textexpand-test',
-  template: `<sbb-textexpand #textexpand>
+  template: `
+    <sbb-textexpand #textexpand>
       <sbb-textexpand-collapsed>Hello Davide! &nbsp;</sbb-textexpand-collapsed>
       <sbb-textexpand-expanded>Hello Marco! &nbsp;</sbb-textexpand-expanded>
-    </sbb-textexpand>`
+    </sbb-textexpand>
+  `
 })
 class TextexpandTestComponent {
-
   @ViewChild('textexpand') textexpand: TextexpandComponent;
 
-  @ContentChild(TextexpandCollapsedComponent) collapsedComponent: TextexpandCollapsedComponent;
+  @ContentChild(TextexpandCollapsedComponent)
+  collapsedComponent: TextexpandCollapsedComponent;
 
-  @ContentChild(TextexpandExpandedComponent) expandedComponent: TextexpandExpandedComponent;
-
+  @ContentChild(TextexpandExpandedComponent)
+  expandedComponent: TextexpandExpandedComponent;
 }
 
- describe('TextexpandComponent', () => {
+describe('TextexpandComponent', () => {
   let componentTextexpand: TextexpandComponent;
   let fixtureTextexpand: ComponentFixture<TextexpandComponent>;
 
@@ -37,13 +44,15 @@ class TextexpandTestComponent {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-     declarations: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent]
-    })
-    .compileComponents();
+      declarations: [
+        TextexpandComponent,
+        TextexpandCollapsedComponent,
+        TextexpandExpandedComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-
     fixtureCollapsed = TestBed.createComponent(TextexpandCollapsedComponent);
     componentCollapsed = fixtureCollapsed.componentInstance;
     fixtureCollapsed.detectChanges();
@@ -57,18 +66,17 @@ class TextexpandTestComponent {
     componentTextexpand.collapsedComponent = componentCollapsed;
     componentTextexpand.expandedComponent = componentExpanded;
     fixtureTextexpand.detectChanges();
-
   });
 
   it('textexpand should create', () => {
     expect(componentTextexpand).toBeTruthy();
   });
 
-  it('textexpand-collapsed should create',() => {
+  it('textexpand-collapsed should create', () => {
     expect(componentCollapsed).toBeTruthy();
   });
 
-  it('textexpand-expanded should create',() => {
+  it('textexpand-expanded should create', () => {
     expect(componentExpanded).toBeTruthy();
   });
 
@@ -76,22 +84,20 @@ class TextexpandTestComponent {
     expect(componentTextexpand.id).toContain('sbb-textexpand-');
   });
 
-  it('textexpand class must exist',() => {
+  it('textexpand class must exist', () => {
     expect(componentTextexpand.cssClass).toBe(true);
   });
 
-  it('textexpand-collapsed class must exist',() => {
+  it('textexpand-collapsed class must exist', () => {
     expect(componentCollapsed.cssClass).toBe(true);
   });
 
-  it('textexpand-expanded class must exist',() => {
+  it('textexpand-expanded class must exist', () => {
     expect(componentExpanded.cssClass).toBe(true);
   });
-
 });
 
- describe('TextexpandComponent using mock component', () => {
-
+describe('TextexpandComponent using mock component', () => {
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
 
@@ -103,58 +109,56 @@ class TextexpandTestComponent {
   }));
 
   beforeEach(() => {
-
     fixtureTest = TestBed.createComponent(TextexpandTestComponent);
     componentTest = fixtureTest.componentInstance;
     fixtureTest.detectChanges();
   });
 
-  it('component test is created',(async() => {
+  it('component test is created', async () => {
     expect(componentTest).toBeTruthy();
-  }));
+  });
 
-  it('text collapsed and textexpand-expanded component is hidden', (async() => {
-
+  it('text collapsed and textexpand-expanded component is hidden', async () => {
     expect(componentTest.textexpand.isExpanded).toBe(false);
     expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
     expect(componentTest.textexpand.expandedComponent.isHidden).toBe(true);
+  });
 
-  }));
-
-  it('text expanded and textexpand-collapsed is hidden ', (async() => {
-
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
+  it('text expanded and textexpand-collapsed is hidden ', async () => {
+    const buttonClicked = fixtureTest.debugElement.query(
+      By.css('.sbb-textexpand-button')
+    ).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
     expect(componentTest.textexpand.isExpanded).toBe(true);
     expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(true);
     expect(componentTest.textexpand.expandedComponent.isHidden).toBe(false);
+  });
 
-  }));
-
-  it('aria-expanded button property is true to a click on the button', (async() => {
-
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
+  it('aria-expanded button property is true to a click on the button', async () => {
+    const buttonClicked = fixtureTest.debugElement.query(
+      By.css('.sbb-textexpand-button')
+    ).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
     expect(buttonClicked.attributes['aria-expanded']).toBeTruthy();
     expect(buttonClicked.attributes['aria-expanded'].value).toBe('true');
-  }));
+  });
 
-  it('verify text content collapsed',(async() => {
-
+  it('verify text content collapsed', async () => {
     expect(componentTest.textexpand.isExpanded).toBe(false);
     expect(componentTest.textexpand.collapsedComponent.isHidden).toBe(false);
 
     const textContent = fixtureTest.nativeElement;
     expect(textContent.textContent).toContain('Hello Davide!');
-  }));
+  });
 
-  it('verify text content expanded to a click on the button', (async() => {
-
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
+  it('verify text content expanded to a click on the button', async () => {
+    const buttonClicked = fixtureTest.debugElement.query(
+      By.css('.sbb-textexpand-button')
+    ).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -163,24 +167,23 @@ class TextexpandTestComponent {
 
     const textContent = fixtureTest.nativeElement;
     expect(textContent.textContent).toContain('Hello Marco!');
-  }));
+  });
 
-  it('verify button label when text is collapsed',(async() => {
-
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
+  it('verify button label when text is collapsed', async () => {
+    const buttonClicked = fixtureTest.debugElement.query(
+      By.css('.sbb-textexpand-button')
+    ).nativeElement;
 
     expect(buttonClicked.textContent).toContain('Mehr anzeigen');
+  });
 
-}));
-
-  it('verify button label when text is expanded',(async() => {
-
-    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button')).nativeElement;
+  it('verify button label when text is expanded', async () => {
+    const buttonClicked = fixtureTest.debugElement.query(
+      By.css('.sbb-textexpand-button')
+    ).nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
     expect(buttonClicked.textContent).toContain('Weniger anzeigen');
-
-  }));
-
+  });
 });

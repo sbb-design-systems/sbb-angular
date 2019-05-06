@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -6,7 +12,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
   templateUrl: './social-link.component.html',
   styleUrls: ['./social-link.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class SocialLinkComponent {
   /** @docs-private */
@@ -14,5 +20,13 @@ export class SocialLinkComponent {
   /**
    * social icons available for different purposes
    */
-  @Input() icon: 'facebook' | 'google-plus' | 'instagram' | 'linkedin' | 'pinterest' | 'twitter' | 'xing' | 'youtube';
+  @Input() icon:
+    | 'facebook'
+    | 'google-plus'
+    | 'instagram'
+    | 'linkedin'
+    | 'pinterest'
+    | 'twitter'
+    | 'xing'
+    | 'youtube';
 }

@@ -1,4 +1,4 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 sbb-option {
   @include optionInSelect;
@@ -6,12 +6,13 @@ sbb-option {
   @include multipleOption;
 }
 
-sbb-option[disabled], .sbb-option-disabled {
+sbb-option[disabled],
+.sbb-option-disabled {
   cursor: default;
-  opacity: .5;
+  opacity: 0.5;
 }
 
-sbb-option[aria-disabled="true"] {
+sbb-option[aria-disabled='true'] {
   user-select: none;
   cursor: default;
 }

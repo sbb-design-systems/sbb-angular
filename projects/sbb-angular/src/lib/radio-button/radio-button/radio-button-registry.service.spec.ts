@@ -3,7 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 
 describe('RadioButtonRegistryService', () => {
-
   let service: RadioButtonRegistryService;
 
   beforeEach(() => {
@@ -22,7 +21,9 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('should have a radio button', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue']);
+    const component = jasmine.createSpyObj('RadioButtonComponent', [
+      'writeValue'
+    ]);
     component.name = 'test-name';
     service.add(component);
 
@@ -30,7 +31,9 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('group', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue']);
+    const component = jasmine.createSpyObj('RadioButtonComponent', [
+      'writeValue'
+    ]);
     component.name = 'test-name';
     component.inputId = 'test-comp-id-1';
     service.add(component);
@@ -43,7 +46,10 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('should have a radio button checked in the same group', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue', 'uncheck']);
+    const component = jasmine.createSpyObj('RadioButtonComponent', [
+      'writeValue',
+      'uncheck'
+    ]);
     component.uncheck.and.callFake(() => {
       component.checked = false;
     });
@@ -51,7 +57,10 @@ describe('RadioButtonRegistryService', () => {
     component.inputId = 'test-comp-id-1';
     service.add(component);
 
-    const component2 = jasmine.createSpyObj('RadioButtonComponent', ['writeValue', 'uncheck']);
+    const component2 = jasmine.createSpyObj('RadioButtonComponent', [
+      'writeValue',
+      'uncheck'
+    ]);
     component2.uncheck.and.callFake(() => {
       component2.checked = false;
     });
@@ -73,7 +82,9 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('should be empty on remove', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue']);
+    const component = jasmine.createSpyObj('RadioButtonComponent', [
+      'writeValue'
+    ]);
     component.name = 'test-name';
     component.inputId = 'test-comp-id-1';
     service.add(component);

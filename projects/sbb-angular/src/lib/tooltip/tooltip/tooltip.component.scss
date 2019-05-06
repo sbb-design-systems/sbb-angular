@@ -1,4 +1,4 @@
-@import "../../../styles/main.scss";
+@import '../../../styles/main.scss';
 
 sbb-tooltip {
   .sbb-tooltip-trigger {
@@ -11,8 +11,7 @@ sbb-tooltip {
 
 .sbb-tooltip-content {
   @include tooltipContent;
-  
- 
+
   .sbb-tooltip-icon {
     @include tooltipIconClose;
   }

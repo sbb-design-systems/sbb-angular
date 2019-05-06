@@ -22,7 +22,7 @@
   height: calc(100vh - #{$headerHeight});
   width: 100%;
   padding-top: pxToRem(30);
-  
+
   @include mq($from: tabletLandscape) {
     border-right: solid 1px #ccc;
   }
@@ -33,7 +33,7 @@
 
   &-card {
     padding: 0.25em pxToEm(30);
-  
+
     &:hover {
       cursor: pointer;
     }
@@ -44,7 +44,7 @@
     font-family: $fontSbbBold;
     font-size: $sizeFontBase - 1px;
     padding: 0.5em 0.25em;
-  
+
     .fa {
       font-size: 0.75em;
       line-height: 1.3;

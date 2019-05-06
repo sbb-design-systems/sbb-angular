@@ -8,10 +8,11 @@ import { createMouseEvent } from '../../_common/testing/event-objects';
 import { TimeInputDirective } from './time-input.directive';
 
 @Component({
-  template: `<input sbbTimeInput>`
+  template: `
+    <input sbbTimeInput />
+  `
 })
-class TimeInputTestComponent {
-}
+class TimeInputTestComponent {}
 
 describe('TimeInputDirective', () => {
   let component: TimeInputTestComponent;
@@ -21,8 +22,7 @@ describe('TimeInputDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TimeInputTestComponent, TimeInputDirective]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

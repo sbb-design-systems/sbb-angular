@@ -7,11 +7,10 @@
   @include mq($from: desktop4k) {
     font-size: pxToRem(13 * $scalingFactor4k);
   }
-  
+
   @include mq($from: desktop5k) {
     font-size: pxToRem(13 * $scalingFactor5k);
   }
-  
 }
 
 @mixin textexpandButton {
@@ -31,4 +30,3 @@
     text-decoration: underline;
   }
 }
-

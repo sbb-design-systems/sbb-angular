@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IconChevronRightModule, IconChevronSmallDownCircleModule } from 'sbb-angular-icons';
+import {
+  IconChevronRightModule,
+  IconChevronSmallDownCircleModule
+} from 'sbb-angular-icons';
 
 import { DropdownModule } from '../../dropdown/dropdown';
 
@@ -17,10 +20,9 @@ describe('BreadcrumbComponent', () => {
         CommonModule,
         DropdownModule,
         IconChevronRightModule,
-        IconChevronSmallDownCircleModule,
+        IconChevronSmallDownCircleModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

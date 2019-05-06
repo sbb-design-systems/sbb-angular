@@ -15,7 +15,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { FILE_SELECTOR_OPTIONS, FileSelectorOptions, FileTypeCategory } from './file-selector-base';
+import {
+  FILE_SELECTOR_OPTIONS,
+  FileSelectorOptions,
+  FileTypeCategory
+} from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
 
 let counter = 0;
@@ -30,12 +34,12 @@ let counter = 0;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FileSelectorComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ]
 })
-export class FileSelectorComponent implements ControlValueAccessor, FileSelectorOptions {
-
+export class FileSelectorComponent
+  implements ControlValueAccessor, FileSelectorOptions {
   /**
    * Categories of file types accepted by sbb-file-selector component.
    */
@@ -88,12 +92,12 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   /**
    * Property that listens changes on file selector.
    */
-  onChange = (_: File[]) => { };
+  onChange = (_: File[]) => {};
 
   /**
    * Property that catches the interaction with user.
    */
-  onTouched = () => { };
+  onTouched = () => {};
 
   constructor(
     private _fileTypeService: FileSelectorTypesService,
@@ -109,9 +113,15 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     }
   }
 
-  writeValue(value: any) { this.filesList = value; }
-  registerOnChange(fn: any) { this.onChange = fn; }
-  registerOnTouched(fn: any) { this.onTouched = fn; }
+  writeValue(value: any) {
+    this.filesList = value;
+  }
+  registerOnChange(fn: any) {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
 
   /**
    * Applies changes on the list of files uploaded.
@@ -127,7 +137,8 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @param files Files uploaded.
    */
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
-    const filesToAdd = action === 'add' ? this._getFileListByMode(files) : files;
+    const filesToAdd =
+      action === 'add' ? this._getFileListByMode(files) : files;
     this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
     this.onChange(filesToAdd);
     this.writeValue(filesToAdd);
@@ -149,7 +160,9 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * @returns List of files without the file deleted.
    */
   removeFile(file: File): void {
-    const filteredList = this.filesList.filter(f => !this._checkFileEquality(f, file));
+    const filteredList = this.filesList.filter(
+      f => !this._checkFileEquality(f, file)
+    );
     this.applyChanges(filteredList, 'remove');
   }
 
@@ -160,9 +173,14 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   private _getFileListByMode(incomingFiles: File[]): File[] {
     if (this.multiple && this.multipleMode === 'persistent') {
-      return incomingFiles.filter(f => {
-        return this.filesList.findIndex(flItem => this._checkFileEquality(f, flItem)) === -1;
-      })
+      return incomingFiles
+        .filter(f => {
+          return (
+            this.filesList.findIndex(flItem =>
+              this._checkFileEquality(f, flItem)
+            ) === -1
+          );
+        })
         .concat(this.filesList);
     }
 
@@ -170,8 +188,10 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   }
 
   private _checkFileEquality(file1: File, file2: File): boolean {
-    return file1.name === file2.name
-      && file1.size === file2.size
-      && file1.lastModified === file2.lastModified;
+    return (
+      file1.name === file2.name &&
+      file1.size === file2.size &&
+      file1.lastModified === file2.lastModified
+    );
   }
 }

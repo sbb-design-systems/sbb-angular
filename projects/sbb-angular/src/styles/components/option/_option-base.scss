@@ -179,11 +179,15 @@ $dropdownPaddingBottom: 14px;
     padding-left: toPx($optionMultipleNoCheckboxPaddingLeft);
 
     @include mq($from: desktop4k) {
-      padding-left: toPx($optionMultipleNoCheckboxPaddingLeft * $scalingFactor4k);
+      padding-left: toPx(
+        $optionMultipleNoCheckboxPaddingLeft * $scalingFactor4k
+      );
     }
 
     @include mq($from: desktop5k) {
-      padding-left: toPx($optionMultipleNoCheckboxPaddingLeft * $scalingFactor5k);
+      padding-left: toPx(
+        $optionMultipleNoCheckboxPaddingLeft * $scalingFactor5k
+      );
     }
   }
 }

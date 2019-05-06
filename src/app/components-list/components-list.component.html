@@ -1,7 +1,13 @@
 <h2 class="sbbsc-content-title">
   <span i18n class="sbbsc-content-title-text">SBB Angular Components</span>
   <sbb-icon-arrow-right></sbb-icon-arrow-right>
-  <button i18n sbbButton mode="frameless" routerLink="/icons-list" class="sbbsc-content-title-button">
+  <button
+    i18n
+    sbbButton
+    mode="frameless"
+    routerLink="/icons-list"
+    class="sbbsc-content-title-button"
+  >
     SBB Angular Icons
     <sbb-icon-arrow-right *sbbButtonIcon></sbb-icon-arrow-right>
   </button>
@@ -9,4 +15,6 @@
 
 <div role="presentation" class="sbbsc-separator"></div>
 
-<sbb-showcase-search [allUiComponents]="foundUiComponents"></sbb-showcase-search>
+<sbb-showcase-search
+  [allUiComponents]="foundUiComponents"
+></sbb-showcase-search>

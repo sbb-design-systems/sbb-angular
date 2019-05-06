@@ -12,15 +12,19 @@ import { TagsComponent } from './tags.component';
 
 @Component({
   selector: 'sbb-tags-test-fixture',
-  template: `<sbb-tags>
-              <ng-container *ngFor="let tag of tagItems">
-                <sbb-tag [(ngModel)]="tag.selected"
-                        (tagChange)="change($event)"
-                        [label]="tag.label"
-                        [id]="tag.id"
-                        [amount]="tag.amount"></sbb-tag>
-              </ng-container>
-            </sbb-tags>`
+  template: `
+    <sbb-tags>
+      <ng-container *ngFor="let tag of tagItems">
+        <sbb-tag
+          [(ngModel)]="tag.selected"
+          (tagChange)="change($event)"
+          [label]="tag.label"
+          [id]="tag.id"
+          [amount]="tag.amount"
+        ></sbb-tag>
+      </ng-container>
+    </sbb-tags>
+  `
 })
 class TagsTestFixtureComponent {
   tagItems: Tag[] = [
@@ -37,17 +41,18 @@ class TagsTestFixtureComponent {
     }
   ];
 
-  change() { }
+  change() {}
 }
 
 @Component({
   selector: 'sbb-taglink-test-fixture',
-  template: `<a href="#">
-              <sbb-tag label="Link tag" amount="5"></sbb-tag>
-            </a>`
+  template: `
+    <a href="#">
+      <sbb-tag label="Link tag" amount="5"></sbb-tag>
+    </a>
+  `
 })
-class TagLinkTestFixtureComponent {
-}
+class TagLinkTestFixtureComponent {}
 
 describe('TagsComponent', () => {
   let component: TagsComponent;
@@ -57,8 +62,7 @@ describe('TagsComponent', () => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
       declarations: [TagsComponent, TagComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -84,8 +88,7 @@ describe('TagsComponent with Model attached', () => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, BadgeModule],
       declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -101,13 +104,17 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should the second sbb-tag input have the ID set by the Model', () => {
-    const secondTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[1].componentInstance;
+    const secondTag: TagComponent = fixture.debugElement.queryAll(
+      By.directive(TagComponent)
+    )[1].componentInstance;
 
     expect(secondTag.inputId).toBe('tag-1');
   });
 
   it('should the third sbb-tag input have an auto generated ID', () => {
-    const thirdTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[2].componentInstance;
+    const thirdTag: TagComponent = fixture.debugElement.queryAll(
+      By.directive(TagComponent)
+    )[2].componentInstance;
 
     expect(thirdTag.inputId).toBe('sbb-tag-2');
   });
@@ -115,7 +122,8 @@ describe('TagsComponent with Model attached', () => {
   it('should have all its sbb-tag children with linkMode set to false', () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
 
-    const foundLinkModes = tags.findIndex(tag => tag.componentInstance.linkMode === true) !== -1;
+    const foundLinkModes =
+      tags.findIndex(tag => tag.componentInstance.linkMode === true) !== -1;
 
     expect(foundLinkModes).toBeFalsy();
   });
@@ -142,7 +150,6 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should sbb-tag to be checked if model is true and update Model if checked/unchecked', async () => {
-
     const tag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
     const tagLabel = tag.query(By.css('label'));
 
@@ -191,7 +198,6 @@ describe('TagsComponent with Model attached', () => {
 
     expect(allTag.componentInstance.checked).toBe(true);
     expect(allTag.componentInstance.active).toBe(true);
-
   });
 
   it('should when clicking the allTag all other tags to be unchecked/false', async () => {
@@ -205,13 +211,18 @@ describe('TagsComponent with Model attached', () => {
 
     tags.splice(0, 1);
 
-    const hasTruthyValues = tags.findIndex(t => (t.componentInstance.checked && t.componentInstance.active)) !== -1;
+    const hasTruthyValues =
+      tags.findIndex(
+        t => t.componentInstance.checked && t.componentInstance.active
+      ) !== -1;
 
     expect(hasTruthyValues).toBeFalsy();
   });
 
   it('should call the tagChange event when checking/unchecking a sbb-tag', () => {
-    const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
+    const firstTag = fixture.debugElement.queryAll(
+      By.directive(TagComponent)
+    )[1];
 
     spyOn(component, 'change');
 
@@ -221,7 +232,6 @@ describe('TagsComponent with Model attached', () => {
 
     expect(component.change).toHaveBeenCalled();
   });
-
 });
 
 describe('TagComponent as a Link Tag', () => {
@@ -231,8 +241,7 @@ describe('TagComponent as a Link Tag', () => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
       declarations: [TagComponent, TagLinkTestFixtureComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

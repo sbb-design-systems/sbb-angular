@@ -1,4 +1,4 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 .sbb-dropdown-panel {
   @include autocompleteBase();
@@ -43,8 +43,8 @@
     opacity: 0.5;
   }
 
-  a[aria-disabled="true"],
-  button[aria-disabled="true"] {
+  a[aria-disabled='true'],
+  button[aria-disabled='true'] {
     user-select: none;
     cursor: default;
   }

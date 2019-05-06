@@ -9,7 +9,7 @@ import {
   HostBinding,
   HostListener,
   OnDestroy,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { EMPTY, merge, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -28,7 +28,8 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
+export class ExpansionPanelHeaderComponent
+  implements OnDestroy, FocusableOption {
   /**
    * Class property that refers to the attribute class of the header panel.
    */
@@ -46,12 +47,16 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
   panelHeaderAttrId: string = this.panel.headerId;
 
   @HostBinding('attr.tabindex')
-  get tabIndex() { return this.disabled ? '-1' : '0'; }
+  get tabIndex() {
+    return this.disabled ? '-1' : '0';
+  }
   /**
    * Class property that gets the status disabled of the panel.
    */
   @HostBinding('attr.aria-disabled')
-  get ariaDisabled() { return this.panel.disabled; }
+  get ariaDisabled() {
+    return this.panel.disabled;
+  }
 
   private _parentChangeSubscription = Subscription.EMPTY;
 
@@ -62,10 +67,13 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
     @Host() public panel: ExpansionPanelComponent,
     private _element: ElementRef,
     private _focusMonitor: FocusMonitor,
-    private _changeDetectorRef: ChangeDetectorRef) {
-
-    const accordionHideToggleChange = panel.accordion ?
-      panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle)) : EMPTY;
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {
+    const accordionHideToggleChange = panel.accordion
+      ? panel.accordion._stateChanges.pipe(
+          filter(changes => !!changes.hideToggle)
+        )
+      : EMPTY;
 
     // Since the toggle state depends on an @Input on the panel, we
     // need to subscribe and trigger change detection manually.
@@ -73,14 +81,17 @@ export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption
       panel.opened,
       panel.closed,
       accordionHideToggleChange,
-      panel._inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled)))
-    )
-      .subscribe(() => this._changeDetectorRef.markForCheck());
+      panel._inputChanges.pipe(
+        filter(changes => !!(changes.hideToggle || changes.disabled))
+      )
+    ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // Avoids focus being lost if the panel contained the focused element and was closed.
     panel.closed
       .pipe(filter(() => panel.containsFocus()))
-      .subscribe(() => _focusMonitor.focusVia(_element.nativeElement, 'program'));
+      .subscribe(() =>
+        _focusMonitor.focusVia(_element.nativeElement, 'program')
+      );
 
     _focusMonitor.monitor(_element.nativeElement).subscribe(origin => {
       if (origin && panel.accordion) {

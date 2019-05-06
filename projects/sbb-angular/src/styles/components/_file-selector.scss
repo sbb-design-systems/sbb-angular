@@ -42,7 +42,8 @@
     padding-left: 0;
   }
 
-  &-type-icon, &-remove-icon {
+  &-type-icon,
+  &-remove-icon {
     display: inline-block;
     vertical-align: middle;
   }
@@ -68,7 +69,7 @@
     margin-left: pxToEm(8);
     border: pxToEm(1) solid $colorBlack40;
     border-radius: 50%;
-    
+
     svg {
       @include absoluteCenterXY();
       width: pxToEm(24);

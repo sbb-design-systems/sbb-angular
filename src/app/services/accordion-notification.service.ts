@@ -4,7 +4,6 @@ import { EventEmitter, Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AccordionNotificationService {
-
   openComponent: EventEmitter<any> = new EventEmitter();
   openIcon: EventEmitter<any> = new EventEmitter();
 

@@ -9,10 +9,9 @@ export interface FormModel {
 @Component({
   selector: 'sbb-captcha-showcase',
   templateUrl: './captcha-showcase.component.html',
-  styleUrls: ['./captcha-showcase.component.scss'],
+  styleUrls: ['./captcha-showcase.component.scss']
 })
 export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
-
   basicCaptchaResponse: string;
 
   formModel: FormModel = {};
@@ -27,16 +26,15 @@ export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
   captcha: FormControl = new FormControl('', [Validators.required]);
 
   ngOnInit() {
-
     this.formCaptcha = new FormGroup({
       captcha: this.captcha
     });
 
-    this.captchaSubscription = this.formCaptcha.get('captcha')
+    this.captchaSubscription = this.formCaptcha
+      .get('captcha')
       .valueChanges.subscribe(value => {
         this.formModelReactive.captcha = value;
       });
-
   }
 
   ngOnDestroy() {
@@ -52,5 +50,4 @@ export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
   resetForm() {
     this.formCaptcha.reset();
   }
-
 }

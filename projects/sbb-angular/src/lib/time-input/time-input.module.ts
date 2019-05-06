@@ -4,12 +4,8 @@ import { NgModule } from '@angular/core';
 import { TimeInputDirective } from './time-input/time-input.directive';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [TimeInputDirective],
   exports: [TimeInputDirective]
-
 })
-export class TimeInputModule {
-}
+export class TimeInputModule {}

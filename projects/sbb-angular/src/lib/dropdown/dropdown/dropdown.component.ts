@@ -1,4 +1,3 @@
-
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
@@ -15,10 +14,13 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 
-import { DropdownItemDirective, SBB_DROPDOWN_ITEM_PARENT_COMPONENT } from '../dropdown-item.directive';
+import {
+  DropdownItemDirective,
+  SBB_DROPDOWN_ITEM_PARENT_COMPONENT
+} from '../dropdown-item.directive';
 
 /**
  * Dropdown IDs need to be unique across components, so this counter exists outside of
@@ -32,7 +34,8 @@ export class DropdownSelectedEvent {
     /** Reference to the dropdown panel that emitted the event. */
     public source: DropdownComponent,
     /** Option that was selected. */
-    public item: DropdownItemDirective) { }
+    public item: DropdownItemDirective
+  ) {}
 }
 
 /** Default `sbb-dropdown` options that can be overridden. */
@@ -49,14 +52,19 @@ export interface DropdownDefaultOptions {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: SBB_DROPDOWN_ITEM_PARENT_COMPONENT, useExisting: DropdownComponent },
+    {
+      provide: SBB_DROPDOWN_ITEM_PARENT_COMPONENT,
+      useExisting: DropdownComponent
+    }
   ]
 })
 export class DropdownComponent implements AfterContentInit {
   /**
    * Reference to the dropdown items.
    */
-  @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
+  @ContentChildren(DropdownItemDirective) options: QueryList<
+    DropdownItemDirective
+  >;
 
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<DropdownItemDirective>;
@@ -65,8 +73,12 @@ export class DropdownComponent implements AfterContentInit {
   showPanel = false;
 
   /** Whether the dropdown panel is open. */
-  get isOpen(): boolean { return this._isOpen && this.showPanel; }
-  set isOpen(value: boolean) { this._isOpen = value; }
+  get isOpen(): boolean {
+    return this._isOpen && this.showPanel;
+  }
+  set isOpen(value: boolean) {
+    this._isOpen = value;
+  }
   private _isOpen = false;
 
   /** Css class of sbb-dropdown. */
@@ -85,7 +97,9 @@ export class DropdownComponent implements AfterContentInit {
    * Whether the first option should be highlighted when the dropdown panel is opened.
    */
   @Input()
-  get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }
+  get autoActiveFirstOption(): boolean {
+    return this._autoActiveFirstOption;
+  }
   set autoActiveFirstOption(value: boolean) {
     this._autoActiveFirstOption = coerceBooleanProperty(value);
   }
@@ -98,8 +112,9 @@ export class DropdownComponent implements AfterContentInit {
   @Input() panelWidth: string | number;
 
   /** Event that is emitted whenever an option from the list is selected. */
-  @Output() readonly optionSelected: EventEmitter<DropdownSelectedEvent> =
-    new EventEmitter<DropdownSelectedEvent>();
+  @Output() readonly optionSelected: EventEmitter<
+    DropdownSelectedEvent
+  > = new EventEmitter<DropdownSelectedEvent>();
 
   /** Event that is emitted when the dropdown panel is opened. */
   @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
@@ -114,7 +129,9 @@ export class DropdownComponent implements AfterContentInit {
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
-      value.split(' ').forEach(className => this._classList[className.trim()] = true);
+      value
+        .split(' ')
+        .forEach(className => (this._classList[className.trim()] = true));
       this._elementRef.nativeElement.className = '';
     }
   }
@@ -127,11 +144,12 @@ export class DropdownComponent implements AfterContentInit {
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _elementRef: ElementRef<HTMLElement>
-  ) {
-  }
+  ) {}
 
   ngAfterContentInit() {
-    this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(this.options).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(
+      this.options
+    ).withWrap();
     // Set the initial visibility state.
     this.setVisibility();
   }

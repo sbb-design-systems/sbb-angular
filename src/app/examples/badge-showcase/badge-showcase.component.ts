@@ -6,6 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./badge-showcase.component.scss']
 })
 export class BadgeShowcaseComponent {
-
   active = true;
 }

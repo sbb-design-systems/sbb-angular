@@ -4,11 +4,9 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { UiComponent } from '../shared/ui-component';
 
 @Directive({
-  selector: '[sbbDoc]',
-
+  selector: '[sbbDoc]'
 })
 export class DocDirective implements OnInit {
-
   private _hostElement: HTMLElement;
 
   @Input() type = 'api';
@@ -18,10 +16,7 @@ export class DocDirective implements OnInit {
   @Input() sbbDoc: UiComponent;
   @Input() htmlExample?: string;
 
-  constructor(
-    private _http: HttpClient,
-    elementRef: ElementRef,
-  ) {
+  constructor(private _http: HttpClient, elementRef: ElementRef) {
     this._hostElement = elementRef.nativeElement;
   }
 
@@ -29,7 +24,9 @@ export class DocDirective implements OnInit {
     this.componentType = this.sbbDoc.isComponent ? 'component' : 'directive';
     this._http
       .get(this.apiDocHTMLName, { responseType: 'text' })
-      .subscribe((html: any) => this.templateHtml = html ? html : '/* No content */');
+      .subscribe(
+        (html: any) => (this.templateHtml = html ? html : '/* No content */')
+      );
   }
 
   set templateHtml(value) {
@@ -40,19 +37,29 @@ export class DocDirective implements OnInit {
     let docsUrl = 'docs/';
     switch (this.type) {
       case 'ts':
-        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase.${this.componentType}-ts`;
+        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase.${
+          this.componentType
+        }-ts`;
         break;
       case 'html':
-        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase.${this.componentType}-html`;
+        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase.${
+          this.componentType
+        }-html`;
         break;
       case 'scss':
-        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase.${this.componentType}-scss`;
+        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase.${
+          this.componentType
+        }-scss`;
         break;
       case 'md':
-        docsUrl += `markdown/${this.sbbDoc.routerLink}-showcase/sbb-angular-${this.sbbDoc.routerLink}`;
+        docsUrl += `markdown/${this.sbbDoc.routerLink}-showcase/sbb-angular-${
+          this.sbbDoc.routerLink
+        }`;
         break;
       case 'htmlExample':
-        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase-${this.htmlExample}.${this.componentType}-html`;
+        docsUrl += `examples/${this.sbbDoc.routerLink}-showcase-${
+          this.htmlExample
+        }.${this.componentType}-html`;
         break;
       default:
         docsUrl += `api/sbb-angular-${this.sbbDoc.routerLink}`;
@@ -61,5 +68,4 @@ export class DocDirective implements OnInit {
     }
     return docsUrl + '.html';
   }
-
 }

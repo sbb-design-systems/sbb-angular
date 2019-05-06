@@ -1,25 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IconChevronSmallLeftModule, IconChevronSmallRightModule } from 'sbb-angular-icons';
+import {
+  IconChevronSmallLeftModule,
+  IconChevronSmallRightModule
+} from 'sbb-angular-icons';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
-  declarations: [
-    PaginationComponent,
-    NavigationComponent,
-  ],
+  declarations: [PaginationComponent, NavigationComponent],
   imports: [
     CommonModule,
     RouterModule,
     IconChevronSmallLeftModule,
-    IconChevronSmallRightModule,
+    IconChevronSmallRightModule
   ],
-  exports: [
-    PaginationComponent,
-    NavigationComponent,
-  ]
+  exports: [PaginationComponent, NavigationComponent]
 })
-export class PaginationModule { }
+export class PaginationModule {}

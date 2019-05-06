@@ -10,12 +10,9 @@ import { ROUTER_ANIMATION } from './shared/animations';
   selector: 'sbb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    ROUTER_ANIMATION
-  ]
+  animations: [ROUTER_ANIMATION]
 })
 export class AppComponent implements OnInit {
-
   title = 'sbb-angular-showcase';
 
   sizeOfUiComponents = 0;
@@ -33,8 +30,8 @@ export class AppComponent implements OnInit {
   constructor(
     private _componentUiService: ComponentUiService,
     private _iconUiService: IconUiService,
-    private _accordionNotificationService: AccordionNotificationService,
-  ) { }
+    private _accordionNotificationService: AccordionNotificationService
+  ) {}
 
   ngOnInit() {
     this.sizeOfUiIcons = this._iconUiService.getAll().length;
@@ -55,6 +52,8 @@ export class AppComponent implements OnInit {
   }
 
   getPage(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['page'];
+    return (
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData['page']
+    );
   }
 }

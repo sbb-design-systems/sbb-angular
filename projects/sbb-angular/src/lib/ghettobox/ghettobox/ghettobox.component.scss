@@ -2,34 +2,34 @@
 
 .sbb-ghettobox-outer-wrapper {
   @include ghettoboxOuterWrapper();
-  
+
   .sbb-ghettobox {
     @include ghettobox();
-  
+
     .sbb-ghettobox-wrapper {
       @include ghettoboxWrapper();
-  
+
       .sbb-ghettobox {
         &-icon-container {
           @include ghettoboxIconContainer();
         }
-  
+
         &-icon {
           @include ghettoboxIcon();
         }
-        
+
         &-content {
           @include ghettoboxContent();
-  
+
           &-link-icon {
             @include ghettoboxContentLinkIcon();
           }
         }
-  
+
         &-close {
           @include ghettoboxClose();
         }
-  
+
         &-close-button {
           @include ghettoboxCloseButton();
         }
@@ -41,4 +41,3 @@
     }
   }
 }
-

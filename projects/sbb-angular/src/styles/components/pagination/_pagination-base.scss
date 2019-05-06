@@ -63,7 +63,7 @@
         @include svgIconColor($colorRed100);
         color: $colorRed100;
       }
-      
+
       &.sbb-pagination-item-boundary {
         width: toPx($paginationLiWidthHeight);
         height: toPx($paginationLiWidthHeight);

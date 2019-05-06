@@ -9,13 +9,17 @@ import {
   IconDocumentVideoModule,
   IconDocumentZipModule,
   IconTrashModule,
-  IconUploadModule,
+  IconUploadModule
 } from 'sbb-angular-icons';
 
 import { ButtonModule } from '../button/button.module';
 
 import { FileSelectorComponent } from './file-selector/file-selector.component';
-import { FileExtension, FileNameNoExtension, FileSizeFormatted } from './file-selector/file-selector.pipes';
+import {
+  FileExtension,
+  FileNameNoExtension,
+  FileSizeFormatted
+} from './file-selector/file-selector.pipes';
 
 @NgModule({
   declarations: [
@@ -37,8 +41,6 @@ import { FileExtension, FileNameNoExtension, FileSizeFormatted } from './file-se
     IconTrashModule,
     IconUploadModule
   ],
-  exports: [
-    FileSelectorComponent
-  ]
+  exports: [FileSelectorComponent]
 })
-export class FileSelectorModule { }
+export class FileSelectorModule {}

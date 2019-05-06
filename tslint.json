@@ -1,4 +1,5 @@
 {
+  "extends": ["tslint-plugin-prettier", "tslint-config-prettier"],
   "rulesDirectory": [
     "node_modules/codelyzer",
     "node_modules/tslint-consistent-codestyle/rules"
@@ -212,6 +213,7 @@
       "leading"
     ],
     "prefer-const": true,
+    "prettier": true,
     "quotemark": [
       true,
       "single"

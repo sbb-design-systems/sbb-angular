@@ -9,5 +9,5 @@ import { Directive, TemplateRef } from '@angular/core';
 })
 export class ExpansionPanelContentDirective {
   // tslint:disable-next-line: naming-convention
-  constructor(public _template: TemplateRef<any>) { }
+  constructor(public _template: TemplateRef<any>) {}
 }

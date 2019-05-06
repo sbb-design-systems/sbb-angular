@@ -7,7 +7,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./textarea-showcase.component.scss']
 })
 export class TextareaShowcaseComponent {
-
   textArea1 = 'SBB';
   disabled: boolean;
   minlength: number;
@@ -23,5 +22,4 @@ export class TextareaShowcaseComponent {
   setValue($event) {
     this.formGroup.controls['textarea'].setValue($event.target.value);
   }
-
 }

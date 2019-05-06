@@ -10,7 +10,10 @@ import {
   QueryList
 } from '@angular/core';
 
-import { ProcessflowStep, ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
+import {
+  ProcessflowStep,
+  ProcessflowStepComponent
+} from '../processflow-step/processflow-step.component';
 
 @Component({
   selector: 'sbb-processflow',
@@ -19,20 +22,19 @@ import { ProcessflowStep, ProcessflowStepComponent } from '../processflow-step/p
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessflowComponent implements AfterContentInit {
-
   /** @docs-private */
   @HostBinding('class.sbb-processflow')
   cssClass = true;
   /** Event emitted to the change of step in the process flow. */
   @Output()
-  stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
+  stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<
+    ProcessflowStep
+  >();
   /** Refers to the steps of process flow. */
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;
 
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-  ) { }
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
     if (this.steps && this.steps.length) {
@@ -99,7 +101,7 @@ export class ProcessflowComponent implements AfterContentInit {
   }
   /** Method to disable a step in a process flow.
    * @param index Index of the step to disable.
-  */
+   */
   disableStep(index: number) {
     const step = this.steps.toArray()[index];
     if (step) {
@@ -126,5 +128,4 @@ export class ProcessflowComponent implements AfterContentInit {
     }
     return null;
   }
-
 }

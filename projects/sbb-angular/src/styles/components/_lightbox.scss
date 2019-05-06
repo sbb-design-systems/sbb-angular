@@ -92,7 +92,7 @@ $lightbox-footer-padding: 24;
   height: pxToEm($lighbox-close-button-size);
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
     border: 1px solid $lighbox-close-button-color;
@@ -194,22 +194,22 @@ $lightbox-footer-padding: 24;
       min-height: pxToEm($lightbox-footer-height-mobile);
       padding: pxToEm($lightbox-footer-padding)
         pxToEm($lightbox-header-x-padding-mobile);
-  
+
       @include mq($from: tabletPortrait) {
         flex-direction: row;
         min-height: pxToEm($lightbox-footer-height-tablet);
         padding: pxToEm($lightbox-footer-padding)
           pxToEm($lightbox-header-x-padding-tablet);
       }
-  
+
       @include mq($from: desktop) {
         padding: pxToEm($lightbox-footer-padding)
           pxToEm($lightbox-header-x-padding);
       }
-  
+
       button {
         margin-bottom: pxToEm(10);
-  
+
         @include mq($from: tabletPortrait) {
           margin-bottom: 0;
         }

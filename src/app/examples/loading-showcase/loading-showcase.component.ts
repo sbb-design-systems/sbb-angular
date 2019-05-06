@@ -9,14 +9,12 @@ export class LoadingShowcaseComponent {
   showSpinner: boolean;
   spinnerMode = '';
 
-  constructor() {
-  }
+  constructor() {}
 
   activateSpinner(mode) {
-
     this.spinnerMode = mode;
     this.showSpinner = true;
 
-    setTimeout(() => this.showSpinner = false, 3500);
+    setTimeout(() => (this.showSpinner = false), 3500);
   }
 }

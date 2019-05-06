@@ -11,13 +11,7 @@ import { ToggleComponent } from './toggle/toggle.component';
     ToggleOptionComponent,
     ToggleOptionIconDirective
   ],
-  imports: [
-    CommonModule,
-  ],
-  exports: [
-    ToggleComponent,
-    ToggleOptionComponent,
-    ToggleOptionIconDirective
-  ]
+  imports: [CommonModule],
+  exports: [ToggleComponent, ToggleOptionComponent, ToggleOptionIconDirective]
 })
-export class ToggleModule { }
+export class ToggleModule {}

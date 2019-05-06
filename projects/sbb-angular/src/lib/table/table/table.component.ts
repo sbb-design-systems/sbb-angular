@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'sbb-table',
@@ -36,5 +41,4 @@ export class TableComponent {
 
     return classList;
   }
-
 }

@@ -8,11 +8,11 @@
       @include tableScrollingPinModeEnabled();
     }
   }
-  
+
   .sbb-table {
     @include table();
   }
-  
+
   .sbb-table-caption {
     > * {
       @include tableCaption();

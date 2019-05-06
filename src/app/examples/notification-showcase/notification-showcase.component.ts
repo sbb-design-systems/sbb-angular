@@ -7,10 +7,16 @@ import { JumpMark, NotificationType } from 'sbb-angular';
   styleUrls: ['./notification-showcase.component.scss']
 })
 export class NotificationShowcaseComponent {
-
-  jumpMarks: JumpMark[] = [{ elementId: '#default', title: 'Hello' }, { elementId: '#default', title: 'Suchen' }];
+  jumpMarks: JumpMark[] = [
+    { elementId: '#default', title: 'Hello' },
+    { elementId: '#default', title: 'Suchen' }
+  ];
 
   type = NotificationType.SUCCESS;
 
-  types = [NotificationType.SUCCESS, NotificationType.INFO, NotificationType.ERROR];
+  types = [
+    NotificationType.SUCCESS,
+    NotificationType.INFO,
+    NotificationType.ERROR
+  ];
 }

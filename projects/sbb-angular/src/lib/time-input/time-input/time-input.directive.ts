@@ -1,5 +1,14 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, HostBinding, HostListener, Inject, Optional, Renderer2, Self } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Inject,
+  Optional,
+  Renderer2,
+  Self
+} from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 const REGEX_PATTERN = /[0-9]{3,4}/;
@@ -10,14 +19,13 @@ const REGEX_GROUPS_WO_COLON = /([0-9]{1,2})([0-9]{2})/;
   selector: 'input[sbbTimeInput]'
 })
 export class TimeInputDirective {
-
   private _document: Document;
 
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     @Self() @Optional() private _control: NgControl,
-    @Inject(DOCUMENT) document: any,
+    @Inject(DOCUMENT) document: any
   ) {
     this._document = document;
   }
@@ -53,7 +61,11 @@ export class TimeInputDirective {
     if (this._control && this._control.control) {
       this._control.control.setValue(`${hours}:${mins}`);
     } else {
-      this._renderer.setProperty(this._elementRef.nativeElement, 'value', `${hours}:${mins}`);
+      this._renderer.setProperty(
+        this._elementRef.nativeElement,
+        'value',
+        `${hours}:${mins}`
+      );
       const event = this._document.createEvent('Event');
       event.initEvent('input', true, true);
       this._elementRef.nativeElement.dispatchEvent(event);

@@ -1,7 +1,10 @@
 sbb-tabs {
   margin-bottom: 2em;
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     margin-top: 0;
   }
 }
@@ -9,5 +12,5 @@ sbb-tabs {
 @media (min-width: 64.0625em) {
   .sbbsc-v-sep.no-fix-width {
     max-width: 58.33333333%;
-  }  
+  }
 }

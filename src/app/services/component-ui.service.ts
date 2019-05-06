@@ -38,7 +38,6 @@ import { UiComponent } from '../shared/ui-component';
   providedIn: 'root'
 })
 export class ComponentUiService {
-
   uiComponents: UiComponent[];
 
   constructor() {
@@ -61,8 +60,8 @@ export class ComponentUiService {
         'table',
         'Table',
         'Table is the successor of p-dataTable with a lightning fast performance (at least 10x faster) ' +
-        'and excellent level of control over the presentation. p-table is called as TurboTable in order to ' +
-        'differantiate if from the deprecated p-dataTable.',
+          'and excellent level of control over the presentation. p-table is called as TurboTable in order to ' +
+          'differantiate if from the deprecated p-dataTable.',
         true,
         true,
         ['Davide Aresta', 'Stefan Meili'],
@@ -78,13 +77,13 @@ export class ComponentUiService {
         null,
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili, Dario D\'Oronzo'],
+        ['Davide Aresta', "Stefan Meili, Dario D'Oronzo"],
         null,
         `<a href="#" sbbLink mode="normal" icon="arrow">Bezeichnung</a>
         <a href="#" sbbSocialLink icon="facebook">Bezeichnung</a>`,
-        'import { LinksModule } from \'sbb-angular\';\n\n' +
-        '@NgModule({\n  declarations: [\n    ...\n  ],\n  imports: [\n    ...\n    LinksModule\n  ]\n})\n' +
-        'export class ExamplesModule { }',
+        "import { LinksModule } from 'sbb-angular';\n\n" +
+          '@NgModule({\n  declarations: [\n    ...\n  ],\n  imports: [\n    ...\n    LinksModule\n  ]\n})\n' +
+          'export class ExamplesModule { }',
         LinksShowcaseComponent
       ),
       new UiComponent(
@@ -120,7 +119,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -198,7 +197,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -329,7 +328,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -355,7 +354,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', 'Dario D\'Oronzo'],
+        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -412,7 +411,6 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         CaptchaShowcaseComponent
-
       ),
       new UiComponent(
         'Dropdown',
@@ -439,19 +437,19 @@ export class ComponentUiService {
         'Source goes here ...',
         'Import text.',
         UserMenuShowcaseComponent
-        ),
-        new UiComponent(
-          'File Selector',
-          'file-selector',
-          'File Selector',
-          'Subtitel goes here ...',
-          true,
-          false,
-          [''],
-          'Description goes here ...',
-          'Source goes here ...',
-          'Import text.',
-          FileSelectorShowcaseComponent
+      ),
+      new UiComponent(
+        'File Selector',
+        'file-selector',
+        'File Selector',
+        'Subtitel goes here ...',
+        true,
+        false,
+        [''],
+        'Description goes here ...',
+        'Source goes here ...',
+        'Import text.',
+        FileSelectorShowcaseComponent
       ),
       new UiComponent(
         'Ghettobox',
@@ -470,22 +468,26 @@ export class ComponentUiService {
   }
 
   getUiComponentByRouterLink(name: any): UiComponent {
-    return this.uiComponents.find(uiComponent => uiComponent.routerLink === name);
+    return this.uiComponents.find(
+      uiComponent => uiComponent.routerLink === name
+    );
   }
 
   getUiComponentsBySearchValue(searchValue: any): Array<UiComponent> {
-
     let foundUiComponents: UiComponent[] = [];
     if (searchValue.length > 0) {
       foundUiComponents = this.uiComponents.filter(
-        uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+        uiComponent =>
+          uiComponent.routerLink
+            .toLowerCase()
+            .indexOf(searchValue.toLowerCase()) > -1
       );
     } else {
       foundUiComponents = this.uiComponents;
     }
 
     const newFoundUiComponents: UiComponent[] = [];
-    foundUiComponents.forEach(function (item) {
+    foundUiComponents.forEach(function(item) {
       newFoundUiComponents.push(
         new UiComponent(
           item.id,
@@ -503,11 +505,18 @@ export class ComponentUiService {
     });
 
     for (const uiComponent of newFoundUiComponents) {
-      if (uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
-        const index = uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase());
+      if (
+        uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+      ) {
+        const index = uiComponent.id
+          .toLowerCase()
+          .indexOf(searchValue.toLowerCase());
         const preFix = uiComponent.id.substring(0, index);
         const sufFix = uiComponent.id.substring(index + searchValue.length);
-        const searchText = uiComponent.id.substring(index, index + searchValue.length);
+        const searchText = uiComponent.id.substring(
+          index,
+          index + searchValue.length
+        );
         const newId = preFix + '<b>' + searchText + '</b>' + sufFix;
         uiComponent.id = newId;
       }

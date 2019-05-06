@@ -36,7 +36,7 @@
   height: $datePickerToggleWrapperArrowHeight;
   &::before,
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     background-color: $datePickerToggleArrowColor;
@@ -85,7 +85,7 @@
   cursor: default;
 
   &:not(.empty)::after {
-    content: "";
+    content: '';
     width: pxToEm(32);
     height: pxToEm(1);
     top: pxToEm(22);
@@ -99,5 +99,4 @@
       top: pxToEm(27);
     }
   }
-  
 }

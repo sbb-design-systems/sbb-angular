@@ -6,7 +6,6 @@ import { RadioButton } from './radio-button.model';
   providedIn: 'root'
 })
 export class RadioButtonRegistryService {
-
   private _accessors: { [name: string]: RadioButton[] } = {};
 
   get accessors(): {} {
@@ -22,9 +21,14 @@ export class RadioButtonRegistryService {
 
   remove(accessor: RadioButton) {
     if (this._accessors[accessor.name]) {
-      this._accessors[accessor.name] = this._accessors[accessor.name].filter(a => a !== accessor);
+      this._accessors[accessor.name] = this._accessors[accessor.name].filter(
+        a => a !== accessor
+      );
     }
-    if (this._accessors[accessor.name] && this._accessors[accessor.name].length === 0) {
+    if (
+      this._accessors[accessor.name] &&
+      this._accessors[accessor.name].length === 0
+    ) {
       delete this._accessors[accessor.name];
     }
   }
@@ -34,5 +38,4 @@ export class RadioButtonRegistryService {
       .filter(a => a !== accessor)
       .forEach(c => c.uncheck());
   }
-
 }

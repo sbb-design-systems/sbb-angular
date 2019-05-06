@@ -1,14 +1,16 @@
 <div class="sbb-datepicker-popup-arrow"></div>
-<sbb-calendar cdkTrapFocus
-              [id]="datepicker.id"
-              [ngClass]="datepicker.panelClass"
-              [startAt]="datepicker.startAt"
-              [startView]="datepicker.startView"
-              [minDate]="datepicker.minDate"
-              [maxDate]="datepicker.maxDate"
-              [dateFilter]="datepicker.dateFilter"
-              [headerComponent]="datepicker.calendarHeaderComponent"
-              [selected]="datepicker.selected"
-              (selectedChange)="datepicker.select($event)"
-              (userSelection)="datepicker.close()">
+<sbb-calendar
+  cdkTrapFocus
+  [id]="datepicker.id"
+  [ngClass]="datepicker.panelClass"
+  [startAt]="datepicker.startAt"
+  [startView]="datepicker.startView"
+  [minDate]="datepicker.minDate"
+  [maxDate]="datepicker.maxDate"
+  [dateFilter]="datepicker.dateFilter"
+  [headerComponent]="datepicker.calendarHeaderComponent"
+  [selected]="datepicker.selected"
+  (selectedChange)="datepicker.select($event)"
+  (userSelection)="datepicker.close()"
+>
 </sbb-calendar>

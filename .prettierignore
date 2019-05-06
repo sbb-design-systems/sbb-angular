@@ -1,0 +1,10 @@
+package.json
+package-lock.json
+dist
+angular.json
+.vscode/*
+projects/*/schematics/*/files
+src/docs/**/*
+tools
+coverage
+**/icon-*.module.ts

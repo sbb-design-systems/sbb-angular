@@ -1,4 +1,10 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import { DropdownTriggerDirective, LinkGeneratorResult } from 'sbb-angular';
 
 @Component({
@@ -7,8 +13,9 @@ import { DropdownTriggerDirective, LinkGeneratorResult } from 'sbb-angular';
   styleUrls: ['./dropdown-showcase.component.scss']
 })
 export class DropdownShowcaseComponent {
-
-  @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
+  @ViewChildren(DropdownTriggerDirective) triggers: QueryList<
+    DropdownTriggerDirective
+  >;
 
   links: Array<any> = [
     { page: 1, text: 'Test 1' },
@@ -25,11 +32,12 @@ export class DropdownShowcaseComponent {
 
   onClick() {
     console.log('Button clicked');
-
   }
 
   addNewLink() {
-    this.links.push({ page: this.links.length + 1, text: 'Test ' + (this.links.length + 1) });
+    this.links.push({
+      page: this.links.length + 1,
+      text: 'Test ' + (this.links.length + 1)
+    });
   }
-
 }

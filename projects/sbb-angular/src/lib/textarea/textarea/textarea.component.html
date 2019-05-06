@@ -1,14 +1,17 @@
-<textarea [id]="inputId"
-          [value]="textContent"
-          [disabled]="disabled"
-          [readonly]="readonly"
-          [placeholder]="placeholder"
-          [attr.maxlength]="maxlength"
-          [attr.minlength]="minlength"
-          (focus)="onFocus()"
-          (blur)="onBlur()"
-          (input)="onChange($event)"
-          cdkTextareaAutosize
-          #autosize="cdkTextareaAutosize"></textarea>
-<div i18n
-     *ngIf="maxlength && !disabled">Noch {{ counterObserver$ | async }} Zeichen</div>
+<textarea
+  [id]="inputId"
+  [value]="textContent"
+  [disabled]="disabled"
+  [readonly]="readonly"
+  [placeholder]="placeholder"
+  [attr.maxlength]="maxlength"
+  [attr.minlength]="minlength"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (input)="onChange($event)"
+  cdkTextareaAutosize
+  #autosize="cdkTextareaAutosize"
+></textarea>
+<div i18n *ngIf="maxlength && !disabled">
+  Noch {{ counterObserver$ | async }} Zeichen
+</div>

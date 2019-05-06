@@ -4,7 +4,6 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
   selector: '[sbbTableScrollArea]'
 })
 export class ScrollAreaDirective {
-
   /** Types of pin mode. */
   // tslint:disable-next-line:no-input-rename
   @Input('sbbTableScrollArea')
@@ -34,5 +33,4 @@ export class ScrollAreaDirective {
       }
     }
   }
-
 }

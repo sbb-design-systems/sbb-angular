@@ -9,17 +9,19 @@ import { Observable, of } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleShowcaseComponent implements OnInit {
-
   modelValue = 'Option_1';
   modelReactive = 'Option_2';
 
-  toggleOptions: Observable<any> = of([{
-    'label': 'Einfache Fahrt',
-    'value': 'Option_1'
-  }, {
-    'label': 'Hin- und Rückfahrt',
-    'value': 'Option_2'
-  }]);
+  toggleOptions: Observable<any> = of([
+    {
+      label: 'Einfache Fahrt',
+      value: 'Option_1'
+    },
+    {
+      label: 'Hin- und Rückfahrt',
+      value: 'Option_2'
+    }
+  ]);
 
   toggleValues: any;
 
@@ -29,13 +31,11 @@ export class ToggleShowcaseComponent implements OnInit {
 
   ngOnInit() {
     this.form.get('test').valueChanges.subscribe(val => {
-        this.modelReactive = val;
-      }
-    );
+      this.modelReactive = val;
+    });
   }
 
   toggleChange(toggleValues: any) {
     this.toggleValues = toggleValues;
   }
-
 }

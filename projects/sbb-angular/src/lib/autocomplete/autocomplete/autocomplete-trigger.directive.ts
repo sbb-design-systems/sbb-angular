@@ -1,5 +1,11 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
+import {
+  DOWN_ARROW,
+  ENTER,
+  ESCAPE,
+  TAB,
+  UP_ARROW
+} from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
   Overlay,
@@ -28,8 +34,24 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { defer, fromEvent, merge, Observable, of as observableOf, Subject, Subscription } from 'rxjs';
-import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
+import {
+  defer,
+  fromEvent,
+  merge,
+  Observable,
+  of as observableOf,
+  Subject,
+  Subscription
+} from 'rxjs';
+import {
+  delay,
+  filter,
+  first,
+  map,
+  switchMap,
+  take,
+  tap
+} from 'rxjs/operators';
 
 import { HighlightPipe } from '../../option/option/highlight.pipe';
 import {
@@ -47,17 +69,22 @@ import { AutocompleteComponent } from './autocomplete.component';
  * @docs-private
  */
 export function getSbbAutocompleteMissingPanelError(): Error {
-  return Error('Attempting to open an undefined instance of `sbb-autocomplete`. ' +
-    'Make sure that the id passed to the `sbbAutocomplete` is correct and that ' +
-    'you\'re attempting to open it after the ngAfterContentInit hook.');
+  return Error(
+    'Attempting to open an undefined instance of `sbb-autocomplete`. ' +
+      'Make sure that the id passed to the `sbbAutocomplete` is correct and that ' +
+      "you're attempting to open it after the ngAfterContentInit hook."
+  );
 }
 
 /** Injection token that determines the scroll handling while the autocomplete panel is open. */
-export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY =
-  new InjectionToken<() => ScrollStrategy>('sbb-autocomplete-scroll-strategy');
+export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY = new InjectionToken<
+  () => ScrollStrategy
+>('sbb-autocomplete-scroll-strategy');
 
 /** @docs-private */
-export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
+export function SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(
+  overlay: Overlay
+): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
@@ -70,19 +97,22 @@ export const AUTOCOMPLETE_PANEL_HEIGHT = 404;
 export const SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
   deps: [Overlay],
-  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY,
+  useFactory: SBB_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY
 };
 
 @Directive({
   selector: `input[sbbAutocomplete]`,
   exportAs: 'sbbAutocompleteTrigger',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AutocompleteTriggerDirective),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AutocompleteTriggerDirective),
+      multi: true
+    }
+  ]
 })
-export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDestroy {
+export class AutocompleteTriggerDirective
+  implements ControlValueAccessor, OnDestroy {
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
   private _document: Document;
@@ -141,17 +171,22 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   autocompleteAttribute = 'off';
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
-    if (this.autocomplete && this.autocomplete.options) {
-      return merge<SBBOptionSelectionChange>(...this.autocomplete.options.map(option => option.onSelectionChange));
-    }
+  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(
+    () => {
+      if (this.autocomplete && this.autocomplete.options) {
+        return merge<SBBOptionSelectionChange>(
+          ...this.autocomplete.options.map(option => option.onSelectionChange)
+        );
+      }
 
-    // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
-    // Return a stream that we'll replace with the real one once everything is in place.
-    return this._zone.onStable
-      .asObservable()
-      .pipe(take(1), switchMap(() => this.optionSelections));
-  });
+      // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
+      // Return a stream that we'll replace with the real one once everything is in place.
+      return this._zone.onStable.asObservable().pipe(
+        take(1),
+        switchMap(() => this.optionSelections)
+      );
+    }
+  );
 
   @HostListener('blur')
   onBlur() {
@@ -173,7 +208,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
-    return (this.autocompleteDisabled || !this.panelOpen) ? null : this.autocomplete.id;
+    return this.autocompleteDisabled || !this.panelOpen
+      ? null
+      : this.autocomplete.id;
   }
 
   /**
@@ -185,27 +222,32 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     // refocused when they come back. In this case we want to skip the first focus event, if the
     // pane was closed, in order to avoid reopening it unintentionally.
     this._canOpenOnNextFocus =
-      this._document.activeElement !== this._elementRef.nativeElement || this.panelOpen;
-  }
+      this._document.activeElement !== this._elementRef.nativeElement ||
+      this.panelOpen;
+  };
 
   /** `View -> model callback called when value changes` */
-  onChange: (value: any) => void = () => { };
+  onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when autocomplete has been touched` */
-  onTouched = () => { };
+  onTouched = () => {};
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will
    * act as a regular input and the user won't be able to open the panel.
    */
   @Input('sbbAutocompleteDisabled')
-  get autocompleteDisabled(): boolean { return this._autocompleteDisabled; }
+  get autocompleteDisabled(): boolean {
+    return this._autocompleteDisabled;
+  }
   set autocompleteDisabled(value: boolean) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 
   @HostBinding('attr.aria-autocomplete')
-  get ariaAutocomplete(): string { return this._autocompleteDisabled ? null : 'list'; }
+  get ariaAutocomplete(): string {
+    return this._autocompleteDisabled ? null : 'list';
+  }
 
   constructor(
     private _elementRef: ElementRef<HTMLInputElement>,
@@ -215,7 +257,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     private _changeDetectorRef: ChangeDetectorRef,
     @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy,
     private _viewportRuler: ViewportRuler,
-    @Optional() @Inject(DOCUMENT) document: any,
+    @Optional() @Inject(DOCUMENT) document: any
   ) {
     this._document = document;
     if (typeof window !== 'undefined') {
@@ -285,15 +327,19 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
-      this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
+      this.autocomplete.keyManager.tabOut.pipe(
+        filter(() => this._overlayAttached)
+      ),
       this._closeKeyEventStream,
       this._getOutsideClickStream(),
-      this._overlayRef ?
-        this._overlayRef.detachments().pipe(filter(() => this._overlayAttached)) :
-        observableOf()
+      this._overlayRef
+        ? this._overlayRef
+            .detachments()
+            .pipe(filter(() => this._overlayAttached))
+        : observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
-      map(event => event instanceof SBBOptionSelectionChange ? event : null)
+      map(event => (event instanceof SBBOptionSelectionChange ? event : null))
     );
   }
 
@@ -319,16 +365,20 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return merge(
       fromEvent<MouseEvent>(this._document, 'click'),
       fromEvent<TouchEvent>(this._document, 'touchend')
-    )
-      .pipe(filter(event => {
+    ).pipe(
+      filter(event => {
         const clickTarget = event.target as HTMLElement;
         const formField = null;
 
-        return this._overlayAttached &&
+        return (
+          this._overlayAttached &&
           clickTarget !== this._elementRef.nativeElement &&
           (!formField || !formField.contains(clickTarget)) &&
-          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget));
-      }));
+          (!!this._overlayRef &&
+            !this._overlayRef.overlayElement.contains(clickTarget))
+        );
+      })
+    );
   }
 
   // Implemented as part of ControlValueAccessor.
@@ -373,22 +423,29 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.autocomplete.keyManager.onKeydown(event);
       } else if (isArrowKey && this._canOpen()) {
         this.openPanel();
-
       }
-      if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
+      if (
+        isArrowKey ||
+        this.autocomplete.keyManager.activeItem !== prevActiveItem
+      ) {
         this.scrollToOption();
       }
     }
     this._zone.onStable
       .asObservable()
       .pipe()
-      .subscribe(() => this.highlightOptionsByInput(this._elementRef.nativeElement.value));
+      .subscribe(() =>
+        this.highlightOptionsByInput(this._elementRef.nativeElement.value)
+      );
   }
 
   scrollToOption(): void {
     const index = this.autocomplete.keyManager.activeItemIndex || 0;
-    const labelCount = countGroupLabelsBeforeOption(index,
-      this.autocomplete.options, this.autocomplete.optionGroups);
+    const labelCount = countGroupLabelsBeforeOption(
+      index,
+      this.autocomplete.options,
+      this.autocomplete.optionGroups
+    );
 
     const newScrollPosition = getOptionScrollPosition(
       index + labelCount,
@@ -404,7 +461,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.autocomplete.options
       .filter(option => !option.group)
       .forEach(option => {
-        option.getHostElement().innerHTML = this._highlightPipe.transform(option.getHostElement().textContent, value);
+        option.getHostElement().innerHTML = this._highlightPipe.transform(
+          option.getHostElement().textContent,
+          value
+        );
       });
   }
 
@@ -423,7 +483,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     // filter out all of the extra events, we save the value on focus and between
     // `input` events, and we check whether it changed.
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
-    if (this._previousValue !== value && document.activeElement === event.target) {
+    if (
+      this._previousValue !== value &&
+      document.activeElement === event.target
+    ) {
       this._previousValue = value;
       this.onChange(value);
 
@@ -432,7 +495,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       } else {
         this.closePanel();
       }
-
     }
   }
 
@@ -454,9 +516,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   /**
- * This method listens to a stream of panel closing actions and resets the
- * stream every time the option list changes.
- */
+   * This method listens to a stream of panel closing actions and resets the
+   * stream every time the option list changes.
+   */
   private _subscribeToClosingActions(): Subscription {
     const firstStable = this._zone.onStable.asObservable().pipe(first());
     const optionChanges = this.autocomplete.options.changes.pipe(
@@ -467,26 +529,28 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     );
 
     // When the zone is stable initially, and when the option list changes...
-    return merge(firstStable, optionChanges)
-      .pipe(
-        // create a new stream of panelClosingActions, replacing any previous streams
-        // that were created, and flatten it so our stream only emits closing events...
-        switchMap(() => {
-          this._resetActiveItem();
-          this.autocomplete.setVisibility();
+    return (
+      merge(firstStable, optionChanges)
+        .pipe(
+          // create a new stream of panelClosingActions, replacing any previous streams
+          // that were created, and flatten it so our stream only emits closing events...
+          switchMap(() => {
+            this._resetActiveItem();
+            this.autocomplete.setVisibility();
 
-          if (this.panelOpen) {
-            // tslint:disable-next-line:no-non-null-assertion
-            this._overlayRef!.updatePosition();
-          }
+            if (this.panelOpen) {
+              // tslint:disable-next-line:no-non-null-assertion
+              this._overlayRef!.updatePosition();
+            }
 
-          return this.panelClosingActions;
-        }),
-        // when the first closing event occurs...
-        first()
-      )
-      // set the value, close the panel, and complete.
-      .subscribe(event => this._setValueAndClose(event));
+            return this.panelClosingActions;
+          }),
+          // when the first closing event occurs...
+          first()
+        )
+        // set the value, close the panel, and complete.
+        .subscribe(event => this._setValueAndClose(event))
+    );
   }
 
   /** Destroys the autocomplete suggestion panel. */
@@ -499,9 +563,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   private _setTriggerValue(value: any): void {
-    const toDisplay = this.autocomplete && this.autocomplete.displayWith ?
-      this.autocomplete.displayWith(value) :
-      value;
+    const toDisplay =
+      this.autocomplete && this.autocomplete.displayWith
+        ? this.autocomplete.displayWith(value)
+        : value;
 
     // Simply falling back to an empty string if the display value is falsy does not work properly.
     // The display value can also be the number zero and shouldn't fall back to an empty string.
@@ -547,22 +612,34 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       throw getSbbAutocompleteMissingPanelError();
     }
     if (!this._overlayRef) {
-      this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef);
+      this._portal = new TemplatePortal(
+        this.autocomplete.template,
+        this._viewContainerRef
+      );
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
-          if (this.autocomplete.panel) {
-            if (position.connectionPair.originY === 'top') {
-              this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
-              this._getConnectedElement().nativeElement.classList.add('sbb-autocomplete-input-above');
-            } else {
-              this.autocomplete.panel.nativeElement.classList.remove('sbb-autocomplete-panel-above');
-              this._getConnectedElement().nativeElement.classList.remove('sbb-autocomplete-input-above');
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
+          position => {
+            if (this.autocomplete.panel) {
+              if (position.connectionPair.originY === 'top') {
+                this.autocomplete.panel.nativeElement.classList.add(
+                  'sbb-autocomplete-panel-above'
+                );
+                this._getConnectedElement().nativeElement.classList.add(
+                  'sbb-autocomplete-input-above'
+                );
+              } else {
+                this.autocomplete.panel.nativeElement.classList.remove(
+                  'sbb-autocomplete-panel-above'
+                );
+                this._getConnectedElement().nativeElement.classList.remove(
+                  'sbb-autocomplete-input-above'
+                );
+              }
             }
           }
-
-        });
+        );
       }
 
       // Use the `keydownEvents` in order to take advantage of
@@ -570,18 +647,23 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       this._overlayRef.keydownEvents().subscribe(event => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-        if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
+        if (
+          event.keyCode === ESCAPE ||
+          (event.keyCode === UP_ARROW && event.altKey)
+        ) {
           this._resetActiveItem();
           this._closeKeyEventStream.next();
         }
       });
 
       if (this._viewportRuler) {
-        this._viewportSubscription = this._viewportRuler.change().subscribe(() => {
-          if (this.panelOpen && this._overlayRef) {
-            this._overlayRef.updateSize({ width: this._getPanelWidth() });
-          }
-        });
+        this._viewportSubscription = this._viewportRuler
+          .change()
+          .subscribe(() => {
+            if (this.panelOpen && this._overlayRef) {
+              this._overlayRef.updateSize({ width: this._getPanelWidth() });
+            }
+          });
       }
     } else {
       // Update the panel width and direction, in case anything has changed.
@@ -614,7 +696,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   private _getOverlayPosition(): PositionStrategy {
-    this._positionStrategy = this._overlay.position()
+    this._positionStrategy = this._overlay
+      .position()
       .flexibleConnectedTo(this._getConnectedElement())
       .withFlexibleDimensions(false)
       .withPush(false)
@@ -646,7 +729,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
 
   /** Returns the width of the input element, so the panel width can match it. */
   private _getHostWidth(): number {
-    return this._getConnectedElement().nativeElement.getBoundingClientRect().width;
+    return this._getConnectedElement().nativeElement.getBoundingClientRect()
+      .width;
   }
 
   /**
@@ -654,14 +738,14 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
    * correct options, or to 0 if the consumer opted into it.
    */
   private _resetActiveItem(): void {
-    this.autocomplete.keyManager.setActiveItem(this.autocomplete.autoActiveFirstOption ? 0 : -1);
+    this.autocomplete.keyManager.setActiveItem(
+      this.autocomplete.autoActiveFirstOption ? 0 : -1
+    );
   }
 
   /** Determines whether the panel can be opened. */
   private _canOpen(): boolean {
     const element = this._elementRef.nativeElement;
-    return !element.readOnly &&
-      !element.disabled &&
-      !this.autocompleteDisabled;
+    return !element.readOnly && !element.disabled && !this.autocompleteDisabled;
   }
 }

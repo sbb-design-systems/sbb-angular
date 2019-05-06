@@ -2,7 +2,7 @@ import { NgClass } from '@angular/common';
 import { Directive, NgModule } from '@angular/core';
 
 @Directive({
-  selector: '[sbbHostClass]',
+  selector: '[sbbHostClass]'
 })
 // tslint:disable-next-line:directive-class-suffix
 export class HostClass extends NgClass {
@@ -13,6 +13,6 @@ export class HostClass extends NgClass {
 }
 
 @NgModule({
-  declarations: [HostClass],
+  declarations: [HostClass]
 })
-export class HostClassModule { }
+export class HostClassModule {}

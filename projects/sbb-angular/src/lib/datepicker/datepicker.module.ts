@@ -3,10 +3,17 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconCalendarModule, IconChevronSmallLeftModule, IconChevronSmallRightModule } from 'sbb-angular-icons';
+import {
+  IconCalendarModule,
+  IconChevronSmallLeftModule,
+  IconChevronSmallRightModule
+} from 'sbb-angular-icons';
 
 import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
-import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
+import {
+  CalendarComponent,
+  CalendarHeaderComponent
+} from './calendar/calendar.component';
 import { DateAdapter } from './date-adapter';
 import { SBB_DATE_FORMATS } from './date-formats';
 import { DateInputDirective } from './date-input/date-input.directive';
@@ -38,7 +45,7 @@ import { NativeDateAdapter } from './native-date-adapter';
     CalendarHeaderComponent,
     MonthViewComponent,
     CalendarBodyComponent,
-    DateInputDirective,
+    DateInputDirective
   ],
   exports: [
     DatepickerComponent,
@@ -48,16 +55,13 @@ import { NativeDateAdapter } from './native-date-adapter';
     CalendarHeaderComponent,
     MonthViewComponent,
     CalendarBodyComponent,
-    DateInputDirective,
+    DateInputDirective
   ],
   providers: [
     SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
     { provide: DateAdapter, useClass: NativeDateAdapter },
     { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
   ],
-  entryComponents: [
-    DatepickerContentComponent,
-    CalendarHeaderComponent
-  ]
+  entryComponents: [DatepickerContentComponent, CalendarHeaderComponent]
 })
-export class DatepickerModule { }
+export class DatepickerModule {}

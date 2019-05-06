@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Basic example</h4>
-      <sbb-captcha (resolved)="resolved($event)"
-                   [siteKey]="testSiteKey">
+      <sbb-captcha (resolved)="resolved($event)" [siteKey]="testSiteKey">
       </sbb-captcha>
     </div>
     <div class="col-lg-6">
@@ -26,7 +25,9 @@
           #captchaControl="ngModel"
         ></sbb-captcha>
         <div class="sbbsc-block">
-          <button sbbButton (click)="formModel.captcha = ''">Reset Captcha</button>
+          <button sbbButton (click)="formModel.captcha = ''">
+            Reset Captcha
+          </button>
         </div>
       </form>
     </div>
@@ -45,27 +46,29 @@
   <div role="presentation" class="sbbsc-separator"></div>
 
   <div class="row">
-      <div class="col-lg-6 sbbsc-v-sep">
-          <h4 class="sbbsc-block">Reactive Form example</h4>
-          <form [formGroup]="formCaptcha">
-              <sbb-captcha formControlName="captcha"
-                           name="captcha"
-                           [siteKey]="testSiteKey">
-              </sbb-captcha>
-          </form>
-          <div class="sbbsc-block">
-              <button sbbButton (click)="resetForm()">Reset Captcha</button>
-          </div>
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Reactive Form example</h4>
+      <form [formGroup]="formCaptcha">
+        <sbb-captcha
+          formControlName="captcha"
+          name="captcha"
+          [siteKey]="testSiteKey"
+        >
+        </sbb-captcha>
+      </form>
+      <div class="sbbsc-block">
+        <button sbbButton (click)="resetForm()">Reset Captcha</button>
       </div>
-      <div class="col-lg-6">
-          <h4 class="sbbsc-block">Form is valid</h4>
-          <pre>{{formCaptcha.valid | json}}</pre>
-    
-          <h4 class="sbbsc-block">Captcha is valid</h4>
-          <pre>{{ captcha.valid }}</pre>
-    
-          <h4 class="sbbsc-block">Form Model</h4>
-          <pre>{{formModelReactive | json}}</pre>
-      </div>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Form is valid</h4>
+      <pre>{{ formCaptcha.valid | json }}</pre>
+
+      <h4 class="sbbsc-block">Captcha is valid</h4>
+      <pre>{{ captcha.valid }}</pre>
+
+      <h4 class="sbbsc-block">Form Model</h4>
+      <pre>{{ formModelReactive | json }}</pre>
+    </div>
   </div>
 </article>

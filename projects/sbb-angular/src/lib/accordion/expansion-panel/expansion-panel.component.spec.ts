@@ -1,6 +1,13 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -9,15 +16,18 @@ import { AccordionModule, ExpansionPanelComponent } from '../accordion';
 
 @Component({
   template: `
-  <sbb-expansion-panel [expanded]="expanded"
-                      [hideToggle]="hideToggle"
-                      [disabled]="disabled"
-                      (opened)="openCallback()"
-                      (closed)="closeCallback()">
-    <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
-    <p>Some content</p>
-    <button>I am a button</button>
-  </sbb-expansion-panel>`
+    <sbb-expansion-panel
+      [expanded]="expanded"
+      [hideToggle]="hideToggle"
+      [disabled]="disabled"
+      (opened)="openCallback()"
+      (closed)="closeCallback()"
+    >
+      <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
+      <p>Some content</p>
+      <button>I am a button</button>
+    </sbb-expansion-panel>
+  `
 })
 class PanelWithContentComponent {
   expanded = false;
@@ -30,11 +40,12 @@ class PanelWithContentComponent {
 
 @Component({
   template: `
-  <div *ngIf="expansionShown">
-    <sbb-expansion-panel>
-      <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
-    </sbb-expansion-panel>
-  </div>`
+    <div *ngIf="expansionShown">
+      <sbb-expansion-panel>
+        <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
+      </sbb-expansion-panel>
+    </div>
+  `
 })
 class PanelWithContentInNgIfComponent {
   expansionShown = true;
@@ -43,15 +54,19 @@ class PanelWithContentInNgIfComponent {
 
 @Component({
   styles: [
-    `sbb-expansion-panel {
-      margin: 13px 37px;
-    }`
+    `
+      sbb-expansion-panel {
+        margin: 13px 37px;
+      }
+    `
   ],
   template: `
-  <sbb-expansion-panel [expanded]="expanded">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores officia, aliquam dicta
-    corrupti maxime voluptate accusamus impedit atque incidunt pariatur.
-  </sbb-expansion-panel>`
+    <sbb-expansion-panel [expanded]="expanded">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores officia,
+      aliquam dicta corrupti maxime voluptate accusamus impedit atque incidunt
+      pariatur.
+    </sbb-expansion-panel>
+  `
 })
 class PanelWithCustomMarginComponent {
   expanded = false;
@@ -59,14 +74,15 @@ class PanelWithCustomMarginComponent {
 
 @Component({
   template: `
-  <sbb-expansion-panel [expanded]="expanded">
-    <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
+    <sbb-expansion-panel [expanded]="expanded">
+      <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
 
-    <ng-template sbbExpansionPanelContent>
-      <p>Some content</p>
-      <button>I am a button</button>
-    </ng-template>
-  </sbb-expansion-panel>`
+      <ng-template sbbExpansionPanelContent>
+        <p>Some content</p>
+        <button>I am a button</button>
+      </ng-template>
+    </sbb-expansion-panel>
+  `
 })
 class LazyPanelWithContentComponent {
   expanded = false;
@@ -74,21 +90,23 @@ class LazyPanelWithContentComponent {
 
 @Component({
   template: `
-  <sbb-expansion-panel [expanded]="true">
-    <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
+    <sbb-expansion-panel [expanded]="true">
+      <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
 
-    <ng-template sbbExpansionPanelContent>
-      <p>Some content</p>
-    </ng-template>
-  </sbb-expansion-panel>`
+      <ng-template sbbExpansionPanelContent>
+        <p>Some content</p>
+      </ng-template>
+    </sbb-expansion-panel>
+  `
 })
-class LazyPanelOpenOnLoadComponent { }
+class LazyPanelOpenOnLoadComponent {}
 
 @Component({
   template: `
-  <sbb-expansion-panel [(expanded)]="expanded">
-    <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
-  </sbb-expansion-panel>`
+    <sbb-expansion-panel [(expanded)]="expanded">
+      <sbb-expansion-panel-header>Panel Title</sbb-expansion-panel-header>
+    </sbb-expansion-panel>
+  `
 })
 class PanelWithTwoWayBindingComponent {
   expanded = false;
@@ -97,29 +115,26 @@ class PanelWithTwoWayBindingComponent {
 describe('ExpansionPanelComponent', () => {
   let originalTimeout;
 
-  beforeEach(function () {
+  beforeEach(function() {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000;
   });
 
-  afterEach(function () {
+  afterEach(function() {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        AccordionModule
-      ],
+      imports: [NoopAnimationsModule, AccordionModule],
       declarations: [
         PanelWithContentComponent,
         PanelWithContentInNgIfComponent,
         PanelWithCustomMarginComponent,
         LazyPanelWithContentComponent,
         LazyPanelOpenOnLoadComponent,
-        PanelWithTwoWayBindingComponent,
-      ],
+        PanelWithTwoWayBindingComponent
+      ]
     });
     TestBed.compileComponents();
   }));
@@ -128,8 +143,12 @@ describe('ExpansionPanelComponent', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
-    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
+    const contentEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-content'
+    );
+    const headerEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-header'
+    );
 
     expect(headerEl.classList).not.toContain('sbb-expanded');
     expect(contentEl.classList).not.toContain('sbb-expanded');
@@ -144,25 +163,36 @@ describe('ExpansionPanelComponent', () => {
 
   it('should be able to render panel content lazily', fakeAsync(() => {
     const fixture = TestBed.createComponent(LazyPanelWithContentComponent);
-    const content = fixture.debugElement.query(By.css('.sbb-expansion-panel-content')).nativeElement;
+    const content = fixture.debugElement.query(
+      By.css('.sbb-expansion-panel-content')
+    ).nativeElement;
     fixture.detectChanges();
 
-    expect(content.textContent.trim()).toBe('', 'Expected content element to be empty.');
+    expect(content.textContent.trim()).toBe(
+      '',
+      'Expected content element to be empty.'
+    );
 
     fixture.componentInstance.expanded = true;
     fixture.detectChanges();
 
-    expect(content.textContent.trim())
-      .toContain('Some content', 'Expected content to be rendered.');
+    expect(content.textContent.trim()).toContain(
+      'Some content',
+      'Expected content to be rendered.'
+    );
   }));
 
   it('should render the content for a lazy-loaded panel that is opened on init', fakeAsync(() => {
     const fixture = TestBed.createComponent(LazyPanelOpenOnLoadComponent);
-    const content = fixture.debugElement.query(By.css('.sbb-expansion-panel-content')).nativeElement;
+    const content = fixture.debugElement.query(
+      By.css('.sbb-expansion-panel-content')
+    ).nativeElement;
     fixture.detectChanges();
 
-    expect(content.textContent.trim())
-      .toContain('Some content', 'Expected content to be rendered.');
+    expect(content.textContent.trim()).toContain(
+      'Some content',
+      'Expected content to be rendered.'
+    );
   }));
 
   it('emit correct events for change in panel expanded state', () => {
@@ -180,12 +210,16 @@ describe('ExpansionPanelComponent', () => {
     const fixtureOne = TestBed.createComponent(PanelWithContentComponent);
     fixtureOne.detectChanges();
 
-    const headerElOne = fixtureOne.nativeElement.querySelector('.sbb-expansion-panel-header');
+    const headerElOne = fixtureOne.nativeElement.querySelector(
+      '.sbb-expansion-panel-header'
+    );
 
     const fixtureTwo = TestBed.createComponent(PanelWithContentComponent);
     fixtureTwo.detectChanges();
 
-    const headerElTwo = fixtureTwo.nativeElement.querySelector('.sbb-expansion-panel-header');
+    const headerElTwo = fixtureTwo.nativeElement.querySelector(
+      '.sbb-expansion-panel-header'
+    );
 
     const panelIdOne = headerElOne.getAttribute('aria-controls');
     const panelIdTwo = headerElTwo.getAttribute('aria-controls');
@@ -196,8 +230,12 @@ describe('ExpansionPanelComponent', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
-    const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
+    const headerEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-header'
+    );
+    const contentEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-content'
+    );
 
     const headerId = headerEl.getAttribute('id');
     const contentLabel = contentEl.getAttribute('aria-labelledby');
@@ -209,7 +247,9 @@ describe('ExpansionPanelComponent', () => {
 
   it('should set the proper role on the content element', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
-    const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
+    const contentEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-content'
+    );
 
     expect(contentEl.getAttribute('role')).toBe('region');
   });
@@ -218,7 +258,9 @@ describe('ExpansionPanelComponent', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
+    const headerEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-header'
+    );
 
     spyOn(fixture.componentInstance.panel, 'toggle');
 
@@ -233,7 +275,9 @@ describe('ExpansionPanelComponent', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    const headerEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-header');
+    const headerEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-header'
+    );
 
     spyOn(fixture.componentInstance.panel, 'toggle');
 
@@ -253,7 +297,10 @@ describe('ExpansionPanelComponent', () => {
     const button = fixture.debugElement.query(By.css('button')).nativeElement;
 
     button.focus();
-    expect(document.activeElement).toBe(button, 'Expected button to start off focusable.');
+    expect(document.activeElement).toBe(
+      button,
+      'Expected button to start off focusable.'
+    );
 
     button.blur();
     fixture.componentInstance.expanded = false;
@@ -261,7 +308,10 @@ describe('ExpansionPanelComponent', () => {
     tick(250);
 
     button.focus();
-    expect(document.activeElement).not.toBe(button, 'Expected button to no longer be focusable.');
+    expect(document.activeElement).not.toBe(
+      button,
+      'Expected button to no longer be focusable.'
+    );
   }));
 
   it('should restore focus to header if focused element is inside panel on close', fakeAsync(() => {
@@ -271,39 +321,53 @@ describe('ExpansionPanelComponent', () => {
     tick(250);
 
     const button = fixture.debugElement.query(By.css('button')).nativeElement;
-    const header = fixture.debugElement.query(By.css('sbb-expansion-panel-header')).nativeElement;
+    const header = fixture.debugElement.query(
+      By.css('sbb-expansion-panel-header')
+    ).nativeElement;
 
     button.focus();
-    expect(document.activeElement).toBe(button, 'Expected button to start off focusable.');
+    expect(document.activeElement).toBe(
+      button,
+      'Expected button to start off focusable.'
+    );
 
     fixture.componentInstance.expanded = false;
     fixture.detectChanges();
     tick(250);
 
-    expect(document.activeElement).toBe(header, 'Expected header to be focused.');
+    expect(document.activeElement).toBe(
+      header,
+      'Expected header to be focused.'
+    );
   }));
 
   it('should be able to hide the toggle', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    const header = fixture.debugElement.query(By.css('.sbb-expansion-panel-header')).nativeElement;
+    const header = fixture.debugElement.query(
+      By.css('.sbb-expansion-panel-header')
+    ).nativeElement;
 
-    expect(header.querySelector('.sbb-expansion-indicator'))
-      .toBeTruthy('Expected indicator to be shown.');
+    expect(header.querySelector('.sbb-expansion-indicator')).toBeTruthy(
+      'Expected indicator to be shown.'
+    );
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(header.querySelector('.sbb-expansion-indicator'))
-      .toBeFalsy('Expected indicator to be hidden.');
+    expect(header.querySelector('.sbb-expansion-indicator')).toBeFalsy(
+      'Expected indicator to be hidden.'
+    );
   });
 
   it('should make sure accordion item runs ngOnDestroy when expansion panel is destroyed', () => {
     const fixture = TestBed.createComponent(PanelWithContentInNgIfComponent);
     fixture.detectChanges();
     let destroyedOk = false;
-    fixture.componentInstance.panel.destroyed.subscribe(() => destroyedOk = true);
+    fixture.componentInstance.panel.destroyed.subscribe(
+      () => (destroyedOk = true)
+    );
     fixture.componentInstance.expansionShown = false;
     fixture.detectChanges();
     expect(destroyedOk).toBe(true);
@@ -311,7 +375,9 @@ describe('ExpansionPanelComponent', () => {
 
   it('should support two-way binding of the `expanded` property', () => {
     const fixture = TestBed.createComponent(PanelWithTwoWayBindingComponent);
-    const header = fixture.debugElement.query(By.css('sbb-expansion-panel-header')).nativeElement;
+    const header = fixture.debugElement.query(
+      By.css('sbb-expansion-panel-header')
+    ).nativeElement;
 
     fixture.detectChanges();
     expect(fixture.componentInstance.expanded).toBe(false);
@@ -327,20 +393,28 @@ describe('ExpansionPanelComponent', () => {
 
   it('should not set the sbb-expanded class until the open animation is done', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
-    const contentEl = fixture.nativeElement.querySelector('.sbb-expansion-panel-content');
+    const contentEl = fixture.nativeElement.querySelector(
+      '.sbb-expansion-panel-content'
+    );
 
     fixture.detectChanges();
-    expect(contentEl.classList).not.toContain('sbb-expanded',
-      'Expected class not to be there on init');
+    expect(contentEl.classList).not.toContain(
+      'sbb-expanded',
+      'Expected class not to be there on init'
+    );
 
     fixture.componentInstance.expanded = true;
     fixture.detectChanges();
-    expect(contentEl.classList).not.toContain('sbb-expanded',
-      'Expected class not to be added immediately after becoming expanded');
+    expect(contentEl.classList).not.toContain(
+      'sbb-expanded',
+      'Expected class not to be added immediately after becoming expanded'
+    );
 
     flush();
-    expect(contentEl.classList).toContain('sbb-expanded',
-      'Expected class to be added after the animation has finished');
+    expect(contentEl.classList).toContain(
+      'sbb-expanded',
+      'Expected class to be added after the animation has finished'
+    );
   }));
 
   describe('disabled state', () => {
@@ -351,8 +425,10 @@ describe('ExpansionPanelComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(PanelWithContentComponent);
       fixture.detectChanges();
-      panel = fixture.debugElement.query(By.css('sbb-expansion-panel')).nativeElement;
-      header = fixture.debugElement.query(By.css('sbb-expansion-panel-header')).nativeElement;
+      panel = fixture.debugElement.query(By.css('sbb-expansion-panel'))
+        .nativeElement;
+      header = fixture.debugElement.query(By.css('sbb-expansion-panel-header'))
+        .nativeElement;
     });
 
     it('should toggle the aria-disabled attribute on the header', () => {
@@ -400,6 +476,5 @@ describe('ExpansionPanelComponent', () => {
       expect(fixture.componentInstance.panel.expanded).toBe(true);
       expect(header.classList).toContain('sbb-expanded');
     });
-
   });
 });

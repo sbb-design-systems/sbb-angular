@@ -11,7 +11,7 @@
   display: flex;
   align-items: flex-start;
 
-  & > input[type="checkbox"] {
+  & > input[type='checkbox'] {
     @include visuallyhidden;
 
     & + .sbb-checkbox-container {

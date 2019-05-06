@@ -7,5 +7,4 @@ import { NavlistComponent } from '../navlist-component/navlist.component';
   templateUrl: './components-list.component.html',
   styleUrls: ['./components-list.component.scss']
 })
-export class ComponentsListComponent extends NavlistComponent {
-}
+export class ComponentsListComponent extends NavlistComponent {}

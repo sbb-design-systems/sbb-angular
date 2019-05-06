@@ -5,7 +5,10 @@
   <div class="sbb-notification-content-title">
     {{ message }}
   </div>
-  <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
+  <span
+    *ngFor="let jumpMark of jumpMarks; let isLast = last"
+    class="sbb-notification-jump-mark"
+  >
     <a (click)="scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
     <ng-container *ngIf="!isLast"> / </ng-container>
   </span>

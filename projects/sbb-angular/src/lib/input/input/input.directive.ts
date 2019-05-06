@@ -2,12 +2,26 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
-  Directive, DoCheck, ElementRef, HostBinding, HostListener, Inject, Input, OnChanges, OnDestroy, OnInit, Optional, Self
+  Directive,
+  DoCheck,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Self
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import { CanUpdateErrorStateCtor, mixinErrorState } from '../../_common/errors/error-state';
+import {
+  CanUpdateErrorStateCtor,
+  mixinErrorState
+} from '../../_common/errors/error-state';
 import { FormFieldControl } from '../../field/form-field-control';
 import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 
@@ -32,19 +46,19 @@ export class InputBase {
     public _parentForm: NgForm,
     public _parentFormGroup: FormGroupDirective,
     /** @docs-private */
-    public ngControl: NgControl) { }
+    public ngControl: NgControl
+  ) {}
   // tslint:enable: naming-convention
 }
-export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase =
-  mixinErrorState(InputBase);
+export const SbbNativeInputBase: CanUpdateErrorStateCtor &
+  typeof InputBase = mixinErrorState(InputBase);
 
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
   exportAs: 'sbbInput',
-  providers: [{ provide: FormFieldControl, useExisting: InputDirective }],
+  providers: [{ provide: FormFieldControl, useExisting: InputDirective }]
 })
-export class InputDirective
-  extends SbbNativeInputBase
+export class InputDirective extends SbbNativeInputBase
   implements FormFieldControl<any>, OnInit, OnChanges, DoCheck, OnDestroy {
   private _previousNativeValue: any;
   private _inputValueAccessor: { value: any };
@@ -103,7 +117,9 @@ export class InputDirective
   @Input()
   id = `sbb-native-input-${nextId++}`;
 
-  get inputId() { return this.id; }
+  get inputId() {
+    return this.id;
+  }
 
   /**
    * Implemented as part of FormFieldControl.
@@ -119,15 +135,23 @@ export class InputDirective
    */
   @HostBinding()
   @Input()
-  get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+  get required(): boolean {
+    return this._required;
+  }
+  set required(value: boolean) {
+    this._required = coerceBooleanProperty(value);
+  }
   private _required = false;
 
-  @HostBinding('attr.aria-required') get requiredAsString() { return this.required.toString(); }
+  @HostBinding('attr.aria-required') get requiredAsString() {
+    return this.required.toString();
+  }
 
   /** Input type of the element. */
   @Input()
-  get type(): string { return this._type; }
+  get type(): string {
+    return this._type;
+  }
   set type(value: string) {
     this._type = value || 'text';
     this._validateType();
@@ -149,7 +173,9 @@ export class InputDirective
    * @docs-private
    */
   @Input()
-  get value(): string { return this._inputValueAccessor.value; }
+  get value(): string {
+    return this._inputValueAccessor.value;
+  }
   set value(value: string) {
     if (value !== this.value) {
       this._inputValueAccessor.value = value;
@@ -159,22 +185,30 @@ export class InputDirective
 
   /** Whether the element is readonly. */
   @Input()
-  get readonly(): boolean { return this._readonly; }
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  get readonly(): boolean {
+    return this._readonly;
+  }
+  set readonly(value: boolean) {
+    this._readonly = coerceBooleanProperty(value);
+  }
   private _readonly = false;
 
   @HostBinding('attr.readonly')
-  get readonlyAttribute() { return this.readonly && !this.isNativeSelect || undefined; }
+  get readonlyAttribute() {
+    return (this.readonly && !this.isNativeSelect) || undefined;
+  }
 
   /**
    * Implemented as part of FormFieldControl.
    * @docs-private
    */
   get empty(): boolean {
-    return !this._isNeverEmpty()
-      && !this._elementRef.nativeElement.value
-      && !this._isBadInput()
-      && !this.autofilled;
+    return (
+      !this._isNeverEmpty() &&
+      !this._elementRef.nativeElement.value &&
+      !this._isBadInput() &&
+      !this.autofilled
+    );
   }
 
   private _neverEmptyInputTypes = [
@@ -189,13 +223,18 @@ export class InputDirective
   constructor(
     /** @docs-private */
     @Optional() @Self() public ngControl: NgControl,
-    private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    private _elementRef: ElementRef<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
     private _platform: Platform,
     private _autofillMonitor: AutofillMonitor,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
     defaultErrorStateMatcher: ErrorStateMatcher,
-    @Optional() @Self() @Inject(SBB_INPUT_VALUE_ACCESSOR) inputValueAccessor: any,
+    @Optional()
+    @Self()
+    @Inject(SBB_INPUT_VALUE_ACCESSOR)
+    inputValueAccessor: any
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
     const element = this._elementRef.nativeElement;
@@ -209,10 +248,12 @@ export class InputDirective
 
   ngOnInit() {
     if (this._platform.isBrowser) {
-      this._autofillMonitor.monitor(this._elementRef.nativeElement).subscribe(event => {
-        this.autofilled = event.isAutofilled;
-        this.stateChanges.next();
-      });
+      this._autofillMonitor
+        .monitor(this._elementRef.nativeElement)
+        .subscribe(event => {
+          this.autofilled = event.isAutofilled;
+          this.stateChanges.next();
+        });
     }
   }
 
@@ -275,7 +316,9 @@ export class InputDirective
   /** Make sure the input is a supported type. */
   private _validateType() {
     if (SBB_INPUT_INVALID_TYPES.indexOf(this._type) > -1) {
-      throw new Error(`Input type "${this._type}" is not supported by sbbInput!`);
+      throw new Error(
+        `Input type "${this._type}" is not supported by sbbInput!`
+      );
     }
   }
 
@@ -287,7 +330,8 @@ export class InputDirective
   /** Checks whether the input is invalid based on the native validation. */
   private _isBadInput() {
     // The `validity` property won't be present on platform-server.
-    const validity = (this._elementRef.nativeElement as HTMLInputElement).validity;
+    const validity = (this._elementRef.nativeElement as HTMLInputElement)
+      .validity;
     return validity && validity.badInput;
   }
 

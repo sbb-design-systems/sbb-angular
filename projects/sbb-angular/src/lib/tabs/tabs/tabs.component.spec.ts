@@ -11,25 +11,29 @@ import { TabComponent } from '../tab/tab.component';
 import { TabsComponent } from './tabs.component';
 
 @Component({
-  template: `<sbb-tabs>
-              <sbb-tab label="TAB 1">
-                <h4>Content 1</h4>
-                <p>Here comes the content for tab 1 ...</p>
-              </sbb-tab>
-              <sbb-tab label="TAB 2">
-                <h4>Content 2</h4>
-                <p>Here comes the content for tab 2 ...</p>
-              </sbb-tab>
-              <sbb-tab label="TAB 2"
-                      *ngIf="isVisible"
-                      (disableChange)="disableChange($event)"
-                      (removeChange)="removeChange($event)">
-                <h4>Content 3</h4>
-                <p>Here comes the content for tab 3 ...</p>
-              </sbb-tab>
-            </sbb-tabs>`
+  template: `
+    <sbb-tabs>
+      <sbb-tab label="TAB 1">
+        <h4>Content 1</h4>
+        <p>Here comes the content for tab 1 ...</p>
+      </sbb-tab>
+      <sbb-tab label="TAB 2">
+        <h4>Content 2</h4>
+        <p>Here comes the content for tab 2 ...</p>
+      </sbb-tab>
+      <sbb-tab
+        label="TAB 2"
+        *ngIf="isVisible"
+        (disableChange)="disableChange($event)"
+        (removeChange)="removeChange($event)"
+      >
+        <h4>Content 3</h4>
+        <p>Here comes the content for tab 3 ...</p>
+      </sbb-tab>
+    </sbb-tabs>
+  `
 })
-class TabsTestComponent  {
+class TabsTestComponent {
   isVisible = true;
   disableChange(evt) {}
   removeChange(evt) {}
@@ -44,8 +48,7 @@ describe('TabsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent, TabsComponent, TabComponent],
       imports: [PerfectScrollbarModule, BadgeModule]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -61,15 +64,21 @@ describe('TabsComponent', () => {
 
   it('should select first tab as default', () => {
     expect(tabs[0].componentInstance.active).toBeTruthy();
-    expect(tabs[1].componentInstance.active && tabs[2].componentInstance.active).toBeFalsy();
+    expect(
+      tabs[1].componentInstance.active && tabs[2].componentInstance.active
+    ).toBeFalsy();
   });
 
   it('should if I click the second tab make it active and deactivate the first', () => {
-    const tab2Label = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'))[1].nativeElement;
+    const tab2Label = fixture.debugElement.queryAll(
+      By.css('.sbb-tabs-tablist-item-button')
+    )[1].nativeElement;
     dispatchEvent(tab2Label, createMouseEvent('click'));
     fixture.detectChanges();
 
-    expect(tabs[0].componentInstance.active && tabs[2].componentInstance.active).toBeFalsy();
+    expect(
+      tabs[0].componentInstance.active && tabs[2].componentInstance.active
+    ).toBeFalsy();
     expect(tabs[1].componentInstance.active).toBeTruthy();
   });
 
@@ -96,7 +105,9 @@ describe('TabsComponent', () => {
     component.isVisible = false;
     fixture.detectChanges();
 
-    const tabsLabels = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'));
+    const tabsLabels = fixture.debugElement.queryAll(
+      By.css('.sbb-tabs-tablist-item-button')
+    );
     expect(tabsLabels.length).toBe(2);
   });
 
@@ -108,5 +119,4 @@ describe('TabsComponent', () => {
 
     expect(component.removeChange).toHaveBeenCalled();
   });
-
 });

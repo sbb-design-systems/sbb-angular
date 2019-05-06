@@ -2,7 +2,12 @@ import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { GhettoboxDeletedEvent, GhettoboxRef, GhettoboxService, LinkGeneratorResult } from 'sbb-angular';
+import {
+  GhettoboxDeletedEvent,
+  GhettoboxRef,
+  GhettoboxService,
+  LinkGeneratorResult
+} from 'sbb-angular';
 
 @Component({
   selector: 'sbb-ghettobox-showcase',
@@ -10,7 +15,6 @@ import { GhettoboxDeletedEvent, GhettoboxRef, GhettoboxService, LinkGeneratorRes
   styleUrls: ['./ghettobox-showcase.component.scss']
 })
 export class GhettoboxShowcaseComponent implements OnDestroy {
-
   afterDeleteResponse1: any;
   afterDeleteResponse2: any;
   afterDeleteResponseContainer: any;
@@ -22,15 +26,16 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
 
   constructor(
     private _ghettoboxService: GhettoboxService,
-    private _route: ActivatedRoute,
+    private _route: ActivatedRoute
   ) {
-    this._ghettoboxInitLoadSubscription =
-      this._ghettoboxService.containerReady.subscribe(
-        () => {
-          this._ghettoboxService.add(
-            { message: 'This ghettobox is loaded at page load', icon: this.testIcon1 });
-        }
-      );
+    this._ghettoboxInitLoadSubscription = this._ghettoboxService.containerReady.subscribe(
+      () => {
+        this._ghettoboxService.add({
+          message: 'This ghettobox is loaded at page load',
+          icon: this.testIcon1
+        });
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -42,19 +47,20 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
       routerLink: ['.'],
       queryParams: { test: randomParam },
       queryParamsHandling: 'merge',
-      relativeTo: this._route,
+      relativeTo: this._route
     };
-  }
+  };
 
   addGhettobox(message: string) {
-    const ghetto = this._ghettoboxService.add(
-      { message: message, link: this.linkGenerator(getRandomInt(10)), icon: this.testIcon2 });
+    const ghetto = this._ghettoboxService.add({
+      message: message,
+      link: this.linkGenerator(getRandomInt(10)),
+      icon: this.testIcon2
+    });
 
-    ghetto.afterDelete.pipe(first()).subscribe(
-      (evt: GhettoboxDeletedEvent) => {
-        this.afterDeleteResponseContainer = evt;
-      }
-    );
+    ghetto.afterDelete.pipe(first()).subscribe((evt: GhettoboxDeletedEvent) => {
+      this.afterDeleteResponseContainer = evt;
+    });
   }
 
   deleteById(id: string) {
@@ -66,7 +72,8 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
   }
 
   deleteByRef() {
-    const ghettoboxRef: GhettoboxRef = this._ghettoboxService.attachedGhettoboxes[0];
+    const ghettoboxRef: GhettoboxRef = this._ghettoboxService
+      .attachedGhettoboxes[0];
     ghettoboxRef.delete();
   }
 
@@ -83,15 +90,12 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
   }
 
   printAttachedGhettoboxesIDS() {
-    return this._ghettoboxService.attachedGhettoboxes.map(
-      g => {
-        return {
-          id: g.id
-        };
-      }
-    );
+    return this._ghettoboxService.attachedGhettoboxes.map(g => {
+      return {
+        id: g.id
+      };
+    });
   }
-
 }
 
 function getRandomInt(max: number) {

@@ -21,7 +21,6 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserMenuComponent {
-
   /**
    * Css class of a sbb-usermenu.
    */
@@ -65,14 +64,13 @@ export class UserMenuComponent {
     const name = this.displayName ? this.displayName : this.userName;
     const names: string[] = name.split(' ');
     if (names.length === 1) {
-
       return names[0].substring(0, 3).toLocaleUpperCase();
     }
 
     return names
       .reduce((current, next) => {
-        return (current[0] + next[0]);
-      }).toLocaleUpperCase();
+        return current[0] + next[0];
+      })
+      .toLocaleUpperCase();
   }
-
 }

@@ -13,17 +13,30 @@ export abstract class IconBase {
    * 'large' will apply 48px as width and height.
    * Defaults to 'grow'.
    */
-  @Input() size: 'grow' | 'fixed' | 'small' | 'small-grow' | 'medium' | 'medium-grow' | 'large' | 'large-grow' = 'grow';
+  @Input() size:
+    | 'grow'
+    | 'fixed'
+    | 'small'
+    | 'small-grow'
+    | 'medium'
+    | 'medium-grow'
+    | 'large'
+    | 'large-grow' = 'grow';
   /**
    * Width of the icon.
    */
   @Input()
   @HostBinding('style.width')
-  get width() { return this._resolveDimension(this._inputWidth, this._dimension.width); }
+  get width() {
+    return this._resolveDimension(this._inputWidth, this._dimension.width);
+  }
   set width(value: string) {
     this._inputWidth = this._coerceDimensionValue(value);
     if (!this._inputHeight && !value.endsWith('%')) {
-      this._inputHeight = this._resolveInput(value, v => v / this._dimension.ratio);
+      this._inputHeight = this._resolveInput(
+        value,
+        v => v / this._dimension.ratio
+      );
     }
   }
   /**
@@ -31,11 +44,16 @@ export abstract class IconBase {
    */
   @Input()
   @HostBinding('style.height')
-  get height() { return this._resolveDimension(this._inputHeight, this._dimension.height); }
+  get height() {
+    return this._resolveDimension(this._inputHeight, this._dimension.height);
+  }
   set height(value: string) {
     this._inputHeight = this._coerceDimensionValue(value);
     if (!this._inputWidth && !value.endsWith('%')) {
-      this._inputWidth = this._resolveInput(value, v => v * this._dimension.ratio);
+      this._inputWidth = this._resolveInput(
+        value,
+        v => v * this._dimension.ratio
+      );
     }
   }
   /**
@@ -43,14 +61,22 @@ export abstract class IconBase {
    */
   @Input() svgClass = '';
   @HostBinding('style.display') get display() {
-    return this._isFixed() || this._inputHeight || this._inputWidth ? 'inline-block' : undefined;
+    return this._isFixed() || this._inputHeight || this._inputWidth
+      ? 'inline-block'
+      : undefined;
   }
   /** @docs-private */
   @HostBinding('class.sbb-icon-component') sbbIconComponent = true;
   private _inputWidth: string;
   private _inputHeight: string;
 
-  constructor(private readonly _dimension: { width: string, height: string, ratio: number }) { }
+  constructor(
+    private readonly _dimension: {
+      width: string;
+      height: string;
+      ratio: number;
+    }
+  ) {}
 
   private _isFixed() {
     return !this.size.endsWith('grow');
@@ -76,6 +102,8 @@ export abstract class IconBase {
 
   private _resolveInput(input: string, operation: (value: number) => number) {
     const match = /(\d*\.\d+|\d+)(\w*)/g.exec(input);
-    return match && match[1] ? `${operation(Number(match[1]))}${match[2] || 'px'}` : undefined;
+    return match && match[1]
+      ? `${operation(Number(match[1]))}${match[2] || 'px'}`
+      : undefined;
   }
 }

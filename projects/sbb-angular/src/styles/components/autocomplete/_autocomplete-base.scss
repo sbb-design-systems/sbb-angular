@@ -7,7 +7,7 @@
   color: $autocompleteColor;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: 50%;
@@ -111,7 +111,7 @@
     }
 
     sbb-option-group {
-      @include optionGroupBaseDirectionalReverse($selectMode); 
+      @include optionGroupBaseDirectionalReverse($selectMode);
     }
   }
 }

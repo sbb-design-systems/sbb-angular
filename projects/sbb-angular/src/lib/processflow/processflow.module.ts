@@ -6,11 +6,8 @@ import { ProcessflowStepComponent } from './processflow-step/processflow-step.co
 import { ProcessflowComponent } from './processflow/processflow.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IconChevronRightModule,
-  ],
+  imports: [CommonModule, IconChevronRightModule],
   declarations: [ProcessflowComponent, ProcessflowStepComponent],
   exports: [ProcessflowComponent, ProcessflowStepComponent]
 })
-export class ProcessflowModule { }
+export class ProcessflowModule {}

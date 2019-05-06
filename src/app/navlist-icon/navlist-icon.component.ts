@@ -10,14 +10,11 @@ import { UiIcon } from '../shared/ui-icon';
   styleUrls: ['./navlist-icon.component.scss']
 })
 export class NavlistIconComponent implements OnInit {
-
   foundUiIcons: UiIcon[] = [];
 
-  constructor(private _iconUiService: IconUiService) { }
+  constructor(private _iconUiService: IconUiService) {}
 
   ngOnInit() {
     this.foundUiIcons = this._iconUiService.getAll();
-
   }
-
 }

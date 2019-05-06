@@ -67,25 +67,25 @@ $interComponentSpacingSmall: 40;
 // Design Colors
 
 $colorBlack: #000000;
-$colorWhite: #FFFFFF;
-$colorGreyLight: #DCDCDC;
-$colorGreySilver: #CDCDCD;
+$colorWhite: #ffffff;
+$colorGreyLight: #dcdcdc;
+$colorGreySilver: #cdcdcd;
 $colorGrey: #666666;
 $colorGreyMedium: #979797;
-$colorRed100: #EB0000;
-$colorRed125: #C60018;
-$colorRed150: #A20013;
-$colorBlack5: #F6F6F6;
-$colorBlack10: #E5E5E5;
-$colorBlack20: #D2D2D2;
-$colorBlack30: #BDBDBD;
-$colorBlack40: #A8A8A8;
+$colorRed100: #eb0000;
+$colorRed125: #c60018;
+$colorRed150: #a20013;
+$colorBlack5: #f6f6f6;
+$colorBlack10: #e5e5e5;
+$colorBlack20: #d2d2d2;
+$colorBlack30: #bdbdbd;
+$colorBlack40: #a8a8a8;
 $colorBlack60: #767676;
 $colorBlack70: #686868;
 $colorBlack72: #b7b7b7;
-$colorBlack80: #5A5A5A;
+$colorBlack80: #5a5a5a;
 $colorBlack90: #444444;
-$colorBlack100: #1E1E1E;
+$colorBlack100: #1e1e1e;
 $colorBlue: #003399;
 
 /**
@@ -138,7 +138,6 @@ $sizeFontH4Default5k: $sizeFontH4Default * $scalingFactor5k;
 $fontSizeFooterBottomContainerDefault: 12;
 $fontSizeFooterDefault: $fontSizeHeaderDefault;
 
-
 /* lead text font sizes */
 $sizeFontLeadTextDefault: 20;
 $sizeFontLeadTextTablet: 21;
@@ -148,24 +147,26 @@ $formElementMaxWidth: 320;
 $formElementMinWidth: 240;
 $formElementSpacing: $gutterDesktop/2;
 
-
 /**
  * Animation-Stuff
  */
 $defaultTransitionDuration: 300ms;
 $shortDistanceTransitionDuration: 225ms;
 
-$defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+$defaultLinkIconTransitionTimingFunction: cubic-bezier(
+  0.785,
+  0.135,
+  0.15,
+  0.86
+);
 
 $linkiconAnimationDuration: $defaultTransitionDuration;
-$linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
+$linkiconAnimation: $linkiconAnimationDuration
+  $defaultLinkIconTransitionTimingFunction;
 $linksocialAnimation: background $defaultTransitionDuration ease-in;
 
-$imageLazyloadFadeAnimation: opacity .35s ease-in;
-$imageLazyloadFadeAnimationTablet: opacity .45s ease-in;
-
-
-
+$imageLazyloadFadeAnimation: opacity 0.35s ease-in;
+$imageLazyloadFadeAnimationTablet: opacity 0.45s ease-in;
 
 /**
  * Layers
@@ -177,9 +178,8 @@ $zIndexFocusedElement: 999;
  * Footer
  */
 $colorFooterText: $colorGrey;
-$footerAnimation: .3s;  // This has to match the delay in the corresponding JS
+$footerAnimation: 0.3s; // This has to match the delay in the corresponding JS
 $fontSizeFooterSectionTitleDefault: 16;
-
 
 /**
  * Timetable Breakpoints

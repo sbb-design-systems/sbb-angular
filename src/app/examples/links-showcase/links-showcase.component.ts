@@ -9,15 +9,8 @@ export class LinksShowcaseComponent {
   linkMode = 'normal';
   linkIcon = 'arrow';
   socialLinkIcon = 'facebook';
-  modes = [
-    'normal',
-    'form',
-    'stretch'
-  ];
-  icons = [
-    'arrow',
-    'download'
-  ];
+  modes = ['normal', 'form', 'stretch'];
+  icons = ['arrow', 'download'];
   socials = [
     'facebook',
     'youtube',

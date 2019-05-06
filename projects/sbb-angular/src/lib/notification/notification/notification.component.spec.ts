@@ -5,21 +5,23 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from 'sbb-angular-icons';
 
-import { NotificationComponent, NotificationType } from './notification.component';
+import {
+  NotificationComponent,
+  NotificationType
+} from './notification.component';
 
 @Component({
   selector: 'sbb-notification-mock',
-  template: '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>'
+  template:
+    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>'
 })
 export class NotificationMockComponent {
-
   message = 'Suchen';
   type = NotificationType.SUCCESS;
   jumpMarks = [];
 }
 
 describe('NotificationComponent', () => {
-
   describe('core', () => {
     let component: NotificationComponent;
     let fixture: ComponentFixture<NotificationComponent>;
@@ -28,8 +30,7 @@ describe('NotificationComponent', () => {
       TestBed.configureTestingModule({
         imports: [IconCollectionModule, CommonModule],
         declarations: [NotificationComponent]
-      })
-        .compileComponents();
+      }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -41,19 +42,16 @@ describe('NotificationComponent', () => {
     it('should create', () => {
       expect(component).toBeTruthy();
     });
-
   });
 
   describe('behaviour', () => {
     let testFixture: ComponentFixture<NotificationMockComponent>;
     let testComponent: NotificationMockComponent;
     beforeEach(async(() => {
-
       TestBed.configureTestingModule({
         imports: [CommonModule, FormsModule, IconCollectionModule],
         declarations: [NotificationComponent, NotificationMockComponent]
-      })
-        .compileComponents();
+      }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -65,19 +63,22 @@ describe('NotificationComponent', () => {
     it('should have red background when type is ERROR', () => {
       testComponent.type = NotificationType.ERROR;
       testFixture.detectChanges();
-      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
+      const notifications = testFixture.debugElement.queryAll(
+        By.css('.sbb-notification-error')
+      );
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
         expect(styles.backgroundColor).toBe('rgb(235, 0, 0)');
       });
-
     });
 
     it('should have grey background when type is SUCCESS or INFO', () => {
       testComponent.type = NotificationType.SUCCESS;
       testFixture.detectChanges();
-      let notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
+      let notifications = testFixture.debugElement.queryAll(
+        By.css('.sbb-notification-success')
+      );
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
@@ -86,28 +87,34 @@ describe('NotificationComponent', () => {
 
       testComponent.type = NotificationType.INFO;
       testFixture.detectChanges();
-      notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-info'));
+      notifications = testFixture.debugElement.queryAll(
+        By.css('.sbb-notification-info')
+      );
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
         expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
       });
-
     });
 
     it('should change height with jump marks', () => {
-      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
+      const componentStyles = window.getComputedStyle(
+        testFixture.debugElement.nativeElement
+      );
       expect(componentStyles.height).toBe('68px');
 
-      testComponent.jumpMarks = [{ elementId: '#here', title: 'Here' }, { elementId: '#there', title: 'There' }];
+      testComponent.jumpMarks = [
+        { elementId: '#here', title: 'Here' },
+        { elementId: '#there', title: 'There' }
+      ];
       testFixture.detectChanges();
-      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-jump-mark'));
+      const notifications = testFixture.debugElement.queryAll(
+        By.css('.sbb-notification-jump-mark')
+      );
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         expect(componentStyles.height).toBe('92px');
       });
     });
-
   });
-
 });

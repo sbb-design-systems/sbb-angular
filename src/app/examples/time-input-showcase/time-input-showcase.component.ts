@@ -11,7 +11,7 @@ export class TimeInputShowcaseComponent {
 
   constructor(formBuilder: FormBuilder) {
     this.form = formBuilder.group({
-      time: [],
+      time: []
     });
   }
 }

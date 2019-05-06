@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'sbb-textexpand-expanded',
@@ -7,7 +12,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angula
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextexpandExpandedComponent {
-
   /**
    * Describes if textexpand-expanded is hidden or not. Initially it is hidden.
    */
@@ -18,5 +22,4 @@ export class TextexpandExpandedComponent {
    * Css class of the textexpand-expanded component.
    */
   @HostBinding('class.sbb-textexpand-expanded') cssClass = true;
-
 }

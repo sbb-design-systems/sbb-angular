@@ -4,7 +4,10 @@ import { NgModule } from '@angular/core';
 
 import { DropdownItemDirective } from './dropdown-item.directive';
 import { DropdownOriginDirective } from './dropdown-origin.directive';
-import { DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER, DropdownTriggerDirective } from './dropdown-trigger.directive';
+import {
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
+  DropdownTriggerDirective
+} from './dropdown-trigger.directive';
 import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
@@ -14,18 +17,13 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     DropdownOriginDirective,
     DropdownTriggerDirective
   ],
-  imports: [
-    CommonModule,
-    OverlayModule
-  ],
+  imports: [CommonModule, OverlayModule],
   exports: [
     DropdownComponent,
     DropdownItemDirective,
     DropdownOriginDirective,
     DropdownTriggerDirective
   ],
-  providers: [
-    DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
-  ]
+  providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
-export class DropdownModule { }
+export class DropdownModule {}

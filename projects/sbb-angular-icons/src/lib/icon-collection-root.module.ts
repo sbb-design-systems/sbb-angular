@@ -27,7 +27,6 @@ import { IconCollectionInstallationModule } from './installation/icon-collection
 import { IconCollectionBuildingModule } from './building/icon-collection-building.module';
 import { IconCollectionSocialMediaModule } from './social-media/icon-collection-social-media.module';
 
-
 const modules = [
   IconCollectionTimetableAttributesModule,
   IconCollectionHimCusModule,
@@ -51,11 +50,11 @@ const modules = [
   IconCollectionLeisureModule,
   IconCollectionInstallationModule,
   IconCollectionBuildingModule,
-  IconCollectionSocialMediaModule,
+  IconCollectionSocialMediaModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionModule { }
+export class IconCollectionModule {}

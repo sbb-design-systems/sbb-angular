@@ -13,8 +13,7 @@ describe('NavigationComponent', () => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [NavigationComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

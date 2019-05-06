@@ -9,7 +9,7 @@ import {
   NgZone,
   Optional,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { first, take } from 'rxjs/operators';
 
@@ -20,10 +20,12 @@ import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
  * @docs-private
  */
 export class CalendarCell {
-  constructor(public value: number,
+  constructor(
+    public value: number,
     public displayValue: string,
     public enabled: boolean,
-    public rangeBackground?: string | null) { }
+    public rangeBackground?: string | null
+  ) {}
 }
 
 @Component({
@@ -35,7 +37,6 @@ export class CalendarCell {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarBodyComponent {
-
   @HostBinding('attr.role') role = 'grid';
 
   @HostBinding('attr.aria-readonly') ariaReadonly = true;
@@ -73,7 +74,9 @@ export class CalendarBodyComponent {
   @Input() cellAspectRatio = 1;
 
   /** Emits when a new value is selected. */
-  @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() readonly selectedValueChange: EventEmitter<
+    number
+  > = new EventEmitter<number>();
 
   a11yFormat: string;
 
@@ -94,8 +97,9 @@ export class CalendarBodyComponent {
 
   /** The number of blank cells to put at the beginning for the first row. */
   get firstRowOffset(): number {
-    return this.rows && this.rows.length && this.rows[0].length ?
-      this.numCols - this.rows[0].length : 0;
+    return this.rows && this.rows.length && this.rows[0].length
+      ? this.numCols - this.rows[0].length
+      : 0;
   }
 
   isActiveCell(rowIndex: number, colIndex: number): boolean {
@@ -112,15 +116,18 @@ export class CalendarBodyComponent {
   /** Focuses the active cell after the microtask queue is empty. */
   focusActiveCell() {
     this._ngZone.runOutsideAngular(() => {
-      this._ngZone.onStable.asObservable().pipe(first()).subscribe(() => {
-        const activeCell: HTMLElement | null =
-          this._elementRef.nativeElement.querySelector('.sbb-calendar-body-active');
+      this._ngZone.onStable
+        .asObservable()
+        .pipe(first())
+        .subscribe(() => {
+          const activeCell: HTMLElement | null = this._elementRef.nativeElement.querySelector(
+            '.sbb-calendar-body-active'
+          );
 
-        if (activeCell) {
-          activeCell.focus();
-        }
-      });
+          if (activeCell) {
+            activeCell.focus();
+          }
+        });
     });
   }
-
 }
