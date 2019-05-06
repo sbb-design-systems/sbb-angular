@@ -14,13 +14,13 @@ import { IconClockSecondsModule } from './icon-clock-seconds.module';
     IconClockFaceModule,
     IconClockHoursModule,
     IconClockMinutesModule,
-    IconClockSecondsModule,
+    IconClockSecondsModule
   ],
   exports: [
     IconClockFaceModule,
     IconClockHoursModule,
     IconClockMinutesModule,
-    IconClockSecondsModule,
+    IconClockSecondsModule
   ]
 })
-export class IconCollectionBaseClockModule { }
+export class IconCollectionBaseClockModule {}

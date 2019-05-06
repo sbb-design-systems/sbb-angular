@@ -8,9 +8,9 @@ import { IconBase } from '../../icon-base';
 /** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-trainformation-sleeping-car',
-  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line
   template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#767676" d="M19 17h-1.313v-3.15H6.313V17H5V8h.6c.3 0 .676.172 1.13.52.456.346.848.749 1.179 1.209.329.462.576.914.74 1.359.166.445.25.915.25 1.412h1.303c0-.984.317-1.874.951-2.52.634-.647 1.412-1.119 2.331-1.08H19V17"/></svg>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconTrainformationSleepingCarComponent extends IconBase {
   constructor() {
@@ -21,6 +21,6 @@ export class IconTrainformationSleepingCarComponent extends IconBase {
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconTrainformationSleepingCarComponent],
-  exports: [IconTrainformationSleepingCarComponent],
+  exports: [IconTrainformationSleepingCarComponent]
 })
-export class IconTrainformationSleepingCarModule { }
+export class IconTrainformationSleepingCarModule {}

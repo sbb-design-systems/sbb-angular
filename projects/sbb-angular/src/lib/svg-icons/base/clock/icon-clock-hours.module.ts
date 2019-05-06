@@ -8,9 +8,9 @@ import { IconBase } from '../../icon-base';
 /** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-clock-hours',
-  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line
   template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226 226"><path d="M107.8 49.5h10.3l1.2 87.3h-12.7z"/></svg>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconClockHoursComponent extends IconBase {
   constructor() {
@@ -21,6 +21,6 @@ export class IconClockHoursComponent extends IconBase {
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconClockHoursComponent],
-  exports: [IconClockHoursComponent],
+  exports: [IconClockHoursComponent]
 })
-export class IconClockHoursModule { }
+export class IconClockHoursModule {}

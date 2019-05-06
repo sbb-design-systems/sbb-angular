@@ -12,12 +12,12 @@ import { IconUtilizationMediumModule } from './icon-utilization-medium.module';
   imports: [
     IconUtilizationHighModule,
     IconUtilizationLowModule,
-    IconUtilizationMediumModule,
+    IconUtilizationMediumModule
   ],
   exports: [
     IconUtilizationHighModule,
     IconUtilizationLowModule,
-    IconUtilizationMediumModule,
+    IconUtilizationMediumModule
   ]
 })
-export class IconCollectionWebshopUtilizationModule { }
+export class IconCollectionWebshopUtilizationModule {}

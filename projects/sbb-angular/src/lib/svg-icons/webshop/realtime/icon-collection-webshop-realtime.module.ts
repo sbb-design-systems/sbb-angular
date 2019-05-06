@@ -20,7 +20,7 @@ import { IconRealtimeRerouteModule } from './icon-realtime-reroute.module';
     IconRealtimeDelayModule,
     IconRealtimeMissedConnectionModule,
     IconRealtimePlatformChangeModule,
-    IconRealtimeRerouteModule,
+    IconRealtimeRerouteModule
   ],
   exports: [
     IconRealtimeAddStopModule,
@@ -29,7 +29,7 @@ import { IconRealtimeRerouteModule } from './icon-realtime-reroute.module';
     IconRealtimeDelayModule,
     IconRealtimeMissedConnectionModule,
     IconRealtimePlatformChangeModule,
-    IconRealtimeRerouteModule,
+    IconRealtimeRerouteModule
   ]
 })
-export class IconCollectionWebshopRealtimeModule { }
+export class IconCollectionWebshopRealtimeModule {}

@@ -22,7 +22,7 @@ import { IconYoutubeModule } from './icon-youtube.module';
     IconPinterestModule,
     IconTwitterModule,
     IconXingModule,
-    IconYoutubeModule,
+    IconYoutubeModule
   ],
   exports: [
     IconFacebookModule,
@@ -32,7 +32,7 @@ import { IconYoutubeModule } from './icon-youtube.module';
     IconPinterestModule,
     IconTwitterModule,
     IconXingModule,
-    IconYoutubeModule,
+    IconYoutubeModule
   ]
 })
-export class IconCollectionBaseSocialMediaModule { }
+export class IconCollectionBaseSocialMediaModule {}

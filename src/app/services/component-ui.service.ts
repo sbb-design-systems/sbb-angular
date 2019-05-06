@@ -77,11 +77,11 @@ export class ComponentUiService {
         null,
         true,
         false,
-        ['Davide Aresta', "Stefan Meili, Dario D'Oronzo"],
+        ['Davide Aresta', `Stefan Meili, Dario D'Oronzo`],
         null,
         `<a href="#" sbbLink mode="normal" icon="arrow">Bezeichnung</a>
         <a href="#" sbbSocialLink icon="facebook">Bezeichnung</a>`,
-        "import { LinksModule } from 'sbb-angular';\n\n" +
+        `import { LinksModule } from 'sbb-angular';\n\n` +
           '@NgModule({\n  declarations: [\n    ...\n  ],\n  imports: [\n    ...\n    LinksModule\n  ]\n})\n' +
           'export class ExamplesModule { }',
         LinksShowcaseComponent
@@ -119,7 +119,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
+        ['Davide Aresta', 'Stefan Meili', `Dario D'Oronzo`],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -197,7 +197,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
+        ['Davide Aresta', 'Stefan Meili', `Dario D'Oronzo`],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -328,7 +328,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
+        ['Davide Aresta', 'Stefan Meili', `Dario D'Oronzo`],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',
@@ -354,7 +354,7 @@ export class ComponentUiService {
         'Subtitel goes here ...',
         true,
         false,
-        ['Davide Aresta', 'Stefan Meili', "Dario D'Oronzo"],
+        ['Davide Aresta', 'Stefan Meili', `Dario D'Oronzo`],
         'Description goes here ...',
         'Source goes here ...',
         'Import text.',

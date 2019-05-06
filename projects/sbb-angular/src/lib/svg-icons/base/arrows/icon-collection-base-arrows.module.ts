@@ -26,7 +26,7 @@ import { IconUploadModule } from './icon-upload.module';
     IconNbcMobileTabletModule,
     IconPlayButtonModule,
     IconRoundTripModule,
-    IconUploadModule,
+    IconUploadModule
   ],
   exports: [
     IconArrowSmallDownModule,
@@ -38,7 +38,7 @@ import { IconUploadModule } from './icon-upload.module';
     IconNbcMobileTabletModule,
     IconPlayButtonModule,
     IconRoundTripModule,
-    IconUploadModule,
+    IconUploadModule
   ]
 })
-export class IconCollectionBaseArrowsModule { }
+export class IconCollectionBaseArrowsModule {}

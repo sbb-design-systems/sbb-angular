@@ -8,9 +8,9 @@ import { IconBase } from '../icon-base';
 /** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-e-mail',
-  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line
   template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 6v12h16V6H4zm8 7.3L5.7 7h12.6L12 13.3zM9.3 12L5 16.3V7.7L9.3 12zm.7.7l2 2 2-2 4.3 4.3H5.7l4.3-4.3zm9 3.6L14.7 12 19 7.7v8.6zM19 7z"/></svg>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconEMailComponent extends IconBase {
   constructor() {
@@ -21,6 +21,6 @@ export class IconEMailComponent extends IconBase {
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconEMailComponent],
-  exports: [IconEMailComponent],
+  exports: [IconEMailComponent]
 })
-export class IconEMailModule { }
+export class IconEMailModule {}

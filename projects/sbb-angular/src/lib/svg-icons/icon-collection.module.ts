@@ -18,7 +18,7 @@ import { IconCollectionWebshopModule } from './webshop/icon-collection-webshop.m
     IconCollectionProductsModule,
     IconCollectionWeatherModule,
     IconCollectionCampaignsModule,
-    IconCollectionWebshopModule,
+    IconCollectionWebshopModule
   ],
   exports: [
     IconCollectionBaseModule,
@@ -26,7 +26,7 @@ import { IconCollectionWebshopModule } from './webshop/icon-collection-webshop.m
     IconCollectionProductsModule,
     IconCollectionWeatherModule,
     IconCollectionCampaignsModule,
-    IconCollectionWebshopModule,
+    IconCollectionWebshopModule
   ]
 })
-export class IconCollectionModule { }
+export class IconCollectionModule {}

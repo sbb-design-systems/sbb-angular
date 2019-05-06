@@ -12,12 +12,12 @@ import { IconEnvironmentcalculatorTimeModule } from './icon-environmentcalculato
   imports: [
     IconEnvironmentcalculatorCo2Module,
     IconEnvironmentcalculatorPetrolModule,
-    IconEnvironmentcalculatorTimeModule,
+    IconEnvironmentcalculatorTimeModule
   ],
   exports: [
     IconEnvironmentcalculatorCo2Module,
     IconEnvironmentcalculatorPetrolModule,
-    IconEnvironmentcalculatorTimeModule,
+    IconEnvironmentcalculatorTimeModule
   ]
 })
-export class IconCollectionWebshopEnvironmentcalculatorModule { }
+export class IconCollectionWebshopEnvironmentcalculatorModule {}

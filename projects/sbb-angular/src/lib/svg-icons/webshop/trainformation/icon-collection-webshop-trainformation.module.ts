@@ -34,7 +34,7 @@ import { IconTrainformationStrollerModule } from './icon-trainformation-stroller
     IconTrainformationLowFloorModule,
     IconTrainformationSleepCouchetteModule,
     IconTrainformationSleepingCarModule,
-    IconTrainformationStrollerModule,
+    IconTrainformationStrollerModule
   ],
   exports: [
     IconTrainformation1ClassModule,
@@ -50,7 +50,7 @@ import { IconTrainformationStrollerModule } from './icon-trainformation-stroller
     IconTrainformationLowFloorModule,
     IconTrainformationSleepCouchetteModule,
     IconTrainformationSleepingCarModule,
-    IconTrainformationStrollerModule,
+    IconTrainformationStrollerModule
   ]
 })
-export class IconCollectionWebshopTrainformationModule { }
+export class IconCollectionWebshopTrainformationModule {}

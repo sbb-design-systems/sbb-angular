@@ -7,11 +7,7 @@ import { IconArrowRightBoldModule } from './icon-arrow-right-bold.module';
 
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
-  imports: [
-    IconArrowRightBoldModule,
-  ],
-  exports: [
-    IconArrowRightBoldModule,
-  ]
+  imports: [IconArrowRightBoldModule],
+  exports: [IconArrowRightBoldModule]
 })
-export class IconCollectionWebshopArrowsModule { }
+export class IconCollectionWebshopArrowsModule {}

@@ -14,13 +14,13 @@ import { IconHimReplacementbusModule } from './icon-him-replacementbus.module';
     IconHimConstructionModule,
     IconHimDisruptionModule,
     IconHimInfoModule,
-    IconHimReplacementbusModule,
+    IconHimReplacementbusModule
   ],
   exports: [
     IconHimConstructionModule,
     IconHimDisruptionModule,
     IconHimInfoModule,
-    IconHimReplacementbusModule,
+    IconHimReplacementbusModule
   ]
 })
-export class IconCollectionBaseHimModule { }
+export class IconCollectionBaseHimModule {}

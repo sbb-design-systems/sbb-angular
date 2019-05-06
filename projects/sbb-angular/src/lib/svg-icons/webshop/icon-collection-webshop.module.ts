@@ -4,9 +4,7 @@
 import { NgModule } from '@angular/core';
 
 import { IconCollectionWebshopArrowsModule } from './arrows/icon-collection-webshop-arrows.module';
-import {
-  IconCollectionWebshopEnvironmentcalculatorModule
-} from './environmentcalculator/icon-collection-webshop-environmentcalculator.module';
+import { IconCollectionWebshopEnvironmentcalculatorModule } from './environmentcalculator/icon-collection-webshop-environmentcalculator.module';
 import { IconCollectionWebshopOevModule } from './oev/icon-collection-webshop-oev.module';
 import { IconCollectionWebshopRealtimeModule } from './realtime/icon-collection-webshop-realtime.module';
 import { IconCollectionWebshopServiceModule } from './service/icon-collection-webshop-service.module';
@@ -22,7 +20,7 @@ import { IconCollectionWebshopUtilizationModule } from './utilization/icon-colle
     IconCollectionWebshopRealtimeModule,
     IconCollectionWebshopServiceModule,
     IconCollectionWebshopTrainformationModule,
-    IconCollectionWebshopUtilizationModule,
+    IconCollectionWebshopUtilizationModule
   ],
   exports: [
     IconCollectionWebshopArrowsModule,
@@ -31,7 +29,7 @@ import { IconCollectionWebshopUtilizationModule } from './utilization/icon-colle
     IconCollectionWebshopRealtimeModule,
     IconCollectionWebshopServiceModule,
     IconCollectionWebshopTrainformationModule,
-    IconCollectionWebshopUtilizationModule,
+    IconCollectionWebshopUtilizationModule
   ]
 })
-export class IconCollectionWebshopModule { }
+export class IconCollectionWebshopModule {}

@@ -72,7 +72,7 @@ export function getSbbAutocompleteMissingPanelError(): Error {
   return Error(
     'Attempting to open an undefined instance of `sbb-autocomplete`. ' +
       'Make sure that the id passed to the `sbbAutocomplete` is correct and that ' +
-      "you're attempting to open it after the ngAfterContentInit hook."
+      `you're attempting to open it after the ngAfterContentInit hook.`
   );
 }
 

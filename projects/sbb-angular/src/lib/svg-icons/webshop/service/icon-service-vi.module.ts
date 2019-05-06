@@ -8,9 +8,9 @@ import { IconBase } from '../../icon-base';
 /** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-service-vi',
-  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line
   template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 13"><path d="M0 0h2.6l1.2 10.1L9.3 0h2.8L4.8 13H1.7M13.5 0h2.7l-2.7 13h-2.7"/></svg>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconServiceViComponent extends IconBase {
   constructor() {
@@ -21,6 +21,6 @@ export class IconServiceViComponent extends IconBase {
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconServiceViComponent],
-  exports: [IconServiceViComponent],
+  exports: [IconServiceViComponent]
 })
-export class IconServiceViModule { }
+export class IconServiceViModule {}

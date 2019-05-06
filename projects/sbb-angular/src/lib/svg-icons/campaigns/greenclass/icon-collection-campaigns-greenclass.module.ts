@@ -28,7 +28,7 @@ import { IconWallbox48Module } from './icon-wallbox-48.module';
     IconPioneering48Module,
     IconSorglos48Module,
     IconUmwelt48Module,
-    IconWallbox48Module,
+    IconWallbox48Module
   ],
   exports: [
     IconEffizienz48Module,
@@ -41,7 +41,7 @@ import { IconWallbox48Module } from './icon-wallbox-48.module';
     IconPioneering48Module,
     IconSorglos48Module,
     IconUmwelt48Module,
-    IconWallbox48Module,
+    IconWallbox48Module
   ]
 })
-export class IconCollectionCampaignsGreenclassModule { }
+export class IconCollectionCampaignsGreenclassModule {}

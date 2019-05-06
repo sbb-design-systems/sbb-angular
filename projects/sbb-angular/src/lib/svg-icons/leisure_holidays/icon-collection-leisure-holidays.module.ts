@@ -56,7 +56,7 @@ import { IconLhZooAnimalParksModule } from './icon-lh-zoo-animal-parks.module';
     IconLhTobogganingWinterHikingModule,
     IconLhTradeFairsFolkFestivalsModule,
     IconLhWellnessRelaxationModule,
-    IconLhZooAnimalParksModule,
+    IconLhZooAnimalParksModule
   ],
   exports: [
     IconLhAdventurePanoramaTripsModule,
@@ -83,7 +83,7 @@ import { IconLhZooAnimalParksModule } from './icon-lh-zoo-animal-parks.module';
     IconLhTobogganingWinterHikingModule,
     IconLhTradeFairsFolkFestivalsModule,
     IconLhWellnessRelaxationModule,
-    IconLhZooAnimalParksModule,
+    IconLhZooAnimalParksModule
   ]
 })
-export class IconCollectionLeisureHolidaysModule { }
+export class IconCollectionLeisureHolidaysModule {}

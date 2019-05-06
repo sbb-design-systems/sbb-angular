@@ -118,7 +118,7 @@ import { IconProductVaeModule } from './icon-product-vae.module';
     IconProductSn9Module,
     IconProductSnModule,
     IconProductTgvModule,
-    IconProductVaeModule,
+    IconProductVaeModule
   ],
   exports: [
     IconProductBexModule,
@@ -176,7 +176,7 @@ import { IconProductVaeModule } from './icon-product-vae.module';
     IconProductSn9Module,
     IconProductSnModule,
     IconProductTgvModule,
-    IconProductVaeModule,
+    IconProductVaeModule
   ]
 })
-export class IconCollectionProductsModule { }
+export class IconCollectionProductsModule {}

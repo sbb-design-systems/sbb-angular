@@ -20,7 +20,7 @@ import { IconZipModule } from './icon-zip.module';
     IconPdfModule,
     IconSoundModule,
     IconVideoModule,
-    IconZipModule,
+    IconZipModule
   ],
   exports: [
     IconDocGenericModule,
@@ -29,7 +29,7 @@ import { IconZipModule } from './icon-zip.module';
     IconPdfModule,
     IconSoundModule,
     IconVideoModule,
-    IconZipModule,
+    IconZipModule
   ]
 })
-export class IconCollectionBaseDocumentsModule { }
+export class IconCollectionBaseDocumentsModule {}

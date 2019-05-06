@@ -26,7 +26,7 @@ import { IconOevBT29Module } from './icon-oev-b-t29.module';
     IconOevBT22Module,
     IconOevBT23Module,
     IconOevBT25Module,
-    IconOevBT29Module,
+    IconOevBT29Module
   ],
   exports: [
     IconOevBT02Module,
@@ -38,7 +38,7 @@ import { IconOevBT29Module } from './icon-oev-b-t29.module';
     IconOevBT22Module,
     IconOevBT23Module,
     IconOevBT25Module,
-    IconOevBT29Module,
+    IconOevBT29Module
   ]
 })
-export class IconCollectionWebshopOevModule { }
+export class IconCollectionWebshopOevModule {}

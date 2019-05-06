@@ -52,7 +52,7 @@ import { IconWolkeMondModule } from './icon-wolke-mond.module';
     IconStarkerRegenBeiNachtModule,
     IconStarkerRegenMitSonneModule,
     IconStratusModule,
-    IconWolkeMondModule,
+    IconWolkeMondModule
   ],
   exports: [
     IconBewoelktMitSonneModule,
@@ -77,7 +77,7 @@ import { IconWolkeMondModule } from './icon-wolke-mond.module';
     IconStarkerRegenBeiNachtModule,
     IconStarkerRegenMitSonneModule,
     IconStratusModule,
-    IconWolkeMondModule,
+    IconWolkeMondModule
   ]
 })
-export class IconCollectionWeatherModule { }
+export class IconCollectionWeatherModule {}

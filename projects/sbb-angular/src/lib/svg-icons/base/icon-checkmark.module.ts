@@ -8,9 +8,9 @@ import { IconBase } from '../icon-base';
 /** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-checkmark',
-  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line
   template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.36 15.57L7.18 12.6l-.82.91 4.13 4.13 7.15-10.43-.83-.85-6.45 9.21"/></svg>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconCheckmarkComponent extends IconBase {
   constructor() {
@@ -21,6 +21,6 @@ export class IconCheckmarkComponent extends IconBase {
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconCheckmarkComponent],
-  exports: [IconCheckmarkComponent],
+  exports: [IconCheckmarkComponent]
 })
-export class IconCheckmarkModule { }
+export class IconCheckmarkModule {}

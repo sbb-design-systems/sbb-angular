@@ -8,9 +8,9 @@ import { IconBase } from '../icon-base';
 /** @deprecated Use `sbb-angular-icons` instead. */
 @Component({
   selector: 'sbb-icon-arrow-down',
-  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line
   template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.6 7.5l-.8.8 3.7 3.7h-12v1h12l-3.7 3.7.8.7 5-5"/></svg>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconArrowDownComponent extends IconBase {
   constructor() {
@@ -21,6 +21,6 @@ export class IconArrowDownComponent extends IconBase {
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
   declarations: [IconArrowDownComponent],
-  exports: [IconArrowDownComponent],
+  exports: [IconArrowDownComponent]
 })
-export class IconArrowDownModule { }
+export class IconArrowDownModule {}

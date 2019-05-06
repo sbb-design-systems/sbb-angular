@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FileSelectorTypesService, FileTypeCategory } from 'sbb-angular';
 import { Subscription } from 'rxjs';
+import { FileSelectorTypesService, FileTypeCategory } from 'sbb-angular';
 
 @Component({
   selector: 'sbb-file-selector-showcase',

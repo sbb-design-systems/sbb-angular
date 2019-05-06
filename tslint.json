@@ -5,30 +5,18 @@
     "node_modules/tslint-consistent-codestyle/rules"
   ],
   "rules": {
-    "arrow-parens": [
-      true,
-      "ban-single-arg-parens"
-    ],
+    "arrow-parens": [true, "ban-single-arg-parens"],
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "curly": true,
     "deprecation": false,
     "eofline": true,
     "forin": true,
-    "import-blacklist": [
-      true,
-      "rxjs/Rx"
-    ],
+    "import-blacklist": [true, "rxjs/Rx"],
     "import-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
+    "indent": [true, "spaces"],
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
@@ -63,31 +51,19 @@
       // all other variables and functions still need to be camelCase
       {
         "type": "variable",
-        "modifiers": [
-          "global",
-          "const"
-        ],
-        "format": [
-          "camelCase",
-          "UPPER_CASE"
-        ]
+        "modifiers": ["global", "const"],
+        "format": ["camelCase", "UPPER_CASE"]
       },
       // override the above format option for exported constants to allow only UPPER_CASE
       {
         "type": "variable",
-        "modifiers": [
-          "export",
-          "const"
-        ],
+        "modifiers": ["export", "const"],
         "format": "UPPER_CASE"
       },
       // disable for mixins and inline providers
       {
         "type": "variable",
-        "modifiers": [
-          "export",
-          "const"
-        ],
+        "modifiers": ["export", "const"],
         "filter": "(^(sbb|Sbb|SBB_)|^environment$)",
         "format": null
       },
@@ -101,10 +77,7 @@
       // require exported constant variables that are initialized with functions to be camelCase
       {
         "type": "functionVariable",
-        "modifiers": [
-          "export",
-          "const"
-        ],
+        "modifiers": ["export", "const"],
         "format": "camelCase"
       },
       // allow leading underscores for unused parameters, because `tsc --noUnusedParameters` will not flag underscore prefixed parameters
@@ -141,11 +114,7 @@
       // enforce UPPER_CASE for all public static readonly(!) properties
       {
         "type": "property",
-        "modifiers": [
-          "public",
-          "static",
-          "const"
-        ],
+        "modifiers": ["public", "static", "const"],
         "format": "UPPER_CASE"
       },
       // enforce PascalCase for classes, interfaces, enums, etc. Remember, there are still no underscores allowed.
@@ -163,24 +132,14 @@
     "no-bitwise": true,
     "no-collapsible-if": true,
     "no-consecutive-blank-lines": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": [true, "ignore-params"],
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-redundant-jsdoc": true,
@@ -208,25 +167,13 @@
         "grouped-imports": true
       }
     ],
-    "parameter-properties": [
-      true,
-      "leading"
-    ],
+    "parameter-properties": [true, "leading"],
     "prefer-const": true,
     "prettier": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
+    "quotemark": [true, "single"],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [
       false,
       {

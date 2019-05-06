@@ -178,7 +178,7 @@ import { IconServiceZmModule } from './icon-service-zm.module';
     IconServiceYmModule,
     IconServiceYtModule,
     IconServiceZModule,
-    IconServiceZmModule,
+    IconServiceZmModule
   ],
   exports: [
     IconService1Module,
@@ -266,7 +266,7 @@ import { IconServiceZmModule } from './icon-service-zm.module';
     IconServiceYmModule,
     IconServiceYtModule,
     IconServiceZModule,
-    IconServiceZmModule,
+    IconServiceZmModule
   ]
 })
-export class IconCollectionWebshopServiceModule { }
+export class IconCollectionWebshopServiceModule {}

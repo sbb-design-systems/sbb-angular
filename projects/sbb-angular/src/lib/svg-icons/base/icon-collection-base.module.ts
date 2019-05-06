@@ -152,7 +152,7 @@ import { IconCollectionBaseSocialMediaModule } from './social_media/icon-collect
     IconCollectionBaseClockModule,
     IconCollectionBaseDocumentsModule,
     IconCollectionBaseHimModule,
-    IconCollectionBaseSocialMediaModule,
+    IconCollectionBaseSocialMediaModule
   ],
   exports: [
     IconArrowDownAndBackModule,
@@ -227,7 +227,7 @@ import { IconCollectionBaseSocialMediaModule } from './social_media/icon-collect
     IconCollectionBaseClockModule,
     IconCollectionBaseDocumentsModule,
     IconCollectionBaseHimModule,
-    IconCollectionBaseSocialMediaModule,
+    IconCollectionBaseSocialMediaModule
   ]
 })
-export class IconCollectionBaseModule { }
+export class IconCollectionBaseModule {}

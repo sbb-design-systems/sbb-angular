@@ -7,11 +7,7 @@ import { IconCollectionCampaignsGreenclassModule } from './greenclass/icon-colle
 
 /** @deprecated Use `sbb-angular-icons` instead. */
 @NgModule({
-  imports: [
-    IconCollectionCampaignsGreenclassModule,
-  ],
-  exports: [
-    IconCollectionCampaignsGreenclassModule,
-  ]
+  imports: [IconCollectionCampaignsGreenclassModule],
+  exports: [IconCollectionCampaignsGreenclassModule]
 })
-export class IconCollectionCampaignsModule { }
+export class IconCollectionCampaignsModule {}
