@@ -120,6 +120,27 @@ export class TooltipComponent implements OnDestroy {
   private _icon: TemplateRef<any>;
 
   /**
+   * Sets whether the overlay can be pushed on-screen if it does not fit otherwise.
+   */
+  @Input()
+  overlayWithPush = false;
+
+  /**
+   * Sets whether the overlay's position should be locked in after it is
+   * positioned initially.
+   * When an overlay is locked in, it won't attempt to reposition itself
+   * when the position is re-applied (e.g. when the user scrolls away).
+   */
+  @Input()
+  overlayWithLockedPosition = true;
+
+  /**
+   * Sets a minimum distance the overlay may be positioned to the edge of the viewport.
+   */
+  @Input()
+  overlayViewportMargin = 8;
+
+  /**
    * Open event to a click on tooltip element.
    */
   @Output() readonly opened = new EventEmitter<SbbTooltipChangeEvent>();
