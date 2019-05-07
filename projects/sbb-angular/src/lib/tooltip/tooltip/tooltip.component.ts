@@ -93,7 +93,6 @@ export class TooltipComponent implements OnDestroy {
 
   /** @docs-private */
   @ViewChild('defaultIcon', { read: TemplateRef }) defaultIcon: TemplateRef<any>;
-
   /**
    * The icon to be used as click target.
    * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
@@ -106,7 +105,25 @@ export class TooltipComponent implements OnDestroy {
   get icon() {
     return this._icon || this.defaultIcon;
   }
+
   _icon: TemplateRef<any>;
+  /**
+   * Sets whether the overlay can be pushed on-screen if it does not fit otherwise.
+   */
+  @Input()
+  overlayWithPush = false;
+
+  /**
+   * Sets whether the overlay's position should be locked in after it is positioned initially.
+   * When an overlay is locked in, it won't attempt to reposition itself when the position is re-applied (e.g. when the user scrolls away).
+   */
+  @Input()
+  overlayWithLockedPosition = true;
+  /**
+   * Sets a minimum distance the overlay may be positioned to the edge of the viewport.
+   */
+  @Input()
+  overlayViewportMargin = 8;
 
   /**
    * Open event to a click on tooltip element.
@@ -187,8 +204,9 @@ export class TooltipComponent implements OnDestroy {
       .flexibleConnectedTo(this.tooltipTrigger)
       .withTransformOriginOn('.sbb-tooltip-content')
       .withFlexibleDimensions(false)
-      .withViewportMargin(8)
-      .withPush(false)
+      .withViewportMargin(this.overlayViewportMargin)
+      .withPush(this.overlayWithPush)
+      .withLockedPosition(this.overlayWithLockedPosition)
       .withPositions([
         {
           originX: 'start',
