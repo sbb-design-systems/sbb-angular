@@ -9,12 +9,21 @@
     "test": "ng test angular-showcase -c ci",
     "build": "ng build angular-showcase --prod",
     "build:angular-icons": "cd projects/sbb-esta/angular-icons && npm run build",
+    "build:angular-icons:license": "cd projects/sbb-esta/angular-icons && npm run build:license",
     "build:angular-icons:schematics": "cd projects/sbb-esta/angular-icons && npm run build:schematics",
     "build:angular-public": "cd projects/sbb-esta/angular-public && npm run build",
     "e2e": "ng e2e angular-showcase",
     "docs": "gulp docs"
   },
-  "files": "./dist/angular-showcase/**/*",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+  },
+  "homepage": "https://sbb-angular.app.sbb.ch/latest",
   "dependencies": {
     "@angular/animations": "^7.2.0",
     "@angular/cdk": "^7.2.1",
@@ -52,6 +61,7 @@
     "@types/node": "^8.10.37",
     "@types/run-sequence": "^0.0.30",
     "codelyzer": "^4.5.0",
+    "copyfiles": "^2.1.0",
     "cross-env": "^5.2.0",
     "dgeni": "^0.4.11",
     "dgeni-packages": "^0.27.1",
