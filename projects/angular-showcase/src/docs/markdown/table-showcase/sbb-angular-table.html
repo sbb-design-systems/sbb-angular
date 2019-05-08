@@ -1,0 +1,56 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Table Overview</h1>
+  <p class="docs-markdown-p">Import table module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { TableModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <p class="docs-markdown-p">You can use table component to display rows of data as see below</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-table</span> <span class="hljs-attr">tableId</span>=<span class="hljs-string">"testID"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let header of headers"</span>&gt;</span>{{ header }}<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let row of rows"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> [<span class="hljs-attr">attr.scope</span>]=<span class="hljs-string">"row.scope"</span> [<span class="hljs-attr">attr.aria-describedby</span>]=<span class="hljs-string">"row.describedby"</span>&gt;</span>
+        {{ row.text1 }}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ row.text2 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ row.text3 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ row.text4 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbb-table-align-right"</span>&gt;</span>{{ row.text5 }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-table</span>&gt;</span></code></pre>
+  <h4 class="docs-markdown-h4">Remove/Reset table content</h4>
+  <p class="docs-markdown-p">You can also remove a row or more rows from the table with removeRow() function:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">removeRow() {
+    <span class="hljs-keyword">this</span>.rows.splice(<span class="hljs-keyword">this</span>.rows.length - <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+  }</code></pre>
+  <p class="docs-markdown-p">or to reset the initial content of the table with resetRows() function:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">resetRows() {
+    <span class="hljs-keyword">this</span>.rows = <span class="hljs-keyword">this</span>._rows.slice();
+  }</code></pre>
+  <h4 class="docs-markdown-h4">Filter table content</h4>
+  <p class="docs-markdown-p">It is possible to search specific content of the table using a filter function:</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"> filterTable(evt: <span class="hljs-built_in">any</span>) {
+    <span class="hljs-keyword">const</span> value = evt.target.value;
+    <span class="hljs-keyword">if</span> (value !== <span class="hljs-string">''</span>) {
+      <span class="hljs-keyword">this</span>.rows = <span class="hljs-keyword">this</span>._rows.filter(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (row.text1.indexOf(value) !== <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; }
+        <span class="hljs-keyword">if</span> (row.text2.indexOf(value) !== <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; }
+        <span class="hljs-keyword">if</span> (row.text3.indexOf(value) !== <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; }
+        <span class="hljs-keyword">if</span> (row.text4.indexOf(value) !== <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; }
+        <span class="hljs-keyword">if</span> (row.text5.indexOf(value) !== <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      });
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">this</span>.rows = <span class="hljs-keyword">this</span>._rows.slice();
+    }
+  }</code></pre>
+</body>
+
+</html>

@@ -122,7 +122,7 @@ function getDocumentPackageInfo(doc: Document) {
 
   return {
     name: groupName,
-    packageName: pathSegments[0] === 'lib' ? 'sbb-angular' : pathSegments[0],
+    packageName: pathSegments[0] === 'lib' ? '@sbb-esta/angular-public' : pathSegments[0],
     entryPointName: pathSegments[1],
   };
 }

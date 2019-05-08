@@ -1,0 +1,219 @@
+<span class="hljs-keyword">import</span> { CommonModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+<span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormsModule, ReactiveFormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+
+<span class="hljs-keyword">import</span> { RouterModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-keyword">import</span> { MonacoEditorModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'ngx-monaco-editor'</span>;
+
+<span class="hljs-keyword">import</span> {
+  AccordionModule,
+  AutocompleteModule,
+  BadgeModule,
+  BreadcrumbModule,
+  ButtonModule,
+  CaptchaModule,
+  CheckboxModule,
+  CheckboxPanelModule,
+  DatepickerModule,
+  DropdownModule,
+  FieldModule,
+  FileSelectorModule,
+  GhettoboxModule,
+  LightboxModule,
+  LinksModule,
+  LoadingModule,
+  NotificationsModule,
+  OptionModule,
+  PaginationModule,
+  ProcessflowModule,
+  RadioButtonModule,
+  RadioButtonPanelModule,
+  SearchModule,
+  SelectModule,
+  TableModule,
+  TabsModule,
+  TagModule,
+  TextareaModule,
+  TextexpandModule,
+  TimeInputModule,
+  ToggleModule,
+  TooltipModule,
+  UserMenuModule
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+<span class="hljs-keyword">import</span> { IconCollectionModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-icons'</span>;
+
+<span class="hljs-keyword">import</span> { AccordionShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./accordion-showcase/accordion-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { AutocompleteShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./autocomplete-showcase/autocomplete-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { BadgeShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./badge-showcase/badge-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { BreadcrumbShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./breadcrumb-showcase/breadcrumb-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { ButtonShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./button-showcase/button-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { CaptchaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./captcha-showcase/captcha-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { CheckboxPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-panel-showcase/checkbox-panel-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { CheckboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./checkbox-showcase/checkbox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { DatepickerShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./datepicker-showcase/datepicker-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { DropdownShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./dropdown-showcase/dropdown-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { FieldShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./field-showcase/field-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { FileSelectorShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./file-selector-showcase/file-selector-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { GhettoboxShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ghettobox-showcase/ghettobox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> {
+  LightboxShowcaseComponent,
+  LightboxShowcaseExample2Component,
+  LightboxShowcaseExample2ContentComponent,
+  LightboxShowcaseExample3Component,
+  LightboxShowcaseExample4Component,
+  LightboxShowcaseExample4ContentComponent,
+  LightboxShowcaseExample5Component,
+  LightboxShowcaseExample5ContentComponent,
+  LightboxShowcaseExample6ContentComponent,
+  LightboxShowcaseExampleComponent,
+  LightboxShowcaseExampleContentComponent
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'./lightbox-showcase/lightbox-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { LinksShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./links-showcase/links-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { LoadingShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./loading-showcase/loading-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { NotificationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./notification-showcase/notification-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { PaginationShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./pagination-showcase/pagination-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { ProcessflowShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./processflow-showcase/processflow-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { RadioButtonPanelShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./radio-button-panel-showcase/radio-button-panel-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { RadioButtonShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./radio-button-showcase/radio-button-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SearchShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./search-showcase/search-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { SelectShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./select-showcase/select-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TableShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./table-showcase/table-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { PersonListComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/person/person-list/person-list.component'</span>;
+<span class="hljs-keyword">import</span> { TabsShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tabs-showcase/tabs-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TagShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tag-showcase/tag-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextareaShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textarea-showcase/textarea-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TextexpandShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./textexpand-showcase/textexpand-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TimeInputShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./time-input-showcase/time-input-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { ToggleShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./toggle-showcase/toggle-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { TooltipShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./tooltip-showcase/tooltip-showcase.component'</span>;
+<span class="hljs-keyword">import</span> { UserMenuShowcaseComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./usermenu-showcase/usermenu-showcase.component'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  declarations: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent,
+    AutocompleteShowcaseComponent,
+    ButtonShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
+    TimeInputShowcaseComponent,
+    LoadingShowcaseComponent,
+    LightboxShowcaseComponent,
+    LightboxShowcaseExampleComponent,
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2Component,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample3Component,
+    LightboxShowcaseExample4Component,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5Component,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent,
+    SelectShowcaseComponent,
+    AccordionShowcaseComponent,
+    ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
+    TableShowcaseComponent,
+    ToggleShowcaseComponent,
+    PaginationShowcaseComponent,
+    TooltipShowcaseComponent,
+    TextexpandShowcaseComponent,
+    TagShowcaseComponent,
+    SearchShowcaseComponent,
+    FileSelectorShowcaseComponent,
+    CaptchaShowcaseComponent,
+    DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent,
+    UserMenuShowcaseComponent,
+    GhettoboxShowcaseComponent,
+    BadgeShowcaseComponent
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    RouterModule,
+    TextareaModule,
+    FieldModule,
+    LinksModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MonacoEditorModule.forRoot(),
+    RadioButtonModule,
+    CheckboxModule,
+    DatepickerModule,
+    TimeInputModule,
+    IconCollectionModule,
+    TabsModule,
+    LoadingModule,
+    LightboxModule,
+    OptionModule,
+    AutocompleteModule,
+    SelectModule,
+    AccordionModule,
+    ProcessflowModule,
+    RadioButtonPanelModule,
+    CheckboxPanelModule,
+    NotificationsModule,
+    TableModule,
+    ToggleModule,
+    PaginationModule,
+    TooltipModule,
+    TextexpandModule,
+    TagModule,
+    SearchModule,
+    FileSelectorModule,
+    DropdownModule,
+    CaptchaModule,
+    BreadcrumbModule,
+    UserMenuModule,
+    GhettoboxModule,
+    BadgeModule
+  ],
+  exports: [
+    TextareaShowcaseComponent,
+    LinksShowcaseComponent,
+    AutocompleteShowcaseComponent,
+    ButtonShowcaseComponent,
+    RadioButtonShowcaseComponent,
+    CheckboxShowcaseComponent,
+    DatepickerShowcaseComponent,
+    FieldShowcaseComponent,
+    TabsShowcaseComponent,
+    PersonListComponent,
+    TimeInputShowcaseComponent,
+    SelectShowcaseComponent,
+    ProcessflowShowcaseComponent,
+    RadioButtonPanelShowcaseComponent,
+    CheckboxPanelShowcaseComponent,
+    NotificationShowcaseComponent,
+    PaginationShowcaseComponent,
+    TextexpandShowcaseComponent,
+    ButtonModule,
+    LoadingModule,
+    LightboxModule,
+    OptionModule,
+    AccordionModule,
+    TableModule,
+    TooltipShowcaseComponent,
+    DropdownShowcaseComponent,
+    BreadcrumbShowcaseComponent,
+    UserMenuShowcaseComponent
+  ],
+  entryComponents: [
+    LightboxShowcaseExampleContentComponent,
+    LightboxShowcaseExample2ContentComponent,
+    LightboxShowcaseExample4ContentComponent,
+    LightboxShowcaseExample5ContentComponent,
+    LightboxShowcaseExample6ContentComponent
+  ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExamplesModule {}

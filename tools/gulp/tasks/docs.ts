@@ -105,7 +105,7 @@ task('markdown-docs-sbb-angular', () => {
         }
     };
 
-    return src(['src/app/examples/**/*.+(md)', 'src/app/getting-started/getting-started.md'])
+    return src(['projects/angular-showcase/src/app/examples/**/*.+(md)', 'projects/angular-showcase/src/app/getting-started/getting-started.md'])
         .pipe(rename({
             prefix: 'sbb-angular-',
             extname: '.html'
@@ -113,7 +113,7 @@ task('markdown-docs-sbb-angular', () => {
         .pipe(markdown(markdownOptions))
         //  .pipe(transform(transformMarkdownFiles))
         .pipe(dom(createTagNameAliaser('docs-markdown')))
-        .pipe(dest('src/docs/markdown'));
+        .pipe(dest('projects/angular-showcase/src/docs/markdown'));
 });
 
 /**
@@ -127,11 +127,11 @@ task('build-highlighted-examples', () => {
         filePath.basename = `${filePath.basename}-${extension}`;
     };
 
-    return src('src/app/examples/**/*.+(html|scss|ts)')
+    return src('projects/angular-showcase/src/app/examples/**/*.+(html|scss|ts)')
         .pipe(flatten())
         .pipe(rename(renameFile))
         .pipe(highlight())
-        .pipe(dest('src/docs/examples'));
+        .pipe(dest('projects/angular-showcase/src/docs/examples'));
 });
 
 /** Generates API docs from the source JsDoc using dgeni. */
@@ -145,19 +145,19 @@ task('api-docs', () => {
  * highlighted examples can be skipped, because it won't have any effect.
  */
 task('minify-html-files', () => {
-    return src('src/docs/+(api|markdown)/**/*.html')
+    return src('projects/angular-showcase/src/docs/+(api|markdown)/**/*.html')
         .pipe(htmlmin(htmlMinifierOptions))
-        .pipe(dest('src/docs'));
+        .pipe(dest('projects/angular-showcase/src/docs'));
 });
 
 task('beautify-html-files', () => {
 
-    return src('src/docs/+(api|markdown)/**/*.html')
+    return src('projects/angular-showcase/src/docs/+(api|markdown)/**/*.html')
         .pipe(htmlbeautify({
             preserve_newlines: false,
             indent_size: 2
         }))
-        .pipe(dest('src/docs'));
+        .pipe(dest('projects/angular-showcase/src/docs'));
 });
 
 /**

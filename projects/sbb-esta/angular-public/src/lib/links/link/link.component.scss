@@ -1,0 +1,5 @@
+@import '../../../styles/main.scss';
+
+.sbb-link {
+  @include linkBase();
+}

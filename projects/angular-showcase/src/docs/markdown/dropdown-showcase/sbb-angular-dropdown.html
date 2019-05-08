@@ -1,0 +1,53 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Dropdown Overview</h1>
+  <p class="docs-markdown-p">Import dropdown module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { DropdownModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <p class="docs-markdown-p">This module contains the component:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">sbb-dropdown</li>
+  </ul>
+  <p class="docs-markdown-p">and the directives:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">sbb-dropdown-trigger</li>
+    <li class="docs-markdown-li">sbb-dropdown-origin</li>
+    <li class="docs-markdown-li">sbb-dropdown-item</li>
+  </ul>
+  <h2 class="docs-markdown-h2">How to use</h2>
+  <p class="docs-markdown-p">The sbb-dropdown uses <code class="docs-markdown-code">a, button, hr</code> elements to build its items list. That being said, you have to use the <code class="docs-markdown-code">sbbDropdownItem</code> directive on every link/button you want to be listed and properly used into the dropdown.</p>
+  <p class="docs-markdown-p">You need also to add a dropdown trigger, using the <code class="docs-markdown-code">sbbDropdownTrigger</code> directive on a separate element (maybe a button, a div, or what you prefer).</p>
+  <p class="docs-markdown-p">In the case below, a button has been used:</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> [<span class="hljs-attr">sbbDropdown</span>]=<span class="hljs-string">"dropdown"</span>&gt;</span>Open dropdown<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span> #<span class="hljs-attr">dropdown</span>=<span class="hljs-string">"sbbDropdown"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+    <span class="hljs-attr">sbbDropdownItem</span>
+    [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.']"</span>
+    [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{ page : 1}"</span>
+    <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+    &gt;</span>Test<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>
+  &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+    <span class="hljs-attr">sbbDropdownItem</span>
+    [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.']"</span>
+    [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{ page : 2}"</span>
+    <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+    &gt;</span>Test 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>
+  &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+    <span class="hljs-attr">sbbDropdownItem</span>
+    [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.']"</span>
+    [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{ page : 3}"</span>
+    <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+    &gt;</span>Test 3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>
+  &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"onClick()"</span>&gt;</span>Logout<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">More details are available in the <code class="docs-markdown-code">Examples</code> page.</p>
+</body>
+
+</html>

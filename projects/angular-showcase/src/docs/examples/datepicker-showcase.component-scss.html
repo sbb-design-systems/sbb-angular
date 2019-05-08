@@ -1,0 +1,17 @@
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'../../../../../../dist/sbb-esta/angular-public/styles.scss'</span>;
+
+<span class="hljs-selector-class">.sbbsc-medium-field</span> {
+  &amp;:first-of-type {
+    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">1em</span>;
+  }
+
+  @<span class="hljs-keyword">include</span> mq(<span class="hljs-variable">$from</span>: tabletPortrait) {
+    &amp;:first-of-type {
+      <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">0.5em</span>;
+      <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0</span>;
+    }
+    &amp;:last-of-type {
+      <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">0.5em</span>;
+    }
+  }
+}

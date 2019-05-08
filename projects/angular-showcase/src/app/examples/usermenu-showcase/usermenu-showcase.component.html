@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <p>
+        Please, to click on "Login" to login and subsequently to click on arrow
+        down to expand the user menu.
+      </p>
+      <h4 class="sbbsc-block">
+        Basic Example with custom user image and with userName and displayName
+      </h4>
+      <sbb-usermenu
+        [userName]="user1.userName"
+        [displayName]="user1.displayName"
+        (loginRequest)="login()"
+      >
+        <img sbbIcon src="assets/images/user-avatar.png" />
+        <sbb-dropdown>
+          <a
+            *ngFor="let link of links"
+            sbbDropdownItem
+            [routerLink]="linkGenerator(link.page).routerLink"
+            [queryParams]="linkGenerator(link.page).queryParams"
+            routerLinkActive="sbb-selected"
+          >
+            {{ link.text }}
+          </a>
+          <hr />
+          <button sbbDropdownItem type="button" (click)="logout(user1)">
+            Logout
+          </button>
+        </sbb-dropdown>
+      </sbb-usermenu>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="sbbsc-block">
+        Example without user image but with displayName and userName
+      </h4>
+      <sbb-usermenu
+        [userName]="user2.userName"
+        [displayName]="user2.displayName"
+        (loginRequest)="login2()"
+      >
+        <sbb-dropdown>
+          <a
+            *ngFor="let link of links"
+            sbbDropdownItem
+            [routerLink]="linkGenerator(link.page).routerLink"
+            [queryParams]="linkGenerator(link.page).queryParams"
+            routerLinkActive="sbb-selected"
+          >
+            {{ link.text }}
+          </a>
+          <hr />
+          <button sbbDropdownItem type="button" (click)="logout(user2)">
+            Logout
+          </button>
+        </sbb-dropdown>
+      </sbb-usermenu>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="sbbsc-block">Example only with userName</h4>
+      <sbb-usermenu [userName]="user3.userName" (loginRequest)="login3()">
+        <sbb-dropdown>
+          <a
+            *ngFor="let link of links"
+            sbbDropdownItem
+            [routerLink]="linkGenerator(link.page).routerLink"
+            [queryParams]="linkGenerator(link.page).queryParams"
+            routerLinkActive="sbb-selected"
+          >
+            {{ link.text }}
+          </a>
+          <hr />
+          <button sbbDropdownItem type="button" (click)="logout(user3)">
+            Logout
+          </button>
+        </sbb-dropdown>
+      </sbb-usermenu>
+    </div>
+  </div>
+</div>

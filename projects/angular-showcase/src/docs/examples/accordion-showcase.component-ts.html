@@ -1,0 +1,141 @@
+<span class="hljs-keyword">import</span> {
+  Component,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormArray, FormControl, FormGroup } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { Subscription } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
+<span class="hljs-keyword">import</span> { AccordionComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-accordion-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./accordion-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./accordion-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AccordionShowcaseComponent <span class="hljs-keyword">implements</span> OnInit, OnDestroy {
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'firstAccordion'</span>) firstAccordion: AccordionComponent;
+
+  panelOpenState = <span class="hljs-literal">false</span>;
+  step = <span class="hljs-number">0</span>;
+  disabled = <span class="hljs-literal">false</span>;
+  panelMode = <span class="hljs-string">'panel 1'</span>;
+  panels = [<span class="hljs-string">'panel 1'</span>, <span class="hljs-string">'panel 2'</span>, <span class="hljs-string">'panel 3'</span>, <span class="hljs-string">'panel 4'</span>, <span class="hljs-string">'panel 5'</span>];
+  accordionForm: FormGroup;
+  onRadioChange: Subscription;
+  onModeChange: Subscription;
+  onDisabledChange: Subscription;
+  onMultiChange: Subscription;
+  onHideToggle: Subscription;
+  radioDisable = <span class="hljs-literal">true</span>;
+  multi = <span class="hljs-literal">false</span>;
+  hideToggle = <span class="hljs-literal">false</span>;
+
+  radioOptions = [
+    {
+      name: <span class="hljs-string">'Open all'</span>,
+      value: <span class="hljs-string">'openAll'</span>
+    },
+    {
+      name: <span class="hljs-string">'Close all'</span>,
+      value: <span class="hljs-string">'closeAll'</span>
+    }
+  ];
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">this</span>.accordionForm = <span class="hljs-keyword">new</span> FormGroup({
+      radioModes: <span class="hljs-keyword">new</span> FormControl({ value: <span class="hljs-literal">null</span>, disabled: <span class="hljs-literal">true</span> }),
+      disabled: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-keyword">this</span>.disabled),
+      multi: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-keyword">this</span>.multi),
+      panelMode: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-keyword">this</span>.panelMode),
+      hideToggle: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-keyword">this</span>.hideToggle)
+    });
+  }
+
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.onRadioChange = <span class="hljs-keyword">this</span>.accordionForm
+      .get(<span class="hljs-string">'radioModes'</span>)
+      .valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-keyword">switch</span> (value) {
+          <span class="hljs-keyword">case</span> <span class="hljs-string">'openAll'</span>:
+            <span class="hljs-keyword">this</span>.firstAccordion.openAll();
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> <span class="hljs-string">'closeAll'</span>:
+            <span class="hljs-keyword">this</span>.firstAccordion.closeAll();
+            <span class="hljs-keyword">break</span>;
+        }
+      });
+
+    <span class="hljs-keyword">this</span>.onMultiChange = <span class="hljs-keyword">this</span>.accordionForm
+      .get(<span class="hljs-string">'multi'</span>)
+      .valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.multi = value;
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.multi === <span class="hljs-literal">true</span>) {
+          <span class="hljs-keyword">this</span>.accordionForm.get(<span class="hljs-string">'radioModes'</span>).enable();
+          <span class="hljs-keyword">this</span>.accordionForm.get(<span class="hljs-string">'panelMode'</span>).disable();
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">this</span>.accordionForm.get(<span class="hljs-string">'radioModes'</span>).disable();
+          <span class="hljs-keyword">this</span>.accordionForm.get(<span class="hljs-string">'panelMode'</span>).enable();
+        }
+      });
+
+    <span class="hljs-keyword">this</span>.onDisabledChange = <span class="hljs-keyword">this</span>.accordionForm
+      .get(<span class="hljs-string">'disabled'</span>)
+      .valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.disabled = value;
+      });
+
+    <span class="hljs-keyword">this</span>.onHideToggle = <span class="hljs-keyword">this</span>.accordionForm
+      .get(<span class="hljs-string">'hideToggle'</span>)
+      .valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.hideToggle = value;
+      });
+
+    <span class="hljs-keyword">this</span>.onModeChange = <span class="hljs-keyword">this</span>.accordionForm
+      .get(<span class="hljs-string">'panelMode'</span>)
+      .valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.panelMode = value;
+      });
+  }
+
+  setStep(index: <span class="hljs-built_in">number</span>) {
+    <span class="hljs-keyword">this</span>.step = index;
+  }
+
+  nextStep() {
+    <span class="hljs-keyword">this</span>.step++;
+  }
+
+  prevStep() {
+    <span class="hljs-keyword">this</span>.step--;
+  }
+
+  log(...args: <span class="hljs-built_in">any</span>[]) {
+    <span class="hljs-built_in">console</span>.log(args);
+  }
+
+  logAndPreventOpeningPanel(evt, message) {
+    <span class="hljs-built_in">console</span>.log(message);
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+
+  logAndPreventOpeningPanelKeyDown(evt: KeyboardEvent, message) {
+    <span class="hljs-keyword">if</span> (evt.keyCode === <span class="hljs-number">13</span> || evt.keyCode === <span class="hljs-number">32</span>) {
+      <span class="hljs-built_in">console</span>.log(message);
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
+  }
+
+  ngOnDestroy() {
+    <span class="hljs-keyword">this</span>.onRadioChange.unsubscribe();
+    <span class="hljs-keyword">this</span>.onDisabledChange.unsubscribe();
+    <span class="hljs-keyword">this</span>.onMultiChange.unsubscribe();
+    <span class="hljs-keyword">this</span>.onHideToggle.unsubscribe();
+    <span class="hljs-keyword">this</span>.onModeChange.unsubscribe();
+  }
+}

@@ -1,35 +1,30 @@
 {
+  "extends": ["tslint-plugin-prettier", "tslint-config-prettier"],
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "node_modules/tslint-consistent-codestyle/rules"
   ],
   "rules": {
+    "arrow-parens": [true, "ban-single-arg-parens"],
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "curly": true,
-    "deprecation": {
-      "severity": "warn"
-    },
+    "deprecation": false,
     "eofline": true,
     "forin": true,
-    "import-blacklist": [
-      true,
-      "rxjs/Rx"
-    ],
+    "import-blacklist": [true, "rxjs/Rx"],
     "import-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
+    "indent": [true, "spaces"],
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      {
+        "limit": 120,
+        "ignore-pattern": "^import |^export {(.*?)}"
+      }
     ],
     "member-access": false,
     "member-ordering": [
@@ -43,26 +38,108 @@
         ]
       }
     ],
+    "naming-convention": [
+      true,
+      // forbid leading and trailing underscores and enforce camelCase on EVERY name. will be overridden by subtypes if needed
+      {
+        "type": "default",
+        "format": "camelCase",
+        "leadingUnderscore": "forbid",
+        "trailingUnderscore": "forbid"
+      },
+      // require all global constants to be camelCase or UPPER_CASE
+      // all other variables and functions still need to be camelCase
+      {
+        "type": "variable",
+        "modifiers": ["global", "const"],
+        "format": ["camelCase", "UPPER_CASE"]
+      },
+      // override the above format option for exported constants to allow only UPPER_CASE
+      {
+        "type": "variable",
+        "modifiers": ["export", "const"],
+        "format": "UPPER_CASE"
+      },
+      // disable for mixins and inline providers
+      {
+        "type": "variable",
+        "modifiers": ["export", "const"],
+        "filter": "(^(sbb|Sbb|SBB_)|^environment$)",
+        "format": null
+      },
+      // disable for provider factories
+      {
+        "type": "function",
+        "modifiers": "export",
+        "filter": "^SBB_",
+        "format": null
+      },
+      // require exported constant variables that are initialized with functions to be camelCase
+      {
+        "type": "functionVariable",
+        "modifiers": ["export", "const"],
+        "format": "camelCase"
+      },
+      // allow leading underscores for unused parameters, because `tsc --noUnusedParameters` will not flag underscore prefixed parameters
+      // all other rules (trailingUnderscore: forbid, format: camelCase) still apply
+      {
+        "type": "parameter",
+        "modifiers": "unused",
+        "leadingUnderscore": "allow"
+      },
+      // allow placeholder parameters like (_: any) => any
+      {
+        "type": "parameter",
+        "filter": "^_$",
+        "leadingUnderscore": "allow"
+      },
+      // require leading underscores for private properties and methods, all other rules still apply
+      {
+        "type": "member",
+        "modifiers": "private",
+        "leadingUnderscore": "require"
+      },
+      // same for protected
+      {
+        "type": "member",
+        "modifiers": "protected",
+        "leadingUnderscore": "require"
+      },
+      // exclicitly disable the format check only for method toJSON
+      {
+        "type": "method",
+        "filter": "^toJSON$",
+        "format": null
+      },
+      // enforce UPPER_CASE for all public static readonly(!) properties
+      {
+        "type": "property",
+        "modifiers": ["public", "static", "const"],
+        "format": "UPPER_CASE"
+      },
+      // enforce PascalCase for classes, interfaces, enums, etc. Remember, there are still no underscores allowed.
+      {
+        "type": "type",
+        "format": "PascalCase"
+      },
+      // enum members must be in PascalCase. Without this config, enumMember would inherit UPPER_CASE from public static const property
+      {
+        "type": "enumMember",
+        "format": "PascalCase"
+      }
+    ],
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-collapsible-if": true,
+    "no-consecutive-blank-lines": true,
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": [true, "ignore-params"],
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-redundant-jsdoc": true,
@@ -74,6 +151,7 @@
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
+    "no-var-before-return": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -83,20 +161,19 @@
       "check-else",
       "check-whitespace"
     ],
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true
+      }
+    ],
+    "parameter-properties": [true, "leading"],
     "prefer-const": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
+    "prettier": true,
+    "quotemark": [true, "single"],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [
       false,
       {

@@ -7,8 +7,6 @@
 
 # dependencies
 /node_modules
-/docker/node_modules
-/docker/yarn.lock
 
 # IDEs and editors
 /.idea
@@ -43,7 +41,8 @@ lintReport.json
 Thumbs.db
 
 # Projects node_modules
-/projects/sbb-angular/node_modules
-projects/sbb-angular/output.log
 .history/
 yarn.lock
+.js
+.js.map
+.d.ts

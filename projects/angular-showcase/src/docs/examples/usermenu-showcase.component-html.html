@@ -1,0 +1,91 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+        Please, to click on "Login" to login and subsequently to click on arrow
+        down to expand the user menu.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+        Basic Example with custom user image and with userName and displayName
+      <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span>
+        [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user1.userName"</span>
+        [<span class="hljs-attr">displayName</span>]=<span class="hljs-string">"user1.displayName"</span>
+        (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"login()"</span>
+      &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">sbbIcon</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/images/user-avatar.png"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+            *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span>
+            <span class="hljs-attr">sbbDropdownItem</span>
+            [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
+            [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"linkGenerator(link.page).queryParams"</span>
+            <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+          &gt;</span>
+            {{ link.text }}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logout(user1)"</span>&gt;</span>
+            Logout
+          <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-usermenu</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+        Example without user image but with displayName and userName
+      <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span>
+        [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user2.userName"</span>
+        [<span class="hljs-attr">displayName</span>]=<span class="hljs-string">"user2.displayName"</span>
+        (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"login2()"</span>
+      &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+            *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span>
+            <span class="hljs-attr">sbbDropdownItem</span>
+            [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
+            [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"linkGenerator(link.page).queryParams"</span>
+            <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+          &gt;</span>
+            {{ link.text }}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logout(user2)"</span>&gt;</span>
+            Logout
+          <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-usermenu</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Example only with userName<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user3.userName"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"login3()"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+            *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span>
+            <span class="hljs-attr">sbbDropdownItem</span>
+            [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
+            [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"linkGenerator(link.page).queryParams"</span>
+            <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+          &gt;</span>
+            {{ link.text }}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logout(user3)"</span>&gt;</span>
+            Logout
+          <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-usermenu</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

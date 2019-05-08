@@ -1,0 +1,92 @@
+@import '../../../styles/main';
+
+.sbb-usermenu {
+  &-logged-in {
+    @include usermenuLoggedIn;
+
+    &.sbb-usermenu-hidden {
+      display: none;
+    }
+
+    &-active {
+      @include usermenuLoggedInActive;
+    }
+
+    &-collapsed {
+      @include usermenuLoggedInCollapsed;
+
+      &-user-icon {
+        @include usermenuUserIcon;
+
+        .sbb-usermenu-logged-in-collapsed-icon {
+          @include usermenuLoggedInCollapsedIcon;
+        }
+
+        .sbb-usermenu-logged-in-collapsed-initial-letters {
+          @include usermenuLoggedInCollapsedInitialLetters;
+
+          > div {
+            @include absoluteCenterXY;
+          }
+        }
+      }
+
+      &-dropdown-expanded {
+        width: 100%;
+      }
+
+      &-arrow {
+        @include usermenuLoggedInCollapsedArrow;
+      }
+
+      .sbb-usermenu-logged-in-expanded-info-user {
+        @include usermenuLoggedInExpandedInfoUser;
+
+        .sbb-usermenu-logged-in-expanded-username {
+          @include usermenuLoggedInExpandedUsername;
+        }
+
+        .sbb-usermenu-logged-in-expanded-displayName {
+          @include usermenuLoggedInExpandedDisplayName;
+          &.sbb-displayName-logged-in-collapsed {
+            @include displayNameLoggedInCollapsed;
+          }
+        }
+      }
+
+      .sbb-usermenu-logged-in-expanded-arrow-above {
+        flex-basis: 2px;
+
+        .sbb-usermenu-logged-in-expanded-arrow {
+          @include usermenuLoggedInExpandedArrow;
+        }
+      }
+    }
+  }
+
+  .sbb-usermenu-logged-off {
+    @include usermenuLoggedOff;
+
+    &:hover {
+      .sbb-usermenu-logged-off-icon-user {
+        @include svgIconColor($colorRed125);
+      }
+
+      .sbb-usermenu-logged-off-button {
+        color: $colorRed125;
+      }
+    }
+
+    &-icon-user {
+      @include usermenuLoggedOffIconUser;
+    }
+
+    &-button {
+      @include usermenuLoggedOffButton;
+    }
+  }
+
+  img {
+    @include imageStyle;
+  }
+}

@@ -1,0 +1,148 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL notification </h2>
+  <p class="docs-api-module-import">
+    <code> import { NotificationsModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="NotificationComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="NotificationComponent"></span>
+    <code>NotificationComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-notification</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>icon: TemplateRef&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The icon to be used into the notification left side. By default uses three icons for SUCCESS, ERROR or INFO notification type, but the user can use his own icon using the NotificationIconDirective.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>jumpMarks: JumpMark[]</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>List of in page links displayed on the bottom of the notification</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>message: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Message displayed into the notification content</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>type: &#39;success&#39; | &#39;info&#39; | &#39;error&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Type of notification.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">scrollTo </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Used to scroll to an element identified by a jump mark</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">any</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>click event</p>
+        </p>
+      </td>
+    </tr>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> jumpMark</p>
+        <code class="docs-api-method-parameter-type">JumpMark</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+          <p>jump mark after the notification message</p>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="NotificationIconDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="NotificationIconDirective"></span>
+    <code>NotificationIconDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbNotificationIcon]</span>
+  </p>
+  <h3 id="additional_interfaces" class="docs-header-link docs-api-h3">
+    <span header-link="additional_interfaces"></span> Additional interfaces </h3>
+  <h4 id="JumpMark" class="docs-header-link docs-api-h4 docs-api-interface-name">
+    <span header-link="JumpMark"></span>
+    <code>JumpMark</code>
+  </h4>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>elementId: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of an element in jump marks.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>title: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Title of an element in jump marks.</p>
+      </td>
+    </tr>
+  </table>
+</div>

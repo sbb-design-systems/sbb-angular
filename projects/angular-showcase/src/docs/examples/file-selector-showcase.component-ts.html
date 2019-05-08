@@ -1,0 +1,69 @@
+<span class="hljs-keyword">import</span> { Component, OnDestroy, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { Subscription } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
+<span class="hljs-keyword">import</span> {
+  FileSelectorTypesService,
+  FileTypeCategory
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'sbb-file-selector-showcase'</span>,
+  templateUrl: <span class="hljs-string">'./file-selector-showcase.component.html'</span>,
+  styleUrls: [<span class="hljs-string">'./file-selector-showcase.component.scss'</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FileSelectorShowcaseComponent <span class="hljs-keyword">implements</span> OnInit, OnDestroy {
+  filesList1: File[] = [];
+
+  filesList2: File[] = [];
+
+  filesList3: File[] = [];
+
+  disabled: <span class="hljs-built_in">boolean</span>;
+
+  fileControl = <span class="hljs-keyword">new</span> FormControl();
+  fileControlSubscription = Subscription.EMPTY;
+
+  accept: <span class="hljs-built_in">string</span>;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> _fileTypeService: FileSelectorTypesService</span>) {
+    <span class="hljs-keyword">this</span>.accept = <span class="hljs-keyword">this</span>._fileTypeService.getAcceptString([
+      FileTypeCategory.IMAGE,
+      FileTypeCategory.ZIP
+    ]);
+  }
+
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.fileControlSubscription = <span class="hljs-keyword">this</span>.fileControl.valueChanges.subscribe(
+      <span class="hljs-function">(<span class="hljs-params">files: File[]</span>) =&gt;</span> {
+        <span class="hljs-keyword">this</span>.filesList3 = files;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    <span class="hljs-keyword">this</span>.fileControlSubscription.unsubscribe();
+  }
+
+  fileChanged(filesList: File[]) {
+    <span class="hljs-keyword">this</span>.filesList1 = filesList;
+  }
+
+  beautifyFileList(filesList: File[]) {
+    <span class="hljs-keyword">if</span> (filesList) {
+      <span class="hljs-keyword">return</span> filesList.map(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> {
+          name: f.name,
+          size: f.size,
+          <span class="hljs-keyword">type</span>: f.type,
+          lastModified: f.lastModified
+        };
+      });
+    }
+  }
+
+  setDisabled($event: <span class="hljs-built_in">any</span>) {
+    $event.target.checked
+      ? <span class="hljs-keyword">this</span>.fileControl.disable()
+      : <span class="hljs-keyword">this</span>.fileControl.enable();
+  }
+}

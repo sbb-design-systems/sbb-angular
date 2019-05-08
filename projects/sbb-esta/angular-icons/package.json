@@ -1,0 +1,26 @@
+{
+  "name": "@sbb-esta/angular-icons",
+  "version": "0.0.0-PLACEHOLDER",
+  "scripts": {
+    "lint": "ng lint @sbb-esta/angular-icons",
+    "test": "ng test @sbb-esta/angular-icons -c ci",
+    "build": "run-s build:ng build:license",
+    "build:ng": "ng build @sbb-esta/angular-icons",
+    "build:license": "cd ../../../ && copyfiles LICENSE ./dist/sbb-esta/angular-icons/",
+    "build:schematics": "rollup --config rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+  },
+  "homepage": "https://sbb-angular.app.sbb.ch/latest",
+  "schematics": "./schematics/collection.json",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  }
+}

@@ -1,0 +1,549 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL breadcrumb </h2>
+  <p class="docs-api-module-import">
+    <code> import { BreadcrumbModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="BreadcrumbsComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="BreadcrumbsComponent"></span>
+    <code>BreadcrumbsComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-breadcrumbs</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of a sbb-breadcrumbs.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>expanded: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Status expanded of a sbb-breadcrumbs.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>levels: QueryList&lt;BreadcrumbComponent&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to BreadcrumbComponents instance.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="BreadcrumbComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="BreadcrumbComponent"></span>
+    <code>BreadcrumbComponent</code>
+    <span class="docs-api-class-extends-clauses">
+      <span class="docs-api-class-extends-label">extends</span>
+      <span class="docs-api-class-extends-type">DropdownTriggerDirective</span>
+    </span>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-breadcrumb</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbDropdownConnectedTo&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>connectedTo: DropdownOriginDirective</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Reference relative to which to position the dropdown panel. Defaults to the dropdown trigger element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbDropdownDisabled&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>dropdownDisabled: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether the dropdown is disabled. When disabled, the element will act as a regular input and the user won&#39;t be able to open the panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>expandEvent: EventEmitter&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event emitted at the expansion of the dropdown.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>activeOption: DropdownItemDirective | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The currently active option, coerced to SbbOption type.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>activeOptionId: string | null</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The currently active option identifier.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaExpanded: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Attribute that refers to the expansion of the dropdown panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaOwns: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Attribute whose value is associated to dropdown id.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>breadcrumbTrigger: ElementRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Trigger on the open of the dropdown contained in breadcrumb.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>changeDetectorRef: ChangeDetectorRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of a sbb-breadcrumb.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>dropdown: DropdownComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to a dropdown instance.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>element: ElementRef&lt;HTMLInputElement&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isFirst: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Checks if the current breadcrumb is the first child of his parent (breadcrumbs)</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (value: any) =&gt; void</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p><code>View -&gt; model callback called when value changes</code></p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p><code>View -&gt; model callback called when dropdown has been touched</code></p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>optionSelections: Observable&lt;DropdownSelectionChange&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Stream of dropdown option selections.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>overlay: Overlay</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelClass: &#39;sbb-breadcrumb-panel&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class on a breadcrumb panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelClosingActions: Observable&lt;DropdownSelectionChange | null&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>A stream of actions that should close the dropdown panel, including when an option is selected, on blur, and when TAB is pressed.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>panelOpen: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Whether or not the dropdown panel is open.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>positionStrategy: FlexibleConnectedPositionStrategy</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Strategy that is used to position the panel.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Role on a dropdown trigger.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>scrollStrategy: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>viewContainerRef: ViewContainerRef</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>viewportRuler: ViewportRuler</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>zone: NgZone</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description"></td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">attachOverlay </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">closePanel </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Closes the dropdown suggestion panel.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">expand </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">any</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getConnectedElement </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">ElementRef</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getHostWidth </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Returns the width of the input element, so the panel width can match it.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">number</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getOverlayPosition </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">PositionStrategy</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">getPanelWidth </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-returns-header-row">
+        <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="docs-api-method-returns-type-cell">
+        <code class="docs-api-method-returns-type">number | string</code>
+      </td>
+      <td class="docs-api-method-returns-description-cell">
+        <p class="docs-api-method-returns-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">handleClick </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">any</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">handleKeydown </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Handles all keydown events on the select.</p>
+      </td>
+    </tr>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> event</p>
+        <code class="docs-api-method-parameter-type">KeyboardEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onBlur </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">onKeydown </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> $event</p>
+        <code class="docs-api-method-parameter-type">KeyboardEvent</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">openPanel </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Opens the dropdown suggestion panel.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">scrollToOption </th>
+      </tr>
+    </thead>
+  </table>
+</div>

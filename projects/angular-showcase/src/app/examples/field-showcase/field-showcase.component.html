@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <form autocomplete="off" [formGroup]="form">
+        <div>
+          <h4 class="sbbsc-block">
+            Field with attribute label (Input is required)
+          </h4>
+          <sbb-field label="Name" [mode]="inputMode">
+            <input
+              type="text"
+              sbbInput
+              formControlName="name1"
+              autocomplete="off"
+              placeholder="Name"
+              spellcheck="false"
+            />
+            <sbb-form-error *ngIf="form.get('name1').errors?.required"
+              >Name is required!</sbb-form-error
+            >
+          </sbb-field>
+          <p>Model: {{ form.get('name1').value | json }}</p>
+        </div>
+        <div>
+          <h4 class="sbbsc-block">
+            Field with sbb-label (Input is required and must be at least 3
+            characters)
+          </h4>
+          <sbb-field [mode]="inputMode">
+            <sbb-label>Name</sbb-label>
+            <input
+              type="text"
+              sbbInput
+              formControlName="name2"
+              autocomplete="off"
+              placeholder="Name"
+              spellcheck="false"
+              required
+              minlength="3"
+            />
+            <sbb-form-error *ngIf="form.get('name2').errors?.required"
+              >Name is required!</sbb-form-error
+            >
+            <sbb-form-error *ngIf="form.get('name2').errors?.minlength"
+              >Name must contain at least 3 characters!
+            </sbb-form-error>
+          </sbb-field>
+          <p>Model: {{ form.get('name2').value | json }}</p>
+        </div>
+        <div>
+          <h4 class="sbbsc-block">Field with select</h4>
+          <sbb-field label="Number" [mode]="inputMode">
+            <select sbbInput formControlName="select1">
+              <option></option>
+              <option>Eins</option>
+              <option>Zwei</option>
+              <option>Drei</option>
+            </select>
+            <sbb-form-error *ngIf="form.get('select1').errors?.required"
+              >Number is required!</sbb-form-error
+            >
+          </sbb-field>
+          <p>Model: {{ form.get('select1').value | json }}</p>
+        </div>
+        <div>
+          <h4 class="sbbsc-block">Field with sbb-select</h4>
+          <sbb-field label="Variant" [mode]="inputMode">
+            <sbb-select placeholder="Select a number" formControlName="select2">
+              <sbb-option *ngFor="let value of [1, 2, 3]" [value]="value"
+                >Variant {{ value }}</sbb-option
+              >
+            </sbb-select>
+            <sbb-form-error
+              *ngIf="
+                form.get('select2').touched &&
+                form.get('select2').errors?.required
+              "
+            >
+              Variant is required!</sbb-form-error
+            >
+          </sbb-field>
+          <p>Model: {{ form.get('select2').value | json }}</p>
+        </div>
+        <div>
+          <h4 class="sbbsc-block">Field with sbb-datepicker</h4>
+          <sbb-field label="Date" [mode]="inputMode">
+            <sbb-datepicker arrows>
+              <input sbbInput sbbDateInput formControlName="date" type="text" />
+            </sbb-datepicker>
+            <sbb-form-error
+              *ngIf="
+                form.get('date').touched && form.get('date').errors?.required
+              "
+            >
+              Date is required!</sbb-form-error
+            >
+          </sbb-field>
+          <p>Model: {{ form.get('date').value | json }}</p>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <div class="sbbsc-block">
+        <sbb-label>Modes :</sbb-label>
+        <select [(ngModel)]="inputMode">
+          <option *ngFor="let mode of modes" [ngValue]="mode">{{
+            mode
+          }}</option>
+        </select>
+      </div>
+      <sbb-checkbox
+        inputId="disabled"
+        type="checkbox"
+        (click)="toggleDisabled($event)"
+        >Disabled</sbb-checkbox
+      >
+      <button sbbButton type="button" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</div>

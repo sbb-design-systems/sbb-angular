@@ -1,0 +1,408 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL option-selection </h2>
+  <p class="docs-api-module-import">
+    <code> import { OptionSelectionModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="OptionSelectionComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="OptionSelectionComponent"></span>
+    <code>OptionSelectionComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-option-selection</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-describedby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaDescribedby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-describedby&#39; attribute is read after the element&#39;s label and field type.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-label&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabel: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Used to set the &#39;aria-label&#39; attribute on the underlying input element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-labelledby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabelledby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-labelledby&#39; attribute takes precedence as the element&#39;s text alternative.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>checked: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The checked state of the option selection.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The disabled state of the option selection.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>formControlName: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Indicates option selection name in formControl.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>image: TemplateRef&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Template that will contain icons. Use the *sbbOptionSelectionImage structural directive to provide the desired icon/image.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>inputId: `sbb-option-selection-${counter++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Option selection identifier</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Label of a option selection.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>required: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Indicates that the option selection field is required.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>subtitle: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Subtitle of a option selection.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hasSubtitle: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Returns the subtitle of a option selection.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (_: any) =&gt; { this.embeddedRadio.onChange(_); }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a change on the option selection.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { this.embeddedRadio.onTouched(); }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a touch on the option selection.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">click </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Manage the event click on the option selection.</p>
+      </td>
+    </tr>
+  </table>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">uncheck </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Unchecks the option selection.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="OptionSelectionMultipleComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="OptionSelectionMultipleComponent"></span>
+    <code>OptionSelectionMultipleComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-option-selection-multiple</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-describedby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaDescribedby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-describedby&#39; attribute is read after the element&#39;s label and field type.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-label&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabel: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Used to set the &#39;aria-label&#39; attribute on the underlying input element.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;aria-labelledby&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>ariaLabelledby: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The &#39;aria-labelledby&#39; attribute takes precedence as the element&#39;s text alternative.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>checked: boolean</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The checked state of the option selection multiple.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>disabled: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The disabled state of the option selection multiple.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>formControlName: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Indicates option selection multiple name in formControl.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>image: TemplateRef&lt;any&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Template that will contain icons. Use the *sbbOptionSelectionImage structural directive to provide the desired icon/image.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>inputId: `sbb-option-selection-multiple-${counter++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Option selection multiple identifier.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>label: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Label of a option selection multiple.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>name: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Name contained in a option selection multiple field.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>required: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Indicates that the option selection multiple field is required.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>subtitle: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Subtitle of a option selection multiple.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>value: any</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Value contained in a option selection multiple field.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>hasSubtitle: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Returns the subtitle of a option selection multiple.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onChange: (_: any) =&gt; { this.embeddedCheckbox.onChange(_); }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a change on the option selection multiple.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>onTouched: () =&gt; { this.embeddedCheckbox.onTouched(); }</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class property that represents a touch on the option selection multiple.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">click </th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-description-row">
+      <td colspan="2" class="docs-api-method-description-cell">
+        <p>Manage the event click on the option selection multiple.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="OptionSelectionImageDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="OptionSelectionImageDirective"></span>
+    <code>OptionSelectionImageDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbOptionSelectionImage]</span>
+  </p>
+</div>

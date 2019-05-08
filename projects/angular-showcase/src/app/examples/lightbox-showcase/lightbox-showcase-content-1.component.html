@@ -1,0 +1,23 @@
+<header sbbLightboxHeader></header>
+<div sbbLightboxContent>
+  <div class="sbbsc-lightbox-example-1-content">
+    <h1 sbbLightboxTitle>Hi {{ data.name }}</h1>
+    <p>What's your favorite animal?</p>
+    <sbb-field label="Animal" mode="long">
+      <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
+    </sbb-field>
+    <div class="sbbsc-block">
+      <button
+        sbbButton
+        mode="ghost"
+        (click)="noThanks()"
+        style="margin-right: 1em;"
+      >
+        No Thanks
+      </button>
+      <button sbbButton [sbbLightboxClose]="data.animal" cdkFocusInitial>
+        Ok
+      </button>
+    </div>
+  </div>
+</div>

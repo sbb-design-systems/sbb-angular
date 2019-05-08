@@ -1,31 +1,29 @@
 {
-  "name": "sbb-angular-showcase",
-  "version": "1.1.0",
+  "name": "@sbb-esta/angular-showcase",
+  "version": "0.0.0-PLACEHOLDER",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "clean": "rimraf dist coverage lintReport.json",
-    "build": "run-s build:library build:showcase",
-    "build:library": "run-s build:library:ng build:library:styles build:library:typography",
-    "build:library:ng": "ng build sbb-angular",
-    "build:library:styles": "scss-bundle -e ./projects/sbb-angular/src/styles/main.scss -d ./dist/sbb-angular/styles.scss",
-    "build:library:typography": "node-sass ./projects/sbb-angular/src/typography.scss ./dist/sbb-angular/typography.css",
-    "build:icons": "ts-node -P scripts/tsconfig.json ./scripts/svg/svg-generator projects/sbb-angular/svgs projects/sbb-angular/src/lib/svg-icons src/app",
-    "build:showcase": "ng build sbb-angular-showcase --prod",
-    "test": "run-s test:*",
-    "test:showcase": "ng test sbb-angular-showcase -c ci",
-    "test:library": "ng test sbb-angular -c ci",
-    "lint": "run-s lint:*",
-    "lint:showcase": "ng lint sbb-angular-showcase",
-    "lint:library": "run-s lint:library:*",
-    "lint:library:console": "ng lint sbb-angular",
-    "lint:library:report": "ng lint sbb-angular --format=json > lintReport.json",
-    "sonar": "sonar-scanner",
-    "sbb:publish": "node scripts/publish.js",
-    "e2e": "ng e2e",
+    "lint": "ng lint angular-showcase",
+    "test": "ng test angular-showcase -c ci",
+    "build": "ng build angular-showcase --prod",
+    "build:angular-icons": "cd projects/sbb-esta/angular-icons && npm run build",
+    "build:angular-icons:license": "cd projects/sbb-esta/angular-icons && npm run build:license",
+    "build:angular-icons:schematics": "cd projects/sbb-esta/angular-icons && npm run build:schematics",
+    "build:angular-public": "cd projects/sbb-esta/angular-public && npm run build",
+    "e2e": "ng e2e angular-showcase",
     "docs": "gulp docs"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+  },
+  "homepage": "https://sbb-angular.app.sbb.ch/latest",
   "dependencies": {
     "@angular/animations": "^7.2.0",
     "@angular/cdk": "^7.2.1",
@@ -43,14 +41,17 @@
     "font-awesome": "^4.7.0",
     "ngx-monaco-editor": "^6.0.0",
     "ngx-perfect-scrollbar": "^7.2.0",
-    "rxjs": "^6.3.3",
+    "rxjs": "6.3.3",
     "util": "^0.10.4",
     "zone.js": "^0.8.27"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.12.1",
-    "@angular-devkit/build-ng-packagr": "^0.12.1",
-    "@angular/cli": "^7.2.1",
+    "@angular-devkit/build-angular": "0.13.8",
+    "@angular-devkit/build-ng-packagr": "0.13.8",
+    "@angular-devkit/core": "^7.3.8",
+    "@angular-devkit/schematics": "^7.3.8",
+    "@angular-devkit/schematics-cli": "0.13.8",
+    "@angular/cli": "7.3.8",
     "@angular/compiler-cli": "^7.2.0",
     "@angular/language-service": "^7.2.0",
     "@types/grecaptcha": "^2.0.36",
@@ -60,6 +61,8 @@
     "@types/node": "^8.10.37",
     "@types/run-sequence": "^0.0.30",
     "codelyzer": "^4.5.0",
+    "copyfiles": "^2.1.0",
+    "cross-env": "^5.2.0",
     "dgeni": "^0.4.11",
     "dgeni-packages": "^0.27.1",
     "gulp": "^3.9.1",
@@ -95,8 +98,10 @@
     "ng-packagr": "^4.4.5",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "1.17.0",
     "protractor": "^5.4.2",
-    "puppeteer": "^1.11.0",
+    "rollup": "^1.9.0",
+    "rollup-plugin-typescript2": "^0.20.1",
     "run-sequence": "^2.2.1",
     "scss-bundle": "^2.4.0",
     "semver": "^5.6.0",
@@ -107,7 +112,39 @@
     "tsickle": "^0.33.1",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-consistent-codestyle": "^1.15.1",
+    "tslint-plugin-prettier": "^2.0.1",
     "tslint-sonarts": "^1.9.0",
     "typescript": "~3.2.2"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^1.11.0"
+  },
+  "staging": {
+    "root": "./dist/angular-showcase"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,css,scss,json,md,html}": [
+      "prettier --write",
+      "git add",
+      "npx ng lint @sbb-esta/angular-public"
+    ]
   }
 }

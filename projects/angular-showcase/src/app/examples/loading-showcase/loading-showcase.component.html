@@ -1,0 +1,58 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep no-fix-width">
+      <h4 class="sbbsc-block">Simple loading example</h4>
+      <ul class="sbbsc-loaders-list">
+        <li>
+          <p>Tiny</p>
+          <sbb-loading
+            mode="tiny"
+            aria-valuetext="Loading 1 please wait"
+          ></sbb-loading>
+        </li>
+        <li>
+          <p>Small</p>
+          <sbb-loading
+            mode="small"
+            aria-valuetext="Loading 2 please wait"
+          ></sbb-loading>
+        </li>
+        <li>
+          <p>Medium</p>
+          <sbb-loading
+            mode="medium"
+            aria-valuetext="Loading 3 please wait"
+          ></sbb-loading>
+        </li>
+        <li>
+          <p>Big</p>
+          <sbb-loading
+            mode="big"
+            aria-valuetext="Loading 4 please wait"
+          ></sbb-loading>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Spinner overlay example</h4>
+      <sbb-loading
+        *ngIf="showSpinner"
+        [mode]="spinnerMode"
+        aria-valuetext="Loading 5 please wait"
+      ></sbb-loading>
+      <div class="align-middle">
+        <button (click)="activateSpinner('fullbox')" sbbButton mode="ghost">
+          <sbb-icon-arrow-right *sbbButtonIcon></sbb-icon-arrow-right>
+          Fullbox Spinner
+        </button>
+      </div>
+      <br />
+      <div class="align-middle">
+        <button (click)="activateSpinner('fullscreen')" sbbButton mode="ghost">
+          <sbb-icon-arrow-right *sbbButtonIcon></sbb-icon-arrow-right>
+          Fullscreen Spinner
+        </button>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,9 @@
+@import '../../../styles/main';
+
+.sbb-tag {
+  @include baseTag();
+
+  &.sbb-tag-active {
+    @include activeTag();
+  }
+}

@@ -1,0 +1,19 @@
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">sbbLightboxHeader</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">sbbLightboxContent</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!confirmPanel"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-lb-disableclose-c-1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">sbbLightboxTitle</span>&gt;</span>
+      In order to close this lightbox you have to confirm in the confirm panel
+      which is going to appear when trying to close this lightbox
+    <span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"confirmPanel"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-lb-disableclose-c-2"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>
+      Sind Sie sicher, dass Sie dieses Fenster schliessen möchten? Ihre Eingaben
+      werden dadurch verworfen.
+    <span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"ghost"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"confirmPanel = false"</span>&gt;</span>
+      Eingaben überprüfen
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbButton</span> <span class="hljs-attr">sbbLightboxClose</span>=<span class="hljs-string">"confirmed"</span>&gt;</span>Fenster schliessen<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

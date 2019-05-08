@@ -1,0 +1,47 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Radio button panel Overview</h1>
+  <p class="docs-markdown-p">Import radio button panel module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { RadioButtonPanelModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Simple radio button panel</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Basic example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of radioOptions; index as i"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button-panel</span>
+    [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"modelValue"</span>
+    <span class="hljs-attr">name</span>=<span class="hljs-string">"model-option-selection"</span>
+    [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option.value"</span>
+    [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.name"</span>
+  &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button-panel</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Radio button panel with a subtitle</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Radio button panel with subtitle<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button-panel</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span>
+  [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked"</span>
+  <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span>
+  <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button-panel</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Radio button panel with an icon</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Radio button panel with subtitle and an icon<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-radio-button-panel</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"single-option"</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">"single-option"</span>
+  [<span class="hljs-attr">checked</span>]=<span class="hljs-string">"checked"</span>
+  <span class="hljs-attr">label</span>=<span class="hljs-string">"SBB - Finanzen"</span>
+  <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Armin Burgermeister"</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-heart</span> <span class="hljs-attr">icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-heart</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-radio-button-panel</span>&gt;</span></code></pre>
+</body>
+
+</html>

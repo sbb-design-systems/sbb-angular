@@ -3,48 +3,48 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sbb-angular-showcase": {
-      "root": "",
-      "sourceRoot": "src",
+    "angular-showcase": {
+      "root": "projects/angular-showcase/",
+      "sourceRoot": "projects/angular-showcase/src",
       "projectType": "application",
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sbb-angular-showcase",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/angular-showcase",
+            "index": "projects/angular-showcase/src/index.html",
+            "main": "projects/angular-showcase/src/main.ts",
+            "polyfills": "projects/angular-showcase/src/polyfills.ts",
+            "tsConfig": "projects/angular-showcase/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
+              "projects/angular-showcase/src/assets",
               {
                 "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
                 "output": "/assets/monaco"
               },
-              "src/docs"
+              "projects/angular-showcase/src/docs"
             ],
             "styles": [
-              "src/styles.scss",
+              "projects/angular-showcase/src/styles.scss",
               "node_modules/font-awesome/css/font-awesome.css",
-              "projects/sbb-angular/src/typography.scss"
+              "dist/sbb-esta/angular-public/typography.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/angular-showcase/src/environments/environment.ts",
+                  "with": "projects/angular-showcase/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -55,41 +55,47 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sbb-angular-showcase:build"
+            "browserTarget": "angular-showcase:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sbb-angular-showcase:build:production"
+              "browserTarget": "angular-showcase:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sbb-angular-showcase:build"
+            "browserTarget": "angular-showcase:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "projects/angular-showcase/src/test.ts",
+            "polyfills": "projects/angular-showcase/src/polyfills.ts",
+            "tsConfig": "projects/angular-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-showcase/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "projects/angular-showcase/src/styles.scss"
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/angular-showcase/src/assets"
             ]
           },
           "configurations": {
@@ -106,8 +112,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "projects/angular-showcase/tsconfig.app.json",
+              "projects/angular-showcase/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -116,26 +122,27 @@
         }
       }
     },
-    "sbb-angular-showcase-e2e": {
-      "root": "e2e/",
+    "angular-showcase-e2e": {
+      "root": "projects/angular-showcase-e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sbb-angular-showcase:serve"
+            "protractorConfig": "projects/angular-showcase-e2e/protractor.conf.js",
+            "devServerTarget": "angular-showcase:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sbb-angular-showcase:serve:production"
+              "devServerTarget": "angular-showcase:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "projects/angular-showcase-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -143,27 +150,25 @@
         }
       }
     },
-    "sbb-angular": {
-      "root": "projects/sbb-angular",
-      "sourceRoot": "projects/sbb-angular/src",
+    "@sbb-esta/angular-public": {
+      "root": "projects/sbb-esta/angular-public",
+      "sourceRoot": "projects/sbb-esta/angular-public/src",
       "projectType": "library",
       "prefix": "sbb",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/sbb-angular/tsconfig.lib.json",
-            "project": "projects/sbb-angular/ng-package.json"
+            "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.json",
+            "project": "projects/sbb-esta/angular-public/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-angular/src/test.ts",
-            "tsConfig": "projects/sbb-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-angular/karma.conf.js",
-            "watch": true,
-            "sourceMap": true
+            "main": "projects/sbb-esta/angular-public/src/test.ts",
+            "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
           },
           "configurations": {
             "ci": {
@@ -176,17 +181,108 @@
               "codeCoverage": true
             },
             "datepicker": {
-              "main": "projects/sbb-angular/src/lib/datepicker/test.ts"
+              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "typeCheck": true,
             "tsConfig": [
-              "projects/sbb-angular/tsconfig.lib.json",
-              "projects/sbb-angular/tsconfig.spec.json"
+              "projects/sbb-esta/angular-public/tsconfig.lib.json",
+              "projects/sbb-esta/angular-public/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@sbb-esta/angular-business": {
+      "root": "projects/sbb-esta/angular-business",
+      "sourceRoot": "projects/sbb-esta/angular-business/src",
+      "projectType": "library",
+      "prefix": "sbb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.json",
+            "project": "projects/sbb-esta/angular-business/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-esta/angular-business/src/test.ts",
+            "tsConfig": "projects/sbb-esta/angular-business/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless",
+              "sourceMap": true
+            },
+            "local": {
+              "codeCoverage": true
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-esta/angular-business/tsconfig.lib.json",
+              "projects/sbb-esta/angular-business/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@sbb-esta/angular-icons": {
+      "root": "projects/sbb-esta/angular-icons",
+      "sourceRoot": "projects/sbb-esta/angular-icons/src",
+      "projectType": "library",
+      "prefix": "sbb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.lib.json",
+            "project": "projects/sbb-esta/angular-icons/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-esta/angular-icons/src/test.ts",
+            "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-esta/angular-icons/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless",
+              "sourceMap": true
+            },
+            "local": {
+              "codeCoverage": true
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-esta/angular-icons/tsconfig.lib.json",
+              "projects/sbb-esta/angular-icons/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -196,5 +292,5 @@
       }
     }
   },
-  "defaultProject": "sbb-angular-showcase"
+  "defaultProject": "angular-showcase"
 }

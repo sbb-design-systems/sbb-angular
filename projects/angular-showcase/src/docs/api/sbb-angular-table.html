@@ -1,0 +1,147 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL table </h2>
+  <p class="docs-api-module-import">
+    <code> import { TableModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="TableComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TableComponent"></span>
+    <code>TableComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-table</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>pinMode: &#39;off&#39; | &#39;on&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Types of pin mode.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>tableAlignment: &#39;none&#39; | &#39;left&#39; | &#39;center&#39; | &#39;right&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Types of table alignment.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>tableClass: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Class value of the table.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>tableId: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Table identifier.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker"> @Input()</div>
+        <p class="docs-api-property-name">
+          <code>tableLabelledBy: string</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>The labelledBy of the table component.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="ScrollAreaDirective" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="ScrollAreaDirective"></span>
+    <code>ScrollAreaDirective</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">[sbbTableScrollArea]</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-input-marker">@Input(<span class="docs-api-input-alias">&#39;sbbTableScrollArea&#39;</span>) </div>
+        <p class="docs-api-property-name">
+          <code>pinMode: &#39;off&#39; | &#39;on&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Types of pin mode.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isScrollingClass: </code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Scrollig class of the table.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>tableWrapperClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Wrapper class of the table.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">scrollTable </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="docs-api-method-parameters-header-row">
+        <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+      </tr>
+    </thead>
+    <tr class="docs-api-method-parameter-row">
+      <td class="docs-api-method-parameter-cell">
+        <p class="docs-api-method-parameter-name"> scrollTarget</p>
+        <code class="docs-api-method-parameter-type">any</code>
+      </td>
+      <td class="docs-api-method-parameter-description-cell">
+        <p class="docs-api-method-parameter-description">
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

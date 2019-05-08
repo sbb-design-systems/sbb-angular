@@ -1,0 +1,26 @@
+<label [attr.for]="inputId">
+  <input
+    type="radio"
+    [id]="inputId"
+    [name]="name"
+    [value]="value"
+    [required]="required"
+    [checked]="checked"
+    [attr.aria-checked]="checked"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledby"
+    [attr.aria-describedby]="ariaDescribedby"
+    [disabled]="disabled"
+    (click)="click($event)"
+  />
+
+  <div class="sbb-radio-circle-container">
+    <div class="sbb-radio-circle-checked"></div>
+  </div>
+
+  <div class="sbb-radio-label-content">
+    <!-- Add an invisible span so JAWS can read the label -->
+    <span style="display:none">&nbsp;</span>
+    <ng-content></ng-content>
+  </div>
+</label>

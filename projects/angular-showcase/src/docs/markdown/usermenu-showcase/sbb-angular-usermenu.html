@@ -1,0 +1,104 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">User Menu Overview</h1>
+  <p class="docs-markdown-p">Import user menu module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { UserMenuModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <h3 id="what-does-user-menu-module-do-" class="docs-header-link docs-markdown-h3">
+    <span header-link="what-does-user-menu-module-do-"></span> What does user menu module do? </h3>
+  <p class="docs-markdown-p">To log on / off and offers the logged-in user a menu with comprehensive functionalities.</p>
+  <br>
+  <h3 id="when-should-the-module-be-used-" class="docs-header-link docs-markdown-h3">
+    <span header-link="when-should-the-module-be-used-"></span> When should the module be used? </h3>
+  <p class="docs-markdown-p">Whenever the user should be able to log in to an application.</p>
+  <br>
+  <h3 id="characteristics-and-states" class="docs-header-link docs-markdown-h3">
+    <span header-link="characteristics-and-states"></span> Characteristics and states </h3>
+  <p class="docs-markdown-p">The module has the following states:</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Logged in (when you click on the login button) : in collapsed and expanded status.</li>
+  </ul>
+  <p class="docs-markdown-p">In the collapsed status, you can see your icon (an image you can provide) or if you doesn't provide it, you can see the initial letters of your name and surname. Clicking on the arrow down you can go to the expanded status. <br> In the expanded status, you can always see your icon / initial letters, the displayName or, if it isn't provided, the username is displayed.</p>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Logged out</li>
+  </ul>
+  <h3 id="example" class="docs-header-link docs-markdown-h3">
+    <span header-link="example"></span> Example </h3>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Logged in with an image provided from user:</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+  Basic Example with custom user image and with userName and displayName
+<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span>
+  [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user1.userName"</span>
+  [<span class="hljs-attr">displayName</span>]=<span class="hljs-string">"user1.displayName"</span>
+  (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"login()"</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"image"</span> <span class="hljs-attr">sbbIcon</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/images/user-avatar.png"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+      *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span>
+      <span class="hljs-attr">sbbDropdownItem</span>
+      [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
+      [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"linkGenerator(link.page).queryParams"</span>
+      <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+      &gt;</span>{{ link.text }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logout(user1)"</span>&gt;</span>
+      Logout
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-usermenu</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Logged in without user image but with displayName and userName:</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
+  Example without user image but with displayName and userName
+<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span>
+  [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user2.userName"</span>
+  [<span class="hljs-attr">displayName</span>]=<span class="hljs-string">"user2.displayName"</span>
+  (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"login2()"</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+      *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span>
+      <span class="hljs-attr">sbbDropdownItem</span>
+      [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
+      [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"linkGenerator(link.page).queryParams"</span>
+      <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+      &gt;</span>{{ link.text }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logout(user2)"</span>&gt;</span>
+      Logout
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-usermenu</span>&gt;</span></code></pre>
+  <ul class="docs-markdown-ul">
+    <li class="docs-markdown-li">Logged in only with username:</li>
+  </ul>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Example only with userName<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-usermenu</span> [<span class="hljs-attr">userName</span>]=<span class="hljs-string">"user3.userName"</span> (<span class="hljs-attr">loginRequest</span>)=<span class="hljs-string">"login3()"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+      *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let link of links"</span>
+      <span class="hljs-attr">sbbDropdownItem</span>
+      [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"linkGenerator(link.page).routerLink"</span>
+      [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"linkGenerator(link.page).queryParams"</span>
+      <span class="hljs-attr">routerLinkActive</span>=<span class="hljs-string">"sbb-selected"</span>
+      &gt;</span>{{ link.text }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">sbbDropdownItem</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"logout(user3)"</span>&gt;</span>
+      Logout
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-dropdown</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-usermenu</span>&gt;</span></code></pre>
+</body>
+
+</html>

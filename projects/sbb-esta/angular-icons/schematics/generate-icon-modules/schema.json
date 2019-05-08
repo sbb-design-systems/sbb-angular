@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "GenerateIconModulesSchematics",
+  "title": "GenerateIconModules Options Schema",
+  "type": "object",
+  "description": "Generate icon modules from SVG files",
+  "properties": {
+    "dist": {
+      "type": "string",
+      "description": "The location where the icon modules should be genereated",
+      "x-prompt": "Where should the icons be generated?"
+    }
+  },
+  "required": ["dist"]
+}

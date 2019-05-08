@@ -1,0 +1,65 @@
+<html>
+
+<head></head>
+
+<body>
+  <h1 class="docs-markdown-h1">Form Field Overview</h1>
+  <p class="docs-markdown-p">Import the form field module into your application</p>
+  <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { FormFieldModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
+  <p class="docs-markdown-p"><code class="docs-markdown-code">&lt;sbb-field&gt;</code> works with <code class="docs-markdown-code">&lt;input sbbInput&gt;</code>, <code class="docs-markdown-code">&lt;select sbbInput&gt;</code>, <code class="docs-markdown-code">&lt;sbb-select&gt;</code> and <code class="docs-markdown-code">&lt;input sbbInput sbbDateInput&gt;</code>.</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Example Form Field<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">sbbInput</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"name1"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Name"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name1').errors?.required"</span>
+    &gt;</span>This field is required.<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+  &gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Email"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">sbbInput</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Email"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('email').errors?.required"</span>
+    &gt;</span>This field is required.<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+  &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('email').errors?.email"</span>
+    &gt;</span>You must provide a valid email address.<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>
+  &gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">Ideally you should only show one error message at a time. If you need to display multiple error messages at the same time, it is better for accessibility if the messages are contained in one sbb-form-error element.</p>
+  <p class="docs-markdown-p">sbb-form-error is only rendered when the input field is in an error state.</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Example Form Field<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"name1"</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+    <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+    <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"name1"</span>
+    [<span class="hljs-attr">placeholder</span>]=<span class="hljs-string">"placeholder"</span>
+    <span class="hljs-attr">id</span>=<span class="hljs-string">"name1"</span>
+  /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-form-error</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name1').errors.required"</span>&gt;</span>
+      This field is required!<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"form.get('name1').errors.required"</span>&gt;</span>
+      This field is required!<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-form-error</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+  <p class="docs-markdown-p">sbb-form-error can also be used as [sbbFormError], since it is a directive. This enables the use case of having an error message component, which contains common error messages.</p>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Example Form Field<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"name1"</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+    <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+    <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"name1"</span>
+    [<span class="hljs-attr">placeholder</span>]=<span class="hljs-string">"placeholder"</span>
+    <span class="hljs-attr">id</span>=<span class="hljs-string">"name1"</span>
+  /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">app-error-message</span>
+    <span class="hljs-attr">sbbFormError</span>
+    [<span class="hljs-attr">errors</span>]=<span class="hljs-string">"form.get('name1').errors"</span>
+  &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-error-message</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Simple example (single file)</h4>
+      <sbb-file-selector
+        (fileChanged)="fileChanged($event)"
+      ></sbb-file-selector>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>{{ beautifyFileList(filesList1) | json }}</pre>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">
+        Example multiple files allowed, multipleMode 'persistent' and ngModel
+        attached
+      </h4>
+      <sbb-file-selector
+        multiple="true"
+        multipleMode="persistent"
+        [(ngModel)]="filesList2"
+        [disabled]="disabled"
+      ></sbb-file-selector>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-checkbox value="disabled" [(ngModel)]="disabled"
+        >Disabled</sbb-checkbox
+      >
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>{{ beautifyFileList(filesList2) | json }}</pre>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">
+        Example multiple files, multipleMode 'default', accepted files filter
+        and Reactive Form.
+      </h4>
+      <sbb-file-selector
+        [accept]="accept"
+        [formControl]="fileControl"
+        multiple="true"
+        capture="user"
+      >
+      </sbb-file-selector>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-checkbox (change)="setDisabled($event)">Disabled</sbb-checkbox>
+      <h4 class="sbbsc-block">Model</h4>
+      <pre>{{ beautifyFileList(filesList3) | json }}</pre>
+    </div>
+  </div>
+</article>

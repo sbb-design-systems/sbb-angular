@@ -1,0 +1,182 @@
+<div class="docs-api">
+  <h2> API reference for Angular SACL textexpand </h2>
+  <p class="docs-api-module-import">
+    <code> import { TextexpandModule } from '@sbb-esta/angular-public'; </code>
+  </p>
+  <h3 id="directives" class="docs-header-link docs-api-h3">
+    <span header-link="directives"></span> Directives </h3>
+  <h4 id="TextexpandComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TextexpandComponent"></span>
+    <code>TextexpandComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-textexpand</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <div class="docs-api-output-marker"> @Output()</div>
+        <p class="docs-api-property-name">
+          <code>expandEvent: EventEmitter&lt;boolean&gt;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Event activated at the expansion of the text.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>ariaLive: &#39;polite&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Is used to set the priority with which screen reader should treat updates to live regions. With &quot;polite&quot; value the screen reader will speak changes whenever the user is idle.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>collapsedComponent: TextexpandCollapsedComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the textexpand-collapsed component istance.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of the textexpand component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>expandedComponent: TextexpandExpandedComponent</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Refers to the textexpand-expanded component istance.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>id: `sbb-textexpand-${counter++}`</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Identifier of the textexpand component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isExpanded: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Describes if text content is expanded or not. Initially is collapsed.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>role: &#39;region&#39;</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Is an ARIA landmark role. It provide a way to identify a specific zone of the page. Screen readers use landmark roles to provide keyboard navigation to important sections of a page.</p>
+      </td>
+    </tr>
+  </table>
+  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
+  <table class="docs-api-method-table">
+    <thead>
+      <tr class="docs-api-method-name-row">
+        <th colspan="2" class="docs-api-method-name-cell">toggleExpanded </th>
+      </tr>
+    </thead>
+  </table>
+  <h4 id="TextexpandExpandedComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TextexpandExpandedComponent"></span>
+    <code>TextexpandExpandedComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-textexpand-expanded</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of the textexpand-expanded component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isHidden: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Describes if textexpand-expanded is hidden or not. Initially it is hidden.</p>
+      </td>
+    </tr>
+  </table>
+  <h4 id="TextexpandCollapsedComponent" class="docs-header-link docs-api-h4 docs-api-class-name">
+    <span header-link="TextexpandCollapsedComponent"></span>
+    <code>TextexpandCollapsedComponent</code>
+  </h4>
+  <p class="docs-api-directive-selectors">
+    <span class="docs-api-class-selector-label">Selector:</span>
+    <span class="docs-api-class-selector-name">sbb-textexpand-collapsed</span>
+  </p>
+  <h5 class="docs-api-h5 docs-api-method-header">Properties</h5>
+  <table class="docs-api-properties-table">
+    <tr class="docs-api-properties-header-row">
+      <th class="docs-api-properties-th">Name</th>
+      <th class="docs-api-properties-th">Description</th>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>cssClass: true</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Css class of the textexpand-collapsed component.</p>
+      </td>
+    </tr>
+    <tr class="docs-api-properties-row">
+      <td class="docs-api-properties-name-cell">
+        <p class="docs-api-property-name">
+          <code>isHidden: false</code>
+        </p>
+      </td>
+      <td class="docs-api-property-description">
+        <p>Describes if textexpand-collapsed is hidden or not. Initially it isn&#39;t hidden.</p>
+      </td>
+    </tr>
+  </table>
+</div>

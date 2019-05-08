@@ -1,0 +1,30 @@
+.sbbsc-main-content {
+  .sbbsc-content-title {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: $colorRed100;
+    font-size: pxToRem(24);
+
+    &-text {
+      padding-right: 0.5em;
+      position: relative;
+      display: inline-block;
+    }
+
+    sbb-icon-arrow-right {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      vertical-align: middle;
+
+      svg > path {
+        stroke: $colorGreyLight;
+      }
+    }
+
+    &-button {
+      margin-left: 0.5em;
+      vertical-align: middle;
+    }
+  }
+}

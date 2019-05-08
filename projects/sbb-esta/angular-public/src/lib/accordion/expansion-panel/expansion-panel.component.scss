@@ -1,0 +1,13 @@
+@import '../../../styles/main';
+
+.sbb-expansion-panel {
+  @include expansionPanel();
+}
+
+.sbb-expansion-panel-content {
+  @include expansionPanelContent();
+}
+
+.sbb-expansion-panel-body {
+  @include expansionPanelBody();
+}

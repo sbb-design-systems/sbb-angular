@@ -1,0 +1,9 @@
+@import '../../../styles/main';
+
+.sbb-expansion-panel-header {
+  @include expansionPanelHeader();
+}
+
+.sbb-expansion-indicator {
+  @include expansionIndicator();
+}

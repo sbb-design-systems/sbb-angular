@@ -16,11 +16,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "sbb-angular": [
-        "dist/sbb-angular"
+      "@sbb-esta/angular-public": [
+        "dist/sbb-esta/angular-public"
       ],
-      "sbb-angular/*": [
-        "dist/sbb-angular/*"
+      "@sbb-esta/angular-public/*": [
+        "dist/sbb-esta/angular-public/*"
       ]
     }
   },
