@@ -3,8 +3,12 @@ package-lock.json
 dist
 angular.json
 .vscode/*
-projects/*/schematics/*/files
+projects/*/*/schematics/*/index.js
+projects/*/*/schematics/*/files
+projects/angular-showcase/src/assets/**/*
 projects/angular-showcase/src/docs/**/*
 tools
 coverage
 **/icon-*.module.ts
+**/*.svg
+**/*.properties

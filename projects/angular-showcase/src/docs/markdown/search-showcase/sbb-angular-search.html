@@ -10,17 +10,29 @@
   <p class="docs-markdown-p">Everytime the enter key on the input field is pressed, the search button is clicked or an option is selected a <code class="docs-markdown-code">search</code> event, containing the search term, is emitted.</p>
   <h2 class="docs-markdown-h2">Simplest use case</h2>
   <p class="docs-markdown-p">The simplest way you can use <code class="docs-markdown-code">&lt;sbb-search&gt;</code> is the following one:</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span></code></pre>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span>
+  (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span></code></pre>
   <h2 class="docs-markdown-h2">Autocomplete use case</h2>
   <p class="docs-markdown-p">You can use <code class="docs-markdown-code">&lt;sbb-search&gt;</code> along with <code class="docs-markdown-code">&lt;sbb-autocomplete&gt;</code> as below:</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>  [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span>
+  (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>
+  [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of filteredOptions"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
     {{ option }}
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">All use cases from sbb-autocomplete are supported: you can add static options, observable options, and use option groups:</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span>
+  <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span>
+  (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>
+  [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of options$ | async"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
     {{ option }}
@@ -33,11 +45,20 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-autocomplete</span>&gt;</span></code></pre>
   <h2 class="docs-markdown-h2">Header mode</h2>
   <p class="docs-markdown-p">The <code class="docs-markdown-code">header</code> mode is activable by using the <code class="docs-markdown-code">mode</code> input property:</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span></code></pre>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span>
+  <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span>
+  (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">The <code class="docs-markdown-code">placeholder</code> will also label the trigger.</p>
   <h2 class="docs-markdown-h2">Custom icon</h2>
   <p class="docs-markdown-p">To set a custom icon to the search button (and to the trigger icon too when in 'header' mode), you need to use the <code class="docs-markdown-code">sbbSearchIcon</code> directive on the icon component you want to use:</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span> (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControlStatic"</span>&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-search</span>
+  <span class="hljs-attr">mode</span>=<span class="hljs-string">"header"</span>
+  (<span class="hljs-attr">search</span>)=<span class="hljs-string">"searchCallback(searchTerm)"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Suchen"</span>
+  [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControlStatic"</span>
+&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-circle-information</span> *<span class="hljs-attr">sbbSearchIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-circle-information</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-search</span>&gt;</span></code></pre>
 </body>

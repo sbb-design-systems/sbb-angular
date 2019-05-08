@@ -11,13 +11,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "types": [
-      "grecaptcha"
-    ],
-    "lib": [
-      "dom",
-      "es2018"
-    ]
+    "types": ["grecaptcha"],
+    "lib": ["dom", "es2018"]
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
@@ -27,8 +22,5 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true
   },
-  "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

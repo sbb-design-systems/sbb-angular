@@ -5,7 +5,10 @@ import {
   ViewChild,
   ViewChildren
 } from '@angular/core';
-import { DropdownTriggerDirective, LinkGeneratorResult } from '@sbb-esta/angular-public';
+import {
+  DropdownTriggerDirective,
+  LinkGeneratorResult
+} from '@sbb-esta/angular-public';
 
 @Component({
   selector: 'sbb-dropdown-showcase',

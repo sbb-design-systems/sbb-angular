@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LinkGeneratorResult, NavigationPageDescriptor } from '@sbb-esta/angular-public';
+import {
+  LinkGeneratorResult,
+  NavigationPageDescriptor
+} from '@sbb-esta/angular-public';
 
 @Component({
   selector: 'sbb-pagination-showcase',

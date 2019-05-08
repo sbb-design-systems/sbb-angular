@@ -11,7 +11,5 @@
       "x-prompt": "Where should the icons be generated?"
     }
   },
-  "required": [
-    "dist"
-  ]
+  "required": ["dist"]
 }

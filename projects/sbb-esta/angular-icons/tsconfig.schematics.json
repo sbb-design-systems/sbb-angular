@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "tsconfig",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "declaration": false,
     "module": "esnext",
     "moduleResolution": "node",
@@ -20,12 +17,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es6",
-    "types": [
-      "jasmine",
-      "node"
-    ]
+    "types": ["jasmine", "node"]
   },
-  "include": [
-    "schematics/generate-icon-modules/index.ts"
-  ]
+  "include": ["schematics/generate-icon-modules/index.ts"]
 }
