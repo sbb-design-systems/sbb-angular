@@ -1,14 +1,6 @@
 {
   "name": "@sbb-esta/angular-business",
   "version": "0.0.0-PLACEHOLDER",
-  "scripts": {
-    "lint": "ng lint @sbb-esta/angular-business",
-    "test": "ng test @sbb-esta/angular-business -c ci",
-    "build": "run-s build:ng build:license",
-    "build:ng": "ng build @sbb-esta/angular-business",
-    "build:license": "cd ../../../ && copyfiles LICENSE ./dist/sbb-esta/angular-business/",
-    "build:schematics": "rollup --config rollup.config.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"

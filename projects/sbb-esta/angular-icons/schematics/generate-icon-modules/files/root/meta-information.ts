@@ -17,6 +17,9 @@ export const iconComponentsMetaInformation = [<% for (let icon of icons) { %>
     sizes: [<% for (let size of icon.sizes) { %>
       '<%= size %>',<% } %>
     ],
+    meta: [<% for (let meta of icon.meta) { %>
+      '<%= meta %>',<% } %>
+    ],
     component: Icon<%= classify(icon.name) %>Component,
   },<% } %>
 ];

@@ -1,4 +1,5 @@
 import { FileEntry, SchematicsException } from '@angular-devkit/schematics';
+
 import { Svgo } from './svgo';
 
 export class SvgFile {

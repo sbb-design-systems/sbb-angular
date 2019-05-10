@@ -1,9 +1,9 @@
 import { DirEntry, SchematicsException } from '@angular-devkit/schematics';
-import { SvgFile } from './svg-file';
-import { namingRules } from './naming-rules';
-import { IconModule } from './icon-module';
+
 import { IconCollectionModule } from './icon-collection-module';
-import { filterRules } from './filter-rules';
+import { IconModule } from './icon-module';
+import namingRules from './naming-rules';
+import { SvgFile } from './svg-file';
 
 export class SvgSource {
   constructor(private _files: SvgFile[]) {}
@@ -15,9 +15,9 @@ export class SvgSource {
         files.push(SvgFile.from(path, entry));
       }
     });
-    const resolvedFiles = (await Promise.all(files))
-      .filter((f, _, a) => filterRules.every(r => r(f, a)))
-      .map(f => namingRules.reduce((current, next) => next(current), f));
+    const resolvedFiles = (await Promise.all(files)).map(f =>
+      namingRules.reduce((current, next) => next(current), f)
+    );
     return new SvgSource(resolvedFiles);
   }
 
@@ -63,8 +63,8 @@ export class SvgSource {
         collection = localCollection;
       }
     }
-    // tslint:disable-next-line:no-non-null-assertion
     iconModules.forEach(i =>
+      // tslint:disable-next-line:no-non-null-assertion
       collectionMap.get(i.modules.join(','))!.icons.push(i)
     );
     return rootCollection;

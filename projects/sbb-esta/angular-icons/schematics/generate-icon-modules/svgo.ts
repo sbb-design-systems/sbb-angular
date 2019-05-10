@@ -47,14 +47,15 @@ export class Svgo {
       });
     } catch {
       throw new SchematicsException(
-        'This schematics requires the svgo package!'
+        'This schematics requires the svgo package! (Install via `npm install -D svgo`'
       );
     }
   }
 
   /**
    * Normalizes SVG mark-up, optimizing the content for cross-browser compatibility.
-   * [svgo](https://github.com/svg/svgo) library is used for the scope with configured options findable in svgo-configuration.ts
+   * [svgo](https://github.com/svg/svgo) library is used for the scope with
+   * configured options findable in svgo-configuration.ts.
    * @param svg Source SVG mark-up
    * @return normalized SVG mark-up
    */
