@@ -5,7 +5,7 @@ import {
   OnChanges,
   ViewContainerRef
 } from '@angular/core';
-import { iconComponentsMetaInformation } from '@sbb-esta/angular-icons';
+import { ICON_COMPONENT_META_INFORMATION } from '@sbb-esta/angular-icons';
 
 import { UiIcon } from '../shared/ui-icon';
 
@@ -24,7 +24,7 @@ export class IconViewerDirective implements OnChanges {
   ) {}
 
   loadIconComponent(): void {
-    const component = iconComponentsMetaInformation.find(
+    const component = ICON_COMPONENT_META_INFORMATION.find(
       i => i.name === this.sbbIconViewer.name
     ).component;
     const componentFactory = this._resolver.resolveComponentFactory(component);

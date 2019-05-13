@@ -86,7 +86,7 @@ describe('ButtonComponent', () => {
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
       sbbButtonIcon = fixture.debugElement.query(
-        By.css('sbb-icon-arrow-right')
+        By.css('sbb-icon-arrow-right svg')
       );
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
@@ -125,7 +125,7 @@ describe('ButtonComponent', () => {
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
       sbbButtonIcon = fixture.debugElement.query(
-        By.css('sbb-icon-arrow-right')
+        By.css('sbb-icon-arrow-right svg')
       );
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
@@ -197,7 +197,7 @@ describe('ButtonComponent', () => {
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
       sbbButtonIcon = fixture.debugElement.query(
-        By.css('sbb-icon-arrow-right')
+        By.css('sbb-icon-arrow-right svg')
       );
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });

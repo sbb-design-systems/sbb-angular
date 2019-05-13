@@ -60,14 +60,13 @@ describe('GhettoboxContainerComponent', () => {
         GhettoboxContainerComponent,
         GhettoboxContainerTestComponent,
         GhettoboxComponent
-      ],
-      providers: [GhettoboxContainerService, GhettoboxService]
+      ]
     }).compileComponents();
-
-    ghettoboxService = TestBed.get(GhettoboxService);
   }));
 
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
+    ghettoboxService = TestBed.get(GhettoboxService);
     fixture = TestBed.createComponent(GhettoboxContainerTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -78,22 +77,14 @@ describe('GhettoboxContainerComponent', () => {
   });
 
   it('should bind proper accessibility attributes', () => {
-    const ghettoContainer = fixture.debugElement.query(
+    const element = fixture.debugElement.query(
       By.directive(GhettoboxContainerComponent)
-    );
+    ).nativeElement;
 
-    expect(ghettoContainer.nativeElement.getAttribute('role')).toEqual(
-      'region'
-    );
-    expect(ghettoContainer.nativeElement.getAttribute('aria-live')).toEqual(
-      'assertive'
-    );
-    expect(ghettoContainer.nativeElement.getAttribute('aria-relevant')).toEqual(
-      'all'
-    );
-    expect(ghettoContainer.nativeElement.getAttribute('tabindex')).toEqual(
-      '-1'
-    );
+    expect(element.getAttribute('role')).toEqual('region');
+    expect(element.getAttribute('aria-live')).toEqual('assertive');
+    expect(element.getAttribute('aria-relevant')).toEqual('all');
+    expect(element.getAttribute('tabindex')).toEqual('-1');
   });
 
   it('should project the intial ghettobox', () => {

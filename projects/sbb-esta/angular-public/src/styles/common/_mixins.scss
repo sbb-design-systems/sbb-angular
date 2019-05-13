@@ -523,8 +523,14 @@
   svg.sbb-svg-icon {
     fill: $color;
 
-    & > path[fill='none'] {
-      stroke: $color;
+    & > path {
+      &[fill='none'] {
+        stroke: $color;
+      }
+
+      &:not([fill]) {
+        fill: $color;
+      }
     }
   }
 }

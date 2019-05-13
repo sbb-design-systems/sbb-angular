@@ -3,10 +3,10 @@
  */
 import { NgModule } from '@angular/core';
 
+import { IconConstructionModule } from './icon-construction.module';
 import { IconRailwaySwitchModule } from './icon-railway-switch.module';
 import { IconTrainSignalModule } from './icon-train-signal.module';
 import { IconTrainTracksModule } from './icon-train-tracks.module';
-import { IconConstructionModule } from './icon-construction.module';
 
 const modules = [
   IconRailwaySwitchModule,

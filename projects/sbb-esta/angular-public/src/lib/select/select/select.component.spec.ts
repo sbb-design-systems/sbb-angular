@@ -1602,10 +1602,10 @@ describe('SelectComponent', () => {
           expect(options[2].getAttribute('role')).toEqual('option');
         });
 
-        it('should set aria-selected on each option', () => {
-          expect(options[0].getAttribute('aria-selected')).toEqual('false');
-          expect(options[1].getAttribute('aria-selected')).toEqual('false');
-          expect(options[2].getAttribute('aria-selected')).toEqual('false');
+        it('should set aria-selected on the selected option', () => {
+          expect(options[0].getAttribute('aria-selected')).toEqual(null);
+          expect(options[1].getAttribute('aria-selected')).toEqual(null);
+          expect(options[2].getAttribute('aria-selected')).toEqual(null);
 
           options[1].click();
           fixture.detectChanges();
@@ -1613,9 +1613,9 @@ describe('SelectComponent', () => {
           trigger.click();
           fixture.detectChanges();
 
-          expect(options[0].getAttribute('aria-selected')).toEqual('false');
+          expect(options[0].getAttribute('aria-selected')).toEqual(null);
           expect(options[1].getAttribute('aria-selected')).toEqual('true');
-          expect(options[2].getAttribute('aria-selected')).toEqual('false');
+          expect(options[2].getAttribute('aria-selected')).toEqual(null);
         });
 
         it('should set the tabindex of each option according to disabled state', () => {

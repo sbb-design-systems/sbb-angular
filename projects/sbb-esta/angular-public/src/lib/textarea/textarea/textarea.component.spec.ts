@@ -169,7 +169,7 @@ describe('TextareaComponent digits counter', () => {
     component.writeValue(component.textContent + ' ');
     fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
-    expect(counterDiv.nativeElement.textContent).toBe('Noch 16 Zeichen');
+    expect(counterDiv.nativeElement.textContent.trim()).toBe('Noch 16 Zeichen');
   });
 
   it('shoud disappear', () => {

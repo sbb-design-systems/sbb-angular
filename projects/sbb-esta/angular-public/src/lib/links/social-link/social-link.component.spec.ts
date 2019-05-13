@@ -42,7 +42,7 @@ describe('SocialLinkComponent', () => {
       'rgb(102, 102, 102)'
     );
 
-    const icon = fixture.debugElement.query(By.css('sbb-icon-facebook'));
+    const icon = fixture.debugElement.query(By.css('sbb-icon-facebook svg'));
     expect(icon).toBeTruthy();
 
     const iconStyle = getComputedStyle(icon.nativeElement);
