@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconEmployeesSbbModule } from './icon-employees-sbb.module';
 import { IconUserGroupModule } from './icon-user-group.module';
 import { IconAvatarPoliceModule } from './icon-avatar-police.module';
@@ -35,11 +34,11 @@ const modules = [
   IconUserHeadsetModule,
   IconUserKeyModule,
   IconUserPlusModule,
-  IconUserTieModule,
+  IconUserTieModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionUserModule { }
+export class IconCollectionUserModule {}

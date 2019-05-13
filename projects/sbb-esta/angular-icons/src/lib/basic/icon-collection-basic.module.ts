@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconCalendarModule } from './icon-calendar.module';
 import { IconChartColumnTrendModule } from './icon-chart-column-trend.module';
 import { IconCoinsModule } from './icon-coins.module';
@@ -155,11 +154,11 @@ const modules = [
   IconUploadModule,
   IconWalletModule,
   IconWarningLightModule,
-  IconWifiModule,
+  IconWifiModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionBasicModule { }
+export class IconCollectionBasicModule {}

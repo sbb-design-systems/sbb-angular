@@ -9,9 +9,22 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-sa-gl',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g fill="#000" fill-rule="evenodd"><path d="M1 1h14v14H1V1zm1.273 12.727h11.454V2.273H2.273v11.454z"/><path d="M2.27 13.72l.335-1.234 9.881-9.881 1.234-.335-.335 1.252-9.881 9.88-1.234.318"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+    >
+      <g fill="#000" fill-rule="evenodd">
+        <path d="M1 1h14v14H1V1zm1.273 12.727h11.454V2.273H2.273v11.454z" />
+        <path
+          d="M2.27 13.72l.335-1.234 9.881-9.881 1.234-.335-.335 1.252-9.881 9.88-1.234.318"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconSaGlComponent extends IconBase {
   constructor() {
@@ -22,6 +35,6 @@ export class IconSaGlComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSaGlComponent],
-  exports: [IconSaGlComponent],
+  exports: [IconSaGlComponent]
 })
-export class IconSaGlModule { }
+export class IconSaGlModule {}

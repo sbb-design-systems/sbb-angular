@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M5 8l12.5 12.5m-2-5v-2h-2m-3-3V8m-2.28 3.22A4.003 4.003 0 0 0 6.5 14.5c0 2.2 1.801 4 4 4a3.999 3.999 0 0 0 3.276-1.724M11 6a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm4.5 12.5v.5"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M7.5 12l18.75 18.75m-3-7.5v-3h-3m-4.5-4.5V12m-3.42 4.83a6.005 6.005 0 0 0-2.581 4.92c0 3.3 2.703 6 6 6 2.03 0 3.828-1.028 4.915-2.585M16.5 9A.75.75 0 1 1 15 9a.75.75 0 0 1 1.5 0zm6.75 18.75v.75"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M5 8l12.5 12.5m-2-5v-2h-2m-3-3V8m-2.28 3.22A4.003 4.003 0 0 0 6.5 14.5c0 2.2 1.801 4 4 4a3.999 3.999 0 0 0 3.276-1.724M11 6a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm4.5 12.5v.5"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M7.5 12l18.75 18.75m-3-7.5v-3h-3m-4.5-4.5V12m-3.42 4.83a6.005 6.005 0 0 0-2.581 4.92c0 3.3 2.703 6 6 6 2.03 0 3.828-1.028 4.915-2.585M16.5 9A.75.75 0 1 1 15 9a.75.75 0 0 1 1.5 0zm6.75 18.75v.75"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconWheelchairInaccessibleComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconWheelchairInaccessibleComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconWheelchairInaccessibleComponent],
-  exports: [IconWheelchairInaccessibleComponent],
+  exports: [IconWheelchairInaccessibleComponent]
 })
-export class IconWheelchairInaccessibleModule { }
+export class IconWheelchairInaccessibleModule {}

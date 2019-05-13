@@ -9,9 +9,24 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-product-ic-11',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59 20"><g fill="none" fill-rule="evenodd"><rect width="59" height="20" fill="#EB0000" rx="2"/><path fill="#FFF" fill-rule="nonzero" d="M42.26 4.235V15.8h-2.303V8.23h-2.711V6.553a5.795 5.795 0 0 0 1.375-.174c.353-.1.684-.266.974-.49.426-.328.712-.879.859-1.654h1.805zm7.687 0V15.8h-2.302V8.23h-2.712V6.553a5.795 5.795 0 0 0 1.376-.174c.353-.1.683-.266.973-.49.426-.328.713-.879.86-1.654h1.805zM9.221 4.2h4.056L8.259 15.8H4.186zM15.948 4.2h14.395l-1.49 3.445H18.572l-2.041 4.71h10.285l-1.49 3.445H10.931z"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 59 20"
+    >
+      <g fill="none" fill-rule="evenodd">
+        <rect width="59" height="20" fill="#EB0000" rx="2" />
+        <path
+          fill="#FFF"
+          fill-rule="nonzero"
+          d="M42.26 4.235V15.8h-2.303V8.23h-2.711V6.553a5.795 5.795 0 0 0 1.375-.174c.353-.1.684-.266.974-.49.426-.328.712-.879.859-1.654h1.805zm7.687 0V15.8h-2.302V8.23h-2.712V6.553a5.795 5.795 0 0 0 1.376-.174c.353-.1.683-.266.973-.49.426-.328.713-.879.86-1.654h1.805zM9.221 4.2h4.056L8.259 15.8H4.186zM15.948 4.2h14.395l-1.49 3.445H18.572l-2.041 4.71h10.285l-1.49 3.445H10.931z"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconProductIc11Component extends IconBase {
   constructor() {
@@ -22,6 +37,6 @@ export class IconProductIc11Component extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconProductIc11Component],
-  exports: [IconProductIc11Component],
+  exports: [IconProductIc11Component]
 })
-export class IconProductIc11Module { }
+export class IconProductIc11Module {}

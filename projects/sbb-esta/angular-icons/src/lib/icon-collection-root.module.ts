@@ -27,7 +27,6 @@ import { IconCollectionWeatherModule } from './weather/icon-collection-weather.m
 import { IconCollectionAudioModule } from './audio/icon-collection-audio.module';
 import { IconCollectionSocialMediaModule } from './social-media/icon-collection-social-media.module';
 
-
 const modules = [
   IconCollectionTimetableAttributesModule,
   IconCollectionHimCusModule,
@@ -51,11 +50,11 @@ const modules = [
   IconCollectionLocationModule,
   IconCollectionWeatherModule,
   IconCollectionAudioModule,
-  IconCollectionSocialMediaModule,
+  IconCollectionSocialMediaModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionModule { }
+export class IconCollectionModule {}

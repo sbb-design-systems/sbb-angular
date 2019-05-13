@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M15.9 13.675l-3.904-3.95-3.904 3.949"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M23.851 20.512l-5.856-5.925-5.856 5.923"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M15.9 13.675l-3.904-3.95-3.904 3.949"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M23.851 20.512l-5.856-5.925-5.856 5.923"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconChevronSmallUpComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconChevronSmallUpComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconChevronSmallUpComponent],
-  exports: [IconChevronSmallUpComponent],
+  exports: [IconChevronSmallUpComponent]
 })
-export class IconChevronSmallUpModule { }
+export class IconChevronSmallUpModule {}

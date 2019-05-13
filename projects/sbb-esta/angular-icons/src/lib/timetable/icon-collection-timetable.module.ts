@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconPercentModule } from './icon-percent.module';
 import { IconSwitzerlandRouteModule } from './icon-switzerland-route.module';
 import { IconArrowChangeModule } from './icon-arrow-change.module';
@@ -49,11 +48,11 @@ const modules = [
   IconWheelchairInaccessibleModule,
   IconWheelchairPartiallyModule,
   IconWheelchairReservationModule,
-  IconWheelchairUncertainModule,
+  IconWheelchairUncertainModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionTimetableModule { }
+export class IconCollectionTimetableModule {}

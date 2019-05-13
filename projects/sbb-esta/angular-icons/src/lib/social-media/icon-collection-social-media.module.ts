@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconTwitterModule } from './icon-twitter.module';
 import { IconFacebookModule } from './icon-facebook.module';
 import { IconInstagramModule } from './icon-instagram.module';
@@ -21,11 +20,11 @@ const modules = [
   IconYoutubeModule,
   IconLinkedinModule,
   IconPinterestModule,
-  IconXingModule,
+  IconXingModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionSocialMediaModule { }
+export class IconCollectionSocialMediaModule {}

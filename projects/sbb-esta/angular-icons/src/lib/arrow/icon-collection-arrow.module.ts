@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconArrowsCircleModule } from './icon-arrows-circle.module';
 import { IconArrowsLeftRightModule } from './icon-arrows-left-right.module';
 import { IconArrowsLeftRightDownUpModule } from './icon-arrows-left-right-down-up.module';
@@ -45,11 +44,11 @@ const modules = [
   IconChevronSmallUpModule,
   IconChevronSmallUpCircleModule,
   IconIncreaseSizeModule,
-  IconReduceSizeModule,
+  IconReduceSizeModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionArrowModule { }
+export class IconCollectionArrowModule {}

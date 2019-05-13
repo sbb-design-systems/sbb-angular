@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconLaptopSmartphoneModule } from './icon-laptop-smartphone.module';
 import { IconArchiveBoxModule } from './icon-archive-box.module';
 import { IconBriefcaseModule } from './icon-briefcase.module';
@@ -49,11 +48,11 @@ const modules = [
   IconTelephoneGsmModule,
   IconTelephoneReceiverModule,
   IconWalkieTalkieModule,
-  IconWeightModule,
+  IconWeightModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionHardwareModule { }
+export class IconCollectionHardwareModule {}

@@ -9,9 +9,20 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-sa-cc',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><path fill-rule="evenodd" d="M1 7.3h14.058L20.143 1h2.741v14h-2.051v-4.9H3.052V15H1V7.3"/></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M1 7.3h14.058L20.143 1h2.741v14h-2.051v-4.9H3.052V15H1V7.3"
+      />
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconSaCcComponent extends IconBase {
   constructor() {
@@ -22,6 +33,6 @@ export class IconSaCcComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSaCcComponent],
-  exports: [IconSaCcComponent],
+  exports: [IconSaCcComponent]
 })
-export class IconSaCcModule { }
+export class IconSaCcModule {}

@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M5.5 7.457l-1 14h15l-1-14h-13zM14.493 11l.007-6a2.5 2.5 0 1 0-5 0v6"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M8.25 11.185l-1.5 21h22.5l-1.5-21H8.25zM21.74 16.5l.01-9a3.75 3.75 0 1 0-7.5 0v9"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M5.5 7.457l-1 14h15l-1-14h-13zM14.493 11l.007-6a2.5 2.5 0 1 0-5 0v6"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M8.25 11.185l-1.5 21h22.5l-1.5-21H8.25zM21.74 16.5l.01-9a3.75 3.75 0 1 0-7.5 0v9"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconShoppingBagComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconShoppingBagComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconShoppingBagComponent],
-  exports: [IconShoppingBagComponent],
+  exports: [IconShoppingBagComponent]
 })
-export class IconShoppingBagModule { }
+export class IconShoppingBagModule {}

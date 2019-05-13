@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconBicycleModule } from './icon-bicycle.module';
 import { IconTrainModule } from './icon-train.module';
 import { IconAirplaneModule } from './icon-airplane.module';
@@ -45,11 +44,11 @@ const modules = [
   IconPetrolStationModule,
   IconShuttleModule,
   IconTaxiModule,
-  IconTramModule,
+  IconTramModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionTransportModule { }
+export class IconCollectionTransportModule {}

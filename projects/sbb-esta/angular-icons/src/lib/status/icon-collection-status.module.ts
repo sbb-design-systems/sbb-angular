@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconButtonPowerModule } from './icon-button-power.module';
 import { IconExclamationPointModule } from './icon-exclamation-point.module';
 import { IconEyeModule } from './icon-eye.module';
@@ -23,11 +22,11 @@ const modules = [
   IconLockOpenModule,
   IconQuestionMarkModule,
   IconTickModule,
-  IconTickClipboardModule,
+  IconTickClipboardModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionStatusModule { }
+export class IconCollectionStatusModule {}

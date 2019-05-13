@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconArrowCompassModule } from './icon-arrow-compass.module';
 import { IconGpsModule } from './icon-gps.module';
 import { IconGpsDisabledModule } from './icon-gps-disabled.module';
@@ -27,11 +26,11 @@ const modules = [
   IconLocationPinPulseSurroundingAreaModule,
   IconLocationPinSurroundingAreaModule,
   IconMountainMinusModule,
-  IconMountainPlusModule,
+  IconMountainPlusModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionLocationModule { }
+export class IconCollectionLocationModule {}

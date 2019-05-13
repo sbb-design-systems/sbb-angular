@@ -11,12 +11,46 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M11.498 9.997a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM15.5 16a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 1.5l9-9-9 9z"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M17.246 14.996a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zM23.25 24a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm-12 2.25l13.5-13.5-13.5 13.5z"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('large') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="none" stroke="#000" d="M22.5 17.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm9 13a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM15 33l18-18-18 18z"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M11.498 9.997a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM15.5 16a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 1.5l9-9-9 9z"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M17.246 14.996a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zM23.25 24a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm-12 2.25l13.5-13.5-13.5 13.5z"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('large') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 48 48"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M22.5 17.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm9 13a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM15 33l18-18-18 18z"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconPercentComponent extends IconBase {
   constructor() {
@@ -27,6 +61,6 @@ export class IconPercentComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconPercentComponent],
-  exports: [IconPercentComponent],
+  exports: [IconPercentComponent]
 })
-export class IconPercentModule { }
+export class IconPercentModule {}

@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M14.5 20v-4.5l-2-2h-2v3l-2 3m4-11v5h-2v-5m1-2c-.533 0-1-.466-1-1 0-.533.467-1 1-1 .533 0 1 .467 1 1 0 .534-.467 1-1 1zm-4 7.5v-3.5l3-2h2l2 2H17"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M21.75 30v-6.75l-3-3h-3v4.5l-3 4.5m6-16.5v7.5h-3v-7.5m1.5-3c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zm-6 11.25v-5.25l4.5-3h3l3 3h3.75"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M14.5 20v-4.5l-2-2h-2v3l-2 3m4-11v5h-2v-5m1-2c-.533 0-1-.466-1-1 0-.533.467-1 1-1 .533 0 1 .467 1 1 0 .534-.467 1-1 1zm-4 7.5v-3.5l3-2h2l2 2H17"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M21.75 30v-6.75l-3-3h-3v4.5l-3 4.5m6-16.5v7.5h-3v-7.5m1.5-3c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zm-6 11.25v-5.25l4.5-3h3l3 3h3.75"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconWalkComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconWalkComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconWalkComponent],
-  exports: [IconWalkComponent],
+  exports: [IconWalkComponent]
 })
-export class IconWalkModule { }
+export class IconWalkModule {}

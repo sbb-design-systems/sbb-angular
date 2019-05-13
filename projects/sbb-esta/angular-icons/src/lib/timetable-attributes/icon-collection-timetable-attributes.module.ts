@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconSa1Module } from './icon-sa-1.module';
 import { IconSa2Module } from './icon-sa-2.module';
 import { IconSaAwModule } from './icon-sa-aw.module';
@@ -169,11 +168,11 @@ const modules = [
   IconSaYmModule,
   IconSaYtModule,
   IconSaZModule,
-  IconSaZmModule,
+  IconSaZmModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionTimetableAttributesModule { }
+export class IconCollectionTimetableAttributesModule {}

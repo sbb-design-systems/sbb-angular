@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M9.5 9.5V6a2.5 2.5 0 0 1 5 0v3.5M12 17v-4m-5.5 6.5h11v-10h-11v10z"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M14.25 14.25V9a3.75 3.75 0 0 1 7.5 0v5.25M18 25.5v-6m-8.25 9.75h16.5v-15H9.75v15z"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M9.5 9.5V6a2.5 2.5 0 0 1 5 0v3.5M12 17v-4m-5.5 6.5h11v-10h-11v10z"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M14.25 14.25V9a3.75 3.75 0 0 1 7.5 0v5.25M18 25.5v-6m-8.25 9.75h16.5v-15H9.75v15z"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconLockClosedComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconLockClosedComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconLockClosedComponent],
-  exports: [IconLockClosedComponent],
+  exports: [IconLockClosedComponent]
 })
-export class IconLockClosedModule { }
+export class IconLockClosedModule {}

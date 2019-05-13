@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconAddStopModule } from './icon-add-stop.module';
 import { IconAlternativeModule } from './icon-alternative.module';
 import { IconCancellationModule } from './icon-cancellation.module';
@@ -35,11 +34,11 @@ const modules = [
   IconUtilizationHighModule,
   IconUtilizationLowModule,
   IconUtilizationMediumModule,
-  IconUtilizationNoneModule,
+  IconUtilizationNoneModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionHimCusModule { }
+export class IconCollectionHimCusModule {}

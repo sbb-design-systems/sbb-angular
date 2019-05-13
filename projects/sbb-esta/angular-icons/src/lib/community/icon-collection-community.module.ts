@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconBulbOnModule } from './icon-bulb-on.module';
 import { IconHandshakeModule } from './icon-handshake.module';
 import { IconNetworkModule } from './icon-network.module';
@@ -39,11 +38,11 @@ const modules = [
   IconSpeechBubbleGroupEmptyModule,
   IconThumbDownModule,
   IconThumbUpModule,
-  IconTranslateModule,
+  IconTranslateModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionCommunityModule { }
+export class IconCollectionCommunityModule {}

@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconDocumentCheckModule } from './icon-document-check.module';
 import { IconDocumentImageModule } from './icon-document-image.module';
 import { IconDocumentLockModule } from './icon-document-lock.module';
@@ -43,11 +42,11 @@ const modules = [
   IconFolderOpenArrowModule,
   IconFolderPlusModule,
   IconMetadataModule,
-  IconTwoFoldersModule,
+  IconTwoFoldersModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionDocumentModule { }
+export class IconCollectionDocumentModule {}

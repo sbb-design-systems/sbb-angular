@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconQrcodeModule } from './icon-qrcode.module';
 import { IconQrcodeDisabledModule } from './icon-qrcode-disabled.module';
 import { IconSwisspassModule } from './icon-swisspass.module';
@@ -31,11 +30,11 @@ const modules = [
   IconTicketParkingModule,
   IconTicketPercentModule,
   IconTicketRouteModule,
-  IconTicketStarModule,
+  IconTicketStarModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionTicketModule { }
+export class IconCollectionTicketModule {}

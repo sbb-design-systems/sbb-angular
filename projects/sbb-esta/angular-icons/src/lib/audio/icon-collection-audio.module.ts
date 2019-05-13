@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconFastForwardModule } from './icon-fast-forward.module';
 import { IconNextModule } from './icon-next.module';
 import { IconPauseModule } from './icon-pause.module';
@@ -21,11 +20,11 @@ const modules = [
   IconPreviousModule,
   IconRecordModule,
   IconRewindModule,
-  IconStopModule,
+  IconStopModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionAudioModule { }
+export class IconCollectionAudioModule {}

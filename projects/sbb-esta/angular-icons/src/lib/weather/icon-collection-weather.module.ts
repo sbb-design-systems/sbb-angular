@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconCloudModule } from './icon-cloud.module';
 import { IconCloudDenseFogModule } from './icon-cloud-dense-fog.module';
 import { IconCloudDropsModule } from './icon-cloud-drops.module';
@@ -69,11 +68,11 @@ const modules = [
   IconSunriseModule,
   IconSunshineModule,
   IconSunMoonModule,
-  IconWeatherUnknownModule,
+  IconWeatherUnknownModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionWeatherModule { }
+export class IconCollectionWeatherModule {}

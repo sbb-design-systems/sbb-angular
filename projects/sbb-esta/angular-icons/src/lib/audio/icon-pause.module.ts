@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M13.501 18.5v-13h3v13h-3zm-6.001 0v-13h3v13h-3z"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M20.252 27.75V8.25h4.5v19.5h-4.5zm-9.002 0V8.25h4.5v19.5h-4.5z"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M13.501 18.5v-13h3v13h-3zm-6.001 0v-13h3v13h-3z"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M20.252 27.75V8.25h4.5v19.5h-4.5zm-9.002 0V8.25h4.5v19.5h-4.5z"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconPauseComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconPauseComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconPauseComponent],
-  exports: [IconPauseComponent],
+  exports: [IconPauseComponent]
 })
-export class IconPauseModule { }
+export class IconPauseModule {}

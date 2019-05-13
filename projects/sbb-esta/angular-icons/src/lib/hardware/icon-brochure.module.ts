@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M13 9l6-2m-6 5l6-2m-6 5l6-2m-6 5l6-2M4 7l6 2m-6 1l6 2m-6 1l6 2m-6 1l6 2m1.5-11.5l9-3v15l-9 3-9-3v-15l9 3zm0 15v-15"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M19.5 13.5l9-3m-9 7.5l9-3m-9 7.5l9-3m-9 7.5l9-3M6 10.5l9 3M6 15l9 3m-9 1.5l9 3M6 24l9 3m2.25-17.25l13.5-4.5v22.5l-13.5 4.5-13.5-4.5V5.25l13.5 4.5zm0 22.5V9.75"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M13 9l6-2m-6 5l6-2m-6 5l6-2m-6 5l6-2M4 7l6 2m-6 1l6 2m-6 1l6 2m-6 1l6 2m1.5-11.5l9-3v15l-9 3-9-3v-15l9 3zm0 15v-15"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M19.5 13.5l9-3m-9 7.5l9-3m-9 7.5l9-3m-9 7.5l9-3M6 10.5l9 3M6 15l9 3m-9 1.5l9 3M6 24l9 3m2.25-17.25l13.5-4.5v22.5l-13.5 4.5-13.5-4.5V5.25l13.5 4.5zm0 22.5V9.75"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconBrochureComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconBrochureComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconBrochureComponent],
-  exports: [IconBrochureComponent],
+  exports: [IconBrochureComponent]
 })
-export class IconBrochureModule { }
+export class IconBrochureModule {}

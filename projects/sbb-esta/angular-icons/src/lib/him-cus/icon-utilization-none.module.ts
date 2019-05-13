@@ -9,9 +9,21 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-utilization-none',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 16"><g fill="#BCBCBC" fill-rule="evenodd"><path d="M2.5 3C3.327 3 4 2.327 4 1.5S3.327 0 2.5 0 1 .673 1 1.5 1.673 3 2.5 3m7.004 0c.827 0 1.5-.673 1.5-1.5S10.33 0 9.504 0s-1.5.673-1.5 1.5.673 1.5 1.5 1.5m7.004 0c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5-1.5.673-1.5 1.5.673 1.5 1.5 1.5M0 10h1v6h3v-6h1V4H0zM7.004 10h1v6h3v-6h1V4h-5zM14 4v6h1v6h3v-6h1V4z"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 19 16"
+    >
+      <g fill="#BCBCBC" fill-rule="evenodd">
+        <path
+          d="M2.5 3C3.327 3 4 2.327 4 1.5S3.327 0 2.5 0 1 .673 1 1.5 1.673 3 2.5 3m7.004 0c.827 0 1.5-.673 1.5-1.5S10.33 0 9.504 0s-1.5.673-1.5 1.5.673 1.5 1.5 1.5m7.004 0c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5-1.5.673-1.5 1.5.673 1.5 1.5 1.5M0 10h1v6h3v-6h1V4H0zM7.004 10h1v6h3v-6h1V4h-5zM14 4v6h1v6h3v-6h1V4z"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconUtilizationNoneComponent extends IconBase {
   constructor() {
@@ -22,6 +34,6 @@ export class IconUtilizationNoneComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconUtilizationNoneComponent],
-  exports: [IconUtilizationNoneComponent],
+  exports: [IconUtilizationNoneComponent]
 })
-export class IconUtilizationNoneModule { }
+export class IconUtilizationNoneModule {}

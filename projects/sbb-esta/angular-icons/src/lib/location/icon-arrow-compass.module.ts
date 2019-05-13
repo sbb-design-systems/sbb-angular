@@ -11,11 +11,30 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M12.5 18.5v-7h-7l14.44-7.441z"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M18.75 27.75v-10.5H8.25L29.91 6.088z"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path fill="none" stroke="#000" d="M12.5 18.5v-7h-7l14.44-7.441z" />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M18.75 27.75v-10.5H8.25L29.91 6.088z"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconArrowCompassComponent extends IconBase {
   constructor() {
@@ -26,6 +45,6 @@ export class IconArrowCompassComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconArrowCompassComponent],
-  exports: [IconArrowCompassComponent],
+  exports: [IconArrowCompassComponent]
 })
-export class IconArrowCompassModule { }
+export class IconArrowCompassModule {}
