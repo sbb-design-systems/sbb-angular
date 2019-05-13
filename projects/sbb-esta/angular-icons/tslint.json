@@ -1,5 +1,8 @@
 {
   "extends": "../../../tslint.json",
+  "linterOptions": {
+    "exclude": ["**/schematics/*/files/**/*.*"]
+  },
   "rules": {
     "directive-selector": [true, "attribute", "sbb", "camelCase"],
     "component-selector": [true, "element", "sbb", "kebab-case"]

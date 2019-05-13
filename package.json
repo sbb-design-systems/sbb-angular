@@ -150,6 +150,7 @@
   },
   "prettier": {
     "singleQuote": true,
+    "endOfLine": "lf", 
     "overrides": [
       {
         "files": "*.html",
