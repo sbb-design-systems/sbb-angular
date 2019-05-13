@@ -5,8 +5,10 @@ import { NgModule } from '@angular/core';
 
 
 import { IconCloudModule } from './icon-cloud.module';
+import { IconCloudDenseFogModule } from './icon-cloud-dense-fog.module';
 import { IconCloudDropsModule } from './icon-cloud-drops.module';
 import { IconCloudDropsMoonModule } from './icon-cloud-drops-moon.module';
+import { IconCloudFogModule } from './icon-cloud-fog.module';
 import { IconCloudIceModule } from './icon-cloud-ice.module';
 import { IconCloudLightningModule } from './icon-cloud-lightning.module';
 import { IconCloudLightningMoonModule } from './icon-cloud-lightning-moon.module';
@@ -26,11 +28,9 @@ import { IconCloudSnowMoonModule } from './icon-cloud-snow-moon.module';
 import { IconCloudSnowSunModule } from './icon-cloud-snow-sun.module';
 import { IconCloudStrongRainMoonModule } from './icon-cloud-strong-rain-moon.module';
 import { IconCloudStrongRainSunModule } from './icon-cloud-strong-rain-sun.module';
-import { IconCloudSunModule } from './icon-cloud-sun.module';
 import { IconCloudSunshineModule } from './icon-cloud-sunshine.module';
-import { IconDenseFogModule } from './icon-dense-fog.module';
+import { IconCloudSunModule } from './icon-cloud-sun.module';
 import { IconFogModule } from './icon-fog.module';
-import { IconCloudFogModule } from './icon-cloud-fog.module';
 import { IconMoonModule } from './icon-moon.module';
 import { IconSunriseModule } from './icon-sunrise.module';
 import { IconSunshineModule } from './icon-sunshine.module';
@@ -39,8 +39,10 @@ import { IconWeatherUnknownModule } from './icon-weather-unknown.module';
 
 const modules = [
   IconCloudModule,
+  IconCloudDenseFogModule,
   IconCloudDropsModule,
   IconCloudDropsMoonModule,
+  IconCloudFogModule,
   IconCloudIceModule,
   IconCloudLightningModule,
   IconCloudLightningMoonModule,
@@ -60,11 +62,9 @@ const modules = [
   IconCloudSnowSunModule,
   IconCloudStrongRainMoonModule,
   IconCloudStrongRainSunModule,
-  IconCloudSunModule,
   IconCloudSunshineModule,
-  IconDenseFogModule,
+  IconCloudSunModule,
   IconFogModule,
-  IconCloudFogModule,
   IconMoonModule,
   IconSunriseModule,
   IconSunshineModule,

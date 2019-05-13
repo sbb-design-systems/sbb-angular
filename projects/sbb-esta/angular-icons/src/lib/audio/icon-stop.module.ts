@@ -9,7 +9,11 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-stop',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M8.25 27.75h19.5V8.25H8.25z"/></svg>`,
+  template: `
+    <ng-container [ngSwitch]="size">
+      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M5.5 18.5h13v-13h-13z"/></svg>
+      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M8.25 27.75h19.5V8.25H8.25z"/></svg>
+    </ng-container>`,
   // tslint:enable:max-line-length
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

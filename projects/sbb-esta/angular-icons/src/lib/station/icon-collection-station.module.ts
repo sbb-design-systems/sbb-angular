@@ -4,6 +4,9 @@
 import { NgModule } from '@angular/core';
 
 
+import { IconLotusModule } from './icon-lotus.module';
+import { IconPlatformModule } from './icon-platform.module';
+import { IconStationModule } from './icon-station.module';
 import { IconBookModule } from './icon-book.module';
 import { IconBottleAppleModule } from './icon-bottle-apple.module';
 import { IconCustomerAssistanceSbbModule } from './icon-customer-assistance-sbb.module';
@@ -14,7 +17,6 @@ import { IconHandSbbModule } from './icon-hand-sbb.module';
 import { IconHostelModule } from './icon-hostel.module';
 import { IconLiftModule } from './icon-lift.module';
 import { IconLockerModule } from './icon-locker.module';
-import { IconLotusModule } from './icon-lotus.module';
 import { IconMeetingPointModule } from './icon-meeting-point.module';
 import { IconMoneyExchangeModule } from './icon-money-exchange.module';
 import { IconPlatformDisplayModule } from './icon-platform-display.module';
@@ -23,7 +25,6 @@ import { IconShirtShoeModule } from './icon-shirt-shoe.module';
 import { IconShoppingBagModule } from './icon-shopping-bag.module';
 import { IconShoppingBagCouponModule } from './icon-shopping-bag-coupon.module';
 import { IconShoppingBagFastModule } from './icon-shopping-bag-fast.module';
-import { IconStationModule } from './icon-station.module';
 import { IconStationSurroundingAreaModule } from './icon-station-surrounding-area.module';
 import { IconTicketMachineModule } from './icon-ticket-machine.module';
 import { IconTicketMachineTicketModule } from './icon-ticket-machine-ticket.module';
@@ -33,6 +34,9 @@ import { IconWaitingRoomModule } from './icon-waiting-room.module';
 import { IconWineCheeseModule } from './icon-wine-cheese.module';
 
 const modules = [
+  IconLotusModule,
+  IconPlatformModule,
+  IconStationModule,
   IconBookModule,
   IconBottleAppleModule,
   IconCustomerAssistanceSbbModule,
@@ -43,7 +47,6 @@ const modules = [
   IconHostelModule,
   IconLiftModule,
   IconLockerModule,
-  IconLotusModule,
   IconMeetingPointModule,
   IconMoneyExchangeModule,
   IconPlatformDisplayModule,
@@ -52,7 +55,6 @@ const modules = [
   IconShoppingBagModule,
   IconShoppingBagCouponModule,
   IconShoppingBagFastModule,
-  IconStationModule,
   IconStationSurroundingAreaModule,
   IconTicketMachineModule,
   IconTicketMachineTicketModule,

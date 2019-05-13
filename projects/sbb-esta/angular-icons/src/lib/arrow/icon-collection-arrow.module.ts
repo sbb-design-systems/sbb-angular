@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 
 import { IconArrowsCircleModule } from './icon-arrows-circle.module';
 import { IconArrowsLeftRightModule } from './icon-arrows-left-right.module';
+import { IconArrowsLeftRightDownUpModule } from './icon-arrows-left-right-down-up.module';
 import { IconArrowsRightLeftModule } from './icon-arrows-right-left.module';
 import { IconArrowsUpDownModule } from './icon-arrows-up-down.module';
 import { IconArrowCircleModule } from './icon-arrow-circle.module';
@@ -23,11 +24,11 @@ import { IconChevronSmallUpModule } from './icon-chevron-small-up.module';
 import { IconChevronSmallUpCircleModule } from './icon-chevron-small-up-circle.module';
 import { IconIncreaseSizeModule } from './icon-increase-size.module';
 import { IconReduceSizeModule } from './icon-reduce-size.module';
-import { IconArrowsLeftRightDownUpModule } from './icon-arrows-left-right-down-up.module';
 
 const modules = [
   IconArrowsCircleModule,
   IconArrowsLeftRightModule,
+  IconArrowsLeftRightDownUpModule,
   IconArrowsRightLeftModule,
   IconArrowsUpDownModule,
   IconArrowCircleModule,
@@ -45,7 +46,6 @@ const modules = [
   IconChevronSmallUpCircleModule,
   IconIncreaseSizeModule,
   IconReduceSizeModule,
-  IconArrowsLeftRightDownUpModule,
 ];
 
 @NgModule({

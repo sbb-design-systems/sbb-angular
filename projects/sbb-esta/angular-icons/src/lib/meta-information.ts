@@ -84,10 +84,6 @@ import {
   IconSaYtComponent,
   IconSaZComponent,
   IconSaZmComponent,
-  IconUtilizationNoneComponent,
-  IconUtilizationLowComponent,
-  IconUtilizationMediumComponent,
-  IconUtilizationHighComponent,
   IconAddStopComponent,
   IconAlternativeComponent,
   IconCancellationComponent,
@@ -99,6 +95,10 @@ import {
   IconPlatformChangeComponent,
   IconHimReplacementbusComponent,
   IconRerouteComponent,
+  IconUtilizationHighComponent,
+  IconUtilizationLowComponent,
+  IconUtilizationMediumComponent,
+  IconUtilizationNoneComponent,
   IconProductBexComponent,
   IconProductCnlComponent,
   IconProductEcComponent,
@@ -150,8 +150,11 @@ import {
   IconProductSnComponent,
   IconProductTgvComponent,
   IconProductVaeComponent,
+  IconCalendarComponent,
   IconChartColumnTrendComponent,
   IconCoinsComponent,
+  IconRocketComponent,
+  IconShoppingCartComponent,
   IconAlarmClockComponent,
   IconAppleBagComponent,
   IconAppIconComponent,
@@ -159,7 +162,6 @@ import {
   IconBellComponent,
   IconBinocularsComponent,
   IconBrowserComponent,
-  IconCalendarComponent,
   IconCameraComponent,
   IconChartColumnComponent,
   IconChartLineComponent,
@@ -170,6 +172,7 @@ import {
   IconCircleQuestionMarkComponent,
   IconContactComponent,
   IconControlsComponent,
+  IconCupHotComponent,
   IconCutleryComponent,
   IconDatabaseComponent,
   IconDogComponent,
@@ -194,13 +197,12 @@ import {
   IconHandWithServiceBellComponent,
   IconHeartComponent,
   IconHierarchyComponent,
-  IconKaffeComponent,
-  IconKaffe2Component,
   IconLighthouseComponent,
   IconLinkComponent,
   IconLinkExternalComponent,
   IconListComponent,
   IconMagnifyingGlassComponent,
+  IconMugHotComponent,
   IconNewspaperComponent,
   IconPaperAeroplaneComponent,
   IconPaperClipComponent,
@@ -209,7 +211,6 @@ import {
   IconPinComponent,
   IconRssComponent,
   IconServiceBellComponent,
-  IconShoppingCartComponent,
   IconSignExclamationPointComponent,
   IconSignXComponent,
   IconSpannerComponent,
@@ -242,7 +243,7 @@ import {
   IconThumbUpComponent,
   IconTranslateComponent,
   IconEmployeesSbbComponent,
-  IconUserGroupRowComponent,
+  IconUserGroupComponent,
   IconAvatarPoliceComponent,
   IconKeyComponent,
   IconPieComponent,
@@ -250,7 +251,7 @@ import {
   IconUserComponent,
   IconUserChangeComponent,
   IconUserGroupRoundTableComponent,
-  IconUserGroupRowLinearComponent,
+  IconUserGroupRowComponent,
   IconUserHatComponent,
   IconUserHeadsetComponent,
   IconUserKeyComponent,
@@ -278,6 +279,34 @@ import {
   IconWheelchairPartiallyComponent,
   IconWheelchairReservationComponent,
   IconWheelchairUncertainComponent,
+  IconLotusComponent,
+  IconPlatformComponent,
+  IconStationComponent,
+  IconBookComponent,
+  IconBottleAppleComponent,
+  IconCustomerAssistanceSbbComponent,
+  IconEscalatorComponent,
+  IconGeneralDisplayComponent,
+  IconHandPlusCircleComponent,
+  IconHandSbbComponent,
+  IconHostelComponent,
+  IconLiftComponent,
+  IconLockerComponent,
+  IconMeetingPointComponent,
+  IconMoneyExchangeComponent,
+  IconPlatformDisplayComponent,
+  IconScreenInsideTrainComponent,
+  IconShirtShoeComponent,
+  IconShoppingBagComponent,
+  IconShoppingBagCouponComponent,
+  IconShoppingBagFastComponent,
+  IconStationSurroundingAreaComponent,
+  IconTicketMachineComponent,
+  IconTicketMachineTicketComponent,
+  IconToiletComponent,
+  IconTrainStationComponent,
+  IconWaitingRoomComponent,
+  IconWineCheeseComponent,
   IconLaptopSmartphoneComponent,
   IconArchiveBoxComponent,
   IconBriefcaseComponent,
@@ -305,8 +334,8 @@ import {
   IconAirplaneComponent,
   IconBusComponent,
   IconBusCircleComponent,
-  IconBusStopComponent,
   IconBusSbbComponent,
+  IconBusStopComponent,
   IconCarComponent,
   IconCarParkingComponent,
   IconChargingStationComponent,
@@ -315,16 +344,42 @@ import {
   IconDriverlessBusComponent,
   IconFreightWagonComponent,
   IconKRComponent,
+  IconParkAndRailComponent,
   IconPetrolStationComponent,
-  IconPRComponent,
   IconShuttleComponent,
   IconTaxiComponent,
   IconTramComponent,
+  IconAdultKidsComponent,
+  IconBalloonsComponent,
+  IconChristmasTreeShoppingBagComponent,
+  IconElephantComponent,
+  IconFerrisWheelComponent,
+  IconHikingBootComponent,
+  IconLeafComponent,
+  IconLocomotiveViaductComponent,
+  IconLucerneChapelBridgeComponent,
+  IconMarketShoppingBagComponent,
+  IconMountainSunComponent,
+  IconMuseumComponent,
+  IconMusicRockHandGestureComponent,
+  IconRailwayShipComponent,
+  IconSledgeSnowshoeComponent,
+  IconSoccerBallComponent,
+  IconThreeAdultsComponent,
+  IconTrainSkiComponent,
+  IconTwoAdultsKidComponent,
+  IconRailwaySwitchComponent,
+  IconTrainSignalComponent,
+  IconTrainTracksComponent,
+  IconConstructionComponent,
+  IconBuildingTreeComponent,
+  IconCityComponent,
   IconCurriculumVitaeComponent,
   IconHandGraduationCapComponent,
   IconShipSteeringWheelComponent,
   IconArrowsCircleComponent,
   IconArrowsLeftRightComponent,
+  IconArrowsLeftRightDownUpComponent,
   IconArrowsRightLeftComponent,
   IconArrowsUpDownComponent,
   IconArrowCircleComponent,
@@ -342,7 +397,6 @@ import {
   IconChevronSmallUpCircleComponent,
   IconIncreaseSizeComponent,
   IconReduceSizeComponent,
-  IconArrowsLeftRightDownUpComponent,
   IconButtonPowerComponent,
   IconExclamationPointComponent,
   IconEyeComponent,
@@ -395,33 +449,6 @@ import {
   IconTicketPercentComponent,
   IconTicketRouteComponent,
   IconTicketStarComponent,
-  IconBookComponent,
-  IconBottleAppleComponent,
-  IconCustomerAssistanceSbbComponent,
-  IconEscalatorComponent,
-  IconGeneralDisplayComponent,
-  IconHandPlusCircleComponent,
-  IconHandSbbComponent,
-  IconHostelComponent,
-  IconLiftComponent,
-  IconLockerComponent,
-  IconLotusComponent,
-  IconMeetingPointComponent,
-  IconMoneyExchangeComponent,
-  IconPlatformDisplayComponent,
-  IconScreenInsideTrainComponent,
-  IconShirtShoeComponent,
-  IconShoppingBagComponent,
-  IconShoppingBagCouponComponent,
-  IconShoppingBagFastComponent,
-  IconStationComponent,
-  IconStationSurroundingAreaComponent,
-  IconTicketMachineComponent,
-  IconTicketMachineTicketComponent,
-  IconToiletComponent,
-  IconTrainStationComponent,
-  IconWaitingRoomComponent,
-  IconWineCheeseComponent,
   IconArrowCompassComponent,
   IconGpsComponent,
   IconGpsDisabledComponent,
@@ -434,8 +461,10 @@ import {
   IconMountainMinusComponent,
   IconMountainPlusComponent,
   IconCloudComponent,
+  IconCloudDenseFogComponent,
   IconCloudDropsComponent,
   IconCloudDropsMoonComponent,
+  IconCloudFogComponent,
   IconCloudIceComponent,
   IconCloudLightningComponent,
   IconCloudLightningMoonComponent,
@@ -455,11 +484,9 @@ import {
   IconCloudSnowSunComponent,
   IconCloudStrongRainMoonComponent,
   IconCloudStrongRainSunComponent,
-  IconCloudSunComponent,
   IconCloudSunshineComponent,
-  IconDenseFogComponent,
+  IconCloudSunComponent,
   IconFogComponent,
-  IconCloudFogComponent,
   IconMoonComponent,
   IconSunriseComponent,
   IconSunshineComponent,
@@ -473,10 +500,6 @@ import {
   IconRecordComponent,
   IconRewindComponent,
   IconStopComponent,
-  IconMountainSunComponent,
-  IconConstructionComponent,
-  IconRailwaySwitchComponent,
-  IconCityComponent,
   IconTwitterComponent,
   IconFacebookComponent,
   IconInstagramComponent,
@@ -497,6 +520,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_1.svg'],
     component: IconSa1Component
   },
   {
@@ -508,6 +532,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_2.svg'],
     component: IconSa2Component
   },
   {
@@ -519,6 +544,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_aw.svg'],
     component: IconSaAwComponent
   },
   {
@@ -530,6 +556,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_b.svg'],
     component: IconSaBComponent
   },
   {
@@ -541,6 +568,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_be.svg'],
     component: IconSaBeComponent
   },
   {
@@ -552,6 +580,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_bk.svg'],
     component: IconSaBkComponent
   },
   {
@@ -563,6 +592,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_bl.svg'],
     component: IconSaBlComponent
   },
   {
@@ -574,6 +604,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_br.svg'],
     component: IconSaBrComponent
   },
   {
@@ -585,6 +616,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_bv.svg'],
     component: IconSaBvComponent
   },
   {
@@ -596,6 +628,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_bz.svg'],
     component: IconSaBzComponent
   },
   {
@@ -607,6 +640,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_cc.svg'],
     component: IconSaCcComponent
   },
   {
@@ -618,6 +652,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_dz.svg'],
     component: IconSaDzComponent
   },
   {
@@ -629,6 +664,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_ep.svg'],
     component: IconSaEpComponent
   },
   {
@@ -640,6 +676,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_fa.svg'],
     component: IconSaFaComponent
   },
   {
@@ -651,6 +688,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_fl.svg'],
     component: IconSaFlComponent
   },
   {
@@ -662,6 +700,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_fw.svg'],
     component: IconSaFwComponent
   },
   {
@@ -673,6 +712,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_fz.svg'],
     component: IconSaFzComponent
   },
   {
@@ -684,6 +724,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_gl.svg'],
     component: IconSaGlComponent
   },
   {
@@ -695,6 +736,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_gn.svg'],
     component: IconSaGnComponent
   },
   {
@@ -706,6 +748,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_gp.svg'],
     component: IconSaGpComponent
   },
   {
@@ -717,6 +760,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_gr.svg'],
     component: IconSaGrComponent
   },
   {
@@ -728,6 +772,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_gz.svg'],
     component: IconSaGzComponent
   },
   {
@@ -739,6 +784,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_hk.svg'],
     component: IconSaHkComponent
   },
   {
@@ -750,6 +796,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_hn.svg'],
     component: IconSaHnComponent
   },
   {
@@ -761,6 +808,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_je.svg'],
     component: IconSaJeComponent
   },
   {
@@ -772,6 +820,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_kw.svg'],
     component: IconSaKwComponent
   },
   {
@@ -783,6 +832,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_lc.svg'],
     component: IconSaLcComponent
   },
   {
@@ -794,6 +844,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_le.svg'],
     component: IconSaLeComponent
   },
   {
@@ -805,6 +856,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_me.svg'],
     component: IconSaMeComponent
   },
   {
@@ -816,6 +868,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_mi.svg'],
     component: IconSaMiComponent
   },
   {
@@ -827,6 +880,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_mp.svg'],
     component: IconSaMpComponent
   },
   {
@@ -838,6 +892,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_nf.svg'],
     component: IconSaNfComponent
   },
   {
@@ -849,6 +904,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_nj.svg'],
     component: IconSaNjComponent
   },
   {
@@ -860,6 +916,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_p.svg'],
     component: IconSaPComponent
   },
   {
@@ -871,6 +928,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_pa.svg'],
     component: IconSaPaComponent
   },
   {
@@ -882,6 +940,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_pl.svg'],
     component: IconSaPlComponent
   },
   {
@@ -893,6 +952,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_pr.svg'],
     component: IconSaPrComponent
   },
   {
@@ -904,6 +964,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_r.svg'],
     component: IconSaRComponent
   },
   {
@@ -915,6 +976,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_rb.svg'],
     component: IconSaRbComponent
   },
   {
@@ -926,6 +988,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_rc.svg'],
     component: IconSaRcComponent
   },
   {
@@ -937,6 +1000,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_re.svg'],
     component: IconSaReComponent
   },
   {
@@ -948,6 +1012,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_rq.svg'],
     component: IconSaRqComponent
   },
   {
@@ -959,6 +1024,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_rr.svg'],
     component: IconSaRrComponent
   },
   {
@@ -970,6 +1036,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_rt.svg'],
     component: IconSaRtComponent
   },
   {
@@ -981,6 +1048,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_ry.svg'],
     component: IconSaRyComponent
   },
   {
@@ -992,6 +1060,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_rz.svg'],
     component: IconSaRzComponent
   },
   {
@@ -1003,6 +1072,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_s.svg'],
     component: IconSaSComponent
   },
   {
@@ -1014,6 +1084,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sb.svg'],
     component: IconSaSbComponent
   },
   {
@@ -1025,6 +1096,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sc.svg'],
     component: IconSaScComponent
   },
   {
@@ -1036,6 +1108,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sd.svg'],
     component: IconSaSdComponent
   },
   {
@@ -1047,6 +1120,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sh.svg'],
     component: IconSaShComponent
   },
   {
@@ -1058,6 +1132,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sl.svg'],
     component: IconSaSlComponent
   },
   {
@@ -1069,6 +1144,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sm.svg'],
     component: IconSaSmComponent
   },
   {
@@ -1080,6 +1156,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sn.svg'],
     component: IconSaSnComponent
   },
   {
@@ -1091,6 +1168,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sv.svg'],
     component: IconSaSvComponent
   },
   {
@@ -1102,6 +1180,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_sz.svg'],
     component: IconSaSzComponent
   },
   {
@@ -1113,6 +1192,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_tc.svg'],
     component: IconSaTcComponent
   },
   {
@@ -1124,6 +1204,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_tf.svg'],
     component: IconSaTfComponent
   },
   {
@@ -1135,6 +1216,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_tg.svg'],
     component: IconSaTgComponent
   },
   {
@@ -1146,6 +1228,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_tk.svg'],
     component: IconSaTkComponent
   },
   {
@@ -1157,6 +1240,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_ts.svg'],
     component: IconSaTsComponent
   },
   {
@@ -1168,6 +1252,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_tt.svg'],
     component: IconSaTtComponent
   },
   {
@@ -1179,6 +1264,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_vi.svg'],
     component: IconSaViComponent
   },
   {
@@ -1190,6 +1276,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_vl.svg'],
     component: IconSaVlComponent
   },
   {
@@ -1201,6 +1288,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_vn.svg'],
     component: IconSaVnComponent
   },
   {
@@ -1212,6 +1300,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_vp.svg'],
     component: IconSaVpComponent
   },
   {
@@ -1223,6 +1312,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_vr.svg'],
     component: IconSaVrComponent
   },
   {
@@ -1234,6 +1324,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_vx.svg'],
     component: IconSaVxComponent
   },
   {
@@ -1245,6 +1336,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_wl.svg'],
     component: IconSaWlComponent
   },
   {
@@ -1256,6 +1348,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_wr.svg'],
     component: IconSaWrComponent
   },
   {
@@ -1267,6 +1360,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_ws.svg'],
     component: IconSaWsComponent
   },
   {
@@ -1278,6 +1372,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_wv.svg'],
     component: IconSaWvComponent
   },
   {
@@ -1289,6 +1384,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_x.svg'],
     component: IconSaXComponent
   },
   {
@@ -1300,6 +1396,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_xp.svg'],
     component: IconSaXpComponent
   },
   {
@@ -1311,6 +1408,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_xr.svg'],
     component: IconSaXrComponent
   },
   {
@@ -1322,6 +1420,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_xt.svg'],
     component: IconSaXtComponent
   },
   {
@@ -1333,6 +1432,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_y.svg'],
     component: IconSaYComponent
   },
   {
@@ -1344,6 +1444,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_yb.svg'],
     component: IconSaYbComponent
   },
   {
@@ -1355,6 +1456,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_ym.svg'],
     component: IconSaYmComponent
   },
   {
@@ -1366,6 +1468,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_yt.svg'],
     component: IconSaYtComponent
   },
   {
@@ -1377,6 +1480,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_z.svg'],
     component: IconSaZComponent
   },
   {
@@ -1388,51 +1492,8 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Attribut/sbb_sa_zm.svg'],
     component: IconSaZmComponent
-  },
-  {
-    selector: 'sbb-icon-utilization-none',
-    name: 'IconUtilizationNoneComponent',
-    modules: [
-      'IconUtilizationNoneModule',
-      'IconCollectionHimCusModule',
-      'IconCollectionModule'
-    ],
-    sizes: [],
-    component: IconUtilizationNoneComponent
-  },
-  {
-    selector: 'sbb-icon-utilization-low',
-    name: 'IconUtilizationLowComponent',
-    modules: [
-      'IconUtilizationLowModule',
-      'IconCollectionHimCusModule',
-      'IconCollectionModule'
-    ],
-    sizes: [],
-    component: IconUtilizationLowComponent
-  },
-  {
-    selector: 'sbb-icon-utilization-medium',
-    name: 'IconUtilizationMediumComponent',
-    modules: [
-      'IconUtilizationMediumModule',
-      'IconCollectionHimCusModule',
-      'IconCollectionModule'
-    ],
-    sizes: [],
-    component: IconUtilizationMediumComponent
-  },
-  {
-    selector: 'sbb-icon-utilization-high',
-    name: 'IconUtilizationHighComponent',
-    modules: [
-      'IconUtilizationHighModule',
-      'IconCollectionHimCusModule',
-      'IconCollectionModule'
-    ],
-    sizes: [],
-    component: IconUtilizationHighComponent
   },
   {
     selector: 'sbb-icon-add-stop',
@@ -1443,6 +1504,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_add_stop.svg'],
     component: IconAddStopComponent
   },
   {
@@ -1454,6 +1516,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_alternative.svg'],
     component: IconAlternativeComponent
   },
   {
@@ -1465,6 +1528,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_cancellation.svg'],
     component: IconCancellationComponent
   },
   {
@@ -1476,6 +1540,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_construction.svg'],
     component: IconHimConstructionComponent
   },
   {
@@ -1487,6 +1552,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_delay.svg'],
     component: IconDelayComponent
   },
   {
@@ -1498,6 +1564,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_disruption.svg'],
     component: IconHimDisruptionComponent
   },
   {
@@ -1509,6 +1576,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_info.svg'],
     component: IconHimInfoComponent
   },
   {
@@ -1520,6 +1588,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_missed_connection.svg'],
     component: IconMissedConnectionComponent
   },
   {
@@ -1531,6 +1600,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_platform_change.svg'],
     component: IconPlatformChangeComponent
   },
   {
@@ -1542,6 +1612,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_replacementbus.svg'],
     component: IconHimReplacementbusComponent
   },
   {
@@ -1553,7 +1624,56 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/sbb_reroute.svg'],
     component: IconRerouteComponent
+  },
+  {
+    selector: 'sbb-icon-utilization-high',
+    name: 'IconUtilizationHighComponent',
+    modules: [
+      'IconUtilizationHighModule',
+      'IconCollectionHimCusModule',
+      'IconCollectionModule'
+    ],
+    sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/utilization_high.svg'],
+    component: IconUtilizationHighComponent
+  },
+  {
+    selector: 'sbb-icon-utilization-low',
+    name: 'IconUtilizationLowComponent',
+    modules: [
+      'IconUtilizationLowModule',
+      'IconCollectionHimCusModule',
+      'IconCollectionModule'
+    ],
+    sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/utilization_low.svg'],
+    component: IconUtilizationLowComponent
+  },
+  {
+    selector: 'sbb-icon-utilization-medium',
+    name: 'IconUtilizationMediumComponent',
+    modules: [
+      'IconUtilizationMediumModule',
+      'IconCollectionHimCusModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium'],
+    meta: ['/svg/FPL/HIM_CUS/utilization_medium.svg'],
+    component: IconUtilizationMediumComponent
+  },
+  {
+    selector: 'sbb-icon-utilization-none',
+    name: 'IconUtilizationNoneComponent',
+    modules: [
+      'IconUtilizationNoneModule',
+      'IconCollectionHimCusModule',
+      'IconCollectionModule'
+    ],
+    sizes: [],
+    meta: ['/svg/FPL/HIM_CUS/utilization_none.svg'],
+    component: IconUtilizationNoneComponent
   },
   {
     selector: 'sbb-icon-product-bex',
@@ -1564,6 +1684,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_bex.svg'],
     component: IconProductBexComponent
   },
   {
@@ -1575,6 +1696,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_cnl.svg'],
     component: IconProductCnlComponent
   },
   {
@@ -1586,6 +1708,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ec.svg'],
     component: IconProductEcComponent
   },
   {
@@ -1597,6 +1720,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_en.svg'],
     component: IconProductEnComponent
   },
   {
@@ -1608,6 +1732,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_gex.svg'],
     component: IconProductGexComponent
   },
   {
@@ -1619,6 +1744,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic.svg'],
     component: IconProductIcComponent
   },
   {
@@ -1630,6 +1756,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ice.svg'],
     component: IconProductIceComponent
   },
   {
@@ -1641,6 +1768,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_icn.svg'],
     component: IconProductIcnComponent
   },
   {
@@ -1652,6 +1780,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_1.svg'],
     component: IconProductIc1Component
   },
   {
@@ -1663,6 +1792,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_11.svg'],
     component: IconProductIc11Component
   },
   {
@@ -1674,6 +1804,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_2.svg'],
     component: IconProductIc2Component
   },
   {
@@ -1685,6 +1816,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_21.svg'],
     component: IconProductIc21Component
   },
   {
@@ -1696,6 +1828,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_3.svg'],
     component: IconProductIc3Component
   },
   {
@@ -1707,6 +1840,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_4.svg'],
     component: IconProductIc4Component
   },
   {
@@ -1718,6 +1852,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_5.svg'],
     component: IconProductIc5Component
   },
   {
@@ -1729,6 +1864,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_51.svg'],
     component: IconProductIc51Component
   },
   {
@@ -1740,6 +1876,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_6.svg'],
     component: IconProductIc6Component
   },
   {
@@ -1751,6 +1888,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_61.svg'],
     component: IconProductIc61Component
   },
   {
@@ -1762,6 +1900,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_7.svg'],
     component: IconProductIc7Component
   },
   {
@@ -1773,6 +1912,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_8.svg'],
     component: IconProductIc8Component
   },
   {
@@ -1784,6 +1924,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ic_9.svg'],
     component: IconProductIc9Component
   },
   {
@@ -1795,6 +1936,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir.svg'],
     component: IconProductIrComponent
   },
   {
@@ -1806,6 +1948,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_13.svg'],
     component: IconProductIr13Component
   },
   {
@@ -1817,6 +1960,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_15.svg'],
     component: IconProductIr15Component
   },
   {
@@ -1828,6 +1972,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_16.svg'],
     component: IconProductIr16Component
   },
   {
@@ -1839,6 +1984,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_17.svg'],
     component: IconProductIr17Component
   },
   {
@@ -1850,6 +1996,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_25.svg'],
     component: IconProductIr25Component
   },
   {
@@ -1861,6 +2008,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_26.svg'],
     component: IconProductIr26Component
   },
   {
@@ -1872,6 +2020,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_27.svg'],
     component: IconProductIr27Component
   },
   {
@@ -1883,6 +2032,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_35.svg'],
     component: IconProductIr35Component
   },
   {
@@ -1894,6 +2044,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_36.svg'],
     component: IconProductIr36Component
   },
   {
@@ -1905,6 +2056,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_37.svg'],
     component: IconProductIr37Component
   },
   {
@@ -1916,6 +2068,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_45.svg'],
     component: IconProductIr45Component
   },
   {
@@ -1927,6 +2080,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_46.svg'],
     component: IconProductIr46Component
   },
   {
@@ -1938,6 +2092,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_55.svg'],
     component: IconProductIr55Component
   },
   {
@@ -1949,6 +2104,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_56.svg'],
     component: IconProductIr56Component
   },
   {
@@ -1960,6 +2116,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_65.svg'],
     component: IconProductIr65Component
   },
   {
@@ -1971,6 +2128,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_66.svg'],
     component: IconProductIr66Component
   },
   {
@@ -1982,6 +2140,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_70.svg'],
     component: IconProductIr70Component
   },
   {
@@ -1993,6 +2152,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_75.svg'],
     component: IconProductIr75Component
   },
   {
@@ -2004,6 +2164,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_90.svg'],
     component: IconProductIr90Component
   },
   {
@@ -2015,6 +2176,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_ir_95.svg'],
     component: IconProductIr95Component
   },
   {
@@ -2026,6 +2188,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_nj.svg'],
     component: IconProductNjComponent
   },
   {
@@ -2037,6 +2200,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_pe.svg'],
     component: IconProductPeComponent
   },
   {
@@ -2048,6 +2212,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_re.svg'],
     component: IconProductReComponent
   },
   {
@@ -2059,6 +2224,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_rj.svg'],
     component: IconProductRjComponent
   },
   {
@@ -2070,6 +2236,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_rjx.svg'],
     component: IconProductRjxComponent
   },
   {
@@ -2081,6 +2248,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_rx.svg'],
     component: IconProductRxComponent
   },
   {
@@ -2092,6 +2260,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_sn.svg'],
     component: IconProductSnComponent
   },
   {
@@ -2103,6 +2272,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_tgv.svg'],
     component: IconProductTgvComponent
   },
   {
@@ -2114,7 +2284,24 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/FPL/Produkt/sbb_product_vae.svg'],
     component: IconProductVaeComponent
+  },
+  {
+    selector: 'sbb-icon-calendar',
+    name: 'IconCalendarComponent',
+    modules: [
+      'IconCalendarModule',
+      'IconCollectionBasicModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/calendar_6_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/calendar_6_medium.svg',
+      '/svg/KOM/responsive/large/010_Basic/calendar_6_large.svg'
+    ],
+    component: IconCalendarComponent
   },
   {
     selector: 'sbb-icon-chart-column-trend',
@@ -2124,7 +2311,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/chart_column_trend_284_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/chart_column_trend_284_medium.svg',
+      '/svg/KOM/responsive/large/010_Basic/chart_column_trend_284_large.svg'
+    ],
     component: IconChartColumnTrendComponent
   },
   {
@@ -2136,7 +2328,36 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/010_Basic/coins_325_large.svg'],
     component: IconCoinsComponent
+  },
+  {
+    selector: 'sbb-icon-rocket',
+    name: 'IconRocketComponent',
+    modules: [
+      'IconRocketModule',
+      'IconCollectionBasicModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/010_Basic/rocket_319_large.svg'],
+    component: IconRocketComponent
+  },
+  {
+    selector: 'sbb-icon-shopping-cart',
+    name: 'IconShoppingCartComponent',
+    modules: [
+      'IconShoppingCartModule',
+      'IconCollectionBasicModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/shopping_cart_4_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/shopping_cart_4_medium.svg',
+      '/svg/KOM/responsive/large/010_Basic/shopping_cart_4_large.svg'
+    ],
+    component: IconShoppingCartComponent
   },
   {
     selector: 'sbb-icon-alarm-clock',
@@ -2147,6 +2368,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/alarm_clock_19_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/alarm_clock_19_medium.svg'
+    ],
     component: IconAlarmClockComponent
   },
   {
@@ -2157,7 +2382,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/apple_bag_308_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/apple_bag_308_medium.svg'
+    ],
     component: IconAppleBagComponent
   },
   {
@@ -2169,6 +2398,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/app_icon_283_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/app_icon_283_medium.svg'
+    ],
     component: IconAppIconComponent
   },
   {
@@ -2179,7 +2412,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/backpack_348_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/backpack_348_medium.svg'
+    ],
     component: IconBackpackComponent
   },
   {
@@ -2191,6 +2428,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/bell_183_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/bell_183_medium.svg'
+    ],
     component: IconBellComponent
   },
   {
@@ -2202,6 +2443,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/binoculars_338_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/binoculars_338_medium.svg'
+    ],
     component: IconBinocularsComponent
   },
   {
@@ -2213,18 +2458,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
-    component: IconBrowserComponent
-  },
-  {
-    selector: 'sbb-icon-calendar',
-    name: 'IconCalendarComponent',
-    modules: [
-      'IconCalendarModule',
-      'IconCollectionBasicModule',
-      'IconCollectionModule'
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/browser_159_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/browser_159_medium.svg'
     ],
-    sizes: ['medium'],
-    component: IconCalendarComponent
+    component: IconBrowserComponent
   },
   {
     selector: 'sbb-icon-camera',
@@ -2234,7 +2472,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/camera_203_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/camera_203_medium.svg'
+    ],
     component: IconCameraComponent
   },
   {
@@ -2245,7 +2487,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/chart_column_163_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/chart_column_163_medium.svg'
+    ],
     component: IconChartColumnComponent
   },
   {
@@ -2257,6 +2503,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/chart_line_345_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/chart_line_345_medium.svg'
+    ],
     component: IconChartLineComponent
   },
   {
@@ -2268,6 +2518,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/chart_pie_340_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/chart_pie_340_medium.svg'
+    ],
     component: IconChartPieComponent
   },
   {
@@ -2279,6 +2533,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/circle_information_11_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/circle_information_11_medium.svg'
+    ],
     component: IconCircleInformationComponent
   },
   {
@@ -2290,6 +2548,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/circle_information_small_206_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/circle_information_small_206_medium.svg'
+    ],
     component: IconCircleInformationSmallComponent
   },
   {
@@ -2301,6 +2563,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/circle_play_209_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/circle_play_209_medium.svg'
+    ],
     component: IconCirclePlayComponent
   },
   {
@@ -2312,6 +2578,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/circle_question_mark_137_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/circle_question_mark_137_medium.svg'
+    ],
     component: IconCircleQuestionMarkComponent
   },
   {
@@ -2323,6 +2593,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/contact_166_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/contact_166_medium.svg'
+    ],
     component: IconContactComponent
   },
   {
@@ -2333,8 +2607,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/controls_29_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/controls_29_medium.svg'
+    ],
     component: IconControlsComponent
+  },
+  {
+    selector: 'sbb-icon-cup-hot',
+    name: 'IconCupHotComponent',
+    modules: [
+      'IconCupHotModule',
+      'IconCollectionBasicModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/cup_hot_281_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/cup_hot_281_medium.svg'
+    ],
+    component: IconCupHotComponent
   },
   {
     selector: 'sbb-icon-cutlery',
@@ -2345,6 +2638,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/cutlery_22_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/cutlery_22_medium.svg'
+    ],
     component: IconCutleryComponent
   },
   {
@@ -2356,6 +2653,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/database_171_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/database_171_medium.svg'
+    ],
     component: IconDatabaseComponent
   },
   {
@@ -2367,6 +2668,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/dog_180_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/dog_180_medium.svg'
+    ],
     component: IconDogComponent
   },
   {
@@ -2378,6 +2683,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/download_27_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/download_27_medium.svg'
+    ],
     component: IconDownloadComponent
   },
   {
@@ -2389,6 +2698,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/download_large_data_128_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/download_large_data_128_medium.svg'
+    ],
     component: IconDownloadLargeDataComponent
   },
   {
@@ -2399,7 +2712,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/download_small_data_129_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/download_small_data_129_medium.svg'
+    ],
     component: IconDownloadSmallDataComponent
   },
   {
@@ -2411,6 +2728,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/entrance_278_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/entrance_278_medium.svg'
+    ],
     component: IconEntranceComponent
   },
   {
@@ -2421,7 +2742,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/envelope_3_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/envelope_3_medium.svg'
+    ],
     component: IconEnvelopeComponent
   },
   {
@@ -2433,6 +2758,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/envelope_open_336_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/envelope_open_336_medium.svg'
+    ],
     component: IconEnvelopeOpenComponent
   },
   {
@@ -2444,6 +2773,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/exit_277_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/exit_277_medium.svg'
+    ],
     component: IconExitComponent
   },
   {
@@ -2455,6 +2788,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/face_king_339_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/face_king_339_medium.svg'
+    ],
     component: IconFaceKingComponent
   },
   {
@@ -2465,7 +2802,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/face_worker_341_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/face_worker_341_medium.svg'
+    ],
     component: IconFaceWorkerComponent
   },
   {
@@ -2477,6 +2818,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/factory_305_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/factory_305_medium.svg'
+    ],
     component: IconFactoryComponent
   },
   {
@@ -2488,6 +2833,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/filter_24_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/filter_24_medium.svg'
+    ],
     component: IconFilterComponent
   },
   {
@@ -2499,6 +2848,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/filter_x_279_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/filter_x_279_medium.svg'
+    ],
     component: IconFilterXComponent
   },
   {
@@ -2510,6 +2863,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/flashlight_on_346_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/flashlight_on_346_medium.svg'
+    ],
     component: IconFlashlightOnComponent
   },
   {
@@ -2521,6 +2878,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/form_280_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/form_280_medium.svg'
+    ],
     component: IconFormComponent
   },
   {
@@ -2532,6 +2893,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/gears_14_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/gears_14_medium.svg'
+    ],
     component: IconGearsComponent
   },
   {
@@ -2543,6 +2908,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/gift_33_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/gift_33_medium.svg'
+    ],
     component: IconGiftComponent
   },
   {
@@ -2554,6 +2923,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/globe_210_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/globe_210_medium.svg'
+    ],
     component: IconGlobeComponent
   },
   {
@@ -2565,6 +2938,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/hand_heart_344_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/hand_heart_344_medium.svg'
+    ],
     component: IconHandHeartComponent
   },
   {
@@ -2576,6 +2953,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/hand_with_service_bell_333_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/hand_with_service_bell_333_medium.svg'
+    ],
     component: IconHandWithServiceBellComponent
   },
   {
@@ -2587,6 +2968,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/heart_31_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/heart_31_medium.svg'
+    ],
     component: IconHeartComponent
   },
   {
@@ -2598,29 +2983,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/hierarchy_17_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/hierarchy_17_medium.svg'
+    ],
     component: IconHierarchyComponent
-  },
-  {
-    selector: 'sbb-icon-kaffe',
-    name: 'IconKaffeComponent',
-    modules: [
-      'IconKaffeModule',
-      'IconCollectionBasicModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconKaffeComponent
-  },
-  {
-    selector: 'sbb-icon-kaffe-2',
-    name: 'IconKaffe2Component',
-    modules: [
-      'IconKaffe2Module',
-      'IconCollectionBasicModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconKaffe2Component
   },
   {
     selector: 'sbb-icon-lighthouse',
@@ -2631,6 +2998,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/lighthouse_282_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/lighthouse_282_medium.svg'
+    ],
     component: IconLighthouseComponent
   },
   {
@@ -2641,7 +3012,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/link_152_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/link_152_medium.svg'
+    ],
     component: IconLinkComponent
   },
   {
@@ -2652,7 +3027,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/link_external_127_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/link_external_127_medium.svg'
+    ],
     component: IconLinkExternalComponent
   },
   {
@@ -2664,6 +3043,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/list_272_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/list_272_medium.svg'
+    ],
     component: IconListComponent
   },
   {
@@ -2675,7 +3058,26 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/magnifying_glass_9_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/magnifying_glass_9_medium.svg'
+    ],
     component: IconMagnifyingGlassComponent
+  },
+  {
+    selector: 'sbb-icon-mug-hot',
+    name: 'IconMugHotComponent',
+    modules: [
+      'IconMugHotModule',
+      'IconCollectionBasicModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/mug_hot_23_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/mug_hot_23_medium.svg'
+    ],
+    component: IconMugHotComponent
   },
   {
     selector: 'sbb-icon-newspaper',
@@ -2685,7 +3087,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/newspaper_175_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/newspaper_175_medium.svg'
+    ],
     component: IconNewspaperComponent
   },
   {
@@ -2696,7 +3102,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/paper_aeroplane_142_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/paper_aeroplane_142_medium.svg'
+    ],
     component: IconPaperAeroplaneComponent
   },
   {
@@ -2708,6 +3118,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/paper_clip_121_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/paper_clip_121_medium.svg'
+    ],
     component: IconPaperClipComponent
   },
   {
@@ -2719,6 +3133,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/pen_16_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/pen_16_medium.svg'
+    ],
     component: IconPenComponent
   },
   {
@@ -2729,7 +3147,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/picture_147_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/picture_147_medium.svg'
+    ],
     component: IconPictureComponent
   },
   {
@@ -2741,6 +3163,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/pin_148_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/pin_148_medium.svg'
+    ],
     component: IconPinComponent
   },
   {
@@ -2752,6 +3178,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/rss_321_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/rss_321_medium.svg'
+    ],
     component: IconRssComponent
   },
   {
@@ -2763,18 +3193,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
-    component: IconServiceBellComponent
-  },
-  {
-    selector: 'sbb-icon-shopping-cart',
-    name: 'IconShoppingCartComponent',
-    modules: [
-      'IconShoppingCartModule',
-      'IconCollectionBasicModule',
-      'IconCollectionModule'
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/service_bell_15_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/service_bell_15_medium.svg'
     ],
-    sizes: ['medium'],
-    component: IconShoppingCartComponent
+    component: IconServiceBellComponent
   },
   {
     selector: 'sbb-icon-sign-exclamation-point',
@@ -2784,7 +3207,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/sign_exclamation_point_1_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/sign_exclamation_point_1_medium.svg'
+    ],
     component: IconSignExclamationPointComponent
   },
   {
@@ -2796,6 +3223,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/sign_x_126_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/sign_x_126_medium.svg'
+    ],
     component: IconSignXComponent
   },
   {
@@ -2806,7 +3237,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/spanner_342_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/spanner_342_medium.svg'
+    ],
     component: IconSpannerComponent
   },
   {
@@ -2817,7 +3252,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/star_5_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/star_5_medium.svg'
+    ],
     component: IconStarComponent
   },
   {
@@ -2829,6 +3268,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/switzerland_343_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/switzerland_343_medium.svg'
+    ],
     component: IconSwitzerlandComponent
   },
   {
@@ -2839,7 +3282,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/tag_30_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/tag_30_medium.svg'
+    ],
     component: IconTagComponent
   },
   {
@@ -2851,6 +3298,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/target_347_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/target_347_medium.svg'
+    ],
     component: IconTargetComponent
   },
   {
@@ -2861,7 +3312,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/torch_337_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/torch_337_medium.svg'
+    ],
     component: IconTorchComponent
   },
   {
@@ -2872,7 +3327,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionBasicModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/trash_8_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/trash_8_medium.svg'
+    ],
     component: IconTrashComponent
   },
   {
@@ -2884,6 +3343,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/tree_335_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/tree_335_medium.svg'
+    ],
     component: IconTreeComponent
   },
   {
@@ -2895,6 +3358,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/upload_28_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/upload_28_medium.svg'
+    ],
     component: IconUploadComponent
   },
   {
@@ -2906,6 +3373,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/wallet_146_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/wallet_146_medium.svg'
+    ],
     component: IconWalletComponent
   },
   {
@@ -2917,6 +3388,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/warning_light_334_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/warning_light_334_medium.svg'
+    ],
     component: IconWarningLightComponent
   },
   {
@@ -2928,6 +3403,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/010_Basic/wifi_20_small.svg',
+      '/svg/KOM/responsive/medium/010_Basic/wifi_20_medium.svg'
+    ],
     component: IconWifiComponent
   },
   {
@@ -2938,7 +3417,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/bulb_on_48_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/bulb_on_48_medium.svg',
+      '/svg/KOM/responsive/large/050_Community/bulb_on_48_large.svg'
+    ],
     component: IconBulbOnComponent
   },
   {
@@ -2949,7 +3433,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/handshake_58_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/handshake_58_medium.svg',
+      '/svg/KOM/responsive/large/050_Community/handshake_58_large.svg'
+    ],
     component: IconHandshakeComponent
   },
   {
@@ -2960,7 +3449,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/network_55_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/network_55_medium.svg',
+      '/svg/KOM/responsive/large/050_Community/network_55_large.svg'
+    ],
     component: IconNetworkComponent
   },
   {
@@ -2971,7 +3465,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/two_speech_bubbles_51_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/two_speech_bubbles_51_medium.svg',
+      '/svg/KOM/responsive/large/050_Community/two_speech_bubbles_51_large.svg'
+    ],
     component: IconTwoSpeechBubblesComponent
   },
   {
@@ -2982,7 +3481,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/bulb_off_49_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/bulb_off_49_medium.svg'
+    ],
     component: IconBulbOffComponent
   },
   {
@@ -2993,7 +3496,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/face_grinning_273_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/face_grinning_273_medium.svg'
+    ],
     component: IconFaceGrinningComponent
   },
   {
@@ -3004,7 +3511,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/face_neutral_274_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/face_neutral_274_medium.svg'
+    ],
     component: IconFaceNeutralComponent
   },
   {
@@ -3015,7 +3526,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/face_sad_275_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/face_sad_275_medium.svg'
+    ],
     component: IconFaceSadComponent
   },
   {
@@ -3026,7 +3541,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/face_smiling_276_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/face_smiling_276_medium.svg'
+    ],
     component: IconFaceSmilingComponent
   },
   {
@@ -3037,7 +3556,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/onboarding_213_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/onboarding_213_medium.svg'
+    ],
     component: IconOnboardingComponent
   },
   {
@@ -3048,7 +3571,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/question_answer_212_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/question_answer_212_medium.svg'
+    ],
     component: IconQuestionAnswerComponent
   },
   {
@@ -3059,7 +3586,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/share_25_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/share_25_medium.svg'
+    ],
     component: IconShareComponent
   },
   {
@@ -3070,7 +3601,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/speech_bubble_50_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/speech_bubble_50_medium.svg'
+    ],
     component: IconSpeechBubbleComponent
   },
   {
@@ -3081,7 +3616,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/speech_bubble_group_empty_54_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/speech_bubble_group_empty_54_medium.svg'
+    ],
     component: IconSpeechBubbleGroupEmptyComponent
   },
   {
@@ -3092,7 +3631,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/thumb_down_60_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/thumb_down_60_medium.svg'
+    ],
     component: IconThumbDownComponent
   },
   {
@@ -3103,7 +3646,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/thumb_up_52_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/thumb_up_52_medium.svg'
+    ],
     component: IconThumbUpComponent
   },
   {
@@ -3114,7 +3661,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCommunityModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/050_Community/translate_287_small.svg',
+      '/svg/KOM/responsive/medium/050_Community/translate_287_medium.svg'
+    ],
     component: IconTranslateComponent
   },
   {
@@ -3126,18 +3677,24 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/060_User/employees_sbb_317_large.svg'],
     component: IconEmployeesSbbComponent
   },
   {
-    selector: 'sbb-icon-user-group-row',
-    name: 'IconUserGroupRowComponent',
+    selector: 'sbb-icon-user-group',
+    name: 'IconUserGroupComponent',
     modules: [
-      'IconUserGroupRowModule',
+      'IconUserGroupModule',
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
-    component: IconUserGroupRowComponent
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_group_57_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_group_57_medium.svg',
+      '/svg/KOM/responsive/large/060_User/user_group_57_large.svg'
+    ],
+    component: IconUserGroupComponent
   },
   {
     selector: 'sbb-icon-avatar-police',
@@ -3147,7 +3704,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/avatar_police_352_small.svg',
+      '/svg/KOM/responsive/medium/060_User/avatar_police_352_medium.svg'
+    ],
     component: IconAvatarPoliceComponent
   },
   {
@@ -3158,7 +3719,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/key_162_small.svg',
+      '/svg/KOM/responsive/medium/060_User/key_162_medium.svg'
+    ],
     component: IconKeyComponent
   },
   {
@@ -3169,7 +3734,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/pie_94_small.svg',
+      '/svg/KOM/responsive/medium/060_User/pie_94_medium.svg'
+    ],
     component: IconPieComponent
   },
   {
@@ -3180,7 +3749,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/two_users_93_small.svg',
+      '/svg/KOM/responsive/medium/060_User/two_users_93_medium.svg'
+    ],
     component: IconTwoUsersComponent
   },
   {
@@ -3191,7 +3764,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_92_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_92_medium.svg'
+    ],
     component: IconUserComponent
   },
   {
@@ -3202,7 +3779,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_change_97_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_change_97_medium.svg'
+    ],
     component: IconUserChangeComponent
   },
   {
@@ -3213,19 +3794,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_group_round_table_353_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_group_round_table_353_medium.svg'
+    ],
     component: IconUserGroupRoundTableComponent
   },
   {
-    selector: 'sbb-icon-user-group-row-linear',
-    name: 'IconUserGroupRowLinearComponent',
+    selector: 'sbb-icon-user-group-row',
+    name: 'IconUserGroupRowComponent',
     modules: [
-      'IconUserGroupRowLinearModule',
+      'IconUserGroupRowModule',
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconUserGroupRowLinearComponent
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_group_row_56_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_group_row_56_medium.svg'
+    ],
+    component: IconUserGroupRowComponent
   },
   {
     selector: 'sbb-icon-user-hat',
@@ -3235,7 +3824,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_hat_169_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_hat_169_medium.svg'
+    ],
     component: IconUserHatComponent
   },
   {
@@ -3246,7 +3839,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_headset_156_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_headset_156_medium.svg'
+    ],
     component: IconUserHeadsetComponent
   },
   {
@@ -3257,7 +3854,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_key_124_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_key_124_medium.svg'
+    ],
     component: IconUserKeyComponent
   },
   {
@@ -3268,7 +3869,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_plus_310_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_plus_310_medium.svg'
+    ],
     component: IconUserPlusComponent
   },
   {
@@ -3279,7 +3884,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionUserModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/060_User/user_tie_351_small.svg',
+      '/svg/KOM/responsive/medium/060_User/user_tie_351_medium.svg'
+    ],
     component: IconUserTieComponent
   },
   {
@@ -3290,7 +3899,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/percent_78_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/percent_78_medium.svg',
+      '/svg/KOM/responsive/large/080_Timetable/percent_78_large.svg'
+    ],
     component: IconPercentComponent
   },
   {
@@ -3301,7 +3915,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/switzerland_route_204_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/switzerland_route_204_medium.svg',
+      '/svg/KOM/responsive/large/080_Timetable/switzerland_route_204_large.svg'
+    ],
     component: IconSwitzerlandRouteComponent
   },
   {
@@ -3312,7 +3931,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/arrow_change_68_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/arrow_change_68_medium.svg'
+    ],
     component: IconArrowChangeComponent
   },
   {
@@ -3323,7 +3946,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/avatar_train_staff_71_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/avatar_train_staff_71_medium.svg'
+    ],
     component: IconAvatarTrainStaffComponent
   },
   {
@@ -3334,7 +3961,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/avatar_train_staff_disabled_72_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/avatar_train_staff_disabled_72_medium.svg'
+    ],
     component: IconAvatarTrainStaffDisabledComponent
   },
   {
@@ -3345,7 +3976,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/clock_10_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/clock_10_medium.svg'
+    ],
     component: IconClockComponent
   },
   {
@@ -3356,7 +3991,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/hourglass_217_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/hourglass_217_medium.svg'
+    ],
     component: IconHourglassComponent
   },
   {
@@ -3367,7 +4006,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/locomotive_83_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/locomotive_83_medium.svg'
+    ],
     component: IconLocomotiveComponent
   },
   {
@@ -3378,7 +4021,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/percent_tag_141_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/percent_tag_141_medium.svg'
+    ],
     component: IconPercentTagComponent
   },
   {
@@ -3389,7 +4036,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/punctuality_216_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/punctuality_216_medium.svg'
+    ],
     component: IconPunctualityComponent
   },
   {
@@ -3400,7 +4051,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/route_circle_end_139_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/route_circle_end_139_medium.svg'
+    ],
     component: IconRouteCircleEndComponent
   },
   {
@@ -3411,7 +4066,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/route_circle_start_140_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/route_circle_start_140_medium.svg'
+    ],
     component: IconRouteCircleStartComponent
   },
   {
@@ -3422,7 +4081,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/seat_window_288_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/seat_window_288_medium.svg'
+    ],
     component: IconSeatWindowComponent
   },
   {
@@ -3433,7 +4096,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/timetable_215_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/timetable_215_medium.svg'
+    ],
     component: IconTimetableComponent
   },
   {
@@ -3444,7 +4111,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/walk_70_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/walk_70_medium.svg'
+    ],
     component: IconWalkComponent
   },
   {
@@ -3455,7 +4126,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/walk_fast_290_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/walk_fast_290_medium.svg'
+    ],
     component: IconWalkFastComponent
   },
   {
@@ -3466,7 +4141,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/walk_slow_289_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/walk_slow_289_medium.svg'
+    ],
     component: IconWalkSlowComponent
   },
   {
@@ -3477,7 +4156,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/wheelchair_73_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_73_medium.svg'
+    ],
     component: IconWheelchairComponent
   },
   {
@@ -3488,7 +4171,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/wheelchair_inaccessible_77_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_inaccessible_77_medium.svg'
+    ],
     component: IconWheelchairInaccessibleComponent
   },
   {
@@ -3499,7 +4186,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/wheelchair_partially_74_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_partially_74_medium.svg'
+    ],
     component: IconWheelchairPartiallyComponent
   },
   {
@@ -3510,7 +4201,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/wheelchair_reservation_75_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_reservation_75_medium.svg'
+    ],
     component: IconWheelchairReservationComponent
   },
   {
@@ -3521,8 +4216,431 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTimetableModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/080_Timetable/wheelchair_uncertain_76_small.svg',
+      '/svg/KOM/responsive/medium/080_Timetable/wheelchair_uncertain_76_medium.svg'
+    ],
     component: IconWheelchairUncertainComponent
+  },
+  {
+    selector: 'sbb-icon-lotus',
+    name: 'IconLotusComponent',
+    modules: [
+      'IconLotusModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/lotus_294_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/lotus_294_medium.svg',
+      '/svg/KOM/responsive/large/100_Station/lotus_294_large.svg'
+    ],
+    component: IconLotusComponent
+  },
+  {
+    selector: 'sbb-icon-platform',
+    name: 'IconPlatformComponent',
+    modules: [
+      'IconPlatformModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/100_Station/platform_311_large.svg'],
+    component: IconPlatformComponent
+  },
+  {
+    selector: 'sbb-icon-station',
+    name: 'IconStationComponent',
+    modules: [
+      'IconStationModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/station_117_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/station_117_medium.svg',
+      '/svg/KOM/responsive/large/100_Station/station_117_large.svg'
+    ],
+    component: IconStationComponent
+  },
+  {
+    selector: 'sbb-icon-book',
+    name: 'IconBookComponent',
+    modules: [
+      'IconBookModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/book_293_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/book_293_medium.svg'
+    ],
+    component: IconBookComponent
+  },
+  {
+    selector: 'sbb-icon-bottle-apple',
+    name: 'IconBottleAppleComponent',
+    modules: [
+      'IconBottleAppleModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/bottle_apple_296_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/bottle_apple_296_medium.svg'
+    ],
+    component: IconBottleAppleComponent
+  },
+  {
+    selector: 'sbb-icon-customer-assistance-sbb',
+    name: 'IconCustomerAssistanceSbbComponent',
+    modules: [
+      'IconCustomerAssistanceSbbModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/customer_assistance_sbb_223_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/customer_assistance_sbb_223_medium.svg'
+    ],
+    component: IconCustomerAssistanceSbbComponent
+  },
+  {
+    selector: 'sbb-icon-escalator',
+    name: 'IconEscalatorComponent',
+    modules: [
+      'IconEscalatorModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/escalator_231_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/escalator_231_medium.svg'
+    ],
+    component: IconEscalatorComponent
+  },
+  {
+    selector: 'sbb-icon-general-display',
+    name: 'IconGeneralDisplayComponent',
+    modules: [
+      'IconGeneralDisplayModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/general_display_227_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/general_display_227_medium.svg'
+    ],
+    component: IconGeneralDisplayComponent
+  },
+  {
+    selector: 'sbb-icon-hand-plus-circle',
+    name: 'IconHandPlusCircleComponent',
+    modules: [
+      'IconHandPlusCircleModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/hand_plus_circle_116_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/hand_plus_circle_116_medium.svg'
+    ],
+    component: IconHandPlusCircleComponent
+  },
+  {
+    selector: 'sbb-icon-hand-sbb',
+    name: 'IconHandSbbComponent',
+    modules: [
+      'IconHandSbbModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/hand_sbb_297_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/hand_sbb_297_medium.svg'
+    ],
+    component: IconHandSbbComponent
+  },
+  {
+    selector: 'sbb-icon-hostel',
+    name: 'IconHostelComponent',
+    modules: [
+      'IconHostelModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/hostel_119_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/hostel_119_medium.svg'
+    ],
+    component: IconHostelComponent
+  },
+  {
+    selector: 'sbb-icon-lift',
+    name: 'IconLiftComponent',
+    modules: [
+      'IconLiftModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/lift_229_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/lift_229_medium.svg'
+    ],
+    component: IconLiftComponent
+  },
+  {
+    selector: 'sbb-icon-locker',
+    name: 'IconLockerComponent',
+    modules: [
+      'IconLockerModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/locker_298_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/locker_298_medium.svg'
+    ],
+    component: IconLockerComponent
+  },
+  {
+    selector: 'sbb-icon-meeting-point',
+    name: 'IconMeetingPointComponent',
+    modules: [
+      'IconMeetingPointModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/meeting_point_118_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/meeting_point_118_medium.svg'
+    ],
+    component: IconMeetingPointComponent
+  },
+  {
+    selector: 'sbb-icon-money-exchange',
+    name: 'IconMoneyExchangeComponent',
+    modules: [
+      'IconMoneyExchangeModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/money_exchange_120_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/money_exchange_120_medium.svg'
+    ],
+    component: IconMoneyExchangeComponent
+  },
+  {
+    selector: 'sbb-icon-platform-display',
+    name: 'IconPlatformDisplayComponent',
+    modules: [
+      'IconPlatformDisplayModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/platform_display_230_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/platform_display_230_medium.svg'
+    ],
+    component: IconPlatformDisplayComponent
+  },
+  {
+    selector: 'sbb-icon-screen-inside-train',
+    name: 'IconScreenInsideTrainComponent',
+    modules: [
+      'IconScreenInsideTrainModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/screen_inside_train_224_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/screen_inside_train_224_medium.svg'
+    ],
+    component: IconScreenInsideTrainComponent
+  },
+  {
+    selector: 'sbb-icon-shirt-shoe',
+    name: 'IconShirtShoeComponent',
+    modules: [
+      'IconShirtShoeModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/shirt_shoe_292_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/shirt_shoe_292_medium.svg'
+    ],
+    component: IconShirtShoeComponent
+  },
+  {
+    selector: 'sbb-icon-shopping-bag',
+    name: 'IconShoppingBagComponent',
+    modules: [
+      'IconShoppingBagModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/shopping_bag_299_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/shopping_bag_299_medium.svg'
+    ],
+    component: IconShoppingBagComponent
+  },
+  {
+    selector: 'sbb-icon-shopping-bag-coupon',
+    name: 'IconShoppingBagCouponComponent',
+    modules: [
+      'IconShoppingBagCouponModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/shopping_bag_coupon_134_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/shopping_bag_coupon_134_medium.svg'
+    ],
+    component: IconShoppingBagCouponComponent
+  },
+  {
+    selector: 'sbb-icon-shopping-bag-fast',
+    name: 'IconShoppingBagFastComponent',
+    modules: [
+      'IconShoppingBagFastModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/shopping_bag_fast_323_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/shopping_bag_fast_323_medium.svg'
+    ],
+    component: IconShoppingBagFastComponent
+  },
+  {
+    selector: 'sbb-icon-station-surrounding-area',
+    name: 'IconStationSurroundingAreaComponent',
+    modules: [
+      'IconStationSurroundingAreaModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/station_surrounding_area_322_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/station_surrounding_area_322_medium.svg'
+    ],
+    component: IconStationSurroundingAreaComponent
+  },
+  {
+    selector: 'sbb-icon-ticket-machine',
+    name: 'IconTicketMachineComponent',
+    modules: [
+      'IconTicketMachineModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/ticket_machine_225_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/ticket_machine_225_medium.svg'
+    ],
+    component: IconTicketMachineComponent
+  },
+  {
+    selector: 'sbb-icon-ticket-machine-ticket',
+    name: 'IconTicketMachineTicketComponent',
+    modules: [
+      'IconTicketMachineTicketModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/ticket_machine_ticket_228_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/ticket_machine_ticket_228_medium.svg'
+    ],
+    component: IconTicketMachineTicketComponent
+  },
+  {
+    selector: 'sbb-icon-toilet',
+    name: 'IconToiletComponent',
+    modules: [
+      'IconToiletModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/toilet_233_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/toilet_233_medium.svg'
+    ],
+    component: IconToiletComponent
+  },
+  {
+    selector: 'sbb-icon-train-station',
+    name: 'IconTrainStationComponent',
+    modules: [
+      'IconTrainStationModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/train_station_295_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/train_station_295_medium.svg'
+    ],
+    component: IconTrainStationComponent
+  },
+  {
+    selector: 'sbb-icon-waiting-room',
+    name: 'IconWaitingRoomComponent',
+    modules: [
+      'IconWaitingRoomModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/waiting_room_232_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/waiting_room_232_medium.svg'
+    ],
+    component: IconWaitingRoomComponent
+  },
+  {
+    selector: 'sbb-icon-wine-cheese',
+    name: 'IconWineCheeseComponent',
+    modules: [
+      'IconWineCheeseModule',
+      'IconCollectionStationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/100_Station/wine_cheese_359_small.svg',
+      '/svg/KOM/responsive/medium/100_Station/wine_cheese_359_medium.svg'
+    ],
+    component: IconWineCheeseComponent
   },
   {
     selector: 'sbb-icon-laptop-smartphone',
@@ -3532,7 +4650,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/laptop_smartphone_165_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/laptop_smartphone_165_medium.svg',
+      '/svg/KOM/responsive/large/120_Hardware/laptop_smartphone_165_large.svg'
+    ],
     component: IconLaptopSmartphoneComponent
   },
   {
@@ -3543,7 +4666,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/archive_box_303_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/archive_box_303_medium.svg'
+    ],
     component: IconArchiveBoxComponent
   },
   {
@@ -3554,7 +4681,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/briefcase_300_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/briefcase_300_medium.svg'
+    ],
     component: IconBriefcaseComponent
   },
   {
@@ -3565,7 +4696,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/brochure_236_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/brochure_236_medium.svg'
+    ],
     component: IconBrochureComponent
   },
   {
@@ -3576,7 +4711,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/desk_88_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/desk_88_medium.svg'
+    ],
     component: IconDeskComponent
   },
   {
@@ -3587,7 +4726,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/desk_adjustable_89_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/desk_adjustable_89_medium.svg'
+    ],
     component: IconDeskAdjustableComponent
   },
   {
@@ -3598,7 +4741,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/display_85_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/display_85_medium.svg'
+    ],
     component: IconDisplayComponent
   },
   {
@@ -3609,7 +4756,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/keyboard_86_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/keyboard_86_medium.svg'
+    ],
     component: IconKeyboardComponent
   },
   {
@@ -3620,7 +4771,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/laptop_167_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/laptop_167_medium.svg'
+    ],
     component: IconLaptopComponent
   },
   {
@@ -3631,7 +4786,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/megaphone_302_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/megaphone_302_medium.svg'
+    ],
     component: IconMegaphoneComponent
   },
   {
@@ -3642,7 +4801,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/office_chair_87_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/office_chair_87_medium.svg'
+    ],
     component: IconOfficeChairComponent
   },
   {
@@ -3653,7 +4816,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/power_plug_154_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/power_plug_154_medium.svg'
+    ],
     component: IconPowerPlugComponent
   },
   {
@@ -3664,7 +4831,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/printer_21_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/printer_21_medium.svg'
+    ],
     component: IconPrinterComponent
   },
   {
@@ -3675,7 +4846,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/scanner_178_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/scanner_178_medium.svg'
+    ],
     component: IconScannerComponent
   },
   {
@@ -3686,7 +4861,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/smartphone_84_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/smartphone_84_medium.svg'
+    ],
     component: IconSmartphoneComponent
   },
   {
@@ -3697,7 +4876,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/speaker_237_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/speaker_237_medium.svg'
+    ],
     component: IconSpeakerComponent
   },
   {
@@ -3708,7 +4891,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/suitcase_90_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/suitcase_90_medium.svg'
+    ],
     component: IconSuitcaseComponent
   },
   {
@@ -3719,7 +4906,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/suitcase_disabled_91_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/suitcase_disabled_91_medium.svg'
+    ],
     component: IconSuitcaseDisabledComponent
   },
   {
@@ -3730,7 +4921,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/telephone_gsm_172_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/telephone_gsm_172_medium.svg'
+    ],
     component: IconTelephoneGsmComponent
   },
   {
@@ -3741,7 +4936,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/telephone_receiver_164_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/telephone_receiver_164_medium.svg'
+    ],
     component: IconTelephoneReceiverComponent
   },
   {
@@ -3752,7 +4951,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/walkie_talkie_177_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/walkie_talkie_177_medium.svg'
+    ],
     component: IconWalkieTalkieComponent
   },
   {
@@ -3763,7 +4966,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionHardwareModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/120_Hardware/weight_301_small.svg',
+      '/svg/KOM/responsive/medium/120_Hardware/weight_301_medium.svg'
+    ],
     component: IconWeightComponent
   },
   {
@@ -3774,7 +4981,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/bicycle_248_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/bicycle_248_medium.svg',
+      '/svg/KOM/responsive/large/170_Transport/bicycle_248_large.svg'
+    ],
     component: IconBicycleComponent
   },
   {
@@ -3785,7 +4997,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['large', 'medium'],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/train_249_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/train_249_medium.svg',
+      '/svg/KOM/responsive/large/170_Transport/train_249_large.svg'
+    ],
     component: IconTrainComponent
   },
   {
@@ -3796,7 +5013,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/airplane_285_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/airplane_285_medium.svg'
+    ],
     component: IconAirplaneComponent
   },
   {
@@ -3807,7 +5028,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/bus_240_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/bus_240_medium.svg'
+    ],
     component: IconBusComponent
   },
   {
@@ -3818,19 +5043,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconBusCircleComponent
-  },
-  {
-    selector: 'sbb-icon-bus-stop',
-    name: 'IconBusStopComponent',
-    modules: [
-      'IconBusStopModule',
-      'IconCollectionTransportModule',
-      'IconCollectionModule'
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/bus_circle_243_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/bus_circle_243_medium.svg'
     ],
-    sizes: ['medium'],
-    component: IconBusStopComponent
+    component: IconBusCircleComponent
   },
   {
     selector: 'sbb-icon-bus-sbb',
@@ -3840,8 +5058,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/bus_sbb_242_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/bus_sbb_242_medium.svg'
+    ],
     component: IconBusSbbComponent
+  },
+  {
+    selector: 'sbb-icon-bus-stop',
+    name: 'IconBusStopComponent',
+    modules: [
+      'IconBusStopModule',
+      'IconCollectionTransportModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/bus_stop_241_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/bus_stop_241_medium.svg'
+    ],
+    component: IconBusStopComponent
   },
   {
     selector: 'sbb-icon-car',
@@ -3851,7 +5088,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/car_238_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/car_238_medium.svg'
+    ],
     component: IconCarComponent
   },
   {
@@ -3862,7 +5103,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/car_parking_360_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/car_parking_360_medium.svg'
+    ],
     component: IconCarParkingComponent
   },
   {
@@ -3873,7 +5118,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/charging_station_361_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/charging_station_361_medium.svg'
+    ],
     component: IconChargingStationComponent
   },
   {
@@ -3884,7 +5133,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/combined_mobility_324_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/combined_mobility_324_medium.svg'
+    ],
     component: IconCombinedMobilityComponent
   },
   {
@@ -3895,7 +5148,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/container_304_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/container_304_medium.svg'
+    ],
     component: IconContainerComponent
   },
   {
@@ -3906,7 +5163,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/driverless_bus_362_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/driverless_bus_362_medium.svg'
+    ],
     component: IconDriverlessBusComponent
   },
   {
@@ -3917,7 +5178,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/freight_wagon_286_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/freight_wagon_286_medium.svg'
+    ],
     component: IconFreightWagonComponent
   },
   {
@@ -3928,8 +5193,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/k_r_244_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/k_r_244_medium.svg'
+    ],
     component: IconKRComponent
+  },
+  {
+    selector: 'sbb-icon-park-and-rail',
+    name: 'IconParkAndRailComponent',
+    modules: [
+      'IconParkAndRailModule',
+      'IconCollectionTransportModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/park_and_rail_245_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/park_and_rail_245_medium.svg'
+    ],
+    component: IconParkAndRailComponent
   },
   {
     selector: 'sbb-icon-petrol-station',
@@ -3939,19 +5223,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconPetrolStationComponent
-  },
-  {
-    selector: 'sbb-icon-p-r',
-    name: 'IconPRComponent',
-    modules: [
-      'IconPRModule',
-      'IconCollectionTransportModule',
-      'IconCollectionModule'
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/petrol_station_239_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/petrol_station_239_medium.svg'
     ],
-    sizes: ['medium'],
-    component: IconPRComponent
+    component: IconPetrolStationComponent
   },
   {
     selector: 'sbb-icon-shuttle',
@@ -3961,7 +5238,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/shuttle_364_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/shuttle_364_medium.svg'
+    ],
     component: IconShuttleComponent
   },
   {
@@ -3972,7 +5253,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/taxi_246_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/taxi_246_medium.svg'
+    ],
     component: IconTaxiComponent
   },
   {
@@ -3983,8 +5268,347 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTransportModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/170_Transport/tram_247_small.svg',
+      '/svg/KOM/responsive/medium/170_Transport/tram_247_medium.svg'
+    ],
     component: IconTramComponent
+  },
+  {
+    selector: 'sbb-icon-adult-kids',
+    name: 'IconAdultKidsComponent',
+    modules: [
+      'IconAdultKidsModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/adult_kids_262_large.svg'],
+    component: IconAdultKidsComponent
+  },
+  {
+    selector: 'sbb-icon-balloons',
+    name: 'IconBalloonsComponent',
+    modules: [
+      'IconBalloonsModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/balloons_264_large.svg'],
+    component: IconBalloonsComponent
+  },
+  {
+    selector: 'sbb-icon-christmas-tree-shopping-bag',
+    name: 'IconChristmasTreeShoppingBagComponent',
+    modules: [
+      'IconChristmasTreeShoppingBagModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/christmas_tree_shopping_bag_269_large.svg'
+    ],
+    component: IconChristmasTreeShoppingBagComponent
+  },
+  {
+    selector: 'sbb-icon-elephant',
+    name: 'IconElephantComponent',
+    modules: [
+      'IconElephantModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/elephant_271_large.svg'],
+    component: IconElephantComponent
+  },
+  {
+    selector: 'sbb-icon-ferris-wheel',
+    name: 'IconFerrisWheelComponent',
+    modules: [
+      'IconFerrisWheelModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/ferris_wheel_259_large.svg'],
+    component: IconFerrisWheelComponent
+  },
+  {
+    selector: 'sbb-icon-hiking-boot',
+    name: 'IconHikingBootComponent',
+    modules: [
+      'IconHikingBootModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/hiking_boot_268_large.svg'],
+    component: IconHikingBootComponent
+  },
+  {
+    selector: 'sbb-icon-leaf',
+    name: 'IconLeafComponent',
+    modules: [
+      'IconLeafModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/leaf_260_large.svg'],
+    component: IconLeafComponent
+  },
+  {
+    selector: 'sbb-icon-locomotive-viaduct',
+    name: 'IconLocomotiveViaductComponent',
+    modules: [
+      'IconLocomotiveViaductModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/locomotive_viaduct_252_large.svg'
+    ],
+    component: IconLocomotiveViaductComponent
+  },
+  {
+    selector: 'sbb-icon-lucerne-chapel-bridge',
+    name: 'IconLucerneChapelBridgeComponent',
+    modules: [
+      'IconLucerneChapelBridgeModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/lucerne_chapel_bridge_257_large.svg'
+    ],
+    component: IconLucerneChapelBridgeComponent
+  },
+  {
+    selector: 'sbb-icon-market-shopping-bag',
+    name: 'IconMarketShoppingBagComponent',
+    modules: [
+      'IconMarketShoppingBagModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/market_shopping_bag_258_large.svg'
+    ],
+    component: IconMarketShoppingBagComponent
+  },
+  {
+    selector: 'sbb-icon-mountain-sun',
+    name: 'IconMountainSunComponent',
+    modules: [
+      'IconMountainSunModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/180_Leisure/mountain_sun_251_small.svg',
+      '/svg/KOM/responsive/medium/180_Leisure/mountain_sun_251_medium.svg',
+      '/svg/KOM/responsive/large/180_Leisure/mountain_sun_251_large.svg'
+    ],
+    component: IconMountainSunComponent
+  },
+  {
+    selector: 'sbb-icon-museum',
+    name: 'IconMuseumComponent',
+    modules: [
+      'IconMuseumModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/museum_256_large.svg'],
+    component: IconMuseumComponent
+  },
+  {
+    selector: 'sbb-icon-music-rock-hand-gesture',
+    name: 'IconMusicRockHandGestureComponent',
+    modules: [
+      'IconMusicRockHandGestureModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/music_rock_hand_gesture_255_large.svg'
+    ],
+    component: IconMusicRockHandGestureComponent
+  },
+  {
+    selector: 'sbb-icon-railway-ship',
+    name: 'IconRailwayShipComponent',
+    modules: [
+      'IconRailwayShipModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/railway_ship_250_large.svg'],
+    component: IconRailwayShipComponent
+  },
+  {
+    selector: 'sbb-icon-sledge-snowshoe',
+    name: 'IconSledgeSnowshoeComponent',
+    modules: [
+      'IconSledgeSnowshoeModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/sledge_snowshoe_261_large.svg'
+    ],
+    component: IconSledgeSnowshoeComponent
+  },
+  {
+    selector: 'sbb-icon-soccer-ball',
+    name: 'IconSoccerBallComponent',
+    modules: [
+      'IconSoccerBallModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/soccer_ball_265_large.svg'],
+    component: IconSoccerBallComponent
+  },
+  {
+    selector: 'sbb-icon-three-adults',
+    name: 'IconThreeAdultsComponent',
+    modules: [
+      'IconThreeAdultsModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/three_adults_254_large.svg'],
+    component: IconThreeAdultsComponent
+  },
+  {
+    selector: 'sbb-icon-train-ski',
+    name: 'IconTrainSkiComponent',
+    modules: [
+      'IconTrainSkiModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: ['/svg/KOM/responsive/large/180_Leisure/train_ski_263_large.svg'],
+    component: IconTrainSkiComponent
+  },
+  {
+    selector: 'sbb-icon-two-adults-kid',
+    name: 'IconTwoAdultsKidComponent',
+    modules: [
+      'IconTwoAdultsKidModule',
+      'IconCollectionLeisureModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/180_Leisure/two_adults_kid_253_large.svg'
+    ],
+    component: IconTwoAdultsKidComponent
+  },
+  {
+    selector: 'sbb-icon-railway-switch',
+    name: 'IconRailwaySwitchComponent',
+    modules: [
+      'IconRailwaySwitchModule',
+      'IconCollectionInstallationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/190_Installation/railway_switch_313_small.svg',
+      '/svg/KOM/responsive/medium/190_Installation/railway_switch_313_medium.svg',
+      '/svg/KOM/responsive/large/190_Installation/railway_switch_313_large.svg'
+    ],
+    component: IconRailwaySwitchComponent
+  },
+  {
+    selector: 'sbb-icon-train-signal',
+    name: 'IconTrainSignalComponent',
+    modules: [
+      'IconTrainSignalModule',
+      'IconCollectionInstallationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/190_Installation/train_signal_312_large.svg'
+    ],
+    component: IconTrainSignalComponent
+  },
+  {
+    selector: 'sbb-icon-train-tracks',
+    name: 'IconTrainTracksComponent',
+    modules: [
+      'IconTrainTracksModule',
+      'IconCollectionInstallationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/190_Installation/train_tracks_314_large.svg'
+    ],
+    component: IconTrainTracksComponent
+  },
+  {
+    selector: 'sbb-icon-construction',
+    name: 'IconConstructionComponent',
+    modules: [
+      'IconConstructionModule',
+      'IconCollectionInstallationModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/190_Installation/construction_350_small.svg',
+      '/svg/KOM/responsive/medium/190_Installation/construction_350_medium.svg'
+    ],
+    component: IconConstructionComponent
+  },
+  {
+    selector: 'sbb-icon-building-tree',
+    name: 'IconBuildingTreeComponent',
+    modules: [
+      'IconBuildingTreeModule',
+      'IconCollectionBuildingModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/200_Building/building_tree_315_large.svg'
+    ],
+    component: IconBuildingTreeComponent
+  },
+  {
+    selector: 'sbb-icon-city',
+    name: 'IconCityComponent',
+    modules: [
+      'IconCityModule',
+      'IconCollectionBuildingModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['large', 'medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/200_Building/city_316_small.svg',
+      '/svg/KOM/responsive/medium/200_Building/city_316_medium.svg',
+      '/svg/KOM/responsive/large/200_Building/city_316_large.svg'
+    ],
+    component: IconCityComponent
   },
   {
     selector: 'sbb-icon-curriculum-vitae',
@@ -3995,6 +5619,9 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/210_Career/curriculum_vitae_318_large.svg'
+    ],
     component: IconCurriculumVitaeComponent
   },
   {
@@ -4006,6 +5633,9 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['large'],
+    meta: [
+      '/svg/KOM/responsive/large/210_Career/hand_graduation_cap_320_large.svg'
+    ],
     component: IconHandGraduationCapComponent
   },
   {
@@ -4016,7 +5646,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionCareerModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/210_Career/ship_steering_wheel_363_small.svg',
+      '/svg/KOM/responsive/medium/210_Career/ship_steering_wheel_363_medium.svg'
+    ],
     component: IconShipSteeringWheelComponent
   },
   {
@@ -4027,7 +5661,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionArrowModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrows_circle_2_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_circle_2_medium.svg'
+    ],
     component: IconArrowsCircleComponent
   },
   {
@@ -4039,7 +5677,26 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrows_left_right_47_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_left_right_47_medium.svg'
+    ],
     component: IconArrowsLeftRightComponent
+  },
+  {
+    selector: 'sbb-icon-arrows-left-right-down-up',
+    name: 'IconArrowsLeftRightDownUpComponent',
+    modules: [
+      'IconArrowsLeftRightDownUpModule',
+      'IconCollectionArrowModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrows_left_right_down_up_349_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_left_right_down_up_349_medium.svg'
+    ],
+    component: IconArrowsLeftRightDownUpComponent
   },
   {
     selector: 'sbb-icon-arrows-right-left',
@@ -4050,6 +5707,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrows_right_left_39_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_right_left_39_medium.svg'
+    ],
     component: IconArrowsRightLeftComponent
   },
   {
@@ -4061,6 +5722,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrows_up_down_125_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrows_up_down_125_medium.svg'
+    ],
     component: IconArrowsUpDownComponent
   },
   {
@@ -4072,6 +5737,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrow_circle_7_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_circle_7_medium.svg'
+    ],
     component: IconArrowCircleComponent
   },
   {
@@ -4082,7 +5751,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionArrowModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrow_long_left_36_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_long_left_36_medium.svg'
+    ],
     component: IconArrowLongLeftComponent
   },
   {
@@ -4094,6 +5767,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrow_long_right_38_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_long_right_38_medium.svg'
+    ],
     component: IconArrowLongRightComponent
   },
   {
@@ -4104,7 +5781,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionArrowModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/arrow_right_174_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/arrow_right_174_medium.svg'
+    ],
     component: IconArrowRightComponent
   },
   {
@@ -4115,7 +5796,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionArrowModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_right_37_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_right_37_medium.svg'
+    ],
     component: IconChevronRightComponent
   },
   {
@@ -4127,6 +5812,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_down_43_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_down_43_medium.svg'
+    ],
     component: IconChevronSmallDownComponent
   },
   {
@@ -4138,6 +5827,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_down_circle_40_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_down_circle_40_medium.svg'
+    ],
     component: IconChevronSmallDownCircleComponent
   },
   {
@@ -4149,6 +5842,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_left_44_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_left_44_medium.svg'
+    ],
     component: IconChevronSmallLeftComponent
   },
   {
@@ -4160,6 +5857,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_left_circle_41_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_left_circle_41_medium.svg'
+    ],
     component: IconChevronSmallLeftCircleComponent
   },
   {
@@ -4171,6 +5872,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_right_45_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_right_45_medium.svg'
+    ],
     component: IconChevronSmallRightComponent
   },
   {
@@ -4182,6 +5887,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_right_circle_42_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_right_circle_42_medium.svg'
+    ],
     component: IconChevronSmallRightCircleComponent
   },
   {
@@ -4193,6 +5902,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_up_34_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_up_34_medium.svg'
+    ],
     component: IconChevronSmallUpComponent
   },
   {
@@ -4204,6 +5917,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/chevron_small_up_circle_46_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/chevron_small_up_circle_46_medium.svg'
+    ],
     component: IconChevronSmallUpCircleComponent
   },
   {
@@ -4215,6 +5932,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/increase_size_144_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/increase_size_144_medium.svg'
+    ],
     component: IconIncreaseSizeComponent
   },
   {
@@ -4225,19 +5946,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionArrowModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconReduceSizeComponent
-  },
-  {
-    selector: 'sbb-icon-arrows-left-right-down-up',
-    name: 'IconArrowsLeftRightDownUpComponent',
-    modules: [
-      'IconArrowsLeftRightDownUpModule',
-      'IconCollectionArrowModule',
-      'IconCollectionModule'
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/020_Arrow/reduce_size_145_small.svg',
+      '/svg/KOM/responsive/medium/020_Arrow/reduce_size_145_medium.svg'
     ],
-    sizes: ['small'],
-    component: IconArrowsLeftRightDownUpComponent
+    component: IconReduceSizeComponent
   },
   {
     selector: 'sbb-icon-button-power',
@@ -4247,7 +5961,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionStatusModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/button_power_53_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/button_power_53_medium.svg'
+    ],
     component: IconButtonPowerComponent
   },
   {
@@ -4258,7 +5976,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionStatusModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/exclamation_point_35_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/exclamation_point_35_medium.svg'
+    ],
     component: IconExclamationPointComponent
   },
   {
@@ -4269,7 +5991,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionStatusModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/eye_96_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/eye_96_medium.svg'
+    ],
     component: IconEyeComponent
   },
   {
@@ -4280,7 +6006,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionStatusModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/eye_disabled_95_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/eye_disabled_95_medium.svg'
+    ],
     component: IconEyeDisabledComponent
   },
   {
@@ -4291,7 +6021,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionStatusModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/lock_closed_114_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/lock_closed_114_medium.svg'
+    ],
     component: IconLockClosedComponent
   },
   {
@@ -4303,6 +6037,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/lock_open_113_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/lock_open_113_medium.svg'
+    ],
     component: IconLockOpenComponent
   },
   {
@@ -4314,6 +6052,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/question_mark_115_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/question_mark_115_medium.svg'
+    ],
     component: IconQuestionMarkComponent
   },
   {
@@ -4325,6 +6067,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/tick_112_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/tick_112_medium.svg'
+    ],
     component: IconTickComponent
   },
   {
@@ -4335,7 +6081,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionStatusModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/030_Status/tick_clipboard_168_small.svg',
+      '/svg/KOM/responsive/medium/030_Status/tick_clipboard_168_medium.svg'
+    ],
     component: IconTickClipboardComponent
   },
   {
@@ -4346,7 +6096,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/circle_minus_181_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/circle_minus_181_medium.svg'
+    ],
     component: IconCircleMinusComponent
   },
   {
@@ -4357,7 +6111,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/circle_plus_182_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/circle_plus_182_medium.svg'
+    ],
     component: IconCirclePlusComponent
   },
   {
@@ -4368,7 +6126,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/context_menu_106_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/context_menu_106_medium.svg'
+    ],
     component: IconContextMenuComponent
   },
   {
@@ -4379,7 +6141,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/cross_104_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/cross_104_medium.svg'
+    ],
     component: IconCrossComponent
   },
   {
@@ -4390,7 +6156,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/drag_205_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/drag_205_medium.svg'
+    ],
     component: IconDragComponent
   },
   {
@@ -4401,7 +6171,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/hamburger_menu_102_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/hamburger_menu_102_medium.svg'
+    ],
     component: IconHamburgerMenuComponent
   },
   {
@@ -4412,7 +6186,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/house_101_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/house_101_medium.svg'
+    ],
     component: IconHouseComponent
   },
   {
@@ -4423,7 +6201,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/layers_325_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/layers_325_medium.svg'
+    ],
     component: IconLayersComponent
   },
   {
@@ -4434,7 +6216,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/minus_105_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/minus_105_medium.svg'
+    ],
     component: IconMinusComponent
   },
   {
@@ -4445,7 +6231,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/plus_103_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/plus_103_medium.svg'
+    ],
     component: IconPlusComponent
   },
   {
@@ -4456,7 +6246,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionNavigationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/040_Navigation/two_finger_tap_179_small.svg',
+      '/svg/KOM/responsive/medium/040_Navigation/two_finger_tap_179_medium.svg'
+    ],
     component: IconTwoFingerTapComponent
   },
   {
@@ -4468,6 +6262,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_check_176_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_check_176_medium.svg'
+    ],
     component: IconDocumentCheckComponent
   },
   {
@@ -4479,6 +6277,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_image_62_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_image_62_medium.svg'
+    ],
     component: IconDocumentImageComponent
   },
   {
@@ -4490,6 +6292,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_lock_354_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_lock_354_medium.svg'
+    ],
     component: IconDocumentLockComponent
   },
   {
@@ -4501,6 +6307,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_pdf_61_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_pdf_61_medium.svg'
+    ],
     component: IconDocumentPdfComponent
   },
   {
@@ -4512,6 +6322,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_plus_355_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_plus_355_medium.svg'
+    ],
     component: IconDocumentPlusComponent
   },
   {
@@ -4523,6 +6337,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_ppt_356_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_ppt_356_medium.svg'
+    ],
     component: IconDocumentPptComponent
   },
   {
@@ -4534,6 +6352,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_sbb_214_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_sbb_214_medium.svg'
+    ],
     component: IconDocumentSbbComponent
   },
   {
@@ -4545,6 +6367,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_sound_64_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_sound_64_medium.svg'
+    ],
     component: IconDocumentSoundComponent
   },
   {
@@ -4556,6 +6382,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_standard_67_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_standard_67_medium.svg'
+    ],
     component: IconDocumentStandardComponent
   },
   {
@@ -4567,6 +6397,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_text_63_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_text_63_medium.svg'
+    ],
     component: IconDocumentTextComponent
   },
   {
@@ -4578,6 +6412,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_video_65_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_video_65_medium.svg'
+    ],
     component: IconDocumentVideoComponent
   },
   {
@@ -4589,6 +6427,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/document_zip_66_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/document_zip_66_medium.svg'
+    ],
     component: IconDocumentZipComponent
   },
   {
@@ -4600,6 +6442,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/folder_info_131_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/folder_info_131_medium.svg'
+    ],
     component: IconFolderInfoComponent
   },
   {
@@ -4611,6 +6457,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/folder_lock_358_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/folder_lock_358_medium.svg'
+    ],
     component: IconFolderLockComponent
   },
   {
@@ -4622,6 +6472,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/folder_open_59_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/folder_open_59_medium.svg'
+    ],
     component: IconFolderOpenComponent
   },
   {
@@ -4633,6 +6487,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/folder_open_arrow_160_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/folder_open_arrow_160_medium.svg'
+    ],
     component: IconFolderOpenArrowComponent
   },
   {
@@ -4644,6 +6502,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/folder_plus_130_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/folder_plus_130_medium.svg'
+    ],
     component: IconFolderPlusComponent
   },
   {
@@ -4655,6 +6517,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/metadata_357_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/metadata_357_medium.svg'
+    ],
     component: IconMetadataComponent
   },
   {
@@ -4666,6 +6532,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/070_Document/two_folders_18_small.svg',
+      '/svg/KOM/responsive/medium/070_Document/two_folders_18_medium.svg'
+    ],
     component: IconTwoFoldersComponent
   },
   {
@@ -4676,7 +6546,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/qrcode_221_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/qrcode_221_medium.svg'
+    ],
     component: IconQrcodeComponent
   },
   {
@@ -4687,7 +6561,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/qrcode_disabled_309_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/qrcode_disabled_309_medium.svg'
+    ],
     component: IconQrcodeDisabledComponent
   },
   {
@@ -4698,7 +6576,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/swisspass_222_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/swisspass_222_medium.svg'
+    ],
     component: IconSwisspassComponent
   },
   {
@@ -4709,7 +6591,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/swisspass_temporary_219_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/swisspass_temporary_219_medium.svg'
+    ],
     component: IconSwisspassTemporaryComponent
   },
   {
@@ -4720,7 +6606,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/tickets_class_69_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/tickets_class_69_medium.svg'
+    ],
     component: IconTicketsClassComponent
   },
   {
@@ -4732,6 +6622,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_day_135_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_day_135_medium.svg'
+    ],
     component: IconTicketDayComponent
   },
   {
@@ -4742,7 +6636,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_disabled_138_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_disabled_138_medium.svg'
+    ],
     component: IconTicketDisabledComponent
   },
   {
@@ -4753,7 +6651,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_heart_136_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_heart_136_medium.svg'
+    ],
     component: IconTicketHeartComponent
   },
   {
@@ -4764,7 +6666,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_journey_218_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_journey_218_medium.svg'
+    ],
     component: IconTicketJourneyComponent
   },
   {
@@ -4775,7 +6681,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_parking_291_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_parking_291_medium.svg'
+    ],
     component: IconTicketParkingComponent
   },
   {
@@ -4786,7 +6696,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_percent_220_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_percent_220_medium.svg'
+    ],
     component: IconTicketPercentComponent
   },
   {
@@ -4797,7 +6711,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_route_143_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_route_143_medium.svg'
+    ],
     component: IconTicketRouteComponent
   },
   {
@@ -4808,305 +6726,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionTicketModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/090_Ticket/ticket_star_32_small.svg',
+      '/svg/KOM/responsive/medium/090_Ticket/ticket_star_32_medium.svg'
+    ],
     component: IconTicketStarComponent
-  },
-  {
-    selector: 'sbb-icon-book',
-    name: 'IconBookComponent',
-    modules: [
-      'IconBookModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconBookComponent
-  },
-  {
-    selector: 'sbb-icon-bottle-apple',
-    name: 'IconBottleAppleComponent',
-    modules: [
-      'IconBottleAppleModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconBottleAppleComponent
-  },
-  {
-    selector: 'sbb-icon-customer-assistance-sbb',
-    name: 'IconCustomerAssistanceSbbComponent',
-    modules: [
-      'IconCustomerAssistanceSbbModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconCustomerAssistanceSbbComponent
-  },
-  {
-    selector: 'sbb-icon-escalator',
-    name: 'IconEscalatorComponent',
-    modules: [
-      'IconEscalatorModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconEscalatorComponent
-  },
-  {
-    selector: 'sbb-icon-general-display',
-    name: 'IconGeneralDisplayComponent',
-    modules: [
-      'IconGeneralDisplayModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconGeneralDisplayComponent
-  },
-  {
-    selector: 'sbb-icon-hand-plus-circle',
-    name: 'IconHandPlusCircleComponent',
-    modules: [
-      'IconHandPlusCircleModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconHandPlusCircleComponent
-  },
-  {
-    selector: 'sbb-icon-hand-sbb',
-    name: 'IconHandSbbComponent',
-    modules: [
-      'IconHandSbbModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconHandSbbComponent
-  },
-  {
-    selector: 'sbb-icon-hostel',
-    name: 'IconHostelComponent',
-    modules: [
-      'IconHostelModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconHostelComponent
-  },
-  {
-    selector: 'sbb-icon-lift',
-    name: 'IconLiftComponent',
-    modules: [
-      'IconLiftModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconLiftComponent
-  },
-  {
-    selector: 'sbb-icon-locker',
-    name: 'IconLockerComponent',
-    modules: [
-      'IconLockerModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconLockerComponent
-  },
-  {
-    selector: 'sbb-icon-lotus',
-    name: 'IconLotusComponent',
-    modules: [
-      'IconLotusModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconLotusComponent
-  },
-  {
-    selector: 'sbb-icon-meeting-point',
-    name: 'IconMeetingPointComponent',
-    modules: [
-      'IconMeetingPointModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconMeetingPointComponent
-  },
-  {
-    selector: 'sbb-icon-money-exchange',
-    name: 'IconMoneyExchangeComponent',
-    modules: [
-      'IconMoneyExchangeModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconMoneyExchangeComponent
-  },
-  {
-    selector: 'sbb-icon-platform-display',
-    name: 'IconPlatformDisplayComponent',
-    modules: [
-      'IconPlatformDisplayModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconPlatformDisplayComponent
-  },
-  {
-    selector: 'sbb-icon-screen-inside-train',
-    name: 'IconScreenInsideTrainComponent',
-    modules: [
-      'IconScreenInsideTrainModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconScreenInsideTrainComponent
-  },
-  {
-    selector: 'sbb-icon-shirt-shoe',
-    name: 'IconShirtShoeComponent',
-    modules: [
-      'IconShirtShoeModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconShirtShoeComponent
-  },
-  {
-    selector: 'sbb-icon-shopping-bag',
-    name: 'IconShoppingBagComponent',
-    modules: [
-      'IconShoppingBagModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconShoppingBagComponent
-  },
-  {
-    selector: 'sbb-icon-shopping-bag-coupon',
-    name: 'IconShoppingBagCouponComponent',
-    modules: [
-      'IconShoppingBagCouponModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconShoppingBagCouponComponent
-  },
-  {
-    selector: 'sbb-icon-shopping-bag-fast',
-    name: 'IconShoppingBagFastComponent',
-    modules: [
-      'IconShoppingBagFastModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconShoppingBagFastComponent
-  },
-  {
-    selector: 'sbb-icon-station',
-    name: 'IconStationComponent',
-    modules: [
-      'IconStationModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconStationComponent
-  },
-  {
-    selector: 'sbb-icon-station-surrounding-area',
-    name: 'IconStationSurroundingAreaComponent',
-    modules: [
-      'IconStationSurroundingAreaModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconStationSurroundingAreaComponent
-  },
-  {
-    selector: 'sbb-icon-ticket-machine',
-    name: 'IconTicketMachineComponent',
-    modules: [
-      'IconTicketMachineModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconTicketMachineComponent
-  },
-  {
-    selector: 'sbb-icon-ticket-machine-ticket',
-    name: 'IconTicketMachineTicketComponent',
-    modules: [
-      'IconTicketMachineTicketModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconTicketMachineTicketComponent
-  },
-  {
-    selector: 'sbb-icon-toilet',
-    name: 'IconToiletComponent',
-    modules: [
-      'IconToiletModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconToiletComponent
-  },
-  {
-    selector: 'sbb-icon-train-station',
-    name: 'IconTrainStationComponent',
-    modules: [
-      'IconTrainStationModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconTrainStationComponent
-  },
-  {
-    selector: 'sbb-icon-waiting-room',
-    name: 'IconWaitingRoomComponent',
-    modules: [
-      'IconWaitingRoomModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconWaitingRoomComponent
-  },
-  {
-    selector: 'sbb-icon-wine-cheese',
-    name: 'IconWineCheeseComponent',
-    modules: [
-      'IconWineCheeseModule',
-      'IconCollectionStationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconWineCheeseComponent
   },
   {
     selector: 'sbb-icon-arrow-compass',
@@ -5116,7 +6741,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/arrow_compass_235_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/arrow_compass_235_medium.svg'
+    ],
     component: IconArrowCompassComponent
   },
   {
@@ -5127,7 +6756,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/gps_12_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/gps_12_medium.svg'
+    ],
     component: IconGpsComponent
   },
   {
@@ -5138,7 +6771,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/gps_disabled_13_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/gps_disabled_13_medium.svg'
+    ],
     component: IconGpsDisabledComponent
   },
   {
@@ -5149,7 +6786,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/location_pin_98_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/location_pin_98_medium.svg'
+    ],
     component: IconLocationPinComponent
   },
   {
@@ -5160,7 +6801,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/location_pin_a_99_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/location_pin_a_99_medium.svg'
+    ],
     component: IconLocationPinAComponent
   },
   {
@@ -5171,7 +6816,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/location_pin_b_100_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/location_pin_b_100_medium.svg'
+    ],
     component: IconLocationPinBComponent
   },
   {
@@ -5182,7 +6831,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/location_pin_map_173_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/location_pin_map_173_medium.svg'
+    ],
     component: IconLocationPinMapComponent
   },
   {
@@ -5193,7 +6846,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/location_pin_pulse_surrounding_area_234_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/location_pin_pulse_surrounding_area_234_medium.svg'
+    ],
     component: IconLocationPinPulseSurroundingAreaComponent
   },
   {
@@ -5204,7 +6861,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/location_pin_surrounding_area_207_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/location_pin_surrounding_area_207_medium.svg'
+    ],
     component: IconLocationPinSurroundingAreaComponent
   },
   {
@@ -5215,7 +6876,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/mountain_minus_122_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/mountain_minus_122_medium.svg'
+    ],
     component: IconMountainMinusComponent
   },
   {
@@ -5226,7 +6891,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionLocationModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/110_Location/mountain_plus_123_small.svg',
+      '/svg/KOM/responsive/medium/110_Location/mountain_plus_123_medium.svg'
+    ],
     component: IconMountainPlusComponent
   },
   {
@@ -5237,8 +6906,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_194_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_194_medium.svg'
+    ],
     component: IconCloudComponent
+  },
+  {
+    selector: 'sbb-icon-cloud-dense-fog',
+    name: 'IconCloudDenseFogComponent',
+    modules: [
+      'IconCloudDenseFogModule',
+      'IconCollectionWeatherModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_dense_fog_326_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_dense_fog_326_medium.svg'
+    ],
+    component: IconCloudDenseFogComponent
   },
   {
     selector: 'sbb-icon-cloud-drops',
@@ -5248,7 +6936,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_drops_195_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_drops_195_medium.svg'
+    ],
     component: IconCloudDropsComponent
   },
   {
@@ -5259,8 +6951,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_drops_moon_190_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_drops_moon_190_medium.svg'
+    ],
     component: IconCloudDropsMoonComponent
+  },
+  {
+    selector: 'sbb-icon-cloud-fog',
+    name: 'IconCloudFogComponent',
+    modules: [
+      'IconCloudFogModule',
+      'IconCollectionWeatherModule',
+      'IconCollectionModule'
+    ],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_fog_327_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_fog_327_medium.svg'
+    ],
+    component: IconCloudFogComponent
   },
   {
     selector: 'sbb-icon-cloud-ice',
@@ -5270,7 +6981,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_ice_185_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_ice_185_medium.svg'
+    ],
     component: IconCloudIceComponent
   },
   {
@@ -5281,7 +6996,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_lightning_202_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_lightning_202_medium.svg'
+    ],
     component: IconCloudLightningComponent
   },
   {
@@ -5292,7 +7011,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_lightning_moon_189_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_lightning_moon_189_medium.svg'
+    ],
     component: IconCloudLightningMoonComponent
   },
   {
@@ -5303,7 +7026,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_little_snow_moon_330_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_little_snow_moon_330_medium.svg'
+    ],
     component: IconCloudLittleSnowMoonComponent
   },
   {
@@ -5314,7 +7041,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_little_snow_sun_331_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_little_snow_sun_331_medium.svg'
+    ],
     component: IconCloudLittleSnowSunComponent
   },
   {
@@ -5325,7 +7056,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_moon_187_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_moon_187_medium.svg'
+    ],
     component: IconCloudMoonComponent
   },
   {
@@ -5336,7 +7071,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_rain_199_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_199_medium.svg'
+    ],
     component: IconCloudRainComponent
   },
   {
@@ -5347,7 +7086,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_rain_snow_328_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_328_medium.svg'
+    ],
     component: IconCloudRainSnowComponent
   },
   {
@@ -5358,7 +7101,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_rain_snow_moon_329_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_moon_329_medium.svg'
+    ],
     component: IconCloudRainSnowMoonComponent
   },
   {
@@ -5369,7 +7116,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_rain_snow_sun_215_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_snow_sun_215_medium.svg'
+    ],
     component: IconCloudRainSnowSunComponent
   },
   {
@@ -5380,7 +7131,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_rain_sun_198_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_rain_sun_198_medium.svg'
+    ],
     component: IconCloudRainSunComponent
   },
   {
@@ -5391,7 +7146,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_snowflake_201_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snowflake_201_medium.svg'
+    ],
     component: IconCloudSnowflakeComponent
   },
   {
@@ -5402,7 +7161,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_snowflake_sun_200_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snowflake_sun_200_medium.svg'
+    ],
     component: IconCloudSnowflakeSunComponent
   },
   {
@@ -5413,7 +7176,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_snow_196_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_196_medium.svg'
+    ],
     component: IconCloudSnowComponent
   },
   {
@@ -5424,7 +7191,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_snow_lightning_184_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_lightning_184_medium.svg'
+    ],
     component: IconCloudSnowLightningComponent
   },
   {
@@ -5435,7 +7206,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_snow_moon_188_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_moon_188_medium.svg'
+    ],
     component: IconCloudSnowMoonComponent
   },
   {
@@ -5446,7 +7221,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_snow_sun_193_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_snow_sun_193_medium.svg'
+    ],
     component: IconCloudSnowSunComponent
   },
   {
@@ -5457,7 +7236,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_strong_rain_moon_191_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_strong_rain_moon_191_medium.svg'
+    ],
     component: IconCloudStrongRainMoonComponent
   },
   {
@@ -5468,19 +7251,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconCloudStrongRainSunComponent
-  },
-  {
-    selector: 'sbb-icon-cloud-sun',
-    name: 'IconCloudSunComponent',
-    modules: [
-      'IconCloudSunModule',
-      'IconCollectionWeatherModule',
-      'IconCollectionModule'
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_strong_rain_sun_192_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_strong_rain_sun_192_medium.svg'
     ],
-    sizes: ['medium'],
-    component: IconCloudSunComponent
+    component: IconCloudStrongRainSunComponent
   },
   {
     selector: 'sbb-icon-cloud-sunshine',
@@ -5490,19 +7266,27 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_sunshine_197_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_sunshine_197_medium.svg'
+    ],
     component: IconCloudSunshineComponent
   },
   {
-    selector: 'sbb-icon-dense-fog',
-    name: 'IconDenseFogComponent',
+    selector: 'sbb-icon-cloud-sun',
+    name: 'IconCloudSunComponent',
     modules: [
-      'IconDenseFogModule',
+      'IconCloudSunModule',
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconDenseFogComponent
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/cloud_sun_186_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/cloud_sun_186_medium.svg'
+    ],
+    component: IconCloudSunComponent
   },
   {
     selector: 'sbb-icon-fog',
@@ -5512,19 +7296,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
-    component: IconFogComponent
-  },
-  {
-    selector: 'sbb-icon-cloud-fog',
-    name: 'IconCloudFogComponent',
-    modules: [
-      'IconCloudFogModule',
-      'IconCollectionWeatherModule',
-      'IconCollectionModule'
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/fog_150_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/fog_150_medium.svg'
     ],
-    sizes: ['medium'],
-    component: IconCloudFogComponent
+    component: IconFogComponent
   },
   {
     selector: 'sbb-icon-moon',
@@ -5534,7 +7311,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/moon_151_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/moon_151_medium.svg'
+    ],
     component: IconMoonComponent
   },
   {
@@ -5545,7 +7326,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/sunrise_208_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/sunrise_208_medium.svg'
+    ],
     component: IconSunriseComponent
   },
   {
@@ -5556,7 +7341,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/sunshine_149_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/sunshine_149_medium.svg'
+    ],
     component: IconSunshineComponent
   },
   {
@@ -5567,7 +7356,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/sun_moon_211_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/sun_moon_211_medium.svg'
+    ],
     component: IconSunMoonComponent
   },
   {
@@ -5578,7 +7371,11 @@ export const iconComponentsMetaInformation = [
       'IconCollectionWeatherModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/140_Weather/weather_unknown_332_small.svg',
+      '/svg/KOM/responsive/medium/140_Weather/weather_unknown_332_medium.svg'
+    ],
     component: IconWeatherUnknownComponent
   },
   {
@@ -5590,6 +7387,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/fast_forward_161_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/fast_forward_161_medium.svg'
+    ],
     component: IconFastForwardComponent
   },
   {
@@ -5601,6 +7402,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/next_155_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/next_155_medium.svg'
+    ],
     component: IconNextComponent
   },
   {
@@ -5612,6 +7417,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/pause_158_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/pause_158_medium.svg'
+    ],
     component: IconPauseComponent
   },
   {
@@ -5623,6 +7432,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/play_132_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/play_132_medium.svg'
+    ],
     component: IconPlayComponent
   },
   {
@@ -5634,6 +7447,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/previous_157_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/previous_157_medium.svg'
+    ],
     component: IconPreviousComponent
   },
   {
@@ -5645,6 +7462,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/record_153_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/record_153_medium.svg'
+    ],
     component: IconRecordComponent
   },
   {
@@ -5656,6 +7477,10 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/rewind_170_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/rewind_170_medium.svg'
+    ],
     component: IconRewindComponent
   },
   {
@@ -5666,52 +7491,12 @@ export const iconComponentsMetaInformation = [
       'IconCollectionAudioModule',
       'IconCollectionModule'
     ],
-    sizes: ['medium'],
+    sizes: ['medium', 'small'],
+    meta: [
+      '/svg/KOM/responsive/small/160_Audio/stop_133_small.svg',
+      '/svg/KOM/responsive/medium/160_Audio/stop_133_medium.svg'
+    ],
     component: IconStopComponent
-  },
-  {
-    selector: 'sbb-icon-mountain-sun',
-    name: 'IconMountainSunComponent',
-    modules: [
-      'IconMountainSunModule',
-      'IconCollectionLeisureModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconMountainSunComponent
-  },
-  {
-    selector: 'sbb-icon-construction',
-    name: 'IconConstructionComponent',
-    modules: [
-      'IconConstructionModule',
-      'IconCollectionInstallationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconConstructionComponent
-  },
-  {
-    selector: 'sbb-icon-railway-switch',
-    name: 'IconRailwaySwitchComponent',
-    modules: [
-      'IconRailwaySwitchModule',
-      'IconCollectionInstallationModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconRailwaySwitchComponent
-  },
-  {
-    selector: 'sbb-icon-city',
-    name: 'IconCityComponent',
-    modules: [
-      'IconCityModule',
-      'IconCollectionBuildingModule',
-      'IconCollectionModule'
-    ],
-    sizes: ['medium'],
-    component: IconCityComponent
   },
   {
     selector: 'sbb-icon-twitter',
@@ -5722,6 +7507,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_107_twitter.svg'],
     component: IconTwitterComponent
   },
   {
@@ -5733,6 +7519,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_108_facebook.svg'],
     component: IconFacebookComponent
   },
   {
@@ -5744,6 +7531,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_109_instagram.svg'],
     component: IconInstagramComponent
   },
   {
@@ -5755,6 +7543,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_110_googleplus.svg'],
     component: IconGoogleplusComponent
   },
   {
@@ -5766,6 +7555,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_111_youtube.svg'],
     component: IconYoutubeComponent
   },
   {
@@ -5777,6 +7567,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_112_linkedin.svg'],
     component: IconLinkedinComponent
   },
   {
@@ -5788,6 +7579,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_113_pinterest.svg'],
     component: IconPinterestComponent
   },
   {
@@ -5799,6 +7591,7 @@ export const iconComponentsMetaInformation = [
       'IconCollectionModule'
     ],
     sizes: [],
+    meta: ['/svg/SocialMedia/SBB_114_xing.svg'],
     component: IconXingComponent
   }
 ];
@@ -5886,10 +7679,6 @@ export const iconComponentList = [
   IconSaYtComponent,
   IconSaZComponent,
   IconSaZmComponent,
-  IconUtilizationNoneComponent,
-  IconUtilizationLowComponent,
-  IconUtilizationMediumComponent,
-  IconUtilizationHighComponent,
   IconAddStopComponent,
   IconAlternativeComponent,
   IconCancellationComponent,
@@ -5901,6 +7690,10 @@ export const iconComponentList = [
   IconPlatformChangeComponent,
   IconHimReplacementbusComponent,
   IconRerouteComponent,
+  IconUtilizationHighComponent,
+  IconUtilizationLowComponent,
+  IconUtilizationMediumComponent,
+  IconUtilizationNoneComponent,
   IconProductBexComponent,
   IconProductCnlComponent,
   IconProductEcComponent,
@@ -5952,8 +7745,11 @@ export const iconComponentList = [
   IconProductSnComponent,
   IconProductTgvComponent,
   IconProductVaeComponent,
+  IconCalendarComponent,
   IconChartColumnTrendComponent,
   IconCoinsComponent,
+  IconRocketComponent,
+  IconShoppingCartComponent,
   IconAlarmClockComponent,
   IconAppleBagComponent,
   IconAppIconComponent,
@@ -5961,7 +7757,6 @@ export const iconComponentList = [
   IconBellComponent,
   IconBinocularsComponent,
   IconBrowserComponent,
-  IconCalendarComponent,
   IconCameraComponent,
   IconChartColumnComponent,
   IconChartLineComponent,
@@ -5972,6 +7767,7 @@ export const iconComponentList = [
   IconCircleQuestionMarkComponent,
   IconContactComponent,
   IconControlsComponent,
+  IconCupHotComponent,
   IconCutleryComponent,
   IconDatabaseComponent,
   IconDogComponent,
@@ -5996,13 +7792,12 @@ export const iconComponentList = [
   IconHandWithServiceBellComponent,
   IconHeartComponent,
   IconHierarchyComponent,
-  IconKaffeComponent,
-  IconKaffe2Component,
   IconLighthouseComponent,
   IconLinkComponent,
   IconLinkExternalComponent,
   IconListComponent,
   IconMagnifyingGlassComponent,
+  IconMugHotComponent,
   IconNewspaperComponent,
   IconPaperAeroplaneComponent,
   IconPaperClipComponent,
@@ -6011,7 +7806,6 @@ export const iconComponentList = [
   IconPinComponent,
   IconRssComponent,
   IconServiceBellComponent,
-  IconShoppingCartComponent,
   IconSignExclamationPointComponent,
   IconSignXComponent,
   IconSpannerComponent,
@@ -6044,7 +7838,7 @@ export const iconComponentList = [
   IconThumbUpComponent,
   IconTranslateComponent,
   IconEmployeesSbbComponent,
-  IconUserGroupRowComponent,
+  IconUserGroupComponent,
   IconAvatarPoliceComponent,
   IconKeyComponent,
   IconPieComponent,
@@ -6052,7 +7846,7 @@ export const iconComponentList = [
   IconUserComponent,
   IconUserChangeComponent,
   IconUserGroupRoundTableComponent,
-  IconUserGroupRowLinearComponent,
+  IconUserGroupRowComponent,
   IconUserHatComponent,
   IconUserHeadsetComponent,
   IconUserKeyComponent,
@@ -6080,6 +7874,34 @@ export const iconComponentList = [
   IconWheelchairPartiallyComponent,
   IconWheelchairReservationComponent,
   IconWheelchairUncertainComponent,
+  IconLotusComponent,
+  IconPlatformComponent,
+  IconStationComponent,
+  IconBookComponent,
+  IconBottleAppleComponent,
+  IconCustomerAssistanceSbbComponent,
+  IconEscalatorComponent,
+  IconGeneralDisplayComponent,
+  IconHandPlusCircleComponent,
+  IconHandSbbComponent,
+  IconHostelComponent,
+  IconLiftComponent,
+  IconLockerComponent,
+  IconMeetingPointComponent,
+  IconMoneyExchangeComponent,
+  IconPlatformDisplayComponent,
+  IconScreenInsideTrainComponent,
+  IconShirtShoeComponent,
+  IconShoppingBagComponent,
+  IconShoppingBagCouponComponent,
+  IconShoppingBagFastComponent,
+  IconStationSurroundingAreaComponent,
+  IconTicketMachineComponent,
+  IconTicketMachineTicketComponent,
+  IconToiletComponent,
+  IconTrainStationComponent,
+  IconWaitingRoomComponent,
+  IconWineCheeseComponent,
   IconLaptopSmartphoneComponent,
   IconArchiveBoxComponent,
   IconBriefcaseComponent,
@@ -6107,8 +7929,8 @@ export const iconComponentList = [
   IconAirplaneComponent,
   IconBusComponent,
   IconBusCircleComponent,
-  IconBusStopComponent,
   IconBusSbbComponent,
+  IconBusStopComponent,
   IconCarComponent,
   IconCarParkingComponent,
   IconChargingStationComponent,
@@ -6117,16 +7939,42 @@ export const iconComponentList = [
   IconDriverlessBusComponent,
   IconFreightWagonComponent,
   IconKRComponent,
+  IconParkAndRailComponent,
   IconPetrolStationComponent,
-  IconPRComponent,
   IconShuttleComponent,
   IconTaxiComponent,
   IconTramComponent,
+  IconAdultKidsComponent,
+  IconBalloonsComponent,
+  IconChristmasTreeShoppingBagComponent,
+  IconElephantComponent,
+  IconFerrisWheelComponent,
+  IconHikingBootComponent,
+  IconLeafComponent,
+  IconLocomotiveViaductComponent,
+  IconLucerneChapelBridgeComponent,
+  IconMarketShoppingBagComponent,
+  IconMountainSunComponent,
+  IconMuseumComponent,
+  IconMusicRockHandGestureComponent,
+  IconRailwayShipComponent,
+  IconSledgeSnowshoeComponent,
+  IconSoccerBallComponent,
+  IconThreeAdultsComponent,
+  IconTrainSkiComponent,
+  IconTwoAdultsKidComponent,
+  IconRailwaySwitchComponent,
+  IconTrainSignalComponent,
+  IconTrainTracksComponent,
+  IconConstructionComponent,
+  IconBuildingTreeComponent,
+  IconCityComponent,
   IconCurriculumVitaeComponent,
   IconHandGraduationCapComponent,
   IconShipSteeringWheelComponent,
   IconArrowsCircleComponent,
   IconArrowsLeftRightComponent,
+  IconArrowsLeftRightDownUpComponent,
   IconArrowsRightLeftComponent,
   IconArrowsUpDownComponent,
   IconArrowCircleComponent,
@@ -6144,7 +7992,6 @@ export const iconComponentList = [
   IconChevronSmallUpCircleComponent,
   IconIncreaseSizeComponent,
   IconReduceSizeComponent,
-  IconArrowsLeftRightDownUpComponent,
   IconButtonPowerComponent,
   IconExclamationPointComponent,
   IconEyeComponent,
@@ -6197,33 +8044,6 @@ export const iconComponentList = [
   IconTicketPercentComponent,
   IconTicketRouteComponent,
   IconTicketStarComponent,
-  IconBookComponent,
-  IconBottleAppleComponent,
-  IconCustomerAssistanceSbbComponent,
-  IconEscalatorComponent,
-  IconGeneralDisplayComponent,
-  IconHandPlusCircleComponent,
-  IconHandSbbComponent,
-  IconHostelComponent,
-  IconLiftComponent,
-  IconLockerComponent,
-  IconLotusComponent,
-  IconMeetingPointComponent,
-  IconMoneyExchangeComponent,
-  IconPlatformDisplayComponent,
-  IconScreenInsideTrainComponent,
-  IconShirtShoeComponent,
-  IconShoppingBagComponent,
-  IconShoppingBagCouponComponent,
-  IconShoppingBagFastComponent,
-  IconStationComponent,
-  IconStationSurroundingAreaComponent,
-  IconTicketMachineComponent,
-  IconTicketMachineTicketComponent,
-  IconToiletComponent,
-  IconTrainStationComponent,
-  IconWaitingRoomComponent,
-  IconWineCheeseComponent,
   IconArrowCompassComponent,
   IconGpsComponent,
   IconGpsDisabledComponent,
@@ -6236,8 +8056,10 @@ export const iconComponentList = [
   IconMountainMinusComponent,
   IconMountainPlusComponent,
   IconCloudComponent,
+  IconCloudDenseFogComponent,
   IconCloudDropsComponent,
   IconCloudDropsMoonComponent,
+  IconCloudFogComponent,
   IconCloudIceComponent,
   IconCloudLightningComponent,
   IconCloudLightningMoonComponent,
@@ -6257,11 +8079,9 @@ export const iconComponentList = [
   IconCloudSnowSunComponent,
   IconCloudStrongRainMoonComponent,
   IconCloudStrongRainSunComponent,
-  IconCloudSunComponent,
   IconCloudSunshineComponent,
-  IconDenseFogComponent,
+  IconCloudSunComponent,
   IconFogComponent,
-  IconCloudFogComponent,
   IconMoonComponent,
   IconSunriseComponent,
   IconSunshineComponent,
@@ -6275,10 +8095,6 @@ export const iconComponentList = [
   IconRecordComponent,
   IconRewindComponent,
   IconStopComponent,
-  IconMountainSunComponent,
-  IconConstructionComponent,
-  IconRailwaySwitchComponent,
-  IconCityComponent,
   IconTwitterComponent,
   IconFacebookComponent,
   IconInstagramComponent,

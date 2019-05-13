@@ -9,7 +9,11 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-context-menu',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><g fill="none" fill-rule="evenodd"><path fill="#000" d="M20.25 7.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5A2.249 2.249 0 0 1 18 30.75a2.249 2.249 0 1 1 0-4.5 2.25 2.25 0 0 1 2.25 2.25z"/><path stroke="#000" d="M20.25 7.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5A2.249 2.249 0 0 1 18 30.75a2.249 2.249 0 1 1 0-4.5 2.25 2.25 0 0 1 2.25 2.25z"/></g></svg>`,
+  template: `
+    <ng-container [ngSwitch]="size">
+      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path fill="#000" d="M13.5 5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 7a1.5 1.5 0 1 1-2.999.001A1.5 1.5 0 0 1 13.5 19z"/><path stroke="#000" d="M13.5 5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 7a1.5 1.5 0 1 1-2.999.001A1.5 1.5 0 0 1 13.5 19z"/></g></svg>
+      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><g fill="none" fill-rule="evenodd"><path fill="#000" d="M20.25 7.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5A2.249 2.249 0 0 1 18 30.75a2.249 2.249 0 1 1 0-4.5 2.25 2.25 0 0 1 2.25 2.25z"/><path stroke="#000" d="M20.25 7.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm0 10.5A2.249 2.249 0 0 1 18 30.75a2.249 2.249 0 1 1 0-4.5 2.25 2.25 0 0 1 2.25 2.25z"/></g></svg>
+    </ng-container>`,
   // tslint:enable:max-line-length
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

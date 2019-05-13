@@ -166,7 +166,7 @@
   },
   "lint-staged": {
     "*.{js,ts,css,scss,json,md,html}": [
-      "prettier --write",
+      "npx prettier --write",
       "git add",
       "npx ng lint @sbb-esta/angular-public"
     ]
