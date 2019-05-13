@@ -3,12 +3,14 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import {
+  IconChevronSmallDownModule,
+  IconUserModule
+} from '@sbb-esta/angular-icons';
 
 import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
 import { DropdownComponent, DropdownModule } from '../../dropdown/dropdown';
 import { LinkGeneratorResult } from '../../pagination/pagination';
-import { IconArrowSmallDownModule } from '../../svg-icons/base/arrows/icon-arrow-small-down.module';
-import { IconUserModule } from '../../svg-icons/base/icon-user.module';
 import { UserMenuModule } from '../usermenu.module';
 
 import { UserMenuComponent } from './usermenu.component';
@@ -202,7 +204,7 @@ describe('UserMenuComponent', () => {
       imports: [
         CommonModule,
         DropdownModule,
-        IconArrowSmallDownModule,
+        IconChevronSmallDownModule,
         IconUserModule
       ]
     }).compileComponents();
@@ -235,7 +237,7 @@ describe('Usermenu test case: user with custom image using mock component', () =
         UserMenuModule,
         CommonModule,
         DropdownModule,
-        IconArrowSmallDownModule,
+        IconChevronSmallDownModule,
         IconUserModule,
         RouterTestingModule
       ],
@@ -372,7 +374,7 @@ describe('Usermenu test case: usermenu without user image but with initial lette
         UserMenuModule,
         CommonModule,
         DropdownModule,
-        IconArrowSmallDownModule,
+        IconChevronSmallDownModule,
         IconUserModule,
         RouterTestingModule
       ],
@@ -511,7 +513,7 @@ describe('Usermenu test case: usermenu only with userName using mock component',
         UserMenuModule,
         CommonModule,
         DropdownModule,
-        IconArrowSmallDownModule,
+        IconChevronSmallDownModule,
         IconUserModule,
         RouterTestingModule
       ],

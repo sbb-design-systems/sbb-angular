@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconCircleMinusModule } from './icon-circle-minus.module';
 import { IconCirclePlusModule } from './icon-circle-plus.module';
 import { IconContextMenuModule } from './icon-context-menu.module';
@@ -27,11 +26,11 @@ const modules = [
   IconLayersModule,
   IconMinusModule,
   IconPlusModule,
-  IconTwoFingerTapModule,
+  IconTwoFingerTapModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionNavigationModule { }
+export class IconCollectionNavigationModule {}

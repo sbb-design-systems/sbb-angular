@@ -9,9 +9,26 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-alternative',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g fill="none" fill-rule="evenodd"><path fill="#EB0000" d="M0 1.994C0 .894.895 0 1.994 0h12.012C15.107 0 16 .894 16 1.994v12.012A1.996 1.996 0 0 1 14.006 16H1.994A1.996 1.996 0 0 1 0 14.006V1.994z"/><path fill="#FFF" d="M10.391 2h-1.5v8.317H5.782l1.724-1.725-1.061-1.06-3.536 3.537 3.536 3.537 1.061-1.061-1.728-1.728h4.613z"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+    >
+      <g fill="none" fill-rule="evenodd">
+        <path
+          fill="#EB0000"
+          d="M0 1.994C0 .894.895 0 1.994 0h12.012C15.107 0 16 .894 16 1.994v12.012A1.996 1.996 0 0 1 14.006 16H1.994A1.996 1.996 0 0 1 0 14.006V1.994z"
+        />
+        <path
+          fill="#FFF"
+          d="M10.391 2h-1.5v8.317H5.782l1.724-1.725-1.061-1.06-3.536 3.537 3.536 3.537 1.061-1.061-1.728-1.728h4.613z"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconAlternativeComponent extends IconBase {
   constructor() {
@@ -22,6 +39,6 @@ export class IconAlternativeComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconAlternativeComponent],
-  exports: [IconAlternativeComponent],
+  exports: [IconAlternativeComponent]
 })
-export class IconAlternativeModule { }
+export class IconAlternativeModule {}

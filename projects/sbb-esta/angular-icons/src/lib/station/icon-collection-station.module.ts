@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconBookModule } from './icon-book.module';
 import { IconBottleAppleModule } from './icon-bottle-apple.module';
 import { IconCustomerAssistanceSbbModule } from './icon-customer-assistance-sbb.module';
@@ -18,21 +17,25 @@ import { IconLotusModule } from './icon-lotus.module';
 import { IconMeetingPointModule } from './icon-meeting-point.module';
 import { IconMoneyExchangeModule } from './icon-money-exchange.module';
 import { IconPlatformDisplayModule } from './icon-platform-display.module';
+import { IconPlatformModule } from './icon-platform.module';
 import { IconScreenInsideTrainModule } from './icon-screen-inside-train.module';
 import { IconShirtShoeModule } from './icon-shirt-shoe.module';
-import { IconShoppingBagModule } from './icon-shopping-bag.module';
 import { IconShoppingBagCouponModule } from './icon-shopping-bag-coupon.module';
 import { IconShoppingBagFastModule } from './icon-shopping-bag-fast.module';
-import { IconStationModule } from './icon-station.module';
+import { IconShoppingBagModule } from './icon-shopping-bag.module';
 import { IconStationSurroundingAreaModule } from './icon-station-surrounding-area.module';
-import { IconTicketMachineModule } from './icon-ticket-machine.module';
+import { IconStationModule } from './icon-station.module';
 import { IconTicketMachineTicketModule } from './icon-ticket-machine-ticket.module';
+import { IconTicketMachineModule } from './icon-ticket-machine.module';
 import { IconToiletModule } from './icon-toilet.module';
 import { IconTrainStationModule } from './icon-train-station.module';
 import { IconWaitingRoomModule } from './icon-waiting-room.module';
 import { IconWineCheeseModule } from './icon-wine-cheese.module';
 
 const modules = [
+  IconLotusModule,
+  IconPlatformModule,
+  IconStationModule,
   IconBookModule,
   IconBottleAppleModule,
   IconCustomerAssistanceSbbModule,
@@ -43,7 +46,6 @@ const modules = [
   IconHostelModule,
   IconLiftModule,
   IconLockerModule,
-  IconLotusModule,
   IconMeetingPointModule,
   IconMoneyExchangeModule,
   IconPlatformDisplayModule,
@@ -52,18 +54,17 @@ const modules = [
   IconShoppingBagModule,
   IconShoppingBagCouponModule,
   IconShoppingBagFastModule,
-  IconStationModule,
   IconStationSurroundingAreaModule,
   IconTicketMachineModule,
   IconTicketMachineTicketModule,
   IconToiletModule,
   IconTrainStationModule,
   IconWaitingRoomModule,
-  IconWineCheeseModule,
+  IconWineCheeseModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionStationModule { }
+export class IconCollectionStationModule {}

@@ -11,11 +11,34 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <ng-container [ngSwitch]="size">
-      <svg *ngSwitchDefault [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M12.89 12.889l7.11 7.11-7.111-7.11A5.5 5.5 0 1 1 9 3.5a5.5 5.5 0 0 1 3.89 9.389z"/></svg>
-      <svg *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''" [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M19.334 19.333L30 30 19.334 19.333A8.221 8.221 0 0 1 13.5 21.75a8.25 8.25 0 1 1 5.834-2.416z"/></svg>
-    </ng-container>`,
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M12.89 12.889l7.11 7.11-7.111-7.11A5.5 5.5 0 1 1 9 3.5a5.5 5.5 0 0 1 3.89 9.389z"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M19.334 19.333L30 30 19.334 19.333A8.221 8.221 0 0 1 13.5 21.75a8.25 8.25 0 1 1 5.834-2.416z"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconMagnifyingGlassComponent extends IconBase {
   constructor() {
@@ -26,6 +49,6 @@ export class IconMagnifyingGlassComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconMagnifyingGlassComponent],
-  exports: [IconMagnifyingGlassComponent],
+  exports: [IconMagnifyingGlassComponent]
 })
-export class IconMagnifyingGlassModule { }
+export class IconMagnifyingGlassModule {}

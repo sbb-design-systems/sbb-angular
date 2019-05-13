@@ -1,8 +1,8 @@
 {
-  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "$schema": "../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "generate-icon-modules": {
-      "description": "A blank schematic.",
+      "description": "Generate icon modules.",
       "factory": "./generate-icon-modules/index#generateIconModules",
       "schema": "./generate-icon-modules/schema.json"
     }

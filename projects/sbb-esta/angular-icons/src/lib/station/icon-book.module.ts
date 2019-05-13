@@ -9,9 +9,38 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-book',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" stroke-linecap="square" d="M6.75 27.752V8.25c0-1.656 1.344-3 3-3h19.5v19.502H9.75a3.001 3.001 0 0 0 0 6l19.5-.002m-19.5-2.998h19.5"/></svg>`,
+  template: `
+    <ng-container [ngSwitch]="size">
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          stroke-linecap="square"
+          d="M4.5 18.501V5.5a2 2 0 0 1 2-2h13v13.001h-13a2 2 0 0 0 0 4l13-.001m-13-1.999h13"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          stroke-linecap="square"
+          d="M6.75 27.752V8.25c0-1.656 1.344-3 3-3h19.5v19.502H9.75a3.001 3.001 0 0 0 0 6l19.5-.002m-19.5-2.998h19.5"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconBookComponent extends IconBase {
   constructor() {
@@ -22,6 +51,6 @@ export class IconBookComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconBookComponent],
-  exports: [IconBookComponent],
+  exports: [IconBookComponent]
 })
-export class IconBookModule { }
+export class IconBookModule {}

@@ -3,12 +3,10 @@
  */
 import { NgModule } from '@angular/core';
 
-
-import { IconQrcodeModule } from './icon-qrcode.module';
 import { IconQrcodeDisabledModule } from './icon-qrcode-disabled.module';
-import { IconSwisspassModule } from './icon-swisspass.module';
+import { IconQrcodeModule } from './icon-qrcode.module';
 import { IconSwisspassTemporaryModule } from './icon-swisspass-temporary.module';
-import { IconTicketsClassModule } from './icon-tickets-class.module';
+import { IconSwisspassModule } from './icon-swisspass.module';
 import { IconTicketDayModule } from './icon-ticket-day.module';
 import { IconTicketDisabledModule } from './icon-ticket-disabled.module';
 import { IconTicketHeartModule } from './icon-ticket-heart.module';
@@ -17,6 +15,7 @@ import { IconTicketParkingModule } from './icon-ticket-parking.module';
 import { IconTicketPercentModule } from './icon-ticket-percent.module';
 import { IconTicketRouteModule } from './icon-ticket-route.module';
 import { IconTicketStarModule } from './icon-ticket-star.module';
+import { IconTicketsClassModule } from './icon-tickets-class.module';
 
 const modules = [
   IconQrcodeModule,
@@ -31,11 +30,11 @@ const modules = [
   IconTicketParkingModule,
   IconTicketPercentModule,
   IconTicketRouteModule,
-  IconTicketStarModule,
+  IconTicketStarModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionTicketModule { }
+export class IconCollectionTicketModule {}

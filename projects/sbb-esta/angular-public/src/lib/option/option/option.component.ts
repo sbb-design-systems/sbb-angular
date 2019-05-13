@@ -80,12 +80,12 @@ export class OptionComponent
 
   @HostBinding('attr.aria-selected')
   get ariaSelected() {
-    return this.selected || null;
+    return this.selected || (this.multiple ? false : null);
   }
 
   @HostBinding('attr.aria-disabled')
   get ariaDisabled() {
-    return this._disabled || null;
+    return this.disabled.toString();
   }
 
   @Input()

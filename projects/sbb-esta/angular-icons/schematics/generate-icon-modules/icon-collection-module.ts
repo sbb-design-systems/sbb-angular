@@ -1,14 +1,15 @@
-import { strings, fragment } from '@angular-devkit/core';
+import { fragment, strings } from '@angular-devkit/core';
 import {
-  DirEntry,
-  url,
   apply,
-  template,
-  move,
-  mergeWith,
   chain,
-  Rule
+  DirEntry,
+  mergeWith,
+  move,
+  Rule,
+  template,
+  url
 } from '@angular-devkit/schematics';
+
 import { IconModule } from './icon-module';
 
 const ICON_ROOT = 'root';

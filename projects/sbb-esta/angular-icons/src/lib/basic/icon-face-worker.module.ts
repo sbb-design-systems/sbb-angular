@@ -9,9 +9,36 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-face-worker',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M15.75 19.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm6 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zM13.7 24a5.24 5.24 0 0 0 4.3 2.25c1.781 0 3.351-.892 4.3-2.25M9.75 13.5a8.25 8.25 0 0 1 16.5 0 2.25 2.25 0 0 0 2.25 2.25h-21a2.249 2.249 0 0 0 2.25-2.25zm0-.75h6.75m3 0h6.75m-14.614 3A8.21 8.21 0 0 0 9.75 21a8.25 8.25 0 1 0 14.613-5.25"/></svg>`,
+  template: `
+    <ng-container [ngSwitch]="size">
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M10.5 13a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm4 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-5.367 3A3.493 3.493 0 0 0 12 17.5a3.49 3.49 0 0 0 2.866-1.5M6.5 9a5.5 5.5 0 1 1 11 0 1.5 1.5 0 0 0 1.5 1.5H5A1.5 1.5 0 0 0 6.5 9zm0-.5H11m2 0h4.5m-9.743 2a5.5 5.5 0 1 0 8.485 0"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M15.75 19.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm6 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zM13.7 24a5.24 5.24 0 0 0 4.3 2.25c1.781 0 3.351-.892 4.3-2.25M9.75 13.5a8.25 8.25 0 0 1 16.5 0 2.25 2.25 0 0 0 2.25 2.25h-21a2.249 2.249 0 0 0 2.25-2.25zm0-.75h6.75m3 0h6.75m-14.614 3A8.21 8.21 0 0 0 9.75 21a8.25 8.25 0 1 0 14.613-5.25"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconFaceWorkerComponent extends IconBase {
   constructor() {
@@ -22,6 +49,6 @@ export class IconFaceWorkerComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconFaceWorkerComponent],
-  exports: [IconFaceWorkerComponent],
+  exports: [IconFaceWorkerComponent]
 })
-export class IconFaceWorkerModule { }
+export class IconFaceWorkerModule {}

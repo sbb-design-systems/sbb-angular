@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   IconChevronRightModule,
-  IconChevronSmallDownCircleModule
+  IconChevronSmallDownModule
 } from '@sbb-esta/angular-icons';
 
 import { DropdownModule } from '../../dropdown/dropdown';
@@ -20,7 +20,7 @@ describe('BreadcrumbComponent', () => {
         CommonModule,
         DropdownModule,
         IconChevronRightModule,
-        IconChevronSmallDownCircleModule
+        IconChevronSmallDownModule
       ]
     }).compileComponents();
   }));

@@ -9,9 +9,23 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-him-disruption',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g fill="none" fill-rule="evenodd"><rect width="16" height="16" fill="#EB0000" rx="2"/><path fill="#FFF" d="M3.35 14.497l.48-3.444 1.165 1.295 3.522-4.386L3 6.708 7.243 1.5h5.021L6.097 6.237 12.5 7.688l-6.572 5.523L7.106 14.5l-3.756-.003z"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+    >
+      <g fill="none" fill-rule="evenodd">
+        <rect width="16" height="16" fill="#EB0000" rx="2" />
+        <path
+          fill="#FFF"
+          d="M3.35 14.497l.48-3.444 1.165 1.295 3.522-4.386L3 6.708 7.243 1.5h5.021L6.097 6.237 12.5 7.688l-6.572 5.523L7.106 14.5l-3.756-.003z"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconHimDisruptionComponent extends IconBase {
   constructor() {
@@ -22,6 +36,6 @@ export class IconHimDisruptionComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconHimDisruptionComponent],
-  exports: [IconHimDisruptionComponent],
+  exports: [IconHimDisruptionComponent]
 })
-export class IconHimDisruptionModule { }
+export class IconHimDisruptionModule {}

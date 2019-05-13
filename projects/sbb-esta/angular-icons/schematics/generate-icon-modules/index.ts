@@ -1,28 +1,29 @@
+import { strings } from '@angular-devkit/core';
 import {
+  apply,
+  callRule,
+  chain,
+  mergeWith,
+  move,
   Rule,
   SchematicContext,
-  Tree,
-  url,
-  apply,
   template,
-  move,
-  mergeWith,
-  chain,
-  callRule
+  Tree,
+  url
 } from '@angular-devkit/schematics';
-import { SvgSource } from './svg-source';
-import { strings } from '@angular-devkit/core';
 import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-export function generateIconModules(_options: { dist: string }): Rule {
-  return (tree: Tree, _context: SchematicContext): Observable<Tree> =>
+import { SvgSource } from './svg-source';
+
+export function generateIconModules(options: { dist: string }): Rule {
+  return (tree: Tree, context: SchematicContext): Observable<Tree> =>
     from<Rule>(
       (async () => {
         const collection = (await SvgSource.from(tree.getDir('svg')))
           .assertNoDuplicates()
           .toCollectionModules();
-        const dist = tree.getDir(_options.dist);
+        const dist = tree.getDir(options.dist);
         const icons = collection.iconsRecursive;
 
         return chain([
@@ -38,5 +39,5 @@ export function generateIconModules(_options: { dist: string }): Rule {
           collection.apply(dist)
         ]);
       })()
-    ).pipe(switchMap(rule => callRule(rule, of(tree), _context)));
+    ).pipe(switchMap(rule => callRule(rule, of(tree), context)));
 }

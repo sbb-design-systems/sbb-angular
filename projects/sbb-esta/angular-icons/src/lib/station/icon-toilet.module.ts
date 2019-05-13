@@ -9,9 +9,36 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-toilet',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M9.75 8.25a1.5 1.5 0 1 1-3.002 0 1.5 1.5 0 0 1 3.001 0zm1.5 12v-7.5h-6v7.5h1.5v9h3v-9h1.5zm16.5 3v6h-3v-6m3-15a1.5 1.5 0 1 1-3 .001 1.5 1.5 0 0 1 3 0zm3 15l-3-10.5h-3l-3 10.5h9zM17.25 6v24"/></svg>`,
+  template: `
+    <ng-container [ngSwitch]="size">
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M6.5 5.5a1 1 0 1 1-2.001 0 1 1 0 0 1 2 0zm1 8v-5h-4v5h1v6h2v-6h1zm11 2v4h-2v-4m2-10a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 10l-2-7h-2l-2 7h6zM11.5 4v16"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M9.75 8.25a1.5 1.5 0 1 1-3.002 0 1.5 1.5 0 0 1 3.001 0zm1.5 12v-7.5h-6v7.5h1.5v9h3v-9h1.5zm16.5 3v6h-3v-6m3-15a1.5 1.5 0 1 1-3 .001 1.5 1.5 0 0 1 3 0zm3 15l-3-10.5h-3l-3 10.5h9zM17.25 6v24"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconToiletComponent extends IconBase {
   constructor() {
@@ -22,6 +49,6 @@ export class IconToiletComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconToiletComponent],
-  exports: [IconToiletComponent],
+  exports: [IconToiletComponent]
 })
-export class IconToiletModule { }
+export class IconToiletModule {}

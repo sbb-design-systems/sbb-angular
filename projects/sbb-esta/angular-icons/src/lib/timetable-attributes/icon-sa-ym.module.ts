@@ -9,9 +9,21 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-sa-ym',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 16"><g fill="#000" fill-rule="evenodd"><path d="M6.421 9.219l-3.28-8.182h2.961l2.08 5.862 4.541-5.862h3.261L9.222 9.219 8.002 15H5.201zM17.921 1.037h4.621l.94 10.063h.04l5.502-10.063h4.66L30.703 15h-2.96l2.64-11.563h-.039L24.022 15h-2.68L20.221 3.437h-.04L17.62 15h-2.66z"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 35 16"
+    >
+      <g fill="#000" fill-rule="evenodd">
+        <path
+          d="M6.421 9.219l-3.28-8.182h2.961l2.08 5.862 4.541-5.862h3.261L9.222 9.219 8.002 15H5.201zM17.921 1.037h4.621l.94 10.063h.04l5.502-10.063h4.66L30.703 15h-2.96l2.64-11.563h-.039L24.022 15h-2.68L20.221 3.437h-.04L17.62 15h-2.66z"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconSaYmComponent extends IconBase {
   constructor() {
@@ -22,6 +34,6 @@ export class IconSaYmComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSaYmComponent],
-  exports: [IconSaYmComponent],
+  exports: [IconSaYmComponent]
 })
-export class IconSaYmModule { }
+export class IconSaYmModule {}

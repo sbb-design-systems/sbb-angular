@@ -3,7 +3,6 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconDocumentCheckModule } from './icon-document-check.module';
 import { IconDocumentImageModule } from './icon-document-image.module';
 import { IconDocumentLockModule } from './icon-document-lock.module';
@@ -18,8 +17,8 @@ import { IconDocumentVideoModule } from './icon-document-video.module';
 import { IconDocumentZipModule } from './icon-document-zip.module';
 import { IconFolderInfoModule } from './icon-folder-info.module';
 import { IconFolderLockModule } from './icon-folder-lock.module';
-import { IconFolderOpenModule } from './icon-folder-open.module';
 import { IconFolderOpenArrowModule } from './icon-folder-open-arrow.module';
+import { IconFolderOpenModule } from './icon-folder-open.module';
 import { IconFolderPlusModule } from './icon-folder-plus.module';
 import { IconMetadataModule } from './icon-metadata.module';
 import { IconTwoFoldersModule } from './icon-two-folders.module';
@@ -43,11 +42,11 @@ const modules = [
   IconFolderOpenArrowModule,
   IconFolderPlusModule,
   IconMetadataModule,
-  IconTwoFoldersModule,
+  IconTwoFoldersModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionDocumentModule { }
+export class IconCollectionDocumentModule {}

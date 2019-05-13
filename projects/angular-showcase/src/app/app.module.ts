@@ -8,7 +8,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import {
   IconCollectionModule,
-  iconComponentList
+  ICON_COMPONENT_LIST
 } from '@sbb-esta/angular-icons';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -135,7 +135,7 @@ import { TypographyComponent } from './typography/typography.component';
     BreadcrumbShowcaseComponent,
     GhettoboxShowcaseComponent,
     BadgeShowcaseComponent,
-    ...iconComponentList
+    ...ICON_COMPONENT_LIST
   ]
 })
 export class AppModule {}

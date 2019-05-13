@@ -9,9 +9,21 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-sa-tf',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 16"><g fill="#000" fill-rule="evenodd"><path d="M3.16 1.037h10.782l-.46 2.2h-3.94L7.001 15h-2.92l2.54-11.763h-3.94zM15.681 1.037h7.702l-.48 2.2h-4.881l-.74 3.441h4.661l-.441 2.201h-4.68L15.541 15h-2.8z"/></g></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 25 16"
+    >
+      <g fill="#000" fill-rule="evenodd">
+        <path
+          d="M3.16 1.037h10.782l-.46 2.2h-3.94L7.001 15h-2.92l2.54-11.763h-3.94zM15.681 1.037h7.702l-.48 2.2h-4.881l-.74 3.441h4.661l-.441 2.201h-4.68L15.541 15h-2.8z"
+        />
+      </g>
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconSaTfComponent extends IconBase {
   constructor() {
@@ -22,6 +34,6 @@ export class IconSaTfComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconSaTfComponent],
-  exports: [IconSaTfComponent],
+  exports: [IconSaTfComponent]
 })
-export class IconSaTfModule { }
+export class IconSaTfModule {}

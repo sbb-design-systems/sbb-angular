@@ -9,9 +9,36 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-download-small-data',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="none" stroke="#000" d="M12 9.75H5.25v16.5h24V9.75H22.5m-9.004.738l3.754 3.762L21 10.5m-3.75-6v9.75m-9.75 9H27"/></svg>`,
+  template: `
+    <ng-container [ngSwitch]="size">
+      <svg
+        *ngSwitchDefault
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M8 6.5H3.5v11h16v-11H15m-6.003.492L11.5 9.5 14 7m-2.5-4v6.5m-6.5 6h13"
+        />
+      </svg>
+      <svg
+        *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        [attr.class]="'sbb-svg-icon ' + svgClass"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 36 36"
+      >
+        <path
+          fill="none"
+          stroke="#000"
+          d="M12 9.75H5.25v16.5h24V9.75H22.5m-9.004.738l3.754 3.762L21 10.5m-3.75-6v9.75m-9.75 9H27"
+        />
+      </svg>
+    </ng-container>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconDownloadSmallDataComponent extends IconBase {
   constructor() {
@@ -22,6 +49,6 @@ export class IconDownloadSmallDataComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconDownloadSmallDataComponent],
-  exports: [IconDownloadSmallDataComponent],
+  exports: [IconDownloadSmallDataComponent]
 })
-export class IconDownloadSmallDataModule { }
+export class IconDownloadSmallDataModule {}

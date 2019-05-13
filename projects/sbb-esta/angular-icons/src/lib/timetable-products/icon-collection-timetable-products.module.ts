@@ -3,15 +3,11 @@
  */
 import { NgModule } from '@angular/core';
 
-
 import { IconProductBexModule } from './icon-product-bex.module';
 import { IconProductCnlModule } from './icon-product-cnl.module';
 import { IconProductEcModule } from './icon-product-ec.module';
 import { IconProductEnModule } from './icon-product-en.module';
 import { IconProductGexModule } from './icon-product-gex.module';
-import { IconProductIcModule } from './icon-product-ic.module';
-import { IconProductIceModule } from './icon-product-ice.module';
-import { IconProductIcnModule } from './icon-product-icn.module';
 import { IconProductIc1Module } from './icon-product-ic-1.module';
 import { IconProductIc11Module } from './icon-product-ic-11.module';
 import { IconProductIc2Module } from './icon-product-ic-2.module';
@@ -25,7 +21,9 @@ import { IconProductIc61Module } from './icon-product-ic-61.module';
 import { IconProductIc7Module } from './icon-product-ic-7.module';
 import { IconProductIc8Module } from './icon-product-ic-8.module';
 import { IconProductIc9Module } from './icon-product-ic-9.module';
-import { IconProductIrModule } from './icon-product-ir.module';
+import { IconProductIcModule } from './icon-product-ic.module';
+import { IconProductIceModule } from './icon-product-ice.module';
+import { IconProductIcnModule } from './icon-product-icn.module';
 import { IconProductIr13Module } from './icon-product-ir-13.module';
 import { IconProductIr15Module } from './icon-product-ir-15.module';
 import { IconProductIr16Module } from './icon-product-ir-16.module';
@@ -46,6 +44,7 @@ import { IconProductIr70Module } from './icon-product-ir-70.module';
 import { IconProductIr75Module } from './icon-product-ir-75.module';
 import { IconProductIr90Module } from './icon-product-ir-90.module';
 import { IconProductIr95Module } from './icon-product-ir-95.module';
+import { IconProductIrModule } from './icon-product-ir.module';
 import { IconProductNjModule } from './icon-product-nj.module';
 import { IconProductPeModule } from './icon-product-pe.module';
 import { IconProductReModule } from './icon-product-re.module';
@@ -107,11 +106,11 @@ const modules = [
   IconProductRxModule,
   IconProductSnModule,
   IconProductTgvModule,
-  IconProductVaeModule,
+  IconProductVaeModule
 ];
 
 @NgModule({
   imports: modules,
-  exports: modules,
+  exports: modules
 })
-export class IconCollectionTimetableProductsModule { }
+export class IconCollectionTimetableProductsModule {}

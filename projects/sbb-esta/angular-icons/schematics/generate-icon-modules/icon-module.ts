@@ -1,13 +1,14 @@
 import { strings } from '@angular-devkit/core';
 import {
-  url,
   apply,
-  template,
-  move,
   DirEntry,
   mergeWith,
-  Rule
+  move,
+  Rule,
+  template,
+  url
 } from '@angular-devkit/schematics';
+
 import { SvgFile } from './svg-file';
 
 export class IconModule {
@@ -19,10 +20,13 @@ export class IconModule {
       .filter(s => !!s)
       .sort();
   }
+  get meta() {
+    return this._files.map(f => f.filepath);
+  }
   private _files: SvgFile[];
 
-  constructor(_files: SvgFile[]) {
-    this._files = _files.sort((a, b) => b.size.localeCompare(a.size));
+  constructor(files: SvgFile[]) {
+    this._files = files.sort((a, b) => b.size.localeCompare(a.size));
     this.name = this._files[0].name;
     this.modules = this._files[0].modules.slice();
   }

@@ -9,9 +9,17 @@ import { IconBase } from '../icon-base';
 @Component({
   selector: 'sbb-icon-facebook',
   // tslint:disable:max-line-length
-  template: `<svg [attr.class]="'sbb-svg-icon ' + svgClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6V3h-5.3c-.9 0-1.7.7-1.7 1.7V9H8v3h2v9h4v-9h2V9h-2V6h3z"/></svg>`,
+  template: `
+    <svg
+      [attr.class]="'sbb-svg-icon ' + svgClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M17 6V3h-5.3c-.9 0-1.7.7-1.7 1.7V9H8v3h2v9h4v-9h2V9h-2V6h3z" />
+    </svg>
+  `,
   // tslint:enable:max-line-length
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconFacebookComponent extends IconBase {
   constructor() {
@@ -22,6 +30,6 @@ export class IconFacebookComponent extends IconBase {
 @NgModule({
   imports: [CommonModule],
   declarations: [IconFacebookComponent],
-  exports: [IconFacebookComponent],
+  exports: [IconFacebookComponent]
 })
-export class IconFacebookModule { }
+export class IconFacebookModule {}

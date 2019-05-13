@@ -73,10 +73,10 @@ describe('NotificationComponent', () => {
       });
     });
 
-    it('should have grey background when type is SUCCESS or INFO', () => {
+    it('should have grey background when type is SUCCESS', () => {
       testComponent.type = NotificationType.SUCCESS;
       testFixture.detectChanges();
-      let notifications = testFixture.debugElement.queryAll(
+      const notifications = testFixture.debugElement.queryAll(
         By.css('.sbb-notification-success')
       );
       expect(notifications.length).toBeGreaterThan(0);
@@ -84,10 +84,12 @@ describe('NotificationComponent', () => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
         expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
       });
+    });
 
+    it('should have grey background when type is INFO', () => {
       testComponent.type = NotificationType.INFO;
       testFixture.detectChanges();
-      notifications = testFixture.debugElement.queryAll(
+      const notifications = testFixture.debugElement.queryAll(
         By.css('.sbb-notification-info')
       );
       expect(notifications.length).toBeGreaterThan(0);
