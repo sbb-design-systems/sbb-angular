@@ -1,8 +1,9 @@
 const { request } = require('https');
 const { parse } = require('url');
+const { normalizedBranch } = require('./prepublish');
 
 const url = parse(
-  `https://angular.app.sbb.ch/${process.env.NORMALIZED_BRANCH_NAME}`
+  `https://angular.app.sbb.ch/${normalizedBranch}`
 );
 return new Promise((resolve, reject) =>
   request(

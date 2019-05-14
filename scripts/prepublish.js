@@ -5,6 +5,17 @@ const { join } = require('path');
 const { prerelease } = require('semver');
 const { parse } = require('url');
 
+const normalizedBranch = (
+  process.env.NORMALIZED_BRANCH_NAME ||
+  process.env.TRAVIS_BRANCH ||
+  ''
+)
+  .toLowerCase()
+  .replace(/[^a-z0-9]/g, '')
+  .replace(/-+/g, '-')
+  .replace(/-+$/, '');
+module.exports = { normalizedBranch };
+
 class Prepublish {
   constructor() {
     this.showcasePackageJson = join(
@@ -12,15 +23,7 @@ class Prepublish {
       '../dist/angular-showcase/package.json'
     );
     this.isRelease = !!process.env.TRAVIS_TAG;
-    this.branch = (
-      process.env.NORMALIZED_BRANCH_NAME ||
-      process.env.TRAVIS_BRANCH ||
-      ''
-    )
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, '')
-      .replace(/-+/g, '-')
-      .replace(/-+$/, '');
+    this.branch = normalizedBranch;
     const {
       name,
       version,
