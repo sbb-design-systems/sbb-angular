@@ -1,11 +1,15 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-if (process.env.BUILD_NUMBER) {
+if (process.env.CONTINUOUS_INTEGRATION) {
   process.env.CHROME_BIN = require('puppeteer').executablePath();
 }
 
 module.exports = function(config) {
+  const dist = require('path').join(
+    __dirname,
+    '../../../coverage/sbb-esta/angular-public'
+  );
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -15,6 +19,7 @@ module.exports = function(config) {
       require('karma-firefox-launcher'),
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-junit-reporter'),
       require('karma-sonarqube-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-sourcemap-loader'),
@@ -26,23 +31,23 @@ module.exports = function(config) {
         timeout: 20000
       }
     },
+    junitReporter: {
+      outputDir: dist,
+      suite: 'unit-tests',
+      outputFile: 'unit-tests.xml',
+      useBrowserName: false
+    },
     sonarqubeReporter: {
       basePath: 'projects/sbb-esta/angular-public/src',
-      outputFolder: require('path').join(
-        __dirname,
-        '../../../coverage/sbb-esta/angular-public'
-      ),
+      outputFolder: dist,
       reportName: () => 'sonarqube.xml'
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(
-        __dirname,
-        '../../../coverage/sbb-esta/angular-public'
-      ),
-      reports: ['html', 'lcovonly'],
+      dir: dist,
+      reports: ['html', 'lcovonly', 'cobertura'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml', 'sonarqube'],
+    reporters: ['progress', 'kjhtml', 'junit', 'sonarqube'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
