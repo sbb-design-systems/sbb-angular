@@ -10,10 +10,11 @@ before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
 deploy:
   - provider: script
-    script: npm run publish:staging
-    on:
-      all_branches: true
-  - provider: script
     script: npm run publish:library
     on:
       tags: true
+  - provider: script
+    script: npm run publish:staging
+    on:
+      condition: $TRAVIS_PULL_REQUEST != "false"
+      all_branches: true

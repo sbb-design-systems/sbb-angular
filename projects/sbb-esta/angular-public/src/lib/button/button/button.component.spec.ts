@@ -52,6 +52,7 @@ describe('ButtonComponent', () => {
   }));
 
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
     fixture = TestBed.createComponent(ButtonTemplateTestComponent);
     component = fixture.componentInstance;
   });

@@ -53,6 +53,7 @@ describe('GhettoboxComponent', () => {
   }));
 
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
     fixture = TestBed.createComponent(GhettoboxTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

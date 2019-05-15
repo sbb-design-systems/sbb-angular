@@ -42,7 +42,6 @@ describe('CheckboxComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
-
     fixture.detectChanges();
   });
 

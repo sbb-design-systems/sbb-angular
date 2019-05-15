@@ -28,7 +28,7 @@ module.exports = function(config) {
     client: {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
       jasmine: {
-        timeout: 20000
+        timeout: 100000
       }
     },
     junitReporter: {
@@ -54,6 +54,10 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    captureTimeout: 100000,
+    browserNoActivityTimeout: 100000,
+    browserDisconnectTimeout: 100000,
+    browserDisconnectTolerance: 3
   });
 };
