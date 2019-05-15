@@ -4,42 +4,16 @@ node_js:
 dist: trusty
 sudo: required
 
-jobs:
-  include:
-    - stage: '@sbb-esta/angular-icons'
-      script: npm run angular-icons:lint
-      name: 'Linting @sbb-esta/angular-icons'
-    - script: npm run angular-icons:build
-      name: 'Building @sbb-esta/angular-icons'
-
-    - stage: '@sbb-esta/angular-public'
-      script: npm run angular-public:lint
-      name: 'Linting @sbb-esta/angular-public'
-    - script: npm run angular-public:test
-      name: 'Testing @sbb-esta/angular-public'
-    - script: npm run angular-public:build
-      name: 'Building @sbb-esta/angular-public'
-
-    - stage: '@sbb-esta/angular-showcase'
-      script: npm run angular-showcase:lint
-      name: 'Linting @sbb-esta/angular-showcase'
-    - script: npm run angular-showcase:test
-      name: 'Testing @sbb-esta/angular-showcase'
-    - script: npm run angular-showcase:build
-      name: 'Building @sbb-esta/angular-showcase'
-
-    - stage: 'Branch name'
-      script: echo $NORMALIZED_BRANCH_NAME
-
-    - stage: 'Deploy staging'
-      if: type = pull_request
-      before_deploy:
-        - npm run prepublish
-        - cd dist/angular-showcase
-      deploy:
-        provider: npm
-        email: lukas.spirig@sbb.ch
-        skip_cleanup: true
-        api_key:
-          secure: QWmi6wgljl+anFLHAkN8TWNi+exmwG7jmkCbVXAx888vccM+VzraGCIwD+MTWw+6gdT06fV18ThB0u5uCw7rwOXsvWzq4DXM5PfZEwtFIdagc5EpBmjTqoHmWCc96wzgZAgyC6UfLZd9CLYBf9dLGMVNwckpBQ+Y1GpBLUkQ8EPulk4Y3VR6Ks1fy6H7VOcAc9hBgPTL9rkkfuw+jLzaBXJTSCaAojlngv/kFhwyfUXkuzYXAfQRvfeh++QW0e3WzlUe4pRA9y4VX36Bn+EsdOGpXx4NFICQFS5jCOLNWQWimRQIItbaJcvLWKjRoPYdPUrGtwTO+EoJNfCvan2Sc5nGQZaI5QqNx1Ndb/m9ior/DpCf9DszsDcyQsu6+nZr6iMmRFQHvz4iEOu4k739AW+XLDRom0lwPwY/+giv12YvNxJ8jF0TjFodZtsO6cD0XgozipMcWE0c7v2Gtmy+KZSGNYvs3p9OpcTkQ37YVSe/bkpuGAELj+UvGj+ld8ojRw3M2jMlyJU60qvXKJwlkTN3ZDeS/7rvFPb/a8/9TXa47WC4w9S5MOiL9432VkofBfMvonexnq7gF07o83HZHfjyr/59EHAci04KPQ7/m7XA9Ypq4POxms4l2Uh4WzGaOxwZhSbiFJL/HWft3njeLgwKPx/mecISx5FcqoHEDJg=
-      after_deploy: npm run trigger-staging
+script:
+  - npm run build
+before_deploy:
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
+deploy:
+  - provider: script
+    script: npm run publish:staging
+    on:
+      all_branches: true
+  - provider: script
+    script: npm run publish:library
+    on:
+      tags: true

@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
+import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import {
   AccordionModule,
   AutocompleteModule,
@@ -42,7 +43,6 @@ import {
   TooltipModule,
   UserMenuModule
 } from '@sbb-esta/angular-public';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';

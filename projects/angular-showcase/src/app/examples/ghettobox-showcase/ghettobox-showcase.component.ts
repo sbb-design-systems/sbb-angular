@@ -1,13 +1,13 @@
 import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
 import {
   GhettoboxDeletedEvent,
   GhettoboxRef,
   GhettoboxService,
   LinkGeneratorResult
 } from '@sbb-esta/angular-public';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-ghettobox-showcase',

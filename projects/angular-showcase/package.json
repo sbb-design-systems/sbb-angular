@@ -1,0 +1,16 @@
+{
+  "name": "@sbb-esta/angular-showcase",
+  "version": "0.0.0-PLACEHOLDER",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+  },
+  "homepage": "https://sbb-angular.app.sbb.ch/latest"
+}

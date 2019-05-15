@@ -2,9 +2,6 @@
   "name": "@sbb-esta/angular-showcase",
   "version": "7.0.0-0",
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -37,12 +34,15 @@
     "angular-showcase": "run-s angular-showcase:lint angular-showcase:test angular-showcase:build",
     "angular-showcase:lint": "ng lint angular-showcase",
     "angular-showcase:test": "ng test angular-showcase -c ci",
-    "angular-showcase:build": "ng build angular-showcase --prod",
+    "angular-showcase:build": "run-s angular-showcase:build:*",
+    "angular-showcase:build:ng": "ng build angular-showcase --prod",
+    "angular-showcase:build:license": "copyfiles LICENSE ./dist/angular-showcase/",
+    "angular-showcase:build:packagejson": "cd projects/angular-showcase && copyfiles package.json ../../dist/angular-showcase",
     "angular-showcase:e2e": "ng e2e angular-showcase",
     "angular-showcase:docs": "gulp docs",
     "release": "standard-version",
-    "prepublish": "node ./scripts/prepublish.js",
-    "trigger-staging": "node ./scripts/trigger-staging.js"
+    "publish:staging": "node ./scripts/publish.js",
+    "publish:library": "node ./scripts/publish.js release"
   },
   "repository": {
     "type": "git",
