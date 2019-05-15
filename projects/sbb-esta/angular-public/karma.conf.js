@@ -53,11 +53,18 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: false,
     restartOnFileChange: true,
-    captureTimeout: 100000,
-    browserNoActivityTimeout: 100000,
-    browserDisconnectTimeout: 100000,
+    reportSlowerThan: 90,
+    captureTimeout: 300000,
+    browserNoActivityTimeout: 300000,
+    browserDisconnectTimeout: 300000,
     browserDisconnectTolerance: 3
   });
 };

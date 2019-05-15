@@ -174,7 +174,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
+              "browsers": "ChromeHeadlessNoSandbox",
               "sourceMap": false,
               "progress": false
             },
