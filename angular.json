@@ -175,7 +175,8 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "ChromeHeadless",
-              "sourceMap": true
+              "sourceMap": false,
+              "progress": false
             },
             "local": {
               "codeCoverage": true
@@ -224,7 +225,8 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "ChromeHeadless",
-              "sourceMap": true
+              "sourceMap": false,
+              "progress": false
             },
             "local": {
               "codeCoverage": true
@@ -270,7 +272,8 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "ChromeHeadless",
-              "sourceMap": true
+              "sourceMap": false,
+              "progress": false
             },
             "local": {
               "codeCoverage": true
