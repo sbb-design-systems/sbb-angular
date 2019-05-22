@@ -12,7 +12,8 @@ import {
   Input,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Injector
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -172,9 +173,10 @@ export class ToggleOptionComponent extends RadioButtonComponent
     @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
     registry: RadioButtonRegistryService,
     changeDetector: ChangeDetectorRef,
+    injector: Injector,
     @Inject(DOCUMENT) document: any
   ) {
-    super(changeDetector, registry);
+    super(changeDetector, registry, injector);
     this._document = document;
   }
 

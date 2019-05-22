@@ -1,4 +1,3 @@
-import { Direction, Directionality } from '@angular/cdk/bidi';
 import {
   DOWN_ARROW,
   END,
@@ -11,8 +10,9 @@ import {
   UP_ARROW
 } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { DEC, FEB, JAN, MAR, NOV } from '../../_common/testing/dates-constants';
 import {
@@ -23,7 +23,6 @@ import { CalendarBodyComponent } from '../calendar-body/calendar-body.component'
 import { DateAdapter } from '../date-adapter';
 import { SBB_DATE_FORMATS } from '../date-formats';
 import { DATE_PIPE_DATE_FORMATS } from '../date-pipe-date-formats';
-import { DatepickerModule } from '../datepicker.module';
 import { NativeDateAdapter } from '../native-date-adapter';
 
 import { MonthViewComponent } from './month-view.component';
@@ -57,7 +56,7 @@ class MonthViewWithDateFilterComponent {
 }
 
 describe('MonthViewComponent', () => {
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [
         CalendarBodyComponent,
@@ -72,9 +71,7 @@ describe('MonthViewComponent', () => {
         { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
       ]
     });
-
-    TestBed.compileComponents();
-  }));
+  });
 
   describe('standard month view', () => {
     let fixture: ComponentFixture<StandardMonthViewComponent>;

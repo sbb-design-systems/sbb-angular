@@ -31,6 +31,13 @@ module.exports = function(config) {
         timeout: 100000
       }
     },
+    browserStack: {
+      project: '@sbb-esta/angular-public Unit Tests',
+      startTunnel: false,
+      retryLimit: 3,
+      timeout: 1800,
+      video: false,
+    },
     junitReporter: {
       outputDir: dist,
       suite: 'unit-tests',
@@ -60,11 +67,26 @@ module.exports = function(config) {
       }
     },
     singleRun: false,
-    restartOnFileChange: true,
-    reportSlowerThan: 90,
-    captureTimeout: 300000,
+    // Try Websocket for a faster transmission first. Fallback to polling if necessary.
+    transports: ['websocket', 'polling'],
     browserNoActivityTimeout: 300000,
-    browserDisconnectTimeout: 300000,
-    browserDisconnectTolerance: 3
+    browserDisconnectTolerance: 1
   });
+
+  if (process.env.TRAVIS) {
+    // This defines how often a given browser should be launched in the same CircleCI
+    // container. This is helpful if we want to shard tests across the same browser.
+    const parallelBrowserInstances = Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
+
+    // In case there should be multiple instances of the browsers, we need to set up the
+    // the karma-parallel plugin.
+    if (parallelBrowserInstances > 1) {
+      config.frameworks.unshift('parallel');
+      config.plugins.push(require('karma-parallel'));
+      config.parallelOptions = {
+        executors: parallelBrowserInstances,
+        shardStrategy: 'round-robin',
+      }
+    }
+  }
 };

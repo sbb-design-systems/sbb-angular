@@ -5,7 +5,9 @@ dist: trusty
 sudo: required
 
 script:
+  - npm run lint
   - npm run build
+  - npm run test
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
 deploy:

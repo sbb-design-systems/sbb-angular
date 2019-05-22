@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   IconChevronRightModule,
   IconChevronSmallDownModule
 } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { DropdownModule } from '../../dropdown/dropdown';
 
@@ -13,7 +14,7 @@ describe('BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
   let fixture: ComponentFixture<BreadcrumbComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbComponent],
       imports: [
@@ -22,8 +23,8 @@ describe('BreadcrumbComponent', () => {
         IconChevronRightModule,
         IconChevronSmallDownModule
       ]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BreadcrumbComponent);

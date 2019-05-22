@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { LinkComponent } from './link.component';
 
@@ -9,16 +10,14 @@ describe('LinkComponent', () => {
   let component: LinkComponent;
   let fixture: ComponentFixture<LinkComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule],
       declarations: [LinkComponent]
-    })
-      .overrideComponent(LinkComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(LinkComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LinkComponent);

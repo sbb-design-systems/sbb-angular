@@ -1,12 +1,8 @@
-import { ENTER, RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { Component, NgZone } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  inject,
-  TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { DEC, FEB, JAN, JUL, NOV } from '../../_common/testing/dates-constants';
 import {
@@ -96,7 +92,7 @@ class CalendarWithSelectableMinDateComponent {
 describe('CalendarComponent', () => {
   let zone: MockNgZone;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [DatepickerModule],
       declarations: [
@@ -110,9 +106,7 @@ describe('CalendarComponent', () => {
         { provide: NgZone, useFactory: () => (zone = new MockNgZone()) }
       ]
     });
-
-    TestBed.compileComponents();
-  }));
+  });
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;

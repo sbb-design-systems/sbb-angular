@@ -7,6 +7,7 @@ import {
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { typeInElement } from '../../_common/testing/type-in-element';
 
@@ -31,16 +32,14 @@ describe('TextareaComponent', () => {
   let component: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule],
       declarations: [TextareaComponent]
-    })
-      .overrideComponent(TextareaComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(TextareaComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaComponent);
@@ -58,16 +57,14 @@ describe('TextareaComponent behaviour', () => {
   let fixture: ComponentFixture<TextareaTestComponent>;
   let innerComponent: DebugElement;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule, FormsModule],
       declarations: [TextareaTestComponent, TextareaComponent]
-    })
-      .overrideComponent(TextareaComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(TextareaComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaTestComponent);
@@ -141,16 +138,14 @@ describe('TextareaComponent digits counter', () => {
   let component: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule],
       declarations: [TextareaComponent]
-    })
-      .overrideComponent(TextareaComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(TextareaComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaComponent);

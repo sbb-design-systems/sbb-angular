@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { dispatchMouseEvent } from '../../_common/testing/dispatch-events';
 import { ProcessflowModule } from '../processflow.module';
@@ -38,12 +39,12 @@ describe('ProcessflowComponent', () => {
   let component: ProcessflowComponent;
   let fixture: ComponentFixture<ProcessflowComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule],
       declarations: [ProcessflowComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProcessflowComponent);
@@ -60,12 +61,12 @@ describe('ProcessflowComponent user interaction', () => {
   let component: ProcessflowTestComponent;
   let fixture: ComponentFixture<ProcessflowTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, ProcessflowModule],
       declarations: [ProcessflowTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProcessflowTestComponent);

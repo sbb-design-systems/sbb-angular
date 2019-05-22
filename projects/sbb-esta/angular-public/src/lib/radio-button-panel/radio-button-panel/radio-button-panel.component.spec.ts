@@ -8,6 +8,7 @@ import { createFakeEvent } from '../../_common/testing/event-objects';
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
 
 import { RadioButtonPanelComponent } from './radio-button-panel.component';
+import { configureTestSuite } from 'ng-bullet';
 
 // tslint:disable:i18n
 @Component({
@@ -42,12 +43,12 @@ describe('RadioButtonPanelComponent', () => {
   let component: RadioButtonPanelComponent;
   let fixture: ComponentFixture<RadioButtonPanelComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, RadioButtonPanelModule],
       declarations: [ModelOptionSelectionTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RadioButtonPanelComponent);
@@ -70,12 +71,12 @@ describe('RadioButtonPanelComponent using mock component', () => {
     ModelOptionSelectionTestComponent
   >;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RadioButtonPanelModule],
       declarations: [ModelOptionSelectionTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(

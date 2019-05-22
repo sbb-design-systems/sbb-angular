@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { CheckboxComponent } from './checkbox.component';
 
@@ -28,16 +29,14 @@ describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, IconCollectionModule],
       declarations: [CheckboxComponent]
-    })
-      .overrideComponent(CheckboxComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(CheckboxComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxComponent);
@@ -58,16 +57,14 @@ describe('CheckboxComponent using mock component', () => {
   let modelComponent: ModelCheckboxTestComponent;
   let modelComponentFixture: ComponentFixture<ModelCheckboxTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, IconCollectionModule],
       declarations: [CheckboxComponent, ModelCheckboxTestComponent]
-    })
-      .overrideComponent(CheckboxComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(CheckboxComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelCheckboxTestComponent);

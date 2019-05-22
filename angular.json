@@ -183,6 +183,9 @@
             },
             "datepicker": {
               "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
+            },
+            "toggle": {
+              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
             }
           }
         },

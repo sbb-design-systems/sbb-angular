@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  ViewChild
-} from '@angular/core';
+import { Component, ContentChild, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
 import { TextexpandExpandedComponent } from '../textexpand-expanded/textexpand-expanded.component';
@@ -43,15 +39,15 @@ describe('TextexpandComponent', () => {
   let componentExpanded: TextexpandExpandedComponent;
   let fixtureExpanded: ComponentFixture<TextexpandExpandedComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [
         TextexpandComponent,
         TextexpandCollapsedComponent,
         TextexpandExpandedComponent
       ]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureCollapsed = TestBed.createComponent(TextexpandCollapsedComponent);
@@ -102,12 +98,12 @@ describe('TextexpandComponent using mock component', () => {
   let componentTest: TextexpandTestComponent;
   let fixtureTest: ComponentFixture<TextexpandTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [TextexpandModule],
       declarations: [TextexpandTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(TextexpandTestComponent);
