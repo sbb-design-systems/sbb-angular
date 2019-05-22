@@ -8,7 +8,7 @@
     "clean": "rimraf dist coverage lintReport.json",
     "lint": "run-p angular-icons:lint angular-public:lint angular-showcase:lint",
     "build": "run-s angular-icons:build angular-public:build angular-showcase:build",
-    "test": "run-s angular-public:test angular-showcase:test",
+    "test": "run-s angular-public:test",
     "angular-icons": "run-s angular-icons:*",
     "angular-icons:lint": "ng lint @sbb-esta/angular-icons",
     "angular-icons:build": "run-s angular-icons:build:*",

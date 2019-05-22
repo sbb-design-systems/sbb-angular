@@ -4,6 +4,11 @@ node_js:
 dist: trusty
 sudo: required
 
+addons:
+  browserstack:
+    username: ${BROWSERSTACK_USERNAME}
+    access_key: ${BROWSERSTACK_ACCESS_KEY}
+
 script:
   - npm run lint
   - npm run build

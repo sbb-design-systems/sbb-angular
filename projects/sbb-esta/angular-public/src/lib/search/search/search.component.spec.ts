@@ -1,15 +1,10 @@
 import { DOWN_ARROW, ENTER, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, ViewChild } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { configureTestSuite } from 'ng-bullet';
 
 import {
   dispatchFakeEvent,
@@ -136,12 +131,12 @@ describe('SearchComponent', () => {
     let component: SimpleSearchComponent;
     let fixture: ComponentFixture<SimpleSearchComponent>;
 
-    beforeEach(async(() => {
+    configureTestSuite(() => {
       TestBed.configureTestingModule({
         imports: [SearchModule, NoopAnimationsModule],
         declarations: [SimpleSearchComponent]
-      }).compileComponents();
-    }));
+      });
+    });
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSearchComponent);
@@ -185,7 +180,7 @@ describe('SearchComponent', () => {
     let component: SimpleSearchAutocompleteComponent;
     let fixture: ComponentFixture<SimpleSearchAutocompleteComponent>;
 
-    beforeEach(async(() => {
+    configureTestSuite(() => {
       TestBed.configureTestingModule({
         imports: [
           SearchModule,
@@ -195,8 +190,8 @@ describe('SearchComponent', () => {
           OverlayModule
         ],
         declarations: [SimpleSearchAutocompleteComponent]
-      }).compileComponents();
-    }));
+      });
+    });
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSearchAutocompleteComponent);
@@ -318,7 +313,7 @@ describe('SearchComponent', () => {
       let component: SimpleSearchHeaderComponent;
       let fixture: ComponentFixture<SimpleSearchHeaderComponent>;
 
-      beforeEach(async(() => {
+      configureTestSuite(() => {
         TestBed.configureTestingModule({
           imports: [
             SearchModule,
@@ -328,8 +323,8 @@ describe('SearchComponent', () => {
             OverlayModule
           ],
           declarations: [SimpleSearchHeaderComponent]
-        }).compileComponents();
-      }));
+        });
+      });
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SimpleSearchHeaderComponent);
@@ -382,7 +377,7 @@ describe('SearchComponent', () => {
       let component: SimpleSearchAutocompleteHeaderComponent;
       let fixture: ComponentFixture<SimpleSearchAutocompleteHeaderComponent>;
 
-      beforeEach(async(() => {
+      configureTestSuite(() => {
         TestBed.configureTestingModule({
           imports: [
             SearchModule,
@@ -392,8 +387,8 @@ describe('SearchComponent', () => {
             OverlayModule
           ],
           declarations: [SimpleSearchAutocompleteHeaderComponent]
-        }).compileComponents();
-      }));
+        });
+      });
 
       beforeEach(() => {
         fixture = TestBed.createComponent(

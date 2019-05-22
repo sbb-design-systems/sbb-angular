@@ -36,7 +36,7 @@ module.exports = function(config) {
       startTunnel: false,
       retryLimit: 3,
       timeout: 1800,
-      video: false,
+      video: false
     },
     junitReporter: {
       outputDir: dist,
@@ -64,6 +64,12 @@ module.exports = function(config) {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
+      },
+      BsChrome: {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Chrome'
       }
     },
     singleRun: false,
@@ -74,9 +80,10 @@ module.exports = function(config) {
   });
 
   if (process.env.TRAVIS) {
-    // This defines how often a given browser should be launched in the same CircleCI
+    // This defines how often a given browser should be launched in the same Travis
     // container. This is helpful if we want to shard tests across the same browser.
-    const parallelBrowserInstances = Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
+    const parallelBrowserInstances =
+      Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
 
     // In case there should be multiple instances of the browsers, we need to set up the
     // the karma-parallel plugin.
@@ -85,8 +92,21 @@ module.exports = function(config) {
       config.plugins.push(require('karma-parallel'));
       config.parallelOptions = {
         executors: parallelBrowserInstances,
-        shardStrategy: 'round-robin',
-      }
+        shardStrategy: 'round-robin'
+      };
+    }
+
+    if (
+      process.env.BROWSERSTACK_USERNAME &&
+      process.env.BROWSERSTACK_ACCESS_KEY
+    ) {
+      const tunnelIdentifier = process.env.BROWSERSTACK_LOCAL_IDENTIFIER;
+      const buildIdentifier = `sbb-angular-travis-ci-${tunnelIdentifier}`;
+      config.browserStack.build = buildIdentifier;
+      config.browserStack.tunnelIdentifier = tunnelIdentifier;
+      config.browserDisconnectTimeout = 180000;
+      config.browserDisconnectTolerance = 3;
+      config.captureTimeout = 180000;
     }
   }
 };

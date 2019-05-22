@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import {
   NotificationComponent,
@@ -26,12 +27,12 @@ describe('NotificationComponent', () => {
     let component: NotificationComponent;
     let fixture: ComponentFixture<NotificationComponent>;
 
-    beforeEach(async(() => {
+    configureTestSuite(() => {
       TestBed.configureTestingModule({
         imports: [IconCollectionModule, CommonModule],
         declarations: [NotificationComponent]
-      }).compileComponents();
-    }));
+      });
+    });
 
     beforeEach(() => {
       fixture = TestBed.createComponent(NotificationComponent);
@@ -47,12 +48,13 @@ describe('NotificationComponent', () => {
   describe('behaviour', () => {
     let testFixture: ComponentFixture<NotificationMockComponent>;
     let testComponent: NotificationMockComponent;
-    beforeEach(async(() => {
+
+    configureTestSuite(() => {
       TestBed.configureTestingModule({
         imports: [CommonModule, FormsModule, IconCollectionModule],
         declarations: [NotificationComponent, NotificationMockComponent]
-      }).compileComponents();
-    }));
+      });
+    });
 
     beforeEach(() => {
       testFixture = TestBed.createComponent(NotificationMockComponent);
