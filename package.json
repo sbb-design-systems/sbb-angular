@@ -27,7 +27,7 @@
     "angular-public": "run-s angular-public:lint angular-public:test angular-public:build",
     "angular-public:lint": "run-p angular-public:lint:*",
     "angular-public:lint:console": "ng lint @sbb-esta/angular-icons",
-    "angular-public:lint:report": "ng lint @sbb-esta/angular-icons > lintReport.json",
+    "angular-public:lint:report": "ng lint @sbb-esta/angular-icons --format=json > lintReport.json",
     "angular-public:test": "ng test @sbb-esta/angular-public -c ci",
     "angular-public:build": "run-s angular-public:build:*",
     "angular-public:build:ng": "ng build @sbb-esta/angular-public",
