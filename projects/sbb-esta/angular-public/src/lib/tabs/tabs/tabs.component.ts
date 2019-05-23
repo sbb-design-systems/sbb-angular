@@ -156,7 +156,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  private _handleKeyUp(keyCode) {
+  private _handleKeyUp(keyCode: number) {
     const tabLabels = this.labels.toArray();
     const hasReachEnd = this._handleKeyCodeReturnHasReachEnd(keyCode);
     const tabToFocus = tabLabels[this.tabListIndex];
@@ -176,33 +176,28 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  private _handleKeyCodeReturnHasReachEnd(keyCode): boolean {
-    let hasReachEnd = false;
-
+  private _handleKeyCodeReturnHasReachEnd(keyCode: number): boolean {
     switch (keyCode) {
       case LEFT_ARROW:
       case UP_ARROW:
         if (this.tabListIndex > 0) {
           this.tabListIndex -= 1;
+          break;
         } else {
-          hasReachEnd = true;
+          return true;
         }
-        break;
 
       case RIGHT_ARROW:
       case DOWN_ARROW:
         if (this.tabListIndex < this.tabs.length - 1) {
           this.tabListIndex += 1;
+          break;
         } else {
-          hasReachEnd = true;
+          return true;
         }
-        break;
-
-      default:
-        this.tabListIndex = this.tabListIndex;
     }
 
-    return hasReachEnd;
+    return false;
   }
 
   /**

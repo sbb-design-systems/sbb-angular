@@ -571,7 +571,6 @@
   transform: translate3d(0, 50px, 0);
   &.is_animating_scroll {
     transition: opacity 0.3s, transform 0.3s;
-    transition: opacity 0.3s, transform 0.3s;
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
