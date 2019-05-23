@@ -61,10 +61,6 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
-      },
       BsChrome: {
         base: 'BrowserStack',
         os: 'Windows',
@@ -100,10 +96,6 @@ module.exports = function(config) {
       process.env.BROWSERSTACK_USERNAME &&
       process.env.BROWSERSTACK_ACCESS_KEY
     ) {
-      const tunnelIdentifier = process.env.BROWSERSTACK_LOCAL_IDENTIFIER;
-      const buildIdentifier = `sbb-angular-travis-ci-${tunnelIdentifier}`;
-      config.browserStack.build = buildIdentifier;
-      config.browserStack.tunnelIdentifier = tunnelIdentifier;
       config.browserDisconnectTimeout = 180000;
       config.browserDisconnectTolerance = 3;
       config.captureTimeout = 180000;
