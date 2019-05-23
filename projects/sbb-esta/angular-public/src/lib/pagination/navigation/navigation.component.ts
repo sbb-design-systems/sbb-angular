@@ -11,7 +11,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { isString } from 'util';
 
 import {
   NavigationPageChangeEvent,
