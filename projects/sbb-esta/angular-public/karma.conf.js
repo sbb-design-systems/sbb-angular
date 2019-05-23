@@ -36,8 +36,7 @@ module.exports = function(config) {
       startTunnel: false,
       retryLimit: 3,
       timeout: 1800,
-      video: false,
-      forcelocal: true
+      video: false
     },
     junitReporter: {
       outputDir: dist,
