@@ -15,7 +15,8 @@ class Publisher {
     this.isRelease = properties.isRelease;
     this.version = properties.version;
     this.name = properties.name;
-    this.stagingAuthorization = properties.stagingAuthorization;
+    this.stagingUser = properties.stagingUser;
+    this.stagingPassword = properties.stagingPassword;
     this.showcasePackageJson = resolve(
       __dirname,
       `../dist/angular-showcase/package.json`
@@ -133,7 +134,7 @@ class Publisher {
   }
 
   async _triggerStaging() {
-    if (this.dryRun || !this.stagingAuthorization) {
+    if (this.dryRun || !this.stagingUser) {
       console.log('Skipped staging trigger');
       return;
     }
@@ -141,8 +142,9 @@ class Publisher {
     await request({
       method: 'POST',
       uri: `https://angular.app.sbb.ch/${this.tag}`,
-      headers: {
-        Authorization: this.stagingAuthorization
+      auth: {
+        user: this.stagingUser,
+        pass: this.stagingPassword,
       }
     });
     console.log(`Triggered staging with tag ${this.tag}`);
@@ -154,7 +156,8 @@ new Publisher({
   name: '@sbb-esta/angular-showcase',
   dryRun: !process.env.TRAVIS,
   isRelease: process.argv[2] === 'release',
-  stagingAuthorization: process.env.STAGING_AUTH,
+  stagingUser: process.env.STAGING_AUTH_USER,
+  stagingPassword: process.env.STAGING_AUTH_PASSWORD,
   normalizedBranch: (process.env.TRAVIS_BRANCH || 'staging')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
