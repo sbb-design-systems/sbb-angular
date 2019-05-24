@@ -7,9 +7,9 @@ sudo: required
 cache: npm
 
 script:
-  - npm run lint
   - npm run build
-  - npm run test
+  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run test; fi
+  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run lint; fi
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > ~/.npmrc
 deploy:

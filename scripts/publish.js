@@ -142,7 +142,7 @@ class Publisher {
       method: 'POST',
       uri: `https://angular.app.sbb.ch/${this.tag}`,
       headers: {
-        authorization: this.stagingAuthorization
+        Authorization: this.stagingAuthorization
       }
     });
     console.log(`Triggered staging with tag ${this.tag}`);
