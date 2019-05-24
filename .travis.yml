@@ -11,7 +11,7 @@ script:
   - npm run build
   - npm run test
 before_deploy:
-  - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > ~/.npmrc
 deploy:
   - provider: script
     script: npm run publish:library
