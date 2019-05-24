@@ -146,7 +146,7 @@ class Publisher {
         throw e;
       })
       .end();
-    console.log(`Triggered staging with tag ${tag}`);
+    console.log(`Triggered staging with tag ${this.tag}`);
   }
 }
 
