@@ -1,8 +1,9 @@
 const { exec } = require('child_process');
 const { readFileSync, writeFileSync } = require('fs');
 const glob = require('glob');
-const { get, request } = require('https');
+const { get } = require('https');
 const { dirname, join, resolve } = require('path');
+const request = require('request-promise-native');
 const { prerelease } = require('semver');
 const { parse } = require('url');
 const { promisify } = require('util');
@@ -137,16 +138,13 @@ class Publisher {
       return;
     }
 
-    await new Promise((resolve, reject) =>
-      request({
-        ...parse(`https://angular.app.sbb.ch/${this.tag}`),
-        method: 'POST',
-        headers: { authorization: this.stagingAuthorization }
-      })
-        .on('response', () => resolve())
-        .on('error', e => reject(e))
-        .end()
-    );
+    await request({
+      method: 'POST',
+      uri: `https://angular.app.sbb.ch/${this.tag}`,
+      headers: {
+        authorization: this.stagingAuthorization
+      }
+    });
     console.log(`Triggered staging with tag ${this.tag}`);
   }
 }
