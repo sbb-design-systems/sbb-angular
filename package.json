@@ -8,7 +8,7 @@
     "clean": "rimraf dist coverage lintReport.json",
     "lint": "run-p angular-icons:lint angular-public:lint angular-showcase:lint",
     "build": "run-s angular-icons:build angular-public:build angular-showcase:build",
-    "test": "run-s angular-public:test sonar",
+    "test": "run-s angular-public:test",
     "sonar": "node ./scripts/sonar.js",
     "release": "standard-version",
     "angular-icons": "run-s angular-icons:*",
