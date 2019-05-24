@@ -144,7 +144,7 @@ class Publisher {
           method: 'POST',
           headers: { authorization: this.stagingAuthorization }
         },
-        res => res.on('end', () => resolve())
+        res => res.on('end', () => resolve()).on('close', res.emit('end'))
       ).on('error', e => reject(e))
     );
     console.log(`Triggered staging with tag ${tag}`);
