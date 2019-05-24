@@ -74,8 +74,8 @@ class Publisher {
   }
 
   async _resolveStagingVersionCounter(version) {
-    const { versions } = await this._getPackageInformation();
-    const counter = Object.keys(versions)
+    const info = await this._getPackageInformation();
+    const counter = Object.keys(info.versions)
       .map(v => v.split(version))
       .filter(p => p && p.length === 2)
       .map(p => parseInt(p[1]))
@@ -153,6 +153,7 @@ class Publisher {
 
 new Publisher({
   ...require('../package.json'),
+  name: '@sbb-esta/angular-showcase',
   dryRun: !process.env.TRAVIS,
   isRelease: process.argv[2] === 'release',
   stagingAuthorization: process.env.STAGING_AUTH,
