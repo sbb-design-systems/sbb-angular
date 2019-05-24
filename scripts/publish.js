@@ -35,7 +35,7 @@ class Publisher {
       await this._publishStaging();
     }
 
-    await this._triggerStaging();
+    this._triggerStaging();
   }
 
   _assignReleaseVersion() {
@@ -131,24 +131,21 @@ class Publisher {
     }
   }
 
-  async _triggerStaging() {
+  _triggerStaging() {
     if (this.dryRun || !this.stagingAuthorization) {
       console.log('Skipped staging trigger');
       return;
     }
 
-    await new Promise((resolve, reject) =>
-      request(
-        {
-          ...parse(`https://angular.app.sbb.ch/${this.tag}`),
-          method: 'POST',
-          headers: { authorization: this.stagingAuthorization }
-        },
-        res => res.on('end', () => resolve()).on('close', res.emit('end'))
-      )
-        .on('error', e => reject(e))
-        .end()
-    );
+    request({
+      ...parse(`https://angular.app.sbb.ch/${this.tag}`),
+      method: 'POST',
+      headers: { authorization: this.stagingAuthorization }
+    })
+      .on('error', e => {
+        throw e;
+      })
+      .end();
     console.log(`Triggered staging with tag ${tag}`);
   }
 }
