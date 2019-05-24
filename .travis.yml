@@ -22,5 +22,4 @@ deploy:
     script: npm run publish:staging
     skip_cleanup: true
     on:
-      condition: $TRAVIS_PULL_REQUEST != "false"
       all_branches: true
