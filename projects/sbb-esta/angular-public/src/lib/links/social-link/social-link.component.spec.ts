@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { SocialLinkComponent } from './social-link.component';
 
@@ -9,16 +10,14 @@ describe('SocialLinkComponent', () => {
   let component: SocialLinkComponent;
   let fixture: ComponentFixture<SocialLinkComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [SocialLinkComponent],
       imports: [IconCollectionModule]
-    })
-      .overrideComponent(SocialLinkComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(SocialLinkComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SocialLinkComponent);

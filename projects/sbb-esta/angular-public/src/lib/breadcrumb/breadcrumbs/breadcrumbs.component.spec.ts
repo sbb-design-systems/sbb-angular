@@ -1,25 +1,20 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  async,
   ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick
-} from '@angular/core/testing';
+  TestBed} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
   IconChevronRightModule,
   IconChevronSmallDownCircleModule,
   IconHouseModule
 } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import {
-  dispatchEvent,
-  dispatchMouseEvent
-} from '../../_common/testing/dispatch-events';
+  dispatchEvent} from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
 import { DropdownModule } from '../../dropdown/dropdown';
 import { BreadcrumbModule } from '../breadcrumb.module';
@@ -158,7 +153,7 @@ describe('BreadcrumbsComponent', () => {
   let component: BreadcrumbsComponent;
   let fixture: ComponentFixture<BreadcrumbsComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbsComponent],
       imports: [
@@ -167,8 +162,8 @@ describe('BreadcrumbsComponent', () => {
         IconChevronRightModule,
         IconChevronSmallDownCircleModule
       ]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BreadcrumbsComponent);
@@ -188,7 +183,7 @@ describe('Breadcrumb behaviour Test', () => {
   let location: Location = null;
   let router: Router;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbModule,
@@ -197,8 +192,8 @@ describe('Breadcrumb behaviour Test', () => {
         IconHouseModule
       ],
       declarations: [BreadcrumbsTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTestComponent);
@@ -299,7 +294,7 @@ describe('Breadcrumb behaviour Test 2', () => {
   let location: Location = null;
   let router: Router;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbModule,
@@ -309,8 +304,8 @@ describe('Breadcrumb behaviour Test 2', () => {
         DropdownModule
       ],
       declarations: [BreadcrumbsTest2Component]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest2Component);
@@ -439,7 +434,7 @@ describe('Breadcrumb behaviour Test 3', () => {
   let location: Location = null;
   let router: Router;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbModule,
@@ -449,8 +444,8 @@ describe('Breadcrumb behaviour Test 3', () => {
         DropdownModule
       ],
       declarations: [BreadcrumbsTest3Component]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest3Component);

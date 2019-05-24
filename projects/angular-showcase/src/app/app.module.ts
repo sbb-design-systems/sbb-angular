@@ -4,12 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  ICON_COMPONENT_LIST,
+  IconCollectionModule
+} from '@sbb-esta/angular-icons';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import {
-  IconCollectionModule,
-  ICON_COMPONENT_LIST
-} from '@sbb-esta/angular-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

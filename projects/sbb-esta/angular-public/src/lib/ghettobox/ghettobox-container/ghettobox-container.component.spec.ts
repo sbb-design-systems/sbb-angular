@@ -1,10 +1,11 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { Component, DebugElement, TemplateRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { LinkGeneratorResult } from '../../pagination/pagination';
 import { Ghettobox } from '../ghettobox/ghettobox-ref';
@@ -12,7 +13,6 @@ import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';
 
 import { GhettoboxContainerComponent } from './ghettobox-container.component';
-import { GhettoboxContainerService } from './ghettobox-container.service';
 
 // tslint:disable:i18n
 @Component({
@@ -48,7 +48,7 @@ describe('GhettoboxContainerComponent', () => {
   let fixture: ComponentFixture<GhettoboxContainerTestComponent>;
   let ghettoboxService: GhettoboxService;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -61,11 +61,11 @@ describe('GhettoboxContainerComponent', () => {
         GhettoboxContainerTestComponent,
         GhettoboxComponent
       ]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
     ghettoboxService = TestBed.get(GhettoboxService);
     fixture = TestBed.createComponent(GhettoboxContainerTestComponent);
     component = fixture.componentInstance;

@@ -8,8 +8,9 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
+import { Observable, of } from 'rxjs';
 
 import { DatepickerModule } from '../../datepicker/datepicker';
 import { FieldModule } from '../../field/field';
@@ -174,7 +175,7 @@ describe('ToggleComponent case reactive using mock component', () => {
   let componentTest: ToggleReactiveTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         ToggleModule,
@@ -185,8 +186,8 @@ describe('ToggleComponent case reactive using mock component', () => {
         ReactiveFormsModule
       ],
       declarations: [ToggleReactiveTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleReactiveTestComponent);
@@ -283,7 +284,7 @@ describe('ToggleComponent case template driven using mock component', () => {
   let componentTest: ToggleTemplateDrivenTestComponent;
   let fixtureTest: ComponentFixture<ToggleTemplateDrivenTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         ToggleModule,
@@ -294,8 +295,8 @@ describe('ToggleComponent case template driven using mock component', () => {
         FormsModule
       ],
       declarations: [ToggleTemplateDrivenTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleTemplateDrivenTestComponent);
@@ -350,12 +351,12 @@ describe('ToggleComponent simple case using mock component', () => {
   let componentTest: ToggleSimpleCaseTestComponent;
   let fixtureTest: ComponentFixture<ToggleSimpleCaseTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [ToggleModule, CommonModule, IconCollectionModule],
       declarations: [ToggleSimpleCaseTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleSimpleCaseTestComponent);

@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, DebugElement, OnInit } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
@@ -36,8 +37,8 @@ import { TabsComponent } from './tabs.component';
 })
 class TabsTestComponent {
   isVisible = true;
-  disableChange(evt) {}
-  removeChange(evt) {}
+  disableChange() {}
+  removeChange() {}
 }
 
 describe('TabsComponent', () => {
@@ -45,12 +46,12 @@ describe('TabsComponent', () => {
   let fixture: ComponentFixture<TabsTestComponent>;
   let tabs: DebugElement[];
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent, TabsComponent, TabComponent],
       imports: [PerfectScrollbarModule, BadgeModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TabsTestComponent);

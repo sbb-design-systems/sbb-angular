@@ -1,13 +1,19 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   forwardRef,
+  Injector,
   Input,
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NgControl
+} from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 import { RadioButton } from './radio-button.model';
@@ -68,7 +74,7 @@ export class RadioButtonComponent extends RadioButton
     return this._checked;
   }
   set checked(value: boolean) {
-    this._checked = value;
+    this._checked = coerceBooleanProperty(value);
 
     if (this._checked) {
       this._registry.select(this);
@@ -88,19 +94,22 @@ export class RadioButtonComponent extends RadioButton
 
   constructor(
     protected readonly _changeDetector: ChangeDetectorRef,
-    protected readonly _registry: RadioButtonRegistryService
+    protected readonly _registry: RadioButtonRegistryService,
+    private readonly _injector: Injector
   ) {
     super();
   }
 
   ngOnInit(): void {
+    this._control = this._injector.get(NgControl, null);
     this._checkName();
-    this._registry.add(this);
+    this._registry.add(this._control, this);
   }
 
   ngOnDestroy(): void {
     this._registry.remove(this);
   }
+
   writeValue(value: any): void {
     this.checked = this.value === value;
   }

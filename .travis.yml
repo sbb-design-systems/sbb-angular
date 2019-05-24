@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - '10'
+dist: trusty
+sudo: required
+
+cache: npm
+
+script:
+  - npm run build
+  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run test; fi
+  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run lint; fi
+  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run sonar; fi
+before_deploy:
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > ~/.npmrc
+deploy:
+  - provider: script
+    script: npm run publish:library
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: script
+    script: npm run publish:staging
+    skip_cleanup: true
+    on:
+      all_branches: true
+      tags: false

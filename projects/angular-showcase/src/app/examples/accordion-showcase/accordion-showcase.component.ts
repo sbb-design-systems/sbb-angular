@@ -7,8 +7,8 @@ import {
   ViewChildren
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { AccordionComponent } from '@sbb-esta/angular-public';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'sbb-accordion-showcase',

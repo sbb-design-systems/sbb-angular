@@ -2,9 +2,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { ButtonModule } from '../../button/button';
 import { FieldModule } from '../../field/field';
@@ -64,7 +65,7 @@ describe('TooltipComponent', () => {
   let component: TooltipComponent;
   let fixture: ComponentFixture<TooltipComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         IconCollectionModule,
@@ -74,8 +75,8 @@ describe('TooltipComponent', () => {
       ],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TooltipComponent);
@@ -96,12 +97,12 @@ describe('TooltipComponent using mock component for single tooltip', () => {
   let singleComponentTest: TooltipTestComponent;
   let singleFixtureTest: ComponentFixture<TooltipTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [TooltipModule, FieldModule, ButtonModule],
       declarations: [TooltipTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     singleFixtureTest = TestBed.createComponent(TooltipTestComponent);
@@ -194,12 +195,12 @@ describe('TooltipComponent using mock component for double tooltip', () => {
   let doubleComponentTest: DoubleTooltipTestComponent;
   let doubleFixtureTest: ComponentFixture<DoubleTooltipTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [TooltipModule, FieldModule],
       declarations: [DoubleTooltipTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     doubleFixtureTest = TestBed.createComponent(DoubleTooltipTestComponent);

@@ -3,6 +3,7 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { CheckboxPanelModule } from '../checkbox-panel.module';
 
@@ -42,12 +43,12 @@ describe('CheckboxPanelComponent', () => {
   let component: CheckboxPanelComponent;
   let fixture: ComponentFixture<CheckboxPanelComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, CheckboxPanelModule],
       declarations: [ModelOptionSelectionMultipleTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxPanelComponent);
@@ -70,12 +71,12 @@ describe('CheckboxPanelComponent using mock component', () => {
     ModelOptionSelectionMultipleTestComponent
   >;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, CheckboxPanelModule],
       declarations: [ModelOptionSelectionMultipleTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(

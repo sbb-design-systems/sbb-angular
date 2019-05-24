@@ -17,7 +17,7 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('should not have radio buttons', () => {
-    expect(Object.keys(service.accessors).length).toBe(0);
+    expect((service as any)._accessors.length).toBe(0);
   });
 
   it('should have a radio button', () => {
@@ -25,27 +25,16 @@ describe('RadioButtonRegistryService', () => {
       'writeValue'
     ]);
     component.name = 'test-name';
-    service.add(component);
+    service.add(undefined, component);
 
-    expect(service.accessors['test-name'].length).toBe(1);
-  });
-
-  it('group', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', [
-      'writeValue'
-    ]);
-    component.name = 'test-name';
-    component.inputId = 'test-comp-id-1';
-    service.add(component);
-
-    component.name = 'test-name';
-    component.inputId = 'test-comp-id-2';
-    service.add(component);
-
-    expect(Object.keys(service.accessors).length).toBe(1);
+    expect((service as any)._accessors.length).toBe(1);
   });
 
   it('should have a radio button checked in the same group', () => {
+    const control = {
+      control: Symbol('control'),
+      _parent: Symbol('parent')
+    } as any;
     const component = jasmine.createSpyObj('RadioButtonComponent', [
       'writeValue',
       'uncheck'
@@ -55,7 +44,8 @@ describe('RadioButtonRegistryService', () => {
     });
     component.name = 'test-name';
     component.inputId = 'test-comp-id-1';
-    service.add(component);
+    component._control = control;
+    service.add(control, component);
 
     const component2 = jasmine.createSpyObj('RadioButtonComponent', [
       'writeValue',
@@ -66,19 +56,20 @@ describe('RadioButtonRegistryService', () => {
     });
     component2.name = 'test-name';
     component2.inputId = 'test-comp-id-2';
-    service.add(component2);
+    component2._control = control;
+    service.add(control, component2);
 
     component.checked = true;
     service.select(component);
 
-    expect(service.accessors['test-name'][0].checked).toBeTruthy();
-    expect(service.accessors['test-name'][1].checked).toBeFalsy();
+    expect(component.checked).toBeTruthy();
+    expect(component2.checked).toBeFalsy();
 
     component2.checked = true;
     service.select(component2);
 
-    expect(service.accessors['test-name'][0].checked).toBeFalsy();
-    expect(service.accessors['test-name'][1].checked).toBeTruthy();
+    expect(component.checked).toBeFalsy();
+    expect(component2.checked).toBeTruthy();
   });
 
   it('should be empty on remove', () => {
@@ -87,11 +78,11 @@ describe('RadioButtonRegistryService', () => {
     ]);
     component.name = 'test-name';
     component.inputId = 'test-comp-id-1';
-    service.add(component);
+    service.add(undefined, component);
 
-    expect(service.accessors['test-name'].length).toBe(1);
+    expect((service as any)._accessors.length).toBe(1);
     service.remove(component);
 
-    expect(service.accessors['test-name']).toBeUndefined();
+    expect((service as any)._accessors.length).toBe(0);
   });
 });

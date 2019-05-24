@@ -1,6 +1,10 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+if (process.env.CONTINUOUS_INTEGRATION) {
+  process.env.CHROME_BIN = require('puppeteer').executablePath();
+}
+
 module.exports = function(config) {
   config.set({
     basePath: '',
@@ -30,6 +34,10 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    captureTimeout: 100000,
+    browserNoActivityTimeout: 100000,
+    browserDisconnectTimeout: 100000,
+    browserDisconnectTolerance: 3
   });
 };

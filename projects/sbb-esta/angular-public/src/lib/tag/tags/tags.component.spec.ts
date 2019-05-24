@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { BadgeModule } from '../../badge/badge.module';
-import { Tag, TagChange } from '../tag.model';
+import { Tag } from '../tag.model';
 import { TagComponent } from '../tag/tag.component';
 
 import { TagsComponent } from './tags.component';
@@ -58,12 +59,12 @@ describe('TagsComponent', () => {
   let component: TagsComponent;
   let fixture: ComponentFixture<TagsComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
       declarations: [TagsComponent, TagComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagsComponent);
@@ -84,12 +85,12 @@ describe('TagsComponent with Model attached', () => {
   let component: TagsTestFixtureComponent;
   let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, BadgeModule],
       declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagsTestFixtureComponent);
@@ -237,12 +238,12 @@ describe('TagsComponent with Model attached', () => {
 describe('TagComponent as a Link Tag', () => {
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
       declarations: [TagComponent, TagLinkTestFixtureComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagLinkTestFixtureComponent);

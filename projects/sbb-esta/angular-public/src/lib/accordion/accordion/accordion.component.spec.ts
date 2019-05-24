@@ -3,6 +3,7 @@ import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { async, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { configureTestSuite } from 'ng-bullet';
 
 import {
   dispatchEvent,
@@ -71,7 +72,7 @@ class AccordionWithHideToggleComponent {
 }
 
 describe('AccordionComponent', () => {
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, AccordionModule],
       declarations: [
@@ -80,8 +81,7 @@ describe('AccordionComponent', () => {
         SetOfItemsComponent
       ]
     });
-    TestBed.compileComponents();
-  }));
+  });
 
   it('should allow multiple items to be expanded simultaneously', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);

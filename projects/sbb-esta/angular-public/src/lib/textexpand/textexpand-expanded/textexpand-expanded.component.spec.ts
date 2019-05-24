@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { configureTestSuite } from 'ng-bullet';
 
 import { TextexpandExpandedComponent } from './textexpand-expanded.component';
 
@@ -6,11 +7,11 @@ describe('TextexpandExpandedComponent', () => {
   let component: TextexpandExpandedComponent;
   let fixture: ComponentFixture<TextexpandExpandedComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [TextexpandExpandedComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextexpandExpandedComponent);

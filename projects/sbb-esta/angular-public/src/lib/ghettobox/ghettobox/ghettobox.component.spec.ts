@@ -1,9 +1,10 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 
@@ -37,7 +38,7 @@ describe('GhettoboxComponent', () => {
   let component: GhettoboxTestComponent;
   let fixture: ComponentFixture<GhettoboxTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -49,10 +50,11 @@ describe('GhettoboxComponent', () => {
         GhettoboxComponent,
         GhettoboxIconDirective
       ]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
     fixture = TestBed.createComponent(GhettoboxTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

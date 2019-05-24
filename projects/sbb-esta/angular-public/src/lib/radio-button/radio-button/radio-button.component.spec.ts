@@ -1,13 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule
-} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 import { RadioButtonComponent } from './radio-button.component';
@@ -42,17 +38,15 @@ describe('RadioButtonComponent', () => {
   let component: RadioButtonComponent;
   let fixture: ComponentFixture<RadioButtonComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
       declarations: [RadioButtonComponent],
       providers: [RadioButtonRegistryService]
-    })
-      .overrideComponent(RadioButtonComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(RadioButtonComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RadioButtonComponent);
@@ -74,17 +68,15 @@ describe('RadioButtonComponent using mock component', () => {
   let modelComponent: ModelRadioButtonTestComponent;
   let modelComponentFixture: ComponentFixture<ModelRadioButtonTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
       declarations: [RadioButtonComponent, ModelRadioButtonTestComponent],
       providers: [RadioButtonRegistryService]
-    })
-      .overrideComponent(RadioButtonComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
-  }));
+    }).overrideComponent(RadioButtonComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
+    });
+  });
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(

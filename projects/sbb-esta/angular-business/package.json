@@ -1,6 +1,9 @@
 {
   "name": "@sbb-esta/angular-business",
   "version": "0.0.0-PLACEHOLDER",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"

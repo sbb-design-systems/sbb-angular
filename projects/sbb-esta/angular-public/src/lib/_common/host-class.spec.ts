@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { configureTestSuite } from 'ng-bullet';
 
 import { HostClass } from './host-class';
 
@@ -24,11 +25,11 @@ describe('HostClass', () => {
     let component: TestComponent;
     let fixture: ComponentFixture<TestComponent>;
 
-    beforeEach(async(() => {
+    configureTestSuite(() => {
       TestBed.configureTestingModule({
         declarations: [TestComponent]
-      }).compileComponents();
-    }));
+      });
+    });
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TestComponent);
@@ -86,11 +87,11 @@ describe('HostClass', () => {
       }
     }
 
-    beforeEach(async(() => {
+    configureTestSuite(() => {
       TestBed.configureTestingModule({
         declarations: [TestComponent, WrappedTestComponent]
-      }).compileComponents();
-    }));
+      });
+    });
 
     beforeEach(() => {
       fixture = TestBed.createComponent(WrappedTestComponent);

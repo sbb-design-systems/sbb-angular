@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { configureTestSuite } from 'ng-bullet';
 
 import { LinkGeneratorResult } from '../../pagination/page-descriptor.model';
 import {
@@ -77,7 +78,7 @@ describe('DropdownComponent', () => {
   let component: DropdownComponent;
   let fixture: ComponentFixture<DropdownComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [
         DropdownComponent,
@@ -87,8 +88,8 @@ describe('DropdownComponent', () => {
       ],
       imports: [CommonModule],
       providers: [DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownComponent);
@@ -107,12 +108,12 @@ describe('DropdownComponent test', () => {
   let location: Location = null;
   let router: Router;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [DropdownTestComponent],
       imports: [DropdownModule, RouterTestingModule]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownTestComponent);

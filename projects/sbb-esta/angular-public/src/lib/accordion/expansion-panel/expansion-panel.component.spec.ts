@@ -1,7 +1,6 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, ViewChild } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   flush,
@@ -10,6 +9,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { configureTestSuite } from 'ng-bullet';
 
 import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import { AccordionModule, ExpansionPanelComponent } from '../accordion';
@@ -125,7 +125,7 @@ describe('ExpansionPanelComponent', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, AccordionModule],
       declarations: [
@@ -137,8 +137,7 @@ describe('ExpansionPanelComponent', () => {
         PanelWithTwoWayBindingComponent
       ]
     });
-    TestBed.compileComponents();
-  }));
+  });
 
   it('should expand and collapse the panel', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);

@@ -174,13 +174,17 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
-              "sourceMap": true
+              "browsers": "BsChrome",
+              "sourceMap": false,
+              "progress": false
             },
             "local": {
               "codeCoverage": true
             },
             "datepicker": {
+              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
+            },
+            "toggle": {
               "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
             }
           }
@@ -224,7 +228,8 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "ChromeHeadless",
-              "sourceMap": true
+              "sourceMap": false,
+              "progress": false
             },
             "local": {
               "codeCoverage": true
@@ -270,7 +275,8 @@
               "watch": false,
               "codeCoverage": true,
               "browsers": "ChromeHeadless",
-              "sourceMap": true
+              "sourceMap": false,
+              "progress": false
             },
             "local": {
               "codeCoverage": true

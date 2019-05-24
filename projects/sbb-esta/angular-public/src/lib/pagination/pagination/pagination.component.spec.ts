@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
@@ -73,12 +74,12 @@ describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [PaginationComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationComponent);
@@ -96,12 +97,12 @@ describe('PaginationComponent behaviour', () => {
   let component: PaginationTestComponent;
   let fixture: ComponentFixture<PaginationTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, RouterTestingModule],
       declarations: [PaginationTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationTestComponent);
@@ -206,12 +207,12 @@ describe('Pagination as links behaviour ', () => {
   let location: Location = null;
   let router: Router;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, RouterTestingModule],
       declarations: [PaginationLinkTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationLinkTestComponent);
@@ -507,12 +508,12 @@ describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [NavigationComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationComponent);
@@ -529,7 +530,7 @@ describe('NavigationComponent behaviour', () => {
   let component: NavigationTestComponent;
   let fixture: ComponentFixture<NavigationTestComponent>;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         PaginationModule,
@@ -538,8 +539,8 @@ describe('NavigationComponent behaviour', () => {
         FormsModule
       ],
       declarations: [NavigationTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationTestComponent);
@@ -621,7 +622,7 @@ describe('Navigation as links behaviour ', () => {
   let location: Location = null;
   let router: Router;
 
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [
         PaginationModule,
@@ -630,8 +631,8 @@ describe('Navigation as links behaviour ', () => {
         FormsModule
       ],
       declarations: [NavigationLinkTestComponent]
-    }).compileComponents();
-  }));
+    });
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationLinkTestComponent);

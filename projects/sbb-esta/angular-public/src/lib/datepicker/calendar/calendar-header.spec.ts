@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { FEB, JAN } from '../../_common/testing/dates-constants';
 import { DatepickerModule } from '../datepicker.module';
@@ -26,7 +27,7 @@ class StandardCalendarComponent {
 }
 
 describe('CalendarHeaderComponent', () => {
-  beforeEach(async(() => {
+  configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [DatepickerModule],
       declarations: [
@@ -34,9 +35,7 @@ describe('CalendarHeaderComponent', () => {
         StandardCalendarComponent
       ]
     });
-
-    TestBed.compileComponents();
-  }));
+  });
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;
