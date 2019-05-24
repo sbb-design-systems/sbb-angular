@@ -81,7 +81,7 @@ class Publisher {
       .map(p => parseInt(p[1]))
       .filter(n => !Number.isNaN(n))
       .sort((a, b) => b - a)[0];
-    return counter === undefined ? 0 : ++counter;
+    return counter === undefined ? 0 : counter + 1;
   }
 
   _getPackageInformation() {
