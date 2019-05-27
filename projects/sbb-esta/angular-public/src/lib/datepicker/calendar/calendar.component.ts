@@ -68,25 +68,24 @@ export class CalendarHeaderComponent<D> {
 
   /** Handles user clicks on the previous button. */
   previousMonthClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(
+    const newActiveDate = this._dateAdapter.addCalendarMonths(
       this.calendar.activeDate,
       -1
     );
+    this._assignActiveDate(newActiveDate);
   }
 
   /** Handles user clicks on the next button. */
   nextMonthClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarMonths(
+    const newActiveDate = this._dateAdapter.addCalendarMonths(
       this.calendar.activeDate,
       1
     );
+    this._assignActiveDate(newActiveDate);
   }
 
   /** Whether the previous period button is enabled. */
   previousMonthEnabled(): boolean {
-    if (!this.calendar.minDate) {
-      return true;
-    }
     return (
       !this.calendar.minDate ||
       !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate)
@@ -101,37 +100,37 @@ export class CalendarHeaderComponent<D> {
     );
   }
 
-  /** Whether the two dates represent the same view in the current view mode (month or year). */
+  /** Whether the two dates represent the same month. */
   private _isSameMonthView(date1: D, date2: D): boolean {
     return (
+      this._dateAdapter.getYear(date1) === this._dateAdapter.getYear(date2) &&
       this._dateAdapter.getMonth(date1) === this._dateAdapter.getMonth(date2)
     );
   }
 
   /** Handles user clicks on the previous button. */
   previousYearClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarYears(
+    const newActiveDate = this._dateAdapter.addCalendarYears(
       this.calendar.activeDate,
       -1
     );
+    this._assignActiveDate(newActiveDate);
   }
 
   /** Handles user clicks on the next button. */
   nextYearClicked(): void {
-    this.calendar.activeDate = this._dateAdapter.addCalendarYears(
+    const newActiveDate = this._dateAdapter.addCalendarYears(
       this.calendar.activeDate,
       1
     );
+    this._assignActiveDate(newActiveDate);
   }
 
   /** Whether the previous period button is enabled. */
   previousYearEnabled(): boolean {
-    if (!this.calendar.minDate) {
-      return true;
-    }
     return (
       !this.calendar.minDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.minDate)
+      !this._isSameYearView(this.calendar.activeDate, this.calendar.minDate)
     );
   }
 
@@ -139,8 +138,31 @@ export class CalendarHeaderComponent<D> {
   nextYearEnabled(): boolean {
     return (
       !this.calendar.maxDate ||
-      !this._isSameMonthView(this.calendar.activeDate, this.calendar.maxDate)
+      !this._isSameYearView(this.calendar.activeDate, this.calendar.maxDate)
     );
+  }
+
+  /** Whether the two dates represent the same month. */
+  private _isSameYearView(date1: D, date2: D): boolean {
+    return (
+      this._dateAdapter.getYear(date1) === this._dateAdapter.getYear(date2)
+    );
+  }
+
+  private _assignActiveDate(date: D) {
+    if (
+      this.calendar.minDate &&
+      this._dateAdapter.compareDate(this.calendar.minDate, date) > 0
+    ) {
+      this.calendar.activeDate = this.calendar.minDate;
+    } else if (
+      this.calendar.maxDate &&
+      this._dateAdapter.compareDate(this.calendar.maxDate, date) < 0
+    ) {
+      this.calendar.activeDate = this.calendar.maxDate;
+    } else {
+      this.calendar.activeDate = date;
+    }
   }
 }
 
