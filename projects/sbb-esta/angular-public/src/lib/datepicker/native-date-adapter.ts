@@ -124,7 +124,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
     return date;
   }
 
-  parse(value: any): Date {
+  parse(value: any): Date | null {
     if (typeof value === 'number') {
       return new Date(value);
     } else if (this.isDateInstance(value)) {
@@ -133,7 +133,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
       return match
         ? new Date(+match[4], +match[3] - 1, +match[2], 0, 0, 0)
-        : new Date(NaN);
+        : null;
     }
     return null;
   }
