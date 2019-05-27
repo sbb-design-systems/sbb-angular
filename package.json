@@ -54,7 +54,7 @@
   "bugs": {
     "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
   },
-  "homepage": "https://sbb-angular.app.sbb.ch/latest",
+  "homepage": "https://angular.app.sbb.ch/latest",
   "dependencies": {
     "@angular/animations": "^7.2.15",
     "@angular/cdk": "^7.3.7",

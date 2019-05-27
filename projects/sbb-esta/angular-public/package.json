@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
   },
-  "homepage": "https://sbb-angular.app.sbb.ch/latest",
+  "homepage": "https://angular.app.sbb.ch/latest",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",

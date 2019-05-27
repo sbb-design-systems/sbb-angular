@@ -1,6 +1,7 @@
 # SBB Components and Design for Angular
 
 This is the repository for the Angular component library for SBB.
+It is generated, maintained, tested, linted and built with the [Angular CLI](https://cli.angular.io/).
 
 [Documentation/Showcase](https://angular.app.sbb.ch/latest/)
 
@@ -23,3 +24,15 @@ The package containing SBB icons as components.
 The package containg the components/modules for public SBB websites.
 
 [Component List](https://angular.app.sbb.ch/latest/components-list)
+
+## Browser and screen reader support
+
+This library supports the most recent two versions of all major browsers: Chrome (including Android), Firefox, Safari (including iOS), and IE11 / Edge.
+
+We aim for great user experience with the following screen readers:
+
+Windows: NVDA and JAWS with IE11 / FF / Chrome.
+macOS: VoiceOver with Safari / Chrome.
+iOS: VoiceOver with Safari
+Android: Android Accessibility Suite (formerly TalkBack) with Chrome.
+Chrome OS: ChromeVox with Chrome.
