@@ -103,7 +103,25 @@ The sbbDateInput can be used without a datepicker.
 </sbb-field>
 ```
 
+### Year Pivot
+The date input will convert 2 digit years into 4 digit years. The pivot year can be configured
+with `SBB_DATEPICKER_2DIGIT_YEAR_PIVOT`. The default is the current year subtracted by 1975
+(e.g. 2019 - 1975 = 44). Years from 0 and to the pivot year (inclusive) to the pivot year will
+have 2000 added to it, years from pivot year + 1 to 100 (exclusive) will have 1900 added to it.
 
+```typescript
+  providers: [
+     ...
+     { provide: SBB_DATEPICKER_2DIGIT_YEAR_PIVOT, useValue: 50 },
+     ...
+  ]
+```
+
+| Input              | Output         |
+| ------------------ | -------------- |
+| 08.12.50           | 08.12.1950     |
+| 08.12.00           | 08.12.2000     |
+| 08.12.18           | 08.12.2018     |
 
 
 

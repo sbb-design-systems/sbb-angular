@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { Inject, Injectable, LOCALE_ID } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
 import { DateAdapter } from './date-adapter';
+import { SBB_DATEPICKER_2DIGIT_YEAR_PIVOT } from './datepicker-token';
 
 /**
  * Matches strings that have the form of a valid RFC 3339 string
@@ -19,32 +20,35 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
   return valuesArray;
 }
 
-export function toInteger(value: any): number {
-  return Number(value);
-}
-
-export function isNumber(value: any): value is number {
-  return !isNaN(toInteger(value));
-}
-
 @Injectable()
 export class NativeDateAdapter extends DateAdapter<Date> {
   private _datePipe: DatePipe;
+  private _yearPivot: number;
 
-  constructor(@Inject(LOCALE_ID) protected _locale: string) {
+  constructor(
+    @Inject(LOCALE_ID) protected _locale: string,
+    @Optional() @Inject(SBB_DATEPICKER_2DIGIT_YEAR_PIVOT) yearPivot: number
+  ) {
     super();
     this._datePipe = new DatePipe(_locale);
+    this._yearPivot =
+      typeof yearPivot === 'number'
+        ? yearPivot
+        : new Date().getFullYear() - 1975;
   }
 
   getYear(date: Date): number {
     return date.getFullYear();
   }
+
   getMonth(date: Date): number {
     return date.getMonth();
   }
+
   getDate(date: Date): number {
     return date.getDate();
   }
+
   getDayOfWeek(date: Date): number {
     return date.getDay();
   }
@@ -115,7 +119,25 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   createDate(year: number, month: number, date: number): Date {
-    return new Date(year, month, date);
+    // Check for invalid month and date (except upper bound on date which we have to check after
+    // creating the Date).
+    if (month < 0 || month > 11) {
+      throw Error(
+        `Invalid month index "${month}". Month index has to be between 0 and 11.`
+      );
+    }
+
+    if (date < 1) {
+      throw Error(`Invalid date "${date}". Date has to be greater than 0.`);
+    }
+
+    const result = this._createDateWithOverflow(year, month, date);
+    // Check that the date wasn't above the upper bound for the month, causing the month to overflow
+    if (result.getMonth() !== month) {
+      throw Error(`Invalid date "${date}" for month with index "${month}".`);
+    }
+
+    return result;
   }
 
   today(): Date {
@@ -127,18 +149,17 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   parse(value: any): Date | null {
     if (typeof value === 'number') {
       return new Date(value);
-    } else if (this.isDateInstance(value)) {
-      return this.clone(value);
     } else if (typeof value === 'string') {
-      const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
-      return match
-        ? new Date(+match[4], +match[3] - 1, +match[2], 0, 0, 0)
-        : null;
+      return this._parseStringDate(value);
     }
     return null;
   }
 
   format(date: Date, displayFormat: any): string {
+    if (!this.isValid(date)) {
+      throw Error('NativeDateAdapter: Cannot format invalid date.');
+    }
+
     return this._datePipe.transform(date, displayFormat);
   }
 
@@ -200,5 +221,44 @@ export class NativeDateAdapter extends DateAdapter<Date> {
 
   invalid(): Date {
     return new Date(NaN);
+  }
+
+  protected _parseStringDate(value: string) {
+    const match = /^(\w+,[ ]?)?(\d+)\.(\d+)\.(\d+)$/.exec(value);
+    if (!match) {
+      return null;
+    }
+
+    const date = this._createDateWithOverflow(
+      +match[4],
+      +match[3] - 1,
+      +match[2]
+    );
+    return this._normalizeYear(date);
+  }
+
+  protected _normalizeYear(date: Date) {
+    if (date.getFullYear() < 0 || date.getFullYear() >= 100) {
+      return date;
+    }
+
+    const yearOffset = date.getFullYear() <= this._yearPivot ? 2000 : 1900;
+    return new Date(
+      date.getFullYear() + yearOffset,
+      date.getMonth(),
+      date.getDate()
+    );
+  }
+
+  /** Creates a date but allows the month and date to overflow. */
+  private _createDateWithOverflow(year: number, month: number, date: number) {
+    const result = new Date(year, month, date);
+
+    // We need to correct for the fact that JS native Date treats years in range [0, 99] as
+    // abbreviations for 19xx.
+    if (year >= 0 && year < 100) {
+      result.setFullYear(this.getYear(result) - 1900);
+    }
+    return result;
   }
 }
