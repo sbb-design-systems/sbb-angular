@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "7.0.0-1",
+  "version": "7.0.0",
   "private": true,
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
     "build": "run-s angular-icons:build angular-public:build angular-showcase:build",
     "test": "run-s angular-public:test",
     "sonar": "node ./scripts/sonar.js",
-    "release": "standard-version",
+    "changelog": "standard-version",
     "angular-icons": "run-s angular-icons:*",
     "angular-icons:lint": "ng lint @sbb-esta/angular-icons",
     "angular-icons:build": "run-s angular-icons:build:*",
