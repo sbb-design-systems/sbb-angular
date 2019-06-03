@@ -151,24 +151,32 @@
       }
     },
     "@sbb-esta/angular-public": {
-      "root": "projects/sbb-esta/angular-public",
-      "sourceRoot": "projects/sbb-esta/angular-public/src",
+      "root": "projects/angular-components",
+      "sourceRoot": "projects/angular-components/src",
       "projectType": "library",
       "prefix": "sbb",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.json",
+            "tsConfig": "projects/angular-components/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-public/ng-package.json"
+          },
+          "configurations": {
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/sbb-esta/angular-public/src/styles"]
+            }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-public/src/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
+            "main": "projects/angular-components/src/test.ts",
+            "tsConfig": "projects/angular-components/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-components/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/sbb-esta/angular-public/src/styles"]
+            }
           },
           "configurations": {
             "ci": {
@@ -182,10 +190,10 @@
               "codeCoverage": true
             },
             "datepicker": {
-              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
+              "main": "projects/angular-components/src/lib/datepicker/test.ts"
             },
             "toggle": {
-              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
+              "main": "projects/angular-components/src/lib/datepicker/test.ts"
             }
           }
         },
@@ -193,8 +201,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/sbb-esta/angular-public/tsconfig.lib.json",
-              "projects/sbb-esta/angular-public/tsconfig.spec.json"
+              "projects/angular-components/tsconfig.lib.json",
+              "projects/angular-components/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -204,24 +212,32 @@
       }
     },
     "@sbb-esta/angular-business": {
-      "root": "projects/sbb-esta/angular-business",
-      "sourceRoot": "projects/sbb-esta/angular-business/src",
+      "root": "projects/angular-components",
+      "sourceRoot": "projects/angular-components/src",
       "projectType": "library",
       "prefix": "sbb",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.json",
+            "tsConfig": "projects/angular-components/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-business/ng-package.json"
+          },
+          "configurations": {
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/sbb-esta/angular-business/src/styles"]
+            }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-business/src/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-business/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js"
+            "main": "projects/angular-components/src/test.ts",
+            "tsConfig": "projects/angular-components/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-components/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/sbb-esta/angular-business/src/styles"]
+            }
           },
           "configurations": {
             "ci": {
@@ -240,8 +256,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/sbb-esta/angular-business/tsconfig.lib.json",
-              "projects/sbb-esta/angular-business/tsconfig.spec.json"
+              "projects/angular-components/tsconfig.lib.json",
+              "projects/angular-components/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

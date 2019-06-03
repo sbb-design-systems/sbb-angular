@@ -7,10 +7,11 @@
     "@types/grecaptcha"
   ],
   "lib": {
-    "entryFile": "src/public-api.ts",
+    "entryFile": "../../angular-components/src/public-api.ts",
     "umdModuleIds": {
       "@sbb-esta/angular-icons": "sbbAngularIcons",
       "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
-    }
+    },
+    "styleIncludePaths": ["./src/styles/"]
   }
 }

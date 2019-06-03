@@ -1,5 +1,4 @@
 @import '../../../angular-components/src/styles/main';
-@import 'styles/components';
 @import '../../../angular-components/src/styles/fonts';
 @import '~@angular/cdk/a11y-prebuilt.css';
 @import '~@angular/cdk/overlay-prebuilt.css';
@@ -164,13 +163,13 @@ input.ssb-time-input {
   @include timeInputBase;
 }
 
-table.sbb-table {
+/*table.sbb-table {
   @include table();
-}
+}*/
 
-select {
+/*select {
   @include nativeSelectBase;
-}
+}*/
 
 [hidden] {
   display: none !important;

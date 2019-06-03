@@ -1,6 +1,3 @@
-$timeInputWidth: 70;
-$timeInputHeight: 48;
-
 @mixin timeInputBase {
   width: toPx($timeInputWidth);
   height: toPx($timeInputHeight);

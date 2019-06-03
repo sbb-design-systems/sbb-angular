@@ -1,0 +1,5 @@
+{
+  "entry": "projects/angular-components/src/styles/main.scss",
+  "dest": "dist/sbb-esta/angular-business/styles.scss",
+  "includePaths": ["projects/sbb-esta/angular-business/src/styles/"]
+}

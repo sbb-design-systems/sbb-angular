@@ -5,15 +5,15 @@
   resize: none;
   opacity: 1;
   font-family: $fontSbbRoman;
-  font-size: pxToRem(14);
-  line-height: pxToEm(21, 14);
+  font-size: pxToRem($formErrorFontSize);
+  line-height: pxToEm($formErrorLineHeight, $formErrorFontSize);
   color: $colorError;
 
   @include mq($from: desktop4k) {
-    font-size: pxToRem(14 * $scalingFactor4k);
+    font-size: pxToRem($formErrorFontSize * $scalingFactor4k);
   }
 
   @include mq($from: desktop5k) {
-    font-size: pxToRem(14 * $scalingFactor5k);
+    font-size: pxToRem($formErrorFontSize * $scalingFactor5k);
   }
 }
