@@ -2,6 +2,7 @@
   <div class="sbb-toggle-option-button-inner">
     <input
       type="radio"
+      class="cdk-visually-hidden"
       [id]="inputId"
       [name]="name"
       [value]="value"
@@ -26,7 +27,7 @@
       </span>
       <span class="sbb-toggle-option-button-label">{{ label }}</span>
       <span *ngIf="infoText" class="sbb-toggle-option-button-info-text">
-        <span class="visuallyhidden">&nbsp;</span>
+        <span class="cdk-visually-hidden">&nbsp;</span>
         {{ infoText }}
       </span>
     </span>

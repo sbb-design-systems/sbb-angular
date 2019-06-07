@@ -7,43 +7,6 @@
 @import './mediaqueries';
 
 /**
- * Hide visually
- *
- * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- * for discussion of different solutions
- */
-
-@mixin visuallyhidden() {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(0 0 0 0);
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-@mixin visuallyhiddenReset() {
-  position: static;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  margin: 0;
-  clip: auto;
-}
-
-@mixin visuallyhiddenFocusable() {
-  @include visuallyhidden;
-
-  &:focus,
-  &:active {
-    @include visuallyhiddenReset;
-  }
-}
-
-/**
  * Contain floats with clearfix
  *
  * http://nicolasgallagher.com/micro-clearfix-hack/
@@ -330,50 +293,10 @@
   }
 }
 
-// Form Styles
-// ----------------------------------------------------------------------------------------------------
-
-@mixin disabledelement {
-  opacity: 0.5;
-}
-
-@mixin readonlyelement {
-  background: $colorBlack5;
-  border-color: $colorBlack20;
-}
-
-@mixin readonlyinputfields {
-  &[readonly],
-  &:read-only {
-    @include readonlyelement;
-  }
-}
-
-@mixin formlabel {
-  color: $colorGrey;
-  font-size: pxToEm(13);
-}
-
 @mixin breakOutOfCenterAndGoFullBleed() {
   // https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-}
-
-@mixin inputField() {
-  display: inline-block;
-
-  font-family: $fontSbbRoman;
-  font-size: toEm(15 / $sizeFontDefault);
-  border: 1px solid $colorGreySilver;
-
-  @include mq($from: tabletPortrait) {
-    font-size: toEm(14 / $sizeFontDefault);
-  }
-
-  &:focus {
-    border-color: $colorGrey;
-  }
 }
 
 // Centered tab module
@@ -532,5 +455,17 @@
         fill: $color;
       }
     }
+  }
+}
+
+@mixin publicOnly() {
+  @if $sbbBusiness == false {
+    @content;
+  }
+}
+
+@mixin businessOnly() {
+  @if $sbbBusiness {
+    @content;
   }
 }

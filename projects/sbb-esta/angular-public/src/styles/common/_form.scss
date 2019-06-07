@@ -1,0 +1,135 @@
+@import './mixins';
+
+// Form Styles
+// ----------------------------------------------------------------------------------------------------
+
+@mixin disabledelement {
+  opacity: 0.5;
+}
+
+@mixin readonlyelement {
+  background: $colorBlack5;
+  border-color: $colorBlack20;
+}
+
+@mixin inputFieldPadding() {
+  @include publicOnly() {
+    padding: 10px 14px 12px;
+
+    @include mq($from: desktop4k) {
+      padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k)
+        toPx(12 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k)
+        toPx(12 * $scalingFactor5k);
+    }
+  }
+
+  @include businessOnly() {
+    padding: 7px;
+  }
+}
+
+@mixin inputfields {
+  @include ellipsis;
+  @include placeholder($colorBlack40);
+  @include disabledinputfields;
+  @include inputFieldPadding();
+
+  outline: none;
+  background: $colorWhite;
+  border: 2px solid $colorBlack72;
+  border-radius: 2px;
+  color: $colorGrey;
+  line-height: 1.5;
+  font-size: pxToRem($sizeFontDefault);
+  -webkit-appearance: none;
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  @include businessOnly() {
+    border-width: 1px;
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border-width: toPx(2 * $scalingFactor4k);
+      border-radius: toPx(2 * $scalingFactor4k);
+      font-size: toPx($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-width: toPx(2 * $scalingFactor5k);
+      border-radius: toPx(2 * $scalingFactor5k);
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  &:focus {
+    border-color: $colorGrey;
+  }
+
+  &.ng-touched.ng-invalid:not([aria-expanded='true']) {
+    color: $colorError;
+    border-color: $colorError;
+  }
+}
+
+@mixin disabledinputfields {
+  &:disabled {
+    background-color: $colorBlack5;
+    border-color: $colorBlack20;
+  }
+}
+
+@mixin readonlyinputfields {
+  &[readonly],
+  &:read-only {
+    @include readonlyelement;
+  }
+}
+
+@mixin label {
+  letter-spacing: 0;
+  outline: 0px;
+  resize: none;
+  background-color: transparent;
+  font-family: $fontSbbRoman;
+  font-size: pxToRem(13);
+  color: $colorGrey;
+  line-height: pxToRem(16);
+  display: block;
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(13 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(13 * $scalingFactor5k);
+  }
+}
+
+@mixin formlabel {
+  color: $colorGrey;
+  font-size: pxToEm(13);
+}
+
+@mixin inputField() {
+  display: inline-block;
+
+  font-family: $fontSbbRoman;
+  font-size: toEm(15 / $sizeFontDefault);
+  border: 1px solid $colorGreySilver;
+
+  @include mq($from: tabletPortrait) {
+    font-size: toEm(14 / $sizeFontDefault);
+  }
+
+  &:focus {
+    border-color: $colorGrey;
+  }
+}

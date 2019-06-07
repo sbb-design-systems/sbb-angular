@@ -4,7 +4,7 @@
 
 <body>
   <h1 class="docs-markdown-h1">Ghettobox Overview</h1>
-  <p class="docs-markdown-p">Import ghettobox module in your application</p>
+  <p class="docs-markdown-p">Import ghettobox module in your application </p>
   <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code"><span class="hljs-keyword">import</span> { GhettoboxModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;</code></pre>
   <h2 class="docs-markdown-h2">Standalone Ghettobox</h2>
   <h3 id="simple-ghettobox" class="docs-header-link docs-markdown-h3">
@@ -14,12 +14,10 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox</span>&gt;</span></code></pre>
   <h3 id="ghettobox-with-code-routerlink-code-set-and-custom-icon" class="docs-header-link docs-markdown-h3">
     <span header-link="ghettobox-with-code-routerlink-code-set-and-custom-icon"></span> Ghettobox with <code class="docs-markdown-code">routerLink</code> set and custom icon </h3>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span>
-  (<span class="hljs-attr">afterDelete</span>)=<span class="hljs-string">"afterDelete($event)"</span>
-  [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.', 'test']"</span>
-  [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{debug: false}"</span>
-  <span class="hljs-attr">fragment</span>=<span class="hljs-string">"test"</span>
-&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span> (<span class="hljs-attr">afterDelete</span>)=<span class="hljs-string">"afterDelete($event)"</span>
+               [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.', 'test']"</span> 
+               [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{debug: false}"</span> 
+               <span class="hljs-attr">fragment</span>=<span class="hljs-string">"test"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-him-disruption</span> *<span class="hljs-attr">sbbGhettoboxIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-him-disruption</span>&gt;</span>
   This is a Link ghettobox with custom icon.
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox</span>&gt;</span></code></pre>
@@ -29,11 +27,7 @@
 }</code></pre>
   <h2 class="docs-markdown-h2">Ghettobox within a Ghettobox container (operable by <code class="docs-markdown-code">GhettoboxService</code>)</h2>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox-container</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span>
-    [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.', 'test']"</span>
-    [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{debug: true}"</span>
-    <span class="hljs-attr">fragment</span>=<span class="hljs-string">"test"</span>
-  &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-ghettobox</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"['.', 'test']"</span> [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"{debug: true}"</span> <span class="hljs-attr">fragment</span>=<span class="hljs-string">"test"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-him-disruption</span> *<span class="hljs-attr">sbbGhettoboxIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-him-disruption</span>&gt;</span>
     This is an initial ghettobox into a container.
   <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-ghettobox</span>&gt;</span>

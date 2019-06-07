@@ -39,10 +39,6 @@ a {
   @include standardLink;
 }
 
-.visuallyhidden {
-  @include visuallyhidden;
-}
-
 .clearfix {
   @include clearfix;
 }

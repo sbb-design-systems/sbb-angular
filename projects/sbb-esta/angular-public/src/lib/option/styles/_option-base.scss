@@ -1,0 +1,222 @@
+@import 'globals';
+
+$dropdownPaddingBottom: 14px;
+
+@mixin optionBase($selectMode: false) {
+  @include ellipsis;
+
+  position: relative;
+  display: block;
+  text-decoration: none;
+  padding: toPx(4) $autocompletePaddingX;
+  text-align: left;
+  max-width: 100%;
+  cursor: pointer;
+  outline: 0;
+
+  @if $selectMode == true {
+    cursor: default;
+    color: $colorGrey;
+  }
+
+  &:first-of-type {
+    padding-top: $autocompletePaddingTop;
+  }
+  &:last-of-type {
+    padding-bottom: $dropdownPaddingBottom;
+  }
+
+  @include mq($from: desktop4k) {
+    font-size: toPx($sizeFontDefault * $scalingFactor4k);
+    padding: toPx(4 * $scalingFactor4k)
+      toPx($autocompletePaddingX * $scalingFactor4k);
+
+    &:first-of-type {
+      padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+    }
+
+    &:last-of-type {
+      padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor4k);
+    }
+  }
+  @include mq($from: desktop5k) {
+    font-size: toPx($sizeFontDefault * $scalingFactor5k);
+    padding: toPx(4 * $scalingFactor5k)
+      toPx($autocompletePaddingX * $scalingFactor5k);
+    &:first-of-type {
+      padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+    }
+    &:last-of-type {
+      padding-bottom: toPx($dropdownPaddingBottom * $scalingFactor5k);
+    }
+  }
+
+  .highlight {
+    font-family: $autocompleteHighlightTexBold;
+  }
+
+  &:not(.sbb-active) .highlight {
+    color: $autocompleteHoverColor;
+  }
+
+  &.sbb-selected {
+    color: $colorBlack;
+  }
+
+  &.sbb-active,
+  &:hover,
+  &:focus,
+  &:hover .highlight,
+  &:focus .highlight {
+    color: $autocompleteOptionHoverColor;
+  }
+
+  .sbb-option-text {
+    @include optionText();
+  }
+}
+
+@mixin optionText() {
+  display: inline-block;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin optionGroupBase {
+  position: relative;
+  display: block;
+  color: $colorMetanav;
+
+  @include mq($from: desktop4k) {
+    border-top-width: toPx(1 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    border-top-width: toPx(1 * $scalingFactor5k);
+  }
+
+  sbb-option {
+    &:first-of-type {
+      padding-top: 0;
+    }
+  }
+  .sbb-optgroup-label {
+    padding-left: $autocompletePaddingX;
+    padding-right: $autocompletePaddingX;
+    padding-top: $autocompletePaddingTop;
+    padding-bottom: $autocompletePaddingTop;
+
+    @include mq($from: desktop4k) {
+      font-size: toPx(10 * $scalingFactor4k);
+      padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+      padding-bottom: toPx($autocompletePaddingTop * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: toPx(10 * $scalingFactor5k);
+      padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+      padding-bottom: toPx($autocompletePaddingTop * $scalingFactor5k);
+    }
+
+    @include label;
+  }
+}
+
+@mixin optionGroupBaseDirectional($selectMode: false) {
+  @if $selectMode == false {
+    border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+    @include mq($from: desktop4k) {
+      border-top-width: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-width: toPx(1 * $scalingFactor5k);
+    }
+  } @else {
+    border-top: 0;
+    &:last-of-type {
+      border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+    @include mq($from: desktop4k) {
+      border-top-width: 0;
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-width: 0;
+    }
+  }
+}
+
+@mixin optionGroupBaseDirectionalReverse($selectMode: false) {
+  @if $selectMode == false {
+    border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+    @include mq($from: desktop4k) {
+      border-bottom-width: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-bottom-width: toPx(1 * $scalingFactor5k);
+    }
+  } @else {
+    border-bottom: 0;
+    &:first-of-type {
+      border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+    @include mq($from: desktop4k) {
+      border-bottom-width: 0;
+    }
+
+    @include mq($from: desktop5k) {
+      border-bottom-width: 0;
+    }
+  }
+}
+
+@mixin optionInSelect {
+  .sbb-select-content & {
+    @include optionBase($selectMode: true);
+    padding-left: toPx($optionMultipleNoCheckboxPaddingLeft);
+
+    @include mq($from: desktop4k) {
+      padding-left: toPx(
+        $optionMultipleNoCheckboxPaddingLeft * $scalingFactor4k
+      );
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: toPx(
+        $optionMultipleNoCheckboxPaddingLeft * $scalingFactor5k
+      );
+    }
+  }
+}
+
+@mixin optionInAutocomplete {
+  .sbb-autocomplete-panel & {
+    @include optionBase;
+  }
+}
+
+@mixin multipleOption {
+  &.sbb-option-multiple {
+    display: flex;
+    align-items: center;
+
+    padding-left: toPx($optionMultipleCheckboxPaddingLeft);
+
+    @include mq($from: desktop4k) {
+      padding-left: toPx($optionMultipleCheckboxPaddingLeft * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      padding-left: toPx($optionMultipleCheckboxPaddingLeft * $scalingFactor5k);
+    }
+
+    sbb-pseudo-checkbox {
+      @include pseudoCheckbox;
+    }
+  }
+}

@@ -44,7 +44,7 @@ export class TimeInputDirective {
   /**
    * Class property that refers to time input
    */
-  @HostBinding('class.ssb-time-input') ssbTimeInput = true;
+  @HostBinding('class.sbb-time-input') ssbTimeInput = true;
 
   /**
    * Method that sets the input value in 'hours:mins' format on blur event

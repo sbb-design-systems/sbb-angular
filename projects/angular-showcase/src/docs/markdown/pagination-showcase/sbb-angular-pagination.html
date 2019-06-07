@@ -27,20 +27,18 @@
   </ul>
   <p class="docs-markdown-p">as see below:</p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span>
-  (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span>
-  [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span>
-  [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>
-&gt;</span>
+   (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span>
+   [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span>
+   [<span class="hljs-attr">initialPage</span>]=<span class="hljs-string">"initialPage"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span></code></pre>
-  <p class="docs-markdown-p">When the user interacts with the paginator, a <code class="docs-markdown-code">PageEvent</code> will be fired that can be used to update the status of pagination (current page selected, previous and next pages and the pages displayed).</p>
+  <p class="docs-markdown-p">When the user interacts with the paginator, a <code class="docs-markdown-code">PageEvent</code> will be fired that can be used to update the status of pagination (current page selected, previous and next pages and the pages displayed). </p>
   <h3 id="links-configuration" class="docs-header-link docs-markdown-h3">
     <span header-link="links-configuration"></span> Links configuration </h3>
   <p class="docs-markdown-p">In order to use this component with router links, you must define a <code class="docs-markdown-code">linkGenerator</code> function to be applied on every page in input. The <code class="docs-markdown-code">initialPage</code> input is not needed.</p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-pagination</span>
   (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChange($event)"</span>
   [<span class="hljs-attr">maxPage</span>]=<span class="hljs-string">"maxPage"</span>
-  [<span class="hljs-attr">linkGenerator</span>]=<span class="hljs-string">"linkGenerator"</span>
-&gt;</span>
+  [<span class="hljs-attr">linkGenerator</span>]=<span class="hljs-string">"linkGenerator"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-pagination</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">The <code class="docs-markdown-code">linkGenerator</code> method has this kind of declaration:</p>
   <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">  linkGenerator?: <span class="hljs-function">(<span class="hljs-params">page: { index: <span class="hljs-built_in">number</span>, displayNumber: <span class="hljs-built_in">number</span> }</span>) =&gt;</span> LinkGeneratorResult</code></pre>
@@ -54,26 +52,24 @@
     <li class="docs-markdown-li">pageChange: callback called when a button/link is clicked</li>
     <li class="docs-markdown-li">linkGenerator: input function to be used to enable the link mode</li>
   </ul>
-  <p class="docs-markdown-p">The pageChange callback argument is a <code class="docs-markdown-code">{direction: 'previous' | 'next'}</code> object.</p>
+  <p class="docs-markdown-p">The pageChange callback argument is a <code class="docs-markdown-code">{direction: 'previous' | 'next'}</code> object. </p>
   <h3 id="navigation-buttons-configuration" class="docs-header-link docs-markdown-h3">
     <span header-link="navigation-buttons-configuration"></span> Navigation buttons configuration </h3>
   <p class="docs-markdown-p">If no <code class="docs-markdown-code">linkGenerator</code> function is passed as input to the component, this renders two buttons.</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-navigation</span>
-  (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChangeNavigation($event)"</span>
-  [<span class="hljs-attr">nextPage</span>]=<span class="hljs-string">"nextPage"</span>
-  [<span class="hljs-attr">previousPage</span>]=<span class="hljs-string">"previousPage"</span>
-&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-navigation</span> 
+    (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChangeNavigation($event)"</span>
+    [<span class="hljs-attr">nextPage</span>]=<span class="hljs-string">"nextPage"</span>
+    [<span class="hljs-attr">previousPage</span>]=<span class="hljs-string">"previousPage"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-navigation</span>&gt;</span></code></pre>
-  <p class="docs-markdown-p">The switching logic has to be implemented into the <code class="docs-markdown-code">pageChange</code> callback.</p>
+  <p class="docs-markdown-p">The switching logic has to be implemented into the <code class="docs-markdown-code">pageChange</code> callback. </p>
   <h3 id="navigation-links-configuration" class="docs-header-link docs-markdown-h3">
     <span header-link="navigation-links-configuration"></span> Navigation links configuration </h3>
   <p class="docs-markdown-p">If you want to use Angular routing to change pages, you have to implement and pass into the component a <code class="docs-markdown-code">linkGenerator</code> function.</p>
-  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-navigation</span>
-  [<span class="hljs-attr">linkGenerator</span>]=<span class="hljs-string">"linkGeneratorNavigation"</span>
-  (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChangeNavigation($event)"</span>
-  [<span class="hljs-attr">nextPage</span>]=<span class="hljs-string">"nextPage"</span>
-  [<span class="hljs-attr">previousPage</span>]=<span class="hljs-string">"previousPage"</span>
-&gt;</span>
+  <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-navigation</span> 
+    [<span class="hljs-attr">linkGenerator</span>]=<span class="hljs-string">"linkGeneratorNavigation"</span>
+    (<span class="hljs-attr">pageChange</span>)=<span class="hljs-string">"onPageChangeNavigation($event)"</span>
+    [<span class="hljs-attr">nextPage</span>]=<span class="hljs-string">"nextPage"</span>
+    [<span class="hljs-attr">previousPage</span>]=<span class="hljs-string">"previousPage"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-navigation</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">The <code class="docs-markdown-code">linkGenerator</code> method declaration is the following one:</p>
   <pre class="docs-markdown-pre"><code class="language-ts docs-markdown-code">linkGenerator?: <span class="hljs-function">(<span class="hljs-params">direction: 'previous' | 'next'</span>) =&gt;</span> LinkGeneratorResult;</code></pre>

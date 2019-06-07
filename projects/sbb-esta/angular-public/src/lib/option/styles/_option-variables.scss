@@ -1,0 +1,13 @@
+@import 'globals';
+
+$autocompleteOptionHoverColor: $colorRed100;
+$autocompleteInputActiveBorderBottomColor: $colorBlack10;
+$autocompletePaddingTop: 14px;
+$autocompletePaddingX: 16px;
+$autocompletePaddingBottom: 18px;
+$autocompletePadding: $autocompletePaddingTop $autocompletePaddingX
+  $autocompletePaddingBottom;
+$autocompleteHighlightTexBold: $fontSbbBold;
+$autocompleteHoverColor: $colorBlack;
+$optionMultipleCheckboxPaddingLeft: 16;
+$optionMultipleNoCheckboxPaddingLeft: 24;

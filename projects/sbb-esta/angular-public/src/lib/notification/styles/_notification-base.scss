@@ -1,0 +1,51 @@
+@import 'globals';
+
+@mixin notificationBase {
+  display: flex;
+  align-items: center;
+  height: toPx($notificationBaseHeight);
+  width: $notificationBaseWidth;
+  border-radius: toPx($notificationBorderRadius);
+  color: $colorWhite;
+
+  &-error {
+    background-color: $notificationErrorBackgroundColor;
+  }
+
+  &-success,
+  &-info {
+    background-color: $notificationSuccessBackgroundColor;
+  }
+
+  &-has-jump-marks {
+    height: toPx($notificationLinksHeight);
+  }
+
+  .sbb-notification-content {
+    font-size: toPx($notificationDefaultFontSize);
+    margin-left: toPx($notificationMessageMarginLeft);
+    margin-right: toPx($notificationMessageMarginRight);
+    &-title {
+      font-family: $fontSbbBold;
+    }
+  }
+
+  .sbb-notification-jump-mark {
+    a {
+      color: $colorWhite;
+      cursor: pointer;
+    }
+  }
+
+  .sbb-notification-icon-wrapper {
+    @include svgIconColor($colorWhite);
+    width: toPx($notificationIconWidth);
+    height: toPx($notificationIconHeight);
+    margin-left: toPx($notificationIconMarginLeft);
+
+    * {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

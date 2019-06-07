@@ -8,6 +8,7 @@
   ],
   "lib": {
     "entryFile": "src/public-api.ts",
+    "styleIncludePaths": ["./src/styles/common"],
     "umdModuleIds": {
       "@sbb-esta/angular-icons": "sbbAngularIcons",
       "ngx-perfect-scrollbar": "ngxPerfectScrollbar"

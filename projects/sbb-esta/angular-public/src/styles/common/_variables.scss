@@ -2,6 +2,11 @@
 // All about variables in here
 // ----------------------------------------------------------------------------------------------------
 
+$sbbBusiness: false !default;
+
+/**
+ * Font Size
+ */
 $sizeFontBase: 15px;
 $sizeLineHeightBase: 1.7; // In the Sketch files everything is annotated as 1.5 but in fact we will need 1.7 with the current Webfonts to achieve the desired line height
 

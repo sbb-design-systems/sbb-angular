@@ -1,0 +1,69 @@
+@import 'globals';
+
+@mixin datePickerControls() {
+  .sbb-datepicker-toggle,
+  .sbb-datepicker-arrow {
+    display: block;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .sbb-datepicker-toggle {
+    left: toPx($defaultToggleLeftOffset);
+
+    @include absoluteCenterY();
+    @extend %pickerIconsSize;
+
+    @include mq($from: desktop4k) {
+      left: toPx($defaultToggleLeftOffset * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
+    }
+  }
+
+  &.sbb-datepicker-arrows-enabled > .sbb-datepicker-toggle {
+    left: toPx($withArrowsToggleLeftOffset);
+
+    @include mq($from: desktop4k) {
+      left: toPx($withArrowsToggleLeftOffset * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      left: toPx($withArrowsToggleLeftOffset * $scalingFactor5k);
+    }
+  }
+
+  .sbb-datepicker-arrow {
+    @extend %pickerIconsSize;
+    @include absoluteCenterY();
+
+    &-left {
+      left: toPx($withArrowsLeftArrowOffset);
+
+      @include mq($from: desktop4k) {
+        left: toPx($withArrowsLeftArrowOffset * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        left: toPx($withArrowsLeftArrowOffset * $scalingFactor5k);
+      }
+    }
+
+    &-right {
+      right: toPx($withArrowsRightArrowOffset);
+
+      @include mq($from: desktop4k) {
+        right: toPx($withArrowsRightArrowOffset * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        right: toPx($withArrowsRightArrowOffset * $scalingFactor5k);
+      }
+    }
+  }
+}
