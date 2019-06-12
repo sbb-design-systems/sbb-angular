@@ -1,7 +1,7 @@
-@import 'globals';
+@import 'common';
 
 @mixin textexpand {
-  color: $colorBlack60;
+  color: $sbbColorMetal;
   letter-spacing: 0;
   line-height: 1.538;
   font-size: pxToRem(13);
@@ -25,7 +25,7 @@
 
   &:focus,
   &:hover {
-    color: $colorRed100;
+    color: $sbbColorRed;
   }
 
   &-label {

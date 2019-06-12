@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 $dropdownPaddingBottom: 14px;
 
@@ -16,7 +16,7 @@ $dropdownPaddingBottom: 14px;
 
   @if $selectMode == true {
     cursor: default;
-    color: $colorGrey;
+    color: $sbbColorGrey;
   }
 
   &:first-of-type {
@@ -60,7 +60,7 @@ $dropdownPaddingBottom: 14px;
   }
 
   &.sbb-selected {
-    color: $colorBlack;
+    color: $sbbColorBlack;
   }
 
   &.sbb-active,
@@ -86,7 +86,7 @@ $dropdownPaddingBottom: 14px;
 @mixin optionGroupBase {
   position: relative;
   display: block;
-  color: $colorMetanav;
+  color: $sbbColorMetal;
 
   @include mq($from: desktop4k) {
     border-top-width: toPx(1 * $scalingFactor4k);

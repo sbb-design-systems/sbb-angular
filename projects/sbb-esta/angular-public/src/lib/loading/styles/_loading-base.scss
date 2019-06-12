@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin loadingBase() {
   display: flex;
@@ -31,7 +31,7 @@
           width: $rectWidth;
           height: $rectHeight;
           margin-right: $gutterWidth;
-          background: $colorRed100;
+          background: $sbbColorRed;
 
           // disable backface visibility
           backface-visibility: hidden;

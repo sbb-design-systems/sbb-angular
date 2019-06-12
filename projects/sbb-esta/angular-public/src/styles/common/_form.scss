@@ -8,8 +8,8 @@
 }
 
 @mixin readonlyelement {
-  background: $colorBlack5;
-  border-color: $colorBlack20;
+  background: $sbbColorMilk;
+  border-color: $sbbColorAluminum;
 }
 
 @mixin inputFieldPadding() {
@@ -34,15 +34,15 @@
 
 @mixin inputfields {
   @include ellipsis;
-  @include placeholder($colorBlack40);
+  @include placeholder($sbbColorStorm);
   @include disabledinputfields;
   @include inputFieldPadding();
 
   outline: none;
-  background: $colorWhite;
-  border: 2px solid $colorBlack72;
+  background: $sbbColorWhite;
+  border: 2px solid $sbbColorGraphite;
   border-radius: 2px;
-  color: $colorGrey;
+  color: $sbbColorGrey;
   line-height: 1.5;
   font-size: pxToRem($sizeFontDefault);
   -webkit-appearance: none;
@@ -70,19 +70,19 @@
   }
 
   &:focus {
-    border-color: $colorGrey;
+    border-color: $sbbColorGrey;
   }
 
   &.ng-touched.ng-invalid:not([aria-expanded='true']) {
-    color: $colorError;
-    border-color: $colorError;
+    color: $sbbColorError;
+    border-color: $sbbColorError;
   }
 }
 
 @mixin disabledinputfields {
   &:disabled {
-    background-color: $colorBlack5;
-    border-color: $colorBlack20;
+    background-color: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
   }
 }
 
@@ -100,7 +100,7 @@
   background-color: transparent;
   font-family: $fontSbbRoman;
   font-size: pxToRem(13);
-  color: $colorGrey;
+  color: $sbbColorGrey;
   line-height: pxToRem(16);
   display: block;
 
@@ -114,7 +114,7 @@
 }
 
 @mixin formlabel {
-  color: $colorGrey;
+  color: $sbbColorGrey;
   font-size: pxToEm(13);
 }
 
@@ -123,13 +123,13 @@
 
   font-family: $fontSbbRoman;
   font-size: toEm(15 / $sizeFontDefault);
-  border: 1px solid $colorGreySilver;
+  border: 1px solid $sbbColorPlatinum;
 
   @include mq($from: tabletPortrait) {
     font-size: toEm(14 / $sizeFontDefault);
   }
 
   &:focus {
-    border-color: $colorGrey;
+    border-color: $sbbColorGrey;
   }
 }

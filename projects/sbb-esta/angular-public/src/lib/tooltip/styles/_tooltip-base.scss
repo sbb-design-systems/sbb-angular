@@ -1,18 +1,18 @@
-@import 'globals';
+@import 'common';
 
 @mixin tooltipContent {
-  color: $colorGrey;
+  color: $sbbColorGrey;
   letter-spacing: 0;
   line-height: 1;
   font-size: $sizeFontBase;
   border-radius: toPx($tooltipBorderRadius) toPx($tooltipBorderRadius)
     toPx($tooltipBorderRadius) 0 0 0 toPx($tooltipBorderRadius);
   text-align: left;
-  border: toPx($tooltipBorderWidth) solid $colorGrey;
+  border: toPx($tooltipBorderWidth) solid $sbbColorGrey;
   width: toPx($tooltipWidth);
   min-height: toPx($tooltipMinWidth);
   display: block;
-  background-color: $colorWhite;
+  background-color: $sbbColorWhite;
   .sbb-tooltip-content-body {
     padding-top: toPx($tooltipContentPadding);
     padding-left: toPx($tooltipContentPadding);
@@ -29,11 +29,11 @@
 
   @include mq($from: desktop4k) {
     font-size: $sizeFontBase * $scalingFactor4k;
-    border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $colorGrey;
+    border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $sbbColorGrey;
     width: toPx($tooltipWidth * $scalingFactor4k);
     min-height: toPx($tooltipMinWidth * $scalingFactor4k);
     display: block;
-    background-color: $colorWhite;
+    background-color: $sbbColorWhite;
     .sbb-tooltip-content-body {
       padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
       padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
@@ -44,11 +44,11 @@
 
   @include mq($from: desktop5k) {
     font-size: $sizeFontBase * $scalingFactor5k;
-    border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $colorGrey;
+    border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $sbbColorGrey;
     width: toPx($tooltipWidth * $scalingFactor5k);
     min-height: toPx($tooltipMinWidth * $scalingFactor5k);
     display: block;
-    background-color: $colorWhite;
+    background-color: $sbbColorWhite;
     .sbb-tooltip-content-body {
       padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
       padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
@@ -63,8 +63,8 @@
     box-shadow: 0 pxToEm(8) 0 0 rgba(102, 102, 102, 0.15);
     margin-top: pxToEm(12);
     margin-left: pxToEm(12);
-    background: $colorWhite;
-    border: pxToEm(2) solid $colorGrey;
+    background: $sbbColorWhite;
+    border: pxToEm(2) solid $sbbColorGrey;
   }
   .sbb-tooltip-content-below::after,
   .sbb-tooltip-content-below::before {
@@ -80,13 +80,13 @@
 
   .sbb-tooltip-content-below::after {
     border-color: transparent;
-    border-bottom-color: $colorWhite;
+    border-bottom-color: $sbbColorWhite;
     border-width: pxToEm(10);
     margin-left: pxToEm(-10);
   }
   .sbb-tooltip-content-below::before {
     border-color: transparent;
-    border-bottom-color: $colorGrey;
+    border-bottom-color: $sbbColorGrey;
     border-width: pxToEm(13);
     margin-left: pxToEm(-13);
   }
@@ -96,8 +96,8 @@
   .sbb-tooltip-content-above {
     margin-bottom: pxToEm(24);
     margin-left: pxToEm(12);
-    background: $colorWhite;
-    border: pxToEm($tooltipBorderWidth) solid $colorGrey;
+    background: $sbbColorWhite;
+    border: pxToEm($tooltipBorderWidth) solid $sbbColorGrey;
 
     .sbb-tooltip-shadow {
       width: calc(100% + 4px);
@@ -139,11 +139,11 @@
     position: absolute;
     pointer-events: none;
     transform: rotate(45deg) translate(pxToEm(-14));
-    background-color: $colorWhite;
-    border-color: $colorGrey;
+    background-color: $sbbColorWhite;
+    border-color: $sbbColorGrey;
     border-width: pxToEm($tooltipBorderWidth);
-    border-top-color: $colorWhite;
-    border-left-color: $colorWhite;
+    border-top-color: $sbbColorWhite;
+    border-left-color: $sbbColorWhite;
   }
 }
 
@@ -163,16 +163,16 @@
 
 @mixin tooltipIcon {
   @include buttonResetFrameless();
-  @include svgIconColor($colorGrey);
+  @include svgIconColor($sbbColorGrey);
   width: toPx($tooltipIconsSize);
   height: toPx($tooltipIconsSize);
   cursor: pointer;
   display: block;
-  border-color: $colorGrey;
+  border-color: $sbbColorGrey;
   border-width: pxToEm(1);
   border-style: solid;
   border-radius: 50%;
-  background-color: $colorWhite;
+  background-color: $sbbColorWhite;
   text-decoration: none;
   outline: 0;
   line-height: 1;
@@ -180,8 +180,8 @@
   &-active,
   &:hover,
   &:focus {
-    @include svgIconColor($colorRed100);
-    border-color: $colorRed100;
+    @include svgIconColor($sbbColorRed);
+    border-color: $sbbColorRed;
   }
   @include mq($from: desktop4k) {
     width: toPx($tooltipIconsSize * $scalingFactor4k);

@@ -69,11 +69,11 @@
 
     &:hover {
       .sbb-usermenu-logged-off-icon-user {
-        @include svgIconColor($colorRed125);
+        @include svgIconColor($sbbColorRed125);
       }
 
       .sbb-usermenu-logged-off-button {
-        color: $colorRed125;
+        color: $sbbColorRed125;
       }
     }
 

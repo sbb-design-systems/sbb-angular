@@ -1,9 +1,9 @@
-@import 'globals';
+@import 'common';
 
-$ghettobox-bg: $colorBlack90;
-$ghettobox-color: $colorWhite;
-$ghettobox-border-top: pxToEm(1) solid $colorGrey;
-$ghettobox-icon-bg: $colorRed100;
+$ghettobox-bg: $sbbColorIron;
+$ghettobox-color: $sbbColorWhite;
+$ghettobox-border-top: pxToEm(1) solid $sbbColorGrey;
+$ghettobox-icon-bg: $sbbColorRed;
 $ghettobox-icon-radius: 2px;
 $ghettobox-icon-size: pxToEm(24);
 $ghettobox-icon-inner-size: pxToEm(20);

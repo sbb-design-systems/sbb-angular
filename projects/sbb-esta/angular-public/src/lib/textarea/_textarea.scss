@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin sbbTextarea($borderColor) {
   @include inputfields;
@@ -32,12 +32,12 @@
   width: 100%;
   resize: none;
   overflow: hidden;
-  color: $colorGrey;
+  color: $sbbColorGrey;
   min-height: inherit;
 
   &:disabled {
-    background-color: $colorBlack5;
-    border-color: $colorBlack20;
+    background-color: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
     opacity: 1;
   }
 }

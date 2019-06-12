@@ -1,11 +1,11 @@
-@import 'globals';
+@import 'common';
 
 $notificationBaseHeight: 68;
 $notificationBaseWidth: 100%;
 $notificationIconWidth: 36;
 $notificationIconHeight: 36;
-$notificationSuccessBackgroundColor: $colorGrey;
-$notificationErrorBackgroundColor: $colorRed100;
+$notificationSuccessBackgroundColor: $sbbColorGrey;
+$notificationErrorBackgroundColor: $sbbColorRed;
 $notificationLinksHeight: 92;
 $notificationBorderRadius: 2;
 $notificationDefaultFontSize: $sizeFontDefault;

@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin breadcrumbBase {
   display: flex;
@@ -45,8 +45,8 @@
       font-family: $fontSbbRoman;
 
       &.sbb-active {
-        @include svgIconColor($colorRed125);
-        color: $colorRed125;
+        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
       }
 
       @include mq($from: desktop4k) {
@@ -93,12 +93,12 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    color: $colorGrey;
+    color: $sbbColorGrey;
     position: relative;
     height: 100%;
     &:hover,
     &:focus {
-      color: $colorRed125;
+      color: $sbbColorRed125;
     }
 
     &::before {
@@ -112,7 +112,7 @@
         border-right: $breadcrumbTriggerBorderActive;
         border-left: $breadcrumbTriggerBorderActive;
         position: absolute;
-        background-color: $colorWhite;
+        background-color: $sbbColorWhite;
         height: 100%;
         min-width: 132px;
         transform: translateX(-30px);
@@ -134,7 +134,7 @@
   }
 
   &-arrow {
-    @include svgIconColor($colorGrey);
+    @include svgIconColor($sbbColorGrey);
     width: toPx($breadcrumbArrowWidth);
     height: toPx($breadcrumbArrowHeight);
     line-height: toPx($breadcrumbArrowLineHeight);
@@ -155,12 +155,12 @@
   }
   a,
   button {
-    @include svgIconColor($colorGrey);
-    color: $colorGrey;
+    @include svgIconColor($sbbColorGrey);
+    color: $sbbColorGrey;
     &:hover,
     &:focus {
-      @include svgIconColor($colorRed125);
-      color: $colorRed125;
+      @include svgIconColor($sbbColorRed125);
+      color: $sbbColorRed125;
     }
   }
   a,
@@ -182,8 +182,8 @@
     > .sbb-icon-component {
       &:hover,
       &:focus {
-        @include svgIconColor($colorRed125);
-        color: $colorRed125;
+        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
       }
     }
   }
@@ -241,14 +241,14 @@
 
   .sbb-breadcrumb-trigger {
     &-icon {
-      @include svgIconColor($colorGrey);
+      @include svgIconColor($sbbColorGrey);
     }
     &:hover,
     &:focus,
     &:active,
     &.sbb-breadcrumb-trigger-open {
       .sbb-breadcrumb-trigger-icon {
-        @include svgIconColor($colorRed125);
+        @include svgIconColor($sbbColorRed125);
       }
     }
   }
@@ -273,7 +273,7 @@
   }
   &:hover,
   &:focus {
-    color: $colorRed125;
+    color: $sbbColorRed125;
   }
 }
 .sbb-breadcrumb-dots {

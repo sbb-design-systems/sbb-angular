@@ -2,6 +2,7 @@
 // Mixins
 // ----------------------------------------------------------------------------------------------------
 
+@import './colors';
 @import './variables';
 @import './functions';
 @import './mediaqueries';
@@ -75,7 +76,7 @@
 /**
  * Placeholder in input fields
  */
-@mixin placeholder($color: $colorGrey) {
+@mixin placeholder($color: $sbbColorGrey) {
   &::-webkit-input-placeholder {
     color: $color;
   }
@@ -187,7 +188,7 @@
 @mixin lead {
   font-family: $fontSbbLight;
   font-weight: normal;
-  color: $colorText;
+  color: $sbbColorText;
   font-size: pxToRem(20px);
   line-height: 1.3;
   margin: 2em 0 0;
@@ -225,12 +226,12 @@
 
 @mixin inlinelinks {
   a {
-    color: $colorText;
+    color: $sbbColorText;
     text-decoration: underline;
 
     &:hover,
     &:focus {
-      color: $colorCallToActionHover;
+      color: $sbbColorCallToActionHover;
     }
   }
 }
@@ -350,7 +351,7 @@
 @mixin fieldset {
   margin: 0;
   padding: pxToEm(36) pxToEm(24);
-  border: 1px solid $colorGreyLight;
+  border: 1px solid $sbbColorSilver;
   min-width: 0;
 
   @include mq($from: tabletPortrait) {
@@ -425,8 +426,8 @@
   min-width: pxToEm(18, 11);
   border-radius: pxToEm(15, 11);
   padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
-  background-color: $colorBlack60;
-  color: $colorWhite;
+  background-color: $sbbColorMetal;
+  color: $sbbColorWhite;
   font-family: $fontSbbBold;
   line-height: 1.1;
   font-size: pxToRem(11);

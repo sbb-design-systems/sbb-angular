@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin actionlinkArrowHover {
   padding-left: pxToEm(30, $sizeFontDefault);
@@ -39,7 +39,7 @@
   text-decoration: none !important;
 
   .sbb-svgsprite-icon {
-    @include svgIconColor($colorCallToAction);
+    @include svgIconColor($sbbColorCallToAction);
     line-height: 1.25;
     position: absolute;
     width: toPx(24);
@@ -89,15 +89,15 @@
   }
 
   &.sbb-link-form {
-    color: $colorGrey;
+    color: $sbbColorGrey;
     .sbb-svgsprite-icon {
-      @include svgIconColor($colorGrey);
+      @include svgIconColor($sbbColorGrey);
     }
     &:hover,
     &:focus {
-      color: $colorCallToActionHover;
+      color: $sbbColorCallToActionHover;
       .sbb-svgsprite-icon {
-        @include svgIconColor($colorCallToActionHover);
+        @include svgIconColor($sbbColorCallToActionHover);
       }
     }
   }
@@ -108,9 +108,9 @@
     }
     &:hover,
     &:focus {
-      color: $colorCallToActionHover;
+      color: $sbbColorCallToActionHover;
       .sbb-svgsprite-icon {
-        @include svgIconColor($colorCallToActionHover);
+        @include svgIconColor($sbbColorCallToActionHover);
       }
     }
   }

@@ -2,7 +2,7 @@
   .sbbsc-content-title {
     margin-top: 0;
     margin-bottom: 0.5em;
-    color: $colorRed100;
+    color: $sbbColorRed;
     font-size: pxToRem(24);
 
     &-text {
@@ -18,7 +18,7 @@
       vertical-align: middle;
 
       svg > path {
-        stroke: $colorGreyLight;
+        stroke: $sbbColorSilver;
       }
     }
 

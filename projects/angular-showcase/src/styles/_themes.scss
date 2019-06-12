@@ -6,7 +6,7 @@
 
 .sbbsc-separator {
   height: 0;
-  border-bottom: 1px solid $colorGreyLight;
+  border-bottom: 1px solid $sbbColorSilver;
   margin: 1em 0;
 }
 
@@ -16,7 +16,7 @@
 
 .sbbsc-v-sep {
   @include mq($from: desktop) {
-    border-right: 1px solid $colorGreyLight;
+    border-right: 1px solid $sbbColorSilver;
     max-width: pxToEm(720);
     padding-bottom: 1em;
 

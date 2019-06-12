@@ -78,8 +78,8 @@
 
     &-badge {
       display: inline-block;
-      background-color: $colorRed100;
-      color: $colorWhite;
+      background-color: $sbbColorRed;
+      color: $sbbColorWhite;
       padding: 0 0.5em;
       border-radius: 1em;
       font-size: $fontSizeBagde;
@@ -87,7 +87,7 @@
     }
 
     &-icon-selector {
-      color: $colorBlue;
+      color: $sbbColorBlue;
     }
   }
 }

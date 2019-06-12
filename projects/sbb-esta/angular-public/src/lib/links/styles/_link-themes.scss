@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin socialLink() {
   display: block;
@@ -6,7 +6,7 @@
   transition: $linksocialAnimation;
   width: toPx(40);
   height: toPx(40);
-  background-color: $colorGrey;
+  background-color: $sbbColorGrey;
   border-radius: 50%;
 
   @include mq($from: desktop4k) {
@@ -20,7 +20,7 @@
   }
 
   .sbb-svgsprite-icon {
-    @include svgIconColor($colorWhite);
+    @include svgIconColor($sbbColorWhite);
     line-height: 1;
     position: absolute;
     width: toPx(24);
@@ -45,6 +45,6 @@
 
   &:hover,
   &:focus {
-    background-color: $colorRed125;
+    background-color: $sbbColorRed125;
   }
 }

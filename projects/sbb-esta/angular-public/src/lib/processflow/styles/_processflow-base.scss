@@ -14,7 +14,7 @@
       content: '';
     }
     &-arrow {
-      @include svgIconColor($colorGrey);
+      @include svgIconColor($sbbColorGrey);
       width: toPx($processflowArrowWidth);
       height: toPx($processflowArrowHeight);
       line-height: toPx($processflowArrowLineHeight);
@@ -119,19 +119,19 @@
 
   &:not(.sbb-active):focus,
   &:not(.sbb-active):hover {
-    color: $colorRed125;
+    color: $sbbColorRed125;
 
     &::after {
-      border-bottom-color: $colorRed125;
+      border-bottom-color: $sbbColorRed125;
     }
   }
 
   &[disabled] {
-    color: $colorBlack40;
+    color: $sbbColorStorm;
 
     &:hover,
     &:focus {
-      color: $colorBlack40;
+      color: $sbbColorStorm;
       cursor: default;
 
       &::after {

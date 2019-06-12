@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin paginationBase {
   display: flex;
@@ -30,7 +30,7 @@
       display: block;
       margin-top: 65%;
       &:hover {
-        color: $colorGrey;
+        color: $sbbColorGrey;
       }
     }
 
@@ -41,7 +41,7 @@
       border-width: pxToEm(2);
       border-style: solid;
       border-radius: 50%;
-      background-color: $colorWhite;
+      background-color: $sbbColorWhite;
       text-decoration: none;
       position: absolute;
       display: flex;
@@ -52,17 +52,17 @@
       line-height: 1;
       outline: 0;
       &.sbb-pagination-item-selected {
-        border-color: $colorGrey;
+        border-color: $sbbColorGrey;
         cursor: default;
         &:hover,
         &:focus {
-          color: $colorGrey;
+          color: $sbbColorGrey;
         }
       }
       &:hover,
       &:focus {
-        @include svgIconColor($colorRed100);
-        color: $colorRed100;
+        @include svgIconColor($sbbColorRed);
+        color: $sbbColorRed;
       }
 
       &.sbb-pagination-item-boundary {
@@ -79,7 +79,7 @@
           height: toPx($paginationLiWidthHeight5K);
         }
         &:hover {
-          @include svgIconColor($colorRed100);
+          @include svgIconColor($sbbColorRed);
         }
         > * {
           margin-top: toPx(1);
@@ -100,12 +100,12 @@
         }
       }
       &.sbb-pagination-item-disabled {
-        @include svgIconColor($colorGreyLight);
-        color: $colorGreyLight;
+        @include svgIconColor($sbbColorSilver);
+        color: $sbbColorSilver;
         cursor: default;
         pointer-events: none;
         &:hover {
-          color: $colorGrey;
+          color: $sbbColorGrey;
           cursor: default;
         }
       }

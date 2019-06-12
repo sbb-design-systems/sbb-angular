@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin notificationBase {
   display: flex;
@@ -6,7 +6,7 @@
   height: toPx($notificationBaseHeight);
   width: $notificationBaseWidth;
   border-radius: toPx($notificationBorderRadius);
-  color: $colorWhite;
+  color: $sbbColorWhite;
 
   &-error {
     background-color: $notificationErrorBackgroundColor;
@@ -32,13 +32,13 @@
 
   .sbb-notification-jump-mark {
     a {
-      color: $colorWhite;
+      color: $sbbColorWhite;
       cursor: pointer;
     }
   }
 
   .sbb-notification-icon-wrapper {
-    @include svgIconColor($colorWhite);
+    @include svgIconColor($sbbColorWhite);
     width: toPx($notificationIconWidth);
     height: toPx($notificationIconHeight);
     margin-left: toPx($notificationIconMarginLeft);

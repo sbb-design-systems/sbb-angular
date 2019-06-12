@@ -63,13 +63,13 @@
 
   &-remove-icon {
     @include buttonResetFrameless();
-    @include svgIconColor($colorBlack80);
+    @include svgIconColor($sbbColorAnthracite);
     margin-bottom: pxToEm(2);
     position: relative;
     width: pxToEm(32);
     height: pxToEm(32);
     margin-left: pxToEm(8);
-    border: pxToEm(1) solid $colorBlack40;
+    border: pxToEm(1) solid $sbbColorStorm;
     border-radius: 50%;
 
     svg {

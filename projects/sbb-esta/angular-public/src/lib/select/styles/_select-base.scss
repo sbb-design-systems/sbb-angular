@@ -18,8 +18,8 @@
 
     &.sbb-select-disabled {
       cursor: default;
-      background-color: $colorBlack5;
-      border-color: $colorBlack20;
+      background-color: $sbbColorMilk;
+      border-color: $sbbColorAluminum;
     }
 
     .sbb-select-value {
@@ -29,7 +29,7 @@
     }
 
     .sbb-select-arrow-wrapper {
-      @include svgIconColor($colorGrey);
+      @include svgIconColor($sbbColorGrey);
       width: toPx($selectArrowWidthHeight);
       height: toPx($selectArrowWidthHeight);
 

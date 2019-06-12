@@ -9,7 +9,7 @@
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   }
   th {
-    background: rgba($colorGreyLight, 0.5);
+    background: rgba($sbbColorSilver, 0.5);
     font-family: $fontSbbRoman;
     font-weight: 400;
     max-width: 100px;
@@ -17,7 +17,7 @@
     text-align: left;
   }
   td {
-    border: 1px solid $colorGreyLight;
+    border: 1px solid $sbbColorSilver;
     font-family: $fontSbbRoman;
     font-weight: 400;
     padding: 8px 16px;
@@ -270,7 +270,7 @@
     color: #3f51b5;
   }
   &-markdown-pre {
-    background: rgba($colorGreyLight, 0.5);
+    background: rgba($sbbColorSilver, 0.5);
     border: 0.5px solid rgba(0, 0, 0, 0.03);
   }
   &-markdown-pre &-markdown-code {
@@ -281,7 +281,7 @@
     color: rgba(0, 0, 0, 0.54);
   }
   &-markdown-code {
-    background: rgba($colorGreyLight, 0.5);
+    background: rgba($sbbColorSilver, 0.5);
   }
 }
 

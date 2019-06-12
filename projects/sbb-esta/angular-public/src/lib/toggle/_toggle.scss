@@ -1,20 +1,20 @@
-@import 'globals';
+@import 'common';
 
 $toggleOptionIconSize: 31;
-$toggleOptionButtonBg: $colorBlack5;
-$toggleOptionButtonColor: $colorGrey;
+$toggleOptionButtonBg: $sbbColorMilk;
+$toggleOptionButtonColor: $sbbColorGrey;
 $toggleOptionRadius: 2;
 $toggleOptionButtonPadding: pxToEm(8) pxToEm(23) pxToEm(9);
 $toggleOptionInfoTextFontSize: 13;
-$toggleOptionButtonBgSelected: $colorWhite;
-$toggleOptionButtonBorderSelected: $colorBlack;
-$toggleOptionButtonColorSelected: $colorBlack;
+$toggleOptionButtonBgSelected: $sbbColorWhite;
+$toggleOptionButtonBorderSelected: $sbbColorBlack;
+$toggleOptionButtonColorSelected: $sbbColorBlack;
 $toggleOptionButtonMinHeight: pxToEm(65);
 $toggleOptionInfoTextTransition: max-height 0.25s linear, opacity 0.25s ease;
 $toggleOptionContentTransition: opacity 0.25s ease, visibility 0.25s ease,
   padding 0.2s ease, max-height 0.2s ease;
 $toggleOptionContentPadding: 24;
-$toggleOptionContentBg: $colorWhite;
+$toggleOptionContentBg: $sbbColorWhite;
 
 @mixin toggleContainer() {
   display: flex;
@@ -93,7 +93,7 @@ $toggleOptionContentBg: $colorWhite;
   margin-top: pxToEm(-2);
   position: relative;
   z-index: 2;
-  border: pxToEm(1) solid $colorBlack;
+  border: pxToEm(1) solid $sbbColorBlack;
   border-top-color: transparent;
 
   &::before,
@@ -106,13 +106,13 @@ $toggleOptionContentBg: $colorWhite;
 
   &::before {
     width: 50%;
-    border-bottom: pxToEm(1) solid $colorGreyLight;
+    border-bottom: pxToEm(1) solid $sbbColorSilver;
     left: 0;
   }
 
   &::after {
     width: calc(50% + #{pxToEm(1)});
-    border-bottom: pxToEm(1) solid $colorBlack;
+    border-bottom: pxToEm(1) solid $sbbColorBlack;
     right: 0;
   }
 }

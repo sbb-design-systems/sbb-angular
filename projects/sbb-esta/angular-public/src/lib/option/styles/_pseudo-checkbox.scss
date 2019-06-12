@@ -13,11 +13,11 @@
     }
   }
   &.sbb-pseudo-checkbox-disabled {
-    border-color: $colorBlack20;
-    background-color: $colorBlack5;
+    border-color: $sbbColorAluminum;
+    background-color: $sbbColorMilk;
 
     & > .sbb-checkbox-checked {
-      @include svgIconColor($colorGrey);
+      @include svgIconColor($sbbColorGrey);
     }
   }
 }

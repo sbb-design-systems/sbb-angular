@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin ghettoboxOuterWrapper() {
   display: block;
@@ -16,12 +16,12 @@
   display: block;
   transition: $ghettobox-link-transition;
   text-decoration: none;
-  color: $colorWhite;
+  color: $sbbColorWhite;
 
   &:hover,
   &:focus {
-    background-color: $colorBlack;
-    color: $colorWhite;
+    background-color: $sbbColorBlack;
+    color: $sbbColorWhite;
   }
 }
 

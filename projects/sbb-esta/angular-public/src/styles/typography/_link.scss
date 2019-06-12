@@ -2,7 +2,7 @@
 // ----------------------------------------------------------------------------------------------------
 
 @mixin standardLink {
-  color: $colorBlack;
+  color: $sbbColorBlack;
   line-height: pxToEm(23px);
   text-decoration: underline;
   text-decoration-skip-ink: auto; // -> read more about here https://medium.com/@iamhiwelo/improving-text-readability-for-dyslexic-users-with-skip-ink-underlines-bf52a2f3426b
@@ -19,7 +19,7 @@
 
   &:hover,
   &:focus {
-    color: $colorRed125;
+    color: $sbbColorRed125;
 
     @media screen and (-ms-high-contrast: active) {
       color: windowText;

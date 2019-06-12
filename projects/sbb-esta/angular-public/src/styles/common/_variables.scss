@@ -69,47 +69,6 @@ $innerComponentSpacing: 24;
 $interComponentSpacing: 80;
 $interComponentSpacingSmall: 40;
 
-// Design Colors
-
-$colorBlack: #000000;
-$colorWhite: #ffffff;
-$colorGreyLight: #dcdcdc;
-$colorGreySilver: #cdcdcd;
-$colorGrey: #666666;
-$colorGreyMedium: #979797;
-$colorRed100: #eb0000;
-$colorRed125: #c60018;
-$colorRed150: #a20013;
-$colorBlack5: #f6f6f6;
-$colorBlack10: #e5e5e5;
-$colorBlack20: #d2d2d2;
-$colorBlack30: #bdbdbd;
-$colorBlack40: #a8a8a8;
-$colorBlack60: #767676;
-$colorBlack70: #686868;
-$colorBlack72: #b7b7b7;
-$colorBlack80: #5a5a5a;
-$colorBlack90: #444444;
-$colorBlack100: #1e1e1e;
-$colorBlue: #003399;
-
-/**
- * Custom colors
- */
-$colorBg: $colorWhite;
-$colorCallToAction: $colorRed100;
-$colorError: $colorRed100;
-$colorCallToActionHover: $colorRed125;
-$colorContentBg: $colorWhite;
-$colorFallbackButton: $colorBlack90;
-$colorFocusOutline: $colorGrey;
-$colorHeadline: $colorBlack;
-$colorMenuBorder: $colorBlack10;
-$colorNavigation: $colorBlue;
-$colorSecondaryButton: $colorBlack20;
-$colorSeparationBorder: $colorBlack10;
-$colorText: $colorBlack;
-$colorMetanav: $colorBlack60;
 
 /**
  * Typo
@@ -182,7 +141,6 @@ $zIndexFocusedElement: 999;
 /**
  * Footer
  */
-$colorFooterText: $colorGrey;
 $footerAnimation: 0.3s; // This has to match the delay in the corresponding JS
 $fontSizeFooterSectionTitleDefault: 16;
 

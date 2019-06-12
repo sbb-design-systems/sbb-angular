@@ -1,12 +1,12 @@
-@import 'globals';
+@import 'common';
 
-$border: solid 1px $colorBlack72;
-$border4K: solid 3px $colorBlack72;
-$border5K: solid 4px $colorBlack72;
+$border: solid 1px $sbbColorGraphite;
+$border4K: solid 3px $sbbColorGraphite;
+$border5K: solid 4px $sbbColorGraphite;
 
-$borderActive: solid 2px $colorGrey;
-$borderActive4K: solid toPx(3 * $scalingFactor4k) $colorGrey;
-$borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
+$borderActive: solid 2px $sbbColorGrey;
+$borderActive4K: solid toPx(3 * $scalingFactor4k) $sbbColorGrey;
+$borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
 @mixin usermenuLoggedIn {
   position: relative;
@@ -82,10 +82,10 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 
 @mixin usermenuLoggedInCollapsedInitialLetters {
   border-radius: 50%;
-  background-color: $colorBlack10;
+  background-color: $sbbColorCloud;
   font-family: $fontFamilyBase;
   font-size: pxToRem(13);
-  color: $colorBlack60;
+  color: $sbbColorMetal;
   font-weight: 700;
   width: 32px;
   height: 32px;
@@ -112,7 +112,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 }
 
 @mixin usermenuLoggedInCollapsedArrow {
-  @include svgIconColor($colorBlack60);
+  @include svgIconColor($sbbColorMetal);
   width: toPx(24);
   height: toPx(24);
   z-index: -1;
@@ -155,7 +155,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 
 @mixin usermenuLoggedInExpandedUsername {
   font-family: $fontSbbRoman;
-  color: $colorBlack60;
+  color: $sbbColorMetal;
   font-size: pxToRem(13);
   margin-top: -3px;
 
@@ -173,7 +173,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 @mixin usermenuLoggedInExpandedDisplayName {
   font-size: pxToRem(15);
   font-family: $fontSbbRoman;
-  color: $colorBlack60;
+  color: $sbbColorMetal;
   margin-top: -5px;
 
   @include mq($from: desktop4k) {
@@ -188,7 +188,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 }
 
 @mixin usermenuLoggedInExpandedArrow {
-  @include svgIconColor($colorBlack60);
+  @include svgIconColor($sbbColorMetal);
   width: toPx(24);
   height: toPx(24);
   transform: rotate(180deg);
@@ -208,13 +208,13 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $colorGrey;
 }
 
 @mixin usermenuLoggedOff {
-  @include svgIconColor($colorBlack60);
+  @include svgIconColor($sbbColorMetal);
   display: flex;
   align-items: center;
   position: relative;
   height: 48px;
   width: 156px;
-  color: $colorBlack60;
+  color: $sbbColorMetal;
 
   @include mq($from: desktop4k) {
     height: toPx(72 * $scalingFactor4k);

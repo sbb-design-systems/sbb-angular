@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin navigationBase() {
   display: flex;
@@ -26,24 +26,24 @@
     > button,
     > a {
       @include buttonResetFrameless();
-      @include svgIconColor($colorGrey);
+      @include svgIconColor($sbbColorGrey);
       cursor: pointer;
-      background-color: $colorWhite;
+      background-color: $sbbColorWhite;
       text-decoration: none;
 
       max-width: 100%;
       height: 100%;
       line-height: 1;
       outline: 0;
-      color: $colorGrey;
-      border-color: $colorGrey;
+      color: $sbbColorGrey;
+      border-color: $sbbColorGrey;
 
       &:hover,
       &:focus {
-        @include svgIconColor($colorRed100);
-        color: $colorRed100;
+        @include svgIconColor($sbbColorRed);
+        color: $sbbColorRed;
         .sbb-navigation-item-boundary-arrow {
-          border-color: $colorRed100;
+          border-color: $sbbColorRed;
         }
       }
       .sbb-navigation-item-boundary {
@@ -87,8 +87,8 @@
           }
           &:hover,
           &:focus {
-            @include svgIconColor($colorRed100);
-            border-color: $colorRed100;
+            @include svgIconColor($sbbColorRed);
+            border-color: $sbbColorRed;
           }
           > * {
             width: toPx($paginationItemIconSize);

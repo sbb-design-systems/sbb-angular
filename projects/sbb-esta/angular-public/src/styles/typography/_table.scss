@@ -1,15 +1,15 @@
-@import 'globals';
+@import 'common';
 
-$tableBg: $colorWhite;
-$tableTheadBgColor: $colorBlack10;
-$tableTbodyStripesBgColor: $colorBlack5;
+$tableBg: $sbbColorWhite;
+$tableTheadBgColor: $sbbColorCloud;
+$tableTbodyStripesBgColor: $sbbColorMilk;
 $tableTheadPadding: pxToEm(16);
 $tableTbodyPadding: pxToEm(16);
 $tableTheadCellPaddingMobile: pxToEm(29) pxToEm(12) pxToEm(30) pxToEm(12);
 $tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
 $tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
 $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
-$tableCaptionColor: $colorGrey;
+$tableCaptionColor: $sbbColorGrey;
 
 @mixin table {
   table-layout: fixed;

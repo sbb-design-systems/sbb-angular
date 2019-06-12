@@ -36,7 +36,7 @@
   }
 
   @include mq($from: desktop4k) {
-    border: toPx(2 * $scalingFactor4k) solid $colorGrey;
+    border: toPx(2 * $scalingFactor4k) solid $sbbColorGrey;
     box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
 
@@ -46,7 +46,7 @@
   }
 
   @include mq($from: desktop5k) {
-    border: toPx(2 * $scalingFactor5k) solid $colorGrey;
+    border: toPx(2 * $scalingFactor5k) solid $sbbColorGrey;
     box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
     border-top: $autocompleteBorderTop;
     &::after {
@@ -129,7 +129,7 @@
 @mixin autocompleteInputActiveDefault() {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-color: $colorGrey;
+  border-color: $sbbColorGrey;
   border-bottom-color: transparent;
 
   &:hover,
@@ -143,9 +143,9 @@
   border-top-right-radius: 0;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  border-color: $colorGrey;
+  border-color: $sbbColorGrey;
   border-top-color: transparent;
-  border-bottom: 2px solid $colorGrey;
+  border-bottom: 2px solid $sbbColorGrey;
 
   &:hover,
   &:focus {

@@ -19,8 +19,8 @@
   }
 
   html {
-    background: $colorBg;
-    color: $colorText;
+    background: $sbbColorBg;
+    color: $sbbColorText;
     font-family: $fontSbbRoman;
     font-size: $sizeFontBase / 16px * 100%;
     line-height: $sizeLineHeightBase;
@@ -62,7 +62,7 @@
   table {
     th,
     td {
-      color: $colorHeadline;
+      color: $sbbColorBlack;
       font-size: pxToEm($sizeFontDefault);
       line-height: 1.5;
       margin: 0.75em 0 0; // paragraph as default

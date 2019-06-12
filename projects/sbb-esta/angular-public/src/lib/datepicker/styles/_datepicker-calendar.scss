@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin datePickerPopup() {
   @include mq($from: desktop4k) {
@@ -40,7 +40,7 @@
 
 @mixin datePickerCalendarHeader() {
   &-header {
-    border-bottom: 1px solid $colorGreySilver;
+    border-bottom: 1px solid $sbbColorPlatinum;
 
     @include mq($from: desktop4k) {
       border-bottom-width: toPx(1 * $scalingFactor4k);
@@ -74,7 +74,7 @@
         height: calc(100% - #{pxToEm(2)});
         top: pxToEm(2);
         right: 0;
-        border-right: 1px solid $colorGreySilver;
+        border-right: 1px solid $sbbColorPlatinum;
 
         @include mq($from: desktop4k) {
           border-right-width: toPx(1 * $scalingFactor4k);
@@ -138,7 +138,7 @@
 
     td,
     th {
-      color: $colorGrey;
+      color: $sbbColorGrey;
     }
 
     &-header {
@@ -149,7 +149,7 @@
         width: calc(100% - #{pxToEm(4)});
         left: pxToEm(2);
 
-        border-bottom: 1px solid $colorGreySilver;
+        border-bottom: 1px solid $sbbColorPlatinum;
 
         @include mq($from: desktop4k) {
           border-bottom-width: toPx(1 * $scalingFactor4k);

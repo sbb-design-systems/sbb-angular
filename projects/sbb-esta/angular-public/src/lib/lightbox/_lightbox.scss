@@ -1,13 +1,13 @@
-@import 'globals';
+@import 'common';
 
-$lightbox-bgcolor: $colorWhite;
+$lightbox-bgcolor: $sbbColorWhite;
 
 $lightbox-header-height: 64;
 $lightbox-header-y-padding: 20;
 $lightbox-header-x-padding-mobile: 20;
 $lightbox-header-x-padding-tablet: 24;
 $lightbox-header-x-padding: 60;
-$lightbox-header-border-color: $colorBlack10;
+$lightbox-header-border-color: $sbbColorCloud;
 
 $lightbox-content-y-padding-mobile: 36;
 $lightbox-content-y-padding: 48;
@@ -17,9 +17,9 @@ $lightbox-content-x-padding: 60;
 
 $lighbox-close-button-size: 24;
 $lighbox-close-icon-size: 16;
-$lighbox-close-button-color: $colorBlack40;
-$lighbox-close-button-color-hover: $colorRed125;
-$lighbox-close-icon-color: $colorGrey;
+$lighbox-close-button-color: $sbbColorStorm;
+$lighbox-close-button-color-hover: $sbbColorRed125;
+$lighbox-close-icon-color: $sbbColorGrey;
 
 $lightbox-footer-height-mobile: 168;
 $lightbox-footer-height-tablet: 96;

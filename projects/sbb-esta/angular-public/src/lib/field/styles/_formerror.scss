@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin formError($borderColor) {
   display: block;
@@ -9,7 +9,7 @@
   font-family: $fontSbbRoman;
   font-size: pxToRem(14);
   line-height: pxToEm(21, 14);
-  color: $colorError;
+  color: $sbbColorError;
 
   @include mq($from: desktop4k) {
     font-size: pxToRem(14 * $scalingFactor4k);

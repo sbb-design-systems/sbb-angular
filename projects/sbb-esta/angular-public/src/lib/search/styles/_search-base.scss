@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 @mixin search {
   display: block;
@@ -54,8 +54,8 @@
     }
     > button {
       @include buttonResetFrameless;
-      @include svgIconColor($colorWhite);
-      background-color: $colorRed100;
+      @include svgIconColor($sbbColorWhite);
+      background-color: $sbbColorRed;
       border-radius: 0 2px 2px 0;
       width: toPx($searchButtonWidth);
 
@@ -88,7 +88,7 @@
       }
 
       &.sbb-search-box-button-active {
-        border: 2px solid $colorGrey;
+        border: 2px solid $sbbColorGrey;
         border-left: none;
 
         @include mq($from: desktop4k) {
@@ -108,9 +108,9 @@
 
 @mixin searchIconWrapper {
   @include buttonResetFrameless;
-  @include svgIconColor($colorGrey);
+  @include svgIconColor($sbbColorGrey);
   cursor: pointer;
-  color: $colorGrey;
+  color: $sbbColorGrey;
   @include mq($from: desktop4k) {
     font-size: toPx($sizeFontBase * $scalingFactor4k);
   }
@@ -129,8 +129,8 @@
   }
   &:hover,
   &:focus {
-    @include svgIconColor($colorRed125);
-    color: $colorRed125;
+    @include svgIconColor($sbbColorRed125);
+    color: $sbbColorRed125;
   }
   .sbb-svgsprite-icon {
     position: relative;

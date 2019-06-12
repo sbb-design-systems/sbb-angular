@@ -1,9 +1,9 @@
-@import 'globals';
+@import 'common';
 
 $dateInputBorderWidth: 2;
 $defaultPickerIconSize: 24;
 $defaultToggleLeftOffset: $defaultPickerIconSize / 2;
-$pickerIconsHoverColor: $colorRed125;
+$pickerIconsHoverColor: $sbbColorRed125;
 $dateInputOneIconPadding: 44;
 $dateInputTwoIconPadding: 72;
 $withArrowsToggleLeftOffset: $defaultPickerIconSize +
@@ -15,20 +15,20 @@ $datePickerToggleWrapperArrowWidth: pxToEm(24);
 $datePickerToggleWrapperArrowHeight: pxToEm(16);
 $datePickerToggleArrowWidth: pxToEm(18);
 $datePickerToggleArrowHeight: pxToEm(2);
-$datePickerToggleArrowColor: $colorGrey;
+$datePickerToggleArrowColor: $sbbColorGrey;
 $datePickerToggleArrowBeforeOffset: pxToEm(-3);
 $datePickerToggleArrowAfterOffset: pxToEm(9);
 $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -
       $datePickerToggleArrowHeight);
 
-$datePickerCalendarBg: $colorWhite;
-$datePickerCalendarHeaderColor: $colorBlack60;
+$datePickerCalendarBg: $sbbColorWhite;
+$datePickerCalendarHeaderColor: $sbbColorMetal;
 $datePickerCalendarHeaderFontSize: pxToEm(13);
 $datePickerCalendarWidthMobile: pxToEm(340);
 $datePickerCalendarHeightMobile: pxToEm(380);
 $datePickerCalendarWidth: pxToEm(428);
 $datePickerCalendarHeight: pxToEm(428);
-$datePickerCalendarBorder: pxToEm(2) solid $colorGrey;
+$datePickerCalendarBorder: pxToEm(2) solid $sbbColorGrey;
 $datePickerCalendarBorderRadius: pxToEm(2);
 $datePickerCalendarBoxShadow: 0 pxToEm(8) 0 rgba(0, 0, 0, 0.15);
 $datePickerRevertCalendarBoxShadow: 0 pxToEm(-8) 0 rgba(0, 0, 0, 0.15);
@@ -37,9 +37,9 @@ $datePickerCalendarHeaderHeight: pxToEm(68);
 $datePickerCalendarTableContentPaddingMobile: 0 pxToEm(11) pxToEm(8) pxToEm(11);
 $datePickerCalendarTableContentPadding: 0 pxToEm(22) pxToEm(16) pxToEm(22);
 $datePickerCalendarTableTodayFontFamily: $fontSbbBold;
-$datePickerCalendarTableTodayColor: $colorBlack;
-$datePickerCalendarTableActiveColor: $colorRed125;
-$datePickerCalendarTableSelectedColor: $colorGrey;
-$datePickerCalendarTableRangeBgColor: $colorBlack5;
+$datePickerCalendarTableTodayColor: $sbbColorBlack;
+$datePickerCalendarTableActiveColor: $sbbColorRed125;
+$datePickerCalendarTableSelectedColor: $sbbColorGrey;
+$datePickerCalendarTableRangeBgColor: $sbbColorMilk;
 
-$datePickerCalendarDisabledCellColor: $colorBlack30;
+$datePickerCalendarDisabledCellColor: $sbbColorCement;

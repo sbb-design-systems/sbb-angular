@@ -1,4 +1,4 @@
-@import 'globals';
+@import 'common';
 
 /*** 
 * BUTTON CONFIGURATION VARIABLES 
@@ -7,16 +7,16 @@
 ***/
 
 $buttonSizeFontDefault: $sizeFontDefault;
-$buttonDefaultBgColor: $colorCallToAction;
-$buttonDefaultBgColorHover: $colorCallToActionHover;
-$buttonDefaultColor: $colorWhite;
-$buttonSecondaryColor: $colorBlack90;
-$buttonSecondaryBgColor: $colorGreyLight;
-$buttonSecondaryBgColorHover: $colorGreySilver;
-$buttonGhostColor: $colorGrey;
-$buttonGhostColorHover: $colorBlack90;
-$buttonGhostBorderColor: $colorBlack40;
-$buttonGhostBorderColorHover: $colorBlack90;
-$buttonFramelessColor: $colorBlack90;
-$buttonFramelessColorHover: $colorRed125;
-$buttonDisabledBorderColor: $colorGreyMedium;
+$buttonDefaultBgColor: $sbbColorCallToAction;
+$buttonDefaultBgColorHover: $sbbColorCallToActionHover;
+$buttonDefaultColor: $sbbColorWhite;
+$buttonSecondaryColor: $sbbColorIron;
+$buttonSecondaryBgColor: $sbbColorSilver;
+$buttonSecondaryBgColorHover: $sbbColorPlatinum;
+$buttonGhostColor: $sbbColorGrey;
+$buttonGhostColorHover: $sbbColorIron;
+$buttonGhostBorderColor: $sbbColorStorm;
+$buttonGhostBorderColorHover: $sbbColorIron;
+$buttonFramelessColor: $sbbColorIron;
+$buttonFramelessColorHover: $sbbColorRed125;
+$buttonDisabledBorderColor: $sbbColorGreyMedium;
