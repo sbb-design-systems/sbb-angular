@@ -1,10 +1,6 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-if (process.env.CONTINUOUS_INTEGRATION) {
-  process.env.CHROME_BIN = require('puppeteer').executablePath();
-}
-
 module.exports = function(config) {
   const dist = require('path').join(
     __dirname,
