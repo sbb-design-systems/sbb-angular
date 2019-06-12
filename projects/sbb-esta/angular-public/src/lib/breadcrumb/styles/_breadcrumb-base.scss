@@ -104,6 +104,67 @@
     &::before {
       border: $breadcrumbTriggerBorder;
     }
+    
+    &-icon {
+      @include svgIconColor($sbbColorGrey);
+      width: toPx(16);
+      height: toPx(16);
+      line-height: toPx($breadcrumbArrowLineHeight);
+      margin: 0;
+      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft);
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 50%;
+      display: none;
+      position: relative;
+      transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
+  
+      @include mq($from: desktop4k) {
+        border-width: toPx(1 * $scalingFactor4k);
+        height: toPx(16 * $scalingFactor4k);
+        width: toPx(16 * $scalingFactor4k);
+        margin-left: toPx(
+          $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k
+        );
+      }
+      @include mq($from: desktop5k) {
+        border-width: toPx(1 * $scalingFactor5k);
+        height: toPx(16 * $scalingFactor5k);
+        width: toPx(16 * $scalingFactor5k);
+        margin-left: toPx(
+          $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k
+        );
+      }
+      &-visible {
+        display: block;
+        > .sbb-icon-component {
+          @include absoluteCenterXY;
+          padding: 0;
+          width: toPx($breadcrumbArrowWidth);
+          height: toPx($breadcrumbArrowHeight);
+          @include mq($from: desktop4k) {
+            width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+            height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+          }
+          @include mq($from: desktop5k) {
+            width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+            height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+          }
+        }
+      }
+      &-active {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.sbb-breadcrumb-trigger-open {
+      .sbb-breadcrumb-trigger-icon {
+        @include svgIconColor($sbbColorRed125);
+      }
+    }
 
     &-open {
       &::before {
@@ -184,71 +245,6 @@
       &:focus {
         @include svgIconColor($sbbColorRed125);
         color: $sbbColorRed125;
-      }
-    }
-  }
-
-  .sbb-breadcrumb-trigger-icon {
-    width: toPx(16);
-    height: toPx(16);
-    line-height: toPx($breadcrumbArrowLineHeight);
-    margin: 0;
-    margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft);
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 50%;
-    display: none;
-    position: relative;
-    transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
-
-    @include mq($from: desktop4k) {
-      border-width: toPx(1 * $scalingFactor4k);
-      height: toPx(16 * $scalingFactor4k);
-      width: toPx(16 * $scalingFactor4k);
-      margin-left: toPx(
-        $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k
-      );
-    }
-    @include mq($from: desktop5k) {
-      border-width: toPx(1 * $scalingFactor5k);
-      height: toPx(16 * $scalingFactor5k);
-      width: toPx(16 * $scalingFactor5k);
-      margin-left: toPx(
-        $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k
-      );
-    }
-    &-visible {
-      display: block;
-      > .sbb-icon-component {
-        @include absoluteCenterXY;
-        padding: 0;
-        width: toPx($breadcrumbArrowWidth);
-        height: toPx($breadcrumbArrowHeight);
-        @include mq($from: desktop4k) {
-          width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
-          height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
-          height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
-        }
-      }
-    }
-    &-active {
-      transform: rotate(-180deg);
-    }
-  }
-
-  .sbb-breadcrumb-trigger {
-    &-icon {
-      @include svgIconColor($sbbColorGrey);
-    }
-    &:hover,
-    &:focus,
-    &:active,
-    &.sbb-breadcrumb-trigger-open {
-      .sbb-breadcrumb-trigger-icon {
-        @include svgIconColor($sbbColorRed125);
       }
     }
   }
