@@ -64,7 +64,7 @@ module.exports = function(config) {
         browser: 'Chrome'
       },
       HeadlessChromeNoSandbox: {
-        base: 'HeadlessChrome',
+        base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       }
     },
