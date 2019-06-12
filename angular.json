@@ -179,7 +179,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "BsChrome",
+              "browsers": "HeadlessChromeNoSandbox",
               "sourceMap": false,
               "progress": false
             },

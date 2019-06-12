@@ -3,6 +3,8 @@ node_js:
   - '10'
 dist: trusty
 sudo: required
+addons:
+  chrome: stable
 
 cache: npm
 

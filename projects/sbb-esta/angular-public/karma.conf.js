@@ -66,6 +66,10 @@ module.exports = function(config) {
         os: 'Windows',
         os_version: '10',
         browser: 'Chrome'
+      },
+      HeadlessChromeNoSandbox: {
+        base: 'HeadlessChrome',
+        flags: ['--no-sandbox']
       }
     },
     singleRun: false,

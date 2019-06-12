@@ -158,9 +158,6 @@
     "tslint-sonarts": "^1.9.0",
     "typescript": "~3.2.2"
   },
-  "optionalDependencies": {
-    "puppeteer": "^1.11.0"
-  },
   "standard-version": {
     "skip": {
       "tag": true
@@ -182,7 +179,17 @@
     "extends": "stylelint-config-recommended-scss",
     "rules": {
       "no-empty-source": null,
-      "selector-type-no-unknown": [true, { "ignoreTypes": ["/^sbb-/", "perfect-scrollbar", "ngx-monaco-editor", "ngb-tabset"] }],
+      "selector-type-no-unknown": [
+        true,
+        {
+          "ignoreTypes": [
+            "/^sbb-/",
+            "perfect-scrollbar",
+            "ngx-monaco-editor",
+            "ngb-tabset"
+          ]
+        }
+      ],
       "no-descending-specificity": null
     }
   },
