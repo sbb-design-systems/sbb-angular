@@ -15,10 +15,8 @@ module.exports = function(config) {
       require('karma-firefox-launcher'),
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-junit-reporter'),
       require('karma-sonarqube-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -34,12 +32,6 @@ module.exports = function(config) {
       timeout: 1800,
       video: false
     },
-    junitReporter: {
-      outputDir: dist,
-      suite: 'unit-tests',
-      outputFile: 'unit-tests.xml',
-      useBrowserName: false
-    },
     sonarqubeReporter: {
       basePath: 'projects/sbb-esta/angular-public/src',
       outputFolder: dist,
@@ -50,7 +42,7 @@ module.exports = function(config) {
       reports: ['html', 'lcovonly', 'cobertura'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml', 'junit', 'sonarqube'],
+    reporters: ['progress', 'kjhtml', 'sonarqube'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -65,7 +57,12 @@ module.exports = function(config) {
       },
       HeadlessChromeNoSandbox: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
+        flags: [
+          '--no-sandbox',
+          '--disable-renderer-backgrounding',
+          '--disable-device-discovery-notifications',
+          '--disable-web-security'
+        ]
       }
     },
     singleRun: false,
