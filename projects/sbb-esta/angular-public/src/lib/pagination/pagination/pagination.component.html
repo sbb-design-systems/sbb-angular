@@ -25,6 +25,7 @@
       [skipLocationChange]="selectedPage.previousLink?.skipLocationChange"
       [replaceUrl]="selectedPage.previousLink?.replaceUrl"
       [queryParamsHandling]="selectedPage.previousLink?.queryParamsHandling"
+      [state]="selectedPage.previousLink?.state"
       (click)="previousLink(selectedPage)"
     >
       <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
@@ -67,6 +68,7 @@
         [skipLocationChange]="page.link?.skipLocationChange"
         [replaceUrl]="page.link?.replaceUrl"
         [queryParamsHandling]="page.link?.queryParamsHandling"
+        [state]="page.link?.state"
         routerLinkActive="sbb-pagination-item-selected"
         [routerLinkActiveOptions]="{ exact: true }"
         #rla="routerLinkActive"
@@ -102,6 +104,7 @@
       [skipLocationChange]="selectedPage.nextLink?.skipLocationChange"
       [replaceUrl]="selectedPage.nextLink?.replaceUrl"
       [queryParamsHandling]="selectedPage.nextLink?.queryParamsHandling"
+      [state]="selectedPage.nextLink?.state"
       (click)="nextLink(selectedPage)"
     >
       <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>

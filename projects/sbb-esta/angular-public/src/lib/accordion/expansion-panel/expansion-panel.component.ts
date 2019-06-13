@@ -110,18 +110,17 @@ export class ExpansionPanelComponent extends CdkAccordionItem
   private _document: Document;
 
   /** Stream that emits for changes in `@Input` properties. */
-  // tslint:disable-next-line: naming-convention
   readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
   accordion: IAccordionBase;
 
   /** Content that will be rendered lazily. */
-  @ContentChild(ExpansionPanelContentDirective)
+  @ContentChild(ExpansionPanelContentDirective, { static: false })
   lazyContent: ExpansionPanelContentDirective;
 
   /** Element containing the panel's user-provided content. */
-  @ViewChild('body') body: ElementRef<HTMLElement>;
+  @ViewChild('body', { static: true }) body: ElementRef<HTMLElement>;
 
   /** Portal holding the user's content. */
   portal: TemplatePortal;

@@ -29,6 +29,7 @@
       [skipLocationChange]="previousLink.link?.skipLocationChange"
       [replaceUrl]="previousLink.link?.replaceUrl"
       [queryParamsHandling]="previousLink.link?.queryParamsHandling"
+      [state]="previousLink.link?.state"
       (click)="pageChange.emit('previous')"
       [attr.title]="previousLink.title"
     >
@@ -72,6 +73,7 @@
       [skipLocationChange]="nextLink.link?.skipLocationChange"
       [replaceUrl]="nextLink.link?.replaceUrl"
       [queryParamsHandling]="nextLink.link?.queryParamsHandling"
+      [state]="nextLink.link?.state"
       (click)="pageChange.emit('next')"
       [attr.title]="nextLink.title"
     >

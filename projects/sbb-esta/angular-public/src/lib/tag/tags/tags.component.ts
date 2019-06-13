@@ -56,7 +56,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   /**
    * Refers to the tag always displayed in the filter.
    */
-  @ViewChild('allTag')
+  @ViewChild('allTag', { static: true })
   allTag: TagComponent;
 
   ngAfterContentInit() {

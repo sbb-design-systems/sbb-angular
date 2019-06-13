@@ -63,12 +63,12 @@ export class BreadcrumbComponent extends DropdownTriggerDirective
   /**
    * Refers to a dropdown instance.
    */
-  @ContentChild(DropdownComponent) dropdown: DropdownComponent;
+  @ContentChild(DropdownComponent, { static: false }) dropdown: DropdownComponent;
 
   /**
    * Trigger on the open of the dropdown contained in breadcrumb.
    */
-  @ViewChild('breadcrumbTrigger') breadcrumbTrigger: ElementRef;
+  @ViewChild('breadcrumbTrigger', { static: false }) breadcrumbTrigger: ElementRef;
 
   /**
    * Css class of a sbb-breadcrumb.

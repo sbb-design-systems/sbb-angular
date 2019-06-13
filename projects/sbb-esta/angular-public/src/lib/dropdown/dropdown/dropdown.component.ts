@@ -62,9 +62,7 @@ export class DropdownComponent implements AfterContentInit {
   /**
    * Reference to the dropdown items.
    */
-  @ContentChildren(DropdownItemDirective) options: QueryList<
-    DropdownItemDirective
-  >;
+  @ContentChildren(DropdownItemDirective) options: QueryList<DropdownItemDirective>;
 
   /** Manages active item in option list based on key events. */
   keyManager: ActiveDescendantKeyManager<DropdownItemDirective>;
@@ -85,10 +83,10 @@ export class DropdownComponent implements AfterContentInit {
   @HostBinding('class.sbb-dropdown') sbbDropdown = true;
 
   /** @docs-private */
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
   /** Element for the panel containing the dropdown options. */
-  @ViewChild('panel') panel: ElementRef;
+  @ViewChild('panel', { static: false }) panel: ElementRef;
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;
@@ -112,9 +110,9 @@ export class DropdownComponent implements AfterContentInit {
   @Input() panelWidth: string | number;
 
   /** Event that is emitted whenever an option from the list is selected. */
-  @Output() readonly optionSelected: EventEmitter<
+  @Output() readonly optionSelected: EventEmitter<DropdownSelectedEvent> = new EventEmitter<
     DropdownSelectedEvent
-  > = new EventEmitter<DropdownSelectedEvent>();
+  >();
 
   /** Event that is emitted when the dropdown panel is opened. */
   @Output() readonly opened: EventEmitter<void> = new EventEmitter<void>();
@@ -129,13 +127,10 @@ export class DropdownComponent implements AfterContentInit {
   @Input('class')
   set classList(value: string) {
     if (value && value.length) {
-      value
-        .split(' ')
-        .forEach(className => (this._classList[className.trim()] = true));
+      value.split(' ').forEach(className => (this._classList[className.trim()] = true));
       this._elementRef.nativeElement.className = '';
     }
   }
-  // tslint:disable-next-line: naming-convention
   _classList: { [key: string]: boolean } = {};
 
   /** Unique ID to be used by dropdown trigger's "aria-owns" property. */

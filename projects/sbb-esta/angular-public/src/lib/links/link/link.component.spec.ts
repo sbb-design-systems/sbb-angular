@@ -68,7 +68,6 @@ describe('LinkComponent', () => {
 
   it('should have grey text and icon in form mode', () => {
     component.mode = 'form';
-    component.ngOnChanges({ mode: new SimpleChange('normal', 'form', false) });
     fixture.detectChanges();
 
     const elementStyle = getComputedStyle(fixture.debugElement.nativeElement);

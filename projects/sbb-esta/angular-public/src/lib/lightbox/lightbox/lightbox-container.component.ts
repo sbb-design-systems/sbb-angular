@@ -51,7 +51,7 @@ export function throwLightboxContentAlreadyAttachedError() {
 })
 export class LightboxContainerComponent extends BasePortalOutlet {
   /** The portal outlet inside of this container into which the lightbox content will be loaded. */
-  @ViewChild(CdkPortalOutlet) portalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet: CdkPortalOutlet;
 
   @HostBinding('class.sbb-lightbox-container')
   containerClass = true;

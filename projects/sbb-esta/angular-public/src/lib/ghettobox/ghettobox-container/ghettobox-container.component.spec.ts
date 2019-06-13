@@ -31,7 +31,7 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
   entryComponents: [GhettoboxComponent]
 })
 export class GhettoboxContainerTestComponent {
-  @ViewChild('testIcon1', { read: TemplateRef })
+  @ViewChild('testIcon1', { read: TemplateRef, static: false })
   testIcon: TemplateRef<any>;
 }
 
@@ -50,12 +50,7 @@ describe('GhettoboxContainerComponent', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        IconCollectionModule,
-        NoopAnimationsModule,
-        PortalModule
-      ],
+      imports: [RouterTestingModule, IconCollectionModule, NoopAnimationsModule, PortalModule],
       declarations: [
         GhettoboxContainerComponent,
         GhettoboxContainerTestComponent,
@@ -77,9 +72,8 @@ describe('GhettoboxContainerComponent', () => {
   });
 
   it('should bind proper accessibility attributes', () => {
-    const element = fixture.debugElement.query(
-      By.directive(GhettoboxContainerComponent)
-    ).nativeElement;
+    const element = fixture.debugElement.query(By.directive(GhettoboxContainerComponent))
+      .nativeElement;
 
     expect(element.getAttribute('role')).toEqual('region');
     expect(element.getAttribute('aria-live')).toEqual('assertive');
@@ -88,9 +82,7 @@ describe('GhettoboxContainerComponent', () => {
   });
 
   it('should project the intial ghettobox', () => {
-    const projectedGhetto = fixture.debugElement.query(
-      By.directive(GhettoboxComponent)
-    );
+    const projectedGhetto = fixture.debugElement.query(By.directive(GhettoboxComponent));
 
     expect(projectedGhetto.componentInstance).toBeTruthy();
   });
@@ -107,18 +99,14 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    const ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
     const icon = ghettoboxes[1].query(By.css('sbb-icon-him-replacementbus'));
     const linkHref = ghettoboxes[1]
       .query(By.css('.sbb-ghettobox-link'))
       .nativeElement.getAttribute('href');
 
     expect(ghettoboxes.length).toEqual(2);
-    expect(ghettoboxes[1].componentInstance.ghettobox.message).toBe(
-      'TEST MESSAGE'
-    );
+    expect(ghettoboxes[1].componentInstance.ghettobox.message).toBe('TEST MESSAGE');
     expect(icon).toBeTruthy();
     expect(linkHref).toBe('/?test=10#test');
   });
@@ -136,9 +124,7 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(2);
 
@@ -149,9 +135,7 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(1);
     expect(ghettoboxService.attachedGhettoboxes.length).toEqual(1);
@@ -170,9 +154,7 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(2);
 
@@ -181,9 +163,7 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(1);
     expect(ghettoboxService.attachedGhettoboxes.length).toEqual(1);
@@ -202,9 +182,7 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(2);
 
@@ -213,9 +191,7 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxes = fixture.debugElement.queryAll(
-      By.directive(GhettoboxComponent)
-    );
+    ghettoboxes = fixture.debugElement.queryAll(By.directive(GhettoboxComponent));
 
     expect(ghettoboxes.length).toEqual(1);
     expect(ghettoboxService.attachedGhettoboxes.length).toEqual(1);

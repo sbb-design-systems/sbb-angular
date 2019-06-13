@@ -1,9 +1,4 @@
-import {
-  Overlay,
-  OverlayConfig,
-  OverlayRef,
-  ScrollStrategy
-} from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, OverlayRef, ScrollStrategy } from '@angular/cdk/overlay';
 import {
   ComponentPortal,
   ComponentType,
@@ -36,9 +31,9 @@ export const LIGHTBOX_DEFAULT_OPTIONS = new InjectionToken<LightboxConfig>(
 );
 
 /** Injection token that determines the scroll handling while the dialog is open. */
-export const LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<
-  () => ScrollStrategy
->('LightboxScrollStrategy');
+export const LIGHTBOX_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+  'LightboxScrollStrategy'
+);
 
 /** @docs-private */
 export function SBB_LIGHTBOX_SCROLL_STRATEGY_PROVIDER_FACTORY(
@@ -74,12 +69,9 @@ export class Lightbox {
 
   /** Stream that emits when a lightbox has been opened. */
   get afterOpen(): Subject<LightboxRef<any>> {
-    return this._parentLightbox
-      ? this._parentLightbox.afterOpen
-      : this._afterOpenAtThisLevel;
+    return this._parentLightbox ? this._parentLightbox.afterOpen : this._afterOpenAtThisLevel;
   }
 
-  // tslint:disable-next-line: naming-convention
   get _afterAllClosed(): Subject<void> {
     const parent = this._parentLightbox;
     return parent ? parent._afterAllClosed : this._afterAllClosedAtThisLevel;
@@ -118,9 +110,7 @@ export class Lightbox {
     config = { ...(this._defaultOptions || new LightboxConfig()), ...config };
     if (config.id && this.getLightboxById(config.id)) {
       throw Error(
-        `lightbox with id "${
-          config.id
-        }" exists already. The lightbox id must be unique.`
+        `lightbox with id "${config.id}" exists already. The lightbox id must be unique.`
       );
     }
 
@@ -134,9 +124,7 @@ export class Lightbox {
     );
 
     this.openLightboxes.push(lightboxRef);
-    lightboxRef
-      .afterClosed()
-      .subscribe(() => this._removeOpenLightbox(lightboxRef));
+    lightboxRef.afterClosed().subscribe(() => this._removeOpenLightbox(lightboxRef));
     this.afterOpen.next(lightboxRef);
 
     return lightboxRef;
@@ -201,8 +189,7 @@ export class Lightbox {
     overlay: OverlayRef,
     config: LightboxConfig
   ): LightboxContainerComponent {
-    const userInjector =
-      config && config.viewContainerRef && config.viewContainerRef.injector;
+    const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
     const injector = new PortalInjector(
       userInjector || this._injector,
       new WeakMap([[LightboxConfig, config]])
@@ -212,9 +199,7 @@ export class Lightbox {
       config.viewContainerRef,
       injector
     );
-    const containerRef = overlay.attach<LightboxContainerComponent>(
-      containerPortal
-    );
+    const containerRef = overlay.attach<LightboxContainerComponent>(containerPortal);
 
     return containerRef.instance;
   }
@@ -251,11 +236,7 @@ export class Lightbox {
         })
       );
     } else {
-      const injector = this._createInjector<T>(
-        config,
-        lightboxRef,
-        lightboxContainer
-      );
+      const injector = this._createInjector<T>(config, lightboxRef, lightboxContainer);
       const contentRef = lightboxContainer.attachComponentPortal<T>(
         new ComponentPortal(componentOrTemplateRef, undefined, injector)
       );
@@ -278,8 +259,7 @@ export class Lightbox {
     lightboxRef: LightboxRef<T>,
     lightboxContainer: LightboxContainerComponent
   ): PortalInjector {
-    const userInjector =
-      config && config.viewContainerRef && config.viewContainerRef.injector;
+    const userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
 
     // The LightboxContainer is injected in the portal as the LightboxContainer and the lightbox's
     // content are created out of the same ViewContainerRef and as such, are siblings for injector

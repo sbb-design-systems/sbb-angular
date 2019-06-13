@@ -62,9 +62,7 @@ export class NavigationComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.nextPage && !this.previousPage) {
-      throw Error(
-        'At least hasNext or hasPrevious must be defined in <sbb-navigation>'
-      );
+      throw Error('At least hasNext or hasPrevious must be defined in <sbb-navigation>');
     } else if (this.linkGenerator) {
       if (this.previousPage) {
         this.previousLink = {

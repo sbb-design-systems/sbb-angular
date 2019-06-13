@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   isSourceTabClicked: boolean;
   gettingStartedClicked: boolean;
 
-  @ViewChild('maincontent') maincontent: ElementRef;
+  @ViewChild('maincontent', { static: true }) maincontent: ElementRef;
 
   constructor(
     private _componentUiService: ComponentUiService,

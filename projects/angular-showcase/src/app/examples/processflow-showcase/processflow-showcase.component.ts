@@ -10,7 +10,7 @@ import {
   styleUrls: ['./processflow-showcase.component.scss']
 })
 export class ProcessflowShowcaseComponent implements AfterViewInit {
-  @ViewChild('processflow') processflow: ProcessflowComponent;
+  @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;
 
   ngAfterViewInit(): void {
     this.processflow.stepChange.subscribe((s: ProcessflowStep) => {

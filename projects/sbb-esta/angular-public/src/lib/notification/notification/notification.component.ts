@@ -58,15 +58,15 @@ export class NotificationComponent {
   type: 'success' | 'info' | 'error' = NotificationType.SUCCESS;
 
   /** @docs-private */
-  @ViewChild('error', { read: TemplateRef })
+  @ViewChild('error', { read: TemplateRef, static: true })
   errorIcon: TemplateRef<any>;
 
   /** @docs-private */
-  @ViewChild('check', { read: TemplateRef })
+  @ViewChild('check', { read: TemplateRef, static: true })
   checkIcon: TemplateRef<any>;
 
   /** @docs-private */
-  @ViewChild('info', { read: TemplateRef })
+  @ViewChild('info', { read: TemplateRef, static: true })
   infoIcon: TemplateRef<any>;
 
   /** The icon to be used into the notification left side.
@@ -74,7 +74,7 @@ export class NotificationComponent {
    *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  @ContentChild(NotificationIconDirective, { read: TemplateRef })
+  @ContentChild(NotificationIconDirective, { read: TemplateRef, static: false })
   set icon(notificationIcon: TemplateRef<any>) {
     this._icon = notificationIcon;
   }
@@ -115,8 +115,6 @@ export class NotificationComponent {
    */
   scrollTo($event: any, jumpMark: JumpMark) {
     $event.preventDefault();
-    document
-      .querySelector(jumpMark.elementId)
-      .scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(jumpMark.elementId).scrollIntoView({ behavior: 'smooth' });
   }
 }

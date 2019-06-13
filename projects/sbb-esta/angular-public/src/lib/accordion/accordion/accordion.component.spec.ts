@@ -28,7 +28,7 @@ import {
   `
 })
 class SetOfItemsComponent {
-  @ViewChild(AccordionComponent) accordion: AccordionComponent;
+  @ViewChild(AccordionComponent, { static: true }) accordion: AccordionComponent;
   @ViewChildren(ExpansionPanelComponent) panels: QueryList<
     ExpansionPanelComponent
   >;
@@ -53,8 +53,8 @@ class SetOfItemsComponent {
   `
 })
 class NestedPanelComponent {
-  @ViewChild('outerPanel') outerPanel: ExpansionPanelComponent;
-  @ViewChild('innerPanel') innerPanel: ExpansionPanelComponent;
+  @ViewChild('outerPanel', { static: true }) outerPanel: ExpansionPanelComponent;
+  @ViewChild('innerPanel', { static: true }) innerPanel: ExpansionPanelComponent;
 }
 
 @Component({

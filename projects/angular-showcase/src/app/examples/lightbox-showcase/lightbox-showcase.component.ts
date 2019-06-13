@@ -119,7 +119,7 @@ export class LightboxShowcaseExample2Component {
   templateUrl: 'lightbox-showcase-content-3.component.html'
 })
 export class LightboxShowcaseExample3Component {
-  @ViewChild('sampleLightboxTemplate') sampleLightboxTemplate: TemplateRef<any>;
+  @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {

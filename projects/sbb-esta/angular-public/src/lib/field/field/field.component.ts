@@ -5,18 +5,15 @@ import {
   Component,
   ContentChild,
   ContentChildren,
+  HostBinding,
   Input,
-  OnChanges,
   OnDestroy,
   QueryList,
-  Self,
-  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { HostClass } from '../../_common/host-class';
 import { FormErrorDirective } from '../form-error/form-error.directive';
 import { FormFieldControl } from '../form-field-control';
 import { FORM_FIELD } from '../form-field-token';
@@ -28,9 +25,9 @@ import { LabelComponent } from '../label/label.component';
   styleUrls: ['./field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [HostClass, { provide: FORM_FIELD, useExisting: FieldComponent }]
+  providers: [{ provide: FORM_FIELD, useExisting: FieldComponent }]
 })
-export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
+export class FieldComponent implements AfterContentInit, OnDestroy {
   /**
    * The label text for the input.
    */
@@ -40,32 +37,38 @@ export class FieldComponent implements AfterContentInit, OnChanges, OnDestroy {
    */
   @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
-  // tslint:disable-next-line: naming-convention
-  @ContentChild(FormFieldControl) _control: FormFieldControl<any>;
-  @ContentChild(LabelComponent) contentLabel: LabelComponent;
-  @ContentChildren(FormErrorDirective) formErrors: QueryList<
-    FormErrorDirective
-  >;
+  @ContentChild(FormFieldControl, { static: false }) _control: FormFieldControl<any>;
+  @ContentChild(LabelComponent, { static: true }) contentLabel: LabelComponent;
+  @ContentChildren(FormErrorDirective) formErrors: QueryList<FormErrorDirective>;
+
+  /** @docs-private */
+  @HostBinding('class.sbb-input-field-default')
+  get _defaultClass() {
+    return this.mode === 'default';
+  }
+  /** @docs-private */
+  @HostBinding('class.sbb-input-field-short')
+  get _shortClass() {
+    return this.mode === 'short';
+  }
+  /** @docs-private */
+  @HostBinding('class.sbb-input-field-medium')
+  get _mediumClass() {
+    return this.mode === 'medium';
+  }
+  /** @docs-private */
+  @HostBinding('class.sbb-input-field-long')
+  get _longClass() {
+    return this.mode === 'long';
+  }
 
   private _destroyed = new Subject<void>();
 
-  constructor(
-    @Self() private _hostClass: HostClass,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
   ngAfterContentInit() {
     if (this._control) {
       this._initializeFormFieldControl();
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes.mode &&
-      changes.mode.currentValue !== changes.mode.previousValue
-    ) {
-      this._hostClass.apply(`sbb-input-field-${this.mode}`);
     }
   }
 

@@ -35,15 +35,12 @@ import { TooltipIconDirective } from './tooltip-icon.directive';
 import { TooltipRegistryService } from './tooltip-registry.service';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
-export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<
-  () => ScrollStrategy
->('sbb-tooltip-scroll-strategy');
+export const SBB_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+  'sbb-tooltip-scroll-strategy'
+);
 
 /** @docs-private */
-// tslint:disable-next-line: naming-convention
-export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(
-  overlay: Overlay
-): () => ScrollStrategy {
+export function SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
@@ -94,23 +91,21 @@ export class TooltipComponent implements OnDestroy {
   /**
    * @docs-private
    */
-  @ViewChild('tooltipTemplate') tooltipContentPortal: TemplatePortal<any>;
+  @ViewChild('tooltipTemplate', { static: true }) tooltipContentPortal: TemplatePortal<any>;
   /**
    * Refers to tooltip trigger element.
    */
-  @ViewChild('trigger') tooltipTrigger: ElementRef<any>;
+  @ViewChild('trigger', { static: true }) tooltipTrigger: ElementRef<any>;
 
   /** @docs-private */
-  @ViewChild('defaultIcon', { read: TemplateRef }) defaultIcon: TemplateRef<
-    any
-  >;
+  @ViewChild('defaultIcon', { read: TemplateRef, static: true }) defaultIcon: TemplateRef<any>;
 
   /**
    * The icon to be used as click target.
    * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
    */
   @Input()
-  @ContentChild(TooltipIconDirective, { read: TemplateRef })
+  @ContentChild(TooltipIconDirective, { read: TemplateRef, static: false })
   set icon(tooltipIcon: TemplateRef<any>) {
     this._icon = tooltipIcon;
   }
@@ -268,8 +263,7 @@ export class TooltipComponent implements OnDestroy {
           this.overlayAttached &&
           clickTarget !== this.tooltipTrigger.nativeElement &&
           !this.tooltipTrigger.nativeElement.contains(clickTarget) &&
-          (!!this.tooltipRef &&
-            !this.tooltipRef.overlayElement.contains(clickTarget))
+          (!!this.tooltipRef && !this.tooltipRef.overlayElement.contains(clickTarget))
         );
       })
     );

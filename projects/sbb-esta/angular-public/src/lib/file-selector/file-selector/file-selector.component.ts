@@ -77,7 +77,7 @@ export class FileSelectorComponent
   /**
    * @docs-private
    */
-  @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInput', { static: true }) fileInput: ElementRef<HTMLInputElement>;
 
   /**
    * List of files uploaded.

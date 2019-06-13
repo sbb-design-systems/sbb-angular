@@ -16,10 +16,10 @@ export class Food {
   styleUrls: ['./select-showcase.component.scss']
 })
 export class SelectShowcaseComponent {
-  @ViewChild('basicSelect') basicSelect: SelectComponent;
-  @ViewChild('multiSelect') multiSelect: SelectComponent;
-  @ViewChild('withOptionGroup') withOptionGroup: SelectComponent;
-  @ViewChild('multiWithOptionGroup') multiWithOptionGroup: SelectComponent;
+  @ViewChild('basicSelect', { static: true }) basicSelect: SelectComponent;
+  @ViewChild('multiSelect', { static: true }) multiSelect: SelectComponent;
+  @ViewChild('withOptionGroup', { static: true }) withOptionGroup: SelectComponent;
+  @ViewChild('multiWithOptionGroup', { static: true }) multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
     new Food('beefsteak-0', 'Beefsteak'),

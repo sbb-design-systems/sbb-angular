@@ -1,4 +1,4 @@
-import { Component, DebugElement, Type } from '@angular/core';
+import { Component, DebugElement, Type, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -14,23 +14,14 @@ import { ButtonComponent } from './button.component';
 @Component({
   selector: 'sbb-button-test',
   template: `
-    <button
-      sbbButton
-      [icon]="icon"
-      [mode]="mode"
-      [disabled]="disabled"
-      (click)="testClick()"
-    >
+    <button sbbButton [icon]="icon" [mode]="mode" [disabled]="disabled" (click)="testClick()">
       Bezeichnung
     </button>
-    <ng-template #icon
-      ><sbb-icon-arrow-right></sbb-icon-arrow-right
-    ></ng-template>
+    <ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>
   `,
   entryComponents: [TestIconComponent]
 })
 export class ButtonTemplateTestComponent {
-  icon: Type<{}>;
   mode: string;
   disabled: boolean;
 
@@ -44,11 +35,7 @@ describe('ButtonComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule],
-      declarations: [
-        ButtonComponent,
-        ButtonTemplateTestComponent,
-        ButtonIconDirective
-      ]
+      declarations: [ButtonComponent, ButtonTemplateTestComponent, ButtonIconDirective]
     });
   });
 
@@ -62,9 +49,7 @@ describe('ButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have two icons instanciated if the icon is being passed', () => {
-    component.icon = TestIconComponent;
-
+  it('should have two icons instantiated if the icon is being passed', () => {
     fixture.detectChanges();
 
     const icons = fixture.debugElement.queryAll(By.css('sbb-icon-arrow-right'));
@@ -81,34 +66,25 @@ describe('ButtonComponent', () => {
 
     beforeEach(() => {
       component.mode = 'primary';
-      component.icon = TestIconComponent;
 
       fixture.detectChanges();
 
-      sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
+      sbbButton = fixture.debugElement.query(By.css('button.sbb-button'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(
-        By.css('sbb-icon-arrow-right svg')
-      );
+      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
     it('should have a red background color of rgb(235, 0, 0)/#EB0000', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe(
-        'rgb(235, 0, 0)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgb(235, 0, 0)');
     });
 
     it('should have a white text color', () => {
-      expect(sbbButtonStyle.getPropertyValue('color')).toBe(
-        'rgb(255, 255, 255)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(255, 255, 255)');
     });
 
     it('should the icons be white', () => {
-      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe(
-        'rgb(255, 255, 255)'
-      );
+      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe('rgb(255, 255, 255)');
     });
   });
 
@@ -120,22 +96,17 @@ describe('ButtonComponent', () => {
 
     beforeEach(() => {
       component.mode = 'secondary';
-      component.icon = TestIconComponent;
 
       fixture.detectChanges();
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(
-        By.css('sbb-icon-arrow-right svg')
-      );
+      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
     it('should have a grey background color of rgb(220, 220, 220)/#DCDCDC', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe(
-        'rgb(220, 220, 220)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgb(220, 220, 220)');
     });
 
     it('should have a grey text color of rgb(68, 68, 68)/#444444', () => {
@@ -143,9 +114,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should the icons be grey of rgb(68, 68, 68)/#444444', () => {
-      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe(
-        'rgb(68, 68, 68)'
-      );
+      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe('rgb(68, 68, 68)');
     });
   });
 
@@ -163,15 +132,11 @@ describe('ButtonComponent', () => {
     });
 
     it('should have a transparent background color', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe(
-        'rgba(0, 0, 0, 0)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
     });
 
     it('should have a grey text of color rgb(102, 102, 102)/#666666', () => {
-      expect(sbbButtonStyle.getPropertyValue('color')).toBe(
-        'rgb(102, 102, 102)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
     });
 
     it('should have a grey border color of rgb(168, 168, 168)/#A8A8A8', () => {
@@ -192,22 +157,17 @@ describe('ButtonComponent', () => {
 
     beforeEach(() => {
       component.mode = 'frameless';
-      component.icon = TestIconComponent;
 
       fixture.detectChanges();
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIcon = fixture.debugElement.query(
-        By.css('sbb-icon-arrow-right svg')
-      );
+      sbbButtonIcon = fixture.debugElement.query(By.css('sbb-icon-arrow-right svg'));
       sbbButtonIconStyle = getComputedStyle(sbbButtonIcon.nativeElement);
     });
 
     it('should have a transparent background', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe(
-        'rgba(0, 0, 0, 0)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
     });
 
     it('should have a grey text color of rgb(68, 68, 68)/#444444', () => {
@@ -215,9 +175,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should the icons be grey of rgb(68, 68, 68)/#444444', () => {
-      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe(
-        'rgb(68, 68, 68)'
-      );
+      expect(sbbButtonIconStyle.getPropertyValue('fill')).toBe('rgb(68, 68, 68)');
     });
 
     it('should not have a box shadow', () => {
@@ -242,31 +200,22 @@ describe('ButtonComponent', () => {
 
     beforeEach(() => {
       component.mode = 'primary';
-      component.icon = TestIconComponent;
       component.disabled = true;
 
       fixture.detectChanges();
 
       sbbButton = fixture.debugElement.query(By.css('button[sbbButton]'));
       sbbButtonStyle = getComputedStyle(sbbButton.nativeElement);
-      sbbButtonIconWrapper = fixture.debugElement.query(
-        By.css('.sbb-svgsprite-icon')
-      );
-      sbbButtonIconWrapperStyle = getComputedStyle(
-        sbbButtonIconWrapper.nativeElement
-      );
+      sbbButtonIconWrapper = fixture.debugElement.query(By.css('.sbb-svgsprite-icon'));
+      sbbButtonIconWrapperStyle = getComputedStyle(sbbButtonIconWrapper.nativeElement);
     });
 
     it('should have a transparent background color', () => {
-      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe(
-        'rgba(0, 0, 0, 0)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgba(0, 0, 0, 0)');
     });
 
     it('should have a grey text of color rgb(102, 102, 102)/#666666', () => {
-      expect(sbbButtonStyle.getPropertyValue('color')).toBe(
-        'rgb(102, 102, 102)'
-      );
+      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(102, 102, 102)');
     });
 
     it('should have a grey border color of rgb(151, 151, 151)/#979797', () => {
@@ -279,15 +228,11 @@ describe('ButtonComponent', () => {
     });
 
     it('should have a line-through text decoration', () => {
-      expect(sbbButtonStyle.getPropertyValue('text-decoration')).toContain(
-        'line-through'
-      );
+      expect(sbbButtonStyle.getPropertyValue('text-decoration')).toContain('line-through');
     });
 
     it('should not the icons be diplayed', () => {
-      expect(sbbButtonIconWrapperStyle.getPropertyValue('display')).toBe(
-        'none'
-      );
+      expect(sbbButtonIconWrapperStyle.getPropertyValue('display')).toBe('none');
     });
 
     it('should not be possible to invoke the testClick method when the button is disabled', () => {

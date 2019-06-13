@@ -75,7 +75,7 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that automatically resize a textarea to fit its content
    */
-  @ViewChild('autosize') autosize: CdkTextareaAutosize;
+  @ViewChild('autosize', { static: true }) autosize: CdkTextareaAutosize;
   /**
    * Class property that represents the focused class status
    */

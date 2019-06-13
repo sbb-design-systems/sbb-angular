@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./accordion-showcase.component.scss']
 })
 export class AccordionShowcaseComponent implements OnInit, OnDestroy {
-  @ViewChild('firstAccordion') firstAccordion: AccordionComponent;
+  @ViewChild('firstAccordion', { static: true }) firstAccordion: AccordionComponent;
 
   panelOpenState = false;
   step = 0;

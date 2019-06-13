@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "tsconfig",
+    "baseUrl": ".",
     "lib": ["es2018", "dom"],
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "../../../dist/sbb-esta/angular-icons/schematics",
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
@@ -11,7 +12,7 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "rootDir": ".",
+    "rootDir": "schematics",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -19,5 +20,6 @@
     "target": "es6",
     "types": ["jasmine", "node"]
   },
-  "include": ["schematics/generate-icon-modules/index.ts"]
+  "include": ["schematics/**/*"],
+  "exclude": ["schematics/*/files/**/*"]
 }

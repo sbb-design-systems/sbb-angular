@@ -85,6 +85,12 @@
         "filter": "^_$",
         "leadingUnderscore": "allow"
       },
+      // allow leading underscores for public properties and methods due to internals, all other rules still apply
+      {
+        "type": "member",
+        "modifiers": "public",
+        "leadingUnderscore": "allow"
+      },
       // require leading underscores for private properties and methods, all other rules still apply
       {
         "type": "member",
@@ -188,12 +194,12 @@
     ],
     "import-destructuring-spacing": true,
     "no-output-on-prefix": true,
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
+    "no-inputs-metadata-property": true,
+    "no-outputs-metadata-property": true,
+    "no-host-metadata-property": true,
     "no-input-rename": true,
     "no-output-rename": true,
-    "use-life-cycle-interface": true,
+    "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true

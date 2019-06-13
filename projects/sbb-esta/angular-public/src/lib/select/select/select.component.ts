@@ -148,7 +148,6 @@ export class SbbSelectChange {
 // Boilerplate for applying mixins to SelectComponent.
 /** @docs-private */
 export class SbbSelectBase {
-  // tslint:disable: naming-convention
   constructor(
     public _elementRef: ElementRef,
     public _defaultErrorStateMatcher: ErrorStateMatcher,
@@ -156,7 +155,6 @@ export class SbbSelectBase {
     public _parentFormGroup: FormGroupDirective,
     public ngControl: NgControl
   ) {}
-  // tslint:enable: naming-convention
 }
 
 export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
@@ -257,16 +255,16 @@ export class SelectComponent extends SbbSelectMixinBase
   @HostBinding('class.sbb-select') cssClass = true;
 
   /** Trigger that opens the select. */
-  @ViewChild('trigger') trigger: ElementRef;
+  @ViewChild('trigger', { static: true }) trigger: ElementRef;
 
   /** Panel containing the select options. */
-  @ViewChild('panel') panel: ElementRef;
+  @ViewChild('panel', { static: false }) panel: ElementRef;
 
   /** Panel containing the select options. */
-  @ViewChild('scrollbar') perfectScrollbar: PerfectScrollbarComponent;
+  @ViewChild('scrollbar', { static: false }) perfectScrollbar: PerfectScrollbarComponent;
 
   /** Overlay pane containing the options. */
-  @ViewChild(CdkConnectedOverlay) overlayDir: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay, { static: true }) overlayDir: CdkConnectedOverlay;
 
   /** Classes to be passed to the select panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[] | Set<string> | { [key: string]: any };
@@ -572,7 +570,6 @@ export class SelectComponent extends SbbSelectMixinBase
 
   constructor(
     @Self() @Optional() public ngControl: NgControl,
-    // tslint:disable-next-line: naming-convention
     public _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,

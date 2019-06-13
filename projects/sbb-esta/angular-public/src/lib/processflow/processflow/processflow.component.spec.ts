@@ -32,7 +32,7 @@ import { ProcessflowComponent } from './processflow.component';
   `
 })
 export class ProcessflowTestComponent {
-  @ViewChild('processflow') processflow: ProcessflowComponent;
+  @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;
 }
 
 describe('ProcessflowComponent', () => {
@@ -128,8 +128,7 @@ describe('ProcessflowComponent user interaction', () => {
     dispatchMouseEvent(steps[0], 'click');
     fixture.detectChanges();
     expect(
-      steps[1].classList.contains('sbb-disabled') &&
-        steps[2].classList.contains('sbb-disabled')
+      steps[1].classList.contains('sbb-disabled') && steps[2].classList.contains('sbb-disabled')
     ).toBeTruthy();
   });
 });

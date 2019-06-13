@@ -21,8 +21,8 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
 
   private _ghettoboxInitLoadSubscription = Subscription.EMPTY;
 
-  @ViewChild('testIcon1', { read: TemplateRef }) testIcon1: TemplateRef<any>;
-  @ViewChild('testIcon2', { read: TemplateRef }) testIcon2: TemplateRef<any>;
+  @ViewChild('testIcon1', { read: TemplateRef, static: true }) testIcon1: TemplateRef<any>;
+  @ViewChild('testIcon2', { read: TemplateRef, static: true }) testIcon2: TemplateRef<any>;
 
   constructor(
     private _ghettoboxService: GhettoboxService,

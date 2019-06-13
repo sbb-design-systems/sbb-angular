@@ -31,7 +31,7 @@ import {
   `
 })
 class TooltipTestComponent {
-  @ViewChild('t1') t1: TooltipComponent;
+  @ViewChild('t1', { static: true }) t1: TooltipComponent;
   onClose() {}
   onOpen() {}
 }
@@ -54,8 +54,8 @@ class TooltipTestComponent {
   `
 })
 class DoubleTooltipTestComponent {
-  @ViewChild('t1') t1: TooltipComponent;
-  @ViewChild('t2') t2: TooltipComponent;
+  @ViewChild('t1', { static: true }) t1: TooltipComponent;
+  @ViewChild('t2', { static: true }) t2: TooltipComponent;
 
   onClose() {}
   onOpen() {}
@@ -67,12 +67,7 @@ describe('TooltipComponent', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IconCollectionModule,
-        CommonModule,
-        PortalModule,
-        OverlayModule
-      ],
+      imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
     });
@@ -115,8 +110,7 @@ describe('TooltipComponent using mock component for single tooltip', () => {
   });
 
   it('open tooltip by question mark', () => {
-    const buttonQuestionMark =
-      singleComponentTest.t1.tooltipTrigger.nativeElement;
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
@@ -124,17 +118,14 @@ describe('TooltipComponent using mock component for single tooltip', () => {
       'sbb-tooltip-trigger sbb-tooltip-trigger-active'
     );
 
-    const tooltipElement = singleFixtureTest.debugElement.query(
-      By.css('.sbb-tooltip')
-    );
+    const tooltipElement = singleFixtureTest.debugElement.query(By.css('.sbb-tooltip'));
 
     expect(tooltipElement.attributes['aria-expanded']).toBe('true');
     expect(singleComponentTest.t1.overlayAttached).toBe(true);
   });
 
   it('close tooltip by question mark', () => {
-    const buttonQuestionMark =
-      singleComponentTest.t1.tooltipTrigger.nativeElement;
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
@@ -142,51 +133,40 @@ describe('TooltipComponent using mock component for single tooltip', () => {
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe(
-      'sbb-tooltip-trigger'
-    );
+    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger');
 
-    const tooltipElement = singleFixtureTest.debugElement.query(
-      By.css('.sbb-tooltip')
-    );
+    const tooltipElement = singleFixtureTest.debugElement.query(By.css('.sbb-tooltip'));
 
     expect(tooltipElement.attributes['aria-expanded']).toBe('false');
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 
   it('close tooltip by internal button', () => {
-    const buttonQuestionMark =
-      singleComponentTest.t1.tooltipTrigger.nativeElement;
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
-    const internalButton = singleFixtureTest.debugElement.query(
-      By.css('.sbb-button-secondary')
-    ).nativeElement;
+    const internalButton = singleFixtureTest.debugElement.query(By.css('.sbb-button-secondary'))
+      .nativeElement;
     internalButton.click();
     singleFixtureTest.detectChanges();
 
     expect(buttonQuestionMark.classList).toContain('sbb-tooltip-trigger');
 
-    const tooltipElement = singleFixtureTest.debugElement.queryAll(
-      By.css('.sbb-tooltip')
-    )[0];
+    const tooltipElement = singleFixtureTest.debugElement.queryAll(By.css('.sbb-tooltip'))[0];
 
     expect(tooltipElement.attributes['aria-expanded']).toBe('false');
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 
   it('close tooltip clicking outside it', () => {
-    const buttonQuestionMark =
-      singleComponentTest.t1.tooltipTrigger.nativeElement;
+    const buttonQuestionMark = singleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMark.click();
     singleFixtureTest.detectChanges();
 
     singleComponentTest.t1.close();
 
-    expect(buttonQuestionMark.attributes['class'].value).toBe(
-      'sbb-tooltip-trigger'
-    );
+    expect(buttonQuestionMark.attributes['class'].value).toBe('sbb-tooltip-trigger');
     expect(singleComponentTest.t1.overlayAttached).toBe(false);
   });
 });
@@ -209,16 +189,14 @@ describe('TooltipComponent using mock component for double tooltip', () => {
   });
 
   it('close a tooltip opened clicking on another tooltip', () => {
-    const buttonQuestionMarkT1 =
-      doubleComponentTest.t1.tooltipTrigger.nativeElement;
+    const buttonQuestionMarkT1 = doubleComponentTest.t1.tooltipTrigger.nativeElement;
     buttonQuestionMarkT1.click();
     doubleFixtureTest.detectChanges();
 
     expect(doubleComponentTest.t1.overlayAttached).toBe(true);
     expect(doubleComponentTest.t2.tooltipRef).toBeUndefined();
 
-    const buttonQuestionMarkT2 =
-      doubleComponentTest.t2.tooltipTrigger.nativeElement;
+    const buttonQuestionMarkT2 = doubleComponentTest.t2.tooltipTrigger.nativeElement;
 
     buttonQuestionMarkT2.click();
     doubleFixtureTest.detectChanges();

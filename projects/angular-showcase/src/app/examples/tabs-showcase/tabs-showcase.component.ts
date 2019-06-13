@@ -7,7 +7,7 @@ import { TabsComponent } from '@sbb-esta/angular-public';
   styleUrls: ['./tabs-showcase.component.scss']
 })
 export class TabsShowcaseComponent implements OnInit {
-  @ViewChild('tabs') tabsComponent: TabsComponent;
+  @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;
 
   disabled = false;
   removed = false;

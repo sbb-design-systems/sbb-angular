@@ -96,7 +96,6 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   @Output() removeChange = new EventEmitter();
 
   /** Emits whenever the internal state of the tab changes. */
-  // tslint:disable-next-line: naming-convention
   readonly _stateChanges = new Subject<void>();
 
   constructor(private _changeDetector: ChangeDetectorRef) {}

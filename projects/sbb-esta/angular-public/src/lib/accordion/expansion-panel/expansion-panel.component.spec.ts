@@ -36,7 +36,8 @@ class PanelWithContentComponent {
   disabled = false;
   openCallback = jasmine.createSpy('openCallback');
   closeCallback = jasmine.createSpy('closeCallback');
-  @ViewChild(ExpansionPanelComponent) panel: ExpansionPanelComponent;
+  @ViewChild(ExpansionPanelComponent, { static: true })
+  panel: ExpansionPanelComponent;
 }
 
 @Component({
@@ -50,7 +51,8 @@ class PanelWithContentComponent {
 })
 class PanelWithContentInNgIfComponent {
   expansionShown = true;
-  @ViewChild(ExpansionPanelComponent) panel: ExpansionPanelComponent;
+  @ViewChild(ExpansionPanelComponent, { static: false })
+  panel: ExpansionPanelComponent;
 }
 
 @Component({

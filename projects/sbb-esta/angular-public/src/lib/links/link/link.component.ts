@@ -3,13 +3,8 @@ import {
   Component,
   HostBinding,
   Input,
-  OnChanges,
-  Self,
-  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-
-import { HostClass } from '../../_common/host-class';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,10 +12,9 @@ import { HostClass } from '../../_common/host-class';
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HostClass]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LinkComponent implements OnChanges {
+export class LinkComponent {
   /** @docs-private */
   @HostBinding('class.sbb-link') linkClass = true;
   /**
@@ -32,14 +26,21 @@ export class LinkComponent implements OnChanges {
    */
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
-  constructor(@Self() private _hostClass: HostClass) {}
+  /** @docs-private */
+  @HostBinding('class.sbb-link-normal')
+  get _normalClass() {
+    return this.mode === 'normal';
+  }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes.mode &&
-      changes.mode.currentValue !== changes.mode.previousValue
-    ) {
-      this._hostClass.apply(`sbb-link-${this.mode}`);
-    }
+  /** @docs-private */
+  @HostBinding('class.sbb-link-stretch')
+  get _stretchClass() {
+    return this.mode === 'stretch';
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-link-form')
+  get _formClass() {
+    return this.mode === 'form';
   }
 }
