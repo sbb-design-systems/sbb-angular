@@ -1,27 +1,27 @@
-@import '../../../styles/main.scss';
+@import '../textarea';
 
 :host {
-  @include sbbTextarea($colorBlack72);
+  @include sbbTextarea($sbbColorGraphite);
 
   textarea {
     @include textareaBase();
   }
 
   &.focused {
-    border-color: $colorGrey;
+    border-color: $sbbColorGrey;
   }
 
   &.disabled {
-    background-color: $colorBlack5;
-    border-color: $colorBlack20;
+    background-color: $sbbColorMilk;
+    border-color: $sbbColorAluminum;
     opacity: 1;
   }
 
   &.ng-dirty.ng-invalid {
-    @include sbbTextarea($colorCallToAction);
+    @include sbbTextarea($sbbColorCallToAction);
 
     textarea {
-      color: $colorCallToAction;
+      color: $sbbColorCallToAction;
     }
   }
 
@@ -29,7 +29,7 @@
     position: relative;
     float: right;
     background: transparent;
-    color: $colorBlack;
+    color: $sbbColorBlack;
     letter-spacing: 0;
     line-height: pxToRem(13);
     font-size: pxToRem(13);

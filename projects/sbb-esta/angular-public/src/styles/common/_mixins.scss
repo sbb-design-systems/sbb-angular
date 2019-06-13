@@ -2,46 +2,10 @@
 // Mixins
 // ----------------------------------------------------------------------------------------------------
 
+@import './colors';
 @import './variables';
 @import './functions';
 @import './mediaqueries';
-
-/**
- * Hide visually
- *
- * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- * for discussion of different solutions
- */
-
-@mixin visuallyhidden() {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(0 0 0 0);
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-@mixin visuallyhiddenReset() {
-  position: static;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  margin: 0;
-  clip: auto;
-}
-
-@mixin visuallyhiddenFocusable() {
-  @include visuallyhidden;
-
-  &:focus,
-  &:active {
-    @include visuallyhiddenReset;
-  }
-}
 
 /**
  * Contain floats with clearfix
@@ -112,7 +76,7 @@
 /**
  * Placeholder in input fields
  */
-@mixin placeholder($color: $colorGrey) {
+@mixin placeholder($color: $sbbColorGrey) {
   &::-webkit-input-placeholder {
     color: $color;
   }
@@ -224,7 +188,7 @@
 @mixin lead {
   font-family: $fontSbbLight;
   font-weight: normal;
-  color: $colorText;
+  color: $sbbColorText;
   font-size: pxToRem(20px);
   line-height: 1.3;
   margin: 2em 0 0;
@@ -262,12 +226,12 @@
 
 @mixin inlinelinks {
   a {
-    color: $colorText;
+    color: $sbbColorText;
     text-decoration: underline;
 
     &:hover,
     &:focus {
-      color: $colorCallToActionHover;
+      color: $sbbColorCallToActionHover;
     }
   }
 }
@@ -330,50 +294,10 @@
   }
 }
 
-// Form Styles
-// ----------------------------------------------------------------------------------------------------
-
-@mixin disabledelement {
-  opacity: 0.5;
-}
-
-@mixin readonlyelement {
-  background: $colorBlack5;
-  border-color: $colorBlack20;
-}
-
-@mixin readonlyinputfields {
-  &[readonly],
-  &:read-only {
-    @include readonlyelement;
-  }
-}
-
-@mixin formlabel {
-  color: $colorGrey;
-  font-size: pxToEm(13);
-}
-
 @mixin breakOutOfCenterAndGoFullBleed() {
   // https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-}
-
-@mixin inputField() {
-  display: inline-block;
-
-  font-family: $fontSbbRoman;
-  font-size: toEm(15 / $sizeFontDefault);
-  border: 1px solid $colorGreySilver;
-
-  @include mq($from: tabletPortrait) {
-    font-size: toEm(14 / $sizeFontDefault);
-  }
-
-  &:focus {
-    border-color: $colorGrey;
-  }
 }
 
 // Centered tab module
@@ -427,7 +351,7 @@
 @mixin fieldset {
   margin: 0;
   padding: pxToEm(36) pxToEm(24);
-  border: 1px solid $colorGreyLight;
+  border: 1px solid $sbbColorSilver;
   min-width: 0;
 
   @include mq($from: tabletPortrait) {
@@ -502,8 +426,8 @@
   min-width: pxToEm(18, 11);
   border-radius: pxToEm(15, 11);
   padding: pxToEm(3, 11) pxToEm(5, 11) pxToEm(4, 11);
-  background-color: $colorBlack60;
-  color: $colorWhite;
+  background-color: $sbbColorMetal;
+  color: $sbbColorWhite;
   font-family: $fontSbbBold;
   line-height: 1.1;
   font-size: pxToRem(11);
@@ -532,5 +456,17 @@
         fill: $color;
       }
     }
+  }
+}
+
+@mixin publicOnly() {
+  @if $sbbBusiness == false {
+    @content;
+  }
+}
+
+@mixin businessOnly() {
+  @if $sbbBusiness {
+    @content;
   }
 }

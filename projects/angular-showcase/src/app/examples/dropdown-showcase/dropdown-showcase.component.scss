@@ -1,15 +1,15 @@
 $borderActive: solid 2px #666;
 $border: solid 2px white;
-$colorGrey: #666;
+$sbbColorGrey: #666;
 .dropdown-avatar {
   border: $border;
   display: flex;
   align-items: center;
   padding: 14px;
-  color: $colorGrey;
+  color: $sbbColorGrey;
 
   svg > path {
-    stroke: $colorGrey;
+    stroke: $sbbColorGrey;
   }
 
   .avatar-icon {

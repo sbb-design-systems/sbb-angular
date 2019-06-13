@@ -1,0 +1,22 @@
+@import 'common';
+
+/*** 
+* BUTTON CONFIGURATION VARIABLES 
+* - Remapping global vars into more semantics var names for buttons
+* - Adding new specific vars for buttons
+***/
+
+$buttonSizeFontDefault: $sizeFontDefault;
+$buttonDefaultBgColor: $sbbColorCallToAction;
+$buttonDefaultBgColorHover: $sbbColorCallToActionHover;
+$buttonDefaultColor: $sbbColorWhite;
+$buttonSecondaryColor: $sbbColorIron;
+$buttonSecondaryBgColor: $sbbColorSilver;
+$buttonSecondaryBgColorHover: $sbbColorPlatinum;
+$buttonGhostColor: $sbbColorGrey;
+$buttonGhostColorHover: $sbbColorIron;
+$buttonGhostBorderColor: $sbbColorStorm;
+$buttonGhostBorderColorHover: $sbbColorIron;
+$buttonFramelessColor: $sbbColorIron;
+$buttonFramelessColorHover: $sbbColorRed125;
+$buttonDisabledBorderColor: $sbbColorGreyMedium;

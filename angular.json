@@ -168,13 +168,18 @@
           "options": {
             "main": "projects/sbb-esta/angular-public/src/test.ts",
             "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
+            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/sbb-esta/angular-public/src/styles/common"
+              ]
+            }
           },
           "configurations": {
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "BsChrome",
+              "browsers": "HeadlessChromeNoSandbox",
               "sourceMap": false,
               "progress": false
             },
@@ -221,7 +226,12 @@
           "options": {
             "main": "projects/sbb-esta/angular-business/src/test.ts",
             "tsConfig": "projects/sbb-esta/angular-business/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js"
+            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/sbb-esta/angular-public/src/styles/common"
+              ]
+            }
           },
           "configurations": {
             "ci": {

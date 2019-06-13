@@ -41,7 +41,7 @@ describe('TimeInputDirective', () => {
     expect(input.getAttribute('type')).toEqual('text');
     expect(input.getAttribute('pattern')).toEqual('[0-9]*');
     expect(input.getAttribute('inputmode')).toEqual('numeric');
-    expect(input.getAttribute('class')).toEqual('ssb-time-input');
+    expect(input.getAttribute('class')).toEqual('sbb-time-input');
   });
 
   it('should take as input digits with no numbers in it and leave unchanged the value', () => {

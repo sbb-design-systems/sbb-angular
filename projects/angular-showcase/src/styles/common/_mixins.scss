@@ -9,8 +9,8 @@
 
 @mixin landingSearchResultListHero() {
   height: pxToRem(50);
-  background-color: $colorGreyLight;
-  color: $colorRed100;
+  background-color: $sbbColorSilver;
+  color: $sbbColorRed;
   line-height: 4;
   font-size: pxToRem(12);
   margin: 0;

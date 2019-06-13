@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     padding: 12px 20px 12px 20px;
-    background-color: rgba($colorGreyLight, 0.5);
+    background-color: rgba($sbbColorSilver, 0.5);
 
     @include mq($from: tabletLandscape) {
       padding: 12px 0 12px 20px;
@@ -48,7 +48,7 @@
   }
 
   &-src {
-    border-bottom: 1px solid rgba($colorGreyLight, 0.5);
+    border-bottom: 1px solid rgba($sbbColorSilver, 0.5);
     min-height: 300px;
   }
 }

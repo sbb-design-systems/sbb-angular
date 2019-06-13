@@ -12,15 +12,15 @@ $fontSbbUltralight: 'SBBWeb Ultralight', $fontFamilyBase;
 $fontSbbLight: 'SBBWeb Light', $fontFamilyBase;
 $fontSbbThin: 'SBBWeb Thin', $fontFamilyBase;
 
-$colorWhite: #FFFFFF;
-$colorBlack: #000000;
+$sbbColorWhite: #FFFFFF;
+$sbbColorBlack: #000000;
 
-$colorBg: $colorWhite;
-$colorText: $colorBlack;
+$sbbColorBg: $sbbColorWhite;
+$sbbColorText: $sbbColorBlack;
 
 html {
-  background: $colorBg;
-  color: $colorText;
+  background: $sbbColorBg;
+  color: $sbbColorText;
   font-family: $fontSbbRoman;
   font-size: $sizeFontBase / 16px * 100%;
   line-height: $sizeLineHeightBase;
@@ -37,10 +37,6 @@ html {
 
 a {
   @include standardLink;
-}
-
-.visuallyhidden {
-  @include visuallyhidden;
 }
 
 .clearfix {

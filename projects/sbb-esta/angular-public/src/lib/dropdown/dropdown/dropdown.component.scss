@@ -1,4 +1,4 @@
-@import '../../../styles/main';
+@import '../../autocomplete/styles/autocomplete';
 
 .sbb-dropdown-panel {
   @include autocompleteBase();
@@ -21,11 +21,11 @@
     @include buttonResetFrameless;
     @include optionBase;
     width: 100%;
-    color: $colorGrey;
+    color: $sbbColorGrey;
     &:hover,
     &:focus,
     &.sbb-selected {
-      color: $colorRed125;
+      color: $sbbColorRed125;
     }
   }
 
@@ -33,7 +33,7 @@
     margin: 0;
     padding: 0;
     border: none;
-    border-top: solid 1px $colorBlack10;
+    border-top: solid 1px $sbbColorCloud;
   }
 
   a[disabled],

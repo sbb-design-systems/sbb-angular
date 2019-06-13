@@ -1,0 +1,100 @@
+@mixin sbbInputFields() {
+  input[type='email'],
+  input[type='password'],
+  input[type='search'],
+  input[type='text'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='time'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='url'],
+  input:not([type]) {
+    @include inputfields;
+  }
+
+  input[placeholder] {
+    text-overflow: ellipsis;
+  }
+
+  input[type='number'],
+  input[type='time'],
+  input[type='datetime'],
+  input[type='datetime-local'] {
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button,
+    &::-webkit-clear-button {
+      appearance: none;
+      margin: 0;
+      width: 0;
+      padding: 0;
+      background: transparent;
+    }
+  }
+}
+
+@mixin timeInputBase {
+  $timeInputWidth: 70;
+  $timeInputHeight: 48;
+
+  width: toPx($timeInputWidth);
+  height: toPx($timeInputHeight);
+  text-align: center;
+
+  @include mq($from: desktop4k) {
+    width: toPx($timeInputWidth * $scalingFactor4k);
+    height: toPx($timeInputWidth * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    width: toPx($timeInputWidth * $scalingFactor5k);
+    height: toPx($timeInputWidth * $scalingFactor5k);
+  }
+}
+
+@mixin nativeSelectBase {
+  $selectArrowWidthHeight: 24;
+  $selectNativeBackground: 'data:image/svg+xml,<svg version="1.1" id="_x30__1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;fill: %23666;" xml:space="preserve"><path d="M7.7,10.7L8.4,10l3.6,3.6l3.6-3.6l0.7,0.7L12,15L7.7,10.7z"/></svg>';
+
+  @include inputfields;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  background: url($selectNativeBackground) 97.5% no-repeat;
+  background-size: toPx($selectArrowWidthHeight);
+
+  @include mq($from: desktop4k) {
+    background-size: toPx($selectArrowWidthHeight * $scalingFactor4k);
+    background-position-x: 96%;
+  }
+
+  @include mq($from: desktop5k) {
+    background-size: toPx($selectArrowWidthHeight * $scalingFactor5k);
+    background-position-x: 94%;
+  }
+}
+
+@mixin sbbTimeInputField() {
+  input.sbb-time-input {
+    @include timeInputBase;
+  }
+}
+
+@mixin sbbSelect() {
+  select {
+    @include nativeSelectBase;
+  }
+}
+
+@mixin sbbFieldset() {
+  fieldset {
+    @include fieldset;
+  }
+}

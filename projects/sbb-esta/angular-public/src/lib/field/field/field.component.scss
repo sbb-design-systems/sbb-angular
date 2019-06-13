@@ -1,4 +1,4 @@
-@import '../../../styles/main.scss';
+@import '../styles/fields';
 
 sbb-field {
   display: inline-block;
@@ -29,6 +29,6 @@ sbb-field {
   }
 
   & > .sbb-form-error {
-    @include formError($colorCallToAction);
+    @include formError($sbbColorCallToAction);
   }
 }

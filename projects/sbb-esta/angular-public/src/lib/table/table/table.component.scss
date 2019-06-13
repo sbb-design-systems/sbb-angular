@@ -1,4 +1,4 @@
-@import '../../../styles/main';
+@import '../table';
 
 .sbb-table-container {
   .sbb-table-wrapper {
@@ -7,10 +7,6 @@
     &.sbb-table-is-scrolling {
       @include tableScrollingPinModeEnabled();
     }
-  }
-
-  .sbb-table {
-    @include table();
   }
 
   .sbb-table-caption {

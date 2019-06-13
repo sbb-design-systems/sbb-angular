@@ -1,0 +1,121 @@
+@import 'common';
+
+@mixin checkbox() {
+  &>label {
+    @include checkboxBase();
+  }
+}
+
+@mixin checkboxBase {
+  display: flex;
+  align-items: flex-start;
+
+  &>input[type='checkbox'] {
+    &+.sbb-checkbox-container {
+      @include checkboxContainer();
+
+      &>.sbb-checkbox-checked {
+        display: none;
+      }
+
+      &+.sbb-checkbox-label-content {
+        color: $sbbColorGrey;
+        transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      }
+    }
+
+    &:focus+.sbb-checkbox-container {
+      border-color: $sbbColorGrey;
+    }
+
+    &:checked+.sbb-checkbox-container,
+    &[checked]+.sbb-checkbox-container {
+      &>.sbb-checkbox-checked {
+        display: block;
+      }
+
+      &+.sbb-checkbox-label-content {
+        color: $sbbColorBlack;
+      }
+    }
+
+    &:disabled+.sbb-checkbox-container,
+    &[disabled]+.sbb-checkbox-container {
+      border-color: $sbbColorAluminum;
+      background-color: $sbbColorMilk;
+
+      &>.sbb-checkbox-checked {
+        @include svgIconColor($sbbColorGrey);
+      }
+
+      &+.sbb-checkbox-label-content {
+        color: $sbbColorGrey;
+      }
+    }
+  }
+}
+
+@mixin checkboxContainer() {
+  width: toPx(20);
+  height: toPx(20);
+  background-color: $sbbColorWhite;
+  border: toPx(2) solid $sbbColorGraphite;
+  border-radius: toPx(2);
+  margin-right: toPx(8);
+  margin-top: toPx(1);
+
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx(20 * $scalingFactor4k);
+      height: toPx(20 * $scalingFactor4k);
+      border: toPx(2 * $scalingFactor4k) solid $sbbColorGraphite;
+      margin-right: toPx(8 * $scalingFactor4k);
+      margin-top: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx(20 * $scalingFactor5k);
+      height: toPx(20 * $scalingFactor5k);
+      border: toPx(2 * $scalingFactor5k) solid $sbbColorGraphite;
+      margin-right: toPx(8 * $scalingFactor5k);
+      margin-top: toPx(1 * $scalingFactor5k);
+    }
+  }
+
+  @include businessOnly() {
+    border-width: 1px;
+  }
+
+  .sbb-checkbox-checked {
+    @include publicOnly() {
+      @include svgIconColor($sbbColorRed);
+    }
+
+    @include businessOnly() {
+      @include svgIconColor($sbbColorGranite);
+    }
+
+    line-height: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: toPx(2);
+    transform: scale(1.3);
+    transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+    &>svg {
+      transform: translateY(toPx(-1.5));
+
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          transform: translateY(toPx(-1.5 * $scalingFactor4k));
+        }
+
+        @include mq($from: desktop5k) {
+          transform: translateY(toPx(-1.5 * $scalingFactor5k));
+        }
+      }
+    }
+  }
+}

@@ -52,7 +52,7 @@ ngb-tabset {
 
         &:not(.active):focus::after,
         &:not(.active):hover::after {
-          border-bottom-color: $colorRed125;
+          border-bottom-color: $sbbColorRed125;
         }
 
         &.active:hover,

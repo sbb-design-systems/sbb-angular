@@ -1,0 +1,79 @@
+@import 'common';
+
+$tableBg: $sbbColorWhite;
+$tableBorderColor: $sbbColorCloud;
+$tableTheadBgColor: $sbbColorCloud;
+$tableTbodyStripesBgColor: $sbbColorMilk;
+$tableCaptionColor: $sbbColorGrey;
+
+@mixin tableCaption() {
+  font-size: pxToEm(13);
+  color: $tableCaptionColor;
+}
+
+@mixin tableWrapper() {
+  max-width: 100%;
+  overflow: auto;
+  border: pxToEm(1) solid $tableBorderColor;
+}
+
+@mixin tableScrollingPinModeEnabled() {
+  .sbb-table {
+    thead {
+      > tr {
+        th,
+        td {
+          &:first-child {
+            background-color: $tableTheadBgColor;
+          }
+        }
+      }
+    }
+
+    tbody,
+    tfoot {
+      > tr {
+        th,
+        td {
+          &:first-child {
+            background-color: $tableBg;
+          }
+        }
+
+        &:nth-child(even) {
+          th,
+          td {
+            &:first-child {
+              background-color: $tableTbodyStripesBgColor;
+            }
+          }
+        }
+      }
+    }
+
+    thead,
+    tbody,
+    tfoot {
+      > tr {
+        th,
+        td {
+          &:first-child {
+            left: 0;
+            position: sticky;
+            z-index: 1;
+
+            &::after {
+              border-left: pxToEm(1) solid $sbbColorPlatinum;
+              background-image: linear-gradient(
+                -270deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                transparent 100%
+              );
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

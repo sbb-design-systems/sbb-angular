@@ -1,0 +1,15 @@
+@import 'common';
+
+$sbb-accordion-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$sbb-accordion-toggle-size: 32;
+$sbb-accordion-toggle-icon-size: 24;
+$sbb-accordion-toggle-icon-color: $sbbColorGrey;
+$sbb-accordion-toggle-color: $sbbColorStorm;
+$sbb-accordion-header-padding: pxToEm(40)
+  pxToEm(32 + ($sbb-accordion-toggle-size + 5)) pxToEm(40) pxToEm(32);
+$sbb-accordion-header-padding-no-toggle: pxToEm(40) pxToEm(32);
+$sbb-accordion-content-padding-mobile: pxToEm(36) pxToEm(32);
+$sbb-accordion-content-padding: pxToEm(48) pxToEm(32);
+$sbb-accordion-header-font-size: 21;
+$sbb-accordion-header-bgcolor: $sbbColorMilk;
+$sbb-accordion-body-expanded-border-color: $sbbColorCloud;

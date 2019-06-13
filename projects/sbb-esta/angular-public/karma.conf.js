@@ -1,10 +1,6 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-if (process.env.CONTINUOUS_INTEGRATION) {
-  process.env.CHROME_BIN = require('puppeteer').executablePath();
-}
-
 module.exports = function(config) {
   const dist = require('path').join(
     __dirname,
@@ -19,10 +15,8 @@ module.exports = function(config) {
       require('karma-firefox-launcher'),
       require('karma-browserstack-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-junit-reporter'),
       require('karma-sonarqube-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('karma-sourcemap-loader'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -38,12 +32,6 @@ module.exports = function(config) {
       timeout: 1800,
       video: false
     },
-    junitReporter: {
-      outputDir: dist,
-      suite: 'unit-tests',
-      outputFile: 'unit-tests.xml',
-      useBrowserName: false
-    },
     sonarqubeReporter: {
       basePath: 'projects/sbb-esta/angular-public/src',
       outputFolder: dist,
@@ -54,7 +42,7 @@ module.exports = function(config) {
       reports: ['html', 'lcovonly', 'cobertura'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml', 'junit', 'sonarqube'],
+    reporters: ['progress', 'kjhtml', 'sonarqube'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -66,6 +54,15 @@ module.exports = function(config) {
         os: 'Windows',
         os_version: '10',
         browser: 'Chrome'
+      },
+      HeadlessChromeNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--no-sandbox',
+          '--disable-renderer-backgrounding',
+          '--disable-device-discovery-notifications',
+          '--disable-web-security'
+        ]
       }
     },
     singleRun: false,

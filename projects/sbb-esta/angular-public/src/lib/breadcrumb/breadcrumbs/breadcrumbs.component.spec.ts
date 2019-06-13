@@ -1,8 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -13,8 +11,7 @@ import {
 } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import {
-  dispatchEvent} from '../../_common/testing/dispatch-events';
+import { dispatchEvent } from '../../_common/testing/dispatch-events';
 import { createMouseEvent } from '../../_common/testing/event-objects';
 import { DropdownModule } from '../../dropdown/dropdown';
 import { BreadcrumbModule } from '../breadcrumb.module';

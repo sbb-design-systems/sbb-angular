@@ -7,8 +7,7 @@ We appreciate all kinds of contributions. As a contributor, here are the guideli
  - [Submission Guidelines](#submit-pr)
  - [Coding Rules](#rules)
  - [Commit Message Guidelines](#commit)
- - [Signing the CLA](#cla)
-
+ - [Public/Business Package](#public-business)
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
@@ -144,3 +143,27 @@ reference GitHub issues that this commit **Closes**.
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines.
 The rest of the commit message is then used for this.
+
+## <a name="public-business"></a> Public/Business Package
+This project publishes three packages:
+
+* @sbb-esta/angular-icons
+* @sbb-esta/angular-public
+* @sbb-esta/angular-business
+
+### Styling
+This project uses [SASS](https://sass-lang.com/) for styling the components.
+
+To differentiate between public and business styles in code that is used in both the
+mixins `publicOnly()` and `businessOnly()` can be used.
+
+```sass
+padding: 1rem 2rem;
+
+@include publicOnly() {
+  margin-bottom: 3rem;
+}
+@include businessOnly() {
+  margin-bottom: 1rem;
+}
+```
