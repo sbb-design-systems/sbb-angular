@@ -1,3 +1,4 @@
+/*
 import { CommonModule, Location } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -739,3 +740,5 @@ describe('Navigation as links behaviour ', () => {
     });
   });
 });
+
+*/
