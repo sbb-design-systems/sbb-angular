@@ -7,7 +7,7 @@
   styleUrls: [<span class="hljs-string">'./tabs-showcase.component.scss'</span>]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TabsShowcaseComponent <span class="hljs-keyword">implements</span> OnInit {
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'tabs'</span>) tabsComponent: TabsComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'tabs'</span>, { <span class="hljs-keyword">static</span>: <span class="hljs-literal">true</span> }) tabsComponent: TabsComponent;
 
   disabled = <span class="hljs-literal">false</span>;
   removed = <span class="hljs-literal">false</span>;
