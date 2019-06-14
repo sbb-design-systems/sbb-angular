@@ -30,8 +30,7 @@ import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccordionComponent extends CdkAccordion
-  implements IAccordionBase, AfterContentInit {
+export class AccordionComponent extends CdkAccordion implements IAccordionBase, AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
   /**
    * Whether the accordion should allow multiple expanded accordion items.

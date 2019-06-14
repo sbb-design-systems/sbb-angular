@@ -20,7 +20,7 @@ On any page where the user should be able to quickly navigate to a sister or par
 
 ### Examples
 
-* Basic breadcrumb without sister pages
+- Basic breadcrumb without sister pages
 
 ```html
 <sbb-breadcrumbs>
@@ -37,7 +37,8 @@ On any page where the user should be able to quickly navigate to a sister or par
   </sbb-breadcrumb>
 </sbb-breadcrumbs>
 ```
-* Advanced breadcrumb with sister pages
+
+- Advanced breadcrumb with sister pages
 
 ```html
 <sbb-breadcrumbs>
@@ -59,7 +60,9 @@ On any page where the user should be able to quickly navigate to a sister or par
     Level 2
     <sbb-dropdown>
       <a sbbDropdownItem routerLink="/level1/level2" routerLinkActive="sbb-selected">Level 2</a>
-      <a sbbDropdownItem routerLink="/level1/level2b" routerLinkActive="sbb-selected">Level 2 with detail pages</a>
+      <a sbbDropdownItem routerLink="/level1/level2b" routerLinkActive="sbb-selected"
+        >Level 2 with detail pages</a
+      >
     </sbb-dropdown>
   </sbb-breadcrumb>
 </sbb-breadcrumbs>

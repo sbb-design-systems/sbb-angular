@@ -1,8 +1,8 @@
 <section class="sbbsc-typography">
   <h2 class="text-headline1" style="margin-top: 0;">Typography</h2>
   <p class="text-lead">
-    Documentation and examples for SBB typography, including global settings,
-    headings, body text, lists, and more.
+    Documentation and examples for SBB typography, including global settings, headings, body text,
+    lists, and more.
   </p>
 
   <h3 class="bbsc-typography-section-title">Table of contents</h3>
@@ -18,11 +18,7 @@
 
   <div class="sbbsc-separator" role="presentation"></div>
 
-  <h3
-    class="text-headline2 sbbsc-typography-section-title"
-    #pageLink
-    tabindex="0"
-  >
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">
     1. Global settings
   </h3>
 
@@ -31,16 +27,14 @@
   </p>
   <ul>
     <li>
-      Use the custom SBB Font stack. <code>SBBWeb Roman</code>&nbsp;<code
-        >SBBWeb Bold</code
-      >
+      Use the custom SBB Font stack. <code>SBBWeb Roman</code>&nbsp;<code>SBBWeb Bold</code>
       &nbsp;<code>SBBWeb Light</code>&nbsp;<code>SBBWeb Thin</code>&nbsp;<code
         >SBBWeb Ultralight</code
       >
     </li>
     <li>
-      The html base font is a <code>SBBWeb Roman</code> size
-      <code>93.75% | 15px</code> with a line height of <code>1.7</code>
+      The html base font is a <code>SBBWeb Roman</code> size <code>93.75% | 15px</code> with a line
+      height of <code>1.7</code>
     </li>
     <li>Default body background color is <code>#FFFFFF</code></li>
     <li>
@@ -55,46 +49,32 @@
     ></ngx-monaco-editor>
   </article>
 
-  <h3
-    class="text-headline2 sbbsc-typography-section-title"
-    #pageLink
-    tabindex="0"
-  >
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">
     2. Headings
   </h3>
   <p>HTML headings, from <code>h1</code> to <code>h4</code>.</p>
   <p>
-    You can also use the headings classes to make every tag looks like an
-    heading. Available classes:
+    You can also use the headings classes to make every tag looks like an heading. Available
+    classes:
     <code>.text-headline1</code
     >&nbsp;<code>.text-headline2</code>&nbsp;<code>.text-headline3</code>&nbsp;<code>.text-headline4</code>.
   </p>
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Headings</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="code.headings"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.headings"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.headings"
     ></ngx-monaco-editor>
   </article>
 
-  <h3
-    class="text-headline2 sbbsc-typography-section-title"
-    #pageLink
-    tabindex="0"
-  >
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">
     3. Lists
   </h3>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Unordered lists</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="code.unorderedList"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.unorderedList"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.unorderedList"
@@ -103,10 +83,7 @@
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Nested unordered lists</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="code.nestedUnorderedList"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.nestedUnorderedList"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.nestedUnorderedList"
@@ -115,10 +92,7 @@
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Ordered lists</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="code.orderedList"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.orderedList"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.orderedList"
@@ -127,10 +101,7 @@
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Nested ordered lists</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="code.nestedOrderedList"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.nestedOrderedList"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.nestedOrderedList"
@@ -139,39 +110,32 @@
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Mixed lists</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="code.mixedList"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="code.mixedList"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.mixedList"
     ></ngx-monaco-editor>
   </article>
 
-  <h3
-    class="text-headline2 sbbsc-typography-section-title"
-    #pageLink
-    tabindex="0"
-  >
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">
     4. Tables
   </h3>
 
   <p>
     In order to see sbb table styling you have to use the class
-    <code>sbb-table</code> or call the <code>@include table()</code> mixin into
-    your custom table selector.
+    <code>sbb-table</code> or call the <code>@include table()</code> mixin into your custom table
+    selector.
   </p>
   <p>
-    Don't forget to follow a couple of simple rules for the accessibility and
-    styling. In order to have proper styles
+    Don't forget to follow a couple of simple rules for the accessibility and styling. In order to
+    have proper styles
     <strong>must</strong> be used the <code>thead</code>&nbsp;<code>tbody</code>
     tags.
   </p>
   <p>
-    In order to have proper accessibility you have to mark table headings with
-    the proper <code>th</code> tag and the <code>scope</code> attribute set to
-    <code>col</code> for column headers and <code>row</code> for row headers.
+    In order to have proper accessibility you have to mark table headings with the proper
+    <code>th</code> tag and the <code>scope</code> attribute set to <code>col</code> for column
+    headers and <code>row</code> for row headers.
   </p>
   <p>
     Don't forget in presence of a custom caption or legend to put proper
@@ -181,26 +145,16 @@
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Simple Table</h4>
     <div class="sbbsc-typography-example-body" [innerHTML]="code.table"></div>
-    <ngx-monaco-editor
-      [options]="editorOptionsHtml"
-      [(ngModel)]="code.table"
-    ></ngx-monaco-editor>
+    <ngx-monaco-editor [options]="editorOptionsHtml" [(ngModel)]="code.table"></ngx-monaco-editor>
   </article>
 
-  <h3
-    class="text-headline2 sbbsc-typography-section-title"
-    #pageLink
-    tabindex="0"
-  >
+  <h3 class="text-headline2 sbbsc-typography-section-title" #pageLink tabindex="0">
     5. Section (Fieldset)
   </h3>
 
   <article class="sbbsc-typography-example">
     <h4 class="text-headline3">Example nested fieldsets</h4>
-    <div
-      class="sbbsc-typography-example-body"
-      [innerHTML]="getRawHTML(code.fieldset)"
-    ></div>
+    <div class="sbbsc-typography-example-body" [innerHTML]="getRawHTML(code.fieldset)"></div>
     <ngx-monaco-editor
       [options]="editorOptionsHtml"
       [(ngModel)]="code.fieldset"

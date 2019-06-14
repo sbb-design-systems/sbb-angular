@@ -35,8 +35,7 @@ let nextId = 0;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CaptchaComponent
-  implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
   /**
    * Identifier of sbb-captcha.
    */
@@ -139,14 +138,12 @@ export class CaptchaComponent
   }
 
   ngAfterViewInit() {
-    this._subscription = this._loader.ready.subscribe(
-      (grecaptcha: ReCaptchaV2.ReCaptcha) => {
-        if (grecaptcha != null && grecaptcha.render instanceof Function) {
-          this._grecaptcha = grecaptcha;
-          this._renderRecaptcha();
-        }
+    this._subscription = this._loader.ready.subscribe((grecaptcha: ReCaptchaV2.ReCaptcha) => {
+      if (grecaptcha != null && grecaptcha.render instanceof Function) {
+        this._grecaptcha = grecaptcha;
+        this._renderRecaptcha();
       }
-    );
+    });
   }
 
   ngOnDestroy() {

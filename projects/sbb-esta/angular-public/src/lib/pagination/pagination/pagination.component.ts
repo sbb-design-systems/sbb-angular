@@ -20,11 +20,7 @@ import { NavigationEnd, Router, RouterLinkActive } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
-import {
-  LinkGeneratorResult,
-  PageChangeEvent,
-  PageDescriptor
-} from '../page-descriptor.model';
+import { LinkGeneratorResult, PageChangeEvent, PageDescriptor } from '../page-descriptor.model';
 
 @Component({
   selector: 'sbb-pagination',
@@ -54,18 +50,13 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
    * This event can be used by parent components to handle events on page change.
    */
   @Output()
-  pageChange: EventEmitter<PageChangeEvent> = new EventEmitter<
-    PageChangeEvent
-  >();
+  pageChange: EventEmitter<PageChangeEvent> = new EventEmitter<PageChangeEvent>();
 
   /**
    * A custom function called everytime a new pagination item has been clicked.
    */
   @Input()
-  linkGenerator?: (page: {
-    index: number;
-    displayNumber: number;
-  }) => LinkGeneratorResult;
+  linkGenerator?: (page: { index: number; displayNumber: number }) => LinkGeneratorResult;
   /** Reference to list of page buttons of the sbb-pagination.  */
   @ViewChildren('pageButton') buttons: QueryList<ElementRef>;
   /** Reference to list of page links of the sbb-pagination.  */
@@ -103,15 +94,10 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     return this.initialPage < this.maxPage;
   }
 
-  constructor(
-    private _router: Router,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private _router: Router, private _changeDetectorRef: ChangeDetectorRef) {}
 
   private _getSelectedLinkPage() {
-    const selectedPageIndex = this.activeLinks
-      .toArray()
-      .findIndex(page => page.isActive);
+    const selectedPageIndex = this.activeLinks.toArray().findIndex(page => page.isActive);
     if (selectedPageIndex === -1) {
       return this.pageDescriptors[0];
     }
@@ -119,9 +105,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   private _getSelectedButtonPage() {
-    return this.pageDescriptors.find(
-      page => page.displayNumber === this.initialPage
-    );
+    return this.pageDescriptors.find(page => page.displayNumber === this.initialPage);
   }
 
   /**
@@ -136,9 +120,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (!this.maxPage) {
-      throw new Error(
-        'You must add the maxPage attribute to the <sbb-pagination> element.'
-      );
+      throw new Error('You must add the maxPage attribute to the <sbb-pagination> element.');
     }
     this.selectedPage$ = this.selectedPageSubject.asObservable();
   }
@@ -151,13 +133,9 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     if (this.links.length) {
       this.selectedPage$.subscribe(selectedPage => {
         this.selectPage(selectedPage);
-        const selectedPageIndex = this.activeLinks
-          .toArray()
-          .findIndex(page => page.isActive);
+        const selectedPageIndex = this.activeLinks.toArray().findIndex(page => page.isActive);
         if (selectedPageIndex === -1) {
-          this._navigateToLink(
-            this.linkGenerator({ index: 0, displayNumber: 1 })
-          );
+          this._navigateToLink(this.linkGenerator({ index: 0, displayNumber: 1 }));
         }
       });
       this.selectedPageSubject.next(this._getSelectedLinkPage());
@@ -169,9 +147,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
         });
 
       this.activeLinks.changes.pipe(debounceTime(100)).subscribe(linkList => {
-        const selectedPageIndex = linkList
-          .toArray()
-          .findIndex(page => page.isActive);
+        const selectedPageIndex = linkList.toArray().findIndex(page => page.isActive);
         if (selectedPageIndex !== -1) {
           linkList.toArray()[selectedPageIndex].element.nativeElement.focus();
         }
@@ -179,9 +155,7 @@ export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
     } else {
       this.selectedPageSubject.next(this._getSelectedButtonPage());
       this.buttons.changes.subscribe(() => {
-        this.buttons
-          .toArray()
-          [this._getSelectedButtonPage().index].nativeElement.focus();
+        this.buttons.toArray()[this._getSelectedButtonPage().index].nativeElement.focus();
       });
       this._changeDetectorRef.detectChanges();
     }

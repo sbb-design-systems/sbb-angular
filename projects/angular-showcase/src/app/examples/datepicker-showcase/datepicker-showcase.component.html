@@ -26,9 +26,7 @@
       <p>
         <sbb-checkbox [(ngModel)]="arrows">Arrows</sbb-checkbox>
         <sbb-checkbox [(ngModel)]="toggle">Toggle</sbb-checkbox>
-        <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()"
-          >Disabled</sbb-checkbox
-        >
+        <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()">Disabled</sbb-checkbox>
       </p>
 
       <sbb-field>
@@ -62,27 +60,15 @@
         </sbb-field>
         <sbb-field label="Datepicker" mode="medium" class="sbbsc-medium-field">
           <sbb-datepicker #datepickerTheSecond arrows>
-            <input
-              type="text"
-              sbbDateInput
-              formControlName="secondDatepicker"
-            />
+            <input type="text" sbbDateInput formControlName="secondDatepicker" />
           </sbb-datepicker>
         </sbb-field>
       </form>
     </div>
     <div class="col-lg-6">
       <h4>Properties</h4>
-      <pre>
-datepicker 1 errors: {{
-          twoDatepickersForm.get('firstDatepicker').errors | json
-        }}</pre
-      >
-      <pre>
-datepicker 2 errors: {{
-          twoDatepickersForm.get('secondDatepicker').errors | json
-        }}</pre
-      >
+      <pre>datepicker 1 errors: {{ twoDatepickersForm.get('firstDatepicker').errors | json }}</pre>
+      <pre>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker').errors | json }}</pre>
 
       <pre>form validity: {{ twoDatepickersForm.valid | json }}</pre>
       <pre>form model: {{ twoDatepickersForm.value | json }}</pre>

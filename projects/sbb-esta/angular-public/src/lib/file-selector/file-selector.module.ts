@@ -22,12 +22,7 @@ import {
 } from './file-selector/file-selector.pipes';
 
 @NgModule({
-  declarations: [
-    FileSelectorComponent,
-    FileExtension,
-    FileNameNoExtension,
-    FileSizeFormatted
-  ],
+  declarations: [FileSelectorComponent, FileExtension, FileNameNoExtension, FileSizeFormatted],
   imports: [
     CommonModule,
     ButtonModule,

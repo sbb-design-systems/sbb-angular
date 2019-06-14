@@ -8,10 +8,9 @@
           <h4>Content 1</h4>
           <p>Here comes the content for tab 1 ...</p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
         </sbb-tab>
         <!-- Second tab (required) -->
@@ -37,50 +36,32 @@
           <h4>Content 4</h4>
           <p>Here comes the content for tab 4 ...</p>
         </sbb-tab>
-        <sbb-tab
-          label="Tab 5"
-          id="content5-tab"
-          labelId="content5"
-          disabled="disabled"
-        >
+        <sbb-tab label="Tab 5" id="content5-tab" labelId="content5" disabled="disabled">
           <h4>Content 5</h4>
           <p>Here comes the content for tab 5 ...</p>
         </sbb-tab>
-        <sbb-tab
-          label="Tab 6"
-          id="content6-tab"
-          labelId="content6"
-          disabled="disabled"
-        >
+        <sbb-tab label="Tab 6" id="content6-tab" labelId="content6" disabled="disabled">
           <h4>Content 6</h4>
           <p>Here comes the content for tab 6 ...</p>
         </sbb-tab>
       </sbb-tabs>
       <small class="font-italic"
-        >* Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for
-        right</small
+        >* Navigate with &#8592; and &#8593; for left, &#8594; and &#8595; for right</small
       >
     </div>
     <div class="col-lg-5">
       <h4>Properties</h4>
       <div class="sbbsc-block">
         <label>Set data-set for tabs content / tab pill:</label>&nbsp;
-        <select
-          [(ngModel)]="dataSet"
-          (ngModelChange)="onChangeOfDataSet($event)"
-        >
+        <select [(ngModel)]="dataSet" (ngModelChange)="onChangeOfDataSet($event)">
           <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
         </select>
       </div>
       <div class="sbbsc-block">
-        <sbb-checkbox value="disabled" [(ngModel)]="disabled"
-          >Set a tab disabled</sbb-checkbox
-        >
+        <sbb-checkbox value="disabled" [(ngModel)]="disabled">Set a tab disabled</sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <sbb-checkbox value="disabled" [(ngModel)]="removed"
-          >Remove a tab</sbb-checkbox
-        >
+        <sbb-checkbox value="disabled" [(ngModel)]="removed">Remove a tab</sbb-checkbox>
       </div>
     </div>
   </div>

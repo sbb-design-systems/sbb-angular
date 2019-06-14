@@ -25,29 +25,15 @@ import { BreadcrumbsComponent } from './breadcrumbs.component';
   template: `
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
-        <a
-          routerLink="."
-          [queryParams]="{ level: 'home' }"
-          routerLinkActive="sbb-selected"
-        >
+        <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
           <sbb-icon-house></sbb-icon-house>
         </a>
       </sbb-breadcrumb>
       <sbb-breadcrumb>
-        <a
-          routerLink="."
-          [queryParams]="{ level: '1' }"
-          routerLinkActive="sbb-selected"
-          >Level 1</a
-        >
+        <a routerLink="." [queryParams]="{ level: '1' }" routerLinkActive="sbb-selected">Level 1</a>
       </sbb-breadcrumb>
       <sbb-breadcrumb>
-        <a
-          routerLink="."
-          [queryParams]="{ level: '2' }"
-          routerLinkActive="sbb-selected"
-          >Level 2</a
-        >
+        <a routerLink="." [queryParams]="{ level: '2' }" routerLinkActive="sbb-selected">Level 2</a>
       </sbb-breadcrumb>
     </sbb-breadcrumbs>
   `
@@ -59,11 +45,7 @@ export class BreadcrumbsTestComponent {}
   template: `
     <sbb-breadcrumbs>
       <sbb-breadcrumb>
-        <a
-          routerLink="."
-          [queryParams]="{ level: 'home' }"
-          routerLinkActive="sbb-selected"
-        >
+        <a routerLink="." [queryParams]="{ level: 'home' }" routerLinkActive="sbb-selected">
           <sbb-icon-house></sbb-icon-house>
         </a>
       </sbb-breadcrumb>
@@ -182,12 +164,7 @@ describe('Breadcrumb behaviour Test', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BreadcrumbModule,
-        RouterTestingModule,
-        CommonModule,
-        IconHouseModule
-      ],
+      imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule],
       declarations: [BreadcrumbsTestComponent]
     });
   });
@@ -244,9 +221,8 @@ describe('Breadcrumb behaviour Test', () => {
         By.directive(BreadcrumbComponent)
       )[1];
 
-      const link1 = breadcrumbLevel1.query(
-        By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
-      ).nativeElement;
+      const link1 = breadcrumbLevel1.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
+        .nativeElement;
 
       dispatchEvent(link1, createMouseEvent('click'));
       fixtureTest.detectChanges();
@@ -271,9 +247,8 @@ describe('Breadcrumb behaviour Test', () => {
         By.directive(BreadcrumbComponent)
       )[2];
 
-      const link2 = breadcrumbLevel2.query(
-        By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a')
-      ).nativeElement;
+      const link2 = breadcrumbLevel2.query(By.css('.sbb-dropdown-trigger.sbb-breadcrumb > a'))
+        .nativeElement;
 
       dispatchEvent(link2, createMouseEvent('click'));
       fixtureTest.detectChanges();
@@ -355,9 +330,8 @@ describe('Breadcrumb behaviour Test 2', () => {
         By.directive(BreadcrumbComponent)
       )[1];
 
-      const dropdownTrigger = breadcrumbLevel1.query(
-        By.css('.sbb-breadcrumb-trigger')
-      ).nativeElement;
+      const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
+        .nativeElement;
       dropdownTrigger.click();
       fixtureTest.detectChanges();
 
@@ -396,9 +370,8 @@ describe('Breadcrumb behaviour Test 2', () => {
         By.directive(BreadcrumbComponent)
       )[2];
 
-      const dropdownTrigger = breadcrumbLevel2.query(
-        By.css('.sbb-breadcrumb-trigger')
-      ).nativeElement;
+      const dropdownTrigger = breadcrumbLevel2.query(By.css('.sbb-breadcrumb-trigger'))
+        .nativeElement;
       dropdownTrigger.click();
       fixtureTest.detectChanges();
 
@@ -495,9 +468,8 @@ describe('Breadcrumb behaviour Test 3', () => {
         By.directive(BreadcrumbComponent)
       )[1];
 
-      const dropdownTrigger = breadcrumbLevel1.query(
-        By.css('.sbb-breadcrumb-trigger')
-      ).nativeElement;
+      const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
+        .nativeElement;
       dropdownTrigger.click();
       fixtureTest.detectChanges();
 

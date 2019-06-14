@@ -1,11 +1,4 @@
-import {
-  DOWN_ARROW,
-  ENTER,
-  ESCAPE,
-  SPACE,
-  TAB,
-  UP_ARROW
-} from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER, ESCAPE, SPACE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
@@ -46,10 +39,7 @@ import { FieldModule } from '../../field/field.module';
 import { FieldComponent } from '../../field/field/field.component';
 import { OptionModule } from '../../option/option.module';
 import { HighlightPipe } from '../../option/option/highlight.pipe';
-import {
-  OptionComponent,
-  SBBOptionSelectionChange
-} from '../../option/option/option.component';
+import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
 import { AutocompleteModule } from '../autocomplete.module';
 
 import {
@@ -57,10 +47,7 @@ import {
   getSbbAutocompleteMissingPanelError,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY
 } from './autocomplete-trigger.directive';
-import {
-  AutocompleteComponent,
-  SbbAutocompleteSelectedEvent
-} from './autocomplete.component';
+import { AutocompleteComponent, SbbAutocompleteSelectedEvent } from './autocomplete.component';
 
 @Component({
   template: `
@@ -93,10 +80,11 @@ class SimpleAutocompleteComponent implements OnDestroy {
   openedSpy = jasmine.createSpy('autocomplete opened spy');
   closedSpy = jasmine.createSpy('autocomplete closed spy');
 
-  @ViewChild(AutocompleteTriggerDirective)
+  @ViewChild(AutocompleteTriggerDirective, { static: true })
   trigger: AutocompleteTriggerDirective;
-  @ViewChild(AutocompleteComponent) panel: AutocompleteComponent;
-  @ViewChild(FieldComponent) formField: FieldComponent;
+  @ViewChild(AutocompleteComponent, { static: true })
+  panel: AutocompleteComponent;
+  @ViewChild(FieldComponent, { static: true }) formField: FieldComponent;
   @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
 
   numbers = [
@@ -133,18 +121,11 @@ class SimpleAutocompleteComponent implements OnDestroy {
 @Component({
   template: `
     <sbb-field *ngIf="isVisible">
-      <input
-        placeholder="Choose"
-        [sbbAutocomplete]="auto"
-        [formControl]="optionCtrl"
-      />
+      <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
     </sbb-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option"
-      >
+      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{ option }}
       </sbb-option>
     </sbb-autocomplete>
@@ -156,7 +137,7 @@ class NgIfAutocompleteComponent {
   isVisible = true;
   options = ['One', 'Two', 'Three'];
 
-  @ViewChild(AutocompleteTriggerDirective)
+  @ViewChild(AutocompleteTriggerDirective, { static: false })
   trigger: AutocompleteTriggerDirective;
   @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
 
@@ -198,9 +179,7 @@ class AutocompleteWithoutFormsComponent {
   }
 
   onInput(value: any) {
-    this.filteredNumbers = this.numbers.filter(s =>
-      new RegExp(value, 'gi').test(s)
-    );
+    this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
   }
 }
 
@@ -232,20 +211,14 @@ class AutocompleteWithNgModelComponent {
   }
 
   onInput(value: any) {
-    this.filteredNumbers = this.numbers.filter(s =>
-      new RegExp(value, 'gi').test(s)
-    );
+    this.filteredNumbers = this.numbers.filter(s => new RegExp(value, 'gi').test(s));
   }
 }
 
 @Component({
   template: `
     <sbb-field>
-      <input
-        placeholder="Number"
-        [sbbAutocomplete]="auto"
-        [(ngModel)]="selectedNumber"
-      />
+      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber" />
     </sbb-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
@@ -268,14 +241,12 @@ class AutocompleteWithNumbersComponent {
     </sbb-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let option of options" [value]="option">{{
-        option
-      }}</sbb-option>
+      <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
     </sbb-autocomplete>
   `
 })
 class AutocompleteWithOnPushDelayComponent implements OnInit {
-  @ViewChild(AutocompleteTriggerDirective)
+  @ViewChild(AutocompleteTriggerDirective, { static: true })
   trigger: AutocompleteTriggerDirective;
   options: string[];
 
@@ -288,17 +259,10 @@ class AutocompleteWithOnPushDelayComponent implements OnInit {
 
 @Component({
   template: `
-    <input
-      placeholder="Choose"
-      [sbbAutocomplete]="auto"
-      [formControl]="optionCtrl"
-    />
+    <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="optionCtrl" />
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option"
-      >
+      <sbb-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{ option }}
       </sbb-option>
     </sbb-autocomplete>
@@ -309,7 +273,7 @@ class AutocompleteWithNativeInputComponent {
   filteredOptions: Observable<any>;
   options = ['En', 'To', 'Tre', 'Fire', 'Fem'];
 
-  @ViewChild(AutocompleteTriggerDirective)
+  @ViewChild(AutocompleteTriggerDirective, { static: true })
   trigger: AutocompleteTriggerDirective;
   @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
 
@@ -327,15 +291,11 @@ class AutocompleteWithNativeInputComponent {
 
 @Component({
   template: `
-    <input
-      placeholder="Choose"
-      [sbbAutocomplete]="auto"
-      [formControl]="control"
-    />
+    <input placeholder="Choose" [sbbAutocomplete]="auto" [formControl]="control" />
   `
 })
 class AutocompleteWithoutPanelComponent {
-  @ViewChild(AutocompleteTriggerDirective)
+  @ViewChild(AutocompleteTriggerDirective, { static: true })
   trigger: AutocompleteTriggerDirective;
   control = new FormControl();
 }
@@ -343,17 +303,10 @@ class AutocompleteWithoutPanelComponent {
 @Component({
   template: `
     <sbb-field>
-      <input
-        placeholder="Number"
-        [sbbAutocomplete]="auto"
-        [(ngModel)]="selectedNumber"
-      />
+      <input placeholder="Number" [sbbAutocomplete]="auto" [(ngModel)]="selectedNumber" />
     </sbb-field>
 
-    <sbb-autocomplete
-      #auto="sbbAutocomplete"
-      (optionSelected)="optionSelected($event)"
-    >
+    <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="optionSelected($event)">
       <sbb-option *ngFor="let num of numbers" [value]="num">
         <span>{{ num }}</span>
       </sbb-option>
@@ -365,9 +318,10 @@ class AutocompleteWithSelectEventComponent {
   numbers = ['Eins', 'Zwei', 'Drei'];
   optionSelected = jasmine.createSpy('optionSelected callback');
 
-  @ViewChild(AutocompleteTriggerDirective)
+  @ViewChild(AutocompleteTriggerDirective, { static: true })
   trigger: AutocompleteTriggerDirective;
-  @ViewChild(AutocompleteComponent) autocomplete: AutocompleteComponent;
+  @ViewChild(AutocompleteComponent, { static: true })
+  autocomplete: AutocompleteComponent;
 }
 
 @Component({
@@ -383,17 +337,11 @@ class PlainAutocompleteInputWithFormControlComponent {
 @Component({
   template: `
     <sbb-field>
-      <input
-        type="number"
-        [sbbAutocomplete]="auto"
-        [(ngModel)]="selectedValue"
-      />
+      <input type="number" [sbbAutocomplete]="auto" [(ngModel)]="selectedValue" />
     </sbb-field>
 
     <sbb-autocomplete #auto="sbbAutocomplete">
-      <sbb-option *ngFor="let value of values" [value]="value">{{
-        value
-      }}</sbb-option>
+      <sbb-option *ngFor="let value of values" [value]="value">{{ value }}</sbb-option>
     </sbb-autocomplete>
   `
 })
@@ -404,11 +352,7 @@ class AutocompleteWithNumberInputAndNgModelComponent {
 
 @Component({
   template: `
-    <input
-      autocomplete="changed"
-      [(ngModel)]="value"
-      [sbbAutocomplete]="auto"
-    />
+    <input autocomplete="changed" [(ngModel)]="value" [sbbAutocomplete]="auto" />
     <sbb-autocomplete #auto="sbbAutocomplete"></sbb-autocomplete>
   `
 })
@@ -429,13 +373,7 @@ describe('AutocompleteComponent', () => {
   // Creates a test component fixture.
   function createComponent<T>(component: Type<T>, providers: Provider[] = []) {
     TestBed.configureTestingModule({
-      imports: [
-        AutocompleteModule,
-        FieldModule,
-        FormsModule,
-        ReactiveFormsModule,
-        OptionModule
-      ],
+      imports: [AutocompleteModule, FieldModule, FormsModule, ReactiveFormsModule, OptionModule],
       declarations: [component],
       providers: [
         HighlightPipe,
@@ -454,15 +392,12 @@ describe('AutocompleteComponent', () => {
     return TestBed.createComponent<T>(component);
   }
 
-  afterEach(inject(
-    [OverlayContainer],
-    (currentOverlayContainer: OverlayContainer) => {
-      // Since we're resetting the testing module in some of the tests,
-      // we can potentially have multiple overlay containers.
-      currentOverlayContainer.ngOnDestroy();
-      overlayContainer.ngOnDestroy();
-    }
-  ));
+  afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
+    // Since we're resetting the testing module in some of the tests,
+    // we can potentially have multiple overlay containers.
+    currentOverlayContainer.ngOnDestroy();
+    overlayContainer.ngOnDestroy();
+  }));
 
   describe('panel toggling', () => {
     let fixture: ComponentFixture<SimpleAutocompleteComponent>;
@@ -503,10 +438,7 @@ describe('AutocompleteComponent', () => {
       input.readOnly = true;
       fixture.detectChanges();
 
-      expect(trigger.panelOpen).toBe(
-        false,
-        'Expected panel state to start out closed.'
-      );
+      expect(trigger.panelOpen).toBe(false, 'Expected panel state to start out closed.');
       dispatchFakeEvent(input, 'focusin');
       flush();
 
@@ -519,10 +451,7 @@ describe('AutocompleteComponent', () => {
       input.readOnly = true;
       fixture.detectChanges();
 
-      expect(trigger.panelOpen).toBe(
-        false,
-        'Expected panel state to start out closed.'
-      );
+      expect(trigger.panelOpen).toBe(false, 'Expected panel state to start out closed.');
       dispatchKeyboardEvent(input, 'keydown', DOWN_ARROW);
       flush();
 
@@ -607,9 +536,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const option = overlayContainerElement.querySelector(
-        'sbb-option'
-      ) as HTMLElement;
+      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
       option.click();
       fixture.detectChanges();
 
@@ -633,9 +560,9 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       tick();
 
-      let options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[0].click();
 
       // Changing value from 'Eins' to 'ei' to re-populate the option list,
@@ -645,9 +572,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       tick();
 
-      options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
@@ -692,9 +617,7 @@ describe('AutocompleteComponent', () => {
       dispatchFakeEvent(input, 'focusin');
       fixture.detectChanges();
 
-      const panel = overlayContainerElement.querySelector(
-        '.sbb-autocomplete-panel'
-      ) as HTMLElement;
+      const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel') as HTMLElement;
 
       expect(panel.classList).toContain(
         'sbb-autocomplete-visible',
@@ -734,27 +657,23 @@ describe('AutocompleteComponent', () => {
       tick();
       fixture.detectChanges();
 
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-      ).toBeTruthy();
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-          .classList
-      ).toContain('sbb-autocomplete-visible', 'Expected panel to be visible.');
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel').classList).toContain(
+        'sbb-autocomplete-visible',
+        'Expected panel to be visible.'
+      );
 
       typeInElement('x', input);
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
 
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-      ).toBeTruthy();
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
 
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-          .classList
-      ).toContain('sbb-autocomplete-hidden', 'Expected panel to be hidden.');
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel').classList).toContain(
+        'sbb-autocomplete-hidden',
+        'Expected panel to be hidden.'
+      );
 
       fixture.componentInstance.trigger.closePanel();
       fixture.detectChanges();
@@ -767,13 +686,11 @@ describe('AutocompleteComponent', () => {
       tick();
       fixture.detectChanges();
 
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-      ).toBeTruthy();
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-          .classList
-      ).toContain('sbb-autocomplete-visible', 'Expected panel to be visible.');
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel').classList).toContain(
+        'sbb-autocomplete-visible',
+        'Expected panel to be visible.'
+      );
     }));
 
     it('should provide the open state of the panel', fakeAsync(() => {
@@ -874,9 +791,7 @@ describe('AutocompleteComponent', () => {
   });
 
   it('should be able to set a custom value for the `autocomplete` attribute', () => {
-    const fixture = createComponent(
-      AutocompleteWithNativeAutocompleteAttributeComponent
-    );
+    const fixture = createComponent(AutocompleteWithNativeAutocompleteAttributeComponent);
     const input = fixture.nativeElement.querySelector('input');
 
     fixture.detectChanges();
@@ -885,17 +800,11 @@ describe('AutocompleteComponent', () => {
   });
 
   it('should not throw when typing in an element with a null and disabled autocomplete', () => {
-    const fixture = createComponent(
-      InputWithoutAutocompleteAndDisabledComponent
-    );
+    const fixture = createComponent(InputWithoutAutocompleteAndDisabledComponent);
     fixture.detectChanges();
 
     expect(() => {
-      dispatchKeyboardEvent(
-        fixture.nativeElement.querySelector('input'),
-        'keydown',
-        SPACE
-      );
+      dispatchKeyboardEvent(fixture.nativeElement.querySelector('input'), 'keydown', SPACE);
       fixture.detectChanges();
     }).not.toThrow();
   });
@@ -938,9 +847,9 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[1].click();
       fixture.detectChanges();
 
@@ -955,9 +864,9 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[1].click();
       fixture.detectChanges();
 
@@ -976,16 +885,13 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[1].click();
       fixture.detectChanges();
 
-      expect(input.value).toContain(
-        'Zwei',
-        `Expected text field to fill with selected value.`
-      );
+      expect(input.value).toContain('Zwei', `Expected text field to fill with selected value.`);
     }));
 
     it('should fill the text field correctly if value is set to obj programmatically', fakeAsync(() => {
@@ -1014,10 +920,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       tick();
 
-      expect(input.value).toEqual(
-        '',
-        `Expected input value to be empty after reset.`
-      );
+      expect(input.value).toEqual('', `Expected input value to be empty after reset.`);
     }));
 
     it('should mark the autocomplete control as dirty when an option is selected', fakeAsync(() => {
@@ -1030,9 +933,9 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[1].click();
       fixture.detectChanges();
 
@@ -1079,9 +982,7 @@ describe('AutocompleteComponent', () => {
       fixture.destroy();
       TestBed.resetTestingModule();
 
-      const plainFixture = createComponent(
-        PlainAutocompleteInputWithFormControlComponent
-      );
+      const plainFixture = createComponent(PlainAutocompleteInputWithFormControlComponent);
       plainFixture.detectChanges();
       input = plainFixture.nativeElement.querySelector('input');
 
@@ -1120,9 +1021,7 @@ describe('AutocompleteComponent', () => {
       spyOn(fixture.componentInstance.options.first, 'focus');
 
       fixture.componentInstance.trigger.handleKeydown(downArrowEvent);
-      expect(
-        fixture.componentInstance.options.first.focus
-      ).not.toHaveBeenCalled();
+      expect(fixture.componentInstance.options.first.focus).not.toHaveBeenCalled();
     });
 
     it('should not close the panel when DOWN key is pressed', () => {
@@ -1144,9 +1043,9 @@ describe('AutocompleteComponent', () => {
 
     it('should set the active item to the first option when DOWN key is pressed', () => {
       const componentInstance = fixture.componentInstance;
-      const optionEls = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const optionEls = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
 
       expect(componentInstance.trigger.panelOpen).toBe(
         true,
@@ -1156,10 +1055,10 @@ describe('AutocompleteComponent', () => {
       componentInstance.trigger.handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(
-        componentInstance.trigger.activeOption.id ===
-          componentInstance.options.first.id
-      ).toBe(true, 'Expected first option to be active.');
+      expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id).toBe(
+        true,
+        'Expected first option to be active.'
+      );
       expect(optionEls[0].classList).toContain('sbb-active');
       expect(optionEls[1].classList).not.toContain('sbb-active');
 
@@ -1167,8 +1066,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       expect(
-        componentInstance.trigger.activeOption.id ===
-          componentInstance.options.toArray()[1].id
+        componentInstance.trigger.activeOption.id === componentInstance.options.toArray()[1].id
       ).toBe(true, 'Expected second option to be active.');
       expect(optionEls[0].classList).not.toContain('sbb-active');
       expect(optionEls[1].classList).toContain('sbb-active');
@@ -1176,9 +1074,9 @@ describe('AutocompleteComponent', () => {
 
     it('should set the active item to the last option when UP key is pressed', () => {
       const componentInstance = fixture.componentInstance;
-      const optionEls = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const optionEls = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
 
       expect(componentInstance.trigger.panelOpen).toBe(
         true,
@@ -1188,20 +1086,20 @@ describe('AutocompleteComponent', () => {
       componentInstance.trigger.handleKeydown(upArrowEvent);
       fixture.detectChanges();
 
-      expect(
-        componentInstance.trigger.activeOption.id ===
-          componentInstance.options.last.id
-      ).toBe(true, 'Expected last option to be active.');
+      expect(componentInstance.trigger.activeOption.id === componentInstance.options.last.id).toBe(
+        true,
+        'Expected last option to be active.'
+      );
       expect(optionEls[9].classList).toContain('sbb-active');
       expect(optionEls[0].classList).not.toContain('sbb-active');
 
       componentInstance.trigger.handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(
-        componentInstance.trigger.activeOption.id ===
-          componentInstance.options.first.id
-      ).toBe(true, 'Expected first option to be active.');
+      expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id).toBe(
+        true,
+        'Expected first option to be active.'
+      );
       expect(optionEls[0].classList).toContain('sbb-active');
     });
 
@@ -1222,14 +1120,14 @@ describe('AutocompleteComponent', () => {
       componentInstance.trigger.handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      const optionEls = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      const optionEls = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
 
-      expect(
-        componentInstance.trigger.activeOption.id ===
-          componentInstance.options.first.id
-      ).toBe(true, 'Expected first option to be active.');
+      expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id).toBe(
+        true,
+        'Expected first option to be active.'
+      );
       expect(optionEls[0].classList).toContain('sbb-active');
       expect(optionEls[1].classList).not.toContain('sbb-active');
     });
@@ -1267,10 +1165,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       fixture.componentInstance.trigger.handleKeydown(enterEvent);
 
-      expect(enterEvent.defaultPrevented).toBe(
-        false,
-        'Default action should not be prevented.'
-      );
+      expect(enterEvent.defaultPrevented).toBe(false, 'Default action should not be prevented.');
     });
 
     it('should fill the text field, not select an option, when SPACE is entered', () => {
@@ -1284,10 +1179,7 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.trigger.handleKeydown(spaceEvent);
       fixture.detectChanges();
 
-      expect(input.value).not.toContain(
-        'New York',
-        `Expected option not to be selected on SPACE.`
-      );
+      expect(input.value).not.toContain('New York', `Expected option not to be selected on SPACE.`);
     });
 
     it('should mark the control dirty when selecting an option from the keyboard', fakeAsync(() => {
@@ -1368,19 +1260,13 @@ describe('AutocompleteComponent', () => {
       flush();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(
-        input,
-        'Expected input to be focused.'
-      );
+      expect(document.activeElement).toBe(input, 'Expected input to be focused.');
       expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(
-        input,
-        'Expected input to continue to be focused.'
-      );
+      expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
       expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
     }));
 
@@ -1400,19 +1286,13 @@ describe('AutocompleteComponent', () => {
       flush();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(
-        input,
-        'Expected input to be focused.'
-      );
+      expect(document.activeElement).toBe(input, 'Expected input to be focused.');
       expect(trigger.panelOpen).toBe(true, 'Expected panel to be open.');
 
       dispatchEvent(document.body, innerUpArrowEvent);
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(
-        input,
-        'Expected input to continue to be focused.'
-      );
+      expect(document.activeElement).toBe(input, 'Expected input to continue to be focused.');
       expect(trigger.panelOpen).toBe(false, 'Expected panel to be closed.');
     }));
 
@@ -1423,16 +1303,16 @@ describe('AutocompleteComponent', () => {
       input.focus();
       flush();
 
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-      ).toBeTruthy('Expected panel to be rendered.');
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy(
+        'Expected panel to be rendered.'
+      );
 
       dispatchKeyboardEvent(input, 'keydown', TAB);
       fixture.detectChanges();
 
-      expect(
-        overlayContainerElement.querySelector('.sbb-autocomplete-panel')
-      ).toBeFalsy('Expected panel to be removed.');
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeFalsy(
+        'Expected panel to be removed.'
+      );
     }));
 
     it('should reset the active option when closing with the escape key', fakeAsync(() => {
@@ -1454,10 +1334,7 @@ describe('AutocompleteComponent', () => {
 
       // Note that this casts to a boolean, in order to prevent Jasmine
       // from crashing when trying to stringify the option if the test fails.
-      expect(!!trigger.activeOption).toBe(
-        true,
-        'Expected to find an active option.'
-      );
+      expect(!!trigger.activeOption).toBe(true, 'Expected to find an active option.');
 
       dispatchKeyboardEvent(document.body, 'keydown', ESCAPE);
       tick();
@@ -1484,10 +1361,7 @@ describe('AutocompleteComponent', () => {
 
       // Note that this casts to a boolean, in order to prevent Jasmine
       // from crashing when trying to stringify the option if the test fails.
-      expect(!!trigger.activeOption).toBe(
-        true,
-        'Expected to find an active option.'
-      );
+      expect(!!trigger.activeOption).toBe(true, 'Expected to find an active option.');
 
       trigger.handleKeydown(enterEvent);
       tick();
@@ -1518,9 +1392,7 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      const panel = fixture.debugElement.query(
-        By.css('.sbb-autocomplete-panel')
-      ).nativeElement;
+      const panel = fixture.debugElement.query(By.css('.sbb-autocomplete-panel')).nativeElement;
 
       expect(panel.getAttribute('role')).toEqual(
         'listbox',
@@ -1611,9 +1483,7 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      const panel = fixture.debugElement.query(
-        By.css('.sbb-autocomplete-panel')
-      ).nativeElement;
+      const panel = fixture.debugElement.query(By.css('.sbb-autocomplete-panel')).nativeElement;
 
       expect(input.getAttribute('aria-owns')).toBe(
         panel.getAttribute('id'),
@@ -1635,19 +1505,14 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const option = overlayContainerElement.querySelector(
-        'sbb-option'
-      ) as HTMLElement;
+      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
 
       // Focus the option manually since the synthetic click may not do it.
       option.focus();
       option.click();
       fixture.detectChanges();
 
-      expect(document.activeElement).toBe(
-        input,
-        'Expected focus to be restored to the input.'
-      );
+      expect(document.activeElement).toBe(input, 'Expected focus to be restored to the input.');
     }));
 
     it('should remove autocomplete-specific aria attributes when autocomplete is disabled', () => {
@@ -1673,43 +1538,32 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      let options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[0].click();
       fixture.detectChanges();
       zone.simulateZoneExit();
       fixture.detectChanges();
 
       const componentOptions = fixture.componentInstance.options.toArray();
-      expect(componentOptions[0].selected).toBe(
-        true,
-        `Clicked option should be selected.`
-      );
+      expect(componentOptions[0].selected).toBe(true, `Clicked option should be selected.`);
 
-      options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
-      expect(componentOptions[0].selected).toBe(
-        false,
-        `Previous option should not be selected.`
-      );
-      expect(componentOptions[1].selected).toBe(
-        true,
-        `New Clicked option should be selected.`
-      );
+      expect(componentOptions[0].selected).toBe(false, `Previous option should not be selected.`);
+      expect(componentOptions[1].selected).toBe(true, `New Clicked option should be selected.`);
     }));
 
     it('should call deselect only on the previous selected option', fakeAsync(() => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      let options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      let options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
       options[0].click();
       fixture.detectChanges();
       zone.simulateZoneExit();
@@ -1718,21 +1572,14 @@ describe('AutocompleteComponent', () => {
       const componentOptions = fixture.componentInstance.options.toArray();
       componentOptions.forEach(option => spyOn(option, 'deselect'));
 
-      expect(componentOptions[0].selected).toBe(
-        true,
-        `Clicked option should be selected.`
-      );
+      expect(componentOptions[0].selected).toBe(true, `Clicked option should be selected.`);
 
-      options = overlayContainerElement.querySelectorAll(
-        'sbb-option'
-      ) as NodeListOf<HTMLElement>;
+      options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<HTMLElement>;
       options[1].click();
       fixture.detectChanges();
 
       expect(componentOptions[0].deselect).toHaveBeenCalled();
-      componentOptions
-        .slice(1)
-        .forEach(option => expect(option.deselect).not.toHaveBeenCalled());
+      componentOptions.slice(1).forEach(option => expect(option.deselect).not.toHaveBeenCalled());
     }));
 
     it('should be able to preselect the first option', fakeAsync(() => {
@@ -1742,9 +1589,10 @@ describe('AutocompleteComponent', () => {
       zone.simulateZoneExit();
       fixture.detectChanges();
 
-      expect(
-        overlayContainerElement.querySelectorAll('sbb-option')[0].classList
-      ).toContain('sbb-active', 'Expected first option to be highlighted.');
+      expect(overlayContainerElement.querySelectorAll('sbb-option')[0].classList).toContain(
+        'sbb-active',
+        'Expected first option to be highlighted.'
+      );
     }));
 
     it('should handle `optionSelections` being accessed too early', fakeAsync(() => {
@@ -1757,9 +1605,7 @@ describe('AutocompleteComponent', () => {
 
       expect(fixture.componentInstance.trigger.autocomplete).toBeFalsy();
       expect(() => {
-        subscription = fixture.componentInstance.trigger.optionSelections.subscribe(
-          spy
-        );
+        subscription = fixture.componentInstance.trigger.optionSelections.subscribe(spy);
       }).not.toThrow();
 
       fixture.detectChanges();
@@ -1767,9 +1613,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      const option = overlayContainerElement.querySelector(
-        'sbb-option'
-      ) as HTMLElement;
+      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
 
       option.click();
       fixture.detectChanges();
@@ -1800,9 +1644,7 @@ describe('AutocompleteComponent', () => {
 
       trigger = fixture.componentInstance.trigger;
       closingActionSpy = jasmine.createSpy('closing action listener');
-      closingActionsSub = trigger.panelClosingActions.subscribe(
-        closingActionSpy
-      );
+      closingActionsSub = trigger.panelClosingActions.subscribe(closingActionSpy);
     }));
 
     afterEach(() => {
@@ -1842,15 +1684,11 @@ describe('AutocompleteComponent', () => {
     });
 
     it('should emit panel close event when selecting an option', () => {
-      const option = overlayContainerElement.querySelector(
-        'sbb-option'
-      ) as HTMLElement;
+      const option = overlayContainerElement.querySelector('sbb-option') as HTMLElement;
 
       expect(closingActionSpy).not.toHaveBeenCalled();
       option.click();
-      expect(closingActionSpy).toHaveBeenCalledWith(
-        jasmine.any(SBBOptionSelectionChange)
-      );
+      expect(closingActionSpy).toHaveBeenCalledWith(jasmine.any(SBBOptionSelectionChange));
     });
 
     it('should close the panel when pressing escape', () => {
@@ -1869,10 +1707,7 @@ describe('AutocompleteComponent', () => {
     });
 
     it('should not throw when clicking outside', fakeAsync(() => {
-      dispatchFakeEvent(
-        fixture.debugElement.query(By.css('input')).nativeElement,
-        'focus'
-      );
+      dispatchFakeEvent(fixture.debugElement.query(By.css('input')).nativeElement, 'focus');
       fixture.detectChanges();
       flush();
 
@@ -1890,9 +1725,9 @@ describe('AutocompleteComponent', () => {
         typeInElement('eins', input);
         fixture.detectChanges();
 
-        const options = overlayContainerElement.querySelectorAll(
-          'sbb-option'
-        ) as NodeListOf<HTMLElement>;
+        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+          HTMLElement
+        >;
         expect(options.length).toBe(1);
       }).not.toThrowError();
     });
@@ -1901,9 +1736,7 @@ describe('AutocompleteComponent', () => {
       const fixture = createComponent(AutocompleteWithNgModelComponent);
       fixture.detectChanges();
 
-      expect(
-        fixture.debugElement.query(By.css('input')).nativeElement.value
-      ).toBe('');
+      expect(fixture.debugElement.query(By.css('input')).nativeElement.value).toBe('');
     });
 
     it('should display the number when the selected option is the number zero', fakeAsync(() => {
@@ -1913,19 +1746,14 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       tick();
 
-      expect(
-        fixture.debugElement.query(By.css('input')).nativeElement.value
-      ).toBe('0');
+      expect(fixture.debugElement.query(By.css('input')).nativeElement.value).toBe('0');
     }));
 
     it('should work when input is wrapped in ngIf', () => {
       const fixture = createComponent(NgIfAutocompleteComponent);
       fixture.detectChanges();
 
-      dispatchFakeEvent(
-        fixture.debugElement.query(By.css('input')).nativeElement,
-        'focusin'
-      );
+      dispatchFakeEvent(fixture.debugElement.query(By.css('input')).nativeElement, 'focusin');
       fixture.detectChanges();
 
       expect(fixture.componentInstance.trigger.panelOpen).toBe(
@@ -1986,13 +1814,9 @@ describe('AutocompleteComponent', () => {
       tick();
       fixture.detectChanges();
 
-      const autocomplete = fixture.debugElement.nativeElement.querySelector(
-        'sbb-autocomplete'
-      );
+      const autocomplete = fixture.debugElement.nativeElement.querySelector('sbb-autocomplete');
       // tslint:disable-next-line:no-non-null-assertion
-      const panel = overlayContainerElement.querySelector(
-        '.sbb-autocomplete-panel'
-      )!;
+      const panel = overlayContainerElement.querySelector('.sbb-autocomplete-panel')!;
 
       expect(autocomplete.classList).not.toContain('class-one');
       expect(autocomplete.classList).not.toContain('class-two');
@@ -2010,8 +1834,7 @@ describe('AutocompleteComponent', () => {
         },
         {
           provide: SBB_AUTOCOMPLETE_SCROLL_STRATEGY,
-          useFactory: (overlay: Overlay) => () =>
-            overlay.scrollStrategies.close(),
+          useFactory: (overlay: Overlay) => () => overlay.scrollStrategies.close(),
           deps: [Overlay]
         }
       ]);
@@ -2032,9 +1855,7 @@ describe('AutocompleteComponent', () => {
     }));
 
     it('should handle autocomplete being attached to number inputs', fakeAsync(() => {
-      const fixture = createComponent(
-        AutocompleteWithNumberInputAndNgModelComponent
-      );
+      const fixture = createComponent(AutocompleteWithNumberInputAndNgModelComponent);
       fixture.detectChanges();
       const input = fixture.debugElement.query(By.css('input')).nativeElement;
       typeInElement('1337', input);
@@ -2054,9 +1875,7 @@ describe('AutocompleteComponent', () => {
     widthFixture.componentInstance.trigger.openPanel();
     widthFixture.detectChanges();
 
-    const overlayPane = overlayContainerElement.querySelector(
-      '.cdk-overlay-pane'
-    ) as HTMLElement;
+    const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
     expect(overlayPane.style.width).toBe('auto');
   });
@@ -2071,9 +1890,7 @@ describe('AutocompleteComponent', () => {
     widthFixture.componentInstance.trigger.openPanel();
     widthFixture.detectChanges();
 
-    const overlayPane = overlayContainerElement.querySelector(
-      '.cdk-overlay-pane'
-    ) as HTMLElement;
+    const overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
 
     expect(Math.ceil(parseFloat(overlayPane.style.width as string))).toBe(400);
   });
@@ -2085,10 +1902,7 @@ describe('AutocompleteComponent', () => {
       const fixture = createComponent(AutocompleteWithOnPushDelayComponent);
 
       fixture.detectChanges();
-      dispatchFakeEvent(
-        fixture.debugElement.query(By.css('input')).nativeElement,
-        'focusin'
-      );
+      dispatchFakeEvent(fixture.debugElement.query(By.css('input')).nativeElement, 'focusin');
       tick(1000);
 
       fixture.detectChanges();
@@ -2101,10 +1915,7 @@ describe('AutocompleteComponent', () => {
         const visibleClass = 'sbb-autocomplete-visible';
 
         fixture.detectChanges();
-        expect(panel.classList).toContain(
-          visibleClass,
-          `Expected panel to be visible.`
-        );
+        expect(panel.classList).toContain(visibleClass, `Expected panel to be visible.`);
       });
     })
   );
@@ -2117,9 +1928,9 @@ describe('AutocompleteComponent', () => {
     zone.simulateZoneExit();
     fixture.detectChanges();
 
-    const options = overlayContainerElement.querySelectorAll(
-      'sbb-option'
-    ) as NodeListOf<HTMLElement>;
+    const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+      HTMLElement
+    >;
     const spy = fixture.componentInstance.optionSelected;
 
     options[1].click();
@@ -2128,8 +1939,7 @@ describe('AutocompleteComponent', () => {
 
     expect(spy).toHaveBeenCalledTimes(1);
 
-    const event = spy.calls.mostRecent()
-      .args[0] as SbbAutocompleteSelectedEvent;
+    const event = spy.calls.mostRecent().args[0] as SbbAutocompleteSelectedEvent;
 
     expect(event.source).toBe(fixture.componentInstance.autocomplete);
     expect(event.option.value).toBe('Zwei');
@@ -2148,9 +1958,9 @@ describe('AutocompleteComponent', () => {
     tick();
     fixture.detectChanges();
 
-    const options = overlayContainerElement.querySelectorAll(
-      'sbb-option'
-    ) as NodeListOf<HTMLElement>;
+    const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+      HTMLElement
+    >;
     const spy = fixture.componentInstance.optionSelected;
 
     options[3].click();
@@ -2159,8 +1969,7 @@ describe('AutocompleteComponent', () => {
 
     expect(spy).toHaveBeenCalledTimes(1);
 
-    const event = spy.calls.mostRecent()
-      .args[0] as SbbAutocompleteSelectedEvent;
+    const event = spy.calls.mostRecent().args[0] as SbbAutocompleteSelectedEvent;
 
     expect(event.source).toBe(fixture.componentInstance.autocomplete);
     expect(event.option.value).toBe('Vier');
@@ -2177,27 +1986,18 @@ describe('AutocompleteComponent', () => {
     tick();
     fixture.detectChanges();
 
-    expect(formControl.value).toBe(
-      'Cal',
-      'Expected initial value to be propagated to model'
-    );
+    expect(formControl.value).toBe('Cal', 'Expected initial value to be propagated to model');
 
     formControl.setValue('');
     fixture.detectChanges();
 
-    expect(input.value).toBe(
-      '',
-      'Expected input value to reset when model is reset'
-    );
+    expect(input.value).toBe('', 'Expected input value to reset when model is reset');
 
     typeInElement('Cal', input);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    expect(formControl.value).toBe(
-      'Cal',
-      'Expected new value to be propagated to model'
-    );
+    expect(formControl.value).toBe('Cal', 'Expected new value to be propagated to model');
   }));
 });

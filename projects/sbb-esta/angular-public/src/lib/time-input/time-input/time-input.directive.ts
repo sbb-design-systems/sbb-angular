@@ -61,11 +61,7 @@ export class TimeInputDirective {
     if (this._control && this._control.control) {
       this._control.control.setValue(`${hours}:${mins}`);
     } else {
-      this._renderer.setProperty(
-        this._elementRef.nativeElement,
-        'value',
-        `${hours}:${mins}`
-      );
+      this._renderer.setProperty(this._elementRef.nativeElement, 'value', `${hours}:${mins}`);
       const event = this._document.createEvent('Event');
       event.initEvent('input', true, true);
       this._elementRef.nativeElement.dispatchEvent(event);

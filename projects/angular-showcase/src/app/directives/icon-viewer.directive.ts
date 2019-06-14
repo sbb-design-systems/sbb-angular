@@ -24,9 +24,8 @@ export class IconViewerDirective implements OnChanges {
   ) {}
 
   loadIconComponent(): void {
-    const component = ICON_COMPONENT_META_INFORMATION.find(
-      i => i.name === this.sbbIconViewer.name
-    ).component;
+    const component = ICON_COMPONENT_META_INFORMATION.find(i => i.name === this.sbbIconViewer.name)
+      .component;
     const componentFactory = this._resolver.resolveComponentFactory(component);
     const componentRef = this._viewContainer.createComponent(componentFactory);
     if (this.size) {

@@ -1,10 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  IconChevronRightModule,
-  IconChevronSmallDownModule
-} from '@sbb-esta/angular-icons';
+import { IconChevronRightModule, IconChevronSmallDownModule } from '@sbb-esta/angular-icons';
 
 import { DropdownModule } from '../dropdown/dropdown';
 

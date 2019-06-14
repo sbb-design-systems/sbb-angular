@@ -22,8 +22,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DatepickerToggleComponent<D>
-  implements OnDestroy, OnChanges, AfterContentInit {
+export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, AfterContentInit {
   private _stateChanges = Subscription.EMPTY;
 
   /** Tabindex for the toggle. */
@@ -32,9 +31,7 @@ export class DatepickerToggleComponent<D>
   /** Whether the toggle button is disabled. */
   @Input()
   get disabled(): boolean {
-    return this._disabled === undefined
-      ? this._datepicker.disabled
-      : !!this._disabled;
+    return this._disabled === undefined ? this._datepicker.disabled : !!this._disabled;
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
@@ -47,8 +44,7 @@ export class DatepickerToggleComponent<D>
     @Attribute('tabindex') defaultTabIndex: string
   ) {
     const parsedTabIndex = Number(defaultTabIndex);
-    this.tabIndex =
-      parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
+    this.tabIndex = parsedTabIndex || parsedTabIndex === 0 ? parsedTabIndex : null;
   }
 
   @HostBinding('class.sbb-datepicker-toggle')
@@ -84,9 +80,7 @@ export class DatepickerToggleComponent<D>
   }
 
   private _watchStateChanges() {
-    const datepickerDisabled = this._datepicker
-      ? this._datepicker.disabledChange
-      : of();
+    const datepickerDisabled = this._datepicker ? this._datepicker.disabledChange : of();
     const inputDisabled =
       this._datepicker && this._datepicker.datepickerInput
         ? this._datepicker.datepickerInput.disabledChange
@@ -96,10 +90,8 @@ export class DatepickerToggleComponent<D>
       : of();
 
     this._stateChanges.unsubscribe();
-    this._stateChanges = merge(
-      datepickerDisabled,
-      inputDisabled,
-      datepickerToggled
-    ).subscribe(() => this._changeDetectorRef.markForCheck());
+    this._stateChanges = merge(datepickerDisabled, inputDisabled, datepickerToggled).subscribe(() =>
+      this._changeDetectorRef.markForCheck()
+    );
   }
 }

@@ -2,21 +2,12 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import {
-  RECAPTCHA_CALLBACK_NAME,
-  RECAPTCHA_DEFAULT_BASE_URL
-} from './captcha-settings';
+import { RECAPTCHA_CALLBACK_NAME, RECAPTCHA_DEFAULT_BASE_URL } from './captcha-settings';
 import { WindowRef } from './windowref.service';
 
-export const RECAPTCHA_LANGUAGE = new InjectionToken<string>(
-  'recaptcha-language'
-);
-export const RECAPTCHA_BASE_URL = new InjectionToken<string>(
-  'recaptcha-base-url'
-);
-export const RECAPTCHA_NONCE = new InjectionToken<string>(
-  'recaptcha-nonce-tag'
-);
+export const RECAPTCHA_LANGUAGE = new InjectionToken<string>('recaptcha-language');
+export const RECAPTCHA_BASE_URL = new InjectionToken<string>('recaptcha-base-url');
+export const RECAPTCHA_NONCE = new InjectionToken<string>('recaptcha-nonce-tag');
 
 @Injectable()
 export class CaptchaLoaderService {
@@ -60,9 +51,7 @@ export class CaptchaLoaderService {
     this._windowRef.nativeWindow.ng2recaptchaloaded = () => {
       CaptchaLoaderService._ready.next(grecaptcha);
     };
-    CaptchaLoaderService._ready = new BehaviorSubject<ReCaptchaV2.ReCaptcha>(
-      null
-    );
+    CaptchaLoaderService._ready = new BehaviorSubject<ReCaptchaV2.ReCaptcha>(null);
     const script = this._document.createElement('script') as HTMLScriptElement;
     script.innerHTML = '';
     const langParam = this._language ? '&hl=' + this._language : '';

@@ -24,10 +24,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import {
-  CalendarBodyComponent,
-  CalendarCell
-} from '../calendar-body/calendar-body.component';
+import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-body.component';
 import { DateAdapter } from '../date-adapter';
 import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateRange } from '../date-range';
@@ -55,13 +52,8 @@ export class MonthViewComponent<D> implements AfterContentInit {
   set activeDate(value: D) {
     const oldActiveDate = this._activeDate;
     const validDate =
-      this._getValidDateOrNull(this.dateAdapter.deserialize(value)) ||
-      this.dateAdapter.today();
-    this._activeDate = this.dateAdapter.clampDate(
-      validDate,
-      this.minDate,
-      this.maxDate
-    );
+      this._getValidDateOrNull(this.dateAdapter.deserialize(value)) || this.dateAdapter.today();
+    this._activeDate = this.dateAdapter.clampDate(validDate, this.minDate, this.maxDate);
     if (!this._hasSameMonthAndYear(oldActiveDate, this._activeDate)) {
       this.init();
     }
@@ -74,9 +66,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     return this._selected;
   }
   set selected(value: D | null) {
-    this._selected = this._getValidDateOrNull(
-      this.dateAdapter.deserialize(value)
-    );
+    this._selected = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
     this.selectedDate = this._getDateInCurrentMonth(this._selected);
   }
   private _selected: D | null;
@@ -87,9 +77,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     return this._minDate;
   }
   set minDate(value: D | null) {
-    this._minDate = this._getValidDateOrNull(
-      this.dateAdapter.deserialize(value)
-    );
+    this._minDate = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
   }
   private _minDate: D | null;
 
@@ -99,9 +87,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     return this._maxDate;
   }
   set maxDate(value: D | null) {
-    this._maxDate = this._getValidDateOrNull(
-      this.dateAdapter.deserialize(value)
-    );
+    this._maxDate = this._getValidDateOrNull(this.dateAdapter.deserialize(value));
   }
   private _maxDate: D | null;
 
@@ -113,15 +99,13 @@ export class MonthViewComponent<D> implements AfterContentInit {
   readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
 
   /** Emits when any date is selected. */
-  @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<
-    void
-  >();
+  @Output() readonly userSelection: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when any date is activated. */
   @Output() readonly activeDateChange: EventEmitter<D> = new EventEmitter<D>();
 
   /** The body of calendar table */
-  @ViewChild(CalendarBodyComponent) sbbCalendarBody: CalendarBodyComponent;
+  @ViewChild(CalendarBodyComponent, { static: true }) sbbCalendarBody: CalendarBodyComponent;
 
   /** The label for this month (e.g. "January 2017"). */
   monthLabel: string;
@@ -189,9 +173,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     const weekdays = longWeekdays.map((long, i) => {
       return { long, narrow: narrowWeekdays[i] };
     });
-    this.weekdays = weekdays
-      .slice(firstDayOfWeek)
-      .concat(weekdays.slice(0, firstDayOfWeek));
+    this.weekdays = weekdays.slice(firstDayOfWeek).concat(weekdays.slice(0, firstDayOfWeek));
 
     this._activeDate = this.dateAdapter.today();
   }
@@ -205,11 +187,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     if (this.selectedDate !== date) {
       const selectedYear = this.dateAdapter.getYear(this.activeDate);
       const selectedMonth = this.dateAdapter.getMonth(this.activeDate);
-      const selectedDate = this.dateAdapter.createDate(
-        selectedYear,
-        selectedMonth,
-        date
-      );
+      const selectedDate = this.dateAdapter.createDate(selectedYear, selectedMonth, date);
 
       this.selectedChange.emit(selectedDate);
     }
@@ -223,19 +201,13 @@ export class MonthViewComponent<D> implements AfterContentInit {
 
     switch (event.keyCode) {
       case LEFT_ARROW:
-        this.activeDate = this.dateAdapter.addCalendarDays(
-          this._activeDate,
-          -1
-        );
+        this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, -1);
         break;
       case RIGHT_ARROW:
         this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, 1);
         break;
       case UP_ARROW:
-        this.activeDate = this.dateAdapter.addCalendarDays(
-          this._activeDate,
-          -7
-        );
+        this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, -7);
         break;
       case DOWN_ARROW:
         this.activeDate = this.dateAdapter.addCalendarDays(this._activeDate, 7);
@@ -369,8 +341,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
     return (
       !!date &&
       (!this.dateFilter || this.dateFilter(date)) &&
-      (!this.minDate ||
-        this.dateAdapter.compareDate(date, this.minDate) >= 0) &&
+      (!this.minDate || this.dateAdapter.compareDate(date, this.minDate) >= 0) &&
       (!this.maxDate || this.dateAdapter.compareDate(date, this.maxDate) <= 0)
     );
   }
@@ -400,8 +371,6 @@ export class MonthViewComponent<D> implements AfterContentInit {
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj)
-      ? obj
-      : null;
+    return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj) ? obj : null;
   }
 }

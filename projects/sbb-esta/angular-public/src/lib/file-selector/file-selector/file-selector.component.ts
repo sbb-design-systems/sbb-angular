@@ -15,11 +15,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {
-  FILE_SELECTOR_OPTIONS,
-  FileSelectorOptions,
-  FileTypeCategory
-} from './file-selector-base';
+import { FILE_SELECTOR_OPTIONS, FileSelectorOptions, FileTypeCategory } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
 
 let counter = 0;
@@ -38,8 +34,7 @@ let counter = 0;
     }
   ]
 })
-export class FileSelectorComponent
-  implements ControlValueAccessor, FileSelectorOptions {
+export class FileSelectorComponent implements ControlValueAccessor, FileSelectorOptions {
   /**
    * Categories of file types accepted by sbb-file-selector component.
    */
@@ -77,7 +72,7 @@ export class FileSelectorComponent
   /**
    * @docs-private
    */
-  @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInput', { static: true }) fileInput: ElementRef<HTMLInputElement>;
 
   /**
    * List of files uploaded.
@@ -137,8 +132,7 @@ export class FileSelectorComponent
    * @param files Files uploaded.
    */
   applyChanges(files: File[], action: 'add' | 'remove' = 'add'): void {
-    const filesToAdd =
-      action === 'add' ? this._getFileListByMode(files) : files;
+    const filesToAdd = action === 'add' ? this._getFileListByMode(files) : files;
     this._renderer.setProperty(this.fileInput.nativeElement, 'value', null);
     this.onChange(filesToAdd);
     this.writeValue(filesToAdd);
@@ -160,9 +154,7 @@ export class FileSelectorComponent
    * @returns List of files without the file deleted.
    */
   removeFile(file: File): void {
-    const filteredList = this.filesList.filter(
-      f => !this._checkFileEquality(f, file)
-    );
+    const filteredList = this.filesList.filter(f => !this._checkFileEquality(f, file));
     this.applyChanges(filteredList, 'remove');
   }
 
@@ -175,11 +167,7 @@ export class FileSelectorComponent
     if (this.multiple && this.multipleMode === 'persistent') {
       return incomingFiles
         .filter(f => {
-          return (
-            this.filesList.findIndex(flItem =>
-              this._checkFileEquality(f, flItem)
-            ) === -1
-          );
+          return this.filesList.findIndex(flItem => this._checkFileEquality(f, flItem)) === -1;
         })
         .concat(this.filesList);
     }

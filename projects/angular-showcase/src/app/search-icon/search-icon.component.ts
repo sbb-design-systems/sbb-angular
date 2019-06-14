@@ -1,12 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  switchMap
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 
 import { IconUiService } from '../services/icon-ui.service';
 import { UiIcon } from '../shared/ui-icon';
@@ -29,9 +24,7 @@ export class SearchIconComponent implements OnInit {
       .pipe(debounceTime(250))
       .pipe(distinctUntilChanged())
       .subscribe(searchTerm => {
-        this.foundUiIcons.next(
-          this._iconUiService.getUiIconsBySearchValue(searchTerm)
-        );
+        this.foundUiIcons.next(this._iconUiService.getUiIconsBySearchValue(searchTerm));
       });
   }
 

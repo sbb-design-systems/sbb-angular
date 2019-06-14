@@ -1,16 +1,12 @@
 // tslint:disable-next-line:max-line-length
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ElementRef,
   EventEmitter,
   HostBinding,
-  OnInit,
-  Output,
-  ViewChild
+  Output
 } from '@angular/core';
 
 import { TextexpandCollapsedComponent } from '../textexpand-collapsed/textexpand-collapsed.component';
@@ -60,13 +56,13 @@ export class TextexpandComponent implements AfterContentInit {
   /**
    * Refers to the textexpand-collapsed component istance.
    */
-  @ContentChild(TextexpandCollapsedComponent)
+  @ContentChild(TextexpandCollapsedComponent, { static: true })
   collapsedComponent: TextexpandCollapsedComponent;
 
   /**
    * Refers to the textexpand-expanded component istance.
    */
-  @ContentChild(TextexpandExpandedComponent)
+  @ContentChild(TextexpandExpandedComponent, { static: true })
   expandedComponent: TextexpandExpandedComponent;
 
   toggleExpanded() {

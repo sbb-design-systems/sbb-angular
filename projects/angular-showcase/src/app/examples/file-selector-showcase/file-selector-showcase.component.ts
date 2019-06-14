@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  FileSelectorTypesService,
-  FileTypeCategory
-} from '@sbb-esta/angular-public';
+import { FileSelectorTypesService, FileTypeCategory } from '@sbb-esta/angular-public';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -33,11 +30,9 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.fileControlSubscription = this.fileControl.valueChanges.subscribe(
-      (files: File[]) => {
-        this.filesList3 = files;
-      }
-    );
+    this.fileControlSubscription = this.fileControl.valueChanges.subscribe((files: File[]) => {
+      this.filesList3 = files;
+    });
   }
 
   ngOnDestroy() {
@@ -62,8 +57,6 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
   }
 
   setDisabled($event: any) {
-    $event.target.checked
-      ? this.fileControl.disable()
-      : this.fileControl.enable();
+    $event.target.checked ? this.fileControl.disable() : this.fileControl.enable();
   }
 }

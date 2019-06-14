@@ -12,3 +12,5 @@ coverage
 **/svg-icons/**/icon-*.module.ts
 **/*.svg
 **/*.properties
+CHANGELOG.md
+CONTRIBUTING.md

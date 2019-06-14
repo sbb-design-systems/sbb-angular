@@ -74,9 +74,7 @@ export class CalendarBodyComponent {
   @Input() cellAspectRatio = 1;
 
   /** Emits when a new value is selected. */
-  @Output() readonly selectedValueChange: EventEmitter<
-    number
-  > = new EventEmitter<number>();
+  @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
   a11yFormat: string;
 

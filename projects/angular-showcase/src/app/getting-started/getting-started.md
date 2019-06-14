@@ -1,11 +1,10 @@
-  
 # Getting Started
 
-Basic steps to integrate the ACL library into your own project.  
+Basic steps to integrate the ACL library into your own project.
 
 ## Step 0: Prerequisites
 
-You need to install [Node.js](https://nodejs.org/it/)  first, and assure yourself to have a working javascript dependency manager like [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/).
+You need to install [Node.js](https://nodejs.org/it/) first, and assure yourself to have a working javascript dependency manager like [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/).
 
 Also we recommend to install globally the latest Angular CLI using the following command:
 
@@ -23,7 +22,7 @@ You can create now your project as described in the official [Angular CLI docume
 
 ## Step 1: Install ACL library
 
-Just after you created your own Angular project, in order to include the ACL library, you have to install the ```@sbb-esta/angular-public```, ```@sbb-esta/angular-icons``` and ```@angular/cdk``` dependencies:
+Just after you created your own Angular project, in order to include the ACL library, you have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
 
 ```sh
 npm install --save @sbb-esta/angular-public @sbb-esta/angular-icons @angular/cdk
@@ -50,7 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class TrainChooChooAppModule { }
 ```
 
-if you prefer not to have the animations, you have to configure your application with the ```NoopAnimationsModule```:
+if you prefer not to have the animations, you have to configure your application with the `NoopAnimationsModule`:
 
 ```ts
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -65,13 +64,13 @@ export class TrainChooChooAppModule { }
 
 ## Step 3: Include typography CSS
 
-Including typography is required to apply all SBB styles to your application. That is doable by editing the ```styles.(s)css```:
+Including typography is required to apply all SBB styles to your application. That is doable by editing the `styles.(s)css`:
 
 ```css
 @import '../node_modules/@sbb-esta/angular-public/typography.css';
 ```
 
-or editing your ```angular.json```:
+or editing your `angular.json`:
 
 ```json
   ...
@@ -106,16 +105,16 @@ import { ButtonModule, CheckboxModule } from '@sbb-esta/angular-public';
 
 @NgModule({
   imports: [ButtonModule, CheckboxModule],
-  exports: [ButtonModule, CheckboxModule],
+  exports: [ButtonModule, CheckboxModule]
 })
-export class MyOwnCustomACLModule { }
+export class MyOwnCustomACLModule {}
 ```
 
 Whichever approach you use, be sure to import the ACL modules after Angular's BrowserModule, as the import order matters for NgModules.
 
 ## Step 5 (Optional): Use mixins and functions from the library
 
-If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import ```styles.scss``` from the library into your ```styles.scss```:
+If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import `styles.scss` from the library into your `styles.scss`:
 
 ```scss
 @import '../node_modules/@sbb-esta/angular-public/styles.scss';

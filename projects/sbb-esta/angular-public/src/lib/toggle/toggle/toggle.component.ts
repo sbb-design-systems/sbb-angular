@@ -43,12 +43,7 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleComponent extends RadioButton
-  implements
-    ToggleBase,
-    ControlValueAccessor,
-    OnInit,
-    OnDestroy,
-    AfterContentInit {
+  implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
   /**
    * Radio button panel identifier
    */
@@ -122,17 +117,13 @@ export class ToggleComponent extends RadioButton
       })
     );
 
-    this._toggleValueChanges$ = merge(
-      ...this.toggleOptions.map(toggle => toggle.valueChange$)
-    );
-    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(
-      value => {
-        this.onChange(value);
-        this.onTouched();
-        this.writeValue(value);
-        this.toggleChange.emit(value);
-      }
-    );
+    this._toggleValueChanges$ = merge(...this.toggleOptions.map(toggle => toggle.valueChange$));
+    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(value => {
+      this.onChange(value);
+      this.onTouched();
+      this.writeValue(value);
+      this.toggleChange.emit(value);
+    });
   }
 
   ngOnDestroy() {
@@ -154,11 +145,7 @@ export class ToggleComponent extends RadioButton
   uncheck() {}
 
   private _checkName(): void {
-    if (
-      this.name &&
-      this.formControlName &&
-      this.name !== this.formControlName
-    ) {
+    if (this.name && this.formControlName && this.name !== this.formControlName) {
       this._throwNameError();
     } else if (!this.name && this.formControlName) {
       this.name = this.formControlName;

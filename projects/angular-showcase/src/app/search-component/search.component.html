@@ -14,9 +14,7 @@
       <a [routerLink]="['/content/' + uiComponent['routerLink']]">
         <h4 class="sbbsc-cards-card-hero">
           <span *ngIf="uiComponent['isComponent']">Component</span>
-          <span
-            *ngIf="uiComponent['isComponent'] && uiComponent['isDirective']"
-          >
+          <span *ngIf="uiComponent['isComponent'] && uiComponent['isDirective']">
             /
           </span>
           <span *ngIf="uiComponent['isDirective']">Directive</span>

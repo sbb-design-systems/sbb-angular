@@ -16,9 +16,7 @@
               <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
             </ng-container>
             <ng-container *ngIf="i === 1">
-              <sbb-icon-arrows-right-left
-                *sbbToggleOptionIcon
-              ></sbb-icon-arrows-right-left>
+              <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
             </ng-container>
 
             <sbb-field mode="long" *ngIf="i === 1">
@@ -44,11 +42,7 @@
       <h4 id="group_label_1" class="sbbsc-block">
         Toggle buttons used as Template driven Form
       </h4>
-      <sbb-toggle
-        aria-labelledby="group_label_1"
-        [(ngModel)]="modelValue"
-        name="test-toggle-2"
-      >
+      <sbb-toggle aria-labelledby="group_label_1" [(ngModel)]="modelValue" name="test-toggle-2">
         <sbb-toggle-option
           *ngFor="let option of toggleOptions | async; let i = index"
           [label]="option.label"
@@ -58,9 +52,7 @@
             <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left
-              *sbbToggleOptionIcon
-            ></sbb-icon-arrows-right-left>
+            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 0">
             <sbb-label for="name1">Select date</sbb-label>
@@ -69,10 +61,9 @@
             </sbb-datepicker>
           </sbb-field>
           <p *ngIf="i === 1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
         </sbb-toggle-option>
       </sbb-toggle>
@@ -90,10 +81,7 @@
       <h4 id="group_label_3" class="sbbsc-block">
         Toggle buttons simple use case no Forms attached
       </h4>
-      <sbb-toggle
-        aria-labelledby="group_label_3"
-        (toggleChange)="toggleChange($event)"
-      >
+      <sbb-toggle aria-labelledby="group_label_3" (toggleChange)="toggleChange($event)">
         <sbb-toggle-option
           label="2. Klasse"
           infoText="- CHF 5.60"

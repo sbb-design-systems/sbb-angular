@@ -37,9 +37,7 @@ describe('SocialLinkComponent', () => {
     const elementStyle = getComputedStyle(fixture.debugElement.nativeElement);
 
     // #66666 == rgb(102,102,102)
-    expect(elementStyle.getPropertyValue('background-color')).toBe(
-      'rgb(102, 102, 102)'
-    );
+    expect(elementStyle.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');
 
     const icon = fixture.debugElement.query(By.css('sbb-icon-facebook svg'));
     expect(icon).toBeTruthy();

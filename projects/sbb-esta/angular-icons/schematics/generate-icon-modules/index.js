@@ -4,8 +4,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var core = require('@angular-devkit/core');
 var schematics = require('@angular-devkit/schematics');
-var rxjs = require('rxjs');
-var operators = require('rxjs/operators');
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -284,7 +282,7 @@ class SvgSource {
 }
 
 function generateIconModules(options) {
-    return (tree, context) => rxjs.from((() => __awaiter(this, void 0, void 0, function* () {
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
         const collection = (yield SvgSource.from(tree.getDir('svg')))
             .assertNoDuplicates()
             .toCollectionModules();
@@ -297,7 +295,7 @@ function generateIconModules(options) {
             ])),
             collection.apply(dist)
         ]);
-    }))()).pipe(operators.switchMap(rule => schematics.callRule(rule, rxjs.of(tree), context)));
+    });
 }
 
 exports.generateIconModules = generateIconModules;

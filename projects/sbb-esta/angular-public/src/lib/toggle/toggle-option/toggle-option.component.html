@@ -18,11 +18,7 @@
       (click)="click($event)"
     />
     <span class="sbb-toggle-option-button-label-wrapper">
-      <span
-        *ngIf="icon"
-        role="presentation"
-        class="sbb-toggle-option-button-icon"
-      >
+      <span *ngIf="icon" role="presentation" class="sbb-toggle-option-button-icon">
         <ng-container *ngTemplateOutlet="icon"></ng-container>
       </span>
       <span class="sbb-toggle-option-button-label">{{ label }}</span>

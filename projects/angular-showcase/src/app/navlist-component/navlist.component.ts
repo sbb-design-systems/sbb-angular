@@ -12,10 +12,7 @@ import { UiComponent } from '../shared/ui-component';
 export class NavlistComponent implements OnInit {
   foundUiComponents: UiComponent[] = [];
 
-  constructor(
-    private _componentUiService: ComponentUiService,
-    private _router: Router
-  ) {}
+  constructor(private _componentUiService: ComponentUiService, private _router: Router) {}
 
   ngOnInit() {
     this.foundUiComponents = this._componentUiService.getAll();

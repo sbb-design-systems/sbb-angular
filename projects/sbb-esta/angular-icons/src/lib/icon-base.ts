@@ -33,10 +33,7 @@ export abstract class IconBase {
   set width(value: string) {
     this._inputWidth = this._coerceDimensionValue(value);
     if (!this._inputHeight && !value.endsWith('%')) {
-      this._inputHeight = this._resolveInput(
-        value,
-        v => v / this._dimension.ratio
-      );
+      this._inputHeight = this._resolveInput(value, v => v / this._dimension.ratio);
     }
   }
   /**
@@ -50,10 +47,7 @@ export abstract class IconBase {
   set height(value: string) {
     this._inputHeight = this._coerceDimensionValue(value);
     if (!this._inputWidth && !value.endsWith('%')) {
-      this._inputWidth = this._resolveInput(
-        value,
-        v => v * this._dimension.ratio
-      );
+      this._inputWidth = this._resolveInput(value, v => v * this._dimension.ratio);
     }
   }
   /**
@@ -61,9 +55,7 @@ export abstract class IconBase {
    */
   @Input() svgClass = '';
   @HostBinding('style.display') get display() {
-    return this._isFixed() || this._inputHeight || this._inputWidth
-      ? 'inline-block'
-      : undefined;
+    return this._isFixed() || this._inputHeight || this._inputWidth ? 'inline-block' : undefined;
   }
   /** @docs-private */
   @HostBinding('class.sbb-icon-component') sbbIconComponent = true;
@@ -102,8 +94,6 @@ export abstract class IconBase {
 
   private _resolveInput(input: string, operation: (value: number) => number) {
     const match = /(\d*\.\d+|\d+)(\w*)/g.exec(input);
-    return match && match[1]
-      ? `${operation(Number(match[1]))}${match[2] || 'px'}`
-      : undefined;
+    return match && match[1] ? `${operation(Number(match[1]))}${match[2] || 'px'}` : undefined;
   }
 }

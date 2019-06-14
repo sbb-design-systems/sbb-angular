@@ -1,10 +1,4 @@
-import {
-  DOWN_ARROW,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  TAB,
-  UP_ARROW
-} from '@angular/cdk/keycodes';
+import { DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -44,13 +38,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
    * Option keys available to move between tabs
    */
-  private _allowedKeyCodes = [
-    LEFT_ARROW,
-    RIGHT_ARROW,
-    UP_ARROW,
-    DOWN_ARROW,
-    TAB
-  ];
+  private _allowedKeyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB];
   /**
    * Class property that tracks changes in the tabs contained in the list
    */
@@ -94,10 +82,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
    * Method that verifies the initial tabs state
    */
   initTabs() {
-    this.tabs$ = merge<TabComponent[]>(
-      of(this.tabs.toArray()),
-      this.tabs.changes
-    );
+    this.tabs$ = merge<TabComponent[]>(of(this.tabs.toArray()), this.tabs.changes);
 
     const activeTabs = this.tabs.filter(tab => tab.active);
 

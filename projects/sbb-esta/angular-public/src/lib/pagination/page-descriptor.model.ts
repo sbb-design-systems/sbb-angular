@@ -12,9 +12,7 @@ export interface RouterPaginationLink {
   routerLink: string | any[];
 }
 
-export interface LinkGeneratorResult
-  extends NavigationExtras,
-    RouterPaginationLink {}
+export interface LinkGeneratorResult extends NavigationExtras, RouterPaginationLink {}
 
 export interface Page {
   /** Index of page. */
@@ -37,8 +35,7 @@ export class PageDescriptor {
     this.hasPrevious = displayNumber > 1;
     this.hasNext = displayNumber < maxPage;
     this.isEllipsis = displayNumber === -1;
-    this.tabIndex =
-      this.isEllipsis || this.displayNumber === selectedPage ? -1 : 0;
+    this.tabIndex = this.isEllipsis || this.displayNumber === selectedPage ? -1 : 0;
     this.isSelected = selectedPage === displayNumber;
     if (linkGenerator && !this.isEllipsis) {
       if (this.hasPrevious) {

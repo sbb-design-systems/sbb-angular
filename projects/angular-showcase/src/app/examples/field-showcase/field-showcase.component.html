@@ -23,8 +23,7 @@
         </div>
         <div>
           <h4 class="sbbsc-block">
-            Field with sbb-label (Input is required and must be at least 3
-            characters)
+            Field with sbb-label (Input is required and must be at least 3 characters)
           </h4>
           <sbb-field [mode]="inputMode">
             <sbb-label>Name</sbb-label>
@@ -71,10 +70,7 @@
               >
             </sbb-select>
             <sbb-form-error
-              *ngIf="
-                form.get('select2').touched &&
-                form.get('select2').errors?.required
-              "
+              *ngIf="form.get('select2').touched && form.get('select2').errors?.required"
             >
               Variant is required!</sbb-form-error
             >
@@ -87,11 +83,7 @@
             <sbb-datepicker arrows>
               <input sbbInput sbbDateInput formControlName="date" type="text" />
             </sbb-datepicker>
-            <sbb-form-error
-              *ngIf="
-                form.get('date').touched && form.get('date').errors?.required
-              "
-            >
+            <sbb-form-error *ngIf="form.get('date').touched && form.get('date').errors?.required">
               Date is required!</sbb-form-error
             >
           </sbb-field>
@@ -104,15 +96,10 @@
       <div class="sbbsc-block">
         <sbb-label>Modes :</sbb-label>
         <select [(ngModel)]="inputMode">
-          <option *ngFor="let mode of modes" [ngValue]="mode">{{
-            mode
-          }}</option>
+          <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
         </select>
       </div>
-      <sbb-checkbox
-        inputId="disabled"
-        type="checkbox"
-        (click)="toggleDisabled($event)"
+      <sbb-checkbox inputId="disabled" type="checkbox" (click)="toggleDisabled($event)"
         >Disabled</sbb-checkbox
       >
       <button sbbButton type="button" (click)="reset()">Reset</button>

@@ -49,9 +49,7 @@ describe('CalendarHeaderComponent', () => {
       fixture = TestBed.createComponent(StandardCalendarComponent);
       fixture.detectChanges();
 
-      const calendarDebugElement = fixture.debugElement.query(
-        By.directive(CalendarComponent)
-      );
+      const calendarDebugElement = fixture.debugElement.query(By.directive(CalendarComponent));
       calendarElement = calendarDebugElement.nativeElement;
       prevButton = calendarElement.querySelector(
         '.sbb-calendar-controls-left-arrow'

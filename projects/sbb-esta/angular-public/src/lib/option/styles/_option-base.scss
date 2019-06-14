@@ -28,8 +28,7 @@ $dropdownPaddingBottom: 14px;
 
   @include mq($from: desktop4k) {
     font-size: toPx($sizeFontDefault * $scalingFactor4k);
-    padding: toPx(4 * $scalingFactor4k)
-      toPx($autocompletePaddingX * $scalingFactor4k);
+    padding: toPx(4 * $scalingFactor4k) toPx($autocompletePaddingX * $scalingFactor4k);
 
     &:first-of-type {
       padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
@@ -41,8 +40,7 @@ $dropdownPaddingBottom: 14px;
   }
   @include mq($from: desktop5k) {
     font-size: toPx($sizeFontDefault * $scalingFactor5k);
-    padding: toPx(4 * $scalingFactor5k)
-      toPx($autocompletePaddingX * $scalingFactor5k);
+    padding: toPx(4 * $scalingFactor5k) toPx($autocompletePaddingX * $scalingFactor5k);
     &:first-of-type {
       padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
     }
@@ -181,15 +179,11 @@ $dropdownPaddingBottom: 14px;
     padding-left: toPx($optionMultipleNoCheckboxPaddingLeft);
 
     @include mq($from: desktop4k) {
-      padding-left: toPx(
-        $optionMultipleNoCheckboxPaddingLeft * $scalingFactor4k
-      );
+      padding-left: toPx($optionMultipleNoCheckboxPaddingLeft * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      padding-left: toPx(
-        $optionMultipleNoCheckboxPaddingLeft * $scalingFactor5k
-      );
+      padding-left: toPx($optionMultipleNoCheckboxPaddingLeft * $scalingFactor5k);
     }
   }
 }

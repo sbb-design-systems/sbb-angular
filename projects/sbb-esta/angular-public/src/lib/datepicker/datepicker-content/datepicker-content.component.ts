@@ -29,7 +29,7 @@ export class DatepickerContentComponent<D> implements AfterViewInit {
   @HostBinding('class.sbb-datepicker-content') cssClass = true;
 
   /** Reference to the internal calendar component. */
-  @ViewChild(CalendarComponent) calendar: CalendarComponent<D>;
+  @ViewChild(CalendarComponent, { static: true }) calendar: CalendarComponent<D>;
 
   /** Reference to the datepicker that created the overlay. */
   datepicker: DatepickerComponent<D>;

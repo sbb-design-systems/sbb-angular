@@ -25,11 +25,7 @@ import { IconBase } from '../icon-base';
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 36 36"
       >
-        <path
-          fill="none"
-          stroke="#000"
-          d="M18.75 27.75v-10.5H8.25L29.91 6.088z"
-        />
+        <path fill="none" stroke="#000" d="M18.75 27.75v-10.5H8.25L29.91 6.088z" />
       </svg>
     </ng-container>
   `,

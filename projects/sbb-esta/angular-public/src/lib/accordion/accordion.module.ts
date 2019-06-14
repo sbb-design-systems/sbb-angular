@@ -10,13 +10,7 @@ import { ExpansionPanelContentDirective } from './expansion-panel/expansion-pane
 import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CdkAccordionModule,
-    PortalModule,
-    IconPlusModule,
-    IconMinusModule
-  ],
+  imports: [CommonModule, CdkAccordionModule, PortalModule, IconPlusModule, IconMinusModule],
   exports: [
     AccordionComponent,
     ExpansionPanelComponent,

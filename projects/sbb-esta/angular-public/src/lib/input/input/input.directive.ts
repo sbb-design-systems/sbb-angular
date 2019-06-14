@@ -18,10 +18,7 @@ import {
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 
 import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import {
-  CanUpdateErrorStateCtor,
-  mixinErrorState
-} from '../../_common/errors/error-state';
+import { CanUpdateErrorStateCtor, mixinErrorState } from '../../_common/errors/error-state';
 import { FormFieldControl } from '../../field/form-field-control';
 import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 
@@ -40,7 +37,6 @@ const SBB_INPUT_INVALID_TYPES = [
 
 /** @docs-private */
 export class InputBase {
-  // tslint:disable: naming-convention
   constructor(
     public _defaultErrorStateMatcher: ErrorStateMatcher,
     public _parentForm: NgForm,
@@ -48,10 +44,10 @@ export class InputBase {
     /** @docs-private */
     public ngControl: NgControl
   ) {}
-  // tslint:enable: naming-convention
 }
-export const SbbNativeInputBase: CanUpdateErrorStateCtor &
-  typeof InputBase = mixinErrorState(InputBase);
+export const SbbNativeInputBase: CanUpdateErrorStateCtor & typeof InputBase = mixinErrorState(
+  InputBase
+);
 
 @Directive({
   selector: 'input[sbbInput], select[sbbInput], textarea[sbbInput]',
@@ -223,9 +219,7 @@ export class InputDirective extends SbbNativeInputBase
   constructor(
     /** @docs-private */
     @Optional() @Self() public ngControl: NgControl,
-    private _elementRef: ElementRef<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    private _elementRef: ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     private _platform: Platform,
     private _autofillMonitor: AutofillMonitor,
     @Optional() parentForm: NgForm,
@@ -248,12 +242,10 @@ export class InputDirective extends SbbNativeInputBase
 
   ngOnInit() {
     if (this._platform.isBrowser) {
-      this._autofillMonitor
-        .monitor(this._elementRef.nativeElement)
-        .subscribe(event => {
-          this.autofilled = event.isAutofilled;
-          this.stateChanges.next();
-        });
+      this._autofillMonitor.monitor(this._elementRef.nativeElement).subscribe(event => {
+        this.autofilled = event.isAutofilled;
+        this.stateChanges.next();
+      });
     }
   }
 
@@ -316,9 +308,7 @@ export class InputDirective extends SbbNativeInputBase
   /** Make sure the input is a supported type. */
   private _validateType() {
     if (SBB_INPUT_INVALID_TYPES.indexOf(this._type) > -1) {
-      throw new Error(
-        `Input type "${this._type}" is not supported by sbbInput!`
-      );
+      throw new Error(`Input type "${this._type}" is not supported by sbbInput!`);
     }
   }
 
@@ -330,8 +320,7 @@ export class InputDirective extends SbbNativeInputBase
   /** Checks whether the input is invalid based on the native validation. */
   private _isBadInput() {
     // The `validity` property won't be present on platform-server.
-    const validity = (this._elementRef.nativeElement as HTMLInputElement)
-      .validity;
+    const validity = (this._elementRef.nativeElement as HTMLInputElement).validity;
     return validity && validity.badInput;
   }
 

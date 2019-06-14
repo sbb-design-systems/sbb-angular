@@ -9,11 +9,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  NgControl
-} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 import { RadioButtonRegistryService } from './radio-button-registry.service';
 import { RadioButton } from './radio-button.model';
@@ -156,11 +152,7 @@ export class RadioButtonComponent extends RadioButton
    * Verify that radio button name matches with radio button form control name
    */
   private _checkName(): void {
-    if (
-      this.name &&
-      this.formControlName &&
-      this.name !== this.formControlName
-    ) {
+    if (this.name && this.formControlName && this.name !== this.formControlName) {
       this._throwNameError();
     } else if (!this.name && this.formControlName) {
       this.name = this.formControlName;

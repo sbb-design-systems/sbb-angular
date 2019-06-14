@@ -105,17 +105,15 @@ describe('TagsComponent with Model attached', () => {
   });
 
   it('should the second sbb-tag input have the ID set by the Model', () => {
-    const secondTag: TagComponent = fixture.debugElement.queryAll(
-      By.directive(TagComponent)
-    )[1].componentInstance;
+    const secondTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[1]
+      .componentInstance;
 
     expect(secondTag.inputId).toBe('tag-1');
   });
 
   it('should the third sbb-tag input have an auto generated ID', () => {
-    const thirdTag: TagComponent = fixture.debugElement.queryAll(
-      By.directive(TagComponent)
-    )[2].componentInstance;
+    const thirdTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[2]
+      .componentInstance;
 
     expect(thirdTag.inputId).toBe('sbb-tag-2');
   });
@@ -123,8 +121,7 @@ describe('TagsComponent with Model attached', () => {
   it('should have all its sbb-tag children with linkMode set to false', () => {
     const tags = fixture.debugElement.queryAll(By.directive(TagComponent));
 
-    const foundLinkModes =
-      tags.findIndex(tag => tag.componentInstance.linkMode === true) !== -1;
+    const foundLinkModes = tags.findIndex(tag => tag.componentInstance.linkMode === true) !== -1;
 
     expect(foundLinkModes).toBeFalsy();
   });
@@ -213,17 +210,13 @@ describe('TagsComponent with Model attached', () => {
     tags.splice(0, 1);
 
     const hasTruthyValues =
-      tags.findIndex(
-        t => t.componentInstance.checked && t.componentInstance.active
-      ) !== -1;
+      tags.findIndex(t => t.componentInstance.checked && t.componentInstance.active) !== -1;
 
     expect(hasTruthyValues).toBeFalsy();
   });
 
   it('should call the tagChange event when checking/unchecking a sbb-tag', () => {
-    const firstTag = fixture.debugElement.queryAll(
-      By.directive(TagComponent)
-    )[1];
+    const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
 
     spyOn(component, 'change');
 

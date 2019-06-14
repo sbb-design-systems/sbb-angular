@@ -28,20 +28,12 @@
 
       <h4>Playground</h4>
       <div class="sbbsc-block">
-        <button
-          sbbButton
-          mode="secondary"
-          (click)="removeOneItem('templateDriven')"
-        >
+        <button sbbButton mode="secondary" (click)="removeOneItem('templateDriven')">
           Remove one tag
         </button>
       </div>
       <div class="sbbsc-block">
-        <button
-          sbbButton
-          mode="secondary"
-          (click)="addOneItem('templateDriven')"
-        >
+        <button sbbButton mode="secondary" (click)="addOneItem('templateDriven')">
           Add one tag
         </button>
       </div>
@@ -102,11 +94,7 @@
       <div class="sbbsc-block">
         <sbb-field mode="default">
           <sbb-label for="name1">Change amount of first item</sbb-label>
-          <input
-            id="name1"
-            type="number"
-            [formControl]="changeAmountReactive"
-          />
+          <input id="name1" type="number" [formControl]="changeAmountReactive" />
         </sbb-field>
       </div>
     </div>

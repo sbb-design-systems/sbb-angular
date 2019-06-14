@@ -3,11 +3,7 @@ import { FormControl } from '@angular/forms';
 import { SelectComponent } from '@sbb-esta/angular-public';
 
 export class Food {
-  constructor(
-    public value: string,
-    public viewValue: string,
-    public disabled: boolean = false
-  ) {}
+  constructor(public value: string, public viewValue: string, public disabled: boolean = false) {}
 }
 
 @Component({
@@ -16,10 +12,10 @@ export class Food {
   styleUrls: ['./select-showcase.component.scss']
 })
 export class SelectShowcaseComponent {
-  @ViewChild('basicSelect') basicSelect: SelectComponent;
-  @ViewChild('multiSelect') multiSelect: SelectComponent;
-  @ViewChild('withOptionGroup') withOptionGroup: SelectComponent;
-  @ViewChild('multiWithOptionGroup') multiWithOptionGroup: SelectComponent;
+  @ViewChild('basicSelect', { static: true }) basicSelect: SelectComponent;
+  @ViewChild('multiSelect', { static: true }) multiSelect: SelectComponent;
+  @ViewChild('withOptionGroup', { static: true }) withOptionGroup: SelectComponent;
+  @ViewChild('multiWithOptionGroup', { static: true }) multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
     new Food('beefsteak-0', 'Beefsteak'),

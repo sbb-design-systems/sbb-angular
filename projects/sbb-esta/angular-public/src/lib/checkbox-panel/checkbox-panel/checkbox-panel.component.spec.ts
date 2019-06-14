@@ -34,9 +34,7 @@ import { CheckboxPanelComponent } from './checkbox-panel.component';
 class ModelOptionSelectionMultipleTestComponent {
   checkValue1 = false;
   checkValue2 = false;
-  @ViewChildren(CheckboxPanelComponent) optionSelections: QueryList<
-    CheckboxPanelComponent
-  >;
+  @ViewChildren(CheckboxPanelComponent) optionSelections: QueryList<CheckboxPanelComponent>;
 }
 
 describe('CheckboxPanelComponent', () => {
@@ -67,21 +65,17 @@ describe('CheckboxPanelComponent', () => {
 
 describe('CheckboxPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionMultipleTestComponent;
-  let modelComponentFixture: ComponentFixture<
-    ModelOptionSelectionMultipleTestComponent
-  >;
+  let modelComponentFixture: ComponentFixture<ModelOptionSelectionMultipleTestComponent>;
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, CheckboxPanelModule],
+      imports: [CommonModule, FormsModule, CheckboxPanelModule],
       declarations: [ModelOptionSelectionMultipleTestComponent]
     });
   });
 
   beforeEach(() => {
-    modelComponentFixture = TestBed.createComponent(
-      ModelOptionSelectionMultipleTestComponent
-    );
+    modelComponentFixture = TestBed.createComponent(ModelOptionSelectionMultipleTestComponent);
     modelComponent = modelComponentFixture.componentInstance;
 
     modelComponentFixture.detectChanges();
@@ -110,17 +104,13 @@ describe('CheckboxPanelComponent using mock component', () => {
     opt1.click();
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter(
-      o => !!o.checked
-    );
+    let checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
     expect(checkedComponents.length).toBe(1);
 
     opt2.click();
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter(
-      o => !!o.checked
-    );
+    checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
     expect(checkedComponents.length).toBe(2);
   });
 

@@ -38,9 +38,7 @@ export class ContentComponent implements OnInit {
     this._route.params.subscribe(params => {
       this.id = params['id'];
 
-      this.uiComponent = this._componentUiService.getUiComponentByRouterLink(
-        this.id
-      );
+      this.uiComponent = this._componentUiService.getUiComponentByRouterLink(this.id);
 
       if (!this.uiComponent) {
         this.uiIcon = this._iconUiService.getUiIconByRouterLink(this.id);

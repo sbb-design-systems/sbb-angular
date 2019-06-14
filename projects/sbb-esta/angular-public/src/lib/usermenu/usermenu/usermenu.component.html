@@ -15,10 +15,7 @@
         <div #icon class="sbb-usermenu-logged-in-collapsed-icon">
           <ng-content select="[sbbIcon]"></ng-content>
         </div>
-        <div
-          class="sbb-usermenu-logged-in-collapsed-initial-letters"
-          *ngIf="!icon.children.length"
-        >
+        <div class="sbb-usermenu-logged-in-collapsed-initial-letters" *ngIf="!icon.children.length">
           <div>{{ getInitialLetters() }}</div>
         </div>
       </div>
@@ -44,10 +41,7 @@
       </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">
-      <div
-        class="sbb-usermenu-logged-in-expanded-arrow"
-        *ngIf="dropdown.isOpen"
-      >
+      <div class="sbb-usermenu-logged-in-expanded-arrow" *ngIf="dropdown.isOpen">
         <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
       </div>
     </div>
@@ -57,12 +51,7 @@
   <div class="sbb-usermenu-logged-off-icon-user">
     <sbb-icon-user></sbb-icon-user>
   </div>
-  <button
-    class="sbb-usermenu-logged-off-button"
-    (click)="emitLogin()"
-    type="button"
-    i18n
-  >
+  <button class="sbb-usermenu-logged-off-button" (click)="emitLogin()" type="button" i18n>
     Login
   </button>
 </div>

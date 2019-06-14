@@ -3,9 +3,7 @@
 Import button module into your application
 
 ```ts
-import {
-  BadgeModule
-} from '@sbb-esta/angular-public';
+import { BadgeModule } from '@sbb-esta/angular-public';
 ```
 
 and then you can use the badge component as seen below
@@ -17,11 +15,11 @@ and then you can use the badge component as seen below
 </div>
 ```
 
-Tha badge supports a property called ```active```: it is a boolean (true is default). When ```active``` is set to "false", the badge will be grey colored.  
+Tha badge supports a property called `active`: it is a boolean (true is default). When `active` is set to "false", the badge will be grey colored.
 
 ## Accessibility
 
-In order to make this component accessible, you must use the ```aria-label``` attribute on the ```<sbb-badge>``` itself:
+In order to make this component accessible, you must use the `aria-label` attribute on the `<sbb-badge>` itself:
 
 ```html
 <div class="badge-example">

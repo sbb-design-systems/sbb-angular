@@ -25,6 +25,7 @@
       [skipLocationChange]="selectedPage.previousLink?.skipLocationChange"
       [replaceUrl]="selectedPage.previousLink?.replaceUrl"
       [queryParamsHandling]="selectedPage.previousLink?.queryParamsHandling"
+      [state]="selectedPage.previousLink?.state"
       (click)="previousLink(selectedPage)"
     >
       <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
@@ -43,23 +44,17 @@
         [class.sbb-pagination-item-selected]="
           !page.isEllipsis && page.displayNumber === initialPage
         "
-        [attr.aria-current]="
-          !page.isEllipsis && page.displayNumber === initialPage
-        "
+        [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
         (click)="buttonClick(page)"
       >
         <ng-container *ngIf="page.isEllipsis">...</ng-container>
-        <ng-container *ngIf="!page.isEllipsis">{{
-          page.displayNumber
-        }}</ng-container>
+        <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
       </button>
       <a
         *ngIf="linkGenerator"
         #pageLink
         [attr.tabindex]="page.tabIndex"
-        [attr.aria-current]="
-          !page.isEllipsis && page.displayNumber === initialPage
-        "
+        [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
         [routerLink]="page.link?.routerLink"
         [queryParams]="page.link?.queryParams"
         [fragment]="page.link?.fragment"
@@ -67,6 +62,7 @@
         [skipLocationChange]="page.link?.skipLocationChange"
         [replaceUrl]="page.link?.replaceUrl"
         [queryParamsHandling]="page.link?.queryParamsHandling"
+        [state]="page.link?.state"
         routerLinkActive="sbb-pagination-item-selected"
         [routerLinkActiveOptions]="{ exact: true }"
         #rla="routerLinkActive"
@@ -102,6 +98,7 @@
       [skipLocationChange]="selectedPage.nextLink?.skipLocationChange"
       [replaceUrl]="selectedPage.nextLink?.replaceUrl"
       [queryParamsHandling]="selectedPage.nextLink?.queryParamsHandling"
+      [state]="selectedPage.nextLink?.state"
       (click)="nextLink(selectedPage)"
     >
       <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>

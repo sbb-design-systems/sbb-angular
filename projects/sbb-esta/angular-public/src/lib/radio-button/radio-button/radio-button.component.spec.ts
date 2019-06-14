@@ -12,20 +12,10 @@ import { RadioButtonComponent } from './radio-button.component';
 @Component({
   selector: 'sbb-model-radio-button-test',
   template: `
-    <sbb-radio-button
-      [(ngModel)]="testValue"
-      inputId="test-radio-1"
-      name="test-radio"
-      value="1"
-    >
+    <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">
       Test radio button 1
     </sbb-radio-button>
-    <sbb-radio-button
-      [(ngModel)]="testValue"
-      inputId="test-radio-2"
-      name="test-radio"
-      value="2"
-    >
+    <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">
       Test radio button 2
     </sbb-radio-button>
   `
@@ -79,9 +69,7 @@ describe('RadioButtonComponent using mock component', () => {
   });
 
   beforeEach(() => {
-    modelComponentFixture = TestBed.createComponent(
-      ModelRadioButtonTestComponent
-    );
+    modelComponentFixture = TestBed.createComponent(ModelRadioButtonTestComponent);
     modelComponent = modelComponentFixture.componentInstance;
 
     modelComponentFixture.detectChanges();
@@ -114,9 +102,7 @@ describe('RadioButtonComponent using mock component', () => {
     );
     expect(radioButtonComponent).toBeTruthy();
 
-    const radioButtonChecked = radioButtonComponent.queryAll(
-      By.css('input:checked')
-    );
+    const radioButtonChecked = radioButtonComponent.queryAll(By.css('input:checked'));
     expect(radioButtonChecked).toBeTruthy();
     expect(radioButtonChecked.length).toBe(1);
   });
@@ -127,16 +113,12 @@ describe('RadioButtonComponent using mock component', () => {
     );
     radioButtons[0].query(By.css('input[type="radio"]')).nativeElement.click();
 
-    let radioButtonChecked = modelComponentFixture.debugElement.queryAll(
-      By.css('input:checked')
-    );
+    let radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
     expect(radioButtonChecked.length).toBe(1);
 
     radioButtons[1].query(By.css('input[type="radio"]')).nativeElement.click();
 
-    radioButtonChecked = modelComponentFixture.debugElement.queryAll(
-      By.css('input:checked')
-    );
+    radioButtonChecked = modelComponentFixture.debugElement.queryAll(By.css('input:checked'));
     expect(radioButtonChecked.length).toBe(1);
   });
 
@@ -166,8 +148,6 @@ describe('RadioButtonComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
     expect(components[1].componentInstance._checked).toBe(true);
-    expect(modelComponent.testValue).toBe(
-      components[1].componentInstance.value
-    );
+    expect(modelComponent.testValue).toBe(components[1].componentInstance.value);
   });
 });

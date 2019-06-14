@@ -9,17 +9,7 @@ import { PseudoCheckboxComponent } from './option/pseudo-checkbox';
 
 @NgModule({
   imports: [CommonModule, IconTickModule],
-  declarations: [
-    OptionComponent,
-    OptionGroupComponent,
-    HighlightPipe,
-    PseudoCheckboxComponent
-  ],
-  exports: [
-    OptionComponent,
-    OptionGroupComponent,
-    HighlightPipe,
-    PseudoCheckboxComponent
-  ]
+  declarations: [OptionComponent, OptionGroupComponent, HighlightPipe, PseudoCheckboxComponent],
+  exports: [OptionComponent, OptionGroupComponent, HighlightPipe, PseudoCheckboxComponent]
 })
 export class OptionModule {}

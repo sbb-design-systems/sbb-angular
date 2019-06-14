@@ -1,12 +1,6 @@
 import { animate, AnimationBuilder, style } from '@angular/animations';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  DOWN_ARROW,
-  ENTER,
-  ESCAPE,
-  TAB,
-  UP_ARROW
-} from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
   Overlay,
@@ -71,14 +65,12 @@ import {
 import { SearchIconDirective } from '../search-icon.directive';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
-export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<
-  () => ScrollStrategy
->('sbb-search-scroll-strategy');
+export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
+  'sbb-search-scroll-strategy'
+);
 
 /** @docs-private */
-export function SBB_SEARCH_SCROLL_STRATEGY_FACTORY(
-  overlay: Overlay
-): () => ScrollStrategy {
+export function SBB_SEARCH_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition();
 }
 
@@ -116,21 +108,18 @@ const ANIMATION_DURATION = 300;
     }
   ]
 })
-export class SearchComponent
-  implements ControlValueAccessor, OnDestroy, AfterViewInit {
+export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   /** @docs-private */
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
+  @ViewChild('input', { static: true }) input: ElementRef<HTMLInputElement>;
   /** @docs-private */
-  @ViewChild('button') button: ElementRef<HTMLButtonElement>;
+  @ViewChild('button', { static: true }) button: ElementRef<HTMLButtonElement>;
   /** @docs-private */
-  @ViewChild('searchbox') searchbox: ElementRef<any>;
+  @ViewChild('searchbox', { static: true }) searchbox: ElementRef<any>;
   /** @docs-private */
-  @ViewChild('trigger') trigger: ElementRef<HTMLElement>;
+  @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
 
   /** @docs-private */
-  @ContentChild(SearchIconDirective, { read: TemplateRef }) icon: TemplateRef<
-    any
-  >;
+  @ContentChild(SearchIconDirective, { read: TemplateRef, static: false }) icon: TemplateRef<any>;
 
   /**
    * Sets the search in default mode or in header mode,
@@ -261,22 +250,20 @@ export class SearchComponent
   }
 
   /** Stream of autocomplete option selections. */
-  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(
-    () => {
-      if (this.autocomplete && this.autocomplete.options) {
-        return merge(
-          ...this.autocomplete.options.map(option => option.onSelectionChange)
-        );
-      }
-
-      // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
-      // Return a stream that we'll replace with the real one once everything is in place.
-      return this._zone.onStable.asObservable().pipe(
-        first(),
-        switchMap(() => this.optionSelections)
+  readonly optionSelections: Observable<SBBOptionSelectionChange> = defer(() => {
+    if (this.autocomplete && this.autocomplete.options) {
+      return merge<SBBOptionSelectionChange>(
+        ...this.autocomplete.options.map(option => option.onSelectionChange)
       );
     }
-  );
+
+    // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
+    // Return a stream that we'll replace with the real one once everything is in place.
+    return this._zone.onStable.asObservable().pipe(
+      first(),
+      switchMap(() => this.optionSelections)
+    );
+  });
 
   ngAfterViewInit() {
     if (this.autocomplete) {
@@ -305,10 +292,8 @@ export class SearchComponent
       return true;
     }
     return (
-      (target === this.input.nativeElement &&
-        relatedTarget !== this.button.nativeElement) ||
-      (target === this.button.nativeElement &&
-        relatedTarget !== this.input.nativeElement)
+      (target === this.input.nativeElement && relatedTarget !== this.button.nativeElement) ||
+      (target === this.button.nativeElement && relatedTarget !== this.input.nativeElement)
     );
   }
 
@@ -317,10 +302,7 @@ export class SearchComponent
     const relatedTarget = $event.relatedTarget;
     const target = $event.target;
 
-    if (
-      this._isHeaderMode() &&
-      this._isNotSearchBoxElementToBeFocused(relatedTarget, target)
-    ) {
+    if (this._isHeaderMode() && this._isNotSearchBoxElementToBeFocused(relatedTarget, target)) {
       if (
         this.autocomplete &&
         !!this._overlayRef &&
@@ -353,9 +335,7 @@ export class SearchComponent
 
   /** @docs-private */
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
-    return this.autocompleteDisabled || !this.panelOpen
-      ? null
-      : this.autocomplete.id;
+    return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
   }
 
   /**
@@ -367,8 +347,7 @@ export class SearchComponent
     // refocused when they come back. In this case we want to skip the first focus event, if the
     // pane was closed, in order to avoid reopening it unintentionally.
     this._canOpenOnNextFocus =
-      document.activeElement !== this._elementRef.nativeElement ||
-      this.panelOpen;
+      document.activeElement !== this._elementRef.nativeElement || this.panelOpen;
   };
 
   /** `View -> model callback called when value changes` */
@@ -453,15 +432,11 @@ export class SearchComponent
   get panelClosingActions(): Observable<SBBOptionSelectionChange | null> {
     return merge(
       this.optionSelections,
-      this.autocomplete.keyManager.tabOut.pipe(
-        filter(() => this._overlayAttached)
-      ),
+      this.autocomplete.keyManager.tabOut.pipe(filter(() => this._overlayAttached)),
       this._closeKeyEventStream,
       this._getOutsideClickStream(),
       this._overlayRef
-        ? this._overlayRef
-            .detachments()
-            .pipe(filter(() => this._overlayAttached))
+        ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached))
         : observableOf()
     ).pipe(
       // Normalize the output so we return a consistent type.
@@ -500,8 +475,7 @@ export class SearchComponent
           this._overlayAttached &&
           clickTarget !== this._elementRef.nativeElement &&
           !this._elementRef.nativeElement.contains(clickTarget) &&
-          (!!this._overlayRef &&
-            !this._overlayRef.overlayElement.contains(clickTarget))
+          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget))
         );
       })
     );
@@ -553,10 +527,7 @@ export class SearchComponent
       if (keyCode === ENTER) {
         this.emitSearch();
       }
-      if (
-        isArrowKey ||
-        this.autocomplete.keyManager.activeItem !== prevActiveItem
-      ) {
+      if (isArrowKey || this.autocomplete.keyManager.activeItem !== prevActiveItem) {
         this.scrollToOption();
       }
     } else if (keyCode === ENTER) {
@@ -565,9 +536,7 @@ export class SearchComponent
     this._zone.onStable
       .asObservable()
       .pipe()
-      .subscribe(() =>
-        this.highlightOptionsByInput(this.input.nativeElement.value)
-      );
+      .subscribe(() => this.highlightOptionsByInput(this.input.nativeElement.value));
   }
 
   /**
@@ -628,10 +597,7 @@ export class SearchComponent
     // filter out all of the extra events, we save the value on focus and between
     // `input` events, and we check whether it changed.
     // See: https://connect.microsoft.com/IE/feedback/details/885747/
-    if (
-      this._previousValue !== value &&
-      document.activeElement === event.target
-    ) {
+    if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
       this.onChange(value);
 
@@ -754,34 +720,27 @@ export class SearchComponent
       throw getSbbAutocompleteMissingPanelError();
     }
     if (!this._overlayRef) {
-      this._portal = new TemplatePortal(
-        this.autocomplete.template,
-        this._viewContainerRef
-      );
+      this._portal = new TemplatePortal(this.autocomplete.template, this._viewContainerRef);
       this._overlayRef = this._overlay.create(this._getOverlayConfig());
 
       if (this._positionStrategy) {
-        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(
-          position => {
-            if (this.autocomplete.panel) {
-              if (position.connectionPair.originY === 'top') {
-                this.autocomplete.panel.nativeElement.classList.add(
-                  'sbb-autocomplete-panel-above'
-                );
-                this._getConnectedElement().nativeElement.classList.add(
-                  'sbb-autocomplete-input-above'
-                );
-              } else {
-                this.autocomplete.panel.nativeElement.classList.remove(
-                  'sbb-autocomplete-panel-above'
-                );
-                this._getConnectedElement().nativeElement.classList.remove(
-                  'sbb-autocomplete-input-above'
-                );
-              }
+        this._positionSubscription = this._positionStrategy.positionChanges.subscribe(position => {
+          if (this.autocomplete.panel) {
+            if (position.connectionPair.originY === 'top') {
+              this.autocomplete.panel.nativeElement.classList.add('sbb-autocomplete-panel-above');
+              this._getConnectedElement().nativeElement.classList.add(
+                'sbb-autocomplete-input-above'
+              );
+            } else {
+              this.autocomplete.panel.nativeElement.classList.remove(
+                'sbb-autocomplete-panel-above'
+              );
+              this._getConnectedElement().nativeElement.classList.remove(
+                'sbb-autocomplete-input-above'
+              );
             }
           }
-        );
+        });
       }
 
       // Use the `keydownEvents` in order to take advantage of
@@ -789,23 +748,18 @@ export class SearchComponent
       this._overlayRef.keydownEvents().subscribe(event => {
         // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
         // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
-        if (
-          event.keyCode === ESCAPE ||
-          (event.keyCode === UP_ARROW && event.altKey)
-        ) {
+        if (event.keyCode === ESCAPE || (event.keyCode === UP_ARROW && event.altKey)) {
           this._resetActiveItem();
           this._closeKeyEventStream.next();
         }
       });
 
       if (this._viewportRuler) {
-        this._viewportSubscription = this._viewportRuler
-          .change()
-          .subscribe(() => {
-            if (this.panelOpen && this._overlayRef) {
-              this._overlayRef.updateSize({ width: this._getPanelWidth() });
-            }
-          });
+        this._viewportSubscription = this._viewportRuler.change().subscribe(() => {
+          if (this.panelOpen && this._overlayRef) {
+            this._overlayRef.updateSize({ width: this._getPanelWidth() });
+          }
+        });
       }
     } else {
       // Update the panel width and direction, in case anything has changed.
@@ -845,10 +799,7 @@ export class SearchComponent
   private _closeAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
       style({ width: this._getPanelWidth(), opacity: 1, display: 'flex' }),
-      animate(
-        ANIMATION_DURATION,
-        style({ width: 0, opacity: 0, display: 'none' })
-      )
+      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0, display: 'none' }))
     ]);
     const player = myAnimation.create(element);
     player.play();
@@ -897,16 +848,12 @@ export class SearchComponent
   }
 
   private _getPanelWidth(): number | string {
-    return (
-      (this.autocomplete && this.autocomplete.panelWidth) ||
-      this._getHostWidth()
-    );
+    return (this.autocomplete && this.autocomplete.panelWidth) || this._getHostWidth();
   }
 
   /** Returns the width of the input element, so the panel width can match it. */
   private _getHostWidth(): number {
-    return this._getConnectedElement().nativeElement.getBoundingClientRect()
-      .width;
+    return this._getConnectedElement().nativeElement.getBoundingClientRect().width;
   }
 
   /**
@@ -914,9 +861,7 @@ export class SearchComponent
    * correct options, or to 0 if the consumer opted into it.
    */
   private _resetActiveItem(): void {
-    this.autocomplete.keyManager.setActiveItem(
-      this.autocomplete.autoActiveFirstOption ? 0 : -1
-    );
+    this.autocomplete.keyManager.setActiveItem(this.autocomplete.autoActiveFirstOption ? 0 : -1);
   }
 
   /** Determines whether the panel can be opened. */

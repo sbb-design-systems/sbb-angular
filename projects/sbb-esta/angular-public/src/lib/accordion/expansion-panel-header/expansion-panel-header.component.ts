@@ -28,8 +28,7 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExpansionPanelHeaderComponent
-  implements OnDestroy, FocusableOption {
+export class ExpansionPanelHeaderComponent implements OnDestroy, FocusableOption {
   /**
    * Class property that refers to the attribute class of the header panel.
    */
@@ -70,9 +69,7 @@ export class ExpansionPanelHeaderComponent
     private _changeDetectorRef: ChangeDetectorRef
   ) {
     const accordionHideToggleChange = panel.accordion
-      ? panel.accordion._stateChanges.pipe(
-          filter(changes => !!changes.hideToggle)
-        )
+      ? panel.accordion._stateChanges.pipe(filter(changes => !!changes.hideToggle))
       : EMPTY;
 
     // Since the toggle state depends on an @Input on the panel, we
@@ -81,17 +78,13 @@ export class ExpansionPanelHeaderComponent
       panel.opened,
       panel.closed,
       accordionHideToggleChange,
-      panel._inputChanges.pipe(
-        filter(changes => !!(changes.hideToggle || changes.disabled))
-      )
+      panel._inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled)))
     ).subscribe(() => this._changeDetectorRef.markForCheck());
 
     // Avoids focus being lost if the panel contained the focused element and was closed.
     panel.closed
       .pipe(filter(() => panel.containsFocus()))
-      .subscribe(() =>
-        _focusMonitor.focusVia(_element.nativeElement, 'program')
-      );
+      .subscribe(() => _focusMonitor.focusVia(_element.nativeElement, 'program'));
 
     _focusMonitor.monitor(_element.nativeElement).subscribe(origin => {
       if (origin && panel.accordion) {

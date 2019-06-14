@@ -11,19 +11,13 @@ export class IconUiService {
   getUiIconByRouterLink(name: any): UiIcon {
     return ICON_COMPONENT_META_INFORMATION.map(
       item => new UiIcon(item.name, item.selector, item.modules)
-    ).find(
-      uiIcon =>
-        uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0
-    );
+    ).find(uiIcon => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
   }
 
   getUiComponentByRouterLink(name: any): UiComponent {
     const foundUiIcon: UiIcon = ICON_COMPONENT_META_INFORMATION.map(
       item => new UiIcon(item.name, item.selector, item.modules)
-    ).find(
-      uiIcon =>
-        uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0
-    );
+    ).find(uiIcon => uiIcon.name.localeCompare(name, 'en', { sensitivity: 'base' }) === 0);
     return new UiComponent(
       foundUiIcon.name,
       foundUiIcon.name,
@@ -52,9 +46,7 @@ export class IconUiService {
     )
       .sort((a, b) => a.name.localeCompare(b.name))
       .concat(
-        ICON_COMPONENT_META_INFORMATION.filter(icon =>
-          icon.meta.some(m => searchRegex.test(m))
-        )
+        ICON_COMPONENT_META_INFORMATION.filter(icon => icon.meta.some(m => searchRegex.test(m)))
       )
       .map(icon => new UiIcon(icon.name, icon.selector, icon.modules))
       .map(icon => {

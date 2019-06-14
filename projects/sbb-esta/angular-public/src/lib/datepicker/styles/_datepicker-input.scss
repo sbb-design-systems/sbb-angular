@@ -13,15 +13,13 @@
 
     @include mq($from: desktop4k) {
       padding-left: pxToEm(
-        $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth *
-          $scalingFactor4k
+        $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
       );
     }
 
     @include mq($from: desktop5k) {
       padding-left: pxToEm(
-        $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth *
-          $scalingFactor5k
+        $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
       );
     }
   }
@@ -31,34 +29,29 @@
 
     @include mq($from: desktop4k) {
       padding-right: pxToEm(
-        $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth *
-          $scalingFactor4k
+        $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
       );
     }
 
     @include mq($from: desktop5k) {
       padding-right: pxToEm(
-        $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth *
-          $scalingFactor5k
+        $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
       );
     }
   }
 
-  &.sbb-datepicker-arrows-enabled.sbb-datepicker-toggle-enabled
-    > .sbb-date-input {
+  &.sbb-datepicker-arrows-enabled.sbb-datepicker-toggle-enabled > .sbb-date-input {
     padding-left: pxToEm($dateInputTwoIconPadding - $dateInputBorderWidth);
 
     @include mq($from: desktop4k) {
       padding-left: pxToEm(
-        $dateInputTwoIconPadding * $scalingFactor4k - $dateInputBorderWidth *
-          $scalingFactor4k
+        $dateInputTwoIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
       );
     }
 
     @include mq($from: desktop5k) {
       padding-left: pxToEm(
-        $dateInputTwoIconPadding * $scalingFactor5k - $dateInputBorderWidth *
-          $scalingFactor5k
+        $dateInputTwoIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
       );
     }
   }

@@ -87,8 +87,7 @@
   border-color: $buttonGhostBorderColor;
   color: $buttonGhostColor;
   transition: border-color $linkiconAnimation, height $linkiconAnimation,
-    padding-left $linkiconAnimation, padding-right $linkiconAnimation,
-    color $linkiconAnimation;
+    padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
   line-height: 1.1;
 
   @media screen and (-ms-high-contrast: active) {

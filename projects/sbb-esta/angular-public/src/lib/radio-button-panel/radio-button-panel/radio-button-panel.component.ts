@@ -1,14 +1,17 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
   HostBinding,
+  Injector,
   Input,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioButtonComponent } from '../../radio-button/radio-button';
+import { RadioButtonRegistryService } from '../../radio-button/radio-button/radio-button-registry.service';
 
 let counter = 0;
 
@@ -50,5 +53,13 @@ export class RadioButtonPanelComponent extends RadioButtonComponent {
    */
   get hasSubtitle() {
     return !!this.subtitle;
+  }
+
+  constructor(
+    changeDetector: ChangeDetectorRef,
+    registry: RadioButtonRegistryService,
+    injector: Injector
+  ) {
+    super(changeDetector, registry, injector);
   }
 }

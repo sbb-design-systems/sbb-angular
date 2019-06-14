@@ -17,11 +17,7 @@ import { IconBase } from '../icon-base';
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
-        <path
-          fill="none"
-          stroke="#000"
-          d="M18.5 9.5v10h-4.01v-5h-5v5H5.5v-10M4 11l8-8 8 8"
-        />
+        <path fill="none" stroke="#000" d="M18.5 9.5v10h-4.01v-5h-5v5H5.5v-10M4 11l8-8 8 8" />
       </svg>
       <svg
         *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"

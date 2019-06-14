@@ -46,7 +46,7 @@ export class DropdownTestComponent {
   @ViewChildren(DropdownTriggerDirective)
   triggers: QueryList<DropdownTriggerDirective>;
 
-  @ViewChild(DropdownComponent)
+  @ViewChild(DropdownComponent, { static: true })
   dropdown: DropdownComponent;
 
   links: Array<any> = [
@@ -168,9 +168,7 @@ describe('DropdownComponent test', () => {
         location = TestBed.get(Location);
         fixture.detectChanges();
         await fixture.whenStable();
-        const links = fixture.debugElement.queryAll(
-          By.css('[sbbDropdownItem]')
-        );
+        const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));
         fixture.detectChanges();
         links[1].nativeElement.click();
         await fixture.whenStable();
@@ -188,9 +186,7 @@ describe('DropdownComponent test', () => {
         location = TestBed.get(Location);
         fixture.detectChanges();
         await fixture.whenStable();
-        const links = fixture.debugElement.queryAll(
-          By.css('[sbbDropdownItem]')
-        );
+        const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));
         fixture.detectChanges();
         links[1].nativeElement.click();
         await fixture.whenStable();

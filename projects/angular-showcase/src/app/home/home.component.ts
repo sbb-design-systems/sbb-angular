@@ -8,9 +8,7 @@ import { AccordionNotificationService } from '../services/accordion-notification
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(
-    private _accordionNotificationService: AccordionNotificationService
-  ) {}
+  constructor(private _accordionNotificationService: AccordionNotificationService) {}
 
   openComponents() {
     this._accordionNotificationService.setOpenComponent(true);

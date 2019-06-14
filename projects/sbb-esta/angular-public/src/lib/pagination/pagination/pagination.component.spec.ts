@@ -1,4 +1,3 @@
-/*
 import { CommonModule, Location } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -35,7 +34,7 @@ export class PaginationTestComponent {
   maxPage = 5;
   initialPage = 1;
 
-  @ViewChild('pagination') pagination: PaginationComponent;
+  @ViewChild('pagination', { static: true }) pagination: PaginationComponent;
 
   onPageChange($event) {}
 }
@@ -53,13 +52,10 @@ export class PaginationTestComponent {
 })
 export class PaginationLinkTestComponent {
   maxPage = 10;
-  @ViewChild('paginationLink') paginationLink: PaginationComponent;
+  @ViewChild('paginationLink', { static: true }) paginationLink: PaginationComponent;
   private _route: ActivatedRoute;
 
-  linkGenerator = (page: {
-    displayNumber: number;
-    index: number;
-  }): LinkGeneratorResult => {
+  linkGenerator = (page: { displayNumber: number; index: number }): LinkGeneratorResult => {
     return {
       routerLink: ['.'],
       queryParams: { page: page.displayNumber },
@@ -119,27 +115,19 @@ describe('PaginationComponent behaviour', () => {
         component.maxPage = 10;
         component.initialPage = 1;
         fixture.detectChanges();
-        let ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 2;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 3;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 4;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(2);
       });
 
@@ -147,27 +135,19 @@ describe('PaginationComponent behaviour', () => {
         component.maxPage = 10;
         component.initialPage = 10;
         fixture.detectChanges();
-        let ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        let ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 9;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 8;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(1);
         component.initialPage = 7;
         fixture.detectChanges();
-        ellipsisItems = fixture.debugElement.queryAll(
-          By.css('.sbb-pagination-item-ellipsis')
-        );
+        ellipsisItems = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-ellipsis'));
         expect(ellipsisItems.length).toBe(2);
       });
     });
@@ -178,9 +158,7 @@ describe('PaginationComponent behaviour', () => {
       component.maxPage = 10;
       component.initialPage = 5;
       fixture.detectChanges();
-      const pageNumbers = fixture.debugElement.queryAll(
-        By.css('.sbb-pagination-item-boundary')
-      );
+      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(pageNumbers[1].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
       expect(component.pagination.initialPage).toBe(6);
@@ -192,9 +170,7 @@ describe('PaginationComponent behaviour', () => {
       component.maxPage = 10;
       component.initialPage = 5;
       fixture.detectChanges();
-      const pageNumbers = fixture.debugElement.queryAll(
-        By.css('.sbb-pagination-item-boundary')
-      );
+      const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(pageNumbers[0].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
       expect(component.pagination.initialPage).toBe(4);
@@ -202,6 +178,7 @@ describe('PaginationComponent behaviour', () => {
   });
 });
 
+/*
 describe('Pagination as links behaviour ', () => {
   let component: PaginationLinkTestComponent;
   let fixture: ComponentFixture<PaginationLinkTestComponent>;
@@ -229,9 +206,7 @@ describe('Pagination as links behaviour ', () => {
       router.initialNavigation();
       fixture.detectChanges();
       location = TestBed.get(Location);
-      const arrowPage = fixture.debugElement.queryAll(
-        By.css('.sbb-pagination-item-boundary')
-      );
+      const arrowPage = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
 
       router.navigate(['.'], { queryParams: { page: 1 } });
       fixture.detectChanges();
@@ -259,9 +234,7 @@ describe('Pagination as links behaviour ', () => {
 
       await fixture.whenStable();
       // Initially, the focus is on first page.
-      const arrowPage = fixture.debugElement.queryAll(
-        By.css('.sbb-pagination-item-boundary')
-      );
+      const arrowPage = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(arrowPage[1].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
 
@@ -303,9 +276,7 @@ describe('Pagination as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const arrowPage = fixture.debugElement.queryAll(
-        By.css('.sbb-pagination-item-boundary')
-      );
+      const arrowPage = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(arrowPage[1].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
 
@@ -330,9 +301,7 @@ describe('Pagination as links behaviour ', () => {
       fixture.detectChanges();
 
       await fixture.whenStable();
-      const arrowPage = fixture.debugElement.queryAll(
-        By.css('.sbb-pagination-item-boundary')
-      );
+      const arrowPage = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(arrowPage[1].nativeElement, createMouseEvent('click'));
       fixture.detectChanges();
 
@@ -378,6 +347,7 @@ describe('Pagination as links behaviour ', () => {
     });
   });
 });
+*/
 
 @Component({
   selector: 'sbb-navigation-test',
@@ -395,15 +365,13 @@ describe('Pagination as links behaviour ', () => {
   `
 })
 export class NavigationTestComponent {
-  @ViewChild('navigation') navigation: NavigationComponent;
+  @ViewChild('navigation', { static: true }) navigation: NavigationComponent;
 
   newPage = { title: 'paginaTest' };
 
-  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map(
-    (page, index) => {
-      return { title: page, index: index };
-    }
-  );
+  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map((page, index) => {
+    return { title: page, index: index };
+  });
 
   hasPrevious: NavigationPageDescriptor = this.pages[1];
   hasNext: NavigationPageDescriptor = this.pages[2];
@@ -448,13 +416,11 @@ export class NavigationTestComponent {
   `
 })
 export class NavigationLinkTestComponent {
-  @ViewChild('navigationLink') navigationLink: NavigationComponent;
+  @ViewChild('navigationLink', { static: true }) navigationLink: NavigationComponent;
 
-  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map(
-    (page, index) => {
-      return { title: page, index: index };
-    }
-  );
+  pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map((page, index) => {
+    return { title: page, index: index };
+  });
 
   newPage = { title: 'paginaTest' };
 
@@ -470,9 +436,7 @@ export class NavigationLinkTestComponent {
     return this.hasNext ? this.hasNext.title : null;
   }
 
-  linkGeneratorNavigation = (
-    direction: 'previous' | 'next'
-  ): LinkGeneratorResult => {
+  linkGeneratorNavigation = (direction: 'previous' | 'next'): LinkGeneratorResult => {
     let index = null;
 
     if (direction === 'next') {
@@ -533,12 +497,7 @@ describe('NavigationComponent behaviour', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [
-        PaginationModule,
-        RouterTestingModule,
-        ButtonModule,
-        FormsModule
-      ],
+      imports: [PaginationModule, RouterTestingModule, ButtonModule, FormsModule],
       declarations: [NavigationTestComponent]
     });
   });
@@ -551,9 +510,7 @@ describe('NavigationComponent behaviour', () => {
   it('it verifies the initial state of the navigation buttons', () => {
     fixture.detectChanges();
 
-    const buttonsReference = fixture.debugElement.queryAll(
-      By.css('.sbb-navigation-item > button')
-    );
+    const buttonsReference = fixture.debugElement.queryAll(By.css('.sbb-navigation-item > button'));
     const previousButton = buttonsReference[0].nativeElement;
     const nextButton = buttonsReference[1].nativeElement;
 
@@ -565,9 +522,7 @@ describe('NavigationComponent behaviour', () => {
 
   it('it verifies the click to next chapter', () => {
     fixture.detectChanges();
-    const buttonsReference = fixture.debugElement.queryAll(
-      By.css('.sbb-navigation-item > button')
-    );
+    const buttonsReference = fixture.debugElement.queryAll(By.css('.sbb-navigation-item > button'));
     const nextButton = buttonsReference[1].nativeElement;
     nextButton.click();
     fixture.detectChanges();
@@ -577,9 +532,7 @@ describe('NavigationComponent behaviour', () => {
 
   it('it verifies the click to previous chapter', () => {
     fixture.detectChanges();
-    const buttonsReference = fixture.debugElement.queryAll(
-      By.css('.sbb-navigation-item > button')
-    );
+    const buttonsReference = fixture.debugElement.queryAll(By.css('.sbb-navigation-item > button'));
     const nextButton = buttonsReference[0].nativeElement;
     nextButton.click();
     fixture.detectChanges();
@@ -588,8 +541,7 @@ describe('NavigationComponent behaviour', () => {
   });
 
   it('it verifies the adding of new page', () => {
-    const buttonAddPage = fixture.debugElement.query(By.css('#new-page-button'))
-      .nativeElement;
+    const buttonAddPage = fixture.debugElement.query(By.css('#new-page-button')).nativeElement;
     buttonAddPage.click();
     fixture.detectChanges();
 
@@ -597,16 +549,13 @@ describe('NavigationComponent behaviour', () => {
   });
 
   it('it verifies the navigation to new page', () => {
-    const buttonAddPage = fixture.debugElement.query(By.css('#new-page-button'))
-      .nativeElement;
+    const buttonAddPage = fixture.debugElement.query(By.css('#new-page-button')).nativeElement;
     buttonAddPage.click();
     fixture.detectChanges();
 
     expect(component.pages.length).toBe(5);
 
-    const buttonsReference = fixture.debugElement.queryAll(
-      By.css('.sbb-navigation-item > button')
-    );
+    const buttonsReference = fixture.debugElement.queryAll(By.css('.sbb-navigation-item > button'));
     const nextButton = buttonsReference[1].nativeElement;
     nextButton.click();
     fixture.detectChanges();
@@ -617,6 +566,7 @@ describe('NavigationComponent behaviour', () => {
   });
 });
 
+/*
 describe('Navigation as links behaviour ', () => {
   let component: NavigationLinkTestComponent;
   let fixture: ComponentFixture<NavigationLinkTestComponent>;
@@ -625,12 +575,7 @@ describe('Navigation as links behaviour ', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [
-        PaginationModule,
-        RouterTestingModule,
-        ButtonModule,
-        FormsModule
-      ],
+      imports: [PaginationModule, RouterTestingModule, ButtonModule, FormsModule],
       declarations: [NavigationLinkTestComponent]
     });
   });
@@ -704,8 +649,7 @@ describe('Navigation as links behaviour ', () => {
   });
 
   it('it verifies the adding of a new page', () => {
-    const buttonAddPage = fixture.debugElement.query(By.css('#new-page-button'))
-      .nativeElement;
+    const buttonAddPage = fixture.debugElement.query(By.css('#new-page-button')).nativeElement;
     buttonAddPage.click();
     fixture.detectChanges();
 
@@ -740,5 +684,4 @@ describe('Navigation as links behaviour ', () => {
     });
   });
 });
-
 */

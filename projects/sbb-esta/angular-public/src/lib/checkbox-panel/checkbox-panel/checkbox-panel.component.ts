@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
   HostBinding,
@@ -50,5 +51,9 @@ export class CheckboxPanelComponent extends CheckboxComponent {
    */
   get hasSubtitle() {
     return !!this.subtitle;
+  }
+
+  constructor(changeDetector: ChangeDetectorRef) {
+    super(changeDetector);
   }
 }

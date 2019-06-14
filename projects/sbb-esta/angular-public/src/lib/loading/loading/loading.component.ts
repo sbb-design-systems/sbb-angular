@@ -1,51 +1,52 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  OnChanges,
-  Self,
-  SimpleChanges
-} from '@angular/core';
-
-import { HostClass } from '../../_common/host-class';
-
-import { Mode } from './loading-mode.enum';
-
-const cssPrefix = 'sbb-loading-';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'sbb-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HostClass]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoadingComponent implements OnChanges {
+export class LoadingComponent {
   /** The aria-busy of loading component. */
   @HostBinding('attr.aria-busy') isBusy = 'true';
   /** The role of loading component. */
   @HostBinding('attr.role') role = 'progressbar';
   /** Types of mode for loading indicator. */
-  @Input() mode:
-    | 'tiny'
-    | 'small'
-    | 'medium'
-    | 'big'
-    | 'fullscreen'
-    | 'fullbox' = 'medium';
+  @Input() mode: 'tiny' | 'small' | 'medium' | 'big' | 'fullscreen' | 'fullbox' = 'medium';
 
-  constructor(@Self() private _hostClass: HostClass) {}
+  /** @docs-private */
+  @HostBinding('class.sbb-loading-tiny')
+  get _tinyClass() {
+    return this.mode === 'tiny';
+  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.mode) {
-      if (changes.mode.currentValue === Mode.FULLSCREEN) {
-        this._hostClass.apply(cssPrefix + 'fullscreen-container');
-      } else if (changes.mode.currentValue === Mode.FULLBOX) {
-        this._hostClass.apply(cssPrefix + 'fullbox-container');
-      } else {
-        this._hostClass.apply(cssPrefix + changes.mode.currentValue);
-      }
-    }
+  /** @docs-private */
+  @HostBinding('class.sbb-loading-small')
+  get _smallClass() {
+    return this.mode === 'small';
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-loading-medium')
+  get _mediumClass() {
+    return this.mode === 'medium';
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-loading-big')
+  get _bigClass() {
+    return this.mode === 'big';
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-loading-fullscreen')
+  get _fullscreenClass() {
+    return this.mode === 'fullscreen';
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-loading-fullbox')
+  get _fullboxClass() {
+    return this.mode === 'fullbox';
   }
 }

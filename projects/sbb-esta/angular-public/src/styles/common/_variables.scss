@@ -69,7 +69,6 @@ $innerComponentSpacing: 24;
 $interComponentSpacing: 80;
 $interComponentSpacingSmall: 40;
 
-
 /**
  * Typo
  */
@@ -117,16 +116,10 @@ $formElementSpacing: $gutterDesktop/2;
 $defaultTransitionDuration: 300ms;
 $shortDistanceTransitionDuration: 225ms;
 
-$defaultLinkIconTransitionTimingFunction: cubic-bezier(
-  0.785,
-  0.135,
-  0.15,
-  0.86
-);
+$defaultLinkIconTransitionTimingFunction: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
 $linkiconAnimationDuration: $defaultTransitionDuration;
-$linkiconAnimation: $linkiconAnimationDuration
-  $defaultLinkIconTransitionTimingFunction;
+$linkiconAnimation: $linkiconAnimationDuration $defaultLinkIconTransitionTimingFunction;
 $linksocialAnimation: background $defaultTransitionDuration ease-in;
 
 $imageLazyloadFadeAnimation: opacity 0.35s ease-in;

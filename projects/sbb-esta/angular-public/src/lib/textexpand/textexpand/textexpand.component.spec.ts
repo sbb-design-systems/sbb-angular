@@ -20,12 +20,12 @@ import { TextexpandComponent } from './textexpand.component';
   `
 })
 class TextexpandTestComponent {
-  @ViewChild('textexpand') textexpand: TextexpandComponent;
+  @ViewChild('textexpand', { static: true }) textexpand: TextexpandComponent;
 
-  @ContentChild(TextexpandCollapsedComponent)
+  @ContentChild(TextexpandCollapsedComponent, { static: true })
   collapsedComponent: TextexpandCollapsedComponent;
 
-  @ContentChild(TextexpandExpandedComponent)
+  @ContentChild(TextexpandExpandedComponent, { static: true })
   expandedComponent: TextexpandExpandedComponent;
 }
 
@@ -41,11 +41,7 @@ describe('TextexpandComponent', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TextexpandComponent,
-        TextexpandCollapsedComponent,
-        TextexpandExpandedComponent
-      ]
+      declarations: [TextexpandComponent, TextexpandCollapsedComponent, TextexpandExpandedComponent]
     });
   });
 
@@ -122,9 +118,8 @@ describe('TextexpandComponent using mock component', () => {
   });
 
   it('text expanded and textexpand-collapsed is hidden ', async () => {
-    const buttonClicked = fixtureTest.debugElement.query(
-      By.css('.sbb-textexpand-button')
-    ).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button'))
+      .nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -134,9 +129,8 @@ describe('TextexpandComponent using mock component', () => {
   });
 
   it('aria-expanded button property is true to a click on the button', async () => {
-    const buttonClicked = fixtureTest.debugElement.query(
-      By.css('.sbb-textexpand-button')
-    ).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button'))
+      .nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -153,9 +147,8 @@ describe('TextexpandComponent using mock component', () => {
   });
 
   it('verify text content expanded to a click on the button', async () => {
-    const buttonClicked = fixtureTest.debugElement.query(
-      By.css('.sbb-textexpand-button')
-    ).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button'))
+      .nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 
@@ -167,17 +160,15 @@ describe('TextexpandComponent using mock component', () => {
   });
 
   it('verify button label when text is collapsed', async () => {
-    const buttonClicked = fixtureTest.debugElement.query(
-      By.css('.sbb-textexpand-button')
-    ).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button'))
+      .nativeElement;
 
     expect(buttonClicked.textContent).toContain('Mehr anzeigen');
   });
 
   it('verify button label when text is expanded', async () => {
-    const buttonClicked = fixtureTest.debugElement.query(
-      By.css('.sbb-textexpand-button')
-    ).nativeElement;
+    const buttonClicked = fixtureTest.debugElement.query(By.css('.sbb-textexpand-button'))
+      .nativeElement;
     buttonClicked.click();
     fixtureTest.detectChanges();
 

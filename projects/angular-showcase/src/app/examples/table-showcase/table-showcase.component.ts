@@ -17,11 +17,9 @@ export class TableShowcaseComponent {
 
   private _rows = [
     {
-      text1:
-        'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1',
+      text1: 'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht. *1',
       text2: '6 907',
-      text3:
-        'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.',
+      text3: 'Langer Text im Link um zu sehen, wie dieser in der Zelle umbricht.',
       text4: 'Langer Text um zu sehen wie genau die Zelle umbricht',
       text5: '24 882',
       scope: 'row',

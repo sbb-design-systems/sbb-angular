@@ -3,7 +3,7 @@
 Import loading module into your application
 
 ```ts
-import { LoadingModule  } from '@sbb-esta/angular-public';
+import { LoadingModule } from '@sbb-esta/angular-public';
 ```
 
 Loading component is used as a progress-bar for indicating progress and activity as see below
@@ -13,11 +13,9 @@ Loading component is used as a progress-bar for indicating progress and activity
 <sbb-loading mode="medium" aria-valuetext="Loading 3 please wait"></sbb-loading>
 ```
 
-
 The loading indicator supports four formats:
 
-* Tiny
-* Small
-* Medium
-* Big
-
+- Tiny
+- Small
+- Medium
+- Big

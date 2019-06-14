@@ -21,13 +21,9 @@
           Bezeichnung
         </button>
         <ng-template #icon>
-          <sbb-icon-arrow-right
-            *ngIf="buttonIcon === 'arrow'"
-          ></sbb-icon-arrow-right>
+          <sbb-icon-arrow-right *ngIf="buttonIcon === 'arrow'"></sbb-icon-arrow-right>
           <sbb-icon-plus *ngIf="buttonIcon === 'plus'"></sbb-icon-plus>
-          <sbb-icon-download
-            *ngIf="buttonIcon === 'download'"
-          ></sbb-icon-download>
+          <sbb-icon-download *ngIf="buttonIcon === 'download'"></sbb-icon-download>
         </ng-template>
       </div>
     </div>
@@ -42,9 +38,7 @@
         <div class="col-10">
           <div class="sbbsc-block">
             <select formControlName="mode" id="buttonMode">
-              <option *ngFor="let mode of modes" [ngValue]="mode">{{
-                mode
-              }}</option>
+              <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
             </select>
           </div>
         </div>
@@ -59,23 +53,16 @@
           <div class="sbbsc-block">
             <select formControlName="icon" id="buttonIcon">
               <option [ngValue]="'noIcon'">No Icon</option>
-              <option *ngFor="let icon of icons" [ngValue]="icon">{{
-                icon
-              }}</option>
+              <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="sbbsc-block">
-        <sbb-checkbox value="disabled" formControlName="disabled"
-          >Disabled button</sbb-checkbox
-        >
+        <sbb-checkbox value="disabled" formControlName="disabled">Disabled button</sbb-checkbox>
       </div>
       <p>
-        <small
-          >* All icons allowed, in this example are loaded only three as sample
-          icons</small
-        >
+        <small>* All icons allowed, in this example are loaded only three as sample icons</small>
       </p>
     </div>
   </div>

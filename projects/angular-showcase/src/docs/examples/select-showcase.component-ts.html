@@ -16,10 +16,10 @@
   styleUrls: [<span class="hljs-string">'./select-showcase.component.scss'</span>]
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SelectShowcaseComponent {
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'basicSelect'</span>) basicSelect: SelectComponent;
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiSelect'</span>) multiSelect: SelectComponent;
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'withOptionGroup'</span>) withOptionGroup: SelectComponent;
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiWithOptionGroup'</span>) multiWithOptionGroup: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'basicSelect'</span>, { <span class="hljs-keyword">static</span>: <span class="hljs-literal">true</span> }) basicSelect: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiSelect'</span>, { <span class="hljs-keyword">static</span>: <span class="hljs-literal">true</span> }) multiSelect: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'withOptionGroup'</span>, { <span class="hljs-keyword">static</span>: <span class="hljs-literal">true</span> }) withOptionGroup: SelectComponent;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'multiWithOptionGroup'</span>, { <span class="hljs-keyword">static</span>: <span class="hljs-literal">true</span> }) multiWithOptionGroup: SelectComponent;
 
   foods: Food[] = [
     <span class="hljs-keyword">new</span> Food(<span class="hljs-string">'beefsteak-0'</span>, <span class="hljs-string">'Beefsteak'</span>),

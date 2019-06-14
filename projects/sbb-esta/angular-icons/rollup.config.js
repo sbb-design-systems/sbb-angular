@@ -17,15 +17,11 @@ export default {
       format: 'cjs'
     }
   ],
-  external: [
-    '@angular-devkit/schematics',
-    '@angular-devkit/core',
-    'rxjs',
-    'rxjs/operators'
-  ],
+  external: ['@angular-devkit/schematics', '@angular-devkit/core', 'rxjs', 'rxjs/operators'],
   plugins: [
     typescript({
       tsconfig: join(__dirname, 'tsconfig.schematics.json'),
+      useTsconfigDeclarationDir: true,
       cacheRoot: `${require('os').tmpdir()}/.rpt2_cache_seai_schematics`
     }),
     copy([
@@ -34,6 +30,17 @@ export default {
         dest: join(
           __dirname,
           '../../../dist/sbb-esta/angular-icons/schematics/generate-icon-modules/files'
+        )
+      },
+      {
+        files: join(__dirname, 'schematics/collection.json'),
+        dest: join(__dirname, '../../../dist/sbb-esta/angular-icons/schematics')
+      },
+      {
+        files: join(__dirname, 'schematics/generate-icon-modules/schema.json'),
+        dest: join(
+          __dirname,
+          '../../../dist/sbb-esta/angular-icons/schematics/generate-icon-modules'
         )
       }
     ])

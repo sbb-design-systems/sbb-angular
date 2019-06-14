@@ -1,18 +1,12 @@
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChild,
   HostBinding,
   Input,
-  OnChanges,
-  Self,
-  SimpleChanges,
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
-
-import { HostClass } from '../../_common/host-class';
 
 import { ButtonIconDirective } from './button-icon.directive';
 
@@ -22,10 +16,9 @@ import { ButtonIconDirective } from './button-icon.directive';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  providers: [HostClass]
+  encapsulation: ViewEncapsulation.None
 })
-export class ButtonComponent implements OnChanges, AfterContentInit {
+export class ButtonComponent {
   /**
    * Button modes available for different purposes.
    */
@@ -36,8 +29,13 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
    * Use the *sbbButtonIcon structural directive to provide the desired icon.
    */
   @Input()
-  @ContentChild(ButtonIconDirective, { read: TemplateRef })
-  icon: TemplateRef<any>;
+  get icon(): TemplateRef<any> {
+    return this._contentIcon || this._icon;
+  }
+  set icon(icon: TemplateRef<any>) {
+    this._icon = icon;
+  }
+  private _icon: TemplateRef<any>;
 
   /** @docs-private */
   @HostBinding('class.sbb-button') buttonClass = true;
@@ -47,23 +45,31 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
     return !!this.icon;
   }
 
-  constructor(@Self() private _hostClass: HostClass) {}
+  /** @docs-private */
+  @ContentChild(ButtonIconDirective, { read: TemplateRef, static: false })
+  _contentIcon: TemplateRef<any>;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (
-      (changes.mode &&
-        changes.mode.currentValue !== changes.mode.previousValue) ||
-      (changes.icon && changes.icon.currentValue !== changes.icon.previousValue)
-    ) {
-      this._applyClass();
-    }
+  /** @docs-private */
+  @HostBinding('class.sbb-button-primary')
+  get _primaryClass() {
+    return this.mode === 'primary';
   }
 
-  ngAfterContentInit(): void {
-    this._applyClass();
+  /** @docs-private */
+  @HostBinding('class.sbb-button-secondary')
+  get _secondaryClass() {
+    return this.mode === 'secondary';
   }
 
-  private _applyClass() {
-    this._hostClass.apply(`sbb-button-${this.mode}`);
+  /** @docs-private */
+  @HostBinding('class.sbb-button-ghost')
+  get _ghostClass() {
+    return this.mode === 'ghost';
+  }
+
+  /** @docs-private */
+  @HostBinding('class.sbb-button-frameless')
+  get _framelessClass() {
+    return this.mode === 'frameless';
   }
 }

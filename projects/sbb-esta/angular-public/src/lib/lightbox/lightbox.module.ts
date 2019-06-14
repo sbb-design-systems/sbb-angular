@@ -13,19 +13,10 @@ import {
   LightboxHeaderComponent,
   LightboxTitleDirective
 } from './lightbox/lightbox-content';
-import {
-  Lightbox,
-  LIGHTBOX_SCROLL_STRATEGY_PROVIDER
-} from './lightbox/lightbox.service';
+import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IconCrossModule,
-    OverlayModule,
-    PortalModule,
-    PerfectScrollbarModule
-  ],
+  imports: [CommonModule, IconCrossModule, OverlayModule, PortalModule, PerfectScrollbarModule],
   exports: [
     LightboxContainerComponent,
     LightboxCloseDirective,

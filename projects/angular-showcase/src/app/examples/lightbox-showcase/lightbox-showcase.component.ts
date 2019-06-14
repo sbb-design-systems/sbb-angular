@@ -59,12 +59,9 @@ export class LightboxShowcaseExampleComponent {
   constructor(public lightbox: Lightbox) {}
 
   openLightbox(): void {
-    const lightboxRef = this.lightbox.open(
-      LightboxShowcaseExampleContentComponent,
-      {
-        data: { name: this.name, animal: this.animal }
-      }
-    );
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExampleContentComponent, {
+      data: { name: this.name, animal: this.animal }
+    });
 
     lightboxRef.afterClosed().subscribe(result => {
       console.log('Lighbox sharing data was closed');
@@ -101,9 +98,7 @@ export class LightboxShowcaseExample2Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(
-      LightboxShowcaseExample2ContentComponent
-    );
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExample2ContentComponent);
 
     lightboxRef.afterClosed().subscribe(result => {
       console.log(`Lightbox result: ${result}`);
@@ -119,7 +114,7 @@ export class LightboxShowcaseExample2Component {
   templateUrl: 'lightbox-showcase-content-3.component.html'
 })
 export class LightboxShowcaseExample3Component {
-  @ViewChild('sampleLightboxTemplate') sampleLightboxTemplate: TemplateRef<any>;
+  @ViewChild('sampleLightboxTemplate', { static: true }) sampleLightboxTemplate: TemplateRef<any>;
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
@@ -170,10 +165,9 @@ export class LightboxShowcaseExample4Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(
-      LightboxShowcaseExample4ContentComponent,
-      { disableClose: true }
-    );
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExample4ContentComponent, {
+      disableClose: true
+    });
 
     lightboxRef.afterClosed().subscribe(result => {
       console.log(`Lightbox ${result}`);
@@ -191,8 +185,8 @@ export class LightboxShowcaseExample4Component {
     <header sbbLightboxHeader></header>
     <div class="sbbsc-lb-disableclose-c-2">
       <h3>
-        Sind Sie sicher, dass Sie dieses Fenster schliessen möchten? Ihre
-        Eingaben werden dadurch verworfen.
+        Sind Sie sicher, dass Sie dieses Fenster schliessen möchten? Ihre Eingaben werden dadurch
+        verworfen.
       </h3>
       <button sbbButton mode="ghost" (click)="closeThisLightbox()">
         Eingaben überprüfen
@@ -222,8 +216,8 @@ export class LightboxShowcaseExample6ContentComponent {
     <header sbbLightboxHeader></header>
     <div class="sbbsc-lb-disableclose-c-1">
       <h3 sbbLightboxTitle>
-        In order to close this lightbox you have to confirm in the confirm panel
-        which is going to appear when trying to close this lightbox
+        In order to close this lightbox you have to confirm in the confirm panel which is going to
+        appear when trying to close this lightbox
       </h3>
     </div>
   `
@@ -258,10 +252,9 @@ export class LightboxShowcaseExample5Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(
-      LightboxShowcaseExample5ContentComponent,
-      { disableClose: true }
-    );
+    const lightboxRef = this.lightbox.open(LightboxShowcaseExample5ContentComponent, {
+      disableClose: true
+    });
 
     lightboxRef.afterClosed().subscribe(() => {
       console.log(`Lightbox confirmed`);

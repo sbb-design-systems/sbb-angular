@@ -51,19 +51,12 @@
 
 <sbb-field mode="default" class="sbbsc-block">
   <sbb-label for="filter">Set a filter</sbb-label>
-  <input
-    type="text"
-    placeholder="Filter table"
-    id="filter"
-    (keyup)="filterTable($event)"
-  />
+  <input type="text" placeholder="Filter table" id="filter" (keyup)="filterTable($event)" />
 </sbb-field>
 
 <h4 class="sbbsc-block">Pin Mode</h4>
 <sbb-field label="Pin Mode" mode="default" class="sbbsc-block">
-  <sbb-checkbox [(ngModel)]="isFirstColumnPinned"
-    >Pin the first column</sbb-checkbox
-  >
+  <sbb-checkbox [(ngModel)]="isFirstColumnPinned">Pin the first column</sbb-checkbox>
 </sbb-field>
 
 <h4 class="sbbsc-block">Text Alignment *</h4>
@@ -77,17 +70,13 @@
   >
 </sbb-field>
 <em>
-  * The property <strong><code>tableAlignment</code></strong> set the text
-  alignment for the overall table. You can use it in a single
-  <strong><code>tr, th, td</code></strong> tag the alignment classes:
-  <strong
-    ><code
-      >sbb-table-align-center | sbb-table-align-left |
-      sbb-table-align-right</code
-    ></strong
+  * The property <strong><code>tableAlignment</code></strong> set the text alignment for the overall
+  table. You can use it in a single <strong><code>tr, th, td</code></strong> tag the alignment
+  classes:
+  <strong><code>sbb-table-align-center | sbb-table-align-left | sbb-table-align-right</code></strong
   >.
   <br />
   In this example it has been used
-  <strong><code>sbb-table-align-right</code></strong> to fix the text alignment
-  of the last column to right.
+  <strong><code>sbb-table-align-right</code></strong> to fix the text alignment of the last column
+  to right.
 </em>

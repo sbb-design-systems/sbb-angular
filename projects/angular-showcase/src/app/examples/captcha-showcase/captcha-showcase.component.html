@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Basic example</h4>
-      <sbb-captcha (resolved)="resolved($event)" [siteKey]="testSiteKey">
-      </sbb-captcha>
+      <sbb-captcha (resolved)="resolved($event)" [siteKey]="testSiteKey"> </sbb-captcha>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Captcha response</h4>
@@ -49,11 +48,7 @@
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Reactive Form example</h4>
       <form [formGroup]="formCaptcha">
-        <sbb-captcha
-          formControlName="captcha"
-          name="captcha"
-          [siteKey]="testSiteKey"
-        >
+        <sbb-captcha formControlName="captcha" name="captcha" [siteKey]="testSiteKey">
         </sbb-captcha>
       </form>
       <div class="sbbsc-block">

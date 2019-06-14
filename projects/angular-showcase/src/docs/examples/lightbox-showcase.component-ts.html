@@ -119,7 +119,7 @@
   templateUrl: <span class="hljs-string">'lightbox-showcase-content-3.component.html'</span>
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LightboxShowcaseExample3Component {
-  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'sampleLightboxTemplate'</span>) sampleLightboxTemplate: TemplateRef&lt;<span class="hljs-built_in">any</span>&gt;;
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'sampleLightboxTemplate'</span>, { <span class="hljs-keyword">static</span>: <span class="hljs-literal">true</span> }) sampleLightboxTemplate: TemplateRef&lt;<span class="hljs-built_in">any</span>&gt;;
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> lightbox: Lightbox</span>) {}
 
   openDialog() {

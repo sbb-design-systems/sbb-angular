@@ -18,13 +18,8 @@ import { IconBase } from '../icon-base';
         viewBox="0 0 24 24"
       >
         <g fill="none" fill-rule="evenodd" stroke="#000">
-          <path
-            d="M8.5 10V5.5a3 3 0 1 1 6 0V10m-9-2.5l-1 13h14l-1-13h-12zm6 4.5v5"
-          />
-          <path
-            stroke-dasharray="1 1"
-            d="M15.5 14.5a4 4 0 1 0-8 0 4 4 0 0 0 8 0z"
-          />
+          <path d="M8.5 10V5.5a3 3 0 1 1 6 0V10m-9-2.5l-1 13h14l-1-13h-12zm6 4.5v5" />
+          <path stroke-dasharray="1 1" d="M15.5 14.5a4 4 0 1 0-8 0 4 4 0 0 0 8 0z" />
         </g>
       </svg>
       <svg
@@ -37,10 +32,7 @@ import { IconBase } from '../icon-base';
           <path
             d="M12.75 15V8.25a4.5 4.5 0 1 1 9 0V15m-13.5-3.75l-1.5 19.5h21l-1.5-19.5h-18zm9 6.75v7.5"
           />
-          <path
-            stroke-dasharray="1 1"
-            d="M23.25 21.75a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
-          />
+          <path stroke-dasharray="1 1" d="M23.25 21.75a6 6 0 1 0-12 0 6 6 0 0 0 12 0z" />
         </g>
       </svg>
     </ng-container>

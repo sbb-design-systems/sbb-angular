@@ -11,8 +11,7 @@
 
   width: 100%;
   height: toEm(48 / $fontSize);
-  padding: toEm(12.5 / $fontSize) toEm(40 / $fontSize) toEm(15.5 / $fontSize)
-    toEm(40 / $fontSize);
+  padding: toEm(12.5 / $fontSize) toEm(40 / $fontSize) toEm(15.5 / $fontSize) toEm(40 / $fontSize);
   background-color: $buttonDefaultBgColor;
   text-decoration: none;
   display: inline-block;
@@ -62,8 +61,7 @@
     color $linkiconAnimation, border-color $linkiconAnimation;
 
   .sbb-svgsprite-icon {
-    transition: opacity $linkiconAnimation, transform $linkiconAnimation,
-      fill $linkiconAnimation;
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
   }
 
   .sbb-svgsprite-icon:first-of-type {
@@ -99,8 +97,7 @@
     height: pxToEm(24, $buttonSizeFontDefault);
     top: 50%;
     margin-top: pxToEm(-12.5, $buttonSizeFontDefault);
-    transition: opacity $linkiconAnimation, transform $linkiconAnimation,
-      fill $linkiconAnimation;
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
     backface-visibility: hidden;
     @include svgIconColor($buttonDefaultColor);
     pointer-events: none;

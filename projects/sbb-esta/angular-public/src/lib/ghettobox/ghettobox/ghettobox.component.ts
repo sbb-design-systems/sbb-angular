@@ -15,7 +15,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { QueryParamsHandling } from '@angular/router/src/config';
 
 import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 
@@ -55,9 +54,7 @@ export class GhettoboxComponent {
   get routerLink() {
     return (
       this._routerLink ||
-      (this.ghettobox && this.ghettobox.link
-        ? this.ghettobox.link.routerLink
-        : undefined)
+      (this.ghettobox && this.ghettobox.link ? this.ghettobox.link.routerLink : undefined)
     );
   }
   private _routerLink: any[] | string;
@@ -66,25 +63,8 @@ export class GhettoboxComponent {
    * Retrive the routerLink from the proper source
    */
   get link() {
-    return (
-      this._routerLinkDirective ||
-      (this.ghettobox ? this.ghettobox.link : undefined)
-    );
+    return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined);
   }
-
-  @Input() queryParams: { [k: string]: any };
-
-  @Input() fragment: string;
-
-  @Input() queryParamsHandling: QueryParamsHandling;
-
-  @Input() preserveFragment: boolean;
-
-  @Input() skipLocationChange: boolean;
-
-  @Input() replaceUrl: boolean;
-
-  @Input() state?: { [k: string]: any };
 
   @HostBinding('attr.tabindex') tabIndex = '-1';
 
@@ -123,21 +103,20 @@ export class GhettoboxComponent {
   /**
    * Ghettobox Default icon as a TemplateRef if any are not specified
    */
-  @ViewChild('defaultIcon') iconDefault: TemplateRef<any>;
+  @ViewChild('defaultIcon', { static: true }) iconDefault: TemplateRef<any>;
+
+  @ContentChild(GhettoboxIconDirective, { read: TemplateRef, static: false })
+  _contentIcon: TemplateRef<any>;
 
   /**
    * Ghettobox Icon
    */
   private _icon: TemplateRef<any>;
-  @ContentChild(GhettoboxIconDirective, { read: TemplateRef })
   set icon(value: TemplateRef<any>) {
     this._icon = value;
   }
   get icon(): TemplateRef<any> {
-    if (!this._icon) {
-      return this.iconDefault;
-    }
-    return this._icon;
+    return this._icon || this._contentIcon || this.iconDefault;
   }
 
   /**
@@ -180,9 +159,7 @@ export class GhettoboxComponent {
     this.ghettoboxState = 'deleted';
 
     if (this._ghettoboxContainerService.hasContainerLoaded) {
-      this._ghettoboxContainerService.deleteFromAttachedGhettoboxesCollection(
-        this.id
-      );
+      this._ghettoboxContainerService.deleteFromAttachedGhettoboxesCollection(this.id);
     }
   }
 

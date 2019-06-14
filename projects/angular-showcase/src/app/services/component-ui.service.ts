@@ -468,19 +468,14 @@ export class ComponentUiService {
   }
 
   getUiComponentByRouterLink(name: any): UiComponent {
-    return this.uiComponents.find(
-      uiComponent => uiComponent.routerLink === name
-    );
+    return this.uiComponents.find(uiComponent => uiComponent.routerLink === name);
   }
 
   getUiComponentsBySearchValue(searchValue: any): Array<UiComponent> {
     let foundUiComponents: UiComponent[] = [];
     if (searchValue.length > 0) {
       foundUiComponents = this.uiComponents.filter(
-        uiComponent =>
-          uiComponent.routerLink
-            .toLowerCase()
-            .indexOf(searchValue.toLowerCase()) > -1
+        uiComponent => uiComponent.routerLink.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
       );
     } else {
       foundUiComponents = this.uiComponents;
@@ -505,18 +500,11 @@ export class ComponentUiService {
     });
 
     for (const uiComponent of newFoundUiComponents) {
-      if (
-        uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
-      ) {
-        const index = uiComponent.id
-          .toLowerCase()
-          .indexOf(searchValue.toLowerCase());
+      if (uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
+        const index = uiComponent.id.toLowerCase().indexOf(searchValue.toLowerCase());
         const preFix = uiComponent.id.substring(0, index);
         const sufFix = uiComponent.id.substring(index + searchValue.length);
-        const searchText = uiComponent.id.substring(
-          index,
-          index + searchValue.length
-        );
+        const searchText = uiComponent.id.substring(index, index + searchValue.length);
         const newId = preFix + '<b>' + searchText + '</b>' + sufFix;
         uiComponent.id = newId;
       }
