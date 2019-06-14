@@ -8,10 +8,8 @@ import {
 } from '@angular/animations';
 
 /** Time and timing curve for ghettobox animations. */
-export const GHETTOBOX_PANEL_ANIMATION_TIMING =
-  '0.25s cubic-bezier(0.4,0.0,0.2,1)';
-export const GHETTOBOX_PANEL_ONDELETE_TIMING =
-  '0.8s cubic-bezier(0.4,0.0,0.2,1)';
+export const GHETTOBOX_PANEL_ANIMATION_TIMING = '0.25s cubic-bezier(0.4,0.0,0.2,1)';
+export const GHETTOBOX_PANEL_ONDELETE_TIMING = '0.8s cubic-bezier(0.4,0.0,0.2,1)';
 
 /** Animations used by ghettobox. */
 export const GHETTOBOX_ANIMATIONS: {

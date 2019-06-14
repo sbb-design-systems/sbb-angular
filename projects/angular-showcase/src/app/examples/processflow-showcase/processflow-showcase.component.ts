@@ -1,8 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import {
-  ProcessflowComponent,
-  ProcessflowStep
-} from '@sbb-esta/angular-public';
+import { ProcessflowComponent, ProcessflowStep } from '@sbb-esta/angular-public';
 
 @Component({
   selector: 'sbb-processflow-showcase',

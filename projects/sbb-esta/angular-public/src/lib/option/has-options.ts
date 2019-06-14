@@ -29,8 +29,7 @@ export class MediaQueryResizableComponent {
     const em = mediaQueriesBreakpoints.find((mediaQuery, index) => {
       if (index < mediaQueriesBreakpoints.length - 1) {
         return (
-          mediaQuery.min <= windowWidth &&
-          mediaQueriesBreakpoints[index + 1].min > windowWidth
+          mediaQuery.min <= windowWidth && mediaQueriesBreakpoints[index + 1].min > windowWidth
         );
       } else {
         return mediaQuery.min <= windowWidth;

@@ -1,11 +1,7 @@
 <table class="sbb-calendar-table">
   <thead class="sbb-calendar-table-header">
     <tr>
-      <th
-        *ngFor="let day of weekdays"
-        i18n-aria-label
-        [attr.aria-label]="day.long"
-      >
+      <th *ngFor="let day of weekdays" i18n-aria-label [attr.aria-label]="day.long">
         {{ day.narrow }}
       </th>
     </tr>

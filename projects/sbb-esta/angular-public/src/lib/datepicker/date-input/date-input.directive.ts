@@ -75,18 +75,14 @@ export const SBB_DATE_VALIDATORS: any = {
     { provide: SBB_INPUT_VALUE_ACCESSOR, useExisting: DateInputDirective }
   ]
 })
-export class DateInputDirective<D>
-  implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+export class DateInputDirective<D> implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   @HostBinding('class.sbb-date-input') cssClass = true;
 
   @HostBinding('attr.aria-haspopup') ariaHasPopup = true;
 
   @HostBinding('attr.aria-owns')
   get ariaOwns() {
-    return (
-      (this._datepicker && this._datepicker.opened && this._datepicker.id) ||
-      null
-    );
+    return (this._datepicker && this._datepicker.opened && this._datepicker.id) || null;
   }
 
   @HostBinding('attr.min')
@@ -189,18 +185,16 @@ export class DateInputDirective<D>
   private _disabled: boolean;
 
   /** Emits when a `change` event is fired on this `<input>`. */
-  @Output() readonly dateChange: EventEmitter<
+  @Output() readonly dateChange: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
     SbbDateInputEvent<D>
-  > = new EventEmitter<SbbDateInputEvent<D>>();
+  >();
 
   /** Emits when an `input` event is fired on this `<input>`. */
-  @Output() readonly dateInput: EventEmitter<
+  @Output() readonly dateInput: EventEmitter<SbbDateInputEvent<D>> = new EventEmitter<
     SbbDateInputEvent<D>
-  > = new EventEmitter<SbbDateInputEvent<D>>();
-
-  @Output() readonly inputBlurred: EventEmitter<void> = new EventEmitter<
-    void
   >();
+
+  @Output() readonly inputBlurred: EventEmitter<void> = new EventEmitter<void>();
 
   /** Emits when the value changes (either due to user input or programmatic change). */
   valueChange = new EventEmitter<D | null>();
@@ -229,40 +223,24 @@ export class DateInputDirective<D>
   };
 
   /** The form control validator for the min date. */
-  private _minValidator: ValidatorFn = (
-    control: AbstractControl
-  ): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(
-      this.dateAdapter.deserialize(control.value)
-    );
-    return !this.min ||
-      !controlValue ||
-      this.dateAdapter.compareDate(this.min, controlValue) <= 0
+  private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const controlValue = this._getValidDateOrNull(this.dateAdapter.deserialize(control.value));
+    return !this.min || !controlValue || this.dateAdapter.compareDate(this.min, controlValue) <= 0
       ? null
       : { sbbDateMin: { min: this.min, actual: controlValue } };
   };
 
   /** The form control validator for the max date. */
-  private _maxValidator: ValidatorFn = (
-    control: AbstractControl
-  ): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(
-      this.dateAdapter.deserialize(control.value)
-    );
-    return !this.max ||
-      !controlValue ||
-      this.dateAdapter.compareDate(this.max, controlValue) >= 0
+  private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const controlValue = this._getValidDateOrNull(this.dateAdapter.deserialize(control.value));
+    return !this.max || !controlValue || this.dateAdapter.compareDate(this.max, controlValue) >= 0
       ? null
       : { sbbDateMax: { max: this.max, actual: controlValue } };
   };
 
   /** The form control validator for the date filter. */
-  private _filterValidator: ValidatorFn = (
-    control: AbstractControl
-  ): ValidationErrors | null => {
-    const controlValue = this._getValidDateOrNull(
-      this.dateAdapter.deserialize(control.value)
-    );
+  private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const controlValue = this._getValidDateOrNull(this.dateAdapter.deserialize(control.value));
     return !this._dateFilter || !controlValue || this._dateFilter(controlValue)
       ? null
       : { sbbDateFilter: true };
@@ -299,19 +277,13 @@ export class DateInputDirective<D>
     this._datepicker.registerInput(this);
     this._datepickerSubscription.unsubscribe();
 
-    this._datepickerSubscription = this._datepicker.selectedChanged.subscribe(
-      (selected: D) => {
-        this.value = selected;
-        this._cvaOnChange(selected);
-        this.onTouched();
-        this.dateInput.emit(
-          new SbbDateInputEvent(this, this._elementRef.nativeElement)
-        );
-        this.dateChange.emit(
-          new SbbDateInputEvent(this, this._elementRef.nativeElement)
-        );
-      }
-    );
+    this._datepickerSubscription = this._datepicker.selectedChanged.subscribe((selected: D) => {
+      this.value = selected;
+      this._cvaOnChange(selected);
+      this.onTouched();
+      this.dateInput.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
+      this.dateChange.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
+    });
   }
 
   ngOnDestroy() {
@@ -376,9 +348,7 @@ export class DateInputDirective<D>
       this._value = date;
       this._cvaOnChange(date);
       this.valueChange.emit(date);
-      this.dateInput.emit(
-        new SbbDateInputEvent(this, this._elementRef.nativeElement)
-      );
+      this.dateInput.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
     } else {
       this._validatorOnChange();
     }
@@ -386,9 +356,7 @@ export class DateInputDirective<D>
 
   @HostListener('change')
   onChange() {
-    this.dateChange.emit(
-      new SbbDateInputEvent(this, this._elementRef.nativeElement)
-    );
+    this.dateChange.emit(new SbbDateInputEvent(this, this._elementRef.nativeElement));
   }
 
   /** Handles blur events on the input. */
@@ -406,9 +374,7 @@ export class DateInputDirective<D>
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
     this._elementRef.nativeElement.value = value
-      ? this._titleCasePipe.transform(
-          this.dateAdapter.format(value, this._dateFormats.dateInput)
-        )
+      ? this._titleCasePipe.transform(this.dateAdapter.format(value, this._dateFormats.dateInput))
       : '';
   }
 
@@ -417,8 +383,6 @@ export class DateInputDirective<D>
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj)
-      ? obj
-      : null;
+    return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj) ? obj : null;
   }
 }

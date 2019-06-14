@@ -17,8 +17,7 @@ export class LightboxRef<T, R = any> {
   componentInstance: T;
 
   /** Whether the user is allowed to close the dialog. */
-  disableClose: boolean | undefined = this.containerInstance.config
-    .disableClose;
+  disableClose: boolean | undefined = this.containerInstance.config.disableClose;
   /** Observable to close manually a lightbox. */
   manualCloseAction = new Subject<void>();
 
@@ -51,9 +50,7 @@ export class LightboxRef<T, R = any> {
     // Emit when opening animation completes
     containerInstance.animationStateChanged
       .pipe(
-        filter(
-          event => event.phaseName === 'done' && event.toState === 'enter'
-        ),
+        filter(event => event.phaseName === 'done' && event.toState === 'enter'),
         first()
       )
       .subscribe(() => {

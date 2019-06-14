@@ -7,15 +7,11 @@
       (click)="pageChange.emit('previous')"
       [attr.title]="previousPage"
     >
-      <span
-        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left"
-      >
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
         </span>
-        <span class="sbb-navigation-item-boundary-text">{{
-          previousPage
-        }}</span>
+        <span class="sbb-navigation-item-boundary-text">{{ previousPage }}</span>
       </span>
     </button>
     <a
@@ -33,15 +29,11 @@
       (click)="pageChange.emit('previous')"
       [attr.title]="previousLink.title"
     >
-      <span
-        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left"
-      >
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-left">
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
         </span>
-        <span class="sbb-navigation-item-boundary-text">{{
-          previousLink.title
-        }}</span>
+        <span class="sbb-navigation-item-boundary-text">{{ previousLink.title }}</span>
       </span>
     </a>
   </li>
@@ -53,9 +45,7 @@
       (click)="pageChange.emit('next')"
       [attr.title]="nextPage"
     >
-      <span
-        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right"
-      >
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
         <span class="sbb-navigation-item-boundary-text">{{ nextPage }}</span>
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
@@ -77,12 +67,8 @@
       (click)="pageChange.emit('next')"
       [attr.title]="nextLink.title"
     >
-      <span
-        class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right"
-      >
-        <span class="sbb-navigation-item-boundary-text">{{
-          nextLink.title
-        }}</span>
+      <span class="sbb-navigation-item-boundary sbb-navigation-item-boundary-right">
+        <span class="sbb-navigation-item-boundary-text">{{ nextLink.title }}</span>
         <span class="sbb-navigation-item-boundary-arrow">
           <sbb-icon-chevron-small-right></sbb-icon-chevron-small-right>
         </span>

@@ -3,10 +3,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  IconChevronSmallDownModule,
-  IconUserModule
-} from '@sbb-esta/angular-icons';
+import { IconChevronSmallDownModule, IconUserModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
 import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
@@ -202,12 +199,7 @@ describe('UserMenuComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [UserMenuComponent],
-      imports: [
-        CommonModule,
-        DropdownModule,
-        IconChevronSmallDownModule,
-        IconUserModule
-      ]
+      imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule]
     });
   });
 
@@ -257,12 +249,9 @@ describe('Usermenu test case: user with custom image using mock component', () =
   });
 
   it('user should be logged-in', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -272,12 +261,9 @@ describe('Usermenu test case: user with custom image using mock component', () =
   });
 
   it('user should be logged-in and he provides an image (in collapsed status)', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -288,9 +274,7 @@ describe('Usermenu test case: user with custom image using mock component', () =
     const iconReference = fixtureTest.debugElement.query(By.css('[sbbIcon]'));
     expect(iconReference.nativeElement).toBeTruthy();
 
-    const contentCollapsed = fixtureTest.debugElement.query(
-      By.css('.sbb-usermenu-logged-in')
-    );
+    const contentCollapsed = fixtureTest.debugElement.query(By.css('.sbb-usermenu-logged-in'));
     expect(contentCollapsed.attributes['aria-expanded']).toBe('false');
   });
 
@@ -298,12 +282,9 @@ describe('Usermenu test case: user with custom image using mock component', () =
     'user should be logged-in and he can see data (displayName and username) to a click on' +
       ' the arrow down in the collapsed status',
     () => {
-      const usermenuComponent = fixtureTest.debugElement.query(
-        By.directive(UserMenuComponent)
-      );
-      const buttonLogin = usermenuComponent.queryAll(
-        By.css('.sbb-usermenu-logged-off-button')
-      )[0].nativeElement;
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+        .nativeElement;
       buttonLogin.click();
       fixtureTest.detectChanges();
 
@@ -335,12 +316,9 @@ describe('Usermenu test case: user with custom image using mock component', () =
   );
 
   it('user should be logged out when click on button logout in the expanded status', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -354,8 +332,7 @@ describe('Usermenu test case: user with custom image using mock component', () =
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 
-    const buttonLogout = usermenuComponent.query(By.css('button'))
-      .nativeElement;
+    const buttonLogout = usermenuComponent.query(By.css('button')).nativeElement;
     buttonLogout.click();
     fixtureTest.detectChanges();
 
@@ -394,12 +371,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
   });
 
   it('user should be logged-in', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -412,12 +386,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     'user should be logged-in and he does not provide an image (in collapsed status) and he can' +
       ' see his initial letters ',
     () => {
-      const usermenuComponent = fixtureTest.debugElement.query(
-        By.directive(UserMenuComponent)
-      );
-      const buttonLogin = usermenuComponent.queryAll(
-        By.css('.sbb-usermenu-logged-off-button')
-      )[0].nativeElement;
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+        .nativeElement;
       buttonLogin.click();
       fixtureTest.detectChanges();
 
@@ -437,12 +408,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     'user should be logged-in and he can see data (userName and displayName) to a click on the' +
       ' arrow down in the collapsed status',
     () => {
-      const usermenuComponent = fixtureTest.debugElement.query(
-        By.directive(UserMenuComponent)
-      );
-      const buttonLogin = usermenuComponent.queryAll(
-        By.css('.sbb-usermenu-logged-off-button')
-      )[0].nativeElement;
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+        .nativeElement;
       buttonLogin.click();
       fixtureTest.detectChanges();
 
@@ -474,12 +442,9 @@ describe('Usermenu test case: usermenu without user image but with initial lette
   );
 
   it('user should be logged out when click on button logout in the expanded status', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -493,8 +458,7 @@ describe('Usermenu test case: usermenu without user image but with initial lette
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 
-    const buttonLogout = usermenuComponent.query(By.css('button'))
-      .nativeElement;
+    const buttonLogout = usermenuComponent.query(By.css('button')).nativeElement;
     buttonLogout.click();
     fixtureTest.detectChanges();
 
@@ -533,12 +497,9 @@ describe('Usermenu test case: usermenu only with userName using mock component',
   });
 
   it('user should be logged-in', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -551,12 +512,9 @@ describe('Usermenu test case: usermenu only with userName using mock component',
     'user should be logged-in and he does not provide an image (in collapsed status) and he can' +
       ' see the initial letters',
     () => {
-      const usermenuComponent = fixtureTest.debugElement.query(
-        By.directive(UserMenuComponent)
-      );
-      const buttonLogin = usermenuComponent.queryAll(
-        By.css('.sbb-usermenu-logged-off-button')
-      )[0].nativeElement;
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+        .nativeElement;
       buttonLogin.click();
       fixtureTest.detectChanges();
 
@@ -568,19 +526,14 @@ describe('Usermenu test case: usermenu only with userName using mock component',
         By.css('.sbb-usermenu-logged-in-collapsed-initial-letters')
       );
       expect(initialLettersReference.nativeElement).toBeTruthy();
-      expect(initialLettersReference.nativeElement.textContent).toContain(
-        'WAL'
-      );
+      expect(initialLettersReference.nativeElement.textContent).toContain('WAL');
     }
   );
 
   it('user should be logged-in and he can see data only username', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -606,12 +559,9 @@ describe('Usermenu test case: usermenu only with userName using mock component',
   });
 
   it('user should be logged out when clicks on button logout in the expanded status', () => {
-    const usermenuComponent = fixtureTest.debugElement.query(
-      By.directive(UserMenuComponent)
-    );
-    const buttonLogin = usermenuComponent.queryAll(
-      By.css('.sbb-usermenu-logged-off-button')
-    )[0].nativeElement;
+    const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+    const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+      .nativeElement;
     buttonLogin.click();
     fixtureTest.detectChanges();
 
@@ -625,8 +575,7 @@ describe('Usermenu test case: usermenu only with userName using mock component',
     arrowCollapsed.click();
     fixtureTest.detectChanges();
 
-    const buttonLogout = usermenuComponent.query(By.css('button'))
-      .nativeElement;
+    const buttonLogout = usermenuComponent.query(By.css('button')).nativeElement;
     buttonLogout.click();
     fixtureTest.detectChanges();
 

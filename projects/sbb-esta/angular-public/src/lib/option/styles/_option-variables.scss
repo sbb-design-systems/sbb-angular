@@ -5,8 +5,7 @@ $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 $autocompletePaddingTop: 14px;
 $autocompletePaddingX: 16px;
 $autocompletePaddingBottom: 18px;
-$autocompletePadding: $autocompletePaddingTop $autocompletePaddingX
-  $autocompletePaddingBottom;
+$autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocompletePaddingBottom;
 $autocompleteHighlightTexBold: $fontSbbBold;
 $autocompleteHoverColor: $sbbColorBlack;
 $optionMultipleCheckboxPaddingLeft: 16;

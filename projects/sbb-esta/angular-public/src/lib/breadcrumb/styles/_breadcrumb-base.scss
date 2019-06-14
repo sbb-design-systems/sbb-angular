@@ -104,7 +104,7 @@
     &::before {
       border: $breadcrumbTriggerBorder;
     }
-    
+
     &-icon {
       @include svgIconColor($sbbColorGrey);
       width: toPx(16);
@@ -118,22 +118,18 @@
       display: none;
       position: relative;
       transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
       @include mq($from: desktop4k) {
         border-width: toPx(1 * $scalingFactor4k);
         height: toPx(16 * $scalingFactor4k);
         width: toPx(16 * $scalingFactor4k);
-        margin-left: toPx(
-          $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k
-        );
+        margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
       }
       @include mq($from: desktop5k) {
         border-width: toPx(1 * $scalingFactor5k);
         height: toPx(16 * $scalingFactor5k);
         width: toPx(16 * $scalingFactor5k);
-        margin-left: toPx(
-          $breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k
-        );
+        margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
       }
       &-visible {
         display: block;

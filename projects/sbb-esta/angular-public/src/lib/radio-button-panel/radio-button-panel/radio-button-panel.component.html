@@ -30,11 +30,7 @@
       <!-- Add an invisible span so JAWS can read the label -->
       <span style="display:none">&nbsp;</span>
       {{ label }}
-      <div
-        *ngIf="subtitle"
-        aria-level="3"
-        class="sbb-checkbox-radio-button-panel-header-subtitle"
-      >
+      <div *ngIf="subtitle" aria-level="3" class="sbb-checkbox-radio-button-panel-header-subtitle">
         {{ subtitle }}
       </div>
     </div>

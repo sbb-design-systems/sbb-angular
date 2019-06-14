@@ -27,9 +27,7 @@ import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
 })
 class StandardCalendarBodyComponent {
   label = 'Jan 2017';
-  rows = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14]].map(r =>
-    r.map(createCell)
-  );
+  rows = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14]].map(r => r.map(createCell));
   todayValue = 3;
   selectedValue = 4;
   labelMinRequiredCells = 3;
@@ -93,12 +91,8 @@ describe('SbbCalendarBody', () => {
 
     function refreshElementLists() {
       rowEls = Array.from(calendarBodyNativeElement.querySelectorAll('tr'));
-      labelEls = Array.from(
-        calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-label')
-      );
-      cellEls = Array.from(
-        calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-cell')
-      );
+      labelEls = Array.from(calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-label'));
+      cellEls = Array.from(calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-cell'));
     }
 
     beforeEach(() => {
@@ -139,17 +133,10 @@ describe('SbbCalendarBody', () => {
     });
 
     it('should set aria-selected correctly', () => {
-      const selectedCells = cellEls.filter(
-        c => c.getAttribute('aria-selected') === 'true'
-      );
-      const deselectedCells = cellEls.filter(
-        c => c.getAttribute('aria-selected') === 'false'
-      );
+      const selectedCells = cellEls.filter(c => c.getAttribute('aria-selected') === 'true');
+      const deselectedCells = cellEls.filter(c => c.getAttribute('aria-selected') === 'false');
 
-      expect(selectedCells.length).toBe(
-        1,
-        'Expected one cell to be marked as selected.'
-      );
+      expect(selectedCells.length).toBe(1, 'Expected one cell to be marked as selected.');
       expect(deselectedCells.length).toBe(
         cellEls.length - 1,
         'Expected remaining cells to be marked as deselected.'
@@ -207,9 +194,7 @@ describe('SbbCalendarBody', () => {
       );
       calendarBodyNativeElement = calendarBodyDebugElement.nativeElement;
       testComponent = fixture.componentInstance;
-      cellEls = Array.from(
-        calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-cell')
-      );
+      cellEls = Array.from(calendarBodyNativeElement.querySelectorAll('.sbb-calendar-body-cell'));
     });
 
     it('should only allow selection of disabled cells when allowDisabledSelection is true', () => {

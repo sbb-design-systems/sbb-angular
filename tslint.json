@@ -1,9 +1,6 @@
 {
   "extends": ["tslint-plugin-prettier", "tslint-config-prettier"],
-  "rulesDirectory": [
-    "node_modules/codelyzer",
-    "node_modules/tslint-consistent-codestyle/rules"
-  ],
+  "rulesDirectory": ["node_modules/codelyzer", "node_modules/tslint-consistent-codestyle/rules"],
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
     "arrow-return-shorthand": true,
@@ -22,12 +19,7 @@
     "member-ordering": [
       true,
       {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
+        "order": ["static-field", "instance-field", "static-method", "instance-method"]
       }
     ],
     "naming-convention": [
@@ -152,13 +144,7 @@
     "no-var-before-return": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
+    "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
     "ordered-imports": [
       true,
       {

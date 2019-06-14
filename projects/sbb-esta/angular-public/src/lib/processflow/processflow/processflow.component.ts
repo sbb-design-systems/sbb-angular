@@ -27,9 +27,7 @@ export class ProcessflowComponent implements AfterContentInit {
   cssClass = true;
   /** Event emitted to the change of step in the process flow. */
   @Output()
-  stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<
-    ProcessflowStep
-  >();
+  stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
   /** Refers to the steps of process flow. */
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;

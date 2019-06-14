@@ -28,8 +28,7 @@ $tableCaptionColor: $sbbColorGrey;
   thead {
     background-color: $tableTheadBgColor;
 
-    >tr {
-
+    > tr {
       th,
       td {
         padding: $tableTheadCellPaddingMobile;
@@ -50,9 +49,8 @@ $tableCaptionColor: $sbbColorGrey;
   }
 
   tbody {
-    >tr {
+    > tr {
       &:nth-child(even) {
-
         th,
         td {
           background-color: $tableTbodyStripesBgColor;
@@ -81,8 +79,7 @@ $tableCaptionColor: $sbbColorGrey;
   thead,
   tbody,
   tfoot {
-    >tr {
-
+    > tr {
       th,
       td {
         &:first-child {

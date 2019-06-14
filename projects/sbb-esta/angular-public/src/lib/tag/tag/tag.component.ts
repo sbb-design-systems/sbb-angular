@@ -44,8 +44,7 @@ export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class TagComponent extends CheckboxComponent
-  implements OnInit, OnChanges, OnDestroy {
+export class TagComponent extends CheckboxComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * A subject on a state change of a tag.
    */
@@ -136,9 +135,7 @@ export class TagComponent extends CheckboxComponent
 
     this._zone.onStable
       .pipe(first())
-      .subscribe(() =>
-        this._zone.run(() => this.tagChecking$.next(this.checked))
-      );
+      .subscribe(() => this._zone.run(() => this.tagChecking$.next(this.checked)));
   }
 
   ngOnInit() {

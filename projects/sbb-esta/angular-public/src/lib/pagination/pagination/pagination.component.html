@@ -44,23 +44,17 @@
         [class.sbb-pagination-item-selected]="
           !page.isEllipsis && page.displayNumber === initialPage
         "
-        [attr.aria-current]="
-          !page.isEllipsis && page.displayNumber === initialPage
-        "
+        [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
         (click)="buttonClick(page)"
       >
         <ng-container *ngIf="page.isEllipsis">...</ng-container>
-        <ng-container *ngIf="!page.isEllipsis">{{
-          page.displayNumber
-        }}</ng-container>
+        <ng-container *ngIf="!page.isEllipsis">{{ page.displayNumber }}</ng-container>
       </button>
       <a
         *ngIf="linkGenerator"
         #pageLink
         [attr.tabindex]="page.tabIndex"
-        [attr.aria-current]="
-          !page.isEllipsis && page.displayNumber === initialPage
-        "
+        [attr.aria-current]="!page.isEllipsis && page.displayNumber === initialPage"
         [routerLink]="page.link?.routerLink"
         [queryParams]="page.link?.queryParams"
         [fragment]="page.link?.fragment"

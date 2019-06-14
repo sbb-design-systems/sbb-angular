@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'sbb-textexpand-collapsed',

@@ -32,18 +32,11 @@
         <ng-container *ngIf="!ghettobox">
           <ng-content></ng-content>
         </ng-container>
-        <sbb-icon-arrow-right
-          *ngIf="routerLink"
-          class="sbb-ghettobox-content-link-icon"
-        >
+        <sbb-icon-arrow-right *ngIf="routerLink" class="sbb-ghettobox-content-link-icon">
         </sbb-icon-arrow-right>
       </div>
       <div class="sbb-ghettobox-close">
-        <button
-          type="button"
-          (click)="delete($event)"
-          class="sbb-ghettobox-close-button"
-        >
+        <button type="button" (click)="delete($event)" class="sbb-ghettobox-close-button">
           <sbb-icon-cross></sbb-icon-cross>
           <span i18n class="cdk-visually-hidden">Hinweismeldung schliessen</span>
         </button>

@@ -38,7 +38,10 @@ export default {
       },
       {
         files: join(__dirname, 'schematics/generate-icon-modules/schema.json'),
-        dest: join(__dirname, '../../../dist/sbb-esta/angular-icons/schematics/generate-icon-modules')
+        dest: join(
+          __dirname,
+          '../../../dist/sbb-esta/angular-icons/schematics/generate-icon-modules'
+        )
       }
     ])
   ]

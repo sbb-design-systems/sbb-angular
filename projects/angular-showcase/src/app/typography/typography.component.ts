@@ -61,10 +61,7 @@ export class TypographyComponent {
       .get(`docs/typography/samples/${filename}.${type}`, {
         responseType: 'text'
       })
-      .subscribe(
-        (response: any) =>
-          (this.code[this.dashCaseToCamelCase(filename)] = response)
-      );
+      .subscribe((response: any) => (this.code[this.dashCaseToCamelCase(filename)] = response));
   }
 
   getRawHTML(htmlString: string) {

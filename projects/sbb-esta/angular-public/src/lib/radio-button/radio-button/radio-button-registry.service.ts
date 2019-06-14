@@ -28,10 +28,7 @@ export class RadioButtonRegistryService {
       .forEach(c => c[1].uncheck());
   }
 
-  private _isSameGroup(
-    controlPair: [any, RadioButton],
-    accessor: RadioButton
-  ): boolean {
+  private _isSameGroup(controlPair: [any, RadioButton], accessor: RadioButton): boolean {
     if (!controlPair[0].control || !accessor._control) {
       return false;
     }

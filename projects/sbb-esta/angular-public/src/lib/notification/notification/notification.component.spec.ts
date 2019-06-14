@@ -6,10 +6,7 @@ import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import {
-  NotificationComponent,
-  NotificationType
-} from './notification.component';
+import { NotificationComponent, NotificationType } from './notification.component';
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -65,9 +62,7 @@ describe('NotificationComponent', () => {
     it('should have red background when type is ERROR', () => {
       testComponent.type = NotificationType.ERROR;
       testFixture.detectChanges();
-      const notifications = testFixture.debugElement.queryAll(
-        By.css('.sbb-notification-error')
-      );
+      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-error'));
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
@@ -78,9 +73,7 @@ describe('NotificationComponent', () => {
     it('should have grey background when type is SUCCESS', () => {
       testComponent.type = NotificationType.SUCCESS;
       testFixture.detectChanges();
-      const notifications = testFixture.debugElement.queryAll(
-        By.css('.sbb-notification-success')
-      );
+      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-success'));
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
@@ -91,9 +84,7 @@ describe('NotificationComponent', () => {
     it('should have grey background when type is INFO', () => {
       testComponent.type = NotificationType.INFO;
       testFixture.detectChanges();
-      const notifications = testFixture.debugElement.queryAll(
-        By.css('.sbb-notification-info')
-      );
+      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-info'));
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
@@ -102,9 +93,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should change height with jump marks', () => {
-      const componentStyles = window.getComputedStyle(
-        testFixture.debugElement.nativeElement
-      );
+      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
       expect(componentStyles.height).toBe('68px');
 
       testComponent.jumpMarks = [

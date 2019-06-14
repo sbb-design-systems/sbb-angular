@@ -53,9 +53,7 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that represents an observer on the number of digits in a textarea
    */
-  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(
-    this.maxlength
-  );
+  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
   /**
    * Class property that sets the minlength of the textarea content
    */
@@ -89,10 +87,7 @@ export class TextareaComponent implements ControlValueAccessor {
    */
   onTouched = () => {};
 
-  constructor(
-    private _changeDetector: ChangeDetectorRef,
-    private _ngZone: NgZone
-  ) {}
+  constructor(private _changeDetector: ChangeDetectorRef, private _ngZone: NgZone) {}
 
   /**
    * Adds the focused CSS class to this element
@@ -111,9 +106,7 @@ export class TextareaComponent implements ControlValueAccessor {
    * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
-    this._ngZone.onStable
-      .pipe(first())
-      .subscribe(() => this.autosize.resizeToFitContent(true));
+    this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
   writeValue(newValue: any) {

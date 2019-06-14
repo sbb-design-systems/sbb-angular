@@ -10,10 +10,7 @@ import {
 } from '@sbb-esta/angular-icons';
 
 import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
-import {
-  CalendarComponent,
-  CalendarHeaderComponent
-} from './calendar/calendar.component';
+import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
 import { DateAdapter } from './date-adapter';
 import { SBB_DATE_FORMATS } from './date-formats';
 import { DateInputDirective } from './date-input/date-input.directive';

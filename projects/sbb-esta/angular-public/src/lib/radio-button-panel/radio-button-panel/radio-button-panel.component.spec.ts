@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { configureTestSuite } from 'ng-bullet';
 
 import { createFakeEvent } from '../../_common/testing/event-objects';
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
 
 import { RadioButtonPanelComponent } from './radio-button-panel.component';
-import { configureTestSuite } from 'ng-bullet';
 
 // tslint:disable:i18n
 @Component({
@@ -34,9 +34,7 @@ import { configureTestSuite } from 'ng-bullet';
 })
 class ModelOptionSelectionTestComponent {
   testValue = '2';
-  @ViewChildren(RadioButtonPanelComponent) optionSelections: QueryList<
-    RadioButtonPanelComponent
-  >;
+  @ViewChildren(RadioButtonPanelComponent) optionSelections: QueryList<RadioButtonPanelComponent>;
 }
 
 describe('RadioButtonPanelComponent', () => {
@@ -67,9 +65,7 @@ describe('RadioButtonPanelComponent', () => {
 
 describe('RadioButtonPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionTestComponent;
-  let modelComponentFixture: ComponentFixture<
-    ModelOptionSelectionTestComponent
-  >;
+  let modelComponentFixture: ComponentFixture<ModelOptionSelectionTestComponent>;
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
@@ -79,9 +75,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
   });
 
   beforeEach(() => {
-    modelComponentFixture = TestBed.createComponent(
-      ModelOptionSelectionTestComponent
-    );
+    modelComponentFixture = TestBed.createComponent(ModelOptionSelectionTestComponent);
     modelComponent = modelComponentFixture.componentInstance;
 
     modelComponentFixture.detectChanges();
@@ -110,17 +104,13 @@ describe('RadioButtonPanelComponent using mock component', () => {
     opt1.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
-    let checkedComponents = modelComponent.optionSelections.filter(
-      o => o.checked === true
-    );
+    let checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
     expect(checkedComponents.length).toBe(1);
 
     opt2.click(createFakeEvent('click'));
     modelComponentFixture.detectChanges();
 
-    checkedComponents = modelComponent.optionSelections.filter(
-      o => o.checked === true
-    );
+    checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
     expect(checkedComponents.length).toBe(1);
   });
 

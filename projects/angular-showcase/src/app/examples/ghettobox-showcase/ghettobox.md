@@ -1,6 +1,6 @@
 # Ghettobox Overview
 
-Import ghettobox module in your application 
+Import ghettobox module in your application
 
 ```ts
 import { GhettoboxModule } from '@sbb-esta/angular-public';
@@ -9,24 +9,26 @@ import { GhettoboxModule } from '@sbb-esta/angular-public';
 ## Standalone Ghettobox
 
 ### Simple Ghettobox
+
 ```html
-<sbb-ghettobox>
-  This is a simple message with a simple <a href="#">Link</a> inside.
-</sbb-ghettobox>
+<sbb-ghettobox> This is a simple message with a simple <a href="#">Link</a> inside. </sbb-ghettobox>
 ```
 
-### Ghettobox with ```routerLink``` set and custom icon
+### Ghettobox with `routerLink` set and custom icon
+
 ```html
-<sbb-ghettobox (afterDelete)="afterDelete($event)"
-               [routerLink]="['.', 'test']" 
-               [queryParams]="{debug: false}" 
-               fragment="test">
+<sbb-ghettobox
+  (afterDelete)="afterDelete($event)"
+  [routerLink]="['.', 'test']"
+  [queryParams]="{debug: false}"
+  fragment="test"
+>
   <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
   This is a Link ghettobox with custom icon.
 </sbb-ghettobox>
 ```
 
-You can subscribe to the ```afterDelete``` stream to get notified when the ghettobox is being deleted.
+You can subscribe to the `afterDelete` stream to get notified when the ghettobox is being deleted.
 
 ```ts
 afterDelete(evt: GhettoboxDeletedEvent) {
@@ -34,7 +36,7 @@ afterDelete(evt: GhettoboxDeletedEvent) {
 }
 ```
 
-## Ghettobox within a Ghettobox container (operable by ```GhettoboxService```)
+## Ghettobox within a Ghettobox container (operable by `GhettoboxService`)
 
 ```html
 <sbb-ghettobox-container>
@@ -45,7 +47,7 @@ afterDelete(evt: GhettoboxDeletedEvent) {
 </sbb-ghettobox-container>
 ```
 
-You can use the ```GhettoboxService``` API to add | delete | clear and more. For instance.
+You can use the `GhettoboxService` API to add | delete | clear and more. For instance.
 
 ```ts
 addGhettobox(message: string) {
@@ -85,7 +87,7 @@ clear() {
 }
 ```
 
-You can also subscribe on ```containerReady``` Observable if you want to do something at page load. For Instance.
+You can also subscribe on `containerReady` Observable if you want to do something at page load. For Instance.
 
 ```ts
 constructor(private _ghettoboxService: GhettoboxService) {

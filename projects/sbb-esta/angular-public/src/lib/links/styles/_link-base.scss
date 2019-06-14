@@ -50,8 +50,7 @@
     opacity: 1;
     top: 50%;
     transform: translate(0px, -50%);
-    transition: opacity $linkiconAnimation, transform $linkiconAnimation,
-      fill $linkiconAnimation;
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
 
     @include mq($from: desktop4k) {
       width: toPx(24 * $scalingFactor4k);

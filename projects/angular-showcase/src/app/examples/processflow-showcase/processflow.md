@@ -5,25 +5,26 @@ Import process flow module into your application
 ```ts
 import { ProcessflowModule } from '@sbb-esta/angular-public';
 ```
+
 You can use process flow component as a workflow divided into step as see below
 
 ```html
 <sbb-processflow>
-    <sbb-processflow-step title="Schritt 1">
-        <div>
-            Schrittinhalt 1
-        </div>
-    </sbb-processflow-step>
-    <sbb-processflow-step title="Schritt 2">
-        <div>
-            Schrittinhalt 2
-        </div>
-    </sbb-processflow-step>
-    <sbb-processflow-step title="Schritt 3">
-        <div>
-            Schrittinhalt 3
-        </div>
-    </sbb-processflow-step>
+  <sbb-processflow-step title="Schritt 1">
+    <div>
+      Schrittinhalt 1
+    </div>
+  </sbb-processflow-step>
+  <sbb-processflow-step title="Schritt 2">
+    <div>
+      Schrittinhalt 2
+    </div>
+  </sbb-processflow-step>
+  <sbb-processflow-step title="Schritt 3">
+    <div>
+      Schrittinhalt 3
+    </div>
+  </sbb-processflow-step>
 </sbb-processflow>
 ```
 
@@ -40,6 +41,7 @@ You can also use prevStep() and nextStep() functions to move respectively betwee
     }
   }
 ```
+
 ```ts
 nextStep() {
     const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
@@ -59,6 +61,7 @@ nextStep() {
     }
   }
 ```
+
 or to reset the entire process flow with reset() function:
 
 ```ts
@@ -66,8 +69,3 @@ reset() {
     this.processflow.reset();
   }
 ```
-
-
-
-
-

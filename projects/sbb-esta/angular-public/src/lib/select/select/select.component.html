@@ -10,18 +10,13 @@
   [class.sbb-select-disabled]="disabled"
 >
   <div class="sbb-select-value" [ngSwitch]="empty">
-    <span class="sbb-select-placeholder" *ngSwitchCase="true">{{
-      placeholder || '\u00A0'
-    }}</span>
+    <span class="sbb-select-placeholder" *ngSwitchCase="true">{{ placeholder || '\u00A0' }}</span>
     <span class="sbb-select-value-text" *ngSwitchCase="false">
       <span>{{ triggerValue || '\u00A0' }}</span>
     </span>
   </div>
 
-  <div
-    class="sbb-select-arrow-wrapper"
-    [class.sbb-select-arrow-wrapper-rotate]="rotateIcon"
-  >
+  <div class="sbb-select-arrow-wrapper" [class.sbb-select-arrow-wrapper-rotate]="rotateIcon">
     <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
   </div>
 </div>

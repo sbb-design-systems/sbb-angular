@@ -6,11 +6,7 @@ import { ToggleOptionComponent } from './toggle-option/toggle-option.component';
 import { ToggleComponent } from './toggle/toggle.component';
 
 @NgModule({
-  declarations: [
-    ToggleComponent,
-    ToggleOptionComponent,
-    ToggleOptionIconDirective
-  ],
+  declarations: [ToggleComponent, ToggleOptionComponent, ToggleOptionIconDirective],
   imports: [CommonModule],
   exports: [ToggleComponent, ToggleOptionComponent, ToggleOptionIconDirective]
 })

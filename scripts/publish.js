@@ -17,10 +17,7 @@ class Publisher {
     this.name = properties.name;
     this.stagingUser = properties.stagingUser;
     this.stagingPassword = properties.stagingPassword;
-    this.showcasePackageJson = resolve(
-      __dirname,
-      `../dist/angular-showcase/package.json`
-    );
+    this.showcasePackageJson = resolve(__dirname, `../dist/angular-showcase/package.json`);
     if (this.isRelease) {
       this.tag = prerelease(this.version) ? 'next' : 'latest';
     } else {
@@ -56,10 +53,7 @@ class Publisher {
   }
 
   _assignVersionInPackage(path, version) {
-    const content = readFileSync(path, 'utf8').replace(
-      /0\.0\.0-PLACEHOLDER/g,
-      version
-    );
+    const content = readFileSync(path, 'utf8').replace(/0\.0\.0-PLACEHOLDER/g, version);
     const json = JSON.parse(content);
     json.publishConfig.tag = this.tag;
     writeFileSync(path, JSON.stringify(json, null, 2), 'utf8');
@@ -101,9 +95,7 @@ class Publisher {
     const directories = glob
       .sync('**/package.json', { cwd: resolve(__dirname, '../dist') })
       .map(p => `../dist/${p}`)
-      .sort((a, b) =>
-        (require(b).peerDependencies || {})[require(a).name] ? 0 : 1
-      )
+      .sort((a, b) => ((require(b).peerDependencies || {})[require(a).name] ? 0 : 1))
       .map(p => dirname(resolve(__dirname, p)));
     for (const directory of directories) {
       await this._publishDirectory(directory);
@@ -115,9 +107,7 @@ class Publisher {
   }
 
   async _publishDirectory(directory) {
-    const content = JSON.parse(
-      readFileSync(join(directory, 'package.json'), 'utf8')
-    );
+    const content = JSON.parse(readFileSync(join(directory, 'package.json'), 'utf8'));
     if (this.dryRun) {
       await execAsync('npm pack', {
         cwd: directory,
@@ -144,7 +134,7 @@ class Publisher {
       uri: `https://angular.app.sbb.ch/${this.tag}`,
       auth: {
         user: this.stagingUser,
-        pass: this.stagingPassword,
+        pass: this.stagingPassword
       }
     });
     console.log(`Triggered staging with tag ${this.tag}`);

@@ -116,9 +116,7 @@ describe('CheckboxComponent using mock component', () => {
 
     await modelComponentFixture.whenStable();
 
-    const components = modelComponentFixture.debugElement.queryAll(
-      By.directive(CheckboxComponent)
-    );
+    const components = modelComponentFixture.debugElement.queryAll(By.directive(CheckboxComponent));
     expect(components[0].componentInstance._checked).toBe(true);
     expect(modelComponent.checkValue1).toBe(true);
 

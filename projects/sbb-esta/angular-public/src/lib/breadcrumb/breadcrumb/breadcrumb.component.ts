@@ -21,11 +21,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import {
-  Breakpoints,
-  SCALING_FACTOR_4K,
-  SCALING_FACTOR_5K
-} from '../../breakpoints/breakpoints';
+import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '../../breakpoints/breakpoints';
 import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
 import {
   DROPDOWN_SCROLL_STRATEGY,
@@ -45,9 +41,9 @@ export interface BreadcrumbParentComponent {
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_BREADCRUMB_PARENT_COMPONENT = new InjectionToken<
-  BreadcrumbParentComponent
->('SBB_BREADCRUMB_PARENT_COMPONENT');
+export const SBB_BREADCRUMB_PARENT_COMPONENT = new InjectionToken<BreadcrumbParentComponent>(
+  'SBB_BREADCRUMB_PARENT_COMPONENT'
+);
 
 const BREADCRUMB_LEVEL_OFFSET = 60;
 
@@ -58,8 +54,7 @@ const BREADCRUMB_LEVEL_OFFSET = 60;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BreadcrumbComponent extends DropdownTriggerDirective
-  implements AfterViewInit {
+export class BreadcrumbComponent extends DropdownTriggerDirective implements AfterViewInit {
   /**
    * Refers to a dropdown instance.
    */
@@ -142,8 +137,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective
             scalingFactor = SCALING_FACTOR_5K;
           }
         }
-        this._breadcrumbPanelWidth =
-          this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
+        this._breadcrumbPanelWidth = this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
       });
   }
 

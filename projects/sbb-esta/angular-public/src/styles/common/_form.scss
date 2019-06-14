@@ -17,13 +17,11 @@
     padding: 10px 14px 12px;
 
     @include mq($from: desktop4k) {
-      padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k)
-        toPx(12 * $scalingFactor4k);
+      padding: toPx(10 * $scalingFactor4k) toPx(14 * $scalingFactor4k) toPx(12 * $scalingFactor4k);
     }
 
     @include mq($from: desktop5k) {
-      padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k)
-        toPx(12 * $scalingFactor5k);
+      padding: toPx(10 * $scalingFactor5k) toPx(14 * $scalingFactor5k) toPx(12 * $scalingFactor5k);
     }
   }
 

@@ -1,10 +1,11 @@
 # Tabs Overview
 
- Import tabs module into your application
- 
- ```ts
+Import tabs module into your application
+
+```ts
 import { TabsModule } from '@sbb-esta/angular-public';
 ```
+
 and then you can use the tab component as seen below (in this simple example you can navigate between tabs with left and right arrow)
 
 ```html
@@ -13,9 +14,11 @@ and then you can use the tab component as seen below (in this simple example you
   <sbb-tab label="Tab 1" id="content1-tab" labelId="content1">
     <h4>Content 1</h4>
     <p>Here comes the content for tab 1 ...</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      ex ea commodo consequat.</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
   </sbb-tab>
 
   <sbb-tab label="Tab 2" id="content2-tab" labelId="content2">
@@ -23,5 +26,4 @@ and then you can use the tab component as seen below (in this simple example you
     <p>Here comes the content for tab 2 ...</p>
   </sbb-tab>
 </sbb-tabs>
- 
 ```

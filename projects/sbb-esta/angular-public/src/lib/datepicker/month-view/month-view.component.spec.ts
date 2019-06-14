@@ -15,10 +15,7 @@ import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
 import { DEC, FEB, JAN, MAR, NOV } from '../../_common/testing/dates-constants';
-import {
-  dispatchFakeEvent,
-  dispatchKeyboardEvent
-} from '../../_common/testing/dispatch-events';
+import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
 import { DateAdapter } from '../date-adapter';
 import { SBB_DATE_FORMATS } from '../date-formats';
@@ -29,10 +26,7 @@ import { MonthViewComponent } from './month-view.component';
 
 @Component({
   template: `
-    <sbb-month-view
-      [(activeDate)]="date"
-      [(selected)]="selected"
-    ></sbb-month-view>
+    <sbb-month-view [(activeDate)]="date" [(selected)]="selected"></sbb-month-view>
   `
 })
 class StandardMonthViewComponent {
@@ -42,10 +36,7 @@ class StandardMonthViewComponent {
 
 @Component({
   template: `
-    <sbb-month-view
-      [activeDate]="activeDate"
-      [dateFilter]="dateFilter"
-    ></sbb-month-view>
+    <sbb-month-view [activeDate]="activeDate" [dateFilter]="dateFilter"></sbb-month-view>
   `
 })
 class MonthViewWithDateFilterComponent {
@@ -82,26 +73,20 @@ describe('MonthViewComponent', () => {
       fixture = TestBed.createComponent(StandardMonthViewComponent);
       fixture.detectChanges();
 
-      const monthViewDebugElement = fixture.debugElement.query(
-        By.directive(MonthViewComponent)
-      );
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(MonthViewComponent));
       monthViewNativeElement = monthViewDebugElement.nativeElement;
       testComponent = fixture.componentInstance;
     });
 
     it('has 31 days', () => {
       // tslint:disable-next-line:no-non-null-assertion
-      const cellEls = monthViewNativeElement.querySelectorAll(
-        '.sbb-calendar-body-cell'
-      )!;
+      const cellEls = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell')!;
       expect(cellEls.length).toBe(31);
     });
 
     it('shows selected date if in same month', () => {
       // tslint:disable-next-line:no-non-null-assertion
-      const selectedEl = monthViewNativeElement.querySelector(
-        '.sbb-calendar-body-selected'
-      )!;
+      const selectedEl = monthViewNativeElement.querySelector('.sbb-calendar-body-selected')!;
       expect(selectedEl.textContent.trim()).toBe('10');
     });
 
@@ -109,30 +94,22 @@ describe('MonthViewComponent', () => {
       testComponent.selected = new Date(2017, MAR, 10);
       fixture.detectChanges();
 
-      const selectedEl = monthViewNativeElement.querySelector(
-        '.sbb-calendar-body-selected'
-      );
+      const selectedEl = monthViewNativeElement.querySelector('.sbb-calendar-body-selected');
       expect(selectedEl).toBeNull();
     });
 
     it('fires selected change event on cell clicked', () => {
-      const cellEls = monthViewNativeElement.querySelectorAll(
-        '.sbb-calendar-body-cell'
-      );
+      const cellEls = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       (cellEls[cellEls.length - 1] as HTMLElement).click();
       fixture.detectChanges();
 
       // tslint:disable-next-line:no-non-null-assertion
-      const selectedEl = monthViewNativeElement.querySelector(
-        '.sbb-calendar-body-selected'
-      )!;
+      const selectedEl = monthViewNativeElement.querySelector('.sbb-calendar-body-selected')!;
       expect(selectedEl.textContent.trim()).toBe('31');
     });
 
     it('should mark active date', () => {
-      const cellEls = monthViewNativeElement.querySelectorAll(
-        '.sbb-calendar-body-cell'
-      );
+      const cellEls = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       expect((cellEls[4] as HTMLElement).innerText.trim()).toBe('5');
       expect(cellEls[4].classList).toContain('sbb-calendar-body-active');
     });
@@ -279,16 +256,12 @@ describe('MonthViewComponent', () => {
       fixture = TestBed.createComponent(MonthViewWithDateFilterComponent);
       fixture.detectChanges();
 
-      const monthViewDebugElement = fixture.debugElement.query(
-        By.directive(MonthViewComponent)
-      );
+      const monthViewDebugElement = fixture.debugElement.query(By.directive(MonthViewComponent));
       monthViewNativeElement = monthViewDebugElement.nativeElement;
     });
 
     it('should disable filtered dates', () => {
-      const cells = monthViewNativeElement.querySelectorAll(
-        '.sbb-calendar-body-cell'
-      );
+      const cells = monthViewNativeElement.querySelectorAll('.sbb-calendar-body-cell');
       expect(cells[0].classList).toContain('sbb-calendar-body-disabled');
       expect(cells[1].classList).not.toContain('sbb-calendar-body-disabled');
     });

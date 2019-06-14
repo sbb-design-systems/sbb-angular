@@ -155,10 +155,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
           first()
         )
         .subscribe(() => {
-          this.portal = new TemplatePortal(
-            this.lazyContent._template,
-            this._viewContainerRef
-          );
+          this.portal = new TemplatePortal(this.lazyContent._template, this._viewContainerRef);
         });
     }
   }
@@ -193,9 +190,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
     if (this.body && this._document) {
       const focusedElement = this._document.activeElement;
       const bodyElement = this.body.nativeElement;
-      return (
-        focusedElement === bodyElement || bodyElement.contains(focusedElement)
-      );
+      return focusedElement === bodyElement || bodyElement.contains(focusedElement);
     }
 
     return false;

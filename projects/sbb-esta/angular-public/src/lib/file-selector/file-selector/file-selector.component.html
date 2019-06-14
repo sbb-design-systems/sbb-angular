@@ -12,14 +12,9 @@
       (change)="fileChange($event.target.files)"
       (blur)="onTouched()"
     />
-    <span
-      class="sbb-file-selector-button"
-      [class.sbb-file-selector-disabled]="disabled"
-    >
+    <span class="sbb-file-selector-button" [class.sbb-file-selector-disabled]="disabled">
       <span i18n>Datei hochladen</span>
-      <span class="sbb-svgsprite-icon"
-        ><sbb-icon-upload></sbb-icon-upload
-      ></span>
+      <span class="sbb-svgsprite-icon"><sbb-icon-upload></sbb-icon-upload></span>
     </span>
   </label>
 
@@ -30,38 +25,21 @@
         class="sbb-file-selector-list-type-icon"
         [ngSwitch]="getFileTypeCat(file)"
       >
-        <sbb-icon-document-text
-          *ngSwitchCase="fileTypeCategory.DOC"
-        ></sbb-icon-document-text>
-        <sbb-icon-document-image
-          *ngSwitchCase="fileTypeCategory.IMAGE"
-        ></sbb-icon-document-image>
-        <sbb-icon-document-pdf
-          *ngSwitchCase="fileTypeCategory.PDF"
-        ></sbb-icon-document-pdf>
-        <sbb-icon-document-sound
-          *ngSwitchCase="fileTypeCategory.AUDIO"
-        ></sbb-icon-document-sound>
-        <sbb-icon-document-video
-          *ngSwitchCase="fileTypeCategory.VIDEO"
-        ></sbb-icon-document-video>
-        <sbb-icon-document-zip
-          *ngSwitchCase="fileTypeCategory.ZIP"
-        ></sbb-icon-document-zip>
-        <sbb-icon-document-standard
-          *ngSwitchDefault
-        ></sbb-icon-document-standard>
+        <sbb-icon-document-text *ngSwitchCase="fileTypeCategory.DOC"></sbb-icon-document-text>
+        <sbb-icon-document-image *ngSwitchCase="fileTypeCategory.IMAGE"></sbb-icon-document-image>
+        <sbb-icon-document-pdf *ngSwitchCase="fileTypeCategory.PDF"></sbb-icon-document-pdf>
+        <sbb-icon-document-sound *ngSwitchCase="fileTypeCategory.AUDIO"></sbb-icon-document-sound>
+        <sbb-icon-document-video *ngSwitchCase="fileTypeCategory.VIDEO"></sbb-icon-document-video>
+        <sbb-icon-document-zip *ngSwitchCase="fileTypeCategory.ZIP"></sbb-icon-document-zip>
+        <sbb-icon-document-standard *ngSwitchDefault></sbb-icon-document-standard>
       </div>
       <span class="sbb-file-selector-list-desc"
-        >{{ file | fileNameNoExtension }} (<span
-          class="sbb-file-selector-list-file-ext"
-          >{{ file | fileExtension }}</span
+        >{{ file | fileNameNoExtension }} (<span class="sbb-file-selector-list-file-ext">{{
+          file | fileExtension
+        }}</span
         >, {{ file | fileSizeFormatted }})</span
       >
-      <button
-        class="sbb-file-selector-list-remove-icon"
-        (click)="removeFile(file)"
-      >
+      <button class="sbb-file-selector-list-remove-icon" (click)="removeFile(file)">
         <span i18n class="cdk-visually-hidden">Datei entfernen</span>
         <sbb-icon-trash></sbb-icon-trash>
       </button>

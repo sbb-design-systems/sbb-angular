@@ -21,9 +21,7 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('should have a radio button', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', [
-      'writeValue'
-    ]);
+    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue']);
     component.name = 'test-name';
     service.add(undefined, component);
 
@@ -35,10 +33,7 @@ describe('RadioButtonRegistryService', () => {
       control: Symbol('control'),
       _parent: Symbol('parent')
     } as any;
-    const component = jasmine.createSpyObj('RadioButtonComponent', [
-      'writeValue',
-      'uncheck'
-    ]);
+    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue', 'uncheck']);
     component.uncheck.and.callFake(() => {
       component.checked = false;
     });
@@ -47,10 +42,7 @@ describe('RadioButtonRegistryService', () => {
     component._control = control;
     service.add(control, component);
 
-    const component2 = jasmine.createSpyObj('RadioButtonComponent', [
-      'writeValue',
-      'uncheck'
-    ]);
+    const component2 = jasmine.createSpyObj('RadioButtonComponent', ['writeValue', 'uncheck']);
     component2.uncheck.and.callFake(() => {
       component2.checked = false;
     });
@@ -73,9 +65,7 @@ describe('RadioButtonRegistryService', () => {
   });
 
   it('should be empty on remove', () => {
-    const component = jasmine.createSpyObj('RadioButtonComponent', [
-      'writeValue'
-    ]);
+    const component = jasmine.createSpyObj('RadioButtonComponent', ['writeValue']);
     component.name = 'test-name';
     component.inputId = 'test-comp-id-1';
     service.add(undefined, component);

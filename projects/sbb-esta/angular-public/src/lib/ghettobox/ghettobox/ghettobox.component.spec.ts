@@ -14,9 +14,7 @@ import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 @Component({
   selector: 'sbb-ghettobox-test',
   template: `
-    <sbb-ghettobox id="simple-ghettobox" (afterDelete)="afterDelete()"
-      >TEST</sbb-ghettobox
-    >
+    <sbb-ghettobox id="simple-ghettobox" (afterDelete)="afterDelete()">TEST</sbb-ghettobox>
 
     <sbb-ghettobox
       id="link-icon-ghettobox"
@@ -40,16 +38,8 @@ describe('GhettoboxComponent', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        IconCollectionModule,
-        NoopAnimationsModule
-      ],
-      declarations: [
-        GhettoboxTestComponent,
-        GhettoboxComponent,
-        GhettoboxIconDirective
-      ]
+      imports: [RouterTestingModule, IconCollectionModule, NoopAnimationsModule],
+      declarations: [GhettoboxTestComponent, GhettoboxComponent, GhettoboxIconDirective]
     });
   });
 
@@ -68,40 +58,29 @@ describe('GhettoboxComponent', () => {
     let ghettoboxDebugElement: DebugElement;
 
     beforeEach(() => {
-      ghettoboxDebugElement = fixture.debugElement.query(
-        By.css('[id="simple-ghettobox"]')
-      );
+      ghettoboxDebugElement = fixture.debugElement.query(By.css('[id="simple-ghettobox"]'));
     });
 
     it('should bind proper accessibility attributes', () => {
-      expect(ghettoboxDebugElement.nativeElement.getAttribute('role')).toEqual(
-        'alert'
-      );
-      expect(
-        ghettoboxDebugElement.nativeElement.getAttribute('tabindex')
-      ).toEqual('-1');
+      expect(ghettoboxDebugElement.nativeElement.getAttribute('role')).toEqual('alert');
+      expect(ghettoboxDebugElement.nativeElement.getAttribute('tabindex')).toEqual('-1');
     });
 
     it('should have the info default icon', () => {
-      const ghettoboxIcon = ghettoboxDebugElement.query(
-        By.css('sbb-icon-him-info')
-      );
+      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon-him-info'));
 
       expect(ghettoboxIcon).toBeTruthy();
     });
 
     it('should have "TEST" as message', () => {
-      const ghettoboxMessage = ghettoboxDebugElement.query(
-        By.css('.sbb-ghettobox-content')
-      ).nativeElement.innerText;
+      const ghettoboxMessage = ghettoboxDebugElement.query(By.css('.sbb-ghettobox-content'))
+        .nativeElement.innerText;
 
       expect(ghettoboxMessage).toBe('TEST');
     });
 
     it('should delete the ghettobox on close button click', async () => {
-      const closeButton = ghettoboxDebugElement.query(
-        By.css('.sbb-ghettobox-close-button')
-      );
+      const closeButton = ghettoboxDebugElement.query(By.css('.sbb-ghettobox-close-button'));
 
       spyOn(component, 'afterDelete');
 
@@ -119,15 +98,11 @@ describe('GhettoboxComponent', () => {
     let ghettoboxDebugElement: DebugElement;
 
     beforeEach(() => {
-      ghettoboxDebugElement = fixture.debugElement.query(
-        By.css('[id="link-icon-ghettobox"]')
-      );
+      ghettoboxDebugElement = fixture.debugElement.query(By.css('[id="link-icon-ghettobox"]'));
     });
 
     it('should have a custom icon', async () => {
-      const ghettoboxIcon = ghettoboxDebugElement.query(
-        By.css('sbb-icon-him-disruption')
-      );
+      const ghettoboxIcon = ghettoboxDebugElement.query(By.css('sbb-icon-him-disruption'));
       expect(ghettoboxIcon).toBeTruthy();
     });
 

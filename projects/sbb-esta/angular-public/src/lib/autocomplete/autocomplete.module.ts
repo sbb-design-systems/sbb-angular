@@ -14,11 +14,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 @NgModule({
   imports: [OptionModule, CommonModule, A11yModule, OverlayModule],
-  declarations: [
-    AutocompleteComponent,
-    AutocompleteOriginDirective,
-    AutocompleteTriggerDirective
-  ],
+  declarations: [AutocompleteComponent, AutocompleteOriginDirective, AutocompleteTriggerDirective],
   exports: [
     OptionModule,
     OverlayModule,

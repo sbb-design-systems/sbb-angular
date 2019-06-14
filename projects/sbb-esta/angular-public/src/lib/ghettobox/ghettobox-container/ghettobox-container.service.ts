@@ -93,9 +93,7 @@ export class GhettoboxContainerService {
 
   /** @docs-private */
   deleteFromAttachedGhettoboxesCollection(ghettoboxId: string): void {
-    const index = this._attachedGhettoboxes.indexOf(
-      this._getGhettoboxById(ghettoboxId)
-    );
+    const index = this._attachedGhettoboxes.indexOf(this._getGhettoboxById(ghettoboxId));
     if (index !== -1) {
       this._attachedGhettoboxes.splice(index, 1);
     }

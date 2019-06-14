@@ -6,15 +6,16 @@ Let's assume you're using the `formControl`
 directive from `ReactiveFormsModule` to track the value of the input.
 
 > Note: It is possible to use template-driven forms instead, if you prefer. We use reactive forms
-in this example because it makes subscribing to changes in the input's value easy. For this
-example, be sure to import `ReactiveFormsModule` from `@angular/forms` into your `NgModule`.
-If you are unfamiliar with using reactive forms, you can read more about the subject in the
-[Angular documentation](https://angular.io/guide/reactive-forms).
+> in this example because it makes subscribing to changes in the input's value easy. For this
+> example, be sure to import `ReactiveFormsModule` from `@angular/forms` into your `NgModule`.
+> If you are unfamiliar with using reactive forms, you can read more about the subject in the
+> [Angular documentation](https://angular.io/guide/reactive-forms).
 
-*my-comp.html*
+_my-comp.html_
+
 ```html
 <sbb-field>
-  <input type="text" [formControl]="myControl">
+  <input type="text" [formControl]="myControl" />
 </sbb-field>
 ```
 
@@ -22,7 +23,8 @@ Next, create the autocomplete panel and the options displayed inside it. Each op
 defined by a `sbb-option` tag. Set each option's value property to whatever you'd like the value
 of the text input to be upon that option's selection.
 
-*my-comp.html*
+_my-comp.html_
+
 ```html
 <sbb-autocomplete>
   <sbb-option *ngFor="let option of options" [value]="option">
@@ -35,10 +37,11 @@ Now we'll need to link the text input to its panel. We can do this by exporting 
 panel instance into a local template variable (here we called it "auto"), and binding that variable
 to the input's `sbbAutocomplete` property.
 
-*my-comp.html*
+_my-comp.html_
+
 ```html
 <sbb-field>
-  <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto">
+  <input type="text" [formControl]="myControl" [sbbAutocomplete]="auto" />
 </sbb-field>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
@@ -99,11 +102,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 
 ```html
 <div class="custom-wrapper-example" sbbAutocompleteOrigin #origin="sbbAutocompleteOrigin">
-  <input
-     
-    [formControl]="myControl"
-    [sbbAutocomplete]="auto"
-    [sbbAutocompleteConnectedTo]="origin">
+  <input [formControl]="myControl" [sbbAutocomplete]="auto" [sbbAutocompleteConnectedTo]="origin" />
 </div>
 
 <sbb-autocomplete #auto="sbbAutocomplete">
@@ -112,14 +111,16 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 ```
 
 ### Keyboard interaction
+
 - <kbd>DOWN_ARROW</kbd>: Next option becomes active.
 - <kbd>UP_ARROW</kbd>: Previous option becomes active.
 - <kbd>ENTER</kbd>: Select currently active item.
 
 ### Option groups
-`sbb-option` can be collected into groups using the `sbb-option-group` element:
-<!-- example(autocomplete-optgroup) -->
 
+`sbb-option` can be collected into groups using the `sbb-option-group` element:
+
+<!-- example(autocomplete-optgroup) -->
 
 ```html
 <sbb-autocomplete #auto="sbbAutocomplete">
@@ -132,6 +133,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 ```
 
 ### Accessibility
+
 The input for an autocomplete without text or labels should be given a meaningful label via
 `aria-label` or `aria-labelledby`.
 

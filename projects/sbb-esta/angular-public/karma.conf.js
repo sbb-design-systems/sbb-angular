@@ -2,10 +2,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function(config) {
-  const dist = require('path').join(
-    __dirname,
-    '../../../coverage/sbb-esta/angular-public'
-  );
+  const dist = require('path').join(__dirname, '../../../coverage/sbb-esta/angular-public');
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -75,8 +72,7 @@ module.exports = function(config) {
   if (process.env.TRAVIS) {
     // This defines how often a given browser should be launched in the same Travis
     // container. This is helpful if we want to shard tests across the same browser.
-    const parallelBrowserInstances =
-      Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
+    const parallelBrowserInstances = Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
 
     // In case there should be multiple instances of the browsers, we need to set up the
     // the karma-parallel plugin.
@@ -89,10 +85,7 @@ module.exports = function(config) {
       };
     }
 
-    if (
-      process.env.BROWSERSTACK_USERNAME &&
-      process.env.BROWSERSTACK_ACCESS_KEY
-    ) {
+    if (process.env.BROWSERSTACK_USERNAME && process.env.BROWSERSTACK_ACCESS_KEY) {
       config.browserDisconnectTimeout = 180000;
       config.browserDisconnectTolerance = 3;
       config.captureTimeout = 180000;

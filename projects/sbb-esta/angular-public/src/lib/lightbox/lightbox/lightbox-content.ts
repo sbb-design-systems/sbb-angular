@@ -52,10 +52,7 @@ export class LightboxCloseDirective implements OnInit {
       // views cannot be given a custom injector. Instead, we look up the lightboxRef by
       // ID. This must occur in `onInit`, as the ID binding for the lightbox container won't
       // be resolved at constructor time.
-      this.lightboxRef = getClosestLightbox(
-        this._elementRef,
-        this._lightbox.openLightboxes
-      );
+      this.lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
     }
   }
 
@@ -72,11 +69,7 @@ export class LightboxCloseDirective implements OnInit {
   selector: 'sbb-lightbox-header, [sbbLightboxHeader]',
   template: `
     <ng-content></ng-content>
-    <button
-      sbbLightboxClose
-      *ngIf="!isCloseDisabled"
-      class="sbb-lightbox-close-btn"
-    >
+    <button sbbLightboxClose *ngIf="!isCloseDisabled" class="sbb-lightbox-close-btn">
       <sbb-icon-cross></sbb-icon-cross>
     </button>
     <button
@@ -106,10 +99,7 @@ export class LightboxHeaderComponent implements OnInit {
 
   ngOnInit() {
     if (!this._lightboxRef) {
-      this._lightboxRef = getClosestLightbox(
-        this._elementRef,
-        this._lightbox.openLightboxes
-      );
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
     }
 
     if (this._lightboxRef) {
@@ -152,10 +142,7 @@ export class LightboxTitleDirective implements OnInit {
 
   ngOnInit() {
     if (!this._lightboxRef) {
-      this._lightboxRef = getClosestLightbox(
-        this._elementRef,
-        this._lightbox.openLightboxes
-      );
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
     }
 
     if (this._lightboxRef) {
@@ -231,10 +218,7 @@ export class LightboxFooterComponent implements OnInit {
 
   ngOnInit() {
     if (!this._lightboxRef) {
-      this._lightboxRef = getClosestLightbox(
-        this._elementRef,
-        this._lightbox.openLightboxes
-      );
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
     }
 
     if (this._lightboxRef) {
@@ -254,17 +238,12 @@ export class LightboxFooterComponent implements OnInit {
  * @param element Element relative to which to look for a lightbox.
  * @param openLightboxes References to the currently-open lightboxes.
  */
-function getClosestLightbox(
-  element: ElementRef<HTMLElement>,
-  openLightboxes: LightboxRef<any>[]
-) {
+function getClosestLightbox(element: ElementRef<HTMLElement>, openLightboxes: LightboxRef<any>[]) {
   let parent: HTMLElement | null = element.nativeElement.parentElement;
 
   while (parent && !parent.classList.contains('sbb-lightbox-container')) {
     parent = parent.parentElement;
   }
 
-  return parent
-    ? openLightboxes.find(lightbox => lightbox.id === parent.id)
-    : null;
+  return parent ? openLightboxes.find(lightbox => lightbox.id === parent.id) : null;
 }

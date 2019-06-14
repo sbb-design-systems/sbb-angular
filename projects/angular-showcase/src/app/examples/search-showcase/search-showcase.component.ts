@@ -55,15 +55,13 @@ export class SearchShowcaseComponent implements OnInit {
   ngOnInit() {
     this.myControl.valueChanges.subscribe(newValue => {
       this.filteredOptions = this.options.filter(
-        option =>
-          option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });
 
     this.myControl2.valueChanges.subscribe(newValue => {
       this.filteredOptions2 = this.topics.filter(
-        option =>
-          option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });
 
@@ -76,10 +74,7 @@ export class SearchShowcaseComponent implements OnInit {
         if (newValue.length >= 2) {
           this.options$.next(
             this.options.filter(
-              option =>
-                option
-                  .toLocaleLowerCase()
-                  .indexOf(newValue.toLocaleLowerCase()) > -1
+              option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
             )
           );
         } else {

@@ -60,19 +60,16 @@ $lightbox-footer-padding: 24;
   display: flex;
   align-items: center;
   height: pxToEm($lightbox-header-height);
-  padding: pxToEm($lightbox-header-y-padding)
-    pxToEm($lightbox-header-x-padding-mobile);
+  padding: pxToEm($lightbox-header-y-padding) pxToEm($lightbox-header-x-padding-mobile);
   border-bottom: 1px solid $lightbox-header-border-color;
   overflow: hidden;
 
   @include mq($from: tabletPortrait) {
-    padding: pxToEm($lightbox-header-y-padding)
-      pxToEm($lightbox-header-x-padding-tablet);
+    padding: pxToEm($lightbox-header-y-padding) pxToEm($lightbox-header-x-padding-tablet);
   }
 
   @include mq($from: desktop) {
-    padding: pxToEm($lightbox-header-y-padding)
-      pxToEm($lightbox-header-x-padding);
+    padding: pxToEm($lightbox-header-y-padding) pxToEm($lightbox-header-x-padding);
   }
 
   @include mq($from: desktop4k) {
@@ -129,18 +126,12 @@ $lightbox-footer-padding: 24;
     @if ($mode == default) {
       max-height: 100vh;
     } @else if ($mode == withHeader) {
-      max-height: calc(
-        100vh - #{pxToEm(getContentMaxHeightOffset(withHeader))}
-      );
+      max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset(withHeader))});
     } @else {
-      max-height: calc(
-        100vh - #{pxToEm(getContentMaxHeightOffset($mode, mobile))}
-      );
+      max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, mobile))});
 
       @include mq($from: tabletPortrait) {
-        max-height: calc(
-          100vh - #{pxToEm(getContentMaxHeightOffset($mode, tabletPortrait))}
-        );
+        max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, tabletPortrait))});
       }
     }
   }
@@ -151,17 +142,14 @@ $lightbox-footer-padding: 24;
 
   perfect-scrollbar {
     .ps-content {
-      padding: pxToEm($lightbox-content-y-padding-mobile)
-        pxToEm($lightbox-content-x-padding-mobile);
+      padding: pxToEm($lightbox-content-y-padding-mobile) pxToEm($lightbox-content-x-padding-mobile);
 
       @include mq($from: tabletPortrait) {
-        padding: pxToEm($lightbox-content-y-padding)
-          pxToEm($lightbox-content-x-padding-tablet);
+        padding: pxToEm($lightbox-content-y-padding) pxToEm($lightbox-content-x-padding-tablet);
       }
 
       @include mq($from: desktop) {
-        padding: pxToEm($lightbox-content-y-padding)
-          pxToEm($lightbox-content-x-padding);
+        padding: pxToEm($lightbox-content-y-padding) pxToEm($lightbox-content-x-padding);
       }
     }
   }
@@ -194,19 +182,16 @@ $lightbox-footer-padding: 24;
       flex-direction: column;
       align-items: center;
       min-height: pxToEm($lightbox-footer-height-mobile);
-      padding: pxToEm($lightbox-footer-padding)
-        pxToEm($lightbox-header-x-padding-mobile);
+      padding: pxToEm($lightbox-footer-padding) pxToEm($lightbox-header-x-padding-mobile);
 
       @include mq($from: tabletPortrait) {
         flex-direction: row;
         min-height: pxToEm($lightbox-footer-height-tablet);
-        padding: pxToEm($lightbox-footer-padding)
-          pxToEm($lightbox-header-x-padding-tablet);
+        padding: pxToEm($lightbox-footer-padding) pxToEm($lightbox-header-x-padding-tablet);
       }
 
       @include mq($from: desktop) {
-        padding: pxToEm($lightbox-footer-padding)
-          pxToEm($lightbox-header-x-padding);
+        padding: pxToEm($lightbox-footer-padding) pxToEm($lightbox-header-x-padding);
       }
 
       button {

@@ -17,10 +17,7 @@ export class SvgFile {
 
   static async from(filepath: string, entry: Readonly<FileEntry>) {
     const lastSlashIndex = filepath.lastIndexOf('/');
-    const name = filepath.substring(
-      lastSlashIndex + 1,
-      filepath.lastIndexOf('.')
-    );
+    const name = filepath.substring(lastSlashIndex + 1, filepath.lastIndexOf('.'));
     const modules = filepath.substring(0, lastSlashIndex).split('/');
     const content = entry.content.toString('utf8');
     const template = (await Svgo.optimize(content)).replace(
@@ -48,11 +45,7 @@ export class SvgFile {
     );
   }
 
-  private static _determineDimension(
-    regex: RegExp,
-    content: string,
-    filepath: string
-  ) {
+  private static _determineDimension(regex: RegExp, content: string, filepath: string) {
     const match = regex.exec(content);
     if (!match) {
       throw new SchematicsException(`No width found in ${filepath}`);

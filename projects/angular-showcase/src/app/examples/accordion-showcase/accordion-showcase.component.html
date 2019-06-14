@@ -5,18 +5,14 @@
       <h4>Basic Example</h4>
       <br />
       <sbb-accordion #firstAccordion [multi]="multi">
-        <sbb-expansion-panel
-          [expanded]="panelMode === 'panel 1'"
-          [hideToggle]="hideToggle"
-        >
+        <sbb-expansion-panel [expanded]="panelMode === 'panel 1'" [hideToggle]="hideToggle">
           <sbb-expansion-panel-header>
             Some generic content accordion panel
           </sbb-expansion-panel-header>
-          Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin
-          blandit, justo eget pellentesque fermentum, risus tellus varius mi,
-          rutrum tempor augue sem eu urna. Suspendisse finibus ornare aliquam.
-          Cras sit amet eleifend metus, tincidunt rhoncus orci. Mauris gravida
-          aliquet eleifend.
+          Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit, justo eget
+          pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
+          Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
+          Mauris gravida aliquet eleifend.
         </sbb-expansion-panel>
         <sbb-expansion-panel
           [expanded]="panelMode === 'panel 2'"
@@ -27,9 +23,7 @@
         >
           <sbb-expansion-panel-header>
             Panel with table
-            <p style="margin: 0 2em;">
-              Currently I am {{ panelOpenState ? 'open' : 'closed' }}
-            </p>
+            <p style="margin: 0 2em;">Currently I am {{ panelOpenState ? 'open' : 'closed' }}</p>
           </sbb-expansion-panel-header>
           <div class="docs-api">
             <h2>Table Title h2</h2>
@@ -59,8 +53,7 @@
                   </td>
                   <td class="docs-api-property-description">
                     <p>
-                      Class property that identifies the data-set for tabs
-                      content
+                      Class property that identifies the data-set for tabs content
                     </p>
                   </td>
                 </tr>
@@ -177,31 +170,26 @@
           </sbb-expansion-panel-header>
 
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
           </p>
         </sbb-expansion-panel>
-        <sbb-expansion-panel
-          [expanded]="panelMode === 'panel 4'"
-          [hideToggle]="hideToggle"
-        >
+        <sbb-expansion-panel [expanded]="panelMode === 'panel 4'" [hideToggle]="hideToggle">
           <sbb-expansion-panel-header>
             Panel with lazy loaded content
           </sbb-expansion-panel-header>
 
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
           </p>
 
           <ng-template sbbExpansionPanelContent>
@@ -211,12 +199,11 @@
               </sbb-expansion-panel-header>
 
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.
               </p>
             </sbb-expansion-panel>
           </ng-template>
@@ -232,10 +219,7 @@
               <button
                 sbbButton
                 (click)="
-                  logAndPreventOpeningPanel(
-                    $event,
-                    'clicked button and prevent panel to open'
-                  )
+                  logAndPreventOpeningPanel($event, 'clicked button and prevent panel to open')
                 "
                 (keydown)="
                   logAndPreventOpeningPanelKeyDown(
@@ -249,11 +233,10 @@
               </button>
             </div>
           </sbb-expansion-panel-header>
-          Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin
-          blandit, justo eget pellentesque fermentum, risus tellus varius mi,
-          rutrum tempor augue sem eu urna. Suspendisse finibus ornare aliquam.
-          Cras sit amet eleifend metus, tincidunt rhoncus orci. Mauris gravida
-          aliquet eleifend.
+          Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit, justo eget
+          pellentesque fermentum, risus tellus varius mi, rutrum tempor augue sem eu urna.
+          Suspendisse finibus ornare aliquam. Cras sit amet eleifend metus, tincidunt rhoncus orci.
+          Mauris gravida aliquet eleifend.
         </sbb-expansion-panel>
       </sbb-accordion>
       <div style="margin-bottom: 2em;"></div>
@@ -280,8 +263,7 @@
           </sbb-expansion-panel-header>
 
           <div class="sbbsc-block">
-            <button sbbButton mode="ghost" (click)="prevStep()">Previous</button
-            >&nbsp;
+            <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
             <button sbbButton mode="primary" (click)="nextStep()">Next</button>
           </div>
         </sbb-expansion-panel>
@@ -292,8 +274,7 @@
           </sbb-expansion-panel-header>
 
           <div class="sbbsc-block">
-            <button sbbButton mode="ghost" (click)="prevStep()">Previous</button
-            >&nbsp;
+            <button sbbButton mode="ghost" (click)="prevStep()">Previous</button>&nbsp;
             <button sbbButton mode="primary" (click)="nextStep()">End</button>
           </div>
         </sbb-expansion-panel>
@@ -306,13 +287,11 @@
           A single orphan (no accordion) panel
         </sbb-expansion-panel-header>
 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </sbb-expansion-panel>
     </div>
 
@@ -321,33 +300,23 @@
       <div class="sbbsc-block">
         <label>Click to open the panels of the accordion together:</label>
         <br />
-        <sbb-checkbox
-          value="multi"
-          formControlName="multi"
-          style="display: inline-block;"
-        >
+        <sbb-checkbox value="multi" formControlName="multi" style="display: inline-block;">
           multi panel
         </sbb-checkbox>
       </div>
       <div class="sbbsc-block">
         <div class="sbbsc-block">
           <div *ngFor="let option of radioOptions">
-            <sbb-radio-button
-              formControlName="radioModes"
-              [value]="option.value"
-              >{{ option.name }}</sbb-radio-button
-            >
+            <sbb-radio-button formControlName="radioModes" [value]="option.value">{{
+              option.name
+            }}</sbb-radio-button>
           </div>
         </div>
       </div>
       <div class="sbbsc-block">
         <label>Click to disable a panel of the accordion:</label>
         <br />
-        <sbb-checkbox
-          value="disabled"
-          formControlName="disabled"
-          style="display: inline-block;"
-        >
+        <sbb-checkbox value="disabled" formControlName="disabled" style="display: inline-block;">
           disabled
         </sbb-checkbox>
       </div>
@@ -363,26 +332,19 @@
         </sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <label
-          >Click an option to open a specific panel of the accordion:
-        </label>
+        <label>Click an option to open a specific panel of the accordion: </label>
         <br />
         <select formControlName="panelMode" id="panelMode">
-          <option *ngFor="let panel of panels" [ngValue]="panel">{{
-            panel
-          }}</option>
+          <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
         </select>
       </div>
       <br />
       <p>
-        <small
-          >*You can choose "Open all/Close all" if multi panel checkbox is
-          selected
-        </small>
+        <small>*You can choose "Open all/Close all" if multi panel checkbox is selected </small>
       </p>
       <small
-        >*You can choose one panel into select field to expand if the multi
-        panel checkbox isn't selected</small
+        >*You can choose one panel into select field to expand if the multi panel checkbox isn't
+        selected</small
       >
     </div>
   </div>

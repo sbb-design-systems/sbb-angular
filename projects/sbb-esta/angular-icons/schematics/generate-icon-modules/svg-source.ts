@@ -43,17 +43,13 @@ export class SvgSource {
     const iconModules = this._toIconModules();
     const moduleTrees = iconModules
       .map(i => i.modules)
-      .filter(
-        (v, i, a) => i === a.findIndex(vi => vi.join(',') === v.join(','))
-      );
+      .filter((v, i, a) => i === a.findIndex(vi => vi.join(',') === v.join(',')));
     const collectionMap = new Map<string, IconCollectionModule>();
     const rootCollection = new IconCollectionModule();
     for (const moduleTree of moduleTrees) {
       let collection = rootCollection;
       for (const moduleName of moduleTree) {
-        let localCollection = collection.collections.find(
-          c => c.name === moduleName
-        );
+        let localCollection = collection.collections.find(c => c.name === moduleName);
         if (!localCollection) {
           localCollection = new IconCollectionModule(moduleName);
           collectionMap.set(moduleTree.join(','), localCollection);
@@ -72,8 +68,7 @@ export class SvgSource {
 
   private _toIconModules() {
     const svgMap = this._files.reduce(
-      (current, next) =>
-        current.set(next.name, [...(current.get(next.name) || []), next]),
+      (current, next) => current.set(next.name, [...(current.get(next.name) || []), next]),
       new Map<string, SvgFile[]>()
     );
     return Array.from(svgMap.values()).map(g => new IconModule(g));

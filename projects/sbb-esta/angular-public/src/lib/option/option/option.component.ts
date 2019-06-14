@@ -52,9 +52,9 @@ export interface SbbOptionParentComponent {
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<
-  SbbOptionParentComponent
->('SBB_OPTION_PARENT_COMPONENT');
+export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentComponent>(
+  'SBB_OPTION_PARENT_COMPONENT'
+);
 
 @Component({
   selector: 'sbb-option',
@@ -63,8 +63,7 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionComponent
-  implements AfterViewChecked, OnDestroy, Highlightable {
+export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightable {
   mostRecentViewValue = '';
 
   @HostBinding('class.sbb-selected')
@@ -220,9 +219,7 @@ export class OptionComponent
   }
 
   private _emitSelectionChangeEvent(isUserInput = false): void {
-    this.onSelectionChange.emit(
-      new SBBOptionSelectionChange(this, isUserInput)
-    );
+    this.onSelectionChange.emit(new SBBOptionSelectionChange(this, isUserInput));
   }
 }
 
@@ -271,10 +268,7 @@ export function countGroupLabelsBeforeOption(
     let groupCounter = 0;
 
     for (let i = 0; i < optionIndex + 1; i++) {
-      if (
-        optionsArray[i].group &&
-        optionsArray[i].group === groups[groupCounter]
-      ) {
+      if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
         groupCounter++;
       }
     }

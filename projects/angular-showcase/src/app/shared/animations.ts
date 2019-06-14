@@ -10,22 +10,12 @@ import {
 } from '@angular/animations';
 
 export const FADE_ANIMATION = trigger('fadeAnimation', [
-  transition(':enter', [
-    style({ opacity: 0 }),
-    animate(400, style({ opacity: 1 }))
-  ]),
-  transition(':leave', [
-    style({ opacity: 1 }),
-    animate(400, style({ opacity: 0 }))
-  ])
+  transition(':enter', [style({ opacity: 0 }), animate(400, style({ opacity: 1 }))]),
+  transition(':leave', [style({ opacity: 1 }), animate(400, style({ opacity: 0 }))])
 ]);
 
 export const FADE_POSITION_ANIMATION = trigger('fadePositionAnimation', [
-  transition('* => *', [
-    style({ opacity: 0 }),
-    animate(400, style({ opacity: 1 })),
-    animateChild()
-  ])
+  transition('* => *', [style({ opacity: 0 }), animate(400, style({ opacity: 1 })), animateChild()])
 ]);
 
 export const SLIDE_ANIMATION = trigger('slideAnimation', [

@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  IconChevronRightModule,
-  IconChevronSmallDownModule
-} from '@sbb-esta/angular-icons';
+import { IconChevronRightModule, IconChevronSmallDownModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
 import { DropdownModule } from '../../dropdown/dropdown';
@@ -17,12 +14,7 @@ describe('BreadcrumbComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbComponent],
-      imports: [
-        CommonModule,
-        DropdownModule,
-        IconChevronRightModule,
-        IconChevronSmallDownModule
-      ]
+      imports: [CommonModule, DropdownModule, IconChevronRightModule, IconChevronSmallDownModule]
     });
   });
 

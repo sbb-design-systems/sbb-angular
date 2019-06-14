@@ -1,11 +1,6 @@
 <ng-template [cdkPortalOutlet]="calendarHeaderPortal"></ng-template>
 
-<div
-  class="sbb-calendar-content"
-  [ngSwitch]="currentView"
-  cdkMonitorSubtreeFocus
-  tabindex="-1"
->
+<div class="sbb-calendar-content" [ngSwitch]="currentView" cdkMonitorSubtreeFocus tabindex="-1">
   <sbb-month-view
     [(activeDate)]="activeDate"
     [selected]="selected"

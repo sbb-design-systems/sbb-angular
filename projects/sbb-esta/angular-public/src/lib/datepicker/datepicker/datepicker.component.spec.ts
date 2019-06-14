@@ -67,7 +67,7 @@ class NoInputDatepickerComponent {
 @Component({
   template: `
     <sbb-datepicker #d [startAt]="startDate">
-      <input sbbDateInput [value]="date">
+      <input sbbDateInput [value]="date" />
     </sbb-datepicker>
   `
 })

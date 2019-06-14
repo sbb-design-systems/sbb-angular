@@ -21,10 +21,7 @@ export class IconCollectionModule {
   get iconsRecursive(): IconModule[] {
     return [
       ...this.icons,
-      ...this.collections.reduce(
-        (current, next) => [...current, ...next.iconsRecursive],
-        []
-      )
+      ...this.collections.reduce((current, next) => [...current, ...next.iconsRecursive], [])
     ];
   }
 

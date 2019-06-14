@@ -16,15 +16,7 @@ import { IconBase } from '../icon-base';
       viewBox="0 0 59 20"
     >
       <g fill="none" fill-rule="evenodd">
-        <rect
-          width="58"
-          height="19"
-          x=".5"
-          y=".5"
-          fill="#FFF"
-          stroke="#EB0000"
-          rx="2"
-        />
+        <rect width="58" height="19" x=".5" y=".5" fill="#FFF" stroke="#EB0000" rx="2" />
         <path
           fill="#EB0000"
           fill-rule="nonzero"

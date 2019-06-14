@@ -66,21 +66,16 @@ describe('TabsComponent', () => {
 
   it('should select first tab as default', () => {
     expect(tabs[0].componentInstance.active).toBeTruthy();
-    expect(
-      tabs[1].componentInstance.active && tabs[2].componentInstance.active
-    ).toBeFalsy();
+    expect(tabs[1].componentInstance.active && tabs[2].componentInstance.active).toBeFalsy();
   });
 
   it('should if I click the second tab make it active and deactivate the first', () => {
-    const tab2Label = fixture.debugElement.queryAll(
-      By.css('.sbb-tabs-tablist-item-button')
-    )[1].nativeElement;
+    const tab2Label = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'))[1]
+      .nativeElement;
     dispatchEvent(tab2Label, createMouseEvent('click'));
     fixture.detectChanges();
 
-    expect(
-      tabs[0].componentInstance.active && tabs[2].componentInstance.active
-    ).toBeFalsy();
+    expect(tabs[0].componentInstance.active && tabs[2].componentInstance.active).toBeFalsy();
     expect(tabs[1].componentInstance.active).toBeTruthy();
   });
 
@@ -107,9 +102,7 @@ describe('TabsComponent', () => {
     component.isVisible = false;
     fixture.detectChanges();
 
-    const tabsLabels = fixture.debugElement.queryAll(
-      By.css('.sbb-tabs-tablist-item-button')
-    );
+    const tabsLabels = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'));
     expect(tabsLabels.length).toBe(2);
   });
 

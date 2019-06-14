@@ -1,7 +1,5 @@
 <h2 class="sbbsc-content-title">
-  <span i18n class="sbbsc-content-title-text">{{
-    uiComponent?.title || uiIcon.name
-  }}</span>
+  <span i18n class="sbbsc-content-title-text">{{ uiComponent?.title || uiIcon.name }}</span>
   <sbb-icon-arrow-right></sbb-icon-arrow-right>
   <button
     *ngIf="!uiIcon"
@@ -55,8 +53,5 @@
   </ngb-tab>
 </ngb-tabset>
 <div [@fadeAnimation]>
-  <sbb-examples-icon-doc
-    *ngIf="uiIcon"
-    [uiIcon]="uiIcon"
-  ></sbb-examples-icon-doc>
+  <sbb-examples-icon-doc *ngIf="uiIcon" [uiIcon]="uiIcon"></sbb-examples-icon-doc>
 </div>

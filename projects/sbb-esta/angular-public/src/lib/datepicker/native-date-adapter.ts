@@ -31,10 +31,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   ) {
     super();
     this._datePipe = new DatePipe(_locale);
-    this._yearPivot =
-      typeof yearPivot === 'number'
-        ? yearPivot
-        : new Date().getFullYear() - 1975;
+    this._yearPivot = typeof yearPivot === 'number' ? yearPivot : new Date().getFullYear() - 1975;
   }
 
   getYear(date: Date): number {
@@ -70,15 +67,11 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         format = 'LLL';
         break;
     }
-    return range(12, i =>
-      this._datePipe.transform(new Date(2017, i, 1), format)
-    );
+    return range(12, i => this._datePipe.transform(new Date(2017, i, 1), format));
   }
 
   getDateNames(): string[] {
-    return range(31, i =>
-      this._datePipe.transform(new Date(2017, 0, i + 1), 'd')
-    );
+    return range(31, i => this._datePipe.transform(new Date(2017, 0, i + 1), 'd'));
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
@@ -94,9 +87,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         format = 'EEE';
         break;
     }
-    return range(7, i =>
-      this._datePipe.transform(new Date(2017, 0, i + 1), format)
-    );
+    return range(7, i => this._datePipe.transform(new Date(2017, 0, i + 1), format));
   }
 
   getYearName(date: Date): string {
@@ -122,9 +113,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
     // Check for invalid month and date (except upper bound on date which we have to check after
     // creating the Date).
     if (month < 0 || month > 11) {
-      throw Error(
-        `Invalid month index "${month}". Month index has to be between 0 and 11.`
-      );
+      throw Error(`Invalid month index "${month}". Month index has to be between 0 and 11.`);
     }
 
     if (date < 1) {
@@ -229,11 +218,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       return null;
     }
 
-    const date = this._createDateWithOverflow(
-      +match[4],
-      +match[3] - 1,
-      +match[2]
-    );
+    const date = this._createDateWithOverflow(+match[4], +match[3] - 1, +match[2]);
     return this._normalizeYear(date);
   }
 
@@ -243,11 +228,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
     }
 
     const yearOffset = date.getFullYear() <= this._yearPivot ? 2000 : 1900;
-    return new Date(
-      date.getFullYear() + yearOffset,
-      date.getMonth(),
-      date.getDate()
-    );
+    return new Date(date.getFullYear() + yearOffset, date.getMonth(), date.getDate());
   }
 
   /** Creates a date but allows the month and date to overflow. */

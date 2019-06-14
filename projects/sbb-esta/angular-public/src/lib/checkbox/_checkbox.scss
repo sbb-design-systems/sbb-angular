@@ -1,7 +1,7 @@
 @import 'common';
 
 @mixin checkbox() {
-  &>label {
+  & > label {
     @include checkboxBase();
   }
 }
@@ -10,45 +10,45 @@
   display: flex;
   align-items: flex-start;
 
-  &>input[type='checkbox'] {
-    &+.sbb-checkbox-container {
+  & > input[type='checkbox'] {
+    & + .sbb-checkbox-container {
       @include checkboxContainer();
 
-      &>.sbb-checkbox-checked {
+      & > .sbb-checkbox-checked {
         display: none;
       }
 
-      &+.sbb-checkbox-label-content {
+      & + .sbb-checkbox-label-content {
         color: $sbbColorGrey;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
       }
     }
 
-    &:focus+.sbb-checkbox-container {
+    &:focus + .sbb-checkbox-container {
       border-color: $sbbColorGrey;
     }
 
-    &:checked+.sbb-checkbox-container,
-    &[checked]+.sbb-checkbox-container {
-      &>.sbb-checkbox-checked {
+    &:checked + .sbb-checkbox-container,
+    &[checked] + .sbb-checkbox-container {
+      & > .sbb-checkbox-checked {
         display: block;
       }
 
-      &+.sbb-checkbox-label-content {
+      & + .sbb-checkbox-label-content {
         color: $sbbColorBlack;
       }
     }
 
-    &:disabled+.sbb-checkbox-container,
-    &[disabled]+.sbb-checkbox-container {
+    &:disabled + .sbb-checkbox-container,
+    &[disabled] + .sbb-checkbox-container {
       border-color: $sbbColorAluminum;
       background-color: $sbbColorMilk;
 
-      &>.sbb-checkbox-checked {
+      & > .sbb-checkbox-checked {
         @include svgIconColor($sbbColorGrey);
       }
 
-      &+.sbb-checkbox-label-content {
+      & + .sbb-checkbox-label-content {
         color: $sbbColorGrey;
       }
     }
@@ -63,7 +63,6 @@
   border-radius: toPx(2);
   margin-right: toPx(8);
   margin-top: toPx(1);
-
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -103,9 +102,8 @@
     transform: scale(1.3);
     transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-    &>svg {
+    & > svg {
       transform: translateY(toPx(-1.5));
-
 
       @include publicOnly() {
         @include mq($from: desktop4k) {

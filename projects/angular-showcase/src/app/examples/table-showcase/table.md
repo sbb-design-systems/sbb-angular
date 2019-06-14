@@ -5,7 +5,9 @@ Import table module into your application
 ```ts
 import { TableModule } from '@sbb-esta/angular-public';
 ```
+
 You can use table component to display rows of data as see below
+
 ```html
 <sbb-table tableId="testID">
   <thead>
@@ -27,7 +29,6 @@ You can use table component to display rows of data as see below
 </sbb-table>
 ```
 
-
 <h4>Remove/Reset table content</h4>
 
 You can also remove a row or more rows from the table with removeRow() function:
@@ -45,6 +46,7 @@ resetRows() {
     this.rows = this._rows.slice();
   }
 ```
+
 <h4>Filter table content</h4>
 
 It is possible to search specific content of the table using a filter function:

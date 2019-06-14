@@ -14,9 +14,5 @@ export class NotificationShowcaseComponent {
 
   type = NotificationType.SUCCESS;
 
-  types = [
-    NotificationType.SUCCESS,
-    NotificationType.INFO,
-    NotificationType.ERROR
-  ];
+  types = [NotificationType.SUCCESS, NotificationType.INFO, NotificationType.ERROR];
 }

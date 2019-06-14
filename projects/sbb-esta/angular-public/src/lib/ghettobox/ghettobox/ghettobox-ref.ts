@@ -4,10 +4,7 @@ import { filter, first } from 'rxjs/operators';
 
 import { LinkGeneratorResult } from '../../pagination/pagination';
 
-import {
-  GhettoboxComponent,
-  GhettoboxDeletedEvent
-} from './ghettobox.component';
+import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
 
 /**
  * Describe a Ghettobox object accepted from the GhettoboxService's add method
@@ -43,9 +40,7 @@ export class GhettoboxRef {
     return this.componentInstance.afterDelete;
   }
 
-  constructor(
-    private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent
-  ) {
+  constructor(private _ref: ComponentRef<GhettoboxComponent> | GhettoboxComponent) {
     this.afterDelete
       .pipe(
         first(),

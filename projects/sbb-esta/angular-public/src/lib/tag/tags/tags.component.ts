@@ -85,10 +85,7 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   tagsHandleChecking(): Subscription {
-    this._tagChecking$ = merge<TagComponent[]>(
-      of(this.tags.toArray()),
-      this.tags.changes
-    );
+    this._tagChecking$ = merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes);
 
     return this._tagChecking$
       .pipe(

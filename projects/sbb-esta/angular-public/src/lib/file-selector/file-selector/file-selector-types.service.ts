@@ -13,9 +13,7 @@ export class FileSelectorTypesService {
    */
   getFileTypeCategoryByMimeType(mimeType: string): FileTypeCategory {
     for (const fileTypeCat in FileTypeCategory) {
-      if (
-        this._findMimeType(this._getFileFormats(Number(fileTypeCat)), mimeType)
-      ) {
+      if (this._findMimeType(this._getFileFormats(Number(fileTypeCat)), mimeType)) {
         return Number(fileTypeCat);
       }
     }
@@ -30,10 +28,7 @@ export class FileSelectorTypesService {
    */
   getAcceptString(typeCats: FileTypeCategory | FileTypeCategory[]): string {
     if (Array.isArray(typeCats)) {
-      return typeCats.reduce(
-        (current, next) => this._setAcceptString(next, current),
-        ''
-      );
+      return typeCats.reduce((current, next) => this._setAcceptString(next, current), '');
     } else {
       return this._setAcceptString(typeCats, '');
     }
@@ -82,10 +77,7 @@ export class FileSelectorTypesService {
     switch (t) {
       case FileTypeCategory.DOC:
         acceptString +=
-          FILE_TYPES.MS_WORD_DOC.concat(
-            FILE_TYPES.MS_EXCEL,
-            FILE_TYPES.MS_POWERPOINT
-          ).join() + ',';
+          FILE_TYPES.MS_WORD_DOC.concat(FILE_TYPES.MS_EXCEL, FILE_TYPES.MS_POWERPOINT).join() + ',';
         break;
       case FileTypeCategory.IMAGE:
         acceptString += FILE_TYPES.IMAGE.join() + ',';
@@ -121,13 +113,7 @@ export class FileSelectorTypesService {
         typeFormats = ['MS_WORD_DOC', 'MS_EXCEL', 'MS_POWERPOINT'];
         break;
       case FileTypeCategory.AUDIO:
-        typeFormats = [
-          'AUDIO_MP4',
-          'AUDIO_MP3',
-          'AUDIO_OGG',
-          'AUDIO_WAVE',
-          'AUDIO_WAV'
-        ];
+        typeFormats = ['AUDIO_MP4', 'AUDIO_MP3', 'AUDIO_OGG', 'AUDIO_WAVE', 'AUDIO_WAV'];
         break;
       case FileTypeCategory.IMAGE:
         typeFormats = ['IMAGE_GIF', 'IMAGE_JPG', 'IMAGE_PNG', 'IMAGE_SVG'];

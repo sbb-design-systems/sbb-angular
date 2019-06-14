@@ -50,8 +50,6 @@ export class AppComponent implements OnInit {
   }
 
   getPage(outlet: RouterOutlet) {
-    return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData['page']
-    );
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['page'];
   }
 }

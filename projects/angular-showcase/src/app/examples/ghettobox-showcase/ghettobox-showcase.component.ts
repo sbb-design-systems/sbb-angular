@@ -24,18 +24,13 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
   @ViewChild('testIcon1', { read: TemplateRef, static: true }) testIcon1: TemplateRef<any>;
   @ViewChild('testIcon2', { read: TemplateRef, static: true }) testIcon2: TemplateRef<any>;
 
-  constructor(
-    private _ghettoboxService: GhettoboxService,
-    private _route: ActivatedRoute
-  ) {
-    this._ghettoboxInitLoadSubscription = this._ghettoboxService.containerReady.subscribe(
-      () => {
-        this._ghettoboxService.add({
-          message: 'This ghettobox is loaded at page load',
-          icon: this.testIcon1
-        });
-      }
-    );
+  constructor(private _ghettoboxService: GhettoboxService, private _route: ActivatedRoute) {
+    this._ghettoboxInitLoadSubscription = this._ghettoboxService.containerReady.subscribe(() => {
+      this._ghettoboxService.add({
+        message: 'This ghettobox is loaded at page load',
+        icon: this.testIcon1
+      });
+    });
   }
 
   ngOnDestroy() {
@@ -72,8 +67,7 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
   }
 
   deleteByRef() {
-    const ghettoboxRef: GhettoboxRef = this._ghettoboxService
-      .attachedGhettoboxes[0];
+    const ghettoboxRef: GhettoboxRef = this._ghettoboxService.attachedGhettoboxes[0];
     ghettoboxRef.delete();
   }
 

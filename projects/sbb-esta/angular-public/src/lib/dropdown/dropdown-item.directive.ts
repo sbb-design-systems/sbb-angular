@@ -33,9 +33,9 @@ export interface DropdownParentComponent {
 /**
  * Injection token used to provide the parent component to options.
  */
-export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT = new InjectionToken<
-  DropdownParentComponent
->('SBB_DROPDOWN_ITEM_PARENT_COMPONENT');
+export const SBB_DROPDOWN_ITEM_PARENT_COMPONENT = new InjectionToken<DropdownParentComponent>(
+  'SBB_DROPDOWN_ITEM_PARENT_COMPONENT'
+);
 
 /**
  * Determines the position to which to scroll a panel in order for an option to be into view.
@@ -94,10 +94,7 @@ export class DropdownItemDirective implements Highlightable {
   @HostBinding('class.sbb-active')
   active = false;
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private _elementRef: ElementRef, private _changeDetectorRef: ChangeDetectorRef) {}
 
   setActiveStyles(): void {
     if (!this.active) {

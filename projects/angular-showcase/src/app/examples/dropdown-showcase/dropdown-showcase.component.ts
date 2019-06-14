@@ -1,14 +1,5 @@
-import {
-  Component,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren
-} from '@angular/core';
-import {
-  DropdownTriggerDirective,
-  LinkGeneratorResult
-} from '@sbb-esta/angular-public';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { DropdownTriggerDirective, LinkGeneratorResult } from '@sbb-esta/angular-public';
 
 @Component({
   selector: 'sbb-dropdown-showcase',
@@ -16,9 +7,7 @@ import {
   styleUrls: ['./dropdown-showcase.component.scss']
 })
 export class DropdownShowcaseComponent {
-  @ViewChildren(DropdownTriggerDirective) triggers: QueryList<
-    DropdownTriggerDirective
-  >;
+  @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;
 
   links: Array<any> = [
     { page: 1, text: 'Test 1' },

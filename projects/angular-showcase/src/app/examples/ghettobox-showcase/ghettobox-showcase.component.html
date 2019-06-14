@@ -3,10 +3,7 @@
     <div class="col-lg-8 sbbsc-v-sep no-fix-width">
       <h4 class="sbbsc-block">Simple Ghettobox</h4>
 
-      <sbb-ghettobox
-        id="test-ghettobox-id"
-        (afterDelete)="afterDelete1($event)"
-      >
+      <sbb-ghettobox id="test-ghettobox-id" (afterDelete)="afterDelete1($event)">
         This is a simple message with a simple <a href="#">Link</a>
       </sbb-ghettobox>
     </div>
@@ -51,9 +48,8 @@
           fragment="education"
         >
           <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
-          This is an initial ghettobox into a container. Die Strecke zwischen
-          Stadelhofen und Zürich Hauptbahnhof ist vorübergehend wegen einer
-          technischen Störung auf 5km.
+          This is an initial ghettobox into a container. Die Strecke zwischen Stadelhofen und Zürich
+          Hauptbahnhof ist vorübergehend wegen einer technischen Störung auf 5km.
         </sbb-ghettobox>
       </sbb-ghettobox-container>
     </div>

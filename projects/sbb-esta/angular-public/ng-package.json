@@ -1,11 +1,7 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/sbb-esta/angular-public",
-  "whitelistedNonPeerDependencies": [
-    "tslib",
-    "ngx-perfect-scrollbar",
-    "@types/grecaptcha"
-  ],
+  "whitelistedNonPeerDependencies": ["tslib", "ngx-perfect-scrollbar", "@types/grecaptcha"],
   "lib": {
     "entryFile": "src/public-api.ts",
     "styleIncludePaths": ["./src/styles/common"],

@@ -1,9 +1,5 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DebugElement
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -69,9 +65,7 @@ describe('TextareaComponent behaviour', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaTestComponent);
     component = fixture.componentInstance;
-    innerComponent = fixture.debugElement.query(
-      By.directive(TextareaComponent)
-    );
+    innerComponent = fixture.debugElement.query(By.directive(TextareaComponent));
     fixture.detectChanges();
   });
 
@@ -82,13 +76,10 @@ describe('TextareaComponent behaviour', () => {
     );
     typeInElement('', textarea.nativeElement);
     fixture.detectChanges();
+    expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
     expect(
-      innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']
-    ).toBeTruthy();
-    expect(
-      getComputedStyle(
-        fixture.debugElement.nativeElement.querySelector('.ng-invalid')
-      ).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid'))
+        .borderTopColor
     ).toBe('rgb(235, 0, 0)');
   });
 
@@ -96,22 +87,16 @@ describe('TextareaComponent behaviour', () => {
     component.readonly = true;
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-readonly']).toBeTruthy();
-    expect(
-      fixture.debugElement.nativeElement.querySelector('[readonly]')
-    ).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('[readonly]')).toBeTruthy();
   });
 
   it('should be disabled', () => {
     component.disabled = true;
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeTruthy();
     expect(
-      fixture.debugElement.nativeElement.querySelector(':disabled')
-    ).toBeTruthy();
-    expect(
-      getComputedStyle(
-        fixture.debugElement.nativeElement.querySelector(':disabled')
-      ).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderTopColor
     ).toBe('rgb(210, 210, 210)');
   });
 
@@ -123,13 +108,10 @@ describe('TextareaComponent behaviour', () => {
     typeInElement('SBB', textarea.nativeElement);
     fixture.detectChanges();
     expect(innerComponent.attributes['minlength']).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.ng-invalid')
-    ).toBeTruthy();
-    expect(
-      getComputedStyle(
-        fixture.debugElement.nativeElement.querySelector('.ng-invalid')
-      ).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid'))
+        .borderTopColor
     ).toBe('rgb(235, 0, 0)');
   });
 });

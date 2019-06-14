@@ -34,9 +34,7 @@ export class SearchComponent implements OnInit {
         .pipe(
           switchMap(searchTerm => {
             this.foundUiComponents = [];
-            return this._componentUiService.getUiComponentsBySearchValue(
-              searchTerm
-            );
+            return this._componentUiService.getUiComponentsBySearchValue(searchTerm);
           })
         )
         .subscribe(uiComponents => this.foundUiComponents.push(uiComponents));
