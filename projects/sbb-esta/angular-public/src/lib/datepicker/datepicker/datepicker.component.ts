@@ -125,6 +125,12 @@ export class DatepickerComponent<D> implements OnDestroy {
 
   master: DatepickerComponent<D> | null;
 
+  /**
+   * If set to <code>true</code> (default: <code>false</code>) on a slave instance,
+   * it will not open the date picker automatically
+   */
+  @Input() preventAutoOpen = false;
+
   @HostBinding('class.sbb-datepicker') cssClass = true;
 
   /**
@@ -327,7 +333,8 @@ export class DatepickerComponent<D> implements OnDestroy {
           v => !!this.slave.selected && this._dateAdapter.compareDate(v, this.slave.selected) > 0
         ),
         tap(r => (r ? (this.slave.datepickerInput.value = null) : undefined)),
-        filter(() => !this.slave.datepickerInput.value)
+        filter(() => !this.slave.datepickerInput.value),
+        filter(() => !this.preventAutoOpen)
       )
       .subscribe(() => this.slave.open());
   }
