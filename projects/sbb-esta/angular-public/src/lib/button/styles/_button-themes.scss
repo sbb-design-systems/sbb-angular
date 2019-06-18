@@ -33,6 +33,35 @@
   @include primaryButton();
 }
 
+/*** ALTERNATIVE PRIMARY BUTTON ***/
+@mixin alternativePrimaryButton {
+  color: $buttonDefaultColor;
+  border: none;
+  background-color: $buttonAlternativeBgColor;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: $buttonAlternativeBgColorHover;
+      border: none;
+      color: $buttonAlternativeColor;
+
+      .sbb-svgsprite-icon {
+        @include svgIconColor($buttonAlternativeColor);
+      }
+    }
+  }
+}
+
+/***
+* ALTERNATIVE PRIMARY BUTTON PLACEHOLDER
+* - Include primary mixin in order to allow extension
+* 	in order to get a more compact compiled css
+***/
+%alternativePrimaryButton {
+  @include alternativePrimaryButton();
+}
+
 /*** PRIMARY BUTTON WITH ICON ***/
 @mixin primaryIconButton {
   @extend %primaryButton;
@@ -53,6 +82,12 @@
       color: $buttonSecondaryColor;
     }
   }
+}
+
+/*** ALTERNATIVE PRIMARY BUTTON WITH ICON ***/
+@mixin alternativePrimaryIconButton {
+  @extend %alternativePrimaryButton;
+  @extend %arrowbuttons;
 }
 
 /*** 
@@ -79,6 +114,15 @@
       @include svgIconColor($buttonSecondaryColor);
     }
   }
+}
+
+/***
+* SECONDARY ICON BUTTON PLACEHOLDER
+* - Include secondary mixin in order to allow extension
+* 	in order to get a more compact compiled css
+***/
+%secondaryIconButton {
+  @include secondaryIconButton;
 }
 
 /*** GHOST BUTTON ***/
@@ -181,6 +225,29 @@
       @include svgIconColor($buttonFramelessColorHover);
     }
   }
+}
+
+/*** ICON BUTTON ***/
+@mixin iconButton {
+  @extend %secondaryIconButton;
+  min-width: 36px;
+  width: 36px;
+
+  padding-left: pxToEm(36, $buttonSizeFontDefault);
+  padding-right: 0;
+
+  .sbb-svgsprite-icon:first-of-type {
+    opacity: 1;
+    margin-left: pxToEm(-4, $buttonSizeFontDefault);
+  }
+
+  .sbb-svgsprite-icon:last-of-type {
+    opacity: 0;
+  }
+}
+
+%iconButton {
+  @include iconButton;
 }
 
 /*** DISABLED BUTTON ***/
