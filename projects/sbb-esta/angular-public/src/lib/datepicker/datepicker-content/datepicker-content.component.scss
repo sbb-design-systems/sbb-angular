@@ -7,7 +7,7 @@
   .sbb-datepicker-content {
     position: relative;
     width: 100%;
-    top: pxToEm(17);
+    top: pxToEm($datePickerContentTop);
 
     .sbb-calendar {
       @include datePickerCalendar();
