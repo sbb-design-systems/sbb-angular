@@ -5,8 +5,16 @@ $autocompleteTransition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 $autocompleteBg: $sbbColorWhite;
 $autocompleteBorder: 2px solid $sbbColorGrey;
 $autocompleteBorderTop: none;
-$autocompleteBorderTopReverse: $autocompleteBorder;
 $autocompleteShadow: 0 8px 0 rgba(0, 0, 0, 0.15);
 $autocompleteShadowReverse: 0 -8px 0 rgba(0, 0, 0, 0.15);
 $autocompleteColor: $sbbColorGrey;
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
+
+@if $sbbBusiness {
+  $autocompleteBorder: 1px solid $sbbColorGrey;
+  $autocompleteShadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+  $autocompleteShadowReverse: 0 -4px 0 rgba(0, 0, 0, 0.15);
+}
+
+$autocompleteBorderTopReverse: $autocompleteBorder;
+

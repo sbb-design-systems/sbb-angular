@@ -6,7 +6,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding-right: 12px;
+    padding-right: $selectTriggerPaddingRight;
 
     &[aria-expanded='true'] {
       @include autocompleteInputActive();
@@ -33,14 +33,16 @@
       width: toPx($selectArrowWidthHeight);
       height: toPx($selectArrowWidthHeight);
 
-      @include mq($from: desktop4k) {
-        width: toPx($selectArrowWidthHeight * $scalingFactor4k);
-        height: toPx($selectArrowWidthHeight * $scalingFactor4k);
-      }
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          width: toPx($selectArrowWidthHeight * $scalingFactor4k);
+          height: toPx($selectArrowWidthHeight * $scalingFactor4k);
+        }
 
-      @include mq($from: desktop5k) {
-        width: toPx($selectArrowWidthHeight * $scalingFactor5k);
-        height: toPx($selectArrowWidthHeight * $scalingFactor5k);
+        @include mq($from: desktop5k) {
+          width: toPx($selectArrowWidthHeight * $scalingFactor5k);
+          height: toPx($selectArrowWidthHeight * $scalingFactor5k);
+        }
       }
 
       &-rotate {
@@ -53,11 +55,13 @@
 @mixin selectContentBase {
   max-height: toPx($selectMaxWidth);
 
-  @include mq($from: desktop4k) {
-    max-height: toPx($selectMaxWidth * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      max-height: toPx($selectMaxWidth * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    max-height: toPx($selectMaxWidth * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      max-height: toPx($selectMaxWidth * $scalingFactor5k);
+    }
   }
 }
