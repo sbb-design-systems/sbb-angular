@@ -36,21 +36,30 @@
 }
 
 @mixin timeInputBase {
-  $timeInputWidth: 70;
-  $timeInputHeight: 48;
 
-  width: toPx($timeInputWidth);
-  height: toPx($timeInputHeight);
   text-align: center;
 
-  @include mq($from: desktop4k) {
-    width: toPx($timeInputWidth * $scalingFactor4k);
-    height: toPx($timeInputWidth * $scalingFactor4k);
+  @include publicOnly() {
+    $timeInputWidth: 70;
+    $timeInputHeight: 48;
+
+    width: toPx($timeInputWidth);
+    height: toPx($timeInputHeight);
+
+    @include mq($from: desktop4k) {
+      width: toPx($timeInputWidth * $scalingFactor4k);
+      height: toPx($timeInputWidth * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx($timeInputWidth * $scalingFactor5k);
+      height: toPx($timeInputWidth * $scalingFactor5k);
+    }
   }
 
-  @include mq($from: desktop5k) {
-    width: toPx($timeInputWidth * $scalingFactor5k);
-    height: toPx($timeInputWidth * $scalingFactor5k);
+  @include businessOnly() {
+    width: 68px;
+    height: 36px;
   }
 }
 
