@@ -1,63 +1,18 @@
 @import '../styles/button';
 
-@mixin buttonTypes {
+@mixin publicButtonTypes() {
   &.sbb-button {
-    // Primary button with icon
-    &-primary.sbb-button-has-icon {
-      @include primaryIconButton;
+    // button types for both themes: primary, secondary, ghost
+    @include buttonTypes;
+
+    // Frameless button with icon
+    &-frameless.sbb-button-has-icon {
+      @include framelessIconButton;
     }
 
-    // Primary button NO icon
-    &-primary:not(.sbb-button-has-icon) {
-      @include primaryButton;
-    }
-
-    // Secondary button with icon
-    &-secondary.sbb-button-has-icon {
-      @include secondaryIconButton;
-    }
-
-    // Secondary button NO icon
-    &-secondary:not(.sbb-button-has-icon) {
-      @include secondaryButton;
-    }
-
-    // Ghost button with icon
-    &-ghost.sbb-button-has-icon {
-      @include ghostIconButtonPositive;
-    }
-
-    // Ghost button NO icon
-    &-ghost:not(.sbb-button-has-icon) {
-      @include ghostButtonPositive;
-    }
-
-    @include publicOnly() {
-      // Frameless button with icon
-      &-frameless.sbb-button-has-icon {
-        @include framelessIconButton;
-      }
-
-      // Frameless button NO icon
-      &-frameless:not(.sbb-button-has-icon) {
-        @include framelessButton;
-      }
-    }
-
-    @include businessOnly() {
-      // Alternative primary button with icon
-      &-alternative.sbb-button-has-icon {
-        @include alternativePrimaryIconButton;
-      }
-
-      // Alternative primary button NO icon
-      &-alternative:not(.sbb-button-has-icon) {
-        @include alternativePrimaryButton;
-      }
-
-      &-icon {
-        @include iconButton;
-      }
+    // Frameless button NO icon
+    &-frameless:not(.sbb-button-has-icon) {
+      @include framelessButton;
     }
   }
 }
@@ -68,20 +23,11 @@
 
   // If is not a disabled button
   &:not(:disabled) {
-    @include buttonTypes;
+    @include publicButtonTypes;
   }
 
-  @include publicOnly() {
-    // Disabled button
-    &:disabled {
-      @include disabledButton;
-    }
-  }
-
-  @include businessOnly() {
-    &:disabled {
-      @include buttonTypes;
-      opacity: 0.4;
-    }
+  // Disabled button
+  &:disabled {
+    @include disabledButton;
   }
 }

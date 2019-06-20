@@ -11,7 +11,7 @@ import { BaseButton } from '../../../../../angular-public/src/lib/button/button/
   // tslint:disable-next-line:component-selector
   selector: 'button[sbbButton], input[type=submit][sbbButton]',
   templateUrl: '../../../../../angular-public/src/lib/button/button/button.component.html',
-  styleUrls: ['../../../../../angular-public/src/lib/button/button/button.component.scss'],
+  styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
