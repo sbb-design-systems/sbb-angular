@@ -13,6 +13,11 @@ $optionMultipleCheckboxPaddingLeft: 16;
 $optionMultipleNoCheckboxPaddingLeft: 24;
 $optionGroupItemPaddingLeft: 24;
 
+$optionSelectedBarHeight: 22;
+$optionSelectedBarWidth: 1;
+$optionSelectedBarTop: 3;
+$optionSelectedBarTopFirst: 6;
+
 @if $sbbBusiness {
   $autocompleteOptionActiveColor: $sbbColorBlack;
   $dropdownPaddingBottom: 8px;
