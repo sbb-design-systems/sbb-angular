@@ -1,5 +1,21 @@
 @import 'common';
 
+@mixin optionBorderLeft($color) {
+  @include businessOnly() {
+    &::after {
+      content: '';
+      position: absolute;
+      height: toPx($optionSelectedBarHeight);
+      width: toPx($optionSelectedBarWidth);
+
+      left: 0;
+      top: toPx($optionSelectedBarTop);
+
+      background-color: $color;
+    }
+  }
+}
+
 @mixin optionBase($selectMode: false) {
   @include ellipsis;
 
@@ -65,12 +81,31 @@
     color: $sbbColorBlack;
   }
 
-  &.sbb-active,
+  &.sbb-active {
+    color: $autocompleteOptionActiveColor;
+
+    &:not(.sbb-option-multiple) {
+      @include optionBorderLeft($autocompleteOptionActiveColor)
+    }
+  }
+
   &:hover,
   &:focus,
   &:hover .highlight,
   &:focus .highlight {
     color: $autocompleteOptionHoverColor;
+
+    &, &:not(.sbb-option-multiple) {
+      @include optionBorderLeft($autocompleteOptionHoverColor)
+    }
+  }
+
+  &:first-of-type:hover,
+  &:first-of-type,
+  &:first-of-type.sbb-active {
+    &::after {
+      top: toPx($optionSelectedBarTopFirst);
+    }
   }
 
   .sbb-option-text {
@@ -104,16 +139,31 @@
     padding-left: $optionGroupItemPaddingLeft;
 
     &:first-of-type {
-      padding-top: 0;
+      @include publicOnly() {
+        padding-top: 0;
+      }
+
+      @include businessOnly() {
+        padding-top: $autocompletePaddingTop;
+
+        &::after {
+          top: toPx($optionSelectedBarTopFirst);
+        }
+      }
     }
   }
   .sbb-optgroup-label {
     padding-left: $autocompletePaddingX;
     padding-right: $autocompletePaddingX;
     padding-top: $autocompletePaddingTop;
-    padding-bottom: $autocompletePaddingTop;
+
+    @include businessOnly() {
+      padding-bottom: 0;
+    }
 
     @include publicOnly() {
+      padding-bottom: $autocompletePaddingTop;
+
       @include mq($from: desktop4k) {
         font-size: toPx(10 * $scalingFactor4k);
         padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
