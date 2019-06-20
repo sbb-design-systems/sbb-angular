@@ -2,6 +2,7 @@
 
 $dropdownPaddingBottom: 14px;
 $autocompleteOptionHoverColor: $sbbColorRed;
+$autocompleteOptionActiveColor: $sbbColorRed;
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 $autocompletePaddingTop: 14px;
 $autocompletePaddingX: 16px;
@@ -13,6 +14,7 @@ $optionMultipleNoCheckboxPaddingLeft: 24;
 $optionGroupItemPaddingLeft: 24;
 
 @if $sbbBusiness {
+  $autocompleteOptionActiveColor: $sbbColorBlack;
   $dropdownPaddingBottom: 8px;
   $autocompletePaddingTop: 8px;
   $autocompletePaddingX: 8px;

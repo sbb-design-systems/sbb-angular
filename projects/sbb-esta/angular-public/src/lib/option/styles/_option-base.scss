@@ -65,7 +65,10 @@
     color: $sbbColorBlack;
   }
 
-  &.sbb-active,
+  &.sbb-active {
+    color: $autocompleteOptionActiveColor;
+  }
+
   &:hover,
   &:focus,
   &:hover .highlight,
