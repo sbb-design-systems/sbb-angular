@@ -51,10 +51,7 @@ $tableCaptionColor: $sbbColorGrey;
   tbody {
     > tr {
       &:nth-child(even) {
-        th,
-        td {
-          background-color: $tableTbodyStripesBgColor;
-        }
+        background-color: $tableTbodyStripesBgColor;
       }
 
       th,
