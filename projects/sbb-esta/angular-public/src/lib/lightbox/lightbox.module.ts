@@ -2,8 +2,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { LightboxContainerComponent } from './lightbox/lightbox-container.component';
 import {

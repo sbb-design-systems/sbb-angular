@@ -101,9 +101,9 @@
           "configurations": {
             "ci": {
               "watch": false,
-              "codeCoverage": false,
+              "codeCoverage": true,
               "browsers": "ChromeHeadless",
-              "sourceMap": true,
+              "sourceMap": false,
               "preserveSymlinks": false
             }
           }
@@ -179,7 +179,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "HeadlessChromeNoSandbox,BsChrome",
+              "browsers": "ChromeHeadless",
               "sourceMap": false,
               "progress": false
             },

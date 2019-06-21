@@ -85,7 +85,7 @@
     color: $autocompleteOptionActiveColor;
 
     &:not(.sbb-option-multiple) {
-      @include optionBorderLeft($autocompleteOptionActiveColor)
+      @include optionBorderLeft($autocompleteOptionActiveColor);
     }
   }
 
@@ -95,8 +95,9 @@
   &:focus .highlight {
     color: $autocompleteOptionHoverColor;
 
-    &, &:not(.sbb-option-multiple) {
-      @include optionBorderLeft($autocompleteOptionHoverColor)
+    &,
+    &:not(.sbb-option-multiple) {
+      @include optionBorderLeft($autocompleteOptionHoverColor);
     }
   }
 

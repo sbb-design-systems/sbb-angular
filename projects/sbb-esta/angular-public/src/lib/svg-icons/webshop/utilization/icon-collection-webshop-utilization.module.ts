@@ -9,15 +9,7 @@ import { IconUtilizationMediumModule } from './icon-utilization-medium.module';
 
 /** @deprecated Use `@sbb-esta/angular-icons` instead. */
 @NgModule({
-  imports: [
-    IconUtilizationHighModule,
-    IconUtilizationLowModule,
-    IconUtilizationMediumModule
-  ],
-  exports: [
-    IconUtilizationHighModule,
-    IconUtilizationLowModule,
-    IconUtilizationMediumModule
-  ]
+  imports: [IconUtilizationHighModule, IconUtilizationLowModule, IconUtilizationMediumModule],
+  exports: [IconUtilizationHighModule, IconUtilizationLowModule, IconUtilizationMediumModule]
 })
 export class IconCollectionWebshopUtilizationModule {}

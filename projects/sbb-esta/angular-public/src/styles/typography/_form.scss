@@ -36,7 +36,6 @@
 }
 
 @mixin timeInputBase {
-
   text-align: center;
 
   @include publicOnly() {

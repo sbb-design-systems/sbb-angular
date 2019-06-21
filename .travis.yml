@@ -5,14 +5,15 @@ dist: trusty
 sudo: required
 addons:
   chrome: stable
+  firefox: latest
 
 cache: npm
 
 script:
   - npm run build:libs
-  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run test; fi
-  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run lint; fi
-  - if [ "$TRAVIS_TAG" == "" ] && [[ "$TRAVIS_COMMIT_MESSAGE" != *"skip-tests"* ]]; then npm run sonar; fi
+  - if [ "$TRAVIS_TAG" == "" ]; then npm run test; fi
+  - if [ "$TRAVIS_TAG" == "" ]; then npm run lint; fi
+  - if [ "$TRAVIS_TAG" == "" ]; then npm run sonar; fi
   - npm run build:angular-showcase
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > ~/.npmrc

@@ -52,14 +52,11 @@ module.exports = function(config) {
         os_version: '10',
         browser: 'Chrome'
       },
-      HeadlessChromeNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-renderer-backgrounding',
-          '--disable-device-discovery-notifications',
-          '--disable-web-security'
-        ]
+      BsFirefox: {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'Firefox'
       }
     },
     singleRun: false,
@@ -86,6 +83,7 @@ module.exports = function(config) {
     }
 
     if (process.env.BROWSERSTACK_USERNAME && process.env.BROWSERSTACK_ACCESS_KEY) {
+      config.browsers.push('BsCrhome', 'BsFirefox');
       config.browserDisconnectTimeout = 180000;
       config.browserDisconnectTolerance = 3;
       config.captureTimeout = 180000;
