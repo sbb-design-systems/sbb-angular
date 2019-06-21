@@ -17,24 +17,28 @@
     @include absoluteCenterY();
     @extend %pickerIconsSize;
 
-    @include mq($from: desktop4k) {
-      left: toPx($defaultToggleLeftOffset * $scalingFactor4k);
-    }
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        left: toPx($defaultToggleLeftOffset * $scalingFactor4k);
+      }
 
-    @include mq($from: desktop5k) {
-      left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
+      @include mq($from: desktop5k) {
+        left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
+      }
     }
   }
 
   &.sbb-datepicker-arrows-enabled > .sbb-datepicker-toggle {
     left: toPx($withArrowsToggleLeftOffset);
 
-    @include mq($from: desktop4k) {
-      left: toPx($withArrowsToggleLeftOffset * $scalingFactor4k);
-    }
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        left: toPx($withArrowsToggleLeftOffset * $scalingFactor4k);
+      }
 
-    @include mq($from: desktop5k) {
-      left: toPx($withArrowsToggleLeftOffset * $scalingFactor5k);
+      @include mq($from: desktop5k) {
+        left: toPx($withArrowsToggleLeftOffset * $scalingFactor5k);
+      }
     }
   }
 
@@ -45,24 +49,28 @@
     &-left {
       left: toPx($withArrowsLeftArrowOffset);
 
-      @include mq($from: desktop4k) {
-        left: toPx($withArrowsLeftArrowOffset * $scalingFactor4k);
-      }
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          left: toPx($withArrowsLeftArrowOffset * $scalingFactor4k);
+        }
 
-      @include mq($from: desktop5k) {
-        left: toPx($withArrowsLeftArrowOffset * $scalingFactor5k);
+        @include mq($from: desktop5k) {
+          left: toPx($withArrowsLeftArrowOffset * $scalingFactor5k);
+        }
       }
     }
 
     &-right {
       right: toPx($withArrowsRightArrowOffset);
 
-      @include mq($from: desktop4k) {
-        right: toPx($withArrowsRightArrowOffset * $scalingFactor4k);
-      }
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          right: toPx($withArrowsRightArrowOffset * $scalingFactor4k);
+        }
 
-      @include mq($from: desktop5k) {
-        right: toPx($withArrowsRightArrowOffset * $scalingFactor5k);
+        @include mq($from: desktop5k) {
+          right: toPx($withArrowsRightArrowOffset * $scalingFactor5k);
+        }
       }
     }
   }

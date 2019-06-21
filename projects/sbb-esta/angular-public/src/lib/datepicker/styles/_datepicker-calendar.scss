@@ -1,12 +1,14 @@
 @import 'common';
 
 @mixin datePickerPopup() {
-  @include mq($from: desktop4k) {
-    font-size: pxToRem(23);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(23);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem(30);
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(30);
+    }
   }
 
   &-arrow {
@@ -42,12 +44,14 @@
   &-header {
     border-bottom: 1px solid $sbbColorPlatinum;
 
-    @include mq($from: desktop4k) {
-      border-bottom-width: toPx(1 * $scalingFactor4k);
-    }
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
 
-    @include mq($from: desktop5k) {
-      border-bottom-width: toPx(1 * $scalingFactor5k);
+      @include mq($from: desktop5k) {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
     }
   }
 }
@@ -60,6 +64,7 @@
 
     &-months,
     &-years {
+      height: $datePickerCalendarHeaderHeight;
       flex: 1 0 50%;
       text-align: center;
       position: relative;
@@ -71,17 +76,19 @@
         display: block;
         position: absolute;
         width: 0;
-        height: calc(100% - #{pxToEm(2)});
-        top: pxToEm(2);
+        height: calc(100% - #{pxToEm($datePickerCalendarBorderWidth)});
+        top: pxToEm($datePickerCalendarBorderWidth);
         right: 0;
         border-right: 1px solid $sbbColorPlatinum;
 
-        @include mq($from: desktop4k) {
-          border-right-width: toPx(1 * $scalingFactor4k);
-        }
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            border-right-width: toPx(1 * $scalingFactor4k);
+          }
 
-        @include mq($from: desktop5k) {
-          border-right-width: toPx(1 * $scalingFactor5k);
+          @include mq($from: desktop5k) {
+            border-right-width: toPx(1 * $scalingFactor5k);
+          }
         }
       }
     }
@@ -90,11 +97,13 @@
     &-right-arrow {
       width: pxToEm($defaultPickerIconSize);
       height: $datePickerCalendarHeaderHeight;
-      margin-top: pxToEm(2);
+      margin-top: pxToEm($datePickerCalendarBorderWidth);
       vertical-align: middle;
 
-      @include mq($from: tabletPortrait) {
-        width: pxToEm($defaultPickerIconSize) + pxToEm(16);
+      @include publicOnly() {
+        @include mq($from: tabletPortrait) {
+          width: pxToEm($defaultPickerIconSize) + pxToEm(16);
+        }
       }
 
       &[disabled] {
@@ -117,10 +126,10 @@
     }
 
     &-label {
-      font-size: pxToEm(21);
+      font-size: $datePickerCalendarHeaderLabelFontSize;
       color: $datePickerCalendarHeaderColor;
       font-family: $fontSbbLight;
-      line-height: 3.4;
+      line-height: $datePickerCalendarHeaderLabelLineHeight;
     }
 
     &-right-arrow {
@@ -138,7 +147,7 @@
 
     td,
     th {
-      color: $sbbColorGrey;
+      color: $datePickerCalendarTableColor;
     }
 
     &-header {
@@ -151,12 +160,14 @@
 
         border-bottom: 1px solid $sbbColorPlatinum;
 
-        @include mq($from: desktop4k) {
-          border-bottom-width: toPx(1 * $scalingFactor4k);
-        }
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            border-bottom-width: toPx(1 * $scalingFactor4k);
+          }
 
-        @include mq($from: desktop5k) {
-          border-bottom-width: toPx(1 * $scalingFactor5k);
+          @include mq($from: desktop5k) {
+            border-bottom-width: toPx(1 * $scalingFactor5k);
+          }
         }
       }
 
@@ -266,13 +277,13 @@
 
   &.sbb-datepicker-with-arrows {
     .sbb-datepicker-popup-arrow {
-      left: pxToEm($withArrowsToggleLeftOffset);
+      left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
     }
   }
 
   .sbb-datepicker-content {
     top: auto;
-    bottom: pxToEm(17);
+    bottom: pxToEm($datePickerContentTop);
 
     .sbb-calendar {
       box-shadow: $datePickerRevertCalendarBoxShadow;

@@ -18,13 +18,16 @@
 ) {
   width: toPx($pickerIconWidth);
   height: toPx($pickerIconHeight);
-  @include mq($from: desktop4k) {
-    width: toPx($pickerIconWidth * $scalingFactor4k);
-    height: toPx($pickerIconHeight * $scalingFactor4k);
-  }
-  @include mq($from: desktop5k) {
-    width: toPx($pickerIconWidth * $scalingFactor5k);
-    height: toPx($pickerIconHeight * $scalingFactor5k);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx($pickerIconWidth * $scalingFactor4k);
+      height: toPx($pickerIconHeight * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      width: toPx($pickerIconWidth * $scalingFactor5k);
+      height: toPx($pickerIconHeight * $scalingFactor5k);
+    }
   }
 }
 %pickerIconsSize {
@@ -32,8 +35,8 @@
 }
 @mixin datePickerToggleArrow($dir: calendarDown) {
   position: absolute;
-  left: pxToEm($defaultToggleLeftOffset);
-  width: $datePickerToggleWrapperArrowWidth;
+  left: pxToEm($datePickerToggleWrapperArrowLeftOffset);
+  width: pxToEm($datePickerToggleWrapperArrowWidth);
   background-color: $datePickerCalendarBg;
   height: $datePickerToggleWrapperArrowHeight;
   &::before,
@@ -42,7 +45,7 @@
     display: block;
     position: absolute;
     background-color: $datePickerToggleArrowColor;
-    width: $datePickerToggleArrowWidth;
+    width: pxToEm($datePickerToggleArrowWidth);
     height: $datePickerToggleArrowHeight;
   }
   &::before {
@@ -64,7 +67,7 @@
       transform: rotate(45deg);
     }
     .sbb-datepicker-with-arrows & {
-      left: pxToEm($withArrowsToggleLeftOffset);
+      left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
     }
   } @else if $dir == calendarTop {
     top: auto;
@@ -83,22 +86,24 @@
   }
 }
 @mixin datePickerDisableCell() {
-  color: $datePickerCalendarDisabledCellColor;
+  color: $datePickerCalendarDisabledTextCellColor;
   cursor: default;
 
   &:not(.empty)::after {
     content: '';
-    width: pxToEm(32);
+    width: pxToEm($datePickerDisabledCellWidth);
     height: pxToEm(1);
-    top: pxToEm(22);
-    left: calc(50% - #{pxToEm(16)});
+    top: pxToEm($datePickerDisabledCellTop);
+    left: calc(50% - #{pxToEm($datePickerDisabledCellLeft)});
     background-color: $datePickerCalendarDisabledCellColor;
     display: block;
     position: absolute;
     transform: rotate(-45deg);
 
-    @include mq($from: tabletPortrait) {
-      top: pxToEm(27);
+    @include publicOnly() {
+      @include mq($from: tabletPortrait) {
+        top: pxToEm(27);
+      }
     }
   }
 }

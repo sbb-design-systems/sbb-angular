@@ -3,6 +3,7 @@
  */
 export * from './lib/autocomplete/autocomplete';
 export * from './lib/button/button';
+export * from './lib/datepicker/datepicker';
 export * from './lib/field/field';
 export * from './lib/radio-button/radio-button';
 export * from './lib/select/select';
