@@ -229,7 +229,7 @@
             "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/sbb-esta/angular-public/src/styles/common"
+                "projects/sbb-esta/angular-business/src/styles/common"
               ]
             }
           },

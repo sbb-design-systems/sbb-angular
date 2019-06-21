@@ -182,6 +182,7 @@ export class DatepickerComponent<D> implements OnDestroy {
   }
   set selected(value: D | null) {
     this._validSelected = value;
+    this._changeDetectorRef.markForCheck();
   }
   private _validSelected: D | null = null;
 
