@@ -102,7 +102,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "browsers": "ChromeHeadless",
               "sourceMap": false,
               "preserveSymlinks": false
             }
@@ -179,7 +179,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "browsers": "ChromeHeadless",
               "sourceMap": false,
               "progress": false
             },
@@ -237,7 +237,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "browsers": "ChromeHeadless",
               "sourceMap": false,
               "progress": false
             },
@@ -284,7 +284,7 @@
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "browsers": "ChromeHeadless",
               "sourceMap": false,
               "progress": false
             },
