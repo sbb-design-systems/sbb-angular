@@ -307,6 +307,53 @@
           }
         }
       }
+    },
+    "@sbb-esta/angular-keycloak": {
+      "projectType": "library",
+      "root": "projects/sbb-esta/angular-keycloak",
+      "sourceRoot": "projects/sbb-esta/angular-keycloak/src",
+      "prefix": "sbb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
+            "project": "projects/sbb-esta/angular-keycloak/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-esta/angular-keycloak/src/test.ts",
+            "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-esta/angular-keycloak/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless",
+              "sourceMap": false,
+              "progress": false
+            },
+            "local": {
+              "codeCoverage": true
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
+              "projects/sbb-esta/angular-keycloak/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-showcase"
