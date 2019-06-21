@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "clean": "rimraf dist coverage lintReport.json",
-    "format": "prettier --write *.{js,ts,css,scss,json,md,html}",
+    "format": "prettier --write **/*.{js,ts,css,scss,json,md,html}",
     "lint": "run-p lint:angular-icons lint:angular-public lint:angular-business lint:angular-showcase",
     "lint:angular-icons": "ng lint @sbb-esta/angular-icons",
     "lint:angular-business": "run-p lint:angular-business:*",
@@ -113,6 +113,7 @@
     "gulp-transform": "^3.0.5",
     "gulp-util": "^3.0.8",
     "highlight.js": "^9.15.6",
+    "husky": "^2.4.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.0",
@@ -194,14 +195,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run format"
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,css,scss,json,md,html}": [
-      "npx prettier --write",
-      "git add",
-      "npx ng lint @sbb-esta/angular-public"
-    ]
   }
 }

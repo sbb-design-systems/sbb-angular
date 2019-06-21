@@ -1,5 +1,5 @@
 import { Component, DebugElement, Type, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   IconArrowRightComponent as TestIconComponent,
@@ -8,6 +8,7 @@ import {
 import { configureTestSuite } from 'ng-bullet';
 
 import { ButtonIconDirective } from '../../../../../angular-public/src/lib/button/button/button-icon.directive';
+
 import { ButtonComponent } from './button.component';
 
 // tslint:disable:i18n

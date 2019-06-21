@@ -1,9 +1,5 @@
-import {
-  ContentChild,
-  HostBinding,
-  Input,
-  TemplateRef
-} from '@angular/core';
+import { ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+
 import { ButtonIconDirective } from './button-icon.directive';
 
 export abstract class BaseButton {
