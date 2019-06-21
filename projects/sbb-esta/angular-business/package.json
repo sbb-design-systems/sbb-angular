@@ -1,6 +1,6 @@
 {
   "name": "@sbb-esta/angular-business",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
