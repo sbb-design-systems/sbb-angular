@@ -28,7 +28,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { merge, Subject, Subscription } from 'rxjs';
-import { filter, first, map, tap } from 'rxjs/operators';
+import { bufferCount, filter, first, mapTo, tap } from 'rxjs/operators';
 
 import { DateAdapter } from '../date-adapter';
 import { DateInputDirective } from '../date-input/date-input.directive';
@@ -182,6 +182,7 @@ export class DatepickerComponent<D> implements OnDestroy {
   }
   set selected(value: D | null) {
     this._validSelected = value;
+    this._changeDetectorRef.markForCheck();
   }
   private _validSelected: D | null = null;
 
@@ -315,19 +316,34 @@ export class DatepickerComponent<D> implements OnDestroy {
     this._inputDisabledSubscription = this.datepickerInput.disabledChange.subscribe(() =>
       this._changeDetectorRef.markForCheck()
     );
+    // The slave datepicker is only opened on the following conditions:
+    // This datepicker has a slave and has been opened, a value selected, closed
+    // and the slave datepicker has no value or a value before the selected date.
     this._slaveSubscription = merge(
-      this.closedStream,
-      this.datepickerInput.inputBlurred,
-      this.datepickerInput.valueChange
+      this.openedStream.pipe(mapTo('opened')),
+      this.selectedChanged.pipe(mapTo('selected')),
+      this.closedStream.pipe(mapTo('closed'))
     )
       .pipe(
-        map(() => this.datepickerInput.value),
-        filter(v => !!this.slave && !!v),
-        map(
-          v => !!this.slave.selected && this._dateAdapter.compareDate(v, this.slave.selected) > 0
+        bufferCount(3, 1),
+        filter(
+          ([o, s, c]) =>
+            this.slave &&
+            this.datepickerInput.value &&
+            o === 'opened' &&
+            s === 'selected' &&
+            c === 'closed' &&
+            (!this.slave.datepickerInput.value ||
+              this._dateAdapter.compareDate(
+                this.datepickerInput.value,
+                this.slave.datepickerInput.value
+              ) > 0)
         ),
-        tap(r => (r ? (this.slave.datepickerInput.value = null) : undefined)),
-        filter(() => !this.slave.datepickerInput.value)
+        tap(() => {
+          if (this.slave.datepickerInput.value) {
+            this.slave.datepickerInput.value = null;
+          }
+        })
       )
       .subscribe(() => this.slave.open());
   }

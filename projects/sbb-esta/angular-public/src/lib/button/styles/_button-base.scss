@@ -10,8 +10,6 @@
   @include ellipsis;
 
   width: 100%;
-  height: toEm(48 / $fontSize);
-  padding: toEm(12.5 / $fontSize) toEm(40 / $fontSize) toEm(15.5 / $fontSize) toEm(40 / $fontSize);
   background-color: $buttonDefaultBgColor;
   text-decoration: none;
   display: inline-block;
@@ -19,7 +17,6 @@
   font-size: pxToRem($fontSize);
   line-height: 1.4;
   border-style: solid;
-  border-width: pxToRem(2);
   border-radius: toEm(2 / $fontSize);
   color: $buttonDefaultColor;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -35,14 +32,26 @@
     font-size: pxToRem($fontSize);
   }
 
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($fontSize * $scalingFactor4k);
-    border-width: pxToRem(2 * $scalingFactor4k);
+  @include publicOnly() {
+    border-width: pxToRem(2);
+    height: toEm(48 / $fontSize);
+    padding: toEm(12.5 / $fontSize) toEm(40 / $fontSize) toEm(15.5 / $fontSize) toEm(40 / $fontSize);
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($fontSize * $scalingFactor4k);
+      border-width: pxToRem(2 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($fontSize * $scalingFactor5k);
+      border-width: pxToRem(2 * $scalingFactor5k);
+    }
   }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($fontSize * $scalingFactor5k);
-    border-width: pxToRem(2 * $scalingFactor5k);
+  @include businessOnly() {
+    border-width: pxToRem(1);
+    height: toEm(36 / $fontSize);
+    padding: toEm(6 / $fontSize) toEm(16 / $fontSize) toEm(7 / $fontSize);
   }
 
   &:not(:disabled) {
@@ -77,18 +86,25 @@
 
 @mixin arrowbuttons {
   position: relative;
-  padding-left: toEm(40 / $buttonSizeFontDefault);
-  padding-right: toEm(70 / $buttonSizeFontDefault);
-  transition: height $linkiconAnimation, padding-left $linkiconAnimation,
-    padding-right $linkiconAnimation, color $linkiconAnimation;
   font-size: pxToRem($buttonSizeFontDefault);
 
-  @include mq($from: desktop4k) {
-    font-size: pxToRem($sizeFontDefault4k);
+  @include publicOnly() {
+    padding-left: toEm(40 / $buttonSizeFontDefault);
+    padding-right: toEm(70 / $buttonSizeFontDefault);
+    transition: height $linkiconAnimation, padding-left $linkiconAnimation,
+    padding-right $linkiconAnimation, color $linkiconAnimation;
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
   }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem($sizeFontDefault5k);
+  @include businessOnly() {
+    padding-right: toEm(46 / $buttonSizeFontDefault);
   }
 
   .sbb-svgsprite-icon {
@@ -123,10 +139,12 @@
 %arrowbuttons {
   @include arrowbuttons;
 
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      @include buttonArrowHover;
+  @include publicOnly() {
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        @include buttonArrowHover;
+      }
     }
   }
 }
