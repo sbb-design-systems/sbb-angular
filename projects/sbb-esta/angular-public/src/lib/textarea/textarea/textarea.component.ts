@@ -13,6 +13,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
+let nextId = 0;
+
 @Component({
   selector: 'sbb-textarea',
   templateUrl: './textarea.component.html',
@@ -61,15 +63,15 @@ export class TextareaComponent implements ControlValueAccessor {
   /**
    * Class property that sets required the textarea
    */
-  @Input() required: boolean;
+  @Input() required = false;
   /**
    * Placeholder value for the textarea.
    */
-  @Input() placeholder: string;
+  @Input() placeholder = '';
   /**
    * Identifier of textarea
    */
-  @Input() inputId: string;
+  @Input() inputId = `sbb-textarea-input-id-${++nextId}`;
   /**
    * Class property that automatically resize a textarea to fit its content
    */
@@ -115,7 +117,7 @@ export class TextareaComponent implements ControlValueAccessor {
     this._changeDetector.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: (_: any) => void) {
     this.propagateChange = fn;
   }
 
@@ -128,6 +130,7 @@ export class TextareaComponent implements ControlValueAccessor {
   onChange(event: any) {
     this.propagateChange(event.target.value);
     this.updateDigitsCounter(event.target.value);
+    this.autosize.reset();
   }
 
   setDisabledState(disabled: boolean) {
