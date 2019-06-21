@@ -1,0 +1,32 @@
+@import '../styles/button';
+
+@mixin businessButtonTypes {
+  &.sbb-button {
+    // button types for both themes: primary, secondary, ghost
+    @include buttonTypes;
+
+    // Alternative primary button with icon
+    &-alternative.sbb-button-has-icon {
+      @include alternativePrimaryIconButton;
+    }
+
+    // Alternative primary button NO icon
+    &-alternative:not(.sbb-button-has-icon) {
+      @include alternativePrimaryButton;
+    }
+
+    &-icon {
+      @include iconButton;
+    }
+  }
+}
+
+.sbb-button {
+  // Kickstart basic button styles
+  @include buttons();
+  @include businessButtonTypes;
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}

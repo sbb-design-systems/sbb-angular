@@ -14,7 +14,7 @@
     "lint:angular-public:report": "ng lint @sbb-esta/angular-icons --format=json > lintReport.json",
     "lint:angular-showcase": "ng lint angular-showcase",
     "build": "run-s build:libs build:angular-showcase",
-    "build:libs": "run-s build:angular-icons build:angular-public",
+    "build:libs": "run-s build:angular-icons build:angular-public build:angular-business",
     "build:angular-icons": "run-s build:angular-icons:*",
     "build:angular-icons:ng": "ng build @sbb-esta/angular-icons",
     "build:angular-icons:license": "copyfiles LICENSE ./dist/sbb-esta/angular-icons/",

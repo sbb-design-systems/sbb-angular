@@ -81,6 +81,15 @@
   }
 }
 
+/***
+* SECONDARY ICON BUTTON PLACEHOLDER
+* - Include secondary mixin in order to allow extension
+* 	in order to get a more compact compiled css
+***/
+%secondaryIconButton {
+  @include secondaryIconButton;
+}
+
 /*** GHOST BUTTON ***/
 @mixin ghostButtonPositive($fontSize: $buttonSizeFontDefault) {
   background-color: transparent;
