@@ -76,18 +76,24 @@
     cursor: default;
   }
 
-  background: url($selectNativeBackground) 97.5% no-repeat;
+  @include publicOnly() {
+    background: url($selectNativeBackground) 97.5% no-repeat;
+    @include mq($from: desktop4k) {
+      background-size: toPx($selectArrowWidthHeight * $scalingFactor4k);
+      background-position-x: 96%;
+    }
+
+    @include mq($from: desktop5k) {
+      background-size: toPx($selectArrowWidthHeight * $scalingFactor5k);
+      background-position-x: 94%;
+    }
+  }
+
+  @include businessOnly() {
+    background: url($selectNativeBackground) 98.7% no-repeat;
+  }
+
   background-size: toPx($selectArrowWidthHeight);
-
-  @include mq($from: desktop4k) {
-    background-size: toPx($selectArrowWidthHeight * $scalingFactor4k);
-    background-position-x: 96%;
-  }
-
-  @include mq($from: desktop5k) {
-    background-size: toPx($selectArrowWidthHeight * $scalingFactor5k);
-    background-position-x: 94%;
-  }
 }
 
 @mixin sbbTimeInputField() {

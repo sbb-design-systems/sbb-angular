@@ -1,2 +1,9 @@
+@import 'common';
+
 $selectMaxWidth: 480;
 $selectArrowWidthHeight: 24;
+$selectTriggerPaddingRight: 12px;
+
+@if $sbbBusiness {
+  $selectTriggerPaddingRight: 6px;
+}
