@@ -34,8 +34,9 @@ yarn-error.log
 testem.log
 /typings
 docker/browser
-lintReport.json
 angularKeycloakLintReport.json
+angularBusinessLintReport.json
+angularPublicLintReport.json
 
 # System Files
 .DS_Store

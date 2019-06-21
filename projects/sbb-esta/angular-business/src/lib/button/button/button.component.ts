@@ -5,6 +5,7 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
+
 import { BaseButton } from '../../../../../angular-public/src/lib/button/button/base-button';
 
 @Component({

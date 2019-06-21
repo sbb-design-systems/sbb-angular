@@ -80,7 +80,6 @@
       // allow leading underscores for public properties and methods due to internals, all other rules still apply
       {
         "type": "member",
-        "modifiers": "public",
         "leadingUnderscore": "allow"
       },
       // require leading underscores for private properties and methods, all other rules still apply

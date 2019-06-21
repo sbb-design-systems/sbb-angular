@@ -9,11 +9,11 @@ import {
   forwardRef,
   HostBinding,
   Inject,
+  Injector,
   Input,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
-  Injector
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';

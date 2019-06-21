@@ -92,7 +92,7 @@
     padding-left: toEm(40 / $buttonSizeFontDefault);
     padding-right: toEm(70 / $buttonSizeFontDefault);
     transition: height $linkiconAnimation, padding-left $linkiconAnimation,
-    padding-right $linkiconAnimation, color $linkiconAnimation;
+      padding-right $linkiconAnimation, color $linkiconAnimation;
 
     @include mq($from: desktop4k) {
       font-size: pxToRem($sizeFontDefault4k);

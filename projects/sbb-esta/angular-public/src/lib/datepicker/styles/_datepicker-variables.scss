@@ -82,8 +82,12 @@ $datePickerDisabledCellLeft: 16;
 
   $datePickerToggleWrapperArrowWidth: 12;
   $datePickerToggleWrapperArrowHeight: pxToEm(8);
-  $datePickerToggleWrapperArrowLeftOffset: $defaultToggleLeftOffset + ($defaultPickerIconSize - $datePickerToggleWrapperArrowWidth) / 2;
-  $datePickerToggleWithArrowsWrapperArrowLeftOffset: $withArrowsToggleLeftOffset + ($defaultPickerIconSize - $datePickerToggleWrapperArrowWidth) / 2;
+  $datePickerToggleWrapperArrowLeftOffset: $defaultToggleLeftOffset +
+    ($defaultPickerIconSize - $datePickerToggleWrapperArrowWidth) /
+    2;
+  $datePickerToggleWithArrowsWrapperArrowLeftOffset: $withArrowsToggleLeftOffset +
+    ($defaultPickerIconSize - $datePickerToggleWrapperArrowWidth) /
+    2;
   $datePickerToggleArrowWidth: 9;
   $datePickerToggleArrowHeight: pxToEm(1);
   $datePickerToggleArrowBeforeOffset: pxToEm(-2);
@@ -92,7 +96,7 @@ $datePickerDisabledCellLeft: 16;
   $datePickerCalendarDisabledTextCellColor: $sbbColorSilver;
   $datePickerDisabledCellWidth: 24;
   $datePickerDisabledCellTop: 19;
-  $datePickerDisabledCellLeft: 10
+  $datePickerDisabledCellLeft: 10;
 }
 
 $datePickerToggleArrowTopOffset: -($datePickerToggleWrapperArrowHeight -

@@ -1,8 +1,8 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { IconChevronSmallDownModule } from '@sbb-esta/angular-icons';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { OptionModule } from '../option/option.module';
 

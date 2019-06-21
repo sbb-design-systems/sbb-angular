@@ -6,12 +6,15 @@
     "ng": "ng",
     "start": "ng serve",
     "clean": "rimraf dist coverage lintReport.json",
+    "format": "prettier --write **/*.{js,ts,css,scss,json,md,html}",
     "lint": "run-p lint:angular-icons lint:angular-public lint:angular-business lint:angular-keycloak lint:angular-showcase",
     "lint:angular-icons": "ng lint @sbb-esta/angular-icons",
-    "lint:angular-business": "ng lint @sbb-esta/angular-business",
+    "lint:angular-business": "run-p lint:angular-business:*",
+    "lint:angular-business:console": "ng lint @sbb-esta/angular-business",
+    "lint:angular-business:report": "ng lint @sbb-esta/angular-business --format=json > angularBusinessLintReport.json",
     "lint:angular-public": "run-p lint:angular-public:*",
-    "lint:angular-public:console": "ng lint @sbb-esta/angular-icons",
-    "lint:angular-public:report": "ng lint @sbb-esta/angular-icons --format=json > lintReport.json",
+    "lint:angular-public:console": "ng lint @sbb-esta/angular-public",
+    "lint:angular-public:report": "ng lint @sbb-esta/angular-public --format=json > angularPublicLintReport.json",
     "lint:angular-keycloak": "run-p lint:angular-keycloak:*",
     "lint:angular-keycloak:console": "ng lint @sbb-esta/angular-keycloak",
     "lint:angular-keycloak:report": "ng lint @sbb-esta/angular-keycloak --format=json > angularKeycloakLintReport.json",
@@ -119,6 +122,7 @@
     "gulp-transform": "^3.0.5",
     "gulp-util": "^3.0.8",
     "highlight.js": "^9.15.6",
+    "husky": "^2.4.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.0",
@@ -132,6 +136,7 @@
     "karma-parallel": "^0.3.1",
     "karma-sonarqube-reporter": "^1.2.3",
     "karma-sourcemap-loader": "^0.3.7",
+    "lint-staged": "^8.2.1",
     "lodash": "^4.17.11",
     "ng-bullet": "^1.0.3",
     "ng-packagr": "^5.1.0",
@@ -205,8 +210,7 @@
   "lint-staged": {
     "*.{js,ts,css,scss,json,md,html}": [
       "npx prettier --write",
-      "git add",
-      "npx ng lint @sbb-esta/angular-public"
+      "git add"
     ]
   }
 }
