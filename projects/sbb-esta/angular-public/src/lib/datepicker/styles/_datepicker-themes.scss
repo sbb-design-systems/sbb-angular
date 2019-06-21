@@ -86,7 +86,7 @@
   }
 }
 @mixin datePickerDisableCell() {
-  color: $datePickerCalendarDisabledCellColor;
+  color: $datePickerCalendarDisabledTextCellColor;
   cursor: default;
 
   &:not(.empty)::after {

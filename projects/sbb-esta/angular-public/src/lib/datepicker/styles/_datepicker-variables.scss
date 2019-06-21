@@ -45,8 +45,10 @@ $datePickerCalendarTableTodayColor: $sbbColorBlack;
 $datePickerCalendarTableActiveColor: $sbbColorRed125;
 $datePickerCalendarTableSelectedColor: $sbbColorGrey;
 $datePickerCalendarTableRangeBgColor: $sbbColorMilk;
+$datePickerCalendarTableColor: $sbbColorGrey;
 
 $datePickerCalendarDisabledCellColor: $sbbColorCement;
+$datePickerCalendarDisabledTextCellColor: $sbbColorCement;
 $datePickerDisabledCellWidth: 32;
 $datePickerDisabledCellTop: 22;
 $datePickerDisabledCellLeft: 16;
@@ -70,6 +72,8 @@ $datePickerDisabledCellLeft: 16;
   $datePickerCalendarHeaderHeight: pxToEm(36);
   $datePickerCalendarHeaderLabelFontSize: pxToEm(15);
   $datePickerCalendarHeaderLabelLineHeight: pxToEm(36);
+  $datePickerCalendarHeaderColor: $sbbColorGranite;
+  $datePickerCalendarTableColor: $sbbColorGranite;
 
   $datePickerCalendarTableContentPadding: 0 pxToEm(16) pxToEm(16) pxToEm(16);
   $datePickerCalendarBorder: pxToEm(1) solid $sbbColorGrey;
@@ -85,6 +89,7 @@ $datePickerDisabledCellLeft: 16;
   $datePickerToggleArrowBeforeOffset: pxToEm(-2);
   $datePickerToggleArrowAfterOffset: pxToEm($datePickerToggleArrowWidth / 2);
 
+  $datePickerCalendarDisabledTextCellColor: $sbbColorSilver;
   $datePickerDisabledCellWidth: 24;
   $datePickerDisabledCellTop: 19;
   $datePickerDisabledCellLeft: 10
