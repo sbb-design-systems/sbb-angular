@@ -23,3 +23,8 @@ $buttonGhostBorderColorHover: $sbbColorIron;
 $buttonFramelessColor: $sbbColorIron;
 $buttonFramelessColorHover: $sbbColorRed125;
 $buttonDisabledBorderColor: $sbbColorGreyMedium;
+
+@if $sbbBusiness {
+  $buttonGhostColor: $sbbColorGranite;
+  $buttonGhostBorderColor: $sbbColorGranite;
+}
