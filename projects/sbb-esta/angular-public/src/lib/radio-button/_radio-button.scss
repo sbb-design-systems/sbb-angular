@@ -1,5 +1,11 @@
 @import 'common';
 
+$radioButtonGreyColor: $sbbColorGrey;
+
+@if $sbbBusiness {
+  $radioButtonGreyColor: $sbbColorGranite;
+}
+
 @mixin radioButton() {
   & > label {
     @include radioButtonBase();
@@ -19,7 +25,7 @@
       }
 
       & + .sbb-radio-label-content {
-        color: $sbbColorGrey;
+        color: $radioButtonGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
         @include businessOnly() {
@@ -31,7 +37,7 @@
     }
 
     &:focus + .sbb-radio-circle-container {
-      border-color: $sbbColorGrey;
+      border-color: $radioButtonGreyColor;
     }
 
     &:checked + .sbb-radio-circle-container,
@@ -51,11 +57,11 @@
       background-color: $sbbColorMilk;
 
       & > .sbb-radio-circle-checked {
-        background-color: $sbbColorGrey;
+        background-color: $radioButtonGreyColor;
       }
 
       & + .sbb-radio-label-content {
-        color: $sbbColorGrey;
+        color: $radioButtonGreyColor;
       }
     }
   }
