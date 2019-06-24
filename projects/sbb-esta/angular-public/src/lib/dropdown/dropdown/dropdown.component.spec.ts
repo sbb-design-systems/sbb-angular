@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { LinkGeneratorResult } from '../../pagination/page-descriptor.model';
+import { LinkGeneratorResult } from '../../_common/link-generator-result';
 import {
   DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
   DropdownItemDirective,

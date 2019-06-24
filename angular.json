@@ -155,6 +155,11 @@
       "sourceRoot": "projects/sbb-esta/angular-public/src",
       "projectType": "library",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -213,6 +218,11 @@
       "sourceRoot": "projects/sbb-esta/angular-business/src",
       "projectType": "library",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -265,6 +275,11 @@
       "sourceRoot": "projects/sbb-esta/angular-icons/src",
       "projectType": "library",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -313,6 +328,11 @@
       "root": "projects/sbb-esta/angular-keycloak",
       "sourceRoot": "projects/sbb-esta/angular-keycloak/src",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

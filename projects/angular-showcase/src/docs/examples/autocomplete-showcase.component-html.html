@@ -17,11 +17,7 @@
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6 sbbsc-v-sep"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Basic Example<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-        <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
-        [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControlStatic"</span>
-        [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"autoStatic"</span>
-      /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControlStatic"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"autoStatic"</span> /&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">autoStatic</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of options$ | async"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"option"</span>&gt;</span>
           {{ option }}

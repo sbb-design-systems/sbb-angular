@@ -6,9 +6,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IconChevronSmallDownModule, IconUserModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
+import { LinkGeneratorResult } from '../../_common/link-generator-result';
 import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
 import { DropdownComponent, DropdownModule } from '../../dropdown/dropdown';
-import { LinkGeneratorResult } from '../../pagination/pagination';
 import { UserMenuModule } from '../usermenu.module';
 
 import { UserMenuComponent } from './usermenu.component';

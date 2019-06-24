@@ -34,8 +34,7 @@
   ngOnInit() {
     <span class="hljs-keyword">this</span>.myControl.valueChanges.subscribe(<span class="hljs-function"><span class="hljs-params">newValue</span> =&gt;</span> {
       <span class="hljs-keyword">this</span>.filteredOptions = <span class="hljs-keyword">this</span>.options.filter(
-        <span class="hljs-function"><span class="hljs-params">option</span> =&gt;</span>
-          option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) &gt; <span class="hljs-number">-1</span>
+        <span class="hljs-function"><span class="hljs-params">option</span> =&gt;</span> option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) &gt; <span class="hljs-number">-1</span>
       );
     });
 
@@ -48,10 +47,7 @@
         <span class="hljs-keyword">if</span> (newValue.length &gt;= <span class="hljs-number">2</span>) {
           <span class="hljs-keyword">this</span>.options$.next(
             <span class="hljs-keyword">this</span>.options.filter(
-              <span class="hljs-function"><span class="hljs-params">option</span> =&gt;</span>
-                option
-                  .toLocaleLowerCase()
-                  .indexOf(newValue.toLocaleLowerCase()) &gt; <span class="hljs-number">-1</span>
+              <span class="hljs-function"><span class="hljs-params">option</span> =&gt;</span> option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) &gt; <span class="hljs-number">-1</span>
             )
           );
         } <span class="hljs-keyword">else</span> {
