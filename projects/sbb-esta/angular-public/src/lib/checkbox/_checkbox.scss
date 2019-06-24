@@ -1,5 +1,14 @@
 @import 'common';
 
+$checkBoxGreyColor: $sbbColorGrey;
+$checkBoxContainerBorder: 2;
+
+@if $sbbBusiness {
+  $checkBoxGreyColor: $sbbColorGranite;
+  $checkBoxContainerBorder: 1;
+}
+
+
 @mixin checkbox() {
   & > label {
     @include checkboxBase();
@@ -18,14 +27,41 @@
         display: none;
       }
 
+      & > .sbb-checkbox-indeterminate {
+        display: none;
+      }
+
       & + .sbb-checkbox-label-content {
-        color: $sbbColorGrey;
+        @include businessOnly() {
+          line-height: toEm(21 / $sizeFontDefault);
+        }
+
+        color: $checkBoxGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
       }
     }
 
     &:focus + .sbb-checkbox-container {
-      border-color: $sbbColorGrey;
+      border-color: $checkBoxGreyColor;
+    }
+
+    @include businessOnly() {
+      &:indeterminate + .sbb-checkbox-container,
+      &[indeterminate] + .sbb-checkbox-container {
+        & > .sbb-checkbox-indeterminate {
+          position: relative;
+          height: 1px;
+          width: 10px;
+          left: 4px;
+          top: 8.5px;
+          border: 1px solid $sbbColorGranite;
+          display: block;
+        }
+
+        & + .sbb-checkbox-label-content {
+          color: $sbbColorBlack;
+        }
+      }
     }
 
     &:checked + .sbb-checkbox-container,
@@ -49,7 +85,7 @@
       }
 
       & + .sbb-checkbox-label-content {
-        color: $sbbColorGrey;
+        color: $checkBoxGreyColor;
       }
     }
   }
@@ -59,7 +95,7 @@
   width: toPx(20);
   height: toPx(20);
   background-color: $sbbColorWhite;
-  border: toPx(2) solid $sbbColorGraphite;
+  border: toPx($checkBoxContainerBorder) solid $sbbColorGraphite;
   border-radius: toPx(2);
   margin-right: toPx(8);
   margin-top: toPx(1);
