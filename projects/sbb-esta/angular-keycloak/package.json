@@ -1,0 +1,21 @@
+{
+  "name": "@sbb-esta/angular-keycloak",
+  "version": "0.0.0-PLACEHOLDER",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+  },
+  "homepage": "https://angular.app.sbb.ch/latest",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "keycloak-js": "^3.4.3"
+  }
+}
