@@ -49,8 +49,16 @@
     display: none;
   }
 
+  &:focus {
+    border-color: $sbbColorGrey;
+  }
+
   @include businessOnly() {
     border-width: 1px;
+
+    &:focus {
+      border-color: $sbbColorGranite;
+    }
   }
 
   @include publicOnly() {
@@ -65,10 +73,6 @@
       border-radius: toPx(2 * $scalingFactor5k);
       font-size: pxToRem($sizeFontDefault5k);
     }
-  }
-
-  &:focus {
-    border-color: $sbbColorGrey;
   }
 
   &.ng-touched.ng-invalid:not([aria-expanded='true']) {
@@ -102,18 +106,28 @@
   line-height: pxToRem(16);
   display: block;
 
-  @include mq($from: desktop4k) {
-    font-size: pxToRem(13 * $scalingFactor4k);
+  @include businessOnly() {
+    color: $sbbColorGranite;
   }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem(13 * $scalingFactor5k);
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(13 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(13 * $scalingFactor5k);
+    }
   }
 }
 
 @mixin formlabel {
   color: $sbbColorGrey;
   font-size: pxToEm(13);
+
+  @include businessOnly() {
+    color: $sbbColorGranite;
+  }
 }
 
 @mixin inputField() {
@@ -129,5 +143,9 @@
 
   &:focus {
     border-color: $sbbColorGrey;
+
+    @include businessOnly() {
+      border-color: $sbbColorGranite;
+    }
   }
 }
