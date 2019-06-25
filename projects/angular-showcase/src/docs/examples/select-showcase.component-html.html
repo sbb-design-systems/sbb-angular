@@ -21,8 +21,7 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, basicExampleFormControl)"</span>
         &gt;</span>disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, basicSelect, 'options')"</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, basicSelect, 'options')"</span>
         &gt;</span>disabled option<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -34,16 +33,8 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>Basic Example (native version)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span>&gt;</span>Lieblingsessen<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">select</span>
-          <span class="hljs-attr">class</span>=<span class="hljs-string">"sbb-select"</span>
-          [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"nativeExampleFormControl"</span>
-          #<span class="hljs-attr">nativeExample</span>
-        &gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">option</span>
-            *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span>
-            [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>
-            [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"food.disabled"</span>
-          &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbb-select"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"nativeExampleFormControl"</span> #<span class="hljs-attr">nativeExample</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">"food.disabled"</span>&gt;</span>
             {{ food.viewValue }}
           <span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
@@ -55,8 +46,7 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, nativeExampleFormControl)"</span>
         &gt;</span>disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, 'select', 'options')"</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, 'select', 'options')"</span>
         &gt;</span>disabled option<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -83,12 +73,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{ multipleExampleFormControl.value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, multipleExampleFormControl)"</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, multipleExampleFormControl)"</span>
         &gt;</span>disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, multiSelect, 'options')"</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, multiSelect, 'options')"</span>
         &gt;</span>disabled option<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -108,14 +96,8 @@
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>
             {{ food.viewValue }}
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span>
-            *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span>
-            [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>
-          &gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span>
-              *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span>
-              [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>
-            &gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>
               {{ food.viewValue }}
             <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-group</span>&gt;</span>
@@ -125,14 +107,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{ withOptionGroupsExampleFormControl.value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, withOptionGroupsExampleFormControl)"</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, withOptionGroupsExampleFormControl)"</span>
         &gt;</span>disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"
-          toggleDisabledOptions($event, withOptionGroup, 'optionGroups')
-        "</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, withOptionGroup, 'optionGroups')"</span>
         &gt;</span>disabled option group<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -153,14 +131,8 @@
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foods"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>
             {{ food.viewValue }}
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span>
-            *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span>
-            [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>
-          &gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span>
-              *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span>
-              [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>
-            &gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option-group</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let foodNation of foodFromTheWorld"</span> [<span class="hljs-attr">label</span>]=<span class="hljs-string">"foodNation.nation"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let food of foodNation.food"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"food.value"</span>&gt;</span>
               {{ food.viewValue }}
             <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-option-group</span>&gt;</span>
@@ -170,16 +142,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{ multipleWithOptionGroupsExampleFormControl.value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"
-          toggleDisabled($event, multipleWithOptionGroupsExampleFormControl)
-        "</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabled($event, multipleWithOptionGroupsExampleFormControl)"</span>
         &gt;</span>disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span>
-        (<span class="hljs-attr">change</span>)=<span class="hljs-string">"
-          toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')
-        "</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"toggleDisabledOptions($event, multiWithOptionGroup, 'optionGroups')"</span>
         &gt;</span>disabled option group<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
       &gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

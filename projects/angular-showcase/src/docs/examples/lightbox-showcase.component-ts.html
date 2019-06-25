@@ -59,12 +59,9 @@
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> lightbox: Lightbox</span>) {}
 
   openLightbox(): <span class="hljs-built_in">void</span> {
-    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(
-      LightboxShowcaseExampleContentComponent,
-      {
-        data: { name: <span class="hljs-keyword">this</span>.name, animal: <span class="hljs-keyword">this</span>.animal }
-      }
-    );
+    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(LightboxShowcaseExampleContentComponent, {
+      data: { name: <span class="hljs-keyword">this</span>.name, animal: <span class="hljs-keyword">this</span>.animal }
+    });
 
     lightboxRef.afterClosed().subscribe(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Lighbox sharing data was closed'</span>);
@@ -101,9 +98,7 @@
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> lightbox: Lightbox</span>) {}
 
   openDialog() {
-    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(
-      LightboxShowcaseExample2ContentComponent
-    );
+    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(LightboxShowcaseExample2ContentComponent);
 
     lightboxRef.afterClosed().subscribe(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Lightbox result: <span class="hljs-subst">${result}</span>`</span>);
@@ -170,10 +165,9 @@
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> lightbox: Lightbox</span>) {}
 
   openDialog() {
-    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(
-      LightboxShowcaseExample4ContentComponent,
-      { disableClose: <span class="hljs-literal">true</span> }
-    );
+    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(LightboxShowcaseExample4ContentComponent, {
+      disableClose: <span class="hljs-literal">true</span>
+    });
 
     lightboxRef.afterClosed().subscribe(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Lightbox <span class="hljs-subst">${result}</span>`</span>);
@@ -191,8 +185,8 @@
     &lt;header sbbLightboxHeader&gt;&lt;/header&gt;
     &lt;div class="sbbsc-lb-disableclose-c-2"&gt;
       &lt;h3&gt;
-        Sind Sie sicher, dass Sie dieses Fenster schliessen möchten? Ihre
-        Eingaben werden dadurch verworfen.
+        Sind Sie sicher, dass Sie dieses Fenster schliessen möchten? Ihre Eingaben werden dadurch
+        verworfen.
       &lt;/h3&gt;
       &lt;button sbbButton mode="ghost" (click)="closeThisLightbox()"&gt;
         Eingaben überprüfen
@@ -222,8 +216,8 @@
     &lt;header sbbLightboxHeader&gt;&lt;/header&gt;
     &lt;div class="sbbsc-lb-disableclose-c-1"&gt;
       &lt;h3 sbbLightboxTitle&gt;
-        In order to close this lightbox you have to confirm in the confirm panel
-        which is going to appear when trying to close this lightbox
+        In order to close this lightbox you have to confirm in the confirm panel which is going to
+        appear when trying to close this lightbox
       &lt;/h3&gt;
     &lt;/div&gt;
   `</span>
@@ -258,10 +252,9 @@
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> lightbox: Lightbox</span>) {}
 
   openDialog() {
-    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(
-      LightboxShowcaseExample5ContentComponent,
-      { disableClose: <span class="hljs-literal">true</span> }
-    );
+    <span class="hljs-keyword">const</span> lightboxRef = <span class="hljs-keyword">this</span>.lightbox.open(LightboxShowcaseExample5ContentComponent, {
+      disableClose: <span class="hljs-literal">true</span>
+    });
 
     lightboxRef.afterClosed().subscribe(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Lightbox confirmed`</span>);

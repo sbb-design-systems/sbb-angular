@@ -1,9 +1,6 @@
 <span class="hljs-keyword">import</span> { Component, OnDestroy, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { FormControl } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
-<span class="hljs-keyword">import</span> {
-  FileSelectorTypesService,
-  FileTypeCategory
-} <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
+<span class="hljs-keyword">import</span> { FileSelectorTypesService, FileTypeCategory } <span class="hljs-keyword">from</span> <span class="hljs-string">'@sbb-esta/angular-public'</span>;
 <span class="hljs-keyword">import</span> { Subscription } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
 
 <span class="hljs-meta">@Component</span>({
@@ -33,11 +30,9 @@
   }
 
   ngOnInit() {
-    <span class="hljs-keyword">this</span>.fileControlSubscription = <span class="hljs-keyword">this</span>.fileControl.valueChanges.subscribe(
-      <span class="hljs-function">(<span class="hljs-params">files: File[]</span>) =&gt;</span> {
-        <span class="hljs-keyword">this</span>.filesList3 = files;
-      }
-    );
+    <span class="hljs-keyword">this</span>.fileControlSubscription = <span class="hljs-keyword">this</span>.fileControl.valueChanges.subscribe(<span class="hljs-function">(<span class="hljs-params">files: File[]</span>) =&gt;</span> {
+      <span class="hljs-keyword">this</span>.filesList3 = files;
+    });
   }
 
   ngOnDestroy() {
@@ -62,8 +57,6 @@
   }
 
   setDisabled($event: <span class="hljs-built_in">any</span>) {
-    $event.target.checked
-      ? <span class="hljs-keyword">this</span>.fileControl.disable()
-      : <span class="hljs-keyword">this</span>.fileControl.enable();
+    $event.target.checked ? <span class="hljs-keyword">this</span>.fileControl.disable() : <span class="hljs-keyword">this</span>.fileControl.enable();
   }
 }

@@ -26,9 +26,7 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"arrows"</span>&gt;</span>Arrows<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"toggle"</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"disabled"</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"onDisabled()"</span>
-          &gt;</span>Disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
-        &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"disabled"</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">"onDisabled()"</span>&gt;</span>Disabled<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
       <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
@@ -62,27 +60,15 @@
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Datepicker"</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"medium"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-medium-field"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-datepicker</span> #<span class="hljs-attr">datepickerTheSecond</span> <span class="hljs-attr">arrows</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-              <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
-              <span class="hljs-attr">sbbDateInput</span>
-              <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"secondDatepicker"</span>
-            /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">sbbDateInput</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"secondDatepicker"</span> /&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-lg-6"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Properties<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>
-datepicker 1 errors: {{
-          twoDatepickersForm.get('firstDatepicker').errors | json
-        }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>
-      &gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>
-datepicker 2 errors: {{
-          twoDatepickersForm.get('secondDatepicker').errors | json
-        }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>
-      &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>datepicker 1 errors: {{ twoDatepickersForm.get('firstDatepicker').errors | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker').errors | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
 
       <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>form validity: {{ twoDatepickersForm.valid | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>form model: {{ twoDatepickersForm.value | json }}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
