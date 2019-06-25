@@ -77,7 +77,10 @@ export class ProcessflowComponent implements AfterContentInit {
    */
   stepClick($event: any, stepIndex: number) {
     $event.preventDefault();
-    this.changeStep(stepIndex);
+    const currentIndex = this._findActiveStepIndex(this.steps.toArray());
+    if (stepIndex < currentIndex) {
+      this.changeStep(stepIndex);
+    }
   }
   /**
    * Method to change a step in a process flow.
