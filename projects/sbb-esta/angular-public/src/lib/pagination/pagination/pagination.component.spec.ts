@@ -119,10 +119,10 @@ describe('PaginationComponent behaviour', () => {
     });
   });
 
-  describe('when clicking on the left arrow', () => {
+  describe('when clicking on the right arrow', () => {
     it('should go to the next page', () => {
       component.length = 10;
-      component.pageIndex = 4;
+      component.pageIndex = 5;
       fixture.detectChanges();
       const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(pageNumbers[1].nativeElement, createMouseEvent('click'));
@@ -131,10 +131,10 @@ describe('PaginationComponent behaviour', () => {
     });
   });
 
-  describe('when clicking on the right arrow', () => {
+  describe('when clicking on the left arrow', () => {
     it('should go to the previous page', () => {
       component.length = 10;
-      component.pageIndex = 4;
+      component.pageIndex = 5;
       fixture.detectChanges();
       const pageNumbers = fixture.debugElement.queryAll(By.css('.sbb-pagination-item-boundary'));
       dispatchEvent(pageNumbers[0].nativeElement, createMouseEvent('click'));

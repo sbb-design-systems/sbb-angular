@@ -91,7 +91,7 @@ export class PaginationComponent implements OnInit {
         return range(m);
       } else if (c < MAX_PAGE_SIZE) {
         return [...range(MAX_PAGE_SIZE + 1), null, m - 1];
-      } else if (c > m - MAX_PAGE_SIZE) {
+      } else if (c >= m - MAX_PAGE_SIZE) {
         return [0, null, ...range(MAX_PAGE_SIZE + 1, m - 1 - MAX_PAGE_SIZE)];
       } else {
         return [0, null, c - 1, c, c + 1, null, m - 1];
