@@ -1,10 +1,13 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  forwardRef, Input,
+  forwardRef,
+  Input,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { BaseCheckbox } from './base-checkbox';
 
 @Component({

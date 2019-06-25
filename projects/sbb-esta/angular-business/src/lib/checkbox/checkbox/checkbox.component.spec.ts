@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -12,15 +12,15 @@ import { CheckboxComponent } from './checkbox.component';
 @Component({
   selector: 'sbb-model-checkbox-test',
   template: `
-    <sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" value="1"
-      #check1>Test check 1</sbb-checkbox
+    <sbb-checkbox [(ngModel)]="checkValue1" inputId="test-check-1" value="1" #check1
+      >Test check 1</sbb-checkbox
     >
   `
 })
 class ModelCheckboxTestComponent {
   checkValue1 = false;
 
-  @ViewChild('check1', {static: false})
+  @ViewChild('check1', { static: false })
   checkboxComponent: CheckboxComponent;
 }
 
@@ -78,7 +78,7 @@ describe('CheckboxComponent using mock component', () => {
 
   it('should not have class for indeterminate', () => {
     const checkboxComponentIndeterminate = modelComponentFixture.debugElement.query(
-      By.css(".sbb-checkbox-indeterminate")
+      By.css('.sbb-checkbox-indeterminate')
     );
     expect(checkboxComponentIndeterminate).not.toBeTruthy();
   });
@@ -90,7 +90,7 @@ describe('CheckboxComponent using mock component', () => {
     await modelComponentFixture.whenStable();
 
     const checkboxComponentIndeterminate = modelComponentFixture.debugElement.query(
-      By.css(".sbb-checkbox-indeterminate")
+      By.css('.sbb-checkbox-indeterminate')
     );
     expect(checkboxComponentIndeterminate).toBeTruthy();
   });
@@ -103,7 +103,7 @@ describe('CheckboxComponent using mock component', () => {
     await modelComponentFixture.whenStable();
 
     const checkboxComponentIndeterminate = modelComponentFixture.debugElement.query(
-      By.css(".sbb-checkbox-indeterminate")
+      By.css('.sbb-checkbox-indeterminate')
     );
     expect(checkboxComponentIndeterminate).toBeTruthy();
   });
@@ -116,9 +116,11 @@ describe('CheckboxComponent using mock component', () => {
     await modelComponentFixture.whenStable();
 
     const checkboxChecked = modelComponentFixture.debugElement.query(
-      By.css(".sbb-checkbox-checked")
+      By.css('.sbb-checkbox-checked')
     );
-    expect(getComputedStyle(checkboxChecked.nativeElement).getPropertyValue('display')).toBe('none');
+    expect(getComputedStyle(checkboxChecked.nativeElement).getPropertyValue('display')).toBe(
+      'none'
+    );
   });
 
   it('should change from checked and indeterminate to checked on click', async () => {
@@ -130,9 +132,8 @@ describe('CheckboxComponent using mock component', () => {
     modelComponentFixture.detectChanges();
     await modelComponentFixture.whenStable();
 
-    const inputElement = modelComponentFixture.debugElement.query(
-      By.css("input")
-    ).nativeElement as HTMLInputElement;
+    const inputElement = modelComponentFixture.debugElement.query(By.css('input'))
+      .nativeElement as HTMLInputElement;
     expect(modelComponent.checkboxComponent.indeterminate).toBe(false);
     expect(inputElement.checked).toBe(true);
   });
@@ -146,9 +147,8 @@ describe('CheckboxComponent using mock component', () => {
     modelComponentFixture.detectChanges();
     await modelComponentFixture.whenStable();
 
-    const inputElement = modelComponentFixture.debugElement.query(
-      By.css("input")
-    ).nativeElement as HTMLInputElement;
+    const inputElement = modelComponentFixture.debugElement.query(By.css('input'))
+      .nativeElement as HTMLInputElement;
     expect(modelComponent.checkboxComponent.indeterminate).toBe(false);
     expect(inputElement.checked).toBe(true);
   });
@@ -161,9 +161,8 @@ describe('CheckboxComponent using mock component', () => {
     modelComponentFixture.detectChanges();
     await modelComponentFixture.whenStable();
 
-    const inputElement = modelComponentFixture.debugElement.query(
-      By.css("input")
-    ).nativeElement as HTMLInputElement;
+    const inputElement = modelComponentFixture.debugElement.query(By.css('input'))
+      .nativeElement as HTMLInputElement;
     expect(inputElement.checked).toBe(false);
   });
 });

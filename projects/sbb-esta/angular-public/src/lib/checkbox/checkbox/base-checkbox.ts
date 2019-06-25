@@ -1,8 +1,4 @@
-import {
-  ChangeDetectorRef,
-  HostBinding,
-  Input
-} from '@angular/core';
+import { ChangeDetectorRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 let counter = 0;
@@ -21,17 +17,17 @@ export abstract class BaseCheckbox implements ControlValueAccessor {
   /**
    * Used to set the 'aria-label' attribute on the underlying input element.
    */
-    // tslint:disable-next-line:no-input-rename
+  // tslint:disable-next-line:no-input-rename
   @Input('aria-label') ariaLabel: string;
   /**
    * The 'aria-labelledby' attribute takes precedence as the element's text alternative.
    */
-    // tslint:disable-next-line:no-input-rename
+  // tslint:disable-next-line:no-input-rename
   @Input('aria-labelledby') ariaLabelledby: string;
   /**
    * The 'aria-describedby' attribute is read after the element's label and field type.
    */
-    // tslint:disable-next-line:no-input-rename
+  // tslint:disable-next-line:no-input-rename
   @Input('aria-describedby') ariaDescribedby: string;
   /**
    * Establish if a checkbox value is required or not

@@ -1,10 +1,14 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  forwardRef, HostBinding, Input,
+  forwardRef,
+  HostBinding,
+  Input,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { BaseCheckbox } from '../../../../../angular-public/src/lib/checkbox/checkbox/base-checkbox';
 
 @Component({
@@ -56,6 +60,6 @@ export class CheckboxComponent extends BaseCheckbox {
 
   /** @docs-private */
   get ariaChecked(): String {
-    return this.checked ? 'true' : (this.indeterminate) ? 'mixed' : 'false';
+    return this.checked ? 'true' : this.indeterminate ? 'mixed' : 'false';
   }
 }
