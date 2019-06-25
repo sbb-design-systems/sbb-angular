@@ -25,12 +25,14 @@
   </ul>
   <p class="docs-markdown-p">So the tags are active or inactive in the filter. This means that clicking on a tag the respective state change and influences the filter result. Within the filter, an additional tag called "Alle" is always inserted. If this filter tag is clicked, it changes the status of all tags in the filter to inactive.</p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-tags</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let tag of tagItems"</span>
-           [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"tag.selected"</span> 
-           (<span class="hljs-attr">tagChange</span>)=<span class="hljs-string">"change($event)"</span>
-           [<span class="hljs-attr">label</span>]=<span class="hljs-string">"tag.label"</span> 
-           [<span class="hljs-attr">id</span>]=<span class="hljs-string">"tag.id"</span> 
-           [<span class="hljs-attr">amount</span>]=<span class="hljs-string">"tag.amount"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span>
+    *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let tag of tagItems"</span>
+    [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"tag.selected"</span>
+    (<span class="hljs-attr">tagChange</span>)=<span class="hljs-string">"change($event)"</span>
+    [<span class="hljs-attr">label</span>]=<span class="hljs-string">"tag.label"</span>
+    [<span class="hljs-attr">id</span>]=<span class="hljs-string">"tag.id"</span>
+    [<span class="hljs-attr">amount</span>]=<span class="hljs-string">"tag.amount"</span>
+  &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tags</span>&gt;</span></code></pre>
   <br>
   <h3 id="linktag" class="docs-header-link docs-markdown-h3">
@@ -38,9 +40,9 @@
   <p class="docs-markdown-p">You can use linktag to navigate at the corresponding category page.</p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Link Tag<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/home"</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Link tag"</span> <span class="hljs-attr">amount</span>=<span class="hljs-string">"5"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">sbb-tag</span> <span class="hljs-attr">label</span>=<span class="hljs-string">"Link tag"</span> <span class="hljs-attr">amount</span>=<span class="hljs-string">"5"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-tag</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
-  <p class="docs-markdown-p">Linktags has only the active state. </p>
+  <p class="docs-markdown-p">Linktags has only the active state.</p>
 </body>
 
 </html>

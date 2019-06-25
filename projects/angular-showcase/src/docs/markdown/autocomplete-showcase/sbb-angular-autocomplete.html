@@ -12,7 +12,7 @@
   </blockquote>
   <p class="docs-markdown-p"><em>my-comp.html</em></p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span></code></pre>
   <p class="docs-markdown-p">Next, create the autocomplete panel and the options displayed inside it. Each option should be defined by a <code class="docs-markdown-code">sbb-option</code> tag. Set each option's value property to whatever you'd like the value of the text input to be upon that option's selection.</p>
   <p class="docs-markdown-p"><em>my-comp.html</em></p>
@@ -24,7 +24,7 @@
   <p class="docs-markdown-p">Now we'll need to link the text input to its panel. We can do this by exporting the autocomplete panel instance into a local template variable (here we called it "auto"), and binding that variable to the input's <code class="docs-markdown-code">sbbAutocomplete</code> property.</p>
   <p class="docs-markdown-p"><em>my-comp.html</em></p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>
@@ -51,11 +51,7 @@
     <span header-link="attaching-the-autocomplete-panel-to-a-different-element"></span> Attaching the autocomplete panel to a different element </h3>
   <p class="docs-markdown-p">By default the autocomplete panel will be attached to your input element, however in some cases you may want it to attach to a different container element. You can change the element that the autocomplete is attached to using the <code class="docs-markdown-code">sbbAutocompleteOrigin</code> directive together with the <code class="docs-markdown-code">sbbAutocompleteConnectedTo</code> input:</p>
   <pre class="docs-markdown-pre"><code class="language-html docs-markdown-code"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"custom-wrapper-example"</span> <span class="hljs-attr">sbbAutocompleteOrigin</span> #<span class="hljs-attr">origin</span>=<span class="hljs-string">"sbbAutocompleteOrigin"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-
-    [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span>
-    [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span>
-    [<span class="hljs-attr">sbbAutocompleteConnectedTo</span>]=<span class="hljs-string">"origin"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> [<span class="hljs-attr">formControl</span>]=<span class="hljs-string">"myControl"</span> [<span class="hljs-attr">sbbAutocomplete</span>]=<span class="hljs-string">"auto"</span> [<span class="hljs-attr">sbbAutocompleteConnectedTo</span>]=<span class="hljs-string">"origin"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">sbb-autocomplete</span> #<span class="hljs-attr">auto</span>=<span class="hljs-string">"sbbAutocomplete"</span>&gt;</span>

@@ -29,4 +29,22 @@
   &:disabled {
     opacity: 0.4;
   }
+
+  &-primary.sbb-button-has-icon:disabled,
+  &-primary:not(.sbb-button-has-icon):disabled,
+  &-alternative.sbb-button-has-icon:disabled,
+  &-alternative:not(.sbb-button-has-icon):disabled {
+    color: rgba($buttonDefaultColor, 0.5);
+  }
+
+  &-secondary.sbb-button-has-icon:disabled,
+  &-secondary:not(.sbb-button-has-icon):disabled,
+  &-icon:disabled {
+    color: rgba($buttonSecondaryColor, 0.5);
+  }
+
+  &-ghost.sbb-button-has-icon,
+  &-ghost:not(.sbb-button-has-icon) {
+    color: rgba($buttonSecondaryColor, 0.4);
+  }
 }

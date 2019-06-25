@@ -21,13 +21,9 @@
           Bezeichnung
         <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> #<span class="hljs-attr">icon</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-right</span>
-            *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"buttonIcon === 'arrow'"</span>
-          &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-right</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-right</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"buttonIcon === 'arrow'"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-right</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-plus</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"buttonIcon === 'plus'"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-plus</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-download</span>
-            *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"buttonIcon === 'download'"</span>
-          &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-download</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-download</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"buttonIcon === 'download'"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-download</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -42,9 +38,7 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-10"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"mode"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"buttonMode"</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let mode of modes"</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"mode"</span>&gt;</span>{{
-                mode
-              }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let mode of modes"</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"mode"</span>&gt;</span>{{ mode }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -59,23 +53,16 @@
           <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"icon"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"buttonIcon"</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">option</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"'noIcon'"</span>&gt;</span>No Icon<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let icon of icons"</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"icon"</span>&gt;</span>{{
-                icon
-              }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let icon of icons"</span> [<span class="hljs-attr">ngValue</span>]=<span class="hljs-string">"icon"</span>&gt;</span>{{ icon }}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"disabled"</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"disabled"</span>
-          &gt;</span>Disabled button<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>
-        &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sbb-checkbox</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"disabled"</span> <span class="hljs-attr">formControlName</span>=<span class="hljs-string">"disabled"</span>&gt;</span>Disabled button<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-checkbox</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">small</span>
-          &gt;</span>* All icons allowed, in this example are loaded only three as sample
-          icons<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>
-        &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>* All icons allowed, in this example are loaded only three as sample icons<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LinkGeneratorResult, NavigationPageDescriptor } from '@sbb-esta/angular-public';
 
 @Component({
   selector: 'sbb-pagination-showcase',
@@ -10,15 +9,15 @@ import { LinkGeneratorResult, NavigationPageDescriptor } from '@sbb-esta/angular
 export class PaginationShowcaseComponent {
   constructor(private _route: ActivatedRoute) {}
 
-  maxPage = 7;
-  initialPage = 5;
+  length = 7;
+  pageIndex = 5;
 
   pages = ['Einführung', 'Kapitel 1', 'Kapitel 2', 'Kapitel 3'].map((page, index) => {
     return { title: page, index: index };
   });
 
-  hasPrevious: NavigationPageDescriptor = this.pages[1];
-  hasNext: NavigationPageDescriptor = this.pages[2];
+  hasPrevious = this.pages[1];
+  hasNext = this.pages[2];
 
   get previousPage(): string {
     return this.hasPrevious ? this.hasPrevious.title : null;
@@ -33,15 +32,6 @@ export class PaginationShowcaseComponent {
     console.log($event);
   }
 
-  linkGenerator = (page: { displayNumber: number; index: number }): LinkGeneratorResult => {
-    return {
-      routerLink: ['.'],
-      queryParams: { page: page.displayNumber },
-      queryParamsHandling: 'merge',
-      relativeTo: this._route
-    };
-  };
-
   onPageChangeNavigation($event) {
     if ($event === 'next') {
       this.hasPrevious = this.hasNext;
@@ -51,22 +41,6 @@ export class PaginationShowcaseComponent {
       this.hasPrevious = this.pages[this.hasPrevious.index - 1];
     }
   }
-
-  linkGeneratorNavigation = (direction: 'previous' | 'next'): LinkGeneratorResult => {
-    let index = null;
-    if (direction === 'next') {
-      index = this.hasNext.index;
-    } else {
-      index = this.hasPrevious.index;
-    }
-
-    return {
-      routerLink: ['.'],
-      queryParams: { page: index },
-      queryParamsHandling: 'merge',
-      relativeTo: this._route
-    };
-  };
 
   addPage() {
     this.pages.push({ title: this.newPage.title, index: this.pages.length });

@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { LinkGeneratorResult } from '../../pagination/pagination';
+import { LinkGeneratorResult } from '../../_common/link-generator-result';
 import { Ghettobox } from '../ghettobox/ghettobox-ref';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';

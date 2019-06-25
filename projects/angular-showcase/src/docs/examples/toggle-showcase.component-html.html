@@ -16,9 +16,7 @@
               <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-right</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-right</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrows-right-left</span>
-                *<span class="hljs-attr">sbbToggleOptionIcon</span>
-              &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrows-right-left</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrows-right-left</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrows-right-left</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
 
             <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>
@@ -44,11 +42,7 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"group_label_1"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
         Toggle buttons used as Template driven Form
       <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span>
-        <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_1"</span>
-        [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"modelValue"</span>
-        <span class="hljs-attr">name</span>=<span class="hljs-string">"test-toggle-2"</span>
-      &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_1"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"modelValue"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"test-toggle-2"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span>
           *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let option of toggleOptions | async; let i = index"</span>
           [<span class="hljs-attr">label</span>]=<span class="hljs-string">"option.label"</span>
@@ -58,9 +52,7 @@
             <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrow-right</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrow-right</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrows-right-left</span>
-              *<span class="hljs-attr">sbbToggleOptionIcon</span>
-            &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrows-right-left</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">sbb-icon-arrows-right-left</span> *<span class="hljs-attr">sbbToggleOptionIcon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sbb-icon-arrows-right-left</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">sbb-field</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"long"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 0"</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">sbb-label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"name1"</span>&gt;</span>Select date<span class="hljs-tag">&lt;/<span class="hljs-name">sbb-label</span>&gt;</span>
@@ -69,10 +61,9 @@
             <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-datepicker</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-field</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">p</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"i === 1"</span>&gt;</span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle-option</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">sbb-toggle</span>&gt;</span>
@@ -90,10 +81,7 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"group_label_3"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sbbsc-block"</span>&gt;</span>
         Toggle buttons simple use case no Forms attached
       <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span>
-        <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_3"</span>
-        (<span class="hljs-attr">toggleChange</span>)=<span class="hljs-string">"toggleChange($event)"</span>
-      &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"group_label_3"</span> (<span class="hljs-attr">toggleChange</span>)=<span class="hljs-string">"toggleChange($event)"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">sbb-toggle-option</span>
           <span class="hljs-attr">label</span>=<span class="hljs-string">"2. Klasse"</span>
           <span class="hljs-attr">infoText</span>=<span class="hljs-string">"- CHF 5.60"</span>
