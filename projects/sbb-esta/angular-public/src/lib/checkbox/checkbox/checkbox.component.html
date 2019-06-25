@@ -6,7 +6,7 @@
     [value]="value"
     [required]="required"
     [checked]="checked"
-    [attr.aria-checked]="checked"
+    [attr.aria-checked]="ariaChecked"
     [attr.aria-label]="ariaLabel"
     [attr.aria-labelledby]="ariaLabelledby"
     [attr.aria-describedby]="ariaDescribedby"
@@ -16,7 +16,6 @@
 
   <div class="sbb-checkbox-container">
     <sbb-icon-tick class="sbb-checkbox-checked"></sbb-icon-tick>
-    <div *ngIf="!checked" class="sbb-checkbox-indeterminate"></div>
   </div>
 
   <div class="sbb-checkbox-label-content">

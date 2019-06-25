@@ -1,1 +1,3 @@
-export * from '../../../../angular-public/src/lib/checkbox/checkbox';
+export * from './checkbox.module';
+
+export * from './checkbox/checkbox.component';
