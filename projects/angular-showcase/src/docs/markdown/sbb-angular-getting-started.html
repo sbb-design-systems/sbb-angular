@@ -66,7 +66,12 @@
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyOwnCustomACLModule {}</code></pre>
   <p class="docs-markdown-p">Whichever approach you use, be sure to import the ACL modules after Angular's BrowserModule, as the import order matters for NgModules.</p>
-  <h2 class="docs-markdown-h2">Step 5 (Optional): Use mixins and functions from the library</h2>
+  <h2 class="docs-markdown-h2">Step 5: i18n</h2>
+  <p class="docs-markdown-p">This library uses <a href="https://angular.io/guide/i18n" class="docs-markdown-a">Angular i18n</a>. All translatables have an id with the pattern "sbb<em>Component</em>". Run <code class="docs-markdown-code">ng xi18n</code> in your project (after using components of this library in your code) to generate the list of translatables.</p>
+  <h3 id="datepicker-i18n-" class="docs-header-link docs-markdown-h3">
+    <span header-link="datepicker-i18n-"></span> Datepicker i18n: </h3>
+  <p class="docs-markdown-p">The datepicker uses the CLDR data <a href="https://angular.io/guide/i18n#setting-up-the-locale-of-your-app" class="docs-markdown-a">provided by Angular</a>. This means it uses the locale data configured via the <code class="docs-markdown-code">i18nLocale</code> entry in your angular.json <code class="docs-markdown-code">build</code> options or configurations.</p>
+  <h2 class="docs-markdown-h2">Step 6 (Optional): Use mixins and functions from the library</h2>
   <p class="docs-markdown-p">If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import <code class="docs-markdown-code">styles.scss</code> from the library into your <code class="docs-markdown-code">styles.scss</code>:</p>
   <pre class="docs-markdown-pre"><code class="language-scss docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">'../node_modules/@sbb-esta/angular-public/styles.scss'</span>;</code></pre>
   <p class="docs-markdown-p">You can start building your app using <a href="./components-list" class="docs-markdown-a">components</a> or <a href="./icons-list" class="docs-markdown-a">icons</a>.</p>
