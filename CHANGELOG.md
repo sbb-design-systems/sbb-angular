@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.0.0-beta.0...8.0.0) (2019-06-25)
+
+
+### Bug Fixes
+
+* **business/button:** change font opacity for disabled buttons ([#53](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/53)) ([977fb78](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/977fb78))
+* **business/field:** change gray color to fit style guide ([#55](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/55)) ([fd3b6b4](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/fd3b6b4))
+* **business/radio-button:** change gray color of radio-buttons ([#52](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/52)) ([f373ba3](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/f373ba3))
+* **datepicker:** fixes arrows change detection on manual change ([#46](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/46)) ([b9c1efe](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/b9c1efe)), closes [#40](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/40)
+* **datepicker:** fixes slave datepicker to only trigger on calender selected date ([#45](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/45)) ([47b2da8](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/47b2da8)), closes [#36](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/36)
+* **pagination:** fixes pagination focus issues ([#54](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/54)) ([1e1ce4b](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/1e1ce4b)), closes [#17](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/17)
+* **processflow:** fixes click behavior for future steps ([#57](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/57)) ([2e37b4a](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/2e37b4a))
+* **table:** fixes even row styling ([#48](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/48)) ([227da9b](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/227da9b)), closes [#29](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/29)
+* **textarea:** fixes placeholder issue and sizing behavior ([#44](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/44)) ([8a87e6e](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/8a87e6e)), closes [#16](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/16)
+
+
+### Build System
+
+* ci ([#49](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/49)) ([85bc0db](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/85bc0db))
+
+
+### Features
+
+* **angular-keycloak:** migrates the auth part of esta-webjs-extensions ([#50](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/50)) ([f6761c5](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/f6761c5))
+* **business/autocomplete:** expose autocomplete component for business ([#42](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/42)) ([b7ec7c0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/b7ec7c0))
+* **business/button:** expose button component for business ([#39](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/39)) ([ed990a2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/ed990a2))
+* **business/datepicker:** expose datepicker component for business  ([#47](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/47)) ([57a075d](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/57a075d))
+* **business/field:** expose field component for business applications ([#32](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/32)) ([403a97d](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/403a97d))
+* **business/radio-button:** expose radio-button component for business  ([#43](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/43)) ([7a81107](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/7a81107))
+* **business/select:** expose select component for business ([#41](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/41)) ([0841237](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/0841237))
+* **business/textarea:** expose textarea component for business  ([#34](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/34)) ([997be3c](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/997be3c))
+* **business/time-input:** expose time input component for business applications ([#33](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/33)) ([b87a4a3](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/b87a4a3))
+* **i18n:** applies common pattern for i18n ids ([#56](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/56)) ([d2c1838](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/d2c1838))
+
+
+### BREAKING CHANGES
+
+* **i18n:** i18n ids have changed.
+* **pagination:** Removes link variants of pagination and navigation
+components. The link variants caused focus issues, which can not easily
+be resolved. If you need the link variants, you can open a feature request
+and we will have another look at it.
+Several properties of sbb-pagination have been renamed or refactored.
+Check the documentation for the new specification.
+
+
+
 ## [8.0.0-beta.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/v1.1.0...v8.0.0-beta.0) (2019-06-14)
 
 

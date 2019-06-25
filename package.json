@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "8.0.0-beta.0",
+  "version": "8.0.0",
   "private": true,
   "scripts": {
     "ng": "ng",
@@ -50,7 +50,7 @@
     "test:angular-keycloak": "ng test @sbb-esta/angular-keycloak -c ci",
     "test:angular-showcase": "ng test angular-showcase -c ci",
     "sonar": "node ./scripts/sonar.js",
-    "changelog": "standard-version",
+    "changelog": "standard-version --tag-prefix=\"\"",
     "publish:staging": "node ./scripts/publish.js",
     "publish:library": "node ./scripts/publish.js release"
   },
