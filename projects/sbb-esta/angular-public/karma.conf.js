@@ -45,20 +45,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    customLaunchers: {
-      BsChrome: {
-        base: 'BrowserStack',
-        os: 'Windows',
-        os_version: '10',
-        browser: 'Chrome'
-      },
-      BsFirefox: {
-        base: 'BrowserStack',
-        os: 'Windows',
-        os_version: '10',
-        browser: 'Firefox'
-      }
-    },
+    customLaunchers: require('../../../browsers.json'),
     singleRun: false,
     // Try Websocket for a faster transmission first. Fallback to polling if necessary.
     transports: ['websocket', 'polling'],
@@ -83,7 +70,6 @@ module.exports = function(config) {
     }
 
     if (process.env.BROWSERSTACK_USERNAME && process.env.BROWSERSTACK_ACCESS_KEY) {
-      config.browsers.push('BsCrhome', 'BsFirefox');
       config.browserDisconnectTimeout = 180000;
       config.browserDisconnectTolerance = 3;
       config.captureTimeout = 180000;

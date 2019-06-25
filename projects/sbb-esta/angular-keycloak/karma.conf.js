@@ -45,23 +45,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    customLaunchers: {
-      BsChrome: {
-        base: 'BrowserStack',
-        os: 'Windows',
-        os_version: '10',
-        browser: 'Chrome'
-      },
-      HeadlessChromeNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-renderer-backgrounding',
-          '--disable-device-discovery-notifications',
-          '--disable-web-security'
-        ]
-      }
-    },
+    customLaunchers: require('../../../browsers.json'),
     singleRun: false,
     // Try Websocket for a faster transmission first. Fallback to polling if necessary.
     transports: ['websocket', 'polling'],

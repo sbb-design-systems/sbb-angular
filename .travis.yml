@@ -11,7 +11,8 @@ cache: npm
 
 script:
   - npm run build:libs
-  - if [ "$TRAVIS_TAG" == "" ]; then npm run test; fi
+  - if [ "$TRAVIS_TAG" == "" ] && [ "$BROWSERSTACK_USERNAME" != "" ]; then npm run test; fi
+  - if [ "$TRAVIS_TAG" == "" ] && [ "$BROWSERSTACK_USERNAME" == "" ]; then npm run test:pr; fi
   - if [ "$TRAVIS_TAG" == "" ]; then npm run lint; fi
   - if [ "$TRAVIS_TAG" == "" ]; then npm run sonar; fi
   - npm run build:angular-showcase

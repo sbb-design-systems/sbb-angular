@@ -1,0 +1,14 @@
+{
+  "BsChrome": {
+    "base": "BrowserStack",
+    "os": "Windows",
+    "os_version": "10",
+    "browser": "Chrome"
+  },
+  "BsFirefox": {
+    "base": "BrowserStack",
+    "os": "Windows",
+    "os_version": "10",
+    "browser": "Firefox"
+  }
+}
