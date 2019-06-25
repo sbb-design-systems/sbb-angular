@@ -133,7 +133,7 @@ describe('CheckboxComponent using mock component', () => {
     const inputElement = modelComponentFixture.debugElement.query(
       By.css("input")
     ).nativeElement as HTMLInputElement;
-    expect(inputElement.indeterminate).toBe(false);
+    expect(modelComponent.checkboxComponent.indeterminate).toBe(false);
     expect(inputElement.checked).toBe(true);
   });
 
@@ -149,7 +149,7 @@ describe('CheckboxComponent using mock component', () => {
     const inputElement = modelComponentFixture.debugElement.query(
       By.css("input")
     ).nativeElement as HTMLInputElement;
-    expect(inputElement.indeterminate).toBe(false);
+    expect(modelComponent.checkboxComponent.indeterminate).toBe(false);
     expect(inputElement.checked).toBe(true);
   });
 
