@@ -112,7 +112,17 @@ export class MyOwnCustomACLModule {}
 
 Whichever approach you use, be sure to import the ACL modules after Angular's BrowserModule, as the import order matters for NgModules.
 
-## Step 5 (Optional): Use mixins and functions from the library
+## Step 5: i18n
+
+This library uses [Angular i18n](https://angular.io/guide/i18n). All translatables have an id with the pattern "sbb*Component*".
+Run `ng xi18n` in your project (after using components of this library in your code) to generate the list of translatables.
+
+### Datepicker i18n:
+
+The datepicker uses the CLDR data [provided by Angular](https://angular.io/guide/i18n#setting-up-the-locale-of-your-app).
+This means it uses the locale data configured via the `i18nLocale` entry in your angular.json `build` options or configurations.
+
+## Step 6 (Optional): Use mixins and functions from the library
 
 If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import `styles.scss` from the library into your `styles.scss`:
 

@@ -12,4 +12,6 @@
   cdkTextareaAutosize
   #autosize="cdkTextareaAutosize"
 ></textarea>
-<div i18n *ngIf="maxlength && !disabled">Noch {{ counterObserver$ | async }} Zeichen</div>
+<div i18n="Counter text for textarea@@sbbTextareaCounterText" *ngIf="maxlength && !disabled">
+  Noch {{ counterObserver$ | async }} Zeichen
+</div>

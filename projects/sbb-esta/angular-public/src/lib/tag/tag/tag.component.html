@@ -3,7 +3,7 @@
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
     <sbb-badge
-      i18n-aria-label
+      i18n-aria-label="Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults"
       aria-label="{{ amount }} Resultate verfügbar"
       class="sbb-badge-active"
       >{{ amount }}</sbb-badge
@@ -32,8 +32,11 @@
     <span style="display:none">&nbsp;</span>
     <span class="sbb-tag-label">{{ label }}</span>
     <span>&nbsp;</span>
-    <sbb-badge i18n-aria-label aria-label="{{ amount }} Resultate verfügbar" [active]="checked">{{
-      amount
-    }}</sbb-badge>
+    <sbb-badge
+      i18n-aria-label="Aria label for amount of results displayed in badge pill@@sbbTagBadgePillAmountOfResults"
+      aria-label="{{ amount }} Resultate verfügbar"
+      [active]="checked"
+      >{{ amount }}</sbb-badge
+    >
   </label>
 </ng-container>
