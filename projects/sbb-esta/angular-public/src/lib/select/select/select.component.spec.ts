@@ -2522,14 +2522,11 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-      console.log(trigger.style.width);
       trigger.style.width = '200px';
       fixture.componentInstance.isVisible = true;
       fixture.detectChanges();
 
-      console.log(trigger.style.width);
       trigger.click();
-      console.log(trigger.style.width);
       fixture.detectChanges();
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
