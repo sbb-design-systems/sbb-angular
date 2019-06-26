@@ -2,8 +2,10 @@
 
 $selectMaxWidth: 480;
 $selectArrowWidthHeight: 24;
-$selectTriggerPaddingRight: 12px;
+$selectArrowRight: 12;
+$selectTriggerPaddingRight: 44;
 
 @if $sbbBusiness {
-  $selectTriggerPaddingRight: 6px;
+  $selectTriggerPaddingRight: 38;
+  $selectArrowRight: 6;
 }
