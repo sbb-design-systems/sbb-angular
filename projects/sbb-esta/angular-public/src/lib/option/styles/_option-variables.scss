@@ -19,7 +19,8 @@ $optionSelectedBarTop: 3;
 $optionSelectedBarTopFirst: 6;
 
 @if $sbbBusiness {
-  $autocompleteOptionActiveColor: $sbbColorBlack;
+  $autocompleteOptionHoverColor: $sbbColorRed125;
+  $autocompleteOptionActiveColor: $sbbColorRed125;
   $dropdownPaddingBottom: 8px;
   $autocompletePaddingTop: 8px;
   $autocompletePaddingX: 8px;
