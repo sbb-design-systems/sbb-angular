@@ -43,11 +43,12 @@
       @include absoluteCenterY();
       right: toPx($selectArrowRight);
 
-      @include svgIconColor($sbbColorGrey);
       width: toPx($selectArrowWidthHeight);
       height: toPx($selectArrowWidthHeight);
 
       @include publicOnly() {
+        @include svgIconColor($sbbColorGrey);
+
         @include mq($from: desktop4k) {
           right: toPx($selectArrowRight * $scalingFactor4k);
           width: toPx($selectArrowWidthHeight * $scalingFactor4k);
@@ -59,6 +60,10 @@
           width: toPx($selectArrowWidthHeight * $scalingFactor5k);
           height: toPx($selectArrowWidthHeight * $scalingFactor5k);
         }
+      }
+
+      @include businessOnly() {
+        @include svgIconColor($sbbColorGranite);
       }
 
       &-rotate {

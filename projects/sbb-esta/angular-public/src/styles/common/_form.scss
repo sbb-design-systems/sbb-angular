@@ -55,6 +55,7 @@
 
   @include businessOnly() {
     border-width: 1px;
+    color: $sbbColorGranite;
 
     &:focus {
       border-color: $sbbColorGranite;
