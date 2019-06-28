@@ -29,7 +29,12 @@ You can use table component to display rows of data as see below
 </sbb-table>
 ```
 
-<h4>Remove/Reset table content</h4>
+### Pin Mode
+
+The sbb-table provides a pin mode, which pins the first column the the left side.
+This is not supported in IE11.
+
+### Remove/Reset table content
 
 You can also remove a row or more rows from the table with removeRow() function:
 
@@ -47,7 +52,7 @@ resetRows() {
   }
 ```
 
-<h4>Filter table content</h4>
+### Filter table content
 
 It is possible to search specific content of the table using a filter function:
 
