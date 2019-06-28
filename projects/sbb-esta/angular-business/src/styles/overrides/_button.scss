@@ -1,0 +1,17 @@
+button {
+
+  &.sbb-button:not(:disabled).sbb-button-primary:not(.sbb-button-has-icon),
+  &.sbb-button:not(:disabled).sbb-button-primary.sbb-button-has-icon,
+  &.sbb-button.sbb-button-primary:not(.sbb-button-has-icon):disabled,
+  &.sbb-button.sbb-button-primary.sbb-button-has-icon:disabled {
+    background-color: $themePrimaryColor;
+  }
+
+  &.sbb-button:not(:disabled).sbb-button-primary:not(.sbb-button-has-icon).sbb-button-primary,
+  &.sbb-button:not(:disabled).sbb-button-primary.sbb-button-has-icon {
+    &:hover, &:focus {
+      background-color: $themePrimaryColorHover;
+    }
+  }
+
+}

@@ -1,0 +1,26 @@
+sbb-datepicker.sbb-datepicker {
+  & button:focus:enabled svg.sbb-svg-icon > path[fill=none],
+  & button:hover:enabled svg.sbb-svg-icon > path[fill=none] {
+    stroke: $themePrimaryColorHover;
+  }
+}
+
+
+div.sbb-datepicker-popup button.sbb-calendar-controls {
+  &-left, &-right {
+    &-arrow:hover:enabled svg.sbb-svg-icon,
+    &-arrow:focus:enabled svg.sbb-svg-icon>path[fill=none],
+    &-arrow:hover:enabled svg.sbb-svg-icon>path[fill=none] {
+      stroke: $themePrimaryColor;
+    }
+  }
+}
+
+div.sbb-datepicker-popup .sbb-datepicker-content .sbb-calendar-body-cell:not(.sbb-calendar-body-disabled) {
+  &:hover, &:focus {
+    & .sbb-calendar-body-cell-content, & .sbb-calendar-body-cell {
+      border-color: $themePrimaryColor;
+      color: $themePrimaryColor;
+    }
+  }
+}

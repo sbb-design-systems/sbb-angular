@@ -30,6 +30,7 @@
     "build:angular-business:ng": "ng build @sbb-esta/angular-business",
     "build:angular-business:styles": "cd ./projects/sbb-esta/angular-business/src/styles/ && scss-bundle -c main-bundle.config.json",
     "build:angular-business:typography": "node-sass ./projects/sbb-esta/angular-business/src/typography.scss ./dist/sbb-esta/angular-business/typography.css --include-path ./projects/sbb-esta/angular-business/src/styles/common",
+    "build:angular-business:overrides": "scss-bundle -e ./projects/sbb-esta/angular-business/src/styles/overrides.scss -d ./dist/sbb-esta/angular-business/overrides.scss",
     "build:angular-business:license": "copyfiles LICENSE ./dist/sbb-esta/angular-business/",
     "build:angular-public": "run-s build:angular-public:*",
     "build:angular-public:ng": "ng build @sbb-esta/angular-public",

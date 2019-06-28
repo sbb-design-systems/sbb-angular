@@ -1,0 +1,13 @@
+.sbb-autocomplete-panel sbb-option.sbb-option-text {
+  &:focus, &:hover {
+    &, & .highlight {
+      color: $themePrimaryColor;
+
+      &.sbb-option-multiple, &:not(.sbb-option-multiple) {
+        &::after {
+          background-color: $themePrimaryColor;
+        }
+      }
+    }
+  }
+}
