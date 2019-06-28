@@ -1,6 +1,7 @@
 <ul class="sbb-navigation">
   <li class="sbb-navigation-item sbb-navigation-item-left" *ngIf="previousPage">
     <button
+      type="button"
       i18n-aria-label="@@navigationPreviousPage"
       aria-label="Vorherige Seite"
       (click)="pageChange.emit('previous')"
@@ -16,6 +17,7 @@
   </li>
   <li class="sbb-navigation-item sbb-navigation-item-right" *ngIf="nextPage">
     <button
+      type="button"
       i18n-aria-label="@@navigationNextPage"
       aria-label="Nächste Seite"
       (click)="pageChange.emit('next')"

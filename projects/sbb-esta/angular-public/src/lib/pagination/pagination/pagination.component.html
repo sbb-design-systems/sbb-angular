@@ -1,6 +1,7 @@
 <ul class="sbb-pagination">
   <li class="sbb-pagination-item">
     <button
+      type="button"
       i18n-aria-label="@@paginationPreviousPage"
       aria-label="Vorherige Seite"
       class="sbb-pagination-item-boundary"
@@ -19,6 +20,7 @@
     <ng-container *ngIf="page !== null">
       <button
         #pageButton
+        type="button"
         [attr.tabindex]="page === pageIndex ? '-1' : null"
         [class.sbb-pagination-item-selected]="page === pageIndex"
         [attr.aria-current]="page === pageIndex"
@@ -30,6 +32,7 @@
   </li>
   <li class="sbb-pagination-item">
     <button
+      type="button"
       i18n-aria-label="@@paginationNextPage"
       aria-label="Nächste Seite"
       class="sbb-pagination-item-boundary"
