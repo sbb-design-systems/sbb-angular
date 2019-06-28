@@ -15,7 +15,7 @@
       }
 
       @include mq($from: desktop5k) {
-        padding-right: 92px;
+        padding-right: toPx($selectTriggerPaddingRight * $scalingFactor5k);
       }
     }
 
@@ -56,7 +56,7 @@
         }
 
         @include mq($from: desktop5k) {
-          right: 28px;
+          right: toPx($selectArrowRight * $scalingFactor5k);
           width: toPx($selectArrowWidthHeight * $scalingFactor5k);
           height: toPx($selectArrowWidthHeight * $scalingFactor5k);
         }

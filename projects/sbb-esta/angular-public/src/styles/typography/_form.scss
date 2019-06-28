@@ -65,11 +65,13 @@
 @mixin nativeSelectBase {
   $selectArrowWidthHeight: 24;
   $selectNativeBackground: 'data:image/svg+xml,<svg version="1.1" id="_x30__1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;fill: %23666;" xml:space="preserve"><path d="M7.7,10.7L8.4,10l3.6,3.6l3.6-3.6l0.7,0.7L12,15L7.7,10.7z"/></svg>';
+  $selectTriggerPaddingRight: 44;
 
   @include inputfields;
   cursor: pointer;
   align-items: center;
   width: 100%;
+  padding-right: toPx($selectTriggerPaddingRight);
 
   &:disabled {
     cursor: default;
@@ -78,11 +80,13 @@
   @include publicOnly() {
     background: url($selectNativeBackground) 97.5% no-repeat;
     @include mq($from: desktop4k) {
+      padding-right: toPx($selectTriggerPaddingRight * $scalingFactor4k);
       background-size: toPx($selectArrowWidthHeight * $scalingFactor4k);
       background-position-x: 96%;
     }
 
     @include mq($from: desktop5k) {
+      padding-right: toPx($selectTriggerPaddingRight * $scalingFactor5k);
       background-size: toPx($selectArrowWidthHeight * $scalingFactor5k);
       background-position-x: 94%;
     }
