@@ -50,11 +50,6 @@ export abstract class BaseCheckbox implements ControlValueAccessor {
   }
   private _checked = false;
 
-  /** @docs-private */
-  get ariaChecked(): String {
-    return this.checked;
-  }
-
   /**
    * Property that describes the status change of a checkbox field
    */

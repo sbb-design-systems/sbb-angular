@@ -13,7 +13,7 @@ import { BaseCheckbox } from '../../../../../angular-public/src/lib/checkbox/che
 
 @Component({
   selector: 'sbb-checkbox',
-  templateUrl: '../../../../../angular-public/src/lib/checkbox/checkbox/checkbox.component.html',
+  templateUrl: './checkbox.component.html',
   styleUrls: ['../../../../../angular-public/src/lib/checkbox/checkbox/checkbox.component.scss'],
   providers: [
     {
@@ -30,19 +30,16 @@ export class CheckboxComponent extends BaseCheckbox {
     super(changeDetector);
   }
 
-  /** @docs-private */
-  @HostBinding('class.sbb-checkbox-indeterminate') indeterminateClass = false;
-
   /**
    * The indeterminate state of the checkbox
    */
   @Input()
+  @HostBinding('class.sbb-checkbox-indeterminate')
   get indeterminate(): any {
     return this._indeterminate;
   }
   set indeterminate(value: any) {
     this._indeterminate = value;
-    this.indeterminateClass = this._indeterminate;
     this._changeDetector.markForCheck();
   }
   private _indeterminate = false;
