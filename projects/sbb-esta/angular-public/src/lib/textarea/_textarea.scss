@@ -44,6 +44,7 @@
   overflow: hidden;
   color: $sbbColorGrey;
   min-height: inherit;
+  white-space: pre-wrap;
 
   &:disabled {
     background-color: $sbbColorMilk;
