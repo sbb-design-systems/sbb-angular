@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.0.0...8.1.0) (2019-07-01)
+
+
+### Bug Fixes
+
+* **business/option:** change color of active/hover to red125 ([#59](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/59)) ([ddee023](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/ddee023))
+* **checkbox:** fix change behavior for checkboxes ([#67](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/67)) ([6fac950](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/6fac950)), closes [#20](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/20)
+* **datepicker:** adds missing button type attributes ([#65](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/65)) ([7b21600](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/7b21600)), closes [#61](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/61)
+* **keycloak:** fixes wrong package name in README ([#63](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/63)) ([d2846ad](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/d2846ad))
+* **select:** change arrow trigger position to absolute ([#60](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/60)) ([92512c2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/92512c2))
+* **table:** documents ie11 limitation of pinMode ([#64](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/64)) ([f232240](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/f232240)), closes [#58](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/58)
+* **textarea:** fixes no-wrap issue in edge ([#62](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/62)) ([87c4db6](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/87c4db6)), closes [#16](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/16)
+
+
+### Features
+
+* **business/checkbox:** expose checkbox component for business ([#51](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/51)) ([d666901](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/d666901))
+
+
+
 ## [8.0.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.0.0-beta.0...8.0.0) (2019-06-25)
 
 
