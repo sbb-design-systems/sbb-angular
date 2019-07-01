@@ -104,7 +104,7 @@ export class TagComponent extends CheckboxBase implements OnInit, OnChanges, OnD
   private _active = false;
 
   constructor(
-    @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer: unknown,
+    @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer: any,
     private _zone: NgZone,
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,
