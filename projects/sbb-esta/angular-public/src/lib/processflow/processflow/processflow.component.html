@@ -1,6 +1,7 @@
 <ol class="sbb-processflow-header">
   <li *ngFor="let step of steps; let i = index; let isLast = last" class="sbb-processflow-step">
     <button
+      type="button"
       [class.sbb-active]="step.active"
       [class.sbb-disabled]="step.disabled"
       [disabled]="step.disabled"

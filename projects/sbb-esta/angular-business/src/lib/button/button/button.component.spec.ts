@@ -137,8 +137,8 @@ describe('ButtonComponent', () => {
       expect(sbbButtonStyle.getPropertyValue('background-color')).toBe('rgb(235, 0, 0)');
     });
 
-    it('should have a white text color', () => {
-      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgb(255, 255, 255)');
+    it('should have a white text color with opacity', () => {
+      expect(sbbButtonStyle.getPropertyValue('color')).toBe('rgba(255, 255, 255, 0.5)');
     });
 
     it('should the icons be white', () => {

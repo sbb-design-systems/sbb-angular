@@ -521,27 +521,4 @@ export class DatepickerComponent<D> implements OnDestroy {
   private _getValidDateOrNull(obj: any): D | null {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
-
-  /**
-  * Manages the 2nd datepicker linked to this instance.
-  * If the 2nd datepicker has no value, its calendar will open up when filling this datepicker value.
-  private handleRangeDatepicker(beginDate: D, arrowClick: boolean = false) {
-    if (this.slave || !beginDate || !this.dateAdapter.isValid(beginDate)) {
-      return;
-    }
-
-    this.dateRange.begin = beginDate;
-    this.slave.datepickerInput.min = beginDate;
-    if (!this.slave.datepickerInput.value && !arrowClick) {
-      this.slave.open();
-    } else if (this.dateAdapter.compareDate(beginDate, this.slave.datepickerInput.value) > 0) {
-      this.slave.datepickerInput.value = null;
-      if (!arrowClick) {
-        this.slave.open();
-      }
-    } else {
-      this.dateRange.end = this.slave.datepickerInput.value;
-    }
-  }
-  */
 }
