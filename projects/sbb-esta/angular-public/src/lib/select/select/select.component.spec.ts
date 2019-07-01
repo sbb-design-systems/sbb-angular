@@ -2370,7 +2370,7 @@ describe('SelectComponent', () => {
         );
 
         const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-        expect(pane.style.minWidth).toEqual('330px');
+        expect(pane.style.minWidth).toEqual('362px');
 
         expect(fixture.componentInstance.select.panelOpen).toBe(true);
         expect(overlayContainerElement.textContent).toContain('Steak');
@@ -2530,7 +2530,7 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-      expect(pane.style.minWidth).toBe('230px');
+      expect(pane.style.minWidth).toBe('262px');
     });
   });
 

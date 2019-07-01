@@ -11,9 +11,10 @@ $autocompleteColor: $sbbColorGrey;
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
 
 @if $sbbBusiness {
-  $autocompleteBorder: 1px solid $sbbColorGrey;
+  $autocompleteBorder: 1px solid $sbbColorGranite;
   $autocompleteShadow: 0 4px 0 rgba(0, 0, 0, 0.15);
   $autocompleteShadowReverse: 0 -4px 0 rgba(0, 0, 0, 0.15);
+  $autocompleteColor: $sbbColorGranite;
 }
 
 $autocompleteBorderTopReverse: $autocompleteBorder;

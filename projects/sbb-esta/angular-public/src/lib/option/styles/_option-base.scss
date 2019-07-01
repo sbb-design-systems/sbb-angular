@@ -31,6 +31,10 @@
   @if $selectMode == true {
     cursor: default;
     color: $sbbColorGrey;
+
+    @include businessOnly() {
+      color: $sbbColorGranite;
+    }
   }
 
   &:first-of-type {
