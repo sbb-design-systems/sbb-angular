@@ -129,7 +129,6 @@ describe('CheckboxPanelComponent using mock component', () => {
 
     const element = modelComponentFixture.debugElement.queryAll(By.css('label'))[1];
     dispatchEvent(element.nativeElement, createMouseEvent('click'));
-    //opt2.checked = true;
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();
