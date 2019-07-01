@@ -7,6 +7,7 @@
         [disabled]="disabled"
         [required]="required"
         [checked]="checked"
+        (change)="incrementChangeCounter()"
         >Test label</sbb-checkbox
       >
     </div>
@@ -21,6 +22,7 @@
       <div class="sbbsc-block">
         <sbb-checkbox [(ngModel)]="disabled">Disabled</sbb-checkbox>
       </div>
+      <p>Change Counter: {{ changeCounter }}</p>
     </div>
   </div>
 

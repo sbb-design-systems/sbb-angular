@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
+import { createMouseEvent, dispatchEvent } from '../../_common/testing';
 import { CheckboxPanelModule } from '../checkbox-panel.module';
 
 import { CheckboxPanelComponent } from './checkbox-panel.component';
@@ -59,7 +60,7 @@ describe('CheckboxPanelComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toBe('sbb-checkbox-panel-1');
+    expect(component.inputId).toContain('sbb-checkbox-panel-');
   });
 });
 
@@ -126,7 +127,9 @@ describe('CheckboxPanelComponent using mock component', () => {
     expect(opt1.checked).toBe(true);
     expect(modelComponent.checkValue1).toBe(true);
 
-    opt2.click();
+    const element = modelComponentFixture.debugElement.queryAll(By.css('label'))[1];
+    dispatchEvent(element.nativeElement, createMouseEvent('click'));
+    //opt2.checked = true;
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();
