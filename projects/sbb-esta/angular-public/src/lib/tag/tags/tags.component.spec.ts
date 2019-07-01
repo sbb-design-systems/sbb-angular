@@ -108,14 +108,14 @@ describe('TagsComponent with Model attached', () => {
     const secondTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[1]
       .componentInstance;
 
-    expect(secondTag.inputId).toBe('tag-1');
+    expect(secondTag.id).toBe('tag-1');
   });
 
   it('should the third sbb-tag input have an auto generated ID', () => {
     const thirdTag: TagComponent = fixture.debugElement.queryAll(By.directive(TagComponent))[2]
       .componentInstance;
 
-    expect(thirdTag.inputId).toBe('sbb-tag-2');
+    expect(thirdTag.inputId).toMatch(/sbb-tag-\d+-input/);
   });
 
   it('should have all its sbb-tag children with linkMode set to false', () => {

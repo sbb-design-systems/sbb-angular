@@ -1,7 +1,10 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import {
+  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   HostBinding,
@@ -20,10 +23,8 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
+import { CheckboxBase, SbbCheckboxChange } from '../../checkbox/checkbox/checkbox-base';
 import { TagChange } from '../tag.model';
-
-let counter = 0;
 
 /**
  * Injection token used to provide the parent component to TagComponent.
@@ -44,17 +45,11 @@ export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class TagComponent extends CheckboxComponent implements OnInit, OnChanges, OnDestroy {
-  /**
-   * A subject on a state change of a tag.
-   */
-  readonly stateChange$ = new Subject<void>();
-  /**
-   * Event generated on tag change.
-   */
-  @Output() readonly tagChange = new EventEmitter<TagChange>();
+export class TagComponent extends CheckboxBase implements OnInit, OnChanges, OnDestroy {
+  /** @docs-private  */
+  @HostBinding('class.sbb-tag')
+  sbbTagClass = true;
 
-  private _linkMode = false;
   /**
    * Link mode of a tag.
    */
@@ -65,6 +60,7 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
     this._linkMode = value;
     this.active = value;
   }
+  private _linkMode = false;
 
   /**
    * Label of the tag.
@@ -77,62 +73,50 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
   @Input()
   amount: number;
 
-  private _inputId: string;
   /**
-   * Identifier of a tag.
+   * Event generated on tag change.
+   * @deprecated Use change event instead.
    */
-  @Input('id')
-  get inputId(): string {
-    return this._inputId;
-  }
-  set inputId(value: string) {
-    this._inputId = value ? value : `sbb-tag-${counter++}`;
-  }
+  // TODO: Remove for Angular 9.
+  @Output() readonly tagChange = new EventEmitter<TagChange>();
 
-  private _checkedTag = false;
+  /**
+   * A subject on a state change of a tag.
+   * @deprecated No longer required.
+   */
+  // TODO: Remove for Angular 9.
+  readonly stateChange$ = new Subject<void>();
   /**
    * A subject on tag checking.
    */
+  // TODO: Check usage and rename without $ for Angular 9.
   readonly tagChecking$ = new Subject<any>();
-  /**
-   * Refers if a tag is checked.
-   */
-  @Input()
-  get checked(): any {
-    return this._checkedTag;
-  }
-  set checked(value: any) {
-    this._checkedTag = value;
-    this.tagChecking$.next(value);
-    this.tagChange.emit(new TagChange(this, value));
-    this._changeDetector.markForCheck();
-  }
-  /**
-   * Css class of a tag.
-   */
-  @HostBinding('class.sbb-tag')
-  sbbTagClass = true;
 
-  private _active = false;
-  /**
-   * Refers if a tag is active.
-   */
+  /** Refers if a tag is active. */
   @HostBinding('class.sbb-tag-active')
   get active() {
     return this._active || (this.checked && !this.disabled);
   }
   set active(value: boolean) {
     this._active = value;
-    this._changeDetector.markForCheck();
+    this._changeDetectorRef.markForCheck();
   }
+  private _active = false;
 
   constructor(
-    @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer,
+    @Optional() @Inject(TAGS_CONTAINER) private _tagsContainer: any,
     private _zone: NgZone,
-    changeDetector: ChangeDetectorRef
+    changeDetectorRef: ChangeDetectorRef,
+    focusMonitor: FocusMonitor,
+    elementRef: ElementRef<HTMLElement>,
+    @Attribute('tabindex') tabIndex: string
   ) {
-    super(changeDetector);
+    super(changeDetectorRef, focusMonitor, elementRef, tabIndex, 'tag');
 
+    this.change.subscribe((e: SbbCheckboxChange) => {
+      this.tagChecking$.next(e.checked);
+      this.tagChange.emit(new TagChange(this, e.checked));
+    });
     this._zone.onStable
       .pipe(first())
       .subscribe(() => this._zone.run(() => this.tagChecking$.next(this.checked)));
@@ -155,11 +139,9 @@ export class TagComponent extends CheckboxComponent implements OnInit, OnChanges
   /**
    * Set a tag to checked status.
    * @param checked Value of tag checked.
+   * @deprecated Use the checked property.
    */
   setTagChecked(checked: boolean) {
     this.checked = checked;
-    this.onChange(checked);
-    this.onTouched();
-    this.writeValue(checked);
   }
 }

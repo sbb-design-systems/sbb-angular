@@ -1,17 +1,17 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import {
+  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
-  HostBinding,
   Input,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { CheckboxComponent } from '../../checkbox/checkbox/checkbox.component';
-
-let counter = 0;
+import { CheckboxBase } from '../../checkbox/checkbox/checkbox-base';
 
 @Component({
   selector: 'sbb-checkbox-panel',
@@ -27,7 +27,7 @@ let counter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class CheckboxPanelComponent extends CheckboxComponent {
+export class CheckboxPanelComponent extends CheckboxBase {
   /**
    * Label of a multiple checkbox panel.
    */
@@ -40,20 +40,19 @@ export class CheckboxPanelComponent extends CheckboxComponent {
   subtitle?: string;
 
   /**
-   * Multiple checkbox panel identifier.
-   */
-  @Input()
-  @HostBinding('id')
-  inputId = `sbb-checkbox-panel-${counter++}`;
-
-  /**
    * Returns the subtitle of a multiple checkbox panel.
+   * @deprecated Check subtitle
    */
   get hasSubtitle() {
     return !!this.subtitle;
   }
 
-  constructor(changeDetector: ChangeDetectorRef) {
-    super(changeDetector);
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    focusMonitor: FocusMonitor,
+    elementRef: ElementRef<HTMLElement>,
+    @Attribute('tabindex') tabIndex: string
+  ) {
+    super(changeDetectorRef, focusMonitor, elementRef, tabIndex, 'checkbox-panel');
   }
 }

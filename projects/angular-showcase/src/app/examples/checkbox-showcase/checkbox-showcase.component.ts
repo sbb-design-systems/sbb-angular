@@ -9,6 +9,7 @@ export class CheckboxShowcaseComponent {
   required: boolean;
   disabled: boolean;
   checked: boolean;
+  changeCounter = 0;
 
   checkboxOptions = [
     {
@@ -27,4 +28,8 @@ export class CheckboxShowcaseComponent {
       selected: false
     }
   ];
+
+  incrementChangeCounter() {
+    this.changeCounter++;
+  }
 }

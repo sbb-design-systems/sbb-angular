@@ -1,14 +1,17 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import {
+  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
-  Input,
+  HostBinding,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { BaseCheckbox } from './base-checkbox';
+import { CheckboxBase } from './checkbox-base';
 
 @Component({
   selector: 'sbb-checkbox',
@@ -24,8 +27,16 @@ import { BaseCheckbox } from './base-checkbox';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent extends BaseCheckbox {
-  constructor(changeDetector: ChangeDetectorRef) {
-    super(changeDetector);
+export class CheckboxComponent extends CheckboxBase {
+  /** @docs-private */
+  @HostBinding('class.sbb-checkbox') checkboxClass = true;
+
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    focusMonitor: FocusMonitor,
+    elementRef: ElementRef<HTMLElement>,
+    @Attribute('tabindex') tabIndex: string
+  ) {
+    super(changeDetectorRef, focusMonitor, elementRef, tabIndex);
   }
 }

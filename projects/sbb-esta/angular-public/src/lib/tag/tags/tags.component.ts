@@ -34,67 +34,54 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
    * Total amount of results found.
    */
   get totalAmount(): number {
-    return this.tags
-      .map(t => t.amount)
-      .reduce((amount1, amount2) => {
-        return Number(amount1) + Number(amount2);
-      }, 0);
+    return this.tags.map(t => Number(t.amount)).reduce((current, next) => current + next, 0);
   }
 
-  private _tagsCheckingSubscription = Subscription.EMPTY;
-  private _tagChecking$: Observable<TagComponent[]>;
-  /**
-   * Css class associated to sbb-tags.
-   */
+  /** Css class associated to sbb-tags. */
   @HostBinding('class.sbb-tags')
   sbbTagsClass = true;
-  /**
-   * Refers to the tags contained.
-   */
+  /** Refers to the tags contained. */
   @ContentChildren(forwardRef(() => TagComponent))
   tags: QueryList<TagComponent>;
-  /**
-   * Refers to the tag always displayed in the filter.
-   */
+  /** Refers to the tag always displayed in the filter. */
   @ViewChild('allTag', { static: true })
   allTag: TagComponent;
 
+  /** @docs-private */
+  _amount: Observable<number>;
+
+  private _tagsCheckingSubscription = Subscription.EMPTY;
+
   ngAfterContentInit() {
     this._tagsCheckingSubscription = this.tagsHandleChecking();
+    this._amount = merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes).pipe(
+      map(tags => tags.reduce((current, next) => current + Number(next.amount), 0))
+    );
   }
 
   ngOnDestroy() {
     this._tagsCheckingSubscription.unsubscribe();
   }
 
-  setAllTagState() {
-    const values = this.tags.map(t => {
-      if (t.disabled) {
-        return false;
-      }
-      return t.checked;
-    });
-
-    const hasAcheckedTag = values.indexOf(true) !== -1;
-
-    if (!hasAcheckedTag) {
-      this.allTag.setTagChecked(true);
-    } else {
-      this.allTag.setTagChecked(false);
-    }
+  tagsHandleChecking(): Subscription {
+    return merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes)
+      .pipe(
+        map(tags =>
+          tags.reduce(
+            (current, next) => current.concat(next.tagChecking$, next.change),
+            [] as Observable<unknown>[]
+          )
+        ),
+        switchMap(o => merge(...o))
+      )
+      .subscribe(() => this.setAllTagState());
   }
 
-  tagsHandleChecking(): Subscription {
-    this._tagChecking$ = merge<TagComponent[]>(of(this.tags.toArray()), this.tags.changes);
-
-    return this._tagChecking$
-      .pipe(
-        map(tags => tags.map(t => merge(t.tagChecking$, t.stateChange$))),
-        switchMap(tagStateChecking$ => merge(...tagStateChecking$))
-      )
-      .subscribe(() => {
-        this.setAllTagState();
-      });
+  setAllTagState() {
+    const checkAllTag = this.tags.map(t => !t.disabled && t.checked).every(v => !v);
+    if (checkAllTag !== this.allTag.checked) {
+      this.allTag.checked = checkAllTag;
+    }
   }
 
   allTagClick() {
