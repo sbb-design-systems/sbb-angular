@@ -28,6 +28,9 @@ import { LabelComponent } from '../label/label.component';
   providers: [{ provide: FORM_FIELD, useExisting: FieldComponent }]
 })
 export class FieldComponent implements AfterContentInit, OnDestroy {
+  /** @docs-private */
+  @HostBinding('class.sbb-input-field')
+  _fieldClass = true;
   /**
    * The label text for the input.
    */
