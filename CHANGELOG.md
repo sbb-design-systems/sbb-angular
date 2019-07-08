@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.1.1...8.1.2) (2019-07-08)
+
+
+### Bug Fixes
+
+* **table:** pinMode fails gracefully on ie ([#94](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/94)) ([75420e9](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/75420e9)), closes [#58](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/58)
+* **typography:** fix font-size for fieldset 4k and 5k ([#71](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/71)) ([e1d6808](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/e1d6808))
+
+
+
 ### [8.1.1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.1.0...8.1.1) (2019-07-03)
 
 
