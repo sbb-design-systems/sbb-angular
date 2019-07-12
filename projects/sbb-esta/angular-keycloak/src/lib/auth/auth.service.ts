@@ -15,15 +15,27 @@ export class AuthService {
     @Inject(KEYCLOAK_LOGIN_OPTIONS) @Optional() private _loginOptions: KeycloakLoginOptions = {}
   ) {}
 
+  /**
+   * Redirects to login form.
+   * @param options Login options.
+   */
   login(options?: KeycloakLoginOptions): Promise<void> {
     const loginOptions = Object.assign({}, this._loginOptions, options);
     return this._toNativePromise(this.keycloak.login(loginOptions));
   }
 
+  /**
+   * Redirects to logout.
+   * @param options Logout options.
+   * @param options.redirectUri Specifies the uri to redirect to after logout.
+   */
   logout(options?: any): Promise<void> {
     return this._toNativePromise(this.keycloak.logout(options));
   }
 
+  /**
+   * Is true if the user is authenticated, false otherwise.
+   */
   authenticated(): boolean {
     return this.keycloak.authenticated;
   }
@@ -37,28 +49,36 @@ export class AuthService {
     return this._toNativePromise(this.keycloak.updateToken(minValidity));
   }
 
+  /**
+   * Returns the current token.
+   */
   getToken(): string {
     return this.keycloak.token;
   }
 
+  /**
+   * Returns an instance of HttpHeaders with the Authorization entry
+   * or an empty instance of HttpHeaders, if the token is not available.
+   */
   getAuthHeader(): HttpHeaders {
     const authToken = this.getToken();
-    return new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
+    return authToken
+      ? new HttpHeaders().set('Authorization', `Bearer ${authToken}`)
+      : new HttpHeaders();
   }
 
+  /**
+   * Returns or loads the user profile information.
+   * If no user is authenticated, returns an observable of undefined.
+   */
   getUserInfo(): Observable<KeycloakProfile | undefined> {
-    if (!this.authenticated() || this.keycloak.profile) {
+    if (!this.authenticated()) {
+      return of(undefined);
+    } else if (this.keycloak.profile) {
       return of(this.keycloak.profile);
+    } else {
+      return from(this._toNativePromise(this.keycloak.loadUserProfile()));
     }
-
-    return from(
-      new Promise((resolve, reject) => {
-        this.keycloak
-          .loadUserProfile()
-          .success(resolve)
-          .error(err => reject(err));
-      })
-    );
   }
 
   private _toNativePromise<TSuccess, TError>(
