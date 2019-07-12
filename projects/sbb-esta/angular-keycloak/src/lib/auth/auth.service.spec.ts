@@ -14,30 +14,69 @@ import { KeycloakProfile } from 'keycloak-js';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
+  class KeycloakPromise {
+    private _resolve?: Function;
+    private _reject?: Function;
+
+    static resolveAfterwards(value?: any) {
+      return new KeycloakPromise().resolveAfterwards(value);
+    }
+
+    static rejectAfterwards(value?: any) {
+      return new KeycloakPromise().rejectAfterwards(value);
+    }
+
+    success(resolve: Function) {
+      this._resolve = resolve;
+      return this;
+    }
+
+    error(reject: Function) {
+      this._reject = reject;
+      return this;
+    }
+
+    resolveAfterwards(value?: any) {
+      setTimeout(() => this._resolve(value), 10);
+      return this;
+    }
+
+    rejectAfterwards(value?: any) {
+      setTimeout(() => this._reject(value), 10);
+      return this;
+    }
+  }
+
   it('should call .login on the AuthService.keycloak on login', async () => {
     // given
     const sut = new AuthService();
+    let loginCalled = false;
     sut.keycloak = {
-      login: () => ({ success: () => ({ error: () => {} }) })
+      login: () => {
+        loginCalled = true;
+        return KeycloakPromise.resolveAfterwards();
+      }
     } as any;
-    spyOn(sut.keycloak, 'login');
     // when
     await sut.login();
     // then
-    expect(sut.keycloak.login).toHaveBeenCalled();
+    expect(loginCalled).toBeTruthy();
   });
 
   it('should call .logout on the AuthService.keycloak on logout', async () => {
     // given
     const sut = new AuthService();
+    let logoutCalled = false;
     sut.keycloak = {
-      logout: () => ({ success: () => ({ error: () => {} }) })
+      logout: () => {
+        logoutCalled = true;
+        return KeycloakPromise.resolveAfterwards();
+      }
     } as any;
-    spyOn(sut.keycloak, 'logout');
     // when
     await sut.logout();
     // then
-    expect(sut.keycloak.logout).toHaveBeenCalled();
+    expect(logoutCalled).toBeTruthy();
   });
 
   it(`should return the value of .authenticated on the EstaAuthService.keycloak
@@ -71,12 +110,7 @@ describe('AuthService', () => {
     const sut = new AuthService();
     const minValidity = 5;
     const keyCloakMock = {
-      updateToken: () => ({
-        success: callback => {
-          callback(true);
-          return { error: () => {} };
-        }
-      })
+      updateToken: () => KeycloakPromise.resolveAfterwards(true)
     };
     sut.keycloak = keyCloakMock as any;
     // when
@@ -87,29 +121,21 @@ describe('AuthService', () => {
   });
 
   it(`should return a promise when we call refreshToken. This promise must be
-        rejected when an error during refresh occured`, done => {
+        rejected when an error during refresh occured`, async () => {
     // given
     const sut = new AuthService();
     const minValidity = 5;
     const errorMessage = 'The refresh of the token failed';
     const keyCloakMock = {
-      updateToken: () => ({
-        success: () => ({
-          error: callback => callback(errorMessage)
-        })
-      })
+      updateToken: () => KeycloakPromise.rejectAfterwards(errorMessage)
     };
     sut.keycloak = keyCloakMock as any;
-    // when
-    const promise = sut.refreshToken(minValidity);
-    // then
-    promise.then(
-      () => fail(),
-      err => {
-        expect(err).toBe(errorMessage);
-        done();
-      }
-    );
+    try {
+      await sut.refreshToken(minValidity);
+      fail();
+    } catch (err) {
+      expect(err).toBe(errorMessage);
+    }
   });
 
   it(`should return an Observable that streams the userprofile`, () => {
@@ -125,7 +151,7 @@ describe('AuthService', () => {
   });
 
   it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet.
-    It should then stream the loaded profile`, () => {
+    It should then stream the loaded profile`, async () => {
     // given
     const sut = new AuthService();
     const userprofile = {
@@ -134,40 +160,30 @@ describe('AuthService', () => {
     } as Keycloak.KeycloakProfile;
     sut.keycloak = {
       profile: undefined,
-      loadUserProfile: () => ({
-        success: callback => {
-          callback(userprofile);
-          return {
-            error: () => {}
-          };
-        }
-      })
+      loadUserProfile: () => KeycloakPromise.resolveAfterwards(userprofile)
     } as any;
     spyOn(sut, 'authenticated').and.returnValue(true);
-    sut.getUserInfo().subscribe(profile => expect(profile).toEqual(userprofile));
+    const profile = await sut.getUserInfo().toPromise();
+    expect(profile).toEqual(userprofile);
   });
 
   it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet.
-    It should then stream an error if an error occured during the loading of the profile`, () => {
+    It should then stream an error if an error occured during the loading of the profile`, async () => {
     // given
     const sut = new AuthService();
     const errorMessage = 'An error occured while loading the profile';
     sut.keycloak = {
       profile: false,
-      loadUserProfile: () => ({
-        success: () => ({
-          error: errorCallback => errorCallback(errorMessage)
-        })
-      })
+      loadUserProfile: () => KeycloakPromise.rejectAfterwards(errorMessage)
     } as any;
     spyOn(sut, 'authenticated').and.returnValue(true);
     // when - then
-    sut.getUserInfo().subscribe(
-      p => {
-        throw new Error('Unexpected!');
-      },
-      e => expect(e).toEqual(errorMessage)
-    );
+    try {
+      await sut.getUserInfo().toPromise();
+      fail();
+    } catch (err) {
+      expect(err).toEqual(errorMessage);
+    }
   });
 
   it('must return the AuthHeader with the token', () => {
