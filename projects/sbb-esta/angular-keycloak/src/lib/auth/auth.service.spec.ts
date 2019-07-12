@@ -138,7 +138,7 @@ describe('AuthService', () => {
     }
   });
 
-  it(`should return an Observable that streams the userprofile`, () => {
+  it(`should return an Observable that streams the userprofile`, async () => {
     // given
     const sut = new AuthService();
     const profile = {
@@ -147,7 +147,8 @@ describe('AuthService', () => {
     } as KeycloakProfile;
     sut.keycloak = { profile } as any;
     spyOn(sut, 'authenticated').and.returnValue(false);
-    sut.getUserInfo().subscribe(p => expect(p).toEqual(profile));
+    const p = await sut.getUserInfo().toPromise();
+    expect(p).toEqual(profile);
   });
 
   it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet.

@@ -54,6 +54,10 @@ module.exports = function(config) {
   });
 
   if (process.env.TRAVIS) {
+    config.reporters = config.reporters
+      .filter(r => r !== 'progress' && r !== 'kjhtml')
+      .concat('dots');
+
     // This defines how often a given browser should be launched in the same Travis
     // container. This is helpful if we want to shard tests across the same browser.
     const parallelBrowserInstances = Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
