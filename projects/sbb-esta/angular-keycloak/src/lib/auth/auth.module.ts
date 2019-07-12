@@ -8,6 +8,13 @@ import { KeycloakConfig } from './keycloak-config';
 
 @NgModule()
 export class AuthModule {
+  /**
+   * Configure keycloak via available parameters.
+   * @param config A config object or an url to the config json.
+   * @param options An options object. Defaults to { onLoad: 'check-sso', flow: 'implicit' }.
+   * @param loginOptions An object for login options. Defaults to { idpHint: 'adfs_sbb_prod' }.
+   *  To avoid configuring an idpHint, provide an object with no idpHint key.
+   */
   static forRoot(
     config: string | KeycloakConfig,
     options: KeycloakInitOptions = { onLoad: 'check-sso', flow: 'implicit' },
