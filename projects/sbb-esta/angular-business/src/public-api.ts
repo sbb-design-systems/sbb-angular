@@ -1,6 +1,7 @@
 /*
  * Public API Surface of angular-business
  */
+export * from './lib/accordion/accordion';
 export * from './lib/autocomplete/autocomplete';
 export * from './lib/button/button';
 export * from './lib/checkbox/checkbox';
