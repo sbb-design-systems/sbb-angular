@@ -2,12 +2,16 @@
 
 .sbb-expansion-panel-header {
   @include expansionPanelHeader();
-}
 
-.sbb-expansion-indicator {
-  @if $sbbBusiness {
-    @include expansionIndicatorBusiness();
-  } @else {
-    @include expansionIndicator();
+  &.sbb-expanded {
+    & > .sbb-expansion-indicator {
+      @include expansionIndicator(true);
+    }
+  }
+
+  &:not(.sbb-expanded) {
+    & > .sbb-expansion-indicator {
+      @include expansionIndicator(false);
+    }
   }
 }

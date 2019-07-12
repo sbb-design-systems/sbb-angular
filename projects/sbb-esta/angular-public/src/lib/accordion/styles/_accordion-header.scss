@@ -75,27 +75,7 @@
   }
 }
 
-@mixin expansionIndicator() {
-  @include svgIconColor($sbb-accordion-toggle-icon-color);
-  position: absolute;
-  top: 50%;
-  right: pxToEm($sbb-accordion-toggle-size);
-  width: pxToEm($sbb-accordion-toggle-size);
-  height: pxToEm($sbb-accordion-toggle-size);
-  border: 1px solid $sbb-accordion-toggle-color;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  text-align: center;
-
-  svg {
-    width: pxToEm($sbb-accordion-toggle-icon-size);
-    height: pxToEm($sbb-accordion-toggle-icon-size);
-    vertical-align: middle;
-    margin-top: pxToEm(2);
-  }
-}
-
-@mixin exapansionToggleArrow() {
+@mixin expansionToggleArrow($icon) {
   content: '';
   display: inline-block;
 
@@ -108,30 +88,27 @@
   width: pxToEm($sbb-accordion-toggle-size);
   height: pxToEm($sbb-accordion-toggle-size);
 
-  background: url($sbb-accordion-toggle) no-repeat;
-  background-size: toPx($sbb-accordion-toggle-size) toPx($sbb-accordion-toggle-size);
+  background: url($icon) no-repeat;
+  background-position: center;
+  background-size: toPx($sbb-accordion-toggle-icon-size) toPx($sbb-accordion-toggle-icon-size);
 }
 
-@mixin expansionIndicatorBusiness() {
-  & > sbb-icon-plus.sbb-icon-component {
-    & > svg {
-      display: none;
+@mixin expansionIndicator($expanded) {
+  &::after {
+    @if $expanded {
+      @include expansionToggleArrow($sbb-accordion-toggle-expanded);
+
+      @include businessOnly() {
+        transform-origin: toPx($sbb-accordion-toggle-icon-size / 2) toPx($sbb-accordion-toggle-icon-size / 4);
+        transform: rotate(180deg);
+      }
+    } @else {
+      @include expansionToggleArrow($sbb-accordion-toggle);
     }
 
-    &::after {
-      @include exapansionToggleArrow();
-    }
-  }
-
-  & > sbb-icon-minus.sbb-icon-component {
-    & > svg {
-      display: none;
-    }
-
-    &::after {
-      @include exapansionToggleArrow();
-      transform-origin: toPx($sbb-accordion-toggle-size / 2) toPx($sbb-accordion-toggle-size / 4);
-      transform: rotate(180deg);
+    @include publicOnly() {
+      border: 1px solid $sbb-accordion-toggle-color;
+      border-radius: 50%;
     }
   }
 }
