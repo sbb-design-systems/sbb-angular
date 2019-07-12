@@ -107,17 +107,31 @@
   right: pxToEm($sbb-accordion-divider-left);
   width: pxToEm($sbb-accordion-toggle-size);
   height: pxToEm($sbb-accordion-toggle-size);
+
   background: url($sbb-accordion-toggle) no-repeat;
+  background-size: toPx($sbb-accordion-toggle-size) toPx($sbb-accordion-toggle-size);
 }
 
 @mixin expansionIndicatorBusiness() {
-  & > sbb-icon-plus::after {
-    @include exapansionToggleArrow();
+  & > sbb-icon-plus.sbb-icon-component {
+    & > svg {
+      display: none;
+    }
+
+    &::after {
+      @include exapansionToggleArrow();
+    }
   }
 
-  & > sbb-icon-minus::after {
-    @include exapansionToggleArrow();
-    transform-origin: toPx($sbb-accordion-toggle-size / 2) toPx($sbb-accordion-toggle-size / 4);
-    transform: rotate(180deg);
+  & > sbb-icon-minus.sbb-icon-component {
+    & > svg {
+      display: none;
+    }
+
+    &::after {
+      @include exapansionToggleArrow();
+      transform-origin: toPx($sbb-accordion-toggle-size / 2) toPx($sbb-accordion-toggle-size / 4);
+      transform: rotate(180deg);
+    }
   }
 }
