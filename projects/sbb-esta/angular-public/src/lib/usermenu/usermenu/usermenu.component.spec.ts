@@ -25,7 +25,11 @@ import { UserMenuComponent } from './usermenu.component';
       [displayName]="user1.displayName"
       (loginRequest)="login()"
     >
-      <img class="image" sbbIcon src="assets/images/user-avatar.png" />
+      <img
+        class="image"
+        sbbIcon
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAAAAADFHGIkAAAAHXRFWHRqaXJhLXN5c3RlbS1pbWFnZS10eXBlAGF2YXRhcuQCGmEAAAHHSURBVHjaXcnpb9owGAZw//9f6aQcW0UcBx9xYFKLQC1ldBvqmMqmjUpQIIQQznKEq9U4QuakmzTt51e23+cBHyRFVhRZVuWzROKNrCpKtEkFoEpyRDmTWDbL5YQSr5IKtHeRc+lqFgp+ST6P9rcaQMmkpkG1FIbB8Ricwi8KFEkSAQPqug6Rf9qdwvC0D16IpkMdGgAjwzC0y8MumD7UxsGv43UyhQyEAU3hFIb5/cFjUMPNw6GoEYxTFDBMMNELL8Gd2hmh3HZ/CykhmAGTUGrkl5vnSX3nwMJ2sy4iRokJOKUM3e6Wq/X+EWW8rb+70xmlHFiMMfJ+uvH95bXhPS/W/iU2GbPiwiQZd7VYVm78+Wp4QUT+p2BcLy5nszSczNefdc7iIm1GOGksnqqVyaLFeBykXwtupSrz8Xwxnpawxf8WnDOC0bfpcDAYPn1ChIgkLii2cuVab9AXBu7Pco5jKooMzVbbg9Gw3/M8r+f1R6N++/6CpoFl2aOe23Vj3W403rjF04BdeR1H6Mai13E6Xt4ErOzatt0R7GjEEdyPFJj3Tqv9n5bz1QTWj/bjP5rN6G5/N0H1ofkaNeoNod6I/q1a5TdkFrmNh+TkvgAAAABJRU5ErkJggrbdEexoxBHcjxSY906r/Z+W89UE1o/24z+azehufzdB9aH5GjXqDaHeiP6tWuU3ZBa5jUIVzVsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMDMtMjFUMTc6MDA6NDgrMTE6MDBIBpwWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTAzLTEyVDA5OjM0OjAzKzExOjAwMqS6YQAAAABJRU5ErkJggg=="
+      />
       <sbb-dropdown>
         <a
           *ngFor="let link of links"
@@ -66,11 +70,9 @@ class UsermenuTestComponent {
 
   login() {
     this.user1.userName = this.userName1;
-    console.log('login successful');
   }
 
   logout(user: any) {
-    console.log('Logout');
     user.userName = null;
   }
 }
@@ -126,11 +128,9 @@ class UsermenuTest2Component {
 
   login2() {
     this.user2.userName = this.userName2;
-    console.log('login successful');
   }
 
   logout(user: any) {
-    console.log('Logout');
     user.userName = null;
   }
 }
@@ -180,11 +180,9 @@ class UsermenuTest3Component {
 
   login3() {
     this.user3.userName = this.userName3;
-    console.log('login successful');
   }
 
   logout(user: any) {
-    console.log('Logout');
     user.userName = null;
   }
 }
