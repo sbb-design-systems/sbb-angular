@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { CheckboxComponent } from './checkbox.component';
 import { dispatchMouseEvent } from '../../../../../angular-public/src/lib/_common/testing';
+
+import { CheckboxComponent } from './checkbox.component';
 
 // tslint:disable:i18n
 @Component({
