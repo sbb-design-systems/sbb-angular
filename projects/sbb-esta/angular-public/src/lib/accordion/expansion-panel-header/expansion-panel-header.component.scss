@@ -2,8 +2,14 @@
 
 .sbb-expansion-panel-header {
   @include expansionPanelHeader();
-}
 
-.sbb-expansion-indicator {
-  @include expansionIndicator();
+  &:not(.sbb-no-toggle) {
+    &.sbb-expanded {
+      @include expansionIndicator(true);
+    }
+
+    &:not(.sbb-expanded) {
+      @include expansionIndicator(false);
+    }
+  }
 }

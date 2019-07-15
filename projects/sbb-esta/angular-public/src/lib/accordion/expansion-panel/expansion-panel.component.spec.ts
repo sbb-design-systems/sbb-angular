@@ -303,16 +303,14 @@ describe('ExpansionPanelComponent', () => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);
     fixture.detectChanges();
 
-    const header = fixture.debugElement.query(By.css('.sbb-expansion-panel-header')).nativeElement;
-
-    expect(header.querySelector('.sbb-expansion-indicator')).toBeTruthy(
+    expect(fixture.debugElement.query(By.css('.sbb-no-toggle'))).toBeFalsy(
       'Expected indicator to be shown.'
     );
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(header.querySelector('.sbb-expansion-indicator')).toBeFalsy(
+    expect(fixture.debugElement.query(By.css('.sbb-no-toggle'))).toBeTruthy(
       'Expected indicator to be hidden.'
     );
   });
@@ -389,12 +387,12 @@ describe('ExpansionPanelComponent', () => {
     });
 
     it('should toggle the expansion indicator', () => {
-      expect(panel.querySelector('.sbb-expansion-indicator')).toBeTruthy();
+      expect(panel.querySelector('.sbb-no-toggle')).toBeFalsy();
 
       fixture.componentInstance.disabled = true;
       fixture.detectChanges();
 
-      expect(panel.querySelector('.sbb-expansion-indicator')).toBeFalsy();
+      expect(panel.querySelector('.sbb-no-toggle')).toBeTruthy();
     });
 
     it('should not be able to toggle the panel via a user action if disabled', () => {
