@@ -162,14 +162,14 @@ describe('AccordionComponent', () => {
 
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-expansion-indicator')).toBeTruthy(
+    expect(panel.nativeElement.querySelector('.sbb-no-toggle')).toBeFalsy(
       'Expected the expansion indicator to be present.'
     );
 
     fixture.componentInstance.hideToggle = true;
     fixture.detectChanges();
 
-    expect(panel.nativeElement.querySelector('.sbb-expansion-indicator')).toBeFalsy(
+    expect(panel.nativeElement.querySelector('.sbb-no-toggle')).toBeTruthy(
       'Expected the expansion indicator to be removed.'
     );
   });
