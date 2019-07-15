@@ -45,23 +45,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    customLaunchers: {
-      BsChrome: {
-        base: 'BrowserStack',
-        os: 'Windows',
-        os_version: '10',
-        browser: 'Chrome'
-      },
-      HeadlessChromeNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-renderer-backgrounding',
-          '--disable-device-discovery-notifications',
-          '--disable-web-security'
-        ]
-      }
-    },
+    customLaunchers: require('../../../browsers.json'),
     singleRun: false,
     // Try Websocket for a faster transmission first. Fallback to polling if necessary.
     transports: ['websocket', 'polling'],
@@ -70,6 +54,10 @@ module.exports = function(config) {
   });
 
   if (process.env.TRAVIS) {
+    config.reporters = config.reporters
+      .filter(r => r !== 'progress' && r !== 'kjhtml')
+      .concat('dots');
+
     // This defines how often a given browser should be launched in the same Travis
     // container. This is helpful if we want to shard tests across the same browser.
     const parallelBrowserInstances = Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;

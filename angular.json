@@ -99,10 +99,17 @@
             ]
           },
           "configurations": {
+            "pr": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "sourceMap": false,
+              "preserveSymlinks": false
+            },
             "ci": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
               "sourceMap": false,
               "preserveSymlinks": false
             }
@@ -181,21 +188,19 @@
             }
           },
           "configurations": {
-            "ci": {
+            "pr": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
+              "browsers": "ChromeHeadless,FirefoxHeadless",
               "sourceMap": false,
               "progress": false
             },
-            "local": {
-              "codeCoverage": true
-            },
-            "datepicker": {
-              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
-            },
-            "toggle": {
-              "main": "projects/sbb-esta/angular-public/src/lib/datepicker/test.ts"
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
             }
           }
         },
@@ -244,15 +249,19 @@
             }
           },
           "configurations": {
-            "ci": {
+            "pr": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
+              "browsers": "ChromeHeadless,FirefoxHeadless",
               "sourceMap": false,
               "progress": false
             },
-            "local": {
-              "codeCoverage": true
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
             }
           }
         },
@@ -296,15 +305,19 @@
             "karmaConfig": "projects/sbb-esta/angular-icons/karma.conf.js"
           },
           "configurations": {
-            "ci": {
+            "pr": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
+              "browsers": "ChromeHeadless,FirefoxHeadless",
               "sourceMap": false,
               "progress": false
             },
-            "local": {
-              "codeCoverage": true
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
             }
           }
         },
@@ -349,15 +362,19 @@
             "karmaConfig": "projects/sbb-esta/angular-keycloak/karma.conf.js"
           },
           "configurations": {
-            "ci": {
+            "pr": {
               "watch": false,
               "codeCoverage": true,
-              "browsers": "ChromeHeadless",
+              "browsers": "ChromeHeadless,FirefoxHeadless",
               "sourceMap": false,
               "progress": false
             },
-            "local": {
-              "codeCoverage": true
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
             }
           }
         },
