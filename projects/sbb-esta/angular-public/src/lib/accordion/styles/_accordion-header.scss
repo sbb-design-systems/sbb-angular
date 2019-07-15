@@ -77,16 +77,17 @@
 
 @mixin expansionToggleArrow($icon) {
   content: '';
-  display: inline-block;
 
   @include absoluteCenterY;
-
-  position: absolute;
-  top: 50%;
 
   right: pxToEm($sbb-accordion-divider-left);
   width: pxToEm($sbb-accordion-toggle-size);
   height: pxToEm($sbb-accordion-toggle-size);
+
+  @include publicOnly() {
+    border: 1px solid $sbb-accordion-toggle-color;
+    border-radius: 50%;
+  }
 
   background: url($icon) no-repeat;
   background-position: center;
@@ -94,7 +95,7 @@
 }
 
 @mixin expansionIndicator($expanded) {
-  &::after {
+  &::before {
     @if $expanded {
       @include expansionToggleArrow($sbb-accordion-toggle-expanded);
 
@@ -104,11 +105,6 @@
       }
     } @else {
       @include expansionToggleArrow($sbb-accordion-toggle);
-    }
-
-    @include publicOnly() {
-      border: 1px solid $sbb-accordion-toggle-color;
-      border-radius: 50%;
     }
   }
 }

@@ -4,14 +4,10 @@
   @include expansionPanelHeader();
 
   &.sbb-expanded {
-    & > .sbb-expansion-indicator {
-      @include expansionIndicator(true);
-    }
+    @include expansionIndicator(true);
   }
 
   &:not(.sbb-expanded) {
-    & > .sbb-expansion-indicator {
-      @include expansionIndicator(false);
-    }
+    @include expansionIndicator(false);
   }
 }
