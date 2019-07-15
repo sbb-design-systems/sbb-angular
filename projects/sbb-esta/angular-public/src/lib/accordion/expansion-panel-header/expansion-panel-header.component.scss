@@ -3,11 +3,13 @@
 .sbb-expansion-panel-header {
   @include expansionPanelHeader();
 
-  &.sbb-expanded {
-    @include expansionIndicator(true);
-  }
+  &:not(.sbb-no-toggle) {
+    &.sbb-expanded {
+      @include expansionIndicator(true);
+    }
 
-  &:not(.sbb-expanded) {
-    @include expansionIndicator(false);
+    &:not(.sbb-expanded) {
+      @include expansionIndicator(false);
+    }
   }
 }
