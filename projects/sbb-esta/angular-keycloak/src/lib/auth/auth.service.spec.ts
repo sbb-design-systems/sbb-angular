@@ -138,22 +138,32 @@ describe('AuthService', () => {
     }
   });
 
-  it(`should return an Observable that streams the userprofile`, async () => {
-    // given
+  it(`should return an Observable that emits undefined on unauthenticated`, async () => {
     const sut = new AuthService();
-    const profile = {
-      firstname: 'Ruffy',
-      name: 'Monkey D'
-    } as KeycloakProfile;
+    const profile: KeycloakProfile = {
+      firstName: 'Ruffy',
+      lastName: 'Monkey D'
+    };
     sut.keycloak = { profile } as any;
     spyOn(sut, 'authenticated').and.returnValue(false);
+    const p = await sut.getUserInfo().toPromise();
+    expect(p).toBeUndefined();
+  });
+
+  it(`should return an Observable that streams the userprofile`, async () => {
+    const sut = new AuthService();
+    const profile: KeycloakProfile = {
+      firstName: 'Ruffy',
+      lastName: 'Monkey D'
+    };
+    sut.keycloak = { profile } as any;
+    spyOn(sut, 'authenticated').and.returnValue(true);
     const p = await sut.getUserInfo().toPromise();
     expect(p).toEqual(profile);
   });
 
   it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet.
     It should then stream the loaded profile`, async () => {
-    // given
     const sut = new AuthService();
     const userprofile = {
       firstname: 'Ruffy',
