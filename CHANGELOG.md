@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.2.1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.2.0...8.2.1) (2019-07-16)
+
+
+### Bug Fixes
+
+* **business/checkbox:** add sbb-checkbox class to public and business ([#109](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/109)) ([3c4a4e5](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/3c4a4e5))
+
+
+
 ## [8.2.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.1.2...8.2.0) (2019-07-16)
 
 
