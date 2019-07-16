@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.1.2...8.2.0) (2019-07-16)
+
+
+### Bug Fixes
+
+* **keycloak:** do not add authorization header on unauthenticated ([#101](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/101)) ([040ab71](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/040ab71)), closes [#95](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/95)
+* **select:** fix native select icon in ie ([#105](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/105)) ([cdbcb75](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/cdbcb75)), closes [#102](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/102)
+* **textarea:** fix textarea update issue ([#107](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/107)) ([103923f](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/103923f)), closes [#106](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/106)
+
+
+### Build System
+
+* add browserstack test environments ([#100](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/100)) ([16010ad](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/16010ad))
+* configure branch for sonar ([#108](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/108)) ([916e83f](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/916e83f))
+
+
+### Features
+
+* **business/accordion:** expose accordion for business ([#99](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/99)) ([1c231fd](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/1c231fd)), closes [#77](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/77)
+
+
+
 ### [8.1.2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.1.1...8.1.2) (2019-07-08)
 
 
@@ -88,7 +110,7 @@ Check the documentation for the new specification.
 
 
 
-## [8.0.0-beta.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/v1.1.0...v8.0.0-beta.0) (2019-06-14)
+## [8.0.0-beta.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/7.0.0...8.0.0-beta.0) (2019-06-14)
 
 
 ### refactor
@@ -102,7 +124,7 @@ Check the documentation for the new specification.
 
 
 
-## [7.0.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/v1.1.0...v7.0.0) (2019-05-28)
+## [7.0.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/v1.1.0...7.0.0) (2019-05-28)
 
 
 ### Bug Fixes
