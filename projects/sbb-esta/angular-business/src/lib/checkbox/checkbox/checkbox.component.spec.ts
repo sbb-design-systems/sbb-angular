@@ -81,9 +81,7 @@ describe('CheckboxComponent using mock component', () => {
   });
 
   it('should have sbb-checkbox class', () => {
-    const checkboxComp = modelComponentFixture.debugElement.query(
-      By.css('.sbb-checkbox')
-    );
+    const checkboxComp = modelComponentFixture.debugElement.query(By.css('.sbb-checkbox'));
     expect(checkboxComp).toBeTruthy();
   });
 
