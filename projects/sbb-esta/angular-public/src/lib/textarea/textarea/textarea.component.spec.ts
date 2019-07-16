@@ -1,6 +1,6 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
@@ -11,9 +11,16 @@ import { TextareaComponent } from './textarea.component';
 
 @Component({
   selector: 'sbb-textarea-test',
-  template:
-    '<sbb-textarea [(ngModel)]="textArea1" [minlength]="minlength" [maxlength]="maxlength"' +
-    '[required]="required" [readonly]="readonly" [disabled]="disabled"></sbb-textarea>'
+  template: `
+    <sbb-textarea
+      [(ngModel)]="textArea1"
+      [minlength]="minlength"
+      [maxlength]="maxlength"
+      [required]="required"
+      [readonly]="readonly"
+      [disabled]="disabled"
+    ></sbb-textarea>
+  `
 })
 class TextareaTestComponent {
   required: boolean;
@@ -57,8 +64,6 @@ describe('TextareaComponent behaviour', () => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule, FormsModule],
       declarations: [TextareaTestComponent, TextareaComponent]
-    }).overrideComponent(TextareaComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
     });
   });
 
@@ -71,9 +76,7 @@ describe('TextareaComponent behaviour', () => {
 
   it('should be required', () => {
     component.required = true;
-    const textarea = innerComponent.query(
-      e => e.nativeElement.nodeName.toLowerCase() === 'textarea'
-    );
+    const textarea = innerComponent.query(By.css('textarea'));
     typeInElement('', textarea.nativeElement);
     fixture.detectChanges();
     expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
@@ -113,6 +116,26 @@ describe('TextareaComponent behaviour', () => {
       getComputedStyle(fixture.debugElement.nativeElement.querySelector('.ng-invalid'))
         .borderTopColor
     ).toBe('rgb(235, 0, 0)');
+  });
+
+  // See https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/106
+  it('should update the inner value twice', async () => {
+    const textarea = fixture.debugElement.query(By.css('textarea'))
+      .nativeElement as HTMLTextAreaElement;
+    typeInElement('test1', textarea);
+    fixture.detectChanges();
+    expect(component.textArea1).toEqual('test1');
+    component.textArea1 = 'test2';
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(textarea.value).toEqual('test2');
+    typeInElement('test3', textarea);
+    fixture.detectChanges();
+    expect(component.textArea1).toEqual('test3');
+    component.textArea1 = 'test4';
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(textarea.value).toEqual('test4');
   });
 });
 

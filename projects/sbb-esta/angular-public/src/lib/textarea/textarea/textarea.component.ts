@@ -1,8 +1,10 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
   HostBinding,
   Input,
@@ -29,64 +31,92 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaComponent implements ControlValueAccessor {
-  /**
-   * Text content in a textarea
-   */
-  textContent: string;
-  /**
-   * Class property that represents the autosize textarea
-   */
-  matTextareaAutosize = true;
+  /** The value of the textarea. */
+  @Input()
+  get value() {
+    return this._textarea ? this._textarea.nativeElement.value : '';
+  }
+  set value(value: string) {
+    if (this._textarea) {
+      this._textarea.nativeElement.value = value;
+    }
+  }
 
   /**
-   * Class property that disables the textarea status
+   * Text content in a textarea.
+   * @deprecated Use value instead.
    */
+  get textContent(): string {
+    return this.value;
+  }
+  set textContent(value: string) {
+    this.value = value;
+  }
+  /** Class property that represents the autosize textarea. */
+  matTextareaAutosize = true;
+
+  /** Class property that disables the textarea status. */
   @HostBinding('class.disabled')
   @Input()
-  disabled: boolean;
-  /**
-   * Class property that sets readonly the textarea content
-   */
-  @Input() readonly: boolean;
-  /**
-   * Class property that sets the maxlength of the textarea content
-   */
-  @Input() maxlength: number;
-  /**
-   * Class property that represents an observer on the number of digits in a textarea
-   */
-  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
-  /**
-   * Class property that sets the minlength of the textarea content
-   */
-  @Input() minlength: number;
-  /**
-   * Class property that sets required the textarea
-   */
-  @Input() required = false;
-  /**
-   * Placeholder value for the textarea.
-   */
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+    this._changeDetector.markForCheck();
+  }
+  private _disabled = false;
+  /** Class property that sets readonly the textarea content. */
+  @Input()
+  get readonly(): boolean {
+    return this._readonly;
+  }
+  set readonly(value: boolean) {
+    this._readonly = coerceBooleanProperty(value);
+  }
+  private _readonly = false;
+  /** Class property that sets the maxlength of the textarea content. */
+  @Input()
+  get maxlength(): number {
+    return this._maxlength;
+  }
+  set maxlength(value: number) {
+    this._maxlength = coerceNumberProperty(value);
+  }
+  private _maxlength: number;
+  /** Class property that sets the minlength of the textarea content. */
+  @Input()
+  get minlength(): number {
+    return this._minlength;
+  }
+  set minlength(value: number) {
+    this._minlength = coerceNumberProperty(value);
+  }
+  private _minlength: number;
+  /** Class property that sets required the textarea. */
+  @Input()
+  get required(): boolean {
+    return this._required;
+  }
+  set required(value: boolean) {
+    this._required = coerceBooleanProperty(value);
+  }
+  private _required = false;
+  /** Placeholder value for the textarea. */
   @Input() placeholder = '';
-  /**
-   * Identifier of textarea
-   */
+  /** Identifier of textarea. */
   @Input() inputId = `sbb-textarea-input-id-${++nextId}`;
-  /**
-   * Class property that automatically resize a textarea to fit its content
-   */
+  /** @docs-private */
+  @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;
+  /** Class property that automatically resize a textarea to fit its content. */
   @ViewChild('autosize', { static: true }) autosize: CdkTextareaAutosize;
-  /**
-   * Class property that represents the focused class status
-   */
+  /** Class property that represents the focused class status. */
   @HostBinding('class.focused') focusedClass: boolean;
-  /**
-   * Class property that represents a change caused by a new digit in a textarea
-   */
+  /** Class property that represents an observer on the number of digits in a textarea. */
+  counterObserver$: BehaviorSubject<number> = new BehaviorSubject<number>(this.maxlength);
+  /** Class property that represents a change caused by a new digit in a textarea. */
   propagateChange: any = () => {};
-  /**
-   * The registered callback function called when a blur event occurs on the input element.
-   */
+  /** The registered callback function called when a blur event occurs on the input element. */
   onTouched = () => {};
 
   constructor(private _changeDetector: ChangeDetectorRef, private _ngZone: NgZone) {}
@@ -112,9 +142,8 @@ export class TextareaComponent implements ControlValueAccessor {
   }
 
   writeValue(newValue: any) {
-    this.textContent = newValue == null ? '' : newValue;
-    this.updateDigitsCounter(this.textContent);
-    this._changeDetector.markForCheck();
+    this.value = newValue == null ? '' : newValue;
+    this.updateDigitsCounter(this.value);
   }
 
   registerOnChange(fn: (_: any) => void) {
@@ -135,7 +164,6 @@ export class TextareaComponent implements ControlValueAccessor {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    this._changeDetector.markForCheck();
   }
   /**
    * Method that updates the max number of digits available in the textarea content
