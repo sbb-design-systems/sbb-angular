@@ -1,19 +1,19 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
   HostBinding,
   Input,
   NgZone,
-  ViewChild,
-  ElementRef
+  ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 let nextId = 0;
 
