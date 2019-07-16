@@ -83,6 +83,8 @@ export class CheckboxBase implements ControlValueAccessor {
   }
   private _disabled = false;
   /** @docs-private */
+  @HostBinding('class.sbb-checkbox') checkboxClass = true;
+  /** @docs-private */
   @HostBinding('attr.tabindex') _tabIndex = null;
   /** Event emitted when the checkbox's `checked` value changes. */
   @Output() readonly change = new EventEmitter<SbbCheckboxChange<this>>();
