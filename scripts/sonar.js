@@ -5,7 +5,10 @@ if (process.env.SONAR_TOKEN) {
     sonarqubeScanner(
       {
         serverUrl: 'https://sonarcloud.io',
-        token: process.env.SONAR_TOKEN
+        token: process.env.SONAR_TOKEN,
+        options: {
+          'sonar.branch': process.env.TRAVIS_PULL_REQUEST_BRANCH || process.env.TRAVIS_BRANCH
+        }
       },
       resolve
     )
