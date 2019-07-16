@@ -28,9 +28,6 @@ import { CheckboxBase } from './checkbox-base';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent extends CheckboxBase {
-  /** @docs-private */
-  @HostBinding('class.sbb-checkbox') checkboxClass = true;
-
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,

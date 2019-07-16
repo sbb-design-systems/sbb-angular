@@ -80,6 +80,11 @@ describe('CheckboxComponent using mock component', () => {
     expect(modelComponent).toBeTruthy();
   });
 
+  it('should have sbb-checkbox class', () => {
+    const checkboxComp = modelComponentFixture.debugElement.query(By.css('.sbb-checkbox'));
+    expect(checkboxComp).toBeTruthy();
+  });
+
   it('should not have class for indeterminate', () => {
     const checkboxComponentIndeterminate = modelComponentFixture.debugElement.query(
       By.css('.sbb-checkbox-indeterminate')
