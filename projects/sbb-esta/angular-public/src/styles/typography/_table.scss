@@ -119,7 +119,7 @@ $tableCaptionColor: $sbbColorGrey;
 }
 
 @mixin sbbTable() {
-  table.sbb-table {
+  .sbb-table {
     @include table();
   }
 }
