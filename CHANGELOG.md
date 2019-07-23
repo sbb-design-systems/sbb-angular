@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.2.2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.2.1...8.2.2) (2019-07-23)
+
+
+### Bug Fixes
+
+* **table:** fix align helper classes for .sbb-table ([#113](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/113)) ([fad4627](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/fad4627)), closes [#112](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/112)
+
+
+
 ### [8.2.1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.2.0...8.2.1) (2019-07-16)
 
 
