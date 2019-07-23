@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "documentation": {
+      "description": "Generate documentation for the showcase.",
+      "factory": "./documentation/index#documentation"
+    }
+  }
+}

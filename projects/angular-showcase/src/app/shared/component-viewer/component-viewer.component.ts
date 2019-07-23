@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-import { UiComponent } from '../ui-component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'sbb-component-viewer',
@@ -8,9 +6,10 @@ import { UiComponent } from '../ui-component';
   styleUrls: ['./component-viewer.component.scss']
 })
 export class ComponentViewerComponent implements OnInit {
-  toggleSrcVisible = false;
 
-  @Input() component: UiComponent;
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
 }

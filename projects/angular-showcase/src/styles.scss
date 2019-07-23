@@ -1,4 +1,4 @@
-@import './styles/main';
+//@import './styles/main';
 
 /* You can add global styles to this file, and also import other style files */
 .icon-flex-column {
@@ -30,5 +30,49 @@
 }
 
 pre {
-  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: pre-wrap;
+  /* Since CSS 2.1 */
+}
+
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import '~@angular/cdk/a11y';
+@import '~@angular/cdk/overlay';
+@import '../../../dist/sbb-esta/angular-public/styles.scss';
+
+@include sbbFonts();
+@include reset();
+@include sbbLink();
+@include cdk-a11y();
+@include cdk-overlay();
+
+sbb-public {
+  @include sbbHeadings();
+  @include sbbParagraph();
+  @include lists;
+  @include sbbInputFields();
+  @include sbbSelect();
+  @include sbbFieldset();
+  @include sbbTimeInputField();
+  @include sbbTable();
+}
+
+body {
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+  top: 48px;
+
+  &.home {
+    top: 0;
+  }
+}
+
+nav.menu.ps .ps__rail-y {
+  background-color: transparent;
+
+  .ps__thumb-y {
+    background-color: #fff;
+  }
 }

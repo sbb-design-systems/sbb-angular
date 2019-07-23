@@ -28,16 +28,15 @@
                 "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
                 "output": "/assets/monaco"
-              },
-              "projects/angular-showcase/src/docs"
+              }
             ],
             "styles": [
               "projects/angular-showcase/src/styles.scss",
-              "node_modules/font-awesome/css/font-awesome.css",
-              "dist/sbb-esta/angular-public/typography.css"
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [],
-            "es5BrowserSupport": true
+            "es5BrowserSupport": true,
+            "webWorkerTsConfig": "projects/angular-showcase/tsconfig.worker.json"
           },
           "configurations": {
             "production": {
@@ -120,7 +119,8 @@
           "options": {
             "tsConfig": [
               "projects/angular-showcase/tsconfig.app.json",
-              "projects/angular-showcase/tsconfig.spec.json"
+              "projects/angular-showcase/tsconfig.spec.json",
+              "projects/angular-showcase/tsconfig.worker.json"
             ],
             "exclude": [
               "**/node_modules/**"

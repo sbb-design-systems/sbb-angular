@@ -1,21 +1,3 @@
-<section class="sbbsc-comp-viewer">
-  <header class="sbbsc-comp-viewer-header">
-    <h3 class="sbbsc-comp-viewer-title">{{ component.title }}</h3>
-    <button
-      sbbButton
-      mode="frameless"
-      class="sbbsc-comp-viewer-code-icon"
-      (click)="toggleSrcVisible = !toggleSrcVisible"
-    >
-      <i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i>
-    </button>
-  </header>
-  <div class="sbbsc-comp-viewer-body">
-    <article class="sbbsc-comp-viewer-src" *ngIf="toggleSrcVisible">
-      <sbb-examples-tab-doc [component]="component"></sbb-examples-tab-doc>
-    </article>
-    <article class="sbbsc-comp-viewer-instance">
-      <ng-template [sbbComponentViewer]="component"></ng-template>
-    </article>
-  </div>
-</section>
+<p>
+  component-viewer works!
+</p>

@@ -48,3 +48,7 @@ yarn.lock
 .js
 .js.map
 .d.ts
+
+# Markdown
+projects/angular-showcase/src/assets/docs
+projects/angular-showcase/src/assets/examples

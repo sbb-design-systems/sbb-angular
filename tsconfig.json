@@ -46,7 +46,9 @@
     }
   },
   "exclude": [
-    "./dist"
+    "./dist",
+    "./schematics",
+    "./tools"
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true

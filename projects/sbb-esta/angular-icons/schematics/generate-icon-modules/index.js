@@ -76,9 +76,7 @@ class IconModule {
         return schematics.mergeWith(schematics.apply(schematics.url('./files/icon'), [
             schematics.template(Object.assign({}, core.strings, { iconBaseImport }, this._files[0], (this._files.some(f => ['large', 'medium', 'small'].includes(f.size))
                 ? { width: '24px', height: '24px', ratio: 1 }
-                : undefined), (this._files.length > 1
-                ? { template: this._mergeTemplates() }
-                : undefined))),
+                : undefined), (this._files.length > 1 ? { template: this._mergeTemplates() } : undefined))),
             schematics.move(directory.path)
         ]));
     }
@@ -92,19 +90,9 @@ class IconModule {
 }
 
 const sizes = ['small', 'medium', 'large'];
-const invalidModules = [
-    '',
-    'svg',
-    'FPL',
-    'KOM',
-    'non-responsive',
-    'responsive',
-    ...sizes
-];
+const invalidModules = ['', 'svg', 'FPL', 'KOM', 'non-responsive', 'responsive', ...sizes];
 const rules = [
-    file => sizes
-        .filter(size => file.name.endsWith(size))
-        .forEach(size => (file.size = size)),
+    file => sizes.filter(size => file.name.endsWith(size)).forEach(size => (file.size = size)),
     file => (file.modules = file.modules.filter(m => !invalidModules.includes(m))),
     file => (file.modules = file.modules.map(m => m
         .replace(/^Attribut$/, 'TimetableAttributes')

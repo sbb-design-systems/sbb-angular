@@ -1,0 +1,60 @@
+<sbb-submenu>
+  <ul>
+    <li>
+      Introduction
+
+      <ul>
+        <li>
+          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            >Getting started</a
+          >
+        </li>
+        <li>
+          <a routerLink="./typography" routerLinkActive="active">Typography</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Form Components
+
+      <ul>
+        <li *ngFor="let c of formComponents | keyvalue">
+          <a [routerLink]="['./public/components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Layout Components
+
+      <ul>
+        <li *ngFor="let c of layoutComponents | keyvalue">
+          <a [routerLink]="['./public/components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Button & Indicators Components
+
+      <ul>
+        <li *ngFor="let c of buttonAndIndicatorComponents | keyvalue">
+          <a [routerLink]="['./public/components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Popups & Modals Components
+
+      <ul>
+        <li *ngFor="let c of popupsAndModals | keyvalue">
+          <a [routerLink]="['./public/components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</sbb-submenu>
+
+<router-outlet></router-outlet>

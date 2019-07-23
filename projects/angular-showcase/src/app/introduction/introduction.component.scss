@@ -1,0 +1,93 @@
+:host {
+  display: block;
+}
+
+h1 {
+  color: #EB0000;
+  font-size: 24px;
+  font-weight: 200;
+  line-height: 27px;
+  margin-bottom: 20px;
+}
+
+p {
+  max-width: 700px;
+}
+
+nav {
+  padding: 0;
+  margin: 50px 0 50px 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+
+    >li {
+      width: 300px;
+      margin: 0 20px 20px 0;
+      border-radius: 6px;
+      background: #fff;
+      border: solid 1px #cccccc;
+      color: #1b1b1b;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+
+      &::before {
+        content: "";
+        display: inherit;
+        /* aha! */
+        color: #000000;
+        padding-right: 0;
+      }
+
+      a {
+        text-decoration: none;
+        border-bottom: none;
+        display: inline-block;
+        width: 100%;
+
+        &:hover {
+          color: #000000;
+        }
+
+        .hero {
+          position: relative;
+          overflow: hidden;
+          display: block;
+          width: 100%;
+          height: 180px;
+          border-radius: 4px 4px 0 0;
+        }
+
+        .hero img {
+          max-width: 100%;
+          transition: all 0.3s ease;
+        }
+
+        .hero:hover img {
+          transform: scale(1.1);
+        }
+
+        .title {
+          margin: 15px 20px 0 20px;
+          display: block;
+          font-weight: 400;
+        }
+
+        .text {
+          margin: 5px 20px 15px 20px;
+          display: block;
+          font-weight: 200;
+        }
+      }
+    }
+  }
+}
