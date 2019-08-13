@@ -71,6 +71,63 @@ class ToggleReactiveTestComponent implements OnInit {
 }
 
 @Component({
+  selector: 'sbb-toggle-test-reactive',
+  template: `
+    <form [formGroup]="form" novalidate>
+      <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
+        <sbb-toggle-option
+          #options
+          *ngFor="let option of toggleOptions | async; let i = index"
+          [infoText]="i === 0 ? 'info text' : undefined"
+          [label]="option.label"
+          [value]="option.value"
+        >
+          <ng-container *ngIf="i === 0">
+            <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+          </ng-container>
+          <ng-container *ngIf="i === 1">
+            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+          </ng-container>
+          <sbb-field mode="long" *ngIf="i === 1">
+            <sbb-label for="name1">Select date</sbb-label>
+            <sbb-datepicker>
+              <input sbbDateInput type="text" />
+            </sbb-datepicker>
+          </sbb-field>
+        </sbb-toggle-option>
+      </sbb-toggle>
+    </form>
+  `
+})
+class ToggleReactiveDefaultValueTestComponent implements OnInit {
+  modelReactive = 'Option_2';
+  @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
+
+  constructor() {}
+
+  form = new FormGroup({
+    test: new FormControl('Option_2')
+  });
+
+  toggleOptions: Observable<any> = of([
+    {
+      label: 'Einfache Fahrt',
+      value: 'Option_1'
+    },
+    {
+      label: 'Hin- und Rückfahrt',
+      value: 'Option_2'
+    }
+  ]);
+
+  ngOnInit() {
+    this.form.get('test').valueChanges.subscribe(val => {
+      this.modelReactive = val;
+    });
+  }
+}
+
+@Component({
   selector: 'sbb-toggle-test-template-driven',
   template: `
     <sbb-toggle aria-labelledby="group_label_1" [(ngModel)]="modelValue" name="test-toggle-2">
@@ -245,6 +302,49 @@ describe('ToggleComponent case reactive using mock component', () => {
     const toggleOptions1Content = toggleOptionsContentReference[0].nativeElement;
 
     expect(toggleOptions1Content.textContent).toContain('info text');
+  });
+});
+
+describe('ToggleComponent case reactive with default value using mock component', () => {
+  let componentTest: ToggleReactiveDefaultValueTestComponent;
+  let fixtureTest: ComponentFixture<ToggleReactiveDefaultValueTestComponent>;
+
+  configureTestSuite(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ToggleModule,
+        CommonModule,
+        IconCollectionModule,
+        DatepickerModule,
+        FieldModule,
+        ReactiveFormsModule
+      ],
+      declarations: [ToggleReactiveDefaultValueTestComponent]
+    });
+  });
+
+  beforeEach(() => {
+    fixtureTest = TestBed.createComponent(ToggleReactiveDefaultValueTestComponent);
+    componentTest = fixtureTest.componentInstance;
+    fixtureTest.detectChanges();
+  });
+
+  it('component test is created', () => {
+    expect(componentTest).toBeTruthy();
+  });
+
+  it('it verifies that second toggle button is checked', () => {
+    fixtureTest.detectChanges();
+
+    const toggleOptionReferenceValue = fixtureTest.debugElement.queryAll(
+      By.css('.sbb-toggle-option-button-inner > input')
+    );
+
+    const toggleOption2ValueElement = toggleOptionReferenceValue[1].nativeElement;
+    console.log(toggleOption2ValueElement);
+
+    expect(toggleOption2ValueElement.attributes.getNamedItem('aria-checked').value).toBe('true');
+    expect(toggleOption2ValueElement.value).toBe('Option_2');
   });
 });
 
