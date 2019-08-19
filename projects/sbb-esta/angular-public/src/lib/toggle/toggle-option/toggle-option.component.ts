@@ -97,13 +97,17 @@ export class ToggleOptionComponent extends RadioButtonComponent
     return this._toggleChecked;
   }
   set checked(value: boolean) {
+    const previousStatus = this._toggleChecked;
     this._toggleChecked = value;
 
     if (this._toggleChecked) {
       this._registry.select(this);
     }
 
-    this.valueChange$.next(this.value);
+    // No need to fire a valueChange event if the value didn't change!
+    if (previousStatus !== this._toggleChecked) {
+      this.valueChange$.next(this.value);
+    }
     this._changeDetector.markForCheck();
   }
 
