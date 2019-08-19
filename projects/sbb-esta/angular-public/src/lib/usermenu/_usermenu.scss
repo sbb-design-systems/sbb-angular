@@ -117,7 +117,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   height: toPx(24);
   z-index: -1;
   position: relative;
-  margin-left: toPx(-80);
 
   @include mq($from: mobilePortrait, $to: tabletPortrait) {
     display: none;
@@ -141,7 +140,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 }
 
 @mixin usermenuLoggedInExpandedInfoUser {
-  flex-grow: 1;
   padding-left: 4px;
 
   @include mq($from: desktop4k) {
@@ -151,6 +149,10 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   @include mq($from: desktop5k) {
     padding-left: toPx(4 * $scalingFactor5k);
   }
+}
+
+@mixin usermenuLoggedInExpandedInfoUserDropdownOpen {
+  flex-grow: 1;
 }
 
 @mixin usermenuLoggedInExpandedUsername {

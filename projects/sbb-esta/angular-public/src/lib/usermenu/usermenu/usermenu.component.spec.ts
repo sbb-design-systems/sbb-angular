@@ -313,6 +313,43 @@ describe('Usermenu test case: user with custom image using mock component', () =
     }
   );
 
+  it(
+    'user should be logged-in and the arrow should be on the right. After click to see ' +
+      'dropdown details the arrow should be at the end of the button',
+    () => {
+      const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
+      const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]
+        .nativeElement;
+      buttonLogin.click();
+      fixtureTest.detectChanges();
+
+      spyOn(componentTest, 'login');
+      dispatchFakeEvent(usermenuComponent.nativeElement, 'loginRequest');
+      expect(componentTest.login).toHaveBeenCalled();
+
+      const displayNameUser = usermenuComponent.queryAll(
+        By.css('.sbb-usermenu-logged-in-expanded-displayName')
+      )[0].nativeElement;
+      expect(displayNameUser.textContent).toContain('John Scott');
+
+      const displayNameUserWithNoCollapsedDropdown = usermenuComponent.queryAll(
+        By.css('sbb-usermenu-logged-in-expanded-info-user-dropdown-open')
+      );
+      expect(displayNameUserWithNoCollapsedDropdown.length).toBe(0);
+
+      const arrowCollapsed = usermenuComponent.queryAll(
+        By.css('.sbb-usermenu-logged-in-collapsed-arrow')
+      )[0].nativeElement;
+      arrowCollapsed.click();
+      fixtureTest.detectChanges();
+
+      const dropdownOpen = fixtureTest.debugElement.queryAll(
+        By.css('.sbb-usermenu-logged-in-expanded-info-user-dropdown-open')
+      );
+      expect(dropdownOpen.length).toBeGreaterThan(0);
+    }
+  );
+
   it('user should be logged out when click on button logout in the expanded status', () => {
     const usermenuComponent = fixtureTest.debugElement.query(By.directive(UserMenuComponent));
     const buttonLogin = usermenuComponent.queryAll(By.css('.sbb-usermenu-logged-off-button'))[0]

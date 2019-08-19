@@ -19,7 +19,10 @@
           <div>{{ getInitialLetters() }}</div>
         </div>
       </div>
-      <div class="sbb-usermenu-logged-in-expanded-info-user">
+      <div
+        class="sbb-usermenu-logged-in-expanded-info-user"
+        [class.sbb-usermenu-logged-in-expanded-info-user-dropdown-open]="dropdown.isOpen"
+      >
         <div
           class="sbb-usermenu-logged-in-expanded-displayName"
           [class.sbb-displayName-logged-in-collapsed]="!dropdown.isOpen"
@@ -51,7 +54,12 @@
   <div class="sbb-usermenu-logged-off-icon-user">
     <sbb-icon-user></sbb-icon-user>
   </div>
-  <button class="sbb-usermenu-logged-off-button" (click)="emitLogin()" type="button" i18n="Button label for login@@sbbUsermenuLogin">
+  <button
+    class="sbb-usermenu-logged-off-button"
+    (click)="emitLogin()"
+    type="button"
+    i18n="Button label for login@@sbbUsermenuLogin"
+  >
     Login
   </button>
 </div>

@@ -42,6 +42,10 @@
       .sbb-usermenu-logged-in-expanded-info-user {
         @include usermenuLoggedInExpandedInfoUser;
 
+        &.sbb-usermenu-logged-in-expanded-info-user-dropdown-open {
+          @include usermenuLoggedInExpandedInfoUserDropdownOpen;
+        }
+
         .sbb-usermenu-logged-in-expanded-username {
           @include usermenuLoggedInExpandedUsername;
         }
