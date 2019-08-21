@@ -200,11 +200,13 @@ export class ToggleOptionComponent extends RadioButtonComponent
   filteredContentNodes: ChildNode[] = [];
 
   ngAfterViewInit() {
-    this.contentContainer.nativeElement.childNodes.forEach(node => {
+    const nodeList = this.contentContainer.nativeElement.childNodes;
+    for (let k = 0; k < nodeList.length; k++) {
+      const node = nodeList.item(k);
       if (node.nodeType !== this._document.COMMENT_NODE) {
         this.filteredContentNodes.push(node);
       }
-    });
+    }
 
     if (!this.filteredContentNodes.length) {
       this.toggleOptionHasContent = false;
