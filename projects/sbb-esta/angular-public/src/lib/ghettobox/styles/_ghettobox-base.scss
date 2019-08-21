@@ -55,7 +55,8 @@
   height: $ghettobox-icon-size;
   background-color: $ghettobox-icon-bg;
   border-radius: $ghettobox-icon-radius;
-
+  line-height: 1;
+  
   .sbb-icon-component {
     @include absoluteCenterXY();
     display: block;
@@ -86,6 +87,7 @@
   position: absolute;
   top: $ghettobox-wrapper-padding;
   right: pxToEm(12);
+  line-height: 1;
 
   @include mq($from: desktop) {
     top: $ghettobox-wrapper-padding-desktop-y;
