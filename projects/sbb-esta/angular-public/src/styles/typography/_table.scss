@@ -106,10 +106,30 @@ $tableCaptionColor: $sbbColorGrey;
 
   &-align-left {
     text-align: left;
+
+    /* th in IE11 won't inherit text-align: we apply it through selector */
+    thead,
+    tbody {
+      > tr {
+        th {
+          text-align: left;
+        }
+      }
+    }
   }
 
   &-align-right {
     text-align: right;
+
+    /* th in IE11 won't inherit text-align: we apply it through selector */
+    thead,
+    tbody {
+      > tr {
+        th {
+          text-align: right;
+        }
+      }
+    }
   }
 }
 
