@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
@@ -131,7 +132,6 @@ describe('FileSelectorComponent using mock component', () => {
     const fileComponent = fixture.debugElement.query(By.directive(FileSelectorComponent));
 
     fileComponent.componentInstance.applyChanges(testFileList);
-
     fixture.detectChanges();
 
     const filesItems = fileComponent.queryAll(By.css('.sbb-file-selector-list > li'));
@@ -201,5 +201,55 @@ describe('FileSelectorComponent using mock component', () => {
     expect(typeIconWrapper[7].query(By.css('sbb-icon-document-video'))).toBeTruthy();
     expect(typeIconWrapper[8].query(By.css('sbb-icon-document-text'))).toBeTruthy();
     expect(typeIconWrapper[9].query(By.css('sbb-icon-document-zip'))).toBeTruthy();
+  });
+});
+
+@Component({
+  selector: 'sbb-file-selector-test2',
+  template: `
+    <sbb-file-selector (fileChanged)="onFileChange($event)" [(ngModel)]="files"></sbb-file-selector>
+  `
+})
+class FileSelectorTest2Component {
+  files: File[] = [];
+
+  onFileChange(files: File[]) {
+    if (!files[0]) {
+      return;
+    }
+    this.files = [];
+  }
+}
+
+describe('FileSelectorComponent using mock component and limited behaviour ', () => {
+  let fileSelectorTest2Component: FileSelectorTest2Component;
+  let fixtureFileSelectorTest2: ComponentFixture<FileSelectorTest2Component>;
+
+  configureTestSuite(() => {
+    TestBed.configureTestingModule({
+      imports: [FileSelectorModule, FormsModule],
+      declarations: [FileSelectorTest2Component]
+    });
+  });
+
+  beforeEach(() => {
+    fixtureFileSelectorTest2 = TestBed.createComponent(FileSelectorTest2Component);
+    fileSelectorTest2Component = fixtureFileSelectorTest2.componentInstance;
+    fixtureFileSelectorTest2.detectChanges();
+  });
+
+  it('component test is created', async () => {
+    expect(fileSelectorTest2Component).toBeTruthy();
+  });
+
+  it('should call onFileChanged event and have length of li elements equals to 0', () => {
+    const oneElement = testFileList.slice(0, 1);
+    const fileComponent = fixtureFileSelectorTest2.debugElement.query(
+      By.directive(FileSelectorComponent)
+    );
+    const cd: ChangeDetectorRef = fileComponent.componentInstance._changeDetector;
+    spyOn(cd, 'detectChanges');
+    fileComponent.componentInstance.applyChanges(oneElement);
+    expect(cd.detectChanges).toHaveBeenCalled();
   });
 });

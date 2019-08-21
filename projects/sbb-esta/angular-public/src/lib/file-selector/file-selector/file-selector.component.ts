@@ -110,6 +110,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   writeValue(value: any) {
     this.filesList = value;
+    this._changeDetector.detectChanges();
   }
   registerOnChange(fn: any) {
     this.onChange = fn;
