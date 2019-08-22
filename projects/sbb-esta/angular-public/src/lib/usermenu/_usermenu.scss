@@ -15,6 +15,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   width: 288px;
   height: 48px;
   line-height: 1.533;
+  border: 2px solid transparent;
 
   @include mq($from: desktop4k) {
     width: toPx(432 * $scalingFactor4k);
@@ -28,20 +29,15 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 }
 
 @mixin usermenuLoggedInActive {
-  border-top: $borderActive;
-  border-right: $borderActive;
-  border-left: $borderActive;
+  padding-left: 16px;
+  border: $borderActive;
 
   @include mq($from: desktop4k) {
-    border-top: $borderActive4K;
-    border-right: $borderActive4K;
-    border-left: $borderActive4K;
+    border: $borderActive4K;
   }
 
   @include mq($from: desktop5k) {
-    border-top: $borderActive5K;
-    border-right: $borderActive5K;
-    border-left: $borderActive5K;
+    border: $borderActive5K;
   }
 }
 
@@ -50,7 +46,6 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   align-items: center;
   margin-left: 3px;
   margin-top: 3px;
-  padding-left: 16px;
 
   @include mq($from: desktop4k) {
     margin-left: toPx(3 * $scalingFactor4k);
