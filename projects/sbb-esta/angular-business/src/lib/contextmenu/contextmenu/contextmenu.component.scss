@@ -1,0 +1,55 @@
+@import '../styles/contextmenu';
+
+.maskRight {
+  @include maskRight;
+}
+
+.maskLeft {
+  @include maskLeft;
+}
+
+.sbb-button-wrapper-icon-context-menu {
+  @include sbbButtonWrapperIconContextMenu;
+
+  &:hover {
+    path {
+      @include colorIconHover;
+    }
+  }
+}
+
+.sbb-button-wrapper-icon-context-menu-clicked {
+  @include sbbButtonWrapperIconContextMenuClicked;
+}
+
+.sbb-button-wrapper-icon-context-menu-for-left-positioning {
+  @include sbbButtonWrapperIconContextMenuForLeftPositioning;
+}
+
+.sbb-dropdown-panel {
+  @include sbbDropdownPanel;
+
+  &::after {
+    @include sbbDropdownPanelAfter;
+  }
+
+  button:hover {
+    @include sbbDropdownPanelButtonHovered;
+  }
+}
+
+.sbb-dropdown-trigger-above.sbb-button-wrapper-icon-context-menu-clicked {
+  @include sbbDropdownTriggerAboveSbbButtonWrapperIconContextMenuClicked;
+}
+
+.sbb-dropdown-trigger-above.sbb-button-wrapper-icon-context-menu-for-left-positioning {
+  @include sbbDropdownTriggerAboveSbbButtonWrapperIconContextMenuForLeftPositioning;
+}
+
+.sbb-dropdown-trigger-above > .maskRight {
+  @include sbbDropdownTriggerAboveMaskRight;
+}
+
+.sbb-dropdown-trigger-above > .maskLeft {
+  @include sbbDropdownTriggerAboveMaskLeft;
+}

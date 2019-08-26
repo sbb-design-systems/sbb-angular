@@ -1,0 +1,22 @@
+<button
+  class="sbb-button-wrapper-icon-context-menu"
+  [sbbDropdown]="dropdown"
+  [leftPositionPreferred]="true"
+  [class.sbb-button-wrapper-icon-context-menu-clicked]="
+    dropdown.isOpen && !sbbDropdownDirective.leftPositionPreferred
+  "
+  [class.sbb-button-wrapper-icon-context-menu-for-left-positioning]="
+    dropdown.isOpen && sbbDropdownDirective.leftPositionPreferred
+  "
+>
+  <sbb-icon-context-menu
+    class="sbb-icon-context-menu"
+    width="24"
+    height="24"
+  ></sbb-icon-context-menu>
+  <div
+    [class.maskRight]="dropdown.isOpen && !sbbDropdownDirective.leftPositionPreferred"
+    [class.maskLeft]="dropdown.isOpen && sbbDropdownDirective.leftPositionPreferred"
+  ></div>
+</button>
+<ng-content select="sbb-dropdown"></ng-content>

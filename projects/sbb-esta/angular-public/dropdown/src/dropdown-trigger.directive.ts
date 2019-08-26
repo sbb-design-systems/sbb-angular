@@ -11,6 +11,7 @@ import {
   UP_ARROW
 } from '@angular/cdk/keycodes';
 import {
+  ConnectedPosition,
   FlexibleConnectedPositionStrategy,
   Overlay,
   OverlayConfig,
@@ -90,6 +91,24 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   useFactory: SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY
 };
 
+const panelPositionIndex: ConnectedPosition[] = [
+  // TOP LEFT
+  { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
+  // BOTTOM LEFT
+  { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
+  // TOP RIGHT
+  { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
+  // BOTTOM RIGHT
+  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' }
+];
+
+const panelPositionNames = {
+  TOP_LEFT: panelPositionIndex[0],
+  BOTTOM_LEFT: panelPositionIndex[1],
+  TOP_RIGHT: panelPositionIndex[2],
+  BOTTOM_RIGHT: panelPositionIndex[3]
+};
+
 @Directive({
   selector: `[sbbDropdown]`,
   exportAs: 'sbbDropdownTrigger',
@@ -102,60 +121,10 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   ]
 })
 export class DropdownTriggerDirective implements OnDestroy {
-  private _overlayRef: OverlayRef | null;
-  private _portal: TemplatePortal;
-  private _componentDestroyed = false;
-  private _dropdownDisabled = false;
-
-  /** Strategy that is used to position the panel. */
-  protected _positionStrategy: FlexibleConnectedPositionStrategy;
-
-  /** The subscription for closing actions (some are bound to document). */
-  private _closingActionsSubscription: Subscription;
-
-  /** Subscription to viewport size changes. */
-  private _viewportSubscription = Subscription.EMPTY;
-  private _positionSubscription = Subscription.EMPTY;
-
-  /** Stream of keyboard events that can close the panel. */
-  private readonly _closeKeyEventStream = new Subject<void>();
-  private _overlayAttached = false;
-
   /** Role on a dropdown trigger. */
   @HostBinding('attr.role') get role() {
     return this.dropdownDisabled ? null : 'combobox';
   }
-
-  @HostBinding('class.sbb-dropdown-trigger')
-  cssClass = true;
-
-  /** The dropdown panel to be attached to this trigger. */
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbDropdown') dropdown: DropdownComponent;
-
-  /**
-   * Reference relative to which to position the dropdown panel.
-   * Defaults to the dropdown trigger element.
-   */
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
-
-  @Input()
-  panelClass = '';
-
-  /** Stream of dropdown option selections. */
-  readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
-    if (this.dropdown && this.dropdown.options) {
-      return merge(...this.dropdown.options.map(option => option.selectionChange));
-    }
-
-    // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
-    // Return a stream that we'll replace with the real one once everything is in place.
-    return this._zone.onStable.asObservable().pipe(
-      take(1),
-      switchMap(() => this.optionSelections)
-    );
-  }) as Observable<DropdownSelectionChange>;
 
   /**
    * Whether the dropdown is disabled. When disabled, the element will
@@ -165,6 +134,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   get dropdownDisabled(): boolean {
     return this._dropdownDisabled;
   }
+
   set dropdownDisabled(value: boolean) {
     this._dropdownDisabled = coerceBooleanProperty(value);
   }
@@ -173,10 +143,12 @@ export class DropdownTriggerDirective implements OnDestroy {
   get panelOpen(): boolean {
     return this._overlayAttached && this.dropdown.showPanel;
   }
+
   /** Attribute that refers to the expansion of the dropdown panel. */
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.dropdownDisabled ? null : this.panelOpen.toString();
   }
+
   /** Attribute whose value is associated to dropdown id. */
   @HostBinding('attr.aria-owns') get ariaOwns(): string {
     return this.dropdownDisabled || !this.panelOpen ? null : this.dropdown.id;
@@ -222,6 +194,58 @@ export class DropdownTriggerDirective implements OnDestroy {
     @Optional() @Inject(DOCUMENT) protected _document: any,
     protected _viewportRuler?: ViewportRuler
   ) {}
+
+  private _overlayRef: OverlayRef | null;
+  private _portal: TemplatePortal;
+  private _componentDestroyed = false;
+  private _dropdownDisabled = false;
+
+  /** Strategy that is used to position the panel. */
+  protected _positionStrategy: FlexibleConnectedPositionStrategy;
+
+  /** The subscription for closing actions (some are bound to document). */
+  private _closingActionsSubscription: Subscription;
+
+  /** Subscription to viewport size changes. */
+  private _viewportSubscription = Subscription.EMPTY;
+  private _positionSubscription = Subscription.EMPTY;
+
+  /** Stream of keyboard events that can close the panel. */
+  private readonly _closeKeyEventStream = new Subject<void>();
+  private _overlayAttached = false;
+
+  @HostBinding('class.sbb-dropdown-trigger')
+  cssClass = true;
+
+  /** The dropdown panel to be attached to this trigger. */
+  // tslint:disable-next-line:no-input-rename
+  @Input('sbbDropdown') dropdown: DropdownComponent;
+
+  /**
+   * Reference relative to which to position the dropdown panel.
+   * Defaults to the dropdown trigger element.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
+
+  @Input()
+  panelClass = '';
+
+  @Input() leftPositionPreferred = false;
+
+  /** Stream of dropdown option selections. */
+  readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
+    if (this.dropdown && this.dropdown.options) {
+      return merge(...this.dropdown.options.map(option => option.selectionChange));
+    }
+
+    // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
+    // Return a stream that we'll replace with the real one once everything is in place.
+    return this._zone.onStable.asObservable().pipe(
+      take(1),
+      switchMap(() => this.optionSelections)
+    );
+  }) as Observable<DropdownSelectionChange>;
 
   ngOnDestroy() {
     this._viewportSubscription.unsubscribe();
@@ -476,6 +500,16 @@ export class DropdownTriggerDirective implements OnDestroy {
                 'sbb-dropdown-trigger-above'
               );
             }
+
+            if (position.connectionPair.originX === 'end') {
+              this.dropdown.panel.nativeElement.classList.add('sbb-dropdown-panel-left');
+              this._getConnectedElement().nativeElement.classList.add('sbb-dropdown-trigger-left');
+            } else {
+              this.dropdown.panel.nativeElement.classList.remove('sbb-dropdown-panel-left');
+              this._getConnectedElement().nativeElement.classList.remove(
+                'sbb-dropdown-trigger-left'
+              );
+            }
           }
         });
       }
@@ -536,18 +570,14 @@ export class DropdownTriggerDirective implements OnDestroy {
       .withFlexibleDimensions(false)
       .withPush(false)
       .withPositions([
-        {
-          originX: 'start',
-          originY: 'bottom',
-          overlayX: 'start',
-          overlayY: 'top'
-        },
-        {
-          originX: 'start',
-          originY: 'top',
-          overlayX: 'start',
-          overlayY: 'bottom'
-        }
+        this.leftPositionPreferred
+          ? panelPositionNames.BOTTOM_LEFT
+          : panelPositionNames.BOTTOM_RIGHT,
+        this.leftPositionPreferred ? panelPositionNames.TOP_LEFT : panelPositionNames.TOP_RIGHT,
+        this.leftPositionPreferred
+          ? panelPositionNames.BOTTOM_RIGHT
+          : panelPositionNames.BOTTOM_LEFT,
+        this.leftPositionPreferred ? panelPositionNames.TOP_RIGHT : panelPositionNames.TOP_LEFT
       ]);
 
     return this._positionStrategy;
