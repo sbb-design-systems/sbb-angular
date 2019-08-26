@@ -1,0 +1,12 @@
+<div #button class="sbb-navbutton-button">
+  <ng-content></ng-content>
+</div>
+<span class="sbb-svgsprite-icon sbb-navbutton-icon-small" *ngIf="isDropdown && !isDropdownExpanded">
+  <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
+</span>
+<span
+  class="sbb-svgsprite-icon sbb-navbutton-icon-small-expanded"
+  *ngIf="isDropdown && isDropdownExpanded"
+>
+  <sbb-icon-chevron-small-up></sbb-icon-chevron-small-up>
+</span>

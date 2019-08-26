@@ -1,0 +1,28 @@
+@import '../styles/header';
+
+.sbb-navbutton {
+  white-space: nowrap;
+  position: absolute;
+  height: 30px;
+  margin-top: calc(54px / 2 - 15px);
+  display: flex;
+
+  &-button {
+    button {
+      @include navButtonDefaultButton();
+    }
+
+    a {
+      @include navButtonDefaultButton();
+      padding-top: 3px;
+    }
+  }
+
+  .sbb-navbutton-icon-small {
+    @include smallIconDropdown();
+  }
+  .sbb-navbutton-icon-small-expanded {
+    @include smallIconDropdown();
+    right: 25px;
+  }
+}

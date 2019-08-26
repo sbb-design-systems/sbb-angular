@@ -1,0 +1,84 @@
+@import '../styles/header';
+
+.sbb-header {
+  width: 100%;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  height: 54px;
+
+  background-color: white;
+  border-bottom: solid 1px #dcdcdc;
+
+  &-ribbon {
+    width: 80px;
+    position: absolute;
+    top: 12px;
+    left: -20px;
+    text-align: center;
+    line-height: 12px;
+    letter-spacing: 0px;
+    font-size: 10px;
+    color: #f0f0f0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+  &-appchooser {
+    @include headerBlockComponent();
+
+    left: 46px;
+    width: 54px;
+    padding: 17px;
+  }
+
+  &-titlebox {
+    @include headerBlockComponent();
+
+    left: 100px;
+    width: 200px;
+    font-family: $fontSbbLight;
+    &-label {
+      height: 23px;
+      width: 200px;
+      color: #000000;
+      font-size: 15px;
+      line-height: 23px;
+
+      margin-top: 8px;
+    }
+    &-subtitle {
+      height: 16px;
+      width: 200px;
+      color: #9b9b9b;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 16px;
+
+      margin-bottom: 7px;
+    }
+  }
+
+  &-mainnavigation {
+    @include headerBlockComponent();
+    left: 350px;
+  }
+
+  &-usermenu {
+    @include headerBlockComponent();
+
+    right: 159px;
+    width: 200px;
+    z-index: 1;
+  }
+
+  &-logo {
+    @include headerBlockComponent();
+
+    top: 17px;
+    right: 35px;
+    width: 80px;
+  }
+}

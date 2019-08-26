@@ -1,12 +1,10 @@
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { RouterModule } from '@angular/router';
-
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import {
   AccordionModule,
@@ -44,6 +42,8 @@ import {
   UserMenuModule
 } from '@sbb-esta/angular-public';
 
+import { HeaderModule } from '../../../../sbb-esta/angular-business/src/lib/header/header.module';
+
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { BadgeShowcaseComponent } from './badge-showcase/badge-showcase.component';
@@ -57,6 +57,7 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
+import { HeaderShowcaseComponent } from './header-showcase/header-showcase.component';
 import {
   LightboxShowcaseComponent,
   LightboxShowcaseExample2Component,
@@ -180,7 +181,8 @@ const exampleComponents = [
     BreadcrumbModule,
     UserMenuModule,
     GhettoboxModule,
-    BadgeModule
+    BadgeModule,
+    HeaderModule
   ]
 })
 export class ExamplesModule {}
