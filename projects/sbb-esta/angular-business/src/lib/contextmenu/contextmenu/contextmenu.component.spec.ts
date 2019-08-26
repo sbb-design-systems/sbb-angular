@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { IconContextMenuModule } from '@sbb-esta/angular-icons';
-import { DropdownComponent, DropdownModule } from '@sbb-esta/angular-public';
+import { DropdownModule } from '@sbb-esta/angular-public';
 import { configureTestSuite } from 'ng-bullet';
 
 import { ContextmenuComponent } from './contextmenu.component';
 
 @Component({
-  selector: 'sbb-contextmenu',
+  selector: 'sbb-test-contextmenu',
   template: `
     <sbb-contextmenu>
       <sbb-dropdown>
@@ -21,31 +22,52 @@ import { ContextmenuComponent } from './contextmenu.component';
 })
 class ContextmenuTest1Component {
   action1() {}
+
   action2() {}
+
   action3() {}
-  // @ContentChild(DropdownComponent, { static: false }) dropdown: DropdownComponent;
 }
 
 describe('ContextmenuComponent', () => {
-  let component: ContextmenuComponent;
-  let fixture: ComponentFixture<ContextmenuComponent>;
+  let component: ContextmenuTest1Component;
+  let fixture: ComponentFixture<ContextmenuTest1Component>;
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      declarations: [ContextmenuComponent],
+      declarations: [ContextmenuComponent, ContextmenuTest1Component],
       imports: [CommonModule, DropdownModule, IconContextMenuModule]
     });
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContextmenuComponent);
-    console.log('fixture', fixture);
+    fixture = TestBed.createComponent(ContextmenuTest1Component);
     component = fixture.componentInstance;
-    console.log('component', component);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('before click on the sbb-icon-context-menu icon the dropdown should not be visible', () => {
+    const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
+    const buttonClicked = contextmenuComponent.queryAll(
+      By.css('.sbb-button-wrapper-icon-context-menu-for-left-positioning')
+    );
+    expect(buttonClicked.length).toBe(0);
+  });
+
+  it('after click on the sbb-icon-context-menu icon the dropdown should be visible', () => {
+    const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
+    const buttonIcon = contextmenuComponent.queryAll(
+      By.css('.sbb-button-wrapper-icon-context-menu')
+    )[0].nativeElement;
+    buttonIcon.click();
+    fixture.detectChanges();
+
+    const buttonClicked = contextmenuComponent.queryAll(
+      By.css('.sbb-button-wrapper-icon-context-menu-for-left-positioning')
+    );
+    expect(buttonClicked.length).toBe(1);
   });
 });

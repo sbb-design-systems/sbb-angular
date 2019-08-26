@@ -33,5 +33,9 @@ export class ContextmenuComponent implements OnInit, AfterContentInit {
      * Set the panel width
      */
     this.dropdown.panelWidth = '227px';
+    /**
+     * Set the opened panel on the left
+     */
+    this.sbbDropdownDirective.leftPositionPreferred = true;
   }
 }

@@ -1,7 +1,6 @@
 <button
   class="sbb-button-wrapper-icon-context-menu"
   [sbbDropdown]="dropdown"
-  [leftPositionPreferred]="true"
   [class.sbb-button-wrapper-icon-context-menu-clicked]="
     dropdown.isOpen && !sbbDropdownDirective.leftPositionPreferred
   "
@@ -15,8 +14,8 @@
     height="24"
   ></sbb-icon-context-menu>
   <div
-    [class.maskRight]="dropdown.isOpen && !sbbDropdownDirective.leftPositionPreferred"
-    [class.maskLeft]="dropdown.isOpen && sbbDropdownDirective.leftPositionPreferred"
+    [class.mask-right]="dropdown.isOpen && !sbbDropdownDirective.leftPositionPreferred"
+    [class.mask-left]="dropdown.isOpen && sbbDropdownDirective.leftPositionPreferred"
   ></div>
 </button>
 <ng-content select="sbb-dropdown"></ng-content>
