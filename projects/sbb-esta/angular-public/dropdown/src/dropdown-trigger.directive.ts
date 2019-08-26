@@ -231,7 +231,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   @Input()
   panelClass = '';
 
-  @Input() leftPositionPreferred = false;
+  leftPositionPreferred = false;
 
   /** Stream of dropdown option selections. */
   readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
