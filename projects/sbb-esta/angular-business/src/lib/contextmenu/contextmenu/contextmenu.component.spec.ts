@@ -22,9 +22,7 @@ import { ContextmenuComponent } from './contextmenu.component';
 })
 class ContextmenuTest1Component {
   action1() {}
-
   action2() {}
-
   action3() {}
 }
 
