@@ -93,22 +93,31 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   useFactory: SBB_DROPDOWN_SCROLL_STRATEGY_FACTORY
 };
 
-const panelPositionIndex: ConnectedPosition[] = [
-  // TOP LEFT
-  { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
-  // BOTTOM LEFT
-  { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
-  // TOP RIGHT
-  { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
-  // BOTTOM RIGHT
-  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' }
-];
-
-const panelPositionNames = {
-  TOP_LEFT: panelPositionIndex[0],
-  BOTTOM_LEFT: panelPositionIndex[1],
-  TOP_RIGHT: panelPositionIndex[2],
-  BOTTOM_RIGHT: panelPositionIndex[3]
+const panelPositionNames: { [key: string]: ConnectedPosition } = {
+  TOP_LEFT: {
+    originX: 'end',
+    originY: 'top',
+    overlayX: 'end',
+    overlayY: 'bottom'
+  },
+  BOTTOM_LEFT: {
+    originX: 'end',
+    originY: 'bottom',
+    overlayX: 'end',
+    overlayY: 'top'
+  },
+  TOP_RIGHT: {
+    originX: 'start',
+    originY: 'top',
+    overlayX: 'start',
+    overlayY: 'bottom'
+  },
+  BOTTOM_RIGHT: {
+    originX: 'start',
+    originY: 'bottom',
+    overlayX: 'start',
+    overlayY: 'top'
+  }
 };
 
 @Directive({

@@ -9,6 +9,9 @@ addons:
 
 cache: npm
 
+env:
+  global:
+    - NODE_OPTIONS=--max_old_space_size=7168
 script:
   - npm run build:libs
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then npm run test; fi
