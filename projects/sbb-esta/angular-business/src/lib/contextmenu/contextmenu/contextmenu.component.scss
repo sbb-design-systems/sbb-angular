@@ -1,6 +1,6 @@
 @import 'common';
 
-.mask-right {
+.sbb-contextmenu-mask-right {
   position: absolute;
   left: 24px;
   width: 1px;
@@ -10,7 +10,7 @@
   z-index: 1002;
 }
 
-.mask-left {
+.sbb-contextmenu-mask-left {
   position: absolute;
   left: 0;
   width: 1px;
@@ -76,13 +76,13 @@
   border-color: $sbbColorWhite $sbbColorGrey $sbbColorGrey $sbbColorGrey;
 }
 
-.sbb-dropdown-trigger-above > .mask-right {
+.sbb-dropdown-trigger-above > .sbb-contextmenu-mask-right {
   top: 1px;
   left: 23px;
   height: 24px;
 }
 
-.sbb-dropdown-trigger-above > .mask-left {
+.sbb-dropdown-trigger-above > .sbb-contextmenu-mask-left {
   top: 1px;
   left: 0;
   height: 24px;

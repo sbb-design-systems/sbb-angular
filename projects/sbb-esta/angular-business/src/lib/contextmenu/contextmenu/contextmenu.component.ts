@@ -15,25 +15,19 @@ import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-p
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContextmenuComponent implements OnInit, AfterContentInit {
-  /**
-   * Reference to a dropdown instance.
-   */
-  @ContentChild(DropdownComponent, { static: true }) dropdown: DropdownComponent;
-  /**
-   * Reference to a dropdown trigger directive instance.
-   */
-  @ViewChild(DropdownTriggerDirective, { static: true }) sbbDropdownDirective;
-  constructor() {}
-  ngOnInit(): void {}
+export class ContextmenuComponent implements AfterContentInit {
+  /** @docs-private */
+  @ContentChild(DropdownComponent, { static: true }) _dropdown: DropdownComponent;
+  /** @docs-private */
+  @ViewChild(DropdownTriggerDirective, { static: true }) _dropdownTrigger;
   ngAfterContentInit(): void {
     /**
      * Set the panel width
      */
-    this.dropdown.panelWidth = '227px';
+    this._dropdown.panelWidth = '227px';
     /**
      * Set the opened panel on the left
      */
-    this.sbbDropdownDirective.leftPositionPreferred = true;
+    this._dropdownTrigger.leftPositionPreferred = true;
   }
 }
