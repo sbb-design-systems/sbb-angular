@@ -62,4 +62,32 @@
       </div>
     </div>
   </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Tooltip with Hover Configuration set to be true</h4>
+      <ul>
+        <li>Delay open on mouse over: {{ hoverOpenDelay }} ms</li>
+        <li>
+          <p>Delay close on mouse leave: {{ hoverCloseDelay }} ms</p>
+        </li>
+      </ul>
+      <sbb-tooltip
+        [triggerType]="'hover'"
+        [hoverOpenDelay]="hoverOpenDelay"
+        [hoverCloseDelay]="hoverCloseDelay"
+      >
+        <p>Dies ist ein Tooltip mit einem angepassten Icon.</p>
+      </sbb-tooltip>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Configuration:</h4>
+      <p>Open tooltip delay in milliseconds:</p>
+      <input type="number" [(ngModel)]="hoverOpenDelay" />
+      <p>Close tooltip delay in milliseconds:</p>
+      <input type="number" [(ngModel)]="hoverCloseDelay" />
+    </div>
+  </div>
 </div>

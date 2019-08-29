@@ -1,5 +1,7 @@
 <button
-  (click)="onClick($event)"
+  (click)="triggerType === 'click' && onClick($event)"
+  (mouseover)="triggerType === 'hover' && onMouseOver($event)"
+  (mouseleave)="triggerType === 'hover' && onMouseLeave($event)"
   #trigger
   class="sbb-tooltip-trigger"
   [class.sbb-tooltip-trigger-active]="overlayAttached"

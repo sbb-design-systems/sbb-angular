@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TooltipShowcaseComponent {
   tooltipContent = 'Tooltip-Inhalt';
+  hoverCloseDelay = 0;
+  hoverOpenDelay = 0;
 
   onOpen($event) {
     console.log('opened', $event);

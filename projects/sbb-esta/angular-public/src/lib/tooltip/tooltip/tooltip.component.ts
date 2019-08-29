@@ -71,6 +71,53 @@ let tooltipCounter = 1;
 })
 export class TooltipComponent implements OnDestroy {
   /**
+   * The icon to be used as click target.
+   * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
+   */
+  @Input()
+  @ContentChild(TooltipIconDirective, { read: TemplateRef, static: false })
+  set icon(tooltipIcon: TemplateRef<any>) {
+    this._icon = tooltipIcon;
+  }
+
+  get icon() {
+    return this._icon || this.defaultIcon;
+  }
+
+  constructor(
+    private _overlay: Overlay,
+    private _tooltipRegistry: TooltipRegistryService,
+    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private _scrollStrategy,
+    @Optional() @Inject(DOCUMENT) private _document: any,
+    private _zone: NgZone,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {}
+
+  /** Checks if a tooltip panel exists */
+  @HostBinding('attr.aria-expanded')
+  get overlayAttached() {
+    return this.tooltipRef && this.tooltipRef.hasAttached();
+  }
+
+  /**
+   * A stream of actions that should close the autocomplete panel, including
+   * on blur events.
+   */
+  get panelClosingActions(): Observable<SbbTooltipChangeEvent | null> {
+    return merge(
+      this._closeKeyEventStream,
+      this._getOutsideClickStream(),
+      this._tooltipRegistry.tooltipActivation,
+      this.tooltipRef
+        ? this.tooltipRef.detachments().pipe(filter(() => this.overlayAttached))
+        : of()
+    ).pipe(
+      // Normalize the output so we return a consistent type.
+      map(event => (event instanceof SbbTooltipChangeEvent ? event : null))
+    );
+  }
+
+  /**
    * Identifier of tooltip.
    */
   @HostBinding('attr.id') tooltipId = `sbb-tooltip-id-${tooltipCounter++}`;
@@ -100,18 +147,6 @@ export class TooltipComponent implements OnDestroy {
   /** @docs-private */
   @ViewChild('defaultIcon', { read: TemplateRef, static: true }) defaultIcon: TemplateRef<any>;
 
-  /**
-   * The icon to be used as click target.
-   * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
-   */
-  @Input()
-  @ContentChild(TooltipIconDirective, { read: TemplateRef, static: false })
-  set icon(tooltipIcon: TemplateRef<any>) {
-    this._icon = tooltipIcon;
-  }
-  get icon() {
-    return this._icon || this.defaultIcon;
-  }
   private _icon: TemplateRef<any>;
 
   /**
@@ -146,15 +181,17 @@ export class TooltipComponent implements OnDestroy {
 
   private readonly _closeKeyEventStream = new Subject<void>();
   private _closingActionsSubscription: Subscription;
-
-  constructor(
-    private _overlay: Overlay,
-    private _tooltipRegistry: TooltipRegistryService,
-    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private _scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
-    private _zone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+  /**
+   * Customizations for trigger type - delay open/close
+   */
+  @Input() triggerType: 'click' | 'hover' = 'click';
+  @Input() hoverOpenDelay = 0;
+  @Input() hoverCloseDelay = 0;
+  /**
+   * References for timeout used for delay open/close
+   */
+  private _referenceTimoutMouseOver: any;
+  private _referenceTimoutMouseLeave: any;
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
@@ -199,12 +236,6 @@ export class TooltipComponent implements OnDestroy {
       this.closed.emit(new SbbTooltipChangeEvent(this, isUserInput));
       this._changeDetectorRef.detectChanges();
     }
-  }
-
-  /** Checks if a tooltip panel exists */
-  @HostBinding('attr.aria-expanded')
-  get overlayAttached() {
-    return this.tooltipRef && this.tooltipRef.hasAttached();
   }
 
   /** Create the popup PositionStrategy. */
@@ -270,24 +301,6 @@ export class TooltipComponent implements OnDestroy {
   }
 
   /**
-   * A stream of actions that should close the autocomplete panel, including
-   * on blur events.
-   */
-  get panelClosingActions(): Observable<SbbTooltipChangeEvent | null> {
-    return merge(
-      this._closeKeyEventStream,
-      this._getOutsideClickStream(),
-      this._tooltipRegistry.tooltipActivation,
-      this.tooltipRef
-        ? this.tooltipRef.detachments().pipe(filter(() => this.overlayAttached))
-        : of()
-    ).pipe(
-      // Normalize the output so we return a consistent type.
-      map(event => (event instanceof SbbTooltipChangeEvent ? event : null))
-    );
-  }
-
-  /**
    * This method listens to a stream of panel closing actions and resets the
    * stream every time the option list changes.
    */
@@ -333,5 +346,40 @@ export class TooltipComponent implements OnDestroy {
         this._closeKeyEventStream.next();
       }
     });
+  }
+
+  /**
+   * onMouseOver method used to show the tooltip when trigger type is set to 'hover'
+   * and the mouse hover the button
+   */
+  onMouseOver($event: MouseEvent) {
+    this.clearTimoutOnChangeMouseEvent();
+    event.stopPropagation();
+    this._referenceTimoutMouseOver = setTimeout(() => {
+      this.open(true);
+    }, this.hoverOpenDelay);
+  }
+
+  /**
+   * onMouseLeave method used to hide the tooltip when trigger type is set to 'hover'
+   * and the mouse leave the button
+   */
+  onMouseLeave($event: MouseEvent) {
+    this.clearTimoutOnChangeMouseEvent();
+    event.stopPropagation();
+    this._referenceTimoutMouseLeave = setTimeout(() => {
+      this.close(true);
+    }, this.hoverCloseDelay);
+  }
+
+  /**
+   * function to clear timeouts used for delay. Necessary to keep synchronized the mouseover and
+   * mouseleave events
+   */
+  clearTimoutOnChangeMouseEvent() {
+    // tslint:disable-next-line:no-unused-expression
+    this._referenceTimoutMouseOver && clearTimeout(this._referenceTimoutMouseOver);
+    // tslint:disable-next-line:no-unused-expression
+    this._referenceTimoutMouseLeave && clearTimeout(this._referenceTimoutMouseLeave);
   }
 }
