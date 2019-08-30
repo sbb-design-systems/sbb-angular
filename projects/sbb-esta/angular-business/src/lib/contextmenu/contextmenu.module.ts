@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ButtonModule, DropdownModule } from '@sbb-esta/angular-public';
+import { IconContextMenuModule } from '@sbb-esta/angular-icons';
 
-import { IconContextMenuModule } from '../../../../angular-icons/src/lib';
+import { DropdownModule } from '../dropdown/dropdown';
 
 import { ContextmenuComponent } from './contextmenu/contextmenu.component';
+
 @NgModule({
-  imports: [CommonModule, IconContextMenuModule, ButtonModule, DropdownModule],
+  imports: [CommonModule, IconContextMenuModule, DropdownModule],
   declarations: [ContextmenuComponent],
   exports: [ContextmenuComponent, DropdownModule]
 })
