@@ -1,3 +1,4 @@
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
   Overlay,
@@ -142,7 +143,7 @@ export class TooltipComponent implements OnDestroy {
   /**
    * Refers to tooltip trigger element.
    */
-  @ViewChild('trigger', { static: true }) tooltipTrigger: ElementRef<any>;
+  @ViewChild('triggerButton', { static: true }) tooltipTrigger: ElementRef<any>;
 
   /** @docs-private */
   @ViewChild('defaultIcon', { read: TemplateRef, static: true }) defaultIcon: TemplateRef<any>;
@@ -182,16 +183,37 @@ export class TooltipComponent implements OnDestroy {
   private readonly _closeKeyEventStream = new Subject<void>();
   private _closingActionsSubscription: Subscription;
   /**
-   * Customizations for trigger type - delay open/close
+   * Customizations for trigger type
    */
-  @Input() triggerType: 'click' | 'hover' = 'click';
-  @Input() hoverOpenDelay = 0;
-  @Input() hoverCloseDelay = 0;
+  @Input() trigger: 'click' | 'hover' = 'click';
+  /**
+   * Customizations for delay open
+   */
+  private _hoverOpenDelay: number;
+  @Input()
+  get hoverOpenDelay(): number {
+    return this._hoverOpenDelay;
+  }
+  set hoverOpenDelay(value: number) {
+    this._hoverOpenDelay = coerceNumberProperty(value, 0);
+  }
+
+  /**
+   * Customizations for delay close
+   */
+  private _hoverCloseDelay: number;
+  @Input()
+  get hoverCloseDelay(): number {
+    return this._hoverCloseDelay;
+  }
+  set hoverCloseDelay(value: number) {
+    this._hoverCloseDelay = coerceNumberProperty(value, 0);
+  }
+
   /**
    * References for timeout used for delay open/close
    */
-  private _referenceTimoutMouseOver: any;
-  private _referenceTimoutMouseLeave: any;
+  private _referenceActiveTimeout: number;
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
@@ -355,7 +377,7 @@ export class TooltipComponent implements OnDestroy {
   onMouseOver($event: MouseEvent) {
     this.clearTimoutOnChangeMouseEvent();
     event.stopPropagation();
-    this._referenceTimoutMouseOver = setTimeout(() => {
+    this._referenceActiveTimeout = window.setTimeout(() => {
       this.open(true);
     }, this.hoverOpenDelay);
   }
@@ -367,7 +389,7 @@ export class TooltipComponent implements OnDestroy {
   onMouseLeave($event: MouseEvent) {
     this.clearTimoutOnChangeMouseEvent();
     event.stopPropagation();
-    this._referenceTimoutMouseLeave = setTimeout(() => {
+    this._referenceActiveTimeout = window.setTimeout(() => {
       this.close(true);
     }, this.hoverCloseDelay);
   }
@@ -377,9 +399,8 @@ export class TooltipComponent implements OnDestroy {
    * mouseleave events
    */
   clearTimoutOnChangeMouseEvent() {
-    // tslint:disable-next-line:no-unused-expression
-    this._referenceTimoutMouseOver && clearTimeout(this._referenceTimoutMouseOver);
-    // tslint:disable-next-line:no-unused-expression
-    this._referenceTimoutMouseLeave && clearTimeout(this._referenceTimoutMouseLeave);
+    if (this._referenceActiveTimeout) {
+      clearTimeout(this._referenceActiveTimeout);
+    }
   }
 }
