@@ -1,12 +1,4 @@
-# Badge Overview
-
-Import button module into your application
-
-```ts
-import { BadgeModule } from '@sbb-esta/angular-public';
-```
-
-and then you can use the badge component as seen below
+You can use the badge component as seen below
 
 ```html
 <div class="badge-example">

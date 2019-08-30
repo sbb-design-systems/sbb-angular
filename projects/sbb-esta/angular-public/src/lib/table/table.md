@@ -1,11 +1,3 @@
-# Table Overview
-
-Import table module into your application
-
-```ts
-import { TableModule } from '@sbb-esta/angular-public';
-```
-
 You can use table component to display rows of data as see below
 
 ```html

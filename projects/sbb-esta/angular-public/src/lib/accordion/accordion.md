@@ -1,11 +1,3 @@
-# Accordion Overview
-
-Import accordion module into your application
-
-```ts
-import { AccordionModule } from '@sbb-esta/angular-public';
-```
-
 At first, you can define a simple panel (without accordion) as see below
 
 ```html
@@ -66,7 +58,7 @@ or define a simple accordion (made up of more panels) where each expansion panel
 </sbb-accordion>
 ```
 
-<h4>Disabling a panel</h4>
+### Disabling a panel
 
 Expansion panels can be disabled using the disabled attribute. A disabled expansion panel can't be toggled by the user, but can be used
 
@@ -83,9 +75,10 @@ Expansion panels can be disabled using the disabled attribute. A disabled expans
 </sbb-expansion-panel>
 ```
 
-<h4>Multi Expansion Panels</h4>
+### Multi Expansion Panels
 
-Multiple expansion panels can be used into an accordion. The multi="true" input allows the expansions state to be set independently of each other. When multi="false" (default value) only one panel can be expanded at a given time:
+Multiple expansion panels can be used into an accordion. The multi="true" input allows the expansions state
+to be set independently of each other. When multi="false" (default value) only one panel can be expanded at a given time:
 
 ```html
 <sbb-accordion [multi]="true">
@@ -115,9 +108,10 @@ Multiple expansion panels can be used into an accordion. The multi="true" input 
 </sbb-accordion>
 ```
 
-<h4>Lazy rendering</h4>
+### Lazy rendering
 
-By default, the expansion panel content will be initialized even when the panel is closed. To instead defer initialization until the panel is open, the content should be provided as an ng-template:
+By default, the expansion panel content will be initialized even when the panel is closed.
+To instead defer initialization until the panel is open, the content should be provided as an ng-template:
 
 ```html
 <sbb-expansion-panel>
@@ -143,7 +137,7 @@ By default, the expansion panel content will be initialized even when the panel 
 </sbb-expansion-panel>
 ```
 
-<h4>Advanced Accordion</h4>
+### Advanced Accordion
 
 You can navigate between panels of the accordion with "Next" and "Previous" buttons (step by step) as see below
 

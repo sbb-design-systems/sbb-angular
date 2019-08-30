@@ -1,17 +1,14 @@
-# Search Overview
+`<sbb-search>` is a form control used to display a search box (with a search field and relative
+search button), and optionally it can be used in combination with `<sbb-autocomplete>` to show
+search results suggestions.
+Moreover it's possible to use it in "header" mode, where a button trigger has to be clicked before
+the search field itself shows up and use a custom icon instead of the `<sbb-icon-magnifying-glass>`
+provided by default.
 
-Import search module into your application
+Everytime the enter key on the input field is pressed, the search button is clicked or an option
+is selected a `search` event, containing the search term, is emitted.
 
-```ts
-import { SearchModule } from '@sbb-esta/angular-public';
-```
-
-`<sbb-search>` is a form control used to display a search box (with a search field and relative search button), and, optionally, it can be used in combination with `<sbb-autocomplete>` to show search results suggestions.
-Moreover it's possible to use it in "header" mode, where a button trigger has to be clicked before the search field itself shows up and use a custom icon instead of the `<sbb-icon-magnifying-glass>` provided by default.
-
-Everytime the enter key on the input field is pressed, the search button is clicked or an option is selected a `search` event, containing the search term, is emitted.
-
-## Simplest use case
+### Simplest use case
 
 The simplest way you can use `<sbb-search>` is the following one:
 
@@ -19,7 +16,7 @@ The simplest way you can use `<sbb-search>` is the following one:
 <sbb-search (search)="searchCallback(searchTerm)" placeholder="Suchen"></sbb-search>
 ```
 
-## Autocomplete use case
+##3 Autocomplete use case
 
 You can use `<sbb-search>` along with `<sbb-autocomplete>` as below:
 
@@ -36,7 +33,8 @@ You can use `<sbb-search>` along with `<sbb-autocomplete>` as below:
 </sbb-autocomplete>
 ```
 
-All use cases from sbb-autocomplete are supported: you can add static options, observable options, and use option groups:
+All use cases from sbb-autocomplete are supported: you can add static options, observable options,
+and use option groups:
 
 ```html
 <sbb-search
@@ -57,7 +55,7 @@ All use cases from sbb-autocomplete are supported: you can add static options, o
 </sbb-autocomplete>
 ```
 
-## Header mode
+### Header mode
 
 The `header` mode is activable by using the `mode` input property:
 
@@ -67,9 +65,10 @@ The `header` mode is activable by using the `mode` input property:
 
 The `placeholder` will also label the trigger.
 
-## Custom icon
+### Custom icon
 
-To set a custom icon to the search button (and to the trigger icon too when in 'header' mode), you need to use the `sbbSearchIcon` directive on the icon component you want to use:
+To set a custom icon to the search button (and to the trigger icon too when in 'header' mode),
+you need to use the `sbbSearchIcon` directive on the icon component you want to use:
 
 ```html
 <sbb-search

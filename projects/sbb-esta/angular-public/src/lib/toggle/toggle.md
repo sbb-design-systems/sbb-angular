@@ -1,20 +1,15 @@
-# Toggle Overview
+You can use the toggle component as seen below
 
-Import toggle module into your application
-
-```ts
-import { ToggleModule } from '@sbb-esta/angular-public';
+```html
+<sbb-toggle>
+  <sbb-toggle-option label="Option 1" value="dog"></sbb-toggle-option>
+  <sbb-toggle-option label]="Option 2" value="cat"></sbb-toggle-option>
+</sbb-toggle>
 ```
-
-and then you can use the toggle component as seen below.
-<br>
-<br>
 
 ### What does the module do?
 
 It offers the user a choice of exactly two options.
-<br>
-<br>
 
 ### Characteristics
 
@@ -41,18 +36,11 @@ Toggle button is shown in three modes:
 ```html
 <h4>Toggle buttons used as Reactive forms</h4>
 <form [formGroup]="form" novalidate>
-  <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
-    <sbb-toggle-option
-      *ngFor="let option of toggleOptions | async; let i = index;"
-      [label]="option.label"
-      [value]="option.value"
-    >
-      <ng-container *ngIf="i === 0">
-        <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
-      </ng-container>
-      <ng-container *ngIf="i === 1">
-        <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
-      </ng-container>
+  <sbb-toggle formControlName="test">
+    <sbb-toggle-option [label]="option1.label" [value]="option1.value">
+      <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+      <sbb-toggle-option [label]="option2.label" [value]="option2.value"> </sbb-toggle-option>
+      <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
     </sbb-toggle-option>
   </sbb-toggle>
 </form>

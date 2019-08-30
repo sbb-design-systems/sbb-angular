@@ -1,11 +1,3 @@
-# Ghettobox Overview
-
-Import ghettobox module in your application
-
-```ts
-import { GhettoboxModule } from '@sbb-esta/angular-public';
-```
-
 ## Standalone Ghettobox
 
 ### Simple Ghettobox

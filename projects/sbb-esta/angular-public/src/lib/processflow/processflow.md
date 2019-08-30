@@ -1,12 +1,4 @@
-# Process Flow Overview
-
-Import process flow module into your application
-
-```ts
-import { ProcessflowModule } from '@sbb-esta/angular-public';
-```
-
-You can use process flow component as a workflow divided into step as see below
+You can use process flow component as a workflow divided into step as seen below
 
 ```html
 <sbb-processflow>
@@ -28,38 +20,38 @@ You can use process flow component as a workflow divided into step as see below
 </sbb-processflow>
 ```
 
-<h4> Move between steps in a process flow </h4>
+### Move between steps in a process flow
 
 You can also use prevStep() and nextStep() functions to move respectively between previous and next step:
 
 ```ts
  prevStep() {
-    const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
-    if (activeStepIndex > 0) {
-      this.disableStep(activeStepIndex);
-      this.changeStep(activeStepIndex - 1);
-    }
+  const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+  if (activeStepIndex > 0) {
+    this.disableStep(activeStepIndex);
+    this.changeStep(activeStepIndex - 1);
   }
+}
 ```
 
 ```ts
 nextStep() {
-    const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
-    let activatedStep = false;
-    if (activeStepIndex < this.steps.length - 1) {
-      this.steps.forEach((s, i) => {
-        if (i > activeStepIndex && !activatedStep) {
-          s.active = true;
-          s.disabled = false;
-          activatedStep = true;
-        } else {
-          s.active = false;
-        }
-      });
-      this.changeDetectorRef.markForCheck();
-      this.stepChange.emit(this.steps.toArray()[activeStepIndex + 1]);
-    }
+  const activeStepIndex = this.findActiveStepIndex(this.steps.toArray());
+  let activatedStep = false;
+  if (activeStepIndex < this.steps.length - 1) {
+    this.steps.forEach((s, i) => {
+      if (i > activeStepIndex && !activatedStep) {
+        s.active = true;
+        s.disabled = false;
+        activatedStep = true;
+      } else {
+        s.active = false;
+      }
+    });
+    this.changeDetectorRef.markForCheck();
+    this.stepChange.emit(this.steps.toArray()[activeStepIndex + 1]);
   }
+}
 ```
 
 or to reset the entire process flow with reset() function:
@@ -67,5 +59,5 @@ or to reset the entire process flow with reset() function:
 ```ts
 reset() {
     this.processflow.reset();
-  }
+}
 ```

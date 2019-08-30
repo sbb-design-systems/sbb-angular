@@ -1,22 +1,8 @@
-# Tag Overview
-
-Import tag module into your application
-
-```ts
-import { TagModule } from '@sbb-esta/angular-public';
-```
-
-### What is tag?
-
 A tag represents a solution to categorize a large amount of information.
-<br/>
-<br/>
 
 ### When can you use it?
 
 You can use tags component to filter results with many categories.
-<br/>
-<br/>
 
 ### Characteristics and states
 
@@ -44,8 +30,6 @@ Within the filter, an additional tag called "Alle" is always inserted. If this f
   ></sbb-tag>
 </sbb-tags>
 ```
-
-<br/>
 
 ### Linktag
 

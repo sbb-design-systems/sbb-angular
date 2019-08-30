@@ -1,11 +1,3 @@
-# Lightbox Overview
-
-Import lightbox module in your application
-
-```ts
-import { LightboxModule } from '@sbb-esta/angular-public';
-```
-
 The lightbox can be used to open modal dialogs as see below
 
 ```html
@@ -27,9 +19,10 @@ The lightbox can be used to open modal dialogs as see below
 </div>
 ```
 
-<h2>Sharing data with the Lightbox component</h2>
+### Sharing data with the Lightbox component
 
-A dialog is opened by calling the `open` method and if you want to share data with your dialog, you can use the `data` option to pass information to the dialog component.
+A dialog is opened by calling the `open` method and if you want to share data with your dialog,
+you can use the `data` option to pass information to the dialog component.
 
 ```ts
 const lightboxRef = this.lightbox.open(LightboxShowcaseExampleContentComponent, {
@@ -37,7 +30,10 @@ const lightboxRef = this.lightbox.open(LightboxShowcaseExampleContentComponent, 
 });
 ```
 
-Components created via `Lightbox` can use `LightboxRef` to close the dialog in which they are contained. To access data in your dialog component, you have to use the `LightboxData` injection token. When closing, the data result value is provided. This result value is forwarded as the result of the `afterClosed` promise.
+Components created via `Lightbox` can use `LightboxRef` to close the dialog in which they are
+contained. To access data in your dialog component, you have to use the `LightboxData` injection
+token. When closing, the data result value is provided. This result value is forwarded as the
+result of the `afterClosed` promise.
 
 ```ts
 @Component({
@@ -65,7 +61,8 @@ lightboxRef.afterClosed().subscribe(result => {
 
 <h2>Lightbox with content loaded from Template</h2>
 
-You can use `Lightbox` to load content from a TemplateRef by calling `open` method and passing it the template reference:
+You can use `Lightbox` to load content from a TemplateRef by calling `open` method and
+passing it the template reference:
 
 ```ts
 @Component({
@@ -113,7 +110,8 @@ export class LightboxShowcaseExample3Component {
 </ng-template>
 ```
 
-- You can also use the disableClose property on `Lightbox` to close the dialog manually and listening changes with `manualCloseAction` method of LightboxRef istance:
+- You can also use the disableClose property on `Lightbox` to close the dialog manually and
+  listening changes with `manualCloseAction` method of LightboxRef istance:
 
 ```ts
 @Component({

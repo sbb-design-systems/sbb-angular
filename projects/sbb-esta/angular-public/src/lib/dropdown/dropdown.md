@@ -1,11 +1,3 @@
-# Dropdown Overview
-
-Import dropdown module into your application
-
-```ts
-import { DropdownModule } from '@sbb-esta/angular-public';
-```
-
 This module contains the component:
 
 - sbb-dropdown
@@ -16,12 +8,14 @@ and the directives:
 - sbb-dropdown-origin
 - sbb-dropdown-item
 
-## How to use
+### How to use
 
 The sbb-dropdown uses `a, button, hr` elements to build its items list.
-That being said, you have to use the `sbbDropdownItem` directive on every link/button you want to be listed and properly used into the dropdown.
+That being said, you have to use the `sbbDropdownItem` directive on every
+link/button you want to be listed and properly used into the dropdown.
 
-You need also to add a dropdown trigger, using the `sbbDropdownTrigger` directive on a separate element (maybe a button, a div, or what you prefer).
+You need also to add a dropdown trigger, using the `sbbDropdownTrigger` directive
+on a separate element (maybe a button, a div, or what you prefer).
 
 In the case below, a button has been used:
 

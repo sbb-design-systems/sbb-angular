@@ -1,12 +1,5 @@
-# Tabs Overview
-
-Import tabs module into your application
-
-```ts
-import { TabsModule } from '@sbb-esta/angular-public';
-```
-
-and then you can use the tab component as seen below (in this simple example you can navigate between tabs with left and right arrow)
+You can use the tab component as seen below
+(in this simple example you can navigate between tabs with left and right arrow)
 
 ```html
 <h4>Basic Example</h4>

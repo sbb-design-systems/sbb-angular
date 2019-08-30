@@ -1,21 +1,13 @@
-# Link Overview
+You can use the link component in two variants as seen below
 
-Import link module into your application
-
-```ts
-import { LinksModule } from '@sbb-esta/angular-public';
-```
-
-and then you can use the link component in two modality as seen below
-
-- Icon Links
+### Icon Links
 
 ```html
 <h4>Icon Links</h4>
 <a href="#" sbbLink>Bezeichnung</a>
 ```
 
-- Social Links
+### Social Links
 
 ```html
 <h4>Social Links</h4>

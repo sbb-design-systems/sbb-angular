@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'public',
     component: PublicComponent,
+    data: { library: 'angular-public' },
     children: [
       {
         path: '',

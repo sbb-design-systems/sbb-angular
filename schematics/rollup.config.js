@@ -10,10 +10,20 @@ export default {
   external: [
     '@angular-devkit/schematics',
     '@angular-devkit/core',
+    'dgeni',
+    'dgeni-packages/typescript/api-doc-types/ClassExportDoc',
+    'dgeni-packages/typescript/api-doc-types/ExportDoc',
+    'dgeni-packages/typescript/api-doc-types/MemberDoc',
+    'dgeni-packages/typescript/api-doc-types/MethodMemberDoc',
+    'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc',
+    'fs',
     'highlight.js',
+    'html-minifier',
     'marked',
+    'path',
     'rxjs',
-    'rxjs/operators'
+    'rxjs/operators',
+    'typescript'
   ],
   plugins: [
     typescript({

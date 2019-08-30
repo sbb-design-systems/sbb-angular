@@ -1,12 +1,5 @@
-# Textexpand Overview
-
-Import textexpand module into your application
-
-```ts
-import { TextexpandModule } from '@sbb-esta/angular-public';
-```
-
-and you can use textexpand component to show more or less text (using Weniger anzeigen or Mehr anzeigen buttons) as see below:
+You can use textexpand component to show more or less text (using `Weniger anzeigen` or
+`Mehr anzeigen` buttons) as seen below:
 
 ```html
 <sbb-textexpand>

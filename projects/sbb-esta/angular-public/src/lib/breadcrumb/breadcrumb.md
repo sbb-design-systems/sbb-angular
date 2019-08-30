@@ -1,22 +1,8 @@
-# Breadcrumb Overview
-
-Import breadcrumb module into your application
-
-```ts
-import { BreadcrumbModule } from '@sbb-esta/angular-public';
-```
-
-### What does the breadcrumb module do?
-
-It is used to display the navigation hierarchy of the current page.
-<br>
-<br>
+The breadcrumb module is used to display the navigation hierarchy of the current page.
 
 ### When should the module be used?
 
 On any page where the user should be able to quickly navigate to a sister or parent page.
-<br>
-<br>
 
 ### Examples
 
