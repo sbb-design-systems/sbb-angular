@@ -1,0 +1,61 @@
+@import 'common';
+
+.sbb-clear-input {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  top: 10px;
+  margin-left: -35px;
+
+  width: 30px;
+  height: 30px;
+
+  button {
+    padding: 0;
+    border: 0;
+    background: none;
+    width: 100%;
+    height: 100%;
+
+    .sbb-clear-input-icon {
+      path {
+        stroke: $sbbColorGraphite;
+      }
+    }
+
+    &:focus {
+      .sbb-clear-input-icon {
+        path {
+          stroke: $sbbColorPlatinum;
+        }
+      }
+    }
+
+    &:hover {
+      .sbb-clear-input-icon {
+        path {
+          stroke: $sbbColorPlatinum;
+        }
+      }
+    }
+  }
+
+  &[disabled='true'] {
+    cursor: default;
+    .sbb-clear-input-icon {
+      path {
+        stroke: $sbbColorAluminum;
+      }
+    }
+  }
+}
+
+.sbb-datepicker-arrows-enabled ~ .sbb-clear-input {
+  margin-left: -65px;
+}
+
+sbb-search ~ .sbb-clear-input {
+  float: left;
+  top: -40px;
+  left: 315px; // Because ssb-search has fixed width
+}

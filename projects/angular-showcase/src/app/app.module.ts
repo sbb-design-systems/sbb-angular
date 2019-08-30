@@ -1,11 +1,12 @@
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ICON_COMPONENT_LIST, IconCollectionModule } from '@sbb-esta/angular-icons';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h3 class="sbbsc-block">
+        Reactive Forms
+      </h3>
+      <form autocomplete="off" [formGroup]="form">
+        <div>
+          <h4 class="sbbsc-block">
+            Text field
+          </h4>
+          <sbb-field label="Name" [mode]="inputMode">
+            <input
+              type="text"
+              formControlName="name"
+              autocomplete="off"
+              placeholder="Name"
+              spellcheck="false"
+              sbbClearTarget
+              #nameField="sbbClearTarget"
+            />
+            <sbb-clear-input [target]="nameField"></sbb-clear-input>
+          </sbb-field>
+          <p>Model: {{ form.get('name').value | json }}</p>
+        </div>
+
+        <div>
+          <h4 class="sbbsc-block">
+            Datepicker field
+          </h4>
+          <sbb-field label="Birth Date" [mode]="inputMode">
+            <sbb-datepicker [arrows]="dateArrows">
+              <input
+                type="text"
+                sbbInput
+                sbbDateInput
+                formControlName="birthDate"
+                autocomplete="off"
+                placeholder="Birth Date"
+                spellcheck="false"
+                sbbClearTarget
+                #dateField="sbbClearTarget"
+              />
+            </sbb-datepicker>
+            <sbb-clear-input [target]="dateField"></sbb-clear-input>
+          </sbb-field>
+          <p>Model: {{ form.get('birthDate').value | json }}</p>
+        </div>
+
+        <div>
+          <h4 class="sbbsc-block">
+            Autocomplete
+          </h4>
+          <sbb-field label="City" [mode]="inputMode">
+            <input
+              type="text"
+              formControlName="city"
+              [sbbAutocomplete]="auto"
+              placeholder="City"
+              sbbClearTarget
+              #autocompleteField="sbbClearTarget"
+            />
+            <sbb-clear-input [target]="autocompleteField"></sbb-clear-input>
+            <sbb-autocomplete #auto="sbbAutocomplete">
+              <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+                {{ option }}
+              </sbb-option>
+            </sbb-autocomplete>
+          </sbb-field>
+          <p>Model: {{ form.get('city').value | json }}</p>
+        </div>
+
+        <div>
+          <h4 class="sbbsc-block">
+            Search
+          </h4>
+          <sbb-search
+            placeholder="Search PLZ"
+            formControlName="plz"
+            [disabled]="disabled"
+            sbbClearTarget
+            #searchBox="sbbClearTarget"
+          >
+          </sbb-search>
+          <sbb-clear-input [target]="searchBox" resetValue="60000"></sbb-clear-input>
+          <p>Model: {{ form.get('plz').value | json }}</p>
+        </div>
+      </form>
+      <h3 class="sbbsc-block">
+        Form Templates
+      </h3>
+      <div>
+        <h4 class="sbbsc-block">
+          Simple input
+        </h4>
+        <input
+          type="text"
+          sbbInput
+          [(ngModel)]="name"
+          autocomplete="off"
+          placeholder="Name"
+          spellcheck="false"
+          [disabled]="disabled"
+          sbbClearTarget
+          #nameFieldTemplate="sbbClearTarget"
+        />
+        <sbb-clear-input [target]="nameFieldTemplate"></sbb-clear-input>
+        <p>Model: {{ name }}</p>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <div class="sbbsc-block">
+        <sbb-label>Field input modes:</sbb-label>
+        <select [(ngModel)]="inputMode">
+          <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+        </select>
+        <div class="sbbsc-block">
+          <sbb-checkbox [(ngModel)]="dateArrows">Show arrows on datepicker</sbb-checkbox>
+        </div>
+        <div class="sbbsc-block">
+          <sbb-checkbox [(ngModel)]="disabled" (change)="onDisableChange()"
+            >Disable all</sbb-checkbox
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

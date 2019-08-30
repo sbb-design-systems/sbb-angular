@@ -1,12 +1,10 @@
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { RouterModule } from '@angular/router';
-
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import {
   AccordionModule,
@@ -140,6 +138,7 @@ const exampleComponents = [
   declarations: exampleComponents,
   entryComponents: exampleComponents,
   exports: exampleComponents,
+
   imports: [
     BrowserModule,
     CommonModule,
