@@ -1,9 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, HostBinding } from '@angular/core';
 
-import { AccordionNotificationService } from './services/accordion-notification.service';
-import { ComponentUiService } from './services/component-ui.service';
-import { IconUiService } from './services/icon-ui.service';
+import { dependencies, version } from '../../../../package.json';
+
 import { ROUTER_ANIMATION } from './shared/animations';
 
 @Component({
@@ -12,44 +10,12 @@ import { ROUTER_ANIMATION } from './shared/animations';
   styleUrls: ['./app.component.scss'],
   animations: [ROUTER_ANIMATION]
 })
-export class AppComponent implements OnInit {
-  sizeOfUiComponents = 0;
-  sizeOfUiIcons = 0;
+export class AppComponent {
+  @HostBinding('class.menu-push') showMenu = false;
+  angularVersion = dependencies['@angular/core'].replace('^', '');
+  showcaseVersion = version;
 
-  componentsClicked = true;
-  iconsClicked = false;
-  aboutClicked: boolean;
-  versionClicked: boolean;
-  isSourceTabClicked: boolean;
-  gettingStartedClicked: boolean;
-
-  @ViewChild('maincontent', { static: true }) maincontent: ElementRef;
-
-  constructor(
-    private _componentUiService: ComponentUiService,
-    private _iconUiService: IconUiService,
-    private _accordionNotificationService: AccordionNotificationService
-  ) {}
-
-  ngOnInit() {
-    this.sizeOfUiIcons = this._iconUiService.getAll().length;
-    this.sizeOfUiComponents = this._componentUiService.getAll().length;
-
-    this._accordionNotificationService.openComponent.subscribe(value => {
-      this.componentsClicked = !this.componentsClicked;
-    });
-
-    this._accordionNotificationService.openIcon.subscribe(value => {
-      this.iconsClicked = !this.iconsClicked;
-    });
-  }
-
-  skipLink(evt) {
-    evt.preventDefault();
-    this.maincontent.nativeElement.focus();
-  }
-
-  getPage(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['page'];
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
   }
 }

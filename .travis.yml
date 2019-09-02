@@ -16,6 +16,7 @@ script:
   - if [ "$TRAVIS_TAG" == "" ]; then npm run lint; fi
   - if [ "$TRAVIS_TAG" == "" ]; then npm run sonar; fi
   - npm run build:angular-showcase
+  - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npm run publish:staging; fi
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > ~/.npmrc
 deploy:
@@ -24,9 +25,3 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-  - provider: script
-    script: npm run publish:staging
-    skip_cleanup: true
-    on:
-      all_branches: true
-      tags: false

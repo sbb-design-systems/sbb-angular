@@ -5,6 +5,8 @@ angular.json
 .vscode/*
 projects/**/schematics/*/index.js
 projects/**/schematics/*/files
+schematics/*/index.js
+schematics/*/files
 projects/angular-showcase/src/assets/**/*
 projects/angular-showcase/src/docs/**/*
 tools
