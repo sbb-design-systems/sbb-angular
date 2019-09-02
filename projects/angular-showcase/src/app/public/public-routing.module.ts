@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
+import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 import { PublicComponent } from './public/public.component';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'introduction/getting-started',
-        component: MarkdownViewerComponent
+        pathMatch: 'full'
       },
       {
         path: 'introduction/:id',

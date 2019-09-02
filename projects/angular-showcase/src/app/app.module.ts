@@ -9,6 +9,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BusinessModule } from './business/business.module';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { PublicModule } from './public/public.module';
 
@@ -24,6 +25,7 @@ import { PublicModule } from './public/public.module';
     HttpClientModule,
     BrowserAnimationsModule,
     PublicModule,
+    BusinessModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],

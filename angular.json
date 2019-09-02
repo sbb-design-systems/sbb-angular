@@ -32,7 +32,8 @@
             ],
             "styles": [
               "projects/angular-showcase/src/styles.scss",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/highlight.js/styles/github.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true,

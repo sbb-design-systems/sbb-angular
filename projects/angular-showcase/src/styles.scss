@@ -1,40 +1,5 @@
 //@import './styles/main';
 
-/* You can add global styles to this file, and also import other style files */
-.icon-flex-column {
-  flex-grow: 1;
-
-  &.icon-sm {
-    width: 0.875em;
-  }
-
-  &.icon-lg {
-    width: 1.33em;
-  }
-
-  &.icon-2x {
-    width: 2em;
-  }
-
-  &.icon-3x {
-    width: 3em;
-  }
-
-  &.icon-5x {
-    width: 5em;
-  }
-
-  &.icon-7x {
-    width: 7em;
-  }
-}
-
-pre {
-  white-space: pre-wrap;
-  /* Since CSS 2.1 */
-}
-
-@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 @import '~@angular/cdk/a11y';
 @import '~@angular/cdk/overlay';
 @import '../../../dist/sbb-esta/angular-public/styles.scss';
@@ -46,14 +11,16 @@ pre {
 @include cdk-overlay();
 
 sbb-public {
-  @include sbbHeadings();
-  @include sbbParagraph();
-  @include lists;
-  @include sbbInputFields();
-  @include sbbSelect();
-  @include sbbFieldset();
-  @include sbbTimeInputField();
-  @include sbbTable();
+  sbb-markdown-viewer {
+    @include sbbHeadings();
+    @include sbbParagraph();
+    @include lists;
+    @include sbbInputFields();
+    @include sbbSelect();
+    @include sbbFieldset();
+    @include sbbTimeInputField();
+    @include sbbTable();
+  }
 }
 
 body {

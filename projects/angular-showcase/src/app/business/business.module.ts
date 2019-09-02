@@ -1,13 +1,24 @@
-import { NgModule } from '@angular/core';
+import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { TabsModule } from '@sbb-esta/angular-public';
+
+import { SharedModule } from '../shared/shared.module';
 
 import { BusinessRoutingModule } from './business-routing.module';
+import { BusinessComponent } from './business/business.component';
+import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
+import { ExamplesModule } from './examples/examples.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [BusinessComponent, ComponentViewerComponent],
   imports: [
     CommonModule,
+    PortalModule,
+    ExamplesModule,
+    SharedModule,
+    TabsModule,
     BusinessRoutingModule
   ]
 })
-export class BusinessModule { }
+export class BusinessModule {}

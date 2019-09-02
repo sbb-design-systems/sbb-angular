@@ -1,13 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { IconsRoutingModule } from './icons-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    IconsRoutingModule
-  ]
+  imports: [CommonModule, IconsRoutingModule]
 })
-export class IconsModule { }
+export class IconsModule {}

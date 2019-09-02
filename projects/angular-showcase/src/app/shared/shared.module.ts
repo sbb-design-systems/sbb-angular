@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from './markdown-viewer/markdown-viewer.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 
 @NgModule({
-  declarations: [SubmenuComponent, MarkdownViewerComponent, ComponentViewerComponent],
-  imports: [CommonModule],
-  exports: [MarkdownViewerComponent, ComponentViewerComponent]
+  declarations: [SubmenuComponent, MarkdownViewerComponent],
+  imports: [CommonModule, PerfectScrollbarModule],
+  exports: [SubmenuComponent, MarkdownViewerComponent]
 })
 export class SharedModule {}
