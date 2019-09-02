@@ -1,5 +1,5 @@
 const { exec } = require('child_process');
-const { readFileSync, writeFileSync } = require('fs');
+const { createReadStream, readFileSync, writeFileSync } = require('fs');
 const glob = require('glob');
 const { get } = require('https');
 const { dirname, join, resolve } = require('path');
@@ -17,7 +17,8 @@ class Publisher {
     this.name = properties.name;
     this.stagingUser = properties.stagingUser;
     this.stagingPassword = properties.stagingPassword;
-    this.showcasePackageJson = resolve(__dirname, `../dist/angular-showcase/package.json`);
+    this.showcasePackagePath = resolve(__dirname, `../dist/angular-showcase`);
+    this.showcasePackageJson = join(this.showcasePackagePath, 'package.json');
     if (this.isRelease) {
       this.tag = prerelease(this.version) ? 'next' : 'latest';
     } else {
@@ -103,12 +104,12 @@ class Publisher {
   }
 
   async _publishStaging() {
-    await this._publishDirectory(dirname(this.showcasePackageJson));
+    await this._publishDirectory(this.showcasePackagePath);
   }
 
   async _publishDirectory(directory) {
     const content = JSON.parse(readFileSync(join(directory, 'package.json'), 'utf8'));
-    if (this.dryRun) {
+    if (this.dryRun || !this.isRelease) {
       await execAsync('npm pack', {
         cwd: directory,
         maxBuffer: 1024 ** 2 * 10
@@ -124,19 +125,34 @@ class Publisher {
   }
 
   async _triggerStaging() {
-    if (this.dryRun || !this.stagingUser) {
+    if (this.dryRun) {
       console.log('Skipped staging trigger');
       return;
     }
 
-    await request({
-      method: 'POST',
-      uri: `https://angular.app.sbb.ch/${this.tag}`,
-      auth: {
-        user: this.stagingUser,
-        pass: this.stagingPassword
-      }
-    });
+    if (this.stagingUser) {
+      await request({
+        method: 'POST',
+        uri: `https://angular.app.sbb.ch/${this.tag}`,
+        auth: {
+          user: this.stagingUser,
+          pass: this.stagingPassword
+        }
+      });
+    } else {
+      const tarballPath = glob.sync('*.tgz', { cwd: this.showcasePackagePath, absolute: true })[0];
+      await request({
+        method: 'POST',
+        formData: {
+          tarball: createReadStream(tarballPath)
+        },
+        uri: `https://angular-staging.app.sbb.ch/${this.tag}`,
+        auth: {
+          user: 'sbb',
+          pass: 'ezUxDHgb6rAHTDU0HLHJ'
+        }
+      });
+    }
     console.log(`Triggered staging with tag ${this.tag}`);
   }
 }
