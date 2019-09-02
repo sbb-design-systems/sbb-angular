@@ -103,8 +103,6 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
   modelReactive = 'Option_2';
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
 
-  constructor() {}
-
   form = new FormGroup({
     test: new FormControl('Option_2')
   });
@@ -121,9 +119,7 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
   ]);
 
   ngOnInit() {
-    this.form.get('test').valueChanges.subscribe(val => {
-      this.modelReactive = val;
-    });
+    this.form.get('test').valueChanges.subscribe(val => (this.modelReactive = val));
   }
 }
 
@@ -191,8 +187,6 @@ class ToggleTemplateDrivenTestComponent {
 class ToggleSimpleCaseTestComponent {
   modelReactive = 'Option_2';
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
-
-  constructor() {}
 
   toggleOptions: Observable<any> = of([
     {
