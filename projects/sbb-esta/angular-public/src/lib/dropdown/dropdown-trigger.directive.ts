@@ -123,8 +123,6 @@ export class DropdownTriggerDirective implements OnDestroy {
   private readonly _closeKeyEventStream = new Subject<void>();
   private _overlayAttached = false;
 
-  private _hostObserver: MutationObserver;
-
   /** Role on a dropdown trigger. */
   @HostBinding('attr.role') get role() {
     return this.dropdownDisabled ? null : 'combobox';
@@ -233,7 +231,6 @@ export class DropdownTriggerDirective implements OnDestroy {
     this._componentDestroyed = true;
     this._destroyPanel();
     this._closeKeyEventStream.complete();
-    this._unsubscribeHostObserver();
   }
 
   @HostListener('blur')
@@ -503,10 +500,6 @@ export class DropdownTriggerDirective implements OnDestroy {
           }
         });
       }
-
-      // We attach an observer to our host element so we can update the dropdown size
-      // whenever the host is resized.
-      this._attachObserverToHost();
     } else {
       // Update the panel width and direction, in case anything has changed.
       this._overlayRef.updateSize({ width: this._getPanelWidth() });
@@ -591,23 +584,5 @@ export class DropdownTriggerDirective implements OnDestroy {
   private _canOpen(): boolean {
     const element = this._elementRef.nativeElement;
     return !element.readOnly && !element.disabled && !this.dropdownDisabled;
-  }
-
-  private _attachObserverToHost() {
-    // Make sure we don't have more than one
-    this._unsubscribeHostObserver();
-
-    this._hostObserver = new MutationObserver(() => {
-      this._overlayRef.updateSize({ width: this._getPanelWidth() });
-    });
-    this._hostObserver.observe(this._getConnectedElement().nativeElement, {
-      attributes: true
-    });
-  }
-
-  private _unsubscribeHostObserver() {
-    if (this._hostObserver) {
-      this._hostObserver.disconnect();
-    }
   }
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-header-showcase',
   templateUrl: './header-showcase.component.html',
   styleUrls: ['./header-showcase.component.scss']
 })
-export class HeaderShowcaseComponent implements OnInit {
+export class HeaderShowcaseComponent {
   label: String = 'Example Header';
   loggedUser = {
     userName: 'example user',
@@ -16,10 +16,6 @@ export class HeaderShowcaseComponent implements OnInit {
     displayName: null
   };
   user = this.loggedUser;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   login() {
     this.user = this.loggedUser;

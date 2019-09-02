@@ -1,4 +1,10 @@
-@import '../styles/header';
+@import 'common';
+
+@mixin headerBlockComponent {
+  position: absolute;
+  top: 0px;
+  height: 54px;
+}
 
 .sbb-header {
   width: 100%;
@@ -9,8 +15,8 @@
   z-index: 1000;
   height: 54px;
 
-  background-color: white;
-  border-bottom: solid 1px #dcdcdc;
+  background-color: $sbbColorWhite;
+  border-bottom: solid 1px $sbbColorSilver;
 
   &-ribbon {
     width: 80px;
@@ -21,9 +27,8 @@
     line-height: 12px;
     letter-spacing: 0px;
     font-size: 10px;
-    color: #f0f0f0;
+    color: $sbbColorSilver;
     transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
   }
 
   &-appchooser {
@@ -43,7 +48,7 @@
     &-label {
       height: 23px;
       width: 200px;
-      color: #000000;
+      color: $sbbColorBlack;
       font-size: 15px;
       line-height: 23px;
 
@@ -52,7 +57,7 @@
     &-subtitle {
       height: 16px;
       width: 200px;
-      color: #9b9b9b;
+      color: $sbbColorAnthracite;
       font-size: 13px;
       font-weight: 300;
       line-height: 16px;

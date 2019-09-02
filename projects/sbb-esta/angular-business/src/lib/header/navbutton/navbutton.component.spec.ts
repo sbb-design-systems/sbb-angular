@@ -11,9 +11,9 @@ import { NavbuttonComponent } from '../navbutton/navbutton.component';
 @Component({
   selector: 'sbb-navbutton-a-test',
   template: `
-    <sbb-navbutton>
+    <button sbbNavbutton>
       <a>only child</a>
-    </sbb-navbutton>
+    </button>
   `,
   entryComponents: [NavbuttonComponent]
 })
@@ -57,9 +57,9 @@ describe('Navbutton with <a> child', () => {
 @Component({
   selector: 'sbb-navbutton-button-test',
   template: `
-    <sbb-navbutton>
+    <button sbbNavbutton>
       <button>only child</button>
-    </sbb-navbutton>
+    </button>
   `,
   entryComponents: [NavbuttonComponent]
 })
@@ -103,9 +103,9 @@ describe('Navbutton with <button> child', () => {
 @Component({
   selector: 'sbb-navbutton-dropdown-test',
   template: `
-    <sbb-navbutton>
-      <button [sbbDropdown]="dropdown">only child</button>
-    </sbb-navbutton>
+    <button sbbNavbutton [sbbDropdown]="dropdown">
+      only child
+    </button>
     <sbb-dropdown #dropdown="sbbDropdown">
       <button sbbDropdownItem>something</button>
     </sbb-dropdown>
@@ -145,7 +145,7 @@ describe('Navbutton with <button> child and dropdown', () => {
 
   it('should recognize the dropdown is expanded after clicking', () => {
     const navbutton = fixture.debugElement.queryAll(By.directive(NavbuttonComponent))[0];
-    navbutton.componentInstance._childNode.click();
+    navbutton.nativeElement.click();
 
     fixture.detectChanges();
     expect(navbutton.componentInstance.isDropdownExpanded).toBeTruthy();
@@ -154,66 +154,5 @@ describe('Navbutton with <button> child and dropdown', () => {
   it('should have exactly 1 icon', () => {
     const icons = fixture.debugElement.queryAll(By.css('.sbb-svgsprite-icon'));
     expect(icons.length).toBe(1);
-  });
-});
-
-@Component({
-  selector: 'sbb-navbutton-empty-test',
-  template: `
-    <sbb-navbutton> </sbb-navbutton>
-  `,
-  entryComponents: [NavbuttonComponent]
-})
-class NavbuttonTemplateEmptyTestComponent {}
-
-describe('Navbutton with no child', () => {
-  let fixture: ComponentFixture<NavbuttonTemplateEmptyTestComponent>;
-
-  configureTestSuite(() => {
-    TestBed.configureTestingModule({
-      imports: [IconCollectionModule, DropdownModule],
-      declarations: [NavbuttonTemplateEmptyTestComponent, NavbuttonComponent]
-    });
-  });
-
-  beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
-    fixture = TestBed.createComponent(NavbuttonTemplateEmptyTestComponent);
-  });
-
-  it('should not create', () => {
-    expect(() => fixture.detectChanges()).toThrow();
-  });
-});
-
-@Component({
-  selector: 'sbb-navbutton-two-children-test',
-  template: `
-    <sbb-navbutton>
-      <button></button>
-      <a></a>
-    </sbb-navbutton>
-  `,
-  entryComponents: [NavbuttonComponent]
-})
-class NavbuttonTemplateTwoChildrenTestComponent {}
-
-describe('Navbutton with two children', () => {
-  let fixture: ComponentFixture<NavbuttonTemplateTwoChildrenTestComponent>;
-
-  configureTestSuite(() => {
-    TestBed.configureTestingModule({
-      imports: [IconCollectionModule, DropdownModule],
-      declarations: [NavbuttonTemplateTwoChildrenTestComponent, NavbuttonComponent]
-    });
-  });
-
-  beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
-    fixture = TestBed.createComponent(NavbuttonTemplateTwoChildrenTestComponent);
-  });
-
-  it('should not create', () => {
-    expect(() => fixture.detectChanges()).toThrow();
   });
 });

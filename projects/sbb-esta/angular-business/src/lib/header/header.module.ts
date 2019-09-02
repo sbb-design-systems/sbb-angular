@@ -5,6 +5,7 @@ import {
   IconChevronSmallUpModule,
   IconHamburgerMenuModule
 } from '@sbb-esta/angular-icons';
+import { DropdownModule } from '@sbb-esta/angular-public';
 
 import { HeaderComponent } from './header/header.component';
 import { NavbuttonComponent } from './navbutton/navbutton.component';
@@ -14,10 +15,10 @@ import { NavbuttonComponent } from './navbutton/navbutton.component';
     CommonModule,
     IconHamburgerMenuModule,
     IconChevronSmallDownModule,
-    IconChevronSmallUpModule
+    IconChevronSmallUpModule,
+    DropdownModule
   ],
   declarations: [HeaderComponent, NavbuttonComponent],
-  exports: [HeaderComponent],
-  entryComponents: [NavbuttonComponent]
+  exports: [HeaderComponent, NavbuttonComponent]
 })
 export class HeaderModule {}

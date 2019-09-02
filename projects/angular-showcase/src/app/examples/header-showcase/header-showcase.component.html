@@ -4,10 +4,12 @@
   [environment]="'dev'"
   [environmentColor]="'darkgreen'"
 >
-  <a routerLink="/">Home</a>
-  <a routerLink="/navigation1">Another module</a>
-  <button type="button" [sbbDropdown]="dropdown">Navigation 1</button>
-  <button type="button">Navigation 2</button>
+  <a sbbNavbutton routerLink="/">Home</a>
+  <a sbbNavbutton routerLink="/navigation1">Another module</a>
+  <button sbbNavbutton type="button" [sbbDropdown]="dropdown">
+    Navigation 1
+  </button>
+  <button sbbNavbutton type="button">Navigation 2</button>
   <sbb-dropdown #dropdown="sbbDropdown">
     <a sbbDropdownItem routerLink="/navigation1/section1" routerLinkActive="sbb-selected"
       >Section 1</a

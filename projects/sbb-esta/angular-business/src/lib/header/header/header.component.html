@@ -16,6 +16,9 @@
 </div>
 
 <div class="sbb-header-mainnavigation">
+  <div #content>
+    <ng-content select="a,button[sbbNavbutton]"></ng-content>
+  </div>
   <template #navigationButtons></template>
 </div>
 <div class="sbb-header-usermenu">
@@ -27,7 +30,7 @@
 <div #iconContent class="sbb-header-logo">
   <ng-content select="[brand],.brand"></ng-content>
 </div>
-<div *ngIf="!isIconProvided" class="sbb-header-logo">
+<div *ngIf="!iconContent.childElementCount" class="sbb-header-logo">
   <svg viewBox="0 0 80 21" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 0h59.233v20.603H0V0z" fill="#EC0000"></path>
     <path
@@ -35,8 +38,4 @@
       fill="#FFF"
     ></path>
   </svg>
-</div>
-
-<div #content>
-  <ng-content select="a,button"></ng-content>
 </div>

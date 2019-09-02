@@ -1,26 +1,30 @@
+import { Subscription } from 'rxjs';
+
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   ElementRef,
   HostBinding,
   OnDestroy,
+  SkipSelf,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { DropdownTriggerDirective } from '@sbb-esta/angular-public';
 
 @Component({
-  selector: 'sbb-navbutton',
+  // tslint:disable-next-line:component-selector
+  selector: 'button[sbbNavbutton],a[sbbNavbutton]',
   templateUrl: './navbutton.component.html',
   styleUrls: ['./navbutton.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbuttonComponent implements AfterViewInit, OnDestroy {
-  /**
-   * Css class of a sbb-navbutton
-   */
+  /** @docs-private */
   @HostBinding('class.sbb-navbutton') cssClass = true;
 
   /**
@@ -29,25 +33,42 @@ export class NavbuttonComponent implements AfterViewInit, OnDestroy {
   @ViewChild('button', { static: true }) childButton: ElementRef;
 
   /**
-   * Observer to detect when an eventual dropdown attached to childButton is expanded or collapsed.
-   * Used to propagate change detection.
+   * Dropdown trigger on host, if present, for dropdown interaction and detection.
    */
-  private _attributeObserver: MutationObserver;
+  @ContentChild(DropdownTriggerDirective, { static: true })
+  dropdownTrigger: DropdownTriggerDirective;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  /**
+   * Returns whether childButton's dropdown is expanded.
+   */
+  private _isDropdownExpanded = false;
+  @HostBinding('class.sbb-navbutton-dropdown-expanded')
+  get isDropdownExpanded() {
+    return this._isDropdownExpanded;
+  }
+
+  /**
+   * Css width to apply when the dropdown is opened.
+   */
+  dropdownWidth = '200px';
+
+  /** @docs-private */
+  private _subscriptions: Subscription[] = [];
+
+  constructor(@SkipSelf() private _changeDetectorRef: ChangeDetectorRef, private _el: ElementRef) {}
 
   ngAfterViewInit() {
-    this._checkChild();
-    this._attributeObserver = new MutationObserver(() => this._changeDetectorRef.markForCheck());
-    this._attributeObserver.observe(this._childNode, {
-      attributes: true,
-      attributeFilter: ['aria-expanded']
-    });
+    if (this.dropdownTrigger) {
+      this._subscriptions = [
+        this.dropdownTrigger.dropdown.opened.subscribe(() => this._toggleDropdown(true)),
+        this.dropdownTrigger.dropdown.closed.subscribe(() => this._toggleDropdown(false))
+      ];
+    }
   }
 
   ngOnDestroy(): void {
-    if (this._attributeObserver) {
-      this._attributeObserver.disconnect();
+    while (this._subscriptions.length) {
+      this._subscriptions.shift().unsubscribe();
     }
   }
 
@@ -55,26 +76,24 @@ export class NavbuttonComponent implements AfterViewInit, OnDestroy {
    * Returns whether childButton has a dropdown attached.
    */
   get isDropdown() {
-    return this._childNode && this._childNode.getAttribute('role') === 'combobox';
+    return this._el.nativeElement && this._el.nativeElement.getAttribute('role') === 'combobox';
   }
 
   /**
-   * Returns whether childButton's dropdown is expanded.
+   * Will expand the dropdown panel and the button itself when the dropdown is opened.
+   * @param expanded Whether the dropdown has been expanded or not
    */
-  get isDropdownExpanded() {
-    return this._childNode && this._childNode.getAttribute('aria-expanded') === 'true';
-  }
+  private _toggleDropdown(expanded: boolean) {
+    if (this.dropdownTrigger) {
+      this._isDropdownExpanded = expanded;
+      this._el.nativeElement.style.width = expanded ? this.dropdownWidth : null;
+      this.dropdownTrigger.dropdown.panelWidth = expanded ? this.dropdownWidth : null;
 
-  /**
-   * Returns a Node for the child element.
-   */
-  private get _childNode() {
-    return this.childButton.nativeElement.children[0];
-  }
-
-  private _checkChild() {
-    if (this.childButton.nativeElement.children.length !== 1) {
-      throw Error('A child (and only one) is required for sbb-navbutton.');
+      if (expanded) {
+        // This will update the panel with the new width
+        this.dropdownTrigger.openPanel();
+      }
+      this._changeDetectorRef.detectChanges();
     }
   }
 }
