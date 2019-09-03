@@ -2,6 +2,7 @@ import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { HtmlLoader } from '../../shared/html-loader.service';
+import { ContextmenuShowcaseComponent } from '../examples/contextmenu-showcase/contextmenu-showcase.component';
 import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
 
 @Component({
@@ -29,12 +30,23 @@ export class BusinessComponent implements ExampleProvider {
     processflow: 'Processflow'
   };
   buttonAndIndicatorComponents = {
-    button: 'Button'
+    button: 'Button',
+    contextmenu: 'Contextmenu'
   };
   popupsAndModals = {};
   private _examples = {
     processflow: ProcessflowShowcaseComponent
   };
+    contextmenu: ContextmenuShowcaseComponent
+  };
+
+  constructor(private _http: HttpClient) {}
+
+  downloadMarkdown(path: string): Promise<string> {
+    return this._http
+      .get(`assets/docs/angular-business/${path}.html`, { responseType: 'text' })
+      .toPromise();
+  }
 
   resolveExample<TComponent = any>(component: string): Type<TComponent> {
     return this._examples[component];
