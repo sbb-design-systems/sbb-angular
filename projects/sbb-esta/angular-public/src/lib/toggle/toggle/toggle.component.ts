@@ -112,7 +112,10 @@ export class ToggleComponent extends RadioButton
     this._zone.onStable.pipe(first()).subscribe(() =>
       this._zone.run(() => {
         this._checkNumOfOptions();
-        const defaultOption = this.toggleOptions.toArray()[0];
+        // Before assigning the first tab to defaultOption, I check whether a different value has been specified
+        const defaultOption =
+          this.toggleOptions.toArray().find(toggle => toggle.value === this.value) ||
+          this.toggleOptions.toArray()[0];
         defaultOption.setToggleChecked(true);
       })
     );
