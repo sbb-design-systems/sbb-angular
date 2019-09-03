@@ -4,8 +4,8 @@
   [environment]="'dev'"
   [environmentColor]="'darkgreen'"
 >
-  <a sbbNavbutton routerLink="/">Home</a>
-  <a sbbNavbutton routerLink="/navigation1">Another module</a>
+  <a routerLink="/">Home</a>
+  <a routerLink="/navigation1">Another module</a>
   <button sbbNavbutton type="button" [sbbDropdown]="dropdown">
     Navigation 1
   </button>
@@ -28,11 +28,11 @@
       <button sbbDropdownItem type="button" (click)="logout(user)">Logout</button>
     </sbb-dropdown>
   </sbb-usermenu>
-  <svg brand viewBox="0 0 80 21" xmlns="http://www.w3.org/2000/svg">
+  <!-- <svg brand viewBox="0 0 80 21" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 0h59.233v20.603H0V0z" fill="#c0c0c0"></path>
     <path
       d="M35.186 17.02h3.75l-5.047-5.163h6.265v5.163h2.96v-5.163h6.267l-5.05 5.163h3.752l6.427-6.708-6.426-6.73h-3.752l5.05 5.185h-6.266V3.583h-2.96v5.184h-6.267l5.047-5.184h-3.75l-6.43 6.73 6.43 6.707"
       fill="#FFF"
     ></path>
-  </svg>
+  </svg> -->
 </sbb-header>

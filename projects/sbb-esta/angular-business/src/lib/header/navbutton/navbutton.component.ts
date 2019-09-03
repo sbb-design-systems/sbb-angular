@@ -9,6 +9,7 @@ import {
   ElementRef,
   HostBinding,
   OnDestroy,
+  Optional,
   SkipSelf,
   ViewChild,
   ViewEncapsulation
@@ -17,9 +18,9 @@ import { DropdownTriggerDirective } from '@sbb-esta/angular-public';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'button[sbbNavbutton],a[sbbNavbutton]',
+  selector: 'button[sbbNavbutton]',
   templateUrl: './navbutton.component.html',
-  styleUrls: ['./navbutton.component.scss'],
+  styleUrls: ['../header/header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -31,12 +32,6 @@ export class NavbuttonComponent implements AfterViewInit, OnDestroy {
    * Button (or equivalent) component that navbutton wraps around.
    */
   @ViewChild('button', { static: true }) childButton: ElementRef;
-
-  /**
-   * Dropdown trigger on host, if present, for dropdown interaction and detection.
-   */
-  @ContentChild(DropdownTriggerDirective, { static: true })
-  dropdownTrigger: DropdownTriggerDirective;
 
   /**
    * Returns whether childButton's dropdown is expanded.
@@ -55,13 +50,17 @@ export class NavbuttonComponent implements AfterViewInit, OnDestroy {
   /** @docs-private */
   private _subscriptions: Subscription[] = [];
 
-  constructor(@SkipSelf() private _changeDetectorRef: ChangeDetectorRef, private _el: ElementRef) {}
+  constructor(
+    @SkipSelf() private _changeDetectorRef: ChangeDetectorRef,
+    private _el: ElementRef,
+    @Optional() private _dropdownTrigger: DropdownTriggerDirective
+  ) {}
 
   ngAfterViewInit() {
-    if (this.dropdownTrigger) {
+    if (this._dropdownTrigger) {
       this._subscriptions = [
-        this.dropdownTrigger.dropdown.opened.subscribe(() => this._toggleDropdown(true)),
-        this.dropdownTrigger.dropdown.closed.subscribe(() => this._toggleDropdown(false))
+        this._dropdownTrigger.dropdown.opened.subscribe(() => this._toggleDropdown(true)),
+        this._dropdownTrigger.dropdown.closed.subscribe(() => this._toggleDropdown(false))
       ];
     }
   }
@@ -84,14 +83,14 @@ export class NavbuttonComponent implements AfterViewInit, OnDestroy {
    * @param expanded Whether the dropdown has been expanded or not
    */
   private _toggleDropdown(expanded: boolean) {
-    if (this.dropdownTrigger) {
+    if (this._dropdownTrigger) {
       this._isDropdownExpanded = expanded;
       this._el.nativeElement.style.width = expanded ? this.dropdownWidth : null;
-      this.dropdownTrigger.dropdown.panelWidth = expanded ? this.dropdownWidth : null;
+      this._dropdownTrigger.dropdown.panelWidth = expanded ? this.dropdownWidth : null;
 
       if (expanded) {
         // This will update the panel with the new width
-        this.dropdownTrigger.openPanel();
+        this._dropdownTrigger.openPanel();
       }
       this._changeDetectorRef.detectChanges();
     }
