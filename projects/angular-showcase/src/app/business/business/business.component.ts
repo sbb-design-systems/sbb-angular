@@ -3,6 +3,7 @@ import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { MarkdownProvider } from '../../shared/markdown-provider';
+import { ContextmenuShowcaseComponent } from '../examples/contextmenu-showcase/contextmenu-showcase.component';
 
 @Component({
   selector: 'sbb-business',
@@ -28,16 +29,19 @@ export class BusinessComponent implements MarkdownProvider, ExampleProvider {
     accordion: 'Accordion'
   };
   buttonAndIndicatorComponents = {
-    button: 'Button'
+    button: 'Button',
+    contextmenu: 'Contextmenu'
   };
   popupsAndModals = {};
-  private _examples = {};
+  private _examples = {
+    contextmenu: ContextmenuShowcaseComponent
+  };
 
   constructor(private _http: HttpClient) {}
 
   downloadMarkdown(path: string): Promise<string> {
     return this._http
-      .get(`assets/docs/angular-public/${path}.html`, { responseType: 'text' })
+      .get(`assets/docs/angular-business/${path}.html`, { responseType: 'text' })
       .toPromise();
   }
 
