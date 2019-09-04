@@ -86,12 +86,12 @@ export class TooltipComponent implements OnDestroy {
   }
 
   constructor(
-    private _overlay: Overlay,
-    private _tooltipRegistry: TooltipRegistryService,
-    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) private _scrollStrategy,
-    @Optional() @Inject(DOCUMENT) private _document: any,
-    private _zone: NgZone,
-    private _changeDetectorRef: ChangeDetectorRef
+    protected _overlay: Overlay,
+    protected _tooltipRegistry: TooltipRegistryService,
+    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) protected _scrollStrategy,
+    @Optional() @Inject(DOCUMENT) protected _document: any,
+    protected _zone: NgZone,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {}
 
   /** Checks if a tooltip panel exists */
@@ -182,38 +182,38 @@ export class TooltipComponent implements OnDestroy {
 
   private readonly _closeKeyEventStream = new Subject<void>();
   private _closingActionsSubscription: Subscription;
-  /**
-   * Customizations for trigger type
-   */
-  @Input() trigger: 'click' | 'hover' = 'click';
-  /**
-   * Customizations for delay open
-   */
-  private _hoverOpenDelay: number;
-  @Input()
-  get hoverOpenDelay(): number {
-    return this._hoverOpenDelay;
-  }
-  set hoverOpenDelay(value: number) {
-    this._hoverOpenDelay = coerceNumberProperty(value, 0);
-  }
+  // /**
+  //  * Customizations for trigger type
+  //  */
+  // @Input() trigger: 'click' | 'hover' = 'click';
+  // /**
+  //  * Customizations for delay open
+  //  */
+  // private _hoverOpenDelay: number;
+  // @Input()
+  // get hoverOpenDelay(): number {
+  //   return this._hoverOpenDelay;
+  // }
+  // set hoverOpenDelay(value: number) {
+  //   this._hoverOpenDelay = coerceNumberProperty(value, 0);
+  // }
 
-  /**
-   * Customizations for delay close
-   */
-  private _hoverCloseDelay: number;
-  @Input()
-  get hoverCloseDelay(): number {
-    return this._hoverCloseDelay;
-  }
-  set hoverCloseDelay(value: number) {
-    this._hoverCloseDelay = coerceNumberProperty(value, 0);
-  }
+  // /**
+  //  * Customizations for delay close
+  //  */
+  // private _hoverCloseDelay: number;
+  // @Input()
+  // get hoverCloseDelay(): number {
+  //   return this._hoverCloseDelay;
+  // }
+  // set hoverCloseDelay(value: number) {
+  //   this._hoverCloseDelay = coerceNumberProperty(value, 0);
+  // }
 
-  /**
-   * References for timeout used for delay open/close
-   */
-  private _referenceActiveTimeout: number;
+  // /**
+  //  * References for timeout used for delay open/close
+  //  */
+  // private _referenceActiveTimeout: number;
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
@@ -370,37 +370,37 @@ export class TooltipComponent implements OnDestroy {
     });
   }
 
-  /**
-   * onMouseOver method used to show the tooltip when trigger type is set to 'hover'
-   * and the mouse hover the button
-   */
-  onMouseOver($event: MouseEvent) {
-    this.clearTimoutOnChangeMouseEvent();
-    event.stopPropagation();
-    this._referenceActiveTimeout = window.setTimeout(() => {
-      this.open(true);
-    }, this.hoverOpenDelay);
-  }
+  // /**
+  //  * onMouseOver method used to show the tooltip when trigger type is set to 'hover'
+  //  * and the mouse hover the button
+  //  */
+  // onMouseOver($event: MouseEvent) {
+  //   this.clearTimoutOnChangeMouseEvent();
+  //   event.stopPropagation();
+  //   this._referenceActiveTimeout = window.setTimeout(() => {
+  //     this.open(true);
+  //   }, this.hoverOpenDelay);
+  // }
 
-  /**
-   * onMouseLeave method used to hide the tooltip when trigger type is set to 'hover'
-   * and the mouse leave the button
-   */
-  onMouseLeave($event: MouseEvent) {
-    this.clearTimoutOnChangeMouseEvent();
-    event.stopPropagation();
-    this._referenceActiveTimeout = window.setTimeout(() => {
-      this.close(true);
-    }, this.hoverCloseDelay);
-  }
+  // /**
+  //  * onMouseLeave method used to hide the tooltip when trigger type is set to 'hover'
+  //  * and the mouse leave the button
+  //  */
+  // onMouseLeave($event: MouseEvent) {
+  //   this.clearTimoutOnChangeMouseEvent();
+  //   event.stopPropagation();
+  //   this._referenceActiveTimeout = window.setTimeout(() => {
+  //     this.close(true);
+  //   }, this.hoverCloseDelay);
+  // }
 
-  /**
-   * function to clear timeouts used for delay. Necessary to keep synchronized the mouseover and
-   * mouseleave events
-   */
-  clearTimoutOnChangeMouseEvent() {
-    if (this._referenceActiveTimeout) {
-      clearTimeout(this._referenceActiveTimeout);
-    }
-  }
+  // /**
+  //  * function to clear timeouts used for delay. Necessary to keep synchronized the mouseover and
+  //  * mouseleave events
+  //  */
+  // clearTimoutOnChangeMouseEvent() {
+  //   if (this._referenceActiveTimeout) {
+  //     clearTimeout(this._referenceActiveTimeout);
+  //   }
+  // }
 }
