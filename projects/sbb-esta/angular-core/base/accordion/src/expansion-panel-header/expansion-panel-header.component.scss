@@ -1,0 +1,15 @@
+@import '../styles/accordion';
+
+.sbb-expansion-panel-header {
+  @include expansionPanelHeader();
+
+  &:not(.sbb-no-toggle) {
+    &.sbb-expanded {
+      @include expansionIndicator(true);
+    }
+
+    &:not(.sbb-expanded) {
+      @include expansionIndicator(false);
+    }
+  }
+}

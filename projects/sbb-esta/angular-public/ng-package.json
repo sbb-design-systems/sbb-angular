@@ -3,8 +3,8 @@
   "dest": "../../../dist/sbb-esta/angular-public",
   "whitelistedNonPeerDependencies": ["tslib", "ngx-perfect-scrollbar", "@types/grecaptcha"],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "styleIncludePaths": ["./src/styles/common"],
+    "entryFile": "public-api.ts",
+    "styleIncludePaths": ["./styles/common"],
     "umdModuleIds": {
       "@sbb-esta/angular-icons": "sbbAngularIcons",
       "ngx-perfect-scrollbar": "ngxPerfectScrollbar"

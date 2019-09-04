@@ -392,6 +392,41 @@
           }
         }
       }
+    },
+    "@sbb-esta/angular-core": {
+      "projectType": "library",
+      "root": "projects/sbb-esta/angular-core",
+      "sourceRoot": "projects/sbb-esta/angular-core",
+      "prefix": "sbb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.json",
+            "project": "projects/sbb-esta/angular-core/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-esta/angular-core/test.ts",
+            "tsConfig": "projects/sbb-esta/angular-core/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-esta/angular-core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-esta/angular-core/tsconfig.lib.json",
+              "projects/sbb-esta/angular-core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-showcase"

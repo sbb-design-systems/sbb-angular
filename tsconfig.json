@@ -11,45 +11,22 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "paths": {
-      "@sbb-esta/angular-public": [
-        "dist/sbb-esta/angular-public"
-      ],
-      "@sbb-esta/angular-public/*": [
-        "dist/sbb-esta/angular-public/*"
-      ],
-      "@sbb-esta/angular-business": [
-        "dist/sbb-esta/angular-business"
-      ],
-      "@sbb-esta/angular-business/*": [
-        "dist/sbb-esta/angular-business/*"
-      ],
-      "@sbb-esta/angular-icons": [
-        "dist/sbb-esta/angular-icons"
-      ],
-      "@sbb-esta/angular-icons/*": [
-        "dist/sbb-esta/angular-icons/*"
-      ],
-      "@sbb-esta/angular-keycloak": [
-        "dist/sbb-esta/angular-keycloak"
-      ],
-      "@sbb-esta/angular-keycloak/*": [
-        "dist/sbb-esta/angular-keycloak/*"
-      ]
+      "@sbb-esta/angular-public": ["dist/sbb-esta/angular-public"],
+      "@sbb-esta/angular-public/*": ["dist/sbb-esta/angular-public/*"],
+      "@sbb-esta/angular-business": ["dist/sbb-esta/angular-business"],
+      "@sbb-esta/angular-business/*": ["dist/sbb-esta/angular-business/*"],
+      "@sbb-esta/angular-icons": ["dist/sbb-esta/angular-icons"],
+      "@sbb-esta/angular-icons/*": ["dist/sbb-esta/angular-icons/*"],
+      "@sbb-esta/angular-keycloak": ["dist/sbb-esta/angular-keycloak"],
+      "@sbb-esta/angular-keycloak/*": ["dist/sbb-esta/angular-keycloak/*"],
+      "@sbb-esta/angular-core": ["dist/sbb-esta/angular-core"],
+      "@sbb-esta/angular-core/*": ["dist/sbb-esta/angular-core/*"]
     }
   },
-  "exclude": [
-    "./dist",
-    "./schematics",
-    "./tools"
-  ],
+  "exclude": ["./dist", "./schematics", "./tools"],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
   }
