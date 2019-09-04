@@ -57,7 +57,6 @@ import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
 import { FileSelectorShowcaseComponent } from './file-selector-showcase/file-selector-showcase.component';
 import { GhettoboxShowcaseComponent } from './ghettobox-showcase/ghettobox-showcase.component';
-import { HeaderShowcaseComponent } from './header-showcase/header-showcase.component';
 import {
   LightboxShowcaseComponent,
   LightboxShowcaseExample2Component,
