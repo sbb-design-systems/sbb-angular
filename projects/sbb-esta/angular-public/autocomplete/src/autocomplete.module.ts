@@ -3,7 +3,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { OptionModule } from '../option/option.module';
+import { OptionModule } from '@sbb-esta/angular-public/option';
 
 import { AutocompleteOriginDirective } from './autocomplete/autocomplete-origin.directive';
 import {

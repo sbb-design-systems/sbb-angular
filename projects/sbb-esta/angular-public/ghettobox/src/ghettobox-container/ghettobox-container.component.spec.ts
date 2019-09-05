@@ -4,10 +4,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { LinkGeneratorResult } from '../../_common/link-generator-result';
 import { Ghettobox } from '../ghettobox/ghettobox-ref';
 import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';

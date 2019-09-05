@@ -1,4 +1,6 @@
-@import 'common';
+@import '../../../angular-core/styles/common/colors';
+@import '../../../angular-core/styles/common/functions';
+@import '../../../angular-core/styles/common/mixins';
 
 $tagTransition: border-color 225ms cubic-bezier(0.4, 0, 0.2, 1),
   background-color 225ms cubic-bezier(0.4, 0, 0.2, 1);

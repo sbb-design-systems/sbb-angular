@@ -160,7 +160,7 @@
     },
     "@sbb-esta/angular-public": {
       "root": "projects/sbb-esta/angular-public",
-      "sourceRoot": "projects/sbb-esta/angular-public/src",
+      "sourceRoot": "projects/sbb-esta/angular-public",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -179,14 +179,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-public/src/test.ts",
+            "main": "projects/sbb-esta/angular-public/test.ts",
             "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/sbb-esta/angular-public/src/styles/common"
-              ]
-            }
+            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
           },
           "configurations": {
             "pr": {
@@ -221,7 +216,7 @@
     },
     "@sbb-esta/angular-business": {
       "root": "projects/sbb-esta/angular-business",
-      "sourceRoot": "projects/sbb-esta/angular-business/src",
+      "sourceRoot": "projects/sbb-esta/angular-business",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -240,14 +235,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-business/src/test.ts",
+            "main": "projects/sbb-esta/angular-business/test.ts",
             "tsConfig": "projects/sbb-esta/angular-business/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/sbb-esta/angular-business/src/styles/common"
-              ]
-            }
+            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js"
           },
           "configurations": {
             "pr": {
@@ -282,7 +272,7 @@
     },
     "@sbb-esta/angular-icons": {
       "root": "projects/sbb-esta/angular-icons",
-      "sourceRoot": "projects/sbb-esta/angular-icons/src",
+      "sourceRoot": "projects/sbb-esta/angular-icons",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -301,7 +291,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-icons/src/test.ts",
+            "main": "projects/sbb-esta/angular-icons/test.ts",
             "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-icons/karma.conf.js"
           },
@@ -340,7 +330,7 @@
     "@sbb-esta/angular-keycloak": {
       "projectType": "library",
       "root": "projects/sbb-esta/angular-keycloak",
-      "sourceRoot": "projects/sbb-esta/angular-keycloak/src",
+      "sourceRoot": "projects/sbb-esta/angular-keycloak",
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
@@ -358,7 +348,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-keycloak/src/test.ts",
+            "main": "projects/sbb-esta/angular-keycloak/test.ts",
             "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-keycloak/karma.conf.js"
           },
@@ -412,6 +402,22 @@
             "main": "projects/sbb-esta/angular-core/test.ts",
             "tsConfig": "projects/sbb-esta/angular-core/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-core/karma.conf.js"
+          },
+          "configurations": {
+            "pr": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "sourceMap": false,
+              "progress": false
+            },
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
+            }
           }
         },
         "lint": {

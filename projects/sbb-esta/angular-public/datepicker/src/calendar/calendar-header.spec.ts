@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FEB, JAN } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { FEB, JAN } from '../../_common/testing/dates-constants';
 import { DatepickerModule } from '../datepicker.module';
 
 import { CalendarComponent } from './calendar.component';

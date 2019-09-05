@@ -12,15 +12,17 @@ import {
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import {
+  DATE_PIPE_DATE_FORMATS,
+  DateAdapter,
+  NativeDateAdapter,
+  SBB_DATE_FORMATS
+} from '@sbb-esta/angular-core/datetime';
+import { DEC, FEB, JAN, MAR, NOV } from '@sbb-esta/angular-core/testing';
+import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { DEC, FEB, JAN, MAR, NOV } from '../../_common/testing/dates-constants';
-import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
-import { DateAdapter } from '../date-adapter';
-import { SBB_DATE_FORMATS } from '../date-formats';
-import { DATE_PIPE_DATE_FORMATS } from '../date-pipe-date-formats';
-import { NativeDateAdapter } from '../native-date-adapter';
 
 import { MonthViewComponent } from './month-view.component';
 

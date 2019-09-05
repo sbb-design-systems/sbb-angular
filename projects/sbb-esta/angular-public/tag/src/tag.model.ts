@@ -1,4 +1,4 @@
-import { SbbCheckboxChange } from '../checkbox/checkbox/checkbox-base';
+import { SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 
 import { TagComponent } from './tag/tag.component';
 

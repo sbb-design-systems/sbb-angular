@@ -8,8 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-
-import { NotificationIconDirective } from '../notification-icon.directive';
+import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
 export enum NotificationType {
   SUCCESS = 'success',
@@ -74,7 +73,7 @@ export class NotificationComponent {
    *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  @ContentChild(NotificationIconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef, static: false })
   set icon(notificationIcon: TemplateRef<any>) {
     this._icon = notificationIcon;
   }

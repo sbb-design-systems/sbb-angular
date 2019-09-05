@@ -1,5 +1,5 @@
-@import '../../checkbox/checkbox';
-@import '../../radio-button/radio-button';
+@import '../../../checkbox/src/checkbox';
+@import '../../../radio-button/src/radio-button';
 
 @mixin checkboxRadioButtonPanel {
   .sbb-checkbox-radio-button-panel {

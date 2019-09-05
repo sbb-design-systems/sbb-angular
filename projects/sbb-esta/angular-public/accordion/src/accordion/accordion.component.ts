@@ -16,6 +16,7 @@ import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansi
 
 import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
 
+// TODO: Change to directive
 @Component({
   selector: 'sbb-accordion',
   exportAs: 'sbbAccordion',

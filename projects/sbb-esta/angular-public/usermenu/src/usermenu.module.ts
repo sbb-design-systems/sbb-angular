@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { IconChevronSmallDownModule, IconUserModule } from '@sbb-esta/angular-icons';
 
-import { DropdownModule } from '../dropdown/dropdown';
+import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { UserMenuComponent } from './usermenu/usermenu.component';
 

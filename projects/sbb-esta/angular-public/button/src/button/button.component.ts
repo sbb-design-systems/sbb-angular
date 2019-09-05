@@ -5,8 +5,7 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
-
-import { BaseButton } from './base-button';
+import { BaseButton } from '@sbb-esta/angular-core/base';
 
 @Component({
   // tslint:disable-next-line:component-selector

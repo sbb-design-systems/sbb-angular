@@ -2,12 +2,19 @@ import { ENTER } from '@angular/cdk/keycodes';
 import { Component, NgZone } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import {
+  DEC,
+  dispatchFakeEvent,
+  dispatchKeyboardEvent,
+  FEB,
+  JAN,
+  JUL,
+  MockNgZone,
+  NOV
+} from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { DEC, FEB, JAN, JUL, NOV } from '../../_common/testing/dates-constants';
-import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
-import { MockNgZone } from '../../_common/testing/mock-ng-zone';
-import { CalendarComponent, DatepickerModule } from '../datepicker';
+import { CalendarComponent, DatepickerModule } from '../public_api';
 
 @Component({
   template: `

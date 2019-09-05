@@ -1,4 +1,9 @@
 import { Directive } from '@angular/core';
+import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 
-@Directive({ selector: '[sbbToggleOptionIcon]' })
+/** @deprecated Use sbbIcon instead */
+@Directive({
+  selector: '[sbbToggleOptionIcon]',
+  providers: [{ provide: IconDirective, useExisting: ToggleOptionIconDirective }]
+})
 export class ToggleOptionIconDirective {}

@@ -3,10 +3,10 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing/dispatch-events';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
-import { AccordionModule, ExpansionPanelComponent } from '../accordion';
+import { AccordionModule, ExpansionPanelComponent } from '../public_api';
 
 // tslint:disable:i18n
 @Component({

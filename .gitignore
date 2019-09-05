@@ -52,3 +52,12 @@ yarn.lock
 # Markdown
 projects/angular-showcase/src/assets/docs
 projects/angular-showcase/src/assets/examples
+
+# Copied modules
+projects/sbb-esta/angular-business/accordion
+projects/sbb-esta/angular-business/autocomplete
+projects/sbb-esta/angular-business/datepicker
+projects/sbb-esta/angular-business/field
+projects/sbb-esta/angular-business/radio-button
+projects/sbb-esta/angular-business/select
+projects/sbb-esta/angular-business/textarea

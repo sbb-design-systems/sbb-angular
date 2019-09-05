@@ -1,4 +1,7 @@
-@import 'common';
+@import '../../../../angular-core/styles/common/variants';
+@import '../../../../angular-core/styles/common/functions';
+@import '../../../../angular-core/styles/common/mediaqueries';
+@import '../../../../angular-core/styles/common/form';
 
 @mixin sbbLabel {
   @include publicOnly() {

@@ -15,11 +15,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
 import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 
 import { GHETTOBOX_ANIMATIONS } from './ghettobox-animations';
-import { GhettoboxIconDirective } from './ghettobox-icon.directive';
 import { Ghettobox } from './ghettobox-ref';
 
 /** Ghettobox states used for the animation */
@@ -62,7 +63,7 @@ export class GhettoboxComponent {
   /**
    * Retrive the routerLink from the proper source
    */
-  get link() {
+  get link(): RouterLink | LinkGeneratorResult {
     return this._routerLinkDirective || (this.ghettobox ? this.ghettobox.link : undefined);
   }
 
@@ -105,7 +106,7 @@ export class GhettoboxComponent {
    */
   @ViewChild('defaultIcon', { static: true }) iconDefault: TemplateRef<any>;
 
-  @ContentChild(GhettoboxIconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef, static: false })
   _contentIcon: TemplateRef<any>;
 
   /**

@@ -9,7 +9,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { DropdownComponent } from '../../dropdown/dropdown';
+import { DropdownComponent } from '@sbb-esta/angular-public/dropdown';
 
 let counter = 0;
 

@@ -4,6 +4,12 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
+  DATE_PIPE_DATE_FORMATS,
+  DateAdapter,
+  NativeDateAdapter,
+  SBB_DATE_FORMATS
+} from '@sbb-esta/angular-core/datetime';
+import {
   IconCalendarModule,
   IconChevronSmallLeftModule,
   IconChevronSmallRightModule
@@ -11,10 +17,7 @@ import {
 
 import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';
-import { DateAdapter } from './date-adapter';
-import { SBB_DATE_FORMATS } from './date-formats';
 import { DateInputDirective } from './date-input/date-input.directive';
-import { DATE_PIPE_DATE_FORMATS } from './date-pipe-date-formats';
 import { DatepickerContentComponent } from './datepicker-content/datepicker-content.component';
 import { DatepickerToggleComponent } from './datepicker-toggle/datepicker-toggle.component';
 import {
@@ -22,7 +25,6 @@ import {
   SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from './datepicker/datepicker.component';
 import { MonthViewComponent } from './month-view/month-view.component';
-import { NativeDateAdapter } from './native-date-adapter';
 
 @NgModule({
   imports: [

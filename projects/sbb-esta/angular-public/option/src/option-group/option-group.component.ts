@@ -1,11 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ContentChildren,
-  HostBinding,
-  Input,
-  QueryList
-} from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 let uniqueOptgroupIdCounter = 0;
 

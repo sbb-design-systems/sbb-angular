@@ -1,5 +1,3 @@
-@import 'common';
-
 @mixin datePickerPopup() {
   @include publicOnly() {
     @include mq($from: desktop4k) {

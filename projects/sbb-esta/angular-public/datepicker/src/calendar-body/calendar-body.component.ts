@@ -11,9 +11,8 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import { first, take } from 'rxjs/operators';
-
-import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
+import { DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
+import { first } from 'rxjs/operators';
 
 /**
  * An internal class that represents the data corresponding to a single calendar cell.

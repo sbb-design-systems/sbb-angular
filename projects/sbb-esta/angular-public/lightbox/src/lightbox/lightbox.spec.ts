@@ -24,10 +24,10 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 
-import { dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
-import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../lightbox';
+import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../public_api';
 
 import { LightboxContainerComponent } from './lightbox-container.component';
 
@@ -462,7 +462,7 @@ describe('Lightbox', () => {
       'sbb-lightbox-container'
     ) as HTMLElement;
     dispatchKeyboardEvent(document.body, 'keydown', A);
-    dispatchKeyboardEvent(document.body, 'keydown', A, container);
+    dispatchKeyboardEvent(document.body, 'keydown', A, undefined, container);
 
     expect(spy).toHaveBeenCalledTimes(2);
   }));

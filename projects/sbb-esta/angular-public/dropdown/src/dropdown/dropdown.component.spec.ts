@@ -4,16 +4,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { configureTestSuite } from 'ng-bullet';
 
-import { LinkGeneratorResult } from '../../_common/link-generator-result';
+import { DropdownModule } from '../dropdown.module';
 import {
   DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
   DropdownItemDirective,
   DropdownOriginDirective,
   DropdownTriggerDirective
-} from '../dropdown';
-import { DropdownModule } from '../dropdown.module';
+} from '../public_api';
 
 import { DropdownComponent } from './dropdown.component';
 

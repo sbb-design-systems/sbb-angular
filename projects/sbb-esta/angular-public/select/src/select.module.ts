@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { IconChevronSmallDownModule } from '@sbb-esta/angular-icons';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { OptionModule } from '../option/option.module';
+import { OptionModule } from '@sbb-esta/angular-public/option';
 
 import { SBB_SELECT_SCROLL_STRATEGY_PROVIDER, SelectComponent } from './select/select.component';
 

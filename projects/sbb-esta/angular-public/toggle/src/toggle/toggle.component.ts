@@ -15,10 +15,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RadioButton } from '@sbb-esta/angular-public/radio-button';
 import { merge, Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { RadioButton } from '../../radio-button/radio-button/radio-button.model';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
 

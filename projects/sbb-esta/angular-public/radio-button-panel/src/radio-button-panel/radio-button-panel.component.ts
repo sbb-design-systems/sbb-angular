@@ -10,8 +10,10 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { RadioButtonComponent } from '../../radio-button/radio-button';
-import { RadioButtonRegistryService } from '../../radio-button/radio-button/radio-button-registry.service';
+import {
+  RadioButtonComponent,
+  RadioButtonRegistryService
+} from '@sbb-esta/angular-public/radio-button';
 
 let counter = 0;
 

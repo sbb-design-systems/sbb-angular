@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { configureTestSuite } from 'ng-bullet';
 
-import { ButtonModule } from '../../button/button';
 import { PaginationModule } from '../pagination.module';
 
 import { NavigationComponent } from './navigation.component';

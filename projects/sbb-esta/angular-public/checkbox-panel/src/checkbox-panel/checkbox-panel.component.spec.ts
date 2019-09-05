@@ -3,9 +3,9 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { createMouseEvent, dispatchEvent } from '../../_common/testing';
 import { CheckboxPanelModule } from '../checkbox-panel.module';
 
 import { CheckboxPanelComponent } from './checkbox-panel.component';

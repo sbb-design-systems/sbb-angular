@@ -1,4 +1,4 @@
-@import '../../tabs/styles/tabs';
+@import '../../../tabs/src/styles/tabs';
 
 @mixin processflowBase {
   @include tabsBase;

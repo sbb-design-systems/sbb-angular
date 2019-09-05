@@ -1,7 +1,7 @@
 import { QueryList } from '@angular/core';
 
-import { Constructor } from '../_common/constructor';
-import { OptionComponent, OptionGroupComponent } from '../option/option';
+import { OptionGroupComponent } from './option-group/option-group.component';
+import { OptionComponent } from './option/option.component';
 
 /** @docs-private */
 export interface HasOptions {

@@ -1,5 +1,3 @@
-@import 'common';
-
 @mixin loadingBase() {
   display: flex;
   height: $rectHeight * 5;

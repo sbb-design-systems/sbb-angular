@@ -1,17 +1,20 @@
 import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { async, inject, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  dispatchEvent,
+  dispatchKeyboardEvent
+} from '@sbb-esta/angular-core/testing/dispatch-events';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
 import {
   AccordionComponent,
   AccordionModule,
   ExpansionPanelComponent,
   ExpansionPanelHeaderComponent
-} from '../accordion';
+} from '../public_api';
 
 // tslint:disable:i18n
 @Component({

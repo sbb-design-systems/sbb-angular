@@ -39,13 +39,13 @@ import {
 } from 'rxjs';
 import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
 
-import { HighlightPipe } from '../../option/option/highlight.pipe';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
+  HighlightPipe,
   OptionComponent,
   SBBOptionSelectionChange
-} from '../../option/option/option.component';
+} from '@sbb-esta/angular-public/option';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';

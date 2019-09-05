@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconChevronRightModule, IconChevronSmallDownModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { DropdownModule } from '../../dropdown/dropdown';
+import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
 

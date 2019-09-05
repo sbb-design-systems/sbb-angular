@@ -4,11 +4,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
+import { FieldModule } from '@sbb-esta/angular-public/field';
 import { configureTestSuite } from 'ng-bullet';
 import { Observable, of } from 'rxjs';
 
-import { DatepickerModule } from '../../datepicker/datepicker';
-import { FieldModule } from '../../field/field';
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 import { ToggleModule } from '../toggle.module';
 

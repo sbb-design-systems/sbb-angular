@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
+import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 import { IconChevronSmallDownModule, IconUserModule } from '@sbb-esta/angular-icons';
+import { DropdownComponent, DropdownModule } from '@sbb-esta/angular-public/dropdown';
 import { configureTestSuite } from 'ng-bullet';
 
-import { LinkGeneratorResult } from '../../_common/link-generator-result';
-import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
-import { DropdownComponent, DropdownModule } from '../../dropdown/dropdown';
 import { UserMenuModule } from '../usermenu.module';
 
 import { UserMenuComponent } from './usermenu.component';

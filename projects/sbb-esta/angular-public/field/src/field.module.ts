@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { InputModule } from '../input/input.module';
+import { InputModule } from '@sbb-esta/angular-public/input';
 
 import { FieldComponent } from './field/field.component';
 import { FormErrorDirective } from './form-error/form-error.directive';

@@ -4,13 +4,12 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
+import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
+import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchFakeEvent, dispatchKeyboardEvent } from '../../_common/testing/dispatch-events';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
-import { AutocompleteModule } from '../../autocomplete/autocomplete';
-import { OptionModule } from '../../option/option';
-import { SearchComponent } from '../search';
+import { SearchComponent } from '../public_api';
 import { SearchModule } from '../search.module';
 
 @Component({
@@ -170,13 +169,7 @@ describe('SearchComponent', () => {
 
     configureTestSuite(() => {
       TestBed.configureTestingModule({
-        imports: [
-          SearchModule,
-          NoopAnimationsModule,
-          AutocompleteModule,
-          OptionModule,
-          OverlayModule
-        ],
+        imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
         declarations: [SimpleSearchAutocompleteComponent]
       });
     });
@@ -289,13 +282,7 @@ describe('SearchComponent', () => {
 
       configureTestSuite(() => {
         TestBed.configureTestingModule({
-          imports: [
-            SearchModule,
-            NoopAnimationsModule,
-            AutocompleteModule,
-            OptionModule,
-            OverlayModule
-          ],
+          imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchHeaderComponent]
         });
       });
@@ -339,13 +326,7 @@ describe('SearchComponent', () => {
 
       configureTestSuite(() => {
         TestBed.configureTestingModule({
-          imports: [
-            SearchModule,
-            NoopAnimationsModule,
-            AutocompleteModule,
-            OptionModule,
-            OverlayModule
-          ],
+          imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchAutocompleteHeaderComponent]
         });
       });

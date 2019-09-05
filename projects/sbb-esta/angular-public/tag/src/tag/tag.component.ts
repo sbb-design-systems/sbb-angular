@@ -20,10 +20,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { CheckboxBase, SbbCheckboxChange } from '../../checkbox/checkbox/checkbox-base';
 import { TagChange } from '../tag.model';
 
 /**

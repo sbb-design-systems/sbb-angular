@@ -14,7 +14,7 @@ import {
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
-import { range } from '../../_common/range';
+const range = (length: number, offset = 0) => Array.from({ length }, (_, k) => k + offset);
 
 const MAX_PAGE_SIZE = 3;
 

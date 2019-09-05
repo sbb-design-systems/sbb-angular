@@ -1,12 +1,12 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { dispatchEvent } from '@sbb-esta/angular-core/testing';
+import { createMouseEvent } from '@sbb-esta/angular-core/testing';
+import { BadgeModule } from '@sbb-esta/angular-public/badge';
 import { configureTestSuite } from 'ng-bullet';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { dispatchEvent } from '../../_common/testing/dispatch-events';
-import { createMouseEvent } from '../../_common/testing/event-objects';
-import { BadgeModule } from '../../badge/badge.module';
 import { TabComponent } from '../tab/tab.component';
 
 import { TabsComponent } from './tabs.component';

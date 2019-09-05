@@ -16,8 +16,7 @@ import {
   CdkConnectedOverlay,
   Overlay,
   RepositionScrollStrategy,
-  ScrollStrategy,
-  ViewportRuler
+  ScrollStrategy
 } from '@angular/cdk/overlay';
 import {
   AfterContentInit,
@@ -50,20 +49,24 @@ import {
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 import { defer, merge, Observable, Subject } from 'rxjs';
-import { filter, first, map, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
-import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import { CanUpdateErrorState, mixinErrorState } from '../../_common/errors/error-state';
-import { FormFieldControl } from '../../field/field';
-import { HasOptions } from '../../option/has-options';
+import {
+  CanUpdateErrorState,
+  CanUpdateErrorStateCtor,
+  mixinErrorState
+} from '@sbb-esta/angular-core/common-behaviors';
+import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
+  HasOptions,
+  OptionComponent,
+  OptionGroupComponent,
   SBB_OPTION_PARENT_COMPONENT,
   SBBOptionSelectionChange
-} from '../../option/option';
-import { OptionGroupComponent } from '../../option/option-group/option-group.component';
-import { OptionComponent } from '../../option/option/option.component';
+} from '@sbb-esta/angular-public/option';
 
 let nextUniqueId = 0;
 
@@ -141,7 +144,9 @@ export class SbbSelectBase {
   ) {}
 }
 
-export const SbbSelectMixinBase = mixinErrorState(SbbSelectBase);
+export const SbbSelectMixinBase: CanUpdateErrorStateCtor & typeof SbbSelectBase = mixinErrorState(
+  SbbSelectBase
+);
 
 @Component({
   selector: 'sbb-select',

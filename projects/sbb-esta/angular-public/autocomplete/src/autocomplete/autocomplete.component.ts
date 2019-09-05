@@ -17,9 +17,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { HasOptions } from '../../option/has-options';
-import { OptionGroupComponent } from '../../option/option-group/option-group.component';
-import { OptionComponent, SBB_OPTION_PARENT_COMPONENT } from '../../option/option/option.component';
+import {
+  HasOptions,
+  OptionComponent,
+  OptionGroupComponent,
+  SBB_OPTION_PARENT_COMPONENT
+} from '@sbb-esta/angular-public/option';
 
 /**
  * Autocomplete IDs need to be unique across components, so this counter exists outside of

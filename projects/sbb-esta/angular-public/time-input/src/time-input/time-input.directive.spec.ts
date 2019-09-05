@@ -3,8 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchEvent } from '../../_common/testing/dispatch-events';
-import { createMouseEvent } from '../../_common/testing/event-objects';
+import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 
 import { TimeInputDirective } from './time-input.directive';
 

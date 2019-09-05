@@ -16,10 +16,10 @@ import {
   Self
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import { CanUpdateErrorStateCtor, mixinErrorState } from '@sbb-esta/angular-core/common-behaviors';
+import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
+import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 
-import { ErrorStateMatcher } from '../../_common/errors/error-services';
-import { CanUpdateErrorStateCtor, mixinErrorState } from '../../_common/errors/error-state';
-import { FormFieldControl } from '../../field/form-field-control';
 import { SBB_INPUT_VALUE_ACCESSOR } from '../input-value-accessor';
 
 let nextId = 0;

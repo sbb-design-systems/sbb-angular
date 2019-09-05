@@ -16,13 +16,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import {
+  RadioButtonComponent,
+  RadioButtonRegistryService
+} from '@sbb-esta/angular-public/radio-button';
 import { Subject } from 'rxjs';
 
-import { RadioButtonComponent } from '../../radio-button/radio-button';
-import { RadioButtonRegistryService } from '../../radio-button/radio-button/radio-button-registry.service';
 import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
-
-import { ToggleOptionIconDirective } from './toggle-option-icon.directive';
 
 let counter = 0;
 
@@ -189,7 +190,7 @@ export class ToggleOptionComponent extends RadioButtonComponent
    */
   @Input()
   @HostBinding('class.sbb-toggle-option-has-icon')
-  @ContentChild(ToggleOptionIconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef, static: false })
   icon?: TemplateRef<any>;
 
   /**

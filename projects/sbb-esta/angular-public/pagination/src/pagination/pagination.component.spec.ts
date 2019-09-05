@@ -3,11 +3,11 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { dispatchEvent } from '@sbb-esta/angular-core/testing';
+import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchEvent } from '../../_common/testing/dispatch-events';
-import { createMouseEvent } from '../../_common/testing/event-objects';
 import { PaginationModule } from '../pagination.module';
 
 import { PaginationComponent } from './pagination.component';

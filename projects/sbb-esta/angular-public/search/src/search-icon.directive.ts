@@ -1,4 +1,11 @@
 import { Directive } from '@angular/core';
+import { IconDirective } from '@sbb-esta/angular-core/icon-directive/';
 
-@Directive({ selector: '[sbbSearchIcon]' })
+/**
+ * @deprecated Use sbbIcon instead
+ */
+@Directive({
+  selector: '[sbbSearchIcon]',
+  providers: [{ provide: IconDirective, useExisting: SearchIconDirective }]
+})
 export class SearchIconDirective {}

@@ -31,10 +31,10 @@ import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent
-} from '../../_common/testing/dispatch-events';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
-import { MockNgZone } from '../../_common/testing/mock-ng-zone';
-import { typeInElement } from '../../_common/testing/type-in-element';
+} from '@sbb-esta/angular-core/testing';
+import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
+import { MockNgZone } from '@sbb-esta/angular-core/testing';
+import { typeInElement } from '@sbb-esta/angular-core/testing';
 import { FieldModule } from '../../field/field.module';
 import { FieldComponent } from '../../field/field/field.component';
 import { OptionModule } from '../../option/option.module';

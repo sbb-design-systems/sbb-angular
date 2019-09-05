@@ -18,10 +18,9 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 import { Subject } from 'rxjs';
 
-import { DateAdapter } from '../date-adapter';
-import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { MonthViewComponent } from '../month-view/month-view.component';
 

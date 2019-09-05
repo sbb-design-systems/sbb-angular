@@ -5,10 +5,10 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
+import { FieldModule } from '@sbb-esta/angular-public/field';
 import { configureTestSuite } from 'ng-bullet';
 
-import { ButtonModule } from '../../button/button';
-import { FieldModule } from '../../field/field';
 import { TooltipModule } from '../tooltip.module';
 
 import {

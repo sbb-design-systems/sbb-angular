@@ -4,16 +4,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
 import {
   IconChevronRightModule,
   IconChevronSmallDownCircleModule,
   IconHouseModule
 } from '@sbb-esta/angular-icons';
+import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchEvent } from '../../_common/testing/dispatch-events';
-import { createMouseEvent } from '../../_common/testing/event-objects';
-import { DropdownModule } from '../../dropdown/dropdown';
 import { BreadcrumbModule } from '../breadcrumb.module';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 

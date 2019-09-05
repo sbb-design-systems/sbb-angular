@@ -27,10 +27,10 @@ import {
   ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core';
+import { DateAdapter } from '@sbb-esta/angular-core/datetime';
 import { merge, Subject, Subscription } from 'rxjs';
 import { bufferCount, filter, first, mapTo, tap } from 'rxjs/operators';
 
-import { DateAdapter } from '../date-adapter';
 import { DateInputDirective } from '../date-input/date-input.directive';
 import { DatepickerContentComponent } from '../datepicker-content/datepicker-content.component';
 import { createMissingDateImplError } from '../datepicker-errors';

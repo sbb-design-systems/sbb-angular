@@ -4,7 +4,6 @@ import {
   END,
   ENTER,
   HOME,
-  LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,
   TAB,
@@ -12,12 +11,11 @@ import {
 } from '@angular/cdk/keycodes';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
-import { ScrollDispatcher, ViewportRuler } from '@angular/cdk/scrolling';
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   Component,
   DebugElement,
-  OnInit,
   QueryList,
   ViewChild,
   ViewChildren
@@ -43,17 +41,16 @@ import {
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Subject, Subscription } from 'rxjs';
-
-import { ErrorStateMatcher } from '../../_common/errors/error-services';
 import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent
-} from '../../_common/testing/dispatch-events';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
-import { FieldModule } from '../../field/field.module';
-import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
+} from '@sbb-esta/angular-core/testing';
+import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
+import { FieldModule } from '@sbb-esta/angular-public/field';
+import { OptionComponent, SBBOptionSelectionChange } from '@sbb-esta/angular-public/option';
+import { Subject } from 'rxjs';
+
 import { SelectModule } from '../select.module';
 
 import { SelectComponent } from './select.component';
@@ -249,25 +246,6 @@ class CustomSelectAccessorComponent implements ControlValueAccessor {
 }
 
 @Component({
-  selector: 'sbb-comp-with-custom-select',
-  template: `
-    <custom-select-accessor [formControl]="ctrl"></custom-select-accessor>
-  `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: CustomSelectAccessorComponent,
-      multi: true
-    }
-  ]
-})
-class CompWithCustomSelectComponent {
-  ctrl = new FormControl('initial value');
-  @ViewChild(CustomSelectAccessorComponent, { static: true })
-  customAccessor: CustomSelectAccessorComponent;
-}
-
-@Component({
   selector: 'sbb-basic-select-on-push',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -384,49 +362,6 @@ class BasicSelectInitiallyHiddenComponent {
   `
 })
 class BasicSelectNoPlaceholderComponent {}
-
-@Component({
-  selector: 'sbb-basic-select-with-theming',
-  template: `
-    <sbb-field [color]="theme">
-      <sbb-select placeholder="Food">
-        <sbb-option value="steak-0">Steak</sbb-option>
-        <sbb-option value="pizza-1">Pizza</sbb-option>
-      </sbb-select>
-    </sbb-field>
-  `
-})
-class BasicSelectWithThemingComponent {
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  theme: string;
-}
-
-@Component({
-  selector: 'sbb-reset-values-select',
-  template: `
-    <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control">
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
-        <sbb-option>None</sbb-option>
-      </sbb-select>
-    </sbb-field>
-  `
-})
-class ResetValuesSelectComponent {
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-    { value: false, viewValue: 'Falsy' },
-    { viewValue: 'Undefined' },
-    { value: null, viewValue: 'Null' }
-  ];
-  control = new FormControl();
-
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-}
 
 @Component({
   template: `
@@ -628,34 +563,6 @@ class BasicSelectWithoutFormsMultipleComponent {
 }
 
 @Component({
-  selector: 'sbb-select-with-custom-trigger',
-  template: `
-    <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control" #select="sbbSelect">
-        <sbb-select-trigger>
-          {{
-            select.selected?.viewValue
-              .split('')
-              .reverse()
-              .join('')
-          }}
-        </sbb-select-trigger>
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
-      </sbb-select>
-    </sbb-field>
-  `
-})
-class SelectWithCustomTriggerComponent {
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' }
-  ];
-  control = new FormControl();
-}
-
-@Component({
   selector: 'sbb-ng-model-compare-with',
   template: `
     <sbb-field>
@@ -711,25 +618,6 @@ class NgModelCompareWithSelectComponent {
 
 @Component({
   template: `
-    <sbb-select placeholder="Food" [formControl]="control" [errorStateMatcher]="errorStateMatcher">
-      <sbb-option *ngFor="let food of foods" [value]="food.value">
-        {{ food.viewValue }}
-      </sbb-option>
-    </sbb-select>
-  `
-})
-class CustomErrorBehaviorSelectComponent {
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  control = new FormControl();
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' }
-  ];
-  errorStateMatcher: ErrorStateMatcher;
-}
-
-@Component({
-  template: `
     <sbb-field>
       <sbb-select placeholder="Food" [(ngModel)]="selectedFoods">
         <sbb-option *ngFor="let food of foods" [value]="food.value"
@@ -747,35 +635,6 @@ class SingleSelectWithPreselectedArrayValuesComponent {
   ];
 
   selectedFoods = this.foods[1].value;
-
-  @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
-  @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
-}
-
-@Component({
-  selector: 'sbb-select-without-option-centering',
-  template: `
-    <sbb-field>
-      <sbb-select placeholder="Food" [formControl]="control" disableOptionCentering>
-        <sbb-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </sbb-option>
-      </sbb-select>
-    </sbb-field>
-  `
-})
-class SelectWithoutOptionCenteringComponent {
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-    { value: 'sandwich-3', viewValue: 'Sandwich' },
-    { value: 'chips-4', viewValue: 'Chips' },
-    { value: 'eggs-5', viewValue: 'Eggs' },
-    { value: 'pasta-6', viewValue: 'Pasta' },
-    { value: 'sushi-7', viewValue: 'Sushi' }
-  ];
-  control = new FormControl('pizza-1');
 
   @ViewChild(SelectComponent, { static: true }) select: SelectComponent;
   @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
@@ -1108,7 +967,7 @@ describe('SelectComponent', () => {
 
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
-          dispatchEvent(select, createKeyboardEvent('keydown', 80, undefined, 'p'));
+          dispatchEvent(select, createKeyboardEvent('keydown', 80, 'p'));
           tick(200);
 
           expect(options[1].selected).toBe(true, 'Expected second option to be selected.');
@@ -1117,7 +976,7 @@ describe('SelectComponent', () => {
             'Expected value from second option to have been set on the model.'
           );
 
-          dispatchEvent(select, createKeyboardEvent('keydown', 69, undefined, 'e'));
+          dispatchEvent(select, createKeyboardEvent('keydown', 69, 'e'));
           tick(200);
 
           expect(options[5].selected).toBe(true, 'Expected sixth option to be selected.');
@@ -1180,7 +1039,7 @@ describe('SelectComponent', () => {
 
           expect(instance.select.panelOpen).toBe(false, 'Expected panel to be closed.');
 
-          dispatchEvent(select, createKeyboardEvent('keydown', 80, undefined, 'p'));
+          dispatchEvent(select, createKeyboardEvent('keydown', 80, 'p'));
 
           expect(instance.select.panelOpen).toBe(false, 'Expected panel to stay closed.');
           expect(instance.control.value).toBe(initialValue, 'Expected value to stay the same.');

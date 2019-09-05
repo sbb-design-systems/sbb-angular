@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchFakeEvent } from '../../_common/testing/dispatch-events';
 import { FileSelectorModule } from '../file-selector.module';
 
 import { FileSelectorComponent } from './file-selector.component';

@@ -25,11 +25,10 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
+import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
+import { SBB_INPUT_VALUE_ACCESSOR } from '@sbb-esta/angular-public/input';
 import { Subscription } from 'rxjs';
 
-import { SBB_INPUT_VALUE_ACCESSOR } from '../../input/input-value-accessor';
-import { DateAdapter } from '../date-adapter';
-import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { DatepickerComponent } from '../datepicker/datepicker.component';
 

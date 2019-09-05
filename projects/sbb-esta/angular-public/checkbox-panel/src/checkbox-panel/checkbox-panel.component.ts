@@ -10,8 +10,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { CheckboxBase } from '../../checkbox/checkbox/checkbox-base';
+import { CheckboxBase } from '@sbb-esta/angular-core/base';
 
 @Component({
   selector: 'sbb-checkbox-panel',

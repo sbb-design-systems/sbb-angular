@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
-import { typeInElement } from '../../_common/testing/type-in-element';
+import { typeInElement } from '@sbb-esta/angular-core/testing';
 
 import { TextareaComponent } from './textarea.component';
 
@@ -77,7 +77,7 @@ describe('TextareaComponent behaviour', () => {
   it('should be required', () => {
     component.required = true;
     const textarea = innerComponent.query(By.css('textarea'));
-    typeInElement('', textarea.nativeElement);
+    typeInElement(textarea.nativeElement, '');
     fixture.detectChanges();
     expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
     expect(
@@ -108,7 +108,7 @@ describe('TextareaComponent behaviour', () => {
     const textarea = innerComponent.query(
       e => e.nativeElement.nodeName.toLowerCase() === 'textarea'
     );
-    typeInElement('SBB', textarea.nativeElement);
+    typeInElement(textarea.nativeElement, 'SBB');
     fixture.detectChanges();
     expect(innerComponent.attributes['minlength']).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('.ng-invalid')).toBeTruthy();
@@ -122,14 +122,14 @@ describe('TextareaComponent behaviour', () => {
   it('should update the inner value twice', async () => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;
-    typeInElement('test1', textarea);
+    typeInElement(textarea, 'test1');
     fixture.detectChanges();
     expect(component.textArea1).toEqual('test1');
     component.textArea1 = 'test2';
     fixture.detectChanges();
     await fixture.whenStable();
     expect(textarea.value).toEqual('test2');
-    typeInElement('test3', textarea);
+    typeInElement(textarea, 'test3');
     fixture.detectChanges();
     expect(component.textArea1).toEqual('test3');
     component.textArea1 = 'test4';

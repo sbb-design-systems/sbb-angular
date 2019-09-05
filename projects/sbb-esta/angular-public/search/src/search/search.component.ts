@@ -35,18 +35,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  defer,
-  fromEvent,
-  merge,
-  Observable,
-  of,
-  of as observableOf,
-  Subject,
-  Subscription
-} from 'rxjs';
+import { defer, fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
 
+import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import {
   AUTOCOMPLETE_OPTION_HEIGHT,
   AUTOCOMPLETE_PANEL_HEIGHT,
@@ -54,15 +46,14 @@ import {
   AutocompleteOriginDirective,
   getSbbAutocompleteMissingPanelError,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY
-} from '../../autocomplete/autocomplete';
-import { HighlightPipe } from '../../option/option/highlight.pipe';
+} from '@sbb-esta/angular-public/autocomplete';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
+  HighlightPipe,
   OptionComponent,
   SBBOptionSelectionChange
-} from '../../option/option/option.component';
-import { SearchIconDirective } from '../search-icon.directive';
+} from '@sbb-esta/angular-public/option';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -119,7 +110,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
 
   /** @docs-private */
-  @ContentChild(SearchIconDirective, { read: TemplateRef, static: false }) icon: TemplateRef<any>;
+  @ContentChild(IconDirective, { read: TemplateRef, static: false }) icon: TemplateRef<any>;
 
   /**
    * Sets the search in default mode or in header mode,
@@ -437,7 +428,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       this._getOutsideClickStream(),
       this._overlayRef
         ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached))
-        : observableOf()
+        : of()
     ).pipe(
       // Normalize the output so we return a consistent type.
       map(event => (event instanceof SBBOptionSelectionChange ? event : null))
@@ -461,7 +452,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   /** Stream of clicks outside of the autocomplete panel. */
   private _getOutsideClickStream(): Observable<any> {
     if (!this._document) {
-      return observableOf(null);
+      return of(null);
     }
 
     return merge(

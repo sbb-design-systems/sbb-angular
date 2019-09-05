@@ -38,9 +38,9 @@ Toggle button is shown in three modes:
 <form [formGroup]="form" novalidate>
   <sbb-toggle formControlName="test">
     <sbb-toggle-option [label]="option1.label" [value]="option1.value">
-      <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+      <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
       <sbb-toggle-option [label]="option2.label" [value]="option2.value"> </sbb-toggle-option>
-      <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+      <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
     </sbb-toggle-option>
   </sbb-toggle>
 </form>
@@ -69,10 +69,10 @@ Toggle button is shown in three modes:
     [value]="option.value"
   >
     <ng-container *ngIf="i === 0">
-      <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+      <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
     </ng-container>
     <ng-container *ngIf="i === 1">
-      <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+      <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
     </ng-container>
     <sbb-field mode="long" *ngIf="i === 0">
       <sbb-label for="name1">Select date</sbb-label>

@@ -11,11 +11,11 @@ import {
   QueryList,
   ViewEncapsulation
 } from '@angular/core';
+import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
 import { FormErrorDirective } from '../form-error/form-error.directive';
-import { FormFieldControl } from '../form-field-control';
 import { FORM_FIELD } from '../form-field-token';
 import { LabelComponent } from '../label/label.component';
 

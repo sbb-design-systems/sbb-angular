@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import {
+  DATE_PIPE_DATE_FORMATS,
+  DateAdapter,
+  NativeDateAdapter,
+  SBB_DATE_FORMATS
+} from '@sbb-esta/angular-core/datetime';
 import { configureTestSuite } from 'ng-bullet';
-
-import { DateAdapter } from '../date-adapter';
-import { SBB_DATE_FORMATS } from '../date-formats';
-import { DATE_PIPE_DATE_FORMATS } from '../date-pipe-date-formats';
-import { NativeDateAdapter } from '../native-date-adapter';
 
 import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
 

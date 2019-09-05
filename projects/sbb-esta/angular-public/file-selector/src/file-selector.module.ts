@@ -12,8 +12,6 @@ import {
   IconUploadModule
 } from '@sbb-esta/angular-icons';
 
-import { ButtonModule } from '../button/button.module';
-
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import {
   FileExtension,
@@ -25,7 +23,6 @@ import {
   declarations: [FileSelectorComponent, FileExtension, FileNameNoExtension, FileSizeFormatted],
   imports: [
     CommonModule,
-    ButtonModule,
     IconDocumentTextModule,
     IconDocumentImageModule,
     IconDocumentPdfModule,

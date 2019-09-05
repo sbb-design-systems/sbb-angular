@@ -3,9 +3,9 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { createFakeEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
-import { createFakeEvent } from '../../_common/testing/event-objects';
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
 
 import { RadioButtonPanelComponent } from './radio-button-panel.component';

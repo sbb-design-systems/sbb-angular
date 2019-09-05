@@ -14,12 +14,12 @@ There are three types of notifications:
 ### Custom Icon
 
 It is also possible to send a notification message with a custom icon
-(using \*sbbNotificationIcon directive) as seen below
+(using \*sbbIcon directive) as seen below
 
 ```html
 <h4>Notification with custom icon</h4>
 <sbb-notification message="Suchen" type="error">
-  <sbb-icon-clock *sbbNotificationIcon></sbb-icon-clock>
+  <sbb-icon-clock *sbbIcon></sbb-icon-clock>
 </sbb-notification>
 ```
 

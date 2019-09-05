@@ -1,29 +1,21 @@
 import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
-import { Overlay, OverlayContainer, ScrollDispatcher, ScrollStrategy } from '@angular/cdk/overlay';
-import {
-  Component,
-  FactoryProvider,
-  InjectionToken,
-  LOCALE_ID,
-  Type,
-  ValueProvider,
-  ViewChild
-} from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, FactoryProvider, Type, ValueProvider, ViewChild } from '@angular/core';
+import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { JAN } from '../../_common/testing/dates-constants';
+import { JAN } from '@sbb-esta/angular-core/testing';
 import {
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent,
   dispatchMouseEvent
-} from '../../_common/testing/dispatch-events';
-import { createKeyboardEvent } from '../../_common/testing/event-objects';
-import { DateInputDirective, DatepickerToggleComponent } from '../datepicker';
+} from '@sbb-esta/angular-core/testing';
+import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
+
+import { DateInputDirective } from '../date-input/date-input.directive';
 import { DatepickerModule } from '../datepicker.module';
 
 import { DatepickerComponent } from './datepicker.component';
@@ -127,57 +119,6 @@ class DatepickerWithMinAndMaxValidationComponent {
   date: Date | null;
   minDate = new Date(2010, JAN, 1);
   maxDate = new Date(2020, JAN, 1);
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input sbbDateInput [(ngModel)]="date" />
-    </sbb-datepicker>
-  `
-})
-class DatepickerWithFilterAndValidationComponent {
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-  date: Date;
-  filter = (date: Date) => date.getDate() !== 1;
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input
-        sbbDateInput
-        (change)="onChange()"
-        (input)="onInput()"
-        (dateChange)="onDateChange()"
-        (dateInput)="onDateInput()"
-      />
-    </sbb-datepicker>
-  `
-})
-class DatepickerWithChangeAndInputEventsComponent {
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-
-  onChange() {}
-
-  onInput() {}
-
-  onDateChange() {}
-
-  onDateInput() {}
-}
-
-@Component({
-  template: `
-    <sbb-datepicker #d>
-      <input sbbDateInput [(ngModel)]="date" />
-    </sbb-datepicker>
-  `
-})
-class DatepickerWithi18nComponent {
-  date: Date | null = new Date(2010, JAN, 1);
-  @ViewChild('d', { static: true }) datepicker: DatepickerComponent<Date>;
-  @ViewChild(DateInputDirective, { static: true }) datepickerInput: DateInputDirective<Date>;
 }
 
 @Component({

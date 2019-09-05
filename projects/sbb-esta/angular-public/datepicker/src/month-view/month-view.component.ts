@@ -23,10 +23,9 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { DateAdapter, DateFormats, SBB_DATE_FORMATS } from '@sbb-esta/angular-core/datetime';
 
 import { CalendarBodyComponent, CalendarCell } from '../calendar-body/calendar-body.component';
-import { DateAdapter } from '../date-adapter';
-import { DateFormats, SBB_DATE_FORMATS } from '../date-formats';
 import { DateRange } from '../date-range';
 import { createMissingDateImplError } from '../datepicker-errors';
 import { DatepickerStructure } from '../datepicker-structure';

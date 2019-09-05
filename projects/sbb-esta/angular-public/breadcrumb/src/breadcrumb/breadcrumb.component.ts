@@ -21,13 +21,17 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { Breakpoints, SCALING_FACTOR_4K, SCALING_FACTOR_5K } from '../../breakpoints/breakpoints';
-import { DropdownOriginDirective } from '../../dropdown/dropdown-origin.directive';
+import {
+  Breakpoints,
+  SCALING_FACTOR_4K,
+  SCALING_FACTOR_5K
+} from '@sbb-esta/angular-core/breakpoints';
 import {
   DROPDOWN_SCROLL_STRATEGY,
+  DropdownComponent,
+  DropdownOriginDirective,
   DropdownTriggerDirective
-} from '../../dropdown/dropdown-trigger.directive';
-import { DropdownComponent } from '../../dropdown/dropdown/dropdown.component';
+} from '@sbb-esta/angular-public/dropdown';
 
 /**
  * Describes a parent component that manages a list of options.

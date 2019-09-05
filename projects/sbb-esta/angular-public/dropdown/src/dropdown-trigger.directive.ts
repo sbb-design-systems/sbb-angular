@@ -1,6 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  A,
   DOWN_ARROW,
   END,
   ENTER,
@@ -9,7 +8,6 @@ import {
   LEFT_ARROW,
   RIGHT_ARROW,
   SPACE,
-  TAB,
   UP_ARROW
 } from '@angular/cdk/keycodes';
 import {

@@ -17,7 +17,6 @@ import {
   Optional,
   Output,
   QueryList,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';

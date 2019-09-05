@@ -2,12 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostBinding,
-  Inject,
   Input,
-  Optional,
   ViewEncapsulation
 } from '@angular/core';
 
+// TODO: Check if removable
 export type SbbPseudoCheckboxState = 'unchecked' | 'checked';
 
 @Component({
@@ -19,7 +18,7 @@ export type SbbPseudoCheckboxState = 'unchecked' | 'checked';
 })
 export class PseudoCheckboxComponent {
   /** Display state of the checkbox. */
-  @Input() state: SbbPseudoCheckboxState = 'unchecked';
+  @Input() state: 'unchecked' | 'checked' = 'unchecked';
 
   /** Whether the checkbox is disabled. */
 

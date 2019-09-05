@@ -6,12 +6,10 @@ import {
   Component,
   ElementRef,
   forwardRef,
-  HostBinding,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { CheckboxBase } from './checkbox-base';
+import { CheckboxBase } from '@sbb-esta/angular-core/base';
 
 @Component({
   selector: 'sbb-checkbox',

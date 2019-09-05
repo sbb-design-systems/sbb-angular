@@ -15,7 +15,7 @@
   [queryParams]="{debug: false}"
   fragment="test"
 >
-  <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
+  <sbb-icon-him-disruption *sbbIcon></sbb-icon-him-disruption>
   This is a Link ghettobox with custom icon.
 </sbb-ghettobox>
 ```
