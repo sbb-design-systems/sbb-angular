@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { DropdownTriggerDirective, LinkGeneratorResult } from '@sbb-esta/angular-public';
 
 @Component({

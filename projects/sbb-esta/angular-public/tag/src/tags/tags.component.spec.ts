@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BadgeModule } from '@sbb-esta/angular-public/badge';
 import { configureTestSuite } from 'ng-bullet';
 
-import { BadgeModule } from '../../badge/badge.module';
 import { Tag } from '../tag.model';
 import { TagComponent } from '../tag/tag.component';
 

@@ -1,5 +1,4 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';

@@ -11,7 +11,7 @@ export class LoadingShowcaseComponent {
 
   constructor() {}
 
-  activateSpinner(mode) {
+  activateSpinner(mode: string) {
     this.spinnerMode = mode;
     this.showSpinner = true;
 

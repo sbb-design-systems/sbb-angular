@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FileSelectorTypesService, FileTypeCategory } from '@sbb-esta/angular-public';
+import { FileSelectorTypesService, FileTypeCategory } from '@sbb-esta/angular-public/file-selector';
 import { Subscription } from 'rxjs';
 
 @Component({

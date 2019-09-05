@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
-import { typeInElement } from '@sbb-esta/angular-core/testing';
+import { clearElement, typeInElement } from '@sbb-esta/angular-core/testing';
 
 import { TextareaComponent } from './textarea.component';
 
@@ -77,7 +77,7 @@ describe('TextareaComponent behaviour', () => {
   it('should be required', () => {
     component.required = true;
     const textarea = innerComponent.query(By.css('textarea'));
-    typeInElement(textarea.nativeElement, '');
+    clearElement(textarea.nativeElement);
     fixture.detectChanges();
     expect(innerComponent.classes['ng-invalid'] && innerComponent.classes['ng-dirty']).toBeTruthy();
     expect(
@@ -129,6 +129,7 @@ describe('TextareaComponent behaviour', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(textarea.value).toEqual('test2');
+    clearElement(textarea);
     typeInElement(textarea, 'test3');
     fixture.detectChanges();
     expect(component.textArea1).toEqual('test3');

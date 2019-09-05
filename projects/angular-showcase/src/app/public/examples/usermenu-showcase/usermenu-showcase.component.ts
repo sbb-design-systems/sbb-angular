@@ -1,5 +1,5 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { LinkGeneratorResult } from '@sbb-esta/angular-public';
+import { Component } from '@angular/core';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
 @Component({
   selector: 'sbb-usermenu-showcase',

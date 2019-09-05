@@ -3,10 +3,7 @@ import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  dispatchEvent,
-  dispatchKeyboardEvent
-} from '@sbb-esta/angular-core/testing/dispatch-events';
+import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
 import {

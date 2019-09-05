@@ -1,11 +1,11 @@
 import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import {
   GhettoboxDeletedEvent,
   GhettoboxRef,
-  GhettoboxService,
-  LinkGeneratorResult
-} from '@sbb-esta/angular-public';
+  GhettoboxService
+} from '@sbb-esta/angular-public/ghettobox';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 

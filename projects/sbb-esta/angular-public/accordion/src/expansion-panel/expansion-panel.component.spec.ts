@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing/dispatch-events';
+import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
 import { AccordionModule, ExpansionPanelComponent } from '../public_api';

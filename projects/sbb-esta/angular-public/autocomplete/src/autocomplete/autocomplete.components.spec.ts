@@ -25,6 +25,7 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
+  clearElement,
   dispatchEvent,
   dispatchFakeEvent,
   dispatchKeyboardEvent
@@ -570,6 +571,7 @@ describe('AutocompleteComponent', () => {
       // Changing value from 'Eins' to 'ei' to re-populate the option list,
       // ensuring that 'California' is created new.
       dispatchFakeEvent(input, 'focusin');
+      clearElement(input);
       typeInElement(input, 'ei');
       fixture.detectChanges();
       tick();
@@ -683,6 +685,7 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
+      clearElement(input);
       typeInElement(input, 'ei');
       fixture.detectChanges();
       tick();
@@ -835,6 +838,7 @@ describe('AutocompleteComponent', () => {
         'Expected control value to be updated as user types.'
       );
 
+      clearElement(input);
       typeInElement(input, 'al');
       fixture.detectChanges();
 
@@ -872,6 +876,7 @@ describe('AutocompleteComponent', () => {
       options[1].click();
       fixture.detectChanges();
 
+      clearElement(input);
       typeInElement(input, 'Californi');
       fixture.detectChanges();
       tick();
@@ -1217,6 +1222,7 @@ describe('AutocompleteComponent', () => {
       );
 
       dispatchFakeEvent(input, 'focusin');
+      clearElement(input);
       typeInElement(input, 'Eins');
       fixture.detectChanges();
       tick();
