@@ -3,7 +3,7 @@
 }
 
 h1 {
-  color: #EB0000;
+  color: #eb0000;
   font-size: 24px;
   font-weight: 200;
   line-height: 27px;
@@ -29,7 +29,7 @@ nav {
     align-content: flex-start;
     align-items: stretch;
 
-    >li {
+    > li {
       width: 300px;
       margin: 0 20px 20px 0;
       border-radius: 6px;
@@ -41,7 +41,7 @@ nav {
       display: flex;
 
       &::before {
-        content: "";
+        content: '';
         display: inherit;
         /* aha! */
         color: #000000;

@@ -2,6 +2,7 @@ package.json
 package-lock.json
 dist
 angular.json
+.github/*
 .vscode/*
 projects/**/schematics/*/index.js
 projects/**/schematics/*/files
