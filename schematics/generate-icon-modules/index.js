@@ -271,7 +271,7 @@ class SvgSource {
 
 function generateIconModules() {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const collection = (yield SvgSource.from(tree.getDir('projects/sbb-esta/angular-icons/svg')))
+        const collection = (yield SvgSource.from(tree.getDir('svg')))
             .assertNoDuplicates()
             .toCollectionModules();
         const dist = tree.getDir('projects/sbb-esta/angular-icons/src/lib');

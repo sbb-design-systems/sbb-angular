@@ -24,9 +24,6 @@ import {
 } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-
 import {
   dispatchEvent,
   dispatchFakeEvent,
@@ -35,11 +32,16 @@ import {
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { MockNgZone } from '@sbb-esta/angular-core/testing';
 import { typeInElement } from '@sbb-esta/angular-core/testing';
-import { FieldModule } from '../../field/field.module';
-import { FieldComponent } from '../../field/field/field.component';
-import { OptionModule } from '../../option/option.module';
-import { HighlightPipe } from '../../option/option/highlight.pipe';
-import { OptionComponent, SBBOptionSelectionChange } from '../../option/option/option.component';
+import { FieldComponent, FieldModule } from '@sbb-esta/angular-public/field';
+import {
+  HighlightPipe,
+  OptionComponent,
+  OptionModule,
+  SBBOptionSelectionChange
+} from '@sbb-esta/angular-public/option';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 import { AutocompleteModule } from '../autocomplete.module';
 
 import {
@@ -556,7 +558,7 @@ describe('AutocompleteComponent', () => {
       zone.simulateZoneExit();
 
       // Filter down the option list to a subset of original options ('Eins', 'Zwei', 'Drei')
-      typeInElement('ei', input);
+      typeInElement(input, 'ei');
       fixture.detectChanges();
       tick();
 
@@ -568,7 +570,7 @@ describe('AutocompleteComponent', () => {
       // Changing value from 'Eins' to 'ei' to re-populate the option list,
       // ensuring that 'California' is created new.
       dispatchFakeEvent(input, 'focusin');
-      typeInElement('ei', input);
+      typeInElement(input, 'ei');
       fixture.detectChanges();
       tick();
 
@@ -625,7 +627,7 @@ describe('AutocompleteComponent', () => {
       );
 
       // Filter down the option list such that no options match the value
-      typeInElement('af', input);
+      typeInElement(input, 'af');
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -663,7 +665,7 @@ describe('AutocompleteComponent', () => {
         'Expected panel to be visible.'
       );
 
-      typeInElement('x', input);
+      typeInElement(input, 'x');
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -681,7 +683,7 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.trigger.openPanel();
       fixture.detectChanges();
 
-      typeInElement('ei', input);
+      typeInElement(input, 'ei');
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -730,7 +732,7 @@ describe('AutocompleteComponent', () => {
 
       expect(fixture.componentInstance.openedSpy).toHaveBeenCalledTimes(1);
 
-      typeInElement('Alabam', input);
+      typeInElement(input, 'Alabam');
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -783,7 +785,7 @@ describe('AutocompleteComponent', () => {
       fixture.componentInstance.autocompleteDisabled = true;
       fixture.detectChanges();
 
-      typeInElement('hello', input);
+      typeInElement(input, 'hello');
       fixture.detectChanges();
 
       expect(fixture.componentInstance.numberCtrl.value).toBe('hello');
@@ -825,7 +827,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       zone.simulateZoneExit();
 
-      typeInElement('a', input);
+      typeInElement(input, 'a');
       fixture.detectChanges();
 
       expect(fixture.componentInstance.numberCtrl.value).toEqual(
@@ -833,7 +835,7 @@ describe('AutocompleteComponent', () => {
         'Expected control value to be updated as user types.'
       );
 
-      typeInElement('al', input);
+      typeInElement(input, 'al');
       fixture.detectChanges();
 
       expect(fixture.componentInstance.numberCtrl.value).toEqual(
@@ -870,7 +872,7 @@ describe('AutocompleteComponent', () => {
       options[1].click();
       fixture.detectChanges();
 
-      typeInElement('Californi', input);
+      typeInElement(input, 'Californi');
       fixture.detectChanges();
       tick();
 
@@ -910,7 +912,7 @@ describe('AutocompleteComponent', () => {
     }));
 
     it('should clear the text field if value is reset programmatically', fakeAsync(() => {
-      typeInElement('Eins', input);
+      typeInElement(input, 'Eins');
       fixture.detectChanges();
       tick();
 
@@ -1114,7 +1116,7 @@ describe('AutocompleteComponent', () => {
     it('should set the active item properly after filtering', () => {
       const componentInstance = fixture.componentInstance;
 
-      typeInElement('e', input);
+      typeInElement(input, 'e');
       fixture.detectChanges();
 
       componentInstance.trigger.handleKeydown(downArrowEvent);
@@ -1169,7 +1171,7 @@ describe('AutocompleteComponent', () => {
     });
 
     it('should fill the text field, not select an option, when SPACE is entered', () => {
-      typeInElement('New', input);
+      typeInElement(input, 'New');
       fixture.detectChanges();
 
       const spaceEvent = createKeyboardEvent('keydown', SPACE);
@@ -1215,7 +1217,7 @@ describe('AutocompleteComponent', () => {
       );
 
       dispatchFakeEvent(input, 'focusin');
-      typeInElement('Eins', input);
+      typeInElement(input, 'Eins');
       fixture.detectChanges();
       tick();
 
@@ -1233,7 +1235,7 @@ describe('AutocompleteComponent', () => {
       const trigger = fixture.componentInstance.trigger;
 
       dispatchFakeEvent(input, 'focusin');
-      typeInElement('A', input);
+      typeInElement(input, 'A');
       fixture.detectChanges();
       tick();
 
@@ -1468,7 +1470,7 @@ describe('AutocompleteComponent', () => {
         'Expected aria-expanded to be true while panel is open.'
       );
 
-      typeInElement('zz', input);
+      typeInElement(input, 'zz');
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -1722,7 +1724,7 @@ describe('AutocompleteComponent', () => {
         fixture.detectChanges();
 
         const input = fixture.debugElement.query(By.css('input')).nativeElement;
-        typeInElement('eins', input);
+        typeInElement(input, 'eins');
         fixture.detectChanges();
 
         const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
@@ -1782,7 +1784,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       const input = fixture.debugElement.query(By.css('input')).nativeElement;
-      typeInElement('o', input);
+      typeInElement(input, 'o');
       fixture.detectChanges();
 
       expect(fixture.componentInstance.matOptions.length).toBe(2);
@@ -1858,7 +1860,7 @@ describe('AutocompleteComponent', () => {
       const fixture = createComponent(AutocompleteWithNumberInputAndNgModelComponent);
       fixture.detectChanges();
       const input = fixture.debugElement.query(By.css('input')).nativeElement;
-      typeInElement('1337', input);
+      typeInElement(input, '1337');
       fixture.detectChanges();
 
       expect(fixture.componentInstance.selectedValue).toBe(1337);
@@ -1981,7 +1983,7 @@ describe('AutocompleteComponent', () => {
     const input = fixture.debugElement.query(By.css('input')).nativeElement;
     const formControl = fixture.componentInstance.numberCtrl;
 
-    typeInElement('Cal', input);
+    typeInElement(input, 'Cal');
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
@@ -1993,7 +1995,7 @@ describe('AutocompleteComponent', () => {
 
     expect(input.value).toBe('', 'Expected input value to reset when model is reset');
 
-    typeInElement('Cal', input);
+    typeInElement(input, 'Cal');
     fixture.detectChanges();
     tick();
     fixture.detectChanges();

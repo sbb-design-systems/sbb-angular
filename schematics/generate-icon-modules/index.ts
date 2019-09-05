@@ -14,7 +14,7 @@ import { SvgSource } from './svg-source';
 
 export function generateIconModules(): Rule {
   return async (tree: Tree): Promise<Rule> => {
-    const collection = (await SvgSource.from(tree.getDir('projects/sbb-esta/angular-icons/svg')))
+    const collection = (await SvgSource.from(tree.getDir('svg')))
       .assertNoDuplicates()
       .toCollectionModules();
     const dist = tree.getDir('projects/sbb-esta/angular-icons/src/lib');
