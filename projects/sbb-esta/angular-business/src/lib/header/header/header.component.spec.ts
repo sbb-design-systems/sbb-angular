@@ -18,7 +18,7 @@ import { NavbuttonComponent } from '../navbutton/navbutton.component';
       [label]="'test'"
       [subtitle]="'test subtitle'"
     >
-      <a sbbNavbutton>link 1</a>
+      <a>link 1</a>
       <button sbbNavbutton [sbbDropdown]="dropdown">button 1</button>
       <sbb-dropdown #dropdown="sbbDropdown">
         <button sbbDropdownItem>dropdown button 1</button>
@@ -88,14 +88,18 @@ describe('HeaderComponent with everything set', () => {
     expect(mainnavigation).toBeTruthy();
   });
 
-  it('should have 2 navbuttons', () => {
+  it('should have 1 navbutton and a link', () => {
     const navbuttons = fixture.debugElement.queryAll(By.css('.sbb-navbutton'));
     expect(navbuttons).toBeTruthy();
-    expect(navbuttons.length).toBe(2);
+    expect(navbuttons.length).toBe(1);
+
+    const links = fixture.debugElement.queryAll(By.css('a'));
+    expect(links).toBeTruthy();
+    expect(links.length).toBe(1);
   });
 
-  it('should have second button with working dropdown', () => {
-    const dropdownButton = fixture.debugElement.queryAll(By.directive(NavbuttonComponent))[1];
+  it('should have button with working dropdown', () => {
+    const dropdownButton = fixture.debugElement.queryAll(By.directive(NavbuttonComponent))[0];
     expect(dropdownButton.componentInstance.isDropdown).toBeTruthy();
   });
 

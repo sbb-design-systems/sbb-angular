@@ -42,8 +42,6 @@ import {
   UserMenuModule
 } from '@sbb-esta/angular-public';
 
-import { HeaderModule } from '@sbb-esta/angular-business';
-
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
 import { BadgeShowcaseComponent } from './badge-showcase/badge-showcase.component';
@@ -180,8 +178,7 @@ const exampleComponents = [
     BreadcrumbModule,
     UserMenuModule,
     GhettoboxModule,
-    BadgeModule,
-    HeaderModule
+    BadgeModule
   ]
 })
 export class ExamplesModule {}
