@@ -6,9 +6,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchModule } from '@sbb-esta/angular-public';
 
 import { DatepickerModule } from '../../datepicker/datepicker';
-import { SearchModule } from '../../search/search';
 import { ClearInputModule } from '../clear-input.module';
 
 import { ClearInputComponent } from './clear-input.component';

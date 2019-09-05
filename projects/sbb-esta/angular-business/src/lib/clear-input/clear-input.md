@@ -1,6 +1,6 @@
 # Clear Input Overview
 
-Import checkbox module in your application
+Import clear input module in your application
 
 ```ts
 import { ClearInputModule } from '@sbb-esta/angular-public';

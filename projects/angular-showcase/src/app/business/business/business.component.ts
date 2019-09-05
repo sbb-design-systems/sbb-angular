@@ -3,6 +3,7 @@ import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { MarkdownProvider } from '../../shared/markdown-provider';
+import { ClearInputShowcaseComponent } from '../examples/clear-input-showcase/clear-input-showcase.component';
 
 @Component({
   selector: 'sbb-business',
@@ -17,6 +18,7 @@ export class BusinessComponent implements MarkdownProvider, ExampleProvider {
   formComponents = {
     autocomplete: 'Autocomplete',
     checkbox: 'Checkbox',
+    'clear-input': 'Clear Input',
     datepicker: 'Datepicker',
     field: 'Field',
     'radio-button': 'Radiobutton',
@@ -31,13 +33,15 @@ export class BusinessComponent implements MarkdownProvider, ExampleProvider {
     button: 'Button'
   };
   popupsAndModals = {};
-  private _examples = {};
+  private _examples = {
+    'clear-input': ClearInputShowcaseComponent
+  };
 
   constructor(private _http: HttpClient) {}
 
   downloadMarkdown(path: string): Promise<string> {
     return this._http
-      .get(`assets/docs/angular-public/${path}.html`, { responseType: 'text' })
+      .get(`assets/docs/angular-business/${path}.html`, { responseType: 'text' })
       .toPromise();
   }
 
