@@ -2,12 +2,14 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { HttpClient } from '@angular/common/http';
 import { ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TabsComponent } from '@sbb-esta/angular-public/tabs';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, map, skip, switchMap, takeUntil } from 'rxjs/operators';
 
 import { ExampleProvider } from './example-provider';
 
 export class ComponentViewerBase implements OnInit, OnDestroy {
+  @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
   @ViewChild('overview', { static: true }) overview: ElementRef;
   example: Observable<ComponentPortal<any>>;
   private _destroyed = new Subject<void>();
@@ -20,6 +22,14 @@ export class ComponentViewerBase implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this._route.params
+      .pipe(
+        takeUntil(this._destroyed),
+        map(({ id }) => id),
+        distinctUntilChanged(),
+        skip(1)
+      )
+      .subscribe(() => this.tabs.openTabByIndex(0));
     combineLatest(this._route.params, this._route.data, (p, d) => ({ ...p, ...d }))
       .pipe(
         takeUntil(this._destroyed),

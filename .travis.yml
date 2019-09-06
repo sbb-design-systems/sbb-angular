@@ -21,7 +21,6 @@ script:
   - npm run build:angular-public
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then npm run test; fi
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npm run test:pr; fi
-  - if [ "$TRAVIS_TAG" == "" ]; then npm run sonar; fi
   - npm run build:angular-showcase
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npm run publish:staging; fi
 before_deploy:

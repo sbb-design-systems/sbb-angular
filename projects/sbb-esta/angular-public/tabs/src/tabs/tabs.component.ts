@@ -126,6 +126,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     tab.active = true;
     tab.tabindex = 0;
     tab.tabMarkForCheck();
+    this._changeDetector.markForCheck();
   }
   /**
    * Method that responds only to arrows and tab event
