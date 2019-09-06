@@ -9,6 +9,8 @@ $autocompleteShadow: 0 8px 0 rgba(0, 0, 0, 0.15);
 $autocompleteShadowReverse: 0 -8px 0 rgba(0, 0, 0, 0.15);
 $autocompleteColor: $sbbColorGrey;
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
+$autocompleteHintPaddingX: 16px;
+$autocompleteHintPaddingBottom: 14px;
 
 @if $sbbBusiness {
   $autocompleteBorder: 1px solid $sbbColorGranite;

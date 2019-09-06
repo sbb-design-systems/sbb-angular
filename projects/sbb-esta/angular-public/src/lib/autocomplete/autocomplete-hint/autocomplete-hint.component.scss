@@ -1,0 +1,24 @@
+@import 'common';
+@import '../styles/autocomplete';
+
+.sbb-autocomplete-hint {
+  padding-left: $autocompleteHintPaddingX;
+  padding-right: $autocompleteHintPaddingX;
+  padding-bottom: $autocompleteHintPaddingBottom;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx(10 * $scalingFactor4k);
+      padding-top: toPx($autocompleteHintPaddingBottom * $scalingFactor4k);
+      padding-bottom: toPx($autocompleteHintPaddingBottom * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: toPx(10 * $scalingFactor5k);
+      padding-top: toPx($autocompleteHintPaddingBottom * $scalingFactor5k);
+      padding-bottom: toPx($autocompleteHintPaddingBottom * $scalingFactor5k);
+    }
+  }
+
+  @include label;
+}
