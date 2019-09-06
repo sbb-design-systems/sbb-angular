@@ -1,4 +1,6 @@
-@import 'common';
+@import '../../../../angular-core/styles/common/variables';
+@import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/button';
 
 $border: solid 2px $sbbColorGranite;
 $buttonMarginTop: calc(54px / 2 - 15px);

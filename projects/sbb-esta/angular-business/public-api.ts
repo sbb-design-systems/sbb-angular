@@ -7,6 +7,7 @@ export * from '@sbb-esta/angular-business/button';
 export * from '@sbb-esta/angular-business/checkbox';
 export * from '@sbb-esta/angular-business/datepicker';
 export * from '@sbb-esta/angular-business/field';
+export * from '@sbb-esta/angular-business/header';
 export * from '@sbb-esta/angular-business/option';
 export * from '@sbb-esta/angular-business/radio-button';
 export * from '@sbb-esta/angular-business/select';

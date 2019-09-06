@@ -1,11 +1,3 @@
-# Header Overview
-
-Import header module in your application
-
-```ts
-import { HeaderModule } from '@sbb-esta/angular-business';
-```
-
 The header will appear at the top of the screen in a fixed position, and provide a container for navigation, usermenu, and eventually a logo.
 It supports &lt;a&gt; and &lt;button&gt; tags for navigation. Optionally an &lt;sbb-usermenu&gt; can be provided, as well as any element with a [brand] property, or .brand class, for replacing the standard logo.
 
