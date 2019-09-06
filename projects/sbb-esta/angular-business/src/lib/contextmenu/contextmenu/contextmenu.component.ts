@@ -3,11 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  OnInit,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-public';
+
+import { DropdownComponent, DropdownTriggerDirective } from '../../dropdown/dropdown';
 @Component({
   selector: 'sbb-contextmenu',
   templateUrl: './contextmenu.component.html',

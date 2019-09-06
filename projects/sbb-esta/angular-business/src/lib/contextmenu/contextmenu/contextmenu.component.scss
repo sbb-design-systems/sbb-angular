@@ -60,10 +60,6 @@
   &::after {
     border-bottom: 0 !important;
   }
-
-  button:hover {
-    border-left: 1px solid $sbbColorCallToActionHover;
-  }
 }
 
 .sbb-dropdown-trigger-above.sbb-button-wrapper-icon-context-menu-clicked {
