@@ -1,10 +1,5 @@
 # SBB Keycloak Library for Angular
 
-- [Getting started](#getting-started)
-- [Authentication module](#authentication-module)
-  - [How to use the authentication module](#how-to-use-the-authentication-module)
-  - [Authentication service](#authentication-service)
-
 ## Getting started
 
 To use @sbb-esta/angular-keycloak you need to have node and npm installed.

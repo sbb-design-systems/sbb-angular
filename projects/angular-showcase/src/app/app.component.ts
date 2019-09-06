@@ -1,4 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { dependencies, version } from '../../../../package.json';
 
@@ -14,6 +15,10 @@ export class AppComponent {
   @HostBinding('class.menu-push') showMenu = false;
   angularVersion = dependencies['@angular/core'].replace('^', '');
   showcaseVersion = version;
+
+  constructor(router: Router) {
+    router.events.subscribe(() => (this.showMenu = false));
+  }
 
   toggleMenu() {
     this.showMenu = !this.showMenu;

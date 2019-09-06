@@ -1,8 +1,6 @@
-//@import './styles/main';
-
 @import '~@angular/cdk/a11y';
 @import '~@angular/cdk/overlay';
-@import '../../../dist/sbb-esta/angular-core/styles/main';
+@import '../../sbb-esta/angular-core/styles/main';
 
 @include sbbFonts();
 @include reset();
@@ -11,7 +9,7 @@
 @include cdk-overlay();
 
 sbb-public {
-  @import '../../../dist/sbb-esta/angular-public/styles';
+  @import '../../sbb-esta/angular-public/styles';
   sbb-markdown-viewer,
   sbb-component-viewer {
     @include sbbHeadings();
@@ -26,7 +24,7 @@ sbb-public {
 }
 
 sbb-business {
-  @import '../../../dist/sbb-esta/angular-public/styles';
+  @import '../../sbb-esta/angular-public/styles';
   sbb-markdown-viewer,
   sbb-component-viewer {
     @include sbbHeadings();
@@ -50,6 +48,15 @@ body {
 
   &.home {
     top: 0;
+  }
+}
+
+sbb-markdown-viewer,
+sbb-component-viewer {
+  pre {
+    background-color: #efefef;
+    padding: 1rem 5rem;
+    margin: 1rem -5rem;
   }
 }
 

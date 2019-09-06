@@ -1,4 +1,7 @@
 :host {
   display: block;
+}
+
+:host-context(sbb-public, sbb-business) {
   margin-left: 300px;
 }
