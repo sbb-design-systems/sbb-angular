@@ -52,10 +52,10 @@ function documentation(_options) {
     });
 }
 function renderHtmlForMarkdownFilesForLibrary(tree, library) {
-    const libraryDirectory = tree.getDir(`projects/sbb-esta/${library}/src`);
+    const libraryDirectory = tree.getDir(`projects/sbb-esta/${library}`);
     const files = findMarkdownFiles(libraryDirectory);
     files.forEach((entry, path) => {
-        const htmlPath = path.replace(/lib\/[^\/]+/, 'components').replace(/\.md$/, '.html');
+        const htmlPath = path.replace(/\.md$/, '.html');
         const targetFile = core.normalize(`projects/angular-showcase/src/assets/docs/${library}/${htmlPath}`);
         const htmlContent = markdownToHtml(entry.content.toString('utf8'));
         if (tree.exists(targetFile)) {
@@ -70,7 +70,7 @@ function findMarkdownFiles(root) {
     const map = new Map();
     root.visit((path, entry) => {
         if (core.extname(path) === '.md' && entry) {
-            map.set(core.relative(root.path, path), entry);
+            map.set(core.basename(path), entry);
         }
     });
     return map;

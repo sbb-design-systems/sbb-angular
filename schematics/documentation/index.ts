@@ -1,4 +1,4 @@
-import { basename, extname, normalize, Path, PathFragment, relative } from '@angular-devkit/core';
+import { basename, extname, normalize, Path, PathFragment } from '@angular-devkit/core';
 import { DirEntry, FileEntry, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 
 import hljs from 'highlight.js';
@@ -26,10 +26,10 @@ export function documentation(_options: any): Rule {
 }
 
 function renderHtmlForMarkdownFilesForLibrary(tree: Tree, library: string) {
-  const libraryDirectory = tree.getDir(`projects/sbb-esta/${library}/src`);
+  const libraryDirectory = tree.getDir(`projects/sbb-esta/${library}`);
   const files = findMarkdownFiles(libraryDirectory);
   files.forEach((entry, path) => {
-    const htmlPath = path.replace(/lib\/[^\/]+/, 'components').replace(/\.md$/, '.html');
+    const htmlPath = path.replace(/\.md$/, '.html');
     const targetFile = normalize(
       `projects/angular-showcase/src/assets/docs/${library}/${htmlPath}`
     );
@@ -46,7 +46,7 @@ function findMarkdownFiles(root: DirEntry) {
   const map = new Map<Path, Readonly<FileEntry>>();
   root.visit((path, entry) => {
     if (extname(path) === '.md' && entry) {
-      map.set(relative(root.path, path), entry);
+      map.set(basename(path), entry);
     }
   });
   return map;

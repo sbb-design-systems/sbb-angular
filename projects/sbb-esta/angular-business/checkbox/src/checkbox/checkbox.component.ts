@@ -14,12 +14,12 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { CheckboxBase } from '../../../../../angular-public/src/lib/checkbox/checkbox/checkbox-base';
+import { CheckboxBase } from '@sbb-esta/angular-core/base';
 
 @Component({
   selector: 'sbb-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['../../../../../angular-public/src/lib/checkbox/checkbox/checkbox.component.scss'],
+  styleUrls: ['./checkbox.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,4 +1,6 @@
-@import 'common';
+@import '../common/colors';
+@import '../common/functions';
+@import '../common/mediaqueries';
 
 $tableBg: $sbbColorWhite;
 $tableTheadBgColor: $sbbColorCloud;
@@ -10,6 +12,11 @@ $tableTheadCellPadding: pxToEm(29) pxToEm(16) pxToEm(30) pxToEm(16);
 $tableTbodyCellPaddingMobile: pxToEm(18) pxToEm(12) pxToEm(19) pxToEm(12);
 $tableTbodyCellPadding: pxToEm(18) pxToEm(16) pxToEm(19) pxToEm(16);
 $tableCaptionColor: $sbbColorGrey;
+
+@mixin tableCaption() {
+  font-size: pxToEm(13);
+  color: $tableCaptionColor;
+}
 
 @mixin table {
   table-layout: fixed;
@@ -131,11 +138,6 @@ $tableCaptionColor: $sbbColorGrey;
       }
     }
   }
-}
-
-@mixin tableCaption() {
-  font-size: pxToEm(13);
-  color: $tableCaptionColor;
 }
 
 @mixin sbbTable() {

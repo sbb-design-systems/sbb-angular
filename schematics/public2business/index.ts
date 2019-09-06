@@ -21,8 +21,11 @@ export function public2business(_options: any): Rule {
 function copyAndAdaptPublicModule(tree: Tree, moduleName: string) {
   const publicDir = tree.getDir(`projects/sbb-esta/angular-public/${moduleName}`);
   const businessDir = tree.getDir(`projects/sbb-esta/angular-business/${moduleName}`);
+  if (tree.exists(businessDir.path)) {
+    businessDir.visit(path => tree.delete(path));
+  }
   publicDir.visit((path, entry) => {
-    if (entry) {
+    if (entry && !path.endsWith('.spec.ts')) {
       const targetPath = join(businessDir.path, relative(publicDir.path, path));
       const content = adaptFile(entry);
       if (tree.exists(targetPath)) {

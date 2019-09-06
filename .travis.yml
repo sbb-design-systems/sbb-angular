@@ -9,11 +9,18 @@ addons:
 
 cache: npm
 
+env:
+  global:
+    - NODE_OPTIONS=--max_old_space_size=7168
 script:
-  - npm run build:libs
+  - if [ "$TRAVIS_TAG" == "" ]; then npm run lint; fi
+  - npm run build:angular-core
+  - npm run build:angular-icons
+  - npm run build:angular-keycloak
+  - npm run build:angular-business
+  - npm run build:angular-public
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then npm run test; fi
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npm run test:pr; fi
-  - if [ "$TRAVIS_TAG" == "" ]; then npm run lint; fi
   - if [ "$TRAVIS_TAG" == "" ]; then npm run sonar; fi
   - npm run build:angular-showcase
   - if [ "$TRAVIS_TAG" == "" ] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npm run publish:staging; fi

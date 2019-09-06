@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchMouseEvent } from '../../../../../angular-public/src/lib/_common/testing';
+import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
 import { CheckboxComponent } from './checkbox.component';
 

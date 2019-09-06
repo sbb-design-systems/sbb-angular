@@ -6,12 +6,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { BaseButton } from '../../../../../angular-public/src/lib/button/button/base-button';
+import { BaseButton } from '@sbb-esta/angular-core/base';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'button[sbbButton], input[type=submit][sbbButton]',
-  templateUrl: '../../../../../angular-public/src/lib/button/button/button.component.html',
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None

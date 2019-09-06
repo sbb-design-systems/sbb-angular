@@ -88,7 +88,8 @@ If you need more details about what the typography offers to you, you can get to
 Import the NgModule for each component you want to use:
 
 ```ts
-import { ButtonModule, CheckboxModule } from '@sbb-esta/angular-public';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
+import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 @NgModule({
   ...
@@ -101,7 +102,8 @@ export class TrainChooChooAppModule { }
 Alternatively, you can create a separate NgModule that imports all of the ACL components that you will use in your application. You can then include this module wherever you'd like to use the components.
 
 ```ts
-import { ButtonModule, CheckboxModule } from '@sbb-esta/angular-public';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
+import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
 
 @NgModule({
   imports: [ButtonModule, CheckboxModule],

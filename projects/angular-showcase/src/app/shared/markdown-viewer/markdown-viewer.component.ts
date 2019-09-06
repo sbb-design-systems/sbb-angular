@@ -19,10 +19,10 @@ export class MarkdownViewerComponent implements OnDestroy {
     elementRef: ElementRef,
     renderer: Renderer2
   ) {
-    route.url
+    route.params
       .pipe(
         takeUntil(this._destroyed),
-        switchMap(urls => markdownProvider.downloadMarkdown(urls.map(u => u.path).join('/')))
+        switchMap(({ id }) => markdownProvider.downloadMarkdown(id))
       )
       .subscribe(c => renderer.setProperty(elementRef.nativeElement, 'innerHTML', c));
   }

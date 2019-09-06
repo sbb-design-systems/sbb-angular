@@ -7,30 +7,8 @@ export abstract class BaseButton {
    */
   abstract mode: string;
 
-  /**
-   * Template that will contain icons.
-   * Use the *sbbButtonIcon structural directive to provide the desired icon.
-   */
-  @Input()
-  get icon(): TemplateRef<any> {
-    return this._contentIcon || this._icon;
-  }
-  set icon(icon: TemplateRef<any>) {
-    this._icon = icon;
-  }
-  private _icon: TemplateRef<any>;
-
   /** @docs-private */
   @HostBinding('class.sbb-button') buttonClass = true;
-
-  /** @docs-private */
-  @HostBinding('class.sbb-button-has-icon') get buttonHasIconClass() {
-    return !!this.icon;
-  }
-
-  /** @docs-private */
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
-  _contentIcon: TemplateRef<any>;
 
   /** @docs-private */
   @HostBinding('class.sbb-button-primary')

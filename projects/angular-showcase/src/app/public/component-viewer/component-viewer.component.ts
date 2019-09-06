@@ -29,10 +29,10 @@ export class ComponentViewerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._route.url
+    this._route.params
       .pipe(
         takeUntil(this._destroyed),
-        switchMap(urls => this._markdownProvider.downloadMarkdown(urls.map(u => u.path).join('/')))
+        switchMap(({ id }) => this._markdownProvider.downloadMarkdown(id))
       )
       .subscribe(c => this._renderer.setProperty(this.overview.nativeElement, 'innerHTML', c));
     this.example = this._route.params.pipe(

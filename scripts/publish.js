@@ -130,7 +130,7 @@ class Publisher {
       return;
     }
 
-    if (this.stagingUser) {
+    if (this.isRelease) {
       await request({
         method: 'POST',
         uri: `https://angular.app.sbb.ch/${this.tag}`,
