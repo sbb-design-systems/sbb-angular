@@ -19,11 +19,13 @@ const routes: Routes = [
       },
       {
         path: 'introduction/:id',
-        component: MarkdownViewerComponent
+        component: MarkdownViewerComponent,
+        data: { library: 'angular-public' }
       },
       {
         path: 'components/:id',
-        component: ComponentViewerComponent
+        component: ComponentViewerComponent,
+        data: { library: 'angular-public' }
       }
     ]
   }

@@ -1,9 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
-
-import { MarkdownProvider } from '../markdown-provider';
 
 @Component({
   selector: 'sbb-markdown-viewer',
@@ -14,15 +13,17 @@ export class MarkdownViewerComponent implements OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
+    http: HttpClient,
     route: ActivatedRoute,
-    markdownProvider: MarkdownProvider,
     elementRef: ElementRef,
     renderer: Renderer2
   ) {
-    route.params
+    combineLatest(route.params, route.data, (p, d) => ({ ...p, ...d }))
       .pipe(
         takeUntil(this._destroyed),
-        switchMap(({ id }) => markdownProvider.downloadMarkdown(id))
+        switchMap(({ id, library }) =>
+          http.get(`assets/docs/${library}/${id}.html`, { responseType: 'text' })
+        )
       )
       .subscribe(c => renderer.setProperty(elementRef.nativeElement, 'innerHTML', c));
   }

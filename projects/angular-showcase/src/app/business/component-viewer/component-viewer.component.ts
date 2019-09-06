@@ -1,11 +1,11 @@
 import { ComponentPortal } from '@angular/cdk/portal';
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { MarkdownProvider } from '../../shared/markdown-provider';
 
 @Component({
   selector: 'sbb-component-viewer',
@@ -18,7 +18,7 @@ export class ComponentViewerComponent implements OnInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
-    private _markdownProvider: MarkdownProvider,
+    private _http: HttpClient,
     private _exampleProvider: ExampleProvider,
     private _route: ActivatedRoute,
     private _renderer: Renderer2
@@ -29,10 +29,12 @@ export class ComponentViewerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._route.params
+    combineLatest(this._route.params, this._route.data, (p, d) => ({ ...p, ...d }))
       .pipe(
         takeUntil(this._destroyed),
-        switchMap(({ id }) => this._markdownProvider.downloadMarkdown(id))
+        switchMap(({ id, library }) =>
+          this._http.get(`assets/docs/${library}/${id}.html`, { responseType: 'text' })
+        )
       )
       .subscribe(c => this._renderer.setProperty(this.overview.nativeElement, 'innerHTML', c));
     this.example = this._route.params.pipe(

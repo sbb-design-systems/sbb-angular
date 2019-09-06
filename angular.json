@@ -36,8 +36,7 @@
               "node_modules/highlight.js/styles/github.css"
             ],
             "scripts": [],
-            "es5BrowserSupport": true,
-            "webWorkerTsConfig": "projects/angular-showcase/tsconfig.worker.json"
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {

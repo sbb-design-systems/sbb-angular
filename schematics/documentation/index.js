@@ -49,6 +49,7 @@ function documentation(_options) {
             renderExampleFilesForLibrary(tree, library);
             // await buildApiDocumentationForLibrary(library);
         }
+        renderHtmlForMarkdownFilesForLibrary(tree, 'angular-keycloak');
     });
 }
 function renderHtmlForMarkdownFilesForLibrary(tree, library) {

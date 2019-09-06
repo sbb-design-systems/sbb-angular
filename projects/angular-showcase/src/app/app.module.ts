@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BusinessModule } from './business/business.module';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { KeycloakModule } from './keycloak/keycloak.module';
 import { PublicModule } from './public/public.module';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { PublicModule } from './public/public.module';
     BrowserAnimationsModule,
     PublicModule,
     BusinessModule,
+    KeycloakModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],

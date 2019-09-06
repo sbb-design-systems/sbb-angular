@@ -22,6 +22,8 @@ export function documentation(_options: any): Rule {
       renderExampleFilesForLibrary(tree, library);
       // await buildApiDocumentationForLibrary(library);
     }
+
+    renderHtmlForMarkdownFilesForLibrary(tree, 'angular-keycloak');
   };
 }
 
