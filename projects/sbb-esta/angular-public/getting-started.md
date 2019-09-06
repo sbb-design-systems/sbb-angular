@@ -126,10 +126,19 @@ This means it uses the locale data configured via the `i18nLocale` entry in your
 
 ## Step 6 (Optional): Use mixins and functions from the library
 
-If you need to reuse some mixins from the library, you have to configure your own Angular application in SCSS mode and import `styles.scss` from the library into your `styles.scss`:
+If you need to reuse some mixins from the library, you have to configure your own Angular application in
+SCSS mode and import `_styles.scss` from the library into your `styles.scss`:
 
 ```scss
-@import '../node_modules/@sbb-esta/angular-public/styles.scss';
+@import '../node_modules/@sbb-esta/angular-public/styles';
 ```
 
-You can start building your app using [components](./components-list) or [icons](./icons-list).
+If you need more fine-grained usage of the SCSS sources, you can import from `@sbb-esta/angular-core/styles/common/*`:
+
+```scss
+@import '../node_modules/@sbb-esta/angular-core/styles/common/colors';
+@import '../node_modules/@sbb-esta/angular-core/styles/common/variables';
+@import '../node_modules/@sbb-esta/angular-core/styles/common/functions';
+@import '../node_modules/@sbb-esta/angular-core/styles/common/mixins';
+@import '../node_modules/@sbb-esta/angular-core/styles/common/mediaqueries';
+```

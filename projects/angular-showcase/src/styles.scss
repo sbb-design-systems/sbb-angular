@@ -2,7 +2,7 @@
 
 @import '~@angular/cdk/a11y';
 @import '~@angular/cdk/overlay';
-@import '../../../dist/sbb-esta/angular-public/styles.scss';
+@import '../../../dist/sbb-esta/angular-core/styles/main';
 
 @include sbbFonts();
 @include reset();
@@ -11,7 +11,24 @@
 @include cdk-overlay();
 
 sbb-public {
-  sbb-markdown-viewer {
+  @import '../../../dist/sbb-esta/angular-public/styles';
+  sbb-markdown-viewer,
+  sbb-component-viewer {
+    @include sbbHeadings();
+    @include sbbParagraph();
+    @include lists;
+    @include sbbInputFields();
+    @include sbbSelect();
+    @include sbbFieldset();
+    @include sbbTimeInputField();
+    @include sbbTable();
+  }
+}
+
+sbb-business {
+  @import '../../../dist/sbb-esta/angular-public/styles';
+  sbb-markdown-viewer,
+  sbb-component-viewer {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;
