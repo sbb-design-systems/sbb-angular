@@ -145,9 +145,11 @@ reference GitHub issues that this commit **Closes**.
 The rest of the commit message is then used for this.
 
 ## <a name="public-business"></a> Public/Business Package
-This project publishes three packages:
+This project publishes five packages:
 
+* @sbb-esta/angular-core
 * @sbb-esta/angular-icons
+* @sbb-esta/angular-keycloak
 * @sbb-esta/angular-public
 * @sbb-esta/angular-business
 
@@ -167,3 +169,5 @@ padding: 1rem 2rem;
   margin-bottom: 1rem;
 }
 ```
+
+For business components in `projects/sbb-esta/angular-business`, it is required to put `$sbbBusiness: true;` at the top of .scss files.
