@@ -34,13 +34,15 @@ function public2business(_options) {
             'accordion',
             'autocomplete',
             'datepicker',
+            'dropdown',
             'field',
             'input',
             'option',
             'radio-button',
             'select',
             'textarea',
-            'time-input'
+            'time-input',
+            'usermenu'
         ].forEach(m => copyAndAdaptPublicModule(tree, m));
     });
 }

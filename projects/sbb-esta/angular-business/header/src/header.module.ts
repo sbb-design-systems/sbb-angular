@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import {
   IconChevronSmallDownModule,
   IconChevronSmallUpModule,
   IconHamburgerMenuModule
 } from '@sbb-esta/angular-icons';
-import { DropdownModule } from '@sbb-esta/angular-public';
 
 import { HeaderComponent } from './header/header.component';
 import { NavbuttonComponent } from './navbutton/navbutton.component';

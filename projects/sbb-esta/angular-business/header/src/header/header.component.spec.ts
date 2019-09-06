@@ -1,13 +1,14 @@
-import { configureTestSuite } from 'ng-bullet';
-
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
+import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { DropdownModule, UserMenuModule } from '@sbb-esta/angular-public';
+import { configureTestSuite } from 'ng-bullet';
 
-import { HeaderComponent } from '../../../public-api';
 import { NavbuttonComponent } from '../navbutton/navbutton.component';
+
+import { HeaderComponent } from './header.component';
 
 @Component({
   selector: 'sbb-header-all-test',

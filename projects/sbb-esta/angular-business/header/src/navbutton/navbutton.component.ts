@@ -14,7 +14,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { DropdownTriggerDirective } from '@sbb-esta/angular-public';
+import { DropdownTriggerDirective } from '@sbb-esta/angular-business/dropdown';
 
 @Component({
   // tslint:disable-next-line:component-selector

@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { dispatchMouseEvent } from '../../../../../angular-public/src/lib/_common/testing';
 import { ProcessflowModule } from '../processflow.module';
 
 import { ProcessflowComponent } from './processflow.component';
