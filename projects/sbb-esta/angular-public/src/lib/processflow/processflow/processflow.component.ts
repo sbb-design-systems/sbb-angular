@@ -32,7 +32,7 @@ export class ProcessflowComponent implements AfterContentInit {
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  constructor(protected _changeDetectorRef: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
     if (this.steps && this.steps.length) {
@@ -67,9 +67,10 @@ export class ProcessflowComponent implements AfterContentInit {
     }
   }
 
-  private _findActiveStepIndex(steps: ProcessflowStepComponent[]) {
+  protected _findActiveStepIndex(steps: ProcessflowStepComponent[]) {
     return steps.findIndex(s => !!s.active);
   }
+
   /**
    * Method to change on a step with a click.
    * @param $event Event generated at the click on a step.
@@ -82,6 +83,7 @@ export class ProcessflowComponent implements AfterContentInit {
       this.changeStep(stepIndex);
     }
   }
+
   /**
    * Method to change a step in a process flow.
    * @param index Index of the step to change.
@@ -100,6 +102,7 @@ export class ProcessflowComponent implements AfterContentInit {
       this.stepChange.emit(step.descriptor);
     }
   }
+
   /** Method to disable a step in a process flow.
    * @param index Index of the step to disable.
    */

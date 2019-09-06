@@ -12,3 +12,4 @@ export * from './lib/radio-button/radio-button';
 export * from './lib/select/select';
 export * from './lib/textarea/textarea';
 export * from './lib/time-input/time-input';
+export * from './lib/processflow/processflow';

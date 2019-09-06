@@ -3,6 +3,7 @@ import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { MarkdownProvider } from '../../shared/markdown-provider';
+import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
 
 @Component({
   selector: 'sbb-business',
@@ -25,19 +26,22 @@ export class BusinessComponent implements MarkdownProvider, ExampleProvider {
     'time-input': 'Time Input'
   };
   layoutComponents = {
-    accordion: 'Accordion'
+    accordion: 'Accordion',
+    processflow: 'Processflow'
   };
   buttonAndIndicatorComponents = {
     button: 'Button'
   };
   popupsAndModals = {};
-  private _examples = {};
+  private _examples = {
+    processflow: ProcessflowShowcaseComponent
+  };
 
   constructor(private _http: HttpClient) {}
 
   downloadMarkdown(path: string): Promise<string> {
     return this._http
-      .get(`assets/docs/angular-public/${path}.html`, { responseType: 'text' })
+      .get(`assets/docs/angular-business/${path}.html`, { responseType: 'text' })
       .toPromise();
   }
 
