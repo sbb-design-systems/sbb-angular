@@ -7,31 +7,25 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   QueryList
 } from '@angular/core';
-import { ProcessflowComponent as ProcessflowComponentPublic } from '@sbb-esta/angular-public';
+import { ProcessflowBase, ProcessflowStep } from '@sbb-esta/angular-core/base';
 
-import {
-  ProcessflowStep,
-  ProcessflowStepComponent
-} from '../processflow-step/processflow-step.component';
+import { ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
 
 @Component({
   selector: 'sbb-processflow',
-  templateUrl:
-    '../../../../../angular-public/src/lib/processflow/processflow/processflow.component.html',
-  styleUrls: [
-    '../../../../../angular-public/src/lib/processflow/processflow/processflow.component.scss'
-  ],
+  templateUrl: '../../../../angular-public/processflow/src/processflow/processflow.component.html',
+  styleUrls: ['../../../../angular-public/processflow/src/processflow/processflow.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProcessflowComponent extends ProcessflowComponentPublic implements AfterContentInit {
+export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent>
+  implements AfterContentInit {
   /** Event emitted to the change of step in the process flow. */
   @Output()
   stepChange: EventEmitter<ProcessflowStep> = new EventEmitter<ProcessflowStep>();
-  /** Refers to the steps of process flow. */
+  /** @docs-private */
   @ContentChildren(ProcessflowStepComponent)
   steps: QueryList<ProcessflowStepComponent>;
 
@@ -58,9 +52,7 @@ export class ProcessflowComponent extends ProcessflowComponentPublic implements 
 
   setSkippableSteps() {
     if (this.skippable) {
-      this.steps.forEach(s => {
-        s.disabled = false;
-      });
+      this.steps.forEach(s => (s.disabled = false));
     }
   }
 

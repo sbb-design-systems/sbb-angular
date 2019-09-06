@@ -24,7 +24,7 @@ export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
   ) {}
 }
 
-export class CheckboxBase implements ControlValueAccessor {
+export abstract class CheckboxBase implements ControlValueAccessor {
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() @HostBinding() id: string;
   /** Identifier of a checkbox field */

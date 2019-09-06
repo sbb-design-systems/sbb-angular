@@ -1,18 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  ProcessflowStep as ProcessflowStepPublic,
-  ProcessflowStepComponent as ProcessflowStepComponentPublic
-} from '@sbb-esta/angular-public';
-
-export class ProcessflowStep extends ProcessflowStepPublic {}
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ProcessflowStepBase } from '@sbb-esta/angular-core/base';
 
 @Component({
   selector: 'sbb-processflow-step',
   templateUrl:
-    '../../../../../angular-public/src/lib/processflow/processflow-step/processflow-step.component.html',
+    '../../../../angular-public/processflow/src/processflow-step/processflow-step.component.html',
   styleUrls: [
-    '../../../../../angular-public/src/lib/processflow/processflow-step/processflow-step.component.scss'
+    '../../../../angular-public/processflow/src/processflow-step/processflow-step.component.scss'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProcessflowStepComponent extends ProcessflowStepComponentPublic {}
+export class ProcessflowStepComponent extends ProcessflowStepBase {
+  constructor(changeDetectorRef: ChangeDetectorRef) {
+    super(changeDetectorRef);
+  }
+}

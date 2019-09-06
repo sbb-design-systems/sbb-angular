@@ -2,6 +2,7 @@
   "name": "@sbb-esta/angular-core",
   "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
+    "@angular/cdk": "^8.0.0",
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0"
   }
