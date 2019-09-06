@@ -1,12 +1,12 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { HttpClient } from '@angular/common/http';
-import { ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TabsComponent } from '@sbb-esta/angular-public/tabs';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, map, skip, switchMap, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, map, skip, takeUntil } from 'rxjs/operators';
 
 import { ExampleProvider } from './example-provider';
+import { HtmlLoader } from './html-loader.service';
 
 export class ComponentViewerBase implements OnInit, OnDestroy {
   @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
@@ -15,10 +15,9 @@ export class ComponentViewerBase implements OnInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor(
-    private _http: HttpClient,
+    private _htmlLoader: HtmlLoader,
     private _exampleProvider: ExampleProvider,
-    private _route: ActivatedRoute,
-    private _renderer: Renderer2
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -30,14 +29,7 @@ export class ComponentViewerBase implements OnInit, OnDestroy {
         skip(1)
       )
       .subscribe(() => this.tabs.openTabByIndex(0));
-    combineLatest(this._route.params, this._route.data, (p, d) => ({ ...p, ...d }))
-      .pipe(
-        takeUntil(this._destroyed),
-        switchMap(({ id, library }) =>
-          this._http.get(`assets/docs/${library}/${id}.html`, { responseType: 'text' })
-        )
-      )
-      .subscribe(c => this._renderer.setProperty(this.overview.nativeElement, 'innerHTML', c));
+    this._htmlLoader.loadDocumentation(this._route, this._destroyed, this.overview);
     this.example = this._route.params.pipe(
       takeUntil(this._destroyed),
       map(({ id }) => this._exampleProvider.resolveExample(id)),

@@ -19,7 +19,6 @@ sbb-public {
     @include sbbSelect();
     @include sbbFieldset();
     @include sbbTimeInputField();
-    @include sbbTable();
   }
 }
 
@@ -34,7 +33,6 @@ sbb-business {
     @include sbbSelect();
     @include sbbFieldset();
     @include sbbTimeInputField();
-    @include sbbTable();
   }
 }
 
@@ -51,13 +49,32 @@ body {
   }
 }
 
+table {
+  @include table();
+  margin-top: 1rem;
+}
+
 sbb-markdown-viewer,
 sbb-component-viewer {
   pre {
     background-color: #efefef;
-    padding: 1rem 5rem;
-    margin: 1rem -5rem;
+    padding: 1rem 3rem;
+    margin: 1rem -3rem;
   }
+
+  sbb-example-viewer pre {
+    padding: 1rem 24px;
+    margin: 1rem -24px;
+  }
+}
+
+code {
+  background-color: #efefef;
+  padding: 3px;
+}
+
+.content h4 {
+  margin-bottom: 0.5rem;
 }
 
 nav.menu.ps .ps__rail-y {

@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ComponentViewerBase } from '../../shared/component-viewer-base';
 import { ExampleProvider } from '../../shared/example-provider';
+import { HtmlLoader } from '../../shared/html-loader.service';
 
 @Component({
   selector: 'sbb-component-viewer',
@@ -11,12 +11,7 @@ import { ExampleProvider } from '../../shared/example-provider';
   styleUrls: ['./component-viewer.component.scss']
 })
 export class ComponentViewerComponent extends ComponentViewerBase {
-  constructor(
-    http: HttpClient,
-    exampleProvider: ExampleProvider,
-    route: ActivatedRoute,
-    renderer: Renderer2
-  ) {
-    super(http, exampleProvider, route, renderer);
+  constructor(htmlLoader: HtmlLoader, exampleProvider: ExampleProvider, route: ActivatedRoute) {
+    super(htmlLoader, exampleProvider, route);
   }
 }

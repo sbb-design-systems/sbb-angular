@@ -59,7 +59,7 @@ describe('RadioButtonPanelComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toBe('sbb-radio-button-panel-1');
+    expect(component.inputId).toMatch(/sbb-radio-button-panel-\d+/);
   });
 });
 

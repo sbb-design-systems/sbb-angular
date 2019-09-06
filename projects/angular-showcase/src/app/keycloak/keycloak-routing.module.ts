@@ -3,11 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
+import { KeycloakComponent } from './keycloak/keycloak.component';
+
 const routes: Routes = [
   {
     path: 'keycloak',
-    component: MarkdownViewerComponent,
-    data: { library: 'angular-keycloak', id: 'README' }
+    component: KeycloakComponent,
+    data: { library: 'angular-keycloak', id: 'README' },
+    children: [
+      {
+        path: '',
+        component: MarkdownViewerComponent,
+        data: { library: 'angular-keycloak', id: 'README' }
+      }
+    ]
   }
 ];
 

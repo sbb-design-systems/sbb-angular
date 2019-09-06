@@ -1,11 +1,15 @@
-<sbb-tabs>
-  <sbb-tab label="Overview">
-    <div #overview></div>
-  </sbb-tab>
-  <sbb-tab label="API">
-    Currently missing
-  </sbb-tab>
-  <sbb-tab *ngIf="example | async as examplePortal" label="Examples">
-    <ng-template [cdkPortalOutlet]="examplePortal"></ng-template>
-  </sbb-tab>
-</sbb-tabs>
+<perfect-scrollbar>
+  <article>
+    <sbb-tabs>
+      <sbb-tab label="Overview">
+        <div #overview></div>
+      </sbb-tab>
+      <sbb-tab label="API">
+        Currently missing
+      </sbb-tab>
+      <sbb-tab *ngIf="example | async as examplePortal" label="Examples">
+        <sbb-example-viewer [example]="examplePortal"></sbb-example-viewer>
+      </sbb-tab>
+    </sbb-tabs>
+  </article>
+</perfect-scrollbar>

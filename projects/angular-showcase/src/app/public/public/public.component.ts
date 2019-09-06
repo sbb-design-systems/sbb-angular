@@ -1,6 +1,7 @@
 import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { HtmlLoader } from '../../shared/html-loader.service';
 import { AccordionShowcaseComponent } from '../examples/accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from '../examples/autocomplete-showcase/autocomplete-showcase.component';
 import { BadgeShowcaseComponent } from '../examples/badge-showcase/badge-showcase.component';
@@ -38,7 +39,7 @@ import { UserMenuShowcaseComponent } from '../examples/usermenu-showcase/usermen
   selector: 'sbb-public',
   templateUrl: './public.component.html',
   styleUrls: ['./public.component.scss'],
-  providers: [{ provide: ExampleProvider, useExisting: PublicComponent }]
+  providers: [{ provide: ExampleProvider, useExisting: PublicComponent }, HtmlLoader]
 })
 export class PublicComponent implements ExampleProvider {
   formComponents = {

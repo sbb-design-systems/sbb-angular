@@ -50,6 +50,7 @@
   overflow-y: auto;
 
   ul {
+    padding-left: 0;
     margin-top: 80px;
     list-style: none;
   }
@@ -153,9 +154,6 @@
 }
 
 .content {
-  padding: 50px;
-  padding-top: 30px;
-
   transform: rotate(0deg);
   transition: all 0.3s ease;
 }

@@ -94,7 +94,7 @@
     "core-js": "^2.6.2",
     "font-awesome": "^4.7.0",
     "keycloak-js": "^3.4.3",
-    "ngx-monaco-editor": "^7.0.0",
+    "ngx-monaco-editor": "^8.0.0",
     "ngx-perfect-scrollbar": "^8.0.0",
     "rxjs": "6.5.2",
     "tslib": "^1.10.0",

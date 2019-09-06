@@ -1,13 +1,14 @@
 import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { HtmlLoader } from '../../shared/html-loader.service';
 import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
 
 @Component({
   selector: 'sbb-business',
   templateUrl: './business.component.html',
   styleUrls: ['./business.component.scss'],
-  providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }]
+  providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }, HtmlLoader]
 })
 export class BusinessComponent implements ExampleProvider {
   formComponents = {

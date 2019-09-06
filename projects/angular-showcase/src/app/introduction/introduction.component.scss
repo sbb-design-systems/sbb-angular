@@ -1,5 +1,11 @@
 :host {
   display: block;
+  height: calc(100vh - 48px);
+  overflow-y: hidden;
+}
+
+article {
+  padding: 0 3rem;
 }
 
 h1 {

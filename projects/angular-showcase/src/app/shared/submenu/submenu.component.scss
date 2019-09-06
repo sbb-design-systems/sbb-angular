@@ -3,13 +3,16 @@
   top: 0;
   left: 0;
   overflow-y: auto;
-  height: 100vh;
+  height: calc(100vh - 48px);
   width: 300px;
   position: fixed;
-  padding-top: 30px;
   border-right: solid 1px #cccccc;
   transition: all 0.3s ease;
   z-index: 998;
+}
+
+:host ::ng-deep *:not(li) > ul {
+  padding-top: 30px;
 }
 
 :host ::ng-deep ul {
