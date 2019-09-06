@@ -9,7 +9,10 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   styleUrls: ['./autocomplete-showcase.component.scss']
 })
 export class AutocompleteShowcaseComponent implements OnInit {
+  static readonly MAX_OPTIONS_LIST_LENGTH = 5;
+
   myControl = new FormControl('');
+  myControlHint = new FormControl('');
   myControlStatic = new FormControl('');
 
   options$: Subject<string[]>;
@@ -29,11 +32,18 @@ export class AutocompleteShowcaseComponent implements OnInit {
   ];
   filter: '';
   filteredOptions = this.options.slice(0);
+  filteredOptionsHint = this.options.slice(0);
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
 
   ngOnInit() {
     this.myControl.valueChanges.subscribe(newValue => {
       this.filteredOptions = this.options.filter(
+        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+      );
+    });
+
+    this.myControlHint.valueChanges.pipe(distinctUntilChanged()).subscribe(newValue => {
+      this.filteredOptionsHint = this.options.filter(
         option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });
@@ -54,5 +64,9 @@ export class AutocompleteShowcaseComponent implements OnInit {
           this.options$.next([]);
         }
       });
+  }
+
+  get maxOptionsListLength() {
+    return AutocompleteShowcaseComponent.MAX_OPTIONS_LIST_LENGTH;
   }
 }

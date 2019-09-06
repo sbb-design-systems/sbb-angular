@@ -180,7 +180,8 @@ const exampleComponents = [
     BreadcrumbModule,
     UserMenuModule,
     GhettoboxModule,
-    BadgeModule
+    BadgeModule,
+    AutocompleteModule
   ]
 })
 export class ExamplesModule {}
