@@ -4,6 +4,14 @@
     "documentation": {
       "description": "Generate documentation for the showcase.",
       "factory": "./documentation/index#documentation"
+    },
+    "public2business": {
+      "description": "Copy public components to business",
+      "factory": "./public2business/index#public2business"
+    },
+    "generate-icon-modules": {
+      "description": "Generate icon modules.",
+      "factory": "./generate-icon-modules/index#generateIconModules"
     }
   }
 }

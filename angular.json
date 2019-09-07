@@ -36,8 +36,7 @@
               "node_modules/highlight.js/styles/github.css"
             ],
             "scripts": [],
-            "es5BrowserSupport": true,
-            "webWorkerTsConfig": "projects/angular-showcase/tsconfig.worker.json"
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
@@ -120,8 +119,7 @@
           "options": {
             "tsConfig": [
               "projects/angular-showcase/tsconfig.app.json",
-              "projects/angular-showcase/tsconfig.spec.json",
-              "projects/angular-showcase/tsconfig.worker.json"
+              "projects/angular-showcase/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -160,7 +158,7 @@
     },
     "@sbb-esta/angular-public": {
       "root": "projects/sbb-esta/angular-public",
-      "sourceRoot": "projects/sbb-esta/angular-public/src",
+      "sourceRoot": "projects/sbb-esta/angular-public",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -179,14 +177,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-public/src/test.ts",
+            "main": "projects/sbb-esta/angular-public/test.ts",
             "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/sbb-esta/angular-public/src/styles/common"
-              ]
-            }
+            "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
           },
           "configurations": {
             "pr": {
@@ -221,7 +214,7 @@
     },
     "@sbb-esta/angular-business": {
       "root": "projects/sbb-esta/angular-business",
-      "sourceRoot": "projects/sbb-esta/angular-business/src",
+      "sourceRoot": "projects/sbb-esta/angular-business",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -240,14 +233,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-business/src/test.ts",
+            "main": "projects/sbb-esta/angular-business/test.ts",
             "tsConfig": "projects/sbb-esta/angular-business/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/sbb-esta/angular-business/src/styles/common"
-              ]
-            }
+            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js"
           },
           "configurations": {
             "pr": {
@@ -282,7 +270,7 @@
     },
     "@sbb-esta/angular-icons": {
       "root": "projects/sbb-esta/angular-icons",
-      "sourceRoot": "projects/sbb-esta/angular-icons/src",
+      "sourceRoot": "projects/sbb-esta/angular-icons",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -301,7 +289,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-icons/src/test.ts",
+            "main": "projects/sbb-esta/angular-icons/test.ts",
             "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-icons/karma.conf.js"
           },
@@ -340,7 +328,7 @@
     "@sbb-esta/angular-keycloak": {
       "projectType": "library",
       "root": "projects/sbb-esta/angular-keycloak",
-      "sourceRoot": "projects/sbb-esta/angular-keycloak/src",
+      "sourceRoot": "projects/sbb-esta/angular-keycloak",
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
@@ -358,7 +346,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-keycloak/src/test.ts",
+            "main": "projects/sbb-esta/angular-keycloak/test.ts",
             "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-keycloak/karma.conf.js"
           },
@@ -385,6 +373,57 @@
             "tsConfig": [
               "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
               "projects/sbb-esta/angular-keycloak/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@sbb-esta/angular-core": {
+      "projectType": "library",
+      "root": "projects/sbb-esta/angular-core",
+      "sourceRoot": "projects/sbb-esta/angular-core",
+      "prefix": "sbb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.json",
+            "project": "projects/sbb-esta/angular-core/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sbb-esta/angular-core/test.ts",
+            "tsConfig": "projects/sbb-esta/angular-core/tsconfig.spec.json",
+            "karmaConfig": "projects/sbb-esta/angular-core/karma.conf.js"
+          },
+          "configurations": {
+            "pr": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "sourceMap": false,
+              "progress": false
+            },
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sbb-esta/angular-core/tsconfig.lib.json",
+              "projects/sbb-esta/angular-core/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

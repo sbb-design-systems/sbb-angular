@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TabsComponent } from '@sbb-esta/angular-public';
+import { TabsComponent } from '@sbb-esta/angular-public/tabs';
 
 @Component({
   selector: 'sbb-tabs-showcase',

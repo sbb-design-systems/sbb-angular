@@ -2,7 +2,8 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function(config) {
-  const dist = require('path').join(__dirname, '../../../coverage/sbb-esta/angular-public');
+  const package = 'angular-public';
+  const dist = require('path').join(__dirname, `../../../coverage/sbb-esta/${package}`);
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -23,14 +24,14 @@ module.exports = function(config) {
       }
     },
     browserStack: {
-      project: '@sbb-esta/angular-public Unit Tests',
+      project: `@sbb-esta/${package} Unit Tests`,
       startTunnel: true,
       retryLimit: 3,
       timeout: 1800,
       video: false
     },
     sonarqubeReporter: {
-      basePath: 'projects/sbb-esta/angular-public/src',
+      basePath: `projects/sbb-esta/${package}`,
       outputFolder: dist,
       reportName: () => 'sonarqube.xml'
     },

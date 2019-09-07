@@ -1,8 +1,6 @@
-//@import './styles/main';
-
 @import '~@angular/cdk/a11y';
 @import '~@angular/cdk/overlay';
-@import '../../../dist/sbb-esta/angular-public/styles.scss';
+@import '../../sbb-esta/angular-core/styles/main';
 
 @include sbbFonts();
 @include reset();
@@ -10,8 +8,15 @@
 @include cdk-a11y();
 @include cdk-overlay();
 
-sbb-public {
-  sbb-markdown-viewer {
+sbb-public,
+sbb-core,
+sbb-icons {
+  @import '../../sbb-esta/angular-public/styles';
+  sbb-markdown-viewer,
+  sbb-component-viewer,
+  sbb-api-viewer,
+  sbb-icon-search,
+  sbb-icon-viewer {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;
@@ -19,7 +24,20 @@ sbb-public {
     @include sbbSelect();
     @include sbbFieldset();
     @include sbbTimeInputField();
-    @include sbbTable();
+  }
+}
+
+sbb-business {
+  @import '../../sbb-esta/angular-public/styles';
+  sbb-markdown-viewer,
+  sbb-component-viewer {
+    @include sbbHeadings();
+    @include sbbParagraph();
+    @include lists;
+    @include sbbInputFields();
+    @include sbbSelect();
+    @include sbbFieldset();
+    @include sbbTimeInputField();
   }
 }
 
@@ -33,6 +51,82 @@ body {
 
   &.home {
     top: 0;
+  }
+}
+
+table {
+  @include table();
+  margin-top: 1rem;
+}
+
+sbb-markdown-viewer,
+sbb-component-viewer {
+  pre {
+    background-color: #efefef;
+    padding: 1rem 3rem;
+    margin: 1rem -3rem;
+  }
+
+  sbb-example-viewer pre {
+    padding: 1rem 24px;
+    margin: 1rem -24px;
+  }
+}
+
+code {
+  background-color: #efefef;
+  padding: 3px;
+}
+
+.content h4 {
+  margin-bottom: 0.5rem;
+}
+
+.docs-api {
+  .docs-api-h3 {
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .docs-api-h4 code {
+    font-size: 150%;
+  }
+
+  .docs-api-deprecated-marker {
+    font-style: italic;
+  }
+
+  .docs-api-class-selector-name {
+    background-color: #efefef;
+    padding: 3px;
+  }
+
+  .docs-api-module-import code {
+    font-size: large;
+    padding: 5px;
+  }
+
+  table {
+    width: 100%;
+
+    &.docs-api-method-table th {
+      text-align: left;
+    }
+  }
+
+  .docs-api-properties-name-cell {
+    .docs-api-input-marker,
+    .docs-api-output-marker {
+      font-size: 80%;
+    }
+
+    .docs-api-property-name {
+      margin-top: 0;
+
+      code {
+        background-color: transparent;
+      }
+    }
   }
 }
 

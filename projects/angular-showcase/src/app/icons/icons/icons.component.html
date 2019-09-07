@@ -1,0 +1,33 @@
+<sbb-submenu>
+  <ul>
+    <li>
+      Introduction
+
+      <ul>
+        <li>
+          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            >Getting started</a
+          >
+        </li>
+        <li>
+          <a routerLink="./search" routerLinkActive="active">Icons Overview</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Icons
+
+      <ul>
+        <li *ngFor="let c of icons">
+          <a [routerLink]="['./components/', c.selector]" routerLinkActive="active">
+            <ng-template [cdkPortalOutlet]="c.portal"></ng-template>
+            &lt;{{ c.selector }}&gt;
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</sbb-submenu>
+
+<router-outlet></router-outlet>

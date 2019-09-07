@@ -1,11 +1,24 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/sbb-esta/angular-public",
-  "whitelistedNonPeerDependencies": ["tslib", "ngx-perfect-scrollbar", "@types/grecaptcha"],
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "@sbb-esta/angular-core",
+    "ngx-perfect-scrollbar",
+    "@types/grecaptcha"
+  ],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "styleIncludePaths": ["./src/styles/common"],
+    "entryFile": "public-api.ts",
     "umdModuleIds": {
+      "@sbb-esta/angular-core": "sbbAngularCore",
+      "@sbb-esta/angular-core/base": "sbbAngularCoreBase",
+      "@sbb-esta/angular-core/breakpoints": "sbbAngularCoreBreakpoints",
+      "@sbb-esta/angular-core/common-behaviors": "sbbAngularCoreCommonBehaviors",
+      "@sbb-esta/angular-core/datetime": "sbbAngularCoreDatetime",
+      "@sbb-esta/angular-core/error": "sbbAngularCoreError",
+      "@sbb-esta/angular-core/forms": "sbbAngularCoreForms",
+      "@sbb-esta/angular-core/icon-directive": "sbbAngularCoreIconDirective",
+      "@sbb-esta/angular-core/models": "sbbAngularCoreModels",
       "@sbb-esta/angular-icons": "sbbAngularIcons",
       "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
     }

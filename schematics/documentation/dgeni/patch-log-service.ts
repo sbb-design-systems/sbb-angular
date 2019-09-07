@@ -14,13 +14,13 @@ const mixinNameRegex = /_\w+Base/;
  * through mixin functions and will be stored as a constant.
  */
 export function patchLogService(log: any) {
-  const warnFn = log.warn;
+  const _warnFn = log.warn;
 
   log.warn = function(message: string) {
     if (message.includes('Unresolved TypeScript symbol') && mixinNameRegex.test(message)) {
       return;
     }
 
-    warnFn.apply(this, [message]);
+    _warnFn.apply(this, [message]);
   };
 }

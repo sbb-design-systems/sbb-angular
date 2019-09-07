@@ -13,6 +13,10 @@ It is generated, maintained, tested, linted and built with the [Angular CLI](htt
 
 ### [@sbb-esta/angular-icons](https://www.npmjs.com/package/@sbb-esta/angular-icons)
 
+The package containing core functionality shared by `@sbb-esta/angular-public` and `@sbb-esta/angular-business`.
+
+### [@sbb-esta/angular-icons](https://www.npmjs.com/package/@sbb-esta/angular-icons)
+
 The package containing SBB icons as components.
 
 [Icon List](https://angular.app.sbb.ch/latest/icons-list)
@@ -23,11 +27,13 @@ The package containing SBB icons as components.
 
 The package containg the components/modules for public SBB websites.
 
-[Component List](https://angular.app.sbb.ch/latest/components-list)
+[Component List](https://angular.app.sbb.ch/latest/public)
 
 ### [@sbb-esta/angular-business](https://www.npmjs.com/package/@sbb-esta/angular-business)
 
 The package containg the components/modules for SBB business applications.
+
+[Component List](https://angular.app.sbb.ch/latest/business)
 
 ### [@sbb-esta/angular-keycloak](https://www.npmjs.com/package/@sbb-esta/angular-keycloak)
 

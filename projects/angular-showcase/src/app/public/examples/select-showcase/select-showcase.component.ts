@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SelectComponent } from '@sbb-esta/angular-public';
+import { SelectComponent } from '@sbb-esta/angular-public/select';
 
 export class Food {
   constructor(public value: string, public viewValue: string, public disabled: boolean = false) {}

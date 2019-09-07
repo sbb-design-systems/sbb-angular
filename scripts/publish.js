@@ -130,7 +130,7 @@ class Publisher {
       return;
     }
 
-    if (this.stagingUser) {
+    if (this.isRelease) {
       await request({
         method: 'POST',
         uri: `https://angular.app.sbb.ch/${this.tag}`,
@@ -164,7 +164,10 @@ new Publisher({
   isRelease: process.argv[2] === 'release',
   stagingUser: process.env.STAGING_AUTH_USER,
   stagingPassword: process.env.STAGING_AUTH_PASSWORD,
-  normalizedBranch: (process.env.TRAVIS_BRANCH || 'staging')
+  normalizedBranch: (process.env.TRAVIS_PULL_REQUEST === 'false'
+    ? process.env.TRAVIS_BRANCH || 'staging'
+    : process.env.TRAVIS_PULL_REQUEST
+  )
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/-+$/, '')

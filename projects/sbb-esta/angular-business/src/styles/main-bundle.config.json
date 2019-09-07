@@ -1,5 +1,0 @@
-{
-  "entry": "./main.scss",
-  "dest": "../../../../../dist/sbb-esta/angular-business/styles.scss",
-  "includePaths": ["./common"]
-}

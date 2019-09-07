@@ -20,7 +20,7 @@ describe('AuthInterceptor', () => {
   it('should throw an error in case of a failed request', async () => {
     const request = jasmine.createSpyObj<HttpRequest<any>>('request', ['clone']);
     const next = jasmine.createSpyObj<HttpHandler>('next', ['handle']);
-    const authHeader = { Authorization: 'Bearer some token' };
+    const authHeader: any = { Authorization: 'Bearer some token' };
     const errorMessage = 'Something went wrong';
 
     next.handle.and.returnValue(throwError(errorMessage));

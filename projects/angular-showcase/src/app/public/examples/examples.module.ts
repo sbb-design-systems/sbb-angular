@@ -1,46 +1,43 @@
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import {
-  AccordionModule,
-  AutocompleteModule,
-  BadgeModule,
-  BreadcrumbModule,
-  ButtonModule,
-  CaptchaModule,
-  CheckboxModule,
-  CheckboxPanelModule,
-  DatepickerModule,
-  DropdownModule,
-  FieldModule,
-  FileSelectorModule,
-  GhettoboxModule,
-  LightboxModule,
-  LinksModule,
-  LoadingModule,
-  NotificationsModule,
-  OptionModule,
-  PaginationModule,
-  ProcessflowModule,
-  RadioButtonModule,
-  RadioButtonPanelModule,
-  SearchModule,
-  SelectModule,
-  TableModule,
-  TabsModule,
-  TagModule,
-  TextareaModule,
-  TextexpandModule,
-  TimeInputModule,
-  ToggleModule,
-  TooltipModule,
-  UserMenuModule
-} from '@sbb-esta/angular-public';
+import { AccordionModule } from '@sbb-esta/angular-public/accordion';
+import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
+import { BadgeModule } from '@sbb-esta/angular-public/badge';
+import { BreadcrumbModule } from '@sbb-esta/angular-public/breadcrumb';
+import { ButtonModule } from '@sbb-esta/angular-public/button';
+import { CaptchaModule } from '@sbb-esta/angular-public/captcha';
+import { CheckboxModule } from '@sbb-esta/angular-public/checkbox';
+import { CheckboxPanelModule } from '@sbb-esta/angular-public/checkbox-panel';
+import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
+import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
+import { FieldModule } from '@sbb-esta/angular-public/field';
+import { FileSelectorModule } from '@sbb-esta/angular-public/file-selector';
+import { GhettoboxModule } from '@sbb-esta/angular-public/ghettobox';
+import { LightboxModule } from '@sbb-esta/angular-public/lightbox';
+import { LinksModule } from '@sbb-esta/angular-public/links';
+import { LoadingModule } from '@sbb-esta/angular-public/loading';
+import { NotificationsModule } from '@sbb-esta/angular-public/notification';
+import { OptionModule } from '@sbb-esta/angular-public/option';
+import { PaginationModule } from '@sbb-esta/angular-public/pagination';
+import { ProcessflowModule } from '@sbb-esta/angular-public/processflow';
+import { RadioButtonModule } from '@sbb-esta/angular-public/radio-button';
+import { RadioButtonPanelModule } from '@sbb-esta/angular-public/radio-button-panel';
+import { SearchModule } from '@sbb-esta/angular-public/search';
+import { SelectModule } from '@sbb-esta/angular-public/select';
+import { TableModule } from '@sbb-esta/angular-public/table';
+import { TabsModule } from '@sbb-esta/angular-public/tabs';
+import { TagModule } from '@sbb-esta/angular-public/tag';
+import { TextareaModule } from '@sbb-esta/angular-public/textarea';
+import { TextexpandModule } from '@sbb-esta/angular-public/textexpand';
+import { TimeInputModule } from '@sbb-esta/angular-public/time-input';
+import { ToggleModule } from '@sbb-esta/angular-public/toggle';
+import { TooltipModule } from '@sbb-esta/angular-public/tooltip';
+import { UserMenuModule } from '@sbb-esta/angular-public/usermenu';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
@@ -142,43 +139,43 @@ const exampleComponents = [
     BrowserModule,
     CommonModule,
     RouterModule,
-    TextareaModule,
-    FieldModule,
-    LinksModule,
-    ButtonModule,
     FormsModule,
     ReactiveFormsModule,
     MonacoEditorModule.forRoot(),
-    RadioButtonModule,
-    CheckboxModule,
-    DatepickerModule,
-    TimeInputModule,
     IconCollectionModule,
-    TabsModule,
-    LoadingModule,
-    LightboxModule,
-    OptionModule,
-    AutocompleteModule,
-    SelectModule,
     AccordionModule,
-    ProcessflowModule,
-    RadioButtonPanelModule,
-    CheckboxPanelModule,
-    NotificationsModule,
-    TableModule,
-    ToggleModule,
-    PaginationModule,
-    TooltipModule,
-    TextexpandModule,
-    TagModule,
-    SearchModule,
-    FileSelectorModule,
-    DropdownModule,
-    CaptchaModule,
+    AutocompleteModule,
+    BadgeModule,
     BreadcrumbModule,
-    UserMenuModule,
+    ButtonModule,
+    CaptchaModule,
+    CheckboxModule,
+    CheckboxPanelModule,
+    DatepickerModule,
+    DropdownModule,
+    FieldModule,
+    FileSelectorModule,
     GhettoboxModule,
-    BadgeModule
+    LightboxModule,
+    LinksModule,
+    LoadingModule,
+    NotificationsModule,
+    OptionModule,
+    PaginationModule,
+    ProcessflowModule,
+    RadioButtonModule,
+    RadioButtonPanelModule,
+    SearchModule,
+    SelectModule,
+    TableModule,
+    TabsModule,
+    TagModule,
+    TextareaModule,
+    TextexpandModule,
+    TimeInputModule,
+    ToggleModule,
+    TooltipModule,
+    UserMenuModule
   ]
 })
 export class ExamplesModule {}
