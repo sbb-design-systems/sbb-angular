@@ -35,9 +35,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { defer, fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
-import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
-
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import {
   AUTOCOMPLETE_OPTION_HEIGHT,
@@ -54,6 +51,8 @@ import {
   OptionComponent,
   SBBOptionSelectionChange
 } from '@sbb-esta/angular-public/option';
+import { defer, fromEvent, merge, Observable, of, Subject, Subscription } from 'rxjs';
+import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
 
 /** Injection token that determines the scroll handling while the calendar is open. */
 export const SBB_SEARCH_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(

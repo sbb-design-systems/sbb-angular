@@ -1,5 +1,4 @@
-import { ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { HostBinding } from '@angular/core';
 
 export abstract class BaseButton {
   /**

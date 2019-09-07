@@ -4,10 +4,11 @@
   overflow-y: hidden;
 }
 
-:host-context(sbb-public, sbb-business) {
+:host-context(sbb-public, sbb-business, sbb-core, sbb-icons) {
   margin-left: 300px;
 }
 
 article {
   padding: 0 3rem;
+  padding-bottom: 3rem;
 }

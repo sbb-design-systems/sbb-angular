@@ -19,11 +19,9 @@
     </td>
   </tr>
   {%- endif -%} {%- if method.params.length -%}
-  <thead>
-    <tr class="docs-api-method-parameters-header-row">
-      <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
-    </tr>
-  </thead>
+  <tr class="docs-api-method-parameters-header-row">
+    <th colspan="2" class="docs-api-method-parameters-header-cell">Parameters</th>
+  </tr>
   {% for parameter in method.params %}
   <tr class="docs-api-method-parameter-row">
     <td class="docs-api-method-parameter-cell">
@@ -40,12 +38,10 @@
       </p>
     </td>
   </tr>
-  {% endfor %} {%- endif -%} {%- if method.showReturns -%}
-  <thead>
-    <tr class="docs-api-method-returns-header-row">
-      <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
-    </tr>
-  </thead>
+  {% endfor %} {%- endif -%} {%- if method.type and method.type !== "void" -%}
+  <tr class="docs-api-method-returns-header-row">
+    <th colspan="2" class="docs-api-method-returns-header-cell">Returns</th>
+  </tr>
   <tr>
     <td class="docs-api-method-returns-type-cell">
       <code class="docs-api-method-returns-type">{$ method.type $}</code>

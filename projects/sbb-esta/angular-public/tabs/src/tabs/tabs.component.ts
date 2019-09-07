@@ -7,7 +7,9 @@ import {
   ComponentFactoryResolver,
   ContentChildren,
   ElementRef,
+  EventEmitter,
   OnDestroy,
+  Output,
   QueryList,
   ViewChildren,
   ViewEncapsulation
@@ -27,34 +29,26 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
-  /**
-   * Class property that tracks tab number of the list
-   */
+  /** Class property that tracks tab number of the list */
   nameOfTabList = `sbb-tabs-${counter++}`;
-  /**
-   * Index of tab list
-   */
+  /** Index of tab list */
   tabListIndex = 0;
-  /**
-   * Option keys available to move between tabs
-   */
-  private _allowedKeyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB];
-  /**
-   * Class property that tracks changes in the tabs contained in the list
-   */
+  /** Class property that tracks changes in the tabs contained in the list */
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
-  /**
-   * Class property that tracks changes in the content tab in the list of tab
-   */
+  /** Class property that tracks changes in the content tab in the list of tab */
   tabs$: Observable<TabComponent[]>;
-  /**
-   * Class property that tracks changes in the label tab in the list of tab
-   */
+  /** Class property that tracks changes in the label tab in the list of tab */
   @ViewChildren('label') labels: QueryList<ElementRef>;
+  /** Emits the newly selected  */
+  @Output() selectedIndexChange = new EventEmitter<number>();
   /**
    * Class property that records an event on tabs
    */
   private _tabsSubscription = Subscription.EMPTY;
+  /**
+   * Option keys available to move between tabs
+   */
+  private _allowedKeyCodes = [LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, TAB];
 
   constructor(
     /** * Class property that manages different events */
@@ -87,7 +81,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     const activeTabs = this.tabs.filter(tab => tab.active);
 
     if (activeTabs.length !== 1) {
-      this.selectTab(this.tabs.first);
+      this.selectTab(this.tabs.first, true);
     }
   }
   /**
@@ -113,20 +107,26 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   /**
    * Method that selects the tab that matches with the tab in input
    */
-  selectTab(tab: TabComponent) {
-    this.tabs.forEach((t, index) => {
-      if (t.labelId === tab.labelId) {
-        this.tabListIndex = index;
-      }
-      t.active = false;
-      t.tabindex = -1;
-      t.tabMarkForCheck();
-    });
+  selectTab(tab: TabComponent, firstSelection = false) {
+    // TODO: Check if there is a better solution for this timing issue
+    Promise.resolve().then(() => {
+      this.tabs.forEach((t, index) => {
+        if (t.labelId === tab.labelId) {
+          this.tabListIndex = index;
+        }
+        t.active = false;
+        t.tabindex = -1;
+        t.tabMarkForCheck();
+      });
 
-    tab.active = true;
-    tab.tabindex = 0;
-    tab.tabMarkForCheck();
-    this._changeDetector.markForCheck();
+      tab.active = true;
+      tab.tabindex = 0;
+      tab.tabMarkForCheck();
+      this._changeDetector.markForCheck();
+      if (!firstSelection) {
+        this.selectedIndexChange.emit(this.tabListIndex);
+      }
+    });
   }
   /**
    * Method that responds only to arrows and tab event

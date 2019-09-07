@@ -26,6 +26,11 @@ const routes: Routes = [
         path: 'components/:id',
         component: ComponentViewerComponent,
         data: { library: 'angular-business' }
+      },
+      {
+        path: 'components/:id/:section',
+        component: ComponentViewerComponent,
+        data: { library: 'angular-business' }
       }
     ]
   }

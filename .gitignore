@@ -57,10 +57,10 @@ projects/sbb-esta/angular-business/autocomplete
 projects/sbb-esta/angular-business/datepicker
 projects/sbb-esta/angular-business/dropdown
 projects/sbb-esta/angular-business/field
+projects/sbb-esta/angular-business/input
+projects/sbb-esta/angular-business/option
 projects/sbb-esta/angular-business/radio-button
 projects/sbb-esta/angular-business/select
 projects/sbb-esta/angular-business/textarea
-projects/sbb-esta/angular-business/input
-projects/sbb-esta/angular-business/option
 projects/sbb-esta/angular-business/time-input
 projects/sbb-esta/angular-business/usermenu

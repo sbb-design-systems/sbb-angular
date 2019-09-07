@@ -11,6 +11,7 @@ export default ['documentation', 'generate-icon-modules', 'public2business'].map
     '@angular-devkit/schematics',
     '@angular-devkit/core',
     'dgeni',
+    'dgeni-packages/typescript/api-doc-types/ApiDoc',
     'dgeni-packages/typescript/api-doc-types/ClassExportDoc',
     'dgeni-packages/typescript/api-doc-types/ExportDoc',
     'dgeni-packages/typescript/api-doc-types/MemberDoc',

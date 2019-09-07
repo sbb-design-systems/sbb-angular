@@ -3,10 +3,9 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
-
-import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 
 import { CheckboxComponent } from './checkbox.component';
 

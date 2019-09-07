@@ -5,7 +5,6 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
-
 import { BaseButton } from '@sbb-esta/angular-core/base';
 
 @Component({

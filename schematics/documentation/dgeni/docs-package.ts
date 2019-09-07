@@ -1,7 +1,6 @@
 import { Package } from 'dgeni';
 import { ReadTypeScriptModules } from 'dgeni-packages/typescript/processors/readTypeScriptModules';
 import { Host } from 'dgeni-packages/typescript/services/ts-host/host';
-import { join } from 'path';
 import { TypeFormatFlags } from 'typescript';
 
 import { HighlightNunjucksExtension } from './nunjucks-tags/highlight';
@@ -12,15 +11,13 @@ import { EntryPointGrouper } from './processors/entry-point-grouper';
 import { FilterDuplicateExports } from './processors/filter-duplicate-exports';
 import { MergeInheritedProperties } from './processors/merge-inherited-properties';
 
-// Dgeni packages that the SACL docs package depends on.
+// Dgeni packages that the Material docs package depends on.
 const jsdocPackage = require('dgeni-packages/jsdoc');
 const nunjucksPackage = require('dgeni-packages/nunjucks');
 const typescriptPackage = require('dgeni-packages/typescript');
 
-const templateDir = join(__dirname, 'templates');
-
 /**
- * Dgeni package for the Angular Material docs. This just defines the package, but doesn't
+ * Dgeni package for the sbb-angular docs. This just defines the package, but doesn't
  * generate the docs yet.
  *
  * Dgeni packages are very similar to AngularJS modules. Those can contain:
@@ -33,7 +30,7 @@ const templateDir = join(__dirname, 'templates');
  * configure specific processors, services before the procession begins.
  */
 // tslint:disable-next-line: naming-convention
-export const apiDocsPackage = new Package('sbb-angular-api-docs', [
+export const apiDocsPackage = new Package('sbb-angular', [
   jsdocPackage,
   nunjucksPackage,
   typescriptPackage
@@ -117,9 +114,6 @@ apiDocsPackage.config(function(tsHost: Host) {
 
 // Configure processor for finding nunjucks templates.
 apiDocsPackage.config(function(templateFinder: any, templateEngine: any) {
-  // Where to find the templates for the doc rendering
-  templateFinder.templateFolders = [templateDir];
-
   // Standard patterns for matching docs to templates
   templateFinder.templatePatterns = [
     '${ doc.template }',

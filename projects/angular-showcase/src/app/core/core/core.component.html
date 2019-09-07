@@ -1,0 +1,27 @@
+<sbb-submenu>
+  <ul>
+    <li>
+      Introduction
+
+      <ul>
+        <li>
+          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            >Getting started</a
+          >
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Modules
+
+      <ul>
+        <li *ngFor="let c of modules | keyvalue">
+          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</sbb-submenu>
+
+<router-outlet></router-outlet>

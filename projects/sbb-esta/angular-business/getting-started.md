@@ -1,6 +1,6 @@
 # Getting Started
 
-Basic steps to integrate the ACL library into your own project.
+Basic steps to integrate the sbb-angular library into your own project.
 
 ## Step 0: Prerequisites
 
@@ -20,9 +20,9 @@ yarn global add @angular/cli
 
 You can create now your project as described in the official [Angular CLI documentation](https://cli.angular.io/).
 
-## Step 1: Install ACL library
+## Step 1: Install the library
 
-Just after you created your own Angular project, in order to include the ACL library, you have to install the `@sbb-esta/angular-business`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
+Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-business`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
 
 ```sh
 npm install --save @sbb-esta/angular-business @sbb-esta/angular-icons @angular/cdk
@@ -99,7 +99,7 @@ import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 export class TrainChooChooAppModule { }
 ```
 
-Alternatively, you can create a separate NgModule that imports all of the ACL components that you will use in your application. You can then include this module wherever you'd like to use the components.
+Alternatively, you can create a separate NgModule that imports all of the components that you will use in your application. You can then include this module wherever you'd like to use the components.
 
 ```ts
 import { ButtonModule } from '@sbb-esta/angular-business/button';
@@ -109,10 +109,10 @@ import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
   imports: [ButtonModule, CheckboxModule],
   exports: [ButtonModule, CheckboxModule]
 })
-export class MyOwnCustomACLModule {}
+export class SbbModule {}
 ```
 
-Whichever approach you use, be sure to import the ACL modules after Angular's BrowserModule, as the import order matters for NgModules.
+Whichever approach you use, be sure to import the modules after Angular's BrowserModule, as the import order matters for NgModules.
 
 ## Step 5: i18n
 

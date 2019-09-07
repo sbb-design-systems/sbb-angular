@@ -7,11 +7,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 
 @Injectable()
 export class HtmlLoader {
-  constructor(
-    private _http: HttpClient,
-    private _route: ActivatedRoute,
-    private _renderer: Renderer2
-  ) {}
+  constructor(private _http: HttpClient, private _renderer: Renderer2) {}
 
   loadDocumentation(
     route: ActivatedRoute,
@@ -23,6 +19,19 @@ export class HtmlLoader {
       destroyable,
       targetElement,
       (library, id) => `assets/docs/${library}/${id}.html`
+    );
+  }
+
+  loadApiDocumentation(
+    route: ActivatedRoute,
+    destroyable: Observable<void>,
+    targetElement: ElementRef
+  ) {
+    this._loadHtml(
+      route,
+      destroyable,
+      targetElement,
+      (library, id) => `assets/docs/api/${library}-${id}.html`
     );
   }
 

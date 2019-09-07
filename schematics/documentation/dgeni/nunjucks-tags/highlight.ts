@@ -1,4 +1,4 @@
-import hljs from 'highlight.js';
+import { highlightCodeBlock } from '../highlight-code-block';
 
 /**
  * Nunjucks extension that supports rendering highlighted content. Content that is placed in
@@ -33,16 +33,4 @@ export class HighlightNunjucksExtension {
   render(_context: any, language: string, contentFn: () => string) {
     return highlightCodeBlock(contentFn(), language);
   }
-}
-
-/**
- * Transforms a given code block into its corresponding HTML output. We do this using
- * highlight.js because it allows us to show colored code blocks in our documentation.
- */
-function highlightCodeBlock(code: string, language: string) {
-  if (language) {
-    return hljs.highlight(language.toLowerCase() === 'ts' ? 'typescript' : language, code).value;
-  }
-
-  return code;
 }

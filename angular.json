@@ -119,8 +119,7 @@
           "options": {
             "tsConfig": [
               "projects/angular-showcase/tsconfig.app.json",
-              "projects/angular-showcase/tsconfig.spec.json",
-              "projects/angular-showcase/tsconfig.worker.json"
+              "projects/angular-showcase/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
