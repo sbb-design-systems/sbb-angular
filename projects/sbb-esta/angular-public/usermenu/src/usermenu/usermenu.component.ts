@@ -8,7 +8,6 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-
 import { DropdownComponent } from '@sbb-esta/angular-public/dropdown';
 
 let counter = 0;

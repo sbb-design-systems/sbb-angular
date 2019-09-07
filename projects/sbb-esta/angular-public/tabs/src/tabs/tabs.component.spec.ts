@@ -64,16 +64,18 @@ describe('TabsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should select first tab as default', () => {
+  it('should select first tab as default', async () => {
+    await fixture.whenStable();
     expect(tabs[0].componentInstance.active).toBeTruthy();
     expect(tabs[1].componentInstance.active && tabs[2].componentInstance.active).toBeFalsy();
   });
 
-  it('should if I click the second tab make it active and deactivate the first', () => {
+  it('should if I click the second tab make it active and deactivate the first', async () => {
     const tab2Label = fixture.debugElement.queryAll(By.css('.sbb-tabs-tablist-item-button'))[1]
       .nativeElement;
     dispatchEvent(tab2Label, createMouseEvent('click'));
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(tabs[0].componentInstance.active && tabs[2].componentInstance.active).toBeFalsy();
     expect(tabs[1].componentInstance.active).toBeTruthy();

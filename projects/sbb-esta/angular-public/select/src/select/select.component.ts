@@ -47,10 +47,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
-import { defer, merge, Observable, Subject } from 'rxjs';
-import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
-
 import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
@@ -67,6 +63,9 @@ import {
   SBB_OPTION_PARENT_COMPONENT,
   SBBOptionSelectionChange
 } from '@sbb-esta/angular-public/option';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import { defer, merge, Observable, Subject } from 'rxjs';
+import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 let nextUniqueId = 0;
 

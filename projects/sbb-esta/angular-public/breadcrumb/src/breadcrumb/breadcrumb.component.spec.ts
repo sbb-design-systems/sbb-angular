@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconChevronRightModule, IconChevronSmallDownModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
-
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
+import { configureTestSuite } from 'ng-bullet';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
 

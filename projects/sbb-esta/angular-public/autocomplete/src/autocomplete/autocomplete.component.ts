@@ -16,7 +16,6 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-
 import {
   HasOptions,
   OptionComponent,

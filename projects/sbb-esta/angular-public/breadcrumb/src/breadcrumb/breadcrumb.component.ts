@@ -20,7 +20,6 @@ import {
   ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core';
-
 import {
   Breakpoints,
   SCALING_FACTOR_4K,

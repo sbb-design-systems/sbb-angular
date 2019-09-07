@@ -1,8 +1,7 @@
 import { ComponentRef, TemplateRef } from '@angular/core';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { Subject } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
-
-import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
 import { GhettoboxComponent, GhettoboxDeletedEvent } from './ghettobox.component';
 

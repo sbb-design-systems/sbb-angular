@@ -29,6 +29,13 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
+  countGroupLabelsBeforeOption,
+  getOptionScrollPosition,
+  HighlightPipe,
+  OptionComponent,
+  SBBOptionSelectionChange
+} from '@sbb-esta/angular-public/option';
+import {
   defer,
   fromEvent,
   merge,
@@ -38,14 +45,6 @@ import {
   Subscription
 } from 'rxjs';
 import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
-
-import {
-  countGroupLabelsBeforeOption,
-  getOptionScrollPosition,
-  HighlightPipe,
-  OptionComponent,
-  SBBOptionSelectionChange
-} from '@sbb-esta/angular-public/option';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';

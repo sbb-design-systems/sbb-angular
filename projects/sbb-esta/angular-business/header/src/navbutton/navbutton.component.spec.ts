@@ -1,10 +1,9 @@
-import { configureTestSuite } from 'ng-bullet';
-
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { configureTestSuite } from 'ng-bullet';
 
 import { NavbuttonComponent } from '../navbutton/navbutton.component';
 

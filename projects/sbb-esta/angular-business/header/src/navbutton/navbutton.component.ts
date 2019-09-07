@@ -1,11 +1,8 @@
-import { Subscription } from 'rxjs';
-
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
   ElementRef,
   HostBinding,
   OnDestroy,
@@ -15,6 +12,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { DropdownTriggerDirective } from '@sbb-esta/angular-business/dropdown';
+import { Subscription } from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector

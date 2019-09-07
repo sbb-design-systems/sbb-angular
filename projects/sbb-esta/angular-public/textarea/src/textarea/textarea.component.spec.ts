@@ -3,9 +3,8 @@ import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { configureTestSuite } from 'ng-bullet';
-
 import { clearElement, typeInElement } from '@sbb-esta/angular-core/testing';
+import { configureTestSuite } from 'ng-bullet';
 
 import { TextareaComponent } from './textarea.component';
 
