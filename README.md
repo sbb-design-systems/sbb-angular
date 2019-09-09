@@ -19,7 +19,7 @@ The package containing core functionality shared by `@sbb-esta/angular-public` a
 
 The package containing SBB icons as components.
 
-[Icon List](https://angular.app.sbb.ch/latest/icons-list)
+[Icon List](https://angular.app.sbb.ch/latest/icons/search)
 
 [SVG Origin](https://digital.sbb.ch/de/icons-und-piktogramme/sbb-icons)
 
