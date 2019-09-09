@@ -21,6 +21,9 @@ export class BusinessComponent implements ExampleProvider {
     textarea: 'Textarea',
     'time-input': 'Time Input'
   };
+  navigationComponents = {
+    header: 'Header'
+  };
   layoutComponents = {
     accordion: 'Accordion',
     processflow: 'Processflow'
