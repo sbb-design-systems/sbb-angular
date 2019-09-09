@@ -19,6 +19,7 @@
       <h4 class="sbbsc-block">Basic Example Hint</h4>
       <input type="text" [formControl]="myControlHint" [sbbAutocomplete]="autoHint" />
       <sbb-autocomplete #autoHint="sbbAutocomplete">
+        <!-- @formatter:off -->
         <sbb-option
           [value]="option"
           *ngFor="
@@ -29,6 +30,7 @@
         >
           {{ option }}
         </sbb-option>
+        <!-- @formatter:on -->
         <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length - maxOptionsListLength > 0">
           {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
         </sbb-autocomplete-hint>

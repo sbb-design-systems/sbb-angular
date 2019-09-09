@@ -178,8 +178,7 @@ const exampleComponents = [
     BreadcrumbModule,
     UserMenuModule,
     GhettoboxModule,
-    BadgeModule,
-    AutocompleteModule
+    BadgeModule
   ]
 })
 export class ExamplesModule {}
