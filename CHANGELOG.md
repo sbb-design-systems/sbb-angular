@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.3.0...8.3.1) (2019-09-09)
+
+
+### Build System
+
+* adapt publish script ([0e69c9f](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/0e69c9f))
+
+
+
 ## [8.3.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.2.2...8.3.0) (2019-09-09)
 
 
