@@ -132,7 +132,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 </sbb-autocomplete>
 ```
 
-### Options hint
+### Option hint
 
 `sbb-autocomplete-hint` can be used to add additional information in options list:
 
