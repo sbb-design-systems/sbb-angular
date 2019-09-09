@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.3.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.2.2...8.3.0) (2019-09-09)
+
+
+### Bug Fixes
+
+* **business/accordion:** remove media query breakpoints ([#139](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/139)) ([0e3d16a](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/0e3d16a))
+* **file-selector:** fix upload with two way binding update ([#135](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/135)) ([53de7b1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/53de7b1)), closes [#115](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/115)
+* **public/ghettobox:** correct line-height for icons ([#117](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/117)) ([038185a](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/038185a))
+* **table:** fix tableAlignment for table headers in IE11 ([#133](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/133)) ([1e5b950](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/1e5b950)), closes [#122](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/122)
+* **toggle:** accept initial value for state ([#130](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/130)) ([1851c94](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/1851c94)), closes [#120](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/120)
+* **toggle:** fire toggleChange only when status actually changes ([#137](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/137)) ([5b4c8a5](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/5b4c8a5)), closes [#136](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/136)
+* **toggle:** use for-loop in place of forEach on NodeList ([#134](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/134)) ([494d46b](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/494d46b)), closes [#125](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/125)
+* **usermenu:** fix arrow overlap ([#138](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/138)) ([cd99723](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/cd99723)), closes [#132](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/132)
+* **usermenu:** fix layout after click ([#128](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/128)) ([21dd37c](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/21dd37c)), closes [#124](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/124)
+
+
+### Features
+
+* expose secondary endpoints for all modules ([#156](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/156)) ([cb10b27](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/cb10b27)), closes [#147](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/147)
+* **business/header:** implement header component ([#148](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/148)) ([daf44cb](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/daf44cb))
+* **business/processflow:** implement processflow for business ([#153](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/153)) ([0e00da6](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/0e00da6)), closes [#140](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/140)
+
+
+
 ### [8.2.2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.2.1...8.2.2) (2019-07-23)
 
 
