@@ -41,7 +41,8 @@ class Publisher {
   _assignReleaseVersion() {
     const dist = resolve(__dirname, '../dist');
     glob
-      .sync('**/package.json', { cwd: dist })
+      .sync('*/package.json', { cwd: dist })
+      .concat(glob.sync('*/*/package.json', { cwd: dist }))
       .map(f => join(dist, f))
       .forEach(p => this._assignVersionInPackage(p, this.version));
     console.log(`Assigned release version ${this.version}`);
@@ -93,8 +94,10 @@ class Publisher {
   }
 
   async _publishRelease() {
+    const dist = resolve(__dirname, '../dist');
     const directories = glob
-      .sync('**/package.json', { cwd: resolve(__dirname, '../dist') })
+      .sync('*/package.json', { cwd: dist })
+      .concat(glob.sync('*/*/package.json', { cwd: dist }))
       .map(p => `../dist/${p}`)
       .sort((a, b) => ((require(b).peerDependencies || {})[require(a).name] ? 0 : 1))
       .map(p => dirname(resolve(__dirname, p)));
@@ -164,9 +167,9 @@ new Publisher({
   isRelease: process.argv[2] === 'release',
   stagingUser: process.env.STAGING_AUTH_USER,
   stagingPassword: process.env.STAGING_AUTH_PASSWORD,
-  normalizedBranch: (process.env.TRAVIS_PULL_REQUEST === 'false'
-    ? process.env.TRAVIS_BRANCH || 'staging'
-    : process.env.TRAVIS_PULL_REQUEST
+  normalizedBranch: (process.env.TRAVIS_PULL_REQUEST !== 'false'
+    ? process.env.TRAVIS_PULL_REQUEST || 'staging'
+    : process.env.TRAVIS_BRANCH || 'staging'
   )
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
