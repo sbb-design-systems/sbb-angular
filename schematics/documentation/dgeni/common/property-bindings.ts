@@ -54,8 +54,9 @@ function getBindingPropertyData(
   if (hasMemberDecorator(doc, decoratorName)) {
     return {
       name: doc.name,
-      // tslint:disable-next-line:no-non-null-assertion
-      alias: doc.decorators!.find(d => d.name === decoratorName)!.arguments![0]
+      alias: doc.decorators!.find(d => d.name == decoratorName)!.arguments![0]
     };
   }
+
+  return undefined;
 }

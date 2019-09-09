@@ -1,0 +1,293 @@
+@import '../../../../angular-core/styles/common/form';
+
+@mixin autocompleteBase() {
+  position: relative;
+  width: 100%;
+  background-color: $autocompleteBg;
+  border: $autocompleteBorder;
+  transition: $autocompleteTransition;
+  color: $autocompleteColor;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+  }
+
+  &.sbb-autocomplete-visible {
+    visibility: visible;
+  }
+
+  &.sbb-autocomplete-hidden {
+    visibility: hidden;
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border: toPx(2 * $scalingFactor4k) solid $sbbColorGrey;
+      box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
+      border-top: $autocompleteBorderTop;
+
+      &::after {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
+    }
+
+    @include mq($from: desktop5k) {
+      border: toPx(2 * $scalingFactor5k) solid $sbbColorGrey;
+      box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
+      border-top: $autocompleteBorderTop;
+      &::after {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+  }
+
+  sbb-option-group {
+    @include optionGroupBase;
+  }
+}
+
+@mixin autocompleteDirectionalRules($mode: default, $selectMode: false) {
+  @if $mode == default {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadow;
+    margin-top: -2px;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-bottom-left-radius: toPx(2 * $scalingFactor4k);
+        margin-top: toPx(-2 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-bottom-left-radius: toPx(2 * $scalingFactor5k);
+        margin-top: toPx(-2 * $scalingFactor5k);
+      }
+    }
+
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+    sbb-option-group {
+      @include optionGroupBaseDirectional($selectMode);
+    }
+  } @else if $mode == reverse {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top: $autocompleteBorderTopReverse;
+    border-bottom: $autocompleteBorderTop;
+    box-shadow: $autocompleteShadowReverse;
+    margin-top: auto;
+    margin-bottom: -2px;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-top-left-radius: toPx(2 * $scalingFactor4k);
+        border-top-width: toPx(2 * $scalingFactor4k);
+        margin-bottom: toPx(-2 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-top-left-radius: toPx(2 * $scalingFactor5k);
+        border-top-width: toPx(2 * $scalingFactor5k);
+        margin-bottom: toPx(-2 * $scalingFactor5k);
+      }
+    }
+
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+
+    sbb-option-group {
+      @include optionGroupBaseDirectionalReverse($selectMode);
+    }
+  }
+}
+
+@mixin autocompleteInputActive($mode: default) {
+  @if $mode == default {
+    @include autocompleteInputActiveDefault();
+  } @else if $mode == reverse {
+    @include autocompleteInputActiveReverse();
+  }
+}
+
+@mixin autocompleteInputActiveDefault() {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: $sbbColorGrey;
+  border-bottom-color: transparent;
+
+  &:hover,
+  &:focus {
+    border-bottom-color: transparent;
+  }
+}
+
+@mixin autocompleteInputActiveReverse() {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-color: $sbbColorGrey;
+  border-top-color: transparent;
+  border-bottom: $autocompleteBorder;
+
+  &:hover,
+  &:focus {
+    border-top-color: transparent;
+  }
+}
+
+@mixin optionGroupBase {
+  position: relative;
+  display: block;
+  color: $sbbColorMetal;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border-top-width: toPx(1 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-width: toPx(1 * $scalingFactor5k);
+    }
+  }
+
+  sbb-option {
+    padding-left: $optionGroupItemPaddingLeft;
+
+    &:first-of-type {
+      @include publicOnly() {
+        padding-top: 0;
+      }
+
+      @include businessOnly() {
+        padding-top: $autocompletePaddingTop;
+
+        &::after {
+          top: toPx($optionSelectedBarTopFirst);
+        }
+      }
+    }
+  }
+  .sbb-optgroup-label {
+    padding-left: $autocompletePaddingX;
+    padding-right: $autocompletePaddingX;
+    padding-top: $autocompletePaddingTop;
+
+    @include businessOnly() {
+      padding-bottom: 0;
+    }
+
+    @include publicOnly() {
+      padding-bottom: $autocompletePaddingTop;
+
+      @include mq($from: desktop4k) {
+        font-size: toPx(10 * $scalingFactor4k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+        padding-bottom: toPx($autocompletePaddingTop * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        font-size: toPx(10 * $scalingFactor5k);
+        padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+        padding-bottom: toPx($autocompletePaddingTop * $scalingFactor5k);
+      }
+    }
+
+    @include label;
+  }
+}
+
+@mixin optionGroupBaseDirectional($selectMode: false) {
+  sbb-option {
+    padding-left: $optionGroupItemPaddingLeft;
+  }
+
+  @if $selectMode == false {
+    border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-top-width: toPx(1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-top-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+  } @else {
+    border-top: 0;
+    &:last-of-type {
+      border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-top-width: 0;
+      }
+
+      @include mq($from: desktop5k) {
+        border-top-width: 0;
+      }
+    }
+  }
+}
+
+@mixin optionGroupBaseDirectionalReverse($selectMode: false) {
+  sbb-option {
+    padding-left: $optionGroupItemPaddingLeft;
+  }
+
+  @if $selectMode == false {
+    border-bottom: 1px solid $autocompleteInputActiveBorderBottomColor;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+  } @else {
+    border-bottom: 0;
+    &:first-of-type {
+      border-top: 1px solid $autocompleteInputActiveBorderBottomColor;
+    }
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-bottom-width: 0;
+      }
+
+      @include mq($from: desktop5k) {
+        border-bottom-width: 0;
+      }
+    }
+  }
+}

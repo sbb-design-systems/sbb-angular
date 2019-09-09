@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { AccordionComponent } from '@sbb-esta/angular-public';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AccordionComponent } from '@sbb-esta/angular-public/accordion';
 import { Subscription } from 'rxjs';
 
 @Component({

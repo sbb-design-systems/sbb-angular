@@ -1,6 +1,6 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DateAdapter } from '@sbb-esta/angular-public';
+import { DateAdapter } from '@sbb-esta/angular-core/datetime';
 
 @Component({
   selector: 'sbb-datepicker-showcase',

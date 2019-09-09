@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Tag, TagChange } from '@sbb-esta/angular-public';
+import { Tag, TagChange } from '@sbb-esta/angular-public/tag';
 import { Subscription } from 'rxjs';
 
 const tagItems: Tag[] = [

@@ -1,5 +1,6 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { DropdownTriggerDirective, LinkGeneratorResult } from '@sbb-esta/angular-public';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
+import { DropdownTriggerDirective } from '@sbb-esta/angular-public/dropdown';
 
 @Component({
   selector: 'sbb-dropdown-showcase',

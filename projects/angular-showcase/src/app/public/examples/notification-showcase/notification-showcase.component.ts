@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { JumpMark, NotificationType } from '@sbb-esta/angular-public';
+import { JumpMark, NotificationType } from '@sbb-esta/angular-public/notification';
 
 @Component({
   selector: 'sbb-notification-showcase',

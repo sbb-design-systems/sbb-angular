@@ -18,6 +18,18 @@ diagnose the problem. Screenshots are also helpful.
 You can help the team even more and [submit a Pull Request](#submit-pr) with a fix.
 
 
+## <a name="feature"></a> Want a Feature?
+You can *request* a new feature by [submitting an issue](#submit-issue) to our [GitHub
+Repository][github]. If you would like to *implement* a new feature, please submit an issue with
+a proposal for your work first, to be sure that we can use it. 
+Please consider what kind of change it is:
+
+* For a **Major Feature**, first open an issue and outline your proposal so that it can be
+discussed. This will also allow us to better coordinate our efforts, prevent duplication of work,
+and help you to craft the change so that it is successfully accepted into the project.
+* **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
+
+
 ### <a name="submit-issue"></a> Submitting an Issue
 If your issue appears to be a bug, and hasn't been reported, open a new issue.
 Providing the following information will increase the
@@ -50,7 +62,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 * Create your patch, **including appropriate test cases**.
 * Follow our [Coding Rules](#rules).
 * Test your changes with our supported browsers and screen readers.
-* Run tests via `ng test @sbb-esta/angular-public` and ensure that all tests pass.
+* Run tests via `ng test @sbb-esta/angular-{library` and ensure that all tests pass.
 * Commit your changes using a descriptive commit message that follows our
   [commit message conventions](#commit). Adherence to these conventions
   is necessary because release notes are automatically generated from these messages.
@@ -67,6 +79,10 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     ```
 
 * In GitHub, send a pull request to `sbb-angular:master`.
+
+Note: Our builds often run out of memory. To ensure the build can run, set the NODE_OPTIONS environment variable
+to `--max_old_space_size=7168` either locally or globally.
+(e.g. in PowerShell, the default VS Code terminal: `$env:NODE_OPTIONS="--max_old_space_size=7168"`)
 
 
 ## <a name="rules"></a> Coding Rules
@@ -145,9 +161,11 @@ reference GitHub issues that this commit **Closes**.
 The rest of the commit message is then used for this.
 
 ## <a name="public-business"></a> Public/Business Package
-This project publishes three packages:
+This project publishes five packages:
 
+* @sbb-esta/angular-core
 * @sbb-esta/angular-icons
+* @sbb-esta/angular-keycloak
 * @sbb-esta/angular-public
 * @sbb-esta/angular-business
 
@@ -167,3 +185,5 @@ padding: 1rem 2rem;
   margin-bottom: 1rem;
 }
 ```
+
+For business components in `projects/sbb-esta/angular-business`, it is required to put `$sbbBusiness: true;` at the top of .scss files.

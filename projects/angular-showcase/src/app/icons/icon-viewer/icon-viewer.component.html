@@ -1,0 +1,91 @@
+<perfect-scrollbar>
+  <article *ngIf="icon | async as icon">
+    <h1>&lt;{{ title | async }}&gt;</h1>
+
+    <p>Import one of the following modules to use this icon</p>
+    <code>
+      <span *ngFor="let module of icon.modules">
+        import {{ '{ ' + module + ' }' }} from '@sbb-esta/angular-icons';
+      </span>
+    </code>
+
+    <dl>
+      <dt>Component</dt>
+      <dd>{{ icon.name }}</dd>
+
+      <dt>Selector</dt>
+      <dd>
+        <code>&lt;{{ icon.selector }}&gt;&lt;/{{ icon.selector }}&gt;</code>
+      </dd>
+
+      <dt>Icon</dt>
+      <dd>
+        <ng-template [cdkPortalOutlet]="icon.portal"></ng-template>
+      </dd>
+    </dl>
+
+    <h4>Properties</h4>
+    <div class="docs-api">
+      <table>
+        <thead>
+          <tr class="docs-api-properties-header-row">
+            <th class="docs-api-properties-th">Name</th>
+            <th class="docs-api-properties-th">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="docs-api-properties-row">
+            <td class="docs-api-properties-name-cell">
+              <div class="docs-api-input-marker">@Input()</div>
+              <p class="docs-api-property-name">
+                <code>size: 'grow' | 'fixed' = 'grow'</code>
+              </p>
+            </td>
+            <td class="docs-api-property-description">
+              <p>
+                Configure the size of the SVG. 'grow' will allow the SVG to grow or shrink to the
+                parent size. 'fixed' will apply the default width and height of the SVG. Defaults to
+                'grow'.
+              </p>
+            </td>
+          </tr>
+          <tr class="docs-api-properties-row">
+            <td class="docs-api-properties-name-cell">
+              <div class="docs-api-input-marker">@Input()</div>
+              <p class="docs-api-property-name">
+                <code>width: string</code>
+              </p>
+            </td>
+            <td class="docs-api-property-description">
+              <p>Width of the icon.</p>
+            </td>
+          </tr>
+          <tr class="docs-api-properties-row">
+            <td class="docs-api-properties-name-cell">
+              <div class="docs-api-input-marker">@Input()</div>
+              <p class="docs-api-property-name">
+                <code>height: string</code>
+              </p>
+            </td>
+            <td class="docs-api-property-description">
+              <p>Height of the icon.</p>
+            </td>
+          </tr>
+          <tr class="docs-api-properties-row">
+            <td class="docs-api-properties-name-cell">
+              <div class="docs-api-input-marker">@Input()</div>
+              <p class="docs-api-property-name">
+                <code>svgClass: string</code>
+              </p>
+            </td>
+            <td class="docs-api-property-description">
+              <p>
+                The given CSS class or classes will be applied to the SVG element.
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</perfect-scrollbar>

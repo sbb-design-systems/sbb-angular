@@ -4,8 +4,8 @@ import { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/Funct
 import { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
 import { TypeAliasExportDoc } from 'dgeni-packages/typescript/api-doc-types/TypeAliasExportDoc';
 import * as path from 'path';
-
-import { isDeprecatedDoc } from '../common/decorators';
+import { computeApiDocumentUrl } from '../common/compute-api-url';
+import { isDeprecatedDoc, isPrimaryModuleDoc } from '../common/decorators';
 import { CategorizedClassDoc } from '../common/dgeni-definitions';
 
 export interface ModuleInfo {
@@ -96,10 +96,13 @@ export class EntryPointGrouper implements Processor {
       const moduleImportPath = `@angular/${packageName}/${moduleInfo.entryPointName}`;
       const entryPointName = packageName + '-' + moduleInfo.name;
 
+      // Compute a public URL that refers to the document. This is helpful if we want to
+      // make references to other API documents. e.g. showing the extended class.
+      doc.publicUrl = computeApiDocumentUrl(doc, moduleInfo);
+
       // Get the entry-point for this doc, or, if one does not exist, create it.
       let entryPoint;
       if (entryPoints.has(entryPointName)) {
-        // tslint:disable-next-line: no-non-null-assertion
         entryPoint = entryPoints.get(entryPointName)!;
       } else {
         entryPoint = new EntryPointDoc(entryPointName);
@@ -118,6 +121,11 @@ export class EntryPointGrouper implements Processor {
         entryPoint.services.push(doc);
       } else if (doc.isNgModule) {
         entryPoint.exportedNgModules.push(doc);
+        // If the module is explicitly marked as primary module using the "@docs-primary-module"
+        // annotation, we set is as primary entry-point module.
+        if (isPrimaryModuleDoc(doc)) {
+          entryPoint.ngModule = doc;
+        }
       } else if (doc.docType === 'class') {
         entryPoint.classes.push(doc);
       } else if (doc.docType === 'interface') {
@@ -142,7 +150,7 @@ export class EntryPointGrouper implements Processor {
       // only deprecated modules, the last deprecated module is used. We don't want to
       // always skip deprecated modules as they could be still needed for documentation
       // of a deprecated entry-point.
-      for (const ngModule of entryPoint.exportedNgModules) {
+      for (let ngModule of entryPoint.exportedNgModules) {
         entryPoint.ngModule = ngModule;
         if (!isDeprecatedDoc(ngModule)) {
           break;

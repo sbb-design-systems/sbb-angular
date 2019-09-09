@@ -1,12 +1,14 @@
-import { CategorizedClassDoc } from './dgeni-definitions';
 import {
   ArrayLiteralExpression,
   CallExpression,
+  isCallExpression,
+  NodeArray,
   ObjectLiteralExpression,
   PropertyAssignment,
   StringLiteral,
   SyntaxKind
 } from 'typescript';
+import { CategorizedClassDoc } from './dgeni-definitions';
 
 /**
  * Determines the component or directive metadata from the specified Dgeni class doc. The resolved
@@ -25,26 +27,23 @@ import {
  */
 export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string, any> | null {
   const declaration = classDoc.symbol.valueDeclaration;
+
   if (!declaration || !declaration.decorators) {
     return null;
   }
 
-  const directiveDecorator = declaration.decorators
-    .filter(decorator => decorator.expression)
-    // .filter(decorator => (decorator.expression.kind as any) === SyntaxKind.CallExpression)
+  const expression = declaration.decorators
+    .filter(decorator => decorator.expression && isCallExpression(decorator.expression))
+    .map(decorator => decorator.expression as CallExpression)
     .find(
-      decorator =>
-        (decorator.expression as any).expression.getText() === 'Component' ||
-        (decorator.expression as any).expression.getText() === 'Directive'
+      callExpression =>
+        callExpression.expression.getText() === 'Component' ||
+        callExpression.expression.getText() === 'Directive'
     );
 
-  if (!directiveDecorator) {
+  if (!expression) {
     return null;
   }
-
-  // Since the actual decorator expression is by default a LeftHandSideExpression, and TypeScript
-  // doesn't allow a casting it to a CallExpression, we have to cast it to "any" before.
-  const expression = (directiveDecorator.expression as any) as CallExpression;
 
   // The argument length of the CallExpression needs to be exactly one, because it's the single
   // JSON object in the @Component/@Directive decorator.
@@ -55,11 +54,11 @@ export function getDirectiveMetadata(classDoc: CategorizedClassDoc): Map<string,
   const objectExpression = expression.arguments[0] as ObjectLiteralExpression;
   const resultMetadata = new Map<string, any>();
 
-  objectExpression.properties.forEach((prop: PropertyAssignment) => {
+  (objectExpression.properties as NodeArray<PropertyAssignment>).forEach(prop => {
     // Support ArrayLiteralExpression assignments in the directive metadata.
     if (prop.initializer.kind === SyntaxKind.ArrayLiteralExpression) {
       const arrayData = (prop.initializer as ArrayLiteralExpression).elements.map(
-        (literal: StringLiteral) => literal.text
+        literal => (literal as StringLiteral).text
       );
 
       resultMetadata.set(prop.name.getText(), arrayData);

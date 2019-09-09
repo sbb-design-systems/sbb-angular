@@ -1,8 +1,0 @@
-@import '../../checkbox-panel/styles/checkbox-radio-button-panel';
-
-sbb-radio-button-panel {
-  @include checkboxRadioButtonPanel;
-  .sbb-checkbox-radio-button-panel-image {
-    @include checkboxRadioButtonPanelImage;
-  }
-}

@@ -1,0 +1,30 @@
+@import '../../../../../sbb-esta/angular-core/styles/common/button';
+@import '../../../../../sbb-esta/angular-core/styles/common/colors';
+
+:host {
+  display: block;
+  border: 1px solid $sbbColorSilver;
+  padding: 24px;
+
+  > div {
+    border-bottom: 1px solid $sbbColorSilver;
+    display: flex;
+    padding-bottom: 20px;
+
+    > h3 {
+      flex-grow: 1;
+      margin-top: 0;
+    }
+
+    button {
+      cursor: pointer;
+      flex-grow: 0;
+      @include buttonResetFrameless();
+
+      svg {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}

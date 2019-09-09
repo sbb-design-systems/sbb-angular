@@ -1,0 +1,220 @@
+@import '../../../../angular-core/styles/common/variables';
+@import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/button';
+
+$border: solid 2px $sbbColorGranite;
+$buttonMarginTop: calc(54px / 2 - 15px);
+
+@mixin headerBlockComponent {
+  position: absolute;
+  top: 0px;
+  height: 54px;
+}
+
+@mixin smallIconDropdown() {
+  position: relative;
+  top: 3px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@mixin navButtonDefaultButton() {
+  @include buttonResetFrameless();
+
+  position: relative;
+  white-space: nowrap;
+  font-family: $fontSbbLight;
+  font-size: pxToRem(15);
+  text-decoration: none;
+  text-align: left;
+  background: $sbbColorWhite; //TODO: this is required for overlaps
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    outline: none;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    left: 50%;
+    height: 1px;
+    border-bottom: 1px solid currentColor;
+    transition: width 0.3s, left 0.3s;
+  }
+
+  &.sbb-active::after,
+  &:not(.sbb-active):focus::after,
+  &:not(.sbb-active):hover::after {
+    left: 0;
+    width: 100%;
+  }
+
+  &:not(.sbb-active):focus &:not([aria-expanded='true']),
+  &:not(.sbb-active):hover {
+    color: $sbbColorRed125;
+
+    &::after {
+      border-bottom-color: $sbbColorRed125;
+    }
+  }
+
+  &[disabled] {
+    color: $sbbColorStorm;
+
+    &:hover,
+    &:focus {
+      color: $sbbColorStorm;
+      cursor: default;
+
+      &::after {
+        width: 0;
+      }
+    }
+  }
+
+  &.sbb-active:hover,
+  &.sbb-active:focus {
+    color: currentColor;
+    cursor: default;
+
+    &::after {
+      border-bottom-color: currentColor;
+    }
+  }
+}
+
+.sbb-header {
+  width: 100%;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  height: 54px;
+
+  background-color: $sbbColorWhite;
+  border-bottom: solid 1px $sbbColorSilver;
+
+  &-ribbon {
+    width: 80px;
+    position: absolute;
+    top: 12px;
+    left: -20px;
+    text-align: center;
+    line-height: 12px;
+    letter-spacing: 0px;
+    font-size: 10px;
+    color: $sbbColorSilver;
+    transform: rotate(-45deg);
+  }
+
+  &-appchooser {
+    @include headerBlockComponent();
+
+    left: 46px;
+    width: 54px;
+    padding: 17px;
+  }
+
+  &-titlebox {
+    @include headerBlockComponent();
+
+    left: 100px;
+    width: 200px;
+    font-family: $fontSbbLight;
+    &-label {
+      height: 23px;
+      width: 200px;
+      color: $sbbColorBlack;
+      font-size: 15px;
+      line-height: 23px;
+
+      margin-top: 8px;
+    }
+    &-subtitle {
+      height: 16px;
+      width: 200px;
+      color: $sbbColorAnthracite;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 16px;
+
+      margin-bottom: 7px;
+    }
+  }
+
+  &-mainnavigation {
+    @include headerBlockComponent();
+    left: 350px;
+
+    a {
+      @include navButtonDefaultButton();
+      white-space: nowrap;
+      position: absolute;
+      height: 30px;
+      margin-top: $buttonMarginTop;
+      display: flex;
+    }
+
+    .sbb-navbutton {
+      @include navButtonDefaultButton();
+      white-space: nowrap;
+      position: absolute;
+      height: 30px;
+      // top: -1px;
+      // margin-top: $buttonMarginTop;
+      margin-top: -1px;
+      top: $buttonMarginTop;
+      display: flex;
+
+      .sbb-navbutton-icon-small {
+        @include smallIconDropdown();
+      }
+      .sbb-navbutton-icon-small-expanded {
+        @include smallIconDropdown();
+        position: absolute;
+        right: 5px;
+      }
+    }
+
+    .sbb-navbutton.sbb-navbutton-dropdown-expanded {
+      border: $border;
+      border-bottom: none;
+
+      z-index: 5;
+
+      padding-left: calc(15px - 2px);
+      margin-left: -15px;
+      margin-top: calc($buttonMarginTop - 7px);
+      height: 35px;
+
+      &::after {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &-usermenu {
+    @include headerBlockComponent();
+
+    right: 159px;
+    width: 200px;
+    z-index: 1;
+  }
+
+  &-logo {
+    @include headerBlockComponent();
+
+    top: 17px;
+    right: 35px;
+    width: 80px;
+  }
+}
