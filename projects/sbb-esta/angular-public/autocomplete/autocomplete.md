@@ -144,7 +144,7 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
     {{ option.name }}
   </sbb-option>
   <sbb-autocomplete-hint>
-    Further results found
+    {{ remainingOptionsCount }} further results found
   </sbb-autocomplete-hint>
 </sbb-autocomplete>
 ```

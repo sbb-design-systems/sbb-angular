@@ -1,6 +1,6 @@
 @import '../styles/autocomplete';
 
-.sbb-autocomplete-hint {
+:host {
   padding-left: $autocompletePaddingX;
   padding-right: $autocompletePaddingX;
   padding-bottom: $autocompletePaddingTop;

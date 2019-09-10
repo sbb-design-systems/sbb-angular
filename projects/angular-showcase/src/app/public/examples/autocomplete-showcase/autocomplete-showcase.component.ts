@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
-const MAX_OPTIONS_LIST_LENGTH = 5;
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-autocomplete-showcase',
@@ -11,6 +9,8 @@ const MAX_OPTIONS_LIST_LENGTH = 5;
   styleUrls: ['./autocomplete-showcase.component.scss']
 })
 export class AutocompleteShowcaseComponent implements OnInit {
+  readonly maxOptionsListLength = 5;
+
   myControl = new FormControl('');
   myControlHint = new FormControl('');
   myControlStatic = new FormControl('');
@@ -63,9 +63,5 @@ export class AutocompleteShowcaseComponent implements OnInit {
           this.options$.next([]);
         }
       });
-  }
-
-  get maxOptionsListLength() {
-    return MAX_OPTIONS_LIST_LENGTH;
   }
 }

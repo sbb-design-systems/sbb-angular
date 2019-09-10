@@ -21,15 +21,11 @@
       <sbb-autocomplete #autoHint="sbbAutocomplete">
         <sbb-option
           [value]="option"
-          *ngFor="
-            let option of filteredOptionsHint.length >= maxOptionsListLength
-              ? (filteredOptionsHint | slice: 0:maxOptionsListLength)
-              : filteredOptionsHint
-          "
+          *ngFor="let option of filteredOptionsHint | slice: 0:maxOptionsListLength"
         >
           {{ option }}
         </sbb-option>
-        <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length - maxOptionsListLength > 0">
+        <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length > maxOptionsListLength">
           {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
         </sbb-autocomplete-hint>
       </sbb-autocomplete>
