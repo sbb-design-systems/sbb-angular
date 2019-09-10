@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { IconContextMenuModule } from '@sbb-esta/angular-icons';
-import { DropdownModule } from '@sbb-esta/angular-public';
 import { configureTestSuite } from 'ng-bullet';
 
 import { ContextmenuComponent } from './contextmenu.component';

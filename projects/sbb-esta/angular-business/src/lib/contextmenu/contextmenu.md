@@ -1,11 +1,3 @@
-# Contextmenu Overview
-
-Import contextmenu module in your application
-
-```ts
-import { ContextmenuModule } from '@sbb-esta/angular-business';
-```
-
 ### Basic Usage
 
 ```html
