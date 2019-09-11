@@ -132,6 +132,23 @@ autocomplete is attached to using the `sbbAutocompleteOrigin` directive together
 </sbb-autocomplete>
 ```
 
+### Autocomplete hint
+
+`sbb-autocomplete-hint` can be used to add additional information in option list:
+
+<!-- example(autocomplete-hint) -->
+
+```html
+<sbb-autocomplete #autoHint="sbbAutocomplete">
+  <sbb-option *ngFor="let option of filteredOptions" [value]="option">
+    {{ option.name }}
+  </sbb-option>
+  <sbb-autocomplete-hint>
+    {{ remainingOptionsCount }} further results found
+  </sbb-autocomplete-hint>
+</sbb-autocomplete>
+```
+
 ### Accessibility
 
 The input for an autocomplete without text or labels should be given a meaningful label via

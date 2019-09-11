@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'sbb-autocomplete-showcase',
@@ -9,11 +9,13 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   styleUrls: ['./autocomplete-showcase.component.scss']
 })
 export class AutocompleteShowcaseComponent implements OnInit {
+  readonly maxOptionsListLength = 5;
+
   myControl = new FormControl('');
+  myControlHint = new FormControl('');
   myControlStatic = new FormControl('');
 
   options$: Subject<string[]>;
-  searchNumbers: Subject<string>;
 
   options: string[] = [
     'Eins',
@@ -29,11 +31,18 @@ export class AutocompleteShowcaseComponent implements OnInit {
   ];
   filter: '';
   filteredOptions = this.options.slice(0);
+  filteredOptionsHint = this.options.slice(0);
   staticOptions: string[] = ['statische Option eins', 'statische Option zwei'];
 
   ngOnInit() {
     this.myControl.valueChanges.subscribe(newValue => {
       this.filteredOptions = this.options.filter(
+        option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
+      );
+    });
+
+    this.myControlHint.valueChanges.pipe(distinctUntilChanged()).subscribe(newValue => {
+      this.filteredOptionsHint = this.options.filter(
         option => option.toLocaleLowerCase().indexOf(newValue.toLocaleLowerCase()) > -1
       );
     });

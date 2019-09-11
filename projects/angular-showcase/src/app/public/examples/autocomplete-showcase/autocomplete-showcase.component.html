@@ -16,7 +16,28 @@
 
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
-      <h4 class="sbbsc-block">Basic Example</h4>
+      <h4 class="sbbsc-block">Example Autocomplete Hint</h4>
+      <input type="text" [formControl]="myControlHint" [sbbAutocomplete]="autoHint" />
+      <sbb-autocomplete #autoHint="sbbAutocomplete">
+        <sbb-option
+          [value]="option"
+          *ngFor="let option of filteredOptionsHint | slice: 0:maxOptionsListLength"
+        >
+          {{ option }}
+        </sbb-option>
+        <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length > maxOptionsListLength">
+          {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
+        </sbb-autocomplete-hint>
+      </sbb-autocomplete>
+      <pre>{{ myControlHint.value | json }}</pre>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 class="sbbsc-block">Example Option Group</h4>
       <input type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic" />
       <sbb-autocomplete #autoStatic="sbbAutocomplete">
         <sbb-option *ngFor="let option of options$ | async" [value]="option">

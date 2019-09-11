@@ -1,0 +1,23 @@
+@import '../styles/autocomplete';
+
+:host {
+  padding-left: $autocompletePaddingX;
+  padding-right: $autocompletePaddingX;
+  padding-bottom: $autocompletePaddingTop;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx(10 * $scalingFactor4k);
+      padding-top: toPx($autocompletePaddingTop * $scalingFactor4k);
+      padding-bottom: toPx($autocompletePaddingTop * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: toPx(10 * $scalingFactor5k);
+      padding-top: toPx($autocompletePaddingTop * $scalingFactor5k);
+      padding-bottom: toPx($autocompletePaddingTop * $scalingFactor5k);
+    }
+  }
+
+  @include label;
+}
