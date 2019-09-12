@@ -49,23 +49,22 @@ describe('ContextmenuComponent', () => {
 
   it('before click on the sbb-icon-context-menu icon the dropdown should not be visible', () => {
     const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
-    const buttonClicked = contextmenuComponent.queryAll(
-      By.css('.sbb-button-wrapper-icon-context-menu-for-left-positioning')
+    const unexpandedButton = contextmenuComponent.queryAll(
+      By.css('button.sbb-dropdown-trigger[aria-expanded="false"]')
     );
-    expect(buttonClicked.length).toBe(0);
+    expect(unexpandedButton.length).toBe(1);
   });
 
   it('after click on the sbb-icon-context-menu icon the dropdown should be visible', () => {
     const contextmenuComponent = fixture.debugElement.query(By.directive(ContextmenuComponent));
-    const buttonIcon = contextmenuComponent.queryAll(
-      By.css('.sbb-button-wrapper-icon-context-menu')
-    )[0].nativeElement;
-    buttonIcon.click();
+    const triggerButton = contextmenuComponent.queryAll(By.css('button.sbb-dropdown-trigger'))[0]
+      .nativeElement;
+    triggerButton.click();
     fixture.detectChanges();
 
-    const buttonClicked = contextmenuComponent.queryAll(
-      By.css('.sbb-button-wrapper-icon-context-menu-for-left-positioning')
+    const expandedButton = contextmenuComponent.queryAll(
+      By.css('button.sbb-dropdown-trigger[aria-expanded="true"]')
     );
-    expect(buttonClicked.length).toBe(1);
+    expect(expandedButton.length).toBe(1);
   });
 });

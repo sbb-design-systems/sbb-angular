@@ -26,13 +26,9 @@ export class ContextmenuComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this._dropdown.classList = 'sbb-contextmenu-dropdown';
-    /**
-     * Set the panel width
-     */
+    // Set the panel width
     this._dropdown.panelWidth = '227px';
-    /**
-     * Set the opened panel on the left
-     */
+    // Set the opened panel on the left
     this._dropdownTrigger.leftPositionPreferred = true;
   }
 }
