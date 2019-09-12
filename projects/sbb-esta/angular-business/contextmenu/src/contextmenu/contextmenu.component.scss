@@ -19,6 +19,7 @@ $sbbContextmenuBorderRadius: 2px;
     display: inline-flex;
     align-items: center;
     outline: 0;
+    cursor: pointer;
 
     > sbb-icon-context-menu {
       width: $sbbContextmenuIconSize;
