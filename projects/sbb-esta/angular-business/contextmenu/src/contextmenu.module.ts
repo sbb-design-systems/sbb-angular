@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { IconContextMenuModule } from '@sbb-esta/angular-icons';
-
-import { DropdownModule } from '../dropdown/dropdown';
 
 import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 

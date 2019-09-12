@@ -3,11 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  HostBinding,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-business/dropdown';
 
-import { DropdownComponent, DropdownTriggerDirective } from '../../dropdown/dropdown';
 @Component({
   selector: 'sbb-contextmenu',
   templateUrl: './contextmenu.component.html',
@@ -17,10 +18,14 @@ import { DropdownComponent, DropdownTriggerDirective } from '../../dropdown/drop
 })
 export class ContextmenuComponent implements AfterContentInit {
   /** @docs-private */
+  @HostBinding('class.sbb-contextmenu') sbbClass = true;
+  /** @docs-private */
   @ContentChild(DropdownComponent, { static: true }) _dropdown: DropdownComponent;
   /** @docs-private */
-  @ViewChild(DropdownTriggerDirective, { static: true }) _dropdownTrigger;
+  @ViewChild(DropdownTriggerDirective, { static: true }) _dropdownTrigger: DropdownTriggerDirective;
+
   ngAfterContentInit(): void {
+    this._dropdown.classList = 'sbb-contextmenu-dropdown';
     /**
      * Set the panel width
      */

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Type } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
@@ -35,8 +36,7 @@ export class BusinessComponent implements ExampleProvider {
   };
   popupsAndModals = {};
   private _examples = {
-    processflow: ProcessflowShowcaseComponent
-  };
+    processflow: ProcessflowShowcaseComponent,
     contextmenu: ContextmenuShowcaseComponent
   };
 
