@@ -19,6 +19,10 @@
     visibility: hidden;
   }
 
+  .sbb-dropdown-panel-mask {
+    display: none;
+  }
+
   a,
   button {
     @include buttonResetFrameless;

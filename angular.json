@@ -39,6 +39,9 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "es5": {
+              "tsConfig": "projects/angular-showcase/tsconfig.app.es5.json"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -71,6 +74,9 @@
             "browserTarget": "angular-showcase:build"
           },
           "configurations": {
+            "es5": {
+              "browserTarget": "angular-showcase:build:es5"
+            },
             "production": {
               "browserTarget": "angular-showcase:build:production"
             }
