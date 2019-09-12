@@ -92,22 +92,16 @@ export const DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER = {
 };
 
 const panelPositionNames: { [key: string]: ConnectedPosition } = {
-  TOP_LEFT: {
-    originX: 'end',
-    originY: 'top',
-    overlayX: 'end',
-    overlayY: 'bottom'
-  },
   BOTTOM_LEFT: {
     originX: 'end',
     originY: 'bottom',
     overlayX: 'end',
     overlayY: 'top'
   },
-  TOP_RIGHT: {
-    originX: 'start',
+  TOP_LEFT: {
+    originX: 'end',
     originY: 'top',
-    overlayX: 'start',
+    overlayX: 'end',
     overlayY: 'bottom'
   },
   BOTTOM_RIGHT: {
@@ -115,7 +109,30 @@ const panelPositionNames: { [key: string]: ConnectedPosition } = {
     originY: 'bottom',
     overlayX: 'start',
     overlayY: 'top'
+  },
+  TOP_RIGHT: {
+    originX: 'start',
+    originY: 'top',
+    overlayX: 'start',
+    overlayY: 'bottom'
   }
+};
+
+const panelPositionMappings: { [key: string]: ConnectedPosition[] } = {
+  left: [panelPositionNames.BOTTOM_LEFT, panelPositionNames.TOP_LEFT],
+  right: [panelPositionNames.BOTTOM_RIGHT, panelPositionNames.TOP_RIGHT],
+  'prefer-left': [
+    panelPositionNames.BOTTOM_LEFT,
+    panelPositionNames.TOP_LEFT,
+    panelPositionNames.BOTTOM_RIGHT,
+    panelPositionNames.TOP_RIGHT
+  ],
+  'prefer-right': [
+    panelPositionNames.BOTTOM_RIGHT,
+    panelPositionNames.TOP_RIGHT,
+    panelPositionNames.BOTTOM_LEFT,
+    panelPositionNames.TOP_LEFT
+  ]
 };
 
 @Directive({
@@ -192,17 +209,41 @@ export class DropdownTriggerDirective implements OnDestroy {
   get activeOption(): DropdownItemDirective | null {
     return this.dropdown && this.dropdown.keyManager ? this.dropdown.keyManager.activeItem : null;
   }
+  @HostBinding('class.sbb-dropdown-trigger')
+  cssClass = true;
 
-  constructor(
-    protected _elementRef: ElementRef<HTMLInputElement>,
-    protected _overlay: Overlay,
-    protected _viewContainerRef: ViewContainerRef,
-    protected _zone: NgZone,
-    protected _changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
-    @Optional() @Inject(DOCUMENT) protected _document: any,
-    protected _viewportRuler?: ViewportRuler
-  ) {}
+  /** The dropdown panel to be attached to this trigger. */
+  // tslint:disable-next-line:no-input-rename
+  @Input('sbbDropdown') dropdown: DropdownComponent;
+
+  /**
+   * Reference relative to which to position the dropdown panel.
+   * Defaults to the dropdown trigger element.
+   */
+  // tslint:disable-next-line:no-input-rename
+  @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
+
+  @Input()
+  panelClass = '';
+
+  /**
+   * Whether the dropdown should be opened on the left or the right side of the origin.
+   */
+  horizontalOrientation: 'left' | 'right' | 'prefer-right' | 'prefer-left' = 'right';
+
+  /** Stream of dropdown option selections. */
+  readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
+    if (this.dropdown && this.dropdown.options) {
+      return merge(...this.dropdown.options.map(option => option.selectionChange));
+    }
+
+    // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
+    // Return a stream that we'll replace with the real one once everything is in place.
+    return this._zone.onStable.asObservable().pipe(
+      take(1),
+      switchMap(() => this.optionSelections)
+    );
+  }) as Observable<DropdownSelectionChange>;
 
   private _overlayRef: OverlayRef | null;
   private _portal: TemplatePortal;
@@ -223,38 +264,16 @@ export class DropdownTriggerDirective implements OnDestroy {
   private readonly _closeKeyEventStream = new Subject<void>();
   private _overlayAttached = false;
 
-  @HostBinding('class.sbb-dropdown-trigger')
-  cssClass = true;
-
-  /** The dropdown panel to be attached to this trigger. */
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbDropdown') dropdown: DropdownComponent;
-
-  /**
-   * Reference relative to which to position the dropdown panel.
-   * Defaults to the dropdown trigger element.
-   */
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbDropdownConnectedTo') connectedTo: DropdownOriginDirective;
-
-  @Input()
-  panelClass = '';
-
-  leftPositionPreferred = false;
-
-  /** Stream of dropdown option selections. */
-  readonly optionSelections: Observable<DropdownSelectionChange> = defer(() => {
-    if (this.dropdown && this.dropdown.options) {
-      return merge(...this.dropdown.options.map(option => option.selectionChange));
-    }
-
-    // If there are any subscribers before `ngAfterViewInit`, the `dropdown` will be undefined.
-    // Return a stream that we'll replace with the real one once everything is in place.
-    return this._zone.onStable.asObservable().pipe(
-      take(1),
-      switchMap(() => this.optionSelections)
-    );
-  }) as Observable<DropdownSelectionChange>;
+  constructor(
+    protected _elementRef: ElementRef<HTMLInputElement>,
+    protected _overlay: Overlay,
+    protected _viewContainerRef: ViewContainerRef,
+    protected _zone: NgZone,
+    protected _changeDetectorRef: ChangeDetectorRef,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
+    @Optional() @Inject(DOCUMENT) protected _document: any,
+    protected _viewportRuler?: ViewportRuler
+  ) {}
 
   ngOnDestroy() {
     this._viewportSubscription.unsubscribe();
@@ -578,16 +597,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       .flexibleConnectedTo(this._getConnectedElement())
       .withFlexibleDimensions(false)
       .withPush(false)
-      .withPositions([
-        this.leftPositionPreferred
-          ? panelPositionNames.BOTTOM_LEFT
-          : panelPositionNames.BOTTOM_RIGHT,
-        this.leftPositionPreferred ? panelPositionNames.TOP_LEFT : panelPositionNames.TOP_RIGHT,
-        this.leftPositionPreferred
-          ? panelPositionNames.BOTTOM_RIGHT
-          : panelPositionNames.BOTTOM_LEFT,
-        this.leftPositionPreferred ? panelPositionNames.TOP_RIGHT : panelPositionNames.TOP_LEFT
-      ]);
+      .withPositions(panelPositionMappings[this.horizontalOrientation]);
 
     return this._positionStrategy;
   }
