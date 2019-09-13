@@ -32,7 +32,6 @@
             ],
             "styles": [
               "projects/angular-showcase/src/styles.scss",
-              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/highlight.js/styles/github.css"
             ],
             "scripts": [],

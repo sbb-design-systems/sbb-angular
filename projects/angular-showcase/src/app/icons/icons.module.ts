@@ -2,9 +2,9 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { ICON_COMPONENT_LIST } from '@sbb-esta/angular-icons';
 import { SearchModule } from '@sbb-esta/angular-public/search';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -21,7 +21,7 @@ import { IconsComponent } from './icons/icons.component';
     CommonModule,
     ReactiveFormsModule,
     PortalModule,
-    PerfectScrollbarModule,
+    ScrollingModule,
     SearchModule,
     SharedModule,
     IconsRoutingModule

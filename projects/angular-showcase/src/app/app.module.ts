@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { ICON_COMPONENT_LIST, IconCollectionModule } from '@sbb-esta/angular-icons';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,7 @@ import { PublicModule } from './public/public.module';
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     IconCollectionModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    PerfectScrollbarModule,
+    ScrollingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     PublicModule,

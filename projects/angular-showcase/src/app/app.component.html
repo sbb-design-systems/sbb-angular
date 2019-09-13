@@ -1,34 +1,36 @@
-<nav class="menu" [class.menu-open]="showMenu" perfectScrollbar>
-  <ul>
-    <li>
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        >Introduction</a
-      >
-    </li>
-    <li class="title">Libraries</li>
-    <li>
-      <a routerLink="/public" routerLinkActive="active">@sbb-esta/angular-public</a>
-    </li>
-    <li>
-      <a routerLink="/business" routerLinkActive="active">@sbb-esta/angular-business</a>
-    </li>
-    <li>
-      <a routerLink="/core" routerLinkActive="active">@sbb-esta/angular-core</a>
-    </li>
-    <li>
-      <a routerLink="/icons" routerLinkActive="active">@sbb-esta/angular-icons</a>
-    </li>
-    <li>
-      <a routerLink="/keycloak" routerLinkActive="active">@sbb-esta/angular-keycloak</a>
-    </li>
-    <li class="title">About</li>
-    <li>
-      <a href="https://angular.io/">Angular {{ angularVersion }}</a>
-    </li>
-    <li>
-      <a routerLink="/">Showcase {{ showcaseVersion }}</a>
-    </li>
-  </ul>
+<nav class="menu" [class.menu-open]="showMenu">
+  <perfect-scrollbar>
+    <ul>
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          >Introduction</a
+        >
+      </li>
+      <li class="title">Libraries</li>
+      <li>
+        <a routerLink="/public" routerLinkActive="active">@sbb-esta/angular-public</a>
+      </li>
+      <li>
+        <a routerLink="/business" routerLinkActive="active">@sbb-esta/angular-business</a>
+      </li>
+      <li>
+        <a routerLink="/core" routerLinkActive="active">@sbb-esta/angular-core</a>
+      </li>
+      <li>
+        <a routerLink="/icons" routerLinkActive="active">@sbb-esta/angular-icons</a>
+      </li>
+      <li>
+        <a routerLink="/keycloak" routerLinkActive="active">@sbb-esta/angular-keycloak</a>
+      </li>
+      <li class="title">About</li>
+      <li>
+        <a href="https://angular.io/">Angular {{ angularVersion }}</a>
+      </li>
+      <li>
+        <a routerLink="/">Showcase {{ showcaseVersion }}</a>
+      </li>
+    </ul>
+  </perfect-scrollbar>
 </nav>
 
 <div class="container">
@@ -52,7 +54,7 @@
       </svg>
     </a>
   </div>
-  <div class="content" perfectScrollbar>
+  <perfect-scrollbar class="content">
     <router-outlet></router-outlet>
-  </div>
+  </perfect-scrollbar>
 </div>
