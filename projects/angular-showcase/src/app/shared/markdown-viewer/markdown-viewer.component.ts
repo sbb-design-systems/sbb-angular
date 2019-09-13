@@ -3,8 +3,8 @@ import {
   Component,
   ElementRef,
   OnDestroy,
-  ViewChild,
-  Renderer2
+  Renderer2,
+  ViewChild
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
