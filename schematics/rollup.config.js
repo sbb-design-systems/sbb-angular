@@ -1,7 +1,12 @@
 import typescript from 'rollup-plugin-typescript2';
 import { join } from 'path';
 
-export default ['documentation', 'generate-icon-modules', 'public2business'].map(directory => ({
+export default [
+  'documentation',
+  'example-migration',
+  'generate-icon-modules',
+  'public2business'
+].map(directory => ({
   input: join(__dirname, directory, 'index.ts'),
   output: {
     file: join(__dirname, directory, 'index.js'),
@@ -30,7 +35,7 @@ export default ['documentation', 'generate-icon-modules', 'public2business'].map
     typescript({
       tsconfig: join(__dirname, 'tsconfig.json'),
       //useTsconfigDeclarationDir: true,
-      cacheRoot: `${require('os').tmpdir()}/.rpt2_cache_sbb_angular_schematics_${directory}`
+      cacheRoot: `${require('os').tmpdir()}/.rpt2_csas_${directory}`
     })
   ]
 }));

@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { ProcessflowComponent, ProcessflowStep } from '@sbb-esta/angular-public/processflow';
+import { ProcessflowComponent, ProcessflowStep } from '@sbb-esta/angular-business/processflow';
 
 @Component({
-  selector: 'sbb-processflow-showcase',
-  templateUrl: './processflow-showcase.component.html',
-  styleUrls: ['./processflow-showcase.component.scss']
+  selector: 'sbb-skippable-processflow',
+  templateUrl: './skippable-processflow.component.html',
+  styleUrls: ['./skippable-processflow.component.scss']
 })
-export class ProcessflowShowcaseComponent implements AfterViewInit {
+export class SkippableProcessflowComponent implements AfterViewInit {
   @ViewChild('processflow', { static: true }) processflow: ProcessflowComponent;
 
   ngAfterViewInit(): void {

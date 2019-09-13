@@ -1,15 +1,15 @@
-import { Component, Type } from '@angular/core';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { HtmlLoader } from '../../shared/html-loader.service';
-import { ContextmenuShowcaseComponent } from '../examples/contextmenu-showcase/contextmenu-showcase.component';
-import { ProcessflowShowcaseComponent } from '../examples/processflow-showcase/processflow-showcase.component';
+import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
+import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 
 @Component({
   selector: 'sbb-business',
   templateUrl: './business.component.html',
   styleUrls: ['./business.component.scss'],
-  providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }, HtmlLoader]
+  providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }]
 })
 export class BusinessComponent implements ExampleProvider {
   formComponents = {
@@ -34,12 +34,18 @@ export class BusinessComponent implements ExampleProvider {
     contextmenu: 'Contextmenu'
   };
   popupsAndModals = {};
-  private _examples = {
-    processflow: ProcessflowShowcaseComponent,
-    contextmenu: ContextmenuShowcaseComponent
+  private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
+    processflow: {
+      'skippable-processflow': new ComponentPortal(SkippableProcessflowComponent)
+    },
+    contextmenu: {
+      'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
+    }
   };
 
-  resolveExample<TComponent = any>(component: string): Type<TComponent> {
+  resolveExample<TComponent = any>(
+    component: string
+  ): { [name: string]: ComponentPortal<TComponent> } {
     return this._examples[component];
   }
 }

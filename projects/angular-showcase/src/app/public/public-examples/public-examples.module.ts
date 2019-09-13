@@ -83,7 +83,7 @@ import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-sh
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
-import { UserMenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
+import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
 const exampleComponents = [
   AccordionShowcaseComponent,
@@ -128,7 +128,7 @@ const exampleComponents = [
   ToggleShowcaseComponent,
   TooltipShowcaseComponent,
   TagShowcaseComponent,
-  UserMenuShowcaseComponent
+  UsermenuShowcaseComponent
 ];
 
 @NgModule({
@@ -178,4 +178,4 @@ const exampleComponents = [
     UserMenuModule
   ]
 })
-export class ExamplesModule {}
+export class PublicExamplesModule {}

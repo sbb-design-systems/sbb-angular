@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ComponentViewerBase } from '../../shared/component-viewer-base';
@@ -11,7 +11,12 @@ import { HtmlLoader } from '../../shared/html-loader.service';
   styleUrls: ['./component-viewer.component.scss']
 })
 export class ComponentViewerComponent extends ComponentViewerBase {
-  constructor(htmlLoader: HtmlLoader, exampleProvider: ExampleProvider, route: ActivatedRoute) {
-    super(htmlLoader, exampleProvider, route);
+  constructor(
+    htmlLoader: HtmlLoader,
+    exampleProvider: ExampleProvider,
+    route: ActivatedRoute,
+    renderer: Renderer2
+  ) {
+    super(htmlLoader, exampleProvider, route, renderer);
   }
 }

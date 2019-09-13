@@ -1,5 +1,5 @@
 <div>
-  <h3>{{ title | async }}</h3>
+  <h3>{{ label }}</h3>
   <button type="button" (click)="showSource = !showSource">
     <svg
       focusable="false"
@@ -17,13 +17,13 @@
 
 <sbb-tabs [hidden]="!showSource">
   <sbb-tab label="HTML">
-    <pre #html></pre>
+    <pre><code #html></code></pre>
   </sbb-tab>
   <sbb-tab label="TS">
-    <pre #ts></pre>
+    <pre><code #ts></code></pre>
   </sbb-tab>
   <sbb-tab label="SCSS">
-    <pre #scss></pre>
+    <pre><code #scss></code></pre>
   </sbb-tab>
 </sbb-tabs>
 <ng-template [cdkPortalOutlet]="example"></ng-template>
