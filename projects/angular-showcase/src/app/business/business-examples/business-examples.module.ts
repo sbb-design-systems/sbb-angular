@@ -9,10 +9,10 @@ import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
-import { ContextmenuShowcaseComponent } from './contextmenu-showcase/contextmenu-showcase.component';
-import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow-showcase.component';
+import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
+import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
 
-const exampleComponents = [ContextmenuShowcaseComponent, ProcessflowShowcaseComponent];
+const exampleComponents = [SimpleContextmenuComponent, SkippableProcessflowComponent];
 
 @NgModule({
   declarations: exampleComponents,
@@ -31,4 +31,4 @@ const exampleComponents = [ContextmenuShowcaseComponent, ProcessflowShowcaseComp
     ProcessflowModule
   ]
 })
-export class ExamplesModule {}
+export class BusinessExamplesModule {}

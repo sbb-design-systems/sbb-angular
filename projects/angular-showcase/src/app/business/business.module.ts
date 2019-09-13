@@ -6,10 +6,10 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { SharedModule } from '../shared/shared.module';
 
+import { BusinessExamplesModule } from './business-examples/business-examples.module';
 import { BusinessRoutingModule } from './business-routing.module';
 import { BusinessComponent } from './business/business.component';
 import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
-import { ExamplesModule } from './examples/examples.module';
 
 @NgModule({
   declarations: [BusinessComponent, ComponentViewerComponent],
@@ -17,7 +17,7 @@ import { ExamplesModule } from './examples/examples.module';
     CommonModule,
     PerfectScrollbarModule,
     PortalModule,
-    ExamplesModule,
+    BusinessExamplesModule,
     SharedModule,
     TabsModule,
     BusinessRoutingModule

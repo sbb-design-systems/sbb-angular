@@ -1,6 +1,6 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { AfterViewInit, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TabsComponent } from '@sbb-esta/angular-public/tabs';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, first, map, skip, takeUntil } from 'rxjs/operators';
@@ -12,20 +12,20 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
   @ViewChild('overview', { static: true }) overview: ElementRef;
   @ViewChild('api', { static: true }) api: ElementRef;
-  example: Observable<ComponentPortal<any>>;
+  example: Observable<{ [component: string]: ComponentPortal<any> }>;
   private _destroyed = new Subject<void>();
 
   constructor(
     private _htmlLoader: HtmlLoader,
     private _exampleProvider: ExampleProvider,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _renderer: Renderer2
   ) {}
 
   ngOnInit() {
     this.example = this._route.params.pipe(
       takeUntil(this._destroyed),
-      map(({ id }) => this._exampleProvider.resolveExample(id)),
-      map(e => (e ? new ComponentPortal(e) : null))
+      map(({ id }) => this._exampleProvider.resolveExample(id))
     );
   }
 
@@ -45,8 +45,16 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
         skip(1)
       )
       .subscribe(() => this.tabs.openTabByIndex(0));
-    this._htmlLoader.loadDocumentation(this._route, this._destroyed, this.overview);
-    this._htmlLoader.loadApiDocumentation(this._route, this._destroyed, this.api);
+    this._htmlLoader
+      .with(this._route, this._renderer)
+      .until(this._destroyed)
+      .fromDocumentation()
+      .applyTo(this.overview);
+    this._htmlLoader
+      .with(this._route, this._renderer)
+      .until(this._destroyed)
+      .fromApiDocumentation()
+      .applyTo(this.api);
   }
 
   ngOnDestroy(): void {

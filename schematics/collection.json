@@ -5,6 +5,10 @@
       "description": "Generate documentation for the showcase.",
       "factory": "./documentation/index#documentation"
     },
+    "example-migration": {
+      "description": "Mirate examples",
+      "factory": "./example-migration/index#exampleMigration"
+    },
     "public2business": {
       "description": "Copy public components to business",
       "factory": "./public2business/index#public2business"

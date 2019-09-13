@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  ViewChild,
+  Renderer2
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -13,10 +20,18 @@ export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
   @ViewChild('content', { static: true, read: ElementRef }) content: ElementRef<any>;
   private _destroyed = new Subject<void>();
 
-  constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
+  constructor(
+    private _htmlLoader: HtmlLoader,
+    private _route: ActivatedRoute,
+    private _renderer: Renderer2
+  ) {}
 
   ngAfterViewInit(): void {
-    this._htmlLoader.loadDocumentation(this._route, this._destroyed, this.content);
+    this._htmlLoader
+      .with(this._route, this._renderer)
+      .until(this._destroyed)
+      .fromDocumentation()
+      .applyTo(this.content);
   }
 
   ngOnDestroy(): void {

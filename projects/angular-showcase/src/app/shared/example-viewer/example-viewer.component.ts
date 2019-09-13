@@ -6,6 +6,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  Renderer2,
   ViewChild
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -21,14 +22,25 @@ import { HtmlLoader } from '../html-loader.service';
 })
 export class ExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
+  @Input() name: string;
   @ViewChild('html', { static: false }) html: ElementRef;
   @ViewChild('ts', { static: false }) ts: ElementRef;
   @ViewChild('scss', { static: false }) scss: ElementRef;
   showSource = false;
   title: Observable<string>;
+  get label() {
+    return this.name
+      .replace(/-/g, ' ')
+      .replace(/(^[a-z]| [a-z])/g, m => m.toUpperCase())
+      .replace(' Showcase', '');
+  }
   private _destroyed = new Subject<void>();
 
-  constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
+  constructor(
+    private _htmlLoader: HtmlLoader,
+    private _route: ActivatedRoute,
+    private _renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.title = combineLatest(this._route.params, this._route.data, (p, d) => ({
@@ -44,9 +56,21 @@ export class ExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(): void {
-    this._htmlLoader.loadExample(this._route, this._destroyed, this.html, this.example, 'html');
-    this._htmlLoader.loadExample(this._route, this._destroyed, this.ts, this.example, 'ts');
-    this._htmlLoader.loadExample(this._route, this._destroyed, this.scss, this.example, 'scss');
+    this._htmlLoader
+      .with(this._route, this._renderer)
+      .until(this._destroyed)
+      .fromExamples(this.name, 'html')
+      .applyTo(this.html);
+    this._htmlLoader
+      .with(this._route, this._renderer)
+      .until(this._destroyed)
+      .fromExamples(this.name, 'ts')
+      .applyTo(this.ts);
+    this._htmlLoader
+      .with(this._route, this._renderer)
+      .until(this._destroyed)
+      .fromExamples(this.name, 'scss')
+      .applyTo(this.scss);
   }
 
   ngOnDestroy(): void {

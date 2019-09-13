@@ -7,7 +7,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { SharedModule } from '../shared/shared.module';
 
 import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
-import { ExamplesModule } from './examples/examples.module';
+import { PublicExamplesModule } from './public-examples/public-examples.module';
 import { PublicRoutingModule } from './public-routing.module';
 import { PublicComponent } from './public/public.component';
 
@@ -17,7 +17,7 @@ import { PublicComponent } from './public/public.component';
     CommonModule,
     PerfectScrollbarModule,
     PortalModule,
-    ExamplesModule,
+    PublicExamplesModule,
     SharedModule,
     TabsModule,
     PublicRoutingModule

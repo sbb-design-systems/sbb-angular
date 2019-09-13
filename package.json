@@ -174,15 +174,7 @@
   "prettier": {
     "singleQuote": true,
     "endOfLine": "lf",
-    "printWidth": 100,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
+    "printWidth": 100
   },
   "stylelint": {
     "extends": "stylelint-config-recommended-scss",
