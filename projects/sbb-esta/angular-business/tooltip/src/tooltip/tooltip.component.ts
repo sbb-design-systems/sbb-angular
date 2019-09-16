@@ -105,10 +105,10 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
    * and the mouse hover the button
    */
   onMouseEnter() {
-    this.clearTimoutOnChangeMouseEvent();
-    event.stopPropagation();
+    this._clearTimoutOnChangeMouseEvent();
     this._referenceActiveTimeout = window.setTimeout(() => {
       this.open(true);
+      this._changeDetectorRef.markForCheck();
     }, this.hoverOpenDelay);
   }
 
@@ -117,18 +117,18 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
    * and the mouse leave the button
    */
   onMouseLeave() {
-    this.clearTimoutOnChangeMouseEvent();
-    event.stopPropagation();
+    this._clearTimoutOnChangeMouseEvent();
     this._referenceActiveTimeout = window.setTimeout(() => {
       this.close(true);
+      this._changeDetectorRef.markForCheck();
     }, this.hoverCloseDelay);
   }
 
   /**
-   * function to clear timeouts used for delay. Necessary to keep synchronized the mouseover and
-   * mouseleave events
+   * Clear timeouts used for delay. Necessary to keep the mouseover and
+   * mouseleave events synchronized.
    */
-  clearTimoutOnChangeMouseEvent() {
+  private _clearTimoutOnChangeMouseEvent() {
     if (this._referenceActiveTimeout) {
       clearTimeout(this._referenceActiveTimeout);
     }

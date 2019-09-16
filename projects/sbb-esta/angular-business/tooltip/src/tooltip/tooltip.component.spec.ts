@@ -3,6 +3,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
@@ -87,15 +88,16 @@ describe('Tooltip using hover configuration with default delay', () => {
   });
 
   it('When hovering with mouse tooltip open short/no timeout', fakeAsync(() => {
-    const eventMouseOver = new Event('mouseover');
+    const eventMouseEnter = new Event('mouseenter');
     const eventMouseLeave = new Event('mouseleave');
+    const tooltipElement = fixture.debugElement.query(By.css('sbb-tooltip')).nativeElement;
     const buttonQuestionMark = component.t1.tooltipTrigger.nativeElement;
-    buttonQuestionMark.dispatchEvent(eventMouseOver);
+    tooltipElement.dispatchEvent(eventMouseEnter);
     tick(100);
     fixture.detectChanges();
     expect(buttonQuestionMark.attributes['class'].value).toContain('sbb-tooltip-trigger-active');
 
-    buttonQuestionMark.dispatchEvent(eventMouseLeave);
+    tooltipElement.dispatchEvent(eventMouseLeave);
     tick(100);
     fixture.detectChanges();
     expect(buttonQuestionMark.attributes['class'].value).not.toContain(
@@ -127,15 +129,16 @@ describe('Tooltip using hover configuration and delay settings for open and clos
   });
 
   it('When hovering with mouse tooltip open long timeout', fakeAsync(() => {
-    const eventMouseOver = new Event('mouseover');
+    const eventMouseEnter = new Event('mouseenter');
     const eventMouseLeave = new Event('mouseleave');
+    const tooltipElement = fixture.debugElement.query(By.css('sbb-tooltip')).nativeElement;
     const buttonQuestionMark = component.t1.tooltipTrigger.nativeElement;
-    buttonQuestionMark.dispatchEvent(eventMouseOver);
+    tooltipElement.dispatchEvent(eventMouseEnter);
     tick(2001);
     fixture.detectChanges();
     expect(buttonQuestionMark.attributes['class'].value).toContain('sbb-tooltip-trigger-active');
 
-    buttonQuestionMark.dispatchEvent(eventMouseLeave);
+    tooltipElement.dispatchEvent(eventMouseLeave);
     tick(2001);
     fixture.detectChanges();
     expect(buttonQuestionMark.attributes['class'].value).not.toContain(
