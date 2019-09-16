@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ExampleProvider } from '../../shared/example-provider';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
+import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 
 @Component({
   selector: 'sbb-business',
@@ -33,13 +34,18 @@ export class BusinessComponent implements ExampleProvider {
     button: 'Button',
     contextmenu: 'Contextmenu'
   };
-  popupsAndModals = {};
+  popupsAndModals = {
+    tooltip: 'Tooltip'
+  };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     processflow: {
       'skippable-processflow': new ComponentPortal(SkippableProcessflowComponent)
     },
     contextmenu: {
       'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
+    },
+    tooltip: {
+      'tooltip-showcase': new ComponentPortal(TooltipShowcaseComponent)
     }
   };
 

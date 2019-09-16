@@ -64,8 +64,9 @@ function markdownToHtml(content: string) {
 }
 
 function renderExampleFilesForLibrary(tree: Tree, library: string) {
+  const shortName = library.split('-')[1];
   const examplesDirectory = tree.getDir(
-    `projects/angular-showcase/src/app/${library.split('-')[1]}/examples`
+    `projects/angular-showcase/src/app/${shortName}/${shortName}-examples`
   );
   const files = findExampleFiles(examplesDirectory);
   files.forEach((entry, fragment) => {

@@ -92,17 +92,17 @@ export class PublicComponent implements ExampleProvider {
     datepicker: { 'datepicker-showcase': new ComponentPortal(DatepickerShowcaseComponent) },
     field: { 'field-showcase': new ComponentPortal(FieldShowcaseComponent) },
     'file-selector': {
-      'fileSelector-showcase': new ComponentPortal(FileSelectorShowcaseComponent)
+      'file-selector-showcase': new ComponentPortal(FileSelectorShowcaseComponent)
     },
     'radio-button': { 'radioButton-showcase': new ComponentPortal(RadioButtonShowcaseComponent) },
     'radio-button-panel': {
-      'radioButtonPanel-showcase': new ComponentPortal(RadioButtonPanelShowcaseComponent)
+      'radio-button-panel-showcase': new ComponentPortal(RadioButtonPanelShowcaseComponent)
     },
     search: { 'search-showcase': new ComponentPortal(SearchShowcaseComponent) },
     select: { 'select-showcase': new ComponentPortal(SelectShowcaseComponent) },
     tag: { 'tag-showcase': new ComponentPortal(TagShowcaseComponent) },
     textarea: { 'textarea-showcase': new ComponentPortal(TextareaShowcaseComponent) },
-    'time-input': { 'timeInput-showcase': new ComponentPortal(TimeInputShowcaseComponent) },
+    'time-input': { 'time-input-showcase': new ComponentPortal(TimeInputShowcaseComponent) },
     toggle: { 'toggle-showcase': new ComponentPortal(ToggleShowcaseComponent) },
     accordion: { 'accordion-showcase': new ComponentPortal(AccordionShowcaseComponent) },
     breadcrumb: { 'breadcrumb-showcase': new ComponentPortal(BreadcrumbShowcaseComponent) },

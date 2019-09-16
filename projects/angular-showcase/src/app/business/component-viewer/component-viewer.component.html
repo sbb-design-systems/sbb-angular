@@ -11,7 +11,7 @@
         <sbb-example-viewer
           *ngFor="let entry of examplePortals | keyvalue"
           [name]="entry.key"
-          [example]="entry.name"
+          [example]="entry.value"
         ></sbb-example-viewer>
       </sbb-tab>
     </sbb-tabs>

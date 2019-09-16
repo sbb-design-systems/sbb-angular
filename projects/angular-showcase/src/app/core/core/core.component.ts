@@ -15,11 +15,10 @@ export class CoreComponent implements ExampleProvider {
     datetime: 'Datetime',
     scrolling: 'Scrolling'
   };
-  private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {};
 
   resolveExample<TComponent = any>(
     component: string
   ): { [name: string]: ComponentPortal<TComponent> } {
-    return this._examples[component];
+    return undefined;
   }
 }
