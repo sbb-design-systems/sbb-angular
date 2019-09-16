@@ -1,4 +1,15 @@
-import { Directive, HostBinding, HostListener, Input } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Self,
+  SimpleChanges
+} from '@angular/core';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 const stickySupported =
   typeof CSS !== 'undefined' &&
@@ -9,11 +20,11 @@ const stickySupported =
 @Directive({
   selector: '[sbbTableScrollArea]'
 })
-export class ScrollAreaDirective {
+export class ScrollAreaDirective implements OnChanges, OnDestroy {
+  private _scrollListener = new Subject();
+
   /** Types of pin mode. */
-  // tslint:disable-next-line:no-input-rename
-  @Input('sbbTableScrollArea')
-  pinMode: 'off' | 'on';
+  @Input() pinMode: 'off' | 'on';
   /**
    * Wrapper class of the table.
    */
@@ -29,14 +40,33 @@ export class ScrollAreaDirective {
     return this._isScrolling;
   }
 
-  @HostListener('scroll', ['$event.target'])
-  scrollTable(scrollTarget: any) {
-    if (stickySupported && this.pinMode === 'on') {
-      if (scrollTarget.scrollLeft > 0) {
-        this._isScrolling = true;
-      } else {
-        this._isScrolling = false;
-      }
+  constructor(@Self() private _perfectScrollbar: PerfectScrollbarComponent) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!stickySupported) {
+      return;
+    } else if (
+      changes.pinMode.currentValue === 'on' &&
+      (changes.pinMode.firstChange ||
+        changes.pinMode.previousValue !== changes.pinMode.currentValue)
+    ) {
+      this._perfectScrollbar.psXReachStart
+        .pipe(takeUntil(this._scrollListener))
+        .subscribe(() => (this._isScrolling = false));
+      this._perfectScrollbar.psScrollRight
+        .pipe(takeUntil(this._scrollListener))
+        .subscribe(() => (this._isScrolling = true));
+    } else if (
+      changes.pinMode.currentValue === 'off' &&
+      changes.pinMode.previousValue !== changes.pinMode.currentValue
+    ) {
+      this._scrollListener.next();
+      this._isScrolling = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    this._scrollListener.next();
+    this._scrollListener.complete();
   }
 }
