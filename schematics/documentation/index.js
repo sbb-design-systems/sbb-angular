@@ -1001,7 +1001,8 @@ function markdownToHtml(content) {
     });
 }
 function renderExampleFilesForLibrary(tree, library) {
-    const examplesDirectory = tree.getDir(`projects/angular-showcase/src/app/${library.split('-')[1]}/examples`);
+    const shortName = library.split('-')[1];
+    const examplesDirectory = tree.getDir(`projects/angular-showcase/src/app/${shortName}/${shortName}-examples`);
     const files = findExampleFiles(examplesDirectory);
     files.forEach((entry, fragment) => {
         const targetFile = core.normalize(`projects/angular-showcase/src/assets/docs/${library}/examples/${fragment}.html`);

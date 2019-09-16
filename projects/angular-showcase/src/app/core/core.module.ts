@@ -9,7 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreComponent } from './core/core.component';
-import { ExamplesModule } from './examples/examples.module';
 
 @NgModule({
   declarations: [CoreComponent, ComponentViewerComponent],
@@ -17,7 +16,6 @@ import { ExamplesModule } from './examples/examples.module';
     CommonModule,
     PerfectScrollbarModule,
     PortalModule,
-    ExamplesModule,
     SharedModule,
     TabsModule,
     CoreRoutingModule

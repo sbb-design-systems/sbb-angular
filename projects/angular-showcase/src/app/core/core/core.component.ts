@@ -14,11 +14,10 @@ export class CoreComponent implements ExampleProvider {
     breakpoints: 'Breakpoints',
     datetime: 'Datetime'
   };
-  private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {};
 
   resolveExample<TComponent = any>(
     component: string
   ): { [name: string]: ComponentPortal<TComponent> } {
-    return this._examples[component];
+    return undefined;
   }
 }

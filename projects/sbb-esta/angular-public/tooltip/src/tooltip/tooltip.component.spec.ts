@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
@@ -11,10 +12,7 @@ import { configureTestSuite } from 'ng-bullet';
 
 import { TooltipModule } from '../tooltip.module';
 
-import {
-  SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER,
-  TooltipComponent
-} from './tooltip.component';
+import { TooltipComponent } from './tooltip.component';
 
 // tslint:disable:i18n
 @Component({
