@@ -1,8 +1,8 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { TabsModule } from '@sbb-esta/angular-public/tabs';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -15,7 +15,7 @@ import { ComponentViewerComponent } from './component-viewer/component-viewer.co
   declarations: [BusinessComponent, ComponentViewerComponent],
   imports: [
     CommonModule,
-    PerfectScrollbarModule,
+    ScrollingModule,
     PortalModule,
     BusinessExamplesModule,
     SharedModule,

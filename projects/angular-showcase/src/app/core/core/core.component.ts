@@ -12,7 +12,8 @@ import { ExampleProvider } from '../../shared/example-provider';
 export class CoreComponent implements ExampleProvider {
   modules = {
     breakpoints: 'Breakpoints',
-    datetime: 'Datetime'
+    datetime: 'Datetime',
+    scrolling: 'Scrolling'
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {};
 
