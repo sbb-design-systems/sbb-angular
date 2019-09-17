@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.4.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.3.3...8.4.0) (2019-09-17)
+
+
+### Bug Fixes
+
+* handle scrolling correctly ([#168](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/168)) ([c9fa496](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/c9fa496)), closes [#161](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/161)
+* **showcase:** fix example code loading ([#167](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/167)) ([2e85d3d](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/2e85d3d)), closes [#165](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/165)
+
+
+### Features
+
+* **autocomplete:** implement autocomplete hint ([#158](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/158)) ([df5f9d2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/df5f9d2)), closes [#154](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/154)
+* **business:** implement contextmenu ([#163](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/163)) ([23fea1f](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/23fea1f)), closes [#80](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/80)
+* **business:** implement hover mode for tooltip ([#170](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/170)) ([f25430f](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/f25430f)), closes [#110](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/110)
+* **public:** use perfect-scrollbar in sbb-table ([#173](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/173)) ([b817f21](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/b817f21)), closes [#35](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/35)
+
+
+
 ### [8.3.3](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.3.2...8.3.3) (2019-09-10)
 
 
