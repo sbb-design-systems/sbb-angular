@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PublicComponentViewerModule } from '../features/public-component-viewer/public-component-viewer.module';
+import { PublicComponentViewerComponent } from '../features/public-component-viewer/public-component-viewer/public-component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { BusinessComponent } from './business/business.component';
-import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 
 const routes: Routes = [
   {
@@ -24,12 +25,12 @@ const routes: Routes = [
       },
       {
         path: 'components/:id',
-        component: ComponentViewerComponent,
+        component: PublicComponentViewerComponent,
         data: { library: 'angular-business' }
       },
       {
         path: 'components/:id/:section',
-        component: ComponentViewerComponent,
+        component: PublicComponentViewerComponent,
         data: { library: 'angular-business' }
       }
     ]
@@ -37,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), PublicComponentViewerModule],
   exports: [RouterModule]
 })
 export class BusinessRoutingModule {}

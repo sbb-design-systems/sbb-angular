@@ -5,18 +5,12 @@ import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { ApiViewerComponent } from './api-viewer/api-viewer.component';
-import { ExampleViewerComponent } from './example-viewer/example-viewer.component';
 import { MarkdownViewerComponent } from './markdown-viewer/markdown-viewer.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 
 @NgModule({
-  declarations: [
-    SubmenuComponent,
-    MarkdownViewerComponent,
-    ExampleViewerComponent,
-    ApiViewerComponent
-  ],
+  declarations: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent],
   imports: [CommonModule, ScrollingModule, PortalModule, TabsModule],
-  exports: [SubmenuComponent, MarkdownViewerComponent, ExampleViewerComponent, ApiViewerComponent]
+  exports: [SubmenuComponent, MarkdownViewerComponent, ApiViewerComponent]
 })
 export class SharedModule {}

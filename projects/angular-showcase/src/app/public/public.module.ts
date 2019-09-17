@@ -6,13 +6,12 @@ import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 import { PublicExamplesModule } from './public-examples/public-examples.module';
 import { PublicRoutingModule } from './public-routing.module';
 import { PublicComponent } from './public/public.component';
 
 @NgModule({
-  declarations: [PublicComponent, ComponentViewerComponent],
+  declarations: [PublicComponent],
   imports: [
     CommonModule,
     PortalModule,

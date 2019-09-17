@@ -13,14 +13,14 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { HtmlLoader } from '../html-loader.service';
+import { HtmlLoader } from '../../../shared/html-loader.service';
 
 @Component({
-  selector: 'sbb-example-viewer',
-  templateUrl: './example-viewer.component.html',
-  styleUrls: ['./example-viewer.component.scss']
+  selector: 'sbb-public-example-viewer',
+  templateUrl: './public-example-viewer.component.html',
+  styleUrls: ['./public-example-viewer.component.scss']
 })
-export class ExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PublicExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
   @ViewChild('html', { static: false }) html: ElementRef;

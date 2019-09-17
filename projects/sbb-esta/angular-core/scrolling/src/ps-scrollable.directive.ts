@@ -1,6 +1,6 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/overlay';
-import { Directive, ElementRef, NgZone, OnDestroy, Optional } from '@angular/core';
+import { Directive, ElementRef, NgZone, OnDestroy, Optional, Self } from '@angular/core';
 import { PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { merge, Observable } from 'rxjs';
 
@@ -16,7 +16,7 @@ import { merge, Observable } from 'rxjs';
 // tslint:disable-next-line: directive-class-suffix
 export class PsDirectiveScrollable extends CdkScrollable implements OnDestroy {
   constructor(
-    private _scrollbar: PerfectScrollbarDirective,
+    @Self() private _scrollbar: PerfectScrollbarDirective,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone,
@@ -43,7 +43,7 @@ export class PsDirectiveScrollable extends CdkScrollable implements OnDestroy {
 // tslint:disable-next-line: directive-class-suffix
 export class PsComponentScrollable extends CdkScrollable {
   constructor(
-    private _scrollbar: PerfectScrollbarComponent,
+    @Self() private _scrollbar: PerfectScrollbarComponent,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone,
