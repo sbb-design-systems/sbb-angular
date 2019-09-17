@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.4.0...8.4.1) (2019-09-17)
+
+
+### Bug Fixes
+
+* **showcase:** fix code formatting ([dfdb037](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/dfdb037))
+
+
+
 ## [8.4.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.3.3...8.4.0) (2019-09-17)
 
 
