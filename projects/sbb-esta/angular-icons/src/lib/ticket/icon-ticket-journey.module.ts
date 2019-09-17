@@ -13,6 +13,7 @@ import { IconBase } from '../icon-base';
     <ng-container [ngSwitch]="size">
       <svg
         *ngSwitchDefault
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -24,12 +25,13 @@ import { IconBase } from '../icon-base';
           />
           <path
             stroke="#000"
-            d="M17.5 8a1.5 1.5 0 1 1-3 .001 1.5 1.5 0 0 1 3 0zm-2.52 6.558l1.025 1.618 3.887-6.135c.362-.636.594-1.297.6-2.034a4.5 4.5 0 0 0-9 0c.014.347.068.669.156.974"
+            d="M17.5 8a1.5 1.5 0 11-3 .001 1.5 1.5 0 013 0zm-2.52 6.558l1.025 1.618 3.887-6.135c.362-.636.594-1.297.6-2.034a4.5 4.5 0 00-9 0c.014.347.068.669.156.974"
           />
         </g>
       </svg>
       <svg
         *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 36 36"
@@ -41,7 +43,7 @@ import { IconBase } from '../icon-base';
           />
           <path
             stroke="#000"
-            d="M26.249 12.001a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm-3.78 9.836l1.538 2.427 5.83-9.202c.543-.954.891-1.946.902-3.051a6.75 6.75 0 0 0-13.5 0c.02.52.1 1.003.232 1.46"
+            d="M26.249 12.001a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-3.78 9.836l1.538 2.427 5.83-9.202c.543-.954.891-1.946.902-3.051a6.75 6.75 0 00-13.5 0c.02.52.1 1.003.232 1.46"
           />
         </g>
       </svg>

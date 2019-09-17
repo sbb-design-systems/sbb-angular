@@ -13,6 +13,7 @@ import { IconBase } from '../icon-base';
     <ng-container [ngSwitch]="size">
       <svg
         *ngSwitchDefault
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -20,11 +21,12 @@ import { IconBase } from '../icon-base';
         <path
           fill="none"
           stroke="#000"
-          d="M20.5 12.5a8 8 0 1 1-16 0 8 8 0 0 1 16 0zm-8-8v8l6.928 4m-6.928-4l6.928-4"
+          d="M20.5 12.5a8 8 0 11-16 0 8 8 0 0116 0zm-8-8v8l6.928 4m-6.928-4l6.928-4"
         />
       </svg>
       <svg
         *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 36 36"
