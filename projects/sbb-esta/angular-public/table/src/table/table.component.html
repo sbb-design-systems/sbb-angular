@@ -1,5 +1,5 @@
 <div class="sbb-table-container">
-  <perfect-scrollbar [config]="{ suppressScrollY: true }">
+  <perfect-scrollbar class="sbb-table-wrapper" [config]="{ suppressScrollY: true }">
     <table [ngClass]="tableClass" [attr.id]="tableId" [attr.aria-labelledby]="tableLabelledBy">
       <ng-content select="tr, caption, colgroup, col, thead, tbody, tfoot"></ng-content>
     </table>

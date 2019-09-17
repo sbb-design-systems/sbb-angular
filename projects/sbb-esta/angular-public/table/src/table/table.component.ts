@@ -3,6 +3,7 @@ import {
   Component,
   HostBinding,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   SimpleChanges,
@@ -61,8 +62,14 @@ export class TableComponent implements OnChanges, OnDestroy {
 
   /** @docs-private */
   @HostBinding('class.sbb-table-is-scrolling') _scrolling = false;
+  /** @docs-private */
+  @HostBinding('class.sbb-table-is-pinned') get _pinned() {
+    return this.pinMode === 'on';
+  }
 
   private _scrollListener = new Subject();
+
+  constructor(private _zone: NgZone) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!stickySupported) {
@@ -80,7 +87,7 @@ export class TableComponent implements OnChanges, OnDestroy {
           takeUntil(this._scrollListener),
           distinctUntilChanged()
         )
-        .subscribe(v => (this._scrolling = v));
+        .subscribe(v => this._zone.run(() => (this._scrolling = v)));
     } else if (
       changes.pinMode.currentValue === 'off' &&
       changes.pinMode.previousValue !== changes.pinMode.currentValue

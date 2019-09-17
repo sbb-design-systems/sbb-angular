@@ -6,12 +6,11 @@ import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { ComponentViewerComponent } from './component-viewer/component-viewer.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreComponent } from './core/core.component';
 
 @NgModule({
-  declarations: [CoreComponent, ComponentViewerComponent],
+  declarations: [CoreComponent],
   imports: [
     CommonModule,
     ScrollingModule,
