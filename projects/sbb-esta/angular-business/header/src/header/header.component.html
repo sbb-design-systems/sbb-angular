@@ -21,8 +21,11 @@
   </div>
   <template #navigationButtons></template>
 </div>
+<div class="sbb-header-additional-content">
+  <ng-content select=".additional-header-content"></ng-content>
+</div>
 <div class="sbb-header-usermenu">
-  <ng-content select="sbb-usermenu"></ng-content>
+  <ng-content select="sbb-usermenu,.sbb-usermenu"></ng-content>
 </div>
 
 <!-- If an icon is provided, use that, otherwise use the sbb logo -->

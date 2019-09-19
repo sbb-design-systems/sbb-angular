@@ -202,6 +202,12 @@ $buttonMarginTop: calc(54px / 2 - 15px);
     }
   }
 
+  &-additional-content {
+    @include headerBlockComponent();
+
+    right: 359px;
+  }
+
   &-usermenu {
     @include headerBlockComponent();
 
