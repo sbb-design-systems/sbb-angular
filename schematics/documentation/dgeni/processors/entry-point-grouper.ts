@@ -93,7 +93,7 @@ export class EntryPointGrouper implements Processor {
       const packageName = moduleInfo.packageName;
       const packageDisplayName = packageName === 'cdk' ? 'CDK' : 'Material';
 
-      const moduleImportPath = `@angular/${packageName}/${moduleInfo.entryPointName}`;
+      const moduleImportPath = `@sbb-esta/${packageName}/${moduleInfo.entryPointName}`;
       const entryPointName = packageName + '-' + moduleInfo.name;
 
       // Compute a public URL that refers to the document. This is helpful if we want to
