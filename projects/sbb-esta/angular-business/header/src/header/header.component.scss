@@ -202,25 +202,26 @@ $buttonMarginTop: calc(54px / 2 - 15px);
     }
   }
 
-  &-additional-content {
+  .sbb-header-container-end {
     @include headerBlockComponent();
-
-    right: 359px;
+    right: 35px;
+    display: inline-flex;
+    align-items: center;
   }
 
   &-usermenu {
-    @include headerBlockComponent();
-
-    right: 159px;
-    width: 200px;
     z-index: 1;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 
   &-logo {
-    @include headerBlockComponent();
+    &.hidden-logo {
+      display: none;
+    }
 
-    top: 17px;
-    right: 35px;
-    width: 80px;
+    svg {
+      width: 80px;
+    }
   }
 }
