@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   HostBinding,
   Input,
@@ -69,7 +70,7 @@ export class TableComponent implements OnChanges, OnDestroy {
 
   private _scrollListener = new Subject();
 
-  constructor(private _zone: NgZone) {}
+  constructor(private _zone: NgZone, private _changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!stickySupported) {
@@ -87,7 +88,12 @@ export class TableComponent implements OnChanges, OnDestroy {
           takeUntil(this._scrollListener),
           distinctUntilChanged()
         )
-        .subscribe(v => this._zone.run(() => (this._scrolling = v)));
+        .subscribe(v =>
+          this._zone.run(() => {
+            this._scrolling = v;
+            this._changeDetectorRef.markForCheck();
+          })
+        );
     } else if (
       changes.pinMode.currentValue === 'off' &&
       changes.pinMode.previousValue !== changes.pinMode.currentValue
