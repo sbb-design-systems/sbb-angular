@@ -13,6 +13,7 @@ import { IconBase } from '../icon-base';
     <ng-container [ngSwitch]="size">
       <svg
         *ngSwitchDefault
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -20,11 +21,12 @@ import { IconBase } from '../icon-base';
         <path
           fill="none"
           stroke="#000"
-          d="M19.5 11V4.5h-13v9l-4 3v2H14m-.008-5H6.5m7.5 3H2.5m14-4h4a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1zm.5 1h3"
+          d="M19.5 11V4.5h-13v9l-4 3v2H14m-.008-5H6.5m7.5 3H2.5m14-4h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1v-7a1 1 0 011-1zm.5 1h3"
         />
       </svg>
       <svg
         *ngSwitchCase="size?.indexOf('medium') === 0 ? size : ''"
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 36 36"
@@ -37,6 +39,7 @@ import { IconBase } from '../icon-base';
       </svg>
       <svg
         *ngSwitchCase="size?.indexOf('large') === 0 ? size : ''"
+        focusable="false"
         [attr.class]="'sbb-svg-icon ' + svgClass"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 48 48"
@@ -44,7 +47,7 @@ import { IconBase } from '../icon-base';
         <path
           fill="none"
           stroke="#000"
-          d="M30.5 20.41c0-1.05.836-1.91 1.857-1.91h9.286c1.021 0 1.857.86 1.857 1.91V37.59c0 1.05-.836 1.91-1.857 1.91h-9.286c-1.021 0-1.857-.86-1.857-1.91V20.41zM36 37.5h2m-7.5-2h13m-8.5-15h4m-10 14H6.493A1.993 1.993 0 0 1 4.5 32.508V31.5H29m0 0H7.5l-.062-20.997c0-1.106.896-2.003 2.003-2.003h29.055c1.108 0 2.004.897 2.004 2.003V17m-31 14.5v-21h29V17"
+          d="M30.5 20.41c0-1.05.836-1.91 1.857-1.91h9.286c1.021 0 1.857.86 1.857 1.91V37.59c0 1.05-.836 1.91-1.857 1.91h-9.286c-1.021 0-1.857-.86-1.857-1.91V20.41zM36 37.5h2m-7.5-2h13m-8.5-15h4m-10 14H6.493A1.993 1.993 0 014.5 32.508V31.5H29m0 0H7.5l-.062-20.997c0-1.106.896-2.003 2.003-2.003h29.055c1.108 0 2.004.897 2.004 2.003V17m-31 14.5v-21h29V17"
         />
       </svg>
     </ng-container>

@@ -194,7 +194,7 @@ class SvgFile {
             const name = filepath.substring(lastSlashIndex + 1, filepath.lastIndexOf('.'));
             const modules = filepath.substring(0, lastSlashIndex).split('/');
             const content = entry.content.toString('utf8');
-            const template = (yield Svgo.optimize(content)).replace('<svg ', `<svg [attr.class]="'sbb-svg-icon ' + svgClass" `);
+            const template = (yield Svgo.optimize(content)).replace('<svg ', `<svg focusable="false" [attr.class]="'sbb-svg-icon ' + svgClass" `);
             const width = SvgFile._determineDimension(/( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g, content, filepath);
             const height = SvgFile._determineDimension(/( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g, content, filepath);
             return new SvgFile(name, modules, filepath, template, `${width}px`, `${height}px`, width / height);

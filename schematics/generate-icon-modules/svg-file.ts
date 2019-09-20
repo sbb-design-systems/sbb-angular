@@ -22,7 +22,7 @@ export class SvgFile {
     const content = entry.content.toString('utf8');
     const template = (await Svgo.optimize(content)).replace(
       '<svg ',
-      `<svg [attr.class]="'sbb-svg-icon ' + svgClass" `
+      `<svg focusable="false" [attr.class]="'sbb-svg-icon ' + svgClass" `
     );
     const width = SvgFile._determineDimension(
       /( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g,

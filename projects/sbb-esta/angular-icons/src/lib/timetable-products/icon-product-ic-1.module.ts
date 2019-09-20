@@ -11,6 +11,7 @@ import { IconBase } from '../icon-base';
   // tslint:disable:max-line-length
   template: `
     <svg
+      focusable="false"
       [attr.class]="'sbb-svg-icon ' + svgClass"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 59 20"
@@ -20,7 +21,7 @@ import { IconBase } from '../icon-base';
         <path
           fill="#FFF"
           fill-rule="nonzero"
-          d="M42.26 4.235V15.8h-2.303V8.23h-2.712V6.553a5.794 5.794 0 0 0 1.376-.174c.353-.1.684-.266.974-.49.425-.327.712-.878.859-1.654h1.805zM9.221 4.2h4.056L8.259 15.8H4.186zM15.948 4.2h14.395l-1.49 3.445H18.572l-2.041 4.71h10.285l-1.49 3.445H10.931z"
+          d="M42.26 4.235V15.8h-2.303V8.23h-2.712V6.553a5.794 5.794 0 001.376-.174c.353-.1.684-.266.974-.49.425-.327.712-.878.859-1.654h1.805zM9.221 4.2h4.056L8.259 15.8H4.186zM15.948 4.2h14.395l-1.49 3.445H18.572l-2.041 4.71h10.285l-1.49 3.445H10.931z"
         />
       </g>
     </svg>

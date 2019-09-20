@@ -62,13 +62,7 @@ export abstract class IconBase {
   private _inputWidth: string;
   private _inputHeight: string;
 
-  constructor(
-    private readonly _dimension: {
-      width: string;
-      height: string;
-      ratio: number;
-    }
-  ) {}
+  constructor(private readonly _dimension: { width: string; height: string; ratio: number }) {}
 
   private _isFixed() {
     return !this.size.endsWith('grow');
