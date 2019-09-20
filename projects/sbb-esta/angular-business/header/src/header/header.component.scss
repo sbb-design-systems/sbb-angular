@@ -216,10 +216,6 @@ $buttonMarginTop: calc(54px / 2 - 15px);
   }
 
   &-logo {
-    &.hidden-logo {
-      display: none;
-    }
-
     svg {
       width: 80px;
     }

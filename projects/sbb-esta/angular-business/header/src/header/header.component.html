@@ -32,7 +32,7 @@
 
   <!-- If an icon is provided, use that, otherwise use the sbb logo -->
   <!-- TODO: make cleaner -->
-  <div #iconContent class="sbb-header-logo" [class.hidden-logo]="!iconContent.childElementCount">
+  <div #iconContent class="sbb-header-logo" [hidden]="!iconContent.childElementCount">
     <ng-content select="[brand],.brand"></ng-content>
   </div>
   <div *ngIf="!iconContent.childElementCount" class="sbb-header-logo">
