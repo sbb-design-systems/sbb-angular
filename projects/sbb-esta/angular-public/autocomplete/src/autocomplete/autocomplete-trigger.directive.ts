@@ -23,7 +23,6 @@ import {
   Input,
   NgZone,
   OnDestroy,
-  OnInit,
   Optional,
   ViewContainerRef
 } from '@angular/core';
@@ -31,7 +30,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  HighlightPipe,
   OptionComponent,
   SBBOptionSelectionChange
 } from '@sbb-esta/angular-public/option';
@@ -44,7 +42,7 @@ import {
   Subject,
   Subscription
 } from 'rxjs';
-import { delay, filter, first, map, switchMap, take, tap } from 'rxjs/operators';
+import { delay, filter, first, map, switchMap, tap } from 'rxjs/operators';
 
 import { AutocompleteOriginDirective } from './autocomplete-origin.directive';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -126,7 +124,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   /** Stream of keyboard events that can close the panel. */
   private readonly _closeKeyEventStream = new Subject<void>();
   private _overlayAttached = false;
-  private _highlightPipe = new HighlightPipe();
 
   @HostBinding('attr.role') get role() {
     return this._autocompleteDisabled ? null : 'combobox';
@@ -163,21 +160,24 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
     // Return a stream that we'll replace with the real one once everything is in place.
     return this._zone.onStable.asObservable().pipe(
-      take(1),
+      first(),
       switchMap(() => this.optionSelections)
     );
   });
 
+  // TODO: Re-assign HostListener
   @HostListener('blur')
   onBlur() {
     this.onTouched();
   }
 
+  // TODO: Re-assign HostListener
   @HostListener('input', ['$event'])
   onInput($event: KeyboardEvent) {
     this.handleInput($event);
   }
 
+  // TODO: Re-assign HostListener
   @HostListener('keydown', ['$event'])
   onKeydown($event: KeyboardEvent) {
     this.handleKeydown($event);
@@ -400,10 +400,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
         this.scrollToOption();
       }
     }
-    this._zone.onStable
-      .asObservable()
-      .pipe()
-      .subscribe(() => this.highlightOptionsByInput(this._elementRef.nativeElement.value));
+    this.highlightOptionsByInput(this._elementRef.nativeElement.value);
   }
 
   scrollToOption(): void {
@@ -424,14 +421,18 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
-  highlightOptionsByInput(value: number | string) {
-    this.autocomplete.options
-      .filter(option => !option.group)
-      .forEach(option => {
-        option.getHostElement().innerHTML = this._highlightPipe.transform(
-          option.getHostElement().textContent,
-          value
-        );
+  highlightOptionsByInput(value: string) {
+    if (!this.autocomplete) {
+      return;
+    }
+
+    this._zone.onStable
+      .asObservable()
+      .pipe(first())
+      .subscribe(() => {
+        this.autocomplete.options
+          .filter(option => !option.group)
+          .forEach(option => option._highlight(value));
       });
   }
 
@@ -443,7 +444,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (target.type === 'number') {
       value = value === '' ? null : parseFloat(value);
     }
-    this.highlightOptionsByInput(value);
 
     // If the input has a placeholder, IE will fire the `input` event on page load,
     // focus and blur, in addition to when the user actually changed the value. To
@@ -453,6 +453,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
       this.onChange(value);
+      this.highlightOptionsByInput(target.value);
 
       if (this._canOpen()) {
         this.openPanel();

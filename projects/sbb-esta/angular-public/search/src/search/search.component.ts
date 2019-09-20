@@ -47,7 +47,6 @@ import {
 import {
   countGroupLabelsBeforeOption,
   getOptionScrollPosition,
-  HighlightPipe,
   OptionComponent,
   SBBOptionSelectionChange
 } from '@sbb-esta/angular-public/option';
@@ -166,7 +165,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   private readonly _closeKeyEventStream = new Subject<void>();
 
   private _overlayAttached = false;
-  private _highlightPipe = new HighlightPipe();
 
   /**
    * Used to switch from trigger to search box when in 'header' mode
@@ -523,10 +521,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     } else if (keyCode === ENTER) {
       this.emitSearch();
     }
-    this._zone.onStable
-      .asObservable()
-      .pipe()
-      .subscribe(() => this.highlightOptionsByInput(this.input.nativeElement.value));
+    this.highlightOptionsByInput(this.input.nativeElement.value);
   }
 
   /**
@@ -550,20 +545,20 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this.autocomplete.setScrollTop(newScrollPosition);
   }
 
-  /**
-   * Highlights options available into the autocomplete panel while typing
-   */
-  highlightOptionsByInput(value: number | string) {
-    if (!this.autocompleteDisabled) {
-      this.autocomplete.options
-        .filter(option => !option.group)
-        .forEach(option => {
-          option.getHostElement().innerHTML = this._highlightPipe.transform(
-            option.getHostElement().textContent,
-            value
-          );
-        });
+  /** @docs-private */
+  highlightOptionsByInput(value: string) {
+    if (this.autocompleteDisabled) {
+      return;
     }
+
+    this._zone.onStable
+      .asObservable()
+      .pipe()
+      .subscribe(() => {
+        this.autocomplete.options
+          .filter(option => !option.group)
+          .forEach(option => option._highlight(value));
+      });
   }
 
   /** @docs-private */
@@ -580,7 +575,6 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     if (target.type === 'number') {
       value = value === '' ? null : parseFloat(value);
     }
-    this.highlightOptionsByInput(value);
 
     // If the input has a placeholder, IE will fire the `input` event on page load,
     // focus and blur, in addition to when the user actually changed the value. To
@@ -590,6 +584,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     if (this._previousValue !== value && document.activeElement === event.target) {
       this._previousValue = value;
       this.onChange(value);
+      this.highlightOptionsByInput(target.value);
 
       if (this._canOpen()) {
         this.openPanel();

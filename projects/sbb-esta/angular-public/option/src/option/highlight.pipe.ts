@@ -1,5 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * @deprecated Implemented internally.
+ * TODO: Remove for Angular 9.
+ */
 @Pipe({
   name: 'highlight'
 })
