@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.5.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.4.1...8.5.0) (2019-09-20)
+
+
+### Bug Fixes
+
+* **showcase:** correct import from [@angular](https://github.com/angular) to [@sbb-esta](https://github.com/sbb-esta) ([#180](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/180)) ([fac7916](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/fac7916))
+* **table:** show pin mode shadow with OnPush change detection ([#179](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/179)) ([d97749a](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/d97749a)), closes [#177](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/177)
+
+
+### Features
+
+* **header:** allow custom components for user menu and as additional header elements ([a4cf3e6](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/a4cf3e6))
+
+
+
 ### [8.4.1](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.4.0...8.4.1) (2019-09-17)
 
 
