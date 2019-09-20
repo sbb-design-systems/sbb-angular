@@ -218,14 +218,30 @@ export abstract class TooltipBase implements OnDestroy {
       .withPush(false)
       .withPositions([
         {
-          originX: 'start',
+          originX: 'center',
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
           panelClass: 'sbb-tooltip-content-below'
         },
         {
+          originX: 'end',
+          originY: 'bottom',
+          overlayX: 'end',
+          overlayY: 'top',
+          offsetX: 5,
+          panelClass: ['sbb-tooltip-content-below', 'sbb-tooltip-content-left']
+        },
+        {
           originX: 'start',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top',
+          offsetX: -5,
+          panelClass: ['sbb-tooltip-content-below', 'sbb-tooltip-content-right']
+        },
+        {
+          originX: 'center',
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
@@ -233,17 +249,19 @@ export abstract class TooltipBase implements OnDestroy {
         },
         {
           originX: 'end',
-          originY: 'bottom',
-          overlayX: 'end',
-          overlayY: 'top',
-          panelClass: 'sbb-tooltip-content-below'
-        },
-        {
-          originX: 'end',
           originY: 'top',
           overlayX: 'end',
           overlayY: 'bottom',
-          panelClass: 'sbb-tooltip-content-above'
+          offsetX: 5,
+          panelClass: ['sbb-tooltip-content-above', 'sbb-tooltip-content-left']
+        },
+        {
+          originX: 'start',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom',
+          offsetX: -5,
+          panelClass: ['sbb-tooltip-content-above', 'sbb-tooltip-content-right']
         }
       ]);
   }
