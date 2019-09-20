@@ -79,6 +79,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     ```
 
 * In GitHub, send a pull request to `sbb-angular:master`.
+The PR title and message should as well conform to the [commit message conventions](#commit).
 
 Note: Our builds often run out of memory. To ensure the build can run, set the NODE_OPTIONS environment variable
 to `--max_old_space_size=7168` either locally or globally.
