@@ -24,7 +24,6 @@ Repository][github]. If you would like to *implement* a new feature, please subm
 a proposal for your work first, to be sure that we can use it. 
 Please consider what kind of change it is:
 
-* For a **Major Feature**, first open an issue and outline your proposal so that it can be
 discussed. This will also allow us to better coordinate our efforts, prevent duplication of work,
 and help you to craft the change so that it is successfully accepted into the project.
 * **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
@@ -79,6 +78,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     ```
 
 * In GitHub, send a pull request to `sbb-angular:master`.
+The PR title and message should as well conform to the [commit message conventions](#commit).
 
 Note: Our builds often run out of memory. To ensure the build can run, set the NODE_OPTIONS environment variable
 to `--max_old_space_size=7168` either locally or globally.
