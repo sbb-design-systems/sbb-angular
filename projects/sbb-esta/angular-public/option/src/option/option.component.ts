@@ -1,6 +1,7 @@
 import { Highlightable } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
   ChangeDetectionStrategy,
@@ -120,8 +121,13 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
+  private _originalInnerHtml?: string;
+  private _highlightValue?: string;
+  private _highlighted = false;
+
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
+    @Inject(DOCUMENT) private _document: any,
     private _changeDetectorRef: ChangeDetectorRef,
     @Optional()
     @Inject(SBB_OPTION_PARENT_COMPONENT)
@@ -217,8 +223,84 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     this.stateChanges.complete();
   }
 
+  /** @docs-private */
+  _highlight(value: string) {
+    if (this._originalInnerHtml === undefined) {
+      this._originalInnerHtml = this._elementRef.nativeElement.innerHTML;
+    } else if (value === this._highlightValue) {
+      return;
+    } else if (this._highlighted) {
+      this._elementRef.nativeElement.innerHTML = this._originalInnerHtml;
+      this._highlighted = false;
+    }
+
+    this._highlightValue = value;
+    if (value && this._originalInnerHtml) {
+      // Escape all regex characters
+      const escapedValue = value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+      const replacement = new RegExp(`${escapedValue}+`, 'i');
+      const nodes = this._findAllTextNodesWithMatch(replacement);
+      nodes.forEach(n => this._highlightNode(n, replacement));
+      this._highlighted = !!nodes.length;
+    }
+  }
+
   private _emitSelectionChangeEvent(isUserInput = false): void {
     this.onSelectionChange.emit(new SBBOptionSelectionChange(this, isUserInput));
+  }
+
+  private _findAllTextNodesWithMatch(
+    matcher: RegExp,
+    node: Node = this._elementRef.nativeElement
+  ): ChildNode[] {
+    const nodes: ChildNode[] = [];
+    const childNodes = node.childNodes;
+    for (let i = 0; i < childNodes.length; i++) {
+      const childNode = childNodes[i];
+      // Text nodes are nodeType 3
+      if (childNode.nodeType === 3 && matcher.test(childNode.textContent)) {
+        nodes.push(childNode);
+      } else if (childNode.childNodes.length) {
+        nodes.push(...this._findAllTextNodesWithMatch(matcher, childNode));
+      }
+    }
+
+    return nodes;
+  }
+
+  /**
+   * Replace the content with a (partial) match, with text nodes and span elements
+   * which contain the highlightable content.
+   * @param node The node with (partial) content to highlight.
+   * @param matcher The content to highlight.
+   */
+  private _highlightNode(node: ChildNode, matcher: RegExp) {
+    const nodes: Node[] = [];
+    const doc: Document = this._document;
+    matcher.lastIndex = 0;
+    let text = node.textContent;
+    let match: RegExpMatchArray;
+    do {
+      match = text.match(matcher);
+      if (!match) {
+        nodes.push(doc.createTextNode(text));
+        continue;
+      } else if (match.index) {
+        nodes.push(doc.createTextNode(text.substring(0, match.index)));
+        text = text.substring(match.index);
+      }
+
+      // TODO: Check whether span.highlight should be replaced with strong
+      const span = doc.createElement('span');
+      span.classList.add('highlight');
+      span.textContent = match[0];
+      nodes.push(span);
+      text = text.substring(match[0].length);
+    } while (match);
+
+    const parent = node.parentNode;
+    nodes.forEach(n => parent.insertBefore(n, node));
+    parent.removeChild(node);
   }
 }
 
