@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from 'ng-bullet';
 
-import { RadioButtonRegistryService } from './radio-button-registry.service';
 import { RadioButtonComponent } from './radio-button.component';
 
 // tslint:disable:i18n
@@ -31,8 +30,7 @@ describe('RadioButtonComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
-      declarations: [RadioButtonComponent],
-      providers: [RadioButtonRegistryService]
+      declarations: [RadioButtonComponent]
     }).overrideComponent(RadioButtonComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
     });
@@ -50,7 +48,7 @@ describe('RadioButtonComponent', () => {
   });
 
   it('should have a generated id if not provided', () => {
-    expect(component.inputId).toContain('sbb-radio-button-');
+    expect(component.inputId).toMatch(/sbb-radio-button-\d+-input/);
   });
 });
 
@@ -61,8 +59,7 @@ describe('RadioButtonComponent using mock component', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
-      declarations: [RadioButtonComponent, ModelRadioButtonTestComponent],
-      providers: [RadioButtonRegistryService]
+      declarations: [RadioButtonComponent, ModelRadioButtonTestComponent]
     }).overrideComponent(RadioButtonComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
     });
@@ -123,31 +120,27 @@ describe('RadioButtonComponent using mock component', () => {
   });
 
   it('should checked if model is equal to value', async () => {
-    const radiobuttonLabel = modelComponentFixture.debugElement.query(
-      By.css('label[for="test-radio-1"]')
+    const [radiobuttonLabel, radiobuttonLabel2] = modelComponentFixture.debugElement.queryAll(
+      By.css('label')
     );
     expect(radiobuttonLabel).toBeTruthy();
+    expect(radiobuttonLabel2).toBeTruthy();
 
     modelComponent.testValue = '1';
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();
 
-    const components = modelComponentFixture.debugElement.queryAll(
+    const [firstComponent, secondComponent] = modelComponentFixture.debugElement.queryAll(
       By.directive(RadioButtonComponent)
     );
-    expect(components[0].componentInstance._checked).toBe(true);
-
-    const radiobuttonLabel2 = modelComponentFixture.debugElement.query(
-      By.css('label[for="test-radio-2"]')
-    );
-    expect(radiobuttonLabel2).toBeTruthy();
+    expect(firstComponent.componentInstance._checked).toBe(true);
 
     radiobuttonLabel2.nativeElement.click();
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();
-    expect(components[1].componentInstance._checked).toBe(true);
-    expect(modelComponent.testValue).toBe(components[1].componentInstance.value);
+    expect(secondComponent.componentInstance._checked).toBe(true);
+    expect(modelComponent.testValue).toBe(secondComponent.componentInstance.value);
   });
 });

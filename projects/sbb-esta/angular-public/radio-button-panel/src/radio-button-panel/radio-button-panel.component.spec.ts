@@ -3,7 +3,6 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { createFakeEvent } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
@@ -96,18 +95,16 @@ describe('RadioButtonPanelComponent using mock component', () => {
   });
 
   it('should be mutual exclusive', async () => {
-    const opt1: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[0];
-    const opt2: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[1];
-
+    const [label1, label2] = modelComponentFixture.debugElement.queryAll(By.css('label'));
     await modelComponentFixture.whenRenderingDone();
 
-    opt1.click(createFakeEvent('click'));
+    label1.nativeElement.click();
     modelComponentFixture.detectChanges();
 
     let checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
     expect(checkedComponents.length).toBe(1);
 
-    opt2.click(createFakeEvent('click'));
+    label2.nativeElement.click();
     modelComponentFixture.detectChanges();
 
     checkedComponents = modelComponent.optionSelections.filter(o => o.checked === true);
@@ -115,8 +112,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
   });
 
   it('should checked if model is equal to value', async () => {
-    const opt1: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[0];
-    const opt2: RadioButtonPanelComponent = modelComponent.optionSelections.toArray()[1];
+    const [opt1, opt2] = modelComponent.optionSelections.toArray();
 
     modelComponent.testValue = '1';
     modelComponentFixture.detectChanges();
@@ -125,7 +121,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
 
     expect(opt1.checked).toBe(true);
 
-    opt2.click(createFakeEvent('click'));
+    opt2.checked = true;
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();

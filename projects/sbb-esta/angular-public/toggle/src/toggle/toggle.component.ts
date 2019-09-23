@@ -145,6 +145,7 @@ export class ToggleComponent extends RadioButton
     this.onTouched = fn;
   }
 
+  /** @deprecated Use .checked instead */
   uncheck() {}
 
   private _checkName(): void {
