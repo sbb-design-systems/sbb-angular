@@ -1,3 +1,5 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
@@ -9,7 +11,6 @@ import {
   forwardRef,
   HostBinding,
   Inject,
-  Injector,
   Input,
   TemplateRef,
   ViewChild,
@@ -17,10 +18,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
-import {
-  RadioButtonComponent,
-  RadioButtonRegistryService
-} from '@sbb-esta/angular-public/radio-button';
+import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
 import { Subject } from 'rxjs';
 
 import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
@@ -43,78 +41,26 @@ let counter = 0;
 })
 export class ToggleOptionComponent extends RadioButtonComponent
   implements ToggleBase, AfterViewInit {
-  /**
-   * Identifier of a sbb-toggle-option.
-   */
-  @Input()
-  inputId = `sbb-toggle-option-${counter++}`;
+  /** Identifier of sbb-toggle label. */
+  readonly labelId: string;
+  /** Identifier of sbb-toggle content. */
+  readonly contentId: string;
+  /** @docs-private */
+  @HostBinding('class.sbb-toggle-option') toggleOptionClass = true;
+  /** Label of a sbb-toggle-option. */
+  @Input() label: string;
+  /** Information text in a sbb-toggle-option. */
+  @Input() infoText?: string;
 
-  /**
-   * Identifier of sbb-toggle label.
-   */
-  get labelId() {
-    return `${this.inputId}-label`;
-  }
-
-  /**
-   * Identifier of sbb-toggle content.
-   */
-  get contentId() {
-    return `${this.inputId}-content`;
-  }
-
-  /**
-   * Css class of sbb-toggle-option.
-   */
-  @HostBinding('class.sbb-toggle-option')
-  toggleOptionClass = true;
-
-  /**
-   * Label of a sbb-toggle-option.
-   */
-  @Input()
-  label: string;
-
-  /**
-   * Information text in a sbb-toggle-option.
-   */
-  @Input()
-  infoText?: string;
-
-  /**
-   * Value of a sbb-toggle-option.
-   */
-  @Input()
-  value: any;
-
-  private _toggleChecked: boolean;
-
-  /**
-   * Verifies if a sbb-toggle-option is selected.
-   */
-  @Input()
+  /** @docs-private */
   @HostBinding('class.sbb-toggle-option-selected')
-  get checked(): boolean {
-    return this._toggleChecked;
-  }
-  set checked(value: boolean) {
-    const previousStatus = this._toggleChecked;
-    this._toggleChecked = value;
-
-    if (this._toggleChecked) {
-      this._registry.select(this);
-    }
-
-    // No need to fire a valueChange event if the value didn't change!
-    if (previousStatus !== this._toggleChecked) {
-      this.valueChange$.next(this.value);
-    }
-    this._changeDetector.markForCheck();
+  get _isChecked() {
+    return this.checked;
   }
 
   /**
    * Name of a toggle parent of options.
-   * It should not be used here but it should be set on sbb-toggle.
+   * Can only be set on sbb-toggle.
    */
   @Input()
   get name() {
@@ -127,16 +73,13 @@ export class ToggleOptionComponent extends RadioButtonComponent
 
   /**
    * @docs-private
+   * @deprecated
    * It should not be used here but it should be set on sbb-toggle.
    */
   @Input()
   get formControlName() {
     return null;
   }
-
-  /**
-   * @docs-private
-   */
   set formControlName(value) {
     throw new Error(`You're trying to assign the formControlName "${value}" directly on sbb-toggle-option.
      Please bind it to its parent <sbb-toggle> component.`);
@@ -157,33 +100,15 @@ export class ToggleOptionComponent extends RadioButtonComponent
   }
 
   /**
-   * Verifies if a toggle option is disabled.
-   */
-  @Input()
-  disabled = false;
-
-  /**
    * Verifies the presence of text in a toggle option.
    */
   toggleOptionHasContent = true;
 
   /**
    * Observable on change of the value of a toggle option.
+   * @deprecated Listen to (change).
    */
   valueChange$ = new Subject<any>();
-
-  private _document: Document;
-
-  constructor(
-    @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
-    registry: RadioButtonRegistryService,
-    changeDetector: ChangeDetectorRef,
-    injector: Injector,
-    @Inject(DOCUMENT) document: any
-  ) {
-    super(changeDetector, registry, injector);
-    this._document = document;
-  }
 
   /**
    * Refers to the icon optionally contained in a toggle option.
@@ -204,6 +129,24 @@ export class ToggleOptionComponent extends RadioButtonComponent
    */
   filteredContentNodes: ChildNode[] = [];
 
+  private _document: Document;
+
+  constructor(
+    @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
+    changeDetector: ChangeDetectorRef,
+    elementRef: ElementRef,
+    focusMonitor: FocusMonitor,
+    radioDispatcher: UniqueSelectionDispatcher,
+    @Inject(DOCUMENT) document: any
+  ) {
+    super(changeDetector, elementRef, focusMonitor, radioDispatcher);
+    this._document = document;
+    this.id = `sbb-toggle-option-${counter++}`;
+    this.inputId = `${this.id}-input`;
+    this.labelId = `${this.inputId}-label`;
+    this.contentId = `${this.inputId}-content`;
+  }
+
   ngAfterViewInit() {
     const nodeList = this.contentContainer.nativeElement.childNodes;
     for (let k = 0; k < nodeList.length; k++) {
@@ -222,6 +165,7 @@ export class ToggleOptionComponent extends RadioButtonComponent
   /**
    * Set value of a toggle option to checked.
    * @param checked Value checked.
+   * @deprecated Use .checked instead.
    */
   setToggleChecked(checked: boolean) {
     this.onChange(checked);

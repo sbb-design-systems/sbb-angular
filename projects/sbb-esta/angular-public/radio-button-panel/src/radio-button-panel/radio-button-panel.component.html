@@ -3,23 +3,26 @@
   [class.sbb-checkbox-radio-button-panel-required]="required"
   [class.sbb-checkbox-radio-button-panel-disabled]="disabled"
   [class.sbb-checkbox-radio-button-panel-checked]="checked"
-  [class.sbb-checkbox-radio-button-panel-has-subtitle]="hasSubtitle"
+  [class.sbb-checkbox-radio-button-panel-has-subtitle]="!!subtitle"
 >
   <div class="sbb-checkbox-radio-button-panel-header">
     <input
+      #input
       type="radio"
       class="cdk-visually-hidden"
       [id]="inputId"
-      [name]="name"
-      [value]="value"
-      [required]="required"
       [checked]="checked"
       [attr.aria-checked]="checked"
+      [disabled]="disabled"
+      [tabIndex]="tabIndex"
+      [attr.name]="name"
+      [attr.value]="value"
+      [required]="required"
       [attr.aria-label]="ariaLabel"
       [attr.aria-labelledby]="ariaLabelledby"
       [attr.aria-describedby]="ariaDescribedby"
-      [disabled]="disabled"
-      (click)="click($event)"
+      (change)="_onInputChange($event)"
+      (click)="_onInputClick($event)"
     />
 
     <div class="sbb-radio-circle-container">

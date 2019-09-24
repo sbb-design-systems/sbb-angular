@@ -1,21 +1,24 @@
 <label [attr.for]="inputId" class="sbb-toggle-option-button">
   <div class="sbb-toggle-option-button-inner">
     <input
+      #input
       type="radio"
       class="cdk-visually-hidden"
       [id]="inputId"
-      [name]="name"
-      [value]="value"
-      [required]="required"
       [checked]="checked"
       [attr.aria-checked]="checked"
+      [disabled]="disabled"
+      [tabIndex]="tabIndex"
+      [attr.name]="name"
+      [attr.value]="value"
+      [required]="required"
       [attr.aria-label]="ariaLabel"
       [attr.aria-labelledby]="ariaLabelledby"
       [attr.aria-describedby]="ariaDescribedby"
-      [disabled]="disabled"
       [attr.aria-controls]="ariaControls"
       [attr.aria-expanded]="ariaExpandedValue"
-      (click)="click($event)"
+      (change)="_onInputChange($event)"
+      (click)="_onInputClick($event)"
     />
     <span class="sbb-toggle-option-button-label-wrapper">
       <span *ngIf="icon" role="presentation" class="sbb-toggle-option-button-icon">

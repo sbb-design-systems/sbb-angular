@@ -1,18 +1,16 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
-  HostBinding,
-  Injector,
   Input,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  RadioButtonComponent,
-  RadioButtonRegistryService
-} from '@sbb-esta/angular-public/radio-button';
+import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
 
 let counter = 0;
 
@@ -31,26 +29,16 @@ let counter = 0;
   encapsulation: ViewEncapsulation.None
 })
 export class RadioButtonPanelComponent extends RadioButtonComponent {
-  /**
-   * Label of a radio button panel.
-   */
+  /** Label of a radio button panel. */
   @Input()
   label: string;
-  /**
-   * Subtitle of a radio button panel.
-   */
+  /** Subtitle of a radio button panel. */
   @Input()
   subtitle?: string;
 
   /**
-   * Radio button panel identifier
-   */
-  @Input()
-  @HostBinding('id')
-  inputId = `sbb-radio-button-panel-${counter++}`;
-
-  /**
    * Returns the subtitle of a radio button panel.
+   * @deprecated Check .subtitle
    */
   get hasSubtitle() {
     return !!this.subtitle;
@@ -58,9 +46,12 @@ export class RadioButtonPanelComponent extends RadioButtonComponent {
 
   constructor(
     changeDetector: ChangeDetectorRef,
-    registry: RadioButtonRegistryService,
-    injector: Injector
+    elementRef: ElementRef,
+    focusMonitor: FocusMonitor,
+    radioDispatcher: UniqueSelectionDispatcher
   ) {
-    super(changeDetector, registry, injector);
+    super(changeDetector, elementRef, focusMonitor, radioDispatcher);
+    this.id = `sbb-radio-button-panel-${counter++}`;
+    this.inputId = `${this.id}-input`;
   }
 }

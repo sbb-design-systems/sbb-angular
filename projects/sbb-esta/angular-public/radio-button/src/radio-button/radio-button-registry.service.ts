@@ -3,6 +3,7 @@ import { NgControl } from '@angular/forms';
 
 import { RadioButton } from './radio-button.model';
 
+/** @deprecated Use UniqueSelectionDispatcher from CDK instead. */
 @Injectable({
   providedIn: 'root'
 })
