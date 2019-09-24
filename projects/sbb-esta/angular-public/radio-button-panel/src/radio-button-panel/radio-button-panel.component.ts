@@ -7,23 +7,26 @@ import {
   ElementRef,
   forwardRef,
   Input,
+  Optional,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
 
-let counter = 0;
-
+// TODO: Inherit directly from RadioButton
 @Component({
   selector: 'sbb-radio-button-panel',
   templateUrl: './radio-button-panel.component.html',
   styleUrls: ['./radio-button-panel.component.scss'],
+  inputs: ['tabIndex'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioButtonPanelComponent),
       multi: true
-    }
+    },
+    { provide: RadioButton, useExisting: RadioButtonPanelComponent }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
@@ -45,13 +48,12 @@ export class RadioButtonPanelComponent extends RadioButtonComponent {
   }
 
   constructor(
+    @Optional() radioGroup: RadioGroupDirective,
     changeDetector: ChangeDetectorRef,
     elementRef: ElementRef,
     focusMonitor: FocusMonitor,
     radioDispatcher: UniqueSelectionDispatcher
   ) {
-    super(changeDetector, elementRef, focusMonitor, radioDispatcher);
-    this.id = `sbb-radio-button-panel-${counter++}`;
-    this.inputId = `${this.id}-input`;
+    super(radioGroup, changeDetector, elementRef, focusMonitor, radioDispatcher);
   }
 }

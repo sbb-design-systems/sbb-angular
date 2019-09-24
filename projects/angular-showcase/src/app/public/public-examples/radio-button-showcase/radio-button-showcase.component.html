@@ -30,13 +30,11 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Radio buttons</h4>
-      <ng-container *ngFor="let option of radioOptions; index as i">
-        <div class="sbbsc-block">
-          <sbb-radio-button [(ngModel)]="modelValue" name="model-radio" [value]="option.value">{{
-            option.name
-          }}</sbb-radio-button>
-        </div>
-      </ng-container>
+      <sbb-radio-group [(ngModel)]="modelValue" class="sbbsc-block">
+        <sbb-radio-button *ngFor="let option of radioOptions; index as i" [value]="option.value">{{
+          option.name
+        }}</sbb-radio-button>
+      </sbb-radio-group>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Model</h4>
