@@ -12,41 +12,41 @@ import {
   HostBinding,
   Inject,
   Input,
+  Optional,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
+import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
 import { Subject } from 'rxjs';
 
-import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
+import { ToggleBase } from '../toggle.base';
 
-let counter = 0;
-
+// TODO: Inherit directly from RadioButton
 @Component({
   selector: 'sbb-toggle-option',
   templateUrl: './toggle-option.component.html',
   styleUrls: ['./toggle-option.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  inputs: ['tabIndex'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ToggleOptionComponent),
       multi: true
-    }
-  ]
+    },
+    { provide: RadioButton, useExisting: ToggleOptionComponent }
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class ToggleOptionComponent extends RadioButtonComponent
   implements ToggleBase, AfterViewInit {
-  /** Identifier of sbb-toggle label. */
-  readonly labelId: string;
-  /** Identifier of sbb-toggle content. */
-  readonly contentId: string;
   /** @docs-private */
   @HostBinding('class.sbb-toggle-option') toggleOptionClass = true;
+
   /** Label of a sbb-toggle-option. */
   @Input() label: string;
   /** Information text in a sbb-toggle-option. */
@@ -58,31 +58,14 @@ export class ToggleOptionComponent extends RadioButtonComponent
     return this.checked;
   }
 
-  /**
-   * Name of a toggle parent of options.
-   * Can only be set on sbb-toggle.
-   */
-  @Input()
-  get name() {
-    return `${this._parent.inputId}-option`;
-  }
-  set name(value) {
-    throw new Error(`You're trying to assign the name "${value}" directly on sbb-toggle-option.
-     Please bind it to its parent <sbb-toggle> component.`);
+  /** Identifier of sbb-toggle label. */
+  get labelId() {
+    return `${this.inputId}-label`;
   }
 
-  /**
-   * @docs-private
-   * @deprecated
-   * It should not be used here but it should be set on sbb-toggle.
-   */
-  @Input()
-  get formControlName() {
-    return null;
-  }
-  set formControlName(value) {
-    throw new Error(`You're trying to assign the formControlName "${value}" directly on sbb-toggle-option.
-     Please bind it to its parent <sbb-toggle> component.`);
+  /** Identifier of sbb-toggle content. */
+  get contentId() {
+    return `${this.inputId}-content`;
   }
 
   /**
@@ -132,22 +115,20 @@ export class ToggleOptionComponent extends RadioButtonComponent
   private _document: Document;
 
   constructor(
-    @Inject(SBB_TOGGLE_COMPONENT) private _parent: ToggleBase,
+    @Optional() radioGroup: RadioGroupDirective,
     changeDetector: ChangeDetectorRef,
     elementRef: ElementRef,
     focusMonitor: FocusMonitor,
     radioDispatcher: UniqueSelectionDispatcher,
     @Inject(DOCUMENT) document: any
   ) {
-    super(changeDetector, elementRef, focusMonitor, radioDispatcher);
+    super(radioGroup, changeDetector, elementRef, focusMonitor, radioDispatcher);
     this._document = document;
-    this.id = `sbb-toggle-option-${counter++}`;
-    this.inputId = `${this.id}-input`;
-    this.labelId = `${this.inputId}-label`;
-    this.contentId = `${this.inputId}-content`;
+    this.change.subscribe((e: any) => this.valueChange$.next(e));
   }
 
   ngAfterViewInit() {
+    super.ngAfterViewInit();
     const nodeList = this.contentContainer.nativeElement.childNodes;
     for (let k = 0; k < nodeList.length; k++) {
       const node = nodeList.item(k);
@@ -168,9 +149,6 @@ export class ToggleOptionComponent extends RadioButtonComponent
    * @deprecated Use .checked instead.
    */
   setToggleChecked(checked: boolean) {
-    this.onChange(checked);
-    this.onTouched();
-    this.writeValue(checked);
     this.checked = checked;
   }
 }

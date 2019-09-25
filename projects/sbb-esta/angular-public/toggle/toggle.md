@@ -1,89 +1,94 @@
-You can use the toggle component as seen below
+The `<sbb-toggle>` component offers the user a choice of exactly two options.
 
 ```html
 <sbb-toggle>
   <sbb-toggle-option label="Option 1" value="dog"></sbb-toggle-option>
-  <sbb-toggle-option label]="Option 2" value="cat"></sbb-toggle-option>
+  <sbb-toggle-option label="Option 2" value="cat"></sbb-toggle-option>
 </sbb-toggle>
 ```
 
-### What does the module do?
+### Info text
 
-It offers the user a choice of exactly two options.
-
-### Characteristics
-
-The toggle button has two states:
-
-- First (first option chosen)
-- Second (second option selected)
-
-By default, the first option is always preselected.
-
-First simple example
+A `<sbb-toggle-option>` can have an optional info text, which will be shown below the label.
 
 ```html
-<sbb-toggle formControlName="test">
-  <sbb-toggle-option [label]="option1.label" [value]="option1.value"></sbb-toggle-option>
-  <sbb-toggle-option [label]="option2.label" [value]="option2.value"></sbb-toggle-option>
+<sbb-toggle>
+  <sbb-toggle-option label="Option 1" infoText="Detail 1" value="dog"></sbb-toggle-option>
+  <sbb-toggle-option label="Option 2" infoText="Detail 2" value="cat"></sbb-toggle-option>
 </sbb-toggle>
 ```
 
-Toggle button is shown in three modes:
+### Icon
 
-- with icon
-
-```html
-<h4>Toggle buttons used as Reactive forms</h4>
-<form [formGroup]="form" novalidate>
-  <sbb-toggle formControlName="test">
-    <sbb-toggle-option [label]="option1.label" [value]="option1.value">
-      <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
-      <sbb-toggle-option [label]="option2.label" [value]="option2.value"> </sbb-toggle-option>
-      <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
-    </sbb-toggle-option>
-  </sbb-toggle>
-</form>
-```
-
-- with info text
+A `<sbb-toggle-option>` can have an optional icon, which will be shown on the left side of
+the label.
 
 ```html
-<h4>Toggle buttons used without forms</h4>
-<sbb-toggle aria-labelledby="group_label_3" (toggleChange)="toggleChange($event)">
-  <sbb-toggle-option label="2. Klasse" infoText="- CHF 5.60" [value]="{ myObjectValue: true }">
+<sbb-toggle>
+  <sbb-toggle-option label="Option 1" value="dog">
+    <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
   </sbb-toggle-option>
-  <sbb-toggle-option label="1. Klasse" infoText="+ CHF 39.00" [value]="{ myObjectValue: false }">
+  <sbb-toggle-option label="Option 2" value="cat">
+    <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
   </sbb-toggle-option>
 </sbb-toggle>
 ```
 
-- with additional input context
+### Option content
+
+A `<sbb-toggle-option>` can have optional content, which will be shown below the option
+if the option is currently selected. This can be any kind of html content.
 
 ```html
-<h4>Toggle buttons simple example with info content</h4>
-<sbb-toggle aria-labelledby="group_label_1" [(ngModel)]="modelValue" name="test-toggle-2">
-  <sbb-toggle-option
-    *ngFor="let option of toggleOptions | async; let i = index;"
-    [label]="option.label"
-    [value]="option.value"
-  >
-    <ng-container *ngIf="i === 0">
-      <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
-    </ng-container>
-    <ng-container *ngIf="i === 1">
-      <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
-    </ng-container>
-    <sbb-field mode="long" *ngIf="i === 0">
-      <sbb-label for="name1">Select date</sbb-label>
-      <sbb-datepicker>
-        <input sbbDateInput type="text" />
-      </sbb-datepicker>
-    </sbb-field>
-    <p *ngIf="i === 1">
+<sbb-toggle>
+  <sbb-toggle-option label="Option 1" value="dog">
+    <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua.
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur.
     </p>
   </sbb-toggle-option>
+  <sbb-toggle-option label="Option 2" value="cat">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  </sbb-toggle-option>
 </sbb-toggle>
 ```
+
+### Use with `@angular/forms`
+
+`<sbb-toggle>` is compatible with `@angular/forms` and supports both `FormsModule`
+and `ReactiveFormsModule`.
+
+#### Template-driven forms
+
+```html
+<sbb-toggle [(ngModel)]="toggleValue">
+  <sbb-toggle-option label="Option 1" value="dog"></sbb-toggle-option>
+  <sbb-toggle-option label="Option 2" value="cat"></sbb-toggle-option>
+</sbb-toggle>
+```
+
+#### Reactive Forms
+
+```html
+<sbb-toggle formControlName="toggleValue">
+  <sbb-toggle-option label="Option 1" value="dog"></sbb-toggle-option>
+  <sbb-toggle-option label="Option 2" value="cat"></sbb-toggle-option>
+</sbb-toggle>
+```
+
+### Accessibility
+
+The `<sbb-toggle-option>` uses an internal `<input type="radio">` to provide an accessible experience.
+This internal radio button receives focus and is automatically labelled by the panel of the
+`<sbb-toggle-option>` element.

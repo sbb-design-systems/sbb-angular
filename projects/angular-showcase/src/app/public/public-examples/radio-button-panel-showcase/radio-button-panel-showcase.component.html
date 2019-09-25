@@ -50,16 +50,13 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Option selections</h4>
-      <ng-container *ngFor="let option of radioOptions; index as i">
-        <div class="sbbsc-block">
-          <sbb-radio-button-panel
-            [(ngModel)]="modelValue"
-            name="model-option-selection"
-            [value]="option.value"
-            [label]="option.name"
-          ></sbb-radio-button-panel>
-        </div>
-      </ng-container>
+      <sbb-radio-group [(ngModel)]="modelValue" class="sbbsc-block">
+        <sbb-radio-button-panel
+          *ngFor="let option of radioOptions; index as i"
+          [value]="option.value"
+          [label]="option.name"
+        ></sbb-radio-button-panel>
+      </sbb-radio-group>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Model</h4>

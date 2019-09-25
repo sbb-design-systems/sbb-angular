@@ -6,20 +6,12 @@
       </h4>
       <form [formGroup]="form" novalidate>
         <sbb-toggle aria-labelledby="group_label_2" formControlName="test">
-          <sbb-toggle-option
-            *ngFor="let option of toggleOptions | async; let i = index"
-            [infoText]="i === 0 ? 'info text' : undefined"
-            [label]="option.label"
-            [value]="option.value"
-          >
-            <ng-container *ngIf="i === 0">
-              <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
-            </ng-container>
-            <ng-container *ngIf="i === 1">
-              <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
-            </ng-container>
-
-            <sbb-field mode="long" *ngIf="i === 1">
+          <sbb-toggle-option infoText="info text" label="Einfache Fahrt" value="Option_1">
+            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+          </sbb-toggle-option>
+          <sbb-toggle-option label="Hin- und Rückfahrt" value="Option_2">
+            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
+            <sbb-field mode="long">
               <sbb-label for="name1">Select date</sbb-label>
               <sbb-datepicker>
                 <input sbbDateInput type="text" />
@@ -43,24 +35,18 @@
         Toggle buttons used as Template driven Form
       </h4>
       <sbb-toggle aria-labelledby="group_label_1" [(ngModel)]="modelValue" name="test-toggle-2">
-        <sbb-toggle-option
-          *ngFor="let option of toggleOptions | async; let i = index"
-          [label]="option.label"
-          [value]="option.value"
-        >
-          <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
-          </ng-container>
-          <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
-          </ng-container>
-          <sbb-field mode="long" *ngIf="i === 0">
-            <sbb-label for="name1">Select date</sbb-label>
+        <sbb-toggle-option infoText="info text" label="Einfache Fahrt" value="Option_1">
+          <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
+          <sbb-field mode="long">
+            <sbb-label>Select date</sbb-label>
             <sbb-datepicker>
-              <input sbbDateInput type="text" />
+              <input sbbDateInput sbbInput type="text" />
             </sbb-datepicker>
           </sbb-field>
-          <p *ngIf="i === 1">
+        </sbb-toggle-option>
+        <sbb-toggle-option label="Hin- und Rückfahrt" value="Option_2">
+          <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -81,7 +67,7 @@
       <h4 id="group_label_3" class="sbbsc-block">
         Toggle buttons simple use case no Forms attached
       </h4>
-      <sbb-toggle aria-labelledby="group_label_3" (toggleChange)="toggleChange($event)">
+      <sbb-toggle aria-labelledby="group_label_3" (change)="toggleChange($event)">
         <sbb-toggle-option
           label="2. Klasse"
           infoText="- CHF 5.60"

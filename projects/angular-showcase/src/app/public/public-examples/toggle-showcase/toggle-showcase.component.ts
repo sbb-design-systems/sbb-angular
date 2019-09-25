@@ -12,17 +12,6 @@ export class ToggleShowcaseComponent implements OnInit {
   modelValue = 'Option_1';
   modelReactive = 'Option_2';
 
-  toggleOptions: Observable<any> = of([
-    {
-      label: 'Einfache Fahrt',
-      value: 'Option_1'
-    },
-    {
-      label: 'Hin- und Rückfahrt',
-      value: 'Option_2'
-    }
-  ]);
-
   toggleValues: any;
 
   form = new FormGroup({

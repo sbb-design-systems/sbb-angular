@@ -94,7 +94,7 @@ export class PublicComponent implements ExampleProvider {
     'file-selector': {
       'file-selector-showcase': new ComponentPortal(FileSelectorShowcaseComponent)
     },
-    'radio-button': { 'radioButton-showcase': new ComponentPortal(RadioButtonShowcaseComponent) },
+    'radio-button': { 'radio-button-showcase': new ComponentPortal(RadioButtonShowcaseComponent) },
     'radio-button-panel': {
       'radio-button-panel-showcase': new ComponentPortal(RadioButtonPanelShowcaseComponent)
     },

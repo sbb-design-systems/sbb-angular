@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -15,15 +16,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioButton } from '@sbb-esta/angular-public/radio-button';
-import { merge, Observable, Subscription } from 'rxjs';
+import { RadioChange, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { first } from 'rxjs/operators';
 
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
-import { SBB_TOGGLE_COMPONENT, ToggleBase } from '../toggle.base';
+import { SBB_TOGGLE_COMPONENT } from '../toggle.base';
 
-let counter = 0;
-
+// TODO: Change this to a directive
 @Component({
   selector: 'sbb-toggle',
   templateUrl: './toggle.component.html',
@@ -37,145 +36,81 @@ let counter = 0;
     {
       provide: SBB_TOGGLE_COMPONENT,
       useExisting: ToggleComponent
+    },
+    {
+      provide: RadioGroupDirective,
+      useExisting: ToggleComponent
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ToggleComponent extends RadioButton
-  implements ToggleBase, ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
-  /**
-   * Radio button panel identifier
-   */
-  @Input()
-  @HostBinding('id')
-  inputId = `sbb-toggle-${counter++}`;
+export class ToggleComponent extends RadioGroupDirective
+  implements ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
+  /** @docs-private */
+  @HostBinding('class.sbb-toggle')
+  toggleClass = true;
 
   /**
    * Indicates radio button name in formControl
+   * @deprecated
    */
   @Input()
   formControlName: string;
 
   /**
-   * Attribute name of sbb-toggle.
-   */
-  @Input()
-  name: string;
-
-  /**
-   * Css class on sbb-toggle.
-   */
-  @HostBinding('class.sbb-toggle')
-  toggleClass = true;
-
-  /**
-   * Role of sbb-toggle.
-   */
-  @HostBinding('attr.role')
-  role = 'radiogroup';
-
-  /**
    * Event generated on a change of sbb-toggle.
+   * @deprecated Use change event.
    */
   @Output()
-  toggleChange = new EventEmitter<any[]>();
+  toggleChange: EventEmitter<RadioChange> = this.change;
 
   /**
    * Reference to sbb-toggle-options.
+   * @deprecated
    */
   @ContentChildren(forwardRef(() => ToggleOptionComponent))
   toggleOptions: QueryList<ToggleOptionComponent>;
 
-  private _toggleValueChangesSubscription = Subscription.EMPTY;
-  private _toggleValueChanges$: Observable<any>;
-
   /**
-   * Class property that represents a change on the radio button
+   * @deprecated
+   * @docs-private
    */
-  onChange = (_: any) => {};
-
-  /**
-   * Class property that represents a touch on the radio button
-   */
-  onTouched = () => {};
-
-  constructor(private _zone: NgZone) {
-    super();
+  get onChange() {
+    return this._controlValueAccessorChangeFn;
   }
 
-  ngOnInit() {
-    this._checkName();
+  constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
+    super(changeDetectorRef);
   }
+
+  // TODO: Remove
+  ngOnInit() {}
 
   ngAfterContentInit() {
+    super.ngAfterContentInit();
     this._zone.onStable.pipe(first()).subscribe(() =>
       this._zone.run(() => {
         this._checkNumOfOptions();
-        // Before assigning the first tab to defaultOption, I check whether a different value has been specified
-        const defaultOption =
-          this.toggleOptions.toArray().find(toggle => toggle.value === this.value) ||
-          this.toggleOptions.toArray()[0];
-        defaultOption.setToggleChecked(true);
+        if (this._radios.toArray().every(r => this.value !== r.value)) {
+          this.value = this._radios.first.value;
+        }
       })
     );
-
-    this._toggleValueChanges$ = merge(...this.toggleOptions.map(toggle => toggle.valueChange$));
-    this._toggleValueChangesSubscription = this._toggleValueChanges$.subscribe(value => {
-      this.onChange(value);
-      this.onTouched();
-      this.writeValue(value);
-      this.toggleChange.emit(value);
-    });
   }
 
-  ngOnDestroy() {
-    this._toggleValueChangesSubscription.unsubscribe();
-  }
-
-  writeValue(value: any): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
+  // TODO: Remove
+  ngOnDestroy() {}
 
   /** @deprecated Use .checked instead */
   uncheck() {}
 
-  private _checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this._throwNameError();
-    } else if (!this.name && this.formControlName) {
-      this.name = this.formControlName;
-    }
-  }
-
-  /**
-   * Throws an exception if the Toggle name doesn't match with the Toggle form control name
-   */
-  private _throwNameError(): void {
-    throw new Error(`
-      If you define both a name and a formControlName attribute on your Toggle, their values
-      must match. Ex: <sbb-toggle formControlName="food" name="food"></sbb-toggle>
-    `);
-  }
-
   private _checkNumOfOptions(): void {
-    if (this.toggleOptions.length !== 2) {
-      this._throwNotTwoOptionsError();
+    if (this._radios.length !== 2) {
+      throw new Error(
+        `You must set two sbb-toggle-option into the sbb-toggle component. ` +
+          `Currently there are ${this._radios.length} options.`
+      );
     }
-  }
-
-  private _throwNotTwoOptionsError(): void {
-    throw new Error(
-      `You must set two sbb-toggle-option into the sbb-toggle component. ` +
-        `You set ${this.toggleOptions.length} options.`
-    );
   }
 }
