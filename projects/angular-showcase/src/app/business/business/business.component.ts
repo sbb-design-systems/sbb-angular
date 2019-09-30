@@ -5,6 +5,7 @@ import { ExampleProvider } from '../../shared/example-provider';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
+import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
 @Component({
   selector: 'sbb-business',
@@ -28,7 +29,8 @@ export class BusinessComponent implements ExampleProvider {
   };
   layoutComponents = {
     accordion: 'Accordion',
-    processflow: 'Processflow'
+    processflow: 'Processflow',
+    usermenu: 'Usermenu'
   };
   buttonAndIndicatorComponents = {
     button: 'Button',
@@ -46,6 +48,9 @@ export class BusinessComponent implements ExampleProvider {
     },
     tooltip: {
       'tooltip-showcase': new ComponentPortal(TooltipShowcaseComponent)
+    },
+    usermenu: {
+      'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)
     }
   };
 

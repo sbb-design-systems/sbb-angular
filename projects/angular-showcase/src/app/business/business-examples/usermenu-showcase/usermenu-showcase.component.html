@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <p>
+        Please, to click on "Login" to login and subsequently to click on arrow down to expand the
+        user menu.
+      </p>
+
+      <div class="row">
+        <div class="col-12">
+          <sbb-usermenu [userName]="user.userName" (loginRequest)="login()">
+            <sbb-dropdown>
+              <a
+                *ngFor="let link of links"
+                sbbDropdownItem
+                [routerLink]="linkGenerator(link.page).routerLink"
+                [queryParams]="linkGenerator(link.page).queryParams"
+                routerLinkActive="sbb-selected"
+              >
+                {{ link.text }}
+              </a>
+              <hr />
+              <button sbbDropdownItem type="button" (click)="logout(user)">
+                Logout
+              </button>
+            </sbb-dropdown>
+          </sbb-usermenu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
