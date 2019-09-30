@@ -93,16 +93,18 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   text-align: center;
   position: relative;
 
-  @include mq($from: desktop4k) {
-    font-size: toPx(14 * $scalingFactor4k);
-    width: toPx(32 * $scalingFactor4k);
-    height: toPx(32 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx(14 * $scalingFactor4k);
+      width: toPx(32 * $scalingFactor4k);
+      height: toPx(32 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: toPx(14 * $scalingFactor5k);
-    width: toPx(32 * $scalingFactor5k);
-    height: toPx(32 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      font-size: toPx(14 * $scalingFactor5k);
+      width: toPx(32 * $scalingFactor5k);
+      height: toPx(32 * $scalingFactor5k);
+    }
   }
 }
 
@@ -123,32 +125,36 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
     display: none;
   }
 
-  @include mq($from: desktop4k) {
-    width: toPx(24 * $scalingFactor4k);
-    height: toPx(24 * $scalingFactor4k);
-    z-index: -1;
-    margin-left: toPx(-40 * $scalingFactor4k);
-    margin-bottom: toPx(3.335 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx(24 * $scalingFactor4k);
+      height: toPx(24 * $scalingFactor4k);
+      z-index: -1;
+      margin-left: toPx(-40 * $scalingFactor4k);
+      margin-bottom: toPx(3.335 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    width: toPx(24 * $scalingFactor5k);
-    height: toPx(24 * $scalingFactor5k);
-    z-index: -1;
-    margin-left: toPx(-35 * $scalingFactor5k);
-    margin-bottom: toPx(2.5 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      width: toPx(24 * $scalingFactor5k);
+      height: toPx(24 * $scalingFactor5k);
+      z-index: -1;
+      margin-left: toPx(-35 * $scalingFactor5k);
+      margin-bottom: toPx(2.5 * $scalingFactor5k);
+    }
   }
 }
 
 @mixin usermenuLoggedInExpandedInfoUser {
   padding-left: 4px;
 
-  @include mq($from: desktop4k) {
-    padding-left: toPx(4 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      padding-left: toPx(4 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    padding-left: toPx(4 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      padding-left: toPx(4 * $scalingFactor5k);
+    }
   }
 }
 
@@ -162,14 +168,16 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   font-size: pxToRem(13);
   margin-top: -3px;
 
-  @include mq($from: desktop4k) {
-    font-size: toPx(13.5 * $scalingFactor4k);
-    margin-top: toPx(-3 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx(13.5 * $scalingFactor4k);
+      margin-top: toPx(-3 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: toPx(13 * $scalingFactor5k);
-    margin-top: toPx(-3 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      font-size: toPx(13 * $scalingFactor5k);
+      margin-top: toPx(-3 * $scalingFactor5k);
+    }
   }
 }
 
@@ -197,16 +205,18 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   transform: rotate(180deg);
   margin-left: 60px;
 
-  @include mq($from: desktop4k) {
-    width: toPx(24 * $scalingFactor4k);
-    height: toPx(24 * $scalingFactor4k);
-    margin-left: toPx(60 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx(24 * $scalingFactor4k);
+      height: toPx(24 * $scalingFactor4k);
+      margin-left: toPx(60 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    width: toPx(24 * $scalingFactor5k);
-    height: toPx(24 * $scalingFactor5k);
-    margin-left: toPx(60 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      width: toPx(24 * $scalingFactor5k);
+      height: toPx(24 * $scalingFactor5k);
+      margin-left: toPx(60 * $scalingFactor5k);
+    }
   }
 }
 
@@ -219,14 +229,16 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   width: 156px;
   color: $sbbColorMetal;
 
-  @include mq($from: desktop4k) {
-    height: toPx(72 * $scalingFactor4k);
-    width: toPx(103 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      height: toPx(72 * $scalingFactor4k);
+      width: toPx(103 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    height: toPx(96 * $scalingFactor5k);
-    width: toPx(134 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      height: toPx(96 * $scalingFactor5k);
+      width: toPx(134 * $scalingFactor5k);
+    }
   }
 }
 
@@ -237,16 +249,18 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   position: relative;
   color: inherit;
 
-  @include mq($from: desktop4k) {
-    height: toPx(36 * $scalingFactor4k);
-    width: toPx(36 * $scalingFactor4k);
-    margin-left: toPx(2 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      height: toPx(36 * $scalingFactor4k);
+      width: toPx(36 * $scalingFactor4k);
+      margin-left: toPx(2 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    height: toPx(48 * $scalingFactor5k);
-    width: toPx(48 * $scalingFactor5k);
-    margin-left: toPx(2 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      height: toPx(48 * $scalingFactor5k);
+      width: toPx(48 * $scalingFactor5k);
+      margin-left: toPx(2 * $scalingFactor5k);
+    }
   }
 }
 
@@ -257,20 +271,22 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   margin-top: 2px;
   color: inherit;
 
-  @include mq($from: desktop4k) {
-    margin-left: toPx(13.5 * $scalingFactor4k);
-    margin-top: toPx(8 * $scalingFactor4k);
-    max-width: toPx(53 * $scalingFactor4k);
-    max-height: toPx(26 * $scalingFactor4k);
-    font-size: toPx(14 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-left: toPx(13.5 * $scalingFactor4k);
+      margin-top: toPx(8 * $scalingFactor4k);
+      max-width: toPx(53 * $scalingFactor4k);
+      max-height: toPx(26 * $scalingFactor4k);
+      font-size: toPx(14 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    margin-left: toPx(13.5 * $scalingFactor5k);
-    margin-top: toPx(6.5 * $scalingFactor5k);
-    max-width: toPx(70 * $scalingFactor5k);
-    max-height: toPx(35 * $scalingFactor5k);
-    font-size: toPx(14 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      margin-left: toPx(13.5 * $scalingFactor5k);
+      margin-top: toPx(6.5 * $scalingFactor5k);
+      max-width: toPx(70 * $scalingFactor5k);
+      max-height: toPx(35 * $scalingFactor5k);
+      font-size: toPx(14 * $scalingFactor5k);
+    }
   }
 }
 
@@ -279,13 +295,15 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   width: 32px;
   height: 32px;
 
-  @include mq($from: desktop4k) {
-    width: toPx(32 * $scalingFactor4k);
-    height: toPx(32 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx(32 * $scalingFactor4k);
+      height: toPx(32 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    width: toPx(32 * $scalingFactor5k);
-    height: toPx(32 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      width: toPx(32 * $scalingFactor5k);
+      height: toPx(32 * $scalingFactor5k);
+    }
   }
 }
