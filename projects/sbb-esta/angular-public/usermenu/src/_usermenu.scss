@@ -6,11 +6,11 @@
 @import '../../../angular-core/styles/common/mixins';
 @import '../../../angular-core/styles/common/button';
 
-$border: solid 1px $sbbColorGraphite;
+$border: if($sbbBusiness, solid 1px $sbbColorGranite, solid 2px $sbbColorGrey);
+$borderActive: solid 2px $sbbColorGrey;
+
 $border4K: solid 3px $sbbColorGraphite;
 $border5K: solid 4px $sbbColorGraphite;
-
-$borderActive: solid 2px $sbbColorGrey;
 $borderActive4K: solid toPx(3 * $scalingFactor4k) $sbbColorGrey;
 $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
@@ -22,15 +22,20 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   height: 48px;
   line-height: 1.533;
   border: 2px solid transparent;
-
-  @include mq($from: desktop4k) {
-    width: toPx(432 * $scalingFactor4k);
-    height: toPx(72 * $scalingFactor4k);
+  @if $sbbBusiness {
+    border: 1px solid transparent;
   }
 
-  @include mq($from: desktop5k) {
-    width: toPx(576 * $scalingFactor5k);
-    height: toPx(96 * $scalingFactor5k);
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx(432 * $scalingFactor4k);
+      height: toPx(72 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx(576 * $scalingFactor5k);
+      height: toPx(96 * $scalingFactor5k);
+    }
   }
 }
 
@@ -38,12 +43,14 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   padding-left: 16px;
   border: $borderActive;
 
-  @include mq($from: desktop4k) {
-    border: $borderActive4K;
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border: $borderActive4K;
+    }
 
-  @include mq($from: desktop5k) {
-    border: $borderActive5K;
+    @include mq($from: desktop5k) {
+      border: $borderActive5K;
+    }
   }
 }
 
@@ -53,14 +60,16 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   margin-left: 3px;
   margin-top: 3px;
 
-  @include mq($from: desktop4k) {
-    margin-left: toPx(3 * $scalingFactor4k);
-    margin-top: toPx(3 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-left: toPx(3 * $scalingFactor4k);
+      margin-top: toPx(3 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    margin-left: toPx(3 * $scalingFactor5k);
-    margin-top: toPx(3 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      margin-left: toPx(3 * $scalingFactor5k);
+      margin-top: toPx(3 * $scalingFactor5k);
+    }
   }
 }
 
@@ -68,12 +77,14 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   flex-basis: 32px;
   width: 118px;
 
-  @include mq($from: desktop4k) {
-    flex-basis: toPx(32 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      flex-basis: toPx(32 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    flex-basis: toPx(32 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      flex-basis: toPx(32 * $scalingFactor5k);
+    }
   }
 }
 
@@ -187,14 +198,16 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   color: $sbbColorMetal;
   margin-top: -5px;
 
-  @include mq($from: desktop4k) {
-    font-size: toPx(15.35 * $scalingFactor4k);
-    margin-top: toPx(-5 * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx(15.35 * $scalingFactor4k);
+      margin-top: toPx(-5 * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: toPx(15 * $scalingFactor5k);
-    margin-top: toPx(-5 * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      font-size: toPx(15 * $scalingFactor5k);
+      margin-top: toPx(-5 * $scalingFactor5k);
+    }
   }
 }
 
