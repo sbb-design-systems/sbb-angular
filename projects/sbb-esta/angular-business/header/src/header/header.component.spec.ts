@@ -1,12 +1,15 @@
+import { PortalModule } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DropdownTriggerDirective } from '@sbb-esta/angular-business/dropdown';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
+import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
-
-import { NavbuttonComponent } from '../navbutton/navbutton.component';
 
 import { HeaderComponent } from './header.component';
 
@@ -20,7 +23,7 @@ import { HeaderComponent } from './header.component';
       [subtitle]="'test subtitle'"
     >
       <a>link 1</a>
-      <button sbbNavbutton [sbbDropdown]="dropdown">button 1</button>
+      <button [sbbDropdown]="dropdown">button 1</button>
       <sbb-dropdown #dropdown="sbbDropdown">
         <button sbbDropdownItem>dropdown button 1</button>
       </sbb-dropdown>
@@ -30,8 +33,7 @@ import { HeaderComponent } from './header.component';
       </sbb-usermenu>
       <svg brand></svg>
     </sbb-header>
-  `,
-  entryComponents: [NavbuttonComponent]
+  `
 })
 class HeaderTemplateAllSetTestComponent {}
 
@@ -41,8 +43,16 @@ describe('HeaderComponent with everything set', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule, DropdownModule, UserMenuModule],
-      declarations: [HeaderComponent, HeaderTemplateAllSetTestComponent, NavbuttonComponent]
+      imports: [
+        IconCollectionModule,
+        DropdownModule,
+        UserMenuModule,
+        PortalModule,
+        ScrollingModule,
+        RouterTestingModule,
+        BrowserAnimationsModule
+      ],
+      declarations: [HeaderComponent, HeaderTemplateAllSetTestComponent]
     });
   });
 
@@ -75,8 +85,10 @@ describe('HeaderComponent with everything set', () => {
   });
 
   it('should have titlebox label and subtitle match properties', () => {
-    const label = fixture.debugElement.queryAll(By.css('.sbb-header-titlebox-label'))[0];
-    const subtitle = fixture.debugElement.queryAll(By.css('.sbb-header-titlebox-subtitle'))[0];
+    const label = fixture.debugElement.queryAll(By.css('.sbb-header-titlebox span:first-child'))[0];
+    const subtitle = fixture.debugElement.queryAll(
+      By.css('.sbb-header-titlebox span:nth-child(2)')
+    )[0];
     expect(label).toBeTruthy();
     expect(label.nativeElement.innerHTML.trim()).toBe('test');
 
@@ -84,24 +96,24 @@ describe('HeaderComponent with everything set', () => {
     expect(subtitle.nativeElement.innerHTML.trim()).toBe('test subtitle');
   });
 
-  it('should have mainnavigation', () => {
-    const mainnavigation = fixture.debugElement.queryAll(By.css('.sbb-header-mainnavigation'))[0];
+  it('should have a nav element', () => {
+    const mainnavigation = fixture.debugElement.queryAll(By.css('nav'))[0];
     expect(mainnavigation).toBeTruthy();
   });
 
-  it('should have 1 navbutton and a link', () => {
-    const navbuttons = fixture.debugElement.queryAll(By.css('.sbb-navbutton'));
+  it('should have one button and one link', () => {
+    const navbuttons = fixture.debugElement.queryAll(By.css('nav button'));
     expect(navbuttons).toBeTruthy();
     expect(navbuttons.length).toBe(1);
 
-    const links = fixture.debugElement.queryAll(By.css('a'));
+    const links = fixture.debugElement.queryAll(By.css('nav a'));
     expect(links).toBeTruthy();
     expect(links.length).toBe(1);
   });
 
   it('should have button with working dropdown', () => {
-    const dropdownButton = fixture.debugElement.queryAll(By.directive(NavbuttonComponent))[0];
-    expect(dropdownButton.componentInstance.isDropdown).toBeTruthy();
+    const dropdownButton = fixture.debugElement.queryAll(By.directive(DropdownTriggerDirective))[0];
+    expect(dropdownButton.componentInstance).toBeTruthy();
   });
 
   it('should have usermenu', () => {
@@ -120,8 +132,7 @@ describe('HeaderComponent with everything set', () => {
   selector: 'sbb-header-minimal-test',
   template: `
     <sbb-header [label]="'test'"> </sbb-header>
-  `,
-  entryComponents: [NavbuttonComponent]
+  `
 })
 class HeaderTemplateMinimalTestComponent {}
 
@@ -131,8 +142,14 @@ describe('HeaderComponent minimal', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule],
-      declarations: [HeaderComponent, HeaderTemplateMinimalTestComponent, NavbuttonComponent]
+      imports: [
+        IconCollectionModule,
+        PortalModule,
+        ScrollingModule,
+        RouterTestingModule,
+        BrowserAnimationsModule
+      ],
+      declarations: [HeaderComponent, HeaderTemplateMinimalTestComponent]
     });
   });
 
@@ -159,8 +176,10 @@ describe('HeaderComponent minimal', () => {
   });
 
   it('should have titlebox label and subtitle match properties', () => {
-    const label = fixture.debugElement.queryAll(By.css('.sbb-header-titlebox-label'))[0];
-    const subtitle = fixture.debugElement.queryAll(By.css('.sbb-header-titlebox-subtitle'))[0];
+    const label = fixture.debugElement.queryAll(By.css('.sbb-header-titlebox span:first-child'))[0];
+    const subtitle = fixture.debugElement.queryAll(
+      By.css('.sbb-header-titlebox span:nth-child(2)')
+    )[0];
     expect(label).toBeTruthy();
     expect(label.nativeElement.innerHTML.trim()).toBe('test');
 
@@ -168,14 +187,14 @@ describe('HeaderComponent minimal', () => {
   });
 
   // Mainnavigation is present regardless
-  it('should have mainnavigation', () => {
-    const mainnavigation = fixture.debugElement.queryAll(By.css('.sbb-header-mainnavigation'));
+  it('should have a nav element', () => {
+    const mainnavigation = fixture.debugElement.queryAll(By.css('nav'));
     expect(mainnavigation).toBeTruthy();
     expect(mainnavigation.length).toBe(1);
   });
 
   it('should have no navbuttons', () => {
-    const navbuttons = fixture.debugElement.queryAll(By.css('.sbb-navbutton'));
+    const navbuttons = fixture.debugElement.queryAll(By.css('nav a, nav button'));
     expect(navbuttons).toBeTruthy();
     expect(navbuttons.length).toBe(0);
   });
@@ -196,8 +215,7 @@ describe('HeaderComponent minimal', () => {
   selector: 'sbb-header-no-label-test',
   template: `
     <sbb-header> </sbb-header>
-  `,
-  entryComponents: [NavbuttonComponent]
+  `
 })
 class HeaderTemplateNoLabelTestComponent {}
 
@@ -206,8 +224,14 @@ describe('HeaderComponent without label', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule],
-      declarations: [HeaderComponent, HeaderTemplateNoLabelTestComponent, NavbuttonComponent]
+      imports: [
+        IconCollectionModule,
+        PortalModule,
+        ScrollingModule,
+        RouterTestingModule,
+        BrowserAnimationsModule
+      ],
+      declarations: [HeaderComponent, HeaderTemplateNoLabelTestComponent]
     });
   });
 

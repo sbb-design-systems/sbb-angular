@@ -28,7 +28,7 @@ sbb-icons {
 }
 
 sbb-business {
-  @import '../../sbb-esta/angular-public/styles';
+  @import '../../sbb-esta/angular-business/styles';
   sbb-markdown-viewer,
   sbb-public-component-viewer {
     @include sbbHeadings();

@@ -343,10 +343,16 @@ export class DropdownTriggerDirective implements OnDestroy {
     }
   }
 
-  /** `View -> model callback called when value changes` */
+  /**
+   * @docs-private
+   * @deprecated
+   */
   onChange: (value: any) => void = () => {};
 
-  /** `View -> model callback called when dropdown has been touched` */
+  /**
+   * @docs-private
+   * @deprecated
+   */
   onTouched = () => {};
 
   /** Opens the dropdown suggestion panel. */
