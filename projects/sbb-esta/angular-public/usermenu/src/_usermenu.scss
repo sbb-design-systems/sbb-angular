@@ -6,8 +6,8 @@
 @import '../../../angular-core/styles/common/mixins';
 @import '../../../angular-core/styles/common/button';
 
-$border: if($sbbBusiness, solid 1px $sbbColorGranite, solid 2px $sbbColorGrey);
-$borderActive: solid 2px $sbbColorGrey;
+$border: solid 1px $sbbColorGraphite;
+$borderActive: if($sbbBusiness, solid 1px $sbbColorGranite, solid 2px $sbbColorGrey);
 
 $border4K: solid 3px $sbbColorGraphite;
 $border5K: solid 4px $sbbColorGraphite;
@@ -21,10 +21,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
   width: 288px;
   height: 48px;
   line-height: 1.533;
-  border: 2px solid transparent;
-  @if $sbbBusiness {
-    border: 1px solid transparent;
-  }
+  border: if($sbbBusiness, 1px solid transparent, 2px solid transparent);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -42,6 +39,12 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 @mixin usermenuLoggedInActive {
   padding-left: 16px;
   border: $borderActive;
+
+  @include businessOnly() {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom: 1px solid $sbbColorCloud;
+  }
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
