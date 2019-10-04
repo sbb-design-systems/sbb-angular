@@ -1,0 +1,55 @@
+$sbbBusiness: true;
+@import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/variables';
+
+// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M5 12.491h12.49M13.5 16.5l3.99-4.008L13.5 8.5"/></svg>
+$sbbHeaderAppChooserLinkArrow: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBkPSJNNSAxMi40OTFoMTIuNDlNMTMuNSAxNi41bDMuOTktNC4wMDhMMTMuNSA4LjUiLz48L3N2Zz4=';
+// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#c60018" d="M5 12.491h12.49M13.5 16.5l3.99-4.008L13.5 8.5"/></svg>
+$sbbHeaderAppChooserLinkArrowRed: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzYwMDE4IiBkPSJNNSAxMi40OTFoMTIuNDlNMTMuNSAxNi41bDMuOTktNC4wMDhMMTMuNSA4LjUiLz48L3N2Zz4=';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px;
+
+  > strong {
+    display: block;
+    font-family: $fontSbbLight;
+    font-size: 21px;
+    line-height: 25px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  > ::ng-deep a {
+    font-size: 15px;
+    line-height: 20px;
+    padding: 8px 32px 10px 0;
+    border-top: 1px solid $sbbColorCloud;
+    position: relative;
+    text-decoration: none;
+    outline: none;
+
+    &:last-child {
+      border-bottom: 1px solid $sbbColorCloud;
+    }
+
+    &::after {
+      content: url($sbbHeaderAppChooserLinkArrow);
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      right: 0;
+      vertical-align: middle;
+    }
+
+    &:hover::after {
+      content: url($sbbHeaderAppChooserLinkArrowRed);
+    }
+  }
+
+  &::last-of-type {
+    margin-bottom: 1rem;
+  }
+}
