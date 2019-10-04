@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.6.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.5.0...8.6.0) (2019-10-04)
+
+
+### Bug Fixes
+
+* **business:** add icon content child to button component and template ([#188](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/188)) ([93307d0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/93307d0))
+* autocomplete freezes on backspacing ([#182](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/182)) ([2e881cb](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/2e881cb)), closes [#144](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/144)
+* normalized radio button behavior ([#183](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/183)) ([ec0a25e](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/ec0a25e)), closes [#126](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/126)
+* tooltip positioning is now inside the viewport ([#181](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/181)) ([dd5ba09](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/dd5ba09)), closes [#176](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/176)
+* **icons:** set focusable to false for svg icons ([#174](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/174)) ([f19ef24](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/f19ef24)), closes [#155](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/155)
+
+
+### Features
+
+* **business:** adapt usermenu styling ([#190](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/190)) ([0b36f48](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/0b36f48)), closes [#91](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/91)
+* **business:** implement app chooser and responsive mode for header ([#192](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/192)) ([4d99161](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/4d99161))
+* provide sbb-radio-group for radio-button type components ([#186](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/186)) ([bc7cad2](https://github.com/SchweizerischeBundesbahnen/sbb-angular/commit/bc7cad2)), closes [#184](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/184)
+
+### Deprecation Notice:
+* Form controls on individual radion buttons and radio button panels are being deprecated. Form controls should be defined on sbb-radio-group. See the documentation on Radio Buttons and Radio Button Panels on how to use it.
+
+
+
 ## [8.5.0](https://github.com/SchweizerischeBundesbahnen/sbb-angular/compare/8.4.1...8.5.0) (2019-09-20)
 
 
