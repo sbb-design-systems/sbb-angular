@@ -10,7 +10,7 @@ dropdown is not yet styled.**
 ```html
 <sbb-header [label]="Title" [subtitle]="Subtitle" [environment]="dev" [environmentColor]="red">
   <a routerLink="/">Home</a>
-  <button sbbNavbutton type="button" [sbbDropdown]="dropdown">Sections</button>
+  <button type="button" [sbbDropdown]="dropdown">Sections</button>
   <sbb-dropdown #dropdown="sbbDropdown">
     <a sbbDropdownItem routerLink="/nav1/section1" routerLinkActive="sbb-selected">Option 1</a>
     <a sbbDropdownItem routerLink="/nav1/section2" routerLinkActive="sbb-selected">Option 2</a>
