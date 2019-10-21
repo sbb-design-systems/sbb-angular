@@ -74,13 +74,6 @@
           <p>Delay close on mouse leave: {{ hoverCloseDelay }} ms</p>
         </li>
       </ul>
-      <sbb-tooltip
-        trigger="hover"
-        [hoverOpenDelay]="hoverOpenDelay"
-        [hoverCloseDelay]="hoverCloseDelay"
-      >
-        <p>Dies ist ein Tooltip mit einem angepassten Icon.</p>
-      </sbb-tooltip>
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Configuration:</h4>
@@ -88,6 +81,15 @@
       <input type="number" [(ngModel)]="hoverOpenDelay" />
       <p>Close tooltip delay in milliseconds:</p>
       <input type="number" [(ngModel)]="hoverCloseDelay" />
+    </div>
+    <div class="col-lg-6">
+      <sbb-tooltip
+        trigger="hover"
+        [hoverOpenDelay]="hoverOpenDelay"
+        [hoverCloseDelay]="hoverCloseDelay"
+      >
+        <p>Dies ist ein Tooltip mit einem angepassten Icon.</p>
+      </sbb-tooltip>
     </div>
   </div>
 </div>

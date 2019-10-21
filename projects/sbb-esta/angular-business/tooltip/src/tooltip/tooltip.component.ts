@@ -23,7 +23,7 @@ import {
 
 @Component({
   selector: 'sbb-tooltip',
-  templateUrl: '../../../../angular-public/tooltip/src/tooltip/tooltip.component.html',
+  templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
