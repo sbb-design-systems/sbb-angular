@@ -1,223 +1,252 @@
 @import '../../../../angular-core/styles/common/variables';
 @import '../../../../angular-core/styles/common/colors';
 @import '../../../../angular-core/styles/common/button';
+@import '../../../../angular-core/styles/common/mixins';
 
-$border: solid 2px $sbbColorGranite;
-$buttonMarginTop: calc(54px / 2 - 15px);
+// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M8.092 10.35l3.904 3.95 3.904-3.948"/></svg>
+$sbbHeaderDropdownIconBlack: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBkPSJNOC4wOTIgMTAuMzVsMy45MDQgMy45NSAzLjkwNC0zLjk0OCIvPjwvc3ZnPg==';
+// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#c60018" d="M8.092 10.35l3.904 3.95 3.904-3.948"/></svg>
+$sbbHeaderDropdownIconRed: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzYwMDE4IiBkPSJNOC4wOTIgMTAuMzVsMy45MDQgMy45NSAzLjkwNC0zLjk0OCIvPjwvc3ZnPg==';
+$sbbHeaderHeight: 54px;
 
-@mixin headerBlockComponent {
-  position: absolute;
-  top: 0px;
-  height: 54px;
-}
-
-@mixin smallIconDropdown() {
-  position: relative;
-  top: 3px;
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-@mixin navButtonDefaultButton() {
-  @include buttonResetFrameless();
-
-  position: relative;
-  white-space: nowrap;
-  font-family: $fontSbbLight;
-  font-size: pxToRem(15);
-  text-decoration: none;
-  text-align: left;
-  background: $sbbColorWhite; //TODO: this is required for overlaps
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    outline: none;
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    left: 50%;
-    height: 1px;
-    border-bottom: 1px solid currentColor;
-    transition: width 0.3s, left 0.3s;
-  }
-
-  &.sbb-active::after,
-  &:not(.sbb-active):focus::after,
-  &:not(.sbb-active):hover::after {
-    left: 0;
-    width: 100%;
-  }
-
-  &:not(.sbb-active):focus &:not([aria-expanded='true']),
-  &:not(.sbb-active):hover {
-    color: $sbbColorRed125;
-
-    &::after {
-      border-bottom-color: $sbbColorRed125;
-    }
-  }
-
-  &[disabled] {
-    color: $sbbColorStorm;
-
-    &:hover,
-    &:focus {
-      color: $sbbColorStorm;
-      cursor: default;
-
-      &::after {
-        width: 0;
-      }
-    }
-  }
-
-  &.sbb-active:hover,
-  &.sbb-active:focus {
-    color: currentColor;
-    cursor: default;
-
-    &::after {
-      border-bottom-color: currentColor;
-    }
-  }
-}
-
-.sbb-header {
-  width: 100%;
-
+:host {
+  display: flex;
+  align-items: center;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  height: $sbbHeaderHeight;
+  width: 100%;
   z-index: 1000;
-  height: 54px;
-
   background-color: $sbbColorWhite;
   border-bottom: solid 1px $sbbColorSilver;
 
-  &-ribbon {
-    width: 80px;
-    position: absolute;
-    top: 12px;
-    left: -20px;
-    text-align: center;
-    line-height: 12px;
-    letter-spacing: 0px;
-    font-size: 10px;
-    color: $sbbColorSilver;
-    transform: rotate(-45deg);
+  > nav {
+    display: none;
+    @include mq($from: desktop) {
+      display: flex;
+      flex-grow: 1;
+      margin-left: 50px;
+      overflow-x: hidden;
+    }
+  }
+}
+
+.sbb-header-ribbon {
+  width: 80px;
+  position: absolute;
+  top: 12px;
+  left: -20px;
+  text-align: center;
+  line-height: 12px;
+  letter-spacing: 0px;
+  font-size: 10px;
+  color: $sbbColorSilver;
+  transform: rotate(-45deg);
+}
+
+.sbb-header-open-menu,
+.sbb-header-close-menu {
+  @include buttonResetFrameless();
+  flex-grow: 0;
+  width: 24px;
+  height: 24px;
+  margin-left: 15px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+
+  > sbb-icon-hamburger-menu,
+  > sbb-icon-cross {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
   }
 
-  &-appchooser {
-    @include headerBlockComponent();
-
-    left: 46px;
-    width: 54px;
-    padding: 17px;
+  &:focus {
+    > sbb-icon-hamburger-menu,
+    > sbb-icon-cross {
+      ::ng-deep path {
+        stroke: $sbbColorRed125;
+      }
+    }
   }
+}
 
-  &-titlebox {
-    @include headerBlockComponent();
+.sbb-header-open-menu:not(.sbb-header-app-chooser-available) {
+  @include mq($from: desktop) {
+    display: none;
+  }
+}
 
-    left: 100px;
-    width: 200px;
-    font-family: $fontSbbLight;
-    &-label {
+.sbb-header-titlebox {
+  display: flex;
+  flex-grow: 0;
+  flex-direction: column;
+  width: 200px;
+  margin-left: 15px;
+  font-family: $fontSbbLight;
+
+  > span {
+    @include ellipsis();
+  }
+  > span:first-child {
+    line-height: 23px;
+    color: $sbbColorBlack;
+    font-family: $fontSbbRoman;
+  }
+  > span:nth-child(2) {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 16px;
+    color: $sbbColorAnthracite;
+  }
+}
+
+nav {
+  display: flex;
+
+  > ::ng-deep a,
+  > ::ng-deep button {
+    flex: 0 0 20%;
+    line-height: 23px;
+    font-size: 15px;
+    border: transparent solid 1px;
+    outline: none;
+    color: $sbbColorBlack;
+    font-family: $fontSbbRoman;
+
+    > span {
+      @include ellipsis();
+      display: inline-block;
+      max-width: calc(100% - 16px);
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+  }
+  > ::ng-deep a {
+    text-decoration: none;
+    padding: 6px 8px;
+  }
+  > ::ng-deep button {
+    cursor: pointer;
+    @include buttonResetFrameless();
+    padding: 6px 24px 6px 8px;
+    text-align: left;
+    position: relative;
+
+    &::after {
+      content: url($sbbHeaderDropdownIconBlack);
+      display: inline-block;
+      width: 24px;
       height: 23px;
-      width: 200px;
-      color: $sbbColorBlack;
-      font-size: 15px;
-      line-height: 23px;
-
-      margin-top: 8px;
-    }
-    &-subtitle {
-      height: 16px;
-      width: 200px;
-      color: $sbbColorAnthracite;
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 16px;
-
-      margin-bottom: 7px;
-    }
-  }
-
-  &-mainnavigation {
-    @include headerBlockComponent();
-    left: 350px;
-
-    a {
-      @include navButtonDefaultButton();
-      white-space: nowrap;
       position: absolute;
-      height: 30px;
-      margin-top: $buttonMarginTop;
-      display: flex;
-    }
+      right: 0;
+      transform: rotate(270deg);
 
-    .sbb-navbutton {
-      @include navButtonDefaultButton();
-      white-space: nowrap;
-      position: absolute;
-      height: 30px;
-      // top: -1px;
-      // margin-top: $buttonMarginTop;
-      margin-top: -1px;
-      top: $buttonMarginTop;
-      display: flex;
-
-      .sbb-navbutton-icon-small {
-        @include smallIconDropdown();
-      }
-      .sbb-navbutton-icon-small-expanded {
-        @include smallIconDropdown();
-        position: absolute;
-        right: 5px;
+      @include mq($from: desktop) {
+        right: auto;
+        transform: rotate(0deg);
+        transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+          right 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
       }
     }
 
-    .sbb-navbutton.sbb-navbutton-dropdown-expanded {
-      border: $border;
-      border-bottom: none;
+    &:hover::after,
+    &:active::after,
+    &:focus::after {
+      content: url($sbbHeaderDropdownIconRed);
+    }
 
-      z-index: 5;
+    &[aria-expanded='true'] {
+      @include mq($from: desktop) {
+        border: $sbbColorGranite solid 1px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom: $sbbColorCloud solid 1px;
 
-      padding-left: calc(15px - 2px);
-      margin-left: -15px;
-      margin-top: calc($buttonMarginTop - 7px);
-      height: 35px;
-
-      &::after {
-        border-bottom: none;
+        &::after {
+          position: absolute;
+          right: 0;
+          transform: rotate(-180deg);
+        }
       }
     }
   }
+}
 
-  .sbb-header-container-end {
-    @include headerBlockComponent();
-    right: 35px;
-    display: inline-flex;
-    align-items: center;
-  }
+.sbb-header-container-end {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 35px;
 
-  &-usermenu {
+  > .sbb-header-usermenu {
     z-index: 1;
     margin-left: 15px;
     margin-right: 15px;
   }
 
-  &-logo {
-    svg {
+  > .sbb-header-logo {
+    display: flex;
+
+    > svg {
       width: 80px;
+    }
+  }
+}
+
+nav + .sbb-header-container-end {
+  flex-grow: 0;
+}
+
+.sbb-header-menu-backdrop {
+  display: none;
+}
+
+:host[opened='true'] .sbb-header-menu-backdrop {
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.sbb-header-menu {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 300px;
+  height: 100vh;
+  top: 0;
+  background-color: $sbbColorWhite;
+  border-right: 1px solid $sbbColorGranite;
+  box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.15);
+
+  div.sbb-header-menu-title-section {
+    display: flex;
+    align-items: center;
+    height: $sbbHeaderHeight;
+    margin-bottom: 12px;
+  }
+
+  nav {
+    flex-direction: column;
+    margin: 0 15px;
+
+    @include mq($from: desktop) {
+      display: none;
+    }
+
+    > ::ng-deep a,
+    > ::ng-deep button {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }

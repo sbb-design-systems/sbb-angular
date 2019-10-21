@@ -1,24 +1,65 @@
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { FocusMonitor, FocusOrigin, FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ENTER, ESCAPE, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ContentChildren,
   ElementRef,
+  EventEmitter,
   HostBinding,
+  Inject,
   Input,
+  NgZone,
+  OnDestroy,
   OnInit,
+  Optional,
+  Output,
+  QueryList,
   ViewChild,
-  ViewContainerRef,
-  ViewEncapsulation
+  ViewContainerRef
 } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import { fromEvent, merge, Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operators';
+
+import { AppChooserSectionComponent } from '../app-chooser-section/app-chooser-section.component';
+
+/** Result of the toggle promise that indicates the state of the header menu. */
+export type SbbHeaderMenuToggleResult = 'open' | 'close';
 
 @Component({
   selector: 'sbb-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('menu', [
+      state(
+        'open',
+        style({
+          left: 0
+        })
+      ),
+      state(
+        'void',
+        style({
+          left: -305,
+          visibility: 'hidden'
+        })
+      ),
+      transition('open => void, void => open', [animate('0.3s ease-in-out')])
+    ])
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** @docs-private */
   @HostBinding('class.sbb-header') cssClass = true;
 
@@ -49,51 +90,312 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   /**
    * Reference to children elements projected through ng-content
+   * @deprecated
    */
   @ViewChild('content', { static: true })
   ngContent: ElementRef;
 
   /**
    * Reference to the template which will hold navbuttons wrapping projected elements
+   * @deprecated
    */
   @ViewChild('navigationButtons', { static: true, read: ViewContainerRef })
   navigationButtons: ViewContainerRef;
 
   /**
    * Reference to icon, if given through projection.
+   * @deprecated
    */
   @ViewChild('iconContent', { static: true })
   iconContent: ElementRef;
 
   /**
    * Distance between navigation buttons, handled through code.
+   * @deprecated
    */
   buttonSpacing = 70;
 
+  /**
+   * Whether the header menu is open.
+   */
+  @HostBinding('attr.opened')
+  get opened(): boolean {
+    return this._opened;
+  }
+  set opened(value: boolean) {
+    this.toggleMenu(coerceBooleanProperty(value));
+  }
+  private _opened = false;
+
+  /** Emits whenever the header menu has started animating. */
+  _animationStarted = new Subject<AnimationEvent>();
+
+  /** Emits whenever the header menu is done animating. */
+  _animationEnd = new Subject<AnimationEvent>();
+
+  /** Current state of the menu animation. */
+  _animationState: 'open' | 'void' = 'void';
+
+  /** Emits whether the current resolution matches desktop or above. */
+  _isDesktop: Observable<boolean>;
+
+  /** Event emitted when the header menu open state is changed. */
+  @Output() readonly openedChange: EventEmitter<boolean> =
+    // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
+    new EventEmitter<boolean>(/* isAsync */ true);
+
+  /** Event emitted when the header menu has been opened. */
+  @Output('opened')
+  get _openedStream(): Observable<void> {
+    return this.openedChange.pipe(
+      filter(o => o),
+      map(() => {})
+    );
+  }
+
+  /** Event emitted when the header menu has started opening. */
+  @Output()
+  get openedStart(): Observable<void> {
+    return this._animationStarted.pipe(
+      filter(e => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
+      map(() => {})
+    );
+  }
+
+  /** Event emitted when the header menu has been closed. */
+  @Output('closed')
+  get _closedStream(): Observable<void> {
+    return this.openedChange.pipe(
+      filter(o => !o),
+      map(() => {})
+    );
+  }
+
+  /** Event emitted when the header menu has started closing. */
+  @Output()
+  get closedStart(): Observable<void> {
+    return this._animationStarted.pipe(
+      filter(e => e.fromState !== e.toState && e.toState === 'void'),
+      map(() => {})
+    );
+  }
+
   /** @docs-private */
-  private _left = 0;
+  @ViewChild(PerfectScrollbarComponent, { static: true }) _menu: PerfectScrollbarComponent;
+  /** @docs-private */
+  @ContentChildren(AppChooserSectionComponent) _appChooserSections: QueryList<
+    AppChooserSectionComponent
+  >;
+
+  /** How the sidenav was opened (keypress, mouse click etc.) */
+  private _openedVia: FocusOrigin | null;
+
+  /** Emits when the component is destroyed. */
+  private readonly _destroyed = new Subject<void>();
+
+  private _focusTrap: FocusTrap;
+  private _elementFocusedBeforeMenuWasOpened: HTMLElement | null = null;
+
+  constructor(
+    private _focusTrapFactory: FocusTrapFactory,
+    private _focusMonitor: FocusMonitor,
+    private _ngZone: NgZone,
+    private _breakpointObserver: BreakpointObserver,
+    private _router: Router,
+    private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() @Inject(DOCUMENT) private _doc: any
+  ) {
+    this.openedChange.subscribe((opened: boolean) => {
+      if (opened) {
+        if (this._doc) {
+          this._elementFocusedBeforeMenuWasOpened = this._doc.activeElement as HTMLElement;
+        }
+
+        if (this.opened && this._focusTrap) {
+          this._trapFocus();
+        }
+        if (this._doc && this.opened) {
+          /**
+           * Listen to `keydown` events outside the zone so that change detection is not run every
+           * time a key is pressed. Instead we re-enter the zone only if the `ESC` key is pressed.
+           */
+          this._ngZone.runOutsideAngular(() => {
+            merge(
+              fromEvent<KeyboardEvent>(this._doc, 'keydown').pipe(
+                filter(event => event.keyCode === ESCAPE && !hasModifierKey(event))
+              ),
+              this._router.events.pipe(filter(e => e instanceof NavigationStart))
+            )
+              .pipe(takeUntil(this.openedChange))
+              .subscribe(() => this._ngZone.run(() => this.closeMenu()));
+          });
+        }
+      } else {
+        this._restoreFocus();
+      }
+    });
+
+    // We need a Subject with distinctUntilChanged, because the `done` event
+    // fires twice on some browsers. See https://github.com/angular/angular/issues/24084
+    this._animationEnd
+      .pipe(
+        distinctUntilChanged((x, y) => {
+          return x.fromState === y.fromState && x.toState === y.toState;
+        })
+      )
+      .subscribe((event: AnimationEvent) => {
+        const { fromState, toState } = event;
+
+        if (
+          (toState.indexOf('open') === 0 && fromState === 'void') ||
+          (toState === 'void' && fromState.indexOf('open') === 0)
+        ) {
+          this.openedChange.emit(this._opened);
+        }
+      });
+    this._isDesktop = this._breakpointObserver.observe([Breakpoints.DesktopAndAbove]).pipe(
+      takeUntil(this._destroyed),
+      map(r => r.matches)
+    );
+  }
 
   ngOnInit() {
     this._checkLabel();
   }
 
   ngAfterViewInit() {
-    // Absolute positioning of buttons so that they're all 70px apart and won't
-    // move when one is expanded due to dropdowns, is decided here
-    const element = this.ngContent.nativeElement;
-    for (let k = 0; k < element.children.length; k++) {
-      const child = element.children[k];
-      child.style.left = this._left + 'px';
-      this._left += child.clientWidth + this.buttonSpacing;
+    this._focusTrap = this._focusTrapFactory.create(
+      this._menu.directiveRef.elementRef.nativeElement
+    );
+    this._updateFocusTrapState();
+  }
+
+  ngOnDestroy() {
+    if (this._focusTrap) {
+      this._focusTrap.destroy();
+    }
+
+    this._animationStarted.complete();
+    this._animationEnd.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
+  }
+
+  /** @docs-private */
+  _openOnKeydownTrigger(event: KeyboardEvent) {
+    if (event.keyCode === SPACE || event.keyCode === ENTER) {
+      this.openMenu('keyboard');
     }
   }
 
   /**
-   * Validates required inputs.
+   * Open the header menu.
+   * @param openedVia Whether the header menu was opened by a key press, mouse click or programmatically.
+   * Used for focus management after the sidenav is closed.
    */
+  openMenu(openedVia?: FocusOrigin): Promise<SbbHeaderMenuToggleResult> {
+    return this.toggleMenu(true, openedVia);
+  }
+
+  /** @docs-private */
+  _closeOnKeydownTrigger(event: KeyboardEvent) {
+    if (event.keyCode === SPACE || event.keyCode === ENTER) {
+      this.closeMenu();
+    }
+  }
+
+  /** @docs-private */
+  _onBackdropClicked() {
+    this.closeMenu();
+  }
+
+  /** Close the header menu. */
+  closeMenu(): Promise<SbbHeaderMenuToggleResult> {
+    return this.toggleMenu(false);
+  }
+
+  /**
+   * Toggle the header menu.
+   * @param isOpen Whether the header menu should be open.
+   * @param openedVia Whether the header menu was opened by a key press, mouse click or programmatically.
+   * Used for focus management after the sidenav is closed.
+   */
+  toggleMenu(
+    isOpen: boolean = !this.opened,
+    openedVia: FocusOrigin = 'program'
+  ): Promise<SbbHeaderMenuToggleResult> {
+    this._opened = isOpen;
+
+    if (isOpen) {
+      this._animationState = 'open';
+      this._openedVia = openedVia;
+    } else {
+      this._animationState = 'void';
+      this._changeDetectorRef.markForCheck();
+      this._restoreFocus();
+    }
+
+    this._updateFocusTrapState();
+
+    return new Promise<SbbHeaderMenuToggleResult>(resolve => {
+      this.openedChange.pipe(take(1)).subscribe(open => resolve(open ? 'open' : 'close'));
+    });
+  }
+
+  /** @docs-private */
+  _animationStartListener(event: AnimationEvent) {
+    this._animationStarted.next(event);
+  }
+
+  /** @docs-private */
+  _animationDoneListener(event: AnimationEvent) {
+    this._animationEnd.next(event);
+  }
+
+  /** Validates required inputs. */
   private _checkLabel() {
     if (!this.label) {
       throw new Error('You must set [label] for sbb-header.');
+    }
+  }
+
+  /** Traps focus inside the header menu. */
+  private _trapFocus() {
+    this._focusTrap.focusInitialElementWhenReady().then(hasMovedFocus => {
+      // If there were no focusable elements, focus the sidenav itself so the keyboard navigation
+      // still works. We need to check that `focus` is a function due to Universal.
+      if (
+        !hasMovedFocus &&
+        typeof this._menu.directiveRef.elementRef.nativeElement.focus === 'function'
+      ) {
+        this._menu.directiveRef.elementRef.nativeElement.focus();
+      }
+    });
+  }
+
+  /**
+   * If focus is currently inside the header menu, restores it to where it was before
+   * the header menu opened.
+   */
+  private _restoreFocus() {
+    const activeEl = this._doc && this._doc.activeElement;
+
+    if (activeEl && this._menu.directiveRef.elementRef.nativeElement.contains(activeEl)) {
+      if (this._elementFocusedBeforeMenuWasOpened instanceof HTMLElement) {
+        this._focusMonitor.focusVia(this._elementFocusedBeforeMenuWasOpened, this._openedVia);
+      } else {
+        this._menu.directiveRef.elementRef.nativeElement.blur();
+      }
+    }
+
+    this._elementFocusedBeforeMenuWasOpened = null;
+    this._openedVia = null;
+  }
+
+  /** Updates the enabled state of the focus trap. */
+  private _updateFocusTrapState() {
+    if (this._focusTrap) {
+      this._focusTrap.enabled = this.opened;
     }
   }
 }
