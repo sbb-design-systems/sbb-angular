@@ -1,0 +1,48 @@
+@import '../dialog';
+
+sbb-dialog-container {
+  @include dialogContainer();
+
+  .sbb-dialog {
+    @include dialog();
+  }
+
+  .sbb-dialog-content {
+    @include dialogContent();
+    @include dialogContentHeight();
+  }
+
+  .sbb-dialog-header {
+    @include dialogHeader();
+  }
+
+  .sbb-dialog-footer {
+    @include dialogFooter();
+  }
+
+  .sbb-dialog-close-btn {
+    @include dialogCloseBtn();
+  }
+
+  .sbb-dialog-title {
+    @include dialogTitle();
+  }
+
+  &.sbb-dialog-with-header {
+    .sbb-dialog-content {
+      @include dialogContentHeight(withHeader);
+    }
+  }
+
+  &.sbb-dialog-with-footer {
+    .sbb-dialog-content {
+      @include dialogContentHeight(withFooter);
+    }
+  }
+
+  &.sbb-dialog-with-header.sbb-dialog-with-footer {
+    .sbb-dialog-content {
+      @include dialogContentHeight(withHeaderAndFooter);
+    }
+  }
+}
