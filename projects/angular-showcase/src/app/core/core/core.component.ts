@@ -13,6 +13,7 @@ export class CoreComponent implements ExampleProvider {
   modules = {
     breakpoints: 'Breakpoints',
     datetime: 'Datetime',
+    oauth: 'OAuth',
     scrolling: 'Scrolling'
   };
 
