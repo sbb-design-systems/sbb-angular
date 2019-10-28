@@ -31,7 +31,6 @@ import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service
     DialogContainerComponent,
     DialogComponent,
     DialogCloseDirective,
-    DialogComponent,
     DialogHeaderComponent,
     DialogFooterComponent,
     DialogContentComponent,
