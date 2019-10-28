@@ -63,7 +63,7 @@ export class DialogCloseDirective implements OnInit {
 }
 
 /**
- * Header of a dialog element. Stays fixed to the top of the dialog when scrolling.
+ * Dialog wrapper element. Contains the dialog's header, content and footer.
  */
 @Component({
   selector: 'sbb-dialog, [sbbDialog]',

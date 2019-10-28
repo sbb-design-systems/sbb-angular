@@ -36,7 +36,7 @@ const dialogRef = this.dialog.open(DialogShowcaseExampleContentComponent, {
 ```
 
 Components created via `Dialog` can use `DialogRef` to close the dialog in which they are
-contained. To access data in your dialog component, you have to use the `DialogData` injection
+contained. To access data in your dialog component, you have to use the `DIALOG_DATA` injection
 token. When closing, the data result value is provided. This result value is forwarded as the
 result of the `afterClosed` promise.
 
@@ -64,7 +64,7 @@ dialogRef.afterClosed().subscribe(result => {
 });
 ```
 
-<h2>Dialog with content loaded from Template</h2>
+### Dialog with content loaded from Template
 
 You can use `Dialog` to load content from a TemplateRef by calling `open` method and
 passing it the template reference:
