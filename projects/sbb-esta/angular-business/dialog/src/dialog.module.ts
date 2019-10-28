@@ -5,15 +5,13 @@ import { NgModule } from '@angular/core';
 import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
 
+import { DialogCloseDirective } from './dialog/dialog-close.directive';
 import { DialogContainerComponent } from './dialog/dialog-container.component';
-import {
-  DialogCloseDirective,
-  DialogComponent,
-  DialogContentComponent,
-  DialogFooterComponent,
-  DialogHeaderComponent,
-  DialogTitleDirective
-} from './dialog/dialog-content';
+import { DialogContentComponent } from './dialog/dialog-content.component';
+import { DialogFooterComponent } from './dialog/dialog-footer.component';
+import { DialogHeaderComponent } from './dialog/dialog-header.component';
+import { DialogTitleDirective } from './dialog/dialog-title.directive';
+import { DialogComponent } from './dialog/dialog.component';
 import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service';
 
 @NgModule({
