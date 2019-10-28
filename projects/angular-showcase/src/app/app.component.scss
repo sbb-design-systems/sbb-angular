@@ -21,7 +21,7 @@
   top: 0;
   height: 48px;
   border-bottom: solid 1px #cccccc;
-  z-index: 2000;
+  z-index: 980;
 
   a {
     height: 48px;
@@ -45,7 +45,7 @@
   width: 300px;
   height: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: 980;
   transition: all 0.3s ease;
   overflow-y: auto;
 
@@ -101,7 +101,7 @@
   transform: rotate(0deg);
   transition: all 0.3s ease;
   cursor: pointer;
-  z-index: 3000;
+  z-index: 990;
 
   span {
     display: block;
