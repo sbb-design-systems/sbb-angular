@@ -25,8 +25,7 @@ let counter = 0;
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
   /** Class property that tracks tab number of the list */

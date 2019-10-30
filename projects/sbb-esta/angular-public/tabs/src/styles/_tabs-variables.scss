@@ -1,0 +1,11 @@
+@import '../../../../angular-core/styles/common/variants';
+
+$tabsHoverColor: $sbbColorRed125;
+$tabsDisabledColor: $sbbColorStorm;
+$tabsFontSize: 20;
+
+@if $sbbBusiness {
+  $tabsHoverColor: $sbbColorCloud;
+  $tabsDisabledColor: $sbbColorGranite;
+  $tabsFontSize: 15;
+}

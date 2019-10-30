@@ -9,6 +9,7 @@ import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
+import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
@@ -16,11 +17,15 @@ import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextm
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
+import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
 const exampleComponents = [
   SimpleContextmenuComponent,
   SkippableProcessflowComponent,
   TooltipShowcaseComponent,
+  PersonListComponent,
+  TabsShowcaseComponent,
   UsermenuShowcaseComponent
 ];
 
@@ -41,6 +46,7 @@ const exampleComponents = [
     HeaderModule,
     ProcessflowModule,
     TooltipModule,
+    TabsModule,
     UserMenuModule
   ]
 })

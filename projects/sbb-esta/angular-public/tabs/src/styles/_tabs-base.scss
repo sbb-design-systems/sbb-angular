@@ -18,23 +18,29 @@
   display: block;
   white-space: nowrap;
   font-family: $fontSbbLight;
-  font-size: pxToRem(20);
+  font-size: pxToRem($tabsFontSize);
   text-decoration: none;
   padding-bottom: pxToRem(8);
   margin-bottom: 1em;
   position: relative;
 
-  @include mq($from: tabletLandscape) {
-    font-size: pxToRem(26);
-    padding-bottom: pxToRem(20);
+  @include businessOnly() {
+    padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
   }
 
-  @include mq($from: desktop4k) {
-    font-size: pxToRem(39);
-  }
+  @include publicOnly() {
+    @include mq($from: tabletLandscape) {
+      font-size: pxToRem(26);
+      padding-bottom: pxToRem(20);
+    }
 
-  @include mq($from: desktop5k) {
-    font-size: pxToRem(52);
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(39);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(52);
+    }
   }
 
   &:hover,
@@ -64,19 +70,25 @@
 
   &:not(.sbb-active):focus,
   &:not(.sbb-active):hover {
-    color: $sbbColorRed125;
+    color: $tabsHoverColor;
 
-    &::after {
-      border-bottom-color: $sbbColorRed125;
+    @include publicOnly() {
+      &::after {
+        border-bottom-color: $sbbColorRed125;
+      }
     }
   }
 
   &[disabled] {
-    color: $sbbColorStorm;
+    color: $tabsDisabledColor;
+
+    @include businessOnly() {
+      background-color: $sbbColorMilk;
+    }
 
     &:hover,
     &:focus {
-      color: $sbbColorStorm;
+      color: $tabsDisabledColor;
       cursor: default;
 
       &::after {
@@ -90,8 +102,10 @@
     color: currentColor;
     cursor: default;
 
-    &::after {
-      border-bottom-color: currentColor;
+    @include publicOnly() {
+      &::after {
+        border-bottom-color: currentColor;
+      }
     }
   }
 }
