@@ -49,16 +49,27 @@
     outline: none;
   }
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    left: 50%;
-    height: 1px;
-    border-bottom: 1px solid currentColor;
-    transition: width 0.3s, left 0.3s;
+  @include publicOnly() {
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      left: 50%;
+      height: 1px;
+      border-bottom: 1px solid currentColor;
+      transition: width 0.3s, left 0.3s;
+    }
+  }
+
+  &.sbb-active {
+    @include businessOnly() {
+      color: $sbbColorBlack;
+      background-color: $sbbColorWhite;
+      border: $sbbColorGraphite solid 1px;
+      border-bottom: none;
+    }
   }
 
   &.sbb-active::after,
@@ -71,6 +82,10 @@
   &:not(.sbb-active):focus,
   &:not(.sbb-active):hover {
     color: $tabsHoverColor;
+
+    @include businessOnly() {
+      background-color: $sbbColorCloud;
+    }
 
     @include publicOnly() {
       &::after {
@@ -90,6 +105,10 @@
     &:focus {
       color: $tabsDisabledColor;
       cursor: default;
+
+      @include businessOnly() {
+        background-color: $sbbColorMilk;
+      }
 
       &::after {
         width: 0;
