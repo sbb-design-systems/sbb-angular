@@ -13,6 +13,7 @@ export * from '@sbb-esta/angular-business/option';
 export * from '@sbb-esta/angular-business/processflow';
 export * from '@sbb-esta/angular-business/radio-button';
 export * from '@sbb-esta/angular-business/select';
+export * from '@sbb-esta/angular-business/tabs';
 export * from '@sbb-esta/angular-business/textarea';
 export * from '@sbb-esta/angular-business/time-input';
 export * from '@sbb-esta/angular-business/tooltip';
