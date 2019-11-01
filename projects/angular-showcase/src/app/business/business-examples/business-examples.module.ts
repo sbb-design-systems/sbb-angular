@@ -15,10 +15,10 @@ import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
+import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
-import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 
 const exampleComponents = [
   SimpleContextmenuComponent,

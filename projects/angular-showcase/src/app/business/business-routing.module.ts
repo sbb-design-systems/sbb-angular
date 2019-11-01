@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BusinessComponentViewerComponent } from '../features/business-component-viewer/business-component-viewer/business-component-viewer.component';
 import { BusinessComponentViewerModule } from '../features/business-component-viewer/business-component-viewer.module';
+import { BusinessComponentViewerComponent } from '../features/business-component-viewer/business-component-viewer/business-component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { BusinessComponent } from './business/business.component';

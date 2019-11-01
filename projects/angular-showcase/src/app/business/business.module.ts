@@ -1,8 +1,8 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
+import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 
 import { SharedModule } from '../shared/shared.module';
 
