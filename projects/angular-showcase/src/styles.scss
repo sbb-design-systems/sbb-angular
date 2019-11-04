@@ -13,7 +13,7 @@ sbb-core,
 sbb-icons {
   @import '../../sbb-esta/angular-public/styles';
   sbb-markdown-viewer,
-  sbb-public-component-viewer,
+  sbb-component-viewer,
   sbb-api-viewer,
   sbb-icon-search,
   sbb-icon-viewer {
@@ -30,7 +30,7 @@ sbb-icons {
 sbb-business {
   @import '../../sbb-esta/angular-business/styles';
   sbb-markdown-viewer,
-  sbb-public-component-viewer {
+  sbb-component-viewer {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;
@@ -60,7 +60,7 @@ table {
 }
 
 sbb-markdown-viewer,
-sbb-public-component-viewer {
+sbb-component-viewer {
   pre {
     background-color: #efefef;
     padding: 1rem 3rem;

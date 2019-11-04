@@ -6,9 +6,12 @@ import { ExampleProvider } from '../../../shared/example-provider';
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
 @Component({
-  selector: 'sbb-public-component-viewer',
-  templateUrl: './business-component-viewer.component.html',
-  styleUrls: ['./business-component-viewer.component.scss']
+  selector: 'sbb-component-viewer',
+  templateUrl:
+    '../../core-component-viewer/core-component-viewer/core-component-viewer.component.html',
+  styleUrls: [
+    '../../core-component-viewer/core-component-viewer/core-component-viewer.component.scss'
+  ]
 })
 export class BusinessComponentViewerComponent extends ComponentViewerBase {
   constructor(

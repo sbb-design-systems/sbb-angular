@@ -4,16 +4,13 @@ import { NgModule } from '@angular/core';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 
+import { PsChromePatchModule } from '../ps-chrome-patch/ps-chrome-patch.module';
+
+import { BusinessExampleViewerComponent } from './business-example-viewer/business-example-viewer.component';
 import { BusinessComponentViewerComponent } from './business-component-viewer/business-component-viewer.component';
-import { BusinessExampleViewerComponent } from './example-viewer/business-example-viewer.component';
-import { PsChromePatchDirective } from './ps-chrome-patch.directive';
 
 @NgModule({
-  declarations: [
-    BusinessExampleViewerComponent,
-    BusinessComponentViewerComponent,
-    PsChromePatchDirective
-  ],
-  imports: [CommonModule, PortalModule, ScrollingModule, TabsModule]
+  declarations: [BusinessExampleViewerComponent, BusinessComponentViewerComponent],
+  imports: [CommonModule, PortalModule, ScrollingModule, TabsModule, PsChromePatchModule]
 })
 export class BusinessComponentViewerModule {}
