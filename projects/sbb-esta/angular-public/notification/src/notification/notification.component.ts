@@ -20,7 +20,8 @@ export interface JumpMark {
   /** Title of an element in jump marks. */
   title: string;
   /** Identifier of an element in jump marks. */
-  elementId: string;
+  elementId?: string;
+  callback?: (event$: any, jumpMark: JumpMark) => void;
 }
 
 @Component({
@@ -114,6 +115,11 @@ export class NotificationComponent {
    */
   scrollTo($event: any, jumpMark: JumpMark) {
     $event.preventDefault();
-    document.querySelector(jumpMark.elementId).scrollIntoView({ behavior: 'smooth' });
+    if (jumpMark.elementId) {
+      document.querySelector(jumpMark.elementId).scrollIntoView({ behavior: 'smooth' });
+    }
+    if (jumpMark.callback) {
+      jumpMark.callback($event, jumpMark);
+    }
   }
 }

@@ -7,6 +7,7 @@ import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
 import { NotificationComponent, NotificationType } from './notification.component';
+import createSpy = jasmine.createSpy;
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -108,6 +109,19 @@ describe('NotificationComponent', () => {
       testFixture.whenRenderingDone().then(() => {
         expect(componentStyles.height).toBe('92px');
       });
+    });
+
+    it('should call callback of jump mark', () => {
+      const callbackMock = createSpy('mock-callback');
+      testComponent.jumpMarks = [{ callback: callbackMock, title: 'Here' }];
+      testFixture.detectChanges();
+      const notificationLink = testFixture.debugElement.query(
+        By.css('.sbb-notification-jump-mark > a')
+      );
+      notificationLink.triggerEventHandler('click', {
+        preventDefault: createSpy('prevent-default-mock')
+      });
+      expect(callbackMock).toHaveBeenCalled();
     });
   });
 });
