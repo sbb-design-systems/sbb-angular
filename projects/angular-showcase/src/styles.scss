@@ -43,11 +43,10 @@ sbb-business {
 
 body {
   transition: all 0.3s ease;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   left: 0;
-  top: 48px;
+  top: 54px;
 
   &.home {
     top: 0;

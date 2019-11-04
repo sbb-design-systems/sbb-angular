@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { ICON_COMPONENT_LIST, IconCollectionModule } from '@sbb-esta/angular-icons';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
@@ -25,6 +26,7 @@ import { PublicModule } from './public/public.module';
     IconCollectionModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     ScrollingModule,
+    HeaderModule,
     HttpClientModule,
     BrowserAnimationsModule,
     PublicModule,

@@ -70,14 +70,24 @@ export class DropdownComponent implements AfterContentInit {
   /** Whether the dropdown panel should be visible, depending on option length. */
   showPanel = false;
 
-  /** Whether the dropdown panel is open. */
+  /**
+   * Whether the dropdown panel is open.
+   * @deprecated Use open instead.
+   */
   get isOpen(): boolean {
-    return this._isOpen && this.showPanel;
+    return this.open;
   }
   set isOpen(value: boolean) {
-    this._isOpen = value;
+    this._open = value;
   }
-  private _isOpen = false;
+  /** Whether the dropdown panel is open. */
+  get open(): boolean {
+    return this._open && this.showPanel;
+  }
+  set open(value: boolean) {
+    this._open = value;
+  }
+  private _open = false;
 
   /** Css class of sbb-dropdown. */
   @HostBinding('class.sbb-dropdown') sbbDropdown = true;
@@ -88,7 +98,10 @@ export class DropdownComponent implements AfterContentInit {
   /** Element for the panel containing the dropdown options. */
   @ViewChild('panel', { static: false }) panel: ElementRef;
 
-  /** Function that maps an option's control value to its display value in the trigger. */
+  /**
+   * Function that maps an option's control value to its display value in the trigger.
+   * @deprecated Is not being used in the dropdown.
+   */
   @Input() displayWith: ((value: any) => string) | null = null;
 
   /**
@@ -142,9 +155,7 @@ export class DropdownComponent implements AfterContentInit {
   ) {}
 
   ngAfterContentInit() {
-    this.keyManager = new ActiveDescendantKeyManager<DropdownItemDirective>(
-      this.options
-    ).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager(this.options).withWrap();
     // Set the initial visibility state.
     this.setVisibility();
   }
