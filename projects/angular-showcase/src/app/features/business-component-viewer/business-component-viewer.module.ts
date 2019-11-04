@@ -6,8 +6,8 @@ import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 
 import { PsChromePatchModule } from '../ps-chrome-patch/ps-chrome-patch.module';
 
-import { BusinessExampleViewerComponent } from './business-example-viewer/business-example-viewer.component';
 import { BusinessComponentViewerComponent } from './business-component-viewer/business-component-viewer.component';
+import { BusinessExampleViewerComponent } from './business-example-viewer/business-example-viewer.component';
 
 @NgModule({
   declarations: [BusinessExampleViewerComponent, BusinessComponentViewerComponent],
