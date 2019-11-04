@@ -23,8 +23,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { DIALOG_ANIMATIONS } from './dialog-animations';
-import { DialogConfig } from './dialog-config';
+import { DIALOG_ANIMATIONS } from '../dialog-animations';
+import { DialogConfig } from '../dialog-config';
 
 /**
  * Throws an exception for the case when a ComponentPortal is

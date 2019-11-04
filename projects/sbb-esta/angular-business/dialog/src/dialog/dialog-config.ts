@@ -4,6 +4,21 @@ import { ViewContainerRef } from '@angular/core';
 /** Valid ARIA roles for a Dialog element. */
 export type DialogRole = 'dialog' | 'alertdialog';
 
+/** Possible overrides for a dialog's position. */
+export interface DialogPosition {
+  /** Override for the Dialog's top position. */
+  top?: string;
+
+  /** Override for the Dialog's bottom position. */
+  bottom?: string;
+
+  /** Override for the Dialog's left position. */
+  left?: string;
+
+  /** Override for the Dialog's right position. */
+  right?: string;
+}
+
 /**
  * Configuration for opening a modal dialog with the Dialog service.
  */
@@ -28,11 +43,26 @@ export class DialogConfig<D = any> {
   /** Whether the user can use escape or clicking on the backdrop to close the modal. */
   disableClose? = false;
 
-  /** Width of the Dialog. */
+  /** Width of the Dialog overlay. */
   width? = '100vw';
 
-  /** Height of the Dialog. */
+  /** Height of the Dialog overlay. */
   height? = '100vh';
+
+  /** Min-width of the Dialog. If a number is provided, assumes pixel units. */
+  minWidth?: number | string;
+
+  /** Min-height of the Dialog. If a number is provided, assumes pixel units. */
+  minHeight?: number | string;
+
+  /** Max-width of the Dialog. If a number is provided, assumes pixel units. Defaults to 80vw. */
+  maxWidth?: number | string = '80vw';
+
+  /** Max-height of the Dialog. If a number is provided, assumes pixel units. */
+  maxHeight?: number | string;
+
+  /** Position overrides. */
+  position?: DialogPosition;
 
   /** Data being injected into the child component. */
   data?: D | null = null;

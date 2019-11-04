@@ -5,12 +5,13 @@ import {
   HostBinding,
   Input,
   OnInit,
-  Optional
+  Optional,
+  ViewEncapsulation
 } from '@angular/core';
 
-import { DialogHelperService } from './dialog-helper.service';
-import { DialogRef } from './dialog-ref';
-import { Dialog } from './dialog.service';
+import { DialogHelperService } from '../dialog-helper.service';
+import { DialogRef } from '../dialog-ref';
+import { Dialog } from '../dialog.service';
 
 /**
  * Container for the bottom action buttons in a dialog.
@@ -18,8 +19,10 @@ import { Dialog } from './dialog.service';
  */
 @Component({
   selector: `sbb-dialog-footer, [sbbDialogFooter]`,
+  styleUrls: ['./dialog-footer.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   template: `
-    <perfect-scrollbar>
+    <perfect-scrollbar class="sbb-dialog-footer-scrollbar">
       <ng-content select="button"></ng-content>
     </perfect-scrollbar>
   `,

@@ -6,19 +6,17 @@ import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
 
 import { DialogCloseDirective } from './dialog/dialog-close.directive';
-import { DialogContainerComponent } from './dialog/dialog-container.component';
-import { DialogContentComponent } from './dialog/dialog-content.component';
-import { DialogFooterComponent } from './dialog/dialog-footer.component';
-import { DialogHeaderComponent } from './dialog/dialog-header.component';
+import { DialogContainerComponent } from './dialog/dialog-container/dialog-container.component';
+import { DialogContentComponent } from './dialog/dialog-content/dialog-content.component';
+import { DialogFooterComponent } from './dialog/dialog-footer/dialog-footer.component';
+import { DialogHeaderComponent } from './dialog/dialog-header/dialog-header.component';
 import { DialogTitleDirective } from './dialog/dialog-title.directive';
-import { DialogComponent } from './dialog/dialog.component';
 import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service';
 
 @NgModule({
   imports: [CommonModule, IconCrossModule, OverlayModule, PortalModule, ScrollingModule],
   exports: [
     DialogContainerComponent,
-    DialogComponent,
     DialogCloseDirective,
     DialogHeaderComponent,
     DialogContentComponent,
@@ -27,7 +25,6 @@ import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service
   ],
   declarations: [
     DialogContainerComponent,
-    DialogComponent,
     DialogCloseDirective,
     DialogHeaderComponent,
     DialogFooterComponent,

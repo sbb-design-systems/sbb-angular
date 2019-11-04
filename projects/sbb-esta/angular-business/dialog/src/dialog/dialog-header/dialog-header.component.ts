@@ -11,12 +11,13 @@ import {
   Optional
 } from '@angular/core';
 
-import { DialogHelperService } from './dialog-helper.service';
-import { DialogRef } from './dialog-ref';
-import { Dialog } from './dialog.service';
+import { DialogHelperService } from '../dialog-helper.service';
+import { DialogRef } from '../dialog-ref';
+import { Dialog } from '../dialog.service';
 
 @Component({
   selector: 'sbb-dialog-header, [sbbDialogHeader]',
+  styleUrls: ['dialog-header.component.scss'],
   template: `
     <ng-content></ng-content>
     <button type="button" sbbDialogClose *ngIf="!isCloseDisabled" class="sbb-dialog-close-btn">

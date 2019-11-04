@@ -19,7 +19,7 @@ import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { DialogConfig } from './dialog-config';
-import { DialogContainerComponent } from './dialog-container.component';
+import { DialogContainerComponent } from './dialog-container/dialog-container.component';
 import { DialogRef } from './dialog-ref';
 
 /** Injection token that can be used to access the data that was passed in to a dialog. */
@@ -166,6 +166,12 @@ export class Dialog {
       positionStrategy: this._overlay.position().global(),
       scrollStrategy: dialogConfig.scrollStrategy || this._scrollStrategy(),
       panelClass: dialogConfig.panelClass,
+      hasBackdrop: true,
+      backdropClass: 'sbb-overlay-background',
+      minWidth: dialogConfig.minWidth,
+      maxWidth: dialogConfig.maxWidth,
+      minHeight: dialogConfig.minHeight,
+      maxHeight: dialogConfig.maxHeight,
       width: dialogConfig.width,
       height: dialogConfig.height
     });
@@ -229,6 +235,8 @@ export class Dialog {
       );
       dialogRef.componentInstance = contentRef.instance;
     }
+
+    dialogRef.updatePosition(config.position);
 
     return dialogRef;
   }

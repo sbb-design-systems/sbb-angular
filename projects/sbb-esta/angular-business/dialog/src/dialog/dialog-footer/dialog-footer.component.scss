@@ -1,0 +1,43 @@
+@import '../../dialog';
+
+.sbb-dialog-footer-scrollbar {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: pxToEm($dialog-footer-height-mobile + 2);
+  background-color: $dialog-bgcolor;
+  border-left: 1px solid $sbbColorGranite;
+  border-right: 1px solid $sbbColorGranite;
+  border-bottom: 1px solid $sbbColorGranite;
+  border-top: 1px solid $dialog-header-border-color;
+
+  @include mq($from: tabletPortrait) {
+    max-height: pxToEm($dialog-footer-height-tablet + 2);
+  }
+
+  .ps-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: pxToEm($dialog-footer-height-mobile);
+    padding: pxToEm($dialog-footer-padding) pxToEm($dialog-header-x-padding-mobile);
+
+    @include mq($from: tabletPortrait) {
+      flex-direction: row;
+      min-height: pxToEm($dialog-footer-height-tablet);
+      padding: pxToEm($dialog-footer-padding) pxToEm($dialog-header-x-padding-tablet);
+    }
+
+    @include mq($from: desktop) {
+      padding: pxToEm($dialog-footer-padding) pxToEm($dialog-header-x-padding);
+    }
+
+    button {
+      margin-bottom: pxToEm(10);
+
+      @include mq($from: tabletPortrait) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

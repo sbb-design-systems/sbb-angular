@@ -1,0 +1,25 @@
+@import '../../_dialog.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+  height: pxToEm($dialog-header-height);
+  padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-header-x-padding-mobile);
+  border-top: 1px solid $sbbColorGranite;
+  border-left: 1px solid $sbbColorGranite;
+  border-right: 1px solid $sbbColorGranite;
+  border-bottom: 1px solid $dialog-header-border-color;
+  overflow: hidden;
+
+  @include mq($from: tabletPortrait) {
+    padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-header-x-padding-tablet);
+  }
+
+  @include mq($from: desktop) {
+    padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-header-x-padding);
+  }
+
+  .sbb-dialog-close-btn {
+    @include dialogCloseBtn();
+  }
+}

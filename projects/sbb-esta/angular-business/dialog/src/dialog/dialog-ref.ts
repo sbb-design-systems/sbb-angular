@@ -1,10 +1,11 @@
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { OverlayRef } from '@angular/cdk/overlay';
+import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 
-import { DialogContainerComponent } from './dialog-container.component';
+import { DialogPosition } from './dialog-config';
+import { DialogContainerComponent } from './dialog-container/dialog-container.component';
 
 // Counter for unique dialog ids.
 let uniqueId = 0;
@@ -121,6 +122,30 @@ export class DialogRef<T, R = any> {
   }
 
   /**
+   * Updates the dialog's position.
+   * @param position New dialog position.
+   */
+  updatePosition(position?: DialogPosition): this {
+    const strategy = this._getPositionStrategy();
+
+    if (position && (position.left || position.right)) {
+      position.left ? strategy.left(position.left) : strategy.right(position.right);
+    } else {
+      strategy.centerHorizontally();
+    }
+
+    if (position && (position.top || position.bottom)) {
+      position.top ? strategy.top(position.top) : strategy.bottom(position.bottom);
+    } else {
+      strategy.centerVertically();
+    }
+
+    this._overlayRef.updatePosition();
+
+    return this;
+  }
+
+  /**
    * Gets an observable that is notified when the dialog is finished opening.
    */
   afterOpen(): Observable<void> {
@@ -146,5 +171,10 @@ export class DialogRef<T, R = any> {
    */
   keydownEvents(): Observable<KeyboardEvent> {
     return this._overlayRef.keydownEvents();
+  }
+
+  /** Fetches the position strategy object from the overlay ref. */
+  private _getPositionStrategy(): GlobalPositionStrategy {
+    return this._overlayRef.getConfig().positionStrategy as GlobalPositionStrategy;
   }
 }

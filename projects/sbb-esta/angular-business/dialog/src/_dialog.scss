@@ -45,39 +45,20 @@ $dialog-footer-padding: 0;
   }
 }
 
+@mixin overlay() {
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+}
+
 @mixin dialogContainer() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: $sbbColorWhite;
   position: relative;
   outline: 0;
   width: 100%;
   height: 100%;
-}
-
-@mixin dialog() {
-  border: 1px solid $sbbColorGranite;
-  background-color: $dialog-bgcolor;
-  min-width: pxToEm($dialog-min-width);
-  max-width: pxToEm($dialog-max-width);
-}
-
-@mixin dialogHeader() {
-  display: flex;
-  align-items: center;
-  height: pxToEm($dialog-header-height);
-  padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-header-x-padding-mobile);
-  border-bottom: 1px solid $dialog-header-border-color;
-  overflow: hidden;
-
-  @include mq($from: tabletPortrait) {
-    padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-header-x-padding-tablet);
-  }
-
-  @include mq($from: desktop) {
-    padding: pxToEm($dialog-header-y-padding) pxToEm($dialog-header-x-padding);
-  }
 }
 
 @mixin dialogCloseBtn() {
@@ -136,62 +117,13 @@ $dialog-footer-padding: 0;
 
 @mixin dialogContent() {
   display: block;
-
-  perfect-scrollbar {
-    .ps-content {
-      padding: pxToEm($dialog-content-y-padding-mobile) pxToEm($dialog-content-x-padding-mobile);
-
-      @include mq($from: tabletPortrait) {
-        padding: pxToEm($dialog-content-y-padding) pxToEm($dialog-content-x-padding-tablet);
-      }
-
-      @include mq($from: desktop) {
-        padding: pxToEm($dialog-content-y-padding) pxToEm($dialog-content-x-padding);
-      }
-    }
-  }
+  border-left: 1px solid $sbbColorGranite;
+  border-right: 1px solid $sbbColorGranite;
+  flex: 1 1 auto;
+  @include dialogContentHeight();
 }
 
 @mixin dialogFooter() {
-  perfect-scrollbar {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-height: pxToEm($dialog-footer-height-mobile + 2);
-    background-color: $dialog-bgcolor;
-    border-top: 1px solid $dialog-header-border-color;
-
-    @include mq($from: tabletPortrait) {
-      max-height: pxToEm($dialog-footer-height-tablet + 2);
-    }
-
-    .ps-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: pxToEm($dialog-footer-height-mobile);
-      padding: pxToEm($dialog-footer-padding) pxToEm($dialog-header-x-padding-mobile);
-
-      @include mq($from: tabletPortrait) {
-        flex-direction: row;
-        min-height: pxToEm($dialog-footer-height-tablet);
-        padding: pxToEm($dialog-footer-padding) pxToEm($dialog-header-x-padding-tablet);
-      }
-
-      @include mq($from: desktop) {
-        padding: pxToEm($dialog-footer-padding) pxToEm($dialog-header-x-padding);
-      }
-
-      button {
-        margin-bottom: pxToEm(10);
-
-        @include mq($from: tabletPortrait) {
-          margin-bottom: 0;
-        }
-      }
-    }
-  }
-
   &-align-start {
     perfect-scrollbar .ps-content {
       justify-content: flex-start;
