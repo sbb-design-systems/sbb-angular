@@ -11,6 +11,9 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
@@ -99,6 +102,9 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
@@ -142,6 +148,9 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
@@ -203,6 +212,9 @@ jobs:
     steps:
     - name: Full checkout
       uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
     - name: Prepare sonar configuration
       run: node scripts/sonar.js
     - name: Restore lint artifacts
@@ -229,6 +241,9 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
@@ -262,6 +277,9 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
     - name: Restore showcase artifact
       uses: actions/download-artifact@v1
       with:

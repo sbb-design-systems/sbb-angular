@@ -14,6 +14,9 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
@@ -104,6 +107,9 @@ jobs:
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
     - name: Assign package version
       run: node scripts/patch-release-version.js
     - uses: actions/setup-node@v1
