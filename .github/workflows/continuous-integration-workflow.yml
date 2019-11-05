@@ -204,7 +204,7 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     needs: [lint, test]
-    if: secrets.SONAR_TOKEN != ''
+    if: github.event_name == 'push'
     steps:
     - name: Full checkout
       uses: actions/checkout@v1
