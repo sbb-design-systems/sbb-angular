@@ -20,7 +20,7 @@ jobs:
       id: node_modules_cache
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
       if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
@@ -34,9 +34,9 @@ jobs:
       with:
         path: dist/sbb-esta/angular-core
         key: "ng-sbb-esta-angular-core-\
-          ${{ hashFiles('projects/sbb-esta/angular-core/**/*.ts') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-core/**/*.html') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-core/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.scss') }}"
     - name: Build @sbb-esta/angular-core
       if: steps.sbb_esta_angular_core_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-core
@@ -47,9 +47,9 @@ jobs:
       with:
         path: dist/sbb-esta/angular-icons
         key: "ng-sbb-esta-angular-icons-\
-          ${{ hashFiles('projects/sbb-esta/angular-icons/**/*.ts') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-icons/**/*.html') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-icons/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.scss') }}"
     - name: Build @sbb-esta/angular-icons
       if: steps.sbb_esta_angular_icons_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-icons
@@ -60,9 +60,9 @@ jobs:
       with:
         path: dist/sbb-esta/angular-keycloak
         key: "ng-sbb-esta-angular-keycloak-\
-          ${{ hashFiles('projects/sbb-esta/angular-keycloak/**/*.ts') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-keycloak/**/*.html') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-keycloak/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.scss') }}"
     - name: Build @sbb-esta/angular-keycloak
       if: steps.sbb_esta_angular_keycloak_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-keycloak
@@ -73,9 +73,9 @@ jobs:
       with:
         path: dist/sbb-esta/angular-public
         key: "ng-sbb-esta-angular-public-\
-          ${{ hashFiles('projects/sbb-esta/angular-public/**/*.ts') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-public/**/*.html') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-public/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.scss') }}"
     - name: Build @sbb-esta/angular-public
       if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-public
@@ -86,9 +86,9 @@ jobs:
       with:
         path: dist/sbb-esta/angular-business
         key: "ng-sbb-esta-angular-business-\
-          ${{ hashFiles('projects/sbb-esta/angular-business/**/*.ts') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-business/**/*.html') }}-\
-          ${{ hashFiles('projects/sbb-esta/angular-business/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.scss') }}"
     - name: Build @sbb-esta/angular-business
       if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-business
