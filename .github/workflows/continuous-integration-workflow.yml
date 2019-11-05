@@ -12,6 +12,8 @@ jobs:
       with:
         fetch-depth: 1
 
+    - run: tree
+
     - name: Restore dependencies from cache
       uses: actions/cache@v1
       id: node_modules_cache
