@@ -35,7 +35,6 @@ jobs:
         path: dist/sbb-esta/angular-core
         key: "ng-sbb-esta-angular-core-\
           ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.html') }}-\
           ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.scss') }}"
     - name: Build @sbb-esta/angular-core
       if: steps.sbb_esta_angular_core_cache.outputs.cache-hit != 'true'
@@ -47,9 +46,7 @@ jobs:
       with:
         path: dist/sbb-esta/angular-icons
         key: "ng-sbb-esta-angular-icons-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.html') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.ts') }}"
     - name: Build @sbb-esta/angular-icons
       if: steps.sbb_esta_angular_icons_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-icons
@@ -60,9 +57,7 @@ jobs:
       with:
         path: dist/sbb-esta/angular-keycloak
         key: "ng-sbb-esta-angular-keycloak-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.html') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.scss') }}"
+          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.ts') }}"
     - name: Build @sbb-esta/angular-keycloak
       if: steps.sbb_esta_angular_keycloak_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-keycloak
