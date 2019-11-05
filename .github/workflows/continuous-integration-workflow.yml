@@ -12,7 +12,7 @@ jobs:
       with:
         fetch-depth: 1
 
-    - run: tree
+    - run: ls
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
