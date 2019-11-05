@@ -91,7 +91,7 @@ jobs:
     - name: Store build artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: dist/sbb-esta
+        name: dist-sbb-esta
         path: dist/sbb-esta
 
   lint:
@@ -165,7 +165,7 @@ jobs:
     - name: Restore build artifacts
       uses: actions/download-artifact@v1
       with:
-        name: dist/sbb-esta
+        name: dist-sbb-esta
         path: dist/sbb-esta
 
     - name: Testing @sbb-esta/angular-core
@@ -258,7 +258,7 @@ jobs:
     - name: Restore build artifacts
       uses: actions/download-artifact@v1
       with:
-        name: dist/sbb-esta
+        name: dist-sbb-esta
         path: dist/sbb-esta
 
     - name: Build showcase

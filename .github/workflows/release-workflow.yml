@@ -94,7 +94,7 @@ jobs:
     - name: Store build artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: dist/sbb-esta
+        name: dist-sbb-esta
         path: dist/sbb-esta
 
   relase:
@@ -110,9 +110,13 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
+    - name: Restore package artifacts
+      uses: actions/download-artifact@v1
+      with:
+        name: dist-sbb-esta
+        path: dist/sbb-esta
     - name: Assign package version
       run: node scripts/patch-release-version.js
-    - uses: actions/setup-node@v1
     - name: Publish @sbb-esta/angular-core
       run: |
         cd dist/sbb-esta/angular-core
