@@ -1,0 +1,143 @@
+name: Release
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --max_old_space_size=6144
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Restore dependencies from cache
+      uses: actions/cache@v1
+      id: node_modules_cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+    - name: Install dependencies
+      if: steps.node_modules_cache.outputs.cache-hit != 'true'
+      run: npm ci
+
+    - name: Migrate public to business components
+      run: npm run build:angular-business:public2business
+
+    - name: Restore @sbb-esta/angular-core from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_core_cache
+      with:
+        path: dist/sbb-esta/angular-core
+        key: "ng-sbb-esta-angular-core-\
+          ${{ hashFiles('projects/sbb-esta/angular-core/**/*.ts') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-core/**/*.html') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-core/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-core
+      if: steps.sbb_esta_angular_core_cache.outputs.cache-hit != 'true'
+      run: npm run build:angular-core
+      
+    - name: Restore @sbb-esta/angular-icons from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_icons_cache
+      with:
+        path: dist/sbb-esta/angular-icons
+        key: "ng-sbb-esta-angular-icons-\
+          ${{ hashFiles('projects/sbb-esta/angular-icons/**/*.ts') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-icons/**/*.html') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-icons/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-icons
+      if: steps.sbb_esta_angular_icons_cache.outputs.cache-hit != 'true'
+      run: npm run build:angular-icons
+      
+    - name: Restore @sbb-esta/angular-keycloak from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_keycloak_cache
+      with:
+        path: dist/sbb-esta/angular-keycloak
+        key: "ng-sbb-esta-angular-keycloak-\
+          ${{ hashFiles('projects/sbb-esta/angular-keycloak/**/*.ts') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-keycloak/**/*.html') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-keycloak/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-keycloak
+      if: steps.sbb_esta_angular_keycloak_cache.outputs.cache-hit != 'true'
+      run: npm run build:angular-keycloak
+      
+    - name: Restore @sbb-esta/angular-public from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_public_cache
+      with:
+        path: dist/sbb-esta/angular-public
+        key: "ng-sbb-esta-angular-public-\
+          ${{ hashFiles('projects/sbb-esta/angular-public/**/*.ts') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-public/**/*.html') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-public/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-public
+      if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
+      run: npm run build:angular-public
+      
+    - name: Restore @sbb-esta/angular-business from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_business_cache
+      with:
+        path: dist/sbb-esta/angular-business
+        key: "ng-sbb-esta-angular-business-\
+          ${{ hashFiles('projects/sbb-esta/angular-business/**/*.ts') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-business/**/*.html') }}-\
+          ${{ hashFiles('projects/sbb-esta/angular-business/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-business
+      if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
+      run: npm run build:angular-business
+
+    - name: Store build artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist/sbb-esta
+        path: dist/sbb-esta
+
+  relase:
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Assign package version
+      run: node scripts/patch-release-version.js
+    - uses: actions/setup-node@v1
+    - name: Publish @sbb-esta/angular-core
+      run: |
+        cd dist/sbb-esta/angular-core
+        npm publish
+    - name: Publish @sbb-esta/angular-icons
+      run: |
+        cd dist/sbb-esta/angular-icons
+        npm publish
+    - name: Publish @sbb-esta/angular-keycloak
+      run: |
+        cd dist/sbb-esta/angular-keycloak
+        npm publish
+    - name: Publish @sbb-esta/angular-public
+      run: |
+        cd dist/sbb-esta/angular-public
+        npm publish
+    - name: Publish @sbb-esta/angular-business
+      run: |
+        cd dist/sbb-esta/angular-business
+        npm publish
+    - name: Publish @sbb-esta/angular-core
+      run: |
+        cd dist/angular-showcase
+        npm publish
+    - name: Trigger showcase deployment
+      env:
+        SHOWCASE_AUTH: ${{ secrets.SHOWCASE_AUTH }}
+      run: curl --url https://angular-staging.app.sbb.ch/latest -X POST --user $SHOWCASE_AUTH
+    
