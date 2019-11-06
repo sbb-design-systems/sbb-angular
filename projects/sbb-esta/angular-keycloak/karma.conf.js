@@ -54,12 +54,12 @@ module.exports = function(config) {
     browserDisconnectTolerance: 1
   });
 
-  if (process.env.TRAVIS) {
+  if (process.env.GITHUB_WORKSPACE) {
     config.reporters = config.reporters
       .filter(r => r !== 'progress' && r !== 'kjhtml')
       .concat('dots');
 
-    // This defines how often a given browser should be launched in the same Travis
+    // This defines how often a given browser should be launched in the same GitHub
     // container. This is helpful if we want to shard tests across the same browser.
     const parallelBrowserInstances = Number(process.env.KARMA_PARALLEL_BROWSERS) || 1;
 
