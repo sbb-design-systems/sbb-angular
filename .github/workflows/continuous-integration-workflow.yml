@@ -129,7 +129,7 @@ jobs:
     - name: Linting @sbb-esta/angular-business
       run: npx ng lint @sbb-esta/angular-business --format=json > lint/business.json
     - name: Linting @sbb-esta/angular-showcase
-      run: npx ng lint @sbb-esta/angular-showcase --format=json > lint/showcase.json
+      run: npx ng lint angular-showcase --format=json > lint/showcase.json
 
     - name: Save lint results
       uses: actions/upload-artifact@v1
@@ -174,12 +174,6 @@ jobs:
     - name: Testing @sbb-esta/angular-core PR
       if: env.BROWSERSTACK_USERNAME == ''
       run: npx ng test @sbb-esta/angular-core -c pr
-    - name: Testing @sbb-esta/angular-icons
-      if: env.BROWSERSTACK_USERNAME != ''
-      run: npx ng test @sbb-esta/angular-icons -c ci
-    - name: Testing @sbb-esta/angular-icons PR
-      if: env.BROWSERSTACK_USERNAME == ''
-      run: npx ng test @sbb-esta/angular-icons -c pr
     - name: Testing @sbb-esta/angular-keycloak
       if: env.BROWSERSTACK_USERNAME != ''
       run: npx ng test @sbb-esta/angular-keycloak -c ci
