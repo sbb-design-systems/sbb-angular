@@ -318,4 +318,4 @@ jobs:
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
         -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        --upload-file dist/angular-showcase/sbb-esta-angular-showcase-0.0.0-$PR_NUMBER.tgz 
+        -F "tarball=@dist/angular-showcase/sbb-esta-angular-showcase-0.0.0-$PR_NUMBER.tgz"
