@@ -91,11 +91,14 @@ jobs:
       if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-business
 
+    - name: Build showcase
+      run: npm run build:angular-showcase
+
     - name: Store build artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: dist-sbb-esta
-        path: dist/sbb-esta
+        name: dist
+        path: dist
 
   relase:
     runs-on: ubuntu-latest
@@ -113,10 +116,20 @@ jobs:
     - name: Restore package artifacts
       uses: actions/download-artifact@v1
       with:
-        name: dist-sbb-esta
-        path: dist/sbb-esta
+        name: dist
+        path: dist
     - name: Assign package version
       run: node scripts/patch-release-version.js
+    - name: Copy license
+      run: |
+        cp LICENSE dist/sbb-esta/angular-core
+        cp LICENSE dist/sbb-esta/angular-icons
+        cp LICENSE dist/sbb-esta/angular-keycloak
+        cp LICENSE dist/sbb-esta/angular-public
+        cp LICENSE dist/sbb-esta/angular-business
+        cp LICENSE dist/angular-showcase
+    - name: Copy showcase package.json
+      run: cp projects/angular-showcase/package.json dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
       run: |
         cd dist/sbb-esta/angular-core
