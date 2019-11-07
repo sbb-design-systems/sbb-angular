@@ -299,6 +299,8 @@ jobs:
 
     - name: Build showcase
       run: npm run build:angular-showcase
+    - name: Copy showcase package.json
+      run: cp projects/angular-showcase/package.json dist/angular-showcase
       
     - name: Save showcase artifact
       uses: actions/upload-artifact@v1
@@ -321,8 +323,6 @@ jobs:
       with:
         name: showcase
         path: dist/angular-showcase
-    - name: Copy showcase package.json
-      run: cp projects/angular-showcase/package.json dist/angular-showcase
     - name: Assign showcase version
       run: sed -i "s/0.0.0-PLACEHOLDER/0.0.0-$PR_NUMBER/g" dist/angular-showcase/package.json
     - name: Pack showcase
