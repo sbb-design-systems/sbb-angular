@@ -252,7 +252,7 @@ jobs:
     - name: Prepare sonar configuration
       run: node scripts/sonar.js
     - name: Adapt lcov paths
-      run: find './coverage/**/lcov.info' -type f -exec sed -i -e "s|SF:$GITHUB_WORKSPACE|SF:/github/workspace|g" {} \;
+      run: find ./coverage -name lcov.info -type f -exec sed -i -e "s|SF:$GITHUB_WORKSPACE|SF:/github/workspace|g" {} \;
     - name: Restore lint artifacts
       uses: actions/download-artifact@v1
       with:
