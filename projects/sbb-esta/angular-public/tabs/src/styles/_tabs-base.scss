@@ -10,6 +10,10 @@
   align-items: baseline;
   padding-right: 3em;
   padding-left: 0;
+
+  @include businessOnly() {
+    padding-right: pxToEm(2px);
+  }
 }
 
 @mixin tabsButton() {
@@ -79,6 +83,13 @@
     width: 100%;
   }
 
+  @include businessOnly() {
+    &:not(.sbb-active) {
+      color: $sbbColorGranite;
+      background-color: $sbbColorMilk;
+    }
+  }
+
   &:not(.sbb-active):focus,
   &:not(.sbb-active):hover {
     color: $tabsHoverColor;
@@ -95,7 +106,7 @@
   }
 
   &[disabled] {
-    color: $tabsDisabledColor;
+    color: $sbbColorStorm;
 
     @include businessOnly() {
       background-color: $sbbColorMilk;
@@ -103,7 +114,7 @@
 
     &:hover,
     &:focus {
-      color: $tabsDisabledColor;
+      color: $sbbColorStorm;
       cursor: default;
 
       @include businessOnly() {

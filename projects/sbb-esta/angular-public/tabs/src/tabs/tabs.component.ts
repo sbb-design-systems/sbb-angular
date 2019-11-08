@@ -11,8 +11,7 @@ import {
   OnDestroy,
   Output,
   QueryList,
-  ViewChildren,
-  ViewEncapsulation
+  ViewChildren
 } from '@angular/core';
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
