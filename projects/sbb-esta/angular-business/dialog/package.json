@@ -1,0 +1,19 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "@sbb-esta/angular-core": "sbbAngularCore",
+        "@sbb-esta/angular-core/base": "sbbAngularCoreBase",
+        "@sbb-esta/angular-core/breakpoints": "sbbAngularCoreBreakpoints",
+        "@sbb-esta/angular-core/common-behaviors": "sbbAngularCoreCommonBehaviors",
+        "@sbb-esta/angular-core/datetime": "sbbAngularCoreDatetime",
+        "@sbb-esta/angular-core/error": "sbbAngularCoreError",
+        "@sbb-esta/angular-core/forms": "sbbAngularCoreForms",
+        "@sbb-esta/angular-core/icon-directive": "sbbAngularCoreIconDirective",
+        "@sbb-esta/angular-core/models": "sbbAngularCoreModels",
+        "@sbb-esta/angular-icons": "sbbAngularIcons",
+        "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
+      }
+    }
+  }
+}

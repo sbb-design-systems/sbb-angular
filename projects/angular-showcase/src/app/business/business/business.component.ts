@@ -2,6 +2,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
@@ -37,7 +38,8 @@ export class BusinessComponent implements ExampleProvider {
     contextmenu: 'Contextmenu'
   };
   popupsAndModals = {
-    tooltip: 'Tooltip'
+    tooltip: 'Tooltip',
+    dialog: 'Dialog'
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     processflow: {
@@ -51,7 +53,8 @@ export class BusinessComponent implements ExampleProvider {
     },
     usermenu: {
       'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)
-    }
+    },
+    dialog: { 'dialog-showcase': new ComponentPortal(DialogShowcaseComponent) }
   };
 
   resolveExample<TComponent = any>(
