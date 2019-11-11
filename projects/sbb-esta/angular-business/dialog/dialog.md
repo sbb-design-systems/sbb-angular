@@ -14,7 +14,7 @@ The dialog can be used to seek confirmation as see below
     </div>
   </div>
   <div sbbDialogFooter>
-    <button sbbButton [sbbDialogClose]="data.animal" cdkFocusInitial>
+    <button sbbButton [sbbDialogClose]="data.animal">
       Ok
     </button>
     <button sbbButton mode="secondary" (click)="noThanks()">
