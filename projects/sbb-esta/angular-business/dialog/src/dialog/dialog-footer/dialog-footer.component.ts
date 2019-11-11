@@ -22,9 +22,7 @@ import { Dialog } from '../dialog.service';
   styleUrls: ['./dialog-footer.component.scss'],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <perfect-scrollbar class="sbb-dialog-footer-scrollbar">
-      <ng-content select="button"></ng-content>
-    </perfect-scrollbar>
+    <ng-content select="button"></ng-content>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -32,6 +30,7 @@ export class DialogFooterComponent implements OnInit {
   /** Class attribute for the footer.  */
   @HostBinding('class.sbb-dialog-footer')
   dialogFooterClass = true;
+
   /** Types of alignment. */
   @Input() alignment: 'left' | 'center' | 'right' = 'right';
 
