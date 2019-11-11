@@ -1,12 +1,20 @@
-@import '../../../../../angular-core/styles/common/variants';
-@import '../../dialog';
+@import '../../../../../angular-core/styles/common/mediaqueries';
+@import '../dialog-footer/dialog-footer.component';
+@import '../dialog-header/dialog-header.component';
 
 .sbb-overlay-background {
-  @include overlay();
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
 }
 
 sbb-dialog-container {
-  @include dialogContainer();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $sbbColorWhite;
+  position: relative;
+  outline: 0;
+  width: 100%;
 
   & > *:only-child {
     width: 100%;
@@ -16,16 +24,33 @@ sbb-dialog-container {
   }
 
   .sbb-dialog-title {
-    @include dialogTitle();
+    text-align: center;
+    font-size: 28px;
+    font-family: $fontSbbThin;
+    margin-top: toPx(48 - $dialog-y-padding-mobile);
+    margin-bottom: 36px;
+
+    @include mq($from: tabletPortrait) {
+      font-size: 30px;
+      margin-top: toPx(80 - $dialog-y-padding);
+      margin-bottom: 48px;
+    }
+
+    @include mq($from: desktop) {
+      font-size: 40px;
+    }
   }
 
   .sbb-dialog-content {
-    @include dialogContent();
-    @include dialogContentHeight();
-  }
+    display: block;
+    border-left: 1px solid $sbbColorGranite;
+    border-right: 1px solid $sbbColorGranite;
+    flex: 1 1 auto;
+    overflow: auto;
 
-  .sbb-dialog-footer {
-    @include dialogFooter();
+    perfect-scrollbar {
+      max-height: 100vh;
+    }
   }
 
   &.sbb-dialog-with-header {

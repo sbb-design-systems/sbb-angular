@@ -1,15 +1,20 @@
 @import '../../dialog';
+@import '../../../../../angular-core/styles/common/functions';
+
+$dialog-content-x-padding-tablet: 16;
+$dialog-content-x-padding-mobile: 16;
+$dialog-content-x-padding: 16;
 
 .sbb-dialog-content-scrollbar {
   .ps-content {
-    padding: pxToEm($dialog-content-y-padding-mobile) pxToEm($dialog-content-x-padding-mobile);
+    padding: pxToEm($dialog-y-padding-mobile) pxToEm($dialog-content-x-padding-mobile);
 
     @include mq($from: tabletPortrait) {
-      padding: pxToEm($dialog-content-y-padding) pxToEm($dialog-content-x-padding-tablet);
+      padding: pxToEm($dialog-y-padding) pxToEm($dialog-content-x-padding-tablet);
     }
 
     @include mq($from: desktop) {
-      padding: pxToEm($dialog-content-y-padding) pxToEm($dialog-content-x-padding);
+      padding: pxToEm($dialog-y-padding) pxToEm($dialog-content-x-padding);
     }
   }
 }
