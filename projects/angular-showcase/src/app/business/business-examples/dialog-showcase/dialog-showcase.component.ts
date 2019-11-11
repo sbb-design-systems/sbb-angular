@@ -50,8 +50,7 @@ export class DialogShowcaseExampleComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogShowcaseExampleContentComponent, {
-      data: { name: this.name, animal: this.animal },
-      position: { top: '10px' }
+      data: { name: this.name, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -87,7 +86,11 @@ export class DialogShowcaseExample2Component {
   constructor(public dialog: Dialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogShowcaseExample2ContentComponent);
+    const dialogRef = this.dialog.open(DialogShowcaseExample2ContentComponent, {
+      width: '40rem',
+      height: '40rem',
+      position: { top: '10px' }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

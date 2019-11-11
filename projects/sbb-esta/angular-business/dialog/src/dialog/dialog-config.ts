@@ -44,10 +44,10 @@ export class DialogConfig<D = any> {
   disableClose? = false;
 
   /** Width of the Dialog overlay. */
-  width? = '100vw';
+  width?;
 
   /** Height of the Dialog overlay. */
-  height? = '100vh';
+  height?;
 
   /** Min-width of the Dialog. If a number is provided, assumes pixel units. */
   minWidth?: number | string;

@@ -120,6 +120,7 @@ $dialog-footer-padding: 0;
   border-left: 1px solid $sbbColorGranite;
   border-right: 1px solid $sbbColorGranite;
   flex: 1 1 auto;
+  overflow: auto;
   @include dialogContentHeight();
 }
 
