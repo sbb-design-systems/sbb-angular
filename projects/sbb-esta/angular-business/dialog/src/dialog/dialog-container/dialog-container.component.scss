@@ -23,24 +23,6 @@ sbb-dialog-container {
     flex-direction: column;
   }
 
-  .sbb-dialog-title {
-    text-align: center;
-    font-size: 28px;
-    font-family: $fontSbbThin;
-    margin-top: toPx(48 - $dialog-y-padding-mobile);
-    margin-bottom: 36px;
-
-    @include mq($from: tabletPortrait) {
-      font-size: 30px;
-      margin-top: toPx(80 - $dialog-y-padding);
-      margin-bottom: 48px;
-    }
-
-    @include mq($from: desktop) {
-      font-size: 40px;
-    }
-  }
-
   .sbb-dialog-content {
     display: block;
     border-left: 1px solid $sbbColorGranite;

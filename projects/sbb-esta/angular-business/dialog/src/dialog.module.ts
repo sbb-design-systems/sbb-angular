@@ -10,7 +10,6 @@ import { DialogContainerComponent } from './dialog/dialog-container/dialog-conta
 import { DialogContentComponent } from './dialog/dialog-content/dialog-content.component';
 import { DialogFooterComponent } from './dialog/dialog-footer/dialog-footer.component';
 import { DialogHeaderComponent } from './dialog/dialog-header/dialog-header.component';
-import { DialogTitleDirective } from './dialog/dialog-title.directive';
 import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service';
 
 @NgModule({
@@ -20,16 +19,14 @@ import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service
     DialogCloseDirective,
     DialogHeaderComponent,
     DialogContentComponent,
-    DialogFooterComponent,
-    DialogTitleDirective
+    DialogFooterComponent
   ],
   declarations: [
     DialogContainerComponent,
     DialogCloseDirective,
     DialogHeaderComponent,
     DialogFooterComponent,
-    DialogContentComponent,
-    DialogTitleDirective
+    DialogContentComponent
   ],
   providers: [Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER],
   entryComponents: [DialogContainerComponent]
