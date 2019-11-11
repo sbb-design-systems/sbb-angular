@@ -59,7 +59,7 @@ export class DialogConfig<D = any> {
   maxWidth?: number | string = '80vw';
 
   /** Max-height of the Dialog. If a number is provided, assumes pixel units. */
-  maxHeight?: number | string;
+  maxHeight?: number | string = '96vh';
 
   /** Position overrides. */
   position?: DialogPosition;
