@@ -5,14 +5,24 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
+import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
+import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
+import {
+  DialogShowcaseComponent,
+  DialogShowcaseExample2Component,
+  DialogShowcaseExample2ContentComponent,
+  DialogShowcaseExample3Component,
+  DialogShowcaseExampleComponent,
+  DialogShowcaseExampleContentComponent
+} from './dialog-showcase/dialog-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
@@ -26,7 +36,13 @@ const exampleComponents = [
   TooltipShowcaseComponent,
   PersonListComponent,
   TabsShowcaseComponent,
-  UsermenuShowcaseComponent
+  UsermenuShowcaseComponent,
+  DialogShowcaseComponent,
+  DialogShowcaseExampleComponent,
+  DialogShowcaseExampleContentComponent,
+  DialogShowcaseExample2Component,
+  DialogShowcaseExample2ContentComponent,
+  DialogShowcaseExample3Component
 ];
 
 @NgModule({
@@ -47,7 +63,9 @@ const exampleComponents = [
     ProcessflowModule,
     TooltipModule,
     TabsModule,
-    UserMenuModule
+    UserMenuModule,
+    DialogModule,
+    RadioButtonModule
   ]
 })
 export class BusinessExamplesModule {}

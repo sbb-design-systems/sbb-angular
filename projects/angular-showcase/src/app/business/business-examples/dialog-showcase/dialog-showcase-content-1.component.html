@@ -1,0 +1,19 @@
+<div sbbDialogHeader>
+  <p>Hi {{ data.name }}</p>
+</div>
+<div sbbDialogContent>
+  <div>
+    What's your favorite animal?
+    <sbb-field label="Animal" mode="long">
+      <input type="text" [(ngModel)]="data.animal" cdkFocusInitial />
+    </sbb-field>
+  </div>
+</div>
+<div sbbDialogFooter>
+  <button sbbButton [sbbDialogClose]="data.animal" cdkFocusInitial>
+    Ok
+  </button>
+  <button sbbButton mode="secondary" (click)="noThanks()">
+    No Thanks
+  </button>
+</div>
