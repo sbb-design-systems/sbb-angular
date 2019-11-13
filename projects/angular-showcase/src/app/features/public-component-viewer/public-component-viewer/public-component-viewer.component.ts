@@ -1,6 +1,7 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { TabsComponent } from '@sbb-esta/angular-public/tabs';
 import { ComponentViewerBase } from '../../../shared/component-viewer-base';
 import { ExampleProvider } from '../../../shared/example-provider';
 import { HtmlLoader } from '../../../shared/html-loader.service';
@@ -14,6 +15,8 @@ import { HtmlLoader } from '../../../shared/html-loader.service';
   ]
 })
 export class PublicComponentViewerComponent extends ComponentViewerBase {
+  @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
+
   constructor(
     htmlLoader: HtmlLoader,
     exampleProvider: ExampleProvider,
