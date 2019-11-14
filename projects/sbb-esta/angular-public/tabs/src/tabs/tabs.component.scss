@@ -10,8 +10,21 @@ sbb-tabs {
 
     > .sbb-tabs-tablist-item {
       @include tabsItem();
+
+      @include businessOnly() {
+        position: relative;
+      }
+
       .sbb-badge {
-        transform: translateY(-70%);
+        @include publicOnly() {
+          transform: translateY(-70%);
+        }
+
+        @include businessOnly() {
+          right: 0;
+          top: 0;
+          position: absolute;
+        }
       }
 
       .sbb-tabs-tablist-item-button {

@@ -1,8 +1,8 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   AfterViewInit,
-  Component,
   ElementRef,
+  Injectable,
   Input,
   OnDestroy,
   OnInit,
@@ -15,12 +15,8 @@ import { map } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
-@Component({
-  selector: 'sbb-public-example-viewer',
-  templateUrl: './public-example-viewer.component.html',
-  styleUrls: ['./public-example-viewer.component.scss']
-})
-export class PublicExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
+@Injectable()
+export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
   @ViewChild('html', { static: false }) html: ElementRef;

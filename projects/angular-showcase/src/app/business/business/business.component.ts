@@ -5,6 +5,7 @@ import { ExampleProvider } from '../../shared/example-provider';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
+import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
@@ -31,6 +32,7 @@ export class BusinessComponent implements ExampleProvider {
   layoutComponents = {
     accordion: 'Accordion',
     processflow: 'Processflow',
+    tabs: 'Tabs',
     usermenu: 'Usermenu'
   };
   buttonAndIndicatorComponents = {
@@ -54,7 +56,12 @@ export class BusinessComponent implements ExampleProvider {
     usermenu: {
       'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)
     },
-    dialog: { 'dialog-showcase': new ComponentPortal(DialogShowcaseComponent) }
+    tabs: {
+      'tabs-showcase': new ComponentPortal(TabsShowcaseComponent)
+    },
+    dialog: {
+      'dialog-showcase': new ComponentPortal(DialogShowcaseComponent)
+    }
   };
 
   resolveExample<TComponent = any>(

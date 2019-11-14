@@ -10,6 +10,7 @@ import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
+import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
@@ -24,6 +25,8 @@ import {
 } from './dialog-showcase/dialog-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
+import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
@@ -31,6 +34,8 @@ const exampleComponents = [
   SimpleContextmenuComponent,
   SkippableProcessflowComponent,
   TooltipShowcaseComponent,
+  PersonListComponent,
+  TabsShowcaseComponent,
   UsermenuShowcaseComponent,
   DialogShowcaseComponent,
   DialogShowcaseExampleComponent,
@@ -57,6 +62,7 @@ const exampleComponents = [
     HeaderModule,
     ProcessflowModule,
     TooltipModule,
+    TabsModule,
     UserMenuModule,
     DialogModule,
     RadioButtonModule
