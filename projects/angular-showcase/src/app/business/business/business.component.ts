@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ExampleProvider } from '../../shared/example-provider';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
+import { StatusShowcaseComponent } from '../business-examples/status-showcase/status-showcase.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
@@ -34,7 +35,8 @@ export class BusinessComponent implements ExampleProvider {
   };
   buttonAndIndicatorComponents = {
     button: 'Button',
-    contextmenu: 'Contextmenu'
+    contextmenu: 'Contextmenu',
+    status: 'Status'
   };
   popupsAndModals = {
     tooltip: 'Tooltip'
@@ -51,6 +53,9 @@ export class BusinessComponent implements ExampleProvider {
     },
     usermenu: {
       'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)
+    },
+    status: {
+      'status-showcase': new ComponentPortal(StatusShowcaseComponent)
     }
   };
 

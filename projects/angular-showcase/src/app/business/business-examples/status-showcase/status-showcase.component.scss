@@ -1,0 +1,11 @@
+@import 'dist/sbb-esta/angular-core/styles/common/mixins';
+@import 'dist/sbb-esta/angular-core/styles/typography/headings';
+:host {
+  @include sbbHeadings();
+  sbb-table {
+    th,
+    td {
+      min-width: 200px;
+    }
+  }
+}

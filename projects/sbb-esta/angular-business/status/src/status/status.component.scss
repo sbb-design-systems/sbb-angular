@@ -1,0 +1,22 @@
+@import '../../../../angular-core/styles/common/variables';
+@import '../../../../angular-core/styles/common/colors';
+
+:host {
+  display: flex;
+  flex-direction: row;
+
+  > .sbb-status-icon {
+    width: 24px;
+    height: 24px;
+    margin: 1px 6px 8px 6px;
+    line-height: 23px;
+  }
+
+  > .sbb-status-message {
+    height: 23px;
+    font-family: $fontSbbRoman;
+    font-size: 15px;
+    line-height: 23px;
+    padding-left: 0;
+  }
+}

@@ -1,0 +1,15 @@
+<ng-template #content><ng-content></ng-content></ng-template>
+
+<ng-template [ngIf]="!tooltipText">
+  <div class="sbb-status-icon">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </div>
+  <div *ngIf="message" class="sbb-status-message">{{ message }}</div>
+</ng-template>
+
+<ng-template [ngIf]="tooltipText">
+  <div class="sbb-status-icon" [sbbStatusTooltip]="tooltipText">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </div>
+  <div *ngIf="message" class="sbb-status-message">{{ message }}</div>
+</ng-template>

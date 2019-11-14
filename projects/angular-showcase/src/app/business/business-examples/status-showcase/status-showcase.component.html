@@ -1,0 +1,70 @@
+<h3>Status Bubble</h3>
+<p>
+  <sbb-status>
+    <sbb-icon-eye [svgClass]="'sbb-status-eye'"></sbb-icon-eye>
+  </sbb-status>
+  <sbb-status>
+    <sbb-icon-face-grinning [svgClass]="'sbb-status-grinning'"></sbb-icon-face-grinning>
+  </sbb-status>
+  <sbb-status>
+    <sbb-icon-heart [svgClass]="'sbb-status-heart'"></sbb-icon-heart>
+  </sbb-status>
+</p>
+
+<h3>Status Extended</h3>
+<p>
+  <sbb-status [message]="'question'">
+    <sbb-icon-circle-question-mark
+      [svgClass]="'sbb-icon-status-question'"
+    ></sbb-icon-circle-question-mark>
+  </sbb-status>
+  <sbb-status [message]="'stops'">
+    <sbb-icon-train-station [svgClass]="'sbb-status-trainstation'"></sbb-icon-train-station>
+  </sbb-status>
+  <sbb-status [message]="'ok'">
+    <sbb-icon-tick [svgClass]="'sbb-status-ok'"></sbb-icon-tick>
+  </sbb-status>
+</p>
+
+<h3>Status with tooltip</h3>
+<p>
+  <sbb-status [tooltipText]="'hello world'">
+    <sbb-icon-heart [svgClass]="'sbb-status-heart'"></sbb-icon-heart>
+  </sbb-status>
+  <sbb-status [message]="'I\'m happy'" [tooltipText]="'happy status'">
+    <sbb-icon-face-grinning [svgClass]="'sbb-status-grinning'"></sbb-icon-face-grinning>
+  </sbb-status>
+</p>
+
+<h3>Status Extended used in table</h3>
+<sbb-table tableId="statusTableId" [pinMode]="'off'">
+  <thead>
+    <tr>
+      <th scope="col" *ngFor="let header of headers" [ngClass]="rowAlignment">{{ header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows">
+      <td [ngClass]="rowAlignment">{{ row.text }}</td>
+      <ng-container [ngSwitch]="row.status">
+        <td>
+          <sbb-status [message]="row.message" [tooltipText]="row.tooltip">
+            <sbb-icon-tick [svgClass]="'sbb-status-ok'" *ngSwitchCase="'valid'"></sbb-icon-tick>
+            <sbb-icon-exclamation-point
+              [svgClass]="'sbb-status-warning'"
+              *ngSwitchCase="'warning'"
+            ></sbb-icon-exclamation-point>
+            <sbb-icon-sign-exclamation-point
+              [svgClass]="'sbb-status-error'"
+              *ngSwitchCase="'error'"
+            ></sbb-icon-sign-exclamation-point>
+            <sbb-icon-face-smiling
+              [svgClass]="'sbb-status-happy'"
+              *ngSwitchCase="'happy'"
+            ></sbb-icon-face-smiling>
+          </sbb-status>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</sbb-table>

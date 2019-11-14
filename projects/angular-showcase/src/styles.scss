@@ -141,3 +141,82 @@ nav.menu.ps .ps__rail-y {
     background-color: #fff;
   }
 }
+
+@mixin svgIconColors($backgroundColor, $fillColor, $strokeColor) {
+  &.sbb-svg-icon {
+    background-color: $backgroundColor;
+
+    & > path {
+      stroke: $strokeColor;
+      fill: $fillColor;
+    }
+
+    & > g > path {
+      stroke: $strokeColor;
+      fill: $fillColor;
+    }
+  }
+}
+
+@mixin svgIconColor2Paths(
+  $backgroundColor,
+  $fillColor1,
+  $strokeColor1,
+  $fillColor2,
+  $strokeColor2
+) {
+  &.sbb-svg-icon {
+    background-color: $backgroundColor;
+
+    & > g > :first-child path {
+      stroke: $strokeColor1;
+      fill: $fillColor1;
+    }
+
+    & > g > :nth-child(2) path {
+      stroke: $strokeColor2;
+      fill: $fillColor2;
+    }
+  }
+}
+
+svg.sbb-status-eye {
+  @include svgIconColors(none, $sbbColorSky, $sbbColorBlue);
+}
+
+svg.sbb-status-grinning {
+  @include svgIconColors(none, $sbbColorLemon, $sbbColorBlack);
+}
+
+svg.sbb-status-heart {
+  @include svgIconColors(none, $sbbColorRed150, $sbbColorViolet);
+
+  &.sbb-svg-icon {
+    & > path {
+      stroke-width: 2;
+      fill-opacity: 0.7;
+    }
+  }
+}
+
+svg.sbb-status-ok {
+  @include svgIconColors($sbbColorGreen, none, $sbbColorWhite);
+}
+
+svg.sbb-status-trainstation {
+  @include svgIconColors($sbbColorRed, none, $sbbColorWhite);
+}
+
+svg.sbb-icon-status-question {
+  @include svgIconColor2Paths($sbbColorOrange, none, $sbbColorBlack, $sbbColorBlack, none);
+}
+
+svg.sbb-status-warning {
+  @include svgIconColors($sbbColorOrange, $sbbColorBlack, none);
+}
+svg.sbb-status-error {
+  @include svgIconColors(none, $sbbColorRed, $sbbColorBlack);
+}
+svg.sbb-status-happy {
+  @include svgIconColors(none, $sbbColorLemon, $sbbColorBlack);
+}

@@ -1,0 +1,13 @@
+@import '../../../../../angular-core/styles/common/colors';
+
+:host {
+  display: block;
+}
+
+div {
+  background: $sbbColorWhite;
+  color: $sbbColorBlack;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid $sbbColorSilver;
+}
