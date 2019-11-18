@@ -1,0 +1,79 @@
+@import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/mediaqueries';
+
+$sbb-row-height: 36px;
+$sbb-row-horizontal-padding: 16px;
+
+/**
+ * Native HTML table structure
+ */
+table.sbb-table {
+  border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
+
+  tr.sbb-header-row,
+  tr.sbb-row,
+  tr.sbb-footer-row {
+    height: pxToEm($sbb-row-height);
+  }
+
+  tr.sbb-row {
+    background-color: $sbbColorWhite;
+    border-bottom: 1px solid $sbbColorAluminum;
+
+    &:hover {
+      background-color: $sbbColorCloud;
+    }
+  }
+
+  th.sbb-header-cell {
+    text-align: left;
+    background-color: $sbbColorMilk;
+
+    [dir='rtl'] & {
+      text-align: right;
+    }
+  }
+
+  th.sbb-header-cell,
+  td.sbb-cell,
+  td.sbb-footer-cell {
+    padding: 0 $sbb-row-horizontal-padding;
+    border-right: 1px solid $sbbColorAluminum;
+
+    .sbb-col-group-left {
+      border-right: none;
+    }
+  }
+
+  // Note: we use `first-of-type`/`last-of-type` here in order to prevent extra
+  // elements like ripples or badges from throwing off the layout.
+  th.sbb-header-cell:first-of-type,
+  td.sbb-cell:first-of-type,
+  td.sbb-footer-cell:first-of-type {
+    padding-left: $sbb-row-horizontal-padding;
+    border-left: none;
+
+    [dir='rtl'] & {
+      padding-left: 0;
+      padding-right: $sbb-row-horizontal-padding;
+    }
+  }
+
+  th.sbb-header-cell:last-of-type,
+  td.sbb-cell:last-of-type,
+  td.sbb-footer-cell:last-of-type {
+    padding-right: $sbb-row-horizontal-padding;
+    border-right: none;
+
+    [dir='rtl'] & {
+      padding-right: 0;
+      padding-left: $sbb-row-horizontal-padding;
+    }
+  }
+
+  .sbb-col-center-align {
+    text-align: center;
+  }
+}

@@ -7,6 +7,7 @@ import { PaginationShowcaseComponent } from '../business-examples/pagination-sho
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
+import { TableShowcaseComponent } from '../business-examples/table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
@@ -35,7 +36,8 @@ export class BusinessComponent implements ExampleProvider {
     pagination: 'Pagination',
     processflow: 'Processflow',
     tabs: 'Tabs',
-    usermenu: 'Usermenu'
+    usermenu: 'Usermenu',
+    table: 'Table'
   };
   buttonAndIndicatorComponents = {
     button: 'Button',
@@ -66,6 +68,9 @@ export class BusinessComponent implements ExampleProvider {
     },
     pagination: {
       'pagination-showcase': new ComponentPortal(PaginationShowcaseComponent)
+    },
+    table: {
+      'table-showcase': new ComponentPortal(TableShowcaseComponent)
     }
   };
 

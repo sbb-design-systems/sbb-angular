@@ -12,6 +12,7 @@ import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
+import { TableModule } from '@sbb-esta/angular-business/table';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
@@ -27,6 +28,9 @@ import {
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
+import { TableShowcase1Component } from './table-showcase/table-showcase-1/table-showcase-1.component';
+import { TableShowcase2Component } from './table-showcase/table-showcase-2/table-showcase-2.component';
+import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
@@ -36,6 +40,10 @@ const exampleComponents = [
   SimpleContextmenuComponent,
   SkippableProcessflowComponent,
   TooltipShowcaseComponent,
+  UsermenuShowcaseComponent,
+  TableShowcaseComponent,
+  TableShowcase1Component,
+  TableShowcase2Component
   PersonListComponent,
   TabsShowcaseComponent,
   UsermenuShowcaseComponent,
@@ -69,7 +77,9 @@ const exampleComponents = [
     UserMenuModule,
     DialogModule,
     RadioButtonModule,
-    PaginationModule
+    PaginationModule,
+    UserMenuModule,
+    TableModule
   ]
 })
 export class BusinessExamplesModule {}
