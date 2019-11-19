@@ -142,10 +142,8 @@ nav.menu.ps .ps__rail-y {
   }
 }
 
-@mixin svgIconColors($backgroundColor, $fillColor, $strokeColor) {
+@mixin svgIconColors($fillColor, $strokeColor) {
   &.sbb-svg-icon {
-    background-color: $backgroundColor;
-
     & > path {
       stroke: $strokeColor;
       fill: $fillColor;
@@ -158,16 +156,8 @@ nav.menu.ps .ps__rail-y {
   }
 }
 
-@mixin svgIconColor2Paths(
-  $backgroundColor,
-  $fillColor1,
-  $strokeColor1,
-  $fillColor2,
-  $strokeColor2
-) {
+@mixin svgIconColor2Paths($fillColor1, $strokeColor1, $fillColor2, $strokeColor2) {
   &.sbb-svg-icon {
-    background-color: $backgroundColor;
-
     & > g > :first-child path {
       stroke: $strokeColor1;
       fill: $fillColor1;
@@ -180,16 +170,23 @@ nav.menu.ps .ps__rail-y {
   }
 }
 
+@mixin svgIconBackground($backgroundColor, $borderRadius) {
+  &.sbb-svg-icon {
+    background-color: $backgroundColor;
+    border-radius: $borderRadius;
+  }
+}
+
 svg.sbb-status-eye {
-  @include svgIconColors(none, $sbbColorSky, $sbbColorBlue);
+  @include svgIconColors($sbbColorSky, $sbbColorBlue);
 }
 
 svg.sbb-status-grinning {
-  @include svgIconColors(none, $sbbColorLemon, $sbbColorBlack);
+  @include svgIconColors($sbbColorLemon, $sbbColorBlack);
 }
 
 svg.sbb-status-heart {
-  @include svgIconColors(none, $sbbColorRed150, $sbbColorViolet);
+  @include svgIconColors($sbbColorRed150, $sbbColorViolet);
 
   &.sbb-svg-icon {
     & > path {
@@ -200,23 +197,27 @@ svg.sbb-status-heart {
 }
 
 svg.sbb-status-ok {
-  @include svgIconColors($sbbColorGreen, none, $sbbColorWhite);
+  @include svgIconColors(none, $sbbColorWhite);
+  @include svgIconBackground($sbbColorGreen, 0.125rem);
 }
 
 svg.sbb-status-trainstation {
-  @include svgIconColors($sbbColorRed, none, $sbbColorWhite);
+  @include svgIconColors(none, $sbbColorWhite);
+  @include svgIconBackground($sbbColorRed, 0.1251rem);
 }
 
 svg.sbb-icon-status-question {
-  @include svgIconColor2Paths($sbbColorOrange, none, $sbbColorBlack, $sbbColorBlack, none);
+  @include svgIconColor2Paths(none, $sbbColorBlack, $sbbColorBlack, none);
+  @include svgIconBackground($sbbColorOrange, 0.125rem);
 }
 
 svg.sbb-status-warning {
-  @include svgIconColors($sbbColorOrange, $sbbColorBlack, none);
+  @include svgIconColors($sbbColorBlack, none);
+  @include svgIconBackground($sbbColorOrange, 0.125rem);
 }
 svg.sbb-status-error {
-  @include svgIconColors(none, $sbbColorRed, $sbbColorBlack);
+  @include svgIconColors($sbbColorRed, $sbbColorBlack);
 }
 svg.sbb-status-happy {
-  @include svgIconColors(none, $sbbColorLemon, $sbbColorBlack);
+  @include svgIconColors($sbbColorLemon, $sbbColorBlack);
 }

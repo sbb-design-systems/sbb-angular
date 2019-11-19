@@ -5,18 +5,21 @@
   display: flex;
   flex-direction: row;
 
+  font-family: $fontSbbRoman;
+  font-size: 0.9375rem;
+  margin: 0.2666em 0 0.2666em 0;
+
   > .sbb-status-icon {
-    width: 24px;
-    height: 24px;
-    margin: 1px 6px 8px 6px;
-    line-height: 23px;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.4em 0 0.4em;
+    line-height: 1.4375rem;
   }
 
   > .sbb-status-message {
-    height: 23px;
-    font-family: $fontSbbRoman;
-    font-size: 15px;
-    line-height: 23px;
-    padding-left: 0;
+    height: 1.4375rem;
+    line-height: 1.4375rem;
+    margin-left: 0.13333em;
+    color: $sbbColorGranite;
   }
 }

@@ -8,7 +8,12 @@
 </ng-template>
 
 <ng-template [ngIf]="tooltipText">
-  <div class="sbb-status-icon" [sbbStatusTooltip]="tooltipText">
+  <div
+    class="sbb-status-icon"
+    [sbbStatusTooltip]="tooltipText"
+    [hoverOpenDelay]="tooltipOpenDelay"
+    [hoverCloseDelay]="tooltipCloseDelay"
+  >
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </div>
   <div *ngIf="message" class="sbb-status-message">{{ message }}</div>

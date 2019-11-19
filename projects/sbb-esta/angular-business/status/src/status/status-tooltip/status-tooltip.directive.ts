@@ -82,6 +82,9 @@ export class StatusTooltipDirective implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+    // hide tooltip component
+    this._onMouseLeave();
+
     // Clean up the event listeners set in the constructor
     this._manualListeners.forEach((listener, event) => {
       this._elementRef.nativeElement.removeEventListener(event, listener);

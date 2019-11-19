@@ -16,4 +16,16 @@ export class StatusComponent {
    * Set the status tooltip text. If the text is set then the tooltip appears on hover.
    */
   @Input() tooltipText: string;
+
+  /**
+   * Set the status tooltip open delay in milliseconds.
+   */
+  @Input()
+  public tooltipOpenDelay: number;
+
+  /**
+   * Set the status tooltip close delay in milliseconds.
+   */
+  @Input()
+  public tooltipCloseDelay: number;
 }

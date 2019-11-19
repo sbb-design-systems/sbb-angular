@@ -18,7 +18,7 @@ export class StatusShowcaseComponent implements OnInit, OnDestroy {
   private _updateSubscription: Subscription;
 
   public ngOnInit(): void {
-    const source = interval(2000).pipe(takeUntil(timer(22000)));
+    const source = interval(2000).pipe(takeUntil(timer(30000)));
     this._updateSubscription = source.subscribe(val => this._updateRows(val));
   }
 
