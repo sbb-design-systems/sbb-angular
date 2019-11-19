@@ -12,12 +12,10 @@ import {
   CdkRowDef
 } from '@angular/cdk/table';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Directive,
   HostBinding,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -98,14 +96,7 @@ export class FooterRowComponent extends CdkFooterRow {
   exportAs: 'sbbRow',
   providers: [{ provide: CdkRow, useExisting: RowComponent }]
 })
-export class RowComponent extends CdkRow implements AfterViewInit {
+export class RowComponent extends CdkRow {
   @HostBinding('class.sbb-row') sbbRow = true;
   @HostBinding('attr.role') row = 'row';
-
-  @ViewChild('colgroup', { static: false })
-  colgroup: any;
-
-  ngAfterViewInit(): void {
-    console.log(this.colgroup);
-  }
 }

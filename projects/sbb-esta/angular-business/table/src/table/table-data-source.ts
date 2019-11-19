@@ -25,9 +25,12 @@ const MAX_SAFE_INTEGER = 9007199254740991;
  * properties are accessed. Also allows for filter customization by overriding filterTermAccessor,
  * which defines how row data is converted to a string for filter matching.
  */
-export class TableDataSource<T> extends DataSource<T> {
+export class SbbTableDataSource<T> extends DataSource<T> {
   /** Stream that emits when a new data array is set on the data source. */
   private readonly _data: BehaviorSubject<T[]>;
+
+  /** Stream that emits when a new groups array is set on the data source. */
+  private readonly _groups: BehaviorSubject<string[][]>;
 
   /** Stream emitting render data to the table (depends on ordered data changes). */
   private readonly _renderData = new BehaviorSubject<T[]>([]);
@@ -59,6 +62,15 @@ export class TableDataSource<T> extends DataSource<T> {
 
   set data(data: T[]) {
     this._data.next(data);
+  }
+
+  /** Array of data that should be rendered by the table, where each group represents one borderless column. */
+  get groups() {
+    return this._groups.value;
+  }
+
+  set groups(groups: string[][]) {
+    this._groups.next(groups);
   }
 
   /**
@@ -207,9 +219,10 @@ export class TableDataSource<T> extends DataSource<T> {
     return dataStr.indexOf(transformedFilter) !== -1;
   };
 
-  constructor(initialData: T[] = []) {
+  constructor(initialData: T[] = [], groups?: string[][]) {
     super();
     this._data = new BehaviorSubject<T[]>(initialData);
+    this._groups = new BehaviorSubject<string[][]>(groups);
     this._updateChangeSubscription();
   }
 

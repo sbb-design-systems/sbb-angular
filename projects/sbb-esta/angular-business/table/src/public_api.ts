@@ -1,4 +1,4 @@
 export * from './table.module';
 
-export { TableDataSource } from './table/table-data-source';
+export { SbbTableDataSource } from './table/table-data-source';
 export * from './table/table.component';
