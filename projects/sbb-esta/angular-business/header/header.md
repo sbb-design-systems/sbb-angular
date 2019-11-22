@@ -4,17 +4,18 @@ It supports `<a>` and `<button>` tags for navigation. Optionally a `<sbb-usermen
 provided, as well as any element with a `[brand]` attribute or `.brand` class, for replacing
 the standard logo.
 
-**Note: The responsive design has not been fully implemented yet. On tablet and mobile, the
-dropdown is not yet styled.**
+**Note: The responsive design is still experimental.**
 
 ```html
 <sbb-header [label]="Title" [subtitle]="Subtitle" [environment]="dev" [environmentColor]="red">
   <a routerLink="/">Home</a>
-  <button type="button" [sbbDropdown]="dropdown">Sections</button>
-  <sbb-dropdown #dropdown="sbbDropdown">
-    <a sbbDropdownItem routerLink="/nav1/section1" routerLinkActive="sbb-selected">Option 1</a>
-    <a sbbDropdownItem routerLink="/nav1/section2" routerLinkActive="sbb-selected">Option 2</a>
-  </sbb-dropdown>
+  <button type="button" [sbbHeaderMenu]="menu">Sections</button>
+  <sbb-header-menu #menu="sbbHeaderMenu">
+    Sections
+    <!-- This is required as the header for mobile and tablet -->
+    <a sbbHeaderMenuItem routerLink="/nav1/section1" routerLinkActive="sbb-active">Section 1</a>
+    <a sbbHeaderMenuItem routerLink="/nav1/section2" routerLinkActive="sbb-active">Section 2</a>
+  </sbb-header-menu>
   <sbb-usermenu ...><!-- Optional --></sbb-usermenu>
   <svg brand><!-- Optional --></svg>
 </sbb-header>
