@@ -138,26 +138,38 @@ jobs:
       run: |
         cd dist/sbb-esta/angular-core
         npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-icons
       run: |
         cd dist/sbb-esta/angular-icons
         npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-keycloak
       run: |
         cd dist/sbb-esta/angular-keycloak
         npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-public
       run: |
         cd dist/sbb-esta/angular-public
         npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-business
       run: |
         cd dist/sbb-esta/angular-business
         npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-core
       run: |
         cd dist/angular-showcase
         npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Trigger showcase deployment
       env:
         SHOWCASE_AUTH: ${{ secrets.SHOWCASE_AUTH }}
