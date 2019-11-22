@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.9](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.8...8.7.9) (2019-11-22)
+
+
+### Bug Fixes
+
+* **showcase:** fix position of header menu hint ([6347200](https://github.com/sbb-design-systems/sbb-angular/commit/6347200))
+
+
+
 ### [8.7.8](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.7...8.7.8) (2019-11-22)
 
 
