@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.8](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.7...8.7.8) (2019-11-22)
+
+
+### Build System
+
+* fix npm publish config ([d846cdc](https://github.com/sbb-design-systems/sbb-angular/commit/d846cdc))
+
+
+
 ### [8.7.7](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.6...8.7.7) (2019-11-22)
 
 
