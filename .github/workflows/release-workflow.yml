@@ -107,8 +107,6 @@ jobs:
   relase:
     runs-on: ubuntu-latest
     needs: build
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - name: Shallow checkout
       uses: actions/checkout@v1
