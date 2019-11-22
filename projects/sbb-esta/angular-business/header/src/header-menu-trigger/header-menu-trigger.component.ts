@@ -19,16 +19,16 @@ import {
   InjectionToken,
   Input,
   OnDestroy,
-  Output,
   Optional,
+  Output,
   ViewChild
 } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
-import { merge, Observable, Subject, Subscription, NEVER } from 'rxjs';
+import { merge, NEVER, Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
 import { HeaderMenuComponent } from '../header-menu/header-menu.component';
-import { Router, NavigationStart } from '@angular/router';
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const SBB_HEADER_MENU_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
@@ -121,7 +121,6 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
   private _overlayRef: OverlayRef | null = null;
   private _menuOpen: boolean = false;
   private _closingActionsSubscription = Subscription.EMPTY;
-  private _hoverSubscription = Subscription.EMPTY;
   private _menuCloseSubscription = Subscription.EMPTY;
   private _destroyed = new Subject<void>();
   private _scrollStrategy: () => ScrollStrategy;
@@ -171,7 +170,6 @@ export class HeaderMenuTriggerComponent implements AfterContentInit, OnDestroy {
 
     this._menuCloseSubscription.unsubscribe();
     this._closingActionsSubscription.unsubscribe();
-    this._hoverSubscription.unsubscribe();
     this._destroyed.next();
     this._destroyed.complete();
   }
