@@ -115,6 +115,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
+        registry-url: 'https://registry.npmjs.org'
     - name: Restore package artifacts
       uses: actions/download-artifact@v1
       with:
@@ -130,6 +131,14 @@ jobs:
         cp LICENSE dist/sbb-esta/angular-public
         cp LICENSE dist/sbb-esta/angular-business
         cp LICENSE dist/angular-showcase
+    - name: Copy .npmrc
+      run: |
+        cp .npmrc dist/sbb-esta/angular-core
+        cp .npmrc dist/sbb-esta/angular-icons
+        cp .npmrc dist/sbb-esta/angular-keycloak
+        cp .npmrc dist/sbb-esta/angular-public
+        cp .npmrc dist/sbb-esta/angular-business
+        cp .npmrc dist/angular-showcase
     - name: Copy showcase package.json
       run: cp projects/angular-showcase/package.json dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
