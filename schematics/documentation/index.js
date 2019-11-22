@@ -1034,7 +1034,7 @@ function highlight(code, language) {
     }
     return code;
 }
-// @TODO: Blocked by https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/147
+// @TODO: Blocked by https://github.com/sbb-design-systems/sbb-angular/issues/147
 function buildApiDocumentationForLibrary(packageNames) {
     return __awaiter(this, void 0, void 0, function* () {
         const execRootPath = process.cwd();

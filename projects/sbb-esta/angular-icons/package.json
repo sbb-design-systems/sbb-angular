@@ -6,11 +6,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+    "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+    "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
   },
   "homepage": "https://angular.app.sbb.ch/latest",
   "schematics": "./schematics/collection.json",
