@@ -91,9 +91,13 @@ jobs:
       if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-business
 
+    - name: Migrate public to business components for documentation
+      run: npm run build:angular-business:public2business
     - name: Build showcase
       run: npm run build:angular-showcase
-
+    - name: Copy showcase package.json
+      run: cp projects/angular-showcase/package.json dist/angular-showcase
+      
     - name: Store build artifacts
       uses: actions/upload-artifact@v1
       with:
