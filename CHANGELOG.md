@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.2](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.1...8.7.2) (2019-11-22)
+
+
+### Build System
+
+* fix npm token configuration ([2347007](https://github.com/sbb-design-systems/sbb-angular/commit/2347007))
+
+
+
 ### [8.7.1](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.0...8.7.1) (2019-11-22)
 
 
