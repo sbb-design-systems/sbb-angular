@@ -1,0 +1,25 @@
+<button type="button" class="sbb-header-menu-back" (click)="open = false">
+  <sbb-icon-chevron-small-left></sbb-icon-chevron-small-left>
+  <span i18n="Go back to the app chooser navigation@@sbbHeaderMenuBack">Zurück</span>
+</button>
+
+<div>
+  <ng-content></ng-content>
+</div>
+
+<perfect-scrollbar>
+  <ng-template cdkPortal cdkPortalOutlet>
+    <div
+      class="sbb-header-menu-panel"
+      role="listbox"
+      [id]="id"
+      [ngClass]="_classList"
+      (keydown)="_handlePanelKeydown($event)"
+      (click)="closed.emit('click')"
+      tabindex="-1"
+      role="menu"
+    >
+      <ng-content select="a, button, hr"></ng-content>
+    </div>
+  </ng-template>
+</perfect-scrollbar>

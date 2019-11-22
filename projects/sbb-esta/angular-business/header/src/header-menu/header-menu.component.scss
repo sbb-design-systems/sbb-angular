@@ -1,0 +1,112 @@
+$sbbBusiness: true;
+@import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/button';
+@import '../../../../angular-core/styles/common/mediaqueries';
+@import '../../../../angular-core/styles/common/panel';
+@import '../header';
+
+$sbbHeaderMenuSectionHeight: 54px;
+
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: $sbbColorMilk;
+  z-index: $sbbHeaderMenuMobileZIndex;
+
+  @include mq($from: tabletPortrait) {
+    width: calc(100vw - #{$sbbHeaderMenuWidth});
+    z-index: $sbbHeaderMenuTabletZIndex;
+  }
+
+  @include mq($from: desktop) {
+    display: none;
+  }
+}
+
+button.sbb-header-menu-back,
+:host > div {
+  @include buttonResetFrameless();
+  height: $sbbHeaderMenuSectionHeight;
+  width: 100%;
+  line-height: 23px;
+  font-size: 15px;
+  color: $sbbColorBlack;
+  background-color: $sbbColorWhite;
+  border-bottom: 1px solid $sbbColorSilver;
+}
+
+button.sbb-header-menu-back {
+  display: flex;
+  padding-left: 8px;
+  cursor: pointer;
+
+  @include mq($from: tabletPortrait) {
+    display: none;
+  }
+
+  > sbb-icon-chevron-small-left {
+    width: 24px;
+    height: 24px;
+
+    ::ng-deep path {
+      stroke: currentColor;
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}
+
+:host > div {
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+:host > perfect-scrollbar ::ng-deep .sbb-header-menu-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+
+  & > ::ng-deep hr {
+    display: none;
+  }
+
+  & > ::ng-deep a,
+  & > ::ng-deep button {
+    border-bottom: 1px solid $sbbColorCloud;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    color: $sbbColorIron;
+    line-height: 20px;
+    font-size: 15px;
+    text-decoration: none;
+    outline: 0;
+    @include headerRightArrow();
+
+    &.sbb-active,
+    &:hover,
+    &:active,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+  }
+}
+
+::ng-deep .cdk-overlay-container .sbb-header-menu-panel {
+  @include panelBase();
+  @include panelBelow();
+
+  > a,
+  > button {
+    @include panelItems();
+    line-height: 20px;
+    font-size: 15px;
+  }
+}
