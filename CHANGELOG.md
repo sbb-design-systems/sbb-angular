@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.7.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.6.0...8.7.0) (2019-11-22)
+
+
+### Build System
+
+* build the showcase on release ([d264228](https://github.com/sbb-design-systems/sbb-angular/commit/d264228))
+* migrate public to business components for documentation ([f634391](https://github.com/sbb-design-systems/sbb-angular/commit/f634391))
+* normalize build commands ([#215](https://github.com/sbb-design-systems/sbb-angular/issues/215)) ([8ed7485](https://github.com/sbb-design-systems/sbb-angular/commit/8ed7485))
+* switch from travis-ci to github actions ([#214](https://github.com/sbb-design-systems/sbb-angular/issues/214)) ([8a83ff5](https://github.com/sbb-design-systems/sbb-angular/commit/8a83ff5))
+
+
+### Features
+
+* **business:** implement dialog component ([#202](https://github.com/sbb-design-systems/sbb-angular/issues/202)) ([e625c59](https://github.com/sbb-design-systems/sbb-angular/commit/e625c59)), closes [#92](https://github.com/sbb-design-systems/sbb-angular/issues/92)
+* **business:** implement responsive menus for header ([#224](https://github.com/sbb-design-systems/sbb-angular/issues/224)) ([688bcf4](https://github.com/sbb-design-systems/sbb-angular/commit/688bcf4))
+* **business:** implement tabs ([#210](https://github.com/sbb-design-systems/sbb-angular/issues/210)) ([dda0b43](https://github.com/sbb-design-systems/sbb-angular/commit/dda0b43))
+* **core:** add sbb sso constants ([#205](https://github.com/sbb-design-systems/sbb-angular/issues/205)) ([ca67252](https://github.com/sbb-design-systems/sbb-angular/commit/ca67252))
+* **public:** add optional callbacks to jump marks in notification ([#211](https://github.com/sbb-design-systems/sbb-angular/issues/211)) ([302dc24](https://github.com/sbb-design-systems/sbb-angular/commit/302dc24)), closes [#131](https://github.com/sbb-design-systems/sbb-angular/issues/131)
+
+
+
 ## [8.6.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.5.0...8.6.0) (2019-10-04)
 
 
