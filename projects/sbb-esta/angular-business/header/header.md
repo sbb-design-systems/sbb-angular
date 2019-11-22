@@ -11,8 +11,8 @@ the standard logo.
   <a routerLink="/">Home</a>
   <button type="button" [sbbHeaderMenu]="menu">Sections</button>
   <sbb-header-menu #menu="sbbHeaderMenu">
+    <!-- `Sections` or any other title is required as the header for mobile and tablet -->
     Sections
-    <!-- This is required as the header for mobile and tablet -->
     <a sbbHeaderMenuItem routerLink="/nav1/section1" routerLinkActive="sbb-active">Section 1</a>
     <a sbbHeaderMenuItem routerLink="/nav1/section2" routerLinkActive="sbb-active">Section 2</a>
   </sbb-header-menu>
