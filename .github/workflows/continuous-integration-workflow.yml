@@ -297,8 +297,6 @@ jobs:
         name: dist-sbb-esta
         path: dist/sbb-esta
 
-    - name: Migrate public to business components for documentation
-      run: npm run build:angular-business:public2business
     - name: Build showcase
       run: npm run build:angular-showcase
     - name: Copy showcase package.json

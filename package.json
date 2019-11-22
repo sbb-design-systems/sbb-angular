@@ -26,7 +26,7 @@
     "build:angular-public:typography": "sass ./projects/sbb-esta/angular-public/typography.scss ./dist/sbb-esta/angular-public/typography.css",
     "build:angular-keycloak": "ng build @sbb-esta/angular-keycloak",
     "build:angular-showcase": "run-s build:angular-showcase:*",
-    "build:angular-showcase:docs": "schematics .:documentation --debug false",
+    "build:angular-showcase:docs": "npm run build:angular-business:public2business && schematics .:documentation --debug false",
     "build:angular-showcase:ng": "ng build angular-showcase --prod",
     "build:schematics": "rollup --config schematics/rollup.config.js",
     "build:icons": "schematics .:generate-icon-modules --debug false",

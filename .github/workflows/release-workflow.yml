@@ -91,8 +91,6 @@ jobs:
       if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
       run: npm run build:angular-business
 
-    - name: Migrate public to business components for documentation
-      run: npm run build:angular-business:public2business
     - name: Build showcase
       run: npm run build:angular-showcase
     - name: Copy showcase package.json
@@ -132,8 +130,6 @@ jobs:
         cp LICENSE dist/sbb-esta/angular-public
         cp LICENSE dist/sbb-esta/angular-business
         cp LICENSE dist/angular-showcase
-    - name: Copy showcase package.json
-      run: cp projects/angular-showcase/package.json dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
       run: |
         cd dist/sbb-esta/angular-core
@@ -164,7 +160,7 @@ jobs:
         npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Publish @sbb-esta/angular-core
+    - name: Publish @sbb-esta/angular-showcase
       run: |
         cd dist/angular-showcase
         npm publish
