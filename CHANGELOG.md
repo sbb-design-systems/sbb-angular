@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.6](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.5...8.7.6) (2019-11-22)
+
+
+### Bug Fixes
+
+* **showcase:** remove duplicate introduction link ([fee613b](https://github.com/sbb-design-systems/sbb-angular/commit/fee613b))
+
+
+
 ### [8.7.5](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.4...8.7.5) (2019-11-22)
 
 
