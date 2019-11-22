@@ -17,12 +17,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Migrate public to business components
@@ -108,12 +108,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Create lint output directory
@@ -155,12 +155,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Restore build artifacts
@@ -199,12 +199,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Restore build artifacts
@@ -241,12 +241,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Prepare sonar configuration
@@ -283,12 +283,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Restore build artifacts

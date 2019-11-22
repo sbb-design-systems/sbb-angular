@@ -20,12 +20,12 @@ jobs:
 
     - name: Restore dependencies from cache
       uses: actions/cache@v1
-      id: node_modules_cache
       with:
-        path: node_modules
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install dependencies
-      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Migrate public to business components
@@ -116,6 +116,7 @@ jobs:
       with:
         node-version: 12
         registry-url: 'https://registry.npmjs.org'
+        scope: sbb-esta
     - name: Restore package artifacts
       uses: actions/download-artifact@v1
       with:
@@ -131,14 +132,6 @@ jobs:
         cp LICENSE dist/sbb-esta/angular-public
         cp LICENSE dist/sbb-esta/angular-business
         cp LICENSE dist/angular-showcase
-    - name: Copy .npmrc
-      run: |
-        cp .npmrc dist/sbb-esta/angular-core
-        cp .npmrc dist/sbb-esta/angular-icons
-        cp .npmrc dist/sbb-esta/angular-keycloak
-        cp .npmrc dist/sbb-esta/angular-public
-        cp .npmrc dist/sbb-esta/angular-business
-        cp .npmrc dist/angular-showcase
     - name: Copy showcase package.json
       run: cp projects/angular-showcase/package.json dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
