@@ -131,29 +131,27 @@ jobs:
         cp LICENSE dist/sbb-esta/angular-business
         cp LICENSE dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
-      run: npm publish dist/sbb-esta/angular-core
+      run: npm publish dist/sbb-esta/angular-core || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-icons
-      run: npm publish dist/sbb-esta/angular-icons
+      run: npm publish dist/sbb-esta/angular-icons || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-keycloak
-      run: npm publish dist/sbb-esta/angular-keycloak
+      run: npm publish dist/sbb-esta/angular-keycloak || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-public
-      run: npm publish dist/sbb-esta/angular-public
+      run: npm publish dist/sbb-esta/angular-public || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-business
-      run: npm publish dist/sbb-esta/angular-business
+      run: npm publish dist/sbb-esta/angular-business || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-showcase
-      run: |
-        cd dist/angular-showcase
-        npm publish
+      run: npm publish dist/angular-showcase || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Trigger showcase deployment
