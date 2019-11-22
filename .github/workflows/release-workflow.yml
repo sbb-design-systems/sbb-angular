@@ -131,33 +131,23 @@ jobs:
         cp LICENSE dist/sbb-esta/angular-business
         cp LICENSE dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
-      run: |
-        cd dist/sbb-esta/angular-core
-        npm publish
+      run: npm publish dist/sbb-esta/angular-core
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-icons
-      run: |
-        cd dist/sbb-esta/angular-icons
-        npm publish
+      run: npm publish dist/sbb-esta/angular-icons
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-keycloak
-      run: |
-        cd dist/sbb-esta/angular-keycloak
-        npm publish
+      run: npm publish dist/sbb-esta/angular-keycloak
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-public
-      run: |
-        cd dist/sbb-esta/angular-public
-        npm publish
+      run: npm publish dist/sbb-esta/angular-public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-business
-      run: |
-        cd dist/sbb-esta/angular-business
-        npm publish
+      run: npm publish dist/sbb-esta/angular-business
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-showcase
