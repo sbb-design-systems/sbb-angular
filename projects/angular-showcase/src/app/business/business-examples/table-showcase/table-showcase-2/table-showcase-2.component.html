@@ -1,0 +1,38 @@
+<table sbbTable [dataSource]="dataSource" aria-describedby="sbb-table">
+  <ng-container sbbColumnDef="deviceName">
+    <th sbbHeaderCell *sbbHeaderCellDef id="deviceName">Device name</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.deviceName }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="arrivalDate">
+    <th sbbHeaderCell *sbbHeaderCellDef id="arrivalDate">Arrival date</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.arrivalDate }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="orderDate">
+    <th sbbHeaderCell *sbbHeaderCellDef id="orderDate">Order date</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.orderDate }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="lifecycleEnd">
+    <th sbbHeaderCell *sbbHeaderCellDef id="lifecycleEnd">Lifecycle End</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.lifecycleEnd }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="status">
+    <th sbbHeaderCell *sbbHeaderCellDef id="status">Status</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.status }}</td>
+  </ng-container>
+
+  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+
+  <!-- Group header -->
+  <ng-container sbbColumnDef="groupHeader">
+    <td [attr.colspan]="displayedColumns.length" sbbCell *sbbCellDef="let groupBy">
+      <strong>{{ groupBy.title }}</strong>
+    </td>
+  </ng-container>
+
+  <tr sbbRow *sbbRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
+</table>
