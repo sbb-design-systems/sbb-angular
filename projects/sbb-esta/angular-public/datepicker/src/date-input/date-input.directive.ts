@@ -1,6 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW } from '@angular/cdk/keycodes';
-import { TitleCasePipe } from '@angular/common';
 import {
   Directive,
   ElementRef,
@@ -206,8 +205,6 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
   /** Whether the last value set on the input was valid. */
   private _lastValueValid = false;
 
-  private _titleCasePipe = new TitleCasePipe();
-
   onTouched = () => {};
 
   private _cvaOnChange: (value: any) => void = () => {};
@@ -373,7 +370,7 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
     this._elementRef.nativeElement.value = value
-      ? this._titleCasePipe.transform(this.dateAdapter.format(value, this._dateFormats.dateInput))
+      ? this.dateAdapter.format(value, this._dateFormats.dateInput)
       : '';
   }
 
