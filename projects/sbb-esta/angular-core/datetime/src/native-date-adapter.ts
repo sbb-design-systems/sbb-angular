@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 
 import { DateAdapter } from './date-adapter';
@@ -24,6 +24,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 export class NativeDateAdapter extends DateAdapter<Date> {
   private _datePipe: DatePipe;
   private _yearPivot: number;
+  private _titleCasePipe = new TitleCasePipe();
 
   constructor(
     @Inject(LOCALE_ID) protected _locale: string,
@@ -149,7 +150,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       throw Error('NativeDateAdapter: Cannot format invalid date.');
     }
 
-    return this._datePipe.transform(date, displayFormat);
+    return this._titleCasePipe.transform(this._datePipe.transform(date, displayFormat));
   }
 
   addCalendarYears(date: Date, years: number): Date {
