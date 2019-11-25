@@ -22,8 +22,29 @@ table.sbb-table {
     background-color: $sbbColorWhite;
     border-bottom: 1px solid $sbbColorAluminum;
 
+    .sbb-table-row-action {
+      display: none;
+    }
+
+    .sbb-table-row-action-text {
+      display: block;
+    }
+
     &:hover {
       background-color: $sbbColorCloud;
+
+      .sbb-table-row-action {
+        display: flex;
+        justify-content: flex-end;
+
+        & > * {
+          cursor: pointer;
+        }
+      }
+
+      .sbb-table-row-action-text {
+        display: none;
+      }
     }
   }
 

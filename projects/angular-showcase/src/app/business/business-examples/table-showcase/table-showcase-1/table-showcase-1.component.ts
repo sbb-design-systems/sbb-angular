@@ -53,4 +53,10 @@ export class TableShowcase1Component {
     ],
     [['groupedOne', 'groupedTwo', 'groupedThree']]
   );
+
+  deleteItem(element: any): void {
+    const index = this.dataSource.data.indexOf(element);
+    this.dataSource.data.splice(index, 1);
+    this.dataSource._updateChangeSubscription();
+  }
 }
