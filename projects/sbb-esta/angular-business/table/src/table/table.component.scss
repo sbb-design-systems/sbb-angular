@@ -41,6 +41,8 @@ table.sbb-table {
   td.sbb-footer-cell {
     padding: 0 $sbb-row-horizontal-padding;
     border-right: 1px solid $sbbColorAluminum;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   // Note: we use `first-of-type`/`last-of-type` here in order to prevent extra
@@ -70,7 +72,7 @@ table.sbb-table {
   }
 
   .sbb-col-center-align {
-    text-align: center;
+    text-align: center !important;
   }
 
   .sbb-no-border-left {
