@@ -28,11 +28,13 @@ import {
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
-import { TableShowcase1Component } from './table-showcase/table-showcase-1/table-showcase-1.component';
-import { TableShowcase2Component } from './table-showcase/table-showcase-2/table-showcase-2.component';
-import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import {
+  TableShowcase1Component,
+  TableShowcase2Component,
+  TableShowcaseComponent
+} from './table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
