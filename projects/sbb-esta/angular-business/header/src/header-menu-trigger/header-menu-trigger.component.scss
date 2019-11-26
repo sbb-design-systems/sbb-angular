@@ -47,16 +47,20 @@ $sbbBusiness: true;
       }
     }
 
-    &[aria-expanded='true'] > span {
-      border: $sbbColorGranite solid 1px;
-      border-top-left-radius: 2px;
-      border-top-right-radius: 2px;
-      border-bottom: $sbbColorCloud solid 1px;
-      width: 150%;
-      max-width: 150%;
+    &[aria-expanded='true'] {
+      overflow: visible;
 
-      > sbb-icon-chevron-small-down {
-        transform: translateY(-50%) rotate(180deg);
+      > span {
+        border: $sbbColorGranite solid 1px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom: $sbbColorCloud solid 1px;
+        width: 150%;
+        max-width: 150%;
+
+        > sbb-icon-chevron-small-down {
+          transform: translateY(-50%) rotate(180deg);
+        }
       }
     }
   }
