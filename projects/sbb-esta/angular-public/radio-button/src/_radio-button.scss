@@ -12,6 +12,7 @@ $radioButtonGreyColor: $sbbColorGrey;
 
 @mixin radioButton() {
   & > label {
+    user-select: none;
     @include radioButtonBase();
   }
 }
@@ -29,6 +30,7 @@ $radioButtonGreyColor: $sbbColorGrey;
       }
 
       & + .sbb-radio-label-content {
+        user-select: auto;
         color: $radioButtonGreyColor;
         transition: color 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
