@@ -59,8 +59,6 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   ) {}
 
   ngAfterContentInit() {
-    this._checkNumberOfTabs();
-
     this.initTabs();
 
     this._tabsSubscription = this.tabs$
@@ -182,14 +180,5 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     }
 
     return false;
-  }
-
-  /**
-   * Method that controls if the activated tab number is at least two
-   */
-  private _checkNumberOfTabs(): void {
-    if (this.tabs.length < 2) {
-      throw new Error(`The number of tabs must be at least 2`);
-    }
   }
 }
