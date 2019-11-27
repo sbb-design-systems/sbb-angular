@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.10](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.9...8.7.10) (2019-11-27)
+
+
+### Bug Fixes
+
+* **business:** fix stacking order and border issue ([#234](https://github.com/sbb-design-systems/sbb-angular/issues/234)) ([54a7a36](https://github.com/sbb-design-systems/sbb-angular/commit/54a7a36)), closes [#219](https://github.com/sbb-design-systems/sbb-angular/issues/219)
+* fix the overflow styling of usermenu ([#232](https://github.com/sbb-design-systems/sbb-angular/issues/232)) ([bac0c11](https://github.com/sbb-design-systems/sbb-angular/commit/bac0c11)), closes [#164](https://github.com/sbb-design-systems/sbb-angular/issues/164) [#172](https://github.com/sbb-design-systems/sbb-angular/issues/172)
+* fix the radio click with selected text ([#229](https://github.com/sbb-design-systems/sbb-angular/issues/229)) ([195a28d](https://github.com/sbb-design-systems/sbb-angular/commit/195a28d)), closes [#222](https://github.com/sbb-design-systems/sbb-angular/issues/222)
+* on error display sbb-select with red color and border ([#233](https://github.com/sbb-design-systems/sbb-angular/issues/233)) ([7214487](https://github.com/sbb-design-systems/sbb-angular/commit/7214487))
+* relax amount of tabs check ([#230](https://github.com/sbb-design-systems/sbb-angular/issues/230)) ([d5f367b](https://github.com/sbb-design-systems/sbb-angular/commit/d5f367b))
+* set min size for radio button and checkbox icon ([#231](https://github.com/sbb-design-systems/sbb-angular/issues/231)) ([20037b4](https://github.com/sbb-design-systems/sbb-angular/commit/20037b4)), closes [#141](https://github.com/sbb-design-systems/sbb-angular/issues/141)
+* **business:** show overflow for header menu ([#228](https://github.com/sbb-design-systems/sbb-angular/issues/228)) ([48e2847](https://github.com/sbb-design-systems/sbb-angular/commit/48e2847))
+* **datepicker:** refactor usage of TitleCasePipe to DateAdapter ([#227](https://github.com/sbb-design-systems/sbb-angular/issues/227)) ([ca0f4fa](https://github.com/sbb-design-systems/sbb-angular/commit/ca0f4fa)), closes [#226](https://github.com/sbb-design-systems/sbb-angular/issues/226)
+
+
+
 ### [8.7.9](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.8...8.7.9) (2019-11-22)
 
 
