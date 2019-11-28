@@ -53,4 +53,4 @@ Chrome OS: ChromeVox with Chrome.
 
 ## Testing Supported By
 
-<img width="160" src="https://user-images.githubusercontent.com/594745/69711802-fc138a80-1101-11ea-9b30-3e90c274737a.png" alt="BrowserStack"/>
+<a href="https://www.browserstack.com/"><img width="160" src="https://user-images.githubusercontent.com/594745/69711802-fc138a80-1101-11ea-9b30-3e90c274737a.png" alt="BrowserStack"/></a>
