@@ -17,6 +17,7 @@ export abstract class ProcessflowStepBase {
   @Input()
   set title(value: string) {
     this.descriptor.title = value;
+    this._changeDetectorRef.markForCheck();
   }
   get title() {
     return this.descriptor.title;
