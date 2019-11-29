@@ -2231,7 +2231,7 @@ describe('SelectComponent', () => {
         );
 
         const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-        expect(pane.style.minWidth).toEqual('362px');
+        expect(pane.style.width).toEqual('362px');
 
         expect(fixture.componentInstance.select.panelOpen).toBe(true);
         expect(overlayContainerElement.textContent).toContain('Steak');
@@ -2391,7 +2391,7 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
-      expect(pane.style.minWidth).toBe('262px');
+      expect(pane.style.width).toBe('262px');
     });
   });
 
@@ -2409,7 +2409,7 @@ describe('SelectComponent', () => {
 
       const pane = overlayContainerElement.querySelector('.cdk-overlay-pane') as HTMLElement;
       // tslint:disable-next-line:radix
-      expect(parseInt(pane.style.minWidth as string)).toBeGreaterThan(0);
+      expect(parseInt(pane.style.width as string)).toBeGreaterThan(0);
     });
   });
 
