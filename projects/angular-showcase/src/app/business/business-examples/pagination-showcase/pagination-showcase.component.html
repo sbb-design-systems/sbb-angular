@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 sbbsc-v-sep">
+      <h4 id="default" class="sbbsc-block">Pagination</h4>
+      <sbb-pagination
+        (pageChange)="onPageChange($event)"
+        [length]="length"
+        [pageIndex]="pageIndex"
+      ></sbb-pagination>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-field mode="long" label="Length">
+        <input type="number" [(ngModel)]="length" name="length" />
+      </sbb-field>
+      <sbb-field mode="long" label="Page index">
+        <input type="number" [(ngModel)]="pageIndex" name="pageIndex" />
+      </sbb-field>
+    </div>
+  </div>
+
+  <div role="presentation" class="sbbsc-separator"></div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Navigation</h4>
+      <sbb-navigation
+        (pageChange)="onPageChangeNavigation($event)"
+        [nextPage]="nextPage"
+        [previousPage]="previousPage"
+      >
+      </sbb-navigation>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="sbbsc-block">Properties</h4>
+      <sbb-field label="Page title" mode="long">
+        <input type="text" name="newPage" [(ngModel)]="newPage.title" />
+      </sbb-field>
+      <button sbbButton (click)="addPage()">Add new page</button>
+    </div>
+  </div>
+</div>

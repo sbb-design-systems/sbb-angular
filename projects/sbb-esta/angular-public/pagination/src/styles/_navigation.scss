@@ -12,15 +12,19 @@
     height: toPx($paginationLiWidthHeight);
     width: 50%;
     display: flex;
+
     &-right {
       justify-content: flex-end;
     }
+
     &-left {
       justify-content: flex-start;
     }
+
     &:nth-of-type(1) {
       width: 100%;
     }
+
     > button,
     > a {
       @include buttonResetFrameless();
@@ -38,32 +42,45 @@
 
       &:hover,
       &:focus {
-        @include svgIconColor($sbbColorRed);
-        color: $sbbColorRed;
+        @if $sbbBusiness {
+          @include svgIconColor($sbbColorRed125);
+          color: $sbbColorRed125;
+        } @else {
+          @include svgIconColor($sbbColorRed);
+          color: $sbbColorRed;
+        }
+
         .sbb-navigation-item-boundary-arrow {
-          border-color: $sbbColorRed;
+          border-color: if($sbbBusiness, $sbbColorRed125, $sbbColorRed);
         }
       }
+
       .sbb-navigation-item-boundary {
         display: flex;
         align-items: center;
         justify-content: center;
+
         &-left {
           justify-content: flex-start;
+
           .sbb-navigation-item-boundary-arrow {
             margin-right: toPx(10);
           }
         }
+
         &-right {
           justify-content: flex-end;
+
           .sbb-navigation-item-boundary-arrow {
             margin-left: toPx(10);
           }
         }
+
         .sbb-navigation-item-boundary-text {
           @include ellipsis;
           max-width: 100%;
         }
+
         .sbb-navigation-item-boundary-arrow {
           border-width: toPx(1);
           border-style: solid;
@@ -83,11 +100,18 @@
             width: toPx($paginationItemIconSize5K);
             height: toPx($paginationItemIconSize5K);
           }
+
           &:hover,
           &:focus {
-            @include svgIconColor($sbbColorRed);
-            border-color: $sbbColorRed;
+            @if $sbbBusiness {
+              @include svgIconColor($sbbColorRed125);
+              border-color: $sbbColorRed125;
+            } @else {
+              @include svgIconColor($sbbColorRed);
+              border-color: $sbbColorRed;
+            }
           }
+
           > * {
             width: toPx($paginationItemIconSize);
             height: toPx($paginationItemIconSize);
