@@ -60,7 +60,6 @@ export class TableShowcase3Component {
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_SHOWCASE_DATA_3);
 
   sortData(sort: Sort) {
-    console.log(sort);
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
       this.dataSource.data = TABLE_SHOWCASE_DATA_3;
