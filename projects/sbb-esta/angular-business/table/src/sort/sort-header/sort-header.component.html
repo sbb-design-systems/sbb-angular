@@ -1,0 +1,27 @@
+<div
+  class="sbb-sort-header-container"
+  [class.sbb-sort-header-sorted]="_isSorted()"
+  [class.sbb-sort-header-position-before]="arrowPosition == 'before'"
+>
+  <button
+    class="sbb-sort-header-button"
+    type="button"
+    [attr.aria-label]="_intl.sortButtonLabel(id)"
+    (focus)="_setIndicatorHintVisible(true)"
+    (blur)="_setIndicatorHintVisible(false)"
+  >
+    <ng-content></ng-content>
+  </button>
+
+  <div
+    class="sbb-sort-header-arrow"
+    [@arrowOpacity]="_getArrowViewState()"
+    [@arrowPosition]="_getArrowViewState()"
+    [@allowChildren]="_getArrowDirectionState()"
+  >
+    <div class="sbb-sort-header-indicator" [@indicator]="_getArrowDirectionState()">
+      <div class="sbb-sort-header-pointer-left" [@leftPointer]="_getArrowDirectionState()"></div>
+      <div class="sbb-sort-header-pointer-right" [@rightPointer]="_getArrowDirectionState()"></div>
+    </div>
+  </div>
+</div>

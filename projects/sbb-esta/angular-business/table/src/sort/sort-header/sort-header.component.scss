@@ -1,0 +1,106 @@
+@import '../../../../../angular-core/styles/common/mediaqueries';
+
+$sbb-sort-header-arrow-margin: 6;
+$sbb-sort-header-arrow-container-size: 12;
+$sbb-sort-header-arrow-stem-size: 10;
+$sbb-sort-header-arrow-pointer-length: 6;
+$sbb-sort-header-arrow-thickness: 1;
+$sbb-sort-header-arrow-hint-opacity: 0.38;
+
+.sbb-sort-header-container {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+}
+
+.sbb-sort-header-position-before {
+  flex-direction: row-reverse;
+}
+
+.sbb-sort-header-button {
+  border: none;
+  background: 0 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  cursor: inherit;
+  outline: 0;
+  font: inherit;
+  color: currentColor;
+
+  // The `outline: 0` from above works on all browsers, however Firefox also
+  // adds a special `focus-inner` which we have to disable explicitly. See:
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Firefox
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+.sbb-sort-header-arrow {
+  height: pxToEm($sbb-sort-header-arrow-container-size);
+  width: pxToEm($sbb-sort-header-arrow-container-size);
+  min-width: pxToEm($sbb-sort-header-arrow-container-size);
+  position: relative;
+  display: flex;
+
+  // Start off at 0 since the arrow may become visible while parent are animating.
+  // This will be overwritten when the arrow animations kick in. See #11819.
+  opacity: 0;
+
+  &,
+  [dir='rtl'] .sbb-sort-header-position-before & {
+    margin: 0 0 0 pxToEm($sbb-sort-header-arrow-margin);
+  }
+
+  .sbb-sort-header-position-before &,
+  [dir='rtl'] & {
+    margin: 0 pxToEm($sbb-sort-header-arrow-margin) 0 0;
+  }
+}
+
+.sbb-sort-header-stem {
+  background: currentColor;
+  height: pxToEm($sbb-sort-header-arrow-stem-size);
+  width: pxToEm($sbb-sort-header-arrow-thickness);
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.sbb-sort-header-indicator {
+  width: 100%;
+  height: pxToEm($sbb-sort-header-arrow-thickness);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sbb-sort-header-pointer-middle {
+  margin: auto;
+  height: pxToEm($sbb-sort-header-arrow-thickness);
+  width: pxToEm($sbb-sort-header-arrow-thickness);
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.sbb-sort-header-pointer-left,
+.sbb-sort-header-pointer-right {
+  background: currentColor;
+  width: pxToEm($sbb-sort-header-arrow-pointer-length);
+  height: pxToEm($sbb-sort-header-arrow-thickness);
+  position: absolute;
+  top: 0;
+}
+
+.sbb-sort-header-pointer-left {
+  transform-origin: right;
+  left: 0;
+}
+
+.sbb-sort-header-pointer-right {
+  transform-origin: left;
+  right: 0;
+}

@@ -23,8 +23,6 @@ import { SbbTableDataSource } from './table-data-source';
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class TableComponent<T> extends CdkTable<T> implements AfterViewInit {
-  static ngAcceptInputTypeMultiTemplateDataRows: boolean | string | null | undefined = undefined;
-
   @HostBinding('class.sbb-table') sbbTable = true;
 
   @ContentChildren(HeaderCellDirective, { descendants: true, read: ElementRef })

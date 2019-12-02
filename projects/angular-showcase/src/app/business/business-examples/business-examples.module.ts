@@ -13,6 +13,7 @@ import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TableModule } from '@sbb-esta/angular-business/table';
+import { SbbSortModule, TableModule } from '@sbb-esta/angular-business/table';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
@@ -33,6 +34,7 @@ import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import {
   TableShowcase1Component,
   TableShowcase2Component,
+  TableShowcase3Component,
   TableShowcaseComponent
 } from './table-showcase/table-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
@@ -55,7 +57,9 @@ const exampleComponents = [
   DialogShowcaseExample2Component,
   DialogShowcaseExample2ContentComponent,
   DialogShowcaseExample3Component,
-  PaginationShowcaseComponent
+  PaginationShowcaseComponent,
+  TableShowcase2Component,
+  TableShowcase3Component
 ];
 
 @NgModule({
@@ -81,7 +85,8 @@ const exampleComponents = [
     RadioButtonModule,
     PaginationModule,
     UserMenuModule,
-    TableModule
+    TableModule,
+    SbbSortModule
   ]
 })
 export class BusinessExamplesModule {}
