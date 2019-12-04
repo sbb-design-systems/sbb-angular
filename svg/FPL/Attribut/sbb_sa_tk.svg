@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="16" viewBox="0 0 28 16">
-  <g fill="none" fill-rule="evenodd">
-    <polygon fill="#000" points="3.16 1.037 13.942 1.037 13.482 3.237 9.542 3.237 7.001 15 4.081 15 6.621 3.237 2.681 3.237"/>
-    <polygon fill="#000" points="18.541 1.037 17.361 6.518 17.401 6.518 22.942 1.037 26.844 1.037 19.782 7.398 24.283 15 20.942 15 17.062 7.898 15.541 15 12.74 15 15.741 1.037"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="16px" viewBox="0 0 28 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>svg/FPL/Attribut/sbb_sa_tk</title>
+    <desc>Created with Sketch.</desc>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon fill="#000000" points="3.1602 1.0371 13.9422 1.0371 13.4822 3.2371 9.5422 3.2371 7.0012 15.0001 4.0812 15.0001 6.6212 3.2371 2.6812 3.2371"></polygon>
+        <polygon fill="#000000" points="18.541 1.0371 17.361 6.5181 17.401 6.5181 22.942 1.0371 26.844 1.0371 19.782 7.3981 24.283 15.0001 20.942 15.0001 17.062 7.8981 15.541 15.0001 12.74 15.0001 15.741 1.0371"></polygon>
+    </g>
 </svg>

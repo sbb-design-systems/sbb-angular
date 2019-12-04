@@ -7,7 +7,7 @@ import { KeycloakComponent } from './keycloak/keycloak.component';
 
 const routes: Routes = [
   {
-    path: 'keycloak',
+    path: '',
     component: KeycloakComponent,
     data: { library: 'angular-keycloak', id: 'README' },
     children: [

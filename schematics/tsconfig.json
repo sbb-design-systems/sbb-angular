@@ -18,9 +18,9 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es6",
+    "target": "es2018",
     "types": ["jasmine", "node"]
   },
   "include": ["**/*"],
-  "exclude": ["*/files/**/*"]
+  "exclude": ["*/files/**/*", "**/index.d.ts"]
 }

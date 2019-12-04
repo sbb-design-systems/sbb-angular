@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <g fill="none" fill-rule="evenodd">
-    <rect width="16" height="16" fill="#EB0000" rx="2"/>
-    <polygon fill="#FFF" points="10.4 11.265 8 8.865 5.6 11.265 4.735 10.399 7.135 8 4.735 5.6 5.6 4.735 8 7.134 10.4 4.735 11.265 5.6 8.866 8 11.265 10.399"/>
-    <path fill="#FFF" d="M7.994,2 C4.682,2 2,4.688 2,8 C2,11.312 4.682,14 7.994,14 C11.312,14 14,11.312 14,8 C14,4.688 11.312,2 7.994,2 L7.994,2 Z M8,12.8 C5.348,12.8 3.2,10.652 3.2,8 C3.2,5.348 5.348,3.2 8,3.2 C10.652,3.2 12.8,5.348 12.8,8 C12.8,10.652 10.652,12.8 8,12.8 L8,12.8 Z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>svg/FPL/HIM_CUS/sbb_cancellation</title>
+    <desc>Created with Sketch.</desc>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#EB0000" x="0" y="0" width="16" height="16" rx="2"></rect>
+        <polygon fill="#FFFFFF" points="10.3999 11.2654 7.9999 8.8654 5.5999 11.2654 4.7349 10.3994 7.1349 8.0004 4.7349 5.6004 5.5999 4.7354 7.9999 7.1344 10.3999 4.7354 11.2649 5.6004 8.8659 8.0004 11.2649 10.3994"></polygon>
+        <path d="M7.994,2 C4.682,2 2,4.688 2,8 C2,11.312 4.682,14 7.994,14 C11.312,14 14,11.312 14,8 C14,4.688 11.312,2 7.994,2 L7.994,2 Z M8,12.8 C5.348,12.8 3.2,10.652 3.2,8 C3.2,5.348 5.348,3.2 8,3.2 C10.652,3.2 12.8,5.348 12.8,8 C12.8,10.652 10.652,12.8 8,12.8 L8,12.8 Z" fill="#FFFFFF"></path>
+    </g>
 </svg>

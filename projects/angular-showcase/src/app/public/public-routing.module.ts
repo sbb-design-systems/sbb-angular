@@ -9,7 +9,7 @@ import { PublicComponent } from './public/public.component';
 
 const routes: Routes = [
   {
-    path: 'public',
+    path: '',
     component: PublicComponent,
     data: { library: 'angular-public' },
     children: [

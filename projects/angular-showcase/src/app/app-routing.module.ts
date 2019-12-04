@@ -9,6 +9,26 @@ const routes: Routes = [
     component: IntroductionComponent
   },
   {
+    path: 'business',
+    loadChildren: () => import('./business/business.module').then(m => m.BusinessModule)
+  },
+  {
+    path: 'core',
+    loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+  },
+  {
+    path: 'icons',
+    loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule)
+  },
+  {
+    path: 'keycloak',
+    loadChildren: () => import('./keycloak/keycloak.module').then(m => m.KeycloakModule)
+  },
+  {
+    path: 'public',
+    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

@@ -1,3 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
-  <polygon fill-rule="evenodd" points="4.221 1.037 13.803 1.037 13.323 3.237 4.901 12.8 11.262 12.8 10.802 15 1 15 1.44 12.8 9.842 3.237 3.741 3.237"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>svg/FPL/Attribut/sbb_sa_z</title>
+    <desc>Created with Sketch.</desc>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon fill="#000000" points="4.2207 1.0371 13.8027 1.0371 13.3227 3.2371 4.9007 12.8001 11.2617 12.8001 10.8017 15.0001 0.9997 15.0001 1.4397 12.8001 9.8417 3.2371 3.7407 3.2371"></polygon>
+    </g>
 </svg>

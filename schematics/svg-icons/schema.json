@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "svgRegistry": {
+      "type": "string",
+      "description": "The path to the svg registry file.",
+      "default": "svg/svg-registry.json"
+    },
+    "targetDir": {
+      "type": "string",
+      "description": "The directory into which the icons will be generated, relative to projects.[project].root.",
+      "default": "."
+    }
+  }
+}

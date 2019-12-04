@@ -10,7 +10,7 @@ import { CoreComponent } from './core/core.component';
 
 const routes: Routes = [
   {
-    path: 'core',
+    path: '',
     component: CoreComponent,
     data: { library: 'angular-core' },
     children: [

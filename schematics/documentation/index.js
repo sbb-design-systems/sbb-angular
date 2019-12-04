@@ -18,30 +18,6 @@ var MemberDoc = require('dgeni-packages/typescript/api-doc-types/MemberDoc');
 var ApiDoc = require('dgeni-packages/typescript/api-doc-types/ApiDoc');
 var ExportDoc = require('dgeni-packages/typescript/api-doc-types/ExportDoc');
 
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
-
 // These type lacks type definitions.
 const highlightJs = require('highlight.js');
 /**
@@ -956,7 +932,7 @@ apiDocsPackage.config(function (templateFinder, templateEngine) {
 });
 
 function documentation(_options) {
-    return (tree, _context) => __awaiter(this, void 0, void 0, function* () {
+    return async (tree, _context) => {
         for (const library of ['angular-core', 'angular-public', 'angular-business']) {
             renderHtmlForMarkdownFilesForLibrary(tree, library);
             renderExampleFilesForLibrary(tree, library);
@@ -964,8 +940,8 @@ function documentation(_options) {
         for (const library of ['angular-keycloak', 'angular-icons']) {
             renderHtmlForMarkdownFilesForLibrary(tree, library);
         }
-        yield buildApiDocumentationForLibrary(['angular-core', 'angular-public', 'angular-business']);
-    });
+        await buildApiDocumentationForLibrary(['angular-core', 'angular-public', 'angular-business']);
+    };
 }
 function renderHtmlForMarkdownFilesForLibrary(tree, library) {
     const libraryDirectory = tree.getDir(`projects/sbb-esta/${library}`);
@@ -1035,69 +1011,67 @@ function highlight(code, language) {
     return code;
 }
 // @TODO: Blocked by https://github.com/sbb-design-systems/sbb-angular/issues/147
-function buildApiDocumentationForLibrary(packageNames) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const execRootPath = process.cwd();
-        const packagePath = path.join(execRootPath, 'projects/sbb-esta');
-        const outputDirPath = path.join(execRootPath, `projects/angular-showcase/src/assets/docs/api`);
-        // Configure the Dgeni docs package to respect our passed options from the Bazel rule.
-        apiDocsPackage.config(function (readTypeScriptModules, tsParser, templateFinder, writeFilesProcessor, readFilesProcessor) {
-            // Set the base path for the "readFilesProcessor" to the execroot. This is necessary because
-            // otherwise the "writeFilesProcessor" is not able to write to the specified output path.
-            readFilesProcessor.basePath = execRootPath;
-            // Set the base path for parsing the TypeScript source files to the directory that includes
-            // all sources (also known as the path to the current Bazel target). This makes it easier for
-            // custom processors (such as the `entry-point-grouper) to compute entry-point paths.
-            readTypeScriptModules.basePath = packagePath;
-            // Initialize the "tsParser" path mappings. These will be passed to the TypeScript program
-            // and therefore use the same syntax as the "paths" option in a tsconfig.
-            tsParser.options.paths = {};
-            // For each package we want to setup all entry points in Dgeni so that their API
-            // will be generated. Packages and their associated entry points are passed in pairs.
-            // The first argument will be always the package name, and the second argument will be a
-            // joined string containing names of all entry points for that specific package.
-            // e.g. "cdk" "platform,bidi,a11y"
-            for (const packageName of packageNames) {
-                const sourceDirectory = path.resolve(__dirname, `../../projects/sbb-esta/${packageName}`);
-                const entryPoints = fs.readdirSync(sourceDirectory, { withFileTypes: true })
-                    .filter(d => d.isDirectory() && d.name !== 'svg-icons' && d.name !== 'styles')
-                    .map(d => d.name);
-                // Walk through each entry point of the current package and add it to the
-                // "readTypeScriptModules" processor so that it will parse it. Additionally we want
-                // to setup path mapping for that entry-point, so that we are able to merge
-                // inherited class members across entry points or packages.
-                entryPoints.forEach(entryPointName => {
-                    const entryPointPath = `${packageName}/${entryPointName}`;
-                    const entryPointIndexPath = `${entryPointPath}/index.ts`;
-                    // tslint:disable-next-line: no-non-null-assertion
-                    tsParser.options.paths[`@sbb-esta/${entryPointPath}`] = [entryPointIndexPath];
-                    readTypeScriptModules.sourceFiles.push(entryPointIndexPath);
-                });
-            }
-            // Base URL for the `tsParser`. The base URL refer to the directory that includes all
-            // package sources that need to be processed by Dgeni.
-            tsParser.options.baseUrl = packagePath;
-            // This is ensures that the Dgeni TypeScript processor is able to parse node modules such
-            // as the Angular packages which might be needed for doc items. e.g. if a class implements
-            // the "AfterViewInit" interface from "@angular/core". This needs to be relative to the
-            // "baseUrl" that has been specified for the "tsParser" compiler options.
-            // tslint:disable-next-line: no-non-null-assertion
-            tsParser.options.paths['*'] = [path.relative(packagePath, path.join(execRootPath, 'node_modules/*'))];
-            // Since our base directory is the Bazel execroot, we need to make sure that Dgeni can
-            // find all templates needed to output the API docs.
-            templateFinder.templateFolders = [
-                path.join(execRootPath, 'schematics/documentation/dgeni/templates/')
-            ];
-            // The output path for files will be computed by joining the output folder with the base path
-            // from the "readFilesProcessors". Since the base path is the execroot, we can just use
-            // the output path passed from Bazel (e.g. $EXECROOT/bazel-out/bin/src/docs-content)
-            writeFilesProcessor.outputFolder = outputDirPath;
-        });
-        const docs = new dgeni.Dgeni([apiDocsPackage]);
-        yield docs.generate().catch((e) => {
-            console.error(e);
-            process.exit(1);
-        });
+async function buildApiDocumentationForLibrary(packageNames) {
+    const execRootPath = process.cwd();
+    const packagePath = path.join(execRootPath, 'projects/sbb-esta');
+    const outputDirPath = path.join(execRootPath, `projects/angular-showcase/src/assets/docs/api`);
+    // Configure the Dgeni docs package to respect our passed options from the Bazel rule.
+    apiDocsPackage.config(function (readTypeScriptModules, tsParser, templateFinder, writeFilesProcessor, readFilesProcessor) {
+        // Set the base path for the "readFilesProcessor" to the execroot. This is necessary because
+        // otherwise the "writeFilesProcessor" is not able to write to the specified output path.
+        readFilesProcessor.basePath = execRootPath;
+        // Set the base path for parsing the TypeScript source files to the directory that includes
+        // all sources (also known as the path to the current Bazel target). This makes it easier for
+        // custom processors (such as the `entry-point-grouper) to compute entry-point paths.
+        readTypeScriptModules.basePath = packagePath;
+        // Initialize the "tsParser" path mappings. These will be passed to the TypeScript program
+        // and therefore use the same syntax as the "paths" option in a tsconfig.
+        tsParser.options.paths = {};
+        // For each package we want to setup all entry points in Dgeni so that their API
+        // will be generated. Packages and their associated entry points are passed in pairs.
+        // The first argument will be always the package name, and the second argument will be a
+        // joined string containing names of all entry points for that specific package.
+        // e.g. "cdk" "platform,bidi,a11y"
+        for (const packageName of packageNames) {
+            const sourceDirectory = path.resolve(__dirname, `../../projects/sbb-esta/${packageName}`);
+            const entryPoints = fs.readdirSync(sourceDirectory, { withFileTypes: true })
+                .filter(d => d.isDirectory() && d.name !== 'svg-icons' && d.name !== 'styles')
+                .map(d => d.name);
+            // Walk through each entry point of the current package and add it to the
+            // "readTypeScriptModules" processor so that it will parse it. Additionally we want
+            // to setup path mapping for that entry-point, so that we are able to merge
+            // inherited class members across entry points or packages.
+            entryPoints.forEach(entryPointName => {
+                const entryPointPath = `${packageName}/${entryPointName}`;
+                const entryPointIndexPath = `${entryPointPath}/index.ts`;
+                // tslint:disable-next-line: no-non-null-assertion
+                tsParser.options.paths[`@sbb-esta/${entryPointPath}`] = [entryPointIndexPath];
+                readTypeScriptModules.sourceFiles.push(entryPointIndexPath);
+            });
+        }
+        // Base URL for the `tsParser`. The base URL refer to the directory that includes all
+        // package sources that need to be processed by Dgeni.
+        tsParser.options.baseUrl = packagePath;
+        // This is ensures that the Dgeni TypeScript processor is able to parse node modules such
+        // as the Angular packages which might be needed for doc items. e.g. if a class implements
+        // the "AfterViewInit" interface from "@angular/core". This needs to be relative to the
+        // "baseUrl" that has been specified for the "tsParser" compiler options.
+        // tslint:disable-next-line: no-non-null-assertion
+        tsParser.options.paths['*'] = [path.relative(packagePath, path.join(execRootPath, 'node_modules/*'))];
+        // Since our base directory is the Bazel execroot, we need to make sure that Dgeni can
+        // find all templates needed to output the API docs.
+        templateFinder.templateFolders = [
+            path.join(execRootPath, 'schematics/documentation/dgeni/templates/')
+        ];
+        // The output path for files will be computed by joining the output folder with the base path
+        // from the "readFilesProcessors". Since the base path is the execroot, we can just use
+        // the output path passed from Bazel (e.g. $EXECROOT/bazel-out/bin/src/docs-content)
+        writeFilesProcessor.outputFolder = outputDirPath;
+    });
+    const docs = new dgeni.Dgeni([apiDocsPackage]);
+    await docs.generate().catch((e) => {
+        console.error(e);
+        process.exit(1);
     });
 }
 
