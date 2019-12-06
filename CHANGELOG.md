@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.11](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.10...8.7.11) (2019-12-06)
+
+
+### Bug Fixes
+
+* fix change detection for sbb-processflow-step title ([#238](https://github.com/sbb-design-systems/sbb-angular/issues/238)) ([4cfc9e0](https://github.com/sbb-design-systems/sbb-angular/commit/4cfc9e0))
+* limit header icon height to header height ([#237](https://github.com/sbb-design-systems/sbb-angular/issues/237)) ([633f05a](https://github.com/sbb-design-systems/sbb-angular/commit/633f05a)), closes [#204](https://github.com/sbb-design-systems/sbb-angular/issues/204)
+* limit sbb-select dropdown width to host ([#239](https://github.com/sbb-design-systems/sbb-angular/issues/239)) ([847fcc4](https://github.com/sbb-design-systems/sbb-angular/commit/847fcc4)), closes [#220](https://github.com/sbb-design-systems/sbb-angular/issues/220)
+
+
+
 ### [8.7.10](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.9...8.7.10) (2019-11-27)
 
 
