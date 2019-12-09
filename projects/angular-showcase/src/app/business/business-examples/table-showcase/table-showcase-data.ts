@@ -1,4 +1,21 @@
-export const TABLE_SHOWCASE_DATA_1 = [
+export const TABLE_SHOWCASE_DATA_SIMPLE = [
+  {
+    columnOne: 'columnOne',
+    columnTwo: 'columnTwo',
+    columnThree: 'columnThree',
+    columnFour: 'columnFour',
+    columnFive: 'columnFive'
+  },
+  {
+    columnOne: 'columnOne',
+    columnTwo: 'columnTwo',
+    columnThree: 'columnThree',
+    columnFour: 'columnFour',
+    columnFive: 'columnFive'
+  }
+];
+
+export const TABLE_SHOWCASE_DATA_GROUPED_COLS = [
   {
     left: 'left1',
     groupedOne: 'groupedOne1',
@@ -36,7 +53,7 @@ export const TABLE_SHOWCASE_DATA_1 = [
   }
 ];
 
-export const TABLE_SHOWCASE_DATA_2 = [
+export const TABLE_SHOWCASE_DATA_GROUPED_ROWS = [
   {
     title: 'Mobile Workplace IT',
     isGroupBy: true
@@ -75,7 +92,7 @@ export const TABLE_SHOWCASE_DATA_2 = [
   }
 ];
 
-export const TABLE_SHOWCASE_DATA_3 = [
+export const TABLE_SHOWCASE_DATA = [
   {
     letter: 'A',
     number: 5,

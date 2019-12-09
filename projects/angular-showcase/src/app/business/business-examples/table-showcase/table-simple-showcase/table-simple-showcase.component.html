@@ -1,0 +1,29 @@
+<table sbbTable [dataSource]="dataSource" aria-describedby="sbb-table">
+  <ng-container sbbColumnDef="columnOne">
+    <th sbbHeaderCell *sbbHeaderCellDef id="columnOne">columnOne</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.columnOne }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="columnTwo">
+    <th sbbHeaderCell *sbbHeaderCellDef id="columnTwo">columnTwo</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.columnTwo }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="columnThree">
+    <th sbbHeaderCell *sbbHeaderCellDef id="columnThree">columnThree</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.columnThree }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="columnFour">
+    <th sbbHeaderCell *sbbHeaderCellDef id="columnFour">columnFour</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.columnFour }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="columnFive">
+    <th sbbHeaderCell *sbbHeaderCellDef id="columnFive">columnFive</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.columnFive }}</td>
+  </ng-container>
+
+  <tr sbbHeaderRow *sbbHeaderRowDef="displayedColumns"></tr>
+  <tr sbbRow *sbbRowDef="let row; columns: displayedColumns"></tr>
+</table>

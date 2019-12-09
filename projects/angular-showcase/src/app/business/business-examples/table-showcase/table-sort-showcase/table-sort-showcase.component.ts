@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { SbbTableDataSource, Sort } from '@sbb-esta/angular-business/table';
 
-import { TABLE_SHOWCASE_DATA_3 } from '../table-showcase-data';
+import { TABLE_SHOWCASE_DATA } from '../table-showcase-data';
 
 @Component({
-  selector: 'sbb-table-showcase-3',
+  selector: 'sbb-table-sort-showcase',
   templateUrl: './table-sort-showcase.component.html'
 })
 export class TableSortShowcaseComponent {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
-  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_SHOWCASE_DATA_3);
+  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_SHOWCASE_DATA.slice());
 
   sortData(sort: Sort) {
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
-      this.dataSource.data = TABLE_SHOWCASE_DATA_3;
+      this.dataSource.data = TABLE_SHOWCASE_DATA;
       return;
     }
 
@@ -34,6 +34,7 @@ export class TableSortShowcaseComponent {
       }
     });
   }
+
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }

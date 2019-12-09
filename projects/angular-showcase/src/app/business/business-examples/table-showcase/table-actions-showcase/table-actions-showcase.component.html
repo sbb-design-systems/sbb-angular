@@ -1,28 +1,24 @@
+<p>Table with row actions:</p>
 <table sbbTable [dataSource]="dataSource" aria-describedby="sbb-table">
-  <ng-container sbbColumnDef="leftAligned">
-    <th sbbHeaderCell *sbbHeaderCellDef id="leftAligned">left-aligned</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.left }}</td>
+  <ng-container sbbColumnDef="letter">
+    <th sbbHeaderCell *sbbHeaderCellDef id="letter">Letter</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.letter }}</td>
   </ng-container>
 
-  <ng-container sbbColumnDef="groupedOne">
-    <th sbbHeaderCell *sbbHeaderCellDef id="groupedOne">Grouped col 1</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.groupedOne }}</td>
-  </ng-container>
-  <ng-container sbbColumnDef="groupedTwo">
-    <th sbbHeaderCell *sbbHeaderCellDef id="groupedTwo">Grouped col 2</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.groupedTwo }}</td>
-  </ng-container>
-  <ng-container sbbColumnDef="groupedThree">
-    <th sbbHeaderCell *sbbHeaderCellDef id="groupedThree">Grouped col 3</th>
-    <td sbbCell *sbbCellDef="let element">{{ element.groupedThree }}</td>
+  <ng-container sbbColumnDef="number">
+    <th sbbHeaderCell *sbbHeaderCellDef id="number">Number</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.number }}</td>
   </ng-container>
 
-  <ng-container sbbColumnDef="centerAligned">
-    <th sbbHeaderCell *sbbHeaderCellDef id="centerAligned" class="sbb-col-center-align">
-      center-aligned
-    </th>
-    <td sbbCell *sbbCellDef="let element" class="sbb-col-center-align">
-      <div class="sbb-table-row-action-text">{{ element.center }}</div>
+  <ng-container sbbColumnDef="word">
+    <th sbbHeaderCell *sbbHeaderCellDef id="word">Word</th>
+    <td sbbCell *sbbCellDef="let element">{{ element.word }}</td>
+  </ng-container>
+
+  <ng-container sbbColumnDef="date">
+    <th sbbHeaderCell *sbbHeaderCellDef id="date">Date</th>
+    <td sbbCell *sbbCellDef="let element">
+      <div class="sbb-table-row-action-text">{{ element.date | date }}</div>
       <div class="sbb-table-row-action">
         <sbb-icon-trash size="fixed" (click)="deleteItem(element)"></sbb-icon-trash>
       </div>
