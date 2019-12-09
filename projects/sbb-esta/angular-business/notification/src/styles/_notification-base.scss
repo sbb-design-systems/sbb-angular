@@ -1,0 +1,84 @@
+@mixin notificationBase {
+  display: flex;
+  align-items: center;
+  height: pxToEm($notificationHeight);
+  width: $notificationBaseWidth;
+  border-radius: toPx($notificationBorderRadius);
+  color: $sbbColorWhite;
+  background-color: $notificationDefaultBackgroundColor;
+
+  &-error {
+    @include svgIconColor($sbbColorWhite);
+    background-color: $notificationErrorBackgroundColor;
+
+    a {
+      color: $sbbColorWhite;
+    }
+  }
+
+  &-success {
+    @include svgIconColor($sbbColorGreen);
+    color: $sbbColorGreen;
+    border: 1px solid $sbbColorGreen;
+
+    a {
+      color: $sbbColorGreen;
+    }
+  }
+
+  &-info {
+    @include svgIconColor($sbbColorGranite);
+    color: $sbbColorGranite;
+    border: 1px solid $sbbColorGranite;
+
+    a {
+      color: $sbbColorGranite;
+    }
+  }
+
+  &-warn {
+    @include svgIconColor($sbbColorWhite);
+
+    a {
+      color: $sbbColorWhite;
+    }
+
+    background-color: $notificationWarnBackgroundColor;
+  }
+
+  &-has-jump-marks {
+    height: toPx($notificationLinksHeight);
+  }
+
+  .sbb-notification-content {
+    font-size: toPx($notificationDefaultFontSize);
+    margin-left: toPx($notificationMessageMarginLeft);
+    margin-right: toPx($notificationMessageMarginRight);
+
+    &-title {
+      font-family: $fontSbbBold;
+    }
+  }
+
+  .sbb-notification-jump-mark {
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .sbb-notification-icon-wrapper {
+    width: toPx($notificationIconWidth);
+    height: toPx($notificationIconHeight);
+    margin-left: toPx($notificationIconMarginLeft);
+
+    * {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+@mixin notificationToast {
+  position: absolute;
+  max-width: pxToEm($notificationToastMaxWidth);
+}
