@@ -84,6 +84,8 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
     this._disableClear = coerceBooleanProperty(v);
   }
 
+  private _rerenderSubscription: Subscription;
+
   constructor(
     @Optional() public _sort: SbbSortDirective,
     @Inject('SBB_SORT_HEADER_COLUMN_DEF') @Optional() public _columnDef: SbbSortHeaderColumnDef,
@@ -112,8 +114,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
       changeDetectorRef.markForCheck();
     });
   }
-
-  private _rerenderSubscription: Subscription;
 
   /**
    * Flag set to true when the indicator should be displayed while the sort is not active. Used to
@@ -152,11 +152,11 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
 
   @HostBinding('attr.aria-sort') sort = this._getAriaSortAttribute();
 
-  @HostListener('mouseenter') onMouseEnter() {
+  @HostListener('mouseenter') _onMouseEnter() {
     this._setIndicatorHintVisible(true);
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
+  @HostListener('mouseleave') _onMouseLeave() {
     this._setIndicatorHintVisible(false);
   }
 
