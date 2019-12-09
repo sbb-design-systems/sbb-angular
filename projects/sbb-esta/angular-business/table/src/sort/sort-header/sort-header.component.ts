@@ -19,7 +19,6 @@ import { getSortHeaderNotContainedWithinSortError } from '../sort-error-function
 import { SbbSortable, SbbSortDirective } from '../sort.component';
 
 import { sbbSortAnimations } from './sort-animations';
-import { SbbSortHeaderIntl } from './sort-header-intl';
 
 /**
  * Valid positions for the arrow to be in for its opacity and translation. If the state is a
@@ -89,18 +88,13 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   constructor(
     @Optional() public _sort: SbbSortDirective,
     @Inject('SBB_SORT_HEADER_COLUMN_DEF') @Optional() public _columnDef: SbbSortHeaderColumnDef,
-    public _intl: SbbSortHeaderIntl,
     changeDetectorRef: ChangeDetectorRef
   ) {
     if (!_sort) {
       throw getSortHeaderNotContainedWithinSortError();
     }
 
-    this._rerenderSubscription = merge(
-      _sort.sbbSortChange,
-      _sort._stateChanges,
-      _intl.changes
-    ).subscribe(() => {
+    this._rerenderSubscription = merge(_sort.sbbSortChange, _sort._stateChanges).subscribe(() => {
       if (this._isSorted()) {
         this._updateArrowDirection();
       }

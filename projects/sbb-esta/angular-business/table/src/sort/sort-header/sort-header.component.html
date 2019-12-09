@@ -6,7 +6,8 @@
   <button
     class="sbb-sort-header-button"
     type="button"
-    [attr.aria-label]="_intl.sortButtonLabel(id)"
+    i18n-aria-label="@@tableChangeSorting"
+    attr.aria-label="Change sorting for {{ id }}"
     (focus)="_setIndicatorHintVisible(true)"
     (blur)="_setIndicatorHintVisible(false)"
   >
