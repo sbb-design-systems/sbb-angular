@@ -5,9 +5,9 @@ import { TABLE_SHOWCASE_DATA_GROUPED_COLS } from '../table-showcase-data';
 
 @Component({
   selector: 'sbb-table-grouped-columns-showcase',
-  templateUrl: './table-grouped-columns-showcase.component.html'
+  templateUrl: './grouped-columns-table.component.html'
 })
-export class TableGroupedColumnsShowcaseComponent {
+export class GroupedColumnsTableComponent {
   displayedColumns: string[] = [
     'leftAligned',
     'groupedOne',

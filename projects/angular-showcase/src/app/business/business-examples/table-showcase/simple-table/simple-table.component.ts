@@ -5,9 +5,9 @@ import { TABLE_SHOWCASE_DATA_SIMPLE } from '../table-showcase-data';
 
 @Component({
   selector: 'sbb-table-simple-showcase',
-  templateUrl: './table-simple-showcase.component.html'
+  templateUrl: './simple-table.component.html'
 })
-export class TableSimpleShowcaseComponent {
+export class SimpleTableComponent {
   displayedColumns: string[] = [
     'columnOne',
     'columnTwo',

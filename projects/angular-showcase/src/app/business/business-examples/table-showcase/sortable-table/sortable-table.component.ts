@@ -5,9 +5,9 @@ import { TABLE_SHOWCASE_DATA } from '../table-showcase-data';
 
 @Component({
   selector: 'sbb-table-sort-showcase',
-  templateUrl: './table-sort-showcase.component.html'
+  templateUrl: './sortable-table.component.html'
 })
-export class TableSortShowcaseComponent {
+export class SortableTableComponent {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
   dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_SHOWCASE_DATA.slice());
 

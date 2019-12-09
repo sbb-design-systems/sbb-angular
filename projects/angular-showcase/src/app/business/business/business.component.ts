@@ -7,12 +7,11 @@ import { PaginationShowcaseComponent } from '../business-examples/pagination-sho
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
-import { TableShowcaseComponent } from '../business-examples/table-showcase/table-showcase.component';
-import { TableActionsShowcaseComponent } from '../business-examples/table-showcase/table-actions-showcase/table-actions-showcase.component';
-import { TableGroupedColumnsShowcaseComponent } from '../business-examples/table-showcase/table-grouped-columns-showcase/table-grouped-columns-showcase.component';
-import { TableGroupedRowsShowcaseComponent } from '../business-examples/table-showcase/table-grouped-rows-showcase/table-grouped-rows-showcase.component';
-import { TableSimpleShowcaseComponent } from '../business-examples/table-showcase/table-simple-showcase/table-simple-showcase.component';
-import { TableSortShowcaseComponent } from '../business-examples/table-showcase/table-sort-showcase/table-sort-showcase.component';
+import { ActionsTableComponent } from '../business-examples/table-showcase/actions-table/actions-table.component';
+import { GroupedColumnsTableComponent } from '../business-examples/table-showcase/grouped-columns-table/grouped-columns-table.component';
+import { GroupedRowsTableComponent } from '../business-examples/table-showcase/grouped-rows-table/grouped-rows-table.component';
+import { SimpleTableComponent } from '../business-examples/table-showcase/simple-table/simple-table.component';
+import { SortableTableComponent } from '../business-examples/table-showcase/sortable-table/sortable-table.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
@@ -75,11 +74,11 @@ export class BusinessComponent implements ExampleProvider {
       'pagination-showcase': new ComponentPortal(PaginationShowcaseComponent)
     },
     table: {
-      'simple-table': new ComponentPortal(TableSimpleShowcaseComponent),
-      'action-table': new ComponentPortal(TableActionsShowcaseComponent),
-      'grouped-columns-table': new ComponentPortal(TableGroupedColumnsShowcaseComponent),
-      'grouped-rows-table': new ComponentPortal(TableGroupedRowsShowcaseComponent),
-      'sortable-table': new ComponentPortal(TableSortShowcaseComponent)
+      'simple-table': new ComponentPortal(SimpleTableComponent),
+      'actions-table': new ComponentPortal(ActionsTableComponent),
+      'grouped-columns-table': new ComponentPortal(GroupedColumnsTableComponent),
+      'grouped-rows-table': new ComponentPortal(GroupedRowsTableComponent),
+      'sortable-table': new ComponentPortal(SortableTableComponent)
     }
   };
 

@@ -1,6 +1,9 @@
 import { CdkTableModule } from '@angular/cdk/table';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { SbbSortHeaderComponent } from './sort/sort-header/sort-header.component';
+import { SbbSortDirective } from './sort/sort.component';
 import {
   CellDefDirective,
   CellDirective,
@@ -36,11 +39,13 @@ const EXPORTED_DECLARATIONS = [
   RowComponent,
   RowDefDirective,
   HeaderRowDefDirective,
-  FooterRowDefDirective
+  FooterRowDefDirective,
+  SbbSortDirective,
+  SbbSortHeaderComponent
 ];
 
 @NgModule({
-  imports: [CdkTableModule],
+  imports: [CdkTableModule, CommonModule],
   declarations: EXPORTED_DECLARATIONS,
   exports: EXPORTED_DECLARATIONS
 })

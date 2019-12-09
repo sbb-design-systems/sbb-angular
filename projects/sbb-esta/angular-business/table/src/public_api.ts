@@ -1,5 +1,4 @@
 export * from './table.module';
-export * from './sort.module';
 
 export { SbbTableDataSource } from './table/table-data-source';
 export * from './table/table.component';
