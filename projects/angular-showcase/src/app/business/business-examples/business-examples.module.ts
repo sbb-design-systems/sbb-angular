@@ -37,6 +37,9 @@ import {
   TableShowcase3Component,
   TableShowcaseComponent
 } from './table-showcase/table-showcase.component';
+import { TableActionsShowcaseComponent } from './table-showcase/table-actions-showcase/table-actions-showcase.component';
+import { TableGroupedRowsShowcaseComponent } from './table-showcase/table-grouped-rows-showcase/table-grouped-rows-showcase.component';
+import { TableSortShowcaseComponent } from './table-showcase/table-sort-showcase/table-sort-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
@@ -47,7 +50,7 @@ const exampleComponents = [
   UsermenuShowcaseComponent,
   TableShowcaseComponent,
   TableShowcase1Component,
-  TableShowcase2Component
+  TableShowcase2Component,
   PersonListComponent,
   TabsShowcaseComponent,
   UsermenuShowcaseComponent,
@@ -59,7 +62,10 @@ const exampleComponents = [
   DialogShowcaseExample3Component,
   PaginationShowcaseComponent,
   TableShowcase2Component,
-  TableShowcase3Component
+  TableShowcase3Component,
+  TableActionsShowcaseComponent,
+  TableGroupedRowsShowcaseComponent,
+  TableSortShowcaseComponent
 ];
 
 @NgModule({
