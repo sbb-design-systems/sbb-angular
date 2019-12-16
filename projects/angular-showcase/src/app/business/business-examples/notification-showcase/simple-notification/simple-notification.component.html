@@ -1,0 +1,6 @@
+<sbb-field mode="long" label="Notification type" class="bottom-margin">
+  <select [(ngModel)]="type">
+    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+  </select>
+</sbb-field>
+<sbb-notification message="Success" [type]="type" [readonly]="true"></sbb-notification>

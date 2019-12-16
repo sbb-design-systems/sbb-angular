@@ -1,0 +1,27 @@
+<sbb-field mode="long" label="Notification type">
+  <select [(ngModel)]="toastType">
+    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+  </select>
+</sbb-field>
+<sbb-field mode="long" label="Toast position">
+  <select [(ngModel)]="toastPosition">
+    <option *ngFor="let toastPosition of toastPositions" [value]="toastPosition">{{
+      toastPosition
+    }}</option>
+  </select>
+</sbb-field>
+<button sbbButton (click)="toggleToast()" class="button-margin">
+  <span *ngIf="toastActive; else show">
+    Hide
+  </span>
+  <ng-template #show>
+    <span>Show</span>
+  </ng-template>
+</button>
+<sbb-notification
+  message="Lorem ipsum"
+  [type]="toastType"
+  [toastPosition]="toastPosition"
+  *ngIf="toastActive"
+  (activeChange)="toastActive = $event"
+></sbb-notification>

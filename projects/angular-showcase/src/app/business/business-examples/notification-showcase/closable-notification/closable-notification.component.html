@@ -1,0 +1,14 @@
+<button sbbButton (click)="toggleVisible()" class="show-hide-button">
+  <span *ngIf="active; else show">
+    Hide
+  </span>
+  <ng-template #show>
+    <span>Show</span>
+  </ng-template>
+</button>
+<sbb-notification
+  message="Success"
+  [type]="'success'"
+  *ngIf="active"
+  (activeChange)="active = $event"
+></sbb-notification>
