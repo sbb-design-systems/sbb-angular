@@ -148,6 +148,9 @@ export class NotificationComponent {
 
   private _icon: TemplateRef<any>;
 
+  /** Title displayed into the notification content */
+  @Input() title: string;
+
   /** Message displayed into the notification content */
   @Input() message: string;
 

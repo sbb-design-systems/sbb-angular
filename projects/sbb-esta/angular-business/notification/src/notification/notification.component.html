@@ -1,14 +1,20 @@
 <span class="sbb-notification-icon-wrapper">
   <ng-container *ngTemplateOutlet="icon"></ng-container>
 </span>
-<div *ngIf="jumpMarks; else content" class="sbb-notification-content">
-  <div class="sbb-notification-content-title">
+
+<div class="sbb-notification-content d-flex flex-column">
+  <div class="sbb-notification-content-title" *ngIf="title">
+    {{ title }}
+  </div>
+  <div class="sbb-notification-content-message" *ngIf="message">
     {{ message }}
   </div>
-  <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
-    <a (click)="scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
-    <ng-container *ngIf="!isLast"> / </ng-container>
-  </span>
+  <div *ngIf="jumpMarks">
+    <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
+      <a (click)="scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
+      <ng-container *ngIf="!isLast"> / </ng-container>
+    </span>
+  </div>
 </div>
 
 <a
@@ -18,12 +24,6 @@
 >
   <sbb-icon-cross></sbb-icon-cross>
 </a>
-
-<ng-template #content>
-  <div class="sbb-notification-content">
-    {{ message }}
-  </div>
-</ng-template>
 
 <ng-template #check>
   <sbb-icon-tick></sbb-icon-tick>

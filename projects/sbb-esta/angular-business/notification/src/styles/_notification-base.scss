@@ -1,7 +1,7 @@
 @mixin notificationBase {
   display: flex;
   align-items: center;
-  height: pxToEm($notificationHeight);
+  min-height: pxToEm($notificationHeight);
   width: $notificationBaseWidth;
   border-radius: toPx($notificationBorderRadius);
   color: $sbbColorWhite;
@@ -47,13 +47,15 @@
   }
 
   &-has-jump-marks {
-    height: toPx($notificationLinksHeight);
+    min-height: toPx($notificationLinksHeight);
   }
 
   &-content {
     font-size: toPx($notificationDefaultFontSize);
     margin-left: toPx($notificationMessageMarginLeft);
     margin-right: toPx($notificationMessageMarginRight);
+    margin-top: pxToEm($notificationVerticalMargin);
+    margin-bottom: pxToEm($notificationVerticalMargin);
 
     &-title {
       font-family: $fontSbbBold;
@@ -67,6 +69,7 @@
   }
 
   &-icon-wrapper {
+    min-width: toPx($notificationIconWidth);
     width: toPx($notificationIconWidth);
     height: toPx($notificationIconHeight);
     margin-left: toPx($notificationIconMarginLeft);

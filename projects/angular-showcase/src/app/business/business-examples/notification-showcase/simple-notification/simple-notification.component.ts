@@ -4,7 +4,7 @@ import { NotificationType } from '@sbb-esta/angular-business/notification';
 import { NOTIFICATION_TYPES } from '../notification-data';
 
 @Component({
-  selector: 'sbb-custom-icon-notification',
+  selector: 'sbb-simple-notification',
   templateUrl: './simple-notification.component.html',
   styleUrls: ['./simple-notification.component.scss']
 })
