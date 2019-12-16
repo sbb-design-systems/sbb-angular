@@ -8,16 +8,21 @@ import { configureTestSuite } from 'ng-bullet';
 
 import { NotificationComponent, NotificationType } from './notification.component';
 import createSpy = jasmine.createSpy;
+import Spy = jasmine.Spy;
 
 @Component({
   selector: 'sbb-notification-mock',
   template:
-    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks"></sbb-notification>'
+    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks" [title]="title" (activeChange)="activeChange($event)" [readonly]="readonly"></sbb-notification>'
 })
 export class NotificationMockComponent {
   message = 'Suchen';
   type = NotificationType.SUCCESS;
+  title: string;
+  readonly = true;
   jumpMarks = [];
+
+  activeChange(event) {}
 }
 
 describe('NotificationComponent', () => {
@@ -78,7 +83,7 @@ describe('NotificationComponent', () => {
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
-        expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
+        expect(styles.backgroundColor).toBe('rgb(255, 255, 255)');
       });
     });
 
@@ -89,13 +94,24 @@ describe('NotificationComponent', () => {
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         const styles = window.getComputedStyle(notifications[0].nativeElement);
-        expect(styles.backgroundColor).toBe('rgb(102, 102, 102)');
+        expect(styles.backgroundColor).toBe('rgb(255, 255, 255)');
+      });
+    });
+
+    it('should have grey background when type is WARN', () => {
+      testComponent.type = NotificationType.WARN;
+      testFixture.detectChanges();
+      const notifications = testFixture.debugElement.queryAll(By.css('.sbb-notification-warn'));
+      expect(notifications.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        const styles = window.getComputedStyle(notifications[0].nativeElement);
+        expect(styles.backgroundColor).toBe('rgb(242, 126, 0)');
       });
     });
 
     it('should change height with jump marks', () => {
       const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
-      expect(componentStyles.height).toBe('68px');
+      expect(componentStyles.height).toBe('51px');
 
       testComponent.jumpMarks = [
         { elementId: '#here', title: 'Here' },
@@ -107,7 +123,36 @@ describe('NotificationComponent', () => {
       );
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
-        expect(componentStyles.height).toBe('92px');
+        expect(componentStyles.height).toBe('72px');
+      });
+    });
+
+    it('should style title when provided', () => {
+      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
+
+      testComponent.title = 'Title';
+      testFixture.detectChanges();
+      const titles = testFixture.debugElement.queryAll(By.css('.sbb-notification-content-title'));
+      expect(titles.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        expect(Object.keys(titles[0].classes).find(key => key.includes('SBBWeb Bold')));
+        expect(componentStyles.height).toBe('60px');
+      });
+    });
+
+    it('should emit when closing notification', () => {
+      const activeChangeSpy: Spy = spyOn(testComponent, 'activeChange');
+      testComponent.readonly = false;
+      testFixture.detectChanges();
+      const closeButtons = testFixture.debugElement.queryAll(
+        By.css('.sbb-notification-icon-close-wrapper')
+      );
+
+      expect(closeButtons.length).toBeGreaterThan(0);
+      testFixture.whenRenderingDone().then(() => {
+        closeButtons[0].nativeElement.toggle();
+        expect(activeChangeSpy).toHaveBeenCalledTimes(1);
+        expect(activeChangeSpy).toHaveBeenCalledWith(false);
       });
     });
 
