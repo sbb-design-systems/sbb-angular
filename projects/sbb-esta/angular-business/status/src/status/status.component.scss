@@ -1,25 +1,26 @@
 @import '../../../../angular-core/styles/common/variables';
 @import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/mixins';
 
 :host {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
 
   font-family: $fontSbbRoman;
-  font-size: 0.9375rem;
-  margin: 0.2666em 0 0.2666em 0;
+  font-size: pxToRem(15px);
+  margin: pxToEm(4px) 0 pxToEm(4px) 0;
 
   > .sbb-status-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: 0 0.4em 0 0.4em;
-    line-height: 1.4375rem;
+    width: pxToRem(24px);
+    height: pxToRem(24px);
+    margin: 0 pxToEm(6px) 0 pxToEm(6px);
+    line-height: pxToRem(23px);
   }
 
   > .sbb-status-message {
-    height: 1.4375rem;
-    line-height: 1.4375rem;
-    margin-left: 0.13333em;
+    height: pxToRem(23px);
+    line-height: pxToRem(23px);
+    margin-left: pxToEm(2px);
     color: $sbbColorGranite;
   }
 }

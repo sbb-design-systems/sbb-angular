@@ -1,11 +1,13 @@
-@import 'dist/sbb-esta/angular-core/styles/common/mixins';
-@import 'dist/sbb-esta/angular-core/styles/typography/headings';
+@import '../../../../../../sbb-esta/angular-core/styles/common/functions';
 :host {
-  @include sbbHeadings();
+  p {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   sbb-table {
     th,
     td {
-      min-width: 12.5rem;
+      min-width: pxToRem(200px);
     }
   }
 }

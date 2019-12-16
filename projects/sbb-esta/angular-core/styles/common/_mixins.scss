@@ -443,6 +443,9 @@
   }
 }
 
+// sbb svg icons
+// ----------------------------------------------------------------------------------------------------
+
 @mixin svgIconColor($color) {
   svg.sbb-svg-icon {
     fill: $color;
@@ -456,5 +459,26 @@
         fill: $color;
       }
     }
+  }
+}
+
+@mixin svgIconColors($fillColor, $strokeColor) {
+  &.sbb-svg-icon {
+    & > path {
+      stroke: $strokeColor;
+      fill: $fillColor;
+    }
+
+    & > g > path {
+      stroke: $strokeColor;
+      fill: $fillColor;
+    }
+  }
+}
+
+@mixin svgIconBackground($backgroundColor, $borderRadius) {
+  &.sbb-svg-icon {
+    background-color: $backgroundColor;
+    border-radius: $borderRadius;
   }
 }

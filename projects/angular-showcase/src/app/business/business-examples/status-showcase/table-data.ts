@@ -1,19 +1,19 @@
 export interface TableData {
   text: string;
-  status: string;
+  type: string;
   message: string;
   tooltip: string;
 }
-const newTableData = (text: string, status: string, message: string, tooltip: string) => ({
+const newTableData = (text: string, type: string, message: string, tooltip: string) => ({
   text,
-  status,
+  type,
   message,
   tooltip
 });
 
 export const SHOWCASE_STATUS_TABLE_DATA: TableData[] = [
-  newTableData('sbb status text valid', 'valid', 'valid', 'valid entry'),
-  newTableData('sbb status text warning', 'warning', 'warning', 'warning status'),
-  newTableData('sbb status text error', 'error', 'error', 'error status'),
+  newTableData('sbb status type text valid', 'valid', 'valid', 'valid status'),
+  newTableData('sbb status type text warning', 'warning', 'warning', 'warning status'),
+  newTableData('sbb status type text error', 'invalid', 'invalid', 'invalid status'),
   newTableData('sbb status text face', 'happy', 'happy', 'happy status')
 ];

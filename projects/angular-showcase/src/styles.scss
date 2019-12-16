@@ -142,20 +142,6 @@ nav.menu.ps .ps__rail-y {
   }
 }
 
-@mixin svgIconColors($fillColor, $strokeColor) {
-  &.sbb-svg-icon {
-    & > path {
-      stroke: $strokeColor;
-      fill: $fillColor;
-    }
-
-    & > g > path {
-      stroke: $strokeColor;
-      fill: $fillColor;
-    }
-  }
-}
-
 @mixin svgIconColor2Paths($fillColor1, $strokeColor1, $fillColor2, $strokeColor2) {
   &.sbb-svg-icon {
     & > g > :first-child path {
@@ -167,13 +153,6 @@ nav.menu.ps .ps__rail-y {
       stroke: $strokeColor2;
       fill: $fillColor2;
     }
-  }
-}
-
-@mixin svgIconBackground($backgroundColor, $borderRadius) {
-  &.sbb-svg-icon {
-    background-color: $backgroundColor;
-    border-radius: $borderRadius;
   }
 }
 
@@ -196,28 +175,16 @@ svg.sbb-status-heart {
   }
 }
 
-svg.sbb-status-ok {
-  @include svgIconColors(none, $sbbColorWhite);
-  @include svgIconBackground($sbbColorGreen, 0.125rem);
-}
-
 svg.sbb-status-trainstation {
   @include svgIconColors(none, $sbbColorWhite);
-  @include svgIconBackground($sbbColorRed, 0.1251rem);
+  @include svgIconBackground($sbbColorRed, pxToRem(2px));
 }
 
 svg.sbb-icon-status-question {
   @include svgIconColor2Paths(none, $sbbColorBlack, $sbbColorBlack, none);
-  @include svgIconBackground($sbbColorOrange, 0.125rem);
+  @include svgIconBackground($sbbColorOrange, pxToRem(2px));
 }
 
-svg.sbb-status-warning {
-  @include svgIconColors($sbbColorBlack, none);
-  @include svgIconBackground($sbbColorOrange, 0.125rem);
-}
-svg.sbb-status-error {
-  @include svgIconColors($sbbColorRed, $sbbColorBlack);
-}
 svg.sbb-status-happy {
   @include svgIconColors($sbbColorLemon, $sbbColorBlack);
 }
