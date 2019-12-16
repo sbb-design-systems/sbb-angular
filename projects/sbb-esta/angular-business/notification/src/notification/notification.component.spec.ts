@@ -150,7 +150,7 @@ describe('NotificationComponent', () => {
 
       expect(closeButtons.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
-        closeButtons[0].nativeElement.toggle();
+        closeButtons[0].nativeElement.querySelectors('a').click();
         expect(activeChangeSpy).toHaveBeenCalledTimes(1);
         expect(activeChangeSpy).toHaveBeenCalledWith(false);
       });
