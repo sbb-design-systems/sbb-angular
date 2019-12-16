@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  EventEmitter,
   HostBinding,
   Input,
+  Output,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
@@ -100,6 +102,10 @@ export class NotificationComponent {
   @Input()
   toastPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
+  /** Type of notification. */
+  @Input()
+  readonly = false;
+
   /** @docs-private */
   @ViewChild('error', { read: TemplateRef, static: true })
   errorIcon: TemplateRef<any>;
@@ -148,6 +154,9 @@ export class NotificationComponent {
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: JumpMark[];
 
+  @Output()
+  activeChange: EventEmitter<boolean> = new EventEmitter();
+
   /** @docs-private */
   @HostBinding('class.sbb-notification-has-jump-marks')
   get hasJumpMarks() {
@@ -168,5 +177,9 @@ export class NotificationComponent {
     if (jumpMark.callback) {
       jumpMark.callback($event, jumpMark);
     }
+  }
+
+  dismiss() {
+    this.activeChange.emit(false);
   }
 }

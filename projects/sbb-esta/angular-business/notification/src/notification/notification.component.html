@@ -10,6 +10,15 @@
     <ng-container *ngIf="!isLast"> / </ng-container>
   </span>
 </div>
+
+<a
+  (click)="dismiss()"
+  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper"
+  *ngIf="!readonly"
+>
+  <sbb-icon-cross></sbb-icon-cross>
+</a>
+
 <ng-template #content>
   <div class="sbb-notification-content">
     {{ message }}
