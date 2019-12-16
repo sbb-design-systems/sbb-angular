@@ -1,4 +1,5 @@
 @mixin notificationBase {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   min-height: pxToEm($notificationHeight);
@@ -6,6 +7,9 @@
   border-radius: toPx($notificationBorderRadius);
   color: $sbbColorWhite;
   background-color: $notificationDefaultBackgroundColor;
+  font-size: toPx($notificationDefaultFontSize);
+  padding-top: pxToEm($notificationVerticalMargin);
+  padding-bottom: pxToEm($notificationVerticalMargin);
 
   &-error {
     @include svgIconColor($sbbColorWhite);
@@ -50,12 +54,9 @@
     min-height: toPx($notificationLinksHeight);
   }
 
-  &-content {
-    font-size: toPx($notificationDefaultFontSize);
+  .sbb-notification-content {
     margin-left: toPx($notificationMessageMarginLeft);
     margin-right: toPx($notificationMessageMarginRight);
-    margin-top: pxToEm($notificationVerticalMargin);
-    margin-bottom: pxToEm($notificationVerticalMargin);
 
     &-title {
       font-family: $fontSbbBold;
