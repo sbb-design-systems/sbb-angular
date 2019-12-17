@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { StatusType } from '../../../../../../sbb-esta/angular-business/status/src/status/status-type.enum';
+
 import { SHOWCASE_STATUS_TABLE_DATA, TableData } from './table-data';
 
 @Component({
@@ -10,6 +12,10 @@ import { SHOWCASE_STATUS_TABLE_DATA, TableData } from './table-data';
   styleUrls: ['./status-showcase.component.scss']
 })
 export class StatusShowcaseComponent implements OnInit, OnDestroy {
+  public readonly validType = StatusType.VALID;
+  public readonly invalidType = StatusType.INVALID;
+  public readonly warningType = StatusType.WARNING;
+
   private _originalRows = SHOWCASE_STATUS_TABLE_DATA;
   public rows = SHOWCASE_STATUS_TABLE_DATA;
   public headers = ['text', 'status'];

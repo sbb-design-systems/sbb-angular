@@ -1,8 +1,15 @@
 <h3>Status with type</h3>
 <p>
-  <sbb-status [type]="'valid'" [message]="'valid type'"></sbb-status>
-  <sbb-status [type]="'invalid'" [message]="'invalid type'"></sbb-status>
-  <sbb-status [type]="'warning'" [message]="'warning type'"></sbb-status>
+  <sbb-status [type]="validType" [message]="'valid type'"></sbb-status>
+  <sbb-status [type]="invalidType" [message]="'invalid type'"></sbb-status>
+  <sbb-status [type]="warningType" [message]="'warning type'"></sbb-status>
+</p>
+
+<h3>Status with content tag</h3>
+<p>
+  <sbb-status [message]="'view details'">
+    <sbb-icon-eye [svgClass]="'sbb-status-grey-eye'"></sbb-icon-eye>
+  </sbb-status>
 </p>
 
 <h3>Status Bubble</h3>
@@ -28,7 +35,7 @@
   <sbb-status [message]="'stops'">
     <sbb-icon-train-station [svgClass]="'sbb-status-trainstation'"></sbb-icon-train-station>
   </sbb-status>
-  <sbb-status [type]="'valid'" [message]="'ok'"></sbb-status>
+  <sbb-status [type]="validType" [message]="'ok'"></sbb-status>
 </p>
 
 <h3>Status with tooltip</h3>

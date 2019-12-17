@@ -156,6 +156,11 @@ nav.menu.ps .ps__rail-y {
   }
 }
 
+svg.sbb-status-grey-eye {
+  @include svgIconColors($sbbColorGreyMedium, $sbbColorWhite);
+  @include svgIconBackground($sbbColorGreyMedium, pxToRem(2px));
+}
+
 svg.sbb-status-eye {
   @include svgIconColors($sbbColorSky, $sbbColorBlue);
 }
