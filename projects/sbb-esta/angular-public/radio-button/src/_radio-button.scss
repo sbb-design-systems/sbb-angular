@@ -19,6 +19,7 @@ $radioButtonGreyColor: $sbbColorGrey;
 
 @mixin radioButtonBase {
   display: flex;
+  position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
 
   & > input[type='radio'] {
