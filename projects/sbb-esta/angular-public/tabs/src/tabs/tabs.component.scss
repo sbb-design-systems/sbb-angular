@@ -1,9 +1,5 @@
 @import '../styles/tabs';
 
-sbb-tabs {
-  display: block;
-}
-
 .sbb-tabs {
   &-tablist {
     @include tabsBase();
