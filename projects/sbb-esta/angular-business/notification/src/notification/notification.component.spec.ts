@@ -128,15 +128,12 @@ describe('NotificationComponent', () => {
     });
 
     it('should style title when provided', () => {
-      const componentStyles = window.getComputedStyle(testFixture.debugElement.nativeElement);
-
       testComponent.title = 'Title';
       testFixture.detectChanges();
       const titles = testFixture.debugElement.queryAll(By.css('.sbb-notification-content-title'));
       expect(titles.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         expect(Object.keys(titles[0].classes).find(key => key.includes('SBBWeb Bold')));
-        expect(componentStyles.height).toBe('60px');
       });
     });
 
@@ -144,13 +141,14 @@ describe('NotificationComponent', () => {
       const activeChangeSpy: Spy = spyOn(testComponent, 'activeChange');
       testComponent.readonly = false;
       testFixture.detectChanges();
-      const closeButtons = testFixture.debugElement.queryAll(
-        By.css('.sbb-notification-icon-close-wrapper')
-      );
+      const closeButton = testFixture.nativeElement.querySelector(
+        '.sbb-notification-icon-close-wrapper'
+      ) as HTMLElement;
 
-      expect(closeButtons.length).toBeGreaterThan(0);
-      testFixture.whenRenderingDone().then(() => {
-        closeButtons[0].nativeElement.querySelectors('a').click();
+      expect(closeButton).toBeDefined();
+      expect(closeButton).not.toBeNull();
+      closeButton.click();
+      testFixture.whenStable().then(() => {
         expect(activeChangeSpy).toHaveBeenCalledTimes(1);
         expect(activeChangeSpy).toHaveBeenCalledWith(false);
       });
