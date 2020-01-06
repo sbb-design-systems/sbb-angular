@@ -25,14 +25,11 @@
   font-size: pxToRem($tabsFontSize);
   text-decoration: none;
   padding-bottom: pxToRem(8);
-  margin-bottom: 1em;
   position: relative;
 
-  @include businessOnly() {
-    padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
-  }
-
   @include publicOnly() {
+    margin-bottom: 1em;
+
     @include mq($from: tabletLandscape) {
       font-size: pxToRem(26);
       padding-bottom: pxToRem(20);
@@ -45,6 +42,10 @@
     @include mq($from: desktop5k) {
       font-size: pxToRem(52);
     }
+  }
+
+  @include businessOnly() {
+    padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
   }
 
   &:hover,
@@ -86,7 +87,6 @@
   @include businessOnly() {
     &:not(.sbb-active) {
       color: $sbbColorGranite;
-      background-color: $sbbColorMilk;
     }
   }
 
@@ -94,13 +94,15 @@
   &:not(.sbb-active):hover {
     color: $tabsHoverColor;
 
-    @include businessOnly() {
-      background-color: $sbbColorCloud;
-    }
-
     @include publicOnly() {
       &::after {
         border-bottom-color: $sbbColorRed125;
+      }
+    }
+
+    @include businessOnly() {
+      &:not(:disabled) {
+        border-bottom: 1px solid $tabsHoverColor;
       }
     }
   }
@@ -108,18 +110,10 @@
   &[disabled] {
     color: $sbbColorStorm;
 
-    @include businessOnly() {
-      background-color: $sbbColorMilk;
-    }
-
     &:hover,
     &:focus {
       color: $sbbColorStorm;
       cursor: default;
-
-      @include businessOnly() {
-        background-color: $sbbColorMilk;
-      }
 
       &::after {
         width: 0;
