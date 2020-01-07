@@ -45,6 +45,7 @@
   }
 
   @include businessOnly() {
+    border: 1px solid transparent;
     padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
   }
 
@@ -72,8 +73,8 @@
     @include businessOnly() {
       color: $sbbColorBlack;
       background-color: $sbbColorWhite;
-      border: $sbbColorGraphite solid 1px;
-      border-bottom: none;
+      border: 1px solid $sbbColorGraphite;
+      border-bottom: 1px solid transparent;
     }
   }
 
