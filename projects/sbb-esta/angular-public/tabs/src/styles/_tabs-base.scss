@@ -16,6 +16,13 @@
   }
 }
 
+@mixin tabsContent() {
+  @include businessOnly() {
+    border: 1px solid $sbbColorGraphite;
+    margin-top: pxToEm(-1);
+  }
+}
+
 @mixin tabsButton() {
   @include buttonResetFrameless();
 
