@@ -8,14 +8,13 @@ import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
+import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-
-import { PaginationModule } from '../../../../../sbb-esta/angular-business/pagination';
 
 import {
   DialogShowcaseComponent,
