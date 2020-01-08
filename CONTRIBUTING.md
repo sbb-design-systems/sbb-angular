@@ -83,7 +83,7 @@ The PR title and message should as well conform to the [commit message conventio
 
 Note: Our builds often run out of memory. To ensure the build can run, set the NODE_OPTIONS environment variable
 to `--max_old_space_size=7168` either locally or globally.
-(e.g. in PowerShell, the default VS Code terminal: `$env:NODE_OPTIONS="--max_old_space_size=7168"`)
+(e.g. in PowerShell, the default VS Code terminal: `$env:NODE_OPTIONS="--max_old_space_size=7168"`, in Shell: `export NODE_OPTIONS=--max_old_space_size=7168`)
 
 
 ## <a name="rules"></a> Coding Rules
