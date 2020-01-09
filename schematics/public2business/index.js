@@ -39,6 +39,7 @@ function public2business(_options) {
             'field',
             'input',
             'option',
+            'pagination',
             'radio-button',
             'select',
             'tabs',

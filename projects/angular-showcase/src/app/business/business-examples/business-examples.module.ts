@@ -8,6 +8,7 @@ import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
+import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
@@ -23,6 +24,7 @@ import {
   DialogShowcaseExampleComponent,
   DialogShowcaseExampleContentComponent
 } from './dialog-showcase/dialog-showcase.component';
+import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
@@ -42,7 +44,8 @@ const exampleComponents = [
   DialogShowcaseExampleContentComponent,
   DialogShowcaseExample2Component,
   DialogShowcaseExample2ContentComponent,
-  DialogShowcaseExample3Component
+  DialogShowcaseExample3Component,
+  PaginationShowcaseComponent
 ];
 
 @NgModule({
@@ -65,7 +68,8 @@ const exampleComponents = [
     TabsModule,
     UserMenuModule,
     DialogModule,
-    RadioButtonModule
+    RadioButtonModule,
+    PaginationModule
   ]
 })
 export class BusinessExamplesModule {}
