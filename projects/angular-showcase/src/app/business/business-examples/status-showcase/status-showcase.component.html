@@ -1,8 +1,8 @@
 <h3>Status with type</h3>
 <p>
-  <sbb-status [type]="validType" [message]="'valid type'"></sbb-status>
-  <sbb-status [type]="invalidType" [message]="'invalid type'"></sbb-status>
-  <sbb-status [type]="warningType" [message]="'warning type'"></sbb-status>
+  <sbb-status type="valid" [message]="'valid type'"></sbb-status>
+  <sbb-status type="invalid" [message]="'invalid type'"></sbb-status>
+  <sbb-status type="warning" [message]="'warning type'"></sbb-status>
 </p>
 
 <h3>Status with content tag</h3>
@@ -35,7 +35,7 @@
   <sbb-status [message]="'stops'">
     <sbb-icon-train-station [svgClass]="'sbb-status-trainstation'"></sbb-icon-train-station>
   </sbb-status>
-  <sbb-status [type]="validType" [message]="'ok'"></sbb-status>
+  <sbb-status type="valid" [message]="'ok'"></sbb-status>
 </p>
 
 <h3>Status with tooltip</h3>
@@ -60,22 +60,48 @@
 <sbb-table tableId="statusTableId" [pinMode]="'off'">
   <thead>
     <tr>
-      <th scope="col" *ngFor="let header of headers" [ngClass]="rowAlignment">{{ header }}</th>
+      <th scope="col">text</th>
+      <th scope="col">status</th>
     </tr>
   </thead>
+
   <tbody>
-    <tr *ngFor="let row of rows">
-      <td [ngClass]="rowAlignment">{{ row.text }}</td>
-      <ng-container [ngSwitch]="row.type">
-        <td>
-          <sbb-status [message]="row.message" [tooltipText]="row.tooltip" [type]="row.type">
-            <sbb-icon-face-smiling
-              [svgClass]="'sbb-status-happy'"
-              *ngSwitchCase="'happy'"
-            ></sbb-icon-face-smiling>
-          </sbb-status>
-        </td>
-      </ng-container>
+    <tr>
+      <td [ngClass]="rowAlignment">valid status row</td>
+      <td>
+        <sbb-status [message]="'valid'" [tooltipText]="'valid status'" type="valid"></sbb-status>
+      </td>
+    </tr>
+
+    <tr>
+      <td [ngClass]="rowAlignment">warning status row</td>
+      <td>
+        <sbb-status
+          [message]="'warning'"
+          [tooltipText]="'warning status'"
+          type="warning"
+        ></sbb-status>
+      </td>
+    </tr>
+
+    <tr>
+      <td [ngClass]="rowAlignment">error status row</td>
+      <td>
+        <sbb-status
+          [message]="'invalid'"
+          [tooltipText]="'invalid status'"
+          type="invalid"
+        ></sbb-status>
+      </td>
+    </tr>
+
+    <tr>
+      <td [ngClass]="rowAlignment">happy face row</td>
+      <td>
+        <sbb-status [message]="'happy'" [tooltipText]="'happy status'">
+          <sbb-icon-face-smiling [svgClass]="'sbb-status-happy'"></sbb-icon-face-smiling>
+        </sbb-status>
+      </td>
     </tr>
   </tbody>
 </sbb-table>

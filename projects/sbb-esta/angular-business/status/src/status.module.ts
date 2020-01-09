@@ -1,7 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import {
   IconExclamationPointModule,
@@ -18,7 +17,6 @@ import { StatusComponent } from './status/status.component';
   imports: [
     CommonModule,
     OverlayModule,
-    BrowserModule,
     IconDirectiveModule,
     IconTickModule,
     IconExclamationPointModule,

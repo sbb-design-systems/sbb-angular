@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { StatusType } from './status-type.enum';
-
 @Component({
   selector: 'sbb-status',
   templateUrl: './status.component.html',
@@ -9,9 +7,9 @@ import { StatusType } from './status-type.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatusComponent {
-  public readonly validType = StatusType.VALID;
-  public readonly warningType = StatusType.WARNING;
-  public readonly invalidType = StatusType.INVALID;
+  public readonly validType = 'valid';
+  public readonly warningType = 'warning';
+  public readonly invalidType = 'invalid';
 
   /**
    * Set the status message shown on the right side.
@@ -21,7 +19,7 @@ export class StatusComponent {
   /**
    * If the type is set the icon of this status is shown
    */
-  @Input() type: StatusType;
+  @Input() type: string;
 
   /**
    * Set the status tooltip text. If the text is set then the tooltip appears on hover.

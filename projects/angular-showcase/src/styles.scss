@@ -12,6 +12,7 @@ sbb-public,
 sbb-core,
 sbb-icons {
   @import '../../sbb-esta/angular-public/styles';
+
   sbb-markdown-viewer,
   sbb-component-viewer,
   sbb-api-viewer,
@@ -29,6 +30,7 @@ sbb-icons {
 
 sbb-business {
   @import '../../sbb-esta/angular-business/styles';
+
   sbb-markdown-viewer,
   sbb-component-viewer {
     @include sbbHeadings();
@@ -139,56 +141,4 @@ nav.menu.ps .ps__rail-y {
   .ps__thumb-y {
     background-color: #fff;
   }
-}
-
-@mixin svgIconColor2Paths($fillColor1, $strokeColor1, $fillColor2, $strokeColor2) {
-  &.sbb-svg-icon {
-    & > g > :first-child path {
-      stroke: $strokeColor1;
-      fill: $fillColor1;
-    }
-
-    & > g > :nth-child(2) path {
-      stroke: $strokeColor2;
-      fill: $fillColor2;
-    }
-  }
-}
-
-svg.sbb-status-grey-eye {
-  @include svgIconColors($sbbColorGreyMedium, $sbbColorWhite);
-  @include svgIconBackground($sbbColorGreyMedium, pxToRem(2px));
-}
-
-svg.sbb-status-eye {
-  @include svgIconColors($sbbColorSky, $sbbColorBlue);
-}
-
-svg.sbb-status-grinning {
-  @include svgIconColors($sbbColorLemon, $sbbColorBlack);
-}
-
-svg.sbb-status-heart {
-  @include svgIconColors($sbbColorRed150, $sbbColorViolet);
-
-  &.sbb-svg-icon {
-    & > path {
-      stroke-width: 2;
-      fill-opacity: 0.7;
-    }
-  }
-}
-
-svg.sbb-status-trainstation {
-  @include svgIconColors(none, $sbbColorWhite);
-  @include svgIconBackground($sbbColorRed, pxToRem(2px));
-}
-
-svg.sbb-icon-status-question {
-  @include svgIconColor2Paths(none, $sbbColorBlack, $sbbColorBlack, none);
-  @include svgIconBackground($sbbColorOrange, pxToRem(2px));
-}
-
-svg.sbb-status-happy {
-  @include svgIconColors($sbbColorLemon, $sbbColorBlack);
 }

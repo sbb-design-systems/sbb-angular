@@ -4,14 +4,13 @@ You find the UX description of this component on https://digital.sbb.ch/en/webap
 
 ### Status with type
 
-You can set a predefined type `[type]`.
-Predefined types are defined in the StatusType enum.
+You can set a predefined type by setting the `type` attribute.
 At the time there are `'valid'`, `'invalid'` and `'warning'` predefined types.
 
 ```html
-<sbb-status [type]="'valid'" [message]="'valid type'"></sbb-status>
-<sbb-status [type]="'invalid'" [message]="'invalid type'"></sbb-status>
-<sbb-status [type]="'warning'" [message]="'warning type'"></sbb-status>
+<sbb-status type="valid" [message]="'valid type'"></sbb-status>
+<sbb-status type="invalid" [message]="'invalid type'"></sbb-status>
+<sbb-status type="warning" [message]="'warning type'"></sbb-status>
 ```
 
 ### Status with content tag
@@ -29,7 +28,7 @@ You can set an `sbb-icon` tag as content inside the `<sbb-status>`.
 Status without message.
 
 ```html
-<sbb-status [type]="'warning'"></sbb-status>
+<sbb-status type="warning"></sbb-status>
 
 <sbb-status>
   <sbb-icon-train-station></sbb-icon-train-station>
@@ -48,7 +47,7 @@ You can style the icon by setting an `[svgClass]` on the `sbb-icon` as shown in 
 <sbb-status [message]="'train staion'">
   <sbb-icon-train-station></sbb-icon-train-station>
 </sbb-status>
-<sbb-status [type]="'valid'" [message]="'valid status message'"></sbb-status>
+<sbb-status type="valid" [message]="'valid status message'"></sbb-status>
 ```
 
 ### Extended with tooltip

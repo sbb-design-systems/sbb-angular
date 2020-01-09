@@ -2,6 +2,23 @@
 @import '../../../../angular-core/styles/common/colors';
 @import '../../../../angular-core/styles/common/mixins';
 
+:host ::ng-deep {
+  svg.sbb-status-valid {
+    @include svgIconColors(none, $sbbColorWhite);
+    @include svgIconBackground($sbbColorGreen, pxToRem(2px));
+  }
+
+  svg.sbb-status-warning {
+    @include svgIconColors($sbbColorWhite, none);
+    @include svgIconBackground($sbbColorOrange, pxToRem(2px));
+  }
+
+  svg.sbb-status-invalid {
+    @include svgIconColors($sbbColorRed, $sbbColorWhite);
+    @include svgIconBackground($sbbColorRed, pxToRem(2px));
+  }
+}
+
 :host {
   display: inline-flex;
   flex-direction: row;
