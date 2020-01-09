@@ -1,6 +1,6 @@
 {
   "name": "sbb-angular",
-  "version": "8.7.11",
+  "version": "8.7.12",
   "private": true,
   "scripts": {
     "ng": "ng",
@@ -30,7 +30,7 @@
     "build:angular-showcase:ng": "ng build angular-showcase --prod",
     "build:schematics": "rollup --config schematics/rollup.config.js",
     "build:icons": "schematics .:generate-icon-modules --debug false",
-    "standard-version": "standard-version --tag-prefix=\"\""
+    "release": "standard-version --tag-prefix=\"\""
   },
   "repository": {
     "type": "git",

@@ -82,6 +82,7 @@ export class TextareaComponent implements ControlValueAccessor {
   }
   set maxlength(value: number) {
     this._maxlength = coerceNumberProperty(value);
+    this.updateDigitsCounter(this.value);
   }
   private _maxlength: number;
   /** Class property that sets the minlength of the textarea content. */

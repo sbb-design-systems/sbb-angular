@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
+import { PaginationShowcaseComponent } from '../business-examples/pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
@@ -31,6 +32,7 @@ export class BusinessComponent implements ExampleProvider {
   };
   layoutComponents = {
     accordion: 'Accordion',
+    pagination: 'Pagination',
     processflow: 'Processflow',
     tabs: 'Tabs',
     usermenu: 'Usermenu'
@@ -61,6 +63,9 @@ export class BusinessComponent implements ExampleProvider {
     },
     dialog: {
       'dialog-showcase': new ComponentPortal(DialogShowcaseComponent)
+    },
+    pagination: {
+      'pagination-showcase': new ComponentPortal(PaginationShowcaseComponent)
     }
   };
 

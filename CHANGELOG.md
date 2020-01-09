@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.12](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.11...8.7.12) (2020-01-06)
+
+
+### Bug Fixes
+
+* **public:** fix the sticky detection for public table ([#250](https://github.com/sbb-design-systems/sbb-angular/issues/250)) ([84b5241](https://github.com/sbb-design-systems/sbb-angular/commit/84b5241)), closes [#247](https://github.com/sbb-design-systems/sbb-angular/issues/247)
+* assure hidden native input elements are positioned close to label ([#248](https://github.com/sbb-design-systems/sbb-angular/issues/248)) ([d5e43e9](https://github.com/sbb-design-systems/sbb-angular/commit/d5e43e9)), closes [#243](https://github.com/sbb-design-systems/sbb-angular/issues/243)
+
+
+
 ### [8.7.11](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.10...8.7.11) (2019-12-06)
 
 

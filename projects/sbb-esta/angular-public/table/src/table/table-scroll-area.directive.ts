@@ -13,6 +13,7 @@ import { takeUntil } from 'rxjs/operators';
 
 const stickySupported =
   typeof CSS !== 'undefined' &&
+  typeof CSS.supports === 'function' &&
   CSS.supports(
     ['', '-o-', '-webkit-', '-moz-', '-ms-'].map(p => `(position: ${p}sticky)`).join(' or ')
   );

@@ -4,7 +4,7 @@
   [disabled]="disabled"
   [readonly]="readonly"
   [placeholder]="placeholder"
-  [attr.maxlength]="maxlength"
+  [attr.maxlength]="maxlength !== 0 ? maxlength : null"
   [attr.minlength]="minlength"
   (focus)="onFocus()"
   (blur)="onBlur()"
