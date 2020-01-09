@@ -5,6 +5,9 @@ import { CoreExampleViewerComponent } from '../../core-component-viewer/core-exa
 @Component({
   selector: 'sbb-example-viewer',
   templateUrl: '../../core-component-viewer/core-example-viewer/core-example-viewer.component.html',
-  styleUrls: ['../../core-component-viewer/core-example-viewer/core-example-viewer.component.scss']
+  styleUrls: [
+    '../../core-component-viewer/core-example-viewer/core-example-viewer.component.scss',
+    './business-example-viewer.component.scss'
+  ]
 })
 export class BusinessExampleViewerComponent extends CoreExampleViewerComponent {}

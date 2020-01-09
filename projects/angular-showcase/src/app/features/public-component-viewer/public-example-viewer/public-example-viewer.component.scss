@@ -3,3 +3,7 @@
 :host {
   border: 1px solid $sbbColorSilver;
 }
+
+::ng-deep pre {
+  margin: 1rem -24px;
+}

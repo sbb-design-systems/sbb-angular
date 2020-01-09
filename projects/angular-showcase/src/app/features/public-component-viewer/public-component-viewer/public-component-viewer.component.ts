@@ -11,7 +11,8 @@ import { HtmlLoader } from '../../../shared/html-loader.service';
   templateUrl:
     '../../core-component-viewer/core-component-viewer/core-component-viewer.component.html',
   styleUrls: [
-    '../../core-component-viewer/core-component-viewer/core-component-viewer.component.scss'
+    '../../core-component-viewer/core-component-viewer/core-component-viewer.component.scss',
+    './public-component-viewer.component.scss'
   ]
 })
 export class PublicComponentViewerComponent extends ComponentViewerBase {
