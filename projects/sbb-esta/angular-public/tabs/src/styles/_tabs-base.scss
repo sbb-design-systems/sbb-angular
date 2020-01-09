@@ -18,6 +18,7 @@
 
 @mixin tabsContent() {
   @include businessOnly() {
+    padding: pxToEm(16);
     border: 1px solid $sbbColorGraphite;
     margin-top: pxToEm(-1);
   }
