@@ -117,7 +117,7 @@ describe('TextareaComponent behaviour', () => {
     ).toBe('rgb(235, 0, 0)');
   });
 
-  // See https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/106
+  // See https://github.com/sbb-design-systems/sbb-angular/issues/106
   it('should update the inner value twice', async () => {
     const textarea = fixture.debugElement.query(By.css('textarea'))
       .nativeElement as HTMLTextAreaElement;

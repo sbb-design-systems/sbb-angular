@@ -1,83 +1,44 @@
 {
   "name": "sbb-angular",
-  "version": "8.6.0",
+  "version": "8.7.12",
   "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "clean": "rimraf dist coverage lintReport.json",
+    "clean": "rimraf dist coverage",
     "format": "prettier --write **/*.{js,ts,css,scss,json,md,html}",
-    "lint": "run-p lint:angular-icons lint:angular-core lint:angular-public lint:angular-business lint:angular-keycloak lint:angular-showcase",
-    "lint:angular-icons": "ng lint @sbb-esta/angular-icons",
-    "lint:angular-core": "run-p lint:angular-core:*",
-    "lint:angular-core:console": "ng lint @sbb-esta/angular-core",
-    "lint:angular-core:report": "ng lint @sbb-esta/angular-core --format=json > angularCoreLintReport.json",
-    "lint:angular-business": "run-p lint:angular-business:*",
-    "lint:angular-business:console": "ng lint @sbb-esta/angular-business",
-    "lint:angular-business:report": "ng lint @sbb-esta/angular-business --format=json > angularBusinessLintReport.json",
-    "lint:angular-public": "run-p lint:angular-public:*",
-    "lint:angular-public:console": "ng lint @sbb-esta/angular-public",
-    "lint:angular-public:report": "ng lint @sbb-esta/angular-public --format=json > angularPublicLintReport.json",
-    "lint:angular-keycloak": "run-p lint:angular-keycloak:*",
-    "lint:angular-keycloak:console": "ng lint @sbb-esta/angular-keycloak",
-    "lint:angular-keycloak:report": "ng lint @sbb-esta/angular-keycloak --format=json > angularKeycloakLintReport.json",
-    "lint:angular-showcase": "ng lint angular-showcase",
     "build": "run-s build:libs build:angular-showcase",
     "build:libs": "run-s build:libs:base build:libs:components",
     "build:libs:base": "run-p build:angular-core build:angular-icons build:angular-keycloak",
     "build:libs:components": "run-p build:angular-public build:angular-business",
-    "build:angular-icons": "run-s build:angular-icons:*",
-    "build:angular-icons:ng": "ng build @sbb-esta/angular-icons",
-    "build:angular-icons:license": "copyfiles LICENSE ./dist/sbb-esta/angular-icons/",
     "build:angular-core": "run-s build:angular-core:*",
     "build:angular-core:ng": "ng build @sbb-esta/angular-core",
     "build:angular-core:styles": "cd ./projects/sbb-esta/angular-core/ && copyfiles \"styles/**\" ../../../dist/sbb-esta/angular-core/",
-    "build:angular-core:license": "copyfiles LICENSE ./dist/sbb-esta/angular-core/",
+    "build:angular-icons": "ng build @sbb-esta/angular-icons",
     "build:angular-business": "run-s build:angular-business:*",
     "build:angular-business:public2business": "schematics .:public2business --debug false",
     "build:angular-business:ng": "ng build @sbb-esta/angular-business",
     "build:angular-business:styles": "cd ./projects/sbb-esta/angular-business/ && copyfiles styles.scss ../../../dist/sbb-esta/angular-business/",
     "build:angular-business:typography": "sass ./projects/sbb-esta/angular-business/typography.scss ./dist/sbb-esta/angular-business/typography.css",
-    "build:angular-business:license": "copyfiles LICENSE ./dist/sbb-esta/angular-business/",
     "build:angular-public": "run-s build:angular-public:*",
     "build:angular-public:ng": "ng build @sbb-esta/angular-public",
     "build:angular-public:styles": "cd ./projects/sbb-esta/angular-public/ && copyfiles styles.scss ../../../dist/sbb-esta/angular-public/",
     "build:angular-public:typography": "sass ./projects/sbb-esta/angular-public/typography.scss ./dist/sbb-esta/angular-public/typography.css",
-    "build:angular-public:license": "copyfiles LICENSE ./dist/sbb-esta/angular-public/",
-    "build:angular-keycloak": "run-s build:angular-keycloak:*",
-    "build:angular-keycloak:ng": "ng build @sbb-esta/angular-keycloak",
-    "build:angular-keycloak:license": "copyfiles LICENSE ./dist/sbb-esta/angular-public/",
+    "build:angular-keycloak": "ng build @sbb-esta/angular-keycloak",
     "build:angular-showcase": "run-s build:angular-showcase:*",
-    "build:angular-showcase:docs": "schematics .:documentation --debug false",
+    "build:angular-showcase:docs": "npm run build:angular-business:public2business && schematics .:documentation --debug false",
     "build:angular-showcase:ng": "ng build angular-showcase --prod",
-    "build:angular-showcase:license": "copyfiles LICENSE ./dist/angular-showcase/",
-    "build:angular-showcase:packagejson": "cd projects/angular-showcase && copyfiles package.json ../../dist/angular-showcase",
     "build:schematics": "rollup --config schematics/rollup.config.js",
     "build:icons": "schematics .:generate-icon-modules --debug false",
-    "test": "run-s test:angular-core test:angular-business test:angular-public test:angular-keycloak",
-    "test:angular-core": "ng test @sbb-esta/angular-core -c ci",
-    "test:angular-business": "ng test @sbb-esta/angular-business -c ci",
-    "test:angular-public": "ng test @sbb-esta/angular-public -c ci",
-    "test:angular-keycloak": "ng test @sbb-esta/angular-keycloak -c ci",
-    "test:angular-showcase": "ng test angular-showcase -c ci",
-    "test:pr": "run-s test:pr:angular-core test:pr:angular-business test:pr:angular-public test:pr:angular-keycloak",
-    "test:pr:angular-core": "ng test @sbb-esta/angular-core -c pr",
-    "test:pr:angular-business": "ng test @sbb-esta/angular-business -c pr",
-    "test:pr:angular-public": "ng test @sbb-esta/angular-public -c pr",
-    "test:pr:angular-keycloak": "ng test @sbb-esta/angular-keycloak -c pr",
-    "test:pr:angular-showcase": "ng test angular-showcase -c pr",
-    "sonar": "node ./scripts/sonar.js",
-    "changelog": "standard-version --tag-prefix=\"\"",
-    "publish:staging": "node ./scripts/publish.js",
-    "publish:library": "node ./scripts/publish.js release"
+    "release": "standard-version --tag-prefix=\"\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SchweizerischeBundesbahnen/sbb-angular.git"
+    "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues"
+    "url": "https://github.com/sbb-design-systems/sbb-angular/issues"
   },
   "homepage": "https://angular.app.sbb.ch/latest",
   "schematics": "./schematics/collection.json",
@@ -109,6 +70,8 @@
     "@angular/cli": "~8.3.3",
     "@angular/compiler-cli": "^8.2.5",
     "@angular/language-service": "^8.2.5",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@types/grecaptcha": "^2.0.36",
     "@types/highlight.js": "^9.12.3",
     "@types/html-minifier": "^3.5.3",
@@ -119,7 +82,7 @@
     "codelyzer": "^5.0.1",
     "copyfiles": "^2.1.1",
     "dgeni": "^0.4.12",
-    "dgeni-packages": "^0.27.5",
+    "dgeni-packages": "^0.28.1",
     "highlight.js": "^9.15.10",
     "html-minifier": "^4.0.0",
     "husky": "^2.7.0",
@@ -150,7 +113,6 @@
     "rollup-plugin-typescript2": "^0.21.2",
     "sass": "1.22.10",
     "semver": "^5.7.1",
-    "sonarqube-scanner": "^2.5.0",
     "standard-version": "^6.0.1",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended-scss": "^3.3.0",
@@ -165,11 +127,6 @@
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-sonarts": "^1.9.0",
     "typescript": "~3.5.3"
-  },
-  "standard-version": {
-    "skip": {
-      "tag": true
-    }
   },
   "prettier": {
     "singleQuote": true,
@@ -194,9 +151,15 @@
       "no-descending-specificity": null
     }
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {

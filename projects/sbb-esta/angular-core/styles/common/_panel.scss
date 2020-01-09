@@ -1,0 +1,242 @@
+@import './variants';
+@import './colors';
+@import './functions';
+@import './mediaqueries';
+@import './mixins';
+@import './button';
+
+$sbbPanelBorder: 2px solid $sbbColorGrey;
+$sbbPanelShadow: 0 8px 0 rgba(0, 0, 0, 0.15);
+$sbbPanelShadowReverse: 0 -8px 0 rgba(0, 0, 0, 0.15);
+$sbbPanelColor: $sbbColorGrey;
+$sbbPanelPaddingX: 16px;
+$sbbPanelPaddingTop: 14px;
+$sbbPanelPaddingBottom: 14px;
+$sbbPanelItemActiveColor: $sbbColorRed;
+$sbbPanelFirstSelectedBarTop: 6;
+$sbbPanelItemSelectedBarHeight: 22;
+$sbbPanelItemSelectedBarWidth: 1;
+$sbbPanelItemSelectedBarTop: 3;
+
+@if $sbbBusiness {
+  $sbbPanelBorder: 1px solid $sbbColorGranite;
+  $sbbPanelShadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+  $sbbPanelShadowReverse: 0 -4px 0 rgba(0, 0, 0, 0.15);
+  $sbbPanelColor: $sbbColorGranite;
+  $sbbPanelPaddingX: 8px;
+  $sbbPanelPaddingTop: 8px;
+  $sbbPanelPaddingBottom: 8px;
+  $sbbPanelItemActiveColor: $sbbColorRed125;
+}
+
+@mixin panelBase() {
+  position: relative;
+  width: 100%;
+  background-color: $sbbColorWhite;
+  border: $sbbPanelBorder;
+  transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: $sbbPanelColor;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid $sbbColorCloud;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+  }
+
+  &.sbb-visible {
+    visibility: visible;
+  }
+
+  &.sbb-hidden {
+    visibility: hidden;
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border: toPx(2 * $scalingFactor4k) solid $sbbColorGrey;
+      box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
+      border-top: none;
+
+      &::after {
+        border-bottom-width: toPx(1 * $scalingFactor4k);
+      }
+    }
+
+    @include mq($from: desktop5k) {
+      border: toPx(2 * $scalingFactor5k) solid $sbbColorGrey;
+      box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
+      border-top: none;
+      &::after {
+        border-bottom-width: toPx(1 * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+@mixin panelBelow() {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-top: none;
+  box-shadow: sbbPanelShadow;
+  margin-top: -2px;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border-bottom-left-radius: toPx(2 * $scalingFactor4k);
+      margin-top: toPx(-2 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-bottom-left-radius: toPx(2 * $scalingFactor5k);
+      margin-top: toPx(-2 * $scalingFactor5k);
+    }
+  }
+
+  &::after {
+    top: 0;
+    bottom: auto;
+  }
+}
+
+@mixin panelAbove() {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top: $sbbPanelBorder;
+  border-bottom: none;
+  box-shadow: $sbbPanelShadowReverse;
+  margin-top: auto;
+  margin-bottom: -2px;
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      border-top-left-radius: toPx(2 * $scalingFactor4k);
+      border-top-width: toPx(2 * $scalingFactor4k);
+      margin-bottom: toPx(-2 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      border-top-left-radius: toPx(2 * $scalingFactor5k);
+      border-top-width: toPx(2 * $scalingFactor5k);
+      margin-bottom: toPx(-2 * $scalingFactor5k);
+    }
+  }
+
+  &::after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+@mixin panelItemLeftBar($color) {
+  @include businessOnly() {
+    &::after {
+      content: '';
+      position: absolute;
+      height: toPx($sbbPanelItemSelectedBarHeight);
+      width: toPx($sbbPanelItemSelectedBarWidth);
+
+      left: 0;
+      top: toPx($sbbPanelItemSelectedBarTop);
+
+      background-color: $color;
+    }
+  }
+}
+
+@mixin panelItems() {
+  @include buttonResetFrameless;
+  @include ellipsis;
+
+  position: relative;
+  display: block;
+  text-decoration: none;
+  font-size: toPx($sizeFontDefault);
+  padding: toPx(4) $sbbPanelPaddingX;
+  text-align: left;
+  max-width: 100%;
+  cursor: pointer;
+  outline: 0;
+
+  &:first-of-type {
+    padding-top: $sbbPanelPaddingTop;
+  }
+  &:last-of-type {
+    padding-bottom: $sbbPanelPaddingBottom;
+  }
+
+  @include businessOnly() {
+    line-height: pxToRem(20);
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx($sizeFontDefault * $scalingFactor4k);
+      padding: toPx(4 * $scalingFactor4k) toPx($sbbPanelPaddingX * $scalingFactor4k);
+
+      &:first-of-type {
+        padding-top: toPx($sbbPanelPaddingTop * $scalingFactor4k);
+      }
+
+      &:last-of-type {
+        padding-bottom: toPx($sbbPanelPaddingBottom * $scalingFactor4k);
+      }
+    }
+    @include mq($from: desktop5k) {
+      font-size: toPx($sizeFontDefault * $scalingFactor5k);
+      padding: toPx(4 * $scalingFactor5k) toPx($sbbPanelPaddingX * $scalingFactor5k);
+      &:first-of-type {
+        padding-top: toPx($sbbPanelPaddingTop * $scalingFactor5k);
+      }
+      &:last-of-type {
+        padding-bottom: toPx($sbbPanelPaddingBottom * $scalingFactor5k);
+      }
+    }
+  }
+
+  &.sbb-selected {
+    color: $sbbColorBlack;
+  }
+
+  &.sbb-active,
+  &:hover,
+  &:focus,
+  &:active {
+    color: $sbbPanelItemActiveColor;
+
+    &:not(.sbb-option-multiple) {
+      @include panelItemLeftBar($sbbPanelItemActiveColor);
+    }
+  }
+
+  &:first-of-type:hover,
+  &:first-of-type,
+  &:first-of-type.sbb-active {
+    &::after {
+      top: toPx($sbbPanelFirstSelectedBarTop);
+    }
+  }
+
+  &:disabled,
+  &[disabled] {
+    cursor: default;
+    opacity: 0.5;
+    user-select: none;
+  }
+}

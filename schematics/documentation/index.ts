@@ -104,7 +104,7 @@ function highlight(code: string, language: string): string {
   return code;
 }
 
-// @TODO: Blocked by https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/147
+// @TODO: Blocked by https://github.com/sbb-design-systems/sbb-angular/issues/147
 async function buildApiDocumentationForLibrary(packageNames: string[]) {
   const execRootPath = process.cwd();
   const packagePath = join(execRootPath, 'projects/sbb-esta');

@@ -3,6 +3,7 @@ import { FocusMonitor, FocusOrigin, FocusTrap, FocusTrapFactory } from '@angular
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, ESCAPE, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
@@ -27,10 +28,12 @@ import {
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
 import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
-import { fromEvent, merge, Observable, Subject } from 'rxjs';
+import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { AppChooserSectionComponent } from '../app-chooser-section/app-chooser-section.component';
+
+import { SBB_HEADER } from './header';
 
 /** Result of the toggle promise that indicates the state of the header menu. */
 export type SbbHeaderMenuToggleResult = 'open' | 'close';
@@ -57,7 +60,8 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
       transition('open => void, void => open', [animate('0.3s ease-in-out')])
     ])
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: SBB_HEADER, useExisting: HeaderComponent }]
 })
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** @docs-private */
@@ -136,9 +140,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Current state of the menu animation. */
   _animationState: 'open' | 'void' = 'void';
 
-  /** Emits whether the current resolution matches desktop or above. */
-  _isDesktop: Observable<boolean>;
-
   /** Event emitted when the header menu open state is changed. */
   @Output() readonly openedChange: EventEmitter<boolean> =
     // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
@@ -183,6 +184,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** @docs-private */
   @ViewChild(PerfectScrollbarComponent, { static: true }) _menu: PerfectScrollbarComponent;
   /** @docs-private */
+  @ViewChild('menu', { static: true }) _menuElement: ElementRef<HTMLElement>;
+  /** @docs-private */
+  @ViewChild(CdkPortal, { static: false }) _navigationPortal;
+  /** @docs-private */
+  @ViewChild('mainMenuOutlet', { static: true }) _mainMenuOutlet: CdkPortalOutlet;
+  /** @docs-private */
+  @ViewChild('sideMenuOutlet', { static: true }) _sideMenuOutlet: CdkPortalOutlet;
+  /** @docs-private */
   @ContentChildren(AppChooserSectionComponent) _appChooserSections: QueryList<
     AppChooserSectionComponent
   >;
@@ -201,8 +210,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private _focusMonitor: FocusMonitor,
     private _ngZone: NgZone,
     private _breakpointObserver: BreakpointObserver,
-    private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
+    @Optional() private _router: Router,
     @Optional() @Inject(DOCUMENT) private _doc: any
   ) {
     this.openedChange.subscribe((opened: boolean) => {
@@ -221,10 +230,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
            */
           this._ngZone.runOutsideAngular(() => {
             merge(
-              fromEvent<KeyboardEvent>(this._doc, 'keydown').pipe(
+              fromEvent<KeyboardEvent>(this._menuElement.nativeElement, 'keydown').pipe(
                 filter(event => event.keyCode === ESCAPE && !hasModifierKey(event))
               ),
-              this._router.events.pipe(filter(e => e instanceof NavigationStart))
+              this._router
+                ? this._router.events.pipe(filter(e => e instanceof NavigationStart))
+                : NEVER
             )
               .pipe(takeUntil(this.openedChange))
               .subscribe(() => this._ngZone.run(() => this.closeMenu()));
@@ -253,10 +264,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this.openedChange.emit(this._opened);
         }
       });
-    this._isDesktop = this._breakpointObserver.observe([Breakpoints.DesktopAndAbove]).pipe(
-      takeUntil(this._destroyed),
-      map(r => r.matches)
-    );
   }
 
   ngOnInit() {
@@ -268,6 +275,22 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this._menu.directiveRef.elementRef.nativeElement
     );
     this._updateFocusTrapState();
+    this._breakpointObserver
+      .observe(Breakpoints.DesktopAndAbove)
+      .pipe(
+        takeUntil(this._destroyed),
+        map(r => r.matches),
+        distinctUntilChanged()
+      )
+      .subscribe(isDesktop => {
+        if (isDesktop) {
+          this._sideMenuOutlet.detach();
+          this._mainMenuOutlet.attachTemplatePortal(this._navigationPortal);
+        } else {
+          this._mainMenuOutlet.detach();
+          this._sideMenuOutlet.attachTemplatePortal(this._navigationPortal);
+        }
+      });
   }
 
   ngOnDestroy() {

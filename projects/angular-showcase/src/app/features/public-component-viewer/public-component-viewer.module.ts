@@ -4,16 +4,13 @@ import { NgModule } from '@angular/core';
 import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { TabsModule } from '@sbb-esta/angular-public/tabs';
 
-import { PublicExampleViewerComponent } from './example-viewer/public-example-viewer.component';
-import { PsChromePatchDirective } from './ps-chrome-patch.directive';
+import { PsChromePatchModule } from '../ps-chrome-patch/ps-chrome-patch.module';
+
 import { PublicComponentViewerComponent } from './public-component-viewer/public-component-viewer.component';
+import { PublicExampleViewerComponent } from './public-example-viewer/public-example-viewer.component';
 
 @NgModule({
-  declarations: [
-    PublicExampleViewerComponent,
-    PublicComponentViewerComponent,
-    PsChromePatchDirective
-  ],
-  imports: [CommonModule, PortalModule, ScrollingModule, TabsModule]
+  declarations: [PublicExampleViewerComponent, PublicComponentViewerComponent],
+  imports: [CommonModule, PortalModule, ScrollingModule, TabsModule, PsChromePatchModule]
 })
 export class PublicComponentViewerModule {}

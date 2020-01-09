@@ -1,29 +1,128 @@
-@import '../usermenu';
+@import '../../../../angular-core/styles/common/variants';
+@import '../../../../angular-core/styles/common/variables';
+@import '../../../../angular-core/styles/common/colors';
+@import '../../../../angular-core/styles/common/functions';
+@import '../../../../angular-core/styles/common/mediaqueries';
+@import '../../../../angular-core/styles/common/mixins';
+@import '../../../../angular-core/styles/common/button';
+
+$border: solid 1px $sbbColorGraphite;
+$borderActive: if($sbbBusiness, solid 1px $sbbColorGranite, solid 2px $sbbColorGrey);
+
+$border4K: solid 3px $sbbColorGraphite;
+$border5K: solid 4px $sbbColorGraphite;
+$borderActive4K: solid toPx(3 * $scalingFactor4k) $sbbColorGrey;
+$borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
 .sbb-usermenu {
   &-logged-in {
-    @include usermenuLoggedIn;
+    position: relative;
+    align-items: center;
+    display: flex;
+    width: 288px;
+    height: 48px;
+    line-height: 1.533;
+    border: if($sbbBusiness, 1px solid transparent, 2px solid transparent);
+    background-color: $sbbColorWhite;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        width: toPx(432 * $scalingFactor4k);
+        height: toPx(72 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        width: toPx(576 * $scalingFactor5k);
+        height: toPx(96 * $scalingFactor5k);
+      }
+    }
 
     &.sbb-usermenu-hidden {
       display: none;
     }
 
     &-active {
-      @include usermenuLoggedInActive;
+      padding-left: 16px;
+      border: $borderActive;
+
+      @include businessOnly() {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom: 1px solid $sbbColorCloud;
+      }
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          border: $borderActive4K;
+        }
+
+        @include mq($from: desktop5k) {
+          border: $borderActive5K;
+        }
+      }
     }
 
     &-collapsed {
-      @include usermenuLoggedInCollapsed;
+      display: flex;
+      align-items: center;
+      margin-left: 3px;
+      margin-top: 3px;
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          margin-left: toPx(3 * $scalingFactor4k);
+          margin-top: toPx(3 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          margin-left: toPx(3 * $scalingFactor5k);
+          margin-top: toPx(3 * $scalingFactor5k);
+        }
+      }
 
       &-user-icon {
-        @include usermenuUserIcon;
+        flex-basis: 32px;
+        width: 118px;
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            flex-basis: toPx(32 * $scalingFactor4k);
+          }
+
+          @include mq($from: desktop5k) {
+            flex-basis: toPx(32 * $scalingFactor5k);
+          }
+        }
 
         .sbb-usermenu-logged-in-collapsed-icon {
-          @include usermenuLoggedInCollapsedIcon;
+          position: relative;
         }
 
         .sbb-usermenu-logged-in-collapsed-initial-letters {
-          @include usermenuLoggedInCollapsedInitialLetters;
+          border-radius: 50%;
+          background-color: $sbbColorCloud;
+          font-family: $fontFamilyBase;
+          font-size: pxToRem(13);
+          color: $sbbColorMetal;
+          font-weight: 700;
+          width: 32px;
+          height: 32px;
+          text-align: center;
+          position: relative;
+
+          @include publicOnly() {
+            @include mq($from: desktop4k) {
+              font-size: toPx(14 * $scalingFactor4k);
+              width: toPx(32 * $scalingFactor4k);
+              height: toPx(32 * $scalingFactor4k);
+            }
+
+            @include mq($from: desktop5k) {
+              font-size: toPx(14 * $scalingFactor5k);
+              width: toPx(32 * $scalingFactor5k);
+              height: toPx(32 * $scalingFactor5k);
+            }
+          }
 
           > div {
             @include absoluteCenterXY;
@@ -36,40 +135,145 @@
       }
 
       &-arrow {
-        @include usermenuLoggedInCollapsedArrow;
+        @include svgIconColor($sbbColorMetal);
+        width: toPx(24);
+        height: toPx(24);
+        position: relative;
+
+        @include mq($from: mobilePortrait, $to: tabletPortrait) {
+          display: none;
+        }
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            width: toPx(24 * $scalingFactor4k);
+            height: toPx(24 * $scalingFactor4k);
+            z-index: -1;
+            margin-left: toPx(-40 * $scalingFactor4k);
+            margin-bottom: toPx(3.335 * $scalingFactor4k);
+          }
+
+          @include mq($from: desktop5k) {
+            width: toPx(24 * $scalingFactor5k);
+            height: toPx(24 * $scalingFactor5k);
+            z-index: -1;
+            margin-left: toPx(-35 * $scalingFactor5k);
+            margin-bottom: toPx(2.5 * $scalingFactor5k);
+          }
+        }
       }
 
       .sbb-usermenu-logged-in-expanded-info-user {
-        @include usermenuLoggedInExpandedInfoUser;
+        padding-left: 4px;
+        max-width: calc(100% - 68px);
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            padding-left: toPx(4 * $scalingFactor4k);
+          }
+
+          @include mq($from: desktop5k) {
+            padding-left: toPx(4 * $scalingFactor5k);
+          }
+        }
 
         &.sbb-usermenu-logged-in-expanded-info-user-dropdown-open {
-          @include usermenuLoggedInExpandedInfoUserDropdownOpen;
+          flex-grow: 1;
+        }
+
+        .sbb-usermenu-logged-in-expanded-username,
+        .sbb-usermenu-logged-in-expanded-displayName {
+          font-family: $fontSbbRoman;
+          color: $sbbColorMetal;
+          @include ellipsis();
         }
 
         .sbb-usermenu-logged-in-expanded-username {
-          @include usermenuLoggedInExpandedUsername;
+          font-size: pxToRem(13);
+          margin-top: -3px;
+
+          @include publicOnly() {
+            @include mq($from: desktop4k) {
+              font-size: toPx(13.5 * $scalingFactor4k);
+              margin-top: toPx(-3 * $scalingFactor4k);
+            }
+
+            @include mq($from: desktop5k) {
+              font-size: toPx(13 * $scalingFactor5k);
+              margin-top: toPx(-3 * $scalingFactor5k);
+            }
+          }
         }
 
         .sbb-usermenu-logged-in-expanded-displayName {
-          @include usermenuLoggedInExpandedDisplayName;
+          font-size: pxToRem(15);
+          margin-top: -5px;
+
+          @include publicOnly() {
+            @include mq($from: desktop4k) {
+              font-size: toPx(15.35 * $scalingFactor4k);
+              margin-top: toPx(-5 * $scalingFactor4k);
+            }
+
+            @include mq($from: desktop5k) {
+              font-size: toPx(15 * $scalingFactor5k);
+              margin-top: toPx(-5 * $scalingFactor5k);
+            }
+          }
+
           &.sbb-displayName-logged-in-collapsed {
-            @include displayNameLoggedInCollapsed;
+            @include mq($from: mobilePortrait, $to: tabletPortrait) {
+              display: none;
+            }
           }
         }
       }
 
       .sbb-usermenu-logged-in-expanded-arrow-above {
-        flex-basis: 2px;
+        flex-basis: 24px;
 
         .sbb-usermenu-logged-in-expanded-arrow {
-          @include usermenuLoggedInExpandedArrow;
+          @include svgIconColor($sbbColorMetal);
+          width: toPx(24);
+          height: toPx(24);
+          transform: rotate(180deg);
+
+          @include publicOnly() {
+            @include mq($from: desktop4k) {
+              width: toPx(24 * $scalingFactor4k);
+              height: toPx(24 * $scalingFactor4k);
+            }
+
+            @include mq($from: desktop5k) {
+              width: toPx(24 * $scalingFactor5k);
+              height: toPx(24 * $scalingFactor5k);
+            }
+          }
         }
       }
     }
   }
 
   .sbb-usermenu-logged-off {
-    @include usermenuLoggedOff;
+    @include svgIconColor($sbbColorMetal);
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 48px;
+    width: 156px;
+    color: $sbbColorMetal;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        height: toPx(72 * $scalingFactor4k);
+        width: toPx(103 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        height: toPx(96 * $scalingFactor5k);
+        width: toPx(134 * $scalingFactor5k);
+      }
+    }
 
     &:hover {
       .sbb-usermenu-logged-off-icon-user {
@@ -82,15 +286,69 @@
     }
 
     &-icon-user {
-      @include usermenuLoggedOffIconUser;
+      width: 24px;
+      height: 24px;
+      margin-left: 2px;
+      position: relative;
+      color: inherit;
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          height: toPx(36 * $scalingFactor4k);
+          width: toPx(36 * $scalingFactor4k);
+          margin-left: toPx(2 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          height: toPx(48 * $scalingFactor5k);
+          width: toPx(48 * $scalingFactor5k);
+          margin-left: toPx(2 * $scalingFactor5k);
+        }
+      }
     }
 
     &-button {
-      @include usermenuLoggedOffButton;
+      @include buttonResetFrameless;
+      position: relative;
+      margin-left: 13.5px;
+      margin-top: 2px;
+      color: inherit;
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          margin-left: toPx(13.5 * $scalingFactor4k);
+          margin-top: toPx(8 * $scalingFactor4k);
+          max-width: toPx(53 * $scalingFactor4k);
+          max-height: toPx(26 * $scalingFactor4k);
+          font-size: toPx(14 * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          margin-left: toPx(13.5 * $scalingFactor5k);
+          margin-top: toPx(6.5 * $scalingFactor5k);
+          max-width: toPx(70 * $scalingFactor5k);
+          max-height: toPx(35 * $scalingFactor5k);
+          font-size: toPx(14 * $scalingFactor5k);
+        }
+      }
     }
   }
 
   img {
-    @include imageStyle;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        width: toPx(32 * $scalingFactor4k);
+        height: toPx(32 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        width: toPx(32 * $scalingFactor5k);
+        height: toPx(32 * $scalingFactor5k);
+      }
+    }
   }
 }

@@ -1,12 +1,10 @@
+$sbbBusiness: true;
 @import '../../../../angular-core/styles/common/variables';
 @import '../../../../angular-core/styles/common/colors';
 @import '../../../../angular-core/styles/common/button';
 @import '../../../../angular-core/styles/common/mixins';
+@import '../header';
 
-// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" d="M8.092 10.35l3.904 3.95 3.904-3.948"/></svg>
-$sbbHeaderDropdownIconBlack: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBkPSJNOC4wOTIgMTAuMzVsMy45MDQgMy45NSAzLjkwNC0zLjk0OCIvPjwvc3ZnPg==';
-// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#c60018" d="M8.092 10.35l3.904 3.95 3.904-3.948"/></svg>
-$sbbHeaderDropdownIconRed: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzYwMDE4IiBkPSJNOC4wOTIgMTAuMzVsMy45MDQgMy45NSAzLjkwNC0zLjk0OCIvPjwvc3ZnPg==';
 $sbbHeaderHeight: 54px;
 
 :host {
@@ -16,17 +14,19 @@ $sbbHeaderHeight: 54px;
   top: 0;
   height: $sbbHeaderHeight;
   width: 100%;
-  z-index: 1000;
+  z-index: $sbbHeaderBaseZIndex;
   background-color: $sbbColorWhite;
   border-bottom: solid 1px $sbbColorSilver;
 
   > nav {
-    display: none;
-    @include mq($from: desktop) {
-      display: flex;
-      flex-grow: 1;
-      margin-left: 50px;
-      overflow-x: hidden;
+    margin-left: 50px;
+    overflow-x: hidden;
+    display: flex;
+    flex-grow: 1;
+
+    > ::ng-deep a,
+    > ::ng-deep button {
+      flex: 0 0 20%;
     }
   }
 }
@@ -103,23 +103,14 @@ $sbbHeaderHeight: 54px;
 }
 
 nav {
-  display: flex;
-
   > ::ng-deep a,
   > ::ng-deep button {
-    flex: 0 0 20%;
     line-height: 23px;
     font-size: 15px;
     border: transparent solid 1px;
     outline: none;
     color: $sbbColorBlack;
     font-family: $fontSbbRoman;
-
-    > span {
-      @include ellipsis();
-      display: inline-block;
-      max-width: calc(100% - 16px);
-    }
 
     &:hover,
     &:active,
@@ -134,52 +125,12 @@ nav {
   > ::ng-deep button {
     cursor: pointer;
     @include buttonResetFrameless();
-    padding: 6px 24px 6px 8px;
     text-align: left;
-    position: relative;
-
-    &::after {
-      content: url($sbbHeaderDropdownIconBlack);
-      display: inline-block;
-      width: 24px;
-      height: 23px;
-      position: absolute;
-      right: 0;
-      transform: rotate(270deg);
-
-      @include mq($from: desktop) {
-        right: auto;
-        transform: rotate(0deg);
-        transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-          right 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-      }
-    }
-
-    &:hover::after,
-    &:active::after,
-    &:focus::after {
-      content: url($sbbHeaderDropdownIconRed);
-    }
-
-    &[aria-expanded='true'] {
-      @include mq($from: desktop) {
-        border: $sbbColorGranite solid 1px;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        border-bottom: $sbbColorCloud solid 1px;
-
-        &::after {
-          position: absolute;
-          right: 0;
-          transform: rotate(-180deg);
-        }
-      }
-    }
   }
 }
 
 .sbb-header-container-end {
-  flex-grow: 1;
+  flex-grow: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -193,6 +144,7 @@ nav {
 
   > .sbb-header-logo {
     display: flex;
+    height: $sbbHeaderHeight;
 
     > svg {
       width: 80px;
@@ -200,15 +152,11 @@ nav {
   }
 }
 
-nav + .sbb-header-container-end {
-  flex-grow: 0;
-}
-
-.sbb-header-menu-backdrop {
+.sbb-header-side-menu-backdrop {
   display: none;
 }
 
-:host[opened='true'] .sbb-header-menu-backdrop {
+:host[opened='true'] .sbb-header-side-menu-backdrop {
   display: block;
   top: 0;
   left: 0;
@@ -217,18 +165,19 @@ nav + .sbb-header-container-end {
   position: fixed;
 }
 
-.sbb-header-menu {
+.sbb-header-side-menu {
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: 300px;
+  width: $sbbHeaderMenuWidth;
   height: 100vh;
   top: 0;
   background-color: $sbbColorWhite;
   border-right: 1px solid $sbbColorGranite;
   box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.15);
+  z-index: $sbbHeaderSideMenuZIndex;
 
-  div.sbb-header-menu-title-section {
+  div.sbb-header-side-menu-title-section {
     display: flex;
     align-items: center;
     height: $sbbHeaderHeight;
@@ -239,12 +188,10 @@ nav + .sbb-header-container-end {
     flex-direction: column;
     margin: 0 15px;
 
-    @include mq($from: desktop) {
-      display: none;
-    }
-
     > ::ng-deep a,
     > ::ng-deep button {
+      display: block;
+      width: 100%;
       padding-left: 0;
       padding-right: 0;
     }

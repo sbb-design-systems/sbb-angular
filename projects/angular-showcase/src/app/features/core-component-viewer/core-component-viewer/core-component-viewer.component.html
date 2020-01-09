@@ -8,11 +8,11 @@
         <div #api></div>
       </sbb-tab>
       <sbb-tab *ngIf="example | async as examplePortals" label="Examples">
-        <sbb-public-example-viewer
+        <sbb-example-viewer
           *ngFor="let entry of examplePortals | keyvalue"
           [name]="entry.key"
           [example]="entry.value"
-        ></sbb-public-example-viewer>
+        ></sbb-example-viewer>
       </sbb-tab>
     </sbb-tabs>
   </article>

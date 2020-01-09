@@ -11,7 +11,7 @@ We appreciate all kinds of contributions. As a contributor, here are the guideli
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
-[submitting an issue](#submit-issue) to our [GitHub Repository][github]. Including an issue 
+[submitting an issue](#submit-issue) to our [GitHub Repository][github]. Including an issue
 reproduction (via StackBlitz, JsBin, Plunkr, etc.) is the absolute best way to help the team quickly
 diagnose the problem. Screenshots are also helpful.
 
@@ -21,7 +21,7 @@ You can help the team even more and [submit a Pull Request](#submit-pr) with a f
 ## <a name="feature"></a> Want a Feature?
 You can *request* a new feature by [submitting an issue](#submit-issue) to our [GitHub
 Repository][github]. If you would like to *implement* a new feature, please submit an issue with
-a proposal for your work first, to be sure that we can use it. 
+a proposal for your work first, to be sure that we can use it.
 Please consider what kind of change it is:
 
 * For a **Major Feature**, first open an issue and outline your proposal so that it can be
@@ -47,7 +47,7 @@ chances of your issue being dealt with quickly:
 * **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
     causing the problem (line of code or commit)
 
-You can file new issues by providing the above information [here](https://github.com/SchweizerischeBundesbahnen/sbb-angular/issues/new).
+You can file new issues by providing the above information [here](https://github.com/sbb-design-systems/sbb-angular/issues/new).
 
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
@@ -83,8 +83,7 @@ The PR title and message should as well conform to the [commit message conventio
 
 Note: Our builds often run out of memory. To ensure the build can run, set the NODE_OPTIONS environment variable
 to `--max_old_space_size=7168` either locally or globally.
-(e.g. in PowerShell, the default VS Code terminal: `$env:NODE_OPTIONS="--max_old_space_size=7168"`)
-(e.g. in Commander terminal: ` export NODE_OPTIONS="--max_old_space_size=7168"`)
+(e.g. in PowerShell, the default VS Code terminal: `$env:NODE_OPTIONS="--max_old_space_size=7168"`, in Shell: `export NODE_OPTIONS=--max_old_space_size=7168`)
 
 
 ## <a name="rules"></a> Coding Rules

@@ -15,6 +15,7 @@ $checkBoxGreyColor: if($sbbBusiness, $sbbColorGranite, $sbbColorGrey);
 
 @mixin checkboxBase {
   display: flex;
+  position: relative; // assure absolute positioned native input is close to the label!
   align-items: flex-start;
 
   & > input[type='checkbox'] {

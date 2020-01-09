@@ -11,8 +11,7 @@ import {
   OnDestroy,
   Output,
   QueryList,
-  ViewChildren,
-  ViewEncapsulation
+  ViewChildren
 } from '@angular/core';
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -25,8 +24,7 @@ let counter = 0;
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
   /** Class property that tracks tab number of the list */
@@ -61,8 +59,6 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   ) {}
 
   ngAfterContentInit() {
-    this._checkNumberOfTabs();
-
     this.initTabs();
 
     this._tabsSubscription = this.tabs$
@@ -184,14 +180,5 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     }
 
     return false;
-  }
-
-  /**
-   * Method that controls if the activated tab number is at least two
-   */
-  private _checkNumberOfTabs(): void {
-    if (this.tabs.length < 2) {
-      throw new Error(`The number of tabs must be at least 2`);
-    }
   }
 }

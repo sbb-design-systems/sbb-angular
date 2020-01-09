@@ -33,6 +33,7 @@ function public2business(_options) {
         [
             'accordion',
             'autocomplete',
+            'badge',
             'datepicker',
             'dropdown',
             'field',
@@ -40,6 +41,7 @@ function public2business(_options) {
             'option',
             'radio-button',
             'select',
+            'tabs',
             'textarea',
             'time-input',
             'usermenu'

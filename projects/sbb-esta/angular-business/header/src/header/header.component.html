@@ -19,7 +19,9 @@
   <span *ngIf="subtitle">{{ subtitle }}</span>
 </div>
 
-<ng-template *ngIf="_isDesktop | async" [cdkPortalOutlet]="mainNavigation"></ng-template>
+<nav>
+  <ng-template cdkPortalOutlet #mainMenuOutlet="cdkPortalOutlet"></ng-template>
+</nav>
 
 <div class="sbb-header-container-end">
   <div class="sbb-header-additional-content">
@@ -44,15 +46,16 @@
   </div>
 </div>
 
-<div class="sbb-header-menu-backdrop" (click)="_onBackdropClicked()"></div>
+<div class="sbb-header-side-menu-backdrop" (click)="_onBackdropClicked()"></div>
 <div
   [@menu]="_animationState"
   (@menu.start)="_animationStartListener($event)"
   (@menu.done)="_animationDoneListener($event)"
-  class="sbb-header-menu"
+  class="sbb-header-side-menu"
+  #menu
 >
   <perfect-scrollbar>
-    <div class="sbb-header-menu-title-section">
+    <div class="sbb-header-side-menu-title-section">
       <button
         type="button"
         class="sbb-header-close-menu"
@@ -70,14 +73,15 @@
       </div>
     </div>
 
-    <ng-template *ngIf="!(_isDesktop | async)" [cdkPortalOutlet]="mainNavigation"></ng-template>
+    <nav>
+      <ng-template cdkPortalOutlet #sideMenuOutlet="cdkPortalOutlet"></ng-template>
+    </nav>
 
     <ng-content select="sbb-app-chooser-section"></ng-content>
   </perfect-scrollbar>
 </div>
+<ng-content select="sbb-header-menu"></ng-content>
 
-<ng-template cdkPortal #mainNavigation="cdkPortal">
-  <nav>
-    <ng-content select="a,button"></ng-content>
-  </nav>
+<ng-template cdkPortal>
+  <ng-content select="a,button"></ng-content>
 </ng-template>

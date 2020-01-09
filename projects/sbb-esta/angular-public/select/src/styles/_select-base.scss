@@ -85,6 +85,11 @@
       }
     }
   }
+
+  &.ng-touched.ng-invalid .sbb-select-trigger:not([aria-expanded='true']) {
+    color: $sbbColorError;
+    border-color: $sbbColorError;
+  }
 }
 
 @mixin selectContentBase {

@@ -6,6 +6,7 @@ export function public2business(_options: any): Rule {
     [
       'accordion',
       'autocomplete',
+      'badge',
       'datepicker',
       'dropdown',
       'field',
@@ -13,6 +14,7 @@ export function public2business(_options: any): Rule {
       'option',
       'radio-button',
       'select',
+      'tabs',
       'textarea',
       'time-input',
       'usermenu'

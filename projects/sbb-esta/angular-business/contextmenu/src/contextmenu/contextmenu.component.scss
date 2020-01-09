@@ -15,7 +15,6 @@ $sbbContextmenuBorderRadius: 2px;
     border: 1px solid transparent;
     padding: $sbbContextmenuPadding;
     position: relative;
-    z-index: 1002;
     display: inline-flex;
     align-items: center;
     outline: 0;
@@ -67,6 +66,7 @@ $sbbContextmenuBorderRadius: 2px;
 
 .sbb-dropdown-panel.sbb-contextmenu-dropdown:not(.sbb-dropdown-panel-above) {
   transform: translateY(-1px);
+  border-bottom: none;
 
   &:not(.sbb-dropdown-panel-left) {
     border-top-left-radius: 0;
@@ -87,6 +87,7 @@ $sbbContextmenuBorderRadius: 2px;
 
 .sbb-dropdown-panel.sbb-contextmenu-dropdown.sbb-dropdown-panel-above {
   transform: translateY(1px);
+  border-top: none;
 
   &:not(.sbb-dropdown-panel-left) {
     border-bottom-left-radius: 0;
