@@ -74,6 +74,9 @@
     width: toPx($notificationIconWidth);
     height: toPx($notificationIconHeight);
     margin-left: toPx($notificationIconMarginLeft);
+    border: none;
+    background: none;
+    padding: 0;
 
     * {
       max-width: 100%;
