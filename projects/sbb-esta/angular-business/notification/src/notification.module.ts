@@ -8,7 +8,6 @@ import {
   IconTickModule
 } from '@sbb-esta/angular-icons';
 
-import { NotificationIconDirective } from './notification-icon.directive';
 import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
@@ -20,7 +19,7 @@ import { NotificationComponent } from './notification/notification.component';
     IconCircleInformationModule,
     IconDirectiveModule
   ],
-  declarations: [NotificationComponent, NotificationIconDirective],
-  exports: [NotificationComponent, NotificationIconDirective, IconDirectiveModule]
+  declarations: [NotificationComponent],
+  exports: [NotificationComponent, IconDirectiveModule]
 })
 export class NotificationsModule {}
