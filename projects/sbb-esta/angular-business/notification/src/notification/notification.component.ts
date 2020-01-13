@@ -1,5 +1,7 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
@@ -104,7 +106,16 @@ export class NotificationComponent {
 
   /** Type of notification. */
   @Input()
-  readonly = false;
+  set readonly(value: boolean) {
+    this._readonly = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
+  }
+
+  get readonly() {
+    return this._readonly;
+  }
+
+  private _readonly = false;
 
   /** @docs-private */
   @ViewChild('error', { read: TemplateRef, static: true })
@@ -164,6 +175,8 @@ export class NotificationComponent {
   get hasJumpMarks() {
     return this.jumpMarks && this.jumpMarks.length;
   }
+
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 
   /**
    * Used to scroll to an element identified by a jump mark
