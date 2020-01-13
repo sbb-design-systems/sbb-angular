@@ -96,6 +96,13 @@ export class NotificationComponent {
     return this.toastPosition === NotificationToastPosition.BOTTOMRIGHT;
   }
 
+  @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
+
+  @HostBinding('hidden')
+  get hidden() {
+    return this.ariaHidden === 'true';
+  }
+
   /** Type of notification. */
   @Input()
   type: 'success' | 'info' | 'error' | 'warn' = NotificationType.SUCCESS;
@@ -189,6 +196,7 @@ export class NotificationComponent {
   }
 
   dismiss() {
+    this.ariaHidden = 'true';
     this.dismissed.emit(false);
   }
 }

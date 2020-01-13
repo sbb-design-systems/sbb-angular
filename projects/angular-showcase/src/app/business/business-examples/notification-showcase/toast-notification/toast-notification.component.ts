@@ -21,4 +21,9 @@ export class ToastNotificationComponent {
   toggleToast() {
     this.toastActive = !this.toastActive;
   }
+
+  dismissed() {
+    this.toastActive = !this.toastActive;
+    console.log('Notification dismissed');
+  }
 }

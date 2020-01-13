@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./closable-notification.component.scss']
 })
 export class ClosableNotificationComponent {
-  active: boolean = true;
-
-  toggleVisible() {
-    this.active = !this.active;
+  dismissed() {
+    console.log('Notification dismissed');
   }
 }

@@ -15,13 +15,13 @@
     Hide
   </span>
   <ng-template #show>
-    <span>Show</span>
+    Show
   </ng-template>
 </button>
 <sbb-notification
   [type]="toastType"
   [toastPosition]="toastPosition"
   *ngIf="toastActive"
-  (dismissed)="toastActive = $event"
+  (dismissed)="dismissed()"
   >Lorem ipsum</sbb-notification
 >
