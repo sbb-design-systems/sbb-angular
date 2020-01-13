@@ -136,11 +136,10 @@ export class NotificationComponent {
       case NotificationType.SUCCESS:
         return this.checkIcon;
       case NotificationType.ERROR:
+      case NotificationType.WARN:
         return this.errorIcon;
       case NotificationType.INFO:
         return this.infoIcon;
-      case NotificationType.WARN:
-        return this.errorIcon;
       default:
         return null;
     }
@@ -158,7 +157,7 @@ export class NotificationComponent {
   @Input() jumpMarks?: JumpMark[];
 
   @Output()
-  activeChange: EventEmitter<boolean> = new EventEmitter();
+  dismissed: EventEmitter<boolean> = new EventEmitter();
 
   /** @docs-private */
   @HostBinding('class.sbb-notification-has-jump-marks')
@@ -183,6 +182,6 @@ export class NotificationComponent {
   }
 
   dismiss() {
-    this.activeChange.emit(false);
+    this.dismissed.emit(false);
   }
 }

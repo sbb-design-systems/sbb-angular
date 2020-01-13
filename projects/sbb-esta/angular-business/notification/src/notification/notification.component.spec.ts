@@ -13,7 +13,7 @@ import Spy = jasmine.Spy;
 @Component({
   selector: 'sbb-notification-mock',
   template:
-    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks" [title]="title" (activeChange)="activeChange($event)" [readonly]="readonly"></sbb-notification>'
+    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks" [title]="title" (dismissed)="dismissed($event)" [readonly]="readonly"></sbb-notification>'
 })
 export class NotificationMockComponent {
   message = 'Suchen';
@@ -22,7 +22,7 @@ export class NotificationMockComponent {
   readonly = true;
   jumpMarks = [];
 
-  activeChange(event) {}
+  dismissed(event) {}
 }
 
 describe('NotificationComponent', () => {
@@ -138,7 +138,7 @@ describe('NotificationComponent', () => {
     });
 
     it('should emit when closing notification', () => {
-      const activeChangeSpy: Spy = spyOn(testComponent, 'activeChange');
+      const dismissedSpy: Spy = spyOn(testComponent, 'dismissed');
       testComponent.readonly = false;
       testFixture.detectChanges();
       const closeButton = testFixture.nativeElement.querySelector(
@@ -149,8 +149,8 @@ describe('NotificationComponent', () => {
       expect(closeButton).not.toBeNull();
       closeButton.click();
       testFixture.whenStable().then(() => {
-        expect(activeChangeSpy).toHaveBeenCalledTimes(1);
-        expect(activeChangeSpy).toHaveBeenCalledWith(false);
+        expect(dismissedSpy).toHaveBeenCalledTimes(1);
+        expect(dismissedSpy).toHaveBeenCalledWith(false);
       });
     });
 

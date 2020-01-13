@@ -23,5 +23,5 @@
   [type]="toastType"
   [toastPosition]="toastPosition"
   *ngIf="toastActive"
-  (activeChange)="toastActive = $event"
+  (dismissed)="toastActive = $event"
 ></sbb-notification>

@@ -5,11 +5,12 @@ You can use the notification component to send a simple message:
 <sbb-notification message="Suchen" type="success"></sbb-notification>
 ```
 
-There are three types of notifications:
+There are four types of notifications:
 
 - success
 - info
 - error
+- warning
 
 ### Custom Icon
 
