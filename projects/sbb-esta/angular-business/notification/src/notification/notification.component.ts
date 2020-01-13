@@ -158,9 +158,6 @@ export class NotificationComponent {
 
   private _icon: TemplateRef<any>;
 
-  /** Title displayed into the notification content */
-  @Input() title: string;
-
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: JumpMark[];
 

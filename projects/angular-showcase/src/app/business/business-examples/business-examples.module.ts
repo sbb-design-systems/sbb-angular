@@ -29,7 +29,6 @@ import { ClosableNotificationComponent } from './notification-showcase/closable-
 import { CustomIconNotificationComponent } from './notification-showcase/custom-icon-notification/custom-icon-notification.component';
 import { JumpmarkNotificationComponent } from './notification-showcase/jumpmark-notification/jumpmark-notification.component';
 import { SimpleNotificationComponent } from './notification-showcase/simple-notification/simple-notification.component';
-import { TitleContentNotificationComponent } from './notification-showcase/title-content-notification/title-content-notification.component';
 import { ToastNotificationComponent } from './notification-showcase/toast-notification/toast-notification.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
@@ -57,8 +56,7 @@ const exampleComponents = [
   SimpleNotificationComponent,
   JumpmarkNotificationComponent,
   ToastNotificationComponent,
-  ClosableNotificationComponent,
-  TitleContentNotificationComponent
+  ClosableNotificationComponent
 ];
 
 @NgModule({

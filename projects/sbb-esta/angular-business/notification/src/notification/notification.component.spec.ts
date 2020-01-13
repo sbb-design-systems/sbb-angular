@@ -13,7 +13,7 @@ import Spy = jasmine.Spy;
 @Component({
   selector: 'sbb-notification-mock',
   template:
-    '<sbb-notification [message]="message" [type]="type" [jumpMarks]="jumpMarks" [title]="title" (dismissed)="dismissed($event)" [readonly]="readonly"></sbb-notification>'
+    '<sbb-notification [type]="type" [jumpMarks]="jumpMarks" (dismissed)="dismissed($event)" [readonly]="readonly">{{message}}</sbb-notification>'
 })
 export class NotificationMockComponent {
   message = 'Suchen';
@@ -124,16 +124,6 @@ describe('NotificationComponent', () => {
       expect(notifications.length).toBeGreaterThan(0);
       testFixture.whenRenderingDone().then(() => {
         expect(componentStyles.height).toBe('72px');
-      });
-    });
-
-    it('should style title when provided', () => {
-      testComponent.title = 'Title';
-      testFixture.detectChanges();
-      const titles = testFixture.debugElement.queryAll(By.css('.sbb-notification-content-title'));
-      expect(titles.length).toBeGreaterThan(0);
-      testFixture.whenRenderingDone().then(() => {
-        expect(Object.keys(titles[0].classes).find(key => key.includes('SBBWeb Bold')));
       });
     });
 

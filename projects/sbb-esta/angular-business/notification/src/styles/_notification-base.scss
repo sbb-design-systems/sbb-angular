@@ -57,10 +57,6 @@
   .sbb-notification-content {
     margin-left: toPx($notificationMessageMarginLeft);
     margin-right: toPx($notificationMessageMarginRight);
-
-    &-title {
-      font-family: $fontSbbBold;
-    }
   }
 
   &-jump-mark {
