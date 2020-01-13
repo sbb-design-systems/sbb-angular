@@ -33,6 +33,16 @@
   }
 }
 
+.sbb-tooltip-template {
+  display: block;
+  background: lightyellow;
+  color: $sbbColorGranite;
+  font-size: 0.9375rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid rgb(104, 104, 104, 0.7);
+}
+
 :host ::ng-deep {
   svg.sbb-status-grey-eye {
     @include svgIconColors($sbbColorGreyMedium, $sbbColorWhite);

@@ -48,13 +48,39 @@
   </sbb-status>
   <sbb-status
     [message]="'tooltip with open/close delay of 1 seconds'"
-    [tooltipText]="'coffee time'"
+    [sbbTooltip]="'coffee time'"
     [tooltipOpenDelay]="1000"
     [tooltipCloseDelay]="1000"
+    [tooltipPosition]="leftTooltipPosition"
   >
     <sbb-icon-mug-hot></sbb-icon-mug-hot>
   </sbb-status>
 </p>
+
+<h3>Status with custom tooltip</h3>
+<p>
+  <sbb-status
+    type="valid"
+    [sbbTooltip]="template"
+    [tooltipPosition]="leftTooltipPosition"
+    [message]="'custom tooltip template'"
+  ></sbb-status>
+  <sbb-status
+    type="valid"
+    [sbbTooltip]="defaultTemplate"
+    [tooltipPosition]="leftTooltipPosition"
+    [message]="'use DefaultTooltipComponent as templateRef'"
+  ></sbb-status>
+</p>
+
+<ng-template #template>
+  <div class="sbb-tooltip-template">
+    <sbb-status [message]="'ok status in tooltip'" type="valid"></sbb-status>
+  </div>
+</ng-template>
+<ng-template #defaultTemplate>
+  <sbb-default-tooltip text="tooltip message"> </sbb-default-tooltip>
+</ng-template>
 
 <h3>Status Extended used in table</h3>
 <sbb-table tableId="statusTableId" [pinMode]="'off'">
@@ -69,7 +95,7 @@
     <tr>
       <td [ngClass]="rowAlignment">valid status row</td>
       <td>
-        <sbb-status [message]="'valid'" [tooltipText]="'valid status'" type="valid"></sbb-status>
+        <sbb-status [message]="'valid'" [sbbTooltip]="'valid status'" type="valid"></sbb-status>
       </td>
     </tr>
 
@@ -78,7 +104,7 @@
       <td>
         <sbb-status
           [message]="'warning'"
-          [tooltipText]="'warning status'"
+          [sbbTooltip]="'warning status'"
           type="warning"
         ></sbb-status>
       </td>
@@ -89,7 +115,7 @@
       <td>
         <sbb-status
           [message]="'invalid'"
-          [tooltipText]="'invalid status'"
+          [sbbTooltip]="'invalid status'"
           type="invalid"
         ></sbb-status>
       </td>
@@ -98,10 +124,18 @@
     <tr>
       <td [ngClass]="rowAlignment">happy face row</td>
       <td>
-        <sbb-status [message]="'happy'" [tooltipText]="'happy status'">
+        <sbb-status [message]="'happy'" [sbbTooltip]="smileTemplate">
           <sbb-icon-face-smiling [svgClass]="'sbb-status-happy'"></sbb-icon-face-smiling>
         </sbb-status>
       </td>
     </tr>
   </tbody>
 </sbb-table>
+
+<ng-template #smileTemplate>
+  <div class="sbb-tooltip-template">
+    <sbb-status [message]="'happy'">
+      <sbb-icon-face-smiling></sbb-icon-face-smiling>
+    </sbb-status>
+  </div>
+</ng-template>

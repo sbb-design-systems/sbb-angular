@@ -2,9 +2,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'sbb-status-tooltip',
-  templateUrl: './status-tooltip.component.html',
-  styleUrls: ['./status-tooltip.component.scss'],
+  selector: 'sbb-default-tooltip',
+  templateUrl: './default-tooltip.component.html',
+  styleUrls: ['./default-tooltip.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('tooltip', [
@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@a
     ])
   ]
 })
-export class StatusTooltipComponent {
+export class DefaultTooltipComponent {
   private _text: string;
   /**
    * Set text for the tooltip.

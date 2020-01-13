@@ -1,3 +1,4 @@
+import { ConnectedPosition } from '@angular/cdk/overlay';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class StatusShowcaseComponent {
   public rowAlignment = 'sbb-table-align-left';
+  public readonly leftTooltipPosition: ConnectedPosition = {
+    originX: 'start',
+    originY: 'top',
+    overlayX: 'start',
+    overlayY: 'bottom',
+    offsetY: -2
+  };
 }

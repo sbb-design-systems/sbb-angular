@@ -9,9 +9,9 @@ import {
   IconTickModule
 } from '@sbb-esta/angular-icons';
 
-import { StatusTooltipComponent } from './status/status-tooltip/status-tooltip.component';
-import { StatusTooltipDirective } from './status/status-tooltip/status-tooltip.directive';
 import { StatusComponent } from './status/status.component';
+import { DefaultTooltipComponent } from './status/tooltip/default-tooltip.component';
+import { TooltipDirective } from './status/tooltip/tooltip.directive';
 
 @NgModule({
   imports: [
@@ -23,8 +23,8 @@ import { StatusComponent } from './status/status.component';
     IconSignExclamationPointModule,
     IconSignXModule
   ],
-  declarations: [StatusComponent, StatusTooltipDirective, StatusTooltipComponent],
-  exports: [StatusComponent, StatusTooltipComponent, StatusTooltipDirective],
-  entryComponents: [StatusTooltipComponent]
+  declarations: [StatusComponent, TooltipDirective, DefaultTooltipComponent],
+  exports: [StatusComponent, DefaultTooltipComponent, TooltipDirective],
+  entryComponents: [DefaultTooltipComponent]
 })
 export class StatusModule {}

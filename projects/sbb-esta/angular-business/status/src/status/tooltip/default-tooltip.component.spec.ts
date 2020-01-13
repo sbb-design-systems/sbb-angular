@@ -2,21 +2,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { StatusTooltipComponent } from './status-tooltip.component';
+import { DefaultTooltipComponent } from './default-tooltip.component';
 
 describe('StatusTooltipComponent', () => {
-  let component: StatusTooltipComponent;
-  let fixture: ComponentFixture<StatusTooltipComponent>;
+  let component: DefaultTooltipComponent;
+  let fixture: ComponentFixture<DefaultTooltipComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule],
-      declarations: [StatusTooltipComponent]
+      declarations: [DefaultTooltipComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StatusTooltipComponent);
+    fixture = TestBed.createComponent(DefaultTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
