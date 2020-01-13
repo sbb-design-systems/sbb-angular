@@ -161,9 +161,6 @@ export class NotificationComponent {
   /** Title displayed into the notification content */
   @Input() title: string;
 
-  /** Message displayed into the notification content */
-  @Input() message: string;
-
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: JumpMark[];
 

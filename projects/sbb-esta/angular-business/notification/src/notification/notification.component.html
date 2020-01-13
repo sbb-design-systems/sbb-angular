@@ -6,8 +6,8 @@
   <div class="sbb-notification-content-title" *ngIf="title">
     {{ title }}
   </div>
-  <div class="sbb-notification-content-message" *ngIf="message">
-    {{ message }}
+  <div class="sbb-notification-content-message">
+    <ng-content></ng-content>
   </div>
   <div *ngIf="jumpMarks">
     <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">

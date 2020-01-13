@@ -6,9 +6,6 @@
     <span>Show</span>
   </ng-template>
 </button>
-<sbb-notification
-  message="Success"
-  type="success"
-  *ngIf="active"
-  (dismissed)="active = $event"
-></sbb-notification>
+<sbb-notification type="success" *ngIf="active" (dismissed)="active = $event"
+  >Success</sbb-notification
+>

@@ -19,9 +19,9 @@
   </ng-template>
 </button>
 <sbb-notification
-  message="Lorem ipsum"
   [type]="toastType"
   [toastPosition]="toastPosition"
   *ngIf="toastActive"
   (dismissed)="toastActive = $event"
-></sbb-notification>
+  >Lorem ipsum</sbb-notification
+>
