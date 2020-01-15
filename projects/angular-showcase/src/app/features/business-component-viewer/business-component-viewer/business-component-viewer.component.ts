@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild } from '@angular/core';
+import { Component, HostBinding, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TabsComponent } from '@sbb-esta/angular-business/tabs';
 
@@ -16,6 +16,8 @@ import { HtmlLoader } from '../../../shared/html-loader.service';
 })
 export class BusinessComponentViewerComponent extends ComponentViewerBase {
   @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
+
+  @HostBinding('class.sbb-component-viewer-business') businessClass = true;
 
   constructor(
     htmlLoader: HtmlLoader,
