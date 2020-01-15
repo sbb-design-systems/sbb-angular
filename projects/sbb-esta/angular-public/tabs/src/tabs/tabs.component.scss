@@ -12,15 +12,18 @@
       }
 
       .sbb-badge {
+        display: inline-block;
+
         @include publicOnly() {
           transform: translateY(-70%);
+          margin-left: 0;
         }
 
         @include businessOnly() {
           position: relative;
-          margin-left: pxToEm(-14, 11);
-          margin-right: pxToEm(2, 11);
-          top: pxToEm(-8, 11);
+          margin-left: pxToEm(-2, 11);
+          margin-right: pxToEm(-14, 11);
+          top: pxToEm(-6, 11);
         }
       }
 

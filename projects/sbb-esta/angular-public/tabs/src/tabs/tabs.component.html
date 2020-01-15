@@ -3,7 +3,6 @@
     <li
       *ngFor="let tab of tabs$ | async"
       class="sbb-tabs-tablist-item"
-      [class.sbb-active]="tab.active"
       [attr.aria-label]="nameOfTabList"
     >
       <button
@@ -21,13 +20,13 @@
         [disabled]="tab.disabled"
       >
         {{ tab.label }}
+        <sbb-badge
+          i18n-aria-label="Aria label for amount of entries displayed in badge pill@@sbbTabsBadgePillAmountOfEntries"
+          aria-label="{{ tab.badgePill }} Einträge"
+          *ngIf="tab.badgePill"
+          >{{ tab.badgePill }}</sbb-badge
+        >
       </button>
-      <sbb-badge
-        i18n-aria-label="Aria label for amount of entries displayed in badge pill@@sbbTabsBadgePillAmountOfEntries"
-        aria-label="{{ tab.badgePill }} Einträge"
-        *ngIf="tab.badgePill"
-        >{{ tab.badgePill }}</sbb-badge
-      >
     </li>
   </ul>
 </perfect-scrollbar>

@@ -12,24 +12,7 @@
   padding-left: 0;
 
   @include businessOnly() {
-    background-color: $sbbColorWhite;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid $sbbColorGraphite;
-    margin: 0;
-    padding: 0;
-
-    &.sbb-active {
-      border: 1px solid $sbbColorGraphite;
-      border-bottom: 1px solid transparent;
-    }
-
-    &:not(.sbb-active):focus,
-    &:not(.sbb-active):hover {
-      &:not(:disabled) {
-        color: $tabsHoverColor;
-        border-bottom: 1px solid $tabsHoverColor;
-      }
-    }
+    padding-right: pxToEm(2);
   }
 }
 
@@ -70,11 +53,6 @@
     }
   }
 
-  @include businessOnly() {
-    padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
-    margin: 0;
-  }
-
   &:hover,
   &:focus {
     cursor: pointer;
@@ -95,9 +73,19 @@
     }
   }
 
-  &.sbb-active {
-    @include businessOnly() {
+  @include businessOnly() {
+    border: 1px solid transparent;
+    padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
+
+    &:not(.sbb-active) {
+      color: $sbbColorGranite;
+    }
+
+    &.sbb-active {
       color: $sbbColorBlack;
+      background-color: $sbbColorWhite;
+      border: 1px solid $sbbColorGraphite;
+      border-bottom: 1px solid transparent;
     }
   }
 
@@ -108,12 +96,6 @@
     width: 100%;
   }
 
-  @include businessOnly() {
-    &:not(.sbb-active) {
-      color: $sbbColorGranite;
-    }
-  }
-
   &:not(.sbb-active):focus,
   &:not(.sbb-active):hover {
     color: $tabsHoverColor;
@@ -121,6 +103,12 @@
     @include publicOnly() {
       &::after {
         border-bottom-color: $sbbColorRed125;
+      }
+    }
+
+    @include businessOnly() {
+      &:not(:disabled) {
+        border-bottom: 1px solid $tabsHoverColor;
       }
     }
   }
