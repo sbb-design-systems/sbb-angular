@@ -12,12 +12,30 @@
   padding-left: 0;
 
   @include businessOnly() {
-    padding-right: pxToEm(2px);
+    background-color: $sbbColorWhite;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid $sbbColorGraphite;
+    margin: 0;
+    padding: 0;
+
+    &.sbb-active {
+      border: 1px solid $sbbColorGraphite;
+      border-bottom: 1px solid transparent;
+    }
+
+    &:not(.sbb-active):focus,
+    &:not(.sbb-active):hover {
+      &:not(:disabled) {
+        color: $tabsHoverColor;
+        border-bottom: 1px solid $tabsHoverColor;
+      }
+    }
   }
 }
 
 @mixin tabsContent() {
   @include businessOnly() {
+    background-color: $sbbColorWhite;
     padding: pxToEm(16);
     border: 1px solid $sbbColorGraphite;
     margin-top: pxToEm(-1);
@@ -53,8 +71,8 @@
   }
 
   @include businessOnly() {
-    border: 1px solid transparent;
     padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
+    margin: 0;
   }
 
   &:hover,
@@ -80,9 +98,6 @@
   &.sbb-active {
     @include businessOnly() {
       color: $sbbColorBlack;
-      background-color: $sbbColorWhite;
-      border: 1px solid $sbbColorGraphite;
-      border-bottom: 1px solid transparent;
     }
   }
 
@@ -106,12 +121,6 @@
     @include publicOnly() {
       &::after {
         border-bottom-color: $sbbColorRed125;
-      }
-    }
-
-    @include businessOnly() {
-      &:not(:disabled) {
-        border-bottom: 1px solid $tabsHoverColor;
       }
     }
   }

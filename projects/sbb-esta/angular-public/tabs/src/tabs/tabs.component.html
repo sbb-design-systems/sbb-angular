@@ -3,6 +3,7 @@
     <li
       *ngFor="let tab of tabs$ | async"
       class="sbb-tabs-tablist-item"
+      [class.sbb-active]="tab.active"
       [attr.aria-label]="nameOfTabList"
     >
       <button
