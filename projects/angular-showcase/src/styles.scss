@@ -63,10 +63,12 @@ sbb-component-viewer {
   pre {
     background-color: #efefef;
     padding: 1rem 3rem;
+    margin: 1rem -3rem;
   }
 
   sbb-example-viewer pre {
     padding: 1rem 24px;
+    margin: 1rem -24px;
   }
 }
 
