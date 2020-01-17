@@ -12,7 +12,6 @@ The table has got the following characteristics:
 
 - It can display data in grouped columns.
 - It can display data in grouped rows.
-- It can display a set of action buttons on row hover.
 - It can sort data with the following rules:
   - Ascending
   - Descending
@@ -109,7 +108,7 @@ The table will listen to this stream and automatically trigger an update to the 
 
 For most real-world applications, providing the table a DataSource instance will be the best way to manage data.
 The DataSource is meant to serve a place to encapsulate any sorting, filtering, pagination, and data retrieval logic specific to the application.
-  
+
 A DataSource is simply a base class that has two functions: connect and disconnect.
 The connect function will be called by the table to receive a stream that emits the data array that should be rendered.
 The table will call disconnect when the table is destroyed, which may be the right time to clean up any subscriptions that may have been registered during the connect process.
@@ -138,22 +137,3 @@ Sorting will apply when one of the following actions takes place:
 - Clicking on a table column header, sorting ascendingly.
 - Clicking (a second time) on a table column header, sorting descendingly.
 - Clicking (a third time) on a table column header, removing sorting.
-
-### Action buttons
-
-Action buttons should always get displayed in the last column.
-When hovering a row, the action buttons replace the content of the last column cell.
-
-You can implement action buttons by adding icons with click behaviour to the content of the last column's cell.
-
-```html
-<ng-container sbbColumnDef="date">
-  <th sbbHeaderCell *sbbHeaderCellDef id="date">Date</th>
-  <td sbbCell *sbbCellDef="let element">
-    <div class="sbb-table-row-action-text">{{ element.date }}</div>
-    <div class="sbb-table-row-action">
-      <sbb-icon-trash size="fixed" (click)="deleteItem(element)"></sbb-icon-trash>
-    </div>
-  </td>
-</ng-container>
-```

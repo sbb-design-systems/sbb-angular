@@ -28,7 +28,6 @@ import {
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
-import { ActionsTableComponent } from './table-showcase/actions-table/actions-table.component';
 import { GroupedColumnsTableComponent } from './table-showcase/grouped-columns-table/grouped-columns-table.component';
 import { GroupedRowsTableComponent } from './table-showcase/grouped-rows-table/grouped-rows-table.component';
 import { SimpleTableComponent } from './table-showcase/simple-table/simple-table.component';
@@ -54,7 +53,6 @@ const exampleComponents = [
   DialogShowcaseExample3Component,
   PaginationShowcaseComponent,
   SimpleTableComponent,
-  ActionsTableComponent,
   GroupedRowsTableComponent,
   SortableTableComponent,
   GroupedColumnsTableComponent

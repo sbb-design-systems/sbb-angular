@@ -6,12 +6,11 @@ import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/di
 import { PaginationShowcaseComponent } from '../business-examples/pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
-import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
-import { ActionsTableComponent } from '../business-examples/table-showcase/actions-table/actions-table.component';
 import { GroupedColumnsTableComponent } from '../business-examples/table-showcase/grouped-columns-table/grouped-columns-table.component';
 import { GroupedRowsTableComponent } from '../business-examples/table-showcase/grouped-rows-table/grouped-rows-table.component';
 import { SimpleTableComponent } from '../business-examples/table-showcase/simple-table/simple-table.component';
 import { SortableTableComponent } from '../business-examples/table-showcase/sortable-table/sortable-table.component';
+import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
@@ -75,7 +74,6 @@ export class BusinessComponent implements ExampleProvider {
     },
     table: {
       'simple-table': new ComponentPortal(SimpleTableComponent),
-      'actions-table': new ComponentPortal(ActionsTableComponent),
       'grouped-columns-table': new ComponentPortal(GroupedColumnsTableComponent),
       'grouped-rows-table': new ComponentPortal(GroupedRowsTableComponent),
       'sortable-table': new ComponentPortal(SortableTableComponent)
