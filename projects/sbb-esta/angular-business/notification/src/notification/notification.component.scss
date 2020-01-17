@@ -1,0 +1,31 @@
+@import '../styles/notification';
+
+.sbb-notification {
+  @include notificationBase();
+}
+
+.sbb-notification-toast {
+  &-top-right {
+    @include notificationToast();
+    top: pxToEm($notificationToastOffset);
+    right: pxToEm($notificationToastOffset);
+  }
+
+  &-bottom-left {
+    @include notificationToast();
+    bottom: pxToEm($notificationToastOffset);
+    left: pxToEm($notificationToastOffset);
+  }
+
+  &-top-left {
+    @include notificationToast();
+    top: pxToEm($notificationToastOffset);
+    left: pxToEm($notificationToastOffset);
+  }
+
+  &-bottom-right {
+    @include notificationToast();
+    bottom: pxToEm($notificationToastOffset);
+    right: pxToEm($notificationToastOffset);
+  }
+}

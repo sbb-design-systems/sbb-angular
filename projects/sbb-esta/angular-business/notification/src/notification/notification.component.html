@@ -1,0 +1,35 @@
+<span class="sbb-notification-icon-wrapper">
+  <ng-container *ngTemplateOutlet="icon"></ng-container>
+</span>
+
+<div class="sbb-notification-content">
+  <div class="sbb-notification-content-message">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="jumpMarks">
+    <span *ngFor="let jumpMark of jumpMarks; let isLast = last" class="sbb-notification-jump-mark">
+      <a (click)="scrollTo($event, jumpMark)">{{ jumpMark.title }}</a>
+      <ng-container *ngIf="!isLast"> / </ng-container>
+    </span>
+  </div>
+</div>
+
+<button
+  (click)="dismiss()"
+  class="sbb-notification-icon-wrapper sbb-notification-icon-close-wrapper"
+  *ngIf="!readonly"
+>
+  <sbb-icon-cross></sbb-icon-cross>
+</button>
+
+<ng-template #check>
+  <sbb-icon-tick></sbb-icon-tick>
+</ng-template>
+
+<ng-template #error>
+  <sbb-icon-sign-exclamation-point></sbb-icon-sign-exclamation-point>
+</ng-template>
+
+<ng-template #info>
+  <sbb-icon-circle-information></sbb-icon-circle-information>
+</ng-template>
