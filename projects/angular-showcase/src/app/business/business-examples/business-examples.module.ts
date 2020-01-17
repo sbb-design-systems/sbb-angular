@@ -62,7 +62,7 @@ const exampleComponents = [
   SimpleNotificationComponent,
   JumpmarkNotificationComponent,
   ToastNotificationComponent,
-  ClosableNotificationComponent
+  ClosableNotificationComponent,
   SimpleTableComponent,
   GroupedRowsTableComponent,
   SortableTableComponent,
@@ -91,7 +91,7 @@ const exampleComponents = [
     DialogModule,
     RadioButtonModule,
     PaginationModule,
-    NotificationsModule
+    NotificationsModule,
     UserMenuModule,
     TableModule
   ]
