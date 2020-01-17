@@ -12,6 +12,7 @@ import { NotificationsModule } from '@sbb-esta/angular-business/notification';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
+import { TableModule } from '@sbb-esta/angular-business/table';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
@@ -33,6 +34,10 @@ import { ToastNotificationComponent } from './notification-showcase/toast-notifi
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
+import { GroupedColumnsTableComponent } from './table-showcase/grouped-columns-table/grouped-columns-table.component';
+import { GroupedRowsTableComponent } from './table-showcase/grouped-rows-table/grouped-rows-table.component';
+import { SimpleTableComponent } from './table-showcase/simple-table/simple-table.component';
+import { SortableTableComponent } from './table-showcase/sortable-table/sortable-table.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
@@ -42,6 +47,7 @@ const exampleComponents = [
   SimpleContextmenuComponent,
   SkippableProcessflowComponent,
   TooltipShowcaseComponent,
+  UsermenuShowcaseComponent,
   PersonListComponent,
   TabsShowcaseComponent,
   UsermenuShowcaseComponent,
@@ -57,6 +63,10 @@ const exampleComponents = [
   JumpmarkNotificationComponent,
   ToastNotificationComponent,
   ClosableNotificationComponent
+  SimpleTableComponent,
+  GroupedRowsTableComponent,
+  SortableTableComponent,
+  GroupedColumnsTableComponent
 ];
 
 @NgModule({
@@ -82,6 +92,8 @@ const exampleComponents = [
     RadioButtonModule,
     PaginationModule,
     NotificationsModule
+    UserMenuModule,
+    TableModule
   ]
 })
 export class BusinessExamplesModule {}
