@@ -10,7 +10,7 @@
     "build": "run-s build:libs build:angular-showcase",
     "build:libs": "run-s build:libs:base build:libs:components",
     "build:libs:base": "run-p build:angular-core build:angular-icons build:angular-keycloak",
-    "build:libs:components": "run-p build:angular-public build:angular-business",
+    "build:libs:components": "run-p build:angular-public build:angular-business build:angular-maps",
     "build:angular-core": "run-s build:angular-core:*",
     "build:angular-core:ng": "ng build @sbb-esta/angular-core",
     "build:angular-core:styles": "cd ./projects/sbb-esta/angular-core/ && copyfiles \"styles/**\" ../../../dist/sbb-esta/angular-core/",
@@ -25,6 +25,7 @@
     "build:angular-public:styles": "cd ./projects/sbb-esta/angular-public/ && copyfiles styles.scss ../../../dist/sbb-esta/angular-public/",
     "build:angular-public:typography": "sass ./projects/sbb-esta/angular-public/typography.scss ./dist/sbb-esta/angular-public/typography.css",
     "build:angular-keycloak": "ng build @sbb-esta/angular-keycloak",
+    "build:angular-maps": "ng build @sbb-esta/angular-maps",
     "build:angular-showcase": "run-s build:angular-showcase:*",
     "build:angular-showcase:docs": "npm run build:angular-business:public2business && schematics .:documentation --debug false",
     "build:angular-showcase:ng": "ng build angular-showcase --prod",
@@ -59,7 +60,8 @@
     "ngx-perfect-scrollbar": "^8.0.0",
     "rxjs": "6.5.2",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "esri-loader": "~2.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.2",
@@ -126,7 +128,8 @@
     "tslint-consistent-codestyle": "^1.15.1",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-sonarts": "^1.9.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "@types/arcgis-js-api": "~4.14.0"
   },
   "prettier": {
     "singleQuote": true,

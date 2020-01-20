@@ -23,7 +23,9 @@
       "@sbb-esta/angular-keycloak": ["dist/sbb-esta/angular-keycloak"],
       "@sbb-esta/angular-keycloak/*": ["dist/sbb-esta/angular-keycloak/*"],
       "@sbb-esta/angular-core": ["dist/sbb-esta/angular-core"],
-      "@sbb-esta/angular-core/*": ["dist/sbb-esta/angular-core/*"]
+      "@sbb-esta/angular-core/*": ["dist/sbb-esta/angular-core/*"],
+      "@sbb-esta/angular-maps": ["dist/sbb-esta/angular-maps"],
+      "@sbb-esta/angular-maps/*": ["dist/sbb-esta/angular-maps/*"]
     }
   },
   "exclude": ["./dist", "./schematics", "./tools"],
