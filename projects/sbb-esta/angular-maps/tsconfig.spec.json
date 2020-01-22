@@ -5,6 +5,6 @@
     "noImplicitAny": false,
     "types": ["jasmine", "node", "arcgis-js-api"]
   },
-  "files": ["src/test.ts"],
+  "files": ["test.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

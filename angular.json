@@ -438,10 +438,15 @@
       }
     },
     "@sbb-esta/angular-maps": {
-      "projectType": "library",
       "root": "projects/sbb-esta/angular-maps",
-      "sourceRoot": "projects/sbb-esta/angular-maps/src/lib",
+      "sourceRoot": "projects/sbb-esta/angular-maps",
+      "projectType": "library",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -453,7 +458,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sbb-esta/angular-maps/src/test.ts",
+            "main": "projects/sbb-esta/angular-maps/test.ts",
             "tsConfig": "projects/sbb-esta/angular-maps/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-maps/karma.conf.js"
           }
