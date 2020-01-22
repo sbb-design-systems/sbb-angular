@@ -1,0 +1,47 @@
+<sbb-submenu>
+  <ul>
+    <li>
+      Introduction
+
+      <ul>
+        <li>
+          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            >Getting started</a
+          >
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Maps
+
+      <ul>
+        <li *ngFor="let c of maps | keyvalue">
+          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Map Utilities
+
+      <ul>
+        <li *ngFor="let c of mapUtilities | keyvalue">
+          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Advanced Usage
+
+      <ul>
+        <li *ngFor="let c of advancedUsage | keyvalue">
+          <a [routerLink]="['./advanced/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</sbb-submenu>
+
+<router-outlet></router-outlet>

@@ -15,6 +15,7 @@ import { CoreModule } from './core/core.module';
 import { IconsModule } from './icons/icons.module';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { KeycloakModule } from './keycloak/keycloak.module';
+import { MapsModule } from './maps/maps.module';
 import { PublicModule } from './public/public.module';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { PublicModule } from './public/public.module';
     BrowserAnimationsModule,
     PublicModule,
     BusinessModule,
+    MapsModule,
     KeycloakModule,
     CoreModule,
     IconsModule,

@@ -1,0 +1,18 @@
+<article class="container-fluid">
+  <div class="row">
+    <div>
+      <h4>SceneView with eventhandlers & custom properties</h4>
+      <sbb-esri-web-scene
+        [portalItemId]="'1c7a06421a314ac9b7d0fae22aa367fb'"
+        (cameraChanged)="mapExtentChanged($event)"
+        (mapClick)="mapClicked($event)"
+        (mapReady)="mapReady($event)"
+        #webScene
+        class="web-map"
+      >
+      </sbb-esri-web-scene>
+      <pre>Active scene center point: {{ centerPoint | json }} </pre>
+      <pre>Last clicked point: {{ clickedPoint | json }} </pre>
+    </div>
+  </div>
+</article>
