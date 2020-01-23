@@ -8,9 +8,11 @@ import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
+import { NotificationsModule } from '@sbb-esta/angular-business/notification';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
+import { TableModule } from '@sbb-esta/angular-business/table';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
@@ -24,9 +26,18 @@ import {
   DialogShowcaseExampleComponent,
   DialogShowcaseExampleContentComponent
 } from './dialog-showcase/dialog-showcase.component';
+import { ClosableNotificationComponent } from './notification-showcase/closable-notification/closable-notification.component';
+import { CustomIconNotificationComponent } from './notification-showcase/custom-icon-notification/custom-icon-notification.component';
+import { JumpmarkNotificationComponent } from './notification-showcase/jumpmark-notification/jumpmark-notification.component';
+import { SimpleNotificationComponent } from './notification-showcase/simple-notification/simple-notification.component';
+import { ToastNotificationComponent } from './notification-showcase/toast-notification/toast-notification.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
+import { GroupedColumnsTableComponent } from './table-showcase/grouped-columns-table/grouped-columns-table.component';
+import { GroupedRowsTableComponent } from './table-showcase/grouped-rows-table/grouped-rows-table.component';
+import { SimpleTableComponent } from './table-showcase/simple-table/simple-table.component';
+import { SortableTableComponent } from './table-showcase/sortable-table/sortable-table.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
@@ -36,6 +47,7 @@ const exampleComponents = [
   SimpleContextmenuComponent,
   SkippableProcessflowComponent,
   TooltipShowcaseComponent,
+  UsermenuShowcaseComponent,
   PersonListComponent,
   TabsShowcaseComponent,
   UsermenuShowcaseComponent,
@@ -45,7 +57,16 @@ const exampleComponents = [
   DialogShowcaseExample2Component,
   DialogShowcaseExample2ContentComponent,
   DialogShowcaseExample3Component,
-  PaginationShowcaseComponent
+  PaginationShowcaseComponent,
+  CustomIconNotificationComponent,
+  SimpleNotificationComponent,
+  JumpmarkNotificationComponent,
+  ToastNotificationComponent,
+  ClosableNotificationComponent,
+  SimpleTableComponent,
+  GroupedRowsTableComponent,
+  SortableTableComponent,
+  GroupedColumnsTableComponent
 ];
 
 @NgModule({
@@ -69,7 +90,10 @@ const exampleComponents = [
     UserMenuModule,
     DialogModule,
     RadioButtonModule,
-    PaginationModule
+    PaginationModule,
+    NotificationsModule,
+    UserMenuModule,
+    TableModule
   ]
 })
 export class BusinessExamplesModule {}
