@@ -12,7 +12,7 @@
   padding-left: 0;
 
   @include businessOnly() {
-    padding-right: pxToEm(2);
+    padding-right: pxToEm(4);
   }
 }
 
@@ -85,6 +85,7 @@
       color: $sbbColorBlack;
       background-color: $sbbColorWhite;
       border: 1px solid $sbbColorGraphite;
+      border-radius: pxToEm(2) pxToEm(2) 0 0;
       border-bottom: 1px solid transparent;
     }
   }
