@@ -1732,8 +1732,6 @@ import {
   IconFacebookModule,
   SvgIconInstagram,
   IconInstagramModule,
-  SvgIconGoogleplus,
-  IconGoogleplusModule,
   SvgIconYoutube,
   IconYoutubeModule,
   SvgIconLinkedin,
@@ -7794,13 +7792,6 @@ export const ICON_META = [
     import: '@sbb-esta/angular-icons/experimental/social-media'
   },
   {
-    attributeSelector: 'sbbIconGoogleplus',
-    elementSelector: 'sbb-icon-googleplus',
-    component: SvgIconGoogleplus,
-    module: 'IconGoogleplusModule',
-    import: '@sbb-esta/angular-icons/experimental/social-media'
-  },
-  {
     attributeSelector: 'sbbIconYoutube',
     elementSelector: 'sbb-icon-youtube',
     component: SvgIconYoutube,
@@ -8695,7 +8686,6 @@ export const ICON_CLASS_LIST: Type<any>[] = [
   SvgIconTwitter,
   SvgIconFacebook,
   SvgIconInstagram,
-  SvgIconGoogleplus,
   SvgIconYoutube,
   SvgIconLinkedin,
   SvgIconPinterest,
@@ -9567,7 +9557,6 @@ export const ICON_MODULE_LIST = [
   IconTwitterModule,
   IconFacebookModule,
   IconInstagramModule,
-  IconGoogleplusModule,
   IconYoutubeModule,
   IconLinkedinModule,
   IconPinterestModule,

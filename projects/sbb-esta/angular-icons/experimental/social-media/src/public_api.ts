@@ -4,7 +4,6 @@
 export * from './twitter';
 export * from './facebook';
 export * from './instagram';
-export * from './googleplus';
 export * from './youtube';
 export * from './linkedin';
 export * from './pinterest';
