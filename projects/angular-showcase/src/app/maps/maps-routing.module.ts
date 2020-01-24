@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BusinessComponentViewerComponent } from '../features/business-component-viewer/business-component-viewer/business-component-viewer.component';
+import { PublicComponentViewerComponent } from '../features/public-component-viewer/public-component-viewer/public-component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { MapsComponent } from './maps/maps.component';
@@ -24,12 +24,12 @@ const routes: Routes = [
       },
       {
         path: 'components/:id',
-        component: BusinessComponentViewerComponent,
+        component: PublicComponentViewerComponent,
         data: { library: 'angular-maps' }
       },
       {
         path: 'components/:id/:section',
-        component: BusinessComponentViewerComponent,
+        component: PublicComponentViewerComponent,
         data: { library: 'angular-maps' }
       }
     ]
