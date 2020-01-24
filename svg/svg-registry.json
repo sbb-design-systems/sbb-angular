@@ -1,0 +1,3478 @@
+{
+  "FPL/Attribut/sbb_sa_1.svg": {
+    "normalizedName": "sa-1",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_2.svg": {
+    "normalizedName": "sa-2",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_aa.svg": {
+    "normalizedName": "sa-aa",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_af.svg": {
+    "normalizedName": "sa-af",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_at.svg": {
+    "normalizedName": "sa-at",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_aw.svg": {
+    "normalizedName": "sa-aw",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_b.svg": {
+    "normalizedName": "sa-b",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bb.svg": {
+    "normalizedName": "sa-bb",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_be.svg": {
+    "normalizedName": "sa-be",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bi.svg": {
+    "normalizedName": "sa-bi",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bk.svg": {
+    "normalizedName": "sa-bk",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bl.svg": {
+    "normalizedName": "sa-bl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_br.svg": {
+    "normalizedName": "sa-br",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bs.svg": {
+    "normalizedName": "sa-bs",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bv.svg": {
+    "normalizedName": "sa-bv",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_bz.svg": {
+    "normalizedName": "sa-bz",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_cc.svg": {
+    "normalizedName": "sa-cc",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ds.svg": {
+    "normalizedName": "sa-ds",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_dz.svg": {
+    "normalizedName": "sa-dz",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ep.svg": {
+    "normalizedName": "sa-ep",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_fa.svg": {
+    "normalizedName": "sa-fa",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_fl.svg": {
+    "normalizedName": "sa-fl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_fw.svg": {
+    "normalizedName": "sa-fw",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_fz.svg": {
+    "normalizedName": "sa-fz",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gk.svg": {
+    "normalizedName": "sa-gk",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gl.svg": {
+    "normalizedName": "sa-gl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gn.svg": {
+    "normalizedName": "sa-gn",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gp.svg": {
+    "normalizedName": "sa-gp",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gr.svg": {
+    "normalizedName": "sa-gr",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gx.svg": {
+    "normalizedName": "sa-gx",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_gz.svg": {
+    "normalizedName": "sa-gz",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_hk.svg": {
+    "normalizedName": "sa-hk",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_hn.svg": {
+    "normalizedName": "sa-hn",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ii.svg": {
+    "normalizedName": "sa-ii",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_je.svg": {
+    "normalizedName": "sa-je",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_kb.svg": {
+    "normalizedName": "sa-kb",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_kw.svg": {
+    "normalizedName": "sa-kw",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_lc.svg": {
+    "normalizedName": "sa-lc",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_le.svg": {
+    "normalizedName": "sa-le",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_me.svg": {
+    "normalizedName": "sa-me",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_mi.svg": {
+    "normalizedName": "sa-mi",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_mp.svg": {
+    "normalizedName": "sa-mp",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_nf.svg": {
+    "normalizedName": "sa-nf",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_nj.svg": {
+    "normalizedName": "sa-nj",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_nv.svg": {
+    "normalizedName": "sa-nv",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ob.svg": {
+    "normalizedName": "sa-ob",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_p.svg": {
+    "normalizedName": "sa-p",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_pa.svg": {
+    "normalizedName": "sa-pa",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ph.svg": {
+    "normalizedName": "sa-ph",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_pl.svg": {
+    "normalizedName": "sa-pl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_pr.svg": {
+    "normalizedName": "sa-pr",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_r.svg": {
+    "normalizedName": "sa-r",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_rb.svg": {
+    "normalizedName": "sa-rb",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_rc.svg": {
+    "normalizedName": "sa-rc",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_re.svg": {
+    "normalizedName": "sa-re",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_rq.svg": {
+    "normalizedName": "sa-rq",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_rr.svg": {
+    "normalizedName": "sa-rr",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_rt.svg": {
+    "normalizedName": "sa-rt",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ry.svg": {
+    "normalizedName": "sa-ry",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_rz.svg": {
+    "normalizedName": "sa-rz",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_s.svg": {
+    "normalizedName": "sa-s",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sb.svg": {
+    "normalizedName": "sa-sb",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sc.svg": {
+    "normalizedName": "sa-sc",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sd.svg": {
+    "normalizedName": "sa-sd",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sf.svg": {
+    "normalizedName": "sa-sf",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sh.svg": {
+    "normalizedName": "sa-sh",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sk.svg": {
+    "normalizedName": "sa-sk",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sl.svg": {
+    "normalizedName": "sa-sl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sm.svg": {
+    "normalizedName": "sa-sm",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sn.svg": {
+    "normalizedName": "sa-sn",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sv.svg": {
+    "normalizedName": "sa-sv",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_sz.svg": {
+    "normalizedName": "sa-sz",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ta.svg": {
+    "normalizedName": "sa-ta",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tc.svg": {
+    "normalizedName": "sa-tc",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tf.svg": {
+    "normalizedName": "sa-tf",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tg.svg": {
+    "normalizedName": "sa-tg",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tk.svg": {
+    "normalizedName": "sa-tk",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tn.svg": {
+    "normalizedName": "sa-tn",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ts.svg": {
+    "normalizedName": "sa-ts",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tt.svg": {
+    "normalizedName": "sa-tt",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_tx.svg": {
+    "normalizedName": "sa-tx",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vc.svg": {
+    "normalizedName": "sa-vc",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vi.svg": {
+    "normalizedName": "sa-vi",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vl.svg": {
+    "normalizedName": "sa-vl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vn.svg": {
+    "normalizedName": "sa-vn",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vp.svg": {
+    "normalizedName": "sa-vp",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vr.svg": {
+    "normalizedName": "sa-vr",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vt.svg": {
+    "normalizedName": "sa-vt",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_vx.svg": {
+    "normalizedName": "sa-vx",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_wb.svg": {
+    "normalizedName": "sa-wb",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_wl.svg": {
+    "normalizedName": "sa-wl",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_wr.svg": {
+    "normalizedName": "sa-wr",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ws.svg": {
+    "normalizedName": "sa-ws",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_wv.svg": {
+    "normalizedName": "sa-wv",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_x.svg": {
+    "normalizedName": "sa-x",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_xp.svg": {
+    "normalizedName": "sa-xp",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_xr.svg": {
+    "normalizedName": "sa-xr",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_xt.svg": {
+    "normalizedName": "sa-xt",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_y.svg": {
+    "normalizedName": "sa-y",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_yb.svg": {
+    "normalizedName": "sa-yb",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_ym.svg": {
+    "normalizedName": "sa-ym",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_yt.svg": {
+    "normalizedName": "sa-yt",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_z.svg": {
+    "normalizedName": "sa-z",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/Attribut/sbb_sa_zm.svg": {
+    "normalizedName": "sa-zm",
+    "collections": ["fpl", "timetable-attributes"]
+  },
+  "FPL/HIM_CUS/sbb_add_stop.svg": {
+    "normalizedName": "add-stop",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_alternative.svg": {
+    "normalizedName": "alternative",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_cancellation.svg": {
+    "normalizedName": "cancellation",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_construction.svg": {
+    "normalizedName": "him-construction",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_delay.svg": {
+    "normalizedName": "delay",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_disruption.svg": {
+    "normalizedName": "him-disruption",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_info.svg": {
+    "normalizedName": "him-info",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_missed_connection.svg": {
+    "normalizedName": "missed-connection",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_platform_change.svg": {
+    "normalizedName": "platform-change",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_replacementbus.svg": {
+    "normalizedName": "him-replacementbus",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/sbb_reroute.svg": {
+    "normalizedName": "reroute",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/utilization_high.svg": {
+    "normalizedName": "utilization-high",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/utilization_low.svg": {
+    "normalizedName": "utilization-low",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/utilization_medium.svg": {
+    "normalizedName": "utilization-medium",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/HIM_CUS/utilization_none.svg": {
+    "normalizedName": "utilization-none",
+    "collections": ["fpl", "him-cus"]
+  },
+  "FPL/Produkt/sbb_product_bex.svg": {
+    "normalizedName": "product-bex",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_cnl.svg": {
+    "normalizedName": "product-cnl",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ec.svg": {
+    "normalizedName": "product-ec",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_en.svg": {
+    "normalizedName": "product-en",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_gex.svg": {
+    "normalizedName": "product-gex",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic.svg": {
+    "normalizedName": "product-ic",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_1.svg": {
+    "normalizedName": "product-ic-1",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_11.svg": {
+    "normalizedName": "product-ic-11",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_2.svg": {
+    "normalizedName": "product-ic-2",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_21.svg": {
+    "normalizedName": "product-ic-21",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_3.svg": {
+    "normalizedName": "product-ic-3",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_4.svg": {
+    "normalizedName": "product-ic-4",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_5.svg": {
+    "normalizedName": "product-ic-5",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_51.svg": {
+    "normalizedName": "product-ic-51",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_6.svg": {
+    "normalizedName": "product-ic-6",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_61.svg": {
+    "normalizedName": "product-ic-61",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_7.svg": {
+    "normalizedName": "product-ic-7",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_8.svg": {
+    "normalizedName": "product-ic-8",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ic_9.svg": {
+    "normalizedName": "product-ic-9",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ice.svg": {
+    "normalizedName": "product-ice",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_icn.svg": {
+    "normalizedName": "product-icn",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir.svg": {
+    "normalizedName": "product-ir",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_13.svg": {
+    "normalizedName": "product-ir-13",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_15.svg": {
+    "normalizedName": "product-ir-15",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_16.svg": {
+    "normalizedName": "product-ir-16",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_17.svg": {
+    "normalizedName": "product-ir-17",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_25.svg": {
+    "normalizedName": "product-ir-25",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_26.svg": {
+    "normalizedName": "product-ir-26",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_27.svg": {
+    "normalizedName": "product-ir-27",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_35.svg": {
+    "normalizedName": "product-ir-35",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_36.svg": {
+    "normalizedName": "product-ir-36",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_37.svg": {
+    "normalizedName": "product-ir-37",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_45.svg": {
+    "normalizedName": "product-ir-45",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_46.svg": {
+    "normalizedName": "product-ir-46",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_55.svg": {
+    "normalizedName": "product-ir-55",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_56.svg": {
+    "normalizedName": "product-ir-56",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_65.svg": {
+    "normalizedName": "product-ir-65",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_66.svg": {
+    "normalizedName": "product-ir-66",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_70.svg": {
+    "normalizedName": "product-ir-70",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_75.svg": {
+    "normalizedName": "product-ir-75",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_90.svg": {
+    "normalizedName": "product-ir-90",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_ir_95.svg": {
+    "normalizedName": "product-ir-95",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_nj.svg": {
+    "normalizedName": "product-nj",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_pe.svg": {
+    "normalizedName": "product-pe",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_re.svg": {
+    "normalizedName": "product-re",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_rj.svg": {
+    "normalizedName": "product-rj",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_rjx.svg": {
+    "normalizedName": "product-rjx",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_rx.svg": {
+    "normalizedName": "product-rx",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_sn.svg": {
+    "normalizedName": "product-sn",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_tgv.svg": {
+    "normalizedName": "product-tgv",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "FPL/Produkt/sbb_product_vae.svg": {
+    "normalizedName": "product-vae",
+    "collections": ["fpl", "timetable-products"]
+  },
+  "KOM/responsive/large/010_Basic/calendar_6_large.svg": {
+    "normalizedName": "calendar-large",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/large/010_Basic/chart_column_trend_284_large.svg": {
+    "normalizedName": "chart-column-trend-large",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/large/010_Basic/coins_325_large.svg": {
+    "normalizedName": "coins-large",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/large/010_Basic/rocket_319_large.svg": {
+    "normalizedName": "rocket-large",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/large/010_Basic/shopping_cart_4_large.svg": {
+    "normalizedName": "shopping-cart-large",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/large/050_Community/bulb_on_48_large.svg": {
+    "normalizedName": "bulb-on-large",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/large/050_Community/handshake_58_large.svg": {
+    "normalizedName": "handshake-large",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/large/050_Community/network_55_large.svg": {
+    "normalizedName": "network-large",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/large/050_Community/two_speech_bubbles_51_large.svg": {
+    "normalizedName": "two-speech-bubbles-large",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/large/060_User/employees_sbb_317_large.svg": {
+    "normalizedName": "employees-large",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/large/060_User/user_group_57_large.svg": {
+    "normalizedName": "user-group-large",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/large/080_Timetable/percent_78_large.svg": {
+    "normalizedName": "percent-large",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/large/080_Timetable/switzerland_route_204_large.svg": {
+    "normalizedName": "switzerland-route-large",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/large/100_Station/lotus_294_large.svg": {
+    "normalizedName": "lotus-large",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/large/100_Station/platform_311_large.svg": {
+    "normalizedName": "platform-large",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/large/100_Station/station_117_large.svg": {
+    "normalizedName": "station-large",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/large/120_Hardware/laptop_smartphone_165_large.svg": {
+    "normalizedName": "laptop-smartphone-large",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/large/170_Transport/bicycle_248_large.svg": {
+    "normalizedName": "bicycle-large",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/large/170_Transport/train_249_large.svg": {
+    "normalizedName": "train-large",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/large/180_Leisure/adult_kids_262_large.svg": {
+    "normalizedName": "adult-kids-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/balloons_264_large.svg": {
+    "normalizedName": "balloons-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/christmas_tree_shopping_bag_269_large.svg": {
+    "normalizedName": "christmas-tree-shopping-bag-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/elephant_271_large.svg": {
+    "normalizedName": "elephant-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/ferris_wheel_259_large.svg": {
+    "normalizedName": "ferris-wheel-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/hiking_boot_268_large.svg": {
+    "normalizedName": "hiking-boot-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/leaf_260_large.svg": {
+    "normalizedName": "leaf-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/locomotive_viaduct_252_large.svg": {
+    "normalizedName": "locomotive-viaduct-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/lucerne_chapel_bridge_257_large.svg": {
+    "normalizedName": "lucerne-chapel-bridge-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/market_shopping_bag_258_large.svg": {
+    "normalizedName": "market-shopping-bag-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/mountain_sun_251_large.svg": {
+    "normalizedName": "mountain-sun-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/museum_256_large.svg": {
+    "normalizedName": "museum-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/music_rock_hand_gesture_255_large.svg": {
+    "normalizedName": "music-rock-hand-gesture-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/railway_ship_250_large.svg": {
+    "normalizedName": "railway-ship-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/sledge_snowshoe_261_large.svg": {
+    "normalizedName": "sledge-snowshoe-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/soccer_ball_265_large.svg": {
+    "normalizedName": "soccer-ball-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/three_adults_254_large.svg": {
+    "normalizedName": "three-adults-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/train_ski_263_large.svg": {
+    "normalizedName": "train-ski-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/180_Leisure/two_adults_kid_253_large.svg": {
+    "normalizedName": "two-adults-kid-large",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/large/190_Installation/railway_switch_313_large.svg": {
+    "normalizedName": "railway-switch-large",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/large/190_Installation/train_signal_312_large.svg": {
+    "normalizedName": "train-signal-large",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/large/190_Installation/train_tracks_314_large.svg": {
+    "normalizedName": "train-tracks-large",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/large/200_Building/building_tree_315_large.svg": {
+    "normalizedName": "building-tree-large",
+    "collections": ["kom", "building"]
+  },
+  "KOM/responsive/large/200_Building/city_316_large.svg": {
+    "normalizedName": "city-large",
+    "collections": ["kom", "building"]
+  },
+  "KOM/responsive/large/210_Career/curriculum_vitae_318_large.svg": {
+    "normalizedName": "curriculum-vitae-large",
+    "collections": ["kom", "career"]
+  },
+  "KOM/responsive/large/210_Career/hand_graduation_cap_320_large.svg": {
+    "normalizedName": "hand-graduation-cap-large",
+    "collections": ["kom", "career"]
+  },
+  "KOM/responsive/medium/010_Basic/alarm_clock_19_medium.svg": {
+    "normalizedName": "alarm-clock-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/app_icon_283_medium.svg": {
+    "normalizedName": "app-icon-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/apple_bag_308_medium.svg": {
+    "normalizedName": "apple-bag-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/backpack_348_medium.svg": {
+    "normalizedName": "backpack-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/bell_183_medium.svg": {
+    "normalizedName": "bell-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/binoculars_338_medium.svg": {
+    "normalizedName": "binoculars-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/browser_159_medium.svg": {
+    "normalizedName": "browser-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/calendar_6_medium.svg": {
+    "normalizedName": "calendar-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/camera_203_medium.svg": {
+    "normalizedName": "camera-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/chart_column_163_medium.svg": {
+    "normalizedName": "chart-column-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/chart_column_trend_284_medium.svg": {
+    "normalizedName": "chart-column-trend-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/chart_line_345_medium.svg": {
+    "normalizedName": "chart-line-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/chart_pie_340_medium.svg": {
+    "normalizedName": "chart-pie-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/circle_information_11_medium.svg": {
+    "normalizedName": "circle-information-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/circle_information_small_206_medium.svg": {
+    "normalizedName": "circle-information-small-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/circle_play_209_medium.svg": {
+    "normalizedName": "circle-play-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/circle_question_mark_137_medium.svg": {
+    "normalizedName": "circle-question-mark-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/contact_166_medium.svg": {
+    "normalizedName": "contact-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/controls_29_medium.svg": {
+    "normalizedName": "controls-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/cup_hot_281_medium.svg": {
+    "normalizedName": "cup-hot-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/cutlery_22_medium.svg": {
+    "normalizedName": "cutlery-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/database_171_medium.svg": {
+    "normalizedName": "database-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/dog_180_medium.svg": {
+    "normalizedName": "dog-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/download_27_medium.svg": {
+    "normalizedName": "download-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/download_large_data_128_medium.svg": {
+    "normalizedName": "download-large-data-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/download_small_data_129_medium.svg": {
+    "normalizedName": "download-small-data-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/entrance_278_medium.svg": {
+    "normalizedName": "entrance-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/envelope_3_medium.svg": {
+    "normalizedName": "envelope-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/envelope_open_336_medium.svg": {
+    "normalizedName": "envelope-open-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/exit_277_medium.svg": {
+    "normalizedName": "exit-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/face_king_339_medium.svg": {
+    "normalizedName": "face-king-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/face_worker_341_medium.svg": {
+    "normalizedName": "face-worker-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/factory_305_medium.svg": {
+    "normalizedName": "factory-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/filter_24_medium.svg": {
+    "normalizedName": "filter-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/filter_x_279_medium.svg": {
+    "normalizedName": "filter-x-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/flashlight_on_346_medium.svg": {
+    "normalizedName": "flashlight-on-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/form_280_medium.svg": {
+    "normalizedName": "form-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/gears_14_medium.svg": {
+    "normalizedName": "gears-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/gift_33_medium.svg": {
+    "normalizedName": "gift-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/globe_210_medium.svg": {
+    "normalizedName": "globe-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/hand_heart_344_medium.svg": {
+    "normalizedName": "hand-heart-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/hand_with_service_bell_333_medium.svg": {
+    "normalizedName": "hand-with-service-bell-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/heart_31_medium.svg": {
+    "normalizedName": "heart-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/hierarchy_17_medium.svg": {
+    "normalizedName": "hierarchy-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/lighthouse_282_medium.svg": {
+    "normalizedName": "lighthouse-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/link_152_medium.svg": {
+    "normalizedName": "link-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/link_external_127_medium.svg": {
+    "normalizedName": "link-external-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/list_272_medium.svg": {
+    "normalizedName": "list-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/magnifying_glass_9_medium.svg": {
+    "normalizedName": "magnifying-glass-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/mug_hot_23_medium.svg": {
+    "normalizedName": "mug-hot-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/newspaper_175_medium.svg": {
+    "normalizedName": "newspaper-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/paper_aeroplane_142_medium.svg": {
+    "normalizedName": "paper-aeroplane-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/paper_clip_121_medium.svg": {
+    "normalizedName": "paper-clip-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/pen_16_medium.svg": {
+    "normalizedName": "pen-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/picture_147_medium.svg": {
+    "normalizedName": "picture-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/pin_148_medium.svg": {
+    "normalizedName": "pin-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/rss_321_medium.svg": {
+    "normalizedName": "rss-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/service_bell_15_medium.svg": {
+    "normalizedName": "service-bell-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/shopping_cart_4_medium.svg": {
+    "normalizedName": "shopping-cart-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/sign_exclamation_point_1_medium.svg": {
+    "normalizedName": "sign-exclamation-point-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/sign_x_126_medium.svg": {
+    "normalizedName": "sign-x-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/spanner_342_medium.svg": {
+    "normalizedName": "spanner-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/star_5_medium.svg": {
+    "normalizedName": "star-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/switzerland_343_medium.svg": {
+    "normalizedName": "switzerland-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/tag_30_medium.svg": {
+    "normalizedName": "tag-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/target_347_medium.svg": {
+    "normalizedName": "target-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/torch_337_medium.svg": {
+    "normalizedName": "torch-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/trash_8_medium.svg": {
+    "normalizedName": "trash-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/tree_335_medium.svg": {
+    "normalizedName": "tree-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/upload_28_medium.svg": {
+    "normalizedName": "upload-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/wallet_146_medium.svg": {
+    "normalizedName": "wallet-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/warning_light_334_medium.svg": {
+    "normalizedName": "warning-light-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/010_Basic/wifi_20_medium.svg": {
+    "normalizedName": "wifi-medium",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrow_circle_7_medium.svg": {
+    "normalizedName": "arrow-circle-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrow_long_left_36_medium.svg": {
+    "normalizedName": "arrow-long-left-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrow_long_right_38_medium.svg": {
+    "normalizedName": "arrow-long-right-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrow_right_174_medium.svg": {
+    "normalizedName": "arrow-right-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrows_circle_2_medium.svg": {
+    "normalizedName": "arrows-circle-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrows_left_right_47_medium.svg": {
+    "normalizedName": "arrows-left-right-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrows_left_right_down_up_349_medium.svg": {
+    "normalizedName": "arrows-left-right-down-up-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrows_right_left_39_medium.svg": {
+    "normalizedName": "arrows-right-left-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/arrows_up_down_125_medium.svg": {
+    "normalizedName": "arrows-up-down-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_right_37_medium.svg": {
+    "normalizedName": "chevron-right-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_down_43_medium.svg": {
+    "normalizedName": "chevron-small-down-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_down_circle_40_medium.svg": {
+    "normalizedName": "chevron-small-down-circle-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_left_44_medium.svg": {
+    "normalizedName": "chevron-small-left-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_left_circle_41_medium.svg": {
+    "normalizedName": "chevron-small-left-circle-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_right_45_medium.svg": {
+    "normalizedName": "chevron-small-right-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_right_circle_42_medium.svg": {
+    "normalizedName": "chevron-small-right-circle-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_up_34_medium.svg": {
+    "normalizedName": "chevron-small-up-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/chevron_small_up_circle_46_medium.svg": {
+    "normalizedName": "chevron-small-up-circle-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/increase_size_144_medium.svg": {
+    "normalizedName": "increase-size-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/020_Arrow/reduce_size_145_medium.svg": {
+    "normalizedName": "reduce-size-medium",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/medium/030_Status/button_power_53_medium.svg": {
+    "normalizedName": "button-power-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/exclamation_point_35_medium.svg": {
+    "normalizedName": "exclamation-point-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/eye_96_medium.svg": {
+    "normalizedName": "eye-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/eye_disabled_95_medium.svg": {
+    "normalizedName": "eye-disabled-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/lock_closed_114_medium.svg": {
+    "normalizedName": "lock-closed-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/lock_open_113_medium.svg": {
+    "normalizedName": "lock-open-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/question_mark_115_medium.svg": {
+    "normalizedName": "question-mark-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/tick_112_medium.svg": {
+    "normalizedName": "tick-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/030_Status/tick_clipboard_168_medium.svg": {
+    "normalizedName": "tick-clipboard-medium",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/medium/040_Navigation/circle_minus_181_medium.svg": {
+    "normalizedName": "circle-minus-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/circle_plus_182_medium.svg": {
+    "normalizedName": "circle-plus-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/context_menu_106_medium.svg": {
+    "normalizedName": "context-menu-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/cross_104_medium.svg": {
+    "normalizedName": "cross-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/drag_205_medium.svg": {
+    "normalizedName": "drag-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/hamburger_menu_102_medium.svg": {
+    "normalizedName": "hamburger-menu-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/house_101_medium.svg": {
+    "normalizedName": "house-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/layers_325_medium.svg": {
+    "normalizedName": "layers-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/minus_105_medium.svg": {
+    "normalizedName": "minus-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/plus_103_medium.svg": {
+    "normalizedName": "plus-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/040_Navigation/two_finger_tap_179_medium.svg": {
+    "normalizedName": "two-finger-tap-medium",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/medium/050_Community/bulb_off_49_medium.svg": {
+    "normalizedName": "bulb-off-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/bulb_on_48_medium.svg": {
+    "normalizedName": "bulb-on-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/face_grinning_273_medium.svg": {
+    "normalizedName": "face-grinning-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/face_neutral_274_medium.svg": {
+    "normalizedName": "face-neutral-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/face_sad_275_medium.svg": {
+    "normalizedName": "face-sad-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/face_smiling_276_medium.svg": {
+    "normalizedName": "face-smiling-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/handshake_58_medium.svg": {
+    "normalizedName": "handshake-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/network_55_medium.svg": {
+    "normalizedName": "network-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/onboarding_213_medium.svg": {
+    "normalizedName": "onboarding-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/question_answer_212_medium.svg": {
+    "normalizedName": "question-answer-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/share_25_medium.svg": {
+    "normalizedName": "share-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/speech_bubble_50_medium.svg": {
+    "normalizedName": "speech-bubble-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/speech_bubble_group_empty_54_medium.svg": {
+    "normalizedName": "speech-bubble-group-empty-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/thumb_down_60_medium.svg": {
+    "normalizedName": "thumb-down-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/thumb_up_52_medium.svg": {
+    "normalizedName": "thumb-up-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/translate_287_medium.svg": {
+    "normalizedName": "translate-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/050_Community/two_speech_bubbles_51_medium.svg": {
+    "normalizedName": "two-speech-bubbles-medium",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/medium/060_User/avatar_police_352_medium.svg": {
+    "normalizedName": "avatar-police-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/key_162_medium.svg": {
+    "normalizedName": "key-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/pie_94_medium.svg": {
+    "normalizedName": "pie-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/two_users_93_medium.svg": {
+    "normalizedName": "two-users-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_92_medium.svg": {
+    "normalizedName": "user-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_change_97_medium.svg": {
+    "normalizedName": "user-change-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_group_57_medium.svg": {
+    "normalizedName": "user-group-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_group_round_table_353_medium.svg": {
+    "normalizedName": "user-group-round-table-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_group_row_56_medium.svg": {
+    "normalizedName": "user-group-row-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_hat_169_medium.svg": {
+    "normalizedName": "user-hat-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_headset_156_medium.svg": {
+    "normalizedName": "user-headset-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_key_124_medium.svg": {
+    "normalizedName": "user-key-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_plus_310_medium.svg": {
+    "normalizedName": "user-plus-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/060_User/user_tie_351_medium.svg": {
+    "normalizedName": "user-tie-medium",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/medium/070_Document/document_check_176_medium.svg": {
+    "normalizedName": "document-check-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_image_62_medium.svg": {
+    "normalizedName": "document-image-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_lock_354_medium.svg": {
+    "normalizedName": "document-lock-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_pdf_61_medium.svg": {
+    "normalizedName": "document-pdf-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_plus_355_medium.svg": {
+    "normalizedName": "document-plus-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_ppt_356_medium.svg": {
+    "normalizedName": "document-ppt-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_sbb_214_medium.svg": {
+    "normalizedName": "document-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_sound_64_medium.svg": {
+    "normalizedName": "document-sound-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_standard_67_medium.svg": {
+    "normalizedName": "document-standard-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_text_63_medium.svg": {
+    "normalizedName": "document-text-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_video_65_medium.svg": {
+    "normalizedName": "document-video-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/document_zip_66_medium.svg": {
+    "normalizedName": "document-zip-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/folder_info_131_medium.svg": {
+    "normalizedName": "folder-info-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/folder_lock_358_medium.svg": {
+    "normalizedName": "folder-lock-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/folder_open_59_medium.svg": {
+    "normalizedName": "folder-open-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/folder_open_arrow_160_medium.svg": {
+    "normalizedName": "folder-open-arrow-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/folder_plus_130_medium.svg": {
+    "normalizedName": "folder-plus-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/metadata_357_medium.svg": {
+    "normalizedName": "metadata-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/070_Document/two_folders_18_medium.svg": {
+    "normalizedName": "two-folders-medium",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/medium/080_Timetable/arrow_change_68_medium.svg": {
+    "normalizedName": "arrow-change-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/avatar_train_staff_71_medium.svg": {
+    "normalizedName": "avatar-train-staff-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/avatar_train_staff_disabled_72_medium.svg": {
+    "normalizedName": "avatar-train-staff-disabled-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/clock_10_medium.svg": {
+    "normalizedName": "clock-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/hourglass_217_medium.svg": {
+    "normalizedName": "hourglass-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/locomotive_83_medium.svg": {
+    "normalizedName": "locomotive-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/percent_78_medium.svg": {
+    "normalizedName": "percent-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/percent_tag_141_medium.svg": {
+    "normalizedName": "percent-tag-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/punctuality_216_medium.svg": {
+    "normalizedName": "punctuality-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/route_circle_end_139_medium.svg": {
+    "normalizedName": "route-circle-end-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/route_circle_start_140_medium.svg": {
+    "normalizedName": "route-circle-start-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/seat_window_288_medium.svg": {
+    "normalizedName": "seat-window-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/switzerland_route_204_medium.svg": {
+    "normalizedName": "switzerland-route-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/timetable_215_medium.svg": {
+    "normalizedName": "timetable-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/walk_70_medium.svg": {
+    "normalizedName": "walk-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/walk_fast_290_medium.svg": {
+    "normalizedName": "walk-fast-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/walk_slow_289_medium.svg": {
+    "normalizedName": "walk-slow-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/wheelchair_73_medium.svg": {
+    "normalizedName": "wheelchair-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/wheelchair_inaccessible_77_medium.svg": {
+    "normalizedName": "wheelchair-inaccessible-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/wheelchair_partially_74_medium.svg": {
+    "normalizedName": "wheelchair-partially-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/wheelchair_reservation_75_medium.svg": {
+    "normalizedName": "wheelchair-reservation-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/080_Timetable/wheelchair_uncertain_76_medium.svg": {
+    "normalizedName": "wheelchair-uncertain-medium",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/medium/090_Ticket/qrcode_221_medium.svg": {
+    "normalizedName": "qrcode-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/qrcode_disabled_309_medium.svg": {
+    "normalizedName": "qrcode-disabled-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/swisspass_222_medium.svg": {
+    "normalizedName": "swisspass-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/swisspass_temporary_219_medium.svg": {
+    "normalizedName": "swisspass-temporary-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_day_135_medium.svg": {
+    "normalizedName": "ticket-day-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_disabled_138_medium.svg": {
+    "normalizedName": "ticket-disabled-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_heart_136_medium.svg": {
+    "normalizedName": "ticket-heart-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_journey_218_medium.svg": {
+    "normalizedName": "ticket-journey-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_parking_291_medium.svg": {
+    "normalizedName": "ticket-parking-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_percent_220_medium.svg": {
+    "normalizedName": "ticket-percent-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_route_143_medium.svg": {
+    "normalizedName": "ticket-route-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/ticket_star_32_medium.svg": {
+    "normalizedName": "ticket-star-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/090_Ticket/tickets_class_69_medium.svg": {
+    "normalizedName": "tickets-class-medium",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/medium/100_Station/book_293_medium.svg": {
+    "normalizedName": "book-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/bottle_apple_296_medium.svg": {
+    "normalizedName": "bottle-apple-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/customer_assistance_sbb_223_medium.svg": {
+    "normalizedName": "customer-assistance-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/escalator_231_medium.svg": {
+    "normalizedName": "escalator-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/general_display_227_medium.svg": {
+    "normalizedName": "general-display-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/hand_plus_circle_116_medium.svg": {
+    "normalizedName": "hand-plus-circle-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/hand_sbb_297_medium.svg": {
+    "normalizedName": "hand-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/hostel_119_medium.svg": {
+    "normalizedName": "hostel-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/lift_229_medium.svg": {
+    "normalizedName": "lift-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/locker_298_medium.svg": {
+    "normalizedName": "locker-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/lotus_294_medium.svg": {
+    "normalizedName": "lotus-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/meeting_point_118_medium.svg": {
+    "normalizedName": "meeting-point-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/money_exchange_120_medium.svg": {
+    "normalizedName": "money-exchange-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/platform_display_230_medium.svg": {
+    "normalizedName": "platform-display-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/screen_inside_train_224_medium.svg": {
+    "normalizedName": "screen-inside-train-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/shirt_shoe_292_medium.svg": {
+    "normalizedName": "shirt-shoe-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/shopping_bag_299_medium.svg": {
+    "normalizedName": "shopping-bag-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/shopping_bag_coupon_134_medium.svg": {
+    "normalizedName": "shopping-bag-coupon-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/shopping_bag_fast_323_medium.svg": {
+    "normalizedName": "shopping-bag-fast-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/station_117_medium.svg": {
+    "normalizedName": "station-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/station_surrounding_area_322_medium.svg": {
+    "normalizedName": "station-surrounding-area-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/ticket_machine_225_medium.svg": {
+    "normalizedName": "ticket-machine-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/ticket_machine_ticket_228_medium.svg": {
+    "normalizedName": "ticket-machine-ticket-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/toilet_233_medium.svg": {
+    "normalizedName": "toilet-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/train_station_295_medium.svg": {
+    "normalizedName": "train-station-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/waiting_room_232_medium.svg": {
+    "normalizedName": "waiting-room-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/100_Station/wine_cheese_359_medium.svg": {
+    "normalizedName": "wine-cheese-medium",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/medium/110_Location/arrow_compass_235_medium.svg": {
+    "normalizedName": "arrow-compass-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/gps_12_medium.svg": {
+    "normalizedName": "gps-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/gps_disabled_13_medium.svg": {
+    "normalizedName": "gps-disabled-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/location_pin_98_medium.svg": {
+    "normalizedName": "location-pin-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/location_pin_a_99_medium.svg": {
+    "normalizedName": "location-pin-a-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/location_pin_b_100_medium.svg": {
+    "normalizedName": "location-pin-b-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/location_pin_map_173_medium.svg": {
+    "normalizedName": "location-pin-map-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/location_pin_pulse_surrounding_area_234_medium.svg": {
+    "normalizedName": "location-pin-pulse-surrounding-area-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/location_pin_surrounding_area_207_medium.svg": {
+    "normalizedName": "location-pin-surrounding-area-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/mountain_minus_122_medium.svg": {
+    "normalizedName": "mountain-minus-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/110_Location/mountain_plus_123_medium.svg": {
+    "normalizedName": "mountain-plus-medium",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/medium/120_Hardware/archive_box_303_medium.svg": {
+    "normalizedName": "archive-box-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/briefcase_300_medium.svg": {
+    "normalizedName": "briefcase-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/brochure_236_medium.svg": {
+    "normalizedName": "brochure-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/desk_88_medium.svg": {
+    "normalizedName": "desk-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/desk_adjustable_89_medium.svg": {
+    "normalizedName": "desk-adjustable-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/display_85_medium.svg": {
+    "normalizedName": "display-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/keyboard_86_medium.svg": {
+    "normalizedName": "keyboard-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/laptop_167_medium.svg": {
+    "normalizedName": "laptop-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/laptop_smartphone_165_medium.svg": {
+    "normalizedName": "laptop-smartphone-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/megaphone_302_medium.svg": {
+    "normalizedName": "megaphone-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/office_chair_87_medium.svg": {
+    "normalizedName": "office-chair-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/power_plug_154_medium.svg": {
+    "normalizedName": "power-plug-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/printer_21_medium.svg": {
+    "normalizedName": "printer-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/scanner_178_medium.svg": {
+    "normalizedName": "scanner-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/smartphone_84_medium.svg": {
+    "normalizedName": "smartphone-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/speaker_237_medium.svg": {
+    "normalizedName": "speaker-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/suitcase_90_medium.svg": {
+    "normalizedName": "suitcase-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/suitcase_disabled_91_medium.svg": {
+    "normalizedName": "suitcase-disabled-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/telephone_gsm_172_medium.svg": {
+    "normalizedName": "telephone-gsm-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/telephone_receiver_164_medium.svg": {
+    "normalizedName": "telephone-receiver-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/walkie_talkie_177_medium.svg": {
+    "normalizedName": "walkie-talkie-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/120_Hardware/weight_301_medium.svg": {
+    "normalizedName": "weight-medium",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_194_medium.svg": {
+    "normalizedName": "cloud-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_dense_fog_326_medium.svg": {
+    "normalizedName": "cloud-dense-fog-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_drops_195_medium.svg": {
+    "normalizedName": "cloud-drops-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_drops_moon_190_medium.svg": {
+    "normalizedName": "cloud-drops-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_fog_327_medium.svg": {
+    "normalizedName": "cloud-fog-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_ice_185_medium.svg": {
+    "normalizedName": "cloud-ice-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_lightning_202_medium.svg": {
+    "normalizedName": "cloud-lightning-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_lightning_moon_189_medium.svg": {
+    "normalizedName": "cloud-lightning-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_little_snow_moon_330_medium.svg": {
+    "normalizedName": "cloud-little-snow-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_little_snow_sun_331_medium.svg": {
+    "normalizedName": "cloud-little-snow-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_moon_187_medium.svg": {
+    "normalizedName": "cloud-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_rain_199_medium.svg": {
+    "normalizedName": "cloud-rain-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_rain_snow_328_medium.svg": {
+    "normalizedName": "cloud-rain-snow-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_rain_snow_moon_329_medium.svg": {
+    "normalizedName": "cloud-rain-snow-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_rain_snow_sun_215_medium.svg": {
+    "normalizedName": "cloud-rain-snow-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_rain_sun_198_medium.svg": {
+    "normalizedName": "cloud-rain-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_snow_196_medium.svg": {
+    "normalizedName": "cloud-snow-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_snow_lightning_184_medium.svg": {
+    "normalizedName": "cloud-snow-lightning-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_snow_moon_188_medium.svg": {
+    "normalizedName": "cloud-snow-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_snow_sun_193_medium.svg": {
+    "normalizedName": "cloud-snow-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_snowflake_201_medium.svg": {
+    "normalizedName": "cloud-snowflake-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_snowflake_sun_200_medium.svg": {
+    "normalizedName": "cloud-snowflake-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_strong_rain_moon_191_medium.svg": {
+    "normalizedName": "cloud-strong-rain-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_strong_rain_sun_192_medium.svg": {
+    "normalizedName": "cloud-strong-rain-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_sun_186_medium.svg": {
+    "normalizedName": "cloud-sun-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/cloud_sunshine_197_medium.svg": {
+    "normalizedName": "cloud-sunshine-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/fog_150_medium.svg": {
+    "normalizedName": "fog-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/moon_151_medium.svg": {
+    "normalizedName": "moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/sun_moon_211_medium.svg": {
+    "normalizedName": "sun-moon-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/sunrise_208_medium.svg": {
+    "normalizedName": "sunrise-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/sunshine_149_medium.svg": {
+    "normalizedName": "sunshine-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/140_Weather/weather_unknown_332_medium.svg": {
+    "normalizedName": "weather-unknown-medium",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/medium/160_Audio/fast_forward_161_medium.svg": {
+    "normalizedName": "fast-forward-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/next_155_medium.svg": {
+    "normalizedName": "next-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/pause_158_medium.svg": {
+    "normalizedName": "pause-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/play_132_medium.svg": {
+    "normalizedName": "play-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/previous_157_medium.svg": {
+    "normalizedName": "previous-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/record_153_medium.svg": {
+    "normalizedName": "record-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/rewind_170_medium.svg": {
+    "normalizedName": "rewind-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/160_Audio/stop_133_medium.svg": {
+    "normalizedName": "stop-medium",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/medium/170_Transport/airplane_285_medium.svg": {
+    "normalizedName": "airplane-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/bicycle_248_medium.svg": {
+    "normalizedName": "bicycle-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/bus_240_medium.svg": {
+    "normalizedName": "bus-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/bus_circle_243_medium.svg": {
+    "normalizedName": "bus-circle-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/bus_sbb_242_medium.svg": {
+    "normalizedName": "bus-sbb-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/bus_stop_241_medium.svg": {
+    "normalizedName": "bus-stop-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/car_238_medium.svg": {
+    "normalizedName": "car-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/car_parking_360_medium.svg": {
+    "normalizedName": "car-parking-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/charging_station_361_medium.svg": {
+    "normalizedName": "charging-station-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/combined_mobility_324_medium.svg": {
+    "normalizedName": "combined-mobility-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/container_304_medium.svg": {
+    "normalizedName": "container-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/driverless_bus_362_medium.svg": {
+    "normalizedName": "driverless-bus-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/freight_wagon_286_medium.svg": {
+    "normalizedName": "freight-wagon-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/k_r_244_medium.svg": {
+    "normalizedName": "k-r-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/park_and_rail_245_medium.svg": {
+    "normalizedName": "park-and-rail-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/petrol_station_239_medium.svg": {
+    "normalizedName": "petrol-station-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/shuttle_364_medium.svg": {
+    "normalizedName": "shuttle-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/taxi_246_medium.svg": {
+    "normalizedName": "taxi-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/train_249_medium.svg": {
+    "normalizedName": "train-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/170_Transport/tram_247_medium.svg": {
+    "normalizedName": "tram-medium",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/medium/180_Leisure/mountain_sun_251_medium.svg": {
+    "normalizedName": "mountain-sun-medium",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/medium/190_Installation/construction_350_medium.svg": {
+    "normalizedName": "construction-medium",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/medium/190_Installation/railway_switch_313_medium.svg": {
+    "normalizedName": "railway-switch-medium",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/medium/200_Building/city_316_medium.svg": {
+    "normalizedName": "city-medium",
+    "collections": ["kom", "building"]
+  },
+  "KOM/responsive/medium/210_Career/ship_steering_wheel_363_medium.svg": {
+    "normalizedName": "ship-steering-wheel-medium",
+    "collections": ["kom", "career"]
+  },
+  "KOM/responsive/small/010_Basic/alarm_clock_19_small.svg": {
+    "normalizedName": "alarm-clock-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/app_icon_283_small.svg": {
+    "normalizedName": "app-icon-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/apple_bag_308_small.svg": {
+    "normalizedName": "apple-bag-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/backpack_348_small.svg": {
+    "normalizedName": "backpack-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/bell_183_small.svg": {
+    "normalizedName": "bell-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/binoculars_338_small.svg": {
+    "normalizedName": "binoculars-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/browser_159_small.svg": {
+    "normalizedName": "browser-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/calendar_6_small.svg": {
+    "normalizedName": "calendar-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/camera_203_small.svg": {
+    "normalizedName": "camera-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/chart_column_163_small.svg": {
+    "normalizedName": "chart-column-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/chart_column_trend_284_small.svg": {
+    "normalizedName": "chart-column-trend-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/chart_line_345_small.svg": {
+    "normalizedName": "chart-line-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/chart_pie_340_small.svg": {
+    "normalizedName": "chart-pie-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/circle_information_11_small.svg": {
+    "normalizedName": "circle-information-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/circle_information_small_206_small.svg": {
+    "normalizedName": "circle-information-small-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/circle_play_209_small.svg": {
+    "normalizedName": "circle-play-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/circle_question_mark_137_small.svg": {
+    "normalizedName": "circle-question-mark-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/contact_166_small.svg": {
+    "normalizedName": "contact-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/controls_29_small.svg": {
+    "normalizedName": "controls-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/cup_hot_281_small.svg": {
+    "normalizedName": "cup-hot-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/cutlery_22_small.svg": {
+    "normalizedName": "cutlery-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/database_171_small.svg": {
+    "normalizedName": "database-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/dog_180_small.svg": {
+    "normalizedName": "dog-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/download_27_small.svg": {
+    "normalizedName": "download-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/download_large_data_128_small.svg": {
+    "normalizedName": "download-large-data-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/download_small_data_129_small.svg": {
+    "normalizedName": "download-small-data-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/entrance_278_small.svg": {
+    "normalizedName": "entrance-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/envelope_3_small.svg": {
+    "normalizedName": "envelope-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/envelope_open_336_small.svg": {
+    "normalizedName": "envelope-open-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/exit_277_small.svg": {
+    "normalizedName": "exit-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/face_king_339_small.svg": {
+    "normalizedName": "face-king-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/face_worker_341_small.svg": {
+    "normalizedName": "face-worker-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/factory_305_small.svg": {
+    "normalizedName": "factory-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/filter_24_small.svg": {
+    "normalizedName": "filter-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/filter_x_279_small.svg": {
+    "normalizedName": "filter-x-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/flashlight_on_346_small.svg": {
+    "normalizedName": "flashlight-on-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/form_280_small.svg": {
+    "normalizedName": "form-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/gears_14_small.svg": {
+    "normalizedName": "gears-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/gift_33_small.svg": {
+    "normalizedName": "gift-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/globe_210_small.svg": {
+    "normalizedName": "globe-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/hand_heart_344_small.svg": {
+    "normalizedName": "hand-heart-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/hand_with_service_bell_333_small.svg": {
+    "normalizedName": "hand-with-service-bell-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/heart_31_small.svg": {
+    "normalizedName": "heart-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/hierarchy_17_small.svg": {
+    "normalizedName": "hierarchy-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/lighthouse_282_small.svg": {
+    "normalizedName": "lighthouse-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/link_152_small.svg": {
+    "normalizedName": "link-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/link_external_127_small.svg": {
+    "normalizedName": "link-external-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/list_272_small.svg": {
+    "normalizedName": "list-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/magnifying_glass_9_small.svg": {
+    "normalizedName": "magnifying-glass-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/mug_hot_23_small.svg": {
+    "normalizedName": "mug-hot-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/newspaper_175_small.svg": {
+    "normalizedName": "newspaper-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/paper_aeroplane_142_small.svg": {
+    "normalizedName": "paper-aeroplane-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/paper_clip_121_small.svg": {
+    "normalizedName": "paper-clip-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/pen_16_small.svg": {
+    "normalizedName": "pen-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/picture_147_small.svg": {
+    "normalizedName": "picture-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/pin_148_small.svg": {
+    "normalizedName": "pin-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/rss_321_small.svg": {
+    "normalizedName": "rss-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/service_bell_15_small.svg": {
+    "normalizedName": "service-bell-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/shopping_cart_4_small.svg": {
+    "normalizedName": "shopping-cart-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/sign_exclamation_point_1_small.svg": {
+    "normalizedName": "sign-exclamation-point-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/sign_x_126_small.svg": {
+    "normalizedName": "sign-x-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/spanner_342_small.svg": {
+    "normalizedName": "spanner-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/star_5_small.svg": {
+    "normalizedName": "star-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/switzerland_343_small.svg": {
+    "normalizedName": "switzerland-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/tag_30_small.svg": {
+    "normalizedName": "tag-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/target_347_small.svg": {
+    "normalizedName": "target-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/torch_337_small.svg": {
+    "normalizedName": "torch-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/trash_8_small.svg": {
+    "normalizedName": "trash-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/tree_335_small.svg": {
+    "normalizedName": "tree-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/upload_28_small.svg": {
+    "normalizedName": "upload-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/wallet_146_small.svg": {
+    "normalizedName": "wallet-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/warning_light_334_small.svg": {
+    "normalizedName": "warning-light-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/010_Basic/wifi_20_small.svg": {
+    "normalizedName": "wifi-small",
+    "collections": ["kom", "basic"]
+  },
+  "KOM/responsive/small/020_Arrow/arrow_circle_7_small.svg": {
+    "normalizedName": "arrow-circle-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrow_long_left_36_small.svg": {
+    "normalizedName": "arrow-long-left-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrow_long_right_38_small.svg": {
+    "normalizedName": "arrow-long-right-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrow_right_174_small.svg": {
+    "normalizedName": "arrow-right-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrows_circle_2_small.svg": {
+    "normalizedName": "arrows-circle-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrows_left_right_47_small.svg": {
+    "normalizedName": "arrows-left-right-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrows_left_right_down_up_349_small.svg": {
+    "normalizedName": "arrows-left-right-down-up-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrows_right_left_39_small.svg": {
+    "normalizedName": "arrows-right-left-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/arrows_up_down_125_small.svg": {
+    "normalizedName": "arrows-up-down-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_right_37_small.svg": {
+    "normalizedName": "chevron-right-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_down_43_small.svg": {
+    "normalizedName": "chevron-small-down-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_down_circle_40_small.svg": {
+    "normalizedName": "chevron-small-down-circle-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_left_44_small.svg": {
+    "normalizedName": "chevron-small-left-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_left_circle_41_small.svg": {
+    "normalizedName": "chevron-small-left-circle-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_right_45_small.svg": {
+    "normalizedName": "chevron-small-right-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_right_circle_42_small.svg": {
+    "normalizedName": "chevron-small-right-circle-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_up_34_small.svg": {
+    "normalizedName": "chevron-small-up-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/chevron_small_up_circle_46_small.svg": {
+    "normalizedName": "chevron-small-up-circle-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/increase_size_144_small.svg": {
+    "normalizedName": "increase-size-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/020_Arrow/reduce_size_145_small.svg": {
+    "normalizedName": "reduce-size-small",
+    "collections": ["kom", "arrow"]
+  },
+  "KOM/responsive/small/030_Status/button_power_53_small.svg": {
+    "normalizedName": "button-power-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/exclamation_point_35_small.svg": {
+    "normalizedName": "exclamation-point-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/eye_96_small.svg": {
+    "normalizedName": "eye-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/eye_disabled_95_small.svg": {
+    "normalizedName": "eye-disabled-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/lock_closed_114_small.svg": {
+    "normalizedName": "lock-closed-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/lock_open_113_small.svg": {
+    "normalizedName": "lock-open-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/question_mark_115_small.svg": {
+    "normalizedName": "question-mark-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/tick_112_small.svg": {
+    "normalizedName": "tick-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/030_Status/tick_clipboard_168_small.svg": {
+    "normalizedName": "tick-clipboard-small",
+    "collections": ["kom", "status"]
+  },
+  "KOM/responsive/small/040_Navigation/circle_minus_181_small.svg": {
+    "normalizedName": "circle-minus-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/circle_plus_182_small.svg": {
+    "normalizedName": "circle-plus-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/context_menu_106_small.svg": {
+    "normalizedName": "context-menu-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/cross_104_small.svg": {
+    "normalizedName": "cross-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/drag_205_small.svg": {
+    "normalizedName": "drag-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/hamburger_menu_102_small.svg": {
+    "normalizedName": "hamburger-menu-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/house_101_small.svg": {
+    "normalizedName": "house-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/layers_325_small.svg": {
+    "normalizedName": "layers-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/minus_105_small.svg": {
+    "normalizedName": "minus-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/plus_103_small.svg": {
+    "normalizedName": "plus-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/040_Navigation/two_finger_tap_179_small.svg": {
+    "normalizedName": "two-finger-tap-small",
+    "collections": ["kom", "navigation"]
+  },
+  "KOM/responsive/small/050_Community/bulb_off_49_small.svg": {
+    "normalizedName": "bulb-off-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/bulb_on_48_small.svg": {
+    "normalizedName": "bulb-on-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/face_grinning_273_small.svg": {
+    "normalizedName": "face-grinning-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/face_neutral_274_small.svg": {
+    "normalizedName": "face-neutral-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/face_sad_275_small.svg": {
+    "normalizedName": "face-sad-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/face_smiling_276_small.svg": {
+    "normalizedName": "face-smiling-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/handshake_58_small.svg": {
+    "normalizedName": "handshake-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/network_55_small.svg": {
+    "normalizedName": "network-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/onboarding_213_small.svg": {
+    "normalizedName": "onboarding-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/question_answer_212_small.svg": {
+    "normalizedName": "question-answer-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/share_25_small.svg": {
+    "normalizedName": "share-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/speech_bubble_50_small.svg": {
+    "normalizedName": "speech-bubble-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/speech_bubble_group_empty_54_small.svg": {
+    "normalizedName": "speech-bubble-group-empty-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/thumb_down_60_small.svg": {
+    "normalizedName": "thumb-down-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/thumb_up_52_small.svg": {
+    "normalizedName": "thumb-up-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/translate_287_small.svg": {
+    "normalizedName": "translate-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/050_Community/two_speech_bubbles_51_small.svg": {
+    "normalizedName": "two-speech-bubbles-small",
+    "collections": ["kom", "community"]
+  },
+  "KOM/responsive/small/060_User/avatar_police_352_small.svg": {
+    "normalizedName": "avatar-police-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/key_162_small.svg": {
+    "normalizedName": "key-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/pie_94_small.svg": {
+    "normalizedName": "pie-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/two_users_93_small.svg": {
+    "normalizedName": "two-users-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_92_small.svg": {
+    "normalizedName": "user-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_change_97_small.svg": {
+    "normalizedName": "user-change-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_group_57_small.svg": {
+    "normalizedName": "user-group-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_group_round_table_353_small.svg": {
+    "normalizedName": "user-group-round-table-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_group_row_56_small.svg": {
+    "normalizedName": "user-group-row-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_hat_169_small.svg": {
+    "normalizedName": "user-hat-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_headset_156_small.svg": {
+    "normalizedName": "user-headset-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_key_124_small.svg": {
+    "normalizedName": "user-key-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_plus_310_small.svg": {
+    "normalizedName": "user-plus-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/060_User/user_tie_351_small.svg": {
+    "normalizedName": "user-tie-small",
+    "collections": ["kom", "user"]
+  },
+  "KOM/responsive/small/070_Document/document_check_176_small.svg": {
+    "normalizedName": "document-check-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_image_62_small.svg": {
+    "normalizedName": "document-image-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_lock_354_small.svg": {
+    "normalizedName": "document-lock-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_pdf_61_small.svg": {
+    "normalizedName": "document-pdf-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_plus_355_small.svg": {
+    "normalizedName": "document-plus-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_ppt_356_small.svg": {
+    "normalizedName": "document-ppt-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_sbb_214_small.svg": {
+    "normalizedName": "document-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_sound_64_small.svg": {
+    "normalizedName": "document-sound-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_standard_67_small.svg": {
+    "normalizedName": "document-standard-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_text_63_small.svg": {
+    "normalizedName": "document-text-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_video_65_small.svg": {
+    "normalizedName": "document-video-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/document_zip_66_small.svg": {
+    "normalizedName": "document-zip-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/folder_info_131_small.svg": {
+    "normalizedName": "folder-info-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/folder_lock_358_small.svg": {
+    "normalizedName": "folder-lock-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/folder_open_59_small.svg": {
+    "normalizedName": "folder-open-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/folder_open_arrow_160_small.svg": {
+    "normalizedName": "folder-open-arrow-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/folder_plus_130_small.svg": {
+    "normalizedName": "folder-plus-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/metadata_357_small.svg": {
+    "normalizedName": "metadata-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/070_Document/two_folders_18_small.svg": {
+    "normalizedName": "two-folders-small",
+    "collections": ["kom", "document"]
+  },
+  "KOM/responsive/small/080_Timetable/arrow_change_68_small.svg": {
+    "normalizedName": "arrow-change-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/avatar_train_staff_71_small.svg": {
+    "normalizedName": "avatar-train-staff-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/avatar_train_staff_disabled_72_small.svg": {
+    "normalizedName": "avatar-train-staff-disabled-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/clock_10_small.svg": {
+    "normalizedName": "clock-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/hourglass_217_small.svg": {
+    "normalizedName": "hourglass-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/locomotive_83_small.svg": {
+    "normalizedName": "locomotive-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/percent_78_small.svg": {
+    "normalizedName": "percent-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/percent_tag_141_small.svg": {
+    "normalizedName": "percent-tag-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/punctuality_216_small.svg": {
+    "normalizedName": "punctuality-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/route_circle_end_139_small.svg": {
+    "normalizedName": "route-circle-end-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/route_circle_start_140_small.svg": {
+    "normalizedName": "route-circle-start-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/seat_window_288_small.svg": {
+    "normalizedName": "seat-window-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/switzerland_route_204_small.svg": {
+    "normalizedName": "switzerland-route-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/timetable_215_small.svg": {
+    "normalizedName": "timetable-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/walk_70_small.svg": {
+    "normalizedName": "walk-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/walk_fast_290_small.svg": {
+    "normalizedName": "walk-fast-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/walk_slow_289_small.svg": {
+    "normalizedName": "walk-slow-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/wheelchair_73_small.svg": {
+    "normalizedName": "wheelchair-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/wheelchair_inaccessible_77_small.svg": {
+    "normalizedName": "wheelchair-inaccessible-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/wheelchair_partially_74_small.svg": {
+    "normalizedName": "wheelchair-partially-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/wheelchair_reservation_75_small.svg": {
+    "normalizedName": "wheelchair-reservation-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/080_Timetable/wheelchair_uncertain_76_small.svg": {
+    "normalizedName": "wheelchair-uncertain-small",
+    "collections": ["kom", "timetable"]
+  },
+  "KOM/responsive/small/090_Ticket/qrcode_221_small.svg": {
+    "normalizedName": "qrcode-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/qrcode_disabled_309_small.svg": {
+    "normalizedName": "qrcode-disabled-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/swisspass_222_small.svg": {
+    "normalizedName": "swisspass-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/swisspass_temporary_219_small.svg": {
+    "normalizedName": "swisspass-temporary-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_day_135_small.svg": {
+    "normalizedName": "ticket-day-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_disabled_138_small.svg": {
+    "normalizedName": "ticket-disabled-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_heart_136_small.svg": {
+    "normalizedName": "ticket-heart-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_journey_218_small.svg": {
+    "normalizedName": "ticket-journey-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_parking_291_small.svg": {
+    "normalizedName": "ticket-parking-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_percent_220_small.svg": {
+    "normalizedName": "ticket-percent-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_route_143_small.svg": {
+    "normalizedName": "ticket-route-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/ticket_star_32_small.svg": {
+    "normalizedName": "ticket-star-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/090_Ticket/tickets_class_69_small.svg": {
+    "normalizedName": "tickets-class-small",
+    "collections": ["kom", "ticket"]
+  },
+  "KOM/responsive/small/100_Station/book_293_small.svg": {
+    "normalizedName": "book-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/bottle_apple_296_small.svg": {
+    "normalizedName": "bottle-apple-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/customer_assistance_sbb_223_small.svg": {
+    "normalizedName": "customer-assistance-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/escalator_231_small.svg": {
+    "normalizedName": "escalator-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/general_display_227_small.svg": {
+    "normalizedName": "general-display-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/hand_plus_circle_116_small.svg": {
+    "normalizedName": "hand-plus-circle-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/hand_sbb_297_small.svg": {
+    "normalizedName": "hand-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/hostel_119_small.svg": {
+    "normalizedName": "hostel-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/lift_229_small.svg": {
+    "normalizedName": "lift-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/locker_298_small.svg": {
+    "normalizedName": "locker-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/lotus_294_small.svg": {
+    "normalizedName": "lotus-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/meeting_point_118_small.svg": {
+    "normalizedName": "meeting-point-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/money_exchange_120_small.svg": {
+    "normalizedName": "money-exchange-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/platform_display_230_small.svg": {
+    "normalizedName": "platform-display-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/screen_inside_train_224_small.svg": {
+    "normalizedName": "screen-inside-train-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/shirt_shoe_292_small.svg": {
+    "normalizedName": "shirt-shoe-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/shopping_bag_299_small.svg": {
+    "normalizedName": "shopping-bag-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/shopping_bag_coupon_134_small.svg": {
+    "normalizedName": "shopping-bag-coupon-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/shopping_bag_fast_323_small.svg": {
+    "normalizedName": "shopping-bag-fast-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/station_117_small.svg": {
+    "normalizedName": "station-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/station_surrounding_area_322_small.svg": {
+    "normalizedName": "station-surrounding-area-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/ticket_machine_225_small.svg": {
+    "normalizedName": "ticket-machine-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/ticket_machine_ticket_228_small.svg": {
+    "normalizedName": "ticket-machine-ticket-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/toilet_233_small.svg": {
+    "normalizedName": "toilet-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/train_station_295_small.svg": {
+    "normalizedName": "train-station-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/waiting_room_232_small.svg": {
+    "normalizedName": "waiting-room-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/100_Station/wine_cheese_359_small.svg": {
+    "normalizedName": "wine-cheese-small",
+    "collections": ["kom", "station"]
+  },
+  "KOM/responsive/small/110_Location/arrow_compass_235_small.svg": {
+    "normalizedName": "arrow-compass-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/gps_12_small.svg": {
+    "normalizedName": "gps-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/gps_disabled_13_small.svg": {
+    "normalizedName": "gps-disabled-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/location_pin_98_small.svg": {
+    "normalizedName": "location-pin-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/location_pin_a_99_small.svg": {
+    "normalizedName": "location-pin-a-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/location_pin_b_100_small.svg": {
+    "normalizedName": "location-pin-b-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/location_pin_map_173_small.svg": {
+    "normalizedName": "location-pin-map-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/location_pin_pulse_surrounding_area_234_small.svg": {
+    "normalizedName": "location-pin-pulse-surrounding-area-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/location_pin_surrounding_area_207_small.svg": {
+    "normalizedName": "location-pin-surrounding-area-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/mountain_minus_122_small.svg": {
+    "normalizedName": "mountain-minus-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/110_Location/mountain_plus_123_small.svg": {
+    "normalizedName": "mountain-plus-small",
+    "collections": ["kom", "location"]
+  },
+  "KOM/responsive/small/120_Hardware/archive_box_303_small.svg": {
+    "normalizedName": "archive-box-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/briefcase_300_small.svg": {
+    "normalizedName": "briefcase-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/brochure_236_small.svg": {
+    "normalizedName": "brochure-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/desk_88_small.svg": {
+    "normalizedName": "desk-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/desk_adjustable_89_small.svg": {
+    "normalizedName": "desk-adjustable-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/display_85_small.svg": {
+    "normalizedName": "display-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/keyboard_86_small.svg": {
+    "normalizedName": "keyboard-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/laptop_167_small.svg": {
+    "normalizedName": "laptop-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/laptop_smartphone_165_small.svg": {
+    "normalizedName": "laptop-smartphone-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/megaphone_302_small.svg": {
+    "normalizedName": "megaphone-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/office_chair_87_small.svg": {
+    "normalizedName": "office-chair-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/power_plug_154_small.svg": {
+    "normalizedName": "power-plug-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/printer_21_small.svg": {
+    "normalizedName": "printer-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/scanner_178_small.svg": {
+    "normalizedName": "scanner-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/smartphone_84_small.svg": {
+    "normalizedName": "smartphone-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/speaker_237_small.svg": {
+    "normalizedName": "speaker-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/suitcase_90_small.svg": {
+    "normalizedName": "suitcase-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/suitcase_disabled_91_small.svg": {
+    "normalizedName": "suitcase-disabled-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/telephone_gsm_172_small.svg": {
+    "normalizedName": "telephone-gsm-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/telephone_receiver_164_small.svg": {
+    "normalizedName": "telephone-receiver-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/walkie_talkie_177_small.svg": {
+    "normalizedName": "walkie-talkie-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/120_Hardware/weight_301_small.svg": {
+    "normalizedName": "weight-small",
+    "collections": ["kom", "hardware"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_194_small.svg": {
+    "normalizedName": "cloud-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_dense_fog_326_small.svg": {
+    "normalizedName": "cloud-dense-fog-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_drops_195_small.svg": {
+    "normalizedName": "cloud-drops-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_drops_moon_190_small.svg": {
+    "normalizedName": "cloud-drops-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_fog_327_small.svg": {
+    "normalizedName": "cloud-fog-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_ice_185_small.svg": {
+    "normalizedName": "cloud-ice-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_lightning_202_small.svg": {
+    "normalizedName": "cloud-lightning-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_lightning_moon_189_small.svg": {
+    "normalizedName": "cloud-lightning-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_little_snow_moon_330_small.svg": {
+    "normalizedName": "cloud-little-snow-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_little_snow_sun_331_small.svg": {
+    "normalizedName": "cloud-little-snow-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_moon_187_small.svg": {
+    "normalizedName": "cloud-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_rain_199_small.svg": {
+    "normalizedName": "cloud-rain-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_rain_snow_328_small.svg": {
+    "normalizedName": "cloud-rain-snow-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_rain_snow_moon_329_small.svg": {
+    "normalizedName": "cloud-rain-snow-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_rain_snow_sun_215_small.svg": {
+    "normalizedName": "cloud-rain-snow-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_rain_sun_198_small.svg": {
+    "normalizedName": "cloud-rain-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_snow_196_small.svg": {
+    "normalizedName": "cloud-snow-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_snow_lightning_184_small.svg": {
+    "normalizedName": "cloud-snow-lightning-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_snow_moon_188_small.svg": {
+    "normalizedName": "cloud-snow-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_snow_sun_193_small.svg": {
+    "normalizedName": "cloud-snow-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_snowflake_201_small.svg": {
+    "normalizedName": "cloud-snowflake-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_snowflake_sun_200_small.svg": {
+    "normalizedName": "cloud-snowflake-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_strong_rain_moon_191_small.svg": {
+    "normalizedName": "cloud-strong-rain-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_strong_rain_sun_192_small.svg": {
+    "normalizedName": "cloud-strong-rain-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_sun_186_small.svg": {
+    "normalizedName": "cloud-sun-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/cloud_sunshine_197_small.svg": {
+    "normalizedName": "cloud-sunshine-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/fog_150_small.svg": {
+    "normalizedName": "fog-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/moon_151_small.svg": {
+    "normalizedName": "moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/sun_moon_211_small.svg": {
+    "normalizedName": "sun-moon-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/sunrise_208_small.svg": {
+    "normalizedName": "sunrise-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/sunshine_149_small.svg": {
+    "normalizedName": "sunshine-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/140_Weather/weather_unknown_332_small.svg": {
+    "normalizedName": "weather-unknown-small",
+    "collections": ["kom", "weather"]
+  },
+  "KOM/responsive/small/160_Audio/fast_forward_161_small.svg": {
+    "normalizedName": "fast-forward-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/next_155_small.svg": {
+    "normalizedName": "next-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/pause_158_small.svg": {
+    "normalizedName": "pause-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/play_132_small.svg": {
+    "normalizedName": "play-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/previous_157_small.svg": {
+    "normalizedName": "previous-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/record_153_small.svg": {
+    "normalizedName": "record-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/rewind_170_small.svg": {
+    "normalizedName": "rewind-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/160_Audio/stop_133_small.svg": {
+    "normalizedName": "stop-small",
+    "collections": ["kom", "audio"]
+  },
+  "KOM/responsive/small/170_Transport/airplane_285_small.svg": {
+    "normalizedName": "airplane-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/bicycle_248_small.svg": {
+    "normalizedName": "bicycle-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/bus_240_small.svg": {
+    "normalizedName": "bus-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/bus_circle_243_small.svg": {
+    "normalizedName": "bus-circle-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/bus_sbb_242_small.svg": {
+    "normalizedName": "bus-sbb-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/bus_stop_241_small.svg": {
+    "normalizedName": "bus-stop-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/car_238_small.svg": {
+    "normalizedName": "car-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/car_parking_360_small.svg": {
+    "normalizedName": "car-parking-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/charging_station_361_small.svg": {
+    "normalizedName": "charging-station-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/combined_mobility_324_small.svg": {
+    "normalizedName": "combined-mobility-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/container_304_small.svg": {
+    "normalizedName": "container-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/driverless_bus_362_small.svg": {
+    "normalizedName": "driverless-bus-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/freight_wagon_286_small.svg": {
+    "normalizedName": "freight-wagon-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/k_r_244_small.svg": {
+    "normalizedName": "k-r-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/park_and_rail_245_small.svg": {
+    "normalizedName": "park-and-rail-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/petrol_station_239_small.svg": {
+    "normalizedName": "petrol-station-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/shuttle_364_small.svg": {
+    "normalizedName": "shuttle-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/taxi_246_small.svg": {
+    "normalizedName": "taxi-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/train_249_small.svg": {
+    "normalizedName": "train-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/170_Transport/tram_247_small.svg": {
+    "normalizedName": "tram-small",
+    "collections": ["kom", "transport"]
+  },
+  "KOM/responsive/small/180_Leisure/mountain_sun_251_small.svg": {
+    "normalizedName": "mountain-sun-small",
+    "collections": ["kom", "leisure"]
+  },
+  "KOM/responsive/small/190_Installation/construction_350_small.svg": {
+    "normalizedName": "construction-small",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/small/190_Installation/railway_switch_313_small.svg": {
+    "normalizedName": "railway-switch-small",
+    "collections": ["kom", "installation"]
+  },
+  "KOM/responsive/small/200_Building/city_316_small.svg": {
+    "normalizedName": "city-small",
+    "collections": ["kom", "building"]
+  },
+  "KOM/responsive/small/210_Career/ship_steering_wheel_363_small.svg": {
+    "normalizedName": "ship-steering-wheel-small",
+    "collections": ["kom", "career"]
+  },
+  "SocialMedia/SBB_107_twitter.svg": {
+    "normalizedName": "twitter",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_108_facebook.svg": {
+    "normalizedName": "facebook",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_109_instagram.svg": {
+    "normalizedName": "instagram",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_110_googleplus.svg": {
+    "normalizedName": "googleplus",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_111_youtube.svg": {
+    "normalizedName": "youtube",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_112_linkedin.svg": {
+    "normalizedName": "linkedin",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_113_pinterest.svg": {
+    "normalizedName": "pinterest",
+    "collections": ["social-media"]
+  },
+  "SocialMedia/SBB_114_xing.svg": {
+    "normalizedName": "xing",
+    "collections": ["social-media"]
+  }
+}

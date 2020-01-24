@@ -9,7 +9,7 @@ import { BusinessComponent } from './business/business.component';
 
 const routes: Routes = [
   {
-    path: 'business',
+    path: '',
     component: BusinessComponent,
     data: { library: 'angular-business' },
     children: [

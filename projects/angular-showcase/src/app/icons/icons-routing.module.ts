@@ -3,13 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
+import { ExperimentalIconSearchComponent } from './experimental-icon-search/experimental-icon-search.component';
 import { IconSearchComponent } from './icon-search/icon-search.component';
 import { IconViewerComponent } from './icon-viewer/icon-viewer.component';
 import { IconsComponent } from './icons/icons.component';
 
 const routes: Routes = [
   {
-    path: 'icons',
+    path: '',
     component: IconsComponent,
     data: { library: 'angular-icons' },
     children: [
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'components/:id',
         component: IconViewerComponent
+      },
+      {
+        path: 'experimental',
+        component: ExperimentalIconSearchComponent
       }
     ]
   }

@@ -1,0 +1,24 @@
+{
+  "properties": {
+    "svgDir": {
+      "type": "string",
+      "description": "The directory of the svg files.",
+      "default": "svg"
+    },
+    "stripNumberIdInCollection": {
+      "type": "boolean",
+      "description": "Whether the number ids in the directory names should be stripped.",
+      "default": false
+    },
+    "stripNumberIds": {
+      "type": "boolean",
+      "description": "Whether the number ids in the file names should be stripped for the selector.",
+      "default": false
+    },
+    "stripSbbInName": {
+      "type": "boolean",
+      "description": "Whether the string sbb or SBB in the file names should be stripped for the selector.",
+      "default": false
+    }
+  }
+}
