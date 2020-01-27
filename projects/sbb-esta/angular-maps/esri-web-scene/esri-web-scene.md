@@ -1,13 +1,13 @@
 The WebScene is a simple component for displaying 3D-Maps.
 
 > _Note:_ The WebScene is built to display maps defined in the ArcGIS Portal.  
-> You are abe to use any portal installation - the component works with the [SBB Portal](https://geo.sbb.ch/portal), the [ArcGIS Online Portal](https://enterprise.arcgis.com/en/portal/) or any other on-premise installation!  
+> You are abe to use any portal installation - the component works with the [SBB Portal](https://geo.sbb.ch/portal), the [ArcGIS Online Portal](https://www.arcgis.com) or any other on-premise installation!  
 > For further information about the portal check out [What is Portal for ArcGIS?](https://enterprise.arcgis.com/en/portal/latest/use/what-is-portal-for-arcgis-.htm).  
 > To learn more about WebScenes checkout [WebScenes](https://enterprise.arcgis.com/en/portal/latest/use/what-is-web-map.htm).
 
 ### Basic WebScenes
 
-Let's start with a basic WebScenes only displays a map.
+Let's start with a basic WebScene which only displays a map.
 
 _my-map.component.html_
 

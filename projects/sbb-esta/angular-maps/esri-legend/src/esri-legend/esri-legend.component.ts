@@ -9,13 +9,16 @@ import { EsriTypesService } from '../esri-types/esri-types.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EsriLegendComponent implements OnInit {
-  /** References the map or scene to load the the layer list */
+  /** References the map or scene to load the legend for.*/
   @Input() mapView: __esri.MapView | __esri.SceneView;
 
   /** Styles the legend using styles from https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Legend.html#style */
-  @Input() sbblegendStyle: { type: 'classic' | 'card'; layout: 'auto' | 'side-by-side' | 'stack' };
+  @Input() sbblegendStyle: {
+    type: 'classic' | 'card';
+    layout: 'auto' | 'side-by-side' | 'stack';
+  } = { type: 'classic', layout: 'auto' };
 
-  /** References the ESRI Layerlist object */
+  /** References the ESRI legend object */
   public legend: __esri.Legend;
 
   constructor(private _esri: EsriTypesService, private _hostReference: ElementRef) {}
@@ -26,10 +29,7 @@ export class EsriLegendComponent implements OnInit {
 
     this.legend = new this._esri.Legend({
       view: this.mapView,
-      style: {
-        type: this.sbblegendStyle.type,
-        layout: this.sbblegendStyle.layout
-      } as __esri.LegendStyle,
+      style: this.sbblegendStyle,
       container: this._hostReference.nativeElement
     });
   }

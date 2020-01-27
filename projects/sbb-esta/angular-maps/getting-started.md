@@ -43,7 +43,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
 
 @NgModule({
   ...
-  imports: [EsriConfigModule.forRoot({ portalUrl: 'https://enterprise.arcgis.com/de/portal/' })],
+  imports: [EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' })],
   ...
 })
 export class TrainChooChooAppModule { }
