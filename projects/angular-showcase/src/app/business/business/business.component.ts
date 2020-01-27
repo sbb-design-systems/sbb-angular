@@ -57,7 +57,7 @@ export class BusinessComponent implements ExampleProvider {
     tooltip: {
       'tooltip-showcase': new ComponentPortal(TooltipShowcaseComponent)
     },
-    relaxTooltip: {
+    'relax-tooltip': {
       'relax-tooltip-showcase': new ComponentPortal(RelaxTooltipShowcaseComponent)
     },
     usermenu: {
