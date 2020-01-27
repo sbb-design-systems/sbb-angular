@@ -1,0 +1,41 @@
+@import '../../../angular-core/styles/common/functions';
+@import '../../../angular-core/styles/common/mixins';
+@import '../../../angular-core/styles/common/button';
+
+$chip-close-button-size: 24;
+$chip-close-icon-size: 24;
+$chip-left-padding: 14;
+$chip-right-padding: 8;
+$chip-vertical-padding: 3;
+$chip-border-radius: 15;
+$chip-height: 30;
+
+@mixin chipBase {
+  height: $chip-height;
+  display: inline-flex;
+  border-radius: pxToEm($chip-border-radius);
+  background-color: $sbbColorCloud;
+  padding: pxToEm($chip-vertical-padding) pxToEm($chip-right-padding) pxToEm($chip-vertical-padding)
+    pxToEm($chip-left-padding);
+
+  .sbb-chip-close-btn {
+    @include buttonResetFrameless();
+    @include svgIconColor($sbbColorGrey);
+
+    margin-left: 8px;
+    width: pxToEm($chip-close-button-size);
+    height: pxToEm($chip-close-button-size);
+
+    svg {
+      @include absoluteCenterXY();
+      width: pxToEm($chip-close-icon-size);
+      height: pxToEm($chip-close-icon-size);
+    }
+
+    &:hover,
+    &:focus {
+      @include svgIconColor($sbbColorRed125);
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import '../chip';
+
+:host {
+  @include chipBase();
+
+  &.sbb-chip-disabled {
+    opacity: 0.4;
+    @include svgIconColor($sbbColorIron);
+  }
+
+  &.sbb-chip-active {
+    &:hover,
+    &:focus {
+      background-color: $sbbColorAluminum;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: $sbbColorAluminum;
+      cursor: grabbing;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+}
