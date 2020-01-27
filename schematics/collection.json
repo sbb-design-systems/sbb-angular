@@ -19,13 +19,13 @@
     },
     "svg-registry": {
       "description": "Generate an svg registry, from which icon modules can be generated.",
-      "factory": "./svg-registry/index#svgRegistry",
-      "schema": "./svg-registry/schema.json"
+      "factory": "../dist/sbb-esta/angular-icons/schematics/svg-registry/index#svgRegistry",
+      "schema": "../dist/sbb-esta/angular-icons/schematics/svg-registry/schema.json"
     },
     "svg-icons": {
       "description": "Generate icon modules.",
-      "factory": "./svg-icons/index#svgIcons",
-      "schema": "./svg-icons/schema.json"
+      "factory": "../dist/sbb-esta/angular-icons/schematics/svg-icons/index#svgIcons",
+      "schema": "../dist/sbb-esta/angular-icons/schematics/svg-icons/schema.json"
     }
   }
 }

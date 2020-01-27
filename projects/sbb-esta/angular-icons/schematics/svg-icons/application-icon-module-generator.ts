@@ -1,4 +1,4 @@
-import { join, Path, relative, strings } from '@angular-devkit/core';
+import { join, Path, strings } from '@angular-devkit/core';
 import { WorkspaceProject } from '@angular-devkit/core/src/experimental/workspace';
 import {
   apply,
@@ -15,14 +15,13 @@ import {
 import { IconModule } from './icon-module';
 import { IconModuleCollection } from './icon-module-collection';
 
-export class LibraryIconModuleGenerator {
-  private readonly _projectRootDir: Path;
-  private readonly _targetDir: Path;
-  private readonly _prefix: string;
-  private readonly _packageName: string;
+export class ApplicationIconModuleGenerator {
+  protected readonly _projectRootDir: Path;
+  protected readonly _targetDir: Path;
+  protected readonly _prefix: string;
 
   constructor(
-    private readonly _rootCollection: IconModuleCollection,
+    protected readonly _rootCollection: IconModuleCollection,
     tree: Tree,
     project: WorkspaceProject,
     targetDir: string
@@ -30,51 +29,20 @@ export class LibraryIconModuleGenerator {
     this._projectRootDir = tree.getDir(project.root).path;
     this._targetDir = join(this._projectRootDir, targetDir);
     this._prefix = project.prefix || 'app';
-    const packageJson = tree.read(join(this._projectRootDir, 'package.json'));
-    if (!packageJson) {
-      throw new SchematicsException(`Expected package.json in ${this._projectRootDir}`);
-    }
-
-    this._packageName = JSON.parse(packageJson.toString('utf8')).name;
   }
 
   generate(): Rule[] {
-    return this._generateCollection(this._rootCollection, this._targetDir).concat(
-      mergeWith(
-        apply(url('./files/meta'), [
-          template({
-            ...strings,
-            prefix: this._prefix,
-            icons: this._recursiveIcons(this._rootCollection),
-            packageName: this._packageName,
-            path: relative(this._projectRootDir, this._targetDir)
-          }),
-          move(this._targetDir)
-        ])
-      )
-    );
+    return this._generateCollection(this._rootCollection, this._targetDir);
   }
 
-  private _generateCollection(collection: IconModuleCollection, targetDir: Path): Rule[] {
+  protected _generateCollection(collection: IconModuleCollection, targetDir: Path): Rule[] {
     return [
-      chain([
-        mergeWith(
-          apply(url('./files/icon-entrypoint'), [
-            template({
-              ...collection,
-              packageName: this._packageName,
-              path: relative(this._projectRootDir, targetDir)
-            }),
-            move(targetDir)
-          ])
-        ),
-        this._generateIcons(collection.icons, join(targetDir, 'src'))
-      ]),
+      this._generateIcons(collection.icons, targetDir),
       ...this._generateCollections(collection.collections, targetDir)
     ];
   }
 
-  private _generateIcons(icons: IconModule[], targetDir: Path): Rule {
+  protected _generateIcons(icons: IconModule[], targetDir: Path): Rule {
     return chain(
       icons.map(i =>
         mergeWith(
@@ -94,7 +62,7 @@ export class LibraryIconModuleGenerator {
     );
   }
 
-  private _generateCollections(
+  protected _generateCollections(
     collections: Map<string, IconModuleCollection>,
     targetDir: Path
   ): Rule[] {
@@ -132,14 +100,5 @@ export class LibraryIconModuleGenerator {
         value: m.substring(index + 2, m.length - 1)
       };
     });
-  }
-
-  private _recursiveIcons(collection: IconModuleCollection): IconModule[] {
-    return [
-      ...collection.icons,
-      ...Array.from(collection.collections)
-        .map(([_, c]) => this._recursiveIcons(c))
-        .reduce((current, next) => current.concat(next), [] as IconModule[])
-    ];
   }
 }

@@ -1,6 +1,5 @@
 import {
   chain,
-  noop,
   Rule,
   SchematicContext,
   SchematicsException,
@@ -9,6 +8,7 @@ import {
 import { getProjectFromWorkspace } from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 
+import { ApplicationIconModuleGenerator } from './application-icon-module-generator';
 import { IconModuleCollection } from './icon-module-collection';
 import { IconModuleFactory } from './icon-module-factory';
 import { LibraryIconModuleGenerator } from './library-icon-module-generator';
@@ -49,7 +49,14 @@ export function svgIcons(options: Schema): Rule {
       ).generate();
       return chain(rules);
     } else {
-      return noop();
+      context.logger.info(`Detected project type application for project ${options.project}.`);
+      const rules = new ApplicationIconModuleGenerator(
+        rootCollection,
+        tree,
+        project,
+        options.targetDir
+      ).generate();
+      return chain(rules);
     }
   };
 }

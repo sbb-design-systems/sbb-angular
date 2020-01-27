@@ -3455,10 +3455,6 @@
     "normalizedName": "instagram",
     "collections": ["social-media"]
   },
-  "SocialMedia/SBB_110_googleplus.svg": {
-    "normalizedName": "googleplus",
-    "collections": ["social-media"]
-  },
   "SocialMedia/SBB_111_youtube.svg": {
     "normalizedName": "youtube",
     "collections": ["social-media"]
