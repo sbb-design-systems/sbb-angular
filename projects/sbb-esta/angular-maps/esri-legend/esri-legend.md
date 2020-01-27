@@ -1,12 +1,8 @@
-# Legend
-
-## Introduction
-
 The legend component shows and describes the symbology of layers and features in a web map or 3d scene.
 
 _Note: In order to work, the legend component depends on a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) or on a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html). You can get the MapView/SceneView from the `sbb-esri-web-map` or `sbb-esri-web-scene` component using Element Reference._
 
-## Legend for WebMaps
+### Legend for WebMaps
 
 Here's a simple example of how to use the legend component in code, together with a web map.
 
@@ -18,7 +14,7 @@ _my-map-with-legend.component.html_:
 <sbb-esri-legend [mapView]="webMap.mapView"></sbb-esri-legend>
 ```
 
-## Legend for WebScenes
+### Legend for WebScenes
 
 Here's a simple example of how to use the legend component in code, together with a web scene.
 
@@ -33,7 +29,7 @@ _my-scene-with-legend.component.html_:
 <sbb-esri-legend [mapView]="webScene.sceneView"></sbb-esri-legend>
 ```
 
-## Styling the legend
+### Styling the legend
 
 It's possible to apply a style to the legend (type and layout, for example card type with a stacked layout). Available style settings are described at <https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Legend.html#style.>
 

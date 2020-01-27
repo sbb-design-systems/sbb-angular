@@ -1,10 +1,16 @@
 # Overview and usage
 
-TODO
+It has become evident that Angular web applications at SBB need a simple way to display maps. This is one of the most requested features for the GIS application development team. Having a great component library (`sbb-angular`) at hands, it's been an easy decision to provide simple yet versatile components in this library.
 
-- Why we created this package and what we address with the package.
-- What problems the package solves
-- What are the caveats/specifics (ArcGIS Portal usage)...
+The components base on the Esri ArcGIS (see section _Technology_ below), matching the technology used for WebGIS applications and the SBB GIS stack.
+
+The goal of `@sbb-esta/angular-maps` is to provide a fast solution for having a map or a geographical 3D scene up and running with just a few easy steps. Of course, there are alternatives when it comes to the map technology used in these components, but we believe this solution works very well in terms of SBB compatilibity and data usage trough the internal G-SHARP services and the SBB Geoportal. Still it allows the integration of almost every other possible data source while keeping the whole programming interface simple yet open to unlock the full power of the underlying technology.
+
+The package attempts to overcome the mixture of data providers and APIs used by providing a solution that's simple enough to keep you from defaulting to the Google Maps API (or alike). Using the package you can easily access the SBB internal GIS resources.
+
+This currently comes with the requirement to use _web maps_ provided by Portal for ArcGIS or ArcGIS Online (read more about this below). While this gives you a great tool to author your maps, it can also be cumbersome regarding development staging and DevOps processes. This is going to be adressed in further versions of the package.
+
+3D _web scenes_ finally are part of a future GIS world and thus a good way to invest into now - especially considering the simplicity of creating web scenes using Portal for ArcGIS or ArcGIS Online.
 
 ## Technology
 
@@ -28,7 +34,21 @@ The SBB Geoportal (for company use only) is a _Portal for ArcGIS_ installation a
 
 ## Usage patterns
 
-TODO
+It's all about maps. Creating your own map can be challenging. We aim to give you a kick start in the section [Mapping basics](/maps/introduction/mapping-basics).
+
+### Simple map or 3D scene display
+
+The `@sbb-esta/angular-maps` components are the most simple way to integrate a map in your angular application - given the fact that you are able and willing to provide your data in and trough an ArcGIS portal. Chose this, if a map serves as additional way of displaying your data, giving an overview or a spatial insight. This provides basic means of panning and zooming out of the box.
+
+### Map or 3D scene interaction
+
+It's a common pattern to have the map display interacting with your application in a more advanced way. You might want to apply filters to data in your application at the same time as in your map. You will be highlighting elements in the map depending on a selection in a data grid or you want to update the contents of your table based on the map extent current being shown.
+
+Use the events emitted by the `@sbb-esta/angular-maps` components to interact with the map.
+
+### Map or 3D scene synchronization
+
+Imagine multiple map (and/or 3d scene) components being laid out in your application side by side, each displaying a different symbology, viewport or data layer. Panning and zooming in one map should also update the other map accordingly. This pattern lets you add a touch of not so common user experience to your application. Yet it can give a whole different feeling to your data and allows gaining additional insight.
 
 ## Alternatives
 
