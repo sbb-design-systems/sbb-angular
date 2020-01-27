@@ -1,11 +1,8 @@
 <article class="container-fluid">
   <div class="row">
     <h4>SceneView with basemap gallery</h4>
-    <div class="basemap-gallery">
-      <sbb-esri-basemap-gallery
-        *ngIf="webScene.sceneView"
-        [mapView]="webScene.sceneView"
-      ></sbb-esri-basemap-gallery>
+    <div class="legend">
+      <sbb-esri-legend *ngIf="webScene.sceneView" [mapView]="webScene.sceneView"></sbb-esri-legend>
     </div>
     <div class="map-container">
       <sbb-esri-web-scene

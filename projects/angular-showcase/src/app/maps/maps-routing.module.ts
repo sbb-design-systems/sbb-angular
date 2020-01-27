@@ -31,6 +31,11 @@ const routes: Routes = [
         path: 'components/:id/:section',
         component: PublicComponentViewerComponent,
         data: { library: 'angular-maps' }
+      },
+      {
+        path: 'advanced/:id',
+        component: MarkdownViewerComponent,
+        data: { library: 'angular-maps' }
       }
     ]
   }

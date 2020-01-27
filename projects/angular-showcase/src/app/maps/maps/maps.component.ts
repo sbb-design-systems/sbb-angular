@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { EsriBasemapGalleryShowcaseComponent } from '../maps-examples/esri-basemap-gallery-showcase/esri-basemap-gallery-showcase.component';
+import { EsriLayerListShowcaseComponent } from '../maps-examples/esri-layer-list-showcase/esri-layer-list-showcase.component';
+import { EsriLegendShowcaseComponent } from '../maps-examples/esri-legend-showcase/esri-legend-showcase.component';
 import { EsriWebMapShowcaseComponent } from '../maps-examples/esri-web-map-showcase/esri-web-map-showcase.component';
 import { EsriWebSceneShowcaseComponent } from '../maps-examples/esri-web-scene-showcase/esri-web-scene-showcase.component';
 
@@ -31,6 +33,12 @@ export class MapsComponent implements ExampleProvider {
     },
     'esri-basemap-gallery': {
       'esri-basemap-gallery-showcase': new ComponentPortal(EsriBasemapGalleryShowcaseComponent)
+    },
+    'esri-legend': {
+      'esri-legend-showcase': new ComponentPortal(EsriLegendShowcaseComponent)
+    },
+    'esri-layer-list': {
+      'esri-layer-list-showcase': new ComponentPortal(EsriLayerListShowcaseComponent)
     }
   };
 

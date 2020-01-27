@@ -52,8 +52,13 @@
       Advanced Usage
 
       <ul>
-        <li *ngFor="let c of advancedUsage | keyvalue">
-          <a [routerLink]="['./advanced/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        <li>
+          <a
+            routerLink="./advanced/esri-loader-service"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >EsriLoaderService</a
+          >
         </li>
       </ul>
     </li>
