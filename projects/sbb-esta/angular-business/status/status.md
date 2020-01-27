@@ -49,20 +49,3 @@ You can style the icon by setting an `[svgClass]` on the `sbb-icon` as shown in 
 </sbb-status>
 <sbb-status type="valid" [message]="'valid status message'"></sbb-status>
 ```
-
-### Extended with tooltip
-
-Use the `[sbbTooltip]` input to add an overlay tooltip.
-The tooltip open/close delay can be set by `[tooltipOpenDelay]` and `[tooltipCloseDelay]` inputs.
-By default there is no tooltip open/close delay set.
-
-```html
-<sbb-status
-  [message]="'valid'"
-  [sbbTooltip]="'valid status'"
-  [tooltipOpenDelay]="1000"
-  [tooltipCloseDelay]="1000"
->
-  <sbb-icon-tick [svgClass]="'sbb-status-ok'"></sbb-icon-tick>
-</sbb-status>
-```

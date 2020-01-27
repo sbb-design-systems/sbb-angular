@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
+import { RelaxTooltipShowcaseComponent } from '../business-examples/relax-tooltip-showcase/relax-tooltip-showcase.component';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
 import { StatusShowcaseComponent } from '../business-examples/status-showcase/status-showcase.component';
@@ -43,6 +44,7 @@ export class BusinessComponent implements ExampleProvider {
   };
   popupsAndModals = {
     tooltip: 'Tooltip',
+    'relax-tooltip': 'Relaxtooltip',
     dialog: 'Dialog'
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
@@ -54,6 +56,9 @@ export class BusinessComponent implements ExampleProvider {
     },
     tooltip: {
       'tooltip-showcase': new ComponentPortal(TooltipShowcaseComponent)
+    },
+    relaxTooltip: {
+      'relax-tooltip-showcase': new ComponentPortal(RelaxTooltipShowcaseComponent)
     },
     usermenu: {
       'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)

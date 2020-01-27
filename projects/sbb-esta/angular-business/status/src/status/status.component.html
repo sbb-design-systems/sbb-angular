@@ -16,32 +16,12 @@
   </ng-container>
 </ng-template>
 
-<ng-template [ngIf]="!tooltipText">
-  <div class="sbb-status-icon" *ngIf="!hasType()">
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-  </div>
+<div class="sbb-status-icon" *ngIf="!hasType()">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</div>
 
-  <div class="sbb-status-icon" *ngIf="hasType()">
-    <ng-container *ngTemplateOutlet="typeContentOutlet"></ng-container>
-  </div>
+<div class="sbb-status-icon" *ngIf="hasType()">
+  <ng-container *ngTemplateOutlet="typeContentOutlet"></ng-container>
+</div>
 
-  <div *ngIf="message" class="sbb-status-message">{{ message }}</div>
-</ng-template>
-
-<ng-template [ngIf]="tooltipText">
-  <div
-    class="sbb-status-icon"
-    *ngIf="!hasType()"
-    [sbbTooltip]="tooltipText"
-    [hoverOpenDelay]="tooltipOpenDelay"
-    [hoverCloseDelay]="tooltipCloseDelay"
-  >
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-  </div>
-
-  <div class="sbb-status-icon" *ngIf="hasType()">
-    <ng-container *ngTemplateOutlet="typeContentOutlet"></ng-container>
-  </div>
-
-  <div *ngIf="message" class="sbb-status-message">{{ message }}</div>
-</ng-template>
+<div *ngIf="message" class="sbb-status-message">{{ message }}</div>

@@ -2,8 +2,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StatusComponent } from './status.component';
-import { DefaultTooltipComponent } from './tooltip/default-tooltip.component';
-import { TooltipDirective } from './tooltip/tooltip.directive';
 
 describe('StatusComponent', () => {
   let component: StatusComponent;
@@ -11,7 +9,7 @@ describe('StatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StatusComponent, TooltipDirective, DefaultTooltipComponent],
+      declarations: [StatusComponent],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));

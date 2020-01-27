@@ -17,6 +17,8 @@ import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { TableModule } from '@sbb-esta/angular-public/table';
 
+import { RelaxTooltipModule } from '../../../../../sbb-esta/angular-business/relax-tooltip';
+
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
@@ -25,6 +27,7 @@ import {
   DialogShowcaseExampleComponent,
   DialogShowcaseExampleContentComponent
 } from './dialog-showcase/dialog-showcase.component';
+import { RelaxTooltipShowcaseComponent } from './relax-tooltip-showcase/relax-tooltip-showcase.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
 import { StatusShowcaseComponent } from './status-showcase/status-showcase.component';
@@ -46,7 +49,8 @@ const exampleComponents = [
   DialogShowcaseExampleContentComponent,
   DialogShowcaseExample2Component,
   DialogShowcaseExample2ContentComponent,
-  DialogShowcaseExample3Component
+  DialogShowcaseExample3Component,
+  RelaxTooltipShowcaseComponent
 ];
 
 @NgModule({
@@ -71,6 +75,7 @@ const exampleComponents = [
     DialogModule,
     RadioButtonModule,
     StatusModule,
+    RelaxTooltipModule,
     TableModule
   ]
 })

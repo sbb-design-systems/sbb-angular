@@ -40,10 +40,10 @@
 
 <h3>Status with tooltip</h3>
 <p>
-  <sbb-status [tooltipText]="'hearty'">
+  <sbb-status sbbTooltip="hearty">
     <sbb-icon-heart [svgClass]="'sbb-status-heart'"></sbb-icon-heart>
   </sbb-status>
-  <sbb-status [message]="'I\'m happy'" [tooltipText]="'happy status'">
+  <sbb-status [message]="'I\'m happy'" sbbTooltip="happy status">
     <sbb-icon-face-grinning [svgClass]="'sbb-status-grinning'"></sbb-icon-face-grinning>
   </sbb-status>
   <sbb-status
@@ -62,14 +62,13 @@
   <sbb-status
     type="valid"
     [sbbTooltip]="template"
-    [tooltipPosition]="leftTooltipPosition"
     [message]="'custom tooltip template'"
   ></sbb-status>
   <sbb-status
     type="valid"
+    [message]="'use DefaultTooltipComponent as templateRef'"
     [sbbTooltip]="defaultTemplate"
     [tooltipPosition]="leftTooltipPosition"
-    [message]="'use DefaultTooltipComponent as templateRef'"
   ></sbb-status>
 </p>
 

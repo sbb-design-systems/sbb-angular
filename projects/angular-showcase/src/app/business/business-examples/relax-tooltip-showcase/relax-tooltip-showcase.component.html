@@ -1,0 +1,31 @@
+<h3>Default Tooltip</h3>
+<p>
+  <span class="simple" sbbTooltip="Default Tooltip">Hover me to see the default tooltip</span>
+</p>
+
+<h3>Tooltip with close and open delay</h3>
+<p>
+  <span class="info" sbbTooltip="Delay Tooltip" [tooltipOpenDelay]="1000" [tooltipCloseDelay]="1000"
+    >tooltip with open/close delay of one second.</span
+  >
+</p>
+
+<h3>Tooltip with custom position</h3>
+<p>
+  <span sbbTooltip="Tooltip on the left" [tooltipPosition]="leftTooltipPosition"
+    >tooltip is positioned on the left side</span
+  >
+</p>
+
+<h3>Tooltip with custom content</h3>
+<p>
+  <span class="custom" [sbbTooltip]="template" [tooltipPosition]="leftTooltipPosition"
+    >See the custom tooltip content</span
+  >
+</p>
+
+<ng-template #template>
+  <div class="sbb-tooltip-template">
+    Custom tooltip
+  </div>
+</ng-template>

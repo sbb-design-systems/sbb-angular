@@ -19,6 +19,9 @@
   p {
     display: flex;
     flex-direction: column;
+    sbb-status {
+      width: fit-content;
+    }
   }
 
   sbb-table {

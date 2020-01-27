@@ -1,0 +1,33 @@
+@import '../../../../../../sbb-esta/angular-core/styles/common/mixins';
+
+:host {
+  > p {
+    margin-top: pxToRem(45);
+
+    > span {
+      border-radius: pxToRem(4);
+      background-color: $sbbColorLemon;
+      padding: pxToRem(10) pxToRem(15);
+      cursor: default;
+      &.info {
+        background-color: lightblue;
+      }
+
+      &.simple {
+        background-color: $sbbColorAluminum;
+      }
+      &.custom {
+        border: thin solid grey;
+        background-color: whitesmoke;
+      }
+    }
+  }
+}
+.sbb-tooltip-template {
+  display: block;
+  background: $sbbColorBlack;
+  color: $sbbColorWhite;
+  font-size: pxToRem(15);
+  padding: 0.2rem 0.5rem;
+  border-radius: pxToRem(5);
+}

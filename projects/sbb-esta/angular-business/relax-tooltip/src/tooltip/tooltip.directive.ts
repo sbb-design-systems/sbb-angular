@@ -32,7 +32,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     offsetY: -2
   };
   /**
-   * Set the status tooltip text.
+   * Set the tooltip text or a templateRef for custom toooltip content.
    */
   @Input('sbbTooltip') content: string | TemplateRef<any>;
   private _overlayRef: OverlayRef;
@@ -47,33 +47,36 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private _viewContainerRef: ViewContainerRef
   ) {}
 
-  private _hoverOpenDelay: number;
+  private _tooltipOpenDelay: number;
 
   /**
-   * Customizations for delay open
+   * Set the tooltip hover delay before opening
    */
   @Input()
-  set hoverOpenDelay(value: number) {
-    this._hoverOpenDelay = coerceNumberProperty(value, 0);
+  set tooltipOpenDelay(value: number) {
+    this._tooltipOpenDelay = coerceNumberProperty(value, 0);
   }
 
-  get hoverOpenDelay(): number {
-    return this._hoverOpenDelay;
+  get tooltipOpenDelay(): number {
+    return this._tooltipOpenDelay;
   }
 
-  private _hoverCloseDelay: number;
+  private _tooltipCloseDelay: number;
   /**
-   * Customizations for delay close
+   * Set the tooltip hover delay before closing.
    */
   @Input()
-  set hoverCloseDelay(value: number) {
-    this._hoverCloseDelay = coerceNumberProperty(value, 0);
+  set tooltipCloseDelay(value: number) {
+    this._tooltipCloseDelay = coerceNumberProperty(value, 0);
   }
 
-  get hoverCloseDelay(): number {
-    return this._hoverCloseDelay;
+  get tooltipCloseDelay(): number {
+    return this._tooltipCloseDelay;
   }
 
+  /**
+   * Set a custom tooltip position.
+   */
   @Input()
   set tooltipPosition(positions: ConnectedPosition) {
     if (positions) {
@@ -129,7 +132,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this._clearTimoutOnChangeMouseEvent();
     this._referenceActiveTimeout = window.setTimeout(() => {
       this._show();
-    }, this.hoverOpenDelay);
+    }, this.tooltipOpenDelay);
   }
 
   /**
@@ -140,7 +143,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this._clearTimoutOnChangeMouseEvent();
     this._referenceActiveTimeout = window.setTimeout(() => {
       this._hide();
-    }, this.hoverCloseDelay);
+    }, this.tooltipCloseDelay);
   }
 
   /**

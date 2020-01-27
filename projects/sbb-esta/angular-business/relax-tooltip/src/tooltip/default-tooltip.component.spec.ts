@@ -4,7 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DefaultTooltipComponent } from './default-tooltip.component';
 
-describe('StatusTooltipComponent', () => {
+describe('DefaultTooltipComponent', () => {
   let component: DefaultTooltipComponent;
   let fixture: ComponentFixture<DefaultTooltipComponent>;
 
@@ -26,10 +26,11 @@ describe('StatusTooltipComponent', () => {
   });
 
   it('should set text', () => {
-    component.text = 'Status';
+    const textInput = 'my tooltip';
+    component.text = textInput;
     fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('.sbb-status-tooltip')).nativeElement.textContent
-    ).toBe('Status');
+    expect(fixture.debugElement.query(By.css('.sbb-relax-tooltip')).nativeElement.textContent).toBe(
+      textInput
+    );
   });
 });
