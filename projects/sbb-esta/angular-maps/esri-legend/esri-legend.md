@@ -1,11 +1,16 @@
-The legend shows a list of symbols and what their representing on the map.
+# Legend
 
-> _Note:_ In order to work, the legend depends on a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) or on a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html).  
-> You can get the MapView/SceneView from the `<sbb-esri-web-map></sbb-esri-web-map>` / `<sbb-esri-web-scene></sbb-esri-web-scene>` component using Element Reference.
+## Introduction
 
-### Legend for WebMaps
+The legend component shows and describes the symbology of layers and features in a web map or 3d scene.
 
-_my-map-with-layerlist.component.html_
+_Note: In order to work, the legend component depends on a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) or on a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html). You can get the MapView/SceneView from the `sbb-esri-web-map` or `sbb-esri-web-scene` component using Element Reference._
+
+## Legend for WebMaps
+
+Here's a simple example of how to use the legend component in code, together with a web map.
+
+_my-map-with-legend.component.html_:
 
 ```html
 <sbb-esri-web-map [portalItem]="'e691172598f04ea8881cd2a4adaa45ba'" #webMap></sbb-esri-web-map>
@@ -13,9 +18,11 @@ _my-map-with-layerlist.component.html_
 <sbb-esri-legend [mapView]="webMap.mapView"></sbb-esri-legend>
 ```
 
-### Legend for WebScenes
+## Legend for WebScenes
 
-_my-scene-with-layerlist.component.html_
+Here's a simple example of how to use the legend component in code, together with a web scene.
+
+_my-scene-with-legend.component.html_:
 
 ```html
 <sbb-esri-web-scene
@@ -26,11 +33,13 @@ _my-scene-with-layerlist.component.html_
 <sbb-esri-legend [mapView]="webScene.sceneView"></sbb-esri-legend>
 ```
 
-### Styling the legend
+## Styling the legend
 
-You are able to style the legend. Use the settings from https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Legend.html#style.
+It's possible to apply a style to the legend (type and layout, for example card type with a stacked layout). Available style settings are described at <https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Legend.html#style.>
 
-_my-map-with-layerlist.component.html_
+The following example uses the _card_ type and provides a responsive layout, automatically chosing between _side-by-side_ and _stack_.
+
+_my-map-with-legend.component.html_:
 
 ```html
 <sbb-esri-web-map [portalItem]="'affa021c51944b5694132b2d61fe1057'" #webMap></sbb-esri-web-map>

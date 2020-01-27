@@ -1,11 +1,16 @@
-The layerlist shows a list of all layers of a map.
+# Layer list
 
-> _Note:_ In order to work, the layerlist depends on a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) or on a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html).  
-> You can get the MapView/SceneView from the `<sbb-esri-web-map></sbb-esri-web-map>` / `<sbb-esri-web-scene></sbb-esri-web-scene>` component using Element Reference.
+## Introduction
 
-### Layerlist for WebMaps
+The layer list shows a list of all layers of a map or 3d scene.
 
-_my-map-with-layerlist.component.html_
+_Note: In order to work, the layer list component depends on a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) or on a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html). You can get the MapView/SceneView from the `sbb-esri-web-map` or `sbb-esri-web-scene` component using Element Reference._
+
+## Layer list for WebMaps
+
+Here's a simple example of how to use the layer list in code, together with a web map.
+
+_my-map-with-layerlist.component.html_:
 
 ```html
 <sbb-esri-web-map [portalItem]="'e691172598f04ea8881cd2a4adaa45ba'" #webMap></sbb-esri-web-map>
@@ -13,9 +18,11 @@ _my-map-with-layerlist.component.html_
 <sbb-esri-layer-list [mapView]="webMap.mapView"></sbb-esri-layer-list>
 ```
 
-### Layerlist for WebScenes
+## Layer list for WebScenes
 
-_my-scene-with-layerlist.component.html_
+Here's a simple example of how to use the layer list in code, together with a web scene.
+
+_my-scene-with-layerlist.component.html_:
 
 ```html
 <sbb-esri-web-scene
