@@ -461,6 +461,22 @@
             "main": "projects/sbb-esta/angular-maps/test.ts",
             "tsConfig": "projects/sbb-esta/angular-maps/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-maps/karma.conf.js"
+          },
+          "configurations": {
+            "pr": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "sourceMap": false,
+              "progress": false
+            },
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "progress": false
+            }
           }
         },
         "lint": {
