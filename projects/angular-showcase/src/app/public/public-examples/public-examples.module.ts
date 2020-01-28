@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { AccordionModule } from '@sbb-esta/angular-public/accordion';
@@ -73,7 +72,12 @@ import { ProcessflowShowcaseComponent } from './processflow-showcase/processflow
 import { RadioButtonPanelShowcaseComponent } from './radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { RadioButtonShowcaseComponent } from './radio-button-showcase/radio-button-showcase.component';
 import { SearchShowcaseComponent } from './search-showcase/search-showcase.component';
-import { SelectShowcaseComponent } from './select-showcase/select-showcase.component';
+import { SelectFormsComponent } from './select-forms/select-forms.component';
+import { SelectMultiSelectionComponent } from './select-multi-selection/select-multi-selection.component';
+import { SelectNativeComponent } from './select-native/select-native.component';
+import { SelectOptionGroupsMultiSelectionComponent } from './select-option-groups-multi-selection/select-option-groups-multi-selection.component';
+import { SelectOptionGroupsComponent } from './select-option-groups/select-option-groups.component';
+import { SelectReactiveFormsComponent } from './select-reactive-forms/select-reactive-forms.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
@@ -119,7 +123,12 @@ const exampleComponents = [
   RadioButtonPanelShowcaseComponent,
   RadioButtonShowcaseComponent,
   SearchShowcaseComponent,
-  SelectShowcaseComponent,
+  SelectFormsComponent,
+  SelectMultiSelectionComponent,
+  SelectNativeComponent,
+  SelectOptionGroupsComponent,
+  SelectOptionGroupsMultiSelectionComponent,
+  SelectReactiveFormsComponent,
   TableShowcaseComponent,
   TabsShowcaseComponent,
   TextareaShowcaseComponent,
@@ -136,7 +145,6 @@ const exampleComponents = [
   entryComponents: exampleComponents,
   exports: exampleComponents,
   imports: [
-    BrowserModule,
     CommonModule,
     RouterModule,
     FormsModule,

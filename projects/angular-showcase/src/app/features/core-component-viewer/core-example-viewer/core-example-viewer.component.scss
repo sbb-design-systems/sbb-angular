@@ -5,11 +5,13 @@
   display: block;
   border: 1px solid $sbbColorSilver;
   padding: 24px;
+  margin-bottom: 1rem;
 
   > div {
     border-bottom: 1px solid $sbbColorSilver;
     display: flex;
     padding-bottom: 20px;
+    margin-bottom: 1rem;
 
     > h3 {
       flex-grow: 1;
