@@ -29,22 +29,25 @@
       [class.sbb-icon-fixed-size]="form.value.fixed"
     >
       <div *ngFor="let icon of icons | async">
-        <h3>&lt;{{ icon.elementSelector }}&gt;</h3>
-        <dl>
-          <dt>Attribute Selector</dt>
-          <dd>
-            <code>&lt;svg {{ icon.attributeSelector }}&gt;&lt;/svg&gt;</code>
-          </dd>
-          <dt>Element Selector</dt>
-          <dd>
-            <code>&lt;{{ icon.elementSelector }}&gt;&lt;/{{ icon.elementSelector }}&gt;</code>
-          </dd>
-          <dt>Import</dt>
-          <dd>
-            <code>import &#123; {{ icon.module }} &#125; from <br />'{{ icon.import }}';</code>
-          </dd>
-        </dl>
-
+        <h3>
+          <span>&lt;{{ icon.elementSelector }}&gt;</span>
+          <sbb-tooltip>
+            <dl class="icon-detail-list">
+              <dt>Attribute Selector</dt>
+              <dd>
+                <code>&lt;svg {{ icon.attributeSelector }}&gt;&lt;/svg&gt;</code>
+              </dd>
+              <dt>Element Selector</dt>
+              <dd>
+                <code>&lt;{{ icon.elementSelector }}&gt;&lt;/{{ icon.elementSelector }}&gt;</code>
+              </dd>
+              <dt>Import</dt>
+              <dd>
+                <code>import &#123; {{ icon.module }} &#125; from <br />'{{ icon.import }}';</code>
+              </dd>
+            </dl>
+          </sbb-tooltip>
+        </h3>
         <div>
           <ng-template [cdkPortalOutlet]="icon.portal"></ng-template>
         </div>

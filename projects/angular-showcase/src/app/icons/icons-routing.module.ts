@@ -3,9 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
-import { ExperimentalIconSearchComponent } from './experimental-icon-search/experimental-icon-search.component';
-import { IconSearchComponent } from './icon-search/icon-search.component';
-import { IconViewerComponent } from './icon-viewer/icon-viewer.component';
 import { IconsComponent } from './icons/icons.component';
 
 const routes: Routes = [
@@ -26,15 +23,19 @@ const routes: Routes = [
       },
       {
         path: 'search',
-        component: IconSearchComponent
+        redirectTo: 'components'
       },
       {
-        path: 'components/:id',
-        component: IconViewerComponent
+        path: 'components',
+        loadChildren: () =>
+          import('./icon-components/icon-components.module').then(m => m.IconComponentsModule)
       },
       {
         path: 'experimental',
-        component: ExperimentalIconSearchComponent
+        loadChildren: () =>
+          import('./experimental-icons/experimental-icons.module').then(
+            m => m.ExperimentalIconsModule
+          )
       }
     ]
   }

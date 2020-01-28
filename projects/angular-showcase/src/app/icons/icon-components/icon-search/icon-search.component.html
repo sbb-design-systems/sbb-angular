@@ -5,7 +5,7 @@
     <sbb-search [formControl]="filter" placeholder="Filter icons"></sbb-search>
 
     <div>
-      <a *ngFor="let icon of icons | async" [routerLink]="['../components', icon.selector]">
+      <a *ngFor="let icon of icons | async" [routerLink]="['..', icon.selector]">
         <h3>&lt;{{ icon.selector }}&gt;</h3>
 
         <ng-template [cdkPortalOutlet]="icon.portal"></ng-template>
