@@ -93,8 +93,8 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     return (this.group && this.group.disabled) || this._disabled;
   }
   set disabled(value: any) {
-    this._changeDetectorRef.markForCheck();
     this._disabled = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
   }
   private _disabled = false;
 

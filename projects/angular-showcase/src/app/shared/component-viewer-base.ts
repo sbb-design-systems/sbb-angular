@@ -11,7 +11,7 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   tabs: { openTabByIndex(index: number): void };
   @ViewChild('overview', { static: true }) overview: ElementRef;
   @ViewChild('api', { static: true }) api: ElementRef;
-  example: Observable<{ [component: string]: ComponentPortal<any> }>;
+  example: Observable<Array<{ name: string; portal: ComponentPortal<any> }>>;
   private _destroyed = new Subject<void>();
 
   constructor(
@@ -24,7 +24,8 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.example = this._route.params.pipe(
       takeUntil(this._destroyed),
-      map(({ id }) => this._exampleProvider.resolveExample(id))
+      map(({ id }) => this._exampleProvider.resolveExample(id)),
+      map(examples => Object.keys(examples).map(name => ({ name, portal: examples[name] })))
     );
   }
 

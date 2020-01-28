@@ -9,9 +9,9 @@
       </sbb-tab>
       <sbb-tab *ngIf="example | async as examplePortals" label="Examples">
         <sbb-example-viewer
-          *ngFor="let entry of examplePortals | keyvalue"
-          [name]="entry.key"
-          [example]="entry.value"
+          *ngFor="let entry of examplePortals"
+          [name]="entry.name"
+          [example]="entry.portal"
         ></sbb-example-viewer>
       </sbb-tab>
     </sbb-tabs>
