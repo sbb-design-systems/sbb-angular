@@ -1,4 +1,4 @@
-@import '../../../../../sbb-esta/angular-core/styles/common/colors';
+@import '../../../../../../sbb-esta/angular-core/styles/common/colors';
 
 :host {
   display: block;
@@ -32,7 +32,7 @@ article {
       display: block;
       border: 1px solid $sbbColorSilver;
       padding: 24px;
-      width: 32rem;
+      width: 18rem;
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       margin-bottom: 1rem;
@@ -43,14 +43,10 @@ article {
         display: flex;
         padding-bottom: 20px;
         margin-bottom: 1.5rem;
-      }
 
-      dt {
-        font-weight: bold;
-      }
-
-      dd {
-        margin-left: 0;
+        span {
+          flex: 1 1 auto;
+        }
       }
 
       > div {
@@ -64,5 +60,24 @@ article {
         }
       }
     }
+  }
+}
+
+::ng-deep .icon-detail-list {
+  dt,
+  dd {
+    margin-bottom: 0.5rem;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  code {
+    line-height: 1.5;
   }
 }
