@@ -2,7 +2,7 @@
 
 Basic steps to integrate the `@sbb-esta/angular-maps` library into your own project.
 
-## Step 0: Prerequisites
+### Step 0: Prerequisites
 
 You need to install [Node.js](https://nodejs.org/it/) first, and assure yourself to have a working javascript dependency manager like [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/lang/en/).
 
@@ -20,7 +20,7 @@ yarn global add @angular/cli
 
 You can create now your project as described in the official [Angular CLI documentation](https://cli.angular.io/).
 
-## Step 1: Install the library
+### Step 1: Install the library
 
 Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-maps`, `@types/arcgis-js-api` and `esri-loader` dependencies:
 
@@ -34,7 +34,7 @@ or, if using yarn:
 yarn add @types/arcgis-js-api esri-loader @sbb-esta/angular-maps
 ```
 
-## Step 2: Configure the library
+### Step 2: Configure the library
 
 Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal, a different [ArcGIS Javascript API Version](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings.
 
@@ -62,7 +62,7 @@ import { EsriConfigModule } from '@sbb-esta/angular-maps';
 export class TrainChooChooAppModule { }
 ```
 
-## Step 3: Import the component modules
+### Step 3: Import the component modules
 
 Import the NgModule for each component you want to use:
 
