@@ -26,11 +26,8 @@ import { PublicModule } from './public/public.module';
     HttpClientModule,
     BrowserAnimationsModule,
     PublicModule,
-    BusinessModule,
     MapsModule,
     KeycloakModule,
-    CoreModule,
-    IconsModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]
