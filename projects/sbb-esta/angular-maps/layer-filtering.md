@@ -1,17 +1,14 @@
-# Map Interactions
+# Layer filtering
 
-## Introduction
+Map interaction is a key part of any map driven application. Things like clicking, zooming and panning allow a diverse engagement with your data. `@sbb-esta/angular-maps` allows you to do everything with your map or 3D scene that can be done using the ArcGIS API for Javascript.
 
-A map gets much more interesting, when you can do more things than just clicking, zooming and panning around!
-Because of this you are able to do everything with your map, what the ArcGIS Javascript API allows you to do.
+_You can find a complete overview of the API [here](https://developers.arcgis.com/javascript/latest/api-reference/)._
 
-> You can find a complete overview of the API [here](https://developers.arcgis.com/javascript/latest/api-reference/).
-
-In the following steps we will go through an example, on how to use your map in a more complex way.
+The following steps walk you trough a way to on how to dynamically filter the contents of your map.
 
 ## Sample: Filter your map layers using definition expressions
 
-You are able to filter layers on a map based on a sql query. This is called a [definition expression](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#definitionExpression).
+Layers can be filtered based on expressions using a simple SQL syntax. This query is called [definition expression](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#definitionExpression).
 
 ### Step 0: Prerequisites
 
@@ -19,7 +16,7 @@ Setup the `@sbb-esta/angular-maps` as described in the [Getting started section]
 
 ### Step 1: Setup a basic WebMap in your App
 
-_app.component.html_
+_app.component.html_:
 
 ```html
 <sbb-esri-web-map [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'"> </sbb-esri-web-map>
@@ -27,18 +24,18 @@ _app.component.html_
 
 ### Step 2: Access the map through the `(mapReady)` output
 
-Listen to `(mapReady)` output, to get notified when the MapView is ready for usage.
+Listen to `(mapReady)` output to get notified when the MapView (as provided by the WebMap component) is ready for usage.
 
-> A [`MapView`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) represents a 2D Map in the ESRI universe.
+> _In the ArcGIS universe, a [`MapView`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) represents a 2D map._
 
-_app.component.html_
+_app.component.html_:
 
 ```html
 <sbb-esri-web-map [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'" (mapReady)="mapReady($event)">
 </sbb-esri-web-map>
 ```
 
-_app.component.ts_
+_app.component.ts_:
 
 ```ts
 @Component({
@@ -55,15 +52,13 @@ export class AppComponent {
 }
 ```
 
-### Step 3: Filter the layers using definition expressions
+### Step 3: Filter layers using definition expressions
 
-> _Note:_ You can find the docs at https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#definitionExpression
+_Note: You can find the docs at <https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#definitionExpression>_
 
-Now with having the mapview loaded, you are able to access it's layers:
+Now with having the MapView loaded, you are able to access it's layers:
 
-> _Note:_ The map is ready, even if it's layer aren't at the moment! To get notified when a layer is ready you can use `mapview.on('layerview-create', e => { ... })`
-
-_app.component.ts_
+_app.component.ts_:
 
 ```ts
 @Component({
@@ -91,4 +86,6 @@ export class AppComponent {
 }
 ```
 
-Now the map shows only the data with "Accidental Deaths per 100k" > 60!
+The map now only shows data where "Accidental Deaths per 100k" > 60.
+
+\_Note: You will possibly get notified that the map is ready, even if the map's layers are not ready set. To get notified once a certain layer is ready, you can use `mapview.on('layerview-create', e => { ... })`.

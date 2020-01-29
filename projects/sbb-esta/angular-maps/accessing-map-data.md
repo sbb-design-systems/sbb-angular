@@ -1,34 +1,31 @@
 # Accessing map data
 
-## Introduction
+Map interaction is a key part of any map driven application. Things like clicking, zooming and panning allow a diverse engagement with your data. `@sbb-esta/angular-maps` allows you to do everything with your map or 3D scene that can be done using the ArcGIS API for Javascript.
 
-A map gets much more interesting, when you can do more things than just clicking, zooming and panning around!
-Because of this you are able to do everything with your map, what the ArcGIS Javascript API allows you to do.
+_You can find a complete overview of the API [here](https://developers.arcgis.com/javascript/latest/api-reference/)._
 
-> You can find a complete overview of the API [here](https://developers.arcgis.com/javascript/latest/api-reference/).
-
-In the following steps we will go through an example, on how to use your map in a more complex way.
+The following steps walk you trough a way to on how to access the data of the layers in your map and use the data in your application (and outside of the map).
 
 ## Sample: Access the underlaying data of a map
 
-In some cases you want to access the data displayed on the map. For example you could list that data in a tabular form, create a chart or whatever you want!
+It's a common task to gain access the data of a map displayed by the WebMap component. For example, you could list that datain tabular form, create charts or just use single attribute values for extensive calculations or statistic.
 
 ### Step 0: Prerequisites
 
-This sample relies on the sample "Layer filtering". So it might be clever to check out this [Sample](/maps/advanced/layer-filtering) first!
+This sample relies on the sample _Layer filtering_. So it might be a goode idea to work tgrough this [Sample](/maps/advanced/layer-filtering) first.
 
-### Step 1: Get the layer of which contains the data you want
+### Step 1: Access the layer containing the desired data
 
-Get your layer, like we did it in the sample before:
+Get your layer, just like we did in the previous sample.
 
-_app.component.html_
+_app.component.html_:
 
 ```html
 <sbb-esri-web-map [portalItemId]="'f2e9b762544945f390ca4ac3671cfa72'" (mapReady)="mapReady($event)">
 </sbb-esri-web-map>
 ```
 
-_app.component.ts_
+_app.component.ts_:
 
 ```ts
 @Component({
@@ -57,14 +54,13 @@ export class AppComponent {
 
 ### Step 2: Get all the data using the `featureLayer.queryFeatures`
 
-> _Note:_ Because the map does not load all data at a time, but only the ones in the active map section, you have to load the data again.
+_Note: The map does not load all data at once, but only data that is required to display the active map extent by default. Thus, you have to load the data again._
 
-When you got the layer you want, you can query it, using the `__esri.FeatureLayer`'s method `queryFeatures()`.
+When you got the layer you want, you can _query_ it, using the `__esri.FeatureLayer`'s method `queryFeatures()`.
 
-> _Note:_ To query a FeatureLayer you need an [`__esri.Query`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html) Object, which you can create using the `__esri.FeatureLayer`'s method `createQuery()`.
-> You can define configure the query using the [`where()` property](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html#where) and other things. Just check out the ArcGIS Javascript Documentation.
+_Note: To query a FeatureLayer you need an [`__esri.Query`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html) Object, which you can create using the `__esri.FeatureLayer`'s method `createQuery()`. You can define configure the query using the [`where()` property](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html#where) and other things. Just check out the ArcGIS Javascript Documentation._
 
-_app.component.ts_
+_app.component.ts_:
 
 ```ts
 @Component({
