@@ -1,6 +1,7 @@
-# Basics of mapping
+# Mapping basics
 
-<img src="/assets/images/angular-maps/map_layers.jpg" alt="Typcial map layer composition" title="Typical map layer composition (image by United States Geological Survey [Public domain]" style="float: right; margin-left: 10px;" /> 
+<img src="/assets/images/angular-maps/map_layers.jpg" alt="Typcial map layer composition" title="Typical map layer composition (image by United States Geological Survey [Public domain]" style="float: right; margin-left: 10px;" />
+
 Maps are a very relevant part of our daily routine. A few years ago, paper maps were all around. Today, map viewer applications provide all the details we need. 3D has become an important visual advantage for maps too.
 
 > A map is almost universally a two-dimensional representation of a piece of three-dimensional space. Only with the advent of modern computer graphics were three-dimensional maps made possible. Maps serve two map functions; they are a spatial database and a communication device. The science of making maps is called cartography.
