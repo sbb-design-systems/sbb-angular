@@ -73,10 +73,10 @@ export class AppComponent {
 
   mapReady(mv: __esri.MapView) {
     this.mapView = mv;
-    this.()
+    this.loadDataFromLayer();
   }
 
-  private putMyMapFilterOn() {
+  private loadDataFromLayer() {
     this.mapView.on('layerview-create', async event => {
       const { layer } = event;
       if (layer.id === 'Accidental_Deaths_8938') {
@@ -88,3 +88,5 @@ export class AppComponent {
   }
 }
 ```
+
+The `queryFeatures()` method returns an [`__esri.FeatureSet`](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-FeatureSet.html). The `__esri.FeatureSet` contains all the requested objects as [`__esri.Graphic[]`](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) and some other informations about the queried layer.
