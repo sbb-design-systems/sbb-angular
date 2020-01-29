@@ -1,10 +1,17 @@
 # Basics of mapping
 
+<img src="/assets/images/angular-maps/map_layers.jpg" alt="Typcial map layer composition" title="Typical map layer composition (image by United States Geological Survey [Public domain]" style="float: right; margin-left: 10px;" /> 
 Maps are a very relevant part of our daily routine. A few years ago, paper maps were all around. Today, map viewer applications provide all the details we need. 3D has become an important visual advantage for maps too.
 
 > A map is almost universally a two-dimensional representation of a piece of three-dimensional space. Only with the advent of modern computer graphics were three-dimensional maps made possible. Maps serve two map functions; they are a spatial database and a communication device. The science of making maps is called cartography.
 
 (_Quote from [Basics of a Map](https://www.gislounge.com/map/)_)
+
+Maps are composed of a series of map layers drawn in a particular order. A map layer defines how a GIS dataset is symbolized and labeled in your map view.
+
+From a technical point of view, maps in `@sbb-esta/angular-maps` are composed of different layer types, representing different data sources. Details about this are laid out in our [Overview and usage](/site/introduction/overview-and-usage) section.
+
+### Good maps
 
 How can a good map be designed? What is _good design_ for maps anyway?
 
@@ -39,7 +46,7 @@ The blog post [7 reasons why maps are important](https://barrachd.co.uk/insights
 
 Maps are valuable, as long as you avoid a few common problems and mistakes when designing your application.
 
-- Using maps only makes sense when location is an key part of what you want to provide or show.
+- Using maps only makes sense when location is a key part of what you want to provide or show.
 - Do not overcrowd your map with information, chose a good symbology, provide scale dependend views
 - Carefully craft your scrolling and panning interaction matching your device's default behaviour
 - Consider the runtime environment of your application: Slow network have a huge impact on the responsiveness of your map
@@ -63,7 +70,7 @@ Most maps will be a combination of two or more of these types, aggregating infor
 
 With `@sbb-esta/angular-maps` it's a simple task to integrate 2D and/or 3D scenes in your web application. But when should you be using a 2D map and when would you chose a 3D scene to provide the visual information and interaction patterns you aim for?
 
-3D scenes allow to emphasize on the real world 3D situation, including terrain, buildings, infrastructure models. Think of BIM, digital twins, simulation and the ability to provide a unique visual communication towards your application users. 2D mapping however is what most people can intuitivley understand today. Navigation on a 2D map is usually much simple and intuitive.
+3D scenes allow to emphasize on the real world 3D situation, including terrain, buildings, infrastructure models. Think of BIM, digital twins, simulation and the ability to provide a unique visual communication towards your application users. 2D mapping however is what most people can relate to today. Navigation on a 2D map is usually much simpler and more intuitive.
 
 Esri provides a thorough story map on when to use 2D and when to use 3D maps at [To 3D or not to 3D](https://storymaps.arcgis.com/stories/85df1e904cbb49c8ad169be4bc927016). Learn about eight things to consider when deciding on what kind of map you want to use.
 
