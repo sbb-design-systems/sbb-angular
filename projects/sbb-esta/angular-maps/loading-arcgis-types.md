@@ -10,7 +10,7 @@ As a simplification to the rather complicated setup and usage of _esri-loader_, 
 
 #### When to use EsriLoaderService
 
-Use the `@sbb-esta/angular-maps/esri-loader.service` to instantiate [types from the ArcGIS API forJavascript](https://developers.arcgis.com/javascript/latest/api-reference/).
+Use the `@sbb-esta/angular-maps/esri-loader.service` to instantiate [types from the ArcGIS API for Javascript](https://developers.arcgis.com/javascript/latest/api-reference/).
 
 _Note: You can also instantiate a simple type using Typescript's type assertions:_
 
