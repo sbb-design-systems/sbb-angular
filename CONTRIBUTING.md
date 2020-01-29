@@ -162,12 +162,13 @@ reference GitHub issues that this commit **Closes**.
 The rest of the commit message is then used for this.
 
 ## <a name="public-business"></a> Public/Business Package
-This project publishes five packages:
+This project publishes six packages:
 
 * @sbb-esta/angular-core
 * @sbb-esta/angular-icons
 * @sbb-esta/angular-keycloak
 * @sbb-esta/angular-public
+* @sbb-esta/angular-maps
 * @sbb-esta/angular-business
 
 ### Styling
