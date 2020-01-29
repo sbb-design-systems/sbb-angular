@@ -12,13 +12,13 @@ This currently comes with the requirement to use _web maps_ provided by Portal f
 
 3D _web scenes_ finally are part of a future GIS world and thus a good way to invest into now - especially considering the simplicity of creating web scenes using Portal for ArcGIS or ArcGIS Online.
 
-## Technology
+### Technology
 
 The current implementation of `@sbb-esta/angular-maps` bases on the [ArcGIS API for Javascript](https://developers.arcgis.com/javascript/) by [Esri](https://www.esri.com). The components provided in `@sbb-esta/angular-maps` are basically wrappers around the core functionality of the _ArcGIS API for Javascript_ with the intention to hide things like the [esri-loader](https://github.com/Esri/esri-loader) and ease the integration in Angular applications.
 
 Currently, `@sbb-esta/angular-maps` bases on the _ArcGIS API for Javascript_ version _4.14_.
 
-## What is ArcGIS Online / Portal for ArcGIS
+### What is ArcGIS Online / Portal for ArcGIS
 
 From the [ArcGIS Online FAQ](https://doc.arcgis.com/en/arcgis-online/reference/faq.htm#anchor1):
 
@@ -32,25 +32,25 @@ Both platforms allow the creation and publication of maps and scenes and can equ
 
 The SBB Geoportal (for company use only) is a _Portal for ArcGIS_ installation and provides much of the geo-content that is internally available. It is available at <https://geo.sbb.ch/portal.>
 
-## Usage patterns
+### Usage patterns
 
 It's all about maps. Creating your own map can be challenging. We aim to give you a kick start in the section [Mapping basics](/maps/introduction/mapping-basics).
 
-### Simple map or 3D scene display
+#### Simple map or 3D scene display
 
 The `@sbb-esta/angular-maps` components are the most simple way to integrate a map in your angular application - given the fact that you are able and willing to provide your data in and trough an ArcGIS portal. Chose this, if a map serves as additional way of displaying your data, giving an overview or a spatial insight. This provides basic means of panning and zooming out of the box.
 
-### Map or 3D scene interaction
+#### Map or 3D scene interaction
 
 It's a common pattern to have the map display interacting with your application in a more advanced way. You might want to apply filters to data in your application at the same time as in your map. You will be highlighting elements in the map depending on a selection in a data grid or you want to update the contents of your table based on the map extent current being shown.
 
 Use the events emitted by the `@sbb-esta/angular-maps` components to interact with the map.
 
-### Map or 3D scene synchronization
+#### Map or 3D scene synchronization
 
 Imagine multiple map (and/or 3d scene) components being laid out in your application side by side, each displaying a different symbology, viewport or data layer. Panning and zooming in one map should also update the other map accordingly. This pattern lets you add a touch of not so common user experience to your application. Yet it can give a whole different feeling to your data and allows gaining additional insight.
 
-## Alternatives
+### Alternatives
 
 Using the `@sbb-esta/angular-maps` components is free but using ArcGIS Online or an on premises portal will most likely have financial impact. The technology is tailored upon the SBB tech stack and allows a mix and match of data and technology when in use in alignment with the tech governance. Still there might be reasons why not to use these components:
 

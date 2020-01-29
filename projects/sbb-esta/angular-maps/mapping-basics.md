@@ -23,7 +23,7 @@ How can a good map be designed? What is _good design_ for maps anyway?
 
 The full list is at [33 Map Elements to Include in Cartographic Design: A ‘How to’ Guide to Map Making](https://gisgeography.com/map-elements-how-to-guide-map-making/).
 
-## When to use maps
+### When to use maps
 
 Using a map in your application can improve usability and ease access to complex data. Once you deal with spatial data and your application provides answers to location based questions you will end up using maps as a way to communicate. Furthermore, today everybody is used to read and handle maps in applications and thus, maps belong to standard UI toolkits.
 
@@ -44,7 +44,7 @@ Maps are valuable, as long as you avoid a few common problems and mistakes when 
 - Carefully craft your scrolling and panning interaction matching your device's default behaviour
 - Consider the runtime environment of your application: Slow network have a huge impact on the responsiveness of your map
 
-## Types of maps
+### Types of maps
 
 Obvisouly, there are millions of variations of what a map can look like and what kind of information it provides. The composition of layers, their symbology and visual theme is what a makes a map unique. Still, there is a basic typology to consider:
 
@@ -59,7 +59,7 @@ Obvisouly, there are millions of variations of what a map can look like and what
 
 Most maps will be a combination of two or more of these types, aggregating information in layers.
 
-## 2D vs. 3D
+### 2D vs. 3D
 
 With `@sbb-esta/angular-maps` it's a simple task to integrate 2D and/or 3D scenes in your web application. But when should you be using a 2D map and when would you chose a 3D scene to provide the visual information and interaction patterns you aim for?
 
@@ -67,7 +67,7 @@ With `@sbb-esta/angular-maps` it's a simple task to integrate 2D and/or 3D scene
 
 Esri provides a thorough story map on when to use 2D and when to use 3D maps at [To 3D or not to 3D](https://storymaps.arcgis.com/stories/85df1e904cbb49c8ad169be4bc927016). Learn about eight things to consider when deciding on what kind of map you want to use.
 
-## Further reading and references
+### Further reading and references
 
 This short _mapping basics_ article does not address many relevant questions when it comes to actual map making, cartography and visual communications using a map. For example, projections and symbology are key topics when creating good maps. Please help yourself to learn more about the art of map making.
 
