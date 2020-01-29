@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "svg-registry": {
+      "description": "Generate an svg registry, from which icon modules can be generated.",
+      "factory": "./svg-registry/index#svgRegistry",
+      "schema": "./svg-registry/schema.json"
+    },
+    "svg-icons": {
+      "description": "Generate icon modules.",
+      "factory": "./svg-icons/index#svgIcons",
+      "schema": "./svg-icons/schema.json"
+    }
+  }
+}

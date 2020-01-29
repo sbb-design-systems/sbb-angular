@@ -5,30 +5,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var core = require('@angular-devkit/core');
 var schematics = require('@angular-devkit/schematics');
 
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
-
 const ICON_ROOT = 'root';
 class IconCollectionModule {
     constructor(name = '') {
@@ -47,7 +23,10 @@ class IconCollectionModule {
         const directory = this.name ? root.dir(core.fragment(this.filename)) : root;
         return schematics.chain([
             schematics.mergeWith(schematics.apply(schematics.url('./files/collection'), [
-                schematics.template(Object.assign({}, core.strings, this)),
+                schematics.template({
+                    ...core.strings,
+                    ...this
+                }),
                 schematics.move(directory.path)
             ])),
             ...this.collections.map(c => c.apply(directory)),
@@ -74,9 +53,15 @@ class IconModule {
     apply(directory) {
         const iconBaseImport = () => `${'../'.repeat(this.modules.length)}icon-base`;
         return schematics.mergeWith(schematics.apply(schematics.url('./files/icon'), [
-            schematics.template(Object.assign({}, core.strings, { iconBaseImport }, this._files[0], (this._files.some(f => ['large', 'medium', 'small'].includes(f.size))
-                ? { width: '24px', height: '24px', ratio: 1 }
-                : undefined), (this._files.length > 1 ? { template: this._mergeTemplates() } : undefined))),
+            schematics.template({
+                ...core.strings,
+                iconBaseImport,
+                ...this._files[0],
+                ...(this._files.some(f => ['large', 'medium', 'small'].includes(f.size))
+                    ? { width: '24px', height: '24px', ratio: 1 }
+                    : undefined),
+                ...(this._files.length > 1 ? { template: this._mergeTemplates() } : undefined)
+            }),
             schematics.move(directory.path)
         ]));
     }
@@ -168,11 +153,9 @@ class Svgo {
      * @param svg Source SVG mark-up
      * @return normalized SVG mark-up
      */
-    static optimize(svg) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { data } = yield Svgo._instance._svgo.optimize(svg);
-            return data.trim();
-        });
+    static async optimize(svg) {
+        const { data } = await Svgo._instance._svgo.optimize(svg);
+        return data.trim();
     }
 }
 Svgo._instance = new Svgo();
@@ -188,17 +171,15 @@ class SvgFile {
         this.ratio = ratio;
         this.size = '';
     }
-    static from(filepath, entry) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const lastSlashIndex = filepath.lastIndexOf('/');
-            const name = filepath.substring(lastSlashIndex + 1, filepath.lastIndexOf('.'));
-            const modules = filepath.substring(0, lastSlashIndex).split('/');
-            const content = entry.content.toString('utf8');
-            const template = (yield Svgo.optimize(content)).replace('<svg ', `<svg focusable="false" [attr.class]="'sbb-svg-icon ' + svgClass" `);
-            const width = SvgFile._determineDimension(/( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g, content, filepath);
-            const height = SvgFile._determineDimension(/( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g, content, filepath);
-            return new SvgFile(name, modules, filepath, template, `${width}px`, `${height}px`, width / height);
-        });
+    static async from(filepath, entry) {
+        const lastSlashIndex = filepath.lastIndexOf('/');
+        const name = filepath.substring(lastSlashIndex + 1, filepath.lastIndexOf('.'));
+        const modules = filepath.substring(0, lastSlashIndex).split('/');
+        const content = entry.content.toString('utf8');
+        const template = (await Svgo.optimize(content)).replace('<svg ', `<svg focusable="false" [attr.class]="'sbb-svg-icon ' + svgClass" `);
+        const width = SvgFile._determineDimension(/( width="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+(\d+)[ ,]+\d+")/g, content, filepath);
+        const height = SvgFile._determineDimension(/( height="([^"]+)"| viewBox="\d+[ ,]+\d+[ ,]+\d+[ ,]+(\d+))"/g, content, filepath);
+        return new SvgFile(name, modules, filepath, template, `${width}px`, `${height}px`, width / height);
     }
     static _determineDimension(regex, content, filepath) {
         const match = regex.exec(content);
@@ -213,17 +194,15 @@ class SvgSource {
     constructor(_files) {
         this._files = _files;
     }
-    static from(svgDirectory) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const files = [];
-            svgDirectory.visit((path, entry) => {
-                if (entry && path.endsWith('.svg')) {
-                    files.push(SvgFile.from(path, entry));
-                }
-            });
-            const resolvedFiles = (yield Promise.all(files)).map(f => namingRules.reduce((current, next) => next(current), f));
-            return new SvgSource(resolvedFiles);
+    static async from(svgDirectory) {
+        const files = [];
+        svgDirectory.visit((path, entry) => {
+            if (entry && path.endsWith('.svg')) {
+                files.push(SvgFile.from(path, entry));
+            }
         });
+        const resolvedFiles = (await Promise.all(files)).map(f => namingRules.reduce((current, next) => next(current), f));
+        return new SvgSource(resolvedFiles);
     }
     assertNoDuplicates() {
         const duplicates = this._files
@@ -270,20 +249,23 @@ class SvgSource {
 }
 
 function generateIconModules() {
-    return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const collection = (yield SvgSource.from(tree.getDir('svg')))
+    return async (tree) => {
+        const collection = (await SvgSource.from(tree.getDir('svg')))
             .assertNoDuplicates()
             .toCollectionModules();
         const dist = tree.getDir('projects/sbb-esta/angular-icons/src/lib');
         const icons = collection.iconsRecursive;
         return schematics.chain([
             schematics.mergeWith(schematics.apply(schematics.url('./files/root'), [
-                schematics.template(Object.assign({}, core.strings, { icons })),
+                schematics.template({
+                    ...core.strings,
+                    icons
+                }),
                 schematics.move(dist.path)
             ])),
             collection.apply(dist)
         ]);
-    });
+    };
 }
 
 exports.generateIconModules = generateIconModules;

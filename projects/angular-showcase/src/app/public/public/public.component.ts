@@ -24,7 +24,12 @@ import { ProcessflowShowcaseComponent } from '../public-examples/processflow-sho
 import { RadioButtonPanelShowcaseComponent } from '../public-examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
 import { RadioButtonShowcaseComponent } from '../public-examples/radio-button-showcase/radio-button-showcase.component';
 import { SearchShowcaseComponent } from '../public-examples/search-showcase/search-showcase.component';
-import { SelectShowcaseComponent } from '../public-examples/select-showcase/select-showcase.component';
+import { SelectFormsComponent } from '../public-examples/select-forms/select-forms.component';
+import { SelectMultiSelectionComponent } from '../public-examples/select-multi-selection/select-multi-selection.component';
+import { SelectNativeComponent } from '../public-examples/select-native/select-native.component';
+import { SelectOptionGroupsMultiSelectionComponent } from '../public-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
+import { SelectOptionGroupsComponent } from '../public-examples/select-option-groups/select-option-groups.component';
+import { SelectReactiveFormsComponent } from '../public-examples/select-reactive-forms/select-reactive-forms.component';
 import { TableShowcaseComponent } from '../public-examples/table-showcase/table-showcase.component';
 import { TabsShowcaseComponent } from '../public-examples/tabs-showcase/tabs-showcase.component';
 import { TagShowcaseComponent } from '../public-examples/tag-showcase/tag-showcase.component';
@@ -99,7 +104,16 @@ export class PublicComponent implements ExampleProvider {
       'radio-button-panel-showcase': new ComponentPortal(RadioButtonPanelShowcaseComponent)
     },
     search: { 'search-showcase': new ComponentPortal(SearchShowcaseComponent) },
-    select: { 'select-showcase': new ComponentPortal(SelectShowcaseComponent) },
+    select: {
+      'select-reactive-forms': new ComponentPortal(SelectReactiveFormsComponent),
+      'select-forms': new ComponentPortal(SelectFormsComponent),
+      'select-native': new ComponentPortal(SelectNativeComponent),
+      'select-multi-selection': new ComponentPortal(SelectMultiSelectionComponent),
+      'select-option-groups': new ComponentPortal(SelectOptionGroupsComponent),
+      'select-option-groups-multi-selection': new ComponentPortal(
+        SelectOptionGroupsMultiSelectionComponent
+      )
+    },
     tag: { 'tag-showcase': new ComponentPortal(TagShowcaseComponent) },
     textarea: { 'textarea-showcase': new ComponentPortal(TextareaShowcaseComponent) },
     'time-input': { 'time-input-showcase': new ComponentPortal(TimeInputShowcaseComponent) },

@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.12...8.8.0) (2020-01-28)
+
+
+### Bug Fixes
+
+* fix the disabled state of sbb-select ([#262](https://github.com/sbb-design-systems/sbb-angular/issues/262)) ([6f5c3e7](https://github.com/sbb-design-systems/sbb-angular/commit/6f5c3e7)), closes [#244](https://github.com/sbb-design-systems/sbb-angular/issues/244)
+* use the correct SBB fonts ([#260](https://github.com/sbb-design-systems/sbb-angular/issues/260)) ([bb18668](https://github.com/sbb-design-systems/sbb-angular/commit/bb18668))
+* **textarea:** trigger calculation of remaining characters correctly ([#252](https://github.com/sbb-design-systems/sbb-angular/issues/252)) ([e3916dd](https://github.com/sbb-design-systems/sbb-angular/commit/e3916dd)), closes [#217](https://github.com/sbb-design-systems/sbb-angular/issues/217)
+
+
+### Build System
+
+* shorten build script names by removing angular- ([2dcf6d4](https://github.com/sbb-design-systems/sbb-angular/commit/2dcf6d4))
+* update dependencies ([#256](https://github.com/sbb-design-systems/sbb-angular/issues/256)) ([1e8ced2](https://github.com/sbb-design-systems/sbb-angular/commit/1e8ced2))
+
+
+### Features
+
+* provide schematics for generating icon modules ([#259](https://github.com/sbb-design-systems/sbb-angular/issues/259)) ([00bd71b](https://github.com/sbb-design-systems/sbb-angular/commit/00bd71b))
+* **business:** implement pagination business styles ([#241](https://github.com/sbb-design-systems/sbb-angular/issues/241)) ([ce21a44](https://github.com/sbb-design-systems/sbb-angular/commit/ce21a44)), closes [#84](https://github.com/sbb-design-systems/sbb-angular/issues/84)
+* **business:** implement table component ([#240](https://github.com/sbb-design-systems/sbb-angular/issues/240)) ([ea278c4](https://github.com/sbb-design-systems/sbb-angular/commit/ea278c4)), closes [#88](https://github.com/sbb-design-systems/sbb-angular/issues/88)
+* **icons:** generate new icon modules ([#258](https://github.com/sbb-design-systems/sbb-angular/issues/258)) ([539a2d4](https://github.com/sbb-design-systems/sbb-angular/commit/539a2d4)), closes [#152](https://github.com/sbb-design-systems/sbb-angular/issues/152)
+
+
+
 ### [8.7.12](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.11...8.7.12) (2020-01-06)
 
 

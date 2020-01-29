@@ -5,14 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
-import { ICON_COMPONENT_LIST, IconCollectionModule } from '@sbb-esta/angular-icons';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BusinessModule } from './business/business.module';
-import { CoreModule } from './core/core.module';
-import { IconsModule } from './icons/icons.module';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { KeycloakModule } from './keycloak/keycloak.module';
 import { MapsModule } from './maps/maps.module';
@@ -24,7 +20,6 @@ import { PublicModule } from './public/public.module';
     BrowserModule,
     FormsModule,
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
-    IconCollectionModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     ScrollingModule,
     HeaderModule,
@@ -38,7 +33,6 @@ import { PublicModule } from './public/public.module';
     IconsModule,
     AppRoutingModule
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [...ICON_COMPONENT_LIST]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

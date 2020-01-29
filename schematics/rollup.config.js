@@ -1,41 +1,42 @@
-import typescript from 'rollup-plugin-typescript2';
+import ts from '@wessberg/rollup-plugin-ts';
+import { existsSync, readdirSync } from 'fs';
 import { join } from 'path';
 
-export default [
-  'documentation',
-  'example-migration',
-  'generate-icon-modules',
-  'public2business'
-].map(directory => ({
-  input: join(__dirname, directory, 'index.ts'),
-  output: {
-    file: join(__dirname, directory, 'index.js'),
-    format: 'cjs'
-  },
-  external: [
-    '@angular-devkit/schematics',
-    '@angular-devkit/core',
-    'dgeni',
-    'dgeni-packages/typescript/api-doc-types/ApiDoc',
-    'dgeni-packages/typescript/api-doc-types/ClassExportDoc',
-    'dgeni-packages/typescript/api-doc-types/ExportDoc',
-    'dgeni-packages/typescript/api-doc-types/MemberDoc',
-    'dgeni-packages/typescript/api-doc-types/MethodMemberDoc',
-    'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc',
-    'fs',
-    'highlight.js',
-    'html-minifier',
-    'marked',
-    'path',
-    'rxjs',
-    'rxjs/operators',
-    'typescript'
-  ],
-  plugins: [
-    typescript({
-      tsconfig: join(__dirname, 'tsconfig.json'),
-      //useTsconfigDeclarationDir: true,
-      cacheRoot: `${require('os').tmpdir()}/.rpt2_csas_${directory}`
-    })
-  ]
-}));
+export default readdirSync(__dirname, { withFileTypes: true })
+  .filter(d => d.isDirectory() && existsSync(join(__dirname, d.name, 'index.ts')))
+  .map(d => ({
+    input: join(__dirname, d.name, 'index.ts'),
+    output: {
+      file: join(__dirname, d.name, 'index.js'),
+      format: 'cjs'
+    },
+    external: [
+      '@angular/cdk/schematics',
+      '@angular-devkit/schematics',
+      '@angular-devkit/core',
+      '@angular-devkit/core/src/utils/strings',
+      '@schematics/angular/utility/config',
+      'dgeni',
+      'dgeni-packages/typescript/api-doc-types/ApiDoc',
+      'dgeni-packages/typescript/api-doc-types/ClassExportDoc',
+      'dgeni-packages/typescript/api-doc-types/ExportDoc',
+      'dgeni-packages/typescript/api-doc-types/MemberDoc',
+      'dgeni-packages/typescript/api-doc-types/MethodMemberDoc',
+      'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc',
+      'fs',
+      'highlight.js',
+      'html-minifier',
+      'marked',
+      'path',
+      'rxjs',
+      'rxjs/operators',
+      'svgo',
+      'typescript'
+    ],
+    plugins: [
+      ts({
+        browserslist: false,
+        tsconfig: join(__dirname, 'tsconfig.json')
+      })
+    ]
+  }));

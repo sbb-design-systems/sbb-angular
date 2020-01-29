@@ -16,6 +16,16 @@
     "generate-icon-modules": {
       "description": "Generate icon modules.",
       "factory": "./generate-icon-modules/index#generateIconModules"
+    },
+    "svg-registry": {
+      "description": "Generate an svg registry, from which icon modules can be generated.",
+      "factory": "../dist/sbb-esta/angular-icons/schematics/svg-registry/index#svgRegistry",
+      "schema": "../dist/sbb-esta/angular-icons/schematics/svg-registry/schema.json"
+    },
+    "svg-icons": {
+      "description": "Generate icon modules.",
+      "factory": "../dist/sbb-esta/angular-icons/schematics/svg-icons/index#svgIcons",
+      "schema": "../dist/sbb-esta/angular-icons/schematics/svg-icons/schema.json"
     }
   }
 }

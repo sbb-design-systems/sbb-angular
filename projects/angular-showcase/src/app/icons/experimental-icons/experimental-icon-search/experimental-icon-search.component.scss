@@ -1,0 +1,83 @@
+@import '../../../../../../sbb-esta/angular-core/styles/common/colors';
+
+:host {
+  display: block;
+  height: calc(100vh - 48px);
+  overflow-y: hidden;
+  margin-left: 300px;
+}
+
+article {
+  padding: 0 3rem;
+  padding-bottom: 3rem;
+
+  h1,
+  p {
+    margin-bottom: 2rem;
+  }
+
+  sbb-search,
+  sbb-checkbox-panel {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+
+    > div {
+      display: block;
+      border: 1px solid $sbbColorSilver;
+      padding: 24px;
+      width: 18rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      margin-bottom: 1rem;
+
+      > h3 {
+        margin-top: 0;
+        border-bottom: 1px solid $sbbColorSilver;
+        display: flex;
+        padding-bottom: 20px;
+        margin-bottom: 1.5rem;
+
+        span {
+          flex: 1 1 auto;
+        }
+      }
+
+      > div {
+        &:hover {
+          color: $sbbColorRed;
+        }
+        ::ng-deep svg {
+          display: block;
+          margin: 0 auto;
+          width: 8rem;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .icon-detail-list {
+  dt,
+  dd {
+    margin-bottom: 0.5rem;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  code {
+    line-height: 1.5;
+  }
+}

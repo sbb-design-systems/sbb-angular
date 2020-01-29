@@ -26,7 +26,7 @@ jobs:
       run: npm ci
 
     - name: Migrate public to business components
-      run: npm run build:angular-business:public2business
+      run: npm run build:business:public2business
 
     - name: Restore @sbb-esta/angular-core from cache
       uses: actions/cache@v1
@@ -38,7 +38,7 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.scss') }}"
     - name: Build @sbb-esta/angular-core
       if: steps.sbb_esta_angular_core_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-core
+      run: npm run build:core
       
     - name: Restore @sbb-esta/angular-icons from cache
       uses: actions/cache@v1
@@ -49,7 +49,7 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.ts') }}"
     - name: Build @sbb-esta/angular-icons
       if: steps.sbb_esta_angular_icons_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-icons
+      run: npm run build:icons
       
     - name: Restore @sbb-esta/angular-keycloak from cache
       uses: actions/cache@v1
@@ -60,7 +60,7 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.ts') }}"
     - name: Build @sbb-esta/angular-keycloak
       if: steps.sbb_esta_angular_keycloak_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-keycloak
+      run: npm run build:keycloak
       
     - name: Restore @sbb-esta/angular-public from cache
       uses: actions/cache@v1
@@ -73,7 +73,7 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.scss') }}"
     - name: Build @sbb-esta/angular-public
       if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-public
+      run: npm run build:public
 
     - name: Restore @sbb-esta/angular-maps from cache
       uses: actions/cache@v1
@@ -86,8 +86,7 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.scss') }}"
     - name: Build @sbb-esta/angular-maps
       if: steps.sbb_esta_angular_maps_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-maps
-
+      run: npm run build:maps
     - name: Restore @sbb-esta/angular-business from cache
       uses: actions/cache@v1
       id: sbb_esta_angular_business_cache
@@ -99,7 +98,7 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.scss') }}"
     - name: Build @sbb-esta/angular-business
       if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-business
+      run: npm run build:business
 
     - name: Store build artifacts
       uses: actions/upload-artifact@v1
@@ -317,7 +316,7 @@ jobs:
         path: dist/sbb-esta
 
     - name: Build showcase
-      run: npm run build:angular-showcase
+      run: npm run build:showcase
     - name: Copy showcase package.json
       run: cp projects/angular-showcase/package.json dist/angular-showcase
       

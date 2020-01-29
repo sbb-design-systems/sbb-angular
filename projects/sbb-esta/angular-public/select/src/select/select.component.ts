@@ -259,6 +259,7 @@ export class SelectComponent extends SbbSelectMixinBase
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
   }
   private _disabled = false;
 

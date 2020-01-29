@@ -17,7 +17,8 @@ sbb-icons {
   sbb-component-viewer,
   sbb-api-viewer,
   sbb-icon-search,
-  sbb-icon-viewer {
+  sbb-icon-viewer,
+  sbb-experimental-icon-search {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;

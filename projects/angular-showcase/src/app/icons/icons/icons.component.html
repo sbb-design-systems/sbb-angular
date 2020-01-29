@@ -10,20 +10,13 @@
           >
         </li>
         <li>
-          <a routerLink="./search" routerLinkActive="active">Icons Overview</a>
+          <a routerLink="./introduction/schematics" routerLinkActive="active">Schematics</a>
         </li>
-      </ul>
-    </li>
-
-    <li class="no-link ">
-      Icons
-
-      <ul>
-        <li *ngFor="let c of icons">
-          <a [routerLink]="['./components/', c.selector]" routerLinkActive="active">
-            <ng-template [cdkPortalOutlet]="c.portal"></ng-template>
-            &lt;{{ c.selector }}&gt;
-          </a>
+        <li>
+          <a routerLink="./components" routerLinkActive="active">Icons Overview</a>
+        </li>
+        <li>
+          <a routerLink="./experimental" routerLinkActive="active">Experimental Icons</a>
         </li>
       </ul>
     </li>
