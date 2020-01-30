@@ -4,7 +4,7 @@ Map interaction is a key part of any map driven application. Things like clickin
 
 _You can find a complete overview of the API [here](https://developers.arcgis.com/javascript/latest/api-reference/)._
 
-The following steps walk you trough a way to on how to dynamically filter the contents of your map.
+The following steps walk you trough a way to on how to dynamically show or hide certain the contents of your map.
 
 ## Sample: Filter your map layers using definition expressions
 
