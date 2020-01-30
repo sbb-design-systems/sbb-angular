@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { RadioChange } from '@sbb-esta/angular-core/radio-button';
 
 @Component({
   selector: 'sbb-toggle-showcase',
@@ -24,7 +24,7 @@ export class ToggleShowcaseComponent implements OnInit {
     });
   }
 
-  toggleChange(toggleValues: any) {
-    this.toggleValues = toggleValues;
+  toggleChange(toggleValues: RadioChange) {
+    this.toggleValues = toggleValues.value;
   }
 }
