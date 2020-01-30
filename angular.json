@@ -19,6 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/angular-showcase",
             "index": "projects/angular-showcase/src/index.html",
             "main": "projects/angular-showcase/src/main.ts",
@@ -41,6 +42,12 @@
           },
           "configurations": {
             "es5": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "tsConfig": "projects/angular-showcase/tsconfig.app.es5.json"
             },
             "production": {
@@ -64,6 +71,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -180,7 +191,12 @@
             "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-public/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -236,7 +252,12 @@
             "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-business/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -292,7 +313,12 @@
             "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-icons/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -349,7 +375,12 @@
             "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-keycloak/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -400,7 +431,12 @@
             "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-core/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {

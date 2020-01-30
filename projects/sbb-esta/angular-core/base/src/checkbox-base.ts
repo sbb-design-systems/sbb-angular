@@ -8,7 +8,8 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewChild
+  ViewChild,
+  Directive
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
@@ -24,6 +25,7 @@ export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
   ) {}
 }
 
+@Directive()
 export abstract class CheckboxBase implements ControlValueAccessor {
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() @HostBinding() id: string;
@@ -89,7 +91,7 @@ export abstract class CheckboxBase implements ControlValueAccessor {
   /** Event emitted when the checkbox's `checked` value changes. */
   @Output() readonly change = new EventEmitter<SbbCheckboxChange<this>>();
   /** @docs-private */
-  @ViewChild('input', { static: false }) _inputElement: ElementRef<HTMLInputElement>;
+  @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
   /**
    * Property that describes the status change of a checkbox field
    */

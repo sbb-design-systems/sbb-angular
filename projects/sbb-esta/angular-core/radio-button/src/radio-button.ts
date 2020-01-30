@@ -13,7 +13,8 @@ import {
   OnInit,
   Optional,
   Output,
-  ViewChild
+  ViewChild,
+  Directive
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
@@ -44,6 +45,7 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 
 let nextUniqueId = 0;
 
+@Directive()
 export class RadioButton extends _RadioButtonMixinBase
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;
@@ -165,7 +167,7 @@ export class RadioButton extends _RadioButtonMixinBase
   @Output() readonly change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
   /** The native `<input type=radio>` element */
-  @ViewChild('input', { static: false }) _inputElement: ElementRef<HTMLInputElement>;
+  @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
 
   private _disabled = false;
   private _required = false;

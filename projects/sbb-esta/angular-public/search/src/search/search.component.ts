@@ -108,7 +108,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
 
   /** @docs-private */
-  @ContentChild(IconDirective, { read: TemplateRef, static: false }) icon: TemplateRef<any>;
+  @ContentChild(IconDirective, { read: TemplateRef }) icon: TemplateRef<any>;
 
   /**
    * Sets the search in default mode or in header mode,

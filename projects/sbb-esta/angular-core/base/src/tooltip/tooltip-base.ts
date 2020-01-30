@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectorRef,
   ContentChild,
+  Directive,
   ElementRef,
   EventEmitter,
   HostBinding,
@@ -58,13 +59,14 @@ export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
 
 let tooltipCounter = 1;
 
+@Directive()
 export abstract class TooltipBase implements OnDestroy {
   /**
    * The icon to be used as click target.
    * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
    */
   @Input()
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef })
   set icon(tooltipIcon: TemplateRef<any>) {
     this._icon = tooltipIcon;
   }

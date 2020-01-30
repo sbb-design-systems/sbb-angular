@@ -7,7 +7,8 @@ import {
   OnDestroy,
   OnInit,
   Renderer2,
-  ViewChild
+  ViewChild,
+  Directive
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -15,13 +16,14 @@ import { map } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
+@Directive()
 @Injectable()
 export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
-  @ViewChild('html', { static: false }) html: ElementRef;
-  @ViewChild('ts', { static: false }) ts: ElementRef;
-  @ViewChild('scss', { static: false }) scss: ElementRef;
+  @ViewChild('html') html: ElementRef;
+  @ViewChild('ts') ts: ElementRef;
+  @ViewChild('scss') scss: ElementRef;
   showSource = false;
   title: Observable<string>;
   get label() {

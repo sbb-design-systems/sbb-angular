@@ -98,13 +98,13 @@ export class ToggleOptionComponent extends RadioButtonComponent
    */
   @Input()
   @HostBinding('class.sbb-toggle-option-has-icon')
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef })
   icon?: TemplateRef<any>;
 
   /**
    * Refers to the content of a toggle option.
    */
-  @ViewChild('toggleOptionContentContainer', { static: false })
+  @ViewChild('toggleOptionContentContainer')
   contentContainer: ElementRef<Element>;
 
   /**

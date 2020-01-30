@@ -96,7 +96,7 @@ export class DropdownComponent implements AfterContentInit {
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
   /** Element for the panel containing the dropdown options. */
-  @ViewChild('panel', { static: false }) panel: ElementRef;
+  @ViewChild('panel') panel: ElementRef;
 
   /**
    * Function that maps an option's control value to its display value in the trigger.

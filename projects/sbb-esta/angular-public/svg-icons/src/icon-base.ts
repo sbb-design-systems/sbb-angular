@@ -1,8 +1,9 @@
-import { HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 /**
  * @deprecated Use `@sbb-esta/angular-icons` instead.
  */
+@Directive()
 export abstract class IconBase {
   /**
    * Configure the size of the SVG.

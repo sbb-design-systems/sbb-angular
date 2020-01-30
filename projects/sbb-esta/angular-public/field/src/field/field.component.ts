@@ -40,7 +40,7 @@ export class FieldComponent implements AfterContentInit, OnDestroy {
    */
   @Input() mode: 'default' | 'short' | 'medium' | 'long' = 'default';
 
-  @ContentChild(FormFieldControl, { static: false }) _control: FormFieldControl<any>;
+  @ContentChild(FormFieldControl) _control: FormFieldControl<any>;
   @ContentChild(LabelComponent, { static: true }) contentLabel: LabelComponent;
   @ContentChildren(FormErrorDirective) formErrors: QueryList<FormErrorDirective>;
 

@@ -106,7 +106,7 @@ export class GhettoboxComponent {
    */
   @ViewChild('defaultIcon', { static: true }) iconDefault: TemplateRef<any>;
 
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
   /**

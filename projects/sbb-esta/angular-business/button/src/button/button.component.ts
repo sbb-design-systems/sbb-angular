@@ -43,7 +43,7 @@ export class ButtonComponent extends BaseButton {
   }
 
   /** @docs-private */
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
+  @ContentChild(IconDirective, { read: TemplateRef })
   _contentIcon: TemplateRef<any>;
 
   /** @docs-private */

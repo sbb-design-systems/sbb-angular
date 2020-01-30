@@ -1,9 +1,10 @@
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 /**
  * @deprecated No longer in use.
  */
+@Directive()
 export abstract class RadioButton {
   /** Analog to HTML 'name' attribute used to group radios for unique selection. */
   @Input() name: string;

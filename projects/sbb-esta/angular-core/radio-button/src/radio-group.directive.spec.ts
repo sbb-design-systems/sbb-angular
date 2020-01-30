@@ -149,7 +149,7 @@ class RadioGroupWithNgModelComponent {
   `
 })
 class DisableableRadioButtonComponent {
-  @ViewChild(RadioButton, { static: false }) radioButton: RadioButton;
+  @ViewChild(RadioButton) radioButton: RadioButton;
 
   set disabled(value: boolean) {
     this.radioButton.disabled = value;

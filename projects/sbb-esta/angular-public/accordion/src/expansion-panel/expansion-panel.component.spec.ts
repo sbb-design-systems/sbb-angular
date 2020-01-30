@@ -45,7 +45,7 @@ class PanelWithContentComponent {
 })
 class PanelWithContentInNgIfComponent {
   expansionShown = true;
-  @ViewChild(ExpansionPanelComponent, { static: false })
+  @ViewChild(ExpansionPanelComponent)
   panel: ExpansionPanelComponent;
 }
 

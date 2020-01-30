@@ -57,7 +57,7 @@ export class HeaderMenuComponent implements AfterContentInit, OnDestroy {
   @ContentChildren(HeaderMenuItemDirective) _items: QueryList<HeaderMenuItemDirective>;
 
   /** @docs-private */
-  @ViewChild(CdkPortal, { static: false }) _panelPortal: CdkPortal;
+  @ViewChild(CdkPortal) _panelPortal: CdkPortal;
   /** @docs-private */
   @ViewChild(CdkPortalOutlet, { static: true }) _panelPortalOutlet: CdkPortalOutlet;
 

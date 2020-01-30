@@ -168,7 +168,7 @@ class NgIfSelectComponent {
   ];
   control = new FormControl('pizza-1');
 
-  @ViewChild(SelectComponent, { static: false }) select: SelectComponent;
+  @ViewChild(SelectComponent) select: SelectComponent;
 }
 
 @Component({

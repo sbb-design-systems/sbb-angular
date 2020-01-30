@@ -186,7 +186,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /** @docs-private */
   @ViewChild('menu', { static: true }) _menuElement: ElementRef<HTMLElement>;
   /** @docs-private */
-  @ViewChild(CdkPortal, { static: false }) _navigationPortal;
+  @ViewChild(CdkPortal) _navigationPortal;
   /** @docs-private */
   @ViewChild('mainMenuOutlet', { static: true }) _mainMenuOutlet: CdkPortalOutlet;
   /** @docs-private */

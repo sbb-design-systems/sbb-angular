@@ -31,7 +31,7 @@ import { GhettoboxContainerComponent } from './ghettobox-container.component';
   entryComponents: [GhettoboxComponent]
 })
 export class GhettoboxContainerTestComponent {
-  @ViewChild('testIcon1', { read: TemplateRef, static: false })
+  @ViewChild('testIcon1', { read: TemplateRef })
   testIcon: TemplateRef<any>;
 }
 

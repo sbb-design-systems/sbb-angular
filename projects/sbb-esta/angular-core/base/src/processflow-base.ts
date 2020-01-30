@@ -4,11 +4,13 @@ import {
   EventEmitter,
   HostBinding,
   Output,
-  QueryList
+  QueryList,
+  Directive
 } from '@angular/core';
 
 import { ProcessflowStep, ProcessflowStepBase } from './processflow-step-base';
 
+@Directive()
 export abstract class ProcessflowBase<TProcessflowStepComponent extends ProcessflowStepBase>
   implements AfterContentInit {
   /** @docs-private */
