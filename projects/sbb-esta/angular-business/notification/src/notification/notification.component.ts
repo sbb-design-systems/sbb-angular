@@ -141,13 +141,17 @@ export class NotificationComponent {
    *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  @ContentChild(IconDirective, { read: TemplateRef })
   set icon(notificationIcon: TemplateRef<any>) {
     this._icon = notificationIcon;
   }
 
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
+
   get icon() {
-    if (this._icon) {
+    if (this._contentIcon) {
+      return this._contentIcon;
+    } else if (this._icon) {
       return this._icon;
     }
     switch (this.type) {

@@ -7,7 +7,6 @@ import {
   ScrollStrategy
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectorRef,
   ContentChild,
@@ -15,12 +14,10 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  Inject,
   InjectionToken,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   TemplateRef,
   ViewChild
@@ -60,19 +57,24 @@ export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
 let tooltipCounter = 1;
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class TooltipBase implements OnDestroy {
   /**
    * The icon to be used as click target.
    * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
    */
   @Input()
-  @ContentChild(IconDirective, { read: TemplateRef })
   set icon(tooltipIcon: TemplateRef<any>) {
     this._icon = tooltipIcon;
   }
+
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentChild: TemplateRef<any>;
+
   get icon() {
-    return this._icon || this.defaultIcon;
+    return this._contentChild || this._icon || this.defaultIcon;
   }
+
   private _icon: TemplateRef<any>;
 
   /** Checks if a tooltip panel exists */

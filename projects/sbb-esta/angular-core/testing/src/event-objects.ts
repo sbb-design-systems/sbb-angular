@@ -52,7 +52,7 @@ export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
 export function createTouchEvent(type: string, pageX = 0, pageY = 0) {
   // In favor of creating events that work for most of the browsers, the event is created
   // as a basic UI Event. The necessary details for the event will be set manually.
-  const event = document.createEvent('UIEvent');
+  const event = document.createEvent('UIEvent') as any;
   const touchDetails = { pageX, pageY };
 
   event.initUIEvent(type, true, true, window, 0);
