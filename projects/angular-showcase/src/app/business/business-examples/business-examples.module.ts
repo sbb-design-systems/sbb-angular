@@ -18,6 +18,10 @@ import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
+import { ChipModule } from '../../../../../sbb-esta/angular-business/chip';
+
+import { DisabledChipInputShowcaseComponent } from './chip-showcase/disabled-chip-input-showcase/disabled-chip-input-showcase.component';
+import { SimpleChipInputShowcaseComponent } from './chip-showcase/simple-chip-input-showcase/simple-chip-input-showcase.component';
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
@@ -66,7 +70,9 @@ const exampleComponents = [
   SimpleTableComponent,
   GroupedRowsTableComponent,
   SortableTableComponent,
-  GroupedColumnsTableComponent
+  GroupedColumnsTableComponent,
+  SimpleChipInputShowcaseComponent,
+  DisabledChipInputShowcaseComponent
 ];
 
 @NgModule({
@@ -93,7 +99,8 @@ const exampleComponents = [
     PaginationModule,
     NotificationsModule,
     UserMenuModule,
-    TableModule
+    TableModule,
+    ChipModule
   ]
 })
 export class BusinessExamplesModule {}

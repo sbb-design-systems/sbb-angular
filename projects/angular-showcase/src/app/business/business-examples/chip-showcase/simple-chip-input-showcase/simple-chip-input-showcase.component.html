@@ -1,0 +1,9 @@
+<p>Simple chip input:</p>
+<ng-container [formGroup]="formGroup" *ngIf="formGroup">
+  <sbb-field label="Label" class="sbb-field-100">
+    <sbb-chip-input formControlName="chip" [options]="options"></sbb-chip-input>
+    <sbb-form-error *ngIf="formGroup.get('chip').errors?.required"
+      >This field is required.</sbb-form-error
+    >
+  </sbb-field>
+</ng-container>

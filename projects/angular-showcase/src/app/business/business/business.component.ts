@@ -2,6 +2,8 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { DisabledChipInputShowcaseComponent } from '../business-examples/chip-showcase/disabled-chip-input-showcase/disabled-chip-input-showcase.component';
+import { SimpleChipInputShowcaseComponent } from '../business-examples/chip-showcase/simple-chip-input-showcase/simple-chip-input-showcase.component';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { ClosableNotificationComponent } from '../business-examples/notification-showcase/closable-notification/closable-notification.component';
 import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';
@@ -29,6 +31,7 @@ export class BusinessComponent implements ExampleProvider {
   formComponents = {
     autocomplete: 'Autocomplete',
     checkbox: 'Checkbox',
+    chipInput: 'Chip Input',
     datepicker: 'Datepicker',
     field: 'Field',
     'radio-button': 'Radiobutton',
@@ -90,6 +93,10 @@ export class BusinessComponent implements ExampleProvider {
       'grouped-columns-table': new ComponentPortal(GroupedColumnsTableComponent),
       'grouped-rows-table': new ComponentPortal(GroupedRowsTableComponent),
       'sortable-table': new ComponentPortal(SortableTableComponent)
+    },
+    chipInput: {
+      'simple-chip-input-showcase': new ComponentPortal(SimpleChipInputShowcaseComponent),
+      'disabled-chip-input-showcase': new ComponentPortal(DisabledChipInputShowcaseComponent)
     }
   };
 
