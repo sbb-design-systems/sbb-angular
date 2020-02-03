@@ -25,6 +25,7 @@ $chip-min-width: 75;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .sbb-chip-close-btn {
