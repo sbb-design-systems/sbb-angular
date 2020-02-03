@@ -5,6 +5,9 @@
 
   &.sbb-chip-disabled {
     opacity: 0.4;
+    min-width: pxToEm(45);
+    padding: pxToEm($chip-vertical-padding) pxToEm($chip-left-padding)
+      pxToEm($chip-vertical-padding) pxToEm($chip-left-padding);
     @include svgIconColor($sbbColorIron);
   }
 
