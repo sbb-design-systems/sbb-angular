@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CHIP_INPUT_OPTIONS } from '../chip-input-options';
 
@@ -16,7 +16,7 @@ export class SimpleChipInputShowcaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this._formBuilder.group({
-      chip: []
+      chip: [['option-1'], Validators.required]
     });
   }
 }
