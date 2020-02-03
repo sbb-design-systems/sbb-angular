@@ -6,23 +6,26 @@
   [class.sbb-chip-input-disabled]="isDisabled"
   [class.sbb-chip-input-error]="isInvalid"
 >
-  <sbb-chip
-    *ngFor="let option of selectedOptions"
-    [label]="option"
-    (dismissed)="deselectOption(option)"
-    class="sbb-chip-margin"
-    [disabled]="disabled"
-  ></sbb-chip>
-  <input
-    type="text"
-    [disabled]="disabled"
-    [sbbAutocomplete]="auto"
-    [sbbAutocompleteConnectedTo]="origin"
-    [(ngModel)]="inputModel"
-    (focus)="focus = true"
-    (blur)="focus = false"
-    class="sbb-chip-input-textfield"
-  />
+  <div class="sbb-chip-input-content">
+    <div class="sbb-chip-wrapper" *ngFor="let option of selectedOptions">
+      <sbb-chip
+        [label]="option"
+        (dismissed)="deselectOption(option)"
+        [disabled]="disabled"
+      ></sbb-chip>
+    </div>
+    <input
+      type="text"
+      [disabled]="disabled"
+      [sbbAutocomplete]="auto"
+      [sbbAutocompleteConnectedTo]="origin"
+      [(ngModel)]="inputModel"
+      (focus)="focus = true"
+      (blur)="focus = false"
+      class="sbb-chip-input-textfield"
+    />
+  </div>
+
   <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="selectOption($event)">
     <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
   </sbb-autocomplete>
