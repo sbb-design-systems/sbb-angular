@@ -31,7 +31,7 @@ export class BusinessComponent implements ExampleProvider {
   formComponents = {
     autocomplete: 'Autocomplete',
     checkbox: 'Checkbox',
-    chipInput: 'Chip Input',
+    chip: 'Chip Input',
     datepicker: 'Datepicker',
     field: 'Field',
     'radio-button': 'Radiobutton',
@@ -94,7 +94,7 @@ export class BusinessComponent implements ExampleProvider {
       'grouped-rows-table': new ComponentPortal(GroupedRowsTableComponent),
       'sortable-table': new ComponentPortal(SortableTableComponent)
     },
-    chipInput: {
+    chip: {
       'simple-chip-input-showcase': new ComponentPortal(SimpleChipInputShowcaseComponent),
       'disabled-chip-input-showcase': new ComponentPortal(DisabledChipInputShowcaseComponent)
     }
