@@ -62,7 +62,7 @@ export class ChipInputComponent implements ControlValueAccessor, AfterViewInit {
   writeValue(obj: string[]): void {
     if (obj) {
       obj = obj.filter(value => {
-        if (this.options.includes(value)) {
+        if (this.options && this.options.includes(value)) {
           return true;
         } else {
           console.warn(`Warning: Value '${value}' not provided in selectable options.`);
