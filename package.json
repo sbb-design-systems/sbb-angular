@@ -66,12 +66,12 @@
     "esri-loader": "~2.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.0-rc.11",
-    "@angular-devkit/build-ng-packagr": "~0.900.0-rc.11",
-    "@angular-devkit/core": "^9.0.0-rc.11",
-    "@angular-devkit/schematics": "^9.0.0-rc.11",
+    "@angular-devkit/build-angular": "~0.900.0-rc.12",
+    "@angular-devkit/build-ng-packagr": "~0.900.0-rc.12",
+    "@angular-devkit/core": "^9.0.0-rc.12",
+    "@angular-devkit/schematics": "^9.0.0-rc.12",
     "@angular-devkit/schematics-cli": "~0.803.2",
-    "@angular/cli": "~9.0.0-rc.11",
+    "@angular/cli": "~9.0.0-rc.12",
     "@angular/compiler-cli": "^9.0.0-rc.14",
     "@angular/language-service": "^9.0.0-rc.14",
     "@commitlint/cli": "^8.2.0",
