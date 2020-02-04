@@ -7,3 +7,4 @@ export * from './dialog/dialog-footer/dialog-footer.component';
 export * from './dialog/dialog-config';
 export * from './dialog/dialog-ref';
 export * from './dialog/dialog-animations';
+export * from './dialog/dialog-close.directive';
