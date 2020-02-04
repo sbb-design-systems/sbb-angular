@@ -190,13 +190,13 @@
           "options": {
             "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-public/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sbb-esta/angular-public/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -251,13 +251,13 @@
           "options": {
             "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-business/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -312,13 +312,13 @@
           "options": {
             "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-icons/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -374,13 +374,13 @@
           "options": {
             "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-keycloak/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -430,13 +430,13 @@
           "options": {
             "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.json",
             "project": "projects/sbb-esta/angular-core/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
