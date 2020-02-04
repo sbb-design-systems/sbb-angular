@@ -57,7 +57,6 @@ export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
 let tooltipCounter = 1;
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export abstract class TooltipBase implements OnDestroy {
   /**
    * The icon to be used as click target.

@@ -11,7 +11,6 @@ export class ProcessflowStep {
 }
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export abstract class ProcessflowStepBase {
   /** Refers to the processFlowStep istance. */
   descriptor: ProcessflowStep = new ProcessflowStep();

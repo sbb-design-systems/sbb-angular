@@ -45,7 +45,6 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 let nextUniqueId = 0;
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export class RadioButton extends _RadioButtonMixinBase
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;

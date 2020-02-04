@@ -16,7 +16,6 @@ import { ExampleProvider } from './example-provider';
 import { HtmlLoader } from './html-loader.service';
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   tabs: { openTabByIndex(index: number): void };
   @ViewChild('overview', { static: true }) overview: ElementRef;

@@ -4,7 +4,6 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export abstract class IconBase {
   /**
    * Configure the size of the SVG.

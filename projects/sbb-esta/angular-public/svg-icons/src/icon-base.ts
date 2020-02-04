@@ -4,7 +4,6 @@ import { Directive, HostBinding, Input } from '@angular/core';
  * @deprecated Use `@sbb-esta/angular-icons` instead.
  */
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export abstract class IconBase {
   /**
    * Configure the size of the SVG.

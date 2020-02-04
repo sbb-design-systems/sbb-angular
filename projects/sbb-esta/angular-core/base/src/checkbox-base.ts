@@ -26,7 +26,6 @@ export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
 }
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export abstract class CheckboxBase implements ControlValueAccessor {
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() @HostBinding() id: string;
