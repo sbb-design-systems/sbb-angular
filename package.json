@@ -53,6 +53,7 @@
     "@angular/compiler": "^9.0.0-rc.14",
     "@angular/core": "^9.0.0-rc.14",
     "@angular/forms": "^9.0.0-rc.14",
+    "@angular/localize": "^9.0.0-rc.0",
     "@angular/platform-browser": "^9.0.0-rc.14",
     "@angular/platform-browser-dynamic": "^9.0.0-rc.14",
     "@angular/router": "^9.0.0-rc.14",
