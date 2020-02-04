@@ -1,6 +1,7 @@
-import { HostBinding, Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class BaseButton {
   /**
    * Button modes available for different purposes.

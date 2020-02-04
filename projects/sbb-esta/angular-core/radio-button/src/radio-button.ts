@@ -4,6 +4,7 @@ import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterViewInit,
   ChangeDetectorRef,
+  Directive,
   ElementRef,
   EventEmitter,
   HostBinding,
@@ -11,10 +12,8 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
-  ViewChild,
-  Directive
+  ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
@@ -46,6 +45,7 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 let nextUniqueId = 0;
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class RadioButton extends _RadioButtonMixinBase
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;

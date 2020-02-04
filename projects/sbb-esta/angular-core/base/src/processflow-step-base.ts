@@ -1,5 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ChangeDetectorRef, Input, Directive } from '@angular/core';
+import { ChangeDetectorRef, Directive, Input } from '@angular/core';
 
 export class ProcessflowStep {
   /** Title of a step in a process flow. */
@@ -11,6 +11,7 @@ export class ProcessflowStep {
 }
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class ProcessflowStepBase {
   /** Refers to the processFlowStep istance. */
   descriptor: ProcessflowStep = new ProcessflowStep();

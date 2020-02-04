@@ -1,16 +1,17 @@
 import {
   AfterContentInit,
   ChangeDetectorRef,
+  Directive,
   EventEmitter,
   HostBinding,
   Output,
-  QueryList,
-  Directive
+  QueryList
 } from '@angular/core';
 
 import { ProcessflowStep, ProcessflowStepBase } from './processflow-step-base';
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class ProcessflowBase<TProcessflowStepComponent extends ProcessflowStepBase>
   implements AfterContentInit {
   /** @docs-private */
