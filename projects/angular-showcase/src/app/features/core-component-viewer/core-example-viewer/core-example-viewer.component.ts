@@ -1,14 +1,14 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   AfterViewInit,
+  Directive,
   ElementRef,
   Injectable,
   Input,
   OnDestroy,
   OnInit,
   Renderer2,
-  ViewChild,
-  Directive
+  ViewChild
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -18,6 +18,7 @@ import { HtmlLoader } from '../../../shared/html-loader.service';
 
 @Directive()
 @Injectable()
+// tslint:disable-next-line:directive-class-suffix
 export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
