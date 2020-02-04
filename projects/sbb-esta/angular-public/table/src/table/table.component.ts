@@ -76,6 +76,7 @@ export class TableComponent implements OnChanges, OnDestroy {
     if (!stickySupported) {
       return;
     } else if (
+      changes.pinMode &&
       changes.pinMode.currentValue === 'on' &&
       (changes.pinMode.firstChange ||
         changes.pinMode.previousValue !== changes.pinMode.currentValue)
@@ -95,6 +96,7 @@ export class TableComponent implements OnChanges, OnDestroy {
           })
         );
     } else if (
+      changes.pinMode &&
       changes.pinMode.currentValue === 'off' &&
       changes.pinMode.previousValue !== changes.pinMode.currentValue
     ) {
