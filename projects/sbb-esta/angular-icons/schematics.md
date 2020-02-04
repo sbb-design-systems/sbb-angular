@@ -14,11 +14,11 @@ Generates a registry file from available svg files.
 | --svg-dir          | The directory of the svg files.                                               |
 | --strip-number-ids | Whether the number ids in the file names should be stripped for the selector. |
 
-## svg-icon
+## svg-icons
 
 Generates icon modules from a svg registry file.
 
-`ng generate @sbb-esta/angular-icons:svg-registry`
+`ng generate @sbb-esta/angular-icons:svg-icons`
 
 | Option         | Description                                                                                  |
 | -------------- | -------------------------------------------------------------------------------------------- |
