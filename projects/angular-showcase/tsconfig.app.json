@@ -2,7 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
-    "types": ["arcgis-js-api"]
+    "types": ["arcgis-js-api"],
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "strictMetadataEmit": false
