@@ -18,7 +18,7 @@ import {
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
-import { RadioGroupDirective } from './radio-group.directive';
+import { RadioGroup } from './radio-group';
 
 /** Change event object emitted by RadioButtonComponent. */
 export class RadioChange {
@@ -44,6 +44,7 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 
 let nextUniqueId = 0;
 
+// noinspection AngularMissingOrInvalidDeclarationInModule
 @Directive()
 export class RadioButton extends _RadioButtonMixinBase
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
@@ -190,7 +191,7 @@ export class RadioButton extends _RadioButtonMixinBase
   onTouched = () => {};
 
   constructor(
-    readonly radioGroup: RadioGroupDirective,
+    readonly radioGroup: RadioGroup,
     protected readonly _changeDetector: ChangeDetectorRef,
     private _elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,
