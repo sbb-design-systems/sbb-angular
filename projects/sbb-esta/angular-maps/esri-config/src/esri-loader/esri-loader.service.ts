@@ -1,9 +1,9 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import * as esriLoader from 'esri-loader';
 
-import { ESRI_CONFIG_TOKEN } from './esri-config.token';
-import { EsriConfiguration } from './esri-configuration';
-import { EsriConfigConsts } from './esri-standard-values.const';
+import { ESRI_CONFIG_TOKEN } from '../esri-config/esri-config.token';
+import { EsriConfiguration } from '../esri-config/esri-configuration';
+import { EsriConfigConsts } from '../esri-config/esri-standard-values.const';
 
 @Injectable({
   providedIn: 'root'

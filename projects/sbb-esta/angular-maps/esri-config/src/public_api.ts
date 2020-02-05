@@ -1,2 +1,2 @@
-export * from './esri-config.module';
-export * from './esri-loader.service';
+export * from './esri-config/esri-config.module';
+export * from './esri-loader/esri-loader.service';

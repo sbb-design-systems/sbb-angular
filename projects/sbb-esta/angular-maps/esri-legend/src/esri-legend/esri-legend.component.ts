@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
-
-import { EsriTypesService } from '../esri-types/esri-types.service';
+import { EsriTypesService } from '@sbb-esta/angular-maps/core';
 
 @Component({
   selector: 'sbb-esri-legend',

@@ -7,10 +7,8 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { EsriTypesService, GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
 
-import { GraphicService } from '../../../core/src/graphic/graphic.service';
-import { HitTestService } from '../../../core/src/hit-test/hit-test.service';
-import { EsriTypesService } from '../esri-types/esri-types.service';
 import { SBBEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
 @Component({
   selector: 'sbb-esri-web-map',

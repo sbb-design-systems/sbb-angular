@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EsriTypesService } from '../esri-types/esri-types.service';
+import { EsriTypesService } from '@sbb-esta/angular-maps/core';
 
 import { EsriLegendComponent } from './esri-legend.component';
 

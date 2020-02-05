@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import * as esriLoader from 'esri-loader';
 
-import { EsriConfiguration } from './esri-configuration';
+import { EsriConfiguration } from '../esri-config/esri-configuration';
+import { EsriConfigConsts } from '../esri-config/esri-standard-values.const';
+
 import { EsriLoaderService } from './esri-loader.service';
-import { EsriConfigConsts } from './esri-standard-values.const';
 
 describe('EsriLoaderService', () => {
   const esriCustomConf: EsriConfiguration = {

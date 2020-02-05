@@ -1,10 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { EsriTypesService } from '@sbb-esta/angular-maps/core';
+import { GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
 
-import { EsriTypesService as GraphicTypes } from '../../core/src/esri-types/esri-types.service';
-import { GraphicService } from '../../core/src/graphic/graphic.service';
-import { HitTestService } from '../../core/src/hit-test/hit-test.service';
-
-import { EsriTypesService } from './esri-types/esri-types.service';
 import { EsriWebSceneComponent } from './esri-web-scene/esri-web-scene.component';
 
 describe('EsriWebSceneComponent', () => {
@@ -14,7 +11,7 @@ describe('EsriWebSceneComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EsriWebSceneComponent],
-      providers: [EsriTypesService, GraphicService, GraphicTypes, HitTestService]
+      providers: [EsriTypesService, GraphicService, HitTestService]
     }).compileComponents();
   }));
 

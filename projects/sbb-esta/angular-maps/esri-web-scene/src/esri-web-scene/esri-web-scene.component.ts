@@ -7,10 +7,9 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { EsriTypesService } from '@sbb-esta/angular-maps/core';
+import { GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
 
-import { GraphicService } from '../../../core/src/graphic/graphic.service';
-import { HitTestService } from '../../../core/src/hit-test/hit-test.service';
-import { EsriTypesService } from '../esri-types/esri-types.service';
 import { SBBEsri3DCamera } from '../model/sbb-esri-3d-camera.model';
 
 @Component({
