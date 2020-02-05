@@ -1,9 +1,5 @@
 @import '../styles/tabs';
 
-sbb-tabs {
-  display: block;
-}
-
 .sbb-tabs {
   &-tablist {
     @include tabsBase();
@@ -21,9 +17,11 @@ sbb-tabs {
         }
 
         @include businessOnly() {
-          right: 0;
-          top: 0;
-          position: absolute;
+          display: inline-block;
+          position: relative;
+          margin-left: pxToEm(-2, 11);
+          margin-right: pxToEm(-14, 11);
+          top: pxToEm(-6, 11);
         }
       }
 
@@ -31,5 +29,9 @@ sbb-tabs {
         @include tabsButton();
       }
     }
+  }
+
+  &-content {
+    @include tabsContent();
   }
 }

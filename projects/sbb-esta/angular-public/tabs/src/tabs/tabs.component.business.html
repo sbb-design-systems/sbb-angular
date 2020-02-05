@@ -1,0 +1,35 @@
+<perfect-scrollbar class="sbb-tabs-scrollbar">
+  <ul class="sbb-tabs-tablist" role="tablist">
+    <li
+      *ngFor="let tab of tabs$ | async"
+      class="sbb-tabs-tablist-item"
+      [attr.aria-label]="nameOfTabList"
+    >
+      <button
+        #label
+        type="button"
+        (click)="selectTab(tab)"
+        (keyup)="onKeyUp($event)"
+        role="tab"
+        [attr.aria-selected]="tab.active"
+        [attr.aria-controls]="tab.id"
+        [id]="tab.labelId"
+        class="sbb-tabs-tablist-item-button"
+        [class.sbb-active]="tab.active"
+        [attr.tabindex]="tab.active ? 0 : -1"
+        [disabled]="tab.disabled"
+      >
+        {{ tab.label }}
+        <sbb-badge
+          i18n-aria-label="Aria label for amount of entries displayed in badge pill@@sbbTabsBadgePillAmountOfEntries"
+          aria-label="{{ tab.badgePill }} Einträge"
+          *ngIf="tab.badgePill"
+          >{{ tab.badgePill }}</sbb-badge
+        >
+      </button>
+    </li>
+  </ul>
+</perfect-scrollbar>
+<div class="sbb-tabs-content">
+  <ng-content select="sbb-tab"></ng-content>
+</div>

@@ -1,4 +1,4 @@
-import { join, relative } from '@angular-devkit/core';
+import { join, Path, relative } from '@angular-devkit/core';
 import { FileEntry, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 
 export function public2business(_options: any): Rule {
@@ -33,10 +33,17 @@ function copyAndAdaptPublicModule(tree: Tree, moduleName: string) {
     if (entry && !path.endsWith('.spec.ts')) {
       const targetPath = join(businessDir.path, relative(publicDir.path, path));
       const content = adaptFile(entry);
-      if (tree.exists(targetPath)) {
-        tree.overwrite(targetPath, content);
-      } else {
-        tree.create(targetPath, content);
+
+      if (!isPublicTemplateFileWhichHasBusinessTemplate(tree, path)) {
+        if (tree.exists(targetPath)) {
+          tree.overwrite(targetPath, content);
+        } else {
+          tree.create(targetPath, content);
+        }
+      }
+
+      if (targetPath.endsWith('.business.html')) {
+        renameBusinessTemplate(tree, targetPath);
       }
     }
   });
@@ -44,6 +51,18 @@ function copyAndAdaptPublicModule(tree: Tree, moduleName: string) {
   if (!tree.exists(warningFile)) {
     tree.create(warningFile, 'See schematics/public2business');
   }
+}
+
+function isPublicTemplateFileWhichHasBusinessTemplate(tree: Tree, path: Path) {
+  return path.endsWith('component.html') && tree.exists(path.replace('.html', '.business.html'));
+}
+
+function renameBusinessTemplate(tree: Tree, targetPath: Path) {
+  const templateFile = targetPath.replace('.business.html', '.html');
+  if (tree.exists(templateFile)) {
+    tree.delete(templateFile);
+  }
+  tree.rename(targetPath, templateFile);
 }
 
 function adaptFile(entry: Readonly<FileEntry>) {
