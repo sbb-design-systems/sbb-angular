@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PublicComponentViewerModule } from '../features/public-component-viewer/public-component-viewer.module';
 import { PublicComponentViewerComponent } from '../features/public-component-viewer/public-component-viewer/public-component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
@@ -8,7 +9,7 @@ import { MapsComponent } from './maps/maps.component';
 
 const routes: Routes = [
   {
-    path: 'maps',
+    path: '',
     component: MapsComponent,
     data: { library: 'angular-maps' },
     children: [
@@ -42,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), PublicComponentViewerModule],
   exports: [RouterModule]
 })
 export class MapsRoutingModule {}

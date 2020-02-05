@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
   EsriBasemapGalleryModule,
-  EsriConfigModule,
   EsriLayerListModule,
   EsriLegendModule,
   EsriWebMapModule,
@@ -32,8 +31,7 @@ const showcaseComponents = [
     EsriWebSceneModule,
     EsriBasemapGalleryModule,
     EsriLayerListModule,
-    EsriLegendModule,
-    EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' })
+    EsriLegendModule
   ]
 })
 export class MapsExamplesModule {}

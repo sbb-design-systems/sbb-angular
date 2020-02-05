@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EsriConfigModule } from '@sbb-esta/angular-maps';
 
 import { IntroductionComponent } from './introduction/introduction.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -29,13 +29,20 @@ const routes: Routes = [
     loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
   },
   {
+    path: 'maps',
+    loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

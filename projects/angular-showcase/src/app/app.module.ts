@@ -10,9 +10,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IntroductionComponent } from './introduction/introduction.component';
-import { KeycloakModule } from './keycloak/keycloak.module';
 import { MapsModule } from './maps/maps.module';
-import { PublicModule } from './public/public.module';
 
 @NgModule({
   declarations: [AppComponent, IntroductionComponent],
@@ -25,9 +23,6 @@ import { PublicModule } from './public/public.module';
     HeaderModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    PublicModule,
-    MapsModule,
-    KeycloakModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

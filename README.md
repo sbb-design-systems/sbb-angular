@@ -37,7 +37,7 @@ The package containing the components/modules for SBB business applications.
 
 ### [@sbb-esta/angular-maps](https://www.npmjs.com/package/@sbb-esta/angular-maps)
 
-The package containint components displaying 2D/3D maps and providing map interaction.
+The package containing components to display 2D/3D maps and to provide map interaction.
 
 [Component List](https://angular.app.sbb.ch/latest/maps)
 
