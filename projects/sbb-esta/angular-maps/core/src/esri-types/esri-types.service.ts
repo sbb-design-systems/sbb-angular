@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { EsriLoaderService } from '../../../esri-config/src/esri-loader.service';
-import { CoreModule } from '../core.module';
 
 @Injectable({
-  providedIn: CoreModule
+  providedIn: 'root'
 })
 export class EsriTypesService {
   private _point: __esri.PointConstructor;

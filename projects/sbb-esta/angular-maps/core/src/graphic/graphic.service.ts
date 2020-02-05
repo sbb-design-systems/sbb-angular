@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { CoreModule } from '../core.module';
 import { EsriTypesService } from '../esri-types/esri-types.service';
 
 import { MarkerSymbolFactory } from './marker-symbol-factory/marker-symbol.factory';
 
 @Injectable({
-  providedIn: CoreModule
+  providedIn: 'root'
 })
 export class GraphicService {
   private _markerSymbolFactory: MarkerSymbolFactory;

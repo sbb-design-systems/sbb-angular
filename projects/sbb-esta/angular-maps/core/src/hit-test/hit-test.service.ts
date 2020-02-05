@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { CoreModule } from '../core.module';
-
 @Injectable({
-  providedIn: CoreModule
+  providedIn: 'root'
 })
 export class HitTestService {
   constructor() {}
