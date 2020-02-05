@@ -12,14 +12,6 @@ import { EsriLegendShowcaseComponent } from './esri-legend-showcase/esri-legend-
 import { EsriWebMapShowcaseComponent } from './esri-web-map-showcase/esri-web-map-showcase.component';
 import { EsriWebSceneShowcaseComponent } from './esri-web-scene-showcase/esri-web-scene-showcase.component';
 
-// import {
-//   EsriBasemapGalleryModule,
-//   EsriLayerListModule,
-//   EsriLegendModule,
-//   EsriWebMapModule,
-//   EsriWebSceneModule
-// } from '@sbb-esta/angular-maps';
-
 const showcaseComponents = [
   EsriWebMapShowcaseComponent,
   EsriWebSceneShowcaseComponent,
