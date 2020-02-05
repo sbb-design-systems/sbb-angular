@@ -10,9 +10,7 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
+          "style": "scss"
         }
       },
       "architect": {
@@ -181,7 +179,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -242,7 +242,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -303,7 +305,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -365,7 +369,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -424,6 +430,12 @@
       "root": "projects/sbb-esta/angular-core",
       "sourceRoot": "projects/sbb-esta/angular-core",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
