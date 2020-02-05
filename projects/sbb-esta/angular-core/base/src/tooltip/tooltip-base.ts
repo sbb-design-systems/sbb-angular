@@ -154,16 +154,19 @@ export abstract class TooltipBase implements OnDestroy {
   @Output() readonly closed = new EventEmitter<SbbTooltipChangeEvent>();
 
   private readonly _closeKeyEventStream = new Subject<void>();
+  private readonly _scrollStrategy: () => ScrollStrategy;
   private _closingActionsSubscription: Subscription;
 
   constructor(
     protected _overlay: Overlay,
     protected _tooltipRegistry: TooltipRegistryService,
-    protected _scrollStrategy: () => ScrollStrategy,
     protected _document: any,
     protected _zone: NgZone,
-    protected _changeDetectorRef: ChangeDetectorRef
-  ) {}
+    protected _changeDetectorRef: ChangeDetectorRef,
+    scrollStrategy: any
+  ) {
+    this._scrollStrategy = scrollStrategy;
+  }
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {
