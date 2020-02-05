@@ -66,15 +66,17 @@ export abstract class TooltipBase implements OnDestroy {
   set icon(tooltipIcon: TemplateRef<any>) {
     this._icon = tooltipIcon;
   }
-
-  @ContentChild(IconDirective, { read: TemplateRef })
-  _contentChild: TemplateRef<any>;
-
   get icon() {
-    return this._contentChild || this._icon || this.defaultIcon;
+    return this._contentIcon || this._icon || this.defaultIcon;
   }
-
   private _icon: TemplateRef<any>;
+
+  /**
+   * icon placed in template
+   * @docs-private
+   */
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
 
   /** Checks if a tooltip panel exists */
   @HostBinding('attr.aria-expanded')

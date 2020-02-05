@@ -77,10 +77,6 @@ export class NotificationComponent {
   set icon(notificationIcon: TemplateRef<any>) {
     this._icon = notificationIcon;
   }
-
-  @ContentChild(IconDirective, { read: TemplateRef })
-  _contentIcon: TemplateRef<any>;
-
   get icon() {
     if (this._contentIcon) {
       return this._contentIcon;
@@ -98,8 +94,14 @@ export class NotificationComponent {
         return null;
     }
   }
-
   private _icon: TemplateRef<any>;
+
+  /**
+   * icon placed in template
+   * @docs-private
+   */
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
 
   /** Message displayed into the notification content */
   @Input() message: string;

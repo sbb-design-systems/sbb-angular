@@ -106,19 +106,23 @@ export class GhettoboxComponent {
    */
   @ViewChild('defaultIcon', { static: true }) iconDefault: TemplateRef<any>;
 
-  @ContentChild(IconDirective, { read: TemplateRef })
-  _contentIcon: TemplateRef<any>;
-
   /**
    * Ghettobox Icon
    */
-  private _icon: TemplateRef<any>;
   set icon(value: TemplateRef<any>) {
     this._icon = value;
   }
   get icon(): TemplateRef<any> {
     return this._icon || this._contentIcon || this.iconDefault;
   }
+  private _icon: TemplateRef<any>;
+
+  /**
+   * icon placed in template
+   * @docs-private
+   */
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
 
   /**
    * ghettobox object which construct the ghettobox when it's being created by the GhettoboxService
