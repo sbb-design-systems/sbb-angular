@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CHIP_INPUT_OPTIONS } from '../chip-input-options';
 
 @Component({
-  selector: 'sbb-chip-disabled-showcase',
-  templateUrl: 'simple-chip-input-showcase.component.html',
-  styleUrls: ['../chip-input-showcase.component.scss']
+  selector: 'sbb-chip-disabled',
+  templateUrl: 'simple-chip-input.component.html',
+  styleUrls: ['../chip-input.component.scss']
 })
-export class SimpleChipInputShowcaseComponent implements OnInit {
+export class SimpleChipInputComponent implements OnInit {
   formGroup: FormGroup;
   options = CHIP_INPUT_OPTIONS;
 

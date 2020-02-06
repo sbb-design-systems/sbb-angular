@@ -20,8 +20,8 @@ import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
 import { ChipModule } from '../../../../../sbb-esta/angular-business/chip';
 
-import { DisabledChipInputShowcaseComponent } from './chip-showcase/disabled-chip-input-showcase/disabled-chip-input-showcase.component';
-import { SimpleChipInputShowcaseComponent } from './chip-showcase/simple-chip-input-showcase/simple-chip-input-showcase.component';
+import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
+import { SimpleChipInputComponent } from './chip-showcase/simple-chip-input/simple-chip-input.component';
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
@@ -71,8 +71,8 @@ const exampleComponents = [
   GroupedRowsTableComponent,
   SortableTableComponent,
   GroupedColumnsTableComponent,
-  SimpleChipInputShowcaseComponent,
-  DisabledChipInputShowcaseComponent
+  SimpleChipInputComponent,
+  DisabledChipInputComponent
 ];
 
 @NgModule({

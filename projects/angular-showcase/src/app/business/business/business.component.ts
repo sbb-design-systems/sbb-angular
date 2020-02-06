@@ -2,8 +2,8 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { DisabledChipInputShowcaseComponent } from '../business-examples/chip-showcase/disabled-chip-input-showcase/disabled-chip-input-showcase.component';
-import { SimpleChipInputShowcaseComponent } from '../business-examples/chip-showcase/simple-chip-input-showcase/simple-chip-input-showcase.component';
+import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
+import { SimpleChipInputComponent } from '../business-examples/chip-showcase/simple-chip-input/simple-chip-input.component';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { ClosableNotificationComponent } from '../business-examples/notification-showcase/closable-notification/closable-notification.component';
 import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';
@@ -95,8 +95,8 @@ export class BusinessComponent implements ExampleProvider {
       'sortable-table': new ComponentPortal(SortableTableComponent)
     },
     chip: {
-      'simple-chip-input-showcase': new ComponentPortal(SimpleChipInputShowcaseComponent),
-      'disabled-chip-input-showcase': new ComponentPortal(DisabledChipInputShowcaseComponent)
+      'simple-chip-input-showcase': new ComponentPortal(SimpleChipInputComponent),
+      'disabled-chip-input-showcase': new ComponentPortal(DisabledChipInputComponent)
     }
   };
 
