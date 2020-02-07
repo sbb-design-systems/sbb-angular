@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.9.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.8.0...8.9.0) (2020-02-07)
+
+
+### Bug Fixes
+
+* check property pinMode before accessing ([#273](https://github.com/sbb-design-systems/sbb-angular/issues/273)) ([04aa454](https://github.com/sbb-design-systems/sbb-angular/commit/04aa454)), closes [#272](https://github.com/sbb-design-systems/sbb-angular/issues/272)
+* circular dependency in sbb-toggle-showcase ([#266](https://github.com/sbb-design-systems/sbb-angular/issues/266)) ([ea5d231](https://github.com/sbb-design-systems/sbb-angular/commit/ea5d231))
+
+
+### Features
+
+* **business:** style tabs according to style guide ([#251](https://github.com/sbb-design-systems/sbb-angular/issues/251)) ([c0491d5](https://github.com/sbb-design-systems/sbb-angular/commit/c0491d5))
+
+
+
 ## [8.8.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.7.12...8.8.0) (2020-01-28)
 
 
