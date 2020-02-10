@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EsriConfigModule } from '@sbb-esta/angular-maps';
 
 import { IntroductionComponent } from './introduction/introduction.component';
 const routes: Routes = [
@@ -39,10 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { EsriLoaderService } from '@sbb-esta/angular-maps';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sbb-esri-legend-showcase',

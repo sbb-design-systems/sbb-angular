@@ -3,6 +3,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
+import { EsriConfigModule } from '@sbb-esta/angular-maps';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -13,6 +14,7 @@ import { MapsComponent } from './maps/maps.component';
 @NgModule({
   declarations: [MapsComponent],
   imports: [
+    EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
     CommonModule,
     MapsRoutingModule,
     ScrollingModule,

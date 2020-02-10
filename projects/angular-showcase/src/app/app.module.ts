@@ -10,7 +10,6 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IntroductionComponent } from './introduction/introduction.component';
-import { MapsModule } from './maps/maps.module';
 
 @NgModule({
   declarations: [AppComponent, IntroductionComponent],
