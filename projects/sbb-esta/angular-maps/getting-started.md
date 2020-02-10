@@ -40,7 +40,7 @@ yarn add @types/arcgis-js-api esri-loader @sbb-esta/angular-maps
 
 ### Step 2: Configure the library
 
-Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal, a different [ArcGIS Javascript API Version](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings.
+Once the `@sbb-esta/angular-maps` package is installed, you are able to configure your application, in order to use a specific portal (by default the ArcGIS online portal is used), a different [ArcGIS Javascript API Version](https://developers.arcgis.com/javascript/latest/guide/get-api/) or some other settings.
 
 ```ts
 import { EsriConfigModule } from '@sbb-esta/angular-maps';

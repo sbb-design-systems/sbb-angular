@@ -10,6 +10,7 @@ import {
 import { EsriTypesService, GraphicService, HitTestService } from '@sbb-esta/angular-maps/core';
 
 import { SBBEsriExtent2D } from '../model/sbb-esri-extent-2d.model';
+
 @Component({
   selector: 'sbb-esri-web-map',
   templateUrl: './esri-web-map.component.html',

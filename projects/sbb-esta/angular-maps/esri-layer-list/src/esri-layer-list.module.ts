@@ -5,7 +5,6 @@ import { EsriLayerListComponent } from './esri-layer-list/esri-layer-list.compon
 
 @NgModule({
   declarations: [EsriLayerListComponent],
-  providers: [],
   imports: [CommonModule],
   exports: [EsriLayerListComponent]
 })

@@ -5,7 +5,6 @@ import { EsriLegendComponent } from './esri-legend/esri-legend.component';
 
 @NgModule({
   declarations: [EsriLegendComponent],
-  providers: [],
   imports: [CommonModule],
   exports: [EsriLegendComponent]
 })
