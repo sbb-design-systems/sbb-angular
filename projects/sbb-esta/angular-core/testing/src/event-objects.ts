@@ -12,7 +12,7 @@ export interface ModifierKeys {
  */
 export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
   const event = document.createEvent('MouseEvent');
-  const originalPreventDefault = event.preventDefault;
+  const originalPreventDefault = event.preventDefault.bind(event);
 
   event.initMouseEvent(
     type,
@@ -39,7 +39,7 @@ export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
   event.preventDefault = function() {
     Object.defineProperty(event, 'defaultPrevented', { get: () => true });
-    return originalPreventDefault.apply(this, arguments);
+    return originalPreventDefault();
   };
 
   return event;
@@ -52,10 +52,11 @@ export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
 export function createTouchEvent(type: string, pageX = 0, pageY = 0) {
   // In favor of creating events that work for most of the browsers, the event is created
   // as a basic UI Event. The necessary details for the event will be set manually.
-  const event = document.createEvent('UIEvent') as any;
+  const event = document.createEvent('UIEvent');
   const touchDetails = { pageX, pageY };
 
-  event.initUIEvent(type, true, true, window, 0);
+  // TS3.6 removes the initUIEvent method and suggests porting to "new UIEvent()".
+  (event as any).initUIEvent(type, true, true, window, 0);
 
   // Most of the browsers don't have a "initTouchEvent" method that can be used to define
   // the touch details.
@@ -98,16 +99,24 @@ export function createKeyboardEvent(
   } else {
     // `initKeyboardEvent` expects to receive modifiers as a whitespace-delimited string
     // See https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/initKeyboardEvent
-    const modifiersStr = (modifiers.control
-      ? 'Control '
-      : '' + modifiers.alt
-      ? 'Alt '
-      : '' + modifiers.shift
-      ? 'Shift '
-      : '' + modifiers.meta
-      ? 'Meta'
-      : ''
-    ).trim();
+    let modifiersList = '';
+
+    if (modifiers.control) {
+      modifiersList += 'Control ';
+    }
+
+    if (modifiers.alt) {
+      modifiersList += 'Alt ';
+    }
+
+    if (modifiers.shift) {
+      modifiersList += 'Shift ';
+    }
+
+    if (modifiers.meta) {
+      modifiersList += 'Meta ';
+    }
+
     event.initKeyboardEvent(
       type,
       true /* canBubble */,
@@ -116,7 +125,7 @@ export function createKeyboardEvent(
       0 /* char */,
       key /* key */,
       0 /* location */,
-      modifiersStr /* modifiersList */,
+      modifiersList.trim() /* modifiersList */,
       false /* repeat */
     );
   }
