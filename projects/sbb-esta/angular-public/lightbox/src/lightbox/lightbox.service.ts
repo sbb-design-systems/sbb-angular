@@ -251,7 +251,7 @@ export class Lightbox {
    * of a lightbox to close itself and, optionally, to return a value.
    * @param config Config object that is used to construct the lightbox.
    * @param lightboxRef Reference to the lightbox.
-   * @param container lightbox container element that wraps all of the contents.
+   * @param lightboxContainer lightbox container element that wraps all of the contents.
    * @returns The custom injector that can be used inside the lightbox.
    */
   private _createInjector<T>(
