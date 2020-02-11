@@ -51,7 +51,7 @@
     "@angular/cdk": "^9.0.0",
     "@angular/common": "^9.0.0",
     "@angular/compiler": "^9.0.0",
-    "@angular/core": "^9.0.0",
+    "@angular/core": "git://github.com/angular/core-builds.git#64c8ffa493925631dcb5f68f76f845d9d09c1e28",
     "@angular/forms": "^9.0.0",
     "@angular/localize": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
