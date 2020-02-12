@@ -60,7 +60,7 @@
     "core-js": "^2.6.2",
     "keycloak-js": "^3.4.3",
     "ngx-monaco-editor": "^8.0.0",
-    "ngx-perfect-scrollbar": "^9.0.0",
+    "ngx-perfect-scrollbar": "^8.0.0",
     "rxjs": "6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2",
