@@ -50,9 +50,7 @@ export const DIALOG_SCROLL_STRATEGY_PROVIDER = {
 /**
  * Service to open SBB Design modal dialogs.
  */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class Dialog {
   private _openDialogsAtThisLevel: DialogRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();

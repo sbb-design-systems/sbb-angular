@@ -44,7 +44,8 @@ export function throwLightboxContentAlreadyAttachedError() {
   templateUrl: 'lightbox-container.component.html',
   styleUrls: ['lightbox-container.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
+  changeDetection: ChangeDetectionStrategy.Default,
   animations: [LIGHTBOX_ANIMATIONS.slideLightbox]
 })
 export class LightboxContainerComponent extends BasePortalOutlet {

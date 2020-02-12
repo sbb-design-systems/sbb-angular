@@ -44,7 +44,8 @@ export function throwDialogContentAlreadyAttachedError() {
   templateUrl: 'dialog-container.component.html',
   styleUrls: ['dialog-container.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
+  changeDetection: ChangeDetectionStrategy.Default,
   animations: [DIALOG_ANIMATIONS.slideDialog]
 })
 export class DialogContainerComponent extends BasePortalOutlet {
