@@ -79,7 +79,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
    */
   panelClass = 'sbb-breadcrumb-panel';
 
-  private _breadcrumbPanelWidth: any;
+  private _scalingFactor: number;
 
   /**
    * Checks if the current breadcrumb is the first child of his parent (breadcrumbs)
@@ -130,17 +130,16 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     this._breakpointObserver
       .observe([Breakpoints.Desktop4k, Breakpoints.Desktop5k])
       .subscribe((result: BreakpointState) => {
-        let scalingFactor = 1;
+        this._scalingFactor = 1;
 
         if (result.matches) {
           if (result.breakpoints[Breakpoints.Desktop4k]) {
-            scalingFactor = SCALING_FACTOR_4K;
+            this._scalingFactor = SCALING_FACTOR_4K;
           }
           if (result.breakpoints[Breakpoints.Desktop5k]) {
-            scalingFactor = SCALING_FACTOR_5K;
+            this._scalingFactor = SCALING_FACTOR_5K;
           }
         }
-        this._breadcrumbPanelWidth = this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * scalingFactor;
       });
   }
 
@@ -157,7 +156,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
   }
 
   protected _getPanelWidth(): number | string {
-    return this._breadcrumbPanelWidth;
+    return this._getHostWidth() + BREADCRUMB_LEVEL_OFFSET * this._scalingFactor;
   }
 
   protected _attachOverlay(): void {
