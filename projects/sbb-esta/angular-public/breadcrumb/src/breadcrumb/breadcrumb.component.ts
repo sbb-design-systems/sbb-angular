@@ -48,7 +48,7 @@ export const SBB_BREADCRUMB_PARENT_COMPONENT = new InjectionToken<BreadcrumbPare
   'SBB_BREADCRUMB_PARENT_COMPONENT'
 );
 
-const BREADCRUMB_LEVEL_OFFSET = 60;
+export const BREADCRUMB_LEVEL_OFFSET = 60;
 
 @Component({
   selector: 'sbb-breadcrumb',
@@ -79,7 +79,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
    */
   panelClass = 'sbb-breadcrumb-panel';
 
-  private _scalingFactor: number;
+  private _scalingFactor: number = 1;
 
   /**
    * Checks if the current breadcrumb is the first child of his parent (breadcrumbs)

@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,7 +14,7 @@ import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 import { configureTestSuite } from 'ng-bullet';
 
 import { BreadcrumbModule } from '../breadcrumb.module';
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { BREADCRUMB_LEVEL_OFFSET, BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 
@@ -175,7 +175,7 @@ describe('Breadcrumb behaviour Test', () => {
     fixtureTest.detectChanges();
   });
 
-  it('breadcrumb with navigation to home page', () => {
+  it('breadcrumb with navigation to home page', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -199,13 +199,13 @@ describe('Breadcrumb behaviour Test', () => {
       expect(location.path()).toContain('?level=home');
 
       const iconHome = breadcrumbLevelHomeComponent.query(
-        By.css('.sbb-dropdown-trigger > .sbb-icon-component')
+        By.css('.sbb-dropdown-trigger .sbb-icon-component')
       ).nativeElement;
       expect(iconHome).toBeTruthy();
     });
-  });
+  }));
 
-  it('breadcrumb with navigation to level 1 page', () => {
+  it('breadcrumb with navigation to level 1 page', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -229,9 +229,9 @@ describe('Breadcrumb behaviour Test', () => {
 
       expect(location.path()).toContain('?level=1');
     });
-  });
+  }));
 
-  it('breadcrumb with navigation to level 2 page', () => {
+  it('breadcrumb with navigation to level 2 page', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -255,7 +255,7 @@ describe('Breadcrumb behaviour Test', () => {
 
       expect(location.path()).toContain('?level=2');
     });
-  });
+  }));
 });
 
 describe('Breadcrumb behaviour Test 2', () => {
@@ -284,7 +284,31 @@ describe('Breadcrumb behaviour Test 2', () => {
     router = TestBed.get(Router);
   });
 
-  it('breadcrumb with navigation to home page', () => {
+  it('breadcrumb with correctly sized dropdown width', async(() => {
+    fixtureTest.ngZone.run(async () => {
+      fixtureTest.detectChanges();
+      await fixtureTest.whenStable();
+
+      const breadcrumbLevel1 = fixtureTest.debugElement.queryAll(
+        By.directive(BreadcrumbComponent)
+      )[1];
+
+      const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'));
+
+      dropdownTrigger.nativeElement.click();
+
+      fixtureTest.detectChanges();
+      await fixtureTest.whenStable();
+
+      const dropdownPanel: HTMLElement = fixtureTest.debugElement.queryAll(
+        By.css('.sbb-dropdown-panel.sbb-dropdown-visible')
+      )[0].nativeElement;
+
+      expect(dropdownPanel.getBoundingClientRect().width).toBeGreaterThan(BREADCRUMB_LEVEL_OFFSET);
+    });
+  }));
+
+  it('breadcrumb with navigation to home page', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -308,13 +332,13 @@ describe('Breadcrumb behaviour Test 2', () => {
       expect(location.path()).toContain('?level=home');
 
       const iconHome = breadcrumbLevelHomeComponent.query(
-        By.css('.sbb-dropdown-trigger > .sbb-icon-component')
+        By.css('.sbb-dropdown-trigger .sbb-icon-component')
       ).nativeElement;
       expect(iconHome).toBeTruthy();
     });
-  });
+  }));
 
-  it('breadcrumb with navigation to level 1 page with dropdown', () => {
+  it('breadcrumb with navigation to level 1 page with dropdown', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -352,9 +376,9 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
       expect(location.path()).toContain('?level=1&sub=1b');
     });
-  });
+  }));
 
-  it('breadcrumb with navigation to level 2 page with dropdown', () => {
+  it('breadcrumb with navigation to level 2 page with dropdown', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -393,7 +417,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       await fixtureTest.whenStable();
       expect(location.path()).toContain('?level=1&sub=2b');
     });
-  });
+  }));
 });
 
 describe('Breadcrumb behaviour Test 3', () => {
@@ -422,7 +446,7 @@ describe('Breadcrumb behaviour Test 3', () => {
     router = TestBed.get(Router);
   });
 
-  it('breadcrumb with navigation to home page', () => {
+  it('breadcrumb with navigation to home page', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -446,13 +470,13 @@ describe('Breadcrumb behaviour Test 3', () => {
       expect(location.path()).toContain('?level=home');
 
       const iconHome = breadcrumbLevelHomeComponent.query(
-        By.css('.sbb-dropdown-trigger > .sbb-icon-component')
+        By.css('.sbb-dropdown-trigger .sbb-icon-component')
       ).nativeElement;
       expect(iconHome).toBeTruthy();
     });
-  });
+  }));
 
-  it('breadcrumb with navigation to level 1 page with dropdown', () => {
+  it('breadcrumb with navigation to level 1 page with dropdown', async(() => {
     fixtureTest.ngZone.run(async () => {
       router = TestBed.get(Router);
       router.initialNavigation();
@@ -490,5 +514,5 @@ describe('Breadcrumb behaviour Test 3', () => {
       fixtureTest.detectChanges();
       expect(location.path()).toContain('?level=1&sub=1b');
     });
-  });
+  }));
 });
