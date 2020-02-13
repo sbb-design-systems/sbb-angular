@@ -210,8 +210,11 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
+    const attachedGhettoboxesCopy = ghettoboxService.attachedGhettoboxes.slice();
+
     ghettoboxService.attachedGhettoboxes.forEach(g => {
-      spyOn(g.componentInstance, 'delete');
+      g.componentInstance.afterDelete.subscribe(gs => expect(gs.ghettoboxState).toBe('deleted'));
+      expect(g.componentInstance.visible).toBe(true);
     });
 
     ghettoboxService.clearAll();
@@ -219,8 +222,9 @@ describe('GhettoboxContainerComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    ghettoboxService.attachedGhettoboxes.forEach(g => {
-      expect(g.componentInstance.delete).toHaveBeenCalled();
+    expect(ghettoboxService.attachedGhettoboxes).toEqual([]);
+
+    attachedGhettoboxesCopy.forEach(g => {
       expect(g.componentInstance.visible).toBe(false);
     });
   });

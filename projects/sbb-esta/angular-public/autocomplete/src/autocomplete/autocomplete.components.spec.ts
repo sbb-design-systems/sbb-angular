@@ -1110,14 +1110,6 @@ describe('AutocompleteComponent', () => {
       expect(optionEls[0].classList).toContain('sbb-active');
     });
 
-    it('should set the active item properly after filtering', fakeAsync(() => {
-      const componentInstance = fixture.componentInstance;
-
-      componentInstance.trigger.handleKeydown(downArrowEvent);
-      tick();
-      fixture.detectChanges();
-    }));
-
     it('should set the active item properly after filtering', () => {
       const componentInstance = fixture.componentInstance;
 

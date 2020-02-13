@@ -2739,69 +2739,61 @@ describe('SelectComponent', () => {
       expect(trigger.textContent).not.toContain('Steak');
     }));
 
-    it('should reflect the preselected value', () => {
+    it('should reflect the preselected value', async () => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsPreselectedComponent);
       fixture.detectChanges();
-      fixture.whenRenderingDone().then(() => {
-        const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        fixture.detectChanges();
 
-        expect(trigger.textContent).toContain('Pizza');
+      await fixture.whenRenderingDone();
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      fixture.detectChanges();
 
-        trigger.click();
-        fixture.detectChanges();
+      expect(trigger.textContent).toContain('Pizza');
 
-        const option = overlayContainerElement.querySelectorAll('sbb-option')[1];
+      trigger.click();
+      fixture.detectChanges();
 
-        expect(option.classList).toContain('sbb-selected');
-        expect(fixture.componentInstance.select.value).toBe('pizza-1');
-      });
+      const option = overlayContainerElement.querySelectorAll('sbb-option')[1];
+
+      expect(option.classList).toContain('sbb-selected');
+      expect(fixture.componentInstance.select.value).toBe('pizza-1');
     });
 
-    it('should be able to select multiple values', () => {
+    it('should be able to select multiple values', async () => {
       const fixture = TestBed.createComponent(BasicSelectWithoutFormsMultipleComponent);
 
       fixture.detectChanges();
-      fixture.whenRenderingDone().then(() => {
-        expect(fixture.componentInstance.selectedFoods).toBeFalsy();
+      await fixture.whenRenderingDone();
 
-        const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
+      expect(fixture.componentInstance.selectedFoods).toBeFalsy();
 
-        trigger.click();
-        fixture.detectChanges();
-        const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
-          HTMLElement
-        >;
+      const trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
 
-        options[0].click();
-        fixture.detectChanges();
+      trigger.click();
+      fixture.detectChanges();
+      const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
+        HTMLElement
+      >;
 
-        expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0']);
-        expect(fixture.componentInstance.select.value).toEqual(['steak-0']);
-        expect(trigger.textContent).toContain('Steak');
+      options[0].click();
+      fixture.detectChanges();
 
-        options[2].click();
-        fixture.detectChanges();
+      expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0']);
+      expect(fixture.componentInstance.select.value).toEqual(['steak-0']);
+      expect(trigger.textContent).toContain('Steak');
 
-        expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'sandwich-2']);
-        expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'sandwich-2']);
-        expect(trigger.textContent).toContain('Steak, Sandwich');
+      options[2].click();
+      fixture.detectChanges();
 
-        options[1].click();
-        fixture.detectChanges();
+      expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'sandwich-2']);
+      expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'sandwich-2']);
+      expect(trigger.textContent).toContain('Steak, Sandwich');
 
-        expect(fixture.componentInstance.selectedFoods).toEqual([
-          'steak-0',
-          'pizza-1',
-          'sandwich-2'
-        ]);
-        expect(fixture.componentInstance.select.value).toEqual([
-          'steak-0',
-          'pizza-1',
-          'sandwich-2'
-        ]);
-        expect(trigger.textContent).toContain('Steak, Pizza, Sandwich');
-      });
+      options[1].click();
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.selectedFoods).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
+      expect(fixture.componentInstance.select.value).toEqual(['steak-0', 'pizza-1', 'sandwich-2']);
+      expect(trigger.textContent).toContain('Steak, Pizza, Sandwich');
     });
 
     it('should update the data binding before emitting the change event', fakeAsync(() => {

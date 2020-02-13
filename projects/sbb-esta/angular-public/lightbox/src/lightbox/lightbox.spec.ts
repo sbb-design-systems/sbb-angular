@@ -30,6 +30,7 @@ import { Subject } from 'rxjs';
 import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../public_api';
 
 import { LightboxContainerComponent } from './lightbox-container.component';
+import { delay } from 'rxjs/operators';
 
 // tslint:disable:i18n
 @Directive({ selector: '[sbbDirWithViewContainer]' })
@@ -469,13 +470,16 @@ describe('Lightbox', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   }));
 
-  it('should notify the observers if a lightbox has been opened', () => {
-    lightbox.afterOpen.subscribe(ref => {
-      expect(
-        lightbox.open(PizzaMsgComponent, {
-          viewContainerRef: testViewContainerRef
-        })
-      ).toBe(ref);
+  it('should notify the observers if a lightbox has been opened', done => {
+    let lightboxRef;
+
+    lightbox.afterOpen.pipe(delay(0)).subscribe(ref => {
+      expect(lightboxRef).toBe(ref);
+      done();
+    });
+
+    lightboxRef = lightbox.open(PizzaMsgComponent, {
+      viewContainerRef: testViewContainerRef
     });
   });
 
