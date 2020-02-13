@@ -40,6 +40,6 @@ export interface JumpMark {
 ```html
 <h4>Error notification with jump marks and custom icon</h4>
 <sbb-notification message="Please fix the form errors" type="error" [jumpMarks]="jumpMarks">
-  <sbb-icon-gluehbirne-an *sbbNotificationIcon></sbb-icon-gluehbirne-an>
+  <sbb-icon-gluehbirne-an *sbbIcon></sbb-icon-gluehbirne-an>
 </sbb-notification>
 ```
