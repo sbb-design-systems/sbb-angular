@@ -26,11 +26,11 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../public_api';
 
 import { LightboxContainerComponent } from './lightbox-container.component';
-import { delay } from 'rxjs/operators';
 
 // tslint:disable:i18n
 @Directive({ selector: '[sbbDirWithViewContainer]' })
