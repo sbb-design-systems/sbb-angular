@@ -933,14 +933,14 @@ apiDocsPackage.config(function (templateFinder, templateEngine) {
 
 function documentation(_options) {
     return async (tree, _context) => {
-        for (const library of ['angular-core', 'angular-public', 'angular-business']) {
+        for (const library of ['angular-core', 'angular-public', 'angular-business', 'angular-maps']) {
             renderHtmlForMarkdownFilesForLibrary(tree, library);
             renderExampleFilesForLibrary(tree, library);
         }
         for (const library of ['angular-keycloak', 'angular-icons']) {
             renderHtmlForMarkdownFilesForLibrary(tree, library);
         }
-        await buildApiDocumentationForLibrary(['angular-core', 'angular-public', 'angular-business']);
+        await buildApiDocumentationForLibrary(['angular-core', 'angular-public', 'angular-business', 'angular-maps']);
     };
 }
 function renderHtmlForMarkdownFilesForLibrary(tree, library) {

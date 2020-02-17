@@ -1,0 +1,16 @@
+$map-height: 500px;
+
+.map-container {
+  display: inline-block;
+}
+.web-map {
+  width: 700px;
+  height: $map-height;
+}
+
+.legend {
+  display: inline-block;
+  width: 300px;
+  height: $map-height;
+  overflow-y: scroll;
+}

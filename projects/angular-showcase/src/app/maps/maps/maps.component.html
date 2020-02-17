@@ -1,0 +1,65 @@
+<sbb-submenu>
+  <ul>
+    <li>
+      Introduction
+
+      <ul>
+        <li>
+          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            >Getting started</a
+          >
+        </li>
+        <li>
+          <a routerLink="./introduction/overview-and-usage" routerLinkActive="active"
+            >Overview and usage</a
+          >
+        </li>
+        <li>
+          <a routerLink="./introduction/mapping-basics" routerLinkActive="active">Mapping basics</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Maps
+
+      <ul>
+        <li *ngFor="let c of maps | keyvalue">
+          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Map Utilities
+
+      <ul>
+        <li *ngFor="let c of mapUtilities | keyvalue">
+          <a [routerLink]="['./components/', c.key]" routerLinkActive="active">{{ c.value }}</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-link ">
+      Advanced Usage
+
+      <ul>
+        <li>
+          <a routerLink="./advanced/loading-arcgis-types" routerLinkActive="active"
+            >Loading ArcGIS types</a
+          >
+        </li>
+        <li>
+          <a routerLink="./advanced/layer-filtering" routerLinkActive="active">Layer filtering</a>
+        </li>
+        <li>
+          <a routerLink="./advanced/accessing-map-data" routerLinkActive="active"
+            >Accessing map data</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</sbb-submenu>
+
+<router-outlet></router-outlet>

@@ -9,6 +9,7 @@
 @include cdk-overlay();
 
 sbb-public,
+sbb-maps,
 sbb-core,
 sbb-icons {
   @import '../../sbb-esta/angular-public/styles';

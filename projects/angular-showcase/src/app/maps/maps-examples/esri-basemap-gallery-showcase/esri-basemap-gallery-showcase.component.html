@@ -1,0 +1,19 @@
+<article class="container-fluid">
+  <div class="row">
+    <h4>SceneView with basemap gallery</h4>
+    <div class="basemap-gallery">
+      <sbb-esri-basemap-gallery
+        *ngIf="webScene.sceneView"
+        [mapView]="webScene.sceneView"
+      ></sbb-esri-basemap-gallery>
+    </div>
+    <div class="map-container">
+      <sbb-esri-web-scene
+        [portalItemId]="'1c7a06421a314ac9b7d0fae22aa367fb'"
+        #webScene
+        class="web-map"
+      >
+      </sbb-esri-web-scene>
+    </div>
+  </div>
+</article>

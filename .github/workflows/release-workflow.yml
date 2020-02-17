@@ -78,6 +78,19 @@ jobs:
       if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
       run: npm run build:public
       
+    - name: Restore @sbb-esta/angular-maps from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_maps_cache
+      with:
+        path: dist/sbb-esta/angular-maps
+        key: "ng-sbb-esta-angular-maps-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-maps
+      if: steps.sbb_esta_angular_maps_cache.outputs.cache-hit != 'true'
+      run: npm run build:angular-maps
+      
     - name: Restore @sbb-esta/angular-business from cache
       uses: actions/cache@v1
       id: sbb_esta_angular_business_cache
@@ -128,6 +141,7 @@ jobs:
         cp LICENSE dist/sbb-esta/angular-icons
         cp LICENSE dist/sbb-esta/angular-keycloak
         cp LICENSE dist/sbb-esta/angular-public
+        cp LICENSE dist/sbb-esta/angular-maps
         cp LICENSE dist/sbb-esta/angular-business
         cp LICENSE dist/angular-showcase
     - name: Publish @sbb-esta/angular-core
@@ -144,6 +158,10 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-public
       run: npm publish dist/sbb-esta/angular-public || true
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Publish @sbb-esta/angular-maps
+      run: npm publish dist/sbb-esta/angular-maps || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Publish @sbb-esta/angular-business

@@ -74,7 +74,19 @@ jobs:
     - name: Build @sbb-esta/angular-public
       if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
       run: npm run build:public
-      
+
+    - name: Restore @sbb-esta/angular-maps from cache
+      uses: actions/cache@v1
+      id: sbb_esta_angular_maps_cache
+      with:
+        path: dist/sbb-esta/angular-maps
+        key: "ng-sbb-esta-angular-maps-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.ts') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.html') }}-\
+          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.scss') }}"
+    - name: Build @sbb-esta/angular-maps
+      if: steps.sbb_esta_angular_maps_cache.outputs.cache-hit != 'true'
+      run: npm run build:maps
     - name: Restore @sbb-esta/angular-business from cache
       uses: actions/cache@v1
       id: sbb_esta_angular_business_cache
@@ -126,6 +138,8 @@ jobs:
       run: npx ng lint @sbb-esta/angular-keycloak --format=json > lint/keycloak.json
     - name: Linting @sbb-esta/angular-public
       run: npx ng lint @sbb-esta/angular-public --format=json > lint/public.json
+    - name: Linting @sbb-esta/angular-maps
+      run: npx ng lint @sbb-esta/angular-maps --format=json > lint/maps.json
     - name: Linting @sbb-esta/angular-business
       run: npx ng lint @sbb-esta/angular-business --format=json > lint/business.json
     - name: Linting @sbb-esta/angular-showcase
@@ -175,6 +189,8 @@ jobs:
       run: npx ng test @sbb-esta/angular-keycloak -c ci
     - name: Testing @sbb-esta/angular-public
       run: npx ng test @sbb-esta/angular-public -c ci
+    - name: Testing @sbb-esta/angular-maps
+      run: npx ng test @sbb-esta/angular-maps -c ci
     - name: Testing @sbb-esta/angular-business
       run: npx ng test @sbb-esta/angular-business -c ci
 
@@ -219,6 +235,8 @@ jobs:
       run: npx ng test @sbb-esta/angular-keycloak -c pr
     - name: Testing @sbb-esta/angular-public PR
       run: npx ng test @sbb-esta/angular-public -c pr
+    - name: Testing @sbb-esta/angular-maps PR
+      run: npx ng test @sbb-esta/angular-maps -c pr
     - name: Testing @sbb-esta/angular-business PR
       run: npx ng test @sbb-esta/angular-business -c pr
 

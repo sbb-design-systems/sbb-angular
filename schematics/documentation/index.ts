@@ -13,7 +13,7 @@ import { apiDocsPackage } from './dgeni/docs-package';
 
 export function documentation(_options: any): Rule {
   return async (tree: Tree, _context: SchematicContext) => {
-    for (const library of ['angular-core', 'angular-public', 'angular-business']) {
+    for (const library of ['angular-core', 'angular-public', 'angular-business', 'angular-maps']) {
       renderHtmlForMarkdownFilesForLibrary(tree, library);
       renderExampleFilesForLibrary(tree, library);
     }
@@ -22,7 +22,12 @@ export function documentation(_options: any): Rule {
       renderHtmlForMarkdownFilesForLibrary(tree, library);
     }
 
-    await buildApiDocumentationForLibrary(['angular-core', 'angular-public', 'angular-business']);
+    await buildApiDocumentationForLibrary([
+      'angular-core',
+      'angular-public',
+      'angular-business',
+      'angular-maps'
+    ]);
   };
 }
 

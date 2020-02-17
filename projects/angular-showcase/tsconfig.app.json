@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
-    "types": []
+    "types": ["arcgis-js-api"]
   },
   "exclude": ["test.ts", "**/*.spec.ts"],
   "angularCompilerOptions": {

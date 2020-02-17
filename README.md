@@ -25,19 +25,25 @@ The package containing SBB icons as components.
 
 ### [@sbb-esta/angular-public](https://www.npmjs.com/package/@sbb-esta/angular-public)
 
-The package containg the components/modules for public SBB websites.
+The package containing the components/modules for public SBB websites.
 
 [Component List](https://angular.app.sbb.ch/latest/public)
 
 ### [@sbb-esta/angular-business](https://www.npmjs.com/package/@sbb-esta/angular-business)
 
-The package containg the components/modules for SBB business applications.
+The package containing the components/modules for SBB business applications.
 
 [Component List](https://angular.app.sbb.ch/latest/business)
 
+### [@sbb-esta/angular-maps](https://www.npmjs.com/package/@sbb-esta/angular-maps)
+
+The package containing components to display 2D/3D maps and to provide map interaction.
+
+[Component List](https://angular.app.sbb.ch/latest/maps)
+
 ### [@sbb-esta/angular-keycloak](https://www.npmjs.com/package/@sbb-esta/angular-keycloak)
 
-The package containg the authentication module keycloak.
+The package containing the authentication module keycloak.
 
 ## Browser and screen reader support
 
