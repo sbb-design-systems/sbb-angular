@@ -106,6 +106,6 @@ describe('ChipInputComponent', () => {
     chipComponents.forEach(chipComponent =>
       expect(chipComponent.classes['sbb-chip-disabled']).toBe(true)
     );
-    expect(chipInputComponent.properties.disabled).toBe(true);
+    expect(chipInputComponent.classes['sbb-chip-input-disabled']).toBe(true);
   });
 });

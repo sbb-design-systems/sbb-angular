@@ -79,6 +79,6 @@ describe('ChipComponent', () => {
 
     const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
     chips.forEach(chip => expect(chip.attributes['aria-hidden']).toBe('true'));
-    chips.forEach(chip => expect(chip.properties['hidden']).toBe(true));
+    chips.forEach(chip => expect(chip.properties['hidden']).toBe('true'));
   });
 });

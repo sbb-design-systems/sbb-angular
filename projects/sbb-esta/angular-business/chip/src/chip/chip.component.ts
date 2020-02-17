@@ -15,7 +15,7 @@ export class ChipComponent {
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
 
-  @HostBinding('attr.hidden') hidden: 'false' | 'true';
+  @HostBinding('hidden') hidden: 'false' | 'true';
 
   @HostBinding('attr.aria-hidden')
   get ariaHidden() {
