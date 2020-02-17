@@ -1,6 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -10,7 +9,7 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   AutocompleteComponent,
   AutocompleteOriginDirective
@@ -29,7 +28,7 @@ import { Subject } from 'rxjs';
     }
   ]
 })
-export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterViewInit {
+export class ChipInputComponent implements ControlValueAccessor, OnInit {
   @Input()
   options: string[] = [];
 
@@ -51,11 +50,6 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
     return !this.disabled && this.focus;
   }
 
-  @HostBinding('class.sbb-chip-input-error')
-  get isInvalid() {
-    return this._control ? this._control.invalid : false;
-  }
-
   inputModel = '';
   selectedOptions: string[] = [];
   focus = false;
@@ -64,7 +58,6 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   private _disabled = false;
   private _onTouchedCallback: () => void;
   private _onChangeCallback: (_: any) => void;
-  private _control: FormControl;
 
   readonly stateChanges = new Subject<void>();
 
@@ -77,13 +70,6 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   ngOnInit(): void {
     if (this.autocomplete) {
       this.autocomplete.optionSelected.subscribe(event => this.selectOption(event.option.value));
-    }
-  }
-
-  ngAfterViewInit(): void {
-    const ngControl: NgControl = this._injector.get(NgControl, null);
-    if (ngControl) {
-      this._control = ngControl.control as FormControl;
     }
   }
 
