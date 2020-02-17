@@ -1,15 +1,17 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   forwardRef,
   Injector,
   Input,
-  OnInit,
-  Renderer2
+  OnInit
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { AutocompleteComponent } from '@sbb-esta/angular-public/autocomplete';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'sbb-chip-input',
@@ -30,18 +32,24 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   @Input('sbbAutocomplete')
   autocomplete: AutocompleteComponent;
 
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+
   inputModel = '';
   selectedOptions: string[] = [];
-  disabled: boolean;
   focus = false;
 
+  private _disabled = false;
   private _onTouchedCallback: () => void;
   private _onChangeCallback: (_: any) => void;
   private _control: FormControl;
 
-  get isDisabled() {
-    return !!this.disabled;
-  }
+  readonly stateChanges = new Subject<void>();
 
   get isActive() {
     return !this.disabled && this.focus;
@@ -53,8 +61,8 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
 
   constructor(
     private _injector: Injector,
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef
+    private _elementRef: ElementRef,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -79,8 +87,9 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     this.disabled = isDisabled;
+    this._changeDetectorRef.markForCheck();
+    this.stateChanges.next();
   }
 
   selectOption(option: string) {
