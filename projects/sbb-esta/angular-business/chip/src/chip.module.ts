@@ -18,6 +18,6 @@ import { ChipComponent } from './chip/chip.component';
     CommonModule,
     FormsModule
   ],
-  exports: [ChipInputComponent]
+  exports: [ChipInputComponent, ChipComponent]
 })
 export class ChipModule {}

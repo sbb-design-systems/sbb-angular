@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
+import { ChipModule } from '@sbb-esta/angular-business/chip';
 import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
@@ -17,8 +18,6 @@ import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-
-import { ChipModule } from '../../../../../sbb-esta/angular-business/chip';
 
 import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { SimpleChipInputComponent } from './chip-showcase/simple-chip-input/simple-chip-input.component';
