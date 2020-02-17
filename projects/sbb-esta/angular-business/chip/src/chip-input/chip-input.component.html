@@ -1,41 +1,26 @@
-<div
-  class="sbb-chip-input"
-  sbbAutocompleteOrigin
-  #origin="sbbAutocompleteOrigin"
-  [class.sbb-chip-input-active]="isActive"
-  [class.sbb-chip-input-disabled]="disabled"
-  [class.sbb-chip-input-error]="isInvalid"
->
-  <div class="sbb-chip-input-content">
-    <div class="sbb-chip-wrapper" *ngFor="let option of selectedOptions">
-      <sbb-chip
-        [label]="option"
-        (dismissed)="deselectOption(option)"
-        [disabled]="disabled"
-      ></sbb-chip>
-    </div>
-    <input
-      *ngIf="autocomplete; else noAutocomplete"
-      type="text"
-      [value]="inputModel"
-      [disabled]="disabled"
-      [sbbAutocomplete]="autocomplete"
-      [sbbAutocompleteConnectedTo]="origin"
-      (focus)="focus = true"
-      (blur)="focus = false"
-      (keydown.enter)="selectOption($event.target.value)"
-      class="sbb-chip-input-textfield"
-    />
-    <ng-template #noAutocomplete>
-      <input
-        type="text"
-        [value]="inputModel"
-        [disabled]="disabled"
-        (focus)="focus = true"
-        (blur)="focus = false"
-        (keydown.enter)="selectOption($event.target.value)"
-        class="sbb-chip-input-textfield"
-      />
-    </ng-template>
-  </div>
+<div class="sbb-chip-wrapper" *ngFor="let option of selectedOptions">
+  <sbb-chip [label]="option" (dismissed)="deselectOption(option)" [disabled]="disabled"></sbb-chip>
 </div>
+<input
+  *ngIf="autocomplete; else noAutocomplete"
+  type="text"
+  [value]="inputModel"
+  [disabled]="disabled"
+  [sbbAutocomplete]="autocomplete"
+  [sbbAutocompleteConnectedTo]="origin"
+  (focus)="focus = true"
+  (blur)="focus = false"
+  (keydown.enter)="selectOption($event.target.value)"
+  class="sbb-chip-input-textfield"
+/>
+<ng-template #noAutocomplete>
+  <input
+    type="text"
+    [value]="inputModel"
+    [disabled]="disabled"
+    (focus)="focus = true"
+    (blur)="focus = false"
+    (keydown.enter)="selectOption($event.target.value)"
+    class="sbb-chip-input-textfield"
+  />
+</ng-template>

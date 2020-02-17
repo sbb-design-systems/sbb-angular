@@ -5,12 +5,16 @@ import {
   Component,
   ElementRef,
   forwardRef,
+  HostBinding,
   Injector,
   Input,
   OnInit
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { AutocompleteComponent } from '@sbb-esta/angular-public/autocomplete';
+import {
+  AutocompleteComponent,
+  AutocompleteOriginDirective
+} from '@sbb-esta/angular-business/autocomplete';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -33,6 +37,7 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   autocomplete: AutocompleteComponent;
 
   @Input()
+  @HostBinding('class.sbb-chip-input-disabled')
   get disabled() {
     return this._disabled;
   }
@@ -41,9 +46,20 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
     this._disabled = coerceBooleanProperty(value);
   }
 
+  @HostBinding('class.sbb-chip-input-active')
+  get isActive() {
+    return !this.disabled && this.focus;
+  }
+
+  @HostBinding('class.sbb-chip-input-error')
+  get isInvalid() {
+    return this._control ? this._control.invalid : false;
+  }
+
   inputModel = '';
   selectedOptions: string[] = [];
   focus = false;
+  origin = new AutocompleteOriginDirective(this._elementRef);
 
   private _disabled = false;
   private _onTouchedCallback: () => void;
@@ -51,14 +67,6 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   private _control: FormControl;
 
   readonly stateChanges = new Subject<void>();
-
-  get isActive() {
-    return !this.disabled && this.focus;
-  }
-
-  get isInvalid() {
-    return this._control ? this._control.invalid : false;
-  }
 
   constructor(
     private _injector: Injector,
