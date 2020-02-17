@@ -17,10 +17,10 @@
     <input
       *ngIf="autocomplete; else noAutocomplete"
       type="text"
+      [value]="inputModel"
       [disabled]="disabled"
       [sbbAutocomplete]="autocomplete"
       [sbbAutocompleteConnectedTo]="origin"
-      [(ngModel)]="inputModel"
       (focus)="focus = true"
       (blur)="focus = false"
       (keydown.enter)="selectOption($event.target.value)"
@@ -29,8 +29,8 @@
     <ng-template #noAutocomplete>
       <input
         type="text"
+        [value]="inputModel"
         [disabled]="disabled"
-        [(ngModel)]="inputModel"
         (focus)="focus = true"
         (blur)="focus = false"
         (keydown.enter)="selectOption($event.target.value)"

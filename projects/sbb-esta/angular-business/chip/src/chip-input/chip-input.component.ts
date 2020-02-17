@@ -36,6 +36,7 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
   get disabled() {
     return this._disabled;
   }
+
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
   }
@@ -101,9 +102,7 @@ export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterVi
       this._onChangeCallback(this.selectedOptions);
       this._onTouchedCallback();
     }
-    setTimeout(() => {
-      this.inputModel = '';
-    }, 1);
+    this.inputModel = null;
   }
 
   deselectOption(option: string) {
