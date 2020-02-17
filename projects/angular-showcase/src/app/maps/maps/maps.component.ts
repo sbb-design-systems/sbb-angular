@@ -24,7 +24,6 @@ export class MapsComponent implements ExampleProvider {
     'esri-basemap-gallery': 'Basemap Gallery',
     'esri-legend': 'Legend'
   };
-  advancedUsage = {};
 
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     'esri-web-map': { 'esri-web-map-showcase': new ComponentPortal(EsriWebMapShowcaseComponent) },
