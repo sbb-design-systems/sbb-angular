@@ -13,8 +13,7 @@ import { AutocompleteModule, FieldModule, FormErrorDirective } from '@sbb-esta/a
 import { IconCrossModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { ContextmenuComponent } from '../../../contextmenu';
-import { ChipComponent } from '../chip/chip.component';
+import { ChipComponent } from '../..';
 
 import { ChipInputComponent } from './chip-input.component';
 
@@ -45,7 +44,7 @@ class ChipInputTestComponent implements OnInit {
   }
 }
 
-describe('ContextmenuComponent', () => {
+describe('ChipInputComponent', () => {
   let component: ChipInputTestComponent;
   let fixture: ComponentFixture<ChipInputTestComponent>;
 
@@ -87,18 +86,8 @@ describe('ContextmenuComponent', () => {
     expect(chipComponents.length).toBe(2);
   });
 
-  it('should not contain any option chips using setValue with unavailable value', () => {
-    const warnSpy = spyOn(console, 'warn');
-    component.formGroup.get('chip').setValue(['test']);
-    fixture.detectChanges();
-
-    const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
-    expect(warnSpy).toHaveBeenCalledTimes(1);
-    expect(chipComponents.length).toBe(0);
-  });
-
   it('should show error status when invalid', () => {
-    component.formGroup.get('chip').setValue(['test']);
+    component.formGroup.get('chip').setValue([]);
     fixture.detectChanges();
 
     const erroredWrapper = fixture.debugElement.query(By.css('sbb-chip-input-error'));

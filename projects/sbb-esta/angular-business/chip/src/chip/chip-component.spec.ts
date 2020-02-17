@@ -5,8 +5,6 @@ import { By } from '@angular/platform-browser';
 import { IconCrossComponent, IconCrossModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { ContextmenuComponent } from '../../../contextmenu';
-
 import { ChipComponent } from './chip.component';
 
 @Component({
@@ -22,7 +20,7 @@ class ChipTestComponent {
   dismissed(event) {}
 }
 
-describe('ContextmenuComponent', () => {
+describe('ChipComponent', () => {
   let component: ChipTestComponent;
   let fixture: ComponentFixture<ChipTestComponent>;
 

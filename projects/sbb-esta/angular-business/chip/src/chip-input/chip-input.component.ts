@@ -5,9 +5,11 @@ import {
   forwardRef,
   Injector,
   Input,
+  OnInit,
   Renderer2
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { AutocompleteComponent } from '@sbb-esta/angular-public/autocomplete';
 
 @Component({
   selector: 'sbb-chip-input',
@@ -21,9 +23,12 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from 
     }
   ]
 })
-export class ChipInputComponent implements ControlValueAccessor, AfterViewInit {
+export class ChipInputComponent implements ControlValueAccessor, OnInit, AfterViewInit {
   @Input()
   options: string[] = [];
+
+  @Input('sbbAutocomplete')
+  autocomplete: AutocompleteComponent;
 
   inputModel = '';
   selectedOptions: string[] = [];
@@ -52,6 +57,12 @@ export class ChipInputComponent implements ControlValueAccessor, AfterViewInit {
     private _elementRef: ElementRef
   ) {}
 
+  ngOnInit(): void {
+    if (this.autocomplete) {
+      this.autocomplete.optionSelected.subscribe(event => this.selectOption(event.option.value));
+    }
+  }
+
   ngAfterViewInit(): void {
     const ngControl: NgControl = this._injector.get(NgControl, null);
     if (ngControl) {
@@ -61,16 +72,9 @@ export class ChipInputComponent implements ControlValueAccessor, AfterViewInit {
 
   writeValue(obj: string[]): void {
     if (obj) {
-      obj = obj.filter((value, index) => {
-        if (this.options && this.options.includes(value)) {
-          return true;
-        } else {
-          console.warn(`Warning: Value '${value}' not provided in selectable options.`);
-          obj.splice(index, 1);
-          return false;
-        }
-      });
       this.selectedOptions = obj;
+    } else {
+      this.selectedOptions = [];
     }
   }
 
@@ -79,12 +83,12 @@ export class ChipInputComponent implements ControlValueAccessor, AfterViewInit {
     this.disabled = isDisabled;
   }
 
-  selectOption($event) {
+  selectOption(option: string) {
     if (!this.selectedOptions) {
       this.selectedOptions = [];
     }
-    if (!this.selectedOptions.includes($event.option.value)) {
-      this.writeValue(this.selectedOptions.concat([$event.option.value]));
+    if (!this.selectedOptions.includes(option)) {
+      this.writeValue(this.selectedOptions.concat([option]));
       this._onChangeCallback(this.selectedOptions);
       this._onTouchedCallback();
     }

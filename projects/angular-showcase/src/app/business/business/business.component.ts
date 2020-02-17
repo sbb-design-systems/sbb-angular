@@ -2,6 +2,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
+import { AutocompleteChipInputComponent } from '../business-examples/chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { SimpleChipInputComponent } from '../business-examples/chip-showcase/simple-chip-input/simple-chip-input.component';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
@@ -95,8 +96,9 @@ export class BusinessComponent implements ExampleProvider {
       'sortable-table': new ComponentPortal(SortableTableComponent)
     },
     chip: {
-      'simple-chip-input-showcase': new ComponentPortal(SimpleChipInputComponent),
-      'disabled-chip-input-showcase': new ComponentPortal(DisabledChipInputComponent)
+      'simple-chip-input': new ComponentPortal(SimpleChipInputComponent),
+      'disabled-chip-input': new ComponentPortal(DisabledChipInputComponent),
+      'autocomplete-chip-input': new ComponentPortal(AutocompleteChipInputComponent)
     }
   };
 

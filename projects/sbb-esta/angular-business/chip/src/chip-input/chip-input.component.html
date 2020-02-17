@@ -15,18 +15,27 @@
       ></sbb-chip>
     </div>
     <input
+      *ngIf="autocomplete; else noAutocomplete"
       type="text"
       [disabled]="disabled"
-      [sbbAutocomplete]="auto"
+      [sbbAutocomplete]="autocomplete"
       [sbbAutocompleteConnectedTo]="origin"
       [(ngModel)]="inputModel"
       (focus)="focus = true"
       (blur)="focus = false"
+      (keydown.enter)="selectOption($event.target.value)"
       class="sbb-chip-input-textfield"
     />
+    <ng-template #noAutocomplete>
+      <input
+        type="text"
+        [disabled]="disabled"
+        [(ngModel)]="inputModel"
+        (focus)="focus = true"
+        (blur)="focus = false"
+        (keydown.enter)="selectOption($event.target.value)"
+        class="sbb-chip-input-textfield"
+      />
+    </ng-template>
   </div>
-
-  <sbb-autocomplete #auto="sbbAutocomplete" (optionSelected)="selectOption($event)">
-    <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
-  </sbb-autocomplete>
 </div>
