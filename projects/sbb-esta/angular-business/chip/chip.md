@@ -17,7 +17,7 @@ options = ['option1', 'option2'];
 
 ngOnInit(): void {
   this.formGroup = this._formBuilder.group({
-    chip: [{ value: [], disabled: false }, Validators.required]
+    chip: [[], Validators.required]
   });
 }
 ```
@@ -41,7 +41,7 @@ options = ['option1', 'option2'];
 
 ngOnInit(): void {
   this.formGroup = this._formBuilder.group({
-    chip: [{ value: ['option1'], disabled: false }, Validators.required]
+    chip: [['option1'], Validators.required]
   });
 }
 ```
