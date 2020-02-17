@@ -25,7 +25,9 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
     this.example = this._route.params.pipe(
       takeUntil(this._destroyed),
       map(({ id }) => this._exampleProvider.resolveExample(id)),
-      map(examples => Object.keys(examples).map(name => ({ name, portal: examples[name] })))
+      map(examples =>
+        examples ? Object.keys(examples).map(name => ({ name, portal: examples[name] })) : null
+      )
     );
   }
 
