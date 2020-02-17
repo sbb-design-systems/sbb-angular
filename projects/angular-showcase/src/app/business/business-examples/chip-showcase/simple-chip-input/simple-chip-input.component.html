@@ -1,7 +1,11 @@
 <p>Simple chip input:</p>
+value: {{ formGroup.get('chip').value }}<br />
+dirty: {{ formGroup.get('chip').dirty }}<br />
+touched: {{ formGroup.get('chip').touched }}<br />
+valid: {{ formGroup.get('chip').valid }}
 <ng-container [formGroup]="formGroup" *ngIf="formGroup">
   <sbb-field label="Label" class="sbb-field-100">
-    <sbb-chip-input formControlName="chip" [options]="options"></sbb-chip-input>
+    <sbb-chip-input formControlName="chip"></sbb-chip-input>
     <sbb-form-error *ngIf="formGroup.get('chip').errors?.required"
       >This field is required.</sbb-form-error
     >
