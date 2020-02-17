@@ -6,6 +6,6 @@ export class MarkerSymbolFactory {
   constructor(private _esri: EsriTypesService) {}
 
   createCircleSymbol() {
-    return new this._esri.SimpleMarkerSymbol(MarkerSymbolSettings.simpleSmybol);
+    return new this._esri.SimpleMarkerSymbol(MarkerSymbolSettings.simpleSymbol);
   }
 }

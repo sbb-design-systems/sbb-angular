@@ -9,7 +9,7 @@ export class MarkerSizes {
 }
 
 export class MarkerSymbolSettings {
-  static simpleSmybol = {
+  static simpleSymbol = {
     style: 'circle',
     color: MarkerColors.transparentLilaColor,
     size: MarkerSizes.standardSize,

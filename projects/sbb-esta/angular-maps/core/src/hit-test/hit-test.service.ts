@@ -4,10 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HitTestService {
-  constructor() {}
-
   /**
-   * Calls the ESRI hitTest method for a location on a givenmap-/scene-view.
+   * Calls the ESRI hitTest method for a location on a given map-/scene-view.
    */
   async esriHitTest(
     mapView: __esri.MapView | __esri.SceneView,

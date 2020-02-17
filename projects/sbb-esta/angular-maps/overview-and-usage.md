@@ -1,6 +1,6 @@
 # Overview and usage
 
-It has become evident that Angular web applications at SBB need a simple way to display maps. This is one of the most requested features towards the GIS application development team. Having a great component library (`sbb-angular`) at hands, it's been an easy decision to provide simple yet versatile components for mapping needs trough this library.
+It has become evident that Angular web applications at SBB need a simple way to display maps. This is one of the most requested features towards the GIS application development team. Having a great component library (`sbb-esta`) at hands, it's been an easy decision to provide simple yet versatile components for mapping needs trough this library.
 
 The components base on the Esri ArcGIS framework (see section _Technology_ below), matching the technology used for most SBB WebGIS applications and the SBB GIS stack.
 
