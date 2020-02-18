@@ -20,7 +20,7 @@ export class ChipComponent {
   private _disabled = false;
 
   @Output()
-  dismissed: EventEmitter<boolean> = new EventEmitter();
+  dismissed: EventEmitter<ChipComponent> = new EventEmitter();
 
   @HostBinding('attr.aria-hidden') ariaHidden: null | undefined | 'true';
 
@@ -39,6 +39,6 @@ export class ChipComponent {
 
   dismiss() {
     this.ariaHidden = 'true';
-    this.dismissed.emit(false);
+    this.dismissed.emit(this);
   }
 }
