@@ -12,7 +12,7 @@ describe('GraphicService', () => {
   );
 
   it('should be created', () => {
-    const service: GraphicService = TestBed.get(GraphicService);
+    const service: GraphicService = TestBed.inject(GraphicService);
     expect(service).toBeTruthy();
   });
 });

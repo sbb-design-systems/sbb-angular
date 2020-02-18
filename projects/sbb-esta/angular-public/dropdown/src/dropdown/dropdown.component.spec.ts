@@ -163,9 +163,9 @@ describe('DropdownComponent test', () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
         fixture.detectChanges();
-        router = TestBed.get(Router);
+        router = TestBed.inject(Router);
         router.initialNavigation();
-        location = TestBed.get(Location);
+        location = TestBed.inject(Location);
         fixture.detectChanges();
         await fixture.whenStable();
         const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));
@@ -181,9 +181,9 @@ describe('DropdownComponent test', () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
         fixture.detectChanges();
-        router = TestBed.get(Router);
+        router = TestBed.inject(Router);
         router.initialNavigation();
-        location = TestBed.get(Location);
+        location = TestBed.inject(Location);
         fixture.detectChanges();
         await fixture.whenStable();
         const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));

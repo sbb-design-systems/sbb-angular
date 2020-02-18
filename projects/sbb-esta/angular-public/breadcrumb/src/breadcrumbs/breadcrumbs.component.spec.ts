@@ -171,16 +171,16 @@ describe('Breadcrumb behaviour Test', () => {
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTestComponent);
     component = fixtureTest.componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     fixtureTest.detectChanges();
   });
 
   it('breadcrumb with navigation to home page', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: 'home' } });
       fixtureTest.detectChanges();
@@ -207,10 +207,10 @@ describe('Breadcrumb behaviour Test', () => {
 
   it('breadcrumb with navigation to level 1 page', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: '1' } });
       fixtureTest.detectChanges();
@@ -233,10 +233,10 @@ describe('Breadcrumb behaviour Test', () => {
 
   it('breadcrumb with navigation to level 2 page', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: '2' } });
       fixtureTest.detectChanges();
@@ -281,7 +281,7 @@ describe('Breadcrumb behaviour Test 2', () => {
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest2Component);
     component = fixtureTest.componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
   });
 
   it('breadcrumb with correctly sized dropdown width', async(() => {
@@ -310,10 +310,10 @@ describe('Breadcrumb behaviour Test 2', () => {
 
   it('breadcrumb with navigation to home page', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: 'home' } });
       fixtureTest.detectChanges();
@@ -340,10 +340,10 @@ describe('Breadcrumb behaviour Test 2', () => {
 
   it('breadcrumb with navigation to level 1 page with dropdown', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
       fixtureTest.detectChanges();
@@ -380,10 +380,10 @@ describe('Breadcrumb behaviour Test 2', () => {
 
   it('breadcrumb with navigation to level 2 page with dropdown', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: '1', sub: '2' } });
       fixtureTest.detectChanges();
@@ -443,15 +443,15 @@ describe('Breadcrumb behaviour Test 3', () => {
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest3Component);
     component = fixtureTest.componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
   });
 
   it('breadcrumb with navigation to home page', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: 'home' } });
       fixtureTest.detectChanges();
@@ -478,10 +478,10 @@ describe('Breadcrumb behaviour Test 3', () => {
 
   it('breadcrumb with navigation to level 1 page with dropdown', async(() => {
     fixtureTest.ngZone.run(async () => {
-      router = TestBed.get(Router);
+      router = TestBed.inject(Router);
       router.initialNavigation();
       fixtureTest.detectChanges();
-      location = TestBed.get(Location);
+      location = TestBed.inject(Location);
 
       router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
       fixtureTest.detectChanges();

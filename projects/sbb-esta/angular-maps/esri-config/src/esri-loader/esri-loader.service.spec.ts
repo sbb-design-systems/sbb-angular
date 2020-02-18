@@ -35,7 +35,7 @@ describe('EsriLoaderService', () => {
     TestBed.configureTestingModule({
       providers: [EsriLoaderService]
     });
-    loaderService = TestBed.get(EsriLoaderService);
+    loaderService = TestBed.inject(EsriLoaderService);
   });
 
   it('should be created', () => {
@@ -60,7 +60,7 @@ describe('EsriLoaderService', () => {
     // tslint:disable-next-line: no-string-literal
     loaderService['_config'] = esriCustomConf;
 
-    loaderService = TestBed.get(EsriLoaderService);
+    loaderService = TestBed.inject(EsriLoaderService);
 
     const esriConfigMock = new EsriConfigMock();
     createEsriLoaderSpy(esriConfigMock);

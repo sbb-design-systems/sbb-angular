@@ -9,7 +9,7 @@ describe('RadioButtonRegistryService', () => {
     TestBed.configureTestingModule({
       providers: [RadioButtonRegistryService]
     });
-    service = TestBed.get(RadioButtonRegistryService);
+    service = TestBed.inject(RadioButtonRegistryService);
   });
 
   it('should be created', () => {
