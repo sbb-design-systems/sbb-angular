@@ -1,5 +1,5 @@
-import { Component, DebugElement, Type, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   IconArrowRightComponent as TestIconComponent,
@@ -7,7 +7,6 @@ import {
 } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { ButtonIconDirective } from './button-icon.directive';
 import { ButtonComponent } from './button.component';
 
 // tslint:disable:i18n
@@ -35,7 +34,7 @@ describe('ButtonComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule],
-      declarations: [ButtonComponent, ButtonTemplateTestComponent, ButtonIconDirective]
+      declarations: [ButtonComponent, ButtonTemplateTestComponent]
     });
   });
 
@@ -231,7 +230,7 @@ describe('ButtonComponent', () => {
       expect(sbbButtonStyle.getPropertyValue('text-decoration')).toContain('line-through');
     });
 
-    it('should not the icons be diplayed', () => {
+    it('should not the icons be displayed', () => {
       expect(sbbButtonIconWrapperStyle.getPropertyValue('display')).toBe('none');
     });
 
