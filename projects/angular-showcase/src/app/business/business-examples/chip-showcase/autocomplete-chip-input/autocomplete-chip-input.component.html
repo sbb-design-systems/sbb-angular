@@ -1,6 +1,6 @@
 <p>Autocomplete chip input:</p>
 <ng-container [formGroup]="formGroup" *ngIf="formGroup">
-  <sbb-field label="Label" class="sbb-field-100">
+  <sbb-field label="Label" mode="long">
     <sbb-chip-input formControlName="chip" [sbbAutocomplete]="auto"></sbb-chip-input>
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
