@@ -68,7 +68,7 @@ The `placeholder` will also label the trigger.
 ### Custom icon
 
 To set a custom icon to the search button (and to the trigger icon too when in 'header' mode),
-you need to use the `sbbSearchIcon` directive on the icon component you want to use:
+you need to use the `sbbIcon` directive on the icon component you want to use:
 
 ```html
 <sbb-search
@@ -77,6 +77,6 @@ you need to use the `sbbSearchIcon` directive on the icon component you want to 
   placeholder="Suchen"
   [formControl]="myControlStatic"
 >
-  <sbb-icon-circle-information *sbbSearchIcon></sbb-icon-circle-information>
+  <sbb-icon-circle-information *sbbIcon></sbb-icon-circle-information>
 </sbb-search>
 ```
