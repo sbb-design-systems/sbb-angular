@@ -26,10 +26,10 @@ import { ToggleModule } from '../toggle.module';
           [value]="option.value"
         >
           <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 1">
             <sbb-label for="name1">Select date</sbb-label>
@@ -83,10 +83,10 @@ class ToggleReactiveTestComponent implements OnInit {
           [value]="option.value"
         >
           <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 1">
             <sbb-label for="name1">Select date</sbb-label>
@@ -133,10 +133,10 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
         [value]="option.value"
       >
         <ng-container *ngIf="i === 0">
-          <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+          <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
         </ng-container>
         <ng-container *ngIf="i === 1">
-          <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+          <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
         </ng-container>
         <sbb-field mode="long" *ngIf="i === 0">
           <sbb-label for="name1">Select date</sbb-label>
