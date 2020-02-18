@@ -2,8 +2,8 @@
   "name": "@sbb-esta/angular-maps",
   "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
     "esri-loader": "~2.13.0"
   },
   "devDependencies": {
