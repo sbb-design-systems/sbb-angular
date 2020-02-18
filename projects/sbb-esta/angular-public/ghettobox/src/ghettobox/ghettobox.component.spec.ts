@@ -6,9 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
-
-import { GhettoboxIconDirective } from './ghettobox-icon.directive';
+import { GhettoboxComponent } from './ghettobox.component';
 
 // tslint:disable:i18n
 @Component({
@@ -22,7 +20,7 @@ import { GhettoboxIconDirective } from './ghettobox-icon.directive';
       [queryParams]="{ debug: false }"
       fragment="test"
     >
-      <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
+      <sbb-icon-him-disruption *sbbIcon></sbb-icon-him-disruption>
       This is a simple link text with custom icon
     </sbb-ghettobox>
   `,
@@ -39,7 +37,7 @@ describe('GhettoboxComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, IconCollectionModule, NoopAnimationsModule],
-      declarations: [GhettoboxTestComponent, GhettoboxComponent, GhettoboxIconDirective]
+      declarations: [GhettoboxTestComponent, GhettoboxComponent]
     });
   });
 

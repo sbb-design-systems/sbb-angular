@@ -6,11 +6,10 @@ import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconArrowRightModule, IconCrossModule, IconHimInfoModule } from '@sbb-esta/angular-icons';
 
 import { GhettoboxContainerComponent } from './ghettobox-container/ghettobox-container.component';
-import { GhettoboxIconDirective } from './ghettobox/ghettobox-icon.directive';
 import { GhettoboxComponent } from './ghettobox/ghettobox.component';
 
 @NgModule({
-  declarations: [GhettoboxComponent, GhettoboxContainerComponent, GhettoboxIconDirective],
+  declarations: [GhettoboxComponent, GhettoboxContainerComponent],
   imports: [
     CommonModule,
     IconDirectiveModule,
@@ -20,12 +19,7 @@ import { GhettoboxComponent } from './ghettobox/ghettobox.component';
     PortalModule,
     RouterModule
   ],
-  exports: [
-    GhettoboxComponent,
-    GhettoboxContainerComponent,
-    GhettoboxIconDirective,
-    IconDirectiveModule
-  ],
+  exports: [GhettoboxComponent, GhettoboxContainerComponent, IconDirectiveModule],
   entryComponents: [GhettoboxComponent]
 })
 export class GhettoboxModule {}
