@@ -6,6 +6,7 @@
   class="sbb-chip"
 ></sbb-chip>
 <input
+  #chipInputTextfield
   *ngIf="autocomplete; else noAutocomplete"
   type="text"
   [value]="inputModel"
@@ -19,6 +20,7 @@
 />
 <ng-template #noAutocomplete>
   <input
+    #chipInputTextfield
     type="text"
     [value]="inputModel"
     [disabled]="disabled"

@@ -9,7 +9,8 @@ import {
   OnInit,
   Optional,
   Output,
-  Self
+  Self,
+  ViewChild
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -70,6 +71,9 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   get _isActive() {
     return !this.disabled && this.focused;
   }
+
+  @ViewChild('chipInputTextfield', { static: false })
+  inputElement: ElementRef;
 
   /** Value of the chip input control. */
   get value(): any {
@@ -177,9 +181,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
       this._onChangeCallback(this.value);
       this._onTouchedCallback();
     }
-    setTimeout(() => {
-      this.inputModel = null;
-    });
+    this.inputElement.nativeElement.value = '';
   }
 
   /**
