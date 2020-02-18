@@ -79,8 +79,7 @@ describe('AuthService', () => {
     expect(logoutCalled).toBeTruthy();
   });
 
-  it(`should return the value of .authenticated on the EstaAuthService.keycloak
-    when we call authenticated`, () => {
+  it(`should return the value of .authenticated on the EstaAuthService.keycloak when we call authenticated`, () => {
     // given
     const sut = new AuthService();
     sut.keycloak = {
@@ -92,8 +91,7 @@ describe('AuthService', () => {
     expect(isAuthenticated).toBeTruthy();
   });
 
-  it(`should return the value .token on the EstaAuthService.keycloak
-    when we call getToken`, () => {
+  it(`should return the value .token on the EstaAuthService.keycloak when we call getToken`, () => {
     // given
     const sut = new AuthService();
     const expectedToken = '123-456-789';
@@ -104,8 +102,7 @@ describe('AuthService', () => {
     expect(token).toBe(expectedToken);
   });
 
-  it(`should return a promise when we call refreshToken. This promise must be
-        resolved when the refresh was successfull`, async done => {
+  it(`should return a promise when we call refreshToken. This promise must be resolved when the refresh was successfull`, async done => {
     // given
     const sut = new AuthService();
     const minValidity = 5;
@@ -120,8 +117,7 @@ describe('AuthService', () => {
     done();
   });
 
-  it(`should return a promise when we call refreshToken. This promise must be
-        rejected when an error during refresh occured`, async () => {
+  it(`should return a promise when we call refreshToken. This promise must be rejected when an error during refresh occured`, async () => {
     // given
     const sut = new AuthService();
     const minValidity = 5;
@@ -162,8 +158,7 @@ describe('AuthService', () => {
     expect(p).toEqual(profile);
   });
 
-  it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet.
-    It should then stream the loaded profile`, async () => {
+  it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet. It should then stream the loaded profile`, async () => {
     const sut = new AuthService();
     const userprofile = {
       firstname: 'Ruffy',
@@ -178,8 +173,7 @@ describe('AuthService', () => {
     expect(profile).toEqual(userprofile);
   });
 
-  it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet.
-    It should then stream an error if an error occured during the loading of the profile`, async () => {
+  it(`should load the userprofile if the user is authenticated and Keycloak has no profile yet. It should then stream an error if an error occured during the loading of the profile`, async () => {
     // given
     const sut = new AuthService();
     const errorMessage = 'An error occured while loading the profile';

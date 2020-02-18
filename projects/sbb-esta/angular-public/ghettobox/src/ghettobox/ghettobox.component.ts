@@ -113,7 +113,7 @@ export class GhettoboxComponent {
     this._icon = value;
   }
   get icon(): TemplateRef<any> {
-    return this._icon || this._contentIcon || this.defaultIcon;
+    return this._contentIcon || this._icon || this.defaultIcon;
   }
   private _icon: TemplateRef<any>;
 
