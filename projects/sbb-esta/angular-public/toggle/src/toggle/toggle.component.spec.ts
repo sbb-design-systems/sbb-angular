@@ -3,6 +3,7 @@ import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
@@ -214,7 +215,8 @@ describe('ToggleComponent case reactive using mock component', () => {
         IconCollectionModule,
         DatepickerModule,
         FieldModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        IconDirectiveModule
       ],
       declarations: [ToggleReactiveTestComponent]
     });
@@ -311,7 +313,8 @@ describe('ToggleComponent case reactive with default value using mock component'
         IconCollectionModule,
         DatepickerModule,
         FieldModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        IconDirectiveModule
       ],
       declarations: [ToggleReactiveDefaultValueTestComponent]
     });
