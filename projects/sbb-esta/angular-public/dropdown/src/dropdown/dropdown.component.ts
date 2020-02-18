@@ -70,16 +70,6 @@ export class DropdownComponent implements AfterContentInit {
   /** Whether the dropdown panel should be visible, depending on option length. */
   showPanel = false;
 
-  /**
-   * Whether the dropdown panel is open.
-   * @deprecated Use open instead.
-   */
-  get isOpen(): boolean {
-    return this.open;
-  }
-  set isOpen(value: boolean) {
-    this._open = value;
-  }
   /** Whether the dropdown panel is open. */
   get open(): boolean {
     return this._open && this.showPanel;
@@ -97,12 +87,6 @@ export class DropdownComponent implements AfterContentInit {
 
   /** Element for the panel containing the dropdown options. */
   @ViewChild('panel') panel: ElementRef;
-
-  /**
-   * Function that maps an option's control value to its display value in the trigger.
-   * @deprecated Is not being used in the dropdown.
-   */
-  @Input() displayWith: ((value: any) => string) | null = null;
 
   /**
    * Whether the first option should be highlighted when the dropdown panel is opened.

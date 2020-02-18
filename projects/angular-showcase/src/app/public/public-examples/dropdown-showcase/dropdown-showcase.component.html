@@ -41,12 +41,12 @@
         class="dropdown-avatar"
         [sbbDropdown]="dropdown2"
         tabindex="0"
-        [class.dropdown-avatar-active]="dropdown2.isOpen"
+        [class.dropdown-avatar-active]="dropdown2.open"
       >
         <div class="avatar-icon">
           <sbb-icon-user></sbb-icon-user>
         </div>
-        <div *ngIf="dropdown2.isOpen">William Tell</div>
+        <div *ngIf="dropdown2.open">William Tell</div>
       </div>
       <sbb-dropdown #dropdown2="sbbDropdown">
         <a
@@ -77,7 +77,7 @@
         #dropdownOrigin="sbbDropdownOrigin"
         class="dropdown-avatar"
         tabindex="0"
-        [class.dropdown-avatar-active]="dropdown3.isOpen"
+        [class.dropdown-avatar-active]="dropdown3.open"
       >
         <div class="avatar-icon">
           <sbb-icon-user></sbb-icon-user>

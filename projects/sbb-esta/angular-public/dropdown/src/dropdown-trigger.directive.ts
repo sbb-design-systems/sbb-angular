@@ -371,7 +371,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       this.dropdown.closed.emit();
     }
 
-    this.dropdown.isOpen = this._overlayAttached = false;
+    this.dropdown.open = this._overlayAttached = false;
     if (this._overlayRef && this._overlayRef.hasAttached()) {
       this._overlayRef.detach();
       this._closingActionsSubscription.unsubscribe();
@@ -579,7 +579,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     const wasOpen = this.panelOpen;
 
     this.dropdown.setVisibility();
-    this.dropdown.isOpen = this._overlayAttached = true;
+    this.dropdown.open = this._overlayAttached = true;
 
     // We need to do an extra `panelOpen` check in here, because the
     // dropdown won't be shown if there are no options.

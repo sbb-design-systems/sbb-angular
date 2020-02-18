@@ -132,7 +132,7 @@ describe('DropdownComponent test', () => {
       fixture.detectChanges();
       const panel = fixture.debugElement.query(By.css('.sbb-dropdown-panel'));
       expect(panel).toBeTruthy();
-      expect(component.dropdown.isOpen).toBeTruthy();
+      expect(component.dropdown.open).toBeTruthy();
     });
 
     it('should have a11y attributes correctly set', () => {
@@ -149,11 +149,11 @@ describe('DropdownComponent test', () => {
       fixture.detectChanges();
       const panel = fixture.debugElement.query(By.css('.sbb-dropdown-panel'));
       expect(panel).toBeTruthy();
-      expect(component.dropdown.isOpen).toBeTruthy();
+      expect(component.dropdown.open).toBeTruthy();
       trigger.nativeElement.click();
       fixture.detectChanges();
       expect(trigger.attributes['aria-expanded']).toBe('false');
-      expect(component.dropdown.isOpen).toBeFalsy();
+      expect(component.dropdown.open).toBeFalsy();
     });
   });
 
