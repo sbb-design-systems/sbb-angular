@@ -22,8 +22,8 @@ $sbb-chip-border-radius: 2;
 :host {
   width: 100%;
   border: 1px solid $sbbColorGraphite;
-  border-radius: pxToEm($sbb-chip-border-radius);
-  min-height: pxToEm($sbb-chip-input-field-height);
+  border-radius: pxToRem($sbb-chip-border-radius);
+  min-height: pxToRem($sbb-chip-input-field-height);
   display: flex;
   flex-wrap: wrap;
 

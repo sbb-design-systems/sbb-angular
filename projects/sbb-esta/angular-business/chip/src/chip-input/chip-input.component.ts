@@ -65,8 +65,9 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
     this.stateChanges.next();
   }
 
+  /** @docs-private */
   @HostBinding('class.sbb-chip-input-active')
-  get isActive() {
+  get _isActive() {
     return !this.disabled && this.focused;
   }
 
@@ -79,7 +80,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
       this._value = newValue;
     }
   }
-  private _value: any;
+  private _value = [];
 
   /**
    * Implemented as part of FormFieldControl.
@@ -101,21 +102,6 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(
-    @Self() @Optional() public ngControl: NgControl,
-    private _elementRef: ElementRef,
-    private _changeDetectorRef: ChangeDetectorRef
-  ) {
-    if (this.ngControl) {
-      // Note: we provide the value accessor through here, instead of
-      // the `providers` to avoid running into a circular import.
-      this.ngControl.valueAccessor = this;
-    }
-
-    // Force setter to be called in case id was not specified.
-    this.id = this.id;
-  }
-
   focused = false;
   errorState: boolean;
   inputModel = '';
@@ -136,6 +122,21 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
+  constructor(
+    @Self() @Optional() public ngControl: NgControl,
+    private _elementRef: ElementRef,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {
+    if (this.ngControl) {
+      // Note: we provide the value accessor through here, instead of
+      // the `providers` to avoid running into a circular import.
+      this.ngControl.valueAccessor = this;
+    }
+
+    // Force setter to be called in case id was not specified.
+    this.id = this.id;
+  }
+
   ngOnInit(): void {
     if (this.autocomplete) {
       this.autocomplete.optionSelected.subscribe(event => this.onSelect(event.option.value));
@@ -149,11 +150,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    * @param value New value to be written to the model.
    */
   writeValue(value: string[]): void {
-    if (value) {
-      this.value = value;
-    } else {
-      this.value = [];
-    }
+    this.value = value || [];
   }
 
   /**
@@ -191,7 +188,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   deselectOption(option: string) {
     const index = this.value.findIndex(opt => opt === option);
     if (index >= 0) {
-      this.value.splice(index, 1);
+      this.value = this.value.filter(v => v !== option);
       if (this.value.length === 0) {
         this.value = null;
       }

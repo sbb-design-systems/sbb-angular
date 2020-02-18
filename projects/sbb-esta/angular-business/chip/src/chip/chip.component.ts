@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 @Component({
@@ -10,7 +11,13 @@ export class ChipComponent {
   label: string;
 
   @Input()
-  disabled = false;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled = false;
 
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
