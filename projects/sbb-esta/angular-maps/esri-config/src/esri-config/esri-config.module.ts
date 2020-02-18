@@ -5,7 +5,7 @@ import { EsriConfiguration } from './esri-configuration';
 
 @NgModule({})
 export class EsriConfigModule {
-  static forRoot(config: EsriConfiguration): ModuleWithProviders {
+  static forRoot(config: EsriConfiguration): ModuleWithProviders<EsriConfigModule> {
     return {
       ngModule: EsriConfigModule,
       providers: [
