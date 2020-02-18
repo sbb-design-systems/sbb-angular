@@ -60,7 +60,7 @@ let tooltipCounter = 1;
 export abstract class TooltipBase implements OnDestroy {
   /**
    * The icon to be used as click target.
-   * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
+   * By default uses question-mark, but the user can use his own icon using the IconDirective.
    */
   @Input()
   set icon(tooltipIcon: TemplateRef<any>) {

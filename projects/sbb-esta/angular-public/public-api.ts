@@ -28,7 +28,6 @@ export * from '@sbb-esta/angular-public/radio-button';
 export * from '@sbb-esta/angular-public/radio-button-panel';
 export * from '@sbb-esta/angular-public/search';
 export * from '@sbb-esta/angular-public/select';
-export * from '@sbb-esta/angular-public/svg-icons';
 export * from '@sbb-esta/angular-public/table';
 export * from '@sbb-esta/angular-public/tabs';
 export * from '@sbb-esta/angular-public/tag';

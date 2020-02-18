@@ -3,12 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { configureTestSuite } from 'ng-bullet';
 
-import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
-
-import { GhettoboxIconDirective } from './ghettobox-icon.directive';
+import { GhettoboxComponent } from './ghettobox.component';
 
 // tslint:disable:i18n
 @Component({
@@ -22,7 +21,7 @@ import { GhettoboxIconDirective } from './ghettobox-icon.directive';
       [queryParams]="{ debug: false }"
       fragment="test"
     >
-      <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
+      <sbb-icon-him-disruption *sbbIcon></sbb-icon-him-disruption>
       This is a simple link text with custom icon
     </sbb-ghettobox>
   `,
@@ -38,8 +37,13 @@ describe('GhettoboxComponent', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, IconCollectionModule, NoopAnimationsModule],
-      declarations: [GhettoboxTestComponent, GhettoboxComponent, GhettoboxIconDirective]
+      imports: [
+        RouterTestingModule,
+        IconCollectionModule,
+        NoopAnimationsModule,
+        IconDirectiveModule
+      ],
+      declarations: [GhettoboxTestComponent, GhettoboxComponent]
     });
   });
 

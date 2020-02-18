@@ -3,6 +3,7 @@ import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
@@ -26,10 +27,10 @@ import { ToggleModule } from '../toggle.module';
           [value]="option.value"
         >
           <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 1">
             <sbb-label for="name1">Select date</sbb-label>
@@ -83,10 +84,10 @@ class ToggleReactiveTestComponent implements OnInit {
           [value]="option.value"
         >
           <ng-container *ngIf="i === 0">
-            <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+            <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
           </ng-container>
           <ng-container *ngIf="i === 1">
-            <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+            <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
           </ng-container>
           <sbb-field mode="long" *ngIf="i === 1">
             <sbb-label for="name1">Select date</sbb-label>
@@ -133,10 +134,10 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
         [value]="option.value"
       >
         <ng-container *ngIf="i === 0">
-          <sbb-icon-arrow-right *sbbToggleOptionIcon></sbb-icon-arrow-right>
+          <sbb-icon-arrow-right *sbbIcon></sbb-icon-arrow-right>
         </ng-container>
         <ng-container *ngIf="i === 1">
-          <sbb-icon-arrows-right-left *sbbToggleOptionIcon></sbb-icon-arrows-right-left>
+          <sbb-icon-arrows-right-left *sbbIcon></sbb-icon-arrows-right-left>
         </ng-container>
         <sbb-field mode="long" *ngIf="i === 0">
           <sbb-label for="name1">Select date</sbb-label>
@@ -214,7 +215,8 @@ describe('ToggleComponent case reactive using mock component', () => {
         IconCollectionModule,
         DatepickerModule,
         FieldModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        IconDirectiveModule
       ],
       declarations: [ToggleReactiveTestComponent]
     });
@@ -311,7 +313,8 @@ describe('ToggleComponent case reactive with default value using mock component'
         IconCollectionModule,
         DatepickerModule,
         FieldModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        IconDirectiveModule
       ],
       declarations: [ToggleReactiveDefaultValueTestComponent]
     });

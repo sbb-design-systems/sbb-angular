@@ -33,7 +33,7 @@ afterDelete(evt: GhettoboxDeletedEvent) {
 ```html
 <sbb-ghettobox-container>
   <sbb-ghettobox [routerLink]="['.', 'test']" [queryParams]="{debug: true}" fragment="test">
-    <sbb-icon-him-disruption *sbbGhettoboxIcon></sbb-icon-him-disruption>
+    <sbb-icon-him-disruption *sbbIcon></sbb-icon-him-disruption>
     This is an initial ghettobox into a container.
   </sbb-ghettobox>
 </sbb-ghettobox-container>

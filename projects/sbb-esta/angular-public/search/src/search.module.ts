@@ -7,14 +7,13 @@ import { IconMagnifyingGlassModule } from '@sbb-esta/angular-icons';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 
-import { SearchIconDirective } from './search-icon.directive';
 import {
   SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER,
   SearchComponent
 } from './search/search.component';
 
 @NgModule({
-  declarations: [SearchComponent, SearchIconDirective],
+  declarations: [SearchComponent],
   imports: [
     CommonModule,
     IconMagnifyingGlassModule,
@@ -24,7 +23,7 @@ import {
     AutocompleteModule,
     ButtonModule
   ],
-  exports: [SearchComponent, PortalModule, OverlayModule, SearchIconDirective, IconDirectiveModule],
+  exports: [SearchComponent, PortalModule, OverlayModule, IconDirectiveModule],
   providers: [SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
 export class SearchModule {}

@@ -1,5 +1,4 @@
 export * from './ghettobox.module';
-export * from './ghettobox/ghettobox-icon.directive';
 export * from './ghettobox/ghettobox-animations';
 export * from './ghettobox/ghettobox-ref';
 export * from './ghettobox-container/ghettobox-container.service';

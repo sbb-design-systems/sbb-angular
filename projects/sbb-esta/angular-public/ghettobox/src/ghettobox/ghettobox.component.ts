@@ -104,7 +104,7 @@ export class GhettoboxComponent {
   /**
    * Ghettobox Default icon as a TemplateRef if any are not specified
    */
-  @ViewChild('defaultIcon', { static: true }) iconDefault: TemplateRef<any>;
+  @ViewChild('defaultIcon', { static: true }) defaultIcon: TemplateRef<any>;
 
   /**
    * Ghettobox Icon
@@ -113,7 +113,7 @@ export class GhettoboxComponent {
     this._icon = value;
   }
   get icon(): TemplateRef<any> {
-    return this._icon || this._contentIcon || this.iconDefault;
+    return this._contentIcon || this._icon || this.defaultIcon;
   }
   private _icon: TemplateRef<any>;
 
