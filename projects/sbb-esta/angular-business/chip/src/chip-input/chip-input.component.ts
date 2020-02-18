@@ -175,7 +175,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
     if (!this.value) {
       this.value = [];
     }
-    if (!this.value.includes(option)) {
+    if (this.value.indexOf(option) < 0) {
       this.writeValue(this.value.concat([option]));
       this._onChangeCallback(this.value);
       this._onTouchedCallback();
