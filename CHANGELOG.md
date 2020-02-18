@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.10.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.9.0...8.10.0) (2020-02-18)
+
+
+### Bug Fixes
+
+* **public:** correct dropdown width in breadcrumbs ([#278](https://github.com/sbb-design-systems/sbb-angular/issues/278)) ([f4019cf](https://github.com/sbb-design-systems/sbb-angular/commit/f4019cf)), closes [#268](https://github.com/sbb-design-systems/sbb-angular/issues/268)
+* **showcase:** catch error if showcase component ha no examples ([#276](https://github.com/sbb-design-systems/sbb-angular/issues/276)) ([7379078](https://github.com/sbb-design-systems/sbb-angular/commit/7379078))
+
+
+### Features
+
+* add @sbb-esta/angular-maps ([#264](https://github.com/sbb-design-systems/sbb-angular/issues/264)) ([749d1e5](https://github.com/sbb-design-systems/sbb-angular/commit/749d1e5))
+
+
+### Tests
+
+* fix tests with no expectations error ([#279](https://github.com/sbb-design-systems/sbb-angular/issues/279)) ([d3ccb31](https://github.com/sbb-design-systems/sbb-angular/commit/d3ccb31))
+
+
+
 ## [8.9.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.8.0...8.9.0) (2020-02-07)
 
 
