@@ -19,7 +19,6 @@ import {
 } from './header-menu-trigger/header-menu-trigger.component';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { HeaderComponent } from './header/header.component';
-import { NavbuttonComponent } from './navbutton/navbutton.component';
 
 @NgModule({
   imports: [
@@ -35,7 +34,6 @@ import { NavbuttonComponent } from './navbutton/navbutton.component';
   ],
   declarations: [
     HeaderComponent,
-    NavbuttonComponent,
     AppChooserSectionComponent,
     HeaderMenuComponent,
     HeaderMenuTriggerComponent,
@@ -43,7 +41,6 @@ import { NavbuttonComponent } from './navbutton/navbutton.component';
   ],
   exports: [
     HeaderComponent,
-    NavbuttonComponent,
     AppChooserSectionComponent,
     HeaderMenuComponent,
     HeaderMenuTriggerComponent,
