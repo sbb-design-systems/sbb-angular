@@ -93,33 +93,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   environmentColor?: String;
 
   /**
-   * Reference to children elements projected through ng-content
-   * @deprecated
-   */
-  @ViewChild('content', { static: true })
-  ngContent: ElementRef;
-
-  /**
-   * Reference to the template which will hold navbuttons wrapping projected elements
-   * @deprecated
-   */
-  @ViewChild('navigationButtons', { static: true, read: ViewContainerRef })
-  navigationButtons: ViewContainerRef;
-
-  /**
-   * Reference to icon, if given through projection.
-   * @deprecated
-   */
-  @ViewChild('iconContent', { static: true })
-  iconContent: ElementRef;
-
-  /**
-   * Distance between navigation buttons, handled through code.
-   * @deprecated
-   */
-  buttonSpacing = 70;
-
-  /**
    * Whether the header menu is open.
    */
   @HostBinding('attr.opened')
