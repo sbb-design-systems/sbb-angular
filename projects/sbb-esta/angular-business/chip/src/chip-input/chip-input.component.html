@@ -1,6 +1,10 @@
-<div class="sbb-chip-wrapper" *ngFor="let option of value">
-  <sbb-chip [label]="option" (dismissed)="deselectOption(option)" [disabled]="disabled"></sbb-chip>
-</div>
+<sbb-chip
+  [label]="option"
+  (dismissed)="deselectOption(option)"
+  [disabled]="disabled"
+  *ngFor="let option of value"
+  class="sbb-chip"
+></sbb-chip>
 <input
   *ngIf="autocomplete; else noAutocomplete"
   type="text"

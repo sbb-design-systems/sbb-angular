@@ -28,13 +28,13 @@ $sbb-chip-border-radius: 2;
   flex-wrap: wrap;
 
   .sbb-chip-input-textfield {
+    width: 0;
     flex: 1 1 auto;
   }
 
-  .sbb-chip-wrapper {
+  .sbb-chip {
     max-width: 100%;
-    display: inline-block;
-    padding: 0.25em;
+    margin: 0.25em;
   }
 
   input {
