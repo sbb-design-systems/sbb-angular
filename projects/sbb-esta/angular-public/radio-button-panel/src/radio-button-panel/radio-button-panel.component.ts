@@ -39,14 +39,6 @@ export class RadioButtonPanelComponent extends RadioButtonComponent {
   @Input()
   subtitle?: string;
 
-  /**
-   * Returns the subtitle of a radio button panel.
-   * @deprecated Check .subtitle
-   */
-  get hasSubtitle() {
-    return !!this.subtitle;
-  }
-
   constructor(
     @Optional() radioGroup: RadioGroupDirective,
     changeDetector: ChangeDetectorRef,
