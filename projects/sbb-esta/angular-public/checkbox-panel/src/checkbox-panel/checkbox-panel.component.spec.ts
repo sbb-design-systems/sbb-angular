@@ -102,13 +102,13 @@ describe('CheckboxPanelComponent using mock component', () => {
 
     await modelComponentFixture.whenRenderingDone();
 
-    opt1.click();
+    opt1.toggle();
     modelComponentFixture.detectChanges();
 
     let checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
     expect(checkedComponents.length).toBe(1);
 
-    opt2.click();
+    opt2.toggle();
     modelComponentFixture.detectChanges();
 
     checkedComponents = modelComponent.optionSelections.filter(o => !!o.checked);
