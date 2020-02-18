@@ -3,18 +3,27 @@ If a chip is too long for the viewport because of the text, the text is shortene
 The input-chip textfield can also be multi-line depending on the number of chips.
 
 ```html
-<sbb-chip-input formControlName="chip" [options]="options"></sbb-chip-input>
+<sbb-chip-input formControlName="chip"></sbb-chip-input>
 ```
 
 ### Autocomplete
 
-The chip-input implements an autocomplete feature. Upon starting to type, the user will be prompted with possible option choices.
+The chip input can be used together with the autocomplete. Upon starting to type, the user will be prompted with possible option choices.
+
+```ts
+options = ['option1', 'option2'];
+```
+
+```html
+<sbb-chip-input [sbbAutocomplete]="auto"></sbb-chip-input>
+<sbb-autocomplete #auto="sbbAutocomplete">
+  <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
+</sbb-autocomplete>
+```
 
 ### Usage with Reactive Forms
 
 ```ts
-options = ['option1', 'option2'];
-
 ngOnInit(): void {
   this.formGroup = this._formBuilder.group({
     chip: [[], Validators.required]
@@ -24,24 +33,21 @@ ngOnInit(): void {
 
 ```html
 <sbb-field label="Label" class="sbb-field-100">
-  <sbb-chip-input formControlName="chip" [options]="options"></sbb-chip-input>
+  <sbb-chip-input formControlName="chip"></sbb-chip-input>
   <sbb-form-error *ngIf="formGroup.get('chip').errors?.required">
     This field is required.
   </sbb-form-error>
 </sbb-field>
 ```
 
-#### Preselection
-
-It is also possible to provide a preselection in the form of a string value array.
-If the array contains string values which are not provided in the options array, they will be ignored.
+### Usage with Template-driven Forms
 
 ```ts
-options = ['option1', 'option2'];
+value: string[] = [];
+```
 
-ngOnInit(): void {
-  this.formGroup = this._formBuilder.group({
-    chip: [['option1'], Validators.required]
-  });
-}
+```html
+<form>
+  <sbb-chip-input [(ngModel)]="value" name="name"></sbb-chip-input>
+</form>
 ```
