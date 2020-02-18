@@ -17,7 +17,6 @@ import { map } from 'rxjs/operators';
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
 @Directive()
-@Injectable()
 export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;

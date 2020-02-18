@@ -24,6 +24,6 @@
   "dependencies": {
     "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER",
     "@types/grecaptcha": "^2.0.36",
-    "ngx-perfect-scrollbar": "^9.0.0"
+    "ngx-perfect-scrollbar": "^8.0.0"
   }
 }

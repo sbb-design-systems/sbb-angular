@@ -44,9 +44,8 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 
 let nextUniqueId = 0;
 
-// noinspection AngularMissingOrInvalidDeclarationInModule
 @Directive()
-export class RadioButton extends _RadioButtonMixinBase
+export abstract class RadioButton extends _RadioButtonMixinBase
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;
 

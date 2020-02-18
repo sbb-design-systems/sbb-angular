@@ -19,6 +19,6 @@
     "@angular/core": "^9.0.0"
   },
   "dependencies": {
-    "ngx-perfect-scrollbar": "^9.0.0"
+    "ngx-perfect-scrollbar": "^8.0.0"
   }
 }
