@@ -17,7 +17,6 @@ import {
   AutocompleteOriginDirective
 } from '@sbb-esta/angular-business/autocomplete';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
-import { SBB_OPTION_PARENT_COMPONENT } from '@sbb-esta/angular-public';
 import { Subject } from 'rxjs';
 
 let nextUniqueId = 0;
@@ -25,8 +24,7 @@ let nextUniqueId = 0;
 @Component({
   selector: 'sbb-chip-input',
   templateUrl: './chip-input.component.html',
-  styleUrls: ['./chip-input.component.scss'],
-  providers: [{ provide: SBB_OPTION_PARENT_COMPONENT, useExisting: ChipInputComponent }]
+  styleUrls: ['./chip-input.component.scss']
 })
 export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   /** Optional autocomplete Component */
@@ -57,7 +55,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   private _id: string;
 
   /** Whether the component is required. */
-  @HostBinding('class.sbb-select-required')
+  @HostBinding('class.sbb-chip-input-required')
   @Input()
   get required(): boolean {
     return this._required;
@@ -91,13 +89,13 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
     return this.id;
   }
 
-  /** Whether the select has a value. */
+  /** Whether the chip-input has a value. */
   get empty(): boolean {
     return !this.value || this.value.isEmpty();
   }
 
   /**
-   * Event that emits whenever the raw value of the select changes. This is here primarily
+   * Event that emits whenever the raw value of the chip-input changes. This is here primarily
    * to facilitate the two-way binding for the `value` input.
    * @docs-private
    */
@@ -126,14 +124,14 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   private _onTouchedCallback: () => void;
   private _onChangeCallback: (_: any) => void;
 
-  /** Whether filling out the select is required in the form. */
+  /** Whether filling out the chip-input is required in the form. */
   private _required = false;
 
-  /** The aria-describedby attribute on the select for improved a11y. */
+  /** The aria-describedby attribute on the chip-input for improved a11y. */
   private _ariaDescribedby: string;
 
   /** Unique id for this input. */
-  private _uid = `sbb-select-${nextUniqueId++}`;
+  private _uid = `sbb-chip-input-${nextUniqueId++}`;
 
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
