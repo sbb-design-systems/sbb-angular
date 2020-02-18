@@ -1,8 +1,15 @@
-import { HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
+
+interface IconDimension {
+  width: string;
+  height: string;
+  ratio: number;
+}
 
 /**
  * @deprecated Use `@sbb-esta/angular-icons` instead.
  */
+@Directive()
 export abstract class IconBase {
   /**
    * Configure the size of the SVG.
@@ -50,13 +57,7 @@ export abstract class IconBase {
   private _inputWidth: string;
   private _inputHeight: string;
 
-  constructor(
-    private readonly _dimension: {
-      width: string;
-      height: string;
-      ratio: number;
-    }
-  ) {}
+  constructor(private readonly _dimension: IconDimension) {}
 
   private _isFixed() {
     return this.size === 'fixed';

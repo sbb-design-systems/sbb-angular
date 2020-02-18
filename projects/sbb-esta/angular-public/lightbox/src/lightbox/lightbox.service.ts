@@ -52,9 +52,7 @@ export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
 /**
  * Service to open SBB Design modal lightboxes.
  */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class Lightbox {
   private _openLightboxesAtThisLevel: LightboxRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
@@ -238,7 +236,7 @@ export class Lightbox {
     } else {
       const injector = this._createInjector<T>(config, lightboxRef, lightboxContainer);
       const contentRef = lightboxContainer.attachComponentPortal<T>(
-        new ComponentPortal(componentOrTemplateRef, undefined, injector)
+        new ComponentPortal(componentOrTemplateRef, null, injector)
       );
       lightboxRef.componentInstance = contentRef.instance;
     }
@@ -251,7 +249,7 @@ export class Lightbox {
    * of a lightbox to close itself and, optionally, to return a value.
    * @param config Config object that is used to construct the lightbox.
    * @param lightboxRef Reference to the lightbox.
-   * @param container lightbox container element that wraps all of the contents.
+   * @param lightboxContainer lightbox container element that wraps all of the contents.
    * @returns The custom injector that can be used inside the lightbox.
    */
   private _createInjector<T>(

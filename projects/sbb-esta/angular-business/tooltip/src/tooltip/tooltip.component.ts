@@ -74,7 +74,7 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
     zone: NgZone,
     changeDetectorRef: ChangeDetectorRef
   ) {
-    super(overlay, tooltipRegistry, scrollStrategy, document, zone, changeDetectorRef);
+    super(overlay, tooltipRegistry, document, zone, changeDetectorRef, scrollStrategy);
   }
 
   ngOnInit() {

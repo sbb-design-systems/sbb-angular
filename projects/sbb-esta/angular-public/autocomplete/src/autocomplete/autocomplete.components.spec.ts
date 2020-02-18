@@ -140,7 +140,7 @@ class NgIfAutocompleteComponent {
   isVisible = true;
   options = ['One', 'Two', 'Three'];
 
-  @ViewChild(AutocompleteTriggerDirective, { static: false })
+  @ViewChild(AutocompleteTriggerDirective)
   trigger: AutocompleteTriggerDirective;
   @ViewChildren(OptionComponent) matOptions: QueryList<OptionComponent>;
 

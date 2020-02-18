@@ -84,7 +84,7 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
   /** Element for the panel containing the autocomplete options. */
-  @ViewChild('panel', { static: false }) panel: ElementRef;
+  @ViewChild('panel') panel: ElementRef;
 
   /** Function that maps an option's control value to its display value in the trigger. */
   @Input() displayWith: ((value: any) => string) | null = null;

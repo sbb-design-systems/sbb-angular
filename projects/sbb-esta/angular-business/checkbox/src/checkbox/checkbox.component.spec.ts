@@ -27,7 +27,7 @@ class ModelCheckboxTestComponent {
   checked = false;
   indeterminate = false;
 
-  @ViewChild('check1', { static: false })
+  @ViewChild('check1')
   checkboxComponent: CheckboxComponent;
 }
 

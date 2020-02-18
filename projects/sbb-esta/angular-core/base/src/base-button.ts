@@ -1,5 +1,6 @@
-import { HostBinding } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
+@Directive()
 export abstract class BaseButton {
   /**
    * Button modes available for different purposes.

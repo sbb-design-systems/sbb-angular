@@ -116,7 +116,7 @@ export class ExpansionPanelComponent extends CdkAccordionItem
   accordion: IAccordionBase;
 
   /** Content that will be rendered lazily. */
-  @ContentChild(ExpansionPanelContentDirective, { static: false })
+  @ContentChild(ExpansionPanelContentDirective)
   lazyContent: ExpansionPanelContentDirective;
 
   /** Element containing the panel's user-provided content. */

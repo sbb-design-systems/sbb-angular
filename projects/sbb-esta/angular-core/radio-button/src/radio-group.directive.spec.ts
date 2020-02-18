@@ -149,7 +149,7 @@ class RadioGroupWithNgModelComponent {
   `
 })
 class DisableableRadioButtonComponent {
-  @ViewChild(RadioButton, { static: false }) radioButton: RadioButton;
+  @ViewChild(RadioButton) radioButton: RadioButton;
 
   set disabled(value: boolean) {
     this.radioButton.disabled = value;
@@ -221,7 +221,7 @@ class RadioButtonWithPredefinedTabindexComponent {}
 })
 class RadioButtonWithPredefinedAriaAttributesComponent {}
 
-describe('MatRadio', () => {
+describe('RadioButton', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ɵRadioButtonModule, FormsModule, ReactiveFormsModule],
@@ -263,7 +263,7 @@ describe('MatRadio', () => {
       groupDebugElement = fixture.debugElement.query(By.directive(RadioGroupDirective))!;
       groupInstance = groupDebugElement.injector.get<RadioGroupDirective>(RadioGroupDirective);
 
-      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButton));
+      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
       radioNativeElements = radioDebugElements.map(debugEl => debugEl.nativeElement);
       radioInstances = radioDebugElements.map(debugEl => debugEl.componentInstance);
 
@@ -516,7 +516,7 @@ describe('MatRadio', () => {
       groupInstance = groupDebugElement.injector.get<RadioGroupDirective>(RadioGroupDirective);
       groupNgModel = groupDebugElement.injector.get<NgModel>(NgModel);
 
-      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButton));
+      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
       radioInstances = radioDebugElements.map(debugEl => debugEl.componentInstance);
       innerRadios = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
 
@@ -674,7 +674,7 @@ describe('MatRadio', () => {
       fixture.detectChanges();
 
       testComponent = fixture.debugElement.componentInstance;
-      const radioDebugElement = fixture.debugElement.query(By.directive(RadioButton))!;
+      const radioDebugElement = fixture.debugElement.query(By.directive(RadioButtonComponent))!;
       radioInstance = radioDebugElement.injector.get<RadioButton>(RadioButton);
       radioNativeElement = radioDebugElement.nativeElement.querySelector('input');
     });
@@ -710,7 +710,7 @@ describe('MatRadio', () => {
 
       testComponent = fixture.debugElement.componentInstance;
 
-      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButton));
+      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
       seasonRadioInstances = radioDebugElements
         .filter(debugEl => debugEl.componentInstance.name === 'season')
         .map(debugEl => debugEl.componentInstance);
@@ -914,7 +914,7 @@ describe('MatRadio', () => {
 
       groupDebugElement = fixture.debugElement.query(By.directive(RadioGroupDirective))!;
       groupInstance = groupDebugElement.injector.get<RadioGroupDirective>(RadioGroupDirective);
-      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButton));
+      radioDebugElements = fixture.debugElement.queryAll(By.directive(RadioButtonComponent));
       radioInstances = radioDebugElements.map(debugEl => debugEl.componentInstance);
     }));
 

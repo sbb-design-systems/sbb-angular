@@ -19,7 +19,7 @@ export class AuthModule {
     config: string | KeycloakConfig,
     options: KeycloakInitOptions = { onLoad: 'check-sso', flow: 'implicit' },
     loginOptions: KeycloakLoginOptions = { idpHint: 'adfs_sbb_prod' }
-  ): ModuleWithProviders {
+  ): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
       providers: [

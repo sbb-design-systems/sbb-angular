@@ -12,7 +12,7 @@ export interface ModifierKeys {
  */
 export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
   const event = document.createEvent('MouseEvent');
-  const originalPreventDefault = event.preventDefault;
+  const originalPreventDefault = event.preventDefault.bind(event);
 
   event.initMouseEvent(
     type,
@@ -38,8 +38,8 @@ export function createMouseEvent(type: string, x = 0, y = 0, button = 0) {
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
   event.preventDefault = function() {
-    Object.defineProperty(event, 'defaultPrevented', { get: () => true });
-    return originalPreventDefault.apply(this, arguments);
+    Object.defineProperty(event, 'defaultPrevented', { get: () => true, configurable: true });
+    return originalPreventDefault();
   };
 
   return event;
@@ -55,7 +55,8 @@ export function createTouchEvent(type: string, pageX = 0, pageY = 0) {
   const event = document.createEvent('UIEvent');
   const touchDetails = { pageX, pageY };
 
-  event.initUIEvent(type, true, true, window, 0);
+  // TS3.6 removes the initUIEvent method and suggests porting to "new UIEvent()".
+  (event as any).initUIEvent(type, true, true, window, 0);
 
   // Most of the browsers don't have a "initTouchEvent" method that can be used to define
   // the touch details.
@@ -98,16 +99,24 @@ export function createKeyboardEvent(
   } else {
     // `initKeyboardEvent` expects to receive modifiers as a whitespace-delimited string
     // See https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/initKeyboardEvent
-    const modifiersStr = (modifiers.control
-      ? 'Control '
-      : '' + modifiers.alt
-      ? 'Alt '
-      : '' + modifiers.shift
-      ? 'Shift '
-      : '' + modifiers.meta
-      ? 'Meta'
-      : ''
-    ).trim();
+    let modifiersList = '';
+
+    if (modifiers.control) {
+      modifiersList += 'Control ';
+    }
+
+    if (modifiers.alt) {
+      modifiersList += 'Alt ';
+    }
+
+    if (modifiers.shift) {
+      modifiersList += 'Shift ';
+    }
+
+    if (modifiers.meta) {
+      modifiersList += 'Meta ';
+    }
+
     event.initKeyboardEvent(
       type,
       true /* canBubble */,
@@ -116,7 +125,7 @@ export function createKeyboardEvent(
       0 /* char */,
       key /* key */,
       0 /* location */,
-      modifiersStr /* modifiersList */,
+      modifiersList.trim() /* modifiersList */,
       false /* repeat */
     );
   }
@@ -124,18 +133,18 @@ export function createKeyboardEvent(
   // Webkit Browsers don't set the keyCode when calling the init function.
   // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
   Object.defineProperties(event, {
-    keyCode: { get: () => keyCode },
-    key: { get: () => key },
-    target: { get: () => target },
-    ctrlKey: { get: () => !!modifiers.control },
-    altKey: { get: () => !!modifiers.alt },
-    shiftKey: { get: () => !!modifiers.shift },
-    metaKey: { get: () => !!modifiers.meta }
+    keyCode: { get: () => keyCode, configurable: true },
+    key: { get: () => key, configurable: true },
+    target: { get: () => target, configurable: true },
+    ctrlKey: { get: () => !!modifiers.control, configurable: true },
+    altKey: { get: () => !!modifiers.alt, configurable: true },
+    shiftKey: { get: () => !!modifiers.shift, configurable: true },
+    metaKey: { get: () => !!modifiers.meta, configurable: true }
   });
 
   // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
   event.preventDefault = function() {
-    Object.defineProperty(event, 'defaultPrevented', { get: () => true });
+    Object.defineProperty(event, 'defaultPrevented', { get: () => true, configurable: true });
     return originalPreventDefault.apply(this, arguments);
   };
 

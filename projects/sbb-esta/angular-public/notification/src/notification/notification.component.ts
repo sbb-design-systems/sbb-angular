@@ -74,12 +74,13 @@ export class NotificationComponent {
    *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
   set icon(notificationIcon: TemplateRef<any>) {
     this._icon = notificationIcon;
   }
   get icon() {
-    if (this._icon) {
+    if (this._contentIcon) {
+      return this._contentIcon;
+    } else if (this._icon) {
       return this._icon;
     }
     switch (this.type) {
@@ -94,6 +95,13 @@ export class NotificationComponent {
     }
   }
   private _icon: TemplateRef<any>;
+
+  /**
+   * icon placed in template
+   * @docs-private
+   */
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
 
   /** Message displayed into the notification content */
   @Input() message: string;

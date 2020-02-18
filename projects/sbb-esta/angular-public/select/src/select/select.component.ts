@@ -240,10 +240,10 @@ export class SelectComponent extends SbbSelectMixinBase
   @ViewChild('trigger', { static: true }) trigger: ElementRef;
 
   /** Panel containing the select options. */
-  @ViewChild('panel', { static: false }) panel: ElementRef;
+  @ViewChild('panel') panel: ElementRef;
 
   /** Panel containing the select options. */
-  @ViewChild('scrollbar', { static: false }) perfectScrollbar: PerfectScrollbarComponent;
+  @ViewChild('scrollbar') perfectScrollbar: PerfectScrollbarComponent;
 
   /** Overlay pane containing the options. */
   @ViewChild(CdkConnectedOverlay, { static: true }) overlayDir: CdkConnectedOverlay;

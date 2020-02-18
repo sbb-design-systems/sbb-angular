@@ -23,3 +23,12 @@ export const ICON_CLASS_LIST: Type<any>[] = [<% for (let icon of icons) { %>
 export const ICON_MODULE_LIST = [<% for (let icon of icons) { %>
   Icon<%= classify(icon.normalizedName) %>Module,<% } %>
 ];
+
+@NgModule({
+  imports: ICON_MODULE_LIST,
+  exports: ICON_MODULE_LIST
+})
+/**
+ * should not be used as a consumer
+ */
+export class ɵIconModule {}

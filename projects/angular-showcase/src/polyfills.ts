@@ -64,3 +64,8 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 // tslint:disable-next-line: ordered-imports
 import 'core-js/es6/array';
 import 'core-js/es6/string';
+
+/***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';

@@ -49,7 +49,7 @@ export class UserMenuComponent {
   /**
    * Reference to a dropdown istance.
    */
-  @ContentChild(DropdownComponent, { static: false }) dropdown: DropdownComponent;
+  @ContentChild(DropdownComponent) dropdown: DropdownComponent;
 
   emitLogin() {
     this.loginRequest.emit();

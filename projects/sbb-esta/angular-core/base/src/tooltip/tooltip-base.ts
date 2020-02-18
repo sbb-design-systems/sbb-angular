@@ -7,19 +7,17 @@ import {
   ScrollStrategy
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectorRef,
   ContentChild,
+  Directive,
   ElementRef,
   EventEmitter,
   HostBinding,
-  Inject,
   InjectionToken,
   Input,
   NgZone,
   OnDestroy,
-  Optional,
   Output,
   TemplateRef,
   ViewChild
@@ -58,20 +56,27 @@ export class SbbTooltipChangeEvent<TTooltip extends TooltipBase = TooltipBase> {
 
 let tooltipCounter = 1;
 
+@Directive()
 export abstract class TooltipBase implements OnDestroy {
   /**
    * The icon to be used as click target.
    * By default uses question-mark, but the user can use his own icon using the TooltipIconDirective.
    */
   @Input()
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
   set icon(tooltipIcon: TemplateRef<any>) {
     this._icon = tooltipIcon;
   }
   get icon() {
-    return this._icon || this.defaultIcon;
+    return this._contentIcon || this._icon || this.defaultIcon;
   }
   private _icon: TemplateRef<any>;
+
+  /**
+   * icon placed in template
+   * @docs-private
+   */
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
 
   /** Checks if a tooltip panel exists */
   @HostBinding('attr.aria-expanded')
@@ -151,16 +156,19 @@ export abstract class TooltipBase implements OnDestroy {
   @Output() readonly closed = new EventEmitter<SbbTooltipChangeEvent>();
 
   private readonly _closeKeyEventStream = new Subject<void>();
+  private readonly _scrollStrategy: () => ScrollStrategy;
   private _closingActionsSubscription: Subscription;
 
   constructor(
     protected _overlay: Overlay,
     protected _tooltipRegistry: TooltipRegistryService,
-    protected _scrollStrategy: () => ScrollStrategy,
     protected _document: any,
     protected _zone: NgZone,
-    protected _changeDetectorRef: ChangeDetectorRef
-  ) {}
+    protected _changeDetectorRef: ChangeDetectorRef,
+    scrollStrategy: any
+  ) {
+    this._scrollStrategy = scrollStrategy;
+  }
 
   ngOnDestroy(): void {
     if (this.tooltipRef) {

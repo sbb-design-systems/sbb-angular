@@ -4,6 +4,7 @@ import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterViewInit,
   ChangeDetectorRef,
+  Directive,
   ElementRef,
   EventEmitter,
   HostBinding,
@@ -11,14 +12,13 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
-import { RadioGroupDirective } from './radio-group.directive';
+import { RadioGroup } from './radio-group';
 
 /** Change event object emitted by RadioButtonComponent. */
 export class RadioChange {
@@ -44,7 +44,8 @@ const _RadioButtonMixinBase: HasTabIndexCtor & typeof RadioButtonBase = mixinTab
 
 let nextUniqueId = 0;
 
-export class RadioButton extends _RadioButtonMixinBase
+@Directive()
+export abstract class RadioButton extends _RadioButtonMixinBase
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;
 
@@ -165,7 +166,7 @@ export class RadioButton extends _RadioButtonMixinBase
   @Output() readonly change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
   /** The native `<input type=radio>` element */
-  @ViewChild('input', { static: false }) _inputElement: ElementRef<HTMLInputElement>;
+  @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
 
   private _disabled = false;
   private _required = false;
@@ -189,7 +190,7 @@ export class RadioButton extends _RadioButtonMixinBase
   onTouched = () => {};
 
   constructor(
-    readonly radioGroup: RadioGroupDirective,
+    readonly radioGroup: RadioGroup,
     protected readonly _changeDetector: ChangeDetectorRef,
     private _elementRef: ElementRef,
     private _focusMonitor: FocusMonitor,

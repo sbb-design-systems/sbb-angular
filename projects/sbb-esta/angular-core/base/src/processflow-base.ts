@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   ChangeDetectorRef,
+  Directive,
   EventEmitter,
   HostBinding,
   Output,
@@ -9,6 +10,7 @@ import {
 
 import { ProcessflowStep, ProcessflowStepBase } from './processflow-step-base';
 
+@Directive()
 export abstract class ProcessflowBase<TProcessflowStepComponent extends ProcessflowStepBase>
   implements AfterContentInit {
   /** @docs-private */

@@ -141,13 +141,13 @@ export class NotificationComponent {
    *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  @ContentChild(IconDirective, { read: TemplateRef, static: false })
   set icon(notificationIcon: TemplateRef<any>) {
     this._icon = notificationIcon;
   }
-
   get icon() {
-    if (this._icon) {
+    if (this._contentIcon) {
+      return this._contentIcon;
+    } else if (this._icon) {
       return this._icon;
     }
     switch (this.type) {
@@ -162,8 +162,14 @@ export class NotificationComponent {
         return null;
     }
   }
-
   private _icon: TemplateRef<any>;
+
+  /**
+   * icon placed in template
+   * @docs-private
+   */
+  @ContentChild(IconDirective, { read: TemplateRef })
+  _contentIcon: TemplateRef<any>;
 
   /** List of in page links displayed on the bottom of the notification */
   @Input() jumpMarks?: JumpMark[];

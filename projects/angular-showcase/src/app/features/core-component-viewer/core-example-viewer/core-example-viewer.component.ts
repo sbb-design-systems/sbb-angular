@@ -1,6 +1,7 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   AfterViewInit,
+  Directive,
   ElementRef,
   Injectable,
   Input,
@@ -15,13 +16,13 @@ import { map } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
-@Injectable()
+@Directive()
 export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
-  @ViewChild('html', { static: false }) html: ElementRef;
-  @ViewChild('ts', { static: false }) ts: ElementRef;
-  @ViewChild('scss', { static: false }) scss: ElementRef;
+  @ViewChild('html') html: ElementRef;
+  @ViewChild('ts') ts: ElementRef;
+  @ViewChild('scss') scss: ElementRef;
   showSource = false;
   title: Observable<string>;
   get label() {

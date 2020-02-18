@@ -1,5 +1,13 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { AfterViewInit, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, first, map, skip, takeUntil } from 'rxjs/operators';
@@ -7,6 +15,7 @@ import { distinctUntilChanged, filter, first, map, skip, takeUntil } from 'rxjs/
 import { ExampleProvider } from './example-provider';
 import { HtmlLoader } from './html-loader.service';
 
+@Directive()
 export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   tabs: { openTabByIndex(index: number): void };
   @ViewChild('overview', { static: true }) overview: ElementRef;

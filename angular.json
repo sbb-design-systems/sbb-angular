@@ -10,15 +10,14 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/angular-showcase",
             "index": "projects/angular-showcase/src/index.html",
             "main": "projects/angular-showcase/src/main.ts",
@@ -41,6 +40,12 @@
           },
           "configurations": {
             "es5": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "tsConfig": "projects/angular-showcase/tsconfig.app.es5.json"
             },
             "production": {
@@ -64,6 +69,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -170,7 +179,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -226,7 +237,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -282,7 +295,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -339,7 +354,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
@@ -393,6 +410,13 @@
       "root": "projects/sbb-esta/angular-core",
       "sourceRoot": "projects/sbb-esta/angular-core",
       "prefix": "sbb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -446,7 +470,9 @@
       "prefix": "sbb",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "None"
         }
       },
       "architect": {
