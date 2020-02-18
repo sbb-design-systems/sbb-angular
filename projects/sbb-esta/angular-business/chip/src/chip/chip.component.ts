@@ -22,11 +22,11 @@ export class ChipComponent {
   @Output()
   dismissed: EventEmitter<boolean> = new EventEmitter();
 
-  @HostBinding('hidden') hidden: 'false' | 'true';
+  @HostBinding('attr.aria-hidden') ariaHidden: null | undefined | 'true';
 
-  @HostBinding('attr.aria-hidden')
-  get ariaHidden() {
-    return this.hidden === 'true';
+  @HostBinding('hidden')
+  get hidden() {
+    return this.ariaHidden === 'true';
   }
 
   @HostBinding('class.sbb-chip-disabled') get isDisabled() {
@@ -38,7 +38,7 @@ export class ChipComponent {
   }
 
   dismiss() {
-    this.hidden = 'true';
+    this.ariaHidden = 'true';
     this.dismissed.emit(false);
   }
 }
