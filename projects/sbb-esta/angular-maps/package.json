@@ -1,6 +1,9 @@
 {
   "name": "@sbb-esta/angular-maps",
   "version": "0.0.0-PLACEHOLDER",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
