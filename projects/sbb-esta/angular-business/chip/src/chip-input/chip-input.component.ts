@@ -29,10 +29,6 @@ let nextUniqueId = 0;
   providers: [{ provide: SBB_OPTION_PARENT_COMPONENT, useExisting: ChipInputComponent }]
 })
 export class ChipInputComponent implements FormFieldControl<any>, OnInit {
-  /** Value of the select control. */
-  @Input()
-  options: string[] = [];
-
   /** Optional autocomplete Component */
   @Input('sbbAutocomplete')
   autocomplete: AutocompleteComponent;
