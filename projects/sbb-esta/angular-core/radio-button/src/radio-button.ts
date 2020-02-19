@@ -15,7 +15,7 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
 import { RadioGroup } from './radio-group';
@@ -152,11 +152,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
    * @deprecated
    */
   @Input() formControlName: string;
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  _control: NgControl;
 
   /**
    * Event emitted when the checked state of this radio button changes.
