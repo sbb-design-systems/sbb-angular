@@ -1,4 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { SelectionModel } from '@angular/cdk/collections';
 import {
   ChangeDetectorRef,
   Component,
@@ -21,6 +22,16 @@ import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
 
 let nextUniqueId = 0;
+
+/** Change event object that is emitted when the chip-input value has changed. */
+export class SbbChipInputChange {
+  constructor(
+    /** Reference to the chip-input that emitted the change event. */
+    public source: ChipInputComponent,
+    /** Current value of the chip-input that emitted the event. */
+    public value: string[]
+  ) {}
+}
 
 @Component({
   selector: 'sbb-chip-input',
@@ -84,7 +95,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
       this._value = newValue;
     }
   }
-  private _value = [];
+  private _value: string[] = [];
 
   /**
    * Implemented as part of FormFieldControl.
@@ -96,7 +107,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
 
   /** Whether the chip-input has a value. */
   get empty(): boolean {
-    return !this.value || this.value.isEmpty();
+    return !this.selectionModel || this.selectionModel.isEmpty();
   }
 
   /**
@@ -110,6 +121,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   errorState: boolean;
   inputModel = '';
   origin = new AutocompleteOriginDirective(this._elementRef);
+  selectionModel: SelectionModel<string>;
 
   private _onTouchedCallback: () => void;
   private _onChangeCallback: (_: any) => void;
@@ -142,6 +154,8 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   }
 
   ngOnInit(): void {
+    this.selectionModel = new SelectionModel<string>(true);
+    this._initializeSelection();
     if (this.autocomplete) {
       this.autocomplete.optionSelected.subscribe(event => this.onSelect(event.option.value));
     }
@@ -154,7 +168,9 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    * @param value New value to be written to the model.
    */
   writeValue(value: string[]): void {
-    this.value = value || [];
+    if (this.selectionModel) {
+      value.forEach(v => this.onSelect(v));
+    }
   }
 
   /**
@@ -173,13 +189,9 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    * Adds a given value to the current selected values.
    */
   onSelect(option: string) {
-    if (!this.value) {
-      this.value = [];
-    }
-    if (this.value.indexOf(option) < 0) {
-      this.writeValue(this.value.concat([option]));
-      this._onChangeCallback(this.value);
-      this._onTouchedCallback();
+    if (!this.selectionModel.isSelected(option)) {
+      this.selectionModel.select(option);
+      this._propagateChanges();
     }
     this.inputElement.nativeElement.value = '';
   }
@@ -188,16 +200,14 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    * Removes a given value from the current selected values.
    */
   deselectOption(option: string) {
-    const index = this.value.findIndex(opt => opt === option);
-    if (index >= 0) {
-      this.value = this.value.filter(v => v !== option);
-      if (this.value.length === 0) {
-        this.value = null;
-      }
-      this._onChangeCallback(this.value);
-      this._onTouchedCallback();
+    if (this.selectionModel.isSelected(option)) {
+      this.selectionModel.deselect(option);
+      this._propagateChanges(option);
     }
   }
+
+  /** `View -> model callback called when value changes` */
+  onChange: (value: any) => void = () => {};
 
   /**
    * Saves a callback function to be invoked when the chip input's value
@@ -227,5 +237,24 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    */
   setDescribedByIds(ids: string[]): void {
     this._ariaDescribedby = ids.join(' ');
+  }
+
+  /** Emits change event to set the model value. */
+  private _propagateChanges(fallbackValue?: string): void {
+    this._value = this.selectionModel.selected;
+    this.onChange(this._value);
+    this.valueChange.emit(new SbbChipInputChange(this, this._value));
+    this._value ? this.valueChange.emit(this._value) : this.valueChange.emit(fallbackValue);
+    this._value ? this._onChangeCallback(this._value) : this._onChangeCallback(fallbackValue);
+    this._onTouchedCallback();
+    this._changeDetectorRef.markForCheck();
+  }
+
+  private _initializeSelection(): void {
+    // Defer setting the value in order to avoid the "Expression
+    // has changed after it was checked" errors from Angular.
+    Promise.resolve().then(() => {
+      this.ngControl ? this.writeValue(this.ngControl.value) : this.writeValue(this._value);
+    });
   }
 }
