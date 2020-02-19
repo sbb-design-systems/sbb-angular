@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 import { BadgeModule } from '@sbb-esta/angular-public/badge';
 import { configureTestSuite } from 'ng-bullet';
 
@@ -18,7 +19,7 @@ import { TagsComponent } from './tags.component';
       <ng-container *ngFor="let tag of tagItems">
         <sbb-tag
           [(ngModel)]="tag.selected"
-          (tagChange)="change($event)"
+          (change)="change($event)"
           [label]="tag.label"
           [id]="tag.id"
           [amount]="tag.amount"
@@ -42,7 +43,7 @@ class TagsTestFixtureComponent {
     }
   ];
 
-  change() {}
+  change(evt: SbbCheckboxChange) {}
 }
 
 @Component({
@@ -215,7 +216,7 @@ describe('TagsComponent with Model attached', () => {
     expect(hasTruthyValues).toBeFalsy();
   });
 
-  it('should call the tagChange event when checking/unchecking a sbb-tag', () => {
+  it('should call the change event when checking/unchecking a sbb-tag', () => {
     const firstTag = fixture.debugElement.queryAll(By.directive(TagComponent))[1];
 
     spyOn(component, 'change');

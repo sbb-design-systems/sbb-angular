@@ -23,7 +23,7 @@ Within the filter, an additional tag called "Alle" is always inserted. If this f
   <sbb-tag
     *ngFor="let tag of tagItems"
     [(ngModel)]="tag.selected"
-    (tagChange)="change($event)"
+    (change)="change($event)"
     [label]="tag.label"
     [id]="tag.id"
     [amount]="tag.amount"

@@ -17,7 +17,7 @@
         <sbb-tag
           *ngFor="let tag of tagItems"
           [(ngModel)]="tag.selected"
-          (tagChange)="change($event)"
+          (change)="change($event)"
           [label]="tag.label"
           [id]="tag.id"
           [amount]="tag.amount"
@@ -65,7 +65,7 @@
           <sbb-tag
             *ngFor="let tag of tags.controls; let i = index"
             [formControlName]="i"
-            (tagChange)="change($event)"
+            (change)="change($event)"
             [id]="tagItemsReactive[i].id"
             [label]="tagItemsReactive[i].label"
             [amount]="tagItemsReactive[i].amount"

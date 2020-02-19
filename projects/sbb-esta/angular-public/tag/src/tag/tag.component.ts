@@ -5,7 +5,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
   forwardRef,
   HostBinding,
   Inject,
@@ -15,15 +14,12 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  Output,
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
-
-import { TagChange } from '../tag.model';
 
 /**
  * Injection token used to provide the parent component to TagComponent.
@@ -73,13 +69,6 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
   amount: number;
 
   /**
-   * Event generated on tag change.
-   * @deprecated Use change event instead.
-   */
-  // TODO: Remove for Angular 9.
-  @Output() readonly tagChange = new EventEmitter<TagChange>();
-
-  /**
    * A subject on tag checking.
    */
   // TODO: Check usage and rename without $ for Angular 9.
@@ -108,7 +97,6 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
 
     this.change.subscribe((e: SbbCheckboxChange) => {
       this.tagChecking$.next(e.checked);
-      this.tagChange.emit(new TagChange(this, e.checked));
     });
     this._zone.onStable
       .pipe(first())

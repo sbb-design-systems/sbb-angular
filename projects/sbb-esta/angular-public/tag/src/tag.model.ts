@@ -1,7 +1,3 @@
-import { SbbCheckboxChange } from '@sbb-esta/angular-core/base';
-
-import { TagComponent } from './tag/tag.component';
-
 export interface Tag {
   /** Identifier of a tag. */
   id?: string;
@@ -12,7 +8,3 @@ export interface Tag {
   /** Refers if a tag is selected. */
   selected?: boolean;
 }
-
-/** Change event object emitted by Tag. */
-// TODO: Remove for Angular 9.
-export class TagChange extends SbbCheckboxChange<TagComponent> {}
