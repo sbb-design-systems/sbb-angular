@@ -64,9 +64,6 @@ export class ToggleComponent extends RadioGroupDirective
     );
   }
 
-  /** @deprecated Use .checked instead */
-  uncheck() {}
-
   private _checkNumOfOptions(): void {
     if (this._radios.length !== 2) {
       throw new Error(
