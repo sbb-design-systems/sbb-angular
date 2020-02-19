@@ -35,7 +35,6 @@ import { MockNgZone } from '@sbb-esta/angular-core/testing';
 import { typeInElement } from '@sbb-esta/angular-core/testing';
 import { FieldComponent, FieldModule } from '@sbb-esta/angular-public/field';
 import {
-  HighlightPipe,
   OptionComponent,
   OptionModule,
   SBBOptionSelectionChange
@@ -378,11 +377,7 @@ describe('AutocompleteComponent', () => {
     TestBed.configureTestingModule({
       imports: [AutocompleteModule, FieldModule, FormsModule, ReactiveFormsModule, OptionModule],
       declarations: [component],
-      providers: [
-        HighlightPipe,
-        { provide: NgZone, useFactory: () => (zone = new MockNgZone()) },
-        ...providers
-      ]
+      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers]
     });
 
     TestBed.compileComponents();
