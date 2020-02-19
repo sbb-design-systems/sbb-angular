@@ -285,7 +285,6 @@ export class DropdownTriggerDirective implements OnDestroy {
 
   @HostListener('blur')
   onBlur() {
-    this.onTouched();
     if (!!this.connectedTo) {
       this.closePanel();
     }
@@ -342,18 +341,6 @@ export class DropdownTriggerDirective implements OnDestroy {
       manager.onKeydown(event);
     }
   }
-
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  onChange: (value: any) => void = () => {};
-
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  onTouched = () => {};
 
   /** Opens the dropdown suggestion panel. */
   openPanel(): void {
