@@ -282,16 +282,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
     this.onTouched = fn;
   }
 
-  /**
-   * Sets the radio button status to disabled
-   * @docs-private
-   * @deprecated
-   */
-  setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
-    this._changeDetector.markForCheck();
-  }
-
   /** @docs-private */
   _onInputClick(event: Event) {
     // We have to stop propagation for click events on the visual hidden input element.
