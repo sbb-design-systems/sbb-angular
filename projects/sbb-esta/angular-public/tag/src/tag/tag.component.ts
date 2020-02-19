@@ -112,12 +112,4 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.tagChecking$.complete();
   }
-  /**
-   * Set a tag to checked status.
-   * @param checked Value of tag checked.
-   * @deprecated Use the checked property.
-   */
-  setTagChecked(checked: boolean) {
-    this.checked = checked;
-  }
 }
