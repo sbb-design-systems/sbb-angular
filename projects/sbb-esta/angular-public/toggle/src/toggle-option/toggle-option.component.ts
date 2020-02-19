@@ -147,13 +147,4 @@ export class ToggleOptionComponent extends RadioButtonComponent
       this._changeDetector.detectChanges();
     }
   }
-
-  /**
-   * Set value of a toggle option to checked.
-   * @param checked Value checked.
-   * @deprecated Use .checked instead.
-   */
-  setToggleChecked(checked: boolean) {
-    this.checked = checked;
-  }
 }
