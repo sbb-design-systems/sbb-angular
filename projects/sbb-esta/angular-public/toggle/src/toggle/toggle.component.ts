@@ -4,19 +4,14 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  EventEmitter,
   forwardRef,
   HostBinding,
-  Input,
   NgZone,
-  OnDestroy,
-  OnInit,
-  Output,
   QueryList,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioChange, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
+import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { first } from 'rxjs/operators';
 
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
@@ -41,7 +36,7 @@ import { ToggleOptionComponent } from '../toggle-option/toggle-option.component'
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleComponent extends RadioGroupDirective
-  implements ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
+  implements ControlValueAccessor, AfterContentInit {
   /** @docs-private */
   @HostBinding('class.sbb-toggle')
   toggleClass = true;
@@ -53,20 +48,9 @@ export class ToggleComponent extends RadioGroupDirective
   @ContentChildren(forwardRef(() => ToggleOptionComponent))
   toggleOptions: QueryList<ToggleOptionComponent>;
 
-  /**
-   * @deprecated
-   * @docs-private
-   */
-  get onChange() {
-    return this._controlValueAccessorChangeFn;
-  }
-
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }
-
-  // TODO: Remove
-  ngOnInit() {}
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
@@ -79,9 +63,6 @@ export class ToggleComponent extends RadioGroupDirective
       })
     );
   }
-
-  // TODO: Remove
-  ngOnDestroy() {}
 
   /** @deprecated Use .checked instead */
   uncheck() {}
