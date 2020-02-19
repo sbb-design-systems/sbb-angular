@@ -3,18 +3,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
   forwardRef,
   HostBinding,
   NgZone,
-  QueryList,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { first } from 'rxjs/operators';
-
-import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
 
 // TODO: Change this to a directive
 @Component({
@@ -40,13 +36,6 @@ export class ToggleComponent extends RadioGroupDirective
   /** @docs-private */
   @HostBinding('class.sbb-toggle')
   toggleClass = true;
-
-  /**
-   * Reference to sbb-toggle-options.
-   * @deprecated
-   */
-  @ContentChildren(forwardRef(() => ToggleOptionComponent))
-  toggleOptions: QueryList<ToggleOptionComponent>;
 
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
