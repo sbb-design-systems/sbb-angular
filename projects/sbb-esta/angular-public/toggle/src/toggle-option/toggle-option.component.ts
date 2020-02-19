@@ -88,12 +88,6 @@ export class ToggleOptionComponent extends RadioButtonComponent
   toggleOptionHasContent = true;
 
   /**
-   * Observable on change of the value of a toggle option.
-   * @deprecated Listen to (change).
-   */
-  valueChange$ = new Subject<any>();
-
-  /**
    * Refers to the icon optionally contained in a toggle option.
    */
   @HostBinding('class.sbb-toggle-option-has-icon')
@@ -136,7 +130,6 @@ export class ToggleOptionComponent extends RadioButtonComponent
   ) {
     super(radioGroup, changeDetector, elementRef, focusMonitor, radioDispatcher);
     this._document = document;
-    this.change.subscribe((e: any) => this.valueChange$.next(e));
   }
 
   ngAfterViewInit() {
