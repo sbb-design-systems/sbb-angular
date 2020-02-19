@@ -69,7 +69,7 @@ describe('ChipComponent', () => {
     dismissButton.nativeElement.click();
 
     expect(dismissedSpy).toHaveBeenCalledTimes(1);
-    expect(dismissedSpy).toHaveBeenCalledWith(false);
+    expect(dismissedSpy).toHaveBeenCalledWith(jasmine.any(ChipComponent));
   });
 
   it('should hide chip when dismissed button is pressed', () => {
@@ -79,6 +79,6 @@ describe('ChipComponent', () => {
 
     const chips = fixture.debugElement.queryAll(By.directive(ChipComponent));
     chips.forEach(chip => expect(chip.attributes['aria-hidden']).toBe('true'));
-    chips.forEach(chip => expect(chip.properties['hidden']).toBe('true'));
+    chips.forEach(chip => expect(chip.properties['hidden']).toBe(true));
   });
 });

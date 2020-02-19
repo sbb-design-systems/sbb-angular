@@ -1,13 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AutocompleteModule, FieldModule, FormErrorDirective } from '@sbb-esta/angular-business';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
@@ -21,9 +15,12 @@ import { ChipInputComponent } from './chip-input.component';
   selector: 'sbb-test-chip-input',
   template: `
     <form [formGroup]="formGroup">
-      <sbb-field label="Label" class="sbb-field-100">
-        <sbb-chip-input formControlName="chip" [options]="options"></sbb-chip-input>
-        <sbb-form-error *ngIf="formGroup.get('chip').errors?.required">
+      <sbb-field label="Label" mode="long">
+        <sbb-chip-input formControlName="chip" [sbbAutocomplete]="auto"></sbb-chip-input>
+        <sbb-autocomplete #auto="sbbAutocomplete">
+          <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
+        </sbb-autocomplete>
+        <sbb-form-error *ngIf="formGroup.get('chip')?.errors?.required">
           This field is required.
         </sbb-form-error>
       </sbb-field>
@@ -33,13 +30,12 @@ import { ChipInputComponent } from './chip-input.component';
 class ChipInputTestComponent implements OnInit {
   options = ['option-1', 'option-2'];
   formGroup: FormGroup;
-  chipControl = [['option-1'], Validators.required];
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.formGroup = this._formBuilder.group({
-      chip: this.chipControl
+      chip: [['option-1'], Validators.required]
     });
   }
 }
@@ -51,14 +47,7 @@ describe('ChipInputComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [ChipInputComponent, ChipComponent, ChipInputTestComponent],
-      imports: [
-        CommonModule,
-        FormsModule,
-        AutocompleteModule,
-        IconCrossModule,
-        ReactiveFormsModule,
-        FieldModule
-      ]
+      imports: [CommonModule, AutocompleteModule, IconCrossModule, ReactiveFormsModule, FieldModule]
     });
   });
 
@@ -73,9 +62,10 @@ describe('ChipInputComponent', () => {
   });
 
   it('should contain one option chip through preselection', () => {
-    const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
-
-    expect(chipComponents.length).toBe(1);
+    fixture.whenStable().then(() => {
+      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      expect(chipComponents.length).toBe(1);
+    });
   });
 
   it('should contain two option chips using setValue', () => {
