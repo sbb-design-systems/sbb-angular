@@ -283,14 +283,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   }
 
   /**
-   * Manage the event click on the radio button
-   * @deprecated Use .checked
-   */
-  click($event: Event) {
-    this.checked = true;
-  }
-
-  /**
    * Sets the radio button status to disabled
    * @docs-private
    * @deprecated
@@ -298,14 +290,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
     this._changeDetector.markForCheck();
-  }
-
-  /**
-   * Unchecks the radio button
-   * @deprecated Use .checked
-   */
-  uncheck() {
-    this.checked = false;
   }
 
   /** @docs-private */
