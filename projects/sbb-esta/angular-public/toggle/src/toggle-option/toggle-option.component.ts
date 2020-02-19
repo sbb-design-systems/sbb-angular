@@ -21,9 +21,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
-import { Subject } from 'rxjs';
-
-import { ToggleBase } from '../toggle.base';
 
 // TODO: Inherit directly from RadioButton
 @Component({
@@ -42,8 +39,7 @@ import { ToggleBase } from '../toggle.base';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ToggleOptionComponent extends RadioButtonComponent
-  implements ToggleBase, AfterViewInit {
+export class ToggleOptionComponent extends RadioButtonComponent implements AfterViewInit {
   /** @docs-private */
   @HostBinding('class.sbb-toggle-option') toggleOptionClass = true;
 

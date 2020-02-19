@@ -20,7 +20,6 @@ import { RadioChange, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
 import { first } from 'rxjs/operators';
 
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
-import { SBB_TOGGLE_COMPONENT } from '../toggle.base';
 
 // TODO: Change this to a directive
 @Component({
@@ -32,10 +31,6 @@ import { SBB_TOGGLE_COMPONENT } from '../toggle.base';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ToggleComponent),
       multi: true
-    },
-    {
-      provide: SBB_TOGGLE_COMPONENT,
-      useExisting: ToggleComponent
     },
     {
       provide: RadioGroupDirective,
