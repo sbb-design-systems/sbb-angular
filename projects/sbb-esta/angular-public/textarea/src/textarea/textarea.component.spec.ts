@@ -156,7 +156,7 @@ describe('TextareaComponent digits counter', () => {
     fixture = TestBed.createComponent(TextareaComponent);
     component = fixture.componentInstance;
     component.maxlength = 20;
-    component.textContent = 'SBB';
+    component.value = 'SBB';
     fixture.detectChanges();
   });
 
@@ -166,7 +166,7 @@ describe('TextareaComponent digits counter', () => {
   });
 
   it('should have a 16 value', async () => {
-    component.writeValue(component.textContent + ' ');
+    component.writeValue(component.value + ' ');
     fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
     expect(counterDiv.nativeElement.textContent.trim()).toBe('Noch 16 Zeichen');

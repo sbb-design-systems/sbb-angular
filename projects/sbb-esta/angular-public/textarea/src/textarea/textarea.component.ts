@@ -42,16 +42,6 @@ export class TextareaComponent implements ControlValueAccessor {
     }
   }
 
-  /**
-   * Text content in a textarea.
-   * @deprecated Use value instead.
-   */
-  get textContent(): string {
-    return this.value;
-  }
-  set textContent(value: string) {
-    this.value = value;
-  }
   /** Class property that represents the autosize textarea. */
   matTextareaAutosize = true;
 
