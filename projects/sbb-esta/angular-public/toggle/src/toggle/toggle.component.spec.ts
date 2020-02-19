@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
+import { RadioChange } from '@sbb-esta/angular-core/radio-button';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
@@ -153,7 +154,6 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
   `
 })
 class ToggleTemplateDrivenTestComponent {
-  modelReactive = 'Option_2';
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
 
   constructor() {}
@@ -173,7 +173,7 @@ class ToggleTemplateDrivenTestComponent {
 @Component({
   selector: 'sbb-toggle-test-simple-case',
   template: `
-    <sbb-toggle aria-labelledby="group_label_3" (toggleChange)="toggleChange($event)">
+    <sbb-toggle aria-labelledby="group_label_3" (change)="change($event)">
       <sbb-toggle-option label="2. Klasse" infoText="- CHF 5.60" [value]="{ myObjectValue: true }">
       </sbb-toggle-option>
       <sbb-toggle-option
@@ -186,21 +186,9 @@ class ToggleTemplateDrivenTestComponent {
   `
 })
 class ToggleSimpleCaseTestComponent {
-  modelReactive = 'Option_2';
   @ContentChildren('options') options: QueryList<ToggleOptionComponent>;
 
-  toggleOptions: Observable<any> = of([
-    {
-      label: 'Einfache Fahrt',
-      value: 'Option_1'
-    },
-    {
-      label: 'Hin- und Rückfahrt',
-      value: 'Option_2'
-    }
-  ]);
-
-  toggleChange() {}
+  change(evt: RadioChange) {}
 }
 
 describe('ToggleComponent case reactive using mock component', () => {

@@ -47,20 +47,6 @@ export class ToggleComponent extends RadioGroupDirective
   toggleClass = true;
 
   /**
-   * Indicates radio button name in formControl
-   * @deprecated
-   */
-  @Input()
-  formControlName: string;
-
-  /**
-   * Event generated on a change of sbb-toggle.
-   * @deprecated Use change event.
-   */
-  @Output()
-  toggleChange: EventEmitter<RadioChange> = this.change;
-
-  /**
    * Reference to sbb-toggle-options.
    * @deprecated
    */
