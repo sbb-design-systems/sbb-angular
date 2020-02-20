@@ -1,7 +1,6 @@
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import {
   IconChevronSmallDownModule,
   IconChevronSmallLeftModule,
@@ -27,8 +26,7 @@ import { HeaderComponent } from './header/header.component';
     IconCrossModule,
     IconChevronSmallDownModule,
     IconChevronSmallLeftModule,
-    IconChevronSmallUpModule,
-    DropdownModule
+    IconChevronSmallUpModule
   ],
   declarations: [
     HeaderComponent,
@@ -42,8 +40,7 @@ import { HeaderComponent } from './header/header.component';
     AppChooserSectionComponent,
     HeaderMenuComponent,
     HeaderMenuTriggerComponent,
-    HeaderMenuItemDirective,
-    DropdownModule
+    HeaderMenuItemDirective
   ],
   providers: [SBB_HEADER_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER]
 })
