@@ -694,7 +694,7 @@ describe('AutocompleteComponent', () => {
     }));
 
     it('should provide the open state of the panel', fakeAsync(() => {
-      expect(fixture.componentInstance.panel.isOpen).toBeFalsy(
+      expect(fixture.componentInstance.panel.open).toBeFalsy(
         `Expected the panel to be unopened initially.`
       );
 
@@ -702,7 +702,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       flush();
 
-      expect(fixture.componentInstance.panel.isOpen).toBeTruthy(
+      expect(fixture.componentInstance.panel.open).toBeTruthy(
         `Expected the panel to be opened on focus.`
       );
     }));

@@ -72,8 +72,16 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
   /** Whether the autocomplete panel should be visible, depending on option length. */
   showPanel = false;
 
-  /** Whether the autocomplete panel is open. */
+  /**
+   * Whether the autocomplete panel is open.
+   * @deprecated Use property open instead.
+   */
   get isOpen(): boolean {
+    return this.open;
+  }
+
+  /** Whether the autocomplete panel is open. */
+  get open(): boolean {
     return this._isOpen && this.showPanel;
   }
   _isOpen = false;
