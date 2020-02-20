@@ -30,8 +30,9 @@ export abstract class CheckboxBase implements ControlValueAccessor {
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() @HostBinding() id: string;
   /** Identifier of a checkbox field */
-  // TODO: Refactor to a getter for Angular 9
-  @Input() inputId: string;
+  get inputId(): string {
+    return `${this.id}-input`;
+  }
   /** Value contained in a checkbox field */
   @Input() value: any;
   /** Used to set the 'aria-label' attribute on the underlying input element. */
@@ -109,7 +110,6 @@ export abstract class CheckboxBase implements ControlValueAccessor {
     type = 'checkbox'
   ) {
     this.id = `sbb-${type}-${++nextId}`;
-    this.inputId = `${this.id}-input`;
     this.tabIndex = parseInt(tabIndex, 10) || 0;
     this._focusMonitor.monitor(elementRef, true).subscribe(focusOrigin => {
       if (!focusOrigin) {
