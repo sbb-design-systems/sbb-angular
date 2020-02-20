@@ -15,7 +15,7 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
 import { RadioGroup } from './radio-group';
@@ -152,11 +152,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
    * @deprecated
    */
   @Input() formControlName: string;
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  _control: NgControl;
 
   /**
    * Event emitted when the checked state of this radio button changes.
@@ -285,32 +280,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
    */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
-  }
-
-  /**
-   * Manage the event click on the radio button
-   * @deprecated Use .checked
-   */
-  click($event: Event) {
-    this.checked = true;
-  }
-
-  /**
-   * Sets the radio button status to disabled
-   * @docs-private
-   * @deprecated
-   */
-  setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
-    this._changeDetector.markForCheck();
-  }
-
-  /**
-   * Unchecks the radio button
-   * @deprecated Use .checked
-   */
-  uncheck() {
-    this.checked = false;
   }
 
   /** @docs-private */

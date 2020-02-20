@@ -107,7 +107,7 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
   onMouseEnter() {
     this._clearTimoutOnChangeMouseEvent();
     this._referenceActiveTimeout = window.setTimeout(() => {
-      this.open(true);
+      this.openTooltip(true);
       this._changeDetectorRef.markForCheck();
     }, this.hoverOpenDelay);
   }

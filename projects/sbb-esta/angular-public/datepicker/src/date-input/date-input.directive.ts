@@ -329,7 +329,7 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent) {
     if (this._datepicker && event.altKey && event.keyCode === DOWN_ARROW) {
-      this._datepicker.open();
+      this._datepicker.openDatepicker();
       event.preventDefault();
     }
   }

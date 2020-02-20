@@ -38,14 +38,6 @@ export class CheckboxPanelComponent extends CheckboxBase {
   @Input()
   subtitle?: string;
 
-  /**
-   * Returns the subtitle of a multiple checkbox panel.
-   * @deprecated Check subtitle
-   */
-  get hasSubtitle() {
-    return !!this.subtitle;
-  }
-
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     focusMonitor: FocusMonitor,

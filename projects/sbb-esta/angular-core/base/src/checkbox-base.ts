@@ -150,14 +150,6 @@ export abstract class CheckboxBase implements ControlValueAccessor {
   }
 
   /**
-   * Method that set up a checkbox field to the click
-   * @deprecated Use toggle() instead.
-   */
-  click() {
-    this.toggle();
-  }
-
-  /**
    * Method that sets disabled a checkbox
    */
   setDisabledState(disabled: boolean): void {

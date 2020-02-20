@@ -3,12 +3,12 @@
   [sbbDropdown]="dropdown"
   tabindex="0"
   [class.sbb-usermenu-hidden]="!userName"
-  [class.sbb-usermenu-logged-in-active]="dropdown.isOpen"
+  [class.sbb-usermenu-logged-in-active]="dropdown.open"
   [sbbDropdownDisabled]="!userName"
 >
   <div
     class="sbb-usermenu-logged-in-collapsed"
-    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.isOpen"
+    [class.sbb-usermenu-logged-in-collapsed-dropdown-expanded]="dropdown.open"
   >
     <ng-container *ngIf="userName && userName.length">
       <div class="sbb-usermenu-logged-in-collapsed-user-icon">
@@ -21,30 +21,27 @@
       </div>
       <div
         class="sbb-usermenu-logged-in-expanded-info-user"
-        [class.sbb-usermenu-logged-in-expanded-info-user-dropdown-open]="dropdown.isOpen"
+        [class.sbb-usermenu-logged-in-expanded-info-user-dropdown-open]="dropdown.open"
       >
         <div
           class="sbb-usermenu-logged-in-expanded-displayName"
-          [class.sbb-displayName-logged-in-collapsed]="!dropdown.isOpen"
+          [class.sbb-displayName-logged-in-collapsed]="!dropdown.open"
         >
           {{ displayName || userName }}
         </div>
-        <div
-          class="sbb-usermenu-logged-in-expanded-username"
-          *ngIf="dropdown.isOpen && displayName"
-        >
+        <div class="sbb-usermenu-logged-in-expanded-username" *ngIf="dropdown.open && displayName">
           {{ userName }}
         </div>
       </div>
       <div
         class="sbb-usermenu-logged-in-collapsed-arrow"
-        *ngIf="userName && userName.length && !dropdown.isOpen"
+        *ngIf="userName && userName.length && !dropdown.open"
       >
         <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
       </div>
     </ng-container>
     <div class="sbb-usermenu-logged-in-expanded-arrow-above">
-      <div class="sbb-usermenu-logged-in-expanded-arrow" *ngIf="dropdown.isOpen">
+      <div class="sbb-usermenu-logged-in-expanded-arrow" *ngIf="dropdown.open">
         <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
       </div>
     </div>

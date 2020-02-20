@@ -35,7 +35,6 @@ import { MockNgZone } from '@sbb-esta/angular-core/testing';
 import { typeInElement } from '@sbb-esta/angular-core/testing';
 import { FieldComponent, FieldModule } from '@sbb-esta/angular-public/field';
 import {
-  HighlightPipe,
   OptionComponent,
   OptionModule,
   SBBOptionSelectionChange
@@ -378,11 +377,7 @@ describe('AutocompleteComponent', () => {
     TestBed.configureTestingModule({
       imports: [AutocompleteModule, FieldModule, FormsModule, ReactiveFormsModule, OptionModule],
       declarations: [component],
-      providers: [
-        HighlightPipe,
-        { provide: NgZone, useFactory: () => (zone = new MockNgZone()) },
-        ...providers
-      ]
+      providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }, ...providers]
     });
 
     TestBed.compileComponents();
@@ -699,7 +694,7 @@ describe('AutocompleteComponent', () => {
     }));
 
     it('should provide the open state of the panel', fakeAsync(() => {
-      expect(fixture.componentInstance.panel.isOpen).toBeFalsy(
+      expect(fixture.componentInstance.panel.open).toBeFalsy(
         `Expected the panel to be unopened initially.`
       );
 
@@ -707,7 +702,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
       flush();
 
-      expect(fixture.componentInstance.panel.isOpen).toBeTruthy(
+      expect(fixture.componentInstance.panel.open).toBeTruthy(
         `Expected the panel to be opened on focus.`
       );
     }));

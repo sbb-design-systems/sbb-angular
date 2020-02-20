@@ -3,24 +3,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
-  EventEmitter,
   forwardRef,
   HostBinding,
-  Input,
   NgZone,
-  OnDestroy,
-  OnInit,
-  Output,
-  QueryList,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioChange, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
+import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { first } from 'rxjs/operators';
-
-import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
-import { SBB_TOGGLE_COMPONENT } from '../toggle.base';
 
 // TODO: Change this to a directive
 @Component({
@@ -34,10 +24,6 @@ import { SBB_TOGGLE_COMPONENT } from '../toggle.base';
       multi: true
     },
     {
-      provide: SBB_TOGGLE_COMPONENT,
-      useExisting: ToggleComponent
-    },
-    {
       provide: RadioGroupDirective,
       useExisting: ToggleComponent
     }
@@ -46,46 +32,14 @@ import { SBB_TOGGLE_COMPONENT } from '../toggle.base';
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleComponent extends RadioGroupDirective
-  implements ControlValueAccessor, OnInit, OnDestroy, AfterContentInit {
+  implements ControlValueAccessor, AfterContentInit {
   /** @docs-private */
   @HostBinding('class.sbb-toggle')
   toggleClass = true;
 
-  /**
-   * Indicates radio button name in formControl
-   * @deprecated
-   */
-  @Input()
-  formControlName: string;
-
-  /**
-   * Event generated on a change of sbb-toggle.
-   * @deprecated Use change event.
-   */
-  @Output()
-  toggleChange: EventEmitter<RadioChange> = this.change;
-
-  /**
-   * Reference to sbb-toggle-options.
-   * @deprecated
-   */
-  @ContentChildren(forwardRef(() => ToggleOptionComponent))
-  toggleOptions: QueryList<ToggleOptionComponent>;
-
-  /**
-   * @deprecated
-   * @docs-private
-   */
-  get onChange() {
-    return this._controlValueAccessorChangeFn;
-  }
-
   constructor(private _zone: NgZone, changeDetectorRef: ChangeDetectorRef) {
     super(changeDetectorRef);
   }
-
-  // TODO: Remove
-  ngOnInit() {}
 
   ngAfterContentInit() {
     super.ngAfterContentInit();
@@ -98,12 +52,6 @@ export class ToggleComponent extends RadioGroupDirective
       })
     );
   }
-
-  // TODO: Remove
-  ngOnDestroy() {}
-
-  /** @deprecated Use .checked instead */
-  uncheck() {}
 
   private _checkNumOfOptions(): void {
     if (this._radios.length !== 2) {

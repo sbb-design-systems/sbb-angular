@@ -9,12 +9,12 @@
   *ngIf="dropdown"
   tabindex="0"
   class="sbb-breadcrumb-trigger"
-  [class.sbb-breadcrumb-trigger-open]="dropdown.isOpen"
+  [class.sbb-breadcrumb-trigger-open]="dropdown.open"
 >
   <span class="sbb-breadcrumb-label"><ng-content></ng-content></span>
   <div
     class="sbb-breadcrumb-trigger-icon sbb-breadcrumb-trigger-icon-visible"
-    [class.sbb-breadcrumb-trigger-icon-active]="dropdown.isOpen"
+    [class.sbb-breadcrumb-trigger-icon-active]="dropdown.open"
   >
     <sbb-icon-chevron-small-down></sbb-icon-chevron-small-down>
   </div>

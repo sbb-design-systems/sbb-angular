@@ -12,7 +12,7 @@ describe('HitTestService', () => {
   );
 
   it('should be created', () => {
-    const service: HitTestService = TestBed.get(HitTestService);
+    const service: HitTestService = TestBed.inject(HitTestService);
     expect(service).toBeTruthy();
   });
 });

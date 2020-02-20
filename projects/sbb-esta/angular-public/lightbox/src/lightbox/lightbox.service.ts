@@ -11,6 +11,7 @@ import {
   Injectable,
   InjectionToken,
   Injector,
+  OnDestroy,
   Optional,
   SkipSelf,
   TemplateRef
@@ -53,10 +54,10 @@ export const LIGHTBOX_SCROLL_STRATEGY_PROVIDER = {
  * Service to open SBB Design modal lightboxes.
  */
 @Injectable()
-export class Lightbox {
+export class Lightbox implements OnDestroy {
   private _openLightboxesAtThisLevel: LightboxRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
-  private readonly _afterOpenAtThisLevel = new Subject<LightboxRef<any>>();
+  private readonly _afterOpenedAtThisLevel = new Subject<LightboxRef<any>>();
 
   /** Keeps track of the currently-open lightboxes. */
   get openLightboxes(): LightboxRef<any>[] {
@@ -67,7 +68,7 @@ export class Lightbox {
 
   /** Stream that emits when a lightbox has been opened. */
   get afterOpen(): Subject<LightboxRef<any>> {
-    return this._parentLightbox ? this._parentLightbox.afterOpen : this._afterOpenAtThisLevel;
+    return this._parentLightbox ? this._parentLightbox.afterOpen : this._afterOpenedAtThisLevel;
   }
 
   get _afterAllClosed(): Subject<void> {
@@ -100,8 +101,23 @@ export class Lightbox {
    *     or a TemplateRef to instantiate as the lightbox content.
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened lightbox.
+   * @deprecated use openLightbox instead
    */
   open<T, D = any, R = any>(
+    componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
+    config?: LightboxConfig<D>
+  ): LightboxRef<T, R> {
+    return this.openLightbox(componentOrTemplateRef, config);
+  }
+
+  /**
+   * Opens a modal lightbox containing the given component.
+   * @param componentOrTemplateRef Type of the component to load into the lightbox,
+   *     or a TemplateRef to instantiate as the lightbox content.
+   * @param config Extra configuration options.
+   * @returns Reference to the newly-opened lightbox.
+   */
+  openLightbox<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: LightboxConfig<D>
   ): LightboxRef<T, R> {
@@ -132,15 +148,7 @@ export class Lightbox {
    * Closes all of the currently-open lightboxes.
    */
   closeAll(): void {
-    let i = this.openLightboxes.length;
-
-    while (i--) {
-      // The `openLightboxes` property isn't updated after close until the rxjs subscription
-      // runs on the next microtask, in addition to modifying the array as we're going
-      // through it. We loop through all of them and call close without assuming that
-      // they'll be removed from the list instantaneously.
-      this.openLightboxes[i].close();
-    }
+    this._closeDialogs(this.openLightboxes);
   }
 
   /**
@@ -150,6 +158,14 @@ export class Lightbox {
    */
   getLightboxById(id: string): LightboxRef<any> | undefined {
     return this.openLightboxes.find(lightbox => lightbox.id === id);
+  }
+
+  ngOnDestroy() {
+    // Only close the dialogs at this level on destroy
+    // since the parent service may still be active.
+    this._closeDialogs(this._openLightboxesAtThisLevel);
+    this._afterAllClosedAtThisLevel.complete();
+    this._afterOpenedAtThisLevel.complete();
   }
 
   /**
@@ -286,6 +302,19 @@ export class Lightbox {
       if (!this.openLightboxes.length) {
         this._afterAllClosed.next();
       }
+    }
+  }
+
+  /** Closes all of the dialogs in an array. */
+  private _closeDialogs(dialogs: LightboxRef<any>[]) {
+    let i = dialogs.length;
+
+    while (i--) {
+      // The `_openDialogs` property isn't updated after close until the rxjs subscription
+      // runs on the next microtask, in addition to modifying the array as we're going
+      // through it. We loop through all of them and call close without assuming that
+      // they'll be removed from the list instantaneously.
+      dialogs[i].close();
     }
   }
 }

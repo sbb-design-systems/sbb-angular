@@ -132,7 +132,7 @@ describe('DropdownComponent test', () => {
       fixture.detectChanges();
       const panel = fixture.debugElement.query(By.css('.sbb-dropdown-panel'));
       expect(panel).toBeTruthy();
-      expect(component.dropdown.isOpen).toBeTruthy();
+      expect(component.dropdown.open).toBeTruthy();
     });
 
     it('should have a11y attributes correctly set', () => {
@@ -149,11 +149,11 @@ describe('DropdownComponent test', () => {
       fixture.detectChanges();
       const panel = fixture.debugElement.query(By.css('.sbb-dropdown-panel'));
       expect(panel).toBeTruthy();
-      expect(component.dropdown.isOpen).toBeTruthy();
+      expect(component.dropdown.open).toBeTruthy();
       trigger.nativeElement.click();
       fixture.detectChanges();
       expect(trigger.attributes['aria-expanded']).toBe('false');
-      expect(component.dropdown.isOpen).toBeFalsy();
+      expect(component.dropdown.open).toBeFalsy();
     });
   });
 
@@ -163,9 +163,9 @@ describe('DropdownComponent test', () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
         fixture.detectChanges();
-        router = TestBed.get(Router);
+        router = TestBed.inject(Router);
         router.initialNavigation();
-        location = TestBed.get(Location);
+        location = TestBed.inject(Location);
         fixture.detectChanges();
         await fixture.whenStable();
         const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));
@@ -181,9 +181,9 @@ describe('DropdownComponent test', () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
         fixture.detectChanges();
-        router = TestBed.get(Router);
+        router = TestBed.inject(Router);
         router.initialNavigation();
-        location = TestBed.get(Location);
+        location = TestBed.inject(Location);
         fixture.detectChanges();
         await fixture.whenStable();
         const links = fixture.debugElement.queryAll(By.css('[sbbDropdownItem]'));

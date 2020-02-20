@@ -21,9 +21,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
-import { Subject } from 'rxjs';
-
-import { ToggleBase } from '../toggle.base';
 
 // TODO: Inherit directly from RadioButton
 @Component({
@@ -42,8 +39,7 @@ import { ToggleBase } from '../toggle.base';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ToggleOptionComponent extends RadioButtonComponent
-  implements ToggleBase, AfterViewInit {
+export class ToggleOptionComponent extends RadioButtonComponent implements AfterViewInit {
   /** @docs-private */
   @HostBinding('class.sbb-toggle-option') toggleOptionClass = true;
 
@@ -88,12 +84,6 @@ export class ToggleOptionComponent extends RadioButtonComponent
   toggleOptionHasContent = true;
 
   /**
-   * Observable on change of the value of a toggle option.
-   * @deprecated Listen to (change).
-   */
-  valueChange$ = new Subject<any>();
-
-  /**
    * Refers to the icon optionally contained in a toggle option.
    */
   @HostBinding('class.sbb-toggle-option-has-icon')
@@ -136,7 +126,6 @@ export class ToggleOptionComponent extends RadioButtonComponent
   ) {
     super(radioGroup, changeDetector, elementRef, focusMonitor, radioDispatcher);
     this._document = document;
-    this.change.subscribe((e: any) => this.valueChange$.next(e));
   }
 
   ngAfterViewInit() {
@@ -153,14 +142,5 @@ export class ToggleOptionComponent extends RadioButtonComponent
       this.toggleOptionHasContent = false;
       this._changeDetector.detectChanges();
     }
-  }
-
-  /**
-   * Set value of a toggle option to checked.
-   * @param checked Value checked.
-   * @deprecated Use .checked instead.
-   */
-  setToggleChecked(checked: boolean) {
-    this.checked = checked;
   }
 }

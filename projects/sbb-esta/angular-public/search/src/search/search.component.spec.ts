@@ -186,11 +186,11 @@ describe('SearchComponent', () => {
 
     describe('when focusing input', () => {
       it('should open the options panel', () => {
-        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+        expect(component.searchComponent.autocomplete.open).toBe(false);
         const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
         fixture.detectChanges();
-        expect(component.searchComponent.autocomplete.isOpen).toBe(true);
+        expect(component.searchComponent.autocomplete.open).toBe(true);
       });
     });
 
@@ -206,15 +206,15 @@ describe('SearchComponent', () => {
       });
 
       it('should close the autocomplete panel', () => {
-        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+        expect(component.searchComponent.autocomplete.open).toBe(false);
         const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
         fixture.detectChanges();
-        expect(component.searchComponent.autocomplete.isOpen).toBe(true);
+        expect(component.searchComponent.autocomplete.open).toBe(true);
         const options = fixture.debugElement.queryAll(By.css('sbb-option'));
         options[0].nativeElement.click();
         fixture.detectChanges();
-        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+        expect(component.searchComponent.autocomplete.open).toBe(false);
       });
 
       it('should have selected value as input value', () => {
@@ -251,7 +251,7 @@ describe('SearchComponent', () => {
       });
 
       it('should close the autocomplete panel', () => {
-        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+        expect(component.searchComponent.autocomplete.open).toBe(false);
         const input = fixture.debugElement.query(By.css('.sbb-search-box > input'));
         dispatchFakeEvent(input.nativeElement, 'focusin');
         fixture.detectChanges();
@@ -259,7 +259,7 @@ describe('SearchComponent', () => {
         fixture.detectChanges();
         fixture.componentInstance.searchComponent.handleKeydown(enterEvent);
         fixture.detectChanges();
-        expect(component.searchComponent.autocomplete.isOpen).toBe(false);
+        expect(component.searchComponent.autocomplete.open).toBe(false);
       });
 
       it('should have selected value as input value', () => {

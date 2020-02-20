@@ -84,6 +84,6 @@ export class TagsComponent implements AfterContentInit, OnDestroy {
   }
 
   allTagClick() {
-    this.tags.forEach(t => t.setTagChecked(false));
+    this.tags.forEach(t => (t.checked = false));
   }
 }

@@ -24,7 +24,7 @@ export class ToggleShowcaseComponent implements OnInit {
     });
   }
 
-  toggleChange(toggleValues: RadioChange) {
+  change(toggleValues: RadioChange) {
     this.toggleValues = toggleValues.value;
   }
 }
