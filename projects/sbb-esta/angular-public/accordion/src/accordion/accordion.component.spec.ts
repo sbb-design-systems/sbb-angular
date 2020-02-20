@@ -7,7 +7,7 @@ import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/tes
 import { configureTestSuite } from 'ng-bullet';
 
 import {
-  AccordionComponent,
+  AccordionDirective,
   AccordionModule,
   ExpansionPanelComponent,
   ExpansionPanelHeaderComponent
@@ -25,7 +25,7 @@ import {
   `
 })
 class SetOfItemsComponent {
-  @ViewChild(AccordionComponent, { static: true }) accordion: AccordionComponent;
+  @ViewChild(AccordionDirective, { static: true }) accordion: AccordionDirective;
   @ViewChildren(ExpansionPanelComponent) panels: QueryList<ExpansionPanelComponent>;
   @ViewChildren(ExpansionPanelHeaderComponent) headers: QueryList<ExpansionPanelHeaderComponent>;
 
@@ -64,7 +64,7 @@ class AccordionWithHideToggleComponent {
   hideToggle = false;
 }
 
-describe('AccordionComponent', () => {
+describe('AccordionDirective', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, AccordionModule],

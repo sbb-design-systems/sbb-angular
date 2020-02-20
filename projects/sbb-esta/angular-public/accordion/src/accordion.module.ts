@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { IconMinusModule, IconPlusModule } from '@sbb-esta/angular-icons';
 
-import { AccordionComponent } from './accordion/accordion.component';
+import { AccordionDirective } from './accordion/accordion.directive';
 import { ExpansionPanelHeaderComponent } from './expansion-panel-header/expansion-panel-header.component';
 import { ExpansionPanelContentDirective } from './expansion-panel/expansion-panel-content';
 import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
@@ -12,13 +12,13 @@ import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.compo
 @NgModule({
   imports: [CommonModule, CdkAccordionModule, PortalModule, IconPlusModule, IconMinusModule],
   exports: [
-    AccordionComponent,
+    AccordionDirective,
     ExpansionPanelComponent,
     ExpansionPanelHeaderComponent,
     ExpansionPanelContentDirective
   ],
   declarations: [
-    AccordionComponent,
+    AccordionDirective,
     ExpansionPanelComponent,
     ExpansionPanelHeaderComponent,
     ExpansionPanelContentDirective
