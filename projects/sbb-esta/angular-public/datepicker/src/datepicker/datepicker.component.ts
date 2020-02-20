@@ -169,7 +169,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     return this._opened;
   }
   set opened(value: boolean) {
-    value ? this.open() : this.close();
+    value ? this.openDatepicker() : this.close();
   }
   private _opened = false;
 
@@ -345,11 +345,19 @@ export class DatepickerComponent<D> implements OnDestroy {
           }
         })
       )
-      .subscribe(() => this.slave.open());
+      .subscribe(() => this.slave.openDatepicker());
+  }
+
+  /**
+   * Open the calendar.
+   * @deprecated use openDatepicker() instead
+   * */
+  open(): void {
+    this.openDatepicker();
   }
 
   /** Open the calendar. */
-  open(): void {
+  openDatepicker(): void {
     if (this._opened || this.disabled) {
       return;
     }

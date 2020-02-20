@@ -72,9 +72,16 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
     this._watchStateChanges();
   }
 
+  /**
+   * @deprecated use openDatepicker() instead
+   */
   open(event: Event): void {
+    this.openDatepicker(event);
+  }
+
+  openDatepicker(event: Event): void {
     if (this._datepicker && !this.disabled) {
-      this._datepicker.open();
+      this._datepicker.openDatepicker();
       event.stopPropagation();
     }
   }

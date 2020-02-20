@@ -138,7 +138,7 @@ class DatepickerWithEventsComponent {
 @Component({
   template: `
     <sbb-datepicker #d>
-      <input (focus)="d.open()" sbbDateInput />
+      <input (focus)="d.openDatepicker()" sbbDateInput />
     </sbb-datepicker>
   `
 })
@@ -200,7 +200,7 @@ describe('DatepickerComponent', () => {
       it('open non-touch should open popup', () => {
         expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).toBeNull();
 
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
 
         expect(document.querySelector('.cdk-overlay-pane.sbb-datepicker-popup')).not.toBeNull();
@@ -227,14 +227,14 @@ describe('DatepickerComponent', () => {
 
         expect(document.querySelector('.cdk-overlay-pane')).toBeNull();
 
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
 
         expect(document.querySelector('.cdk-overlay-pane')).not.toBeNull();
       });
 
       it('close should close popup', fakeAsync(() => {
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
         flush();
 
@@ -253,7 +253,7 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should close the popup when pressing ESCAPE', fakeAsync(() => {
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
 
         expect(testComponent.datepicker.opened).toBe(true, 'Expected datepicker to be open.');
@@ -266,7 +266,7 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should set the proper role on the popup', fakeAsync(() => {
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
         flush();
 
@@ -287,7 +287,7 @@ describe('DatepickerComponent', () => {
 
           for (let changeCount = 1; changeCount < 3; changeCount++) {
             const currentDay = changeCount;
-            testComponent.datepicker.open();
+            testComponent.datepicker.openDatepicker();
             fixture.detectChanges();
 
             expect(document.querySelector('sbb-datepicker-content')).not.toBeNull();
@@ -315,7 +315,7 @@ describe('DatepickerComponent', () => {
           ).and.callThrough();
 
           for (let changeCount = 1; changeCount <= 3; changeCount++) {
-            testComponent.datepicker.open();
+            testComponent.datepicker.openDatepicker();
             fixture.detectChanges();
 
             const calendarBodyEl = document.querySelector('.sbb-calendar-body') as HTMLElement;
@@ -349,7 +349,7 @@ describe('DatepickerComponent', () => {
         const inputEl = fixture.debugElement.query(By.css('input')).nativeElement;
         expect(inputEl.getAttribute('aria-owns')).toBeNull();
 
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
         flush();
 
@@ -369,14 +369,14 @@ describe('DatepickerComponent', () => {
 
       it('should clear out the backdrop subscriptions on close', fakeAsync(() => {
         for (let i = 0; i < 3; i++) {
-          testComponent.datepicker.open();
+          testComponent.datepicker.openDatepicker();
           fixture.detectChanges();
 
           testComponent.datepicker.close();
           fixture.detectChanges();
         }
 
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
 
         const spy = jasmine.createSpy('close event spy');
@@ -394,7 +394,7 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should close the datepicker using ALT + UP_ARROW', fakeAsync(() => {
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
         flush();
 
@@ -453,7 +453,7 @@ describe('DatepickerComponent', () => {
       });
 
       it('should throw when opened with no registered inputs', fakeAsync(() => {
-        expect(() => testComponent.datepicker.open()).toThrow();
+        expect(() => testComponent.datepicker.openDatepicker()).toThrow();
       }));
     });
 
@@ -630,7 +630,7 @@ describe('DatepickerComponent', () => {
         toggle.focus();
         expect(document.activeElement).toBe(toggle, 'Expected toggle to be focused.');
 
-        fixture.componentInstance.datepicker.open();
+        fixture.componentInstance.datepicker.openDatepicker();
         fixture.detectChanges();
 
         // tslint:disable-next-line:no-non-null-assertion
@@ -653,7 +653,7 @@ describe('DatepickerComponent', () => {
 
         expect(toggle.classList).not.toContain('sbb-datepicker-toggle-active');
 
-        fixture.componentInstance.datepicker.open();
+        fixture.componentInstance.datepicker.openDatepicker();
         fixture.detectChanges();
         flush();
 
@@ -701,14 +701,14 @@ describe('DatepickerComponent', () => {
       }));
 
       it('should dispatch an event when a datepicker is opened', () => {
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
 
         expect(testComponent.openedSpy).toHaveBeenCalled();
       });
 
       it('should dispatch an event when a datepicker is closed', fakeAsync(() => {
-        testComponent.datepicker.open();
+        testComponent.datepicker.openDatepicker();
         fixture.detectChanges();
 
         testComponent.datepicker.close();
