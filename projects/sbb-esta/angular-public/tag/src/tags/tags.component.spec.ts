@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { SbbCheckboxChange } from '@sbb-esta/angular-core/base';
+import { SbbCheckboxChange as TagChange } from '@sbb-esta/angular-core/base';
 import { BadgeModule } from '@sbb-esta/angular-public/badge';
 import { configureTestSuite } from 'ng-bullet';
 
@@ -43,7 +43,7 @@ class TagsTestFixtureComponent {
     }
   ];
 
-  change(evt: SbbCheckboxChange) {}
+  change(evt: TagChange) {}
 }
 
 @Component({

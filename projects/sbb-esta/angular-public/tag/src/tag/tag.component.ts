@@ -17,7 +17,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base';
+import { CheckboxBase, SbbCheckboxChange as TagChange } from '@sbb-esta/angular-core/base';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -95,7 +95,7 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
   ) {
     super(changeDetectorRef, focusMonitor, elementRef, tabIndex, 'tag');
 
-    this.change.subscribe((e: SbbCheckboxChange) => {
+    this.change.subscribe((e: TagChange) => {
       this.tagChecking$.next(e.checked);
     });
     this._zone.onStable
