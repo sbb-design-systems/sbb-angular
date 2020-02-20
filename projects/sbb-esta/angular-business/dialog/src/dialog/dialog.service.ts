@@ -11,6 +11,7 @@ import {
   Injectable,
   InjectionToken,
   Injector,
+  OnDestroy,
   Optional,
   SkipSelf,
   TemplateRef
@@ -51,10 +52,10 @@ export const DIALOG_SCROLL_STRATEGY_PROVIDER = {
  * Service to open SBB Design modal dialogs.
  */
 @Injectable()
-export class Dialog {
+export class Dialog implements OnDestroy {
   private _openDialogsAtThisLevel: DialogRef<any>[] = [];
   private readonly _afterAllClosedAtThisLevel = new Subject<void>();
-  private readonly _afterOpenAtThisLevel = new Subject<DialogRef<any>>();
+  private readonly _afterOpenedAtThisLevel = new Subject<DialogRef<any>>();
 
   /** Keeps track of the currently-open dialogs. */
   get openDialogs(): DialogRef<any>[] {
@@ -63,7 +64,7 @@ export class Dialog {
 
   /** Stream that emits when a dialog has been opened. */
   get afterOpen(): Subject<DialogRef<any>> {
-    return this._parentDialog ? this._parentDialog.afterOpen : this._afterOpenAtThisLevel;
+    return this._parentDialog ? this._parentDialog.afterOpen : this._afterOpenedAtThisLevel;
   }
 
   get _afterAllClosed(): Subject<void> {
@@ -76,7 +77,9 @@ export class Dialog {
    * Will emit on subscribe if there are no open dialogs to begin with.
    */
   readonly afterAllClosed: Observable<any> = defer<any>(() =>
-    this.openDialogs.length ? this._afterAllClosed : this._afterAllClosed.pipe(startWith(undefined))
+    this.openDialogs.length
+      ? this._afterAllClosed
+      : this._afterAllClosed.pipe(startWith(undefined as unknown))
   );
 
   constructor(
@@ -139,15 +142,7 @@ export class Dialog {
    * Closes all of the currently-open dialogs.
    */
   closeAll(): void {
-    let i = this.openDialogs.length;
-
-    while (i--) {
-      // The `openDialogs` property isn't updated after close until the rxjs subscription
-      // runs on the next microtask, in addition to modifying the array as we're going
-      // through it. We loop through all of them and call close without assuming that
-      // they'll be removed from the list instantaneously.
-      this.openDialogs[i].close();
-    }
+    this._closeDialogs(this.openDialogs);
   }
 
   /**
@@ -157,6 +152,14 @@ export class Dialog {
    */
   getDialogById(id: string): DialogRef<any> | undefined {
     return this.openDialogs.find(dialog => dialog.id === id);
+  }
+
+  ngOnDestroy() {
+    // Only close the dialogs at this level on destroy
+    // since the parent service may still be active.
+    this._closeDialogs(this._openDialogsAtThisLevel);
+    this._afterAllClosedAtThisLevel.complete();
+    this._afterOpenedAtThisLevel.complete();
   }
 
   /**
@@ -296,6 +299,19 @@ export class Dialog {
       if (!this.openDialogs.length) {
         this._afterAllClosed.next();
       }
+    }
+  }
+
+  /** Closes all of the dialogs in an array. */
+  private _closeDialogs(dialogs: DialogRef<any>[]) {
+    let i = dialogs.length;
+
+    while (i--) {
+      // The `_openDialogs` property isn't updated after close until the rxjs subscription
+      // runs on the next microtask, in addition to modifying the array as we're going
+      // through it. We loop through all of them and call close without assuming that
+      // they'll be removed from the list instantaneously.
+      dialogs[i].close();
     }
   }
 }
