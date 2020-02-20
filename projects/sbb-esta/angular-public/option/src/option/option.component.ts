@@ -290,11 +290,9 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
         text = text.substring(match.index);
       }
 
-      // TODO: Check whether span.highlight should be replaced with strong
-      const span = doc.createElement('span');
-      span.classList.add('highlight');
-      span.textContent = match[0];
-      nodes.push(span);
+      const strong = doc.createElement('strong');
+      strong.textContent = match[0];
+      nodes.push(strong);
       text = text.substring(match[0].length);
     } while (match);
 

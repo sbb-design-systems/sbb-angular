@@ -111,11 +111,7 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
     }
   }
 
-  .highlight {
-    font-family: $autocompleteHighlightTextBold;
-  }
-
-  &:not(.sbb-active) .highlight {
+  &:not(.sbb-active) strong {
     color: $autocompleteHoverColor;
   }
 
@@ -133,8 +129,8 @@ $autocompletePadding: $autocompletePaddingTop $autocompletePaddingX $autocomplet
 
   &:hover,
   &:focus,
-  &:hover .highlight,
-  &:focus .highlight {
+  &:hover strong,
+  &:focus strong {
     color: $autocompleteOptionHoverColor;
 
     &,
