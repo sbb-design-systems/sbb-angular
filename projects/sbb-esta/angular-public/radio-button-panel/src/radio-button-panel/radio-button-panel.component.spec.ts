@@ -3,6 +3,7 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
 import { configureTestSuite } from 'ng-bullet';
 
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
@@ -13,22 +14,14 @@ import { RadioButtonPanelComponent } from './radio-button-panel.component';
 @Component({
   selector: 'sbb-model-radio-button-panel-test',
   template: `
-    <sbb-radio-button-panel
-      [(ngModel)]="testValue"
-      inputId="test-option-1"
-      name="test-option"
-      value="1"
-    >
-      Test option selection 1
-    </sbb-radio-button-panel>
-    <sbb-radio-button-panel
-      [(ngModel)]="testValue"
-      inputId="test-option-2"
-      name="test-option"
-      value="2"
-    >
-      Test option selection 2
-    </sbb-radio-button-panel>
+    <sbb-radio-group [(ngModel)]="testValue">
+      <sbb-radio-button-panel value="1">
+        Test option selection 1
+      </sbb-radio-button-panel>
+      <sbb-radio-button-panel value="2">
+        Test option selection 2
+      </sbb-radio-button-panel>
+    </sbb-radio-group>
   `
 })
 class ModelOptionSelectionTestComponent {
@@ -68,7 +61,7 @@ describe('RadioButtonPanelComponent using mock component', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RadioButtonPanelModule],
+      imports: [FormsModule, RadioButtonPanelModule, ɵRadioButtonModule],
       declarations: [ModelOptionSelectionTestComponent]
     });
   });
@@ -121,7 +114,8 @@ describe('RadioButtonPanelComponent using mock component', () => {
 
     expect(opt1.checked).toBe(true);
 
-    opt2.checked = true;
+    const opt2Element = modelComponentFixture.debugElement.queryAll(By.css('label'))[1];
+    opt2Element.nativeElement.click();
     modelComponentFixture.detectChanges();
 
     await modelComponentFixture.whenStable();

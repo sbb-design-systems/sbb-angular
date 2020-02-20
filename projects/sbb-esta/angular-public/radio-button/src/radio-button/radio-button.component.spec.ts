@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
 import { configureTestSuite } from 'ng-bullet';
 
 import { RadioButtonComponent } from './radio-button.component';
@@ -11,12 +12,14 @@ import { RadioButtonComponent } from './radio-button.component';
 @Component({
   selector: 'sbb-model-radio-button-test',
   template: `
-    <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-1" name="test-radio" value="1">
-      Test radio button 1
-    </sbb-radio-button>
-    <sbb-radio-button [(ngModel)]="testValue" inputId="test-radio-2" name="test-radio" value="2">
-      Test radio button 2
-    </sbb-radio-button>
+    <sbb-radio-group name="test-radio" [(ngModel)]="testValue">
+      <sbb-radio-button value="1">
+        Test radio button 1
+      </sbb-radio-button>
+      <sbb-radio-button value="2">
+        Test radio button 2
+      </sbb-radio-button>
+    </sbb-radio-group>
   `
 })
 class ModelRadioButtonTestComponent {
@@ -58,7 +61,7 @@ describe('RadioButtonComponent using mock component', () => {
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule],
+      imports: [CommonModule, FormsModule, ɵRadioButtonModule],
       declarations: [RadioButtonComponent, ModelRadioButtonTestComponent]
     }).overrideComponent(RadioButtonComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
@@ -87,9 +90,7 @@ describe('RadioButtonComponent using mock component', () => {
   });
 
   it('should check the radio button when click the label', () => {
-    const radiobuttonLabel = modelComponentFixture.debugElement.query(
-      By.css('label[for="test-radio-1"]')
-    );
+    const radiobuttonLabel = modelComponentFixture.debugElement.query(By.css('label'));
     expect(radiobuttonLabel).toBeTruthy();
 
     radiobuttonLabel.nativeElement.click();
