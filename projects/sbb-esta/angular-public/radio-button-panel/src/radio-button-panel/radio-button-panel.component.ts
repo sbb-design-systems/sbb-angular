@@ -12,9 +12,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
-import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
 
-// TODO: Inherit directly from RadioButton
 @Component({
   selector: 'sbb-radio-button-panel',
   templateUrl: './radio-button-panel.component.html',
@@ -31,7 +29,7 @@ import { RadioButtonComponent } from '@sbb-esta/angular-public/radio-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class RadioButtonPanelComponent extends RadioButtonComponent {
+export class RadioButtonPanelComponent extends RadioButton {
   /** Label of a radio button panel. */
   @Input()
   label: string;
