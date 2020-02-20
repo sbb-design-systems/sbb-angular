@@ -741,7 +741,6 @@ export class SelectComponent extends SbbSelectMixinBase
     if (this._multiple) {
       const selectedOptions = this.selectionModel.selected.map(option => option.viewValue);
 
-      // TODO(crisbeto): delimiter should be configurable for proper localization.
       return selectedOptions.join(', ');
     }
 
