@@ -14,17 +14,15 @@ $dialog-footer-height-tablet: 52;
 $dialog-header-height: 52;
 
 @mixin dialogContentHeight($mode: default) {
-  perfect-scrollbar {
-    @if ($mode == default) {
-      max-height: 100vh;
-    } @else if ($mode == withHeader) {
-      max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset(withHeader))});
-    } @else {
-      max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, mobile))});
+  @if ($mode == default) {
+    max-height: 100vh;
+  } @else if ($mode == withHeader) {
+    max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset(withHeader))});
+  } @else {
+    max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, mobile))});
 
-      @include mq($from: tabletPortrait) {
-        max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, tabletPortrait))});
-      }
+    @include mq($from: tabletPortrait) {
+      max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, tabletPortrait))});
     }
   }
 }

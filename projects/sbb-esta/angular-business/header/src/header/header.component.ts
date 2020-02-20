@@ -27,7 +27,6 @@ import {
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Breakpoints } from '@sbb-esta/angular-core/breakpoints';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 import { fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, take, takeUntil } from 'rxjs/operators';
 
@@ -155,8 +154,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /** @docs-private */
-  @ViewChild(PerfectScrollbarComponent, { static: true }) _menu: PerfectScrollbarComponent;
-  /** @docs-private */
   @ViewChild('menu', { static: true }) _menuElement: ElementRef<HTMLElement>;
   /** @docs-private */
   @ViewChild(CdkPortal) _navigationPortal;
@@ -244,9 +241,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this._focusTrap = this._focusTrapFactory.create(
-      this._menu.directiveRef.elementRef.nativeElement
-    );
+    this._focusTrap = this._focusTrapFactory.create(this._menuElement.nativeElement);
     this._updateFocusTrapState();
     this._breakpointObserver
       .observe(Breakpoints.DesktopAndAbove)
@@ -360,11 +355,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this._focusTrap.focusInitialElementWhenReady().then(hasMovedFocus => {
       // If there were no focusable elements, focus the sidenav itself so the keyboard navigation
       // still works. We need to check that `focus` is a function due to Universal.
-      if (
-        !hasMovedFocus &&
-        typeof this._menu.directiveRef.elementRef.nativeElement.focus === 'function'
-      ) {
-        this._menu.directiveRef.elementRef.nativeElement.focus();
+      if (!hasMovedFocus && typeof this._menuElement.nativeElement.focus === 'function') {
+        this._menuElement.nativeElement.focus();
       }
     });
   }
@@ -376,11 +368,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   private _restoreFocus() {
     const activeEl = this._doc && this._doc.activeElement;
 
-    if (activeEl && this._menu.directiveRef.elementRef.nativeElement.contains(activeEl)) {
+    if (activeEl && this._menuElement.nativeElement.contains(activeEl)) {
       if (this._elementFocusedBeforeMenuWasOpened instanceof HTMLElement) {
         this._focusMonitor.focusVia(this._elementFocusedBeforeMenuWasOpened, this._openedVia);
       } else {
-        this._menu.directiveRef.elementRef.nativeElement.blur();
+        this._menuElement.nativeElement.blur();
       }
     }
 

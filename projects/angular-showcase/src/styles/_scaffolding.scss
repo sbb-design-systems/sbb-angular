@@ -70,10 +70,6 @@ body {
   }
 }
 
-perfect-scrollbar.sbbsc-perfect-scrollbar {
-  max-height: calc(100vh - #{$headerHeight});
-}
-
 .sbbsc-content-section-left,
 .sbbsc-nav {
   @include mq($from: tabletLandscape) {

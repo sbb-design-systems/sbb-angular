@@ -19,7 +19,6 @@ $tableCaptionColor: $sbbColorGrey;
 }
 
 @mixin table {
-  table-layout: fixed;
   border-spacing: 0;
   background-color: $tableBg;
   padding-bottom: pxToEm(16);

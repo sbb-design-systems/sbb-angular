@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
 
 import { DialogCloseDirective } from './dialog/dialog-close.directive';
@@ -13,7 +12,7 @@ import { DialogHeaderComponent } from './dialog/dialog-header/dialog-header.comp
 import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from './dialog/dialog.service';
 
 @NgModule({
-  imports: [CommonModule, IconCrossModule, OverlayModule, PortalModule, ScrollingModule],
+  imports: [CommonModule, IconCrossModule, OverlayModule, PortalModule],
   exports: [
     DialogContainerComponent,
     DialogCloseDirective,

@@ -10,6 +10,7 @@
   transition: all 0.3s ease;
   z-index: 998;
   margin-top: 54px;
+  padding-top: 1rem;
 }
 
 :host ::ng-deep *:not(li) > ul {

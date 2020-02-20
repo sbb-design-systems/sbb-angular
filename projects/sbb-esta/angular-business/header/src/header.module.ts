@@ -2,7 +2,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
-import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import {
   IconChevronSmallDownModule,
   IconChevronSmallLeftModule,
@@ -29,8 +28,7 @@ import { HeaderComponent } from './header/header.component';
     IconChevronSmallDownModule,
     IconChevronSmallLeftModule,
     IconChevronSmallUpModule,
-    DropdownModule,
-    ScrollingModule
+    DropdownModule
   ],
   declarations: [
     HeaderComponent,

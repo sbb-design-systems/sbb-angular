@@ -51,34 +51,32 @@
   [@menu]="_animationState"
   (@menu.start)="_animationStartListener($event)"
   (@menu.done)="_animationDoneListener($event)"
-  class="sbb-header-side-menu"
+  class="sbb-header-side-menu sbb-scrollbar"
   #menu
 >
-  <perfect-scrollbar>
-    <div class="sbb-header-side-menu-title-section">
-      <button
-        type="button"
-        class="sbb-header-close-menu"
-        (click)="closeMenu()"
-        (keydown)="_closeOnKeydownTrigger($event)"
-        aria-label-i18n="@@sbbHeaderCloseMenu"
-        aria-label="Close Menu"
-      >
-        <sbb-icon-cross></sbb-icon-cross>
-      </button>
+  <div class="sbb-header-side-menu-title-section">
+    <button
+      type="button"
+      class="sbb-header-close-menu"
+      (click)="closeMenu()"
+      (keydown)="_closeOnKeydownTrigger($event)"
+      aria-label-i18n="@@sbbHeaderCloseMenu"
+      aria-label="Close Menu"
+    >
+      <sbb-icon-cross></sbb-icon-cross>
+    </button>
 
-      <div class="sbb-header-titlebox">
-        <span>{{ label }}</span>
-        <span *ngIf="subtitle">{{ subtitle }}</span>
-      </div>
+    <div class="sbb-header-titlebox">
+      <span>{{ label }}</span>
+      <span *ngIf="subtitle">{{ subtitle }}</span>
     </div>
+  </div>
 
-    <nav>
-      <ng-template cdkPortalOutlet #sideMenuOutlet="cdkPortalOutlet"></ng-template>
-    </nav>
+  <nav>
+    <ng-template cdkPortalOutlet #sideMenuOutlet="cdkPortalOutlet"></ng-template>
+  </nav>
 
-    <ng-content select="sbb-app-chooser-section"></ng-content>
-  </perfect-scrollbar>
+  <ng-content select="sbb-app-chooser-section"></ng-content>
 </div>
 <ng-content select="sbb-header-menu"></ng-content>
 

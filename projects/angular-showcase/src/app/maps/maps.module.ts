@@ -1,5 +1,4 @@
 import { PortalModule } from '@angular/cdk/portal';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { EsriConfigModule } from '@sbb-esta/angular-maps';
@@ -16,7 +15,6 @@ import { MapsComponent } from './maps/maps.component';
     EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
     CommonModule,
     MapsRoutingModule,
-    ScrollingModule,
     PortalModule,
     MapsExamplesModule,
     SharedModule

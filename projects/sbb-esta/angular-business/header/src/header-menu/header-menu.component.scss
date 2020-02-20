@@ -69,7 +69,7 @@ button.sbb-header-menu-back {
   padding-left: 15px;
 }
 
-:host > perfect-scrollbar ::ng-deep .sbb-header-menu-panel {
+:host > div.sbb-scrollbar ::ng-deep .sbb-header-menu-panel {
   display: flex;
   flex-direction: column;
   padding: 15px;

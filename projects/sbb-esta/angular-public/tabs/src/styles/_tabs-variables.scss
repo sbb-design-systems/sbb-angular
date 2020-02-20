@@ -1,9 +1,0 @@
-@import '../../../../angular-core/styles/common/variants';
-
-$tabsHoverColor: $sbbColorRed125;
-$tabsFontSize: 20;
-
-@if $sbbBusiness {
-  $tabsHoverColor: $sbbColorRed125;
-  $tabsFontSize: 15;
-}

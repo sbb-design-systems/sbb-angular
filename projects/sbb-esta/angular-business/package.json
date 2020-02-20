@@ -22,7 +22,6 @@
     "@sbb-esta/angular-icons": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
-    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER",
-    "ngx-perfect-scrollbar": "^8.0.0"
+    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER"
   }
 }

@@ -3,7 +3,8 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  QueryList
+  QueryList,
+  ViewEncapsulation
 } from '@angular/core';
 import { ProcessflowBase } from '@sbb-esta/angular-core/base';
 
@@ -13,6 +14,7 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
   selector: 'sbb-processflow',
   templateUrl: './processflow.component.html',
   styleUrls: ['./processflow.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent> {

@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -13,17 +6,17 @@ import { HtmlLoader } from '../html-loader.service';
 
 @Component({
   selector: 'sbb-markdown-viewer',
-  templateUrl: './markdown-viewer.component.html',
+  template: '',
   styleUrls: ['./markdown-viewer.component.scss']
 })
 export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('content', { static: true, read: ElementRef }) content: ElementRef<any>;
   private _destroyed = new Subject<void>();
 
   constructor(
     private _htmlLoader: HtmlLoader,
     private _route: ActivatedRoute,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _elementRef: ElementRef<HTMLElement>
   ) {}
 
   ngAfterViewInit(): void {
@@ -31,10 +24,11 @@ export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
       .with(this._route, this._renderer)
       .until(this._destroyed)
       .fromDocumentation()
-      .applyTo(this.content);
+      .applyTo(this._elementRef);
   }
 
   ngOnDestroy(): void {
     this._destroyed.next();
+    this._destroyed.complete();
   }
 }

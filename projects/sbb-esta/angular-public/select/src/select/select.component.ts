@@ -63,7 +63,6 @@ import {
   SBB_OPTION_PARENT_COMPONENT,
   SBBOptionSelectionChange
 } from '@sbb-esta/angular-public/option';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';
 
@@ -237,13 +236,10 @@ export class SelectComponent extends SbbSelectMixinBase
   @HostBinding('class.sbb-select') cssClass = true;
 
   /** Trigger that opens the select. */
-  @ViewChild('trigger', { static: true }) trigger: ElementRef;
+  @ViewChild('trigger', { static: true }) trigger: ElementRef<HTMLElement>;
 
   /** Panel containing the select options. */
-  @ViewChild('panel') panel: ElementRef;
-
-  /** Panel containing the select options. */
-  @ViewChild('scrollbar') perfectScrollbar: PerfectScrollbarComponent;
+  @ViewChild('panel') panel: ElementRef<HTMLElement>;
 
   /** Overlay pane containing the options. */
   @ViewChild(CdkConnectedOverlay, { static: true }) overlayDir: CdkConnectedOverlay;
@@ -1077,15 +1073,12 @@ export class SelectComponent extends SbbSelectMixinBase
       this.optionGroups
     );
 
-    const optionScrollPosition = getOptionScrollPosition(
+    this.panel.nativeElement.scrollTop = getOptionScrollPosition(
       activeOptionIndex + labelCount,
       this._getItemHeight(),
       this.panel.nativeElement.scrollTop,
       SELECT_PANEL_MAX_HEIGHT
     );
-
-    this.perfectScrollbar.directiveRef.scrollToY(optionScrollPosition);
-    this.perfectScrollbar.directiveRef.update();
   }
 
   /** Calculates the height of the select's options. */

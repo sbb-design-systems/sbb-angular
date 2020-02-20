@@ -163,16 +163,13 @@ export class LightboxTitleDirective implements OnInit {
  */
 @Component({
   selector: `sbb-lightbox-content, [sbbLightboxContent]`,
-  template: `
-    <perfect-scrollbar>
-      <ng-content></ng-content>
-    </perfect-scrollbar>
-  `,
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxContentComponent {
   /** Class attribute for lightbox content */
   @HostBinding('class.sbb-lightbox-content')
+  @HostBinding('class.sbb-scrollbar')
   lightboxContentClass = true;
 }
 
@@ -182,11 +179,7 @@ export class LightboxContentComponent {
  */
 @Component({
   selector: `sbb-lightbox-footer, [sbbLightboxFooter]`,
-  template: `
-    <perfect-scrollbar>
-      <ng-content select="button"></ng-content>
-    </perfect-scrollbar>
-  `,
+  template: '<ng-content select="button"></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LightboxFooterComponent implements OnInit {

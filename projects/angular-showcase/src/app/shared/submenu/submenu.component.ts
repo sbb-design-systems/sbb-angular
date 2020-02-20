@@ -6,5 +6,6 @@ import { Component, HostBinding } from '@angular/core';
   styleUrls: ['./submenu.component.scss']
 })
 export class SubmenuComponent {
+  @HostBinding('class.sbb-scrollbar') scrollbar = true;
   @HostBinding('attr.role') role = 'navigation';
 }
