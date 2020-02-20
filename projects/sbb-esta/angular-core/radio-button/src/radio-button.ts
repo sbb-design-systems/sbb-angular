@@ -15,7 +15,6 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
 import { HasTabIndexCtor, mixinTabIndex } from '@sbb-esta/angular-core/common-behaviors';
 
 import { RadioGroup } from './radio-group';
@@ -46,7 +45,7 @@ let nextUniqueId = 0;
 
 @Directive()
 export abstract class RadioButton extends _RadioButtonMixinBase
-  implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy {
   private _uniqueId = `sbb-radio-button-${++nextUniqueId}`;
 
   /** The id of this component. */
@@ -97,9 +96,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
       if (newCheckedState) {
         // Notify all radio buttons with the same name to un-check.
         this._radioDispatcher.notify(this.id, this.name);
-        // TODO: Remove this after dropping support for form
-        // control on radio button (instead of radio group).
-        this.onChange(this.value);
       }
       this._changeDetector.markForCheck();
     }
@@ -148,12 +144,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   }
 
   /**
-   * Indicates radio button name in formControl.
-   * @deprecated
-   */
-  @Input() formControlName: string;
-
-  /**
    * Event emitted when the checked state of this radio button changes.
    * Change events are only emitted when the value changes due to user interaction with
    * the radio button (the same behavior as `<input type-"radio">`).
@@ -170,19 +160,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
 
   /** Unregister function for _radioDispatcher */
   private _removeUniqueSelectionListener: () => void = () => {};
-
-  /**
-   * Class property that represents a change on the radio button
-   * @docs-private
-   * @deprecated
-   */
-  onChange = (_: any) => {};
-  /**
-   * Class property that represents a touch on the radio button
-   * @docs-private
-   * @deprecated
-   */
-  onTouched = () => {};
 
   constructor(
     readonly radioGroup: RadioGroup,
@@ -228,23 +205,16 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   }
 
   ngOnInit(): void {
-    if (this.radioGroup && this.formControlName) {
-      throw new Error('The form control should be applied to the sbb-radio-group');
-    } else if (this.radioGroup) {
+    if (this.radioGroup) {
       // If the radio is inside a radio group, determine if it should be checked
       this.checked = this.radioGroup.value === this._value;
       // Copy name from parent radio group
       this.name = this.radioGroup.name;
-    } else {
-      this._checkName();
     }
   }
 
   ngAfterViewInit() {
     this._focusMonitor.monitor(this._elementRef, true).subscribe(focusOrigin => {
-      if (!focusOrigin) {
-        this.onTouched();
-      }
       if (!focusOrigin && this.radioGroup) {
         this.radioGroup._touch();
       }
@@ -254,32 +224,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   ngOnDestroy(): void {
     this._focusMonitor.stopMonitoring(this._elementRef);
     this._removeUniqueSelectionListener();
-  }
-
-  /**
-   * @docs-private
-   * @deprecated
-   */
-  writeValue(value: any): void {
-    this.checked = this.value === value;
-  }
-
-  /**
-   * Registers the on change callback
-   * @docs-private
-   * @deprecated
-   */
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  /**
-   * Registers the on touched callback
-   * @docs-private
-   * @deprecated
-   */
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
   }
 
   /** @docs-private */
@@ -315,27 +259,6 @@ export abstract class RadioButton extends _RadioButtonMixinBase
         this.radioGroup._emitChangeEvent();
       }
     }
-  }
-
-  /**
-   * Verify that radio button name matches with radio button form control name
-   */
-  private _checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this._throwNameError();
-    } else if (!this.name && this.formControlName) {
-      this.name = this.formControlName;
-    }
-  }
-
-  /**
-   * Throws an exception if the radio button name doesn't match with the radio button form control name
-   */
-  private _throwNameError(): void {
-    throw new Error(`
-    If you define both a name and a formControlName attribute on your radio button, their values
-    must match. Ex: <sbb-radio-button formControlName="food" name="food"></sbb-radio-button>
-  `);
   }
 
   /** Dispatch change event with current value. */
