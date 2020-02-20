@@ -24,5 +24,16 @@
   "dependencies": {
     "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER",
     "@types/grecaptcha": "^2.0.36"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@sbb-esta/angular-business",
+      "@sbb-esta/angular-core",
+      "@sbb-esta/angular-icons",
+      "@sbb-esta/angular-keycloak",
+      "@sbb-esta/angular-maps",
+      "@sbb-esta/angular-public"
+    ],
+    "packageGroupName": "@sbb-esta/angular-core"
   }
 }

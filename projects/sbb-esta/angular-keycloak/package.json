@@ -17,5 +17,16 @@
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
     "keycloak-js": "^3.4.3"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@sbb-esta/angular-business",
+      "@sbb-esta/angular-core",
+      "@sbb-esta/angular-icons",
+      "@sbb-esta/angular-keycloak",
+      "@sbb-esta/angular-maps",
+      "@sbb-esta/angular-public"
+    ],
+    "packageGroupName": "@sbb-esta/angular-core"
   }
 }
