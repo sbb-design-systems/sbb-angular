@@ -885,7 +885,7 @@ describe('SelectComponent', () => {
 
           expect(formControl.value).toBeFalsy('Expected no initial value.');
 
-          fixture.componentInstance.select.open();
+          fixture.componentInstance.select.openSelect();
           fixture.detectChanges();
           flush();
 
@@ -934,7 +934,7 @@ describe('SelectComponent', () => {
         it('should close when pressing ALT + DOWN_ARROW', () => {
           const { select: selectInstance } = fixture.componentInstance;
 
-          selectInstance.open();
+          selectInstance.openSelect();
           fixture.detectChanges();
 
           expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
@@ -950,7 +950,7 @@ describe('SelectComponent', () => {
         it('should close when pressing ALT + UP_ARROW', () => {
           const { select: selectInstance } = fixture.componentInstance;
 
-          selectInstance.open();
+          selectInstance.openSelect();
           fixture.detectChanges();
 
           expect(selectInstance.panelOpen).toBe(true, 'Expected select to be open.');
@@ -1080,7 +1080,7 @@ describe('SelectComponent', () => {
             const multiFixture = TestBed.createComponent(MultiSelectComponent);
             multiFixture.detectChanges();
             select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
-            multiFixture.componentInstance.select.open();
+            multiFixture.componentInstance.select.openSelect();
             multiFixture.detectChanges();
 
             const options = overlayContainerElement.querySelectorAll('sbb-option') as NodeListOf<
@@ -1159,7 +1159,7 @@ describe('SelectComponent', () => {
           multiFixture.detectChanges();
           select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
 
-          multiFixture.componentInstance.select.open();
+          multiFixture.componentInstance.select.openSelect();
           multiFixture.detectChanges();
 
           expect(multiFixture.componentInstance.select.value).toBeFalsy();
@@ -1185,7 +1185,7 @@ describe('SelectComponent', () => {
           multiFixture.detectChanges();
           select = multiFixture.debugElement.query(By.css('sbb-select')).nativeElement;
 
-          multiFixture.componentInstance.select.open();
+          multiFixture.componentInstance.select.openSelect();
           multiFixture.detectChanges();
 
           // Move focus down first.
@@ -1346,7 +1346,7 @@ describe('SelectComponent', () => {
       it('should not throw when attempting to open too early', () => {
         // Create component and then immediately open without running change detection
         fixture = TestBed.createComponent(BasicSelectComponent);
-        expect(() => fixture.componentInstance.select.open()).not.toThrow();
+        expect(() => fixture.componentInstance.select.openSelect()).not.toThrow();
       });
 
       it('should open the panel when trigger is clicked', () => {
@@ -1523,7 +1523,7 @@ describe('SelectComponent', () => {
 
           expect(selectInstance.focused).toBe(true, 'Expected select to be focused.');
 
-          selectInstance.open();
+          selectInstance.openSelect();
           fixture.detectChanges();
           flush();
           dispatchFakeEvent(selectElement, 'blur');
@@ -3031,7 +3031,7 @@ describe('SelectComponent', () => {
       expect(testInstance.control.value).toBeFalsy();
       expect(options.every(option => option.selected)).toBe(false);
 
-      fixture.componentInstance.select.open();
+      fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
@@ -3062,7 +3062,7 @@ describe('SelectComponent', () => {
 
       expect(testInstance.control.value).toBeFalsy();
 
-      fixture.componentInstance.select.open();
+      fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
@@ -3089,7 +3089,7 @@ describe('SelectComponent', () => {
       expect(testInstance.control.value).toEqual(['steak-0']);
       expect(options.some(option => option.selected)).toBe(true);
 
-      fixture.componentInstance.select.open();
+      fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
       const event = createKeyboardEvent('keydown', A, selectElement);
@@ -3129,7 +3129,7 @@ describe('SelectComponent', () => {
       ]);
       expect(options.every(option => option.selected)).toBe(true);
 
-      fixture.componentInstance.select.open();
+      fixture.componentInstance.select.openSelect();
       fixture.detectChanges();
       flush();
       const event = createKeyboardEvent('keydown', A, selectElement);

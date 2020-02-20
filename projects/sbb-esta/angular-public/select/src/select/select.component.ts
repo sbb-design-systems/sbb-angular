@@ -627,11 +627,19 @@ export class SelectComponent extends SbbSelectMixinBase
 
   /** Toggles the overlay panel open or closed. */
   toggle(): void {
-    this.panelOpen ? this.close() : this.open();
+    this.panelOpen ? this.close() : this.openSelect();
+  }
+
+  /**
+   * Opens the overlay panel
+   * @deprecated use openSelect() instead
+   */
+  open(): void {
+    this.openSelect();
   }
 
   /** Opens the overlay panel. */
-  open(): void {
+  openSelect(): void {
     if (this.disabled || !this.options || !this.options.length || this._panelOpen) {
       return;
     }
@@ -765,7 +773,7 @@ export class SelectComponent extends SbbSelectMixinBase
     // Open the select on ALT + arrow key to match the native <select>
     if (isOpenKey || ((this.multiple || event.altKey) && isArrowKey)) {
       event.preventDefault(); // prevents the page from scrolling down when pressing space
-      this.open();
+      this.openSelect();
     } else if (!this.multiple) {
       this.keyManager.onKeydown(event);
     }
