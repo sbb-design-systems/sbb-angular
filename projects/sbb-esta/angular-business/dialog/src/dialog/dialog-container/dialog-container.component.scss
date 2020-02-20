@@ -29,10 +29,7 @@ sbb-dialog-container {
     border-right: 1px solid $sbbColorGranite;
     flex: 1 1 auto;
     overflow: auto;
-
-    perfect-scrollbar {
-      max-height: 100vh;
-    }
+    max-height: 100vh;
   }
 
   &.sbb-dialog-with-header {

@@ -24,6 +24,8 @@
 <ng-template
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayFlexibleDimensions
+  [cdkConnectedOverlayMinHeight]="30"
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
   [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
@@ -38,14 +40,12 @@
 >
   <div
     #panel
-    class="sbb-select-panel"
+    class="sbb-select-panel sbb-select-content sbb-scrollbar"
     [ngClass]="panelClass"
     [style.transformOrigin]="transformOrigin"
     [style.font-size.px]="triggerFontSize"
     (keydown)="handleKeydown($event)"
   >
-    <perfect-scrollbar #scrollbar class="sbb-select-content">
-      <ng-content></ng-content>
-    </perfect-scrollbar>
+    <ng-content></ng-content>
   </div>
 </ng-template>

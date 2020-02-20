@@ -1,7 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 import { BadgeModule } from '@sbb-esta/angular-public/badge';
@@ -49,7 +48,7 @@ describe('TabsComponent', () => {
   configureTestSuite(() => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent, TabsComponent, TabComponent],
-      imports: [ScrollingModule, BadgeModule]
+      imports: [BadgeModule]
     });
   });
 

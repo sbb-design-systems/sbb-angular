@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   HostBinding,
   Input,
   NgZone,
@@ -11,9 +12,8 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
-import { merge, Subject } from 'rxjs';
-import { distinctUntilChanged, mapTo, takeUntil } from 'rxjs/operators';
+import { fromEvent, Subject } from 'rxjs';
+import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
 const stickySupported =
   typeof CSS !== 'undefined' &&
@@ -58,15 +58,17 @@ export class TableComponent implements OnChanges, OnDestroy {
   private _tableClass: string;
 
   /** @docs-private */
-  @ViewChild(PerfectScrollbarComponent, { static: true })
-  _perfectScrollbar: PerfectScrollbarComponent;
-
-  /** @docs-private */
   @HostBinding('class.sbb-table-is-scrolling') _scrolling = false;
   /** @docs-private */
   @HostBinding('class.sbb-table-is-pinned') get _pinned() {
     return this.pinMode === 'on';
   }
+
+  /**
+   * Reference to the scroll container of the table.
+   * @docs-private
+   */
+  @ViewChild('scrollContainer', { static: true }) _scrollContainer: ElementRef<HTMLElement>;
 
   private _scrollListener = new Subject();
 
@@ -81,20 +83,21 @@ export class TableComponent implements OnChanges, OnDestroy {
       (changes.pinMode.firstChange ||
         changes.pinMode.previousValue !== changes.pinMode.currentValue)
     ) {
-      merge(
-        this._perfectScrollbar.psXReachStart.pipe(mapTo(false)),
-        this._perfectScrollbar.psScrollRight.pipe(mapTo(true))
-      )
-        .pipe(
-          takeUntil(this._scrollListener),
-          distinctUntilChanged()
-        )
-        .subscribe(v =>
-          this._zone.run(() => {
-            this._scrolling = v;
-            this._changeDetectorRef.markForCheck();
-          })
-        );
+      this._zone.runOutsideAngular(() =>
+        fromEvent(this._scrollContainer.nativeElement, 'scroll')
+          .pipe(
+            startWith(null),
+            takeUntil(this._scrollListener),
+            map(() => this._scrollContainer.nativeElement.scrollLeft > 0),
+            distinctUntilChanged()
+          )
+          .subscribe(v =>
+            this._zone.run(() => {
+              this._scrolling = v;
+              this._changeDetectorRef.markForCheck();
+            })
+          )
+      );
     } else if (
       changes.pinMode &&
       changes.pinMode.currentValue === 'off' &&

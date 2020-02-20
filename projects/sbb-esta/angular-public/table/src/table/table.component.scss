@@ -11,8 +11,15 @@ $tableCaptionColor: $sbbColorGrey;
 
 sbb-table {
   .sbb-table-container {
-    .sbb-table-wrapper .sbb-table {
-      border: pxToEm(1) solid $tableBorderColor;
+    .sbb-table-wrapper {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+
+      .sbb-table {
+        width: 100%;
+        border: pxToEm(1) solid $tableBorderColor;
+      }
     }
 
     .sbb-table-caption {

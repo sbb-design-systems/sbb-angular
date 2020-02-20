@@ -1,12 +1,7 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/sbb-esta/angular-public",
-  "whitelistedNonPeerDependencies": [
-    "tslib",
-    "@sbb-esta/angular-core",
-    "ngx-perfect-scrollbar",
-    "@types/grecaptcha"
-  ],
+  "whitelistedNonPeerDependencies": ["tslib", "@sbb-esta/angular-core", "@types/grecaptcha"],
   "lib": {
     "entryFile": "public-api.ts",
     "umdModuleIds": {
@@ -19,8 +14,7 @@
       "@sbb-esta/angular-core/forms": "sbbAngularCoreForms",
       "@sbb-esta/angular-core/icon-directive": "sbbAngularCoreIconDirective",
       "@sbb-esta/angular-core/models": "sbbAngularCoreModels",
-      "@sbb-esta/angular-icons": "sbbAngularIcons",
-      "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
+      "@sbb-esta/angular-icons": "sbbAngularIcons"
     }
   }
 }

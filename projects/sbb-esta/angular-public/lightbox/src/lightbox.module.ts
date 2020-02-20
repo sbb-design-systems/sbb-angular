@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ScrollingModule } from '@sbb-esta/angular-core/scrolling';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
 
 import { LightboxContainerComponent } from './lightbox/lightbox-container.component';
@@ -16,7 +15,7 @@ import {
 import { Lightbox, LIGHTBOX_SCROLL_STRATEGY_PROVIDER } from './lightbox/lightbox.service';
 
 @NgModule({
-  imports: [CommonModule, IconCrossModule, OverlayModule, PortalModule, ScrollingModule],
+  imports: [CommonModule, IconCrossModule, OverlayModule, PortalModule],
   exports: [
     LightboxContainerComponent,
     LightboxCloseDirective,

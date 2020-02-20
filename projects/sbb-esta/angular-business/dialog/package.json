@@ -11,8 +11,7 @@
         "@sbb-esta/angular-core/forms": "sbbAngularCoreForms",
         "@sbb-esta/angular-core/icon-directive": "sbbAngularCoreIconDirective",
         "@sbb-esta/angular-core/models": "sbbAngularCoreModels",
-        "@sbb-esta/angular-icons": "sbbAngularIcons",
-        "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
+        "@sbb-esta/angular-icons": "sbbAngularIcons"
       }
     }
   }

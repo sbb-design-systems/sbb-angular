@@ -8,9 +8,9 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
   styleUrls: ['./dialog-content.component.scss'],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <perfect-scrollbar class="sbb-dialog-content-scrollbar">
+    <div class="sbb-dialog-content-scrollbar">
       <ng-content></ng-content>
-    </perfect-scrollbar>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

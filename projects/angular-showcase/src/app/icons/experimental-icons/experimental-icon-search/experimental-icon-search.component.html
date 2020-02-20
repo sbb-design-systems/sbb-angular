@@ -1,57 +1,53 @@
-<perfect-scrollbar>
-  <article>
-    <h1>Experimental Icon Search</h1>
+<h1>Experimental Icon Search</h1>
 
-    <p>
-      These are the new experimental icons. Each icon module consists of an attribute selector
-      component and an element selector component (e.g. <code>svg[sbbIconArrowRightSmall]</code> and
-      <code>sbb-icon-arrow-right-small</code>, which can be used as
-      <code>&lt;svg sbbIconArrowRightSmall>&lt;/svg></code> and
-      <code>&lt;sbb-icon-arrow-right-small>&lt;/sbb-icon-arrow-right-small></code> respectively).
-    </p>
+<p>
+  These are the new experimental icons. Each icon module consists of an attribute selector component
+  and an element selector component (e.g. <code>svg[sbbIconArrowRightSmall]</code> and
+  <code>sbb-icon-arrow-right-small</code>, which can be used as
+  <code>&lt;svg sbbIconArrowRightSmall>&lt;/svg></code> and
+  <code>&lt;sbb-icon-arrow-right-small>&lt;/sbb-icon-arrow-right-small></code> respectively).
+</p>
 
-    <form [formGroup]="form">
-      <sbb-search formControlName="filter" placeholder="Filter icons"></sbb-search>
-      <sbb-checkbox-panel
-        formControlName="color"
-        label="Inherit color in icons"
-        subtitle="Adding the css class sbb-icon-inherit-color to the icon or an ancester will have the icon inherit the color style (Hover over the icons when active)"
-      ></sbb-checkbox-panel>
-      <sbb-checkbox-panel
-        formControlName="fixed"
-        label="Fix the icon size"
-        subtitle="Adding the css class sbb-icon-fixed-size to the icon or an ancester will fix the icon to its default size"
-      ></sbb-checkbox-panel>
-    </form>
+<form [formGroup]="form">
+  <sbb-search formControlName="filter" placeholder="Filter icons"></sbb-search>
+  <sbb-checkbox-panel
+    formControlName="color"
+    label="Inherit color in icons"
+    subtitle="Adding the css class sbb-icon-inherit-color to the icon or an ancester will have the icon inherit the color style (Hover over the icons when active)"
+  ></sbb-checkbox-panel>
+  <sbb-checkbox-panel
+    formControlName="fixed"
+    label="Fix the icon size"
+    subtitle="Adding the css class sbb-icon-fixed-size to the icon or an ancester will fix the icon to its default size"
+  ></sbb-checkbox-panel>
+</form>
 
-    <div
-      [class.sbb-icon-inherit-color]="form.value.color"
-      [class.sbb-icon-fixed-size]="form.value.fixed"
-    >
-      <div *ngFor="let icon of icons | async">
-        <h3>
-          <span>&lt;{{ icon.elementSelector }}&gt;</span>
-          <sbb-tooltip>
-            <dl class="icon-detail-list">
-              <dt>Attribute Selector</dt>
-              <dd>
-                <code>&lt;svg {{ icon.attributeSelector }}&gt;&lt;/svg&gt;</code>
-              </dd>
-              <dt>Element Selector</dt>
-              <dd>
-                <code>&lt;{{ icon.elementSelector }}&gt;&lt;/{{ icon.elementSelector }}&gt;</code>
-              </dd>
-              <dt>Import</dt>
-              <dd>
-                <code>import &#123; {{ icon.module }} &#125; from <br />'{{ icon.import }}';</code>
-              </dd>
-            </dl>
-          </sbb-tooltip>
-        </h3>
-        <div>
-          <ng-template [cdkPortalOutlet]="icon.portal"></ng-template>
-        </div>
-      </div>
+<div
+  [class.sbb-icon-inherit-color]="form.value.color"
+  [class.sbb-icon-fixed-size]="form.value.fixed"
+>
+  <div *ngFor="let icon of icons | async">
+    <h3>
+      <span>&lt;{{ icon.elementSelector }}&gt;</span>
+      <sbb-tooltip>
+        <dl class="icon-detail-list">
+          <dt>Attribute Selector</dt>
+          <dd>
+            <code>&lt;svg {{ icon.attributeSelector }}&gt;&lt;/svg&gt;</code>
+          </dd>
+          <dt>Element Selector</dt>
+          <dd>
+            <code>&lt;{{ icon.elementSelector }}&gt;&lt;/{{ icon.elementSelector }}&gt;</code>
+          </dd>
+          <dt>Import</dt>
+          <dd>
+            <code>import &#123; {{ icon.module }} &#125; from <br />'{{ icon.import }}';</code>
+          </dd>
+        </dl>
+      </sbb-tooltip>
+    </h3>
+    <div>
+      <ng-template [cdkPortalOutlet]="icon.portal"></ng-template>
     </div>
-  </article>
-</perfect-scrollbar>
+  </div>
+</div>

@@ -8,7 +8,8 @@ import {
   EventEmitter,
   Input,
   Output,
-  QueryList
+  QueryList,
+  ViewEncapsulation
 } from '@angular/core';
 import { ProcessflowBase, ProcessflowStep } from '@sbb-esta/angular-core/base';
 
@@ -18,6 +19,7 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
   selector: 'sbb-processflow',
   templateUrl: '../../../../angular-public/processflow/src/processflow/processflow.component.html',
   styleUrls: ['../../../../angular-public/processflow/src/processflow/processflow.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepComponent>

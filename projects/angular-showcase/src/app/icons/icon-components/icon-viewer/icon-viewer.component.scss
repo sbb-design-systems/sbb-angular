@@ -1,13 +1,12 @@
 :host {
   display: block;
-  height: calc(100vh - 48px);
   overflow-y: hidden;
   margin-left: 300px;
+  padding: 3rem;
 }
 
-article {
-  padding: 0 3rem;
-  padding-bottom: 3rem;
+h1 {
+  margin-top: 0;
 }
 
 code {

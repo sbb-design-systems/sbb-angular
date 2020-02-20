@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostBinding,
   OnDestroy,
   Renderer2,
   ViewChild

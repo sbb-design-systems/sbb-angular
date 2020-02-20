@@ -1,4 +1,4 @@
-<perfect-scrollbar class="sbb-tabs-scrollbar">
+<div class="sbb-tabs-scrollbar sbb-scrollbar">
   <ul class="sbb-tabs-tablist" role="tablist">
     <li
       *ngFor="let tab of tabs$ | async"
@@ -29,7 +29,7 @@
       </button>
     </li>
   </ul>
-</perfect-scrollbar>
+</div>
 <div class="sbb-tabs-content">
   <ng-content select="sbb-tab"></ng-content>
 </div>

@@ -7,6 +7,7 @@ import { merge, Observable } from 'rxjs';
 /**
  * Registers the scroll detection for the perfect scrollbar directive,
  * in order for the RepositionScrollStrategy to work correctly.
+ * @deprecated Use native scrollbar or css class .sbb-scrollbar instead.
  */
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -34,6 +35,7 @@ export class PsDirectiveScrollable extends CdkScrollable implements OnDestroy {
 /**
  * Registers the scroll detection for the perfect scrollbar component,
  * in order for the RepositionScrollStrategy to work correctly.
+ * @deprecated Use native scrollbar or css class .sbb-scrollbar instead.
  */
 @Directive({
   // tslint:disable-next-line: directive-selector

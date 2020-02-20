@@ -7,7 +7,7 @@ import { ExampleProvider } from '../../../shared/example-provider';
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
 @Component({
-  selector: 'sbb-component-viewer',
+  selector: 'sbb-business-component-viewer',
   templateUrl:
     '../../core-component-viewer/core-component-viewer/core-component-viewer.component.html',
   styleUrls: [
@@ -16,15 +16,4 @@ import { HtmlLoader } from '../../../shared/html-loader.service';
 })
 export class BusinessComponentViewerComponent extends ComponentViewerBase {
   @ViewChild(TabsComponent, { static: true }) tabs: TabsComponent;
-
-  @HostBinding('class.sbb-component-viewer-business') businessClass = true;
-
-  constructor(
-    htmlLoader: HtmlLoader,
-    exampleProvider: ExampleProvider,
-    route: ActivatedRoute,
-    renderer: Renderer2
-  ) {
-    super(htmlLoader, exampleProvider, route, renderer);
-  }
 }

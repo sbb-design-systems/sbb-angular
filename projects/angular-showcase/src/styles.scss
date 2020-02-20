@@ -2,6 +2,12 @@
 @import '~@angular/cdk/overlay';
 @import '../../sbb-esta/angular-core/styles/main';
 
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
 @include sbbFonts();
 @include reset();
 @include sbbLink();
@@ -14,7 +20,7 @@ sbb-core,
 sbb-icons {
   @import '../../sbb-esta/angular-public/styles';
   sbb-markdown-viewer,
-  sbb-component-viewer,
+  sbb-public-component-viewer,
   sbb-api-viewer,
   sbb-icon-search,
   sbb-icon-viewer,
@@ -32,7 +38,7 @@ sbb-icons {
 sbb-business {
   @import '../../sbb-esta/angular-business/styles';
   sbb-markdown-viewer,
-  sbb-component-viewer {
+  sbb-business-component-viewer {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;
@@ -43,54 +49,40 @@ sbb-business {
   }
 }
 
-body {
-  transition: all 0.3s ease;
-  overflow: hidden;
-  position: relative;
-  left: 0;
-  top: 54px;
-
-  &.home {
-    top: 0;
-  }
-}
-
 table {
   @include table();
   margin-top: 1rem;
 }
 
 sbb-markdown-viewer,
-sbb-component-viewer {
+sbb-public-component-viewer {
   pre {
     background-color: #efefef;
     padding: 1rem 3rem;
-  }
-
-  sbb-example-viewer pre {
-    padding: 1rem 24px;
+    margin: 1rem -3rem;
   }
 }
 
-.sbb-component-viewer {
-  &-public {
-    sbb-example-viewer pre {
-      margin: 1rem -24px;
-    }
+sbb-public-component-viewer sbb-example-viewer pre {
+  margin: 1rem -24px;
+}
 
-    pre {
-      margin: 1rem -3rem;
-    }
+sbb-business-component-viewer {
+  pre {
+    background-color: #efefef;
+    padding: 1rem 16px;
+    margin: 1rem -16px;
   }
 
-  &-business {
-    sbb-example-viewer pre {
-      margin: 1rem -16px;
-    }
+  sbb-example-viewer pre {
+    margin: 1rem -16px;
+  }
+}
 
-    pre {
-      margin: 1rem -16px;
-    }
+sbb-api-viewer,
+sbb-markdown-viewer {
+  > h1:first-child {
+    margin-top: 0;
   }
 }
 
@@ -152,13 +144,5 @@ pre code {
         background-color: transparent;
       }
     }
-  }
-}
-
-nav.menu.ps .ps__rail-y {
-  background-color: transparent;
-
-  .ps__thumb-y {
-    background-color: #fff;
   }
 }

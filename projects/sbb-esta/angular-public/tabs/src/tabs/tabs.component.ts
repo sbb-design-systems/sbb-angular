@@ -11,7 +11,9 @@ import {
   OnDestroy,
   Output,
   QueryList,
-  ViewChildren
+  ViewChildren,
+  ViewEncapsulation,
+  HostBinding
 } from '@angular/core';
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -24,9 +26,12 @@ let counter = 0;
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
+  /** @docs-private */
+  @HostBinding('class.sbb-tabs') _tabsClass = true;
   /** Class property that tracks tab number of the list */
   nameOfTabList = `sbb-tabs-${counter++}`;
   /** Index of tab list */

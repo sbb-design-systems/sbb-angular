@@ -1,19 +1,15 @@
-<perfect-scrollbar>
-  <article>
-    <sbb-tabs>
-      <sbb-tab label="Overview">
-        <div #overview></div>
-      </sbb-tab>
-      <sbb-tab label="API">
-        <div #api></div>
-      </sbb-tab>
-      <sbb-tab *ngIf="example | async as examplePortals" label="Examples">
-        <sbb-example-viewer
-          *ngFor="let entry of examplePortals"
-          [name]="entry.name"
-          [example]="entry.portal"
-        ></sbb-example-viewer>
-      </sbb-tab>
-    </sbb-tabs>
-  </article>
-</perfect-scrollbar>
+<sbb-tabs>
+  <sbb-tab label="Overview">
+    <div #overview></div>
+  </sbb-tab>
+  <sbb-tab label="API">
+    <div #api></div>
+  </sbb-tab>
+  <sbb-tab *ngIf="example | async as examplePortals" label="Examples">
+    <sbb-example-viewer
+      *ngFor="let entry of examplePortals"
+      [name]="entry.name"
+      [example]="entry.portal"
+    ></sbb-example-viewer>
+  </sbb-tab>
+</sbb-tabs>

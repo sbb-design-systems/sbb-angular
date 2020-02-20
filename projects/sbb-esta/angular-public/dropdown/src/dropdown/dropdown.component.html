@@ -1,5 +1,11 @@
 <ng-template>
-  <div class="sbb-dropdown-panel" role="listbox" [id]="id" [ngClass]="_classList" #panel>
+  <div
+    class="sbb-dropdown-panel sbb-scrollbar"
+    role="listbox"
+    [id]="id"
+    [ngClass]="_classList"
+    #panel
+  >
     <ng-content select="a, button, hr"></ng-content>
     <div class="sbb-dropdown-panel-mask" aria-hidden="true"></div>
   </div>
