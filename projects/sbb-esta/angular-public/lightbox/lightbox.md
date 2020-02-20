@@ -25,7 +25,7 @@ A dialog is opened by calling the `open` method and if you want to share data wi
 you can use the `data` option to pass information to the dialog component.
 
 ```ts
-const lightboxRef = this.lightbox.open(LightboxShowcaseExampleContentComponent, {
+const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExampleContentComponent, {
   data: { name: this.name, animal: this.animal }
 });
 ```
@@ -74,7 +74,7 @@ export class LightboxShowcaseExample3Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(this.sampleLightboxTemplate);
+    const lightboxRef = this.lightbox.openLightbox(this.sampleLightboxTemplate);
 
     lightboxRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -127,7 +127,7 @@ export class LightboxShowcaseExample3Component {
 export class LightboxShowcaseExample5Component {
   constructor(public lightbox: Lightbox) {}
   openDialog() {
-    const lightboxRef = this.lightbox.open(LightboxShowcaseExample5ContentComponent, {
+    const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExample5ContentComponent, {
       disableClose: true
     });
     lightboxRef.afterClosed().subscribe(() => {
@@ -145,7 +145,7 @@ export class LightboxShowcaseExample5ContentComponent implements OnInit {
   ) {}
   ngOnInit() {
     this._lightBoxRef.manualCloseAction.subscribe(() => {
-      this.lightbox.open(LightboxShowcaseExample6ContentComponent);
+      this.lightbox.openLightbox(LightboxShowcaseExample6ContentComponent);
     });
   }
 }

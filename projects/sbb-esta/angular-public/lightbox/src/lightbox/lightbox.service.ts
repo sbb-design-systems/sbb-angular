@@ -100,8 +100,23 @@ export class Lightbox {
    *     or a TemplateRef to instantiate as the lightbox content.
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened lightbox.
+   * @deprecated use openLightbox instead
    */
   open<T, D = any, R = any>(
+    componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
+    config?: LightboxConfig<D>
+  ): LightboxRef<T, R> {
+    return this.openLightbox(componentOrTemplateRef, config);
+  }
+
+  /**
+   * Opens a modal lightbox containing the given component.
+   * @param componentOrTemplateRef Type of the component to load into the lightbox,
+   *     or a TemplateRef to instantiate as the lightbox content.
+   * @param config Extra configuration options.
+   * @returns Reference to the newly-opened lightbox.
+   */
+  openLightbox<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: LightboxConfig<D>
   ): LightboxRef<T, R> {

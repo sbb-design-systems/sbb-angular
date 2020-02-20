@@ -58,7 +58,7 @@ export class LightboxShowcaseExampleComponent {
   constructor(public lightbox: Lightbox) {}
 
   openLightbox(): void {
-    const lightboxRef = this.lightbox.open(LightboxShowcaseExampleContentComponent, {
+    const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExampleContentComponent, {
       data: { name: this.name, animal: this.animal }
     });
 
@@ -97,7 +97,7 @@ export class LightboxShowcaseExample2Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(LightboxShowcaseExample2ContentComponent);
+    const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExample2ContentComponent);
 
     lightboxRef.afterClosed().subscribe(result => {
       console.log(`Lightbox result: ${result}`);
@@ -117,7 +117,7 @@ export class LightboxShowcaseExample3Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(this.sampleLightboxTemplate);
+    const lightboxRef = this.lightbox.openLightbox(this.sampleLightboxTemplate);
 
     lightboxRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -164,7 +164,7 @@ export class LightboxShowcaseExample4Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(LightboxShowcaseExample4ContentComponent, {
+    const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExample4ContentComponent, {
       disableClose: true
     });
 
@@ -229,7 +229,7 @@ export class LightboxShowcaseExample5ContentComponent implements OnInit {
 
   ngOnInit() {
     this._lightBoxRef.manualCloseAction.subscribe(() => {
-      this.lightbox.open(LightboxShowcaseExample6ContentComponent);
+      this.lightbox.openLightbox(LightboxShowcaseExample6ContentComponent);
     });
   }
 }
@@ -251,7 +251,7 @@ export class LightboxShowcaseExample5Component {
   constructor(public lightbox: Lightbox) {}
 
   openDialog() {
-    const lightboxRef = this.lightbox.open(LightboxShowcaseExample5ContentComponent, {
+    const lightboxRef = this.lightbox.openLightbox(LightboxShowcaseExample5ContentComponent, {
       disableClose: true
     });
 
