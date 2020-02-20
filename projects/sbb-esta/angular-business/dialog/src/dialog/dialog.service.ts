@@ -94,8 +94,23 @@ export class Dialog {
    *     or a TemplateRef to instantiate as the dialog content.
    * @param config Extra configuration options.
    * @returns Reference to the newly-opened dialog.
+   * @deprecated use openDialog() instead
    */
   open<T, D = any, R = any>(
+    componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
+    config?: DialogConfig<D>
+  ): DialogRef<T, R> {
+    return this.openDialog(componentOrTemplateRef, config);
+  }
+
+  /**
+   * Opens a modal dialog containing the given component.
+   * @param componentOrTemplateRef Type of the component to load into the dialog,
+   *     or a TemplateRef to instantiate as the dialog content.
+   * @param config Extra configuration options.
+   * @returns Reference to the newly-opened dialog.
+   */
+  openDialog<T, D = any, R = any>(
     componentOrTemplateRef: ComponentType<T> | TemplateRef<T>,
     config?: DialogConfig<D>
   ): DialogRef<T, R> {

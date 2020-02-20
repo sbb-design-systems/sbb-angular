@@ -30,7 +30,7 @@ A dialog is opened by calling the `open` method and if you want to share data wi
 you can use the `data` option to pass information to the dialog component.
 
 ```ts
-const dialogRef = this.dialog.open(DialogShowcaseExampleContentComponent, {
+const dialogRef = this.dialog.openDialog(DialogShowcaseExampleContentComponent, {
   data: { name: this.name, animal: this.animal }
 });
 ```
@@ -79,7 +79,7 @@ export class DialogShowcaseExample3Component {
   constructor(public dialog: Dialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(this.sampleDialogTemplate);
+    const dialogRef = this.dialog.openDialog(this.sampleDialogTemplate);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -128,7 +128,7 @@ export class DialogShowcaseExample3Component {
 export class DialogShowcaseExample5Component {
   constructor(public dialog: Dialog) {}
   openDialog() {
-    const dialogRef = this.dialog.open(DialogShowcaseExample5ContentComponent, {
+    const dialogRef = this.dialog.openDialog(DialogShowcaseExample5ContentComponent, {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(() => {
@@ -145,19 +145,19 @@ export class DialogShowcaseExample5ContentComponent implements OnInit {
     public dialog: Dialog
   ) {}
   ngOnInit() {
-    this._lightBoxRef.manualCloseAction.subscribe(() => {
-      this.dialog.open(DialogShowcaseExample6ContentComponent);
+    this._dialogRef.manualCloseAction.subscribe(() => {
+      this.dialog.openDialog(DialogShowcaseExample6ContentComponent);
     });
   }
 }
 
 export class DialogShowcaseExample6ContentComponent {
   constructor(
-    private _lightBoxRef: DialogRef<DialogShowcaseExample5ContentComponent>,
+    private _dialogRef: DialogRef<DialogShowcaseExample5ContentComponent>,
     public dialog: Dialog
   ) {}
   closeThisDialog() {
-    this._lightBoxRef.close();
+    this._dialogRef.close();
   }
   closeAllDialog() {
     this.dialog.closeAll();
