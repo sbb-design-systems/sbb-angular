@@ -8,12 +8,12 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
   OnDestroy,
   Output,
   QueryList,
   ViewChildren,
-  ViewEncapsulation,
-  HostBinding
+  ViewEncapsulation
 } from '@angular/core';
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';

@@ -142,6 +142,7 @@ $lightbox-footer-padding: 24;
 
 @mixin lightboxContent() {
   display: block;
+  overflow: auto;
   padding: pxToEm($lightbox-content-y-padding-mobile) pxToEm($lightbox-content-x-padding-mobile);
 
   @include mq($from: tabletPortrait) {

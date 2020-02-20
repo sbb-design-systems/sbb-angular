@@ -169,6 +169,7 @@ export class LightboxTitleDirective implements OnInit {
 export class LightboxContentComponent {
   /** Class attribute for lightbox content */
   @HostBinding('class.sbb-lightbox-content')
+  @HostBinding('class.sbb-scrollbar')
   lightboxContentClass = true;
 }
 
