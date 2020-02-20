@@ -183,15 +183,24 @@ export abstract class TooltipBase implements OnDestroy {
     if (this.overlayAttached) {
       this.close(true);
     } else {
-      this.open(true);
+      this.openTooltip(true);
     }
   }
 
   /**
    * Opens the tooltip
    * @param isUserInput states if the tooltip has been opened by a click
+   * @deprecated use openTooltip() instead
    */
   open(isUserInput = false) {
+    return this.openTooltip(isUserInput);
+  }
+
+  /**
+   * Opens the tooltip
+   * @param isUserInput states if the tooltip has been opened by a click
+   */
+  openTooltip(isUserInput = false) {
     if (!this.overlayAttached) {
       this._tooltipRegistry.activate();
       this._createPopup();
