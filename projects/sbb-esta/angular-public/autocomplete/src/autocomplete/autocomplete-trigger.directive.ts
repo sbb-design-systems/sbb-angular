@@ -165,24 +165,6 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     );
   });
 
-  // TODO: Re-assign HostListener
-  @HostListener('blur')
-  onBlur() {
-    this.onTouched();
-  }
-
-  // TODO: Re-assign HostListener
-  @HostListener('input', ['$event'])
-  onInput($event: KeyboardEvent) {
-    this.handleInput($event);
-  }
-
-  // TODO: Re-assign HostListener
-  @HostListener('keydown', ['$event'])
-  onKeydown($event: KeyboardEvent) {
-    this.handleKeydown($event);
-  }
-
   @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
@@ -207,6 +189,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   onChange: (value: any) => void = () => {};
 
   /** `View -> model callback called when autocomplete has been touched` */
+  @HostListener('blur')
   onTouched = () => {};
 
   /**
@@ -373,6 +356,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this._elementRef.nativeElement.disabled = isDisabled;
   }
 
+  /** @docs-private */
+  @HostListener('keydown', ['$event'])
   handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
 
@@ -436,6 +421,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
       });
   }
 
+  /** @docs-private */
+  @HostListener('input', ['$event'])
   handleInput(event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
