@@ -57,10 +57,16 @@ $sbbBusiness: true;
         border-bottom: $sbbColorCloud solid 1px;
         width: 150%;
         max-width: 150%;
+        z-index: 1000;
 
         > sbb-icon-chevron-small-down {
           transform: translateY(-50%) rotate(180deg);
         }
+      }
+
+      /** IE11 fix */
+      ~ .sbb-header-menu-trigger {
+        z-index: 900;
       }
     }
   }
