@@ -6,7 +6,7 @@ To use @sbb-esta/angular-keycloak you need to have node and npm installed.
 You can then install @sbb-esta/angular-keycloak with the following command:
 
 ```
-npm install --save @sbb-esta/angular-keycloak keycloak-js@3.4.3
+npm install --save @sbb-esta/angular-keycloak keycloak-js@4.8.3
 ```
 
 ## Authentication Module
