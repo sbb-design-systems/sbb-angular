@@ -1,7 +1,6 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/sbb-esta/angular-business",
-  "whitelistedNonPeerDependencies": ["tslib", "@sbb-esta/angular-core", "@types/grecaptcha"],
   "lib": {
     "entryFile": "public-api.ts",
     "umdModuleIds": {
