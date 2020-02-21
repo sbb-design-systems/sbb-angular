@@ -394,7 +394,8 @@ export class DropdownTriggerDirective implements OnDestroy {
           clickTarget !== this._elementRef.nativeElement &&
           (!formField || !formField.contains(clickTarget)) &&
           !this._elementRef.nativeElement.contains(clickTarget) &&
-          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget))
+          !!this._overlayRef &&
+          !this._overlayRef.overlayElement.contains(clickTarget)
         );
       })
     );

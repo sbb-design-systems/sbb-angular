@@ -36,9 +36,7 @@ export function svgIcons(options: Schema): Rule {
     const rootCollection = new IconModuleCollection().addAll(iconModules);
     if (project.projectType === 'library') {
       context.logger.info(
-        `Detected project type library for project ${
-          options.project
-        }. Building icons as secondary entrypoints.`
+        `Detected project type library for project ${options.project}. Building icons as secondary entrypoints.`
       );
 
       const rules = new LibraryIconModuleGenerator(

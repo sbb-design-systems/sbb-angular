@@ -463,7 +463,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
           this._overlayAttached &&
           clickTarget !== this._elementRef.nativeElement &&
           !this._elementRef.nativeElement.contains(clickTarget) &&
-          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget))
+          !!this._overlayRef &&
+          !this._overlayRef.overlayElement.contains(clickTarget)
         );
       })
     );
