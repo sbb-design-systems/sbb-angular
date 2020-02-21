@@ -58,7 +58,7 @@
     "@angular/platform-browser-dynamic": "^9.0.2",
     "@angular/router": "^9.0.2",
     "esri-loader": "~2.13.0",
-    "keycloak-js": "^3.4.3",
+    "keycloak-js": "^4.8.3",
     "ngx-monaco-editor": "^8.1.1",
     "ngx-perfect-scrollbar": "^8.0.0",
     "rxjs": "~6.5.4",
