@@ -375,7 +375,10 @@ class BasicSelectNoPlaceholderComponent {}
   `
 })
 class FalsyValueSelectComponent {
-  foods: any[] = [{ value: 0, viewValue: 'Steak' }, { value: 1, viewValue: 'Pizza' }];
+  foods: any[] = [
+    { value: 0, viewValue: 'Steak' },
+    { value: 1, viewValue: 'Pizza' }
+  ];
   control = new FormControl();
   @ViewChildren(OptionComponent) options: QueryList<OptionComponent>;
 }
@@ -429,7 +432,10 @@ class SelectWithGroupsComponent {
     },
     {
       name: 'Psychic',
-      pokemon: [{ value: 'mew-9', viewValue: 'Mew' }, { value: 'mewtwo-10', viewValue: 'Mewtwo' }]
+      pokemon: [
+        { value: 'mew-9', viewValue: 'Mew' },
+        { value: 'mewtwo-10', viewValue: 'Mewtwo' }
+      ]
     }
   ];
 
@@ -577,7 +583,7 @@ class BasicSelectWithoutFormsMultipleComponent {
   `
 })
 class NgModelCompareWithSelectComponent {
-  foods: ({ value: string; viewValue: string })[] = [
+  foods: { value: string; viewValue: string }[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' }

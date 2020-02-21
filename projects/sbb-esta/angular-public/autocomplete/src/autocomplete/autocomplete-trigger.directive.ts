@@ -347,7 +347,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
           this._overlayAttached &&
           clickTarget !== this._elementRef.nativeElement &&
           (!formField || !formField.contains(clickTarget)) &&
-          (!!this._overlayRef && !this._overlayRef.overlayElement.contains(clickTarget))
+          !!this._overlayRef &&
+          !this._overlayRef.overlayElement.contains(clickTarget)
         );
       })
     );

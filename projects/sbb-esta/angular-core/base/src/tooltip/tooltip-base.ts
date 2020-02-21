@@ -300,7 +300,8 @@ export abstract class TooltipBase implements OnDestroy {
           this.overlayAttached &&
           clickTarget !== this.tooltipTrigger.nativeElement &&
           !this.tooltipTrigger.nativeElement.contains(clickTarget) &&
-          (!!this.tooltipRef && !this.tooltipRef.overlayElement.contains(clickTarget))
+          !!this.tooltipRef &&
+          !this.tooltipRef.overlayElement.contains(clickTarget)
         );
       })
     );

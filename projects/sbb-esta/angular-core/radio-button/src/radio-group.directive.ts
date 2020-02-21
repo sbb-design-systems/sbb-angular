@@ -108,7 +108,10 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
   @Output() readonly change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
   /** Child radio buttons. */
-  @ContentChildren(forwardRef(() => RadioButton), { descendants: true })
+  @ContentChildren(
+    forwardRef(() => RadioButton),
+    { descendants: true }
+  )
   _radios: QueryList<RadioButton>;
 
   /** Selected value for the radio group. */

@@ -590,15 +590,10 @@ export class SelectComponent extends SbbSelectMixinBase
       event.removed.forEach(option => option.deselect());
     });
 
-    this.options.changes
-      .pipe(
-        startWith(null),
-        takeUntil(this._destroy)
-      )
-      .subscribe(() => {
-        this._resetOptions();
-        this._initializeSelection();
-      });
+    this.options.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
+      this._resetOptions();
+      this._initializeSelection();
+    });
   }
 
   ngDoCheck() {

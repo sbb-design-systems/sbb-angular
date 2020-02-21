@@ -28,7 +28,10 @@ import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
 })
 class StandardCalendarBodyComponent {
   label = 'Jan 2017';
-  rows = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14]].map(r => r.map(createCell));
+  rows = [
+    [1, 2, 3, 4, 5, 6, 7],
+    [8, 9, 10, 11, 12, 13, 14]
+  ].map(r => r.map(createCell));
   todayValue = 3;
   selectedValue = 4;
   labelMinRequiredCells = 3;
