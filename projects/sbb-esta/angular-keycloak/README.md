@@ -85,11 +85,11 @@ AuthModule.forRoot(
   loginOptions?: KeycloakLoginOptions)
 ```
 
-| Parameter    | Description                                                                                                           |
-| ------------ | --------------------------------------------------------------------------------------------------------------------- |
-| config       | **Required** Either a configuration object or an url where the configuration is provided in json format               |
-| options      | **Optional** Options object (defaults to { onLoad: 'check-sso', flow: 'implicit' })                                   |
-| loginOptions | **Optional** Login options object, which will be used on AuthService.login (defaults to { idpHint: 'adfs_sbb_prod' }) |
+| Parameter    | Description                                                                                                            |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| config       | **Required** Either a configuration object or an url where the configuration is provided in json format                |
+| options      | **Optional** Options object (defaults to { onLoad: 'check-sso', flow: 'implicit' })                                    |
+| loginOptions | **Optional** Login options object, which will be used on AuthService.login (defaults to { idpHint: 'azure_sbb_prod' }) |
 
 ### Authentication Service
 
