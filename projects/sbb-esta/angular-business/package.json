@@ -19,10 +19,8 @@
     "@angular/cdk": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/router": "^9.0.0",
+    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER",
     "@sbb-esta/angular-icons": "0.0.0-PLACEHOLDER"
-  },
-  "dependencies": {
-    "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER"
   },
   "ng-update": {
     "packageGroup": [

@@ -22,16 +22,16 @@ You can create now your project as described in the official [Angular CLI docume
 
 ## Step 1: Install the library
 
-Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
+Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-core`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
 
 ```sh
-npm install --save @sbb-esta/angular-public @sbb-esta/angular-icons @angular/cdk
+npm install --save @sbb-esta/angular-public @sbb-esta/angular-core @sbb-esta/angular-icons @angular/cdk
 ```
 
 or, if using yarn:
 
 ```sh
-yarn add @sbb-esta/angular-public @sbb-esta/angular-icons @angular/cdk
+yarn add @sbb-esta/angular-public @sbb-esta/angular-core @sbb-esta/angular-icons @angular/cdk
 ```
 
 ## Step 2: Configure animations
