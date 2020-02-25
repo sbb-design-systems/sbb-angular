@@ -12,7 +12,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioGroupDirective } from '@sbb-esta/angular-core/radio-button';
 import { first } from 'rxjs/operators';
 
-// TODO: Change this to a directive
 @Component({
   selector: 'sbb-toggle',
   templateUrl: './toggle.component.html',
