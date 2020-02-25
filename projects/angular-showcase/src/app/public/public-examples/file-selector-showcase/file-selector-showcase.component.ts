@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 import { FileSelectorTypesService, FileTypeCategory } from '@sbb-esta/angular-public/file-selector';
 import { Subscription } from 'rxjs';
 
@@ -56,7 +57,7 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
     }
   }
 
-  setDisabled($event: any) {
-    $event.target.checked ? this.fileControl.disable() : this.fileControl.enable();
+  setDisabled(sbbCheckboxChange: SbbCheckboxChange) {
+    sbbCheckboxChange.checked ? this.fileControl.disable() : this.fileControl.enable();
   }
 }
