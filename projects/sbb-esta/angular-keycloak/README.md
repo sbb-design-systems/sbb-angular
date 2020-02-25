@@ -1,5 +1,7 @@
 # SBB Keycloak Library for Angular
 
+🛈 We recommend [angular-oauth2-oidc](https://www.npmjs.com/package/angular-oauth2-oidc) to be used for authentication. See the [documentation](https://manfredsteyer.github.io/angular-oauth2-oidc/docs/index.html) for details.
+
 ## Getting started
 
 To use @sbb-esta/angular-keycloak you need to have node and npm installed.
