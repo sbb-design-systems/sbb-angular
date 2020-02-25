@@ -95,13 +95,11 @@ export abstract class CheckboxBase implements ControlValueAccessor {
   /**
    * Property that describes the status change of a checkbox field
    */
-  // TODO: Change to private for Angular 9
-  onChange = (_: any) => {};
+  private _onChange = (_: any) => {};
   /**
    * Property that describes an updating of checkbox
    */
-  // TODO: Change to private for Angular 9
-  onTouched = () => {};
+  private _onTouched = () => {};
 
   constructor(
     protected readonly _changeDetectorRef: ChangeDetectorRef,
@@ -121,7 +119,7 @@ export abstract class CheckboxBase implements ControlValueAccessor {
         // See https://github.com/angular/angular/issues/17793. To work around this, we defer
         // telling the form control it has been touched until the next tick.
         Promise.resolve().then(() => {
-          this.onTouched();
+          this._onTouched();
           _changeDetectorRef.markForCheck();
         });
       }
@@ -139,14 +137,14 @@ export abstract class CheckboxBase implements ControlValueAccessor {
    * Method that records the change on a checkbox field
    */
   registerOnChange(fn: (_: any) => {}): void {
-    this.onChange = fn;
+    this._onChange = fn;
   }
 
   /**
    * Method that records the touch on a checkbox field
    */
   registerOnTouched(fn: () => {}): void {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   /**
@@ -199,7 +197,7 @@ export abstract class CheckboxBase implements ControlValueAccessor {
 
   protected _emitChangeEvent() {
     const event = new SbbCheckboxChange<this>(this, this.checked);
-    this.onChange(this.checked);
+    this._onChange(this.checked);
     this.change.emit(event);
   }
 }

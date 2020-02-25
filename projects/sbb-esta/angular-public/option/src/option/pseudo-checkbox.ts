@@ -6,9 +6,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-// TODO: Check if removable
-export type SbbPseudoCheckboxState = 'unchecked' | 'checked';
-
 @Component({
   selector: 'sbb-pseudo-checkbox',
   styleUrls: ['./option.component.scss'],

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AccordionComponent } from '@sbb-esta/angular-public/accordion';
+import { AccordionDirective } from '@sbb-esta/angular-public/accordion';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./accordion-showcase.component.scss']
 })
 export class AccordionShowcaseComponent implements OnInit, OnDestroy {
-  @ViewChild('firstAccordion', { static: true }) firstAccordion: AccordionComponent;
+  @ViewChild('firstAccordion', { static: true }) firstAccordion: AccordionDirective;
 
   panelOpenState = false;
   step = 0;

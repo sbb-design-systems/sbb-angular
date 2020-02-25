@@ -4,9 +4,8 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { END, HOME } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
   ContentChildren,
+  Directive,
   HostBinding,
   Input,
   QueryList
@@ -16,22 +15,18 @@ import { ExpansionPanelHeaderComponent } from '../expansion-panel-header/expansi
 
 import { IAccordionBase, SBB_ACCORDION } from './accordion-base';
 
-// TODO: Change to directive
-@Component({
+@Directive({
+  // tslint:disable-next-line: directive-selector
   selector: 'sbb-accordion',
   exportAs: 'sbbAccordion',
   providers: [
     {
       provide: SBB_ACCORDION,
-      useExisting: AccordionComponent
+      useExisting: AccordionDirective
     }
-  ],
-  template: `
-    <ng-content></ng-content>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
-export class AccordionComponent extends CdkAccordion implements IAccordionBase, AfterContentInit {
+export class AccordionDirective extends CdkAccordion implements IAccordionBase, AfterContentInit {
   private _keyManager: FocusKeyManager<ExpansionPanelHeaderComponent>;
   /**
    * Whether the accordion should allow multiple expanded accordion items.
