@@ -1,5 +1,11 @@
 export * from './accordion.module';
-export * from './accordion/accordion.directive';
+export {
+  AccordionDirective,
+  /**
+   * @deprecated use AccordionDirective
+   */
+  AccordionDirective as AccordionComponent
+} from './accordion/accordion.directive';
 export * from './accordion/accordion-base';
 export * from './expansion-panel/expansion-panel.component';
 export * from './expansion-panel-header/expansion-panel-header.component';
