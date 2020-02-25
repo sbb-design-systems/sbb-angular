@@ -9,7 +9,7 @@ It is generated, maintained, tested, linted and built with the [Angular CLI](htt
 
 ## Packages
 
-`npm install --save @sbb-esta/angular-icons @sbb-esta/angular-public`
+`npm install --save @sbb-esta/angular-core @sbb-esta/angular-icons @sbb-esta/angular-public`
 
 ### [@sbb-esta/angular-core](https://www.npmjs.com/package/@sbb-esta/angular-core)
 
