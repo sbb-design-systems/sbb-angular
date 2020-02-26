@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { HtmlLoader } from '../html-loader.service';
 
@@ -12,19 +13,18 @@ import { HtmlLoader } from '../html-loader.service';
 export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
   private _destroyed = new Subject<void>();
 
-  constructor(
-    private _htmlLoader: HtmlLoader,
-    private _route: ActivatedRoute,
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef<HTMLElement>
-  ) {}
+  @HostBinding('innerHTML')
+  content: string;
+
+  constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
   ngAfterViewInit(): void {
     this._htmlLoader
-      .with(this._route, this._renderer)
-      .until(this._destroyed)
+      .with(this._route)
       .fromDocumentation()
-      .applyTo(this._elementRef);
+      .observe()
+      .pipe(takeUntil(this._destroyed))
+      .subscribe(content => (this.content = content));
   }
 
   ngOnDestroy(): void {
