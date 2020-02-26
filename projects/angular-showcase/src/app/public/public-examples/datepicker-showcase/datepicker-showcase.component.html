@@ -29,14 +29,14 @@
         <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()">Disabled</sbb-checkbox>
       </p>
 
-      <sbb-field>
+      <sbb-field mode="medium" class="sbbsc-medium-field">
         <sbb-label for="minDate">Min Date</sbb-label>
         <sbb-datepicker arrows>
           <input type="text" sbbDateInput [(ngModel)]="minDate" />
         </sbb-datepicker>
       </sbb-field>
 
-      <sbb-field>
+      <sbb-field mode="medium" class="sbbsc-medium-field">
         <sbb-label for="maxDate">Max Date</sbb-label>
         <sbb-datepicker arrows>
           <input type="text" sbbDateInput [(ngModel)]="maxDate" />

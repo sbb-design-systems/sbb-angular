@@ -1,4 +1,10 @@
-import { Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import {
@@ -12,12 +18,13 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'sbb-ghettobox-showcase',
   templateUrl: './ghettobox-showcase.component.html',
-  styleUrls: ['./ghettobox-showcase.component.scss']
+  styleUrls: ['./ghettobox-showcase.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GhettoboxShowcaseComponent implements OnDestroy {
-  afterDeleteResponse1: any;
-  afterDeleteResponse2: any;
-  afterDeleteResponseContainer: any;
+  afterDeleteResponse1: any = {};
+  afterDeleteResponse2: any = {};
+  afterDeleteResponseContainer: any = {};
 
   private _ghettoboxInitLoadSubscription = Subscription.EMPTY;
 
@@ -26,10 +33,11 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
 
   constructor(private _ghettoboxService: GhettoboxService, private _route: ActivatedRoute) {
     this._ghettoboxInitLoadSubscription = this._ghettoboxService.containerReady.subscribe(() => {
-      this._ghettoboxService.add({
+      const ghetto = this._ghettoboxService.add({
         message: 'This ghettobox is loaded at page load',
         icon: this.testIcon1
       });
+      this._subscribeToAfterDeleteResponse(ghetto);
     });
   }
 
@@ -52,9 +60,12 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
       link: this.linkGenerator(getRandomInt(10)),
       icon: this.testIcon2
     });
+    this._subscribeToAfterDeleteResponse(ghetto);
+  }
 
+  private _subscribeToAfterDeleteResponse(ghetto: GhettoboxRef) {
     ghetto.afterDelete.pipe(first()).subscribe((evt: GhettoboxDeletedEvent) => {
-      this.afterDeleteResponseContainer = evt;
+      this.afterDeleteContainer(evt);
     });
   }
 
@@ -62,8 +73,8 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
     this._ghettoboxService.deleteById(id);
   }
 
-  deleteByIndex(index: number) {
-    this._ghettoboxService.deleteByIndex(index);
+  deleteByIndex(index: string) {
+    this._ghettoboxService.deleteByIndex(parseInt(index, 10));
   }
 
   deleteByRef() {
@@ -83,12 +94,12 @@ export class GhettoboxShowcaseComponent implements OnDestroy {
     this.afterDeleteResponse2 = evt;
   }
 
-  printAttachedGhettoboxesIDS() {
-    return this._ghettoboxService.attachedGhettoboxes.map(g => {
-      return {
-        id: g.id
-      };
-    });
+  afterDeleteContainer(evt: GhettoboxDeletedEvent) {
+    this.afterDeleteResponseContainer = evt;
+  }
+
+  printAttachedGhettoboxesIDS(): string[] {
+    return this._ghettoboxService.attachedGhettoboxes.map(g => g.id);
   }
 }
 

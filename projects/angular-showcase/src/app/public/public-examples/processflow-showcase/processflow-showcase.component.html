@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6 sbbsc-v-sep">
+    <div class="col-lg-6 sbbsc-block">
       <h4 class="sbbsc-block">Processflow</h4>
       <sbb-processflow #processflow>
         <sbb-processflow-step title="Schritt 1">
@@ -19,18 +19,18 @@
           </div>
         </sbb-processflow-step>
       </sbb-processflow>
+    </div>
+    <div class="sbbsc-block">
+      <h4 class="sbbsc-block">Processflow Controls</h4>
       <button sbbButton (click)="processflow.prevStep()">
         Vorheriger Schritt
       </button>
-      <button sbbButton (click)="processflow.nextStep()">
+      <button sbbButton (click)="processflow.nextStep()" style="margin-left: 0.5rem">
         Nächster Schritt
       </button>
-    </div>
-    <div class="col-lg-6">
-      <h4 class="sbbsc-block">Properties</h4>
-      <div class="sbbsc-block">
-        <button mode="ghost" sbbButton (click)="reset()">Reset</button>
-      </div>
+      <button mode="ghost" sbbButton (click)="processflow.reset()" style="margin-left: 0.5rem">
+        Reset
+      </button>
     </div>
   </div>
 </div>
