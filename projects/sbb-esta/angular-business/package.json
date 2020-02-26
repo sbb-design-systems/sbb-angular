@@ -31,6 +31,7 @@
       "@sbb-esta/angular-maps",
       "@sbb-esta/angular-public"
     ],
-    "packageGroupName": "@sbb-esta/angular-core"
+    "packageGroupName": "@sbb-esta/angular-core",
+    "migrations": "./schematics/migration.json"
   }
 }
