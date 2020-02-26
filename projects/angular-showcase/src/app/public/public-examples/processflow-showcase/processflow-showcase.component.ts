@@ -14,8 +14,4 @@ export class ProcessflowShowcaseComponent implements AfterViewInit {
       console.log(s.title);
     });
   }
-
-  reset() {
-    this.processflow.reset();
-  }
 }
