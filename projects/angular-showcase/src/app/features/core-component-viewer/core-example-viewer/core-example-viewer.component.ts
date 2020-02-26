@@ -1,28 +1,18 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  Injectable,
-  Input,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
 @Directive()
-export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CoreExampleViewerComponent implements OnInit {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
-  @ViewChild('html') html: ElementRef;
-  @ViewChild('ts') ts: ElementRef;
-  @ViewChild('scss') scss: ElementRef;
+  html: Observable<string>;
+  ts: Observable<string>;
+  scss: Observable<string>;
   showSource = false;
   title: Observable<string>;
   get label() {
@@ -31,46 +21,32 @@ export class CoreExampleViewerComponent implements OnInit, AfterViewInit, OnDest
       .replace(/(^[a-z]| [a-z])/g, m => m.toUpperCase())
       .replace(' Showcase', '');
   }
-  private _destroyed = new Subject<void>();
 
-  constructor(
-    private _htmlLoader: HtmlLoader,
-    private _route: ActivatedRoute,
-    private _renderer: Renderer2
-  ) {}
+  constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.title = combineLatest(this._route.params, this._route.data, (p, d) => ({
-      ...p,
-      ...d
-    })).pipe(
+    this.title = combineLatest([this._route.params, this._route.data]).pipe(
+      map(([p, d]) => ({ ...p, ...d })),
       map(({ id }) =>
         (id as string)
           .replace(/^([a-z])/, m => m.toUpperCase())
           .replace(/-([a-z])/g, m => ` ${m.toUpperCase()}`)
       )
     );
-  }
 
-  ngAfterViewInit(): void {
-    this._htmlLoader
-      .with(this._route, this._renderer)
-      .until(this._destroyed)
+    this.html = this._htmlLoader
+      .with(this._route)
       .fromExamples(this.name, 'html')
-      .applyTo(this.html);
-    this._htmlLoader
-      .with(this._route, this._renderer)
-      .until(this._destroyed)
-      .fromExamples(this.name, 'ts')
-      .applyTo(this.ts);
-    this._htmlLoader
-      .with(this._route, this._renderer)
-      .until(this._destroyed)
-      .fromExamples(this.name, 'scss')
-      .applyTo(this.scss);
-  }
+      .observe();
 
-  ngOnDestroy(): void {
-    this._destroyed.next();
+    this.ts = this._htmlLoader
+      .with(this._route)
+      .fromExamples(this.name, 'ts')
+      .observe();
+
+    this.scss = this._htmlLoader
+      .with(this._route)
+      .fromExamples(this.name, 'scss')
+      .observe();
   }
 }

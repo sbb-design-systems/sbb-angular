@@ -10,7 +10,7 @@ import { LoaderBuilder } from './loader-builder';
 export class HtmlLoader {
   constructor(private _http: HttpClient) {}
 
-  with(route: ActivatedRoute, renderer: Renderer2) {
-    return new LoaderBuilder(this._http, renderer, route);
+  with(route: ActivatedRoute) {
+    return new LoaderBuilder(this._http, route);
   }
 }
