@@ -3,7 +3,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule
+} from '@angular/platform-browser/animations';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
@@ -282,7 +285,7 @@ describe('SearchComponent', () => {
 
       configureTestSuite(() => {
         TestBed.configureTestingModule({
-          imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
+          imports: [SearchModule, BrowserAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchHeaderComponent]
         });
       });

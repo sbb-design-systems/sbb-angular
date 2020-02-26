@@ -771,11 +771,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   private _openAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
-      style({ width: 0, opacity: 0, display: 'none' }),
-      animate(
-        ANIMATION_DURATION,
-        style({ width: this._getPanelWidth(), opacity: 1, display: 'flex' })
-      )
+      style({ width: 0, opacity: 0 }),
+      animate(ANIMATION_DURATION, style({ width: this._getPanelWidth(), opacity: 1 }))
     ]);
     const player = myAnimation.create(element);
     player.play();
@@ -784,8 +781,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   private _closeAnimation(element: HTMLElement) {
     const myAnimation = this._animationBuilder.build([
-      style({ width: this._getPanelWidth(), opacity: 1, display: 'flex' }),
-      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0, display: 'none' }))
+      style({ width: this._getPanelWidth(), opacity: 1 }),
+      animate(ANIMATION_DURATION, style({ width: 0, opacity: 0 }))
     ]);
     const player = myAnimation.create(element);
     player.play();
