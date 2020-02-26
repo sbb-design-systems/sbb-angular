@@ -17,14 +17,16 @@ body {
 sbb-public,
 sbb-maps,
 sbb-core,
-sbb-icons {
+sbb-icons,
+.cdk-overlay-container {
   @import '../../sbb-esta/angular-public/styles';
   sbb-markdown-viewer,
   sbb-public-component-viewer,
   sbb-api-viewer,
   sbb-icon-search,
   sbb-icon-viewer,
-  sbb-experimental-icon-search {
+  sbb-experimental-icon-search,
+  sbb-lightbox-container {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;
@@ -35,10 +37,12 @@ sbb-icons {
   }
 }
 
-sbb-business {
+sbb-business,
+.cdk-overlay-container {
   @import '../../sbb-esta/angular-business/styles';
   sbb-markdown-viewer,
-  sbb-business-component-viewer {
+  sbb-business-component-viewer,
+  sbb-dialog-container {
     @include sbbHeadings();
     @include sbbParagraph();
     @include lists;
