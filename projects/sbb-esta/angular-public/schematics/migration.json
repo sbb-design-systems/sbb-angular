@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "migration-v9": {
+      "version": "9",
+      "description": "Update @sbb-esta/angular-public to v9",
+      "factory": "./ng-update/index#updateToV9"
+    }
+  }
+}

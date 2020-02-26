@@ -1,0 +1,10 @@
+{
+  "spec_dir": ".",
+  "spec_files": [
+    "./projects/sbb-esta/angular-business/schematics/**/*.node-spec.ts",
+    "./projects/sbb-esta/angular-public/schematics/**/*.node-spec.ts"
+  ],
+  "helpers": ["./scripts/jasmine-helper.js"],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}

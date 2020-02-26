@@ -20,10 +20,12 @@
     "build:business": "run-s build:business:*",
     "build:business:public2business": "schematics .:public2business --debug false",
     "build:business:ng": "ng build @sbb-esta/angular-business",
+    "build:business:schematics": "rollup --config projects/sbb-esta/angular-business/schematics/rollup.config.js",
     "build:business:styles": "cd ./projects/sbb-esta/angular-business/ && copyfiles styles.scss ../../../dist/sbb-esta/angular-business/",
     "build:business:typography": "sass ./projects/sbb-esta/angular-business/typography.scss ./dist/sbb-esta/angular-business/typography.css",
     "build:public": "run-s build:public:*",
     "build:public:ng": "ng build @sbb-esta/angular-public",
+    "build:public:schematics": "rollup --config projects/sbb-esta/angular-public/schematics/rollup.config.js",
     "build:public:styles": "cd ./projects/sbb-esta/angular-public/ && copyfiles styles.scss ../../../dist/sbb-esta/angular-public/",
     "build:public:typography": "sass ./projects/sbb-esta/angular-public/typography.scss ./dist/sbb-esta/angular-public/typography.css",
     "build:keycloak": "ng build @sbb-esta/angular-keycloak",
@@ -34,7 +36,8 @@
     "build:schematics": "rollup --config schematics/rollup.config.js",
     "build:svg-icons": "schematics .:svg-icons --project @sbb-esta/angular-icons --targetDir experimental --debug false",
     "build:svg-registry": "schematics .:svg-registry --stripNumberIdInCollection --stripNumberIds --stripSbbInName --debug false",
-    "release": "standard-version --tag-prefix=\"\""
+    "release": "standard-version --tag-prefix=\"\"",
+    "test:public:schematics": "jasmine --config=jasmine.json"
   },
   "repository": {
     "type": "git",
