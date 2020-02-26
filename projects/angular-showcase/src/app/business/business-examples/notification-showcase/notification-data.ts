@@ -1,21 +1,10 @@
-import {
-  JumpMark,
-  NotificationToastPosition,
-  NotificationType
-} from '@sbb-esta/angular-business/notification';
+import { JumpMark, NotificationType } from '@sbb-esta/angular-business/notification';
 
 export const NOTIFICATION_TYPES = [
   NotificationType.SUCCESS,
   NotificationType.INFO,
   NotificationType.ERROR,
   NotificationType.WARN
-];
-
-export const TOAST_POSITIONS = [
-  NotificationToastPosition.TOPLEFT,
-  NotificationToastPosition.TOPRIGHT,
-  NotificationToastPosition.BOTTOMLEFT,
-  NotificationToastPosition.BOTTOMRIGHT
 ];
 
 export const JUMPMARKS: JumpMark[] = [

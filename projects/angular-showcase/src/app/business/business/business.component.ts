@@ -7,7 +7,6 @@ import { ClosableNotificationComponent } from '../business-examples/notification
 import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';
 import { JumpmarkNotificationComponent } from '../business-examples/notification-showcase/jumpmark-notification/jumpmark-notification.component';
 import { SimpleNotificationComponent } from '../business-examples/notification-showcase/simple-notification/simple-notification.component';
-import { ToastNotificationComponent } from '../business-examples/notification-showcase/toast-notification/toast-notification.component';
 import { PaginationShowcaseComponent } from '../business-examples/pagination-showcase/pagination-showcase.component';
 import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
@@ -81,7 +80,6 @@ export class BusinessComponent implements ExampleProvider {
     notification: {
       'simple-notification': new ComponentPortal(SimpleNotificationComponent),
       'custom-icon-notification': new ComponentPortal(CustomIconNotificationComponent),
-      'toast-notification': new ComponentPortal(ToastNotificationComponent),
       'jumpmark-notification': new ComponentPortal(JumpmarkNotificationComponent),
       'closable-notification': new ComponentPortal(ClosableNotificationComponent)
     },
