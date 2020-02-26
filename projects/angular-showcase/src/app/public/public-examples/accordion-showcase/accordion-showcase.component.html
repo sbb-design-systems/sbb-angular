@@ -304,13 +304,11 @@
         </sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <div class="sbbsc-block">
+        <radio-button-group formControlName="radioModes" class="sbbsc-block">
           <div *ngFor="let option of radioOptions">
-            <sbb-radio-button formControlName="radioModes" [value]="option.value">{{
-              option.name
-            }}</sbb-radio-button>
+            <sbb-radio-button [value]="option.value">{{ option.name }}</sbb-radio-button>
           </div>
-        </div>
+        </radio-button-group>
       </div>
       <div class="sbbsc-block">
         <label>Click to disable a panel of the accordion:</label>

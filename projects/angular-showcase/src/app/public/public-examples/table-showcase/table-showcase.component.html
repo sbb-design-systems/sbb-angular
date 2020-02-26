@@ -61,22 +61,23 @@
 
 <h4 class="sbbsc-block">Text Alignment *</h4>
 <sbb-field label="Text Alignment" mode="default" class="sbbsc-block">
-  <sbb-radio-button
-    name="radio-alignment"
-    *ngFor="let alignment of alignments"
-    [(ngModel)]="currentAlignment"
-    [value]="alignment"
-    >{{ alignment }}</sbb-radio-button
-  >
+  <sbb-radio-group [(ngModel)]="currentAlignment">
+    <sbb-radio-button *ngFor="let alignment of alignments" [value]="alignment">{{
+      alignment
+    }}</sbb-radio-button>
+  </sbb-radio-group>
 </sbb-field>
-<em>
-  * The property <strong><code>tableAlignment</code></strong> set the text alignment for the overall
-  table. You can use it in a single <strong><code>tr, th, td</code></strong> tag the alignment
-  classes:
-  <strong><code>sbb-table-align-center | sbb-table-align-left | sbb-table-align-right</code></strong
-  >.
-  <br />
-  In this example it has been used
-  <strong><code>sbb-table-align-right</code></strong> to fix the text alignment of the last column
-  to right.
-</em>
+<p>
+  <em>
+    * The property <strong><code>tableAlignment</code></strong> set the text alignment for the
+    overall table. You can use it in a single <strong><code>tr, th, td</code></strong> tag the
+    alignment classes:
+    <strong
+      ><code>sbb-table-align-center | sbb-table-align-left | sbb-table-align-right</code></strong
+    >.
+    <br />
+    In this example it has been used
+    <strong><code>sbb-table-align-right</code></strong> to fix the text alignment of the last column
+    to right.
+  </em>
+</p>

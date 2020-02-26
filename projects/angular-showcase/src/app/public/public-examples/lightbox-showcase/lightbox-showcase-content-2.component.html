@@ -18,21 +18,17 @@
 <sbb-lightbox-content>
   <h2 sbbLightboxTitle cdkFocusInitial tabindex="0">Install Angular</h2>
   <h3>Set alignment of buttons in footer</h3>
-  <sbb-field label="Alignment" mode="default" class="sbbsc-block">
-    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="left"
-      >LEFT</sbb-radio-button
-    >
-  </sbb-field>
-  <sbb-field label="Alignment" mode="default" class="sbbsc-block">
-    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="center"
-      >CENTER</sbb-radio-button
-    >
-  </sbb-field>
-  <sbb-field label="Alignment" mode="default" class="sbbsc-block">
-    <sbb-radio-button [(ngModel)]="alignment" name="alignment-radio" value="right"
-      >RIGHT</sbb-radio-button
-    >
-  </sbb-field>
+  <sbb-radio-group [(ngModel)]="alignment">
+    <sbb-field label="Alignment" mode="default" class="sbbsc-block">
+      <sbb-radio-button value="left">LEFT</sbb-radio-button>
+    </sbb-field>
+    <sbb-field label="Alignment" mode="default" class="sbbsc-block">
+      <sbb-radio-button value="center">CENTER</sbb-radio-button>
+    </sbb-field>
+    <sbb-field label="Alignment" mode="default" class="sbbsc-block">
+      <sbb-radio-button value="right">RIGHT</sbb-radio-button>
+    </sbb-field>
+  </sbb-radio-group>
   <h3>Develop across all platforms</h3>
   <p>
     Learn one way to build applications with Angular and reuse your code and abilities to build apps
