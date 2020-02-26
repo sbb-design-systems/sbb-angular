@@ -194,7 +194,7 @@ export class NotificationComponent {
   scrollTo($event: any, jumpMark: JumpMark) {
     $event.preventDefault();
     if (jumpMark.elementId) {
-      document.querySelector(jumpMark.elementId).scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(jumpMark.elementId)?.scrollIntoView({ behavior: 'smooth' });
     }
     if (jumpMark.callback) {
       jumpMark.callback($event, jumpMark);
