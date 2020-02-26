@@ -13,170 +13,170 @@ $tabsFontSize: 20;
   $tabsFontSize: 15;
 }
 
-.sbb-tabs {
+:host {
   display: block;
+}
 
-  &-scrollbar {
-    overflow: hidden;
-  }
+.sbb-tabs-scrollbar {
+  overflow: hidden;
+}
 
-  &-tablist {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.sbb-tabs-tablist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow-x: auto;
+
+  > .sbb-tabs-tablist-item {
     display: flex;
-    overflow-x: auto;
+    flex: 0 0 auto;
+    align-items: baseline;
+    padding-right: 3em;
+    padding-left: 0;
 
-    > .sbb-tabs-tablist-item {
-      display: flex;
-      flex: 0 0 auto;
-      align-items: baseline;
-      padding-right: 3em;
-      padding-left: 0;
+    @include businessOnly() {
+      padding-right: pxToEm(4);
+      position: relative;
+    }
+
+    .sbb-badge {
+      @include publicOnly() {
+        transform: translateY(-70%);
+      }
 
       @include businessOnly() {
-        padding-right: pxToEm(4);
+        display: inline-block;
         position: relative;
+        margin-left: pxToEm(-2, 11);
+        margin-right: pxToEm(-14, 11);
+        top: pxToEm(-6, 11);
+      }
+    }
+
+    .sbb-tabs-tablist-item-button {
+      @include buttonResetFrameless();
+
+      display: block;
+      white-space: nowrap;
+      font-family: $fontSbbLight;
+      font-size: pxToRem($tabsFontSize);
+      text-decoration: none;
+      padding-bottom: pxToRem(8);
+      position: relative;
+
+      @include publicOnly() {
+        margin-bottom: 1em;
+
+        @include mq($from: tabletLandscape) {
+          font-size: pxToRem(26);
+          padding-bottom: pxToRem(20);
+        }
+
+        @include mq($from: desktop4k) {
+          font-size: pxToRem(39);
+        }
+
+        @include mq($from: desktop5k) {
+          font-size: pxToRem(52);
+        }
       }
 
-      .sbb-badge {
-        @include publicOnly() {
-          transform: translateY(-70%);
-        }
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        outline: none;
+      }
 
-        @include businessOnly() {
-          display: inline-block;
-          position: relative;
-          margin-left: pxToEm(-2, 11);
-          margin-right: pxToEm(-14, 11);
-          top: pxToEm(-6, 11);
+      @include publicOnly() {
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          width: 0;
+          left: 50%;
+          height: 1px;
+          border-bottom: 1px solid currentColor;
+          transition: width 0.3s, left 0.3s;
         }
       }
 
-      .sbb-tabs-tablist-item-button {
-        @include buttonResetFrameless();
+      @include businessOnly() {
+        border: 1px solid transparent;
+        padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
 
-        display: block;
-        white-space: nowrap;
-        font-family: $fontSbbLight;
-        font-size: pxToRem($tabsFontSize);
-        text-decoration: none;
-        padding-bottom: pxToRem(8);
-        position: relative;
-
-        @include publicOnly() {
-          margin-bottom: 1em;
-
-          @include mq($from: tabletLandscape) {
-            font-size: pxToRem(26);
-            padding-bottom: pxToRem(20);
-          }
-
-          @include mq($from: desktop4k) {
-            font-size: pxToRem(39);
-          }
-
-          @include mq($from: desktop5k) {
-            font-size: pxToRem(52);
-          }
+        &:not(.sbb-active) {
+          color: $sbbColorGranite;
         }
 
-        &:hover,
-        &:focus {
-          cursor: pointer;
-          outline: none;
+        &.sbb-active {
+          color: $sbbColorBlack;
+          background-color: $sbbColorWhite;
+          border: 1px solid $sbbColorGraphite;
+          border-radius: pxToEm(2) pxToEm(2) 0 0;
+          border-bottom: 1px solid transparent;
         }
+      }
+
+      &.sbb-active::after,
+      &:not(.sbb-active):focus::after,
+      &:not(.sbb-active):hover::after {
+        left: 0;
+        width: 100%;
+      }
+
+      &:not(.sbb-active):focus,
+      &:not(.sbb-active):hover {
+        color: $tabsHoverColor;
 
         @include publicOnly() {
           &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            bottom: 0;
-            width: 0;
-            left: 50%;
-            height: 1px;
-            border-bottom: 1px solid currentColor;
-            transition: width 0.3s, left 0.3s;
+            border-bottom-color: $sbbColorRed125;
           }
         }
 
         @include businessOnly() {
-          border: 1px solid transparent;
-          padding: pxToEm(5) pxToEm(16) pxToEm(6) pxToEm(16);
-
-          &:not(.sbb-active) {
-            color: $sbbColorGranite;
-          }
-
-          &.sbb-active {
-            color: $sbbColorBlack;
-            background-color: $sbbColorWhite;
-            border: 1px solid $sbbColorGraphite;
-            border-radius: pxToEm(2) pxToEm(2) 0 0;
-            border-bottom: 1px solid transparent;
+          &:not(:disabled) {
+            border-bottom: 1px solid $tabsHoverColor;
           }
         }
+      }
 
-        &.sbb-active::after,
-        &:not(.sbb-active):focus::after,
-        &:not(.sbb-active):hover::after {
-          left: 0;
-          width: 100%;
-        }
+      &[disabled] {
+        color: $sbbColorStorm;
 
-        &:not(.sbb-active):focus,
-        &:not(.sbb-active):hover {
-          color: $tabsHoverColor;
-
-          @include publicOnly() {
-            &::after {
-              border-bottom-color: $sbbColorRed125;
-            }
-          }
-
-          @include businessOnly() {
-            &:not(:disabled) {
-              border-bottom: 1px solid $tabsHoverColor;
-            }
-          }
-        }
-
-        &[disabled] {
+        &:hover,
+        &:focus {
           color: $sbbColorStorm;
-
-          &:hover,
-          &:focus {
-            color: $sbbColorStorm;
-            cursor: default;
-
-            &::after {
-              width: 0;
-            }
-          }
-        }
-
-        &.sbb-active:hover,
-        &.sbb-active:focus {
-          color: currentColor;
           cursor: default;
 
-          @include publicOnly() {
-            &::after {
-              border-bottom-color: currentColor;
-            }
+          &::after {
+            width: 0;
+          }
+        }
+      }
+
+      &.sbb-active:hover,
+      &.sbb-active:focus {
+        color: currentColor;
+        cursor: default;
+
+        @include publicOnly() {
+          &::after {
+            border-bottom-color: currentColor;
           }
         }
       }
     }
   }
+}
 
-  &-content {
-    @include businessOnly() {
-      background-color: $sbbColorWhite;
-      padding: pxToEm(16);
-      border: 1px solid $sbbColorGraphite;
-      margin-top: pxToEm(-1);
-    }
+.sbb-tabs-content {
+  @include businessOnly() {
+    background-color: $sbbColorWhite;
+    padding: pxToEm(16);
+    border: 1px solid $sbbColorGraphite;
+    margin-top: pxToEm(-1);
   }
 }
