@@ -24,7 +24,7 @@
           #captchaControl="ngModel"
         ></sbb-captcha>
         <div class="sbbsc-block">
-          <button sbbButton (click)="formModel.captcha = ''">
+          <button sbbButton (click)="formModel.captcha = ''" style="margin-top: 0.5rem;">
             Reset Captcha
           </button>
         </div>
@@ -47,7 +47,7 @@
   <div class="row">
     <div class="col-lg-6 sbbsc-v-sep">
       <h4 class="sbbsc-block">Reactive Form example</h4>
-      <form [formGroup]="formCaptcha">
+      <form [formGroup]="formCaptcha" class="sbbsc-block">
         <sbb-captcha formControlName="captcha" name="captcha" [siteKey]="testSiteKey">
         </sbb-captcha>
       </form>
