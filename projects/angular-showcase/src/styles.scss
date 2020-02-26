@@ -54,11 +54,6 @@ sbb-business,
   }
 }
 
-table {
-  @include table();
-  margin-top: 1rem;
-}
-
 sbb-markdown-viewer,
 sbb-public-component-viewer {
   pre {
