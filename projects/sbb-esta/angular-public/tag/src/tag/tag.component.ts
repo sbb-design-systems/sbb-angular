@@ -45,6 +45,12 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
   @HostBinding('class.sbb-tag')
   sbbTagClass = true;
 
+  /** @docs-private  */
+  @HostBinding('class.sbb-tag-disabled')
+  get sbbTagDisabledClass() {
+    return this.disabled;
+  }
+
   /**
    * Link mode of a tag.
    */
