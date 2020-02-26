@@ -114,7 +114,8 @@ nav {
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &.sbb-active {
       color: $sbbColorRed125;
     }
   }
