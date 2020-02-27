@@ -15,6 +15,8 @@ $borderActive4K: solid toPx(3 * $scalingFactor4k) $sbbColorGrey;
 $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
 .sbb-usermenu {
+  cursor: pointer;
+
   &-logged-in {
     position: relative;
     align-items: center;
@@ -276,7 +278,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
     }
 
     &:hover {
-      .sbb-usermenu-logged-off-icon-user {
+      sbb-icon-user {
         @include svgIconColor($sbbColorRed125);
       }
 
@@ -285,34 +287,15 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
       }
     }
 
-    &-icon-user {
-      width: 24px;
-      height: 24px;
-      margin-left: 2px;
-      position: relative;
-      color: inherit;
-
-      @include publicOnly() {
-        @include mq($from: desktop4k) {
-          height: toPx(36 * $scalingFactor4k);
-          width: toPx(36 * $scalingFactor4k);
-          margin-left: toPx(2 * $scalingFactor4k);
-        }
-
-        @include mq($from: desktop5k) {
-          height: toPx(48 * $scalingFactor5k);
-          width: toPx(48 * $scalingFactor5k);
-          margin-left: toPx(2 * $scalingFactor5k);
-        }
-      }
-    }
-
     &-button {
       @include buttonResetFrameless;
       position: relative;
-      margin-left: 13.5px;
+      width: 100%;
+      height: 100%;
       margin-top: 2px;
       color: inherit;
+      cursor: pointer;
+      display: flex;
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
@@ -329,6 +312,28 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
           max-width: toPx(70 * $scalingFactor5k);
           max-height: toPx(35 * $scalingFactor5k);
           font-size: toPx(14 * $scalingFactor5k);
+        }
+      }
+
+      sbb-icon-user {
+        width: 24px;
+        height: 24px;
+        margin-left: pxToRem(2);
+        margin-right: 0.9rem;
+        color: inherit;
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            height: toPx(36 * $scalingFactor4k);
+            width: toPx(36 * $scalingFactor4k);
+            margin-left: toPx(2 * $scalingFactor4k);
+          }
+
+          @include mq($from: desktop5k) {
+            height: toPx(48 * $scalingFactor5k);
+            width: toPx(48 * $scalingFactor5k);
+            margin-left: toPx(2 * $scalingFactor5k);
+          }
         }
       }
     }
