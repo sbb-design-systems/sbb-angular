@@ -95,7 +95,10 @@ export class TextareaComponent implements ControlValueAccessor {
   private _required = false;
   /** Placeholder value for the textarea. */
   @Input() placeholder = '';
-  /** Identifier of textarea. */
+  /**
+   * Identifier of textarea.
+   * @deprecated This will be replaced by an internal getter, based on the id property.
+   */
   @Input() inputId = `sbb-textarea-input-id-${++nextId}`;
   /** @docs-private */
   @ViewChild('textarea', { static: true }) _textarea: ElementRef<HTMLTextAreaElement>;

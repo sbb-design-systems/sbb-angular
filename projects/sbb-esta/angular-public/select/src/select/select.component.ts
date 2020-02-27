@@ -322,6 +322,7 @@ export class SelectComponent extends SbbSelectMixinBase
 
   /**
    * Implemented as part of FormFieldControl.
+   * @deprecated This will be replaced by an internal getter, based on the id property.
    * @docs-private
    */
   get inputId() {
