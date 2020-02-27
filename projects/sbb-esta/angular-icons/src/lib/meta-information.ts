@@ -168,7 +168,6 @@ import {
   IconGeneralDisplayComponent,
   IconGiftComponent,
   IconGlobeComponent,
-  IconGoogleplusComponent,
   IconGpsComponent,
   IconGpsDisabledComponent,
   IconHamburgerMenuComponent,
@@ -5849,14 +5848,6 @@ export const ICON_COMPONENT_META_INFORMATION = [
     component: IconInstagramComponent
   },
   {
-    selector: 'sbb-icon-googleplus',
-    name: 'IconGoogleplusComponent',
-    modules: ['IconGoogleplusModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
-    sizes: [],
-    meta: ['/svg/SocialMedia/SBB_110_googleplus.svg'],
-    component: IconGoogleplusComponent
-  },
-  {
     selector: 'sbb-icon-youtube',
     name: 'IconYoutubeComponent',
     modules: ['IconYoutubeModule', 'IconCollectionSocialMediaModule', 'IconCollectionModule'],
@@ -6392,7 +6383,6 @@ export const ICON_COMPONENT_LIST: Type<any>[] = [
   IconTwitterComponent,
   IconFacebookComponent,
   IconInstagramComponent,
-  IconGoogleplusComponent,
   IconYoutubeComponent,
   IconLinkedinComponent,
   IconPinterestComponent,

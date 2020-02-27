@@ -11,14 +11,5 @@ export class LinksShowcaseComponent {
   socialLinkIcon = 'facebook';
   modes = ['normal', 'form', 'stretch'];
   icons = ['arrow', 'download'];
-  socials = [
-    'facebook',
-    'youtube',
-    'xing',
-    'linkedin',
-    'google-plus',
-    'pinterest',
-    'twitter',
-    'instagram'
-  ];
+  socials = ['facebook', 'youtube', 'xing', 'linkedin', 'pinterest', 'twitter', 'instagram'];
 }

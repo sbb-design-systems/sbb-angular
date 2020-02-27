@@ -22,7 +22,6 @@ export class SocialLinkComponent {
    */
   @Input() icon:
     | 'facebook'
-    | 'google-plus'
     | 'instagram'
     | 'linkedin'
     | 'pinterest'
