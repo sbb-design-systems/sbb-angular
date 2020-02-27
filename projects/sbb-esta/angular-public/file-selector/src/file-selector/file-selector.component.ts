@@ -61,6 +61,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
 
   /**
    * Identifier of a sbb-file-selector component.
+   * @deprecated This will be replaced by an internal getter, based on the id property.
    */
   @Input() inputId = `sbb-file-selector-${counter++}`;
 

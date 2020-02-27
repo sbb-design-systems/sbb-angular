@@ -113,6 +113,9 @@ export class InputDirective extends SbbNativeInputBase
   @Input()
   id = `sbb-native-input-${nextId++}`;
 
+  /**
+   * @deprecated This will be replaced by an internal getter, based on the id property.
+   */
   get inputId() {
     return this.id;
   }

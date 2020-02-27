@@ -51,7 +51,10 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   /** The id of this component. */
   // tslint:disable-next-line: no-input-rename
   @Input() @HostBinding('attr.id') id: string = this._uniqueId;
-  /** Radio input identifier. */
+  /**
+   * Radio input identifier.
+   * @deprecated This will be replaced by an internal getter, based on the id property.
+   */
   @Input() inputId = `${this.id}-input`;
   /** Analog to HTML 'name' attribute used to group radios for unique selection. */
   @Input() name: string;
