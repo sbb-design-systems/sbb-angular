@@ -28,7 +28,7 @@ $sbbHeaderMenuSectionHeight: 54px;
 }
 
 button.sbb-header-menu-back,
-:host > div {
+:host > div.sbb-header-menu-title {
   @include buttonResetFrameless();
   height: $sbbHeaderMenuSectionHeight;
   width: 100%;
@@ -64,37 +64,47 @@ button.sbb-header-menu-back {
   }
 }
 
-:host > div {
+:host > div.sbb-header-menu-title {
   padding-top: 15px;
   padding-left: 15px;
 }
 
-:host > div.sbb-scrollbar ::ng-deep .sbb-header-menu-panel {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
+:host > div.sbb-header-menu-panel-container {
+  height: calc(100% - #{$sbbHeaderMenuSectionHeight * 2});
 
-  & > ::ng-deep hr {
-    display: none;
+  @include mq($from: tabletPortrait) {
+    height: calc(100% - #{$sbbHeaderMenuSectionHeight});
   }
 
-  & > ::ng-deep a,
-  & > ::ng-deep button {
-    border-bottom: 1px solid $sbbColorCloud;
-    padding-top: 8px;
-    padding-bottom: 10px;
-    color: $sbbColorIron;
-    line-height: 20px;
-    font-size: 15px;
-    text-decoration: none;
-    outline: 0;
-    @include headerRightArrow();
+  .sbb-header-menu-panel {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    height: 100%;
+    overflow-y: auto;
 
-    &.sbb-active,
-    &:hover,
-    &:active,
-    &:focus {
-      color: $sbbColorRed125;
+    & > ::ng-deep hr {
+      display: none;
+    }
+
+    & > ::ng-deep a,
+    & > ::ng-deep button {
+      border-bottom: 1px solid $sbbColorCloud;
+      padding-top: 8px;
+      padding-bottom: 10px;
+      color: $sbbColorIron;
+      line-height: 20px;
+      font-size: 15px;
+      text-decoration: none;
+      outline: 0;
+      @include headerRightArrow();
+
+      &.sbb-active,
+      &:hover,
+      &:active,
+      &:focus {
+        color: $sbbColorRed125;
+      }
     }
   }
 }
