@@ -4,7 +4,6 @@
 export * from './icon-twitter.module';
 export * from './icon-facebook.module';
 export * from './icon-instagram.module';
-export * from './icon-googleplus.module';
 export * from './icon-youtube.module';
 export * from './icon-linkedin.module';
 export * from './icon-pinterest.module';

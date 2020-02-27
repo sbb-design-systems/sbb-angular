@@ -57,15 +57,6 @@ describe('SocialLinkComponent', () => {
     expect(icons.length).toBe(1);
   });
 
-  it('should have a sbb-icon-googleplus component', () => {
-    component.icon = 'google-plus';
-    fixture.detectChanges();
-
-    const icons = fixture.debugElement.queryAll(By.css('sbb-icon-googleplus'));
-    expect(icons).toBeTruthy();
-    expect(icons.length).toBe(1);
-  });
-
   it('should have a sbb-icon-instagram component', () => {
     component.icon = 'instagram';
     fixture.detectChanges();

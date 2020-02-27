@@ -4,7 +4,6 @@
 import { NgModule } from '@angular/core';
 
 import { IconFacebookModule } from './icon-facebook.module';
-import { IconGoogleplusModule } from './icon-googleplus.module';
 import { IconInstagramModule } from './icon-instagram.module';
 import { IconLinkedinModule } from './icon-linkedin.module';
 import { IconPinterestModule } from './icon-pinterest.module';
@@ -16,7 +15,6 @@ const modules = [
   IconTwitterModule,
   IconFacebookModule,
   IconInstagramModule,
-  IconGoogleplusModule,
   IconYoutubeModule,
   IconLinkedinModule,
   IconPinterestModule,
