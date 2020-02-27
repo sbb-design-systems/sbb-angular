@@ -3,14 +3,14 @@
   <span i18n="Go back to the app chooser navigation@@sbbHeaderMenuBack">Zurück</span>
 </button>
 
-<div>
+<div class="sbb-header-menu-title">
   <ng-content></ng-content>
 </div>
 
-<div class="sbb-scrollbar">
+<div class="sbb-header-menu-panel-container">
   <ng-template cdkPortal cdkPortalOutlet>
     <div
-      class="sbb-header-menu-panel"
+      class="sbb-header-menu-panel sbb-scrollbar"
       role="listbox"
       [id]="id"
       [ngClass]="_classList"
