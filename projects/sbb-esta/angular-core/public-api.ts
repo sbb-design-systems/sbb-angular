@@ -8,4 +8,3 @@ export * from '@sbb-esta/angular-core/datetime';
 export * from '@sbb-esta/angular-core/error';
 export * from '@sbb-esta/angular-core/models';
 export * from '@sbb-esta/angular-core/oauth';
-export * from '@sbb-esta/angular-core/scrolling';
