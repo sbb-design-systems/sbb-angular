@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.10.0...9.0.0) (2020-02-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrading to version 9 of Angular. As recommended by Angular, the libraries are compiled via ViewEngine, which will be converted to Ivy in an Angular project that is using Ivy (default in Angular 9).
+* @sbb-esta/angular-core is now a peer dependency of @sbb-esta/angular-public and @sbb-esta/angular-business. Executing `ng update @sbb-esta/angular-public` or `ng update @sbb-esta/angular-business` will automatically install @sbb-esta/angular-core, otherwise you will need to install the package manually via `npm install --save @sbb-esta/angular-core`.
+* Removing the deprecated support for form control on a radio button. sbb-radio-button and sbb-radio-button-panel should be wrapped in a sbb-radio-group. See an example in the `Use with @angular/forms` section in the [radio button documentation](https://angular.app.sbb.ch/latest/public/components/radio-button#use-with-angularforms)
+* **business:** The header module no longer exports the DropdownModule. If you used sbb-dropdown with the header, you either should switch to using sbb-header-menu where applicable or you need to add DropdownModule to the NgModule imports.
+* Removing the deprecated icons from `@sbb-esta/angular-public`. Please use the icons from @sbb-esta/angular-icons. This also removes the different icon directives (`*sbbButtonIcon`, `*sbbGhettoboxIcon`, `*sbbNotificationIcon`, `*sbbSearchIcon`, `*sbbToggleOptionIcon`, `*sbbTooltipIcon`) and replaces them with `*sbbIcon`.
+* Due to various small problems, we are removing internal usage of perfect-scrollbar. We are also deprecating the ScrollingModule. If you want to keep using the ScrollingModule, you will have to install ngx-perfect-scrollbar manually in your project (npm install --save ngx-perfect-scrollbar).
+* Removing various deprecated code parts in checkbox, checkbox panel, dropdown, keycloak config, radio button, radio button panel, tag, textarea, toggle, toggle option. The deprecated highlight pipe has been removed.
+
+### Features
+
+* add migration for public and business packages ([#303](https://github.com/sbb-design-systems/sbb-angular/issues/303)) ([dd93e2e](https://github.com/sbb-design-systems/sbb-angular/commit/dd93e2e19f2b78249e380699e4a85db5b392b078))
+* migrate to angular 9 ([#277](https://github.com/sbb-design-systems/sbb-angular/issues/277)) ([b7f6066](https://github.com/sbb-design-systems/sbb-angular/commit/b7f606693f8a687724b05c16e0ae7614ee6734a4))
+* **business:** add .sbb-active as active link highlight ([#306](https://github.com/sbb-design-systems/sbb-angular/issues/306)) ([0222ea6](https://github.com/sbb-design-systems/sbb-angular/commit/0222ea68b2b9b01ee617178e6d1dbe6ca04bd59b)), closes [#253](https://github.com/sbb-design-systems/sbb-angular/issues/253)
+
+
+### Bug Fixes
+
+* **business:** add import to overlay module to header ([#292](https://github.com/sbb-design-systems/sbb-angular/issues/292)) ([a51c399](https://github.com/sbb-design-systems/sbb-angular/commit/a51c399dca51692be01f8096b2d1cd7c6117e4c0))
+* **business:** fix overlapping header menus ([#290](https://github.com/sbb-design-systems/sbb-angular/issues/290)) ([19d5a0d](https://github.com/sbb-design-systems/sbb-angular/commit/19d5a0d36678f35117f9fdd05a9ceac7f63578bc)), closes [#286](https://github.com/sbb-design-systems/sbb-angular/issues/286)
+* **business:** fix styling and scrolling in header menu ([#318](https://github.com/sbb-design-systems/sbb-angular/issues/318)) ([cedf4ab](https://github.com/sbb-design-systems/sbb-angular/commit/cedf4abbd318b718eea3e1922bf54b2de911c19d))
+* **business:** remove dropdown module from header module ([#289](https://github.com/sbb-design-systems/sbb-angular/issues/289)) ([d31b6eb](https://github.com/sbb-design-systems/sbb-angular/commit/d31b6eb6359394bb360685cf44541eba0454cc7a)), closes [#269](https://github.com/sbb-design-systems/sbb-angular/issues/269)
+* **maps:** assign public access to package config ([#282](https://github.com/sbb-design-systems/sbb-angular/issues/282)) ([17f9f41](https://github.com/sbb-design-systems/sbb-angular/commit/17f9f41be4373e21e1ea05330e7c8edb910c494f))
+* **public:** fix sticky support detection in table component ([#283](https://github.com/sbb-design-systems/sbb-angular/issues/283)) ([bb0dc1a](https://github.com/sbb-design-systems/sbb-angular/commit/bb0dc1a4c9a2cd90834175bccd65874dbd324a73))
+* **public:** show pointer cursor on tag ([#314](https://github.com/sbb-design-systems/sbb-angular/issues/314)) ([4abe188](https://github.com/sbb-design-systems/sbb-angular/commit/4abe18814ea613ee89eea835c57589681f3f4c4c))
+* **public:** show searchbox in header mode ([#302](https://github.com/sbb-design-systems/sbb-angular/issues/302)) ([0d9353e](https://github.com/sbb-design-systems/sbb-angular/commit/0d9353e838827264f6445583274046d0c4c4d344))
+* **showcase:** fix datepicker styling in showcase ([#312](https://github.com/sbb-design-systems/sbb-angular/issues/312)) ([360b24b](https://github.com/sbb-design-systems/sbb-angular/commit/360b24b34b9a8498aa4b9df0499dc3b5be812ed1))
+* **showcase:** fix examples using form control on sbb-radio-button ([#308](https://github.com/sbb-design-systems/sbb-angular/issues/308)) ([c6f4980](https://github.com/sbb-design-systems/sbb-angular/commit/c6f49807c6268ab77fee03b18c89603fd16cc671))
+* **showcase:** fix overlapping styles for tabs ([#310](https://github.com/sbb-design-systems/sbb-angular/issues/310)) ([5fe284c](https://github.com/sbb-design-systems/sbb-angular/commit/5fe284c7a971ea971a7072f3e122abe1065156ca))
+* **showcase:** fix style of lightbox and dialog content ([#305](https://github.com/sbb-design-systems/sbb-angular/issues/305)) ([1607564](https://github.com/sbb-design-systems/sbb-angular/commit/16075644c96f70ff707cd288002de6dfb0f21a75))
+* **showcase:** fix table aligning in showcase example ([#307](https://github.com/sbb-design-systems/sbb-angular/issues/307)) ([35816db](https://github.com/sbb-design-systems/sbb-angular/commit/35816db9cfd3588bd23a32490f6ced3e120ba4f9))
+* **showcase:** hide scss button in example viewer for missing scss files ([#311](https://github.com/sbb-design-systems/sbb-angular/issues/311)) ([8ccc859](https://github.com/sbb-design-systems/sbb-angular/commit/8ccc859a227bc07f75a0e89b7303f05f769caa8c))
+* make notification component jump marks fault tolerant ([#313](https://github.com/sbb-design-systems/sbb-angular/issues/313)) ([cecc75f](https://github.com/sbb-design-systems/sbb-angular/commit/cecc75faee520def04fb52995aa6e3abf189ba72))
+* change @sbb-esta/angular-core to be a peer dependency ([#295](https://github.com/sbb-design-systems/sbb-angular/issues/295)) ([c41e078](https://github.com/sbb-design-systems/sbb-angular/commit/c41e07823008b0effeadeda23e9dec3aeabbbe46))
+* drop support for form control on radio button ([#287](https://github.com/sbb-design-systems/sbb-angular/issues/287)) ([e724872](https://github.com/sbb-design-systems/sbb-angular/commit/e724872824939cdc6627e79ad000ea4180844cf3))
+* remove deprecated code ([#284](https://github.com/sbb-design-systems/sbb-angular/issues/284)) ([463c6fe](https://github.com/sbb-design-systems/sbb-angular/commit/463c6fe216e290de9e9983e1ceaea16ccd6b825e))
+* remove deprecated icon library from public ([#281](https://github.com/sbb-design-systems/sbb-angular/issues/281)) ([50b8202](https://github.com/sbb-design-systems/sbb-angular/commit/50b82028659a7ae7bc838b4a9e15ce7fc1f3087a))
+* remove usage of perfect-scrollbar ([#285](https://github.com/sbb-design-systems/sbb-angular/issues/285)) ([b539cd0](https://github.com/sbb-design-systems/sbb-angular/commit/b539cd0c69cbf960efbf676c5707f412604312d9))
+
 ## [8.10.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.9.0...8.10.0) (2020-02-18)
 
 
