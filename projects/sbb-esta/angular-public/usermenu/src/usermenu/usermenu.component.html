@@ -47,17 +47,10 @@
     </div>
   </div>
 </div>
-<div class="sbb-usermenu-logged-off" *ngIf="!userName" (click)="emitLogin()">
-  <div class="sbb-usermenu-logged-off-icon-user">
+<div class="sbb-usermenu-logged-off" *ngIf="!userName">
+  <button class="sbb-usermenu-logged-off-button" (click)="emitLogin()" type="button">
     <sbb-icon-user></sbb-icon-user>
-  </div>
-  <button
-    class="sbb-usermenu-logged-off-button"
-    (click)="emitLogin()"
-    type="button"
-    i18n="Button label for login@@sbbUsermenuLogin"
-  >
-    Login
+    <ng-container i18n="Button label for login@@sbbUsermenuLogin">Login</ng-container>
   </button>
 </div>
 
