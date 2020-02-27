@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./accordion-showcase.component.scss']
 })
 export class AccordionShowcaseComponent implements OnInit, OnDestroy {
-  @ViewChild('firstAccordion', { static: true }) firstAccordion: AccordionDirective;
+  @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;
 
   panelOpenState = false;
   step = 0;
