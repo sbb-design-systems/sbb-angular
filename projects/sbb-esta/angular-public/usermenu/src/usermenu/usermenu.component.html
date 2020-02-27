@@ -47,7 +47,7 @@
     </div>
   </div>
 </div>
-<div class="sbb-usermenu-logged-off" *ngIf="!userName">
+<div class="sbb-usermenu-logged-off" *ngIf="!userName" (click)="emitLogin()">
   <div class="sbb-usermenu-logged-off-icon-user">
     <sbb-icon-user></sbb-icon-user>
   </div>

@@ -15,6 +15,8 @@ $borderActive4K: solid toPx(3 * $scalingFactor4k) $sbbColorGrey;
 $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
 
 .sbb-usermenu {
+  cursor: pointer;
+
   &-logged-in {
     position: relative;
     align-items: center;
@@ -313,6 +315,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
       margin-left: 13.5px;
       margin-top: 2px;
       color: inherit;
+      cursor: pointer;
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
