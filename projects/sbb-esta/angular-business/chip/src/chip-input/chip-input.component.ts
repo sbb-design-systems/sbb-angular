@@ -198,6 +198,15 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   }
 
   /**
+   * Selects a given value if the action doesn't refer to an autocomplete option
+   */
+  onEnter(option: string) {
+    if (!this.autocomplete.options.some(opt => opt.active)) {
+      this.onSelect(option);
+    }
+  }
+
+  /**
    * Removes a given value from the current selected values.
    */
   deselectOption(option: string) {

@@ -15,7 +15,7 @@
   [sbbAutocompleteConnectedTo]="origin"
   (focus)="focused = true"
   (blur)="focused = false"
-  (keydown.enter)="onSelect($event.target.value)"
+  (keydown.enter)="onEnter($event.target.value)"
   class="sbb-chip-input-textfield"
 />
 <ng-template #noAutocomplete>
@@ -26,7 +26,7 @@
     [disabled]="disabled"
     (focus)="focused = true"
     (blur)="focused = false"
-    (keydown.enter)="onSelect($event.target.value)"
+    (keydown.enter)="onEnter($event.target.value)"
     class="sbb-chip-input-textfield"
   />
 </ng-template>
