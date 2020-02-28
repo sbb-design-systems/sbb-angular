@@ -92,7 +92,7 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   }
   set value(newValue: any) {
     if (newValue !== this._value) {
-      this._value = newValue;
+      this.writeValue(newValue);
     }
   }
   private _value: string[] = [];
@@ -123,9 +123,6 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   origin = new AutocompleteOriginDirective(this._elementRef);
   selectionModel: SelectionModel<string>;
 
-  private _onTouchedCallback: () => void;
-  private _onChangeCallback: (_: any) => void;
-
   /** Whether filling out the chip-input is required in the form. */
   private _required = false;
 
@@ -138,11 +135,15 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
+  private _onTouchedCallback: () => void = () => {};
+  private _onChangeCallback: (_: any) => void = () => {};
+
   constructor(
     @Self() @Optional() public ngControl: NgControl,
     private _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef
   ) {
+    this.selectionModel = new SelectionModel<string>(true);
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
       // the `providers` to avoid running into a circular import.
@@ -154,8 +155,6 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   }
 
   ngOnInit(): void {
-    this.selectionModel = new SelectionModel<string>(true);
-    this._initializeSelection();
     if (this.autocomplete) {
       this.autocomplete.optionSelected.subscribe(event => this.onSelect(event.option.value));
     }
@@ -168,9 +167,11 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    * @param value New value to be written to the model.
    */
   writeValue(value: string[]): void {
-    if (this.selectionModel) {
-      value.forEach(v => this.onSelect(v));
+    this.selectionModel.clear();
+    if (value) {
+      value.forEach(v => this.selectionModel.select(v));
     }
+    this._propagateChanges();
   }
 
   /**
@@ -202,12 +203,9 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   deselectOption(option: string) {
     if (this.selectionModel.isSelected(option)) {
       this.selectionModel.deselect(option);
-      this._propagateChanges(option);
+      this._propagateChanges();
     }
   }
-
-  /** `View -> model callback called when value changes` */
-  onChange: (value: any) => void = () => {};
 
   /**
    * Saves a callback function to be invoked when the chip input's value
@@ -240,21 +238,11 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   }
 
   /** Emits change event to set the model value. */
-  private _propagateChanges(fallbackValue?: string): void {
+  private _propagateChanges(): void {
     this._value = this.selectionModel.selected;
-    this.onChange(this._value);
-    this.valueChange.emit(new SbbChipInputChange(this, this._value));
-    this._value ? this.valueChange.emit(this._value) : this.valueChange.emit(fallbackValue);
-    this._value ? this._onChangeCallback(this._value) : this._onChangeCallback(fallbackValue);
+    this._onChangeCallback(this.selectionModel.selected);
     this._onTouchedCallback();
+    this.valueChange.emit(new SbbChipInputChange(this, this._value));
     this._changeDetectorRef.markForCheck();
-  }
-
-  private _initializeSelection(): void {
-    // Defer setting the value in order to avoid the "Expression
-    // has changed after it was checked" errors from Angular.
-    Promise.resolve().then(() => {
-      this.ngControl ? this.writeValue(this.ngControl.value) : this.writeValue(this._value);
-    });
   }
 }
