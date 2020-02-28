@@ -1,3 +1,5 @@
+// This is a backup file of the original angular.json. This file is needed in case you want to revert to the workflow without Bazel.
+
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
@@ -15,27 +17,80 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular/bazel:build",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "targetLabel": "//src:prodapp",
-            "bazelCommand": "build"
+            "aot": true,
+            "outputPath": "dist/angular-showcase",
+            "index": "projects/angular-showcase/src/index.html",
+            "main": "projects/angular-showcase/src/main.ts",
+            "polyfills": "projects/angular-showcase/src/polyfills.ts",
+            "tsConfig": "projects/angular-showcase/tsconfig.app.json",
+            "assets": [
+              "projects/angular-showcase/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "/assets/monaco"
+              }
+            ],
+            "styles": [
+              "projects/angular-showcase/src/styles.scss",
+              "node_modules/highlight.js/styles/github.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
           },
           "configurations": {
+            "es5": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "tsConfig": "projects/angular-showcase/tsconfig.app.es5.json"
+            },
             "production": {
-              "targetLabel": "//src:prodapp"
+              "fileReplacements": [
+                {
+                  "replace": "projects/angular-showcase/src/environments/environment.ts",
+                  "with": "projects/angular-showcase/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
             }
           }
         },
         "serve": {
-          "builder": "@angular/bazel:build",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "targetLabel": "//src:devserver",
-            "bazelCommand": "run",
-            "watch": true
+            "browserTarget": "angular-showcase:build"
           },
           "configurations": {
+            "es5": {
+              "browserTarget": "angular-showcase:build:es5"
+            },
             "production": {
-              "targetLabel": "//src:prodserver"
+              "browserTarget": "angular-showcase:build:production"
             }
           }
         },
@@ -46,10 +101,35 @@
           }
         },
         "test": {
-          "builder": "@angular/bazel:build",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "bazelCommand": "test",
-            "targetLabel": "//src:test"
+            "main": "projects/angular-showcase/src/test.ts",
+            "polyfills": "projects/angular-showcase/src/polyfills.ts",
+            "tsConfig": "projects/angular-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-showcase/karma.conf.js",
+            "styles": [
+              "projects/angular-showcase/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/angular-showcase/src/assets"
+            ]
+          },
+          "configurations": {
+            "pr": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless",
+              "sourceMap": false,
+              "preserveSymlinks": false
+            },
+            "ci": {
+              "watch": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
+              "sourceMap": false,
+              "preserveSymlinks": false
+            }
           }
         },
         "lint": {
@@ -72,14 +152,14 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular/bazel:build",
+          "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "bazelCommand": "test",
-            "targetLabel": "//e2e:devserver_test"
+            "protractorConfig": "projects/angular-showcase-e2e/protractor.conf.js",
+            "devServerTarget": "angular-showcase:serve"
           },
           "configurations": {
             "production": {
-              "targetLabel": "//e2e:prodserver_test"
+              "devServerTarget": "angular-showcase:serve:production"
             }
           }
         },
@@ -94,7 +174,7 @@
         }
       }
     },
-    "public": {
+    "@sbb-esta/angular-public": {
       "root": "projects/sbb-esta/angular-public",
       "sourceRoot": "projects/sbb-esta/angular-public",
       "projectType": "library",
@@ -152,7 +232,7 @@
         }
       }
     },
-    "business": {
+    "@sbb-esta/angular-business": {
       "root": "projects/sbb-esta/angular-business",
       "sourceRoot": "projects/sbb-esta/angular-business",
       "projectType": "library",
@@ -210,7 +290,7 @@
         }
       }
     },
-    "icons": {
+    "@sbb-esta/angular-icons": {
       "root": "projects/sbb-esta/angular-icons",
       "sourceRoot": "projects/sbb-esta/angular-icons",
       "projectType": "library",
@@ -269,7 +349,7 @@
         }
       }
     },
-    "keycloak": {
+    "@sbb-esta/angular-keycloak": {
       "projectType": "library",
       "root": "projects/sbb-esta/angular-keycloak",
       "sourceRoot": "projects/sbb-esta/angular-keycloak",
@@ -327,7 +407,7 @@
         }
       }
     },
-    "core": {
+    "@sbb-esta/angular-core": {
       "projectType": "library",
       "root": "projects/sbb-esta/angular-core",
       "sourceRoot": "projects/sbb-esta/angular-core",
@@ -385,7 +465,7 @@
         }
       }
     },
-    "maps": {
+    "@sbb-esta/angular-maps": {
       "root": "projects/sbb-esta/angular-maps",
       "sourceRoot": "projects/sbb-esta/angular-maps",
       "projectType": "library",
