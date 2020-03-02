@@ -17,7 +17,7 @@ Let's start with a basic WebScene only displaying a simple 3d scene.
 _my-scene.component.html_:
 
 ```html
-<sbb-esri-web-scene [portalItem]="'affa021c51944b5694132b2d61fe1057'"> </sbb-esri-web-scene>
+<sbb-esri-web-scene [portalItemId]="'affa021c51944b5694132b2d61fe1057'"> </sbb-esri-web-scene>
 ```
 
 > _Note:_ Extract the portalItem identificator from the URL to your scene in Portal or ArcGIS Online.
