@@ -17,7 +17,7 @@ Let's start with a basic WebMap only displaying a simple map.
 _my-map.component.html_:
 
 ```html
-<sbb-esri-web-map [portalItem]="'e691172598f04ea8881cd2a4adaa45ba'"> </sbb-esri-web-map>
+<sbb-esri-web-map [portalItemId]="'e691172598f04ea8881cd2a4adaa45ba'"> </sbb-esri-web-map>
 ```
 
 > _Note:_ Extract the portalItem identificator from the URL to your map in Portal or ArcGIS Online.
