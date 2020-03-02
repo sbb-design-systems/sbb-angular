@@ -190,7 +190,9 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
    * Adds a given value to the current selected values.
    */
   onSelect(option: string) {
-    if (!this.selectionModel.isSelected(option)) {
+    if (!option) {
+      return;
+    } else if (!this.selectionModel.isSelected(option)) {
       this.selectionModel.select(option);
       this._propagateChanges();
     }
