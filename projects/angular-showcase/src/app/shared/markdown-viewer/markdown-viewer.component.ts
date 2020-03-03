@@ -16,6 +16,9 @@ export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
   @HostBinding('innerHTML')
   content: string;
 
+  @HostBinding('class.sbb-scrollbar')
+  scrollbar = true;
+
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
   ngAfterViewInit(): void {

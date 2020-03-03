@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { HtmlLoader } from '../html-loader.service';
@@ -10,6 +10,9 @@ import { HtmlLoader } from '../html-loader.service';
 })
 export class ApiViewerComponent {
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
+
+  @HostBinding('class.sbb-scrollbar')
+  scrollbar = true;
 
   content = this._htmlLoader
     .with(this._route)
