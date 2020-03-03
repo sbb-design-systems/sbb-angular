@@ -121,7 +121,7 @@ jobs:
         name: dist-showcase
         path: dist/angular-showcase
 
-  relase:
+  release:
     runs-on: ubuntu-latest
     needs: build
     steps:
