@@ -48,6 +48,7 @@ $sbbHeaderHeight: 54px;
 .sbb-header-close-menu {
   @include buttonResetFrameless();
   flex-grow: 0;
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   margin-left: 15px;
