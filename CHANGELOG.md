@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.0.0...9.0.1) (2020-03-03)
+
+
+### Bug Fixes
+
+* **core:** remove ScrollingModule re-export from root ([#323](https://github.com/sbb-design-systems/sbb-angular/issues/323)) ([82b2797](https://github.com/sbb-design-systems/sbb-angular/commit/82b2797c998545a06c3237f68e41c1089aa9b591))
+* **public:** show pointer cursor on usermenu ([#317](https://github.com/sbb-design-systems/sbb-angular/issues/317)) ([5b23c2c](https://github.com/sbb-design-systems/sbb-angular/commit/5b23c2c4dced049d992dc16ade9454508fa61ed0))
+* **showcase:** fix accordion example ([#322](https://github.com/sbb-design-systems/sbb-angular/issues/322)) ([cb87837](https://github.com/sbb-design-systems/sbb-angular/commit/cb87837149cc416dfb8d7a523f300266831e947a))
+
 ## [9.0.0](https://github.com/sbb-design-systems/sbb-angular/compare/8.10.0...9.0.0) (2020-02-27)
 
 
