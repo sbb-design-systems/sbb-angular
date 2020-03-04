@@ -26,11 +26,11 @@ export class SelectOptionGroupsComponent {
       ]
     },
     {
-      nation: 'Swiss',
+      nation: 'Schweiz',
       food: [
-        { value: 'bircherműesli', viewValue: 'Bircherműesli' },
+        { value: 'birchermüesli', viewValue: 'Birchermüesli' },
         { value: 'rösti', viewValue: 'Rösti' },
-        { value: 'bűndnernusstorte', viewValue: 'Bűndnernusstorte' }
+        { value: 'bündnernusstorte', viewValue: 'Bündnernusstorte' }
       ]
     }
   ];
