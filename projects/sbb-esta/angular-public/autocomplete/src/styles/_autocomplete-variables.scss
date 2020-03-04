@@ -11,7 +11,11 @@ $autocompleteShadow: 0 8px 0 rgba(0, 0, 0, 0.15);
 $autocompleteShadowReverse: 0 -8px 0 rgba(0, 0, 0, 0.15);
 $autocompleteColor: $sbbColorGrey;
 $autocompleteInputActiveBorderBottomColor: $sbbColorCloud;
-$optionGroupItemPaddingLeft: 24;
+$autocompleteInputActiveBorder: 0 -3px 0 -2px $autocompleteInputActiveBorderBottomColor;
+$autocompleteInputActiveBorderReverse: 0 3px 0 -2px $autocompleteInputActiveBorderBottomColor;
+$autocompleteMarginOffset: 2px;
+$optionGroupItemPaddingLeft: 24px;
+$optionPaddingLeft: 14px;
 
 $autocompletePaddingTop: 14px;
 $autocompletePaddingX: 16px;

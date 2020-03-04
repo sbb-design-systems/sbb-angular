@@ -13,6 +13,7 @@ body {
 @include sbbLink();
 @include cdk-a11y();
 @include cdk-overlay();
+@include sbbOverlay();
 
 sbb-public,
 sbb-maps,
