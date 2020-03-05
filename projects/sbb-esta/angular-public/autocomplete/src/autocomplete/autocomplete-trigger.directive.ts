@@ -632,7 +632,9 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     return new OverlayConfig({
       positionStrategy: this._getOverlayPosition(),
       scrollStrategy: this._scrollStrategy(),
-      width: this._getPanelWidth()
+      width: this._getPanelWidth(),
+      panelClass: 'sbb-overlay-panel',
+      minHeight: 30
     });
   }
 
@@ -640,7 +642,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     this._positionStrategy = this._overlay
       .position()
       .flexibleConnectedTo(this._getConnectedElement())
-      .withFlexibleDimensions(false)
+      .withFlexibleDimensions(true)
       .withPush(false)
       .withPositions([
         {

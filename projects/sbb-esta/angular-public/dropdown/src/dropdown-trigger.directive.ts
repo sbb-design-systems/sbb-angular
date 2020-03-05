@@ -581,7 +581,8 @@ export class DropdownTriggerDirective implements OnDestroy {
       positionStrategy: this._getOverlayPosition(),
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
-      panelClass: this.panelClass
+      panelClass: [this.panelClass, 'sbb-overlay-panel'],
+      minHeight: 30
     });
   }
 
@@ -589,7 +590,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     this._positionStrategy = this._overlay
       .position()
       .flexibleConnectedTo(this._getConnectedElement())
-      .withFlexibleDimensions(false)
+      .withFlexibleDimensions(true)
       .withPush(false)
       .withPositions(panelPositionMappings[this.horizontalOrientation]);
 

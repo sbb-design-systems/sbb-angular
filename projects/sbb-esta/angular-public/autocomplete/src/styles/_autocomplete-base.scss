@@ -21,15 +21,15 @@
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
+      height: calc(100% + #{$scalingFactor4k * $autocompleteMarginOffset});
       border: toPx(2 * $scalingFactor4k) solid $sbbColorGrey;
       box-shadow: 0 toPx(8 * $scalingFactor4k) 0 rgba(0, 0, 0, 0.15);
-      border-top: $autocompleteBorderTop;
     }
 
     @include mq($from: desktop5k) {
+      height: calc(100% + #{$scalingFactor5k * $autocompleteMarginOffset});
       border: toPx(2 * $scalingFactor5k) solid $sbbColorGrey;
       box-shadow: 0 toPx(8 * $scalingFactor5k) 0 rgba(0, 0, 0, 0.15);
-      border-top: $autocompleteBorderTop;
     }
   }
 
@@ -38,23 +38,45 @@
   }
 }
 
+@function autocompleteBoxShadow($sign: 1, $scalingFactor: 1) {
+  @return 0 toPx($sign * 8 * $scalingFactor) 0 rgba(0, 0, 0, 0.15);
+}
+
+@function autocompleteInputActiveBorder($sign: 1, $scalingFactor: 1) {
+  @return 0 toPx($sign * 3 * $scalingFactor) 0 toPx(-2 * $scalingFactor)
+    $autocompleteInputActiveBorderBottomColor;
+}
+
+@function boxShadow($mode: default, $scalingFactor: 1) {
+  $sign: 1;
+  @if $mode == reverse {
+    $sign: -1;
+  }
+  @return autocompleteBoxShadow($sign, $scalingFactor),
+    autocompleteInputActiveBorder(-$sign, $scalingFactor);
+}
+
 @mixin autocompleteDirectionalRules($mode: default, $selectMode: false) {
   @if $mode == default {
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
-    border-top: $autocompleteBorderTop;
-    box-shadow: $autocompleteShadow, $autocompleteInputActiveBorder;
+    border-top: none;
+    box-shadow: boxShadow();
     margin-top: -$autocompleteMarginOffset;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
         border-bottom-left-radius: toPx(2 * $scalingFactor4k);
-        margin-top: toPx(-2 * $scalingFactor4k);
+        border-bottom-right-radius: toPx(2 * $scalingFactor4k);
+        margin-top: toPx(-$autocompleteMarginOffset * $scalingFactor4k);
+        box-shadow: boxShadow($scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         border-bottom-left-radius: toPx(2 * $scalingFactor5k);
-        margin-top: toPx(-2 * $scalingFactor5k);
+        border-bottom-right-radius: toPx(2 * $scalingFactor5k);
+        margin-top: toPx(-$autocompleteMarginOffset * $scalingFactor5k);
+        box-shadow: boxShadow($scalingFactor: $scalingFactor5k);
       }
     }
 
@@ -67,22 +89,25 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-top: $autocompleteBorderTopReverse;
-    border-bottom: $autocompleteBorderTop;
-    box-shadow: $autocompleteShadowReverse, $autocompleteInputActiveBorderReverse;
-    margin-top: auto;
-    margin-bottom: -$autocompleteMarginOffset;
+    border-bottom: none;
+    box-shadow: boxShadow($mode: reverse);
+    margin-top: -$autocompleteMarginOffset;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
         border-top-left-radius: toPx(2 * $scalingFactor4k);
+        border-top-right-radius: toPx(2 * $scalingFactor4k);
         border-top-width: toPx(2 * $scalingFactor4k);
-        margin-bottom: toPx(-2 * $scalingFactor4k);
+        box-shadow: boxShadow($mode: reverse, $scalingFactor: $scalingFactor4k);
+        margin-bottom: toPx(-$autocompleteMarginOffset * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         border-top-left-radius: toPx(2 * $scalingFactor5k);
+        border-top-right-radius: toPx(2 * $scalingFactor5k);
         border-top-width: toPx(2 * $scalingFactor5k);
-        margin-bottom: toPx(-2 * $scalingFactor5k);
+        box-shadow: boxShadow($mode: reverse, $scalingFactor: $scalingFactor5k);
+        margin-bottom: toPx(-$autocompleteMarginOffset * $scalingFactor5k);
       }
     }
 
