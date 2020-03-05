@@ -11,9 +11,11 @@ import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
 import { NotificationsModule } from '@sbb-esta/angular-business/notification';
+import { OptionModule } from '@sbb-esta/angular-business/option';
 import { PaginationModule } from '@sbb-esta/angular-business/pagination';
 import { ProcessflowModule } from '@sbb-esta/angular-business/processflow';
 import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
+import { SelectModule } from '@sbb-esta/angular-business/select';
 import { TableModule } from '@sbb-esta/angular-business/table';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
@@ -36,6 +38,12 @@ import { CustomIconNotificationComponent } from './notification-showcase/custom-
 import { JumpmarkNotificationComponent } from './notification-showcase/jumpmark-notification/jumpmark-notification.component';
 import { SimpleNotificationComponent } from './notification-showcase/simple-notification/simple-notification.component';
 import { PaginationShowcaseComponent } from './pagination-showcase/pagination-showcase.component';
+import { SelectFormsComponent } from './select-forms/select-forms.component';
+import { SelectMultiSelectionComponent } from './select-multi-selection/select-multi-selection.component';
+import { SelectNativeComponent } from './select-native/select-native.component';
+import { SelectOptionGroupsMultiSelectionComponent } from './select-option-groups-multi-selection/select-option-groups-multi-selection.component';
+import { SelectOptionGroupsComponent } from './select-option-groups/select-option-groups.component';
+import { SelectReactiveFormsComponent } from './select-reactive-forms/select-reactive-forms.component';
 import { SimpleContextmenuComponent } from './simple-contextmenu/simple-contextmenu.component';
 import { SkippableProcessflowComponent } from './skippable-processflow/skippable-processflow.component';
 import { GroupedColumnsTableComponent } from './table-showcase/grouped-columns-table/grouped-columns-table.component';
@@ -72,7 +80,14 @@ const exampleComponents = [
   GroupedColumnsTableComponent,
   SimpleChipInputComponent,
   DisabledChipInputComponent,
-  AutocompleteChipInputComponent
+  AutocompleteChipInputComponent,
+  GroupedColumnsTableComponent,
+  SelectFormsComponent,
+  SelectMultiSelectionComponent,
+  SelectNativeComponent,
+  SelectOptionGroupsComponent,
+  SelectOptionGroupsMultiSelectionComponent,
+  SelectReactiveFormsComponent
 ];
 
 @NgModule({
@@ -101,7 +116,10 @@ const exampleComponents = [
     UserMenuModule,
     TableModule,
     ChipModule,
-    AutocompleteModule
+    AutocompleteModule,
+    TableModule,
+    SelectModule,
+    OptionModule
   ]
 })
 export class BusinessExamplesModule {}
