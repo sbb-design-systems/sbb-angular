@@ -39,7 +39,9 @@ sbb-select.sbb-select {
     }
 
     &[aria-expanded='true'] {
-      @include autocompleteInputActive();
+      &.sbb-select-input-below {
+        @include autocompleteInputActive();
+      }
 
       &.sbb-select-input-above {
         @include autocompleteInputActive($mode: reverse);

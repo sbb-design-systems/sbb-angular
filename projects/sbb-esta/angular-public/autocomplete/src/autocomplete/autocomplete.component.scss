@@ -10,7 +10,9 @@
 }
 
 input[aria-expanded='true'] {
-  @include autocompleteInputActive();
+  &.sbb-autocomplete-input-below {
+    @include autocompleteInputActive();
+  }
 
   &.sbb-autocomplete-input-above {
     @include autocompleteInputActive($mode: reverse);

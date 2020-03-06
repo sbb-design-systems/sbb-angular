@@ -844,9 +844,11 @@ export class SelectComponent extends SbbSelectMixinBase
       if (positions.connectionPair.originY === 'top') {
         this.panel.nativeElement.classList.add('sbb-select-panel-above');
         this.trigger.nativeElement.classList.add('sbb-select-input-above');
+        this.trigger.nativeElement.classList.remove('sbb-select-input-below');
       } else {
         this.panel.nativeElement.classList.remove('sbb-select-panel-above');
         this.trigger.nativeElement.classList.remove('sbb-select-input-above');
+        this.trigger.nativeElement.classList.add('sbb-select-input-below');
       }
       this._changeDetectorRef.detectChanges();
 
