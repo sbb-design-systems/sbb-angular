@@ -91,7 +91,7 @@
     border-top: $autocompleteBorderTopReverse;
     border-bottom: none;
     box-shadow: boxShadow($mode: reverse);
-    margin-top: -$autocompleteMarginOffset;
+    margin-top: -1px;
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -99,7 +99,7 @@
         border-top-right-radius: toPx(2 * $scalingFactor4k);
         border-top-width: toPx(2 * $scalingFactor4k);
         box-shadow: boxShadow($mode: reverse, $scalingFactor: $scalingFactor4k);
-        margin-bottom: toPx(-$autocompleteMarginOffset * $scalingFactor4k);
+        margin-top: toPx(-1 * $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
@@ -107,7 +107,7 @@
         border-top-right-radius: toPx(2 * $scalingFactor5k);
         border-top-width: toPx(2 * $scalingFactor5k);
         box-shadow: boxShadow($mode: reverse, $scalingFactor: $scalingFactor5k);
-        margin-bottom: toPx(-$autocompleteMarginOffset * $scalingFactor5k);
+        margin-top: toPx(-1 * $scalingFactor5k);
       }
     }
 
@@ -143,13 +143,6 @@
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   border-color: $sbbColorGrey;
-  border-top-color: transparent;
-  border-bottom: $autocompleteBorder;
-
-  &:hover,
-  &:focus {
-    border-top-color: transparent;
-  }
 }
 
 @mixin optionGroupBase {
