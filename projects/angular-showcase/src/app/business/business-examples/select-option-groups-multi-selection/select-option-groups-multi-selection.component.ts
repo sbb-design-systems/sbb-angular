@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-select-option-groups-multi-selection',
-  templateUrl: './select-option-groups-multi-selection.component.html',
-  styleUrls: ['./select-option-groups-multi-selection.component.scss']
+  templateUrl: './select-option-groups-multi-selection.component.html'
 })
 export class SelectOptionGroupsMultiSelectionComponent {
   form: FormGroup;

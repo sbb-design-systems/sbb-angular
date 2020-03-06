@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-select-option-groups',
-  templateUrl: './select-option-groups.component.html',
-  styleUrls: ['./select-option-groups.component.scss']
+  templateUrl: './select-option-groups.component.html'
 })
 export class SelectOptionGroupsComponent {
   form: FormGroup;
