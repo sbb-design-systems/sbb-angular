@@ -10,10 +10,12 @@ schematics/*/index.js
 schematics/*/files
 projects/angular-showcase/src/assets/**/*
 projects/angular-showcase/src/docs/**/*
-tools
 coverage
 **/svg-icons/**/icon-*.module.ts
 **/*.svg
 **/*.properties
 CHANGELOG.md
 CONTRIBUTING.md
+*.bazel
+*.bzl
+WORKSPACE

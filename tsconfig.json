@@ -14,21 +14,32 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "paths": {
-      "@sbb-esta/angular-public": ["dist/sbb-esta/angular-public"],
-      "@sbb-esta/angular-public/*": ["dist/sbb-esta/angular-public/*"],
-      "@sbb-esta/angular-business": ["dist/sbb-esta/angular-business"],
-      "@sbb-esta/angular-business/*": ["dist/sbb-esta/angular-business/*"],
-      "@sbb-esta/angular-icons": ["dist/sbb-esta/angular-icons"],
-      "@sbb-esta/angular-icons/*": ["dist/sbb-esta/angular-icons/*"],
-      "@sbb-esta/angular-keycloak": ["dist/sbb-esta/angular-keycloak"],
-      "@sbb-esta/angular-keycloak/*": ["dist/sbb-esta/angular-keycloak/*"],
-      "@sbb-esta/angular-core": ["dist/sbb-esta/angular-core"],
-      "@sbb-esta/angular-core/*": ["dist/sbb-esta/angular-core/*"],
-      "@sbb-esta/angular-maps": ["dist/sbb-esta/angular-maps"],
-      "@sbb-esta/angular-maps/*": ["dist/sbb-esta/angular-maps/*"]
+      "@sbb-esta/angular-public": ["src/public"],
+      "@sbb-esta/angular-public/*": ["src/public/*"],
+      "@sbb-esta/angular-business": ["src/business"],
+      "@sbb-esta/angular-business/*": ["src/business/*"],
+      "@sbb-esta/angular-icons": ["src/icons"],
+      "@sbb-esta/angular-icons/*": ["src/icons/*"],
+      "@sbb-esta/angular-keycloak": ["src/keycloak"],
+      "@sbb-esta/angular-keycloak/*": ["src/keycloak/*"],
+      "@sbb-esta/angular-core": ["src/core"],
+      "@sbb-esta/angular-core/*": ["src/core/*"],
+      "@sbb-esta/angular-maps": ["src/maps"],
+      "@sbb-esta/angular-maps/*": ["src/maps/*"]
     }
   },
-  "exclude": ["./dist", "./schematics", "./tools"],
+  "include": [
+    "src/**/*.ts",
+    "e2e/**/*.ts",
+    "schematics/**/*.ts",
+    "test/**/*.ts",
+    "tools/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules/",
+    "schematics/*/files/**/*",
+    "src/icons/schematics/*/files/**/*"
+  ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
   }
