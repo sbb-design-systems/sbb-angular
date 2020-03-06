@@ -1,9 +1,12 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Component, Type } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
 import { AccordionShowcaseComponent } from '../public-examples/accordion-showcase/accordion-showcase.component';
-import { AutocompleteShowcaseComponent } from '../public-examples/autocomplete-showcase/autocomplete-showcase.component';
+import { AutocompleteFormsShowcaseComponent } from '../public-examples/autocomplete-forms-showcase/autocomplete-forms-showcase.component';
+import { AutocompleteHintShowcaseComponent } from '../public-examples/autocomplete-hint-showcase/autocomplete-hint-showcase.component';
+import { AutocompleteOptionGroupShowcaseComponent } from '../public-examples/autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
+import { AutocompleteReactiveFormsShowcaseComponent } from '../public-examples/autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
 import { BadgeShowcaseComponent } from '../public-examples/badge-showcase/badge-showcase.component';
 import { BreadcrumbShowcaseComponent } from '../public-examples/breadcrumb-showcase/breadcrumb-showcase.component';
 import { ButtonShowcaseComponent } from '../public-examples/button-showcase/button-showcase.component';
@@ -88,7 +91,16 @@ export class PublicComponent implements ExampleProvider {
     tooltip: 'Tooltip'
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
-    autocomplete: { 'autocomplete-showcase': new ComponentPortal(AutocompleteShowcaseComponent) },
+    autocomplete: {
+      'autocomplete-reactive-forms-showcase': new ComponentPortal(
+        AutocompleteReactiveFormsShowcaseComponent
+      ),
+      'autocomplete-forms-showcase': new ComponentPortal(AutocompleteFormsShowcaseComponent),
+      'autocomplete-hint-showcase': new ComponentPortal(AutocompleteHintShowcaseComponent),
+      'autocomplete-option-group-showcase': new ComponentPortal(
+        AutocompleteOptionGroupShowcaseComponent
+      )
+    },
     captcha: { 'captcha-showcase': new ComponentPortal(CaptchaShowcaseComponent) },
     checkbox: { 'checkbox-showcase': new ComponentPortal(CheckboxShowcaseComponent) },
     'checkbox-panel': {

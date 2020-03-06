@@ -1,0 +1,15 @@
+<sbb-field>
+  <input sbbInput type="text" [formControl]="myControlHint" [sbbAutocomplete]="autoHint" />
+</sbb-field>
+<sbb-autocomplete #autoHint="sbbAutocomplete">
+  <sbb-option
+    [value]="option"
+    *ngFor="let option of filteredOptionsHint | slice: 0:maxOptionsListLength"
+  >
+    {{ option }}
+  </sbb-option>
+  <sbb-autocomplete-hint *ngIf="filteredOptionsHint.length > maxOptionsListLength">
+    {{ filteredOptionsHint.length - maxOptionsListLength }} further hits found
+  </sbb-autocomplete-hint>
+</sbb-autocomplete>
+<pre>{{ myControlHint.value | json }}</pre>
