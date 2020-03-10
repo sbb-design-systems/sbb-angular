@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 
 @Component({
   selector: 'sbb-field-showcase',
-  templateUrl: './field-showcase.component.html',
-  styleUrls: ['./field-showcase.component.scss']
+  templateUrl: './field-showcase.component.html'
 })
 export class FieldShowcaseComponent implements OnInit {
   form: FormGroup;
@@ -24,10 +24,10 @@ export class FieldShowcaseComponent implements OnInit {
     });
   }
 
-  toggleDisabled(evt) {
+  toggleDisabled(sbbCheckboxChange: SbbCheckboxChange) {
     Object.keys(this.form.controls)
       .map(n => this.form.get(n))
-      .forEach(c => (evt.target.checked ? c.disable() : c.enable()));
+      .forEach(c => (sbbCheckboxChange.checked ? c.disable() : c.enable()));
   }
 
   reset() {
