@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AutocompleteModule } from '@sbb-esta/angular-business';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
+import { ChipModule } from '@sbb-esta/angular-business/chip';
 import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
@@ -18,6 +20,9 @@ import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
+import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
+import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
+import { SimpleChipInputComponent } from './chip-showcase/simple-chip-input/simple-chip-input.component';
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
@@ -64,7 +69,10 @@ const exampleComponents = [
   SimpleTableComponent,
   GroupedRowsTableComponent,
   SortableTableComponent,
-  GroupedColumnsTableComponent
+  GroupedColumnsTableComponent,
+  SimpleChipInputComponent,
+  DisabledChipInputComponent,
+  AutocompleteChipInputComponent
 ];
 
 @NgModule({
@@ -91,7 +99,9 @@ const exampleComponents = [
     PaginationModule,
     NotificationsModule,
     UserMenuModule,
-    TableModule
+    TableModule,
+    ChipModule,
+    AutocompleteModule
   ]
 })
 export class BusinessExamplesModule {}
