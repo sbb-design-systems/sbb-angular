@@ -2,13 +2,13 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { AutocompleteChipInputComponent } from '../business-examples/chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
-import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
-import { SimpleChipInputComponent } from '../business-examples/chip-showcase/simple-chip-input/simple-chip-input.component';
 import { AutocompleteFormsShowcaseComponent } from '../business-examples/autocomplete-forms-showcase/autocomplete-forms-showcase.component';
 import { AutocompleteHintShowcaseComponent } from '../business-examples/autocomplete-hint-showcase/autocomplete-hint-showcase.component';
 import { AutocompleteOptionGroupShowcaseComponent } from '../business-examples/autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
 import { AutocompleteReactiveFormsShowcaseComponent } from '../business-examples/autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
+import { AutocompleteChipInputComponent } from '../business-examples/chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
+import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
+import { SimpleChipInputComponent } from '../business-examples/chip-showcase/simple-chip-input/simple-chip-input.component';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { ClosableNotificationComponent } from '../business-examples/notification-showcase/closable-notification/closable-notification.component';
 import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';

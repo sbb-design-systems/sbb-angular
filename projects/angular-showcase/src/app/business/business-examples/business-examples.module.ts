@@ -22,13 +22,13 @@ import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
-import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
-import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
-import { SimpleChipInputComponent } from './chip-showcase/simple-chip-input/simple-chip-input.component';
 import { AutocompleteFormsShowcaseComponent } from './autocomplete-forms-showcase/autocomplete-forms-showcase.component';
 import { AutocompleteHintShowcaseComponent } from './autocomplete-hint-showcase/autocomplete-hint-showcase.component';
 import { AutocompleteOptionGroupShowcaseComponent } from './autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
 import { AutocompleteReactiveFormsShowcaseComponent } from './autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
+import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
+import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
+import { SimpleChipInputComponent } from './chip-showcase/simple-chip-input/simple-chip-input.component';
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
