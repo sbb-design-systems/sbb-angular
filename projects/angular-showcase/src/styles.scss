@@ -14,6 +14,7 @@ body {
 @include cdk-a11y();
 @include cdk-overlay();
 @include sbbOverlay();
+@include sbbScrollbar();
 
 sbb-public,
 sbb-maps,
