@@ -12,7 +12,6 @@
         "@sbb-esta/angular-core/icon-directive": "sbbAngularCoreIconDirective",
         "@sbb-esta/angular-core/models": "sbbAngularCoreModels",
         "@sbb-esta/angular-icons": "sbbAngularIcons",
-        "ngx-perfect-scrollbar": "ngxPerfectScrollbar"
       }
     }
   }
