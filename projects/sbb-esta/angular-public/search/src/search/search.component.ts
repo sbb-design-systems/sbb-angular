@@ -70,6 +70,7 @@ export const SBB_SEARCH_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   useFactory: SBB_SEARCH_SCROLL_STRATEGY_FACTORY
 };
 
+// TODO: check if necessary
 export class SearchChangeEvent {
   constructor(
     /** Instance of search field component. */
@@ -794,7 +795,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       positionStrategy: this._getOverlayPosition(),
       scrollStrategy: this._scrollStrategy(),
       width: this._getPanelWidth(),
-      panelClass: 'sbb-search-panel'
+      panelClass: ['sbb-search-panel', 'sbb-overlay-panel'],
+      minHeight: 30
     });
   }
 
@@ -802,7 +804,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this._positionStrategy = this._overlay
       .position()
       .flexibleConnectedTo(this._getConnectedElement())
-      .withFlexibleDimensions(false)
+      .withFlexibleDimensions(true)
       .withPush(false)
       .withPositions([
         {

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'sbb-select-native',
-  templateUrl: './select-native.component.html'
+  selector: 'sbb-select-reactive-forms',
+  templateUrl: './select-reactive-forms.component.html'
 })
-export class SelectNativeComponent {
+export class SelectReactiveFormsComponent {
   form: FormGroup;
 
   constructor(formBuilder: FormBuilder) {

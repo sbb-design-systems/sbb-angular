@@ -1,0 +1,18 @@
+<sbb-field>
+  <input sbbInput type="text" [formControl]="myControlStatic" [sbbAutocomplete]="autoStatic" />
+</sbb-field>
+<sbb-autocomplete #autoStatic="sbbAutocomplete">
+  <sbb-option *ngFor="let option of options$ | async" [value]="option">
+    {{ option }}
+  </sbb-option>
+  <sbb-option-group label="Oft gesucht:">
+    <sbb-option *ngFor="let option of staticOptions" [value]="option">
+      {{ option }}
+    </sbb-option>
+  </sbb-option-group>
+</sbb-autocomplete>
+<pre>{{ myControlStatic.value | json }}</pre>
+<p>
+  The async call is emulated by a 500ms delay.<br />
+  Two digits are needed at least to trigger the async function call.
+</p>

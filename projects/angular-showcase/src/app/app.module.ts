@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +18,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
     FormsModule,
     MonacoEditorModule.forRoot({ baseUrl: './assets' }),
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    ScrollingModule,
     HeaderModule,
     HttpClientModule,
     BrowserAnimationsModule,

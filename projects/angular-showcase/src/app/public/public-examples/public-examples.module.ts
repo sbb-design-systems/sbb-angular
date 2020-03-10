@@ -39,7 +39,10 @@ import { UserMenuModule } from '@sbb-esta/angular-public/usermenu';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
-import { AutocompleteShowcaseComponent } from './autocomplete-showcase/autocomplete-showcase.component';
+import { AutocompleteFormsShowcaseComponent } from './autocomplete-forms-showcase/autocomplete-forms-showcase.component';
+import { AutocompleteHintShowcaseComponent } from './autocomplete-hint-showcase/autocomplete-hint-showcase.component';
+import { AutocompleteOptionGroupShowcaseComponent } from './autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
+import { AutocompleteReactiveFormsShowcaseComponent } from './autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
 import { BadgeShowcaseComponent } from './badge-showcase/badge-showcase.component';
 import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { ButtonShowcaseComponent } from './button-showcase/button-showcase.component';
@@ -91,7 +94,10 @@ import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase
 
 const exampleComponents = [
   AccordionShowcaseComponent,
-  AutocompleteShowcaseComponent,
+  AutocompleteFormsShowcaseComponent,
+  AutocompleteHintShowcaseComponent,
+  AutocompleteOptionGroupShowcaseComponent,
+  AutocompleteReactiveFormsShowcaseComponent,
   BadgeShowcaseComponent,
   BreadcrumbShowcaseComponent,
   ButtonShowcaseComponent,

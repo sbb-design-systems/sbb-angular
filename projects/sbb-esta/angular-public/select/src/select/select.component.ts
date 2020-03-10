@@ -14,6 +14,7 @@ import {
 } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay,
+  ConnectedPosition,
   Overlay,
   RepositionScrollStrategy,
   ScrollStrategy
@@ -390,7 +391,7 @@ export class SelectComponent extends SbbSelectMixinBase
    * the trigger completely). If the panel cannot fit below the trigger, it
    * will fall back to a position above the trigger.
    */
-  positions = [
+  positions: ConnectedPosition[] = [
     {
       originX: 'start',
       originY: 'bottom',
