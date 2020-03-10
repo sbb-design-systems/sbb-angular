@@ -718,18 +718,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
               this._getConnectedElement().nativeElement.classList.add(
                 'sbb-autocomplete-input-above'
               );
-              this._getConnectedElement().nativeElement.classList.remove(
-                'sbb-autocomplete-input-below'
-              );
             } else {
               this.autocomplete.panel.nativeElement.classList.remove(
                 'sbb-autocomplete-panel-above'
               );
               this._getConnectedElement().nativeElement.classList.remove(
                 'sbb-autocomplete-input-above'
-              );
-              this._getConnectedElement().nativeElement.classList.add(
-                'sbb-autocomplete-input-below'
               );
             }
           }

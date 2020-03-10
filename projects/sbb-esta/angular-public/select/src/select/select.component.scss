@@ -39,7 +39,7 @@ sbb-select.sbb-select {
     }
 
     &[aria-expanded='true'] {
-      &.sbb-select-input-below {
+      &:not(.sbb-select-input-above) {
         @include autocompleteInputActive();
       }
 

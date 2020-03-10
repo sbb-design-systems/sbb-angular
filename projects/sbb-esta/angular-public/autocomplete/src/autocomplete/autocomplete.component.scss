@@ -10,7 +10,7 @@
 }
 
 input[aria-expanded='true'] {
-  &.sbb-autocomplete-input-below {
+  &:not(.sbb-autocomplete-input-above) {
     @include autocompleteInputActive();
   }
 
