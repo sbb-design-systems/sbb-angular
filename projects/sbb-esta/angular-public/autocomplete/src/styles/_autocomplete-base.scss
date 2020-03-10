@@ -55,19 +55,19 @@
     0 toPx(-$autocompleteBorderWidth * $scalingFactor) $autocompleteInputActiveBorderBottomColor;
 }
 
-@mixin autocompleteMarginTop($mode: default, $scalingFactor: 1) {
+@mixin autocompleteOffsetCorrection($mode: default, $scalingFactor: 1) {
   $sign: -1;
   @if $mode == reverse {
     $sign: 1;
   }
-  $margin-top: $sign * ($autocompleteBorderWidth - $autocompleteInputActiveBorderWidth) *
+  $offset-top: $sign * ($autocompleteBorderWidth - $autocompleteInputActiveBorderWidth) *
     $scalingFactor;
-  margin-top: toPx($margin-top);
 
-  @if $margin-top < 0 {
-    $margin-top-abs: toPx(-1 * $margin-top);
-    height: calc(100% + #{$margin-top-abs}); // prevent displaying scrollbar undesired
+  @if $offset-top < 0 {
+    $offset-top: $offset-top - 0.05; // better rendering e.g. in 4k mode
   }
+  position: relative;
+  top: toPx($offset-top);
 }
 
 @mixin autocompleteDirectionalRules($mode: default, $selectMode: false) {
@@ -76,21 +76,21 @@
     border-bottom-right-radius: 2px;
     border-top: none;
     @include autocompleteCombinedBoxShadows();
-    @include autocompleteMarginTop();
+    @include autocompleteOffsetCorrection();
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
         border-bottom-left-radius: toPx(2 * $scalingFactor4k);
         border-bottom-right-radius: toPx(2 * $scalingFactor4k);
         @include autocompleteCombinedBoxShadows($scalingFactor: $scalingFactor4k);
-        @include autocompleteMarginTop($scalingFactor: $scalingFactor4k);
+        @include autocompleteOffsetCorrection($scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
         border-bottom-left-radius: toPx(2 * $scalingFactor5k);
         border-bottom-right-radius: toPx(2 * $scalingFactor5k);
         @include autocompleteCombinedBoxShadows($scalingFactor: $scalingFactor5k);
-        @include autocompleteMarginTop($scalingFactor: $scalingFactor5k);
+        @include autocompleteOffsetCorrection($scalingFactor: $scalingFactor5k);
       }
     }
 
@@ -102,7 +102,7 @@
     border-top: $autocompleteBorderTopReverse;
     border-bottom: none;
     @include autocompleteCombinedBoxShadows($mode: reverse);
-    @include autocompleteMarginTop($mode: reverse);
+    @include autocompleteOffsetCorrection($mode: reverse);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
@@ -110,7 +110,7 @@
         border-top-right-radius: toPx(2 * $scalingFactor4k);
         border-top-width: toPx(2 * $scalingFactor4k);
         @include autocompleteCombinedBoxShadows($mode: reverse, $scalingFactor: $scalingFactor4k);
-        @include autocompleteMarginTop($mode: reverse, $scalingFactor: $scalingFactor4k);
+        @include autocompleteOffsetCorrection($mode: reverse, $scalingFactor: $scalingFactor4k);
       }
 
       @include mq($from: desktop5k) {
@@ -118,7 +118,7 @@
         border-top-right-radius: toPx(2 * $scalingFactor5k);
         border-top-width: toPx(2 * $scalingFactor5k);
         @include autocompleteCombinedBoxShadows($mode: reverse, $scalingFactor: $scalingFactor5k);
-        @include autocompleteMarginTop($mode: reverse, $scalingFactor: $scalingFactor5k);
+        @include autocompleteOffsetCorrection($mode: reverse, $scalingFactor: $scalingFactor5k);
       }
     }
 
