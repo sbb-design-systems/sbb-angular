@@ -13,25 +13,22 @@ $trackColor: $sbbColorMilk;
     background-color: $trackColor;
   }
 }
+@mixin sbbScrollbar() {
+  .sbb-scrollbar {
+    @include scrollbarColor(transparent, transparent);
 
-.sbb-scrollbar {
-  @include scrollbarColor(transparent, transparent);
+    &:hover {
+      @include scrollbarColor($thumbColor, $trackColor);
+    }
 
-  &:hover {
-    @include scrollbarColor($thumbColor, $trackColor);
-  }
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
 
-  scrollbar-width: thin;
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
-  }
-
-  &:hover::-webkit-scrollbar-thumb:hover {
-    background-color: $sbbColorStorm;
-  }
-
-  @include mq($to: $sizeBreakpointDesktop) {
-    @include scrollbarColor($thumbColor, $trackColor);
+    &:hover::-webkit-scrollbar-thumb:hover {
+      background-color: $sbbColorStorm;
+    }
   }
 }
