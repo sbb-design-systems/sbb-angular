@@ -33,7 +33,7 @@ import { IconBase } from '../icon-base';
 })
 export class IconUtilizationMediumComponent extends IconBase {
   constructor() {
-    super({ width: '24px', height: '24px', ratio: 1 });
+    super({ width: '19px', height: '16px', ratio: 1 });
   }
 }
 
