@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.0.1...9.1.0) (2020-03-11)
+
+
+### Features
+
+* **business:** implement chip component ([#271](https://github.com/sbb-design-systems/sbb-angular/issues/271)) ([64251cc](https://github.com/sbb-design-systems/sbb-angular/commit/64251ccda4a1e8f6d045ec5fd3889a078c12f192)), closes [#79](https://github.com/sbb-design-systems/sbb-angular/issues/79)
+
+
+### Bug Fixes
+
+* allow dropdown overlays to be scrollable ([#332](https://github.com/sbb-design-systems/sbb-angular/issues/332)) ([cce4575](https://github.com/sbb-design-systems/sbb-angular/commit/cce4575e600510f245005ace25ff993b11135dc9)), closes [#116](https://github.com/sbb-design-systems/sbb-angular/issues/116)
+* allow dropdown scrolling in safari ([#336](https://github.com/sbb-design-systems/sbb-angular/issues/336)) ([892a290](https://github.com/sbb-design-systems/sbb-angular/commit/892a2904a350b33d3687679893ceeea66adc3646))
+* **business:** dont shrink menu-icon on mobile devices in sbb-header ([#326](https://github.com/sbb-design-systems/sbb-angular/issues/326)) ([48ddab5](https://github.com/sbb-design-systems/sbb-angular/commit/48ddab5a6c7a43e24e9a5edbe123c03986756a5f))
+* **showcase:** enable side menu scrolling to bottom on mobile ([#328](https://github.com/sbb-design-systems/sbb-angular/issues/328)) ([f234444](https://github.com/sbb-design-systems/sbb-angular/commit/f234444ee7f50009a25b2d0f4caf5f319d18eabe))
+* **showcase:** fix disabled button in field showcase ([#333](https://github.com/sbb-design-systems/sbb-angular/issues/333)) ([ffd38e1](https://github.com/sbb-design-systems/sbb-angular/commit/ffd38e1fa3007ef0719f7eade75f7a459dd997d2))
+* **showcase:** replace corrupted avatar icon ([#331](https://github.com/sbb-design-systems/sbb-angular/issues/331)) ([ec2b581](https://github.com/sbb-design-systems/sbb-angular/commit/ec2b581e87a7b2734414aa951db58adbf5a1a39d)), closes [#280](https://github.com/sbb-design-systems/sbb-angular/issues/280)
+
 ### [9.0.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.0.0...9.0.1) (2020-03-03)
 
 
