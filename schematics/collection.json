@@ -1,6 +1,10 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
+    "bazel": {
+      "description": "Bazelify",
+      "factory": "./bazel/index#bazel"
+    },
     "documentation": {
       "description": "Generate documentation for the showcase.",
       "factory": "./documentation/index#documentation"

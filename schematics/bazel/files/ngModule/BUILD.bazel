@@ -1,0 +1,72 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",<% if (markdown) { %>
+    "markdown_to_html",<% } %>
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",<% if (stylesheets.length) { %>
+    "sass_binary",<% } %>
+)
+
+ng_module(
+    name = "<%= name %>",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),<% if (stylesheets.length === 1) { %>
+    assets = [":<%= stylesheets[0] %>",<% } %>] + glob(["**/*.html"]),<% } else if (stylesheets.length) { %>
+    assets = [<% for (let stylesheet of stylesheets) { %>
+        ":<%= stylesheet %>",<% } %>] + glob(["**/*.html"]),<% } %>
+    module_name = "@sbb-esta/angular-<%= packageName %>/<%= name %>",
+    deps = [<% for (let dependency of dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+
+<% for (let stylesheet of sassLibraries) { %>
+sass_library(
+    name = "<%= stylesheet.name %>",
+    src = "<%= stylesheet.path %>",
+    deps = [<% for (let dependency of stylesheet.dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+<% } %>
+
+<% for (let stylesheet of sassBinaries) { %>
+sass_binary(
+    name = "<%= stylesheet.name %>",
+    src = "<%= stylesheet.path %>",
+    deps = [<% for (let dependency of stylesheet.dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+<% } %>
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":<%= name %>",<% for (let dependency of testDependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+<% if (markdown) { %>
+markdown_to_html(
+    name = "overview",
+    srcs = [":<%= name %>.md"],
+)
+<% } %>
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
