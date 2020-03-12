@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+  <sbb-field label="Textarea" mode="medium">
+    <sbb-textarea
+      formControlName="textarea"
+      [maxlength]="200"
+      [minlength]="20"
+      placeholder="SBB"
+    ></sbb-textarea>
+  </sbb-field>
+  <h4>Properties</h4>
+  <p>minlength: 20<br />maxlength: 200</p>
+  <h4>Value</h4>
+  <pre>{{ form.get('textarea').value | json }}</pre>
+</form>

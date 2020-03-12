@@ -36,6 +36,7 @@ import { SelectReactiveFormsComponent } from '../public-examples/select-reactive
 import { TableShowcaseComponent } from '../public-examples/table-showcase/table-showcase.component';
 import { TabsShowcaseComponent } from '../public-examples/tabs-showcase/tabs-showcase.component';
 import { TagShowcaseComponent } from '../public-examples/tag-showcase/tag-showcase.component';
+import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../public-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
 import { TextareaShowcaseComponent } from '../public-examples/textarea-showcase/textarea-showcase.component';
 import { TextexpandShowcaseComponent } from '../public-examples/textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from '../public-examples/time-input-showcase/time-input-showcase.component';
@@ -127,7 +128,12 @@ export class PublicComponent implements ExampleProvider {
       )
     },
     tag: { 'tag-showcase': new ComponentPortal(TagShowcaseComponent) },
-    textarea: { 'textarea-showcase': new ComponentPortal(TextareaShowcaseComponent) },
+    textarea: {
+      'textarea-showcase': new ComponentPortal(TextareaShowcaseComponent),
+      'textarea-reactive-forms-with-sbb-field-showcase': new ComponentPortal(
+        TextareaReactiveFormsWithSbbFieldShowcaseComponent
+      )
+    },
     'time-input': { 'time-input-showcase': new ComponentPortal(TimeInputShowcaseComponent) },
     toggle: { 'toggle-showcase': new ComponentPortal(ToggleShowcaseComponent) },
     accordion: { 'accordion-showcase': new ComponentPortal(AccordionShowcaseComponent) },
