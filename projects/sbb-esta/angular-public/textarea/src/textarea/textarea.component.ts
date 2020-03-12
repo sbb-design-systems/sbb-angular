@@ -7,33 +7,60 @@ import {
   Component,
   DoCheck,
   ElementRef,
-  forwardRef,
   HostBinding,
   HostListener,
   Input,
   NgZone,
+  OnDestroy,
+  Optional,
+  Self,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import {
+  CanUpdateErrorState,
+  CanUpdateErrorStateCtor,
+  ErrorStateMatcher,
+  mixinErrorState
+} from '@sbb-esta/angular-core';
+import { FormFieldControl } from '@sbb-esta/angular-core/forms';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 let nextId = 0;
+
+// Boilerplate for applying mixins to TextareaComponent.
+/** @docs-private */
+export class SbbTextareaBase {
+  constructor(
+    public _elementRef: ElementRef,
+    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _parentForm: NgForm,
+    public _parentFormGroup: FormGroupDirective,
+    public ngControl: NgControl
+  ) {}
+}
+
+export const SbbTextareaMixinBase: CanUpdateErrorStateCtor &
+  typeof SbbTextareaBase = mixinErrorState(SbbTextareaBase);
 
 @Component({
   selector: 'sbb-textarea',
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextareaComponent),
-      multi: true
-    }
-  ],
+  providers: [{ provide: FormFieldControl, useExisting: TextareaComponent }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaComponent implements ControlValueAccessor, DoCheck {
+export class TextareaComponent extends SbbTextareaMixinBase
+  implements
+    FormFieldControl<string>,
+    CanUpdateErrorState,
+    ControlValueAccessor,
+    DoCheck,
+    OnDestroy {
+  /** Emits when the state of the option changes and any parents have to be notified. */
+  readonly stateChanges = new Subject<void>();
+
   /** The value of the textarea. */
   @Input()
   get value() {
@@ -42,6 +69,7 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   set value(value: string) {
     if (this._textarea) {
       this._textarea.nativeElement.value = value;
+      this.stateChanges.next();
     }
   }
 
@@ -54,8 +82,10 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
     this._changeDetector.markForCheck();
+    this.stateChanges.next();
   }
   private _disabled = false;
+
   /** Class property that sets readonly the textarea content. */
   @Input()
   get readonly(): boolean {
@@ -63,8 +93,10 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   }
   set readonly(value: boolean) {
     this._readonly = coerceBooleanProperty(value);
+    this.stateChanges.next();
   }
   private _readonly = false;
+
   /** Class property that sets the maxlength of the textarea content. */
   @Input()
   get maxlength(): number {
@@ -73,8 +105,10 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   set maxlength(value: number) {
     this._maxlength = coerceNumberProperty(value);
     this.updateDigitsCounter(this.value);
+    this.stateChanges.next();
   }
   private _maxlength: number;
+
   /** Class property that sets the minlength of the textarea content. */
   @Input()
   get minlength(): number {
@@ -82,8 +116,10 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   }
   set minlength(value: number) {
     this._minlength = coerceNumberProperty(value);
+    this.stateChanges.next();
   }
   private _minlength: number;
+
   /** Class property that sets required the textarea. */
   @Input()
   get required(): boolean {
@@ -91,8 +127,32 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   }
   set required(value: boolean) {
     this._required = coerceBooleanProperty(value);
+    this.stateChanges.next();
   }
   private _required = false;
+
+  get id(): string {
+    return this.inputId;
+  }
+  /** Whether the textarea is focused. */
+  get focused(): boolean {
+    return this.focusedClass;
+  }
+  /** Whether the textarea has a value. */
+  get empty(): boolean {
+    return !this.value || this.value === '';
+  }
+
+  /**
+   * Determines the aria-describedby to be set on the host.
+   */
+  @HostBinding('attr.aria-describedby')
+  get getAriaDescribedBy(): string | null {
+    return this._ariaDescribedby || null;
+  }
+  /** The aria-describedby attribute on the select for improved a11y. */
+  private _ariaDescribedby: string;
+
   /** Placeholder value for the textarea. */
   @Input() placeholder = '';
   /**
@@ -113,6 +173,25 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   /** The registered callback function called when a blur event occurs on the input element. */
   onTouched = () => {};
 
+  constructor(
+    @Self() @Optional() public ngControl: NgControl,
+    private _changeDetector: ChangeDetectorRef,
+    private _ngZone: NgZone,
+    private _focusMonitor: FocusMonitor,
+    private _element: ElementRef,
+    defaultErrorStateMatcher: ErrorStateMatcher,
+    @Optional() parentForm: NgForm,
+    @Optional() parentFormGroup: FormGroupDirective
+  ) {
+    super(_element, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+
+    if (this.ngControl) {
+      // Note: we provide the value accessor through here, instead of
+      // the `providers` to avoid running into a circular import.
+      this.ngControl.valueAccessor = this;
+    }
+  }
+
   @HostListener('click', ['$event.target'])
   _focusTextarea(target: ElementRef) {
     if (target === this._element.nativeElement) {
@@ -120,18 +199,12 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
     }
   }
 
-  constructor(
-    private _changeDetector: ChangeDetectorRef,
-    private _ngZone: NgZone,
-    private _focusMonitor: FocusMonitor,
-    private _element: ElementRef
-  ) {}
-
   /**
    * Adds the focused CSS class to this element
    */
   onFocus() {
     this.focusedClass = true;
+    this.stateChanges.next();
   }
   /**
    * Removes the focused CSS class from this element
@@ -139,6 +212,7 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
   onBlur() {
     this.focusedClass = false;
     this.onTouched();
+    this.stateChanges.next();
   }
 
   /**
@@ -146,6 +220,9 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
    */
   ngDoCheck() {
     this.triggerResize();
+    if (this.ngControl) {
+      this.updateErrorState();
+    }
   }
 
   /**
@@ -174,6 +251,7 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
     this.propagateChange(event.target.value);
     this.updateDigitsCounter(event.target.value);
     this.autosize.reset();
+    this.stateChanges.next();
   }
 
   setDisabledState(disabled: boolean) {
@@ -186,5 +264,20 @@ export class TextareaComponent implements ControlValueAccessor, DoCheck {
     if (!!this.maxlength) {
       this.counterObserver$.next(this.maxlength - newValue.length);
     }
+  }
+
+  /**
+   * Implemented as part of FormFieldControl.
+   * @docs-private
+   */
+  setDescribedByIds(ids: string[]): void {
+    this._ariaDescribedby = ids.join(' ');
+  }
+
+  /**
+   * @docs-private
+   */
+  ngOnDestroy() {
+    this.stateChanges.complete();
   }
 }
