@@ -1,12 +1,15 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DoCheck,
   ElementRef,
   forwardRef,
   HostBinding,
+  HostListener,
   Input,
   NgZone,
   ViewChild
@@ -30,7 +33,7 @@ let nextId = 0;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaComponent implements ControlValueAccessor {
+export class TextareaComponent implements ControlValueAccessor, DoCheck {
   /** The value of the textarea. */
   @Input()
   get value() {
@@ -41,9 +44,6 @@ export class TextareaComponent implements ControlValueAccessor {
       this._textarea.nativeElement.value = value;
     }
   }
-
-  /** Class property that represents the autosize textarea. */
-  matTextareaAutosize = true;
 
   /** Class property that disables the textarea status. */
   @HostBinding('class.disabled')
@@ -113,7 +113,19 @@ export class TextareaComponent implements ControlValueAccessor {
   /** The registered callback function called when a blur event occurs on the input element. */
   onTouched = () => {};
 
-  constructor(private _changeDetector: ChangeDetectorRef, private _ngZone: NgZone) {}
+  @HostListener('click', ['$event.target'])
+  _focusTextarea(target: ElementRef) {
+    if (target === this._element.nativeElement) {
+      this._focusMonitor.focusVia(this._textarea.nativeElement, 'program');
+    }
+  }
+
+  constructor(
+    private _changeDetector: ChangeDetectorRef,
+    private _ngZone: NgZone,
+    private _focusMonitor: FocusMonitor,
+    private _element: ElementRef
+  ) {}
 
   /**
    * Adds the focused CSS class to this element
@@ -128,11 +140,19 @@ export class TextareaComponent implements ControlValueAccessor {
     this.focusedClass = false;
     this.onTouched();
   }
+
+  /**
+   * @docs-private
+   */
+  ngDoCheck() {
+    this.triggerResize();
+  }
+
   /**
    * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
-    this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent(true));
+    this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent(false));
   }
 
   writeValue(newValue: any) {

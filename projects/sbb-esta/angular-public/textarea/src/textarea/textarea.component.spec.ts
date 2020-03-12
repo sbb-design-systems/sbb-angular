@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { clearElement, typeInElement } from '@sbb-esta/angular-core/testing';
+import { clearElement, dispatchMouseEvent, typeInElement } from '@sbb-esta/angular-core/testing';
 import { configureTestSuite } from 'ng-bullet';
 
 import { TextareaComponent } from './textarea.component';
@@ -136,6 +136,20 @@ describe('TextareaComponent behaviour', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(textarea.value).toEqual('test4');
+  });
+
+  it('should focus textarea when clicking on host', async () => {
+    const textarea = fixture.debugElement.query(By.css('textarea'))
+      .nativeElement as HTMLTextAreaElement;
+    spyOn(textarea, 'focus');
+
+    expect(textarea.focus).not.toHaveBeenCalled();
+
+    dispatchMouseEvent(innerComponent.nativeElement, 'click');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(textarea.focus).toHaveBeenCalled();
   });
 });
 
