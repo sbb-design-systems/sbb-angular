@@ -154,7 +154,10 @@ export const SbbSelectMixinBase: CanUpdateErrorStateCtor & typeof SbbSelectBase 
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent }]
+  providers: [
+    { provide: FormFieldControl, useExisting: SelectComponent },
+    { provide: SBB_OPTION_PARENT_COMPONENT, useExisting: SelectComponent }
+  ]
 })
 export class SelectComponent extends SbbSelectMixinBase
   implements
