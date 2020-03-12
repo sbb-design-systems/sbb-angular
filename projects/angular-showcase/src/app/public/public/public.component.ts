@@ -37,6 +37,7 @@ import { TableShowcaseComponent } from '../public-examples/table-showcase/table-
 import { TabsShowcaseComponent } from '../public-examples/tabs-showcase/tabs-showcase.component';
 import { TagShowcaseComponent } from '../public-examples/tag-showcase/tag-showcase.component';
 import { TextareaFormsShowcaseComponent } from '../public-examples/textarea-forms-showcase/textarea-forms-showcase.component';
+import { TextareaNativeComponent } from '../public-examples/textarea-native-showcase/textarea-native.component';
 import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../public-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
 import { TextexpandShowcaseComponent } from '../public-examples/textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from '../public-examples/time-input-showcase/time-input-showcase.component';
@@ -132,7 +133,8 @@ export class PublicComponent implements ExampleProvider {
       'textarea-forms-showcase': new ComponentPortal(TextareaFormsShowcaseComponent),
       'textarea-reactive-forms-with-sbb-field-showcase': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldShowcaseComponent
-      )
+      ),
+      'textarea-native': new ComponentPortal(TextareaNativeComponent)
     },
     'time-input': { 'time-input-showcase': new ComponentPortal(TimeInputShowcaseComponent) },
     toggle: { 'toggle-showcase': new ComponentPortal(ToggleShowcaseComponent) },
