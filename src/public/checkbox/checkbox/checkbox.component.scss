@@ -1,5 +1,7 @@
-@import '../checkbox';
+@import '../../../core/styles/common';
 
 .sbb-checkbox {
-  @include checkbox();
+  & > label {
+    @include checkboxBase();
+  }
 }

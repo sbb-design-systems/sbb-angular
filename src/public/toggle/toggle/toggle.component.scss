@@ -1,5 +1,14 @@
-@import '../toggle';
+@import '../../../core/styles/common';
 
 .sbb-toggle {
-  @include toggleContainer();
+  display: flex;
+  width: 100%;
+
+  @include mq($from: desktop4k) {
+    font-size: toEm(1 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: toEm(1 * $scalingFactor5k);
+  }
 }

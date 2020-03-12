@@ -1,5 +1,11 @@
-@import '../badge';
+@import '../../core/styles/common';
 
 :host.sbb-badge {
-  @include baseBadge();
+  @include baseBadgePill();
+  background-color: $sbbColorMetal;
+  margin-left: pxToEm(8);
+
+  &.sbb-badge-active {
+    background-color: $sbbColorRed;
+  }
 }

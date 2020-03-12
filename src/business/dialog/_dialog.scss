@@ -1,5 +1,5 @@
-@import '../../../angular-core/styles/common/colors';
-@import '../../../angular-core/styles/common/mediaqueries';
+$sbbBusiness: true;
+@import '../../core/styles/common';
 
 $dialog-bgcolor: $sbbColorWhite;
 $dialog-border-color: $sbbColorCloud;
@@ -13,30 +13,3 @@ $dialog-footer-height-mobile: 52;
 $dialog-footer-height-tablet: 52;
 $dialog-header-height: 52;
 
-@mixin dialogContentHeight($mode: default) {
-  @if ($mode == default) {
-    max-height: 100vh;
-  } @else if ($mode == withHeader) {
-    max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset(withHeader))});
-  } @else {
-    max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, mobile))});
-
-    @include mq($from: tabletPortrait) {
-      max-height: calc(100vh - #{pxToEm(getContentMaxHeightOffset($mode, tabletPortrait))});
-    }
-  }
-}
-
-@function getContentMaxHeightOffset($mode, $viewport: mobile) {
-  @if ($viewport == mobile) and ($mode == withHeaderAndFooter) {
-    @return $dialog-header-height + $dialog-footer-height-mobile;
-  } @else if ($viewport == tabletPortrait) and ($mode == withHeaderAndFooter) {
-    @return $dialog-header-height + $dialog-footer-height-tablet;
-  } @else if ($viewport == mobile) and ($mode == withHeader) {
-    @return $dialog-header-height;
-  } @else if ($viewport == mobile) and ($mode == withFooter) {
-    @return $dialog-footer-height-mobile;
-  } @else if ($viewport == tabletPortrait) and ($mode == withFooter) {
-    @return $dialog-footer-height-tablet;
-  }
-}

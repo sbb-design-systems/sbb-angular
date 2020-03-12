@@ -1,18 +1,168 @@
-@import '../styles/loading';
+@import '../../../core/styles/common';
+
+// Standard settings
+$numberOfItems: 5;
+$time: 0.23s;
+
+// Define default size properties properties
+$rectWidth: 2em;
+$rectHeight: 1.2em;
+$gutterWidth: 0.33333em;
+$totalWidth: ($rectWidth + $gutterWidth) * $numberOfItems - $gutterWidth;
+$perspective: 11.33333em;
+
+// (size, width, height, gutterWidth, perspective)
+$sizes: (tiny, 0.53333em, 0.33333em, 0.2em, 6em), (small, 1em, 0.6em, 0.2em, 8em),
+  (medium, 2em, 1.2em, 0.3em, 12em), (big, 3em, 1.8em, 0.46666em, 16.66666em);
+
+$loadingRectangleOpacities: (1, 0.5, 0), (2, 1, 0.5), (3, 0.5, 1), (4, 0.25, 0.5), (5, 0, 0.25);
 
 :host {
-  @include loadingBase();
+  display: flex;
+  height: $rectHeight * 5;
+  padding-top: $rectHeight * 2;
+
+  & > div {
+    width: $totalWidth;
+    height: $rectHeight;
+    margin: 0 auto;
+    perspective: $perspective;
+    transform-origin: center;
+    transform: translate3d(-3em, 0, 0);
+    backface-visibility: hidden;
+
+    & > div {
+      position: relative;
+
+      // rotate whole preloader to give it skewed look
+      transform: rotateY(50deg) translateZ(1em);
+      transform-origin: right;
+      backface-visibility: hidden;
+
+      & > div {
+        position: relative;
+        display: flex;
+        animation: loading_container $time linear infinite;
+
+        & > div {
+          width: $rectWidth;
+          height: $rectHeight;
+          margin-right: $gutterWidth;
+          background: $sbbColorRed;
+
+          // disable backface visibility
+          backface-visibility: hidden;
+
+          // to remove jagged edges on transformed objects
+          outline: 1px solid transparent;
+
+          @for $i from 1 through $numberOfItems {
+            &:nth-child(#{$i}) {
+              animation: loading_rectangle#{$i} $time linear infinite;
+            }
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @each $size, $width, $height, $gutterWidth, $perspective in $sizes {
+    &.sbb-loading-#{$size} {
+      height: $height * 5;
+      padding-top: $height * 2;
+
+      & > div {
+        width: ($width + $gutterWidth) * $numberOfItems - $gutterWidth;
+        height: $height;
+        perspective: $perspective;
+
+        & > div > div {
+          animation: loading_container_#{$size} $time linear infinite;
+
+          & > div {
+            width: $width;
+            height: $height;
+            margin-right: $gutterWidth;
+
+            @if $size == 'tiny' {
+              transform: translate3d(-$gutterWidth / 2, 0, 0);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &[inline] {
+    display: inline-flex;
+    padding-left: 1em;
+    margin-right: -2em;
+    height: auto;
+    padding-top: 0;
+    vertical-align: middle;
+  }
 
   &.sbb-loading-fullbox,
   &.sbb-loading-fullscreen {
-    @include setLoadingArea();
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 999;
+
+    > div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 
   &.sbb-loading-fullbox {
-    @include setLoadingArea(fullbox);
+    position: absolute;
   }
 
   &.sbb-loading-fullscreen {
-    @include setLoadingArea(fullscreen);
+    position: fixed;
+  }
+}
+
+// Animations
+@keyframes loading_container {
+  0% {
+    transform: translateX(($rectWidth + $gutterWidth));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@each $size, $width, $height, $gutterWidth, $perspective in $sizes {
+  @keyframes loading_container_#{$size} {
+    0% {
+      transform: translateX(($width + $gutterWidth));
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@each $index, $start, $end in $loadingRectangleOpacities {
+  @keyframes loading_rectangle#{$index} {
+    0% {
+      opacity: $start;
+    }
+
+    100% {
+      opacity: $end;
+    }
   }
 }

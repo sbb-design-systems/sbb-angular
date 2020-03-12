@@ -1,3 +1,36 @@
+/*** 
+* BUTTON CONFIGURATION VARIABLES 
+* - Remapping global vars into more semantics var names for buttons
+* - Adding new specific vars for buttons
+***/
+
+$buttonSizeFontDefault: $sizeFontDefault;
+$buttonDefaultBgColor: $sbbColorCallToAction;
+$buttonDefaultBgColorHover: $sbbColorCallToActionHover;
+$buttonDefaultColor: $sbbColorWhite;
+$buttonAlternativeBgColor: $sbbColorGranite;
+$buttonAlternativeBgColorHover: $sbbColorIron;
+$buttonAlternativeColor: $sbbColorWhite;
+$buttonSecondaryColor: $sbbColorIron;
+$buttonSecondaryBgColor: $sbbColorSilver;
+$buttonSecondaryBgColorHover: $sbbColorPlatinum;
+$buttonGhostColor: $sbbColorGrey;
+$buttonGhostColorHover: $sbbColorIron;
+$buttonGhostBorderColor: $sbbColorStorm;
+$buttonGhostBorderColorHover: $sbbColorIron;
+$buttonFramelessColor: $sbbColorIron;
+$buttonFramelessColorHover: $sbbColorRed125;
+$buttonDisabledBorderColor: $sbbColorGreyMedium;
+
+@if $sbbBusiness {
+  $buttonGhostColor: $sbbColorGranite;
+  $buttonGhostBorderColor: $sbbColorGranite;
+}
+
+/*** 
+* BUTTON BASIC STRUCTURAL MIXINS AND PLACEHOLDERS
+***/
+
 @mixin buttonReset() {
   background: none;
   max-width: none;
@@ -9,4 +42,385 @@
 @mixin buttonResetFrameless() {
   @include buttonReset();
   border: none;
+}
+
+/*** KICKSTART BASIC BUTTON ***/
+@mixin buttons($fontSize: $buttonSizeFontDefault) {
+  @include buttonReset();
+  @include ellipsis;
+
+  width: 100%;
+  background-color: $buttonDefaultBgColor;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: pxToRem($fontSize);
+  line-height: 1.4;
+  border-style: solid;
+  border-radius: toEm(2 / $fontSize);
+  color: $buttonDefaultColor;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @include mq($from: tabletPortrait) {
+    font-size: pxToRem($fontSize);
+    width: auto;
+    min-width: toEm(60 / $fontSize);
+    max-width: toEm(400 / $fontSize);
+  }
+
+  @include mq($from: desktop) {
+    font-size: pxToRem($fontSize);
+  }
+
+  @include publicOnly() {
+    border-width: pxToRem(2);
+    height: toEm(48 / $fontSize);
+    padding: toEm(12.5 / $fontSize) toEm(40 / $fontSize) toEm(15.5 / $fontSize) toEm(40 / $fontSize);
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($fontSize * $scalingFactor4k);
+      border-width: pxToRem(2 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($fontSize * $scalingFactor5k);
+      border-width: pxToRem(2 * $scalingFactor5k);
+    }
+  }
+
+  @include businessOnly() {
+    border-width: pxToRem(1);
+    height: toEm(36 / $fontSize);
+    padding: toEm(6 / $fontSize) toEm(16 / $fontSize) toEm(7 / $fontSize);
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+  }
+}
+
+/*** UTILITY MIXIN FOR %arrowbuttons PLACEHOLDER ***/
+@mixin buttonArrowHover {
+  padding-left: pxToEm(70, $buttonSizeFontDefault);
+  padding-right: pxToEm(40, $buttonSizeFontDefault);
+  transition: padding-left $linkiconAnimation, padding-right $linkiconAnimation,
+    color $linkiconAnimation, border-color $linkiconAnimation;
+
+  .sbb-svgsprite-icon {
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
+  }
+
+  .sbb-svgsprite-icon:first-of-type {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .sbb-svgsprite-icon:last-of-type {
+    opacity: 0;
+    transform: translateX(pxToEm(26));
+  }
+}
+
+@mixin arrowbuttons {
+  position: relative;
+  font-size: pxToRem($buttonSizeFontDefault);
+
+  @include publicOnly() {
+    padding-left: toEm(40 / $buttonSizeFontDefault);
+    padding-right: toEm(70 / $buttonSizeFontDefault);
+    transition: height $linkiconAnimation, padding-left $linkiconAnimation,
+      padding-right $linkiconAnimation, color $linkiconAnimation;
+
+    @include mq($from: desktop4k) {
+      font-size: pxToRem($sizeFontDefault4k);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem($sizeFontDefault5k);
+    }
+  }
+
+  @include businessOnly() {
+    padding-right: toEm(46 / $buttonSizeFontDefault);
+  }
+
+  .sbb-svgsprite-icon {
+    position: absolute;
+    width: pxToEm(24, $buttonSizeFontDefault);
+    height: pxToEm(24, $buttonSizeFontDefault);
+    top: 50%;
+    margin-top: pxToEm(-12.5, $buttonSizeFontDefault);
+    transition: opacity $linkiconAnimation, transform $linkiconAnimation, fill $linkiconAnimation;
+    backface-visibility: hidden;
+    @include svgIconColor($buttonDefaultColor);
+    pointer-events: none;
+  }
+
+  .sbb-svgsprite-icon:first-of-type {
+    margin-left: pxToEm(-30, $buttonSizeFontDefault);
+    opacity: 0;
+    transform: translateX(pxToEm(-26, $buttonSizeFontDefault));
+  }
+
+  .sbb-svgsprite-icon:last-of-type {
+    margin-left: pxToEm(6, $buttonSizeFontDefault);
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+/*** 
+* BUTTON WITH ARROWS PLACEHOLDER 
+* - Used placeholder instead mixin to improve compiled output size
+***/
+%arrowbuttons {
+  @include arrowbuttons;
+
+  @include publicOnly() {
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        @include buttonArrowHover;
+      }
+    }
+  }
+}
+
+/*** 
+* BUTTON THEMES MIXINS AND PLACEHOLDERS
+***/
+
+/*** PRIMARY BUTTON ***/
+@mixin primaryButton {
+  color: $buttonDefaultColor;
+  border: none;
+  background-color: $buttonDefaultBgColor;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: $buttonDefaultBgColorHover;
+      border: none;
+      color: $buttonDefaultColor;
+
+      .sbb-svgsprite-icon {
+        @include svgIconColor($buttonDefaultColor);
+      }
+    }
+  }
+}
+
+/*** 
+* PRIMARY BUTTON PLACEHOLDER 
+* - Include primary mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%primaryButton {
+  @include primaryButton();
+}
+
+/*** PRIMARY BUTTON WITH ICON ***/
+@mixin primaryIconButton {
+  @extend %primaryButton;
+  @extend %arrowbuttons;
+}
+
+/*** SECONDARY BUTTON ***/
+@mixin secondaryButton {
+  color: $buttonSecondaryColor;
+  background-color: $buttonSecondaryBgColor;
+  border: none;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: $buttonSecondaryBgColorHover;
+      border: none;
+      color: $buttonSecondaryColor;
+    }
+  }
+}
+
+/*** 
+* SECONDARY BUTTON PLACEHOLDER 
+* - Include secondary mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%secondaryButton {
+  @include secondaryButton;
+}
+
+/*** SECONDARY BUTTON WITH ICON ***/
+@mixin secondaryIconButton {
+  @extend %secondaryButton;
+  @extend %arrowbuttons;
+
+  .sbb-svgsprite-icon {
+    @include svgIconColor($buttonSecondaryColor);
+  }
+
+  &:hover,
+  &:focus {
+    .sbb-svgsprite-icon {
+      @include svgIconColor($buttonSecondaryColor);
+    }
+  }
+}
+
+/***
+* SECONDARY ICON BUTTON PLACEHOLDER
+* - Include secondary mixin in order to allow extension
+* 	in order to get a more compact compiled css
+***/
+%secondaryIconButton {
+  @include secondaryIconButton;
+}
+
+/*** GHOST BUTTON ***/
+@mixin ghostButtonPositive($fontSize: $buttonSizeFontDefault) {
+  background-color: transparent;
+  border-color: $buttonGhostBorderColor;
+  color: $buttonGhostColor;
+  transition: border-color $linkiconAnimation, height $linkiconAnimation,
+    padding-left $linkiconAnimation, padding-right $linkiconAnimation, color $linkiconAnimation;
+  line-height: 1.1;
+
+  @media screen and (-ms-high-contrast: active) {
+    border: pxToEm(1) solid currentColor;
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      color: $buttonGhostColorHover;
+      background-color: transparent;
+      border-color: $buttonGhostBorderColorHover;
+
+      .sbb-svgsprite-icon {
+        @include svgIconColor($buttonGhostColorHover);
+      }
+    }
+  }
+}
+
+/*** 
+* GHOST BUTTON PLACEHOLDER 
+* - Include ghost mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%ghostButtonPositive {
+  @include ghostButtonPositive;
+}
+
+/*** GHOST BUTTON WITH ICON ***/
+@mixin ghostIconButtonPositive {
+  @extend %ghostButtonPositive;
+  @extend %arrowbuttons;
+
+  .sbb-svgsprite-icon {
+    @include svgIconColor($buttonGhostColorHover);
+  }
+
+  &:hover,
+  &:focus {
+    .sbb-svgsprite-icon {
+      @include svgIconColor($buttonGhostColorHover);
+    }
+  }
+}
+
+/*** FRAMELESS BUTTON ***/
+@mixin framelessButton($fontSize: $buttonSizeFontDefault) {
+  background-color: transparent;
+  border: none;
+  color: $buttonFramelessColor;
+  padding: 0;
+  height: auto;
+  width: auto;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      color: $buttonFramelessColorHover;
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+/*** 
+* FRAMELESS BUTTON PLACEHOLDER 
+* - Include frameless mixin in order to allow extension 
+* 	in order to get a more compact compiled css
+***/
+%framelessButton {
+  @include framelessButton;
+}
+
+/*** FRAMELESS BUTTON WITH ICON ***/
+@mixin framelessIconButton($fontSize: $sizeFontDefault) {
+  @extend %framelessButton;
+  @extend %arrowbuttons;
+
+  padding-right: toEm(30 / $fontSize);
+
+  .sbb-svgsprite-icon {
+    @include svgIconColor($buttonFramelessColor);
+  }
+
+  &:hover,
+  &:focus {
+    padding-left: toEm(30 / $fontSize);
+
+    .sbb-svgsprite-icon {
+      @include svgIconColor($buttonFramelessColorHover);
+    }
+  }
+}
+
+/*** DISABLED BUTTON ***/
+@mixin disabledButton {
+  @extend %ghostButtonPositive;
+
+  border-color: $buttonDisabledBorderColor;
+  text-decoration: line-through;
+
+  .sbb-svgsprite-icon {
+    display: none;
+  }
+}
+
+@mixin buttonTypes {
+  // Primary button with icon
+  &-primary.sbb-button-has-icon {
+    @include primaryIconButton;
+  }
+
+  // Primary button NO icon
+  &-primary:not(.sbb-button-has-icon) {
+    @include primaryButton;
+  }
+
+  // Secondary button with icon
+  &-secondary.sbb-button-has-icon {
+    @include secondaryIconButton;
+  }
+
+  // Secondary button NO icon
+  &-secondary:not(.sbb-button-has-icon) {
+    @include secondaryButton;
+  }
+
+  // Ghost button with icon
+  &-ghost.sbb-button-has-icon {
+    @include ghostIconButtonPositive;
+  }
+
+  // Ghost button NO icon
+  &-ghost:not(.sbb-button-has-icon) {
+    @include ghostButtonPositive;
+  }
 }

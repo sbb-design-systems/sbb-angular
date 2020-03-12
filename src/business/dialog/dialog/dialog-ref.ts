@@ -4,8 +4,9 @@ import { Location } from '@angular/common';
 import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 
+import { DialogContainerComponent } from '../dialog-container/dialog-container.component';
+
 import { DialogPosition } from './dialog-config';
-import { DialogContainerComponent } from './dialog-container/dialog-container.component';
 
 // Counter for unique dialog ids.
 let uniqueId = 0;

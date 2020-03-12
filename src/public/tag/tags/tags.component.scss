@@ -1,5 +1,7 @@
-@import '../tags';
+@import '../../../core/styles/common';
 
 .sbb-tags {
-  @include tagList();
+  .sbb-tag-content {
+    margin-right: pxToEm(8);
+  }
 }

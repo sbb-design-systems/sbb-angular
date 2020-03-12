@@ -1,5 +1,27 @@
-@import '../styles/breadcrumb';
+@import '../../../core/styles/common';
+
+$breadcrumbHeight: 48;
 
 .sbb-breadcrumbs {
-  @include breadcrumbBase;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: toPx($breadcrumbHeight);
+
+  @include mq($from: desktop4k) {
+    min-height: toPx($breadcrumbHeight * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    min-height: toPx($breadcrumbHeight * $scalingFactor5k);
+  }
+
+  &-expanded {
+    .sbb-breadcrumb {
+      display: flex;
+    }
+    .sbb-breadcrumb-dots {
+      display: none;
+    }
+  }
 }

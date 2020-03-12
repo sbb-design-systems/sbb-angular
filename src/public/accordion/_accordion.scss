@@ -1,6 +1,4 @@
-@import '../../../angular-core/styles/common/variants';
-@import '../../../angular-core/styles/common/colors';
-@import '../../../angular-core/styles/common/functions';
+@import '../../core/styles/common';
 
 $sbb-accordion-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
 $sbb-accordion-toggle-size: 32;

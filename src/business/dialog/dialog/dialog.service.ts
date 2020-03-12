@@ -19,8 +19,9 @@ import {
 import { defer, Observable, Subject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
+import { DialogContainerComponent } from '../dialog-container/dialog-container.component';
+
 import { DialogConfig } from './dialog-config';
-import { DialogContainerComponent } from './dialog-container/dialog-container.component';
 import { DialogRef } from './dialog-ref';
 
 /** Injection token that can be used to access the data that was passed in to a dialog. */

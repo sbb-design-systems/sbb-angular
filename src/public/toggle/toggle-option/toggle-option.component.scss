@@ -1,44 +1,172 @@
-@import '../toggle';
+@import '../../../core/styles/common';
+
+$toggleOptionIconSize: 31;
+$toggleOptionButtonBg: $sbbColorMilk;
+$toggleOptionButtonColor: $sbbColorGrey;
+$toggleOptionRadius: 2;
+$toggleOptionButtonPadding: pxToEm(8) pxToEm(23) pxToEm(9);
+$toggleOptionInfoTextFontSize: 13;
+$toggleOptionButtonBgSelected: $sbbColorWhite;
+$toggleOptionButtonBorderSelected: $sbbColorBlack;
+$toggleOptionButtonColorSelected: $sbbColorBlack;
+$toggleOptionButtonMinHeight: pxToEm(65);
+$toggleOptionInfoTextTransition: max-height 0.25s linear, opacity 0.25s ease;
+$toggleOptionContentTransition: opacity 0.25s ease, visibility 0.25s ease, padding 0.2s ease,
+  max-height 0.2s ease;
+$toggleOptionContentPadding: 24;
+$toggleOptionContentBg: $sbbColorWhite;
+
+%tableCell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+%colorBlockify {
+  display: block;
+  color: inherit;
+}
+
+%colorBlockifyInline {
+  display: inline-block;
+  color: inherit;
+}
+
 
 .sbb-toggle {
   .sbb-toggle-option {
-    @include toggleOption();
+    flex: 1;
 
     &-button {
-      @include toggleOptionButton();
+      display: flex;
+      background-color: $toggleOptionButtonBg;
+      color: $toggleOptionButtonColor;
+      border-radius: pxToEm(2);
+      padding: $toggleOptionButtonPadding;
+      line-height: 1.5;
+      border: pxToEm(1) solid transparent;
+      min-height: $toggleOptionButtonMinHeight;
+    
+      &-inner {
+        display: table;
+        margin: auto;
+      }
+    
+      &:hover {
+        cursor: pointer;
+      }
 
       &-icon {
-        @include toggleOptionIcon();
+        @include svgIconColor($toggleOptionButtonColor);
+        display: inline-block;
+        vertical-align: middle;
+        width: pxToEm($toggleOptionIconSize);
+        height: pxToEm($toggleOptionIconSize);
       }
 
       &-label-wrapper {
-        @include toggleOptionLabelWrapper();
+        @extend %tableCell;
+        text-align: center;
       }
 
       &-label {
-        @include toggleOptionLabel();
+        @extend %colorBlockifyInline;
+        vertical-align: middle;
       }
 
       &-info-text {
-        @include toggleOptionInfoText();
+        @extend %colorBlockify;
+        font-size: pxToEm($toggleOptionInfoTextFontSize);
+        max-height: 3em;
+        opacity: 1;
+        overflow: hidden;
+        transition: $toggleOptionInfoTextTransition;
       }
     }
 
     &-content {
-      @include toggleOptionContent();
+      background-color: $toggleOptionContentBg;
+      width: 200%;
+      float: left;
+      max-height: 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: $toggleOptionContentTransition;
+      padding-left: pxToEm($toggleOptionContentPadding);
+      padding-right: pxToEm($toggleOptionContentPadding);
+      margin-top: pxToEm(-2);
+      position: relative;
+      z-index: 2;
+      border: pxToEm(1) solid $sbbColorBlack;
+      border-top-color: transparent;
+    
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        height: 0;
+        top: pxToEm(-1);
+      }
+    
+      &::before {
+        width: 50%;
+        border-bottom: pxToEm(1) solid $sbbColorSilver;
+        left: 0;
+      }
+    
+      &::after {
+        width: calc(50% + #{pxToEm(1)});
+        border-bottom: pxToEm(1) solid $sbbColorBlack;
+        right: 0;
+      }
     }
 
     &.sbb-toggle-option-selected {
-      @include toggleOptionSelected();
+      .sbb-toggle-option-button {
+        background-color: $toggleOptionButtonBgSelected;
+        border-color: $toggleOptionButtonBorderSelected;
+        color: $toggleOptionButtonColorSelected;
+    
+        &-icon {
+          @include svgIconColor($toggleOptionButtonColorSelected);
+        }
+    
+        &-info-text {
+          opacity: 0;
+          max-height: 0;
+        }
+      }
+    
+      .sbb-toggle-option-content {
+        padding: pxToEm($toggleOptionContentPadding);
+        max-height: pxToEm(600);
+        visibility: visible;
+        opacity: 1;
+      }
     }
 
     &.sbb-toggle-option-has-icon {
-      @include toggleOptionHasIcon();
+      .sbb-toggle-option-button {
+        &-label {
+          max-width: calc(100% - #{pxToEm($toggleOptionIconSize)});
+          text-align: left;
+          padding-left: 0.5em;
+        }
+      }
     }
 
     &:last-of-type {
       .sbb-toggle-option-content {
-        @include toggleOptionContentLast();
+        float: right;
+      
+        &::before {
+          left: auto;
+          right: 0;
+        }
+      
+        &::after {
+          right: auto;
+          left: 0;
+        }
       }
     }
   }

@@ -6,6 +6,12 @@ load(
 )
 
 sass_library(
+    name = "common_scss_lib",
+    srcs = ["_common.scss"] + glob(["common/_*.scss"]),
+)
+
+sass_library(
     name = "core_scss_lib",
-    srcs = glob(["**/_*.scss"]),
+    srcs = ["_main.scss"] + glob(["typography/_*.scss"]),
+    deps = [":common_scss_lib"]
 )

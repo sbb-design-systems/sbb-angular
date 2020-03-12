@@ -1,0 +1,58 @@
+@import '../dialog';
+
+.sbb-overlay-background {
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+}
+
+sbb-dialog-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $sbbColorWhite;
+  position: relative;
+  outline: 0;
+  width: 100%;
+
+  & > *:only-child {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sbb-dialog-content {
+    display: block;
+    border-left: 1px solid $sbbColorGranite;
+    border-right: 1px solid $sbbColorGranite;
+    flex: 1 1 auto;
+    overflow: auto;
+    max-height: 100vh;
+  }
+
+  &.sbb-dialog-with-header {
+    .sbb-dialog-content {
+      max-height: calc(100vh - #{pxToEm($dialog-header-height)});
+    }
+  }
+
+  &.sbb-dialog-with-footer {
+    .sbb-dialog-content {
+      max-height: calc(100vh - #{pxToEm($dialog-footer-height-mobile)});
+  
+      @include mq($from: tabletPortrait) {
+        max-height: calc(100vh - #{pxToEm($dialog-footer-height-tablet)});
+      }
+    }
+  }
+
+  &.sbb-dialog-with-header.sbb-dialog-with-footer {
+    .sbb-dialog-content {
+      max-height: calc(100vh - #{pxToEm($dialog-header-height + $dialog-footer-height-mobile)});
+  
+      @include mq($from: tabletPortrait) {
+        max-height: calc(100vh - #{pxToEm($dialog-header-height + $dialog-footer-height-tablet)});
+      }
+    }
+  }
+}

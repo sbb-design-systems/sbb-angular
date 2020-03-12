@@ -1,9 +1,34 @@
-@import '../textexpand';
+@import '../../../core/styles/common';
 
 :host.sbb-textexpand {
-  @include textexpand;
+  color: $sbbColorMetal;
+  letter-spacing: 0;
+  line-height: 1.538;
+  font-size: pxToRem(13);
+
+  @include mq($from: desktop4k) {
+    font-size: pxToRem(13 * $scalingFactor4k);
+  }
+
+  @include mq($from: desktop5k) {
+    font-size: pxToRem(13 * $scalingFactor5k);
+  }
 
   .sbb-textexpand-button {
-    @include textexpandButton;
+    @include buttonResetFrameless();
+  
+    color: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    font-size: inherit;
+  
+    &:focus,
+    &:hover {
+      color: $sbbColorRed;
+    }
+  
+    &-label {
+      text-decoration: underline;
+    }
   }
 }

@@ -1,7 +1,85 @@
-@import '../styles/datepicker';
+@import '../datepicker';
+
+@mixin datePickerCellContentBase() {
+  position: absolute;
+  top: 12.5%;
+  left: 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  height: 75%;
+  line-height: 1;
+}
+
+@mixin datePickerToggleArrow($dir: calendarDown) {
+  position: absolute;
+  left: pxToEm($datePickerToggleWrapperArrowLeftOffset);
+  width: pxToEm($datePickerToggleWrapperArrowWidth);
+  background-color: $datePickerCalendarBg;
+  height: $datePickerToggleWrapperArrowHeight;
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: $datePickerToggleArrowColor;
+    width: pxToEm($datePickerToggleArrowWidth);
+    height: $datePickerToggleArrowHeight;
+  }
+  &::before {
+    left: $datePickerToggleArrowBeforeOffset;
+  }
+  &::after {
+    left: $datePickerToggleArrowAfterOffset;
+  }
+  @if $dir == calendarDown {
+    top: $datePickerToggleArrowTopOffset;
+    &::before,
+    &::after {
+      top: $datePickerToggleWrapperArrowHeight / 2;
+    }
+    &::before {
+      transform: rotate(-45deg);
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
+    .sbb-datepicker-with-arrows & {
+      left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
+    }
+  } @else if $dir == calendarTop {
+    top: auto;
+    bottom: $datePickerToggleArrowTopOffset;
+    &::before,
+    &::after {
+      top: auto;
+      bottom: $datePickerToggleWrapperArrowHeight / 2;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
 
 .sbb-datepicker-popup {
-  @include datePickerPopup();
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: pxToRem(23);
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: pxToRem(30);
+    }
+  }
+
+  &-arrow {
+    @include datePickerToggleArrow();
+  }
+
   @include defaultDatePickerTheme();
 
   .sbb-datepicker-content {
@@ -10,16 +88,277 @@
     top: pxToEm($datePickerContentTop);
 
     .sbb-calendar {
-      @include datePickerCalendar();
-      @include datePickerCalendarHeader();
-      @include datePickerCalendarControls();
-      @include datePickerCalendarTable();
+      display: block;
+      width: $datePickerCalendarWidthMobile;
+      max-width: 100%;
+      height: $datePickerCalendarHeightMobile;
+      background-color: $datePickerCalendarBg;
+      border: $datePickerCalendarBorder;
+      border-radius: $datePickerCalendarBorderRadius;
+      box-shadow: $datePickerCalendarBoxShadow;
+    
+      @include mq($from: tabletPortrait) {
+        width: $datePickerCalendarWidth;
+        height: $datePickerCalendarHeight;
+      }
+    
+      &-content {
+        padding: $datePickerCalendarTableContentPaddingMobile;
+    
+        @include mq($from: tabletPortrait) {
+          padding: $datePickerCalendarTableContentPadding;
+        }
+      }
+
+      &-header {
+        border-bottom: 1px solid $sbbColorPlatinum;
+    
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            border-bottom-width: toPx(1 * $scalingFactor4k);
+          }
+    
+          @include mq($from: desktop5k) {
+            border-bottom-width: toPx(1 * $scalingFactor5k);
+          }
+        }
+      }
+      
+      &-controls {
+        display: flex;
+        height: $datePickerCalendarHeaderHeight;
+        align-items: center;
+
+        &-months,
+        &-years {
+          height: $datePickerCalendarHeaderHeight;
+          flex: 1 0 50%;
+          text-align: center;
+          position: relative;
+        }
+
+        &-months {
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 0;
+            height: calc(100% - #{pxToEm($datePickerCalendarBorderWidth)});
+            top: pxToEm($datePickerCalendarBorderWidth);
+            right: 0;
+            border-right: 1px solid $sbbColorPlatinum;
+
+            @include publicOnly() {
+              @include mq($from: desktop4k) {
+                border-right-width: toPx(1 * $scalingFactor4k);
+              }
+
+              @include mq($from: desktop5k) {
+                border-right-width: toPx(1 * $scalingFactor5k);
+              }
+            }
+          }
+        }
+
+        &-left-arrow,
+        &-right-arrow {
+          width: pxToEm($defaultPickerIconSize);
+          height: $datePickerCalendarHeaderHeight;
+          margin-top: pxToEm($datePickerCalendarBorderWidth);
+          vertical-align: middle;
+
+          @include publicOnly() {
+            @include mq($from: tabletPortrait) {
+              width: pxToEm($defaultPickerIconSize) + pxToEm(16);
+            }
+          }
+
+          &[disabled] {
+            opacity: 0;
+            cursor: default;
+          }
+
+          svg {
+            @extend %pickerIconsSize;
+          }
+        }
+
+        &-icon {
+          display: flex;
+          justify-content: center;
+        }
+
+        &-left-arrow {
+          float: left;
+        }
+
+        &-label {
+          font-size: $datePickerCalendarHeaderLabelFontSize;
+          color: $datePickerCalendarHeaderColor;
+          font-family: $fontSbbLight;
+          line-height: $datePickerCalendarHeaderLabelLineHeight;
+        }
+
+        &-right-arrow {
+          float: right;
+        }
+      }
+      
+      &-table {
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin: 0;
+
+        td,
+        th {
+          color: $datePickerCalendarTableColor;
+        }
+
+        &-header {
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: calc(100% - #{pxToEm(4)});
+            left: pxToEm(2);
+
+            border-bottom: 1px solid $sbbColorPlatinum;
+
+            @include publicOnly() {
+              @include mq($from: desktop4k) {
+                border-bottom-width: toPx(1 * $scalingFactor4k);
+              }
+
+              @include mq($from: desktop5k) {
+                border-bottom-width: toPx(1 * $scalingFactor5k);
+              }
+            }
+          }
+
+          tr th {
+            font-family: $fontSbbRoman;
+            font-weight: 400;
+            font-size: $datePickerCalendarHeaderFontSize;
+            text-transform: uppercase;
+            padding: pxToEm(7, 13);
+          }
+        }
+      }
+
+      &-body {
+        &-cell {
+          position: relative;
+          height: 0;
+          line-height: 0;
+          text-align: center;
+          outline: 0;
+          cursor: pointer;
+
+          &:not(.sbb-calendar-body-disabled):hover,
+          &:not(.sbb-calendar-body-disabled):focus {
+            .sbb-calendar-body-cell-content {
+              color: $datePickerCalendarTableActiveColor;
+              border-color: $datePickerCalendarTableActiveColor;
+            }
+          }
+
+          &.sbb-calendar-body-range-background,
+          &.sbb-calendar-body-selected-begin,
+          &.sbb-calendar-body-selected-end {
+            &::before {
+              content: '';
+              background-color: $datePickerCalendarTableRangeBgColor;
+              @include datePickerCellContentBase();
+              width: 100%;
+              left: 0;
+            }
+          }
+
+          &.sbb-calendar-body-selected-begin,
+          &.sbb-calendar-body-selected-end {
+            &::before {
+              width: 50%;
+            }
+          }
+
+          &.sbb-calendar-body-selected-begin {
+            &::before {
+              left: auto;
+              right: 0;
+            }
+          }
+
+          &:not(.sbb-calendar-body-disabled).sbb-calendar-body-selected,
+          &.sbb-calendar-body-selected-begin,
+          &.sbb-calendar-body-selected-end {
+            .sbb-calendar-body-cell-content {
+              background-color: $datePickerCalendarBg;
+              color: $datePickerCalendarTableSelectedColor;
+              border-color: $datePickerCalendarTableSelectedColor;
+            }
+          }
+
+          &.sbb-calendar-body-today {
+            font-family: $datePickerCalendarTableTodayFontFamily;
+            color: $datePickerCalendarTableTodayColor;
+          }
+
+          &.sbb-calendar-body-disabled {
+            color: $datePickerCalendarDisabledTextCellColor;
+            cursor: default;
+          
+            &:not(.empty)::after {
+              content: '';
+              width: pxToEm($datePickerDisabledCellWidth);
+              height: pxToEm(1);
+              top: pxToEm($datePickerDisabledCellTop);
+              left: calc(50% - #{pxToEm($datePickerDisabledCellLeft)});
+              background-color: $datePickerCalendarDisabledCellColor;
+              display: block;
+              position: absolute;
+              transform: rotate(-45deg);
+          
+              @include publicOnly() {
+                @include mq($from: tabletPortrait) {
+                  top: pxToEm(27);
+                }
+              }
+            }
+          }
+
+          &-content {
+            border-color: transparent;
+            border-width: pxToEm(2);
+            border-style: solid;
+            border-radius: 50%;
+            @include datePickerCellContentBase();
+          }
+        }
+      }
     }
   }
 }
 
 .sbb-datepicker-popup-above {
   .sbb-datepicker-popup {
-    @include revertPopUp();
+    .sbb-datepicker-popup-arrow {
+      @include datePickerToggleArrow(calendarTop);
+    }
+  
+    &.sbb-datepicker-with-arrows {
+      .sbb-datepicker-popup-arrow {
+        left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
+      }
+    }
+  
+    .sbb-datepicker-content {
+      top: auto;
+      bottom: pxToEm($datePickerContentTop);
+  
+      .sbb-calendar {
+        box-shadow: $datePickerRevertCalendarBoxShadow;
+      }
+    }
   }
 }

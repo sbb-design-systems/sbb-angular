@@ -1,5 +1,273 @@
-@import '../styles/breadcrumb';
+@import '../../../core/styles/common';
+
+$breadcrumbHeight: 48;
+$breadcrumbArrowWidth: 16;
+$breadcrumbArrowHeight: 16;
+$breadcrumbArrowLineHeight: 20;
+$breadcrumbArrowMarginsDT: 16;
+
+$breadcrumbStepButtonFontSizeDT: 13;
+$breadcrumbStepButtonLineHeightDT: 20;
+
+$breadcrumbDropdownTriggerIconMarginLeft: 10.5;
+
+$breadcrumbTriggerBorderActive: solid 2px #666;
+$breadcrumbTriggerBorder: solid 2px white;
 
 .sbb-breadcrumb {
-  @include breadcrumbLevel;
+  display: none;
+  align-items: center;
+
+  &:first-of-type,
+  &:last-of-type {
+    display: flex;
+  }
+
+  @include mq($from: tabletPortrait) {
+    display: flex;
+  }
+
+  padding-left: 0;
+  height: toPx($breadcrumbHeight);
+  margin-right: toPx($breadcrumbArrowMarginsDT);
+
+  @include mq($from: desktop4k) {
+    margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+    height: toPx($breadcrumbHeight * $scalingFactor4k);
+  }
+  @include mq($from: desktop5k) {
+    margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+    height: toPx($breadcrumbHeight * $scalingFactor5k);
+  }
+
+  .sbb-breadcrumb-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $sbbColorGrey;
+    position: relative;
+    height: 100%;
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+
+    &::before {
+      border: $breadcrumbTriggerBorder;
+    }
+
+    &-icon {
+      @include svgIconColor($sbbColorGrey);
+      width: toPx(16);
+      height: toPx(16);
+      line-height: toPx($breadcrumbArrowLineHeight);
+      margin: 0;
+      margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft);
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 50%;
+      display: none;
+      position: relative;
+      transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
+
+      @include mq($from: desktop4k) {
+        border-width: toPx(1 * $scalingFactor4k);
+        height: toPx(16 * $scalingFactor4k);
+        width: toPx(16 * $scalingFactor4k);
+        margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        border-width: toPx(1 * $scalingFactor5k);
+        height: toPx(16 * $scalingFactor5k);
+        width: toPx(16 * $scalingFactor5k);
+        margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
+      }
+      &-visible {
+        display: block;
+        > .sbb-icon-component {
+          @include absoluteCenterXY;
+          padding: 0;
+          width: toPx($breadcrumbArrowWidth);
+          height: toPx($breadcrumbArrowHeight);
+          @include mq($from: desktop4k) {
+            width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+            height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+          }
+          @include mq($from: desktop5k) {
+            width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+            height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+          }
+        }
+      }
+      &-active {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.sbb-breadcrumb-trigger-open {
+      .sbb-breadcrumb-trigger-icon {
+        @include svgIconColor($sbbColorRed125);
+      }
+    }
+
+    &-open {
+      &::before {
+        content: '';
+        border-top: $breadcrumbTriggerBorderActive;
+        border-right: $breadcrumbTriggerBorderActive;
+        border-left: $breadcrumbTriggerBorderActive;
+        position: absolute;
+        background-color: $sbbColorWhite;
+        height: 100%;
+        min-width: 132px;
+        transform: translateX(-30px);
+        width: calc(100% + 60px);
+        @include mq($from: desktop4k) {
+          min-width: toPx(132 * $scalingFactor4k);
+          transform: translateX(#{toPx(-30 * $scalingFactor4k)});
+          width: calc(100% + #{toPx(60 * $scalingFactor4k)});
+          border-width: toPx(2 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          min-width: toPx(132 * $scalingFactor5k);
+          transform: translateX(#{toPx(-30 * $scalingFactor5k)});
+          width: calc(100% + #{toPx(60 * $scalingFactor5k)});
+          border-width: toPx(2 * $scalingFactor5k);
+        }
+      }
+    }
+  }
+
+  &-arrow {
+    @include svgIconColor($sbbColorGrey);
+    width: toPx($breadcrumbArrowWidth);
+    height: toPx($breadcrumbArrowHeight);
+    line-height: toPx($breadcrumbArrowLineHeight);
+
+    margin-right: toPx($breadcrumbArrowMarginsDT);
+
+    @include mq($from: desktop4k) {
+      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+      width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+      height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+      width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+      height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+    }
+  }
+  a,
+  button {
+    @include svgIconColor($sbbColorGrey);
+    color: $sbbColorGrey;
+    &:hover,
+    &:focus {
+      @include svgIconColor($sbbColorRed125);
+      color: $sbbColorRed125;
+    }
+  }
+  a,
+  button,
+  .sbb-breadcrumb-label {
+    @include buttonResetFrameless();
+    display: block;
+    white-space: nowrap;
+    font-family: $fontSbbRoman;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    font-size: toPx($breadcrumbStepButtonFontSizeDT);
+    line-height: toPx($breadcrumbStepButtonLineHeightDT);
+    @include mq($from: desktop4k) {
+      font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor4k);
+      line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor5k);
+      line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor5k);
+    }
+    &:hover,
+    &:focus {
+      color: $sbbColorRed125;
+    }
+    height: toPx(24);
+    min-width: toPx(24);
+
+    @include mq($from: desktop4k) {
+      height: toPx(24 * $scalingFactor4k);
+      min-width: toPx(24 * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      height: toPx(24 * $scalingFactor5k);
+      min-width: toPx(24 * $scalingFactor5k);
+    }
+    > .sbb-icon-component {
+      &:hover,
+      &:focus {
+        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-panel {
+  min-width: 132px;
+  transform: translateX(-30px);
+  @include mq($from: desktop4k) {
+    min-width: toPx(132 * $scalingFactor4k);
+    transform: translateX(toPx(-30 * $scalingFactor4k));
+  }
+  @include mq($from: desktop5k) {
+    min-width: toPx(132 * $scalingFactor5k);
+    transform: translateX(toPx(-30 * $scalingFactor5k));
+  }
+  .sbb-dropdown-panel {
+    a {
+      font-size: 13px;
+      white-space: normal;
+      text-overflow: clip;
+      padding-left: 30px;
+      padding-right: 30px;
+      font-family: $fontSbbRoman;
+
+      &.sbb-active {
+        @include svgIconColor($sbbColorRed125);
+        color: $sbbColorRed125;
+      }
+
+      @include mq($from: desktop4k) {
+        font-size: toPx(13 * $scalingFactor4k);
+        padding-left: toPx(30 * $scalingFactor4k);
+        padding-right: toPx(30 * $scalingFactor4k);
+      }
+      @include mq($from: desktop5k) {
+        font-size: toPx(13 * $scalingFactor5k);
+        padding-left: toPx(30 * $scalingFactor5k);
+        padding-right: toPx(30 * $scalingFactor5k);
+      }
+    }
+  }
+}
+
+.sbb-breadcrumb-dots {
+  margin-left: toPx($breadcrumbArrowMarginsDT);
+  display: flex;
+  align-items: center;
+  @include mq($from: tabletPortrait) {
+    display: none;
+  }
+
+  @include mq($from: desktop4k) {
+    margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+  }
+  @include mq($from: desktop5k) {
+    margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+  }
 }

@@ -10,7 +10,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { CellDirective, HeaderCellDirective } from './table-cell/table-cell.component';
+import { CellDirective, HeaderCellDirective } from '../table-cell/table-cell.component';
+
 import { SbbTableDataSource } from './table-data-source';
 
 @Component({

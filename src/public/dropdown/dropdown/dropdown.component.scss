@@ -1,7 +1,4 @@
-@import '../../../autocomplete/src/styles/autocomplete';
-@import '../../../option/src/option';
-@import '../../../../angular-core/styles/common/mediaqueries';
-@import '../../../../angular-core/styles/common/button';
+@import '../../../core/styles/common';
 
 .sbb-dropdown-panel {
   @include autocompleteBase();

@@ -1,19 +1,31 @@
-@import '../styles/fields';
+@import '../../../core/styles/common';
 
 sbb-field {
   display: inline-block;
 
   &.sbb-input-field {
     &-short {
-      @include inputMode(short);
+      width: 33.333%;
+    
+      @include mq($from: mobileLandscape) {
+        width: 25%;
+      }
+    
+      @include mq($from: desktop) {
+        width: 16.66666%;
+      }
     }
 
     &-medium {
-      @include inputMode(medium);
+      width: 100%;
+    
+      @include mq($from: tabletPortrait) {
+        width: 50%;
+      }
     }
 
     &-long {
-      @include inputMode(long);
+      width: 100%;
     }
 
     &-short,
@@ -29,6 +41,30 @@ sbb-field {
   }
 
   & > .sbb-form-error {
-    @include formError($sbbColorCallToAction);
+    display: block;
+    letter-spacing: 0;
+    outline: none;
+    resize: none;
+    opacity: 1;
+    font-family: $fontSbbRoman;
+    color: $sbbColorError;
+
+    @include publicOnly() {
+      font-size: pxToRem(14);
+      line-height: pxToEm(21, 14);
+
+      @include mq($from: desktop4k) {
+        font-size: pxToRem(14 * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        font-size: pxToRem(14 * $scalingFactor5k);
+      }
+    }
+
+    @include businessOnly() {
+      font-size: pxToRem(13);
+      line-height: pxToEm(16, 13);
+    }
   }
 }

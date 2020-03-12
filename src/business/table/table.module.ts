@@ -2,7 +2,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SbbSortHeaderComponent } from './sort/sort-header/sort-header.component';
+import { SbbSortHeaderComponent } from './sort-header/sort-header.component';
 import { SbbSortDirective } from './sort/sort.component';
 import {
   CellDefDirective,
@@ -12,7 +12,7 @@ import {
   FooterCellDirective,
   HeaderCellDefDirective,
   HeaderCellDirective
-} from './table/table-cell/table-cell.component';
+} from './table-cell/table-cell.component';
 import {
   FooterRowComponent,
   FooterRowDefDirective,
@@ -20,9 +20,9 @@ import {
   HeaderRowDefDirective,
   RowComponent,
   RowDefDirective
-} from './table/table-row/table-row.component';
+} from './table-row/table-row.component';
 import { TableComponent } from './table/table.component';
-import { TextColumnComponent } from './table/text-column/text-column.component';
+import { TextColumnComponent } from './text-column/text-column.component';
 
 const EXPORTED_DECLARATIONS = [
   TableComponent,

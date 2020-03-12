@@ -1,2 +1,8 @@
 $sbbBusiness: true;
-@import '../../../../angular-public/checkbox/src/checkbox/checkbox.component.scss';
+@import '../../../core/styles/common';
+
+.sbb-checkbox {
+  & > label {
+    @include checkboxBase();
+  }
+}

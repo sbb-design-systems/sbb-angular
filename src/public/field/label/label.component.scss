@@ -1,5 +1,23 @@
-@import '../styles/fields';
+@import '../../../core/styles/common';
 
 :host {
-  @include sbbLabel;
+  @include publicOnly() {
+    margin-bottom: pxToEm(5, 13);
+    padding-left: pxToEm(10, 13);
+
+    @include mq($from: desktop4k) {
+      margin-bottom: pxToEm(5 * $scalingFactor4k, 13);
+    }
+
+    @include mq($from: desktop5k) {
+      margin-bottom: pxToEm(5 * $scalingFactor5k, 13);
+    }
+  }
+
+  @include businessOnly() {
+    margin-bottom: pxToEm(3, 13);
+    padding-left: 0;
+  }
+
+  @include label;
 }

@@ -1,10 +1,143 @@
-@import '../styles/datepicker';
+@import '../datepicker';
 
 .sbb-datepicker {
   display: inline-block;
   width: 100%;
 
   @include defaultDatePickerTheme();
-  @include datePickerControls();
-  @include datePickerInput();
+
+  .sbb-datepicker-toggle,
+  .sbb-datepicker-arrow {
+    display: block;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .sbb-datepicker-toggle {
+    left: toPx($defaultToggleLeftOffset);
+
+    @include absoluteCenterY();
+    @extend %pickerIconsSize;
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        left: toPx($defaultToggleLeftOffset * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        left: toPx($defaultToggleLeftOffset * $scalingFactor5k);
+      }
+    }
+  }
+
+  &.sbb-datepicker-arrows-enabled > .sbb-datepicker-toggle {
+    left: toPx($withArrowsToggleLeftOffset);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        left: toPx($withArrowsToggleLeftOffset * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        left: toPx($withArrowsToggleLeftOffset * $scalingFactor5k);
+      }
+    }
+  }
+
+  .sbb-datepicker-arrow {
+    @extend %pickerIconsSize;
+    @include absoluteCenterY();
+
+    &-left {
+      left: toPx($withArrowsLeftArrowOffset);
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          left: toPx($withArrowsLeftArrowOffset * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          left: toPx($withArrowsLeftArrowOffset * $scalingFactor5k);
+        }
+      }
+    }
+
+    &-right {
+      right: toPx($withArrowsRightArrowOffset);
+
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          right: toPx($withArrowsRightArrowOffset * $scalingFactor4k);
+        }
+
+        @include mq($from: desktop5k) {
+          right: toPx($withArrowsRightArrowOffset * $scalingFactor5k);
+        }
+      }
+    }
+  }
+
+  position: relative;
+
+  .sbb-date-input {
+    width: 100%;
+  }
+
+  &.sbb-datepicker-toggle-enabled > .sbb-date-input,
+  &.sbb-datepicker-arrows-enabled > .sbb-date-input {
+    padding-left: pxToEm($dateInputOneIconPadding - $dateInputBorderWidth);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        padding-left: pxToEm(
+          $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
+        );
+      }
+
+      @include mq($from: desktop5k) {
+        padding-left: pxToEm(
+          $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
+        );
+      }
+    }
+  }
+
+  &.sbb-datepicker-arrows-enabled > .sbb-date-input {
+    padding-right: pxToEm($dateInputOneIconPadding - $dateInputBorderWidth);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        padding-right: pxToEm(
+          $dateInputOneIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
+        );
+      }
+
+      @include mq($from: desktop5k) {
+        padding-right: pxToEm(
+          $dateInputOneIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
+        );
+      }
+    }
+  }
+
+  &.sbb-datepicker-arrows-enabled.sbb-datepicker-toggle-enabled > .sbb-date-input {
+    padding-left: pxToEm($dateInputTwoIconPadding - $dateInputBorderWidth);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        padding-left: pxToEm(
+          $dateInputTwoIconPadding * $scalingFactor4k - $dateInputBorderWidth * $scalingFactor4k
+        );
+      }
+
+      @include mq($from: desktop5k) {
+        padding-left: pxToEm(
+          $dateInputTwoIconPadding * $scalingFactor5k - $dateInputBorderWidth * $scalingFactor5k
+        );
+      }
+    }
+  }
 }

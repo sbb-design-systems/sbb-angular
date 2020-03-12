@@ -1,7 +1,4 @@
-@import '../../../../angular-core/styles/common/variables';
-@import '../../../../angular-core/styles/common/colors';
-@import '../../../../angular-core/styles/common/functions';
-@import '../../../../angular-core/styles/common/mediaqueries';
+@import '../../../core/styles/common';
 
 $tableBg: $sbbColorWhite;
 $tableBorderColor: $sbbColorCloud;

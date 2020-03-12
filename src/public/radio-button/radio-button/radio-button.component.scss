@@ -1,5 +1,8 @@
-@import '../radio-button';
+@import '../../../core/styles/common';
 
 :host {
-  @include radioButton();
+  & > label {
+    user-select: none;
+    @include radioButtonBase();
+  }
 }

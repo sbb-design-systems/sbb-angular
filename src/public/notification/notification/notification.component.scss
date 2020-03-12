@@ -1,5 +1,64 @@
-@import '../styles/notification';
+@import '../../../core/styles/common';
+
+$notificationBaseHeight: 68;
+$notificationBaseWidth: 100%;
+$notificationIconWidth: 36;
+$notificationIconHeight: 36;
+$notificationSuccessBackgroundColor: $sbbColorGrey;
+$notificationErrorBackgroundColor: $sbbColorRed;
+$notificationLinksHeight: 92;
+$notificationBorderRadius: 2;
+$notificationDefaultFontSize: $sizeFontDefault;
+$notificationIconMarginLeft: 16;
+$notificationMessageMarginLeft: 16;
+$notificationMessageMarginRight: 24;
 
 .sbb-notification {
-  @include notificationBase();
+  display: flex;
+  align-items: center;
+  height: toPx($notificationBaseHeight);
+  width: $notificationBaseWidth;
+  border-radius: toPx($notificationBorderRadius);
+  color: $sbbColorWhite;
+
+  &-error {
+    background-color: $notificationErrorBackgroundColor;
+  }
+
+  &-success,
+  &-info {
+    background-color: $notificationSuccessBackgroundColor;
+  }
+
+  &-has-jump-marks {
+    height: toPx($notificationLinksHeight);
+  }
+
+  .sbb-notification-content {
+    font-size: toPx($notificationDefaultFontSize);
+    margin-left: toPx($notificationMessageMarginLeft);
+    margin-right: toPx($notificationMessageMarginRight);
+    &-title {
+      font-family: $fontSbbBold;
+    }
+  }
+
+  .sbb-notification-jump-mark {
+    a {
+      color: $sbbColorWhite;
+      cursor: pointer;
+    }
+  }
+
+  .sbb-notification-icon-wrapper {
+    @include svgIconColor($sbbColorWhite);
+    width: toPx($notificationIconWidth);
+    height: toPx($notificationIconHeight);
+    margin-left: toPx($notificationIconMarginLeft);
+
+    * {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
 }
