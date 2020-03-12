@@ -1,7 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 
 load(
-    "//tools:defaults.bzl",<% if (markdown) { %>
+    "//tools:defaults.bzl",<% if (hasMarkdown) { %>
     "markdown_to_html",<% } %>
     "ng_module",
     "ng_test_library",
@@ -15,7 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),<% if (stylesheets.length === 1) { %>
-    assets = [":<%= stylesheets[0] %>",<% } %>] + glob(["**/*.html"]),<% } else if (stylesheets.length) { %>
+    assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
         ":<%= stylesheet %>",<% } %>] + glob(["**/*.html"]),<% } %>
     module_name = "@sbb-esta/angular-<%= packageName %>/<%= name %>",
@@ -24,13 +24,11 @@ ng_module(
     ],
 )
 
-<% for (let stylesheet of sassLibraries) { %>
+<% if (hasSassLibrary) { %>
 sass_library(
-    name = "<%= stylesheet.name %>",
-    src = "<%= stylesheet.path %>",
-    deps = [<% for (let dependency of stylesheet.dependencies) { %>
-        "<%= dependency %>",<% } %>
-    ],
+    name = "<%= name %>_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/core/styles:common_scss_lib"],
 )
 <% } %>
 
@@ -60,7 +58,7 @@ ng_web_test_suite(
     name = "unit_tests",
     deps = [":unit_test_sources"],
 )
-<% if (markdown) { %>
+<% if (hasMarkdown) { %>
 markdown_to_html(
     name = "overview",
     srcs = [":<%= name %>.md"],

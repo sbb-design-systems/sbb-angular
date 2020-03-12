@@ -1,0 +1,63 @@
+package(default_visibility = ["//visibility:public"])
+
+<% if (hasStyles) { %>
+load("@npm//scss-bundle:index.bzl", "scss_bundle")<% } %>
+load(
+    "//src/<%= name %>:config.bzl",
+    "<%= uc(name) %>_ENTRYPOINTS",
+    "<%= uc(name) %>_TARGETS",
+    "<%= uc(name) %>_TESTING_TARGETS",
+)
+load("//tools:defaults.bzl", "ng_package", "ts_library")
+
+ts_library(
+    name = "<%= name %>",
+    srcs = ["index.ts"],
+    module_name = "@sbb-esta/<%= name %>",
+)
+
+<% if (hasTypography) { %>
+sass_binary(
+    name = "typography",
+    src = "typography.scss",
+    deps = ["//src/core/styles:core_scss_lib"],
+)
+<% } %>
+
+<% if (hasStyles) { %>
+scss_bundle(
+    name = "styles_bundle",
+    outs = ["_styles.scss"],
+    args = [
+        "--entryFile=$(location //src/<%= name %>:_styles.scss)",
+        "--outFile=$(location :_styles.scss)",
+    ],
+    data = [
+        # Config file is required by "scss-bundle" and will be automatically
+        # loaded by the CLI. It expects the config to be in the execroot.
+        "//:scss-bundle.config.json",
+    ],
+)
+<% } %>
+
+filegroup(
+    name = "overviews",
+    srcs = ["//src/<%= name %>/%s:overview" % name for name in <%= uc(name) %>_ENTRYPOINTS],
+)
+
+# Creates the @sbb-esta/<%= name %> package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+        ":styles_bundle",
+        ":typography",
+    ],
+    entry_point = ":index.ts",
+    entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
+    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %>
+    tags = ["release-package"],
+    deps = <%= uc(name) %>_TARGETS + <%= uc(name) %>_TESTING_TARGETS,
+)
