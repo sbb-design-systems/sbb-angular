@@ -36,8 +36,8 @@ import { SelectReactiveFormsComponent } from '../public-examples/select-reactive
 import { TableShowcaseComponent } from '../public-examples/table-showcase/table-showcase.component';
 import { TabsShowcaseComponent } from '../public-examples/tabs-showcase/tabs-showcase.component';
 import { TagShowcaseComponent } from '../public-examples/tag-showcase/tag-showcase.component';
+import { TextareaFormsShowcaseComponent } from '../public-examples/textarea-forms-showcase/textarea-forms-showcase.component';
 import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../public-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
-import { TextareaShowcaseComponent } from '../public-examples/textarea-showcase/textarea-showcase.component';
 import { TextexpandShowcaseComponent } from '../public-examples/textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from '../public-examples/time-input-showcase/time-input-showcase.component';
 import { ToggleShowcaseComponent } from '../public-examples/toggle-showcase/toggle-showcase.component';
@@ -129,7 +129,7 @@ export class PublicComponent implements ExampleProvider {
     },
     tag: { 'tag-showcase': new ComponentPortal(TagShowcaseComponent) },
     textarea: {
-      'textarea-showcase': new ComponentPortal(TextareaShowcaseComponent),
+      'textarea-forms-showcase': new ComponentPortal(TextareaFormsShowcaseComponent),
       'textarea-reactive-forms-with-sbb-field-showcase': new ComponentPortal(
         TextareaReactiveFormsWithSbbFieldShowcaseComponent
       )
