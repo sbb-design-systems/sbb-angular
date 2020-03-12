@@ -131,9 +131,18 @@ export class TextareaComponent extends SbbTextareaMixinBase
   }
   private _required = false;
 
+  /** Unique id of the element. */
+  @Input()
+  @HostBinding('attr.id')
   get id(): string {
-    return this.inputId;
+    return this._id;
   }
+  set id(value: string) {
+    this._id = value || this.inputId;
+    this.stateChanges.next();
+  }
+  private _id: string;
+
   /** Whether the textarea is focused. */
   get focused(): boolean {
     return this.focusedClass;
@@ -229,7 +238,7 @@ export class TextareaComponent extends SbbTextareaMixinBase
    * Trigger the resize of the textarea to fit the content
    */
   triggerResize() {
-    this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent(false));
+    this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent());
   }
 
   writeValue(newValue: any) {
