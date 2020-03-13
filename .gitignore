@@ -44,7 +44,6 @@ Thumbs.db
 
 # Projects node_modules
 .history/
-yarn.lock
 .js
 .js.map
 .d.ts
