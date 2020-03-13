@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
-import { configureTestSuite } from 'ng-bullet';
 
 import { FileSelectorModule } from '../file-selector.module';
 
@@ -100,12 +99,12 @@ describe('FileSelectorComponent using mock component', () => {
   let component: FileSelectorTestComponent;
   let fixture: ComponentFixture<FileSelectorTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FileSelectorModule],
       declarations: [FileSelectorTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FileSelectorTestComponent);
@@ -225,12 +224,12 @@ describe('FileSelectorComponent using mock component and limited behaviour ', ()
   let fileSelectorTest2Component: FileSelectorTest2Component;
   let fixtureFileSelectorTest2: ComponentFixture<FileSelectorTest2Component>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FileSelectorModule, FormsModule],
       declarations: [FileSelectorTest2Component]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureFileSelectorTest2 = TestBed.createComponent(FileSelectorTest2Component);

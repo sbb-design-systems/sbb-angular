@@ -11,7 +11,6 @@ import {
   IconHouseModule
 } from '@sbb-esta/angular-icons';
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
-import { configureTestSuite } from 'ng-bullet';
 
 import { BreadcrumbModule } from '../breadcrumb.module';
 import { BREADCRUMB_LEVEL_OFFSET, BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
@@ -131,7 +130,7 @@ describe('BreadcrumbsComponent', () => {
   let component: BreadcrumbsComponent;
   let fixture: ComponentFixture<BreadcrumbsComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbsComponent],
       imports: [
@@ -140,8 +139,8 @@ describe('BreadcrumbsComponent', () => {
         IconChevronRightModule,
         IconChevronSmallDownCircleModule
       ]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BreadcrumbsComponent);
@@ -161,12 +160,12 @@ describe('Breadcrumb behaviour Test', () => {
   let location: Location = null;
   let router: Router;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BreadcrumbModule, RouterTestingModule, CommonModule, IconHouseModule],
       declarations: [BreadcrumbsTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTestComponent);
@@ -265,7 +264,7 @@ describe('Breadcrumb behaviour Test 2', () => {
   let location: Location = null;
   let router: Router;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbModule,
@@ -275,8 +274,8 @@ describe('Breadcrumb behaviour Test 2', () => {
         DropdownModule
       ],
       declarations: [BreadcrumbsTest2Component]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest2Component);
@@ -427,7 +426,7 @@ describe('Breadcrumb behaviour Test 3', () => {
   let location: Location = null;
   let router: Router;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         BreadcrumbModule,
@@ -437,8 +436,8 @@ describe('Breadcrumb behaviour Test 3', () => {
         DropdownModule
       ],
       declarations: [BreadcrumbsTest3Component]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(BreadcrumbsTest3Component);

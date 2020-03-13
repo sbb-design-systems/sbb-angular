@@ -5,7 +5,6 @@ import {
   IconArrowRightComponent as TestIconComponent,
   IconCollectionModule
 } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { ButtonComponent } from './button.component';
 
@@ -31,12 +30,12 @@ describe('ButtonComponent', () => {
   let component: ButtonTemplateTestComponent;
   let fixture: ComponentFixture<ButtonTemplateTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule],
       declarations: [ButtonComponent, ButtonTemplateTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

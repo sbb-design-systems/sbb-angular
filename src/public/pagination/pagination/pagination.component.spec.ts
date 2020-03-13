@@ -6,7 +6,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { PaginationModule } from '../pagination.module';
 
@@ -37,12 +36,12 @@ describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [PaginationComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationComponent);
@@ -60,12 +59,12 @@ describe('PaginationComponent behaviour', () => {
   let component: PaginationTestComponent;
   let fixture: ComponentFixture<PaginationTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, RouterTestingModule],
       declarations: [PaginationTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationTestComponent);

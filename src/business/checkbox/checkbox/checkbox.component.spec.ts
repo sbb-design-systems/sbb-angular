@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { CheckboxComponent } from './checkbox.component';
 
@@ -35,12 +34,12 @@ describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, IconCollectionModule],
       declarations: [CheckboxComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxComponent);
@@ -61,12 +60,12 @@ describe('CheckboxComponent using mock component', () => {
   let modelComponent: ModelCheckboxTestComponent;
   let modelComponentFixture: ComponentFixture<ModelCheckboxTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, IconCollectionModule],
       declarations: [CheckboxComponent, ModelCheckboxTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelCheckboxTestComponent);

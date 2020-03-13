@@ -4,7 +4,6 @@ import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { configureTestSuite } from 'ng-bullet';
 
 import {
   AccordionDirective,
@@ -65,12 +64,12 @@ class AccordionWithHideToggleComponent {
 }
 
 describe('AccordionDirective', () => {
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, AccordionModule],
       declarations: [AccordionWithHideToggleComponent, NestedPanelComponent, SetOfItemsComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   it('should allow multiple items to be expanded simultaneously', () => {
     const fixture = TestBed.createComponent(SetOfItemsComponent);

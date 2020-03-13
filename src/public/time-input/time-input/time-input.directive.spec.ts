@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
-import { configureTestSuite } from 'ng-bullet';
 
 import { TimeInputDirective } from './time-input.directive';
 
@@ -18,11 +17,11 @@ describe('TimeInputDirective', () => {
   let fixture: ComponentFixture<TimeInputTestComponent>;
   let input: HTMLInputElement;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TimeInputTestComponent, TimeInputDirective]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TimeInputTestComponent);

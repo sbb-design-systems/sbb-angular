@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { CheckboxComponent } from './checkbox.component';
 
@@ -29,14 +28,14 @@ describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, IconCollectionModule],
       declarations: [CheckboxComponent]
     }).overrideComponent(CheckboxComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxComponent);
@@ -57,14 +56,14 @@ describe('CheckboxComponent using mock component', () => {
   let modelComponent: ModelCheckboxTestComponent;
   let modelComponentFixture: ComponentFixture<ModelCheckboxTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, IconCollectionModule],
       declarations: [CheckboxComponent, ModelCheckboxTestComponent]
     }).overrideComponent(CheckboxComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelCheckboxTestComponent);

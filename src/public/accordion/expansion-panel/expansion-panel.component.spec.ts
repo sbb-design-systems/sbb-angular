@@ -4,7 +4,6 @@ import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { configureTestSuite } from 'ng-bullet';
 
 import { AccordionModule, ExpansionPanelComponent } from '../public_api';
 
@@ -120,7 +119,7 @@ describe('ExpansionPanelComponent', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, AccordionModule],
       declarations: [
@@ -131,8 +130,8 @@ describe('ExpansionPanelComponent', () => {
         LazyPanelOpenOnLoadComponent,
         PanelWithTwoWayBindingComponent
       ]
-    });
-  });
+    }).compileComponents();
+  }));
 
   it('should expand and collapse the panel', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContentComponent);

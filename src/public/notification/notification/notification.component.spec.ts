@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { NotificationComponent, NotificationType } from './notification.component';
 import createSpy = jasmine.createSpy;
@@ -25,12 +24,12 @@ describe('NotificationComponent', () => {
     let component: NotificationComponent;
     let fixture: ComponentFixture<NotificationComponent>;
 
-    configureTestSuite(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [IconCollectionModule, CommonModule],
         declarations: [NotificationComponent]
-      });
-    });
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(NotificationComponent);
@@ -47,12 +46,12 @@ describe('NotificationComponent', () => {
     let testFixture: ComponentFixture<NotificationMockComponent>;
     let testComponent: NotificationMockComponent;
 
-    configureTestSuite(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [CommonModule, FormsModule, IconCollectionModule],
         declarations: [NotificationComponent, NotificationMockComponent]
-      });
-    });
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       testFixture = TestBed.createComponent(NotificationMockComponent);

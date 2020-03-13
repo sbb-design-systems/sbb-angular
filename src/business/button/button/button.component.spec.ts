@@ -2,7 +2,6 @@ import { Component, DebugElement, Type, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconArrowRightModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { ButtonComponent } from './button.component';
 
@@ -42,12 +41,12 @@ describe('ButtonComponent', () => {
   let component: ButtonTestComponent;
   let fixture: ComponentFixture<ButtonTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconArrowRightModule],
       declarations: [ButtonComponent, ButtonTestComponent, IconButtonTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

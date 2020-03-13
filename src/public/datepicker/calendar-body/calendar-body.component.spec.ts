@@ -7,7 +7,6 @@ import {
   NativeDateAdapter,
   SBB_DATE_FORMATS
 } from '@sbb-esta/angular-core/datetime';
-import { configureTestSuite } from 'ng-bullet';
 
 import { CalendarBodyComponent, CalendarCell } from './calendar-body.component';
 
@@ -69,7 +68,7 @@ function createCell(value: number) {
 }
 
 describe('SbbCalendarBody', () => {
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CalendarBodyComponent,
@@ -82,8 +81,8 @@ describe('SbbCalendarBody', () => {
         { provide: DateAdapter, useClass: NativeDateAdapter },
         { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
       ]
-    });
-  });
+    }).compileComponents();
+  }));
 
   describe('standard calendar body', () => {
     let fixture: ComponentFixture<StandardCalendarBodyComponent>;

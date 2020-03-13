@@ -20,7 +20,6 @@ import {
   typeInElement
 } from '@sbb-esta/angular-core/testing';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { ChipComponent } from '../..';
 

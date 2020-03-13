@@ -20,7 +20,6 @@ import {
 } from '@sbb-esta/angular-core/datetime';
 import { DEC, FEB, JAN, MAR, NOV } from '@sbb-esta/angular-core/testing';
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
-import { configureTestSuite } from 'ng-bullet';
 
 import { CalendarBodyComponent } from '../calendar-body/calendar-body.component';
 
@@ -49,7 +48,7 @@ class MonthViewWithDateFilterComponent {
 }
 
 describe('MonthViewComponent', () => {
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CalendarBodyComponent,
@@ -63,8 +62,8 @@ describe('MonthViewComponent', () => {
         { provide: DateAdapter, useClass: NativeDateAdapter },
         { provide: SBB_DATE_FORMATS, useValue: DATE_PIPE_DATE_FORMATS }
       ]
-    });
-  });
+    }).compileComponents();
+  }));
 
   describe('standard month view', () => {
     let fixture: ComponentFixture<StandardMonthViewComponent>;

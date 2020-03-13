@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SbbCheckboxChange as TagChange } from '@sbb-esta/angular-core/base';
 import { BadgeModule } from '@sbb-esta/angular-public/badge';
-import { configureTestSuite } from 'ng-bullet';
 
 import { Tag } from '../tag.model';
 import { TagComponent } from '../tag/tag.component';
@@ -60,12 +59,12 @@ describe('TagsComponent', () => {
   let component: TagsComponent;
   let fixture: ComponentFixture<TagsComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
       declarations: [TagsComponent, TagComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagsComponent);
@@ -86,12 +85,12 @@ describe('TagsComponent with Model attached', () => {
   let component: TagsTestFixtureComponent;
   let fixture: ComponentFixture<TagsTestFixtureComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, BadgeModule],
       declarations: [TagsComponent, TagComponent, TagsTestFixtureComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagsTestFixtureComponent);
@@ -232,12 +231,12 @@ describe('TagsComponent with Model attached', () => {
 describe('TagComponent as a Link Tag', () => {
   let fixture: ComponentFixture<TagLinkTestFixtureComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BadgeModule],
       declarations: [TagComponent, TagLinkTestFixtureComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagLinkTestFixtureComponent);

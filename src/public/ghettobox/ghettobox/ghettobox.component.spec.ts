@@ -5,7 +5,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { GhettoboxComponent } from './ghettobox.component';
 
@@ -35,7 +34,7 @@ describe('GhettoboxComponent', () => {
   let component: GhettoboxTestComponent;
   let fixture: ComponentFixture<GhettoboxTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -44,8 +43,8 @@ describe('GhettoboxComponent', () => {
         IconDirectiveModule
       ],
       declarations: [GhettoboxTestComponent, GhettoboxComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

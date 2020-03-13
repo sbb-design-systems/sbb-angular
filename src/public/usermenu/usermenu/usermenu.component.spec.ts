@@ -7,7 +7,6 @@ import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 import { IconChevronSmallDownModule, IconUserModule } from '@sbb-esta/angular-icons';
 import { DropdownComponent, DropdownModule } from '@sbb-esta/angular-public/dropdown';
-import { configureTestSuite } from 'ng-bullet';
 
 import { UserMenuModule } from '../usermenu.module';
 
@@ -194,12 +193,12 @@ describe('UserMenuComponent', () => {
   let dropdownComponent: DropdownComponent;
   let fixtureDropdown: ComponentFixture<DropdownComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserMenuComponent],
       imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureDropdown = TestBed.createComponent(DropdownComponent);
@@ -222,7 +221,7 @@ describe('Usermenu test case: user with custom image using mock component', () =
   let componentTest: UsermenuTestComponent;
   let fixtureTest: ComponentFixture<UsermenuTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         UserMenuModule,
@@ -233,8 +232,8 @@ describe('Usermenu test case: user with custom image using mock component', () =
         RouterTestingModule
       ],
       declarations: [UsermenuTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTestComponent);
@@ -381,7 +380,7 @@ describe('Usermenu test case: usermenu without user image but with initial lette
   let componentTest: UsermenuTest2Component;
   let fixtureTest: ComponentFixture<UsermenuTest2Component>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         UserMenuModule,
@@ -392,8 +391,8 @@ describe('Usermenu test case: usermenu without user image but with initial lette
         RouterTestingModule
       ],
       declarations: [UsermenuTest2Component]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTest2Component);
@@ -507,7 +506,7 @@ describe('Usermenu test case: usermenu only with userName using mock component',
   let componentTest: UsermenuTest3Component;
   let fixtureTest: ComponentFixture<UsermenuTest3Component>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         UserMenuModule,
@@ -518,8 +517,8 @@ describe('Usermenu test case: usermenu only with userName using mock component',
         RouterTestingModule
       ],
       declarations: [UsermenuTest3Component]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(UsermenuTest3Component);

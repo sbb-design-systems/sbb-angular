@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
-import { configureTestSuite } from 'ng-bullet';
 
 import { PaginationModule } from '../pagination.module';
 
@@ -66,12 +65,12 @@ describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, CommonModule, RouterTestingModule],
       declarations: [NavigationComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationComponent);
@@ -88,12 +87,12 @@ describe('NavigationComponent behaviour', () => {
   let component: NavigationTestComponent;
   let fixture: ComponentFixture<NavigationTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [PaginationModule, RouterTestingModule, ButtonModule, FormsModule],
       declarations: [NavigationTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationTestComponent);

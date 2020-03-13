@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
-import { configureTestSuite } from 'ng-bullet';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -30,14 +29,14 @@ describe('RadioButtonComponent', () => {
   let component: RadioButtonComponent;
   let fixture: ComponentFixture<RadioButtonComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
       declarations: [RadioButtonComponent]
     }).overrideComponent(RadioButtonComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RadioButtonComponent);
@@ -59,14 +58,14 @@ describe('RadioButtonComponent using mock component', () => {
   let modelComponent: ModelRadioButtonTestComponent;
   let modelComponentFixture: ComponentFixture<ModelRadioButtonTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, ɵRadioButtonModule],
       declarations: [RadioButtonComponent, ModelRadioButtonTestComponent]
     }).overrideComponent(RadioButtonComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelRadioButtonTestComponent);

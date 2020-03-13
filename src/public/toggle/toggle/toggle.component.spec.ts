@@ -8,7 +8,6 @@ import { RadioChange } from '@sbb-esta/angular-core/radio-button';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
-import { configureTestSuite } from 'ng-bullet';
 import { Observable, of } from 'rxjs';
 
 import { ToggleOptionComponent } from '../toggle-option/toggle-option.component';
@@ -195,7 +194,7 @@ describe('ToggleComponent case reactive using mock component', () => {
   let componentTest: ToggleReactiveTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         ToggleModule,
@@ -207,8 +206,8 @@ describe('ToggleComponent case reactive using mock component', () => {
         IconDirectiveModule
       ],
       declarations: [ToggleReactiveTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleReactiveTestComponent);
@@ -293,7 +292,7 @@ describe('ToggleComponent case reactive with default value using mock component'
   let componentTest: ToggleReactiveDefaultValueTestComponent;
   let fixtureTest: ComponentFixture<ToggleReactiveDefaultValueTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         ToggleModule,
@@ -305,8 +304,8 @@ describe('ToggleComponent case reactive with default value using mock component'
         IconDirectiveModule
       ],
       declarations: [ToggleReactiveDefaultValueTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleReactiveDefaultValueTestComponent);
@@ -337,7 +336,7 @@ describe('ToggleComponent case template driven using mock component', () => {
   let componentTest: ToggleTemplateDrivenTestComponent;
   let fixtureTest: ComponentFixture<ToggleTemplateDrivenTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         ToggleModule,
@@ -348,8 +347,8 @@ describe('ToggleComponent case template driven using mock component', () => {
         FormsModule
       ],
       declarations: [ToggleTemplateDrivenTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleTemplateDrivenTestComponent);
@@ -401,12 +400,12 @@ describe('ToggleComponent simple case using mock component', () => {
   let componentTest: ToggleSimpleCaseTestComponent;
   let fixtureTest: ComponentFixture<ToggleSimpleCaseTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ToggleModule, CommonModule, IconCollectionModule],
       declarations: [ToggleSimpleCaseTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixtureTest = TestBed.createComponent(ToggleSimpleCaseTestComponent);

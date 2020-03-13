@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
 import { IconContextMenuModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { ContextmenuComponent } from './contextmenu.component';
 
@@ -30,12 +29,12 @@ describe('ContextmenuComponent', () => {
   let component: ContextmenuTest1Component;
   let fixture: ComponentFixture<ContextmenuTest1Component>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ContextmenuComponent, ContextmenuTest1Component],
       imports: [CommonModule, DropdownModule, IconContextMenuModule]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContextmenuTest1Component);

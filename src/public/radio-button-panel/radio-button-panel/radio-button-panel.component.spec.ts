@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
-import { configureTestSuite } from 'ng-bullet';
 
 import { RadioButtonPanelModule } from '../radio-button-panel.module';
 
@@ -33,12 +32,12 @@ describe('RadioButtonPanelComponent', () => {
   let component: RadioButtonPanelComponent;
   let fixture: ComponentFixture<RadioButtonPanelComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, RadioButtonPanelModule],
       declarations: [ModelOptionSelectionTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RadioButtonPanelComponent);
@@ -59,12 +58,12 @@ describe('RadioButtonPanelComponent using mock component', () => {
   let modelComponent: ModelOptionSelectionTestComponent;
   let modelComponentFixture: ComponentFixture<ModelOptionSelectionTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RadioButtonPanelModule, ɵRadioButtonModule],
       declarations: [ModelOptionSelectionTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     modelComponentFixture = TestBed.createComponent(ModelOptionSelectionTestComponent);

@@ -12,7 +12,6 @@ import {
   MockNgZone,
   NOV
 } from '@sbb-esta/angular-core/testing';
-import { configureTestSuite } from 'ng-bullet';
 
 import { CalendarComponent, DatepickerModule } from '../public_api';
 
@@ -88,7 +87,7 @@ class CalendarWithSelectableMinDateComponent {
 describe('CalendarComponent', () => {
   let zone: MockNgZone;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [DatepickerModule],
       declarations: [
@@ -99,8 +98,8 @@ describe('CalendarComponent', () => {
         CalendarWithSelectableMinDateComponent
       ],
       providers: [{ provide: NgZone, useFactory: () => (zone = new MockNgZone()) }]
-    });
-  });
+    }).compileComponents();
+  }));
 
   describe('standard calendar', () => {
     let fixture: ComponentFixture<StandardCalendarComponent>;

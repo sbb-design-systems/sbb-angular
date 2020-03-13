@@ -10,7 +10,6 @@ import {
 import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
-import { configureTestSuite } from 'ng-bullet';
 
 import { SearchComponent } from '../public_api';
 import { SearchModule } from '../search.module';
@@ -125,12 +124,12 @@ describe('SearchComponent', () => {
     let component: SimpleSearchComponent;
     let fixture: ComponentFixture<SimpleSearchComponent>;
 
-    configureTestSuite(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [SearchModule, NoopAnimationsModule],
         declarations: [SimpleSearchComponent]
-      });
-    });
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSearchComponent);
@@ -170,12 +169,12 @@ describe('SearchComponent', () => {
     let component: SimpleSearchAutocompleteComponent;
     let fixture: ComponentFixture<SimpleSearchAutocompleteComponent>;
 
-    configureTestSuite(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
         declarations: [SimpleSearchAutocompleteComponent]
-      });
-    });
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SimpleSearchAutocompleteComponent);
@@ -283,7 +282,7 @@ describe('SearchComponent', () => {
       let component: SimpleSearchHeaderComponent;
       let fixture: ComponentFixture<SimpleSearchHeaderComponent>;
 
-      configureTestSuite(() => {
+      beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [SearchModule, BrowserAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchHeaderComponent]
@@ -327,7 +326,7 @@ describe('SearchComponent', () => {
       let component: SimpleSearchAutocompleteHeaderComponent;
       let fixture: ComponentFixture<SimpleSearchAutocompleteHeaderComponent>;
 
-      configureTestSuite(() => {
+      beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchAutocompleteHeaderComponent]

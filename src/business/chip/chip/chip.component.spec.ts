@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCrossComponent, IconCrossModule } from '@sbb-esta/angular-icons';
-import { configureTestSuite } from 'ng-bullet';
 
 import { ChipComponent } from './chip.component';
 
@@ -24,12 +23,12 @@ describe('ChipComponent', () => {
   let component: ChipTestComponent;
   let fixture: ComponentFixture<ChipTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ChipComponent, ChipTestComponent],
       imports: [CommonModule, IconCrossModule]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ChipTestComponent);

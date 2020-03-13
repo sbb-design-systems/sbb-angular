@@ -8,7 +8,6 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
-import { configureTestSuite } from 'ng-bullet';
 
 import { TooltipModule } from '../tooltip.module';
 
@@ -63,13 +62,13 @@ describe('TooltipComponent', () => {
   let component: TooltipComponent;
   let fixture: ComponentFixture<TooltipComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TooltipComponent);
@@ -90,12 +89,12 @@ describe('TooltipComponent using mock component for single tooltip', () => {
   let singleComponentTest: TooltipTestComponent;
   let singleFixtureTest: ComponentFixture<TooltipTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TooltipModule, FieldModule, ButtonModule],
       declarations: [TooltipTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     singleFixtureTest = TestBed.createComponent(TooltipTestComponent);
@@ -173,12 +172,12 @@ describe('TooltipComponent using mock component for double tooltip', () => {
   let doubleComponentTest: DoubleTooltipTestComponent;
   let doubleFixtureTest: ComponentFixture<DoubleTooltipTestComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TooltipModule, FieldModule],
       declarations: [DoubleTooltipTestComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     doubleFixtureTest = TestBed.createComponent(DoubleTooltipTestComponent);

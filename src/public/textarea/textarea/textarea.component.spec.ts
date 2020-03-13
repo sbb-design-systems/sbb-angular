@@ -59,14 +59,14 @@ describe('TextareaComponent', () => {
   let component: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule],
       declarations: [TextareaComponent]
     }).overrideComponent(TextareaComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaComponent);
@@ -84,12 +84,12 @@ describe('TextareaComponent behaviour', () => {
   let fixture: ComponentFixture<TextareaTestComponent>;
   let innerComponent: DebugElement;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule, FormsModule],
       declarations: [TextareaTestComponent, TextareaComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaTestComponent);
@@ -194,14 +194,14 @@ describe('TextareaComponent digits counter', () => {
   let component: TextareaComponent;
   let fixture: ComponentFixture<TextareaComponent>;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule],
       declarations: [TextareaComponent]
     }).overrideComponent(TextareaComponent, {
       set: { changeDetection: ChangeDetectionStrategy.Default }
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaComponent);

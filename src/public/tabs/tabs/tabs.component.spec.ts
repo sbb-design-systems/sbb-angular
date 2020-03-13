@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
 import { BadgeModule } from '@sbb-esta/angular-public/badge';
-import { configureTestSuite } from 'ng-bullet';
 
 import { TabComponent } from '../tab/tab.component';
 
@@ -45,12 +44,12 @@ describe('TabsComponent', () => {
   let fixture: ComponentFixture<TabsTestComponent>;
   let tabs: DebugElement[];
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent, TabsComponent, TabComponent],
       imports: [BadgeModule]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TabsTestComponent);
