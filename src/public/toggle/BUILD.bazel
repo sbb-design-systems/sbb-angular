@@ -1,0 +1,72 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "toggle",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":toggle/toggle.component.css",
+        ":toggle-option/toggle-option.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/toggle",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/core/icon-directive",
+        "//src/core/radio-button",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+        "@npm//@angular/cdk",
+    ],
+)
+
+sass_binary(
+    name = "toggle_toggle_component_scss",
+    src = "toggle/toggle.component.scss",
+)
+
+sass_binary(
+    name = "toggle_option_toggle_option_component_scss",
+    src = "toggle-option/toggle-option.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":toggle",
+        "@npm//@angular/platform-browser",
+        "//src/icons",
+        "//src/public/datepicker",
+        "//src/public/field",
+        "@npm//ng-bullet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":toggle.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

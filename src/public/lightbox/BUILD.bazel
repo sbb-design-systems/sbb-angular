@@ -1,0 +1,61 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "lightbox",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":lightbox/lightbox-container.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/lightbox",
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/icons",
+        "@npm//@angular/animations",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "lightbox_lightbox_container_component_scss",
+    src = "lightbox/lightbox-container.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":lightbox",
+        "@npm//@angular/platform-browser",
+        "//src/core/testing",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":lightbox.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

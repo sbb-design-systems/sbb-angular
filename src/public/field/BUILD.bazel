@@ -1,0 +1,65 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "field",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":field/field.component.css",
+        ":label/label.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/field",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/public/input",
+        "//src/core/forms",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "field_field_component_scss",
+    src = "field/field.component.scss",
+)
+
+sass_binary(
+    name = "label_label_component_scss",
+    src = "label/label.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":field",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":field.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

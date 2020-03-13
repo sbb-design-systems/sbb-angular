@@ -1,0 +1,74 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "textexpand",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":textexpand/textexpand.component.css",
+        ":textexpand-collapsed/textexpand-collapsed.component.css",
+        ":textexpand-expanded/textexpand-expanded.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/textexpand",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+sass_binary(
+    name = "textexpand_textexpand_component_scss",
+    src = "textexpand/textexpand.component.scss",
+)
+
+sass_binary(
+    name = "textexpand_collapsed_textexpand_collapsed_component_scss",
+    src = "textexpand-collapsed/textexpand-collapsed.component.scss",
+    deps = [
+    ],
+)
+
+sass_binary(
+    name = "textexpand_expanded_textexpand_expanded_component_scss",
+    src = "textexpand-expanded/textexpand-expanded.component.scss",
+    deps = [
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":textexpand",
+        "@npm//@angular/platform-browser",
+        "@npm//ng-bullet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":textexpand.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

@@ -15,6 +15,7 @@ export default readdirSync(__dirname, { withFileTypes: true })
       '@angular-devkit/schematics',
       '@angular-devkit/core',
       '@angular-devkit/core/src/utils/strings',
+      '@schematics/angular/utility/ast-utils',
       '@schematics/angular/utility/config',
       'dgeni',
       'dgeni-packages/typescript/api-doc-types/ApiDoc',

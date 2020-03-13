@@ -1,0 +1,69 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "tag",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":tag/tag.component.css",
+        ":tags/tags.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/tag",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/public/badge",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
+        "//src/core/base",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "tag_tag_component_scss",
+    src = "tag/tag.component.scss",
+)
+
+sass_binary(
+    name = "tags_tags_component_scss",
+    src = "tags/tags.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":tag",
+        "@npm//@angular/platform-browser",
+        "@npm//ng-bullet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":tag.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

@@ -1,0 +1,75 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "accordion",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":expansion-panel/expansion-panel.component.css",
+        ":expansion-panel-header/expansion-panel-header.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/accordion",
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/icons",
+        "@npm//@angular/animations",
+        "@npm//rxjs",
+    ],
+)
+
+sass_library(
+    name = "accordion_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/core/styles:common_scss_lib"],
+)
+
+sass_binary(
+    name = "expansion_panel_expansion_panel_component_scss",
+    src = "expansion-panel/expansion-panel.component.scss",
+)
+
+sass_binary(
+    name = "expansion_panel_header_expansion_panel_header_component_scss",
+    src = "expansion-panel-header/expansion-panel-header.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":accordion",
+        "@npm//@angular/platform-browser",
+        "//src/core/testing",
+        "@npm//ng-bullet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":accordion.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

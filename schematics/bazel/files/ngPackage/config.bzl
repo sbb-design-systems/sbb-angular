@@ -17,8 +17,8 @@ entryPoints = [<% for (let entryPoint of entryPoints) { %>
 ]
 
 # List of all non-testing entry-point targets of the <%= capitalize(name) %> package.
-<%= uc(name) %>_TARGETS = ["//src/material"] + \
-                   ["//src/material/%s" % ep for ep in <%= uc(name) %>_ENTRYPOINTS]
+<%= uc(name) %>_TARGETS = ["//src/<%= name %>"] + \
+                   ["//src/<%= name %>/%s" % ep for ep in <%= uc(name) %>_ENTRYPOINTS]
 
 # List of all testing entry-point targets of the <%= capitalize(name) %> package.
-<%= uc(name) %>_TESTING_TARGETS = ["//src/material/%s" % ep for ep in <%= uc(name) %>_TESTING_ENTRYPOINTS]
+<%= uc(name) %>_TESTING_TARGETS = ["//src/<%= name %>/%s" % ep for ep in <%= uc(name) %>_TESTING_ENTRYPOINTS]

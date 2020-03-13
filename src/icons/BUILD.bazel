@@ -1,0 +1,52 @@
+package(default_visibility = ["//visibility:public"])
+
+
+load(
+    "//src/icons:config.bzl",
+    "ICONS_ENTRYPOINTS",
+    "ICONS_TARGETS",
+    "ICONS_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_package",
+    "ts_library"
+)
+
+ts_library(
+    name = "icons",
+    srcs = ["index.ts"],
+    module_name = "@sbb-esta/icons",
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+        ":README.md",
+        ":getting-started.md",
+        ":schematics.md",
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/icons/%s:overview" % name for name in ICONS_ENTRYPOINTS],
+)
+
+# Creates the @sbb-esta/icons package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+        ":styles_bundle",
+        ":typography",
+    ],
+    entry_point = ":index.ts",
+    entry_point_name = "icons",
+    nested_packages = ["//src/icons/schematics:npm_package"],
+    tags = ["release-package"],
+    deps = ICONS_TARGETS + ICONS_TESTING_TARGETS,
+)

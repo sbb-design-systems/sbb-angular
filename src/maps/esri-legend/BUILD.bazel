@@ -1,0 +1,58 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "esri-legend",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":esri-legend/esri-legend.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-maps/esri-legend",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/maps/core",
+    ],
+)
+
+sass_binary(
+    name = "esri_legend_esri_legend_component_scss",
+    src = "esri-legend/esri-legend.component.scss",
+    deps = [
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":esri-legend",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":esri-legend.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

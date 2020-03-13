@@ -22,25 +22,21 @@ ng_module(
     deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],
-)
+)<% if (hasSassLibrary) { %>
 
-<% if (hasSassLibrary) { %>
 sass_library(
     name = "<%= name %>_scss_lib",
     srcs = glob(["**/_*.scss"]),
     deps = ["//src/core/styles:common_scss_lib"],
-)
-<% } %>
+)<% } %><% for (let stylesheet of sassBinaries) { %>
 
-<% for (let stylesheet of sassBinaries) { %>
 sass_binary(
     name = "<%= stylesheet.name %>",
-    src = "<%= stylesheet.path %>",
+    src = "<%= stylesheet.path %>",<% if (!stylesheet.dependencies.length) { %>
     deps = [<% for (let dependency of stylesheet.dependencies) { %>
         "<%= dependency %>",<% } %>
-    ],
-)
-<% } %>
+    ],<% } %>
+)<% } %>
 
 ng_test_library(
     name = "unit_test_sources",
@@ -57,13 +53,13 @@ ng_test_library(
 ng_web_test_suite(
     name = "unit_tests",
     deps = [":unit_test_sources"],
-)
-<% if (hasMarkdown) { %>
+)<% if (hasMarkdown) { %>
+
 markdown_to_html(
     name = "overview",
     srcs = [":<%= name %>.md"],
-)
-<% } %>
+)<% } %>
+
 filegroup(
     name = "source-files",
     srcs = glob(["**/*.ts"]),

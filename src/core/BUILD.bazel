@@ -1,0 +1,50 @@
+package(default_visibility = ["//visibility:public"])
+
+
+load(
+    "//src/core:config.bzl",
+    "CORE_ENTRYPOINTS",
+    "CORE_TARGETS",
+    "CORE_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_package",
+    "ts_library"
+)
+
+ts_library(
+    name = "core",
+    srcs = ["index.ts"],
+    module_name = "@sbb-esta/core",
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+        ":README.md",
+        ":getting-started.md",
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/core/%s:overview" % name for name in CORE_ENTRYPOINTS],
+)
+
+# Creates the @sbb-esta/core package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+        ":styles_bundle",
+        ":typography",
+    ],
+    entry_point = ":index.ts",
+    entry_point_name = "core",
+    tags = ["release-package"],
+    deps = CORE_TARGETS + CORE_TESTING_TARGETS,
+)

@@ -1,0 +1,87 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "header",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":app-chooser-section/app-chooser-section.component.css",
+        ":header/header.component.css",
+        ":header-menu/header-menu.component.css",
+        ":header-menu-trigger/header-menu-trigger.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-business/header",
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/icons",
+        "@npm//@angular/animations",
+        "@npm//@angular/router",
+        "//src/core/breakpoints",
+        "@npm//rxjs",
+        "//src/core/common-behaviors",
+    ],
+)
+
+sass_library(
+    name = "header_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/core/styles:common_scss_lib"],
+)
+
+sass_binary(
+    name = "app_chooser_section_app_chooser_section_component_scss",
+    src = "app-chooser-section/app-chooser-section.component.scss",
+)
+
+sass_binary(
+    name = "header_header_component_scss",
+    src = "header/header.component.scss",
+)
+
+sass_binary(
+    name = "header_menu_header_menu_component_scss",
+    src = "header-menu/header-menu.component.scss",
+)
+
+sass_binary(
+    name = "header_menu_trigger_header_menu_trigger_component_scss",
+    src = "header-menu-trigger/header-menu-trigger.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":header",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":header.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

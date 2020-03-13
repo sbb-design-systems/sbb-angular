@@ -1,0 +1,66 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "select",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":select/select.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/select",
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/icons",
+        "//src/public/option",
+        "@npm//@angular/forms",
+        "//src/core/common-behaviors",
+        "//src/core/error",
+        "//src/core/forms",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "select_select_component_scss",
+    src = "select/select.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":select",
+        "@npm//@angular/platform-browser",
+        "//src/core/testing",
+        "//src/public/field",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":select.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

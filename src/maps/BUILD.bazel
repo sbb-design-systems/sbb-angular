@@ -1,0 +1,55 @@
+package(default_visibility = ["//visibility:public"])
+
+
+load(
+    "//src/maps:config.bzl",
+    "MAPS_ENTRYPOINTS",
+    "MAPS_TARGETS",
+    "MAPS_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_package",
+    "ts_library"
+)
+
+ts_library(
+    name = "maps",
+    srcs = ["index.ts"],
+    module_name = "@sbb-esta/maps",
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+        ":README.md",
+        ":accessing-map-data.md",
+        ":getting-started.md",
+        ":layer-filtering.md",
+        ":loading-arcgis-types.md",
+        ":mapping-basics.md",
+        ":overview-and-usage.md",
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/maps/%s:overview" % name for name in MAPS_ENTRYPOINTS],
+)
+
+# Creates the @sbb-esta/maps package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+        ":styles_bundle",
+        ":typography",
+    ],
+    entry_point = ":index.ts",
+    entry_point_name = "maps",
+    tags = ["release-package"],
+    deps = MAPS_TARGETS + MAPS_TESTING_TARGETS,
+)

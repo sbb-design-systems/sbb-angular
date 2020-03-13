@@ -1,0 +1,58 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "esri-basemap-gallery",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":esri-basemap-gallery/esri-basemap-gallery.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-maps/esri-basemap-gallery",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/maps/core",
+    ],
+)
+
+sass_binary(
+    name = "esri_basemap_gallery_esri_basemap_gallery_component_scss",
+    src = "esri-basemap-gallery/esri-basemap-gallery.component.scss",
+    deps = [
+    ],
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":esri-basemap-gallery",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":esri-basemap-gallery.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

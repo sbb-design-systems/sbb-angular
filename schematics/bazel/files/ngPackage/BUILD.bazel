@@ -8,23 +8,25 @@ load(
     "<%= uc(name) %>_TARGETS",
     "<%= uc(name) %>_TESTING_TARGETS",
 )
-load("//tools:defaults.bzl", "ng_package", "ts_library")
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_package",
+    "ts_library"
+)
 
 ts_library(
     name = "<%= name %>",
     srcs = ["index.ts"],
     module_name = "@sbb-esta/<%= name %>",
-)
+)<% if (hasTypography) { %>
 
-<% if (hasTypography) { %>
 sass_binary(
     name = "typography",
     src = "typography.scss",
     deps = ["//src/core/styles:core_scss_lib"],
-)
-<% } %>
+)<% } %><% if (hasStyles) { %>
 
-<% if (hasStyles) { %>
 scss_bundle(
     name = "styles_bundle",
     outs = ["_styles.scss"],
@@ -37,12 +39,18 @@ scss_bundle(
         # loaded by the CLI. It expects the config to be in the execroot.
         "//:scss-bundle.config.json",
     ],
+)<% } %>
+
+markdown_to_html(
+    name = "overview",
+    srcs = [<% for (let markdownFile of markdownFiles) { %>
+        ":<%= markdownFile %>",<% } %>
+    ],
 )
-<% } %>
 
 filegroup(
     name = "overviews",
-    srcs = ["//src/<%= name %>/%s:overview" % name for name in <%= uc(name) %>_ENTRYPOINTS],
+    srcs = [":overview"] + ["//src/<%= name %>/%s:overview" % name for name in <%= uc(name) %>_ENTRYPOINTS],
 )
 
 # Creates the @sbb-esta/<%= name %> package published to npm.

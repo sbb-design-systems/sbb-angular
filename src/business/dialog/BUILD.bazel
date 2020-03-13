@@ -1,0 +1,84 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "dialog",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":dialog-container/dialog-container.component.css",
+        ":dialog-content/dialog-content.component.css",
+        ":dialog-footer/dialog-footer.component.css",
+        ":dialog-header/dialog-header.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-business/dialog",
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/icons",
+        "@npm//@angular/animations",
+        "@npm//rxjs",
+    ],
+)
+
+sass_library(
+    name = "dialog_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/core/styles:common_scss_lib"],
+)
+
+sass_binary(
+    name = "dialog_container_dialog_container_component_scss",
+    src = "dialog-container/dialog-container.component.scss",
+)
+
+sass_binary(
+    name = "dialog_content_dialog_content_component_scss",
+    src = "dialog-content/dialog-content.component.scss",
+)
+
+sass_binary(
+    name = "dialog_footer_dialog_footer_component_scss",
+    src = "dialog-footer/dialog-footer.component.scss",
+)
+
+sass_binary(
+    name = "dialog_header_dialog_header_component_scss",
+    src = "dialog-header/dialog-header.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":dialog",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":dialog.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

@@ -1,0 +1,64 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "ghettobox",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":ghettobox/ghettobox.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/ghettobox",
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+        "//src/core/icon-directive",
+        "//src/icons",
+        "@npm//@angular/animations",
+        "//src/core/models",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "ghettobox_ghettobox_component_scss",
+    src = "ghettobox/ghettobox.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":ghettobox",
+        "@npm//@angular/platform-browser",
+        "@npm//ng-bullet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":ghettobox.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

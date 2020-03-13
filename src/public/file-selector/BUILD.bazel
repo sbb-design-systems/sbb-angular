@@ -1,0 +1,60 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_test_library",
+    "ng_web_test_suite",
+    "sass_binary",
+)
+
+ng_module(
+    name = "file-selector",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":file-selector/file-selector.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/file-selector",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "//src/icons",
+        "@npm//@angular/forms",
+    ],
+)
+
+sass_binary(
+    name = "file_selector_file_selector_component_scss",
+    src = "file-selector/file-selector.component.scss",
+)
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":file-selector",
+        "@npm//@angular/platform-browser",
+        "//src/core/testing",
+        "@npm//ng-bullet",
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":file-selector.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)
