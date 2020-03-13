@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sbb-textarea-reactive-forms-with-sbb-field-showcase',
@@ -8,6 +8,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class TextareaReactiveFormsWithSbbFieldShowcaseComponent {
   form: FormGroup = new FormGroup({
-    textarea: new FormControl('')
+    textarea: new FormControl('', [Validators.required])
   });
 }
