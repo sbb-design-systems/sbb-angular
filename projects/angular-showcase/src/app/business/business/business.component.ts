@@ -28,6 +28,9 @@ import { GroupedRowsTableComponent } from '../business-examples/table-showcase/g
 import { SimpleTableComponent } from '../business-examples/table-showcase/simple-table/simple-table.component';
 import { SortableTableComponent } from '../business-examples/table-showcase/sortable-table/sortable-table.component';
 import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
+import { TextareaFormsShowcaseComponent } from '../business-examples/textarea-forms-showcase/textarea-forms-showcase.component';
+import { TextareaNativeShowcaseComponent } from '../business-examples/textarea-native-showcase/textarea-native-showcase.component';
+import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../business-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
 import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
@@ -127,6 +130,13 @@ export class BusinessComponent implements ExampleProvider {
       'select-option-groups-multi-selection': new ComponentPortal(
         SelectOptionGroupsMultiSelectionComponent
       )
+    },
+    textarea: {
+      'textarea-forms-showcase': new ComponentPortal(TextareaFormsShowcaseComponent),
+      'textarea-reactive-forms-with-sbb-field-showcase': new ComponentPortal(
+        TextareaReactiveFormsWithSbbFieldShowcaseComponent
+      ),
+      'textarea-native': new ComponentPortal(TextareaNativeShowcaseComponent)
     }
   };
 
