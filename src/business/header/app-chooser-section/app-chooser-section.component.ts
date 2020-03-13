@@ -5,7 +5,7 @@ import { Header, SBB_HEADER } from '../header/header';
 @Component({
   selector: 'sbb-app-chooser-section',
   templateUrl: './app-chooser-section.component.html',
-  styleUrls: ['./app-chooser-section.component.scss'],
+  styleUrls: ['./app-chooser-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppChooserSectionComponent {

@@ -16,11 +16,11 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-business/processflow",
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
+        "//src/core/base",
         "//src/icons",
         "@npm//@angular/cdk",
-        "//src/core/base",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
     ],
 )
 

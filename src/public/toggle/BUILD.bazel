@@ -20,13 +20,13 @@ ng_module(
         ":toggle-option/toggle-option.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/toggle",
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
         "//src/core/icon-directive",
         "//src/core/radio-button",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//rxjs",
-        "@npm//@angular/cdk",
     ],
 )
 
@@ -48,10 +48,10 @@ ng_test_library(
     ),
     deps = [
         ":toggle",
-        "@npm//@angular/platform-browser",
         "//src/icons",
         "//src/public/datepicker",
         "//src/public/field",
+        "@npm//@angular/platform-browser",
         "@npm//ng-bullet",
     ],
 )

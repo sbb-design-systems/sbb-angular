@@ -7,7 +7,7 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 @Component({
   selector: 'sbb-search-showcase',
   templateUrl: './search-showcase.component.html',
-  styleUrls: ['./search-showcase.component.scss']
+  styleUrls: ['./search-showcase.component.css']
 })
 export class SearchShowcaseComponent implements OnInit {
   myControl = new FormControl('');

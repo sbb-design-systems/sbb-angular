@@ -22,7 +22,7 @@ import { LabelComponent } from '../label/label.component';
 @Component({
   selector: 'sbb-field',
   templateUrl: './field.component.html',
-  styleUrls: ['./field.component.scss'],
+  styleUrls: ['./field.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [{ provide: FORM_FIELD, useExisting: FieldComponent }]

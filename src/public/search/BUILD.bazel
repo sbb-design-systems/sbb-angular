@@ -18,16 +18,16 @@ ng_module(
     assets = [":search/search.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/search",
     deps = [
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
         "//src/core/icon-directive",
         "//src/icons",
         "//src/public/autocomplete",
         "//src/public/button",
-        "@npm//@angular/animations",
-        "@npm//@angular/forms",
         "//src/public/option",
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
         "@npm//rxjs",
     ],
 )
@@ -45,8 +45,8 @@ ng_test_library(
     ),
     deps = [
         ":search",
-        "@npm//@angular/platform-browser",
         "//src/core/testing",
+        "@npm//@angular/platform-browser",
         "@npm//ng-bullet",
     ],
 )

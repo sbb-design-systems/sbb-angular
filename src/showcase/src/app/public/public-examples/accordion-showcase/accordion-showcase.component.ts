@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'sbb-accordion-showcase',
   templateUrl: './accordion-showcase.component.html',
-  styleUrls: ['./accordion-showcase.component.scss']
+  styleUrls: ['./accordion-showcase.component.css']
 })
 export class AccordionShowcaseComponent implements OnInit, OnDestroy {
   @ViewChild(AccordionDirective, { static: true }) firstAccordion: AccordionDirective;

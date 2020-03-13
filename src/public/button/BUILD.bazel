@@ -18,10 +18,10 @@ ng_module(
     assets = [":button/button.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/button",
     deps = [
+        "//src/core/base",
+        "//src/core/icon-directive",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/core/icon-directive",
-        "//src/core/base",
     ],
 )
 
@@ -38,8 +38,8 @@ ng_test_library(
     ),
     deps = [
         ":button",
-        "@npm//@angular/platform-browser",
         "//src/icons",
+        "@npm//@angular/platform-browser",
         "@npm//ng-bullet",
     ],
 )

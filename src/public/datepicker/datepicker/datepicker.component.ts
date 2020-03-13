@@ -60,7 +60,7 @@ export const SBB_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   // tslint:disable-next-line:component-selector
   selector: 'sbb-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
+  styleUrls: ['./datepicker.component.css'],
   exportAs: 'sbbDatepicker',
   providers: [{ provide: SBB_DATEPICKER, useExisting: DatepickerComponent }],
   changeDetection: ChangeDetectionStrategy.OnPush,

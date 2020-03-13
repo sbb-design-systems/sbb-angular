@@ -17,7 +17,7 @@ import { Dialog } from '../dialog/dialog.service';
 
 @Component({
   selector: 'sbb-dialog-header, [sbbDialogHeader]',
-  styleUrls: ['dialog-header.component.scss'],
+  styleUrls: ['dialog-header.component.css'],
   template: `
     <ng-content></ng-content>
     <button type="button" sbbDialogClose *ngIf="!isCloseDisabled" class="sbb-dialog-close-btn">

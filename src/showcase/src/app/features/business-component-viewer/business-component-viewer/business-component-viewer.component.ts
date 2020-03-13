@@ -8,7 +8,7 @@ import { ComponentViewerBase } from '../../../shared/component-viewer-base';
   templateUrl:
     '../../core-component-viewer/core-component-viewer/core-component-viewer.component.html',
   styleUrls: [
-    '../../core-component-viewer/core-component-viewer/core-component-viewer.component.scss'
+    '../../core-component-viewer/core-component-viewer/core-component-viewer.component.css'
   ]
 })
 export class BusinessComponentViewerComponent extends ComponentViewerBase {

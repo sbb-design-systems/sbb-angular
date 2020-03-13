@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'sbb-icon-viewer',
   templateUrl: './icon-viewer.component.html',
-  styleUrls: ['./icon-viewer.component.scss']
+  styleUrls: ['./icon-viewer.component.css']
 })
 export class IconViewerComponent implements OnInit {
   title: Observable<string>;

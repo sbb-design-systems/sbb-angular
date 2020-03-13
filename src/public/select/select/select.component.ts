@@ -151,7 +151,7 @@ export const SbbSelectMixinBase: CanUpdateErrorStateCtor & typeof SbbSelectBase 
   selector: 'sbb-select',
   exportAs: 'sbbSelect',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  styleUrls: ['./select.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

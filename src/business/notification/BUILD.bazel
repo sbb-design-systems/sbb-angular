@@ -18,11 +18,11 @@ ng_module(
     assets = [":notification/notification.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/notification",
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
         "//src/core/icon-directive",
         "//src/icons",
         "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
     ],
 )
 

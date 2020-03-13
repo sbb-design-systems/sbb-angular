@@ -48,7 +48,7 @@ export interface DropdownDefaultOptions {
   selector: 'sbb-dropdown',
   exportAs: 'sbbDropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss'],
+  styleUrls: ['./dropdown.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

@@ -20,7 +20,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
 @Component({
   selector: 'sbb-datepicker-content',
   templateUrl: 'datepicker-content.component.html',
-  styleUrls: ['datepicker-content.component.scss'],
+  styleUrls: ['datepicker-content.component.css'],
   exportAs: 'sbbDatepickerContent',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-loading-showcase',
   templateUrl: './loading-showcase.component.html',
-  styleUrls: ['./loading-showcase.component.scss']
+  styleUrls: ['./loading-showcase.component.css']
 })
 export class LoadingShowcaseComponent {
   showSpinner: boolean;

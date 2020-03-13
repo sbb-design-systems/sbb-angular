@@ -15,7 +15,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'sbb-toggle',
   templateUrl: './toggle.component.html',
-  styleUrls: ['./toggle.component.scss'],
+  styleUrls: ['./toggle.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

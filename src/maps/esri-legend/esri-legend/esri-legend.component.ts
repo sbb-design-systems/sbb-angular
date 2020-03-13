@@ -4,7 +4,7 @@ import { EsriTypesService } from '@sbb-esta/angular-maps/core';
 @Component({
   selector: 'sbb-esri-legend',
   templateUrl: './esri-legend.component.html',
-  styleUrls: ['./esri-legend.component.scss'],
+  styleUrls: ['./esri-legend.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EsriLegendComponent implements OnInit {

@@ -42,7 +42,7 @@ export function throwLightboxContentAlreadyAttachedError() {
 @Component({
   selector: 'sbb-lightbox-container',
   templateUrl: 'lightbox-container.component.html',
-  styleUrls: ['lightbox-container.component.scss'],
+  styleUrls: ['lightbox-container.component.css'],
   encapsulation: ViewEncapsulation.None,
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,

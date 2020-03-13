@@ -18,9 +18,9 @@ ng_module(
     assets = [":esri-legend/esri-legend.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-maps/esri-legend",
     deps = [
+        "//src/maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/maps/core",
     ],
 )
 

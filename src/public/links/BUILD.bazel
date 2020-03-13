@@ -20,9 +20,9 @@ ng_module(
         ":social-link/social-link.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/links",
     deps = [
+        "//src/icons",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/icons",
     ],
 )
 

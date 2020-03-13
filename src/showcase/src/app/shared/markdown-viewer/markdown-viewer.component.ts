@@ -8,7 +8,7 @@ import { HtmlLoader } from '../html-loader.service';
 @Component({
   selector: 'sbb-markdown-viewer',
   template: '',
-  styleUrls: ['./markdown-viewer.component.scss']
+  styleUrls: ['./markdown-viewer.component.css']
 })
 export class MarkdownViewerComponent implements AfterViewInit, OnDestroy {
   private _destroyed = new Subject<void>();

@@ -18,15 +18,15 @@ ng_module(
     assets = [":select/select.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/select",
     deps = [
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "//src/icons",
-        "//src/public/option",
-        "@npm//@angular/forms",
         "//src/core/common-behaviors",
         "//src/core/error",
         "//src/core/forms",
+        "//src/icons",
+        "//src/public/option",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
         "@npm//rxjs",
     ],
 )
@@ -44,9 +44,9 @@ ng_test_library(
     ),
     deps = [
         ":select",
-        "@npm//@angular/platform-browser",
         "//src/core/testing",
         "//src/public/field",
+        "@npm//@angular/platform-browser",
     ],
 )
 

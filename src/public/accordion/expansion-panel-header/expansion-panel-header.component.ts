@@ -23,7 +23,7 @@ import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.comp
  */
 @Component({
   selector: 'sbb-expansion-panel-header',
-  styleUrls: ['./expansion-panel-header.component.scss'],
+  styleUrls: ['./expansion-panel-header.component.css'],
   templateUrl: './expansion-panel-header.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

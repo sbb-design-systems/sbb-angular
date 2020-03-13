@@ -20,12 +20,12 @@ ng_module(
         ":breadcrumbs/breadcrumbs.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/breadcrumb",
     deps = [
+        "//src/core/breakpoints",
+        "//src/icons",
+        "//src/public/dropdown",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/icons",
-        "//src/public/dropdown",
-        "//src/core/breakpoints",
         "@npm//rxjs",
     ],
 )
@@ -48,10 +48,10 @@ ng_test_library(
     ),
     deps = [
         ":breadcrumb",
-        "@npm//ng-bullet",
+        "//src/core/testing",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
-        "//src/core/testing",
+        "@npm//ng-bullet",
     ],
 )
 

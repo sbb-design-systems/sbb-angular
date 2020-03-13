@@ -18,10 +18,10 @@ ng_module(
     assets = [":radio-button/radio-button.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/radio-button",
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
         "//src/core/radio-button",
         "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
         "@npm//@angular/forms",
     ],
 )

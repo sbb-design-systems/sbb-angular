@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 @Component({
   selector: 'sbb-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
+  styleUrls: ['./loading.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingComponent {

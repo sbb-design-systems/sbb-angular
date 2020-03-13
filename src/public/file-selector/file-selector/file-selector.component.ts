@@ -23,7 +23,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-file-selector',
   templateUrl: './file-selector.component.html',
-  styleUrls: ['./file-selector.component.scss'],
+  styleUrls: ['./file-selector.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [

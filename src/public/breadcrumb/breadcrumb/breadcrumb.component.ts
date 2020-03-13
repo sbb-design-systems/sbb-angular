@@ -53,7 +53,7 @@ export const BREADCRUMB_LEVEL_OFFSET = 60;
 @Component({
   selector: 'sbb-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.scss'],
+  styleUrls: ['./breadcrumb.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

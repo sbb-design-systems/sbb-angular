@@ -47,7 +47,7 @@ import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcas
 @Component({
   selector: 'sbb-business',
   templateUrl: './business.component.html',
-  styleUrls: ['./business.component.scss'],
+  styleUrls: ['./business.component.css'],
   providers: [{ provide: ExampleProvider, useExisting: BusinessComponent }]
 })
 export class BusinessComponent implements ExampleProvider {

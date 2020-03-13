@@ -15,8 +15,8 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-experimental/_meta",
     deps = [
-        "@npm//@angular/core",
         "//src/icons/experimental",
+        "@npm//@angular/core",
     ],
 )
 

@@ -73,7 +73,7 @@ export function bazel(): Rule {
           }
         }
       });
-      return imports;
+      return imports.sort();
     }
 
     function findImports(path: Path, entry: Readonly<FileEntry>) {

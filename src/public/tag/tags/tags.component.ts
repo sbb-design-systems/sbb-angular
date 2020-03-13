@@ -18,7 +18,7 @@ import { TagComponent, TAGS_CONTAINER } from '../tag/tag.component';
 @Component({
   selector: 'sbb-tags',
   templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.scss'],
+  styleUrls: ['./tags.component.css'],
   providers: [
     {
       provide: TAGS_CONTAINER,

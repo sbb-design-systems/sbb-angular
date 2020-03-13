@@ -24,7 +24,7 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
 @Component({
   selector: 'sbb-toggle-option',
   templateUrl: './toggle-option.component.html',
-  styleUrls: ['./toggle-option.component.scss'],
+  styleUrls: ['./toggle-option.component.css'],
   inputs: ['tabIndex'],
   providers: [
     {

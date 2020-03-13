@@ -12,7 +12,7 @@ import { DropdownComponent, DropdownTriggerDirective } from '@sbb-esta/angular-b
 @Component({
   selector: 'sbb-contextmenu',
   templateUrl: './contextmenu.component.html',
-  styleUrls: ['./contextmenu.component.scss'],
+  styleUrls: ['./contextmenu.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

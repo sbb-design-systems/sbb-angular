@@ -20,10 +20,10 @@ ng_module(
         ":label/label.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/field",
     deps = [
+        "//src/core/forms",
+        "//src/public/input",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/public/input",
-        "//src/core/forms",
         "@npm//rxjs",
     ],
 )

@@ -16,9 +16,9 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-maps/esri-web-map",
     deps = [
+        "//src/maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/maps/core",
     ],
 )
 

@@ -18,7 +18,7 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
 @Component({
   selector: 'sbb-processflow',
   templateUrl: '../../../../angular-public/processflow/src/processflow/processflow.component.html',
-  styleUrls: ['../../../../angular-public/processflow/src/processflow/processflow.component.scss'],
+  styleUrls: ['../../../../angular-public/processflow/src/processflow/processflow.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -8,7 +8,7 @@ import { debounceTime, map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'sbb-experimental-icon-search',
   templateUrl: './experimental-icon-search.component.html',
-  styleUrls: ['./experimental-icon-search.component.scss']
+  styleUrls: ['./experimental-icon-search.component.css']
 })
 export class ExperimentalIconSearchComponent {
   form: FormGroup;

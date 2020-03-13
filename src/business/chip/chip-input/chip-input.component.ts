@@ -63,7 +63,7 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
 @Component({
   selector: 'sbb-chip-input',
   templateUrl: './chip-input.component.html',
-  styleUrls: ['./chip-input.component.scss'],
+  styleUrls: ['./chip-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }]
 })

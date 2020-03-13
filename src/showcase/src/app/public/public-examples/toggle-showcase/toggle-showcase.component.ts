@@ -5,7 +5,7 @@ import { RadioChange } from '@sbb-esta/angular-core/radio-button';
 @Component({
   selector: 'sbb-toggle-showcase',
   templateUrl: './toggle-showcase.component.html',
-  styleUrls: ['./toggle-showcase.component.scss'],
+  styleUrls: ['./toggle-showcase.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class ToggleShowcaseComponent implements OnInit {

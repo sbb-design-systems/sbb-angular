@@ -59,7 +59,7 @@ interface SbbSortHeaderColumnDef {
   selector: '[sbbSortHeader]',
   exportAs: 'sbbSortHeader',
   templateUrl: 'sort-header.component.html',
-  styleUrls: ['sort-header.component.scss'],
+  styleUrls: ['sort-header.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled'],

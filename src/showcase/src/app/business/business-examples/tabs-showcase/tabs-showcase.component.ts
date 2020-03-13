@@ -4,7 +4,7 @@ import { TabsComponent } from '@sbb-esta/angular-business/tabs';
 @Component({
   selector: 'sbb-tabs-showcase',
   templateUrl: './tabs-showcase.component.html',
-  styleUrls: ['./tabs-showcase.component.scss']
+  styleUrls: ['./tabs-showcase.component.css']
 })
 export class TabsShowcaseComponent implements OnInit {
   @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;

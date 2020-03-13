@@ -87,7 +87,7 @@ const ANIMATION_DURATION = 300;
 @Component({
   selector: 'sbb-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['./search.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

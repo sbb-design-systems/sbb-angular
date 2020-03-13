@@ -6,7 +6,7 @@ import { ProcessflowStepBase } from '@sbb-esta/angular-core/base';
   templateUrl:
     '../../../../angular-public/processflow/src/processflow-step/processflow-step.component.html',
   styleUrls: [
-    '../../../../angular-public/processflow/src/processflow-step/processflow-step.component.scss'
+    '../../../../angular-public/processflow/src/processflow-step/processflow-step.component.css'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

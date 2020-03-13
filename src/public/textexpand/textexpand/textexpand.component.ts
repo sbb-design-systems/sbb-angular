@@ -17,7 +17,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-textexpand',
   templateUrl: './textexpand.component.html',
-  styleUrls: ['./textexpand.component.scss'],
+  styleUrls: ['./textexpand.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextexpandComponent implements AfterContentInit {

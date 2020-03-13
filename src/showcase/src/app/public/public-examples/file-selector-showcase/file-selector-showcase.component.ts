@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'sbb-file-selector-showcase',
   templateUrl: './file-selector-showcase.component.html',
-  styleUrls: ['./file-selector-showcase.component.scss']
+  styleUrls: ['./file-selector-showcase.component.css']
 })
 export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
   filesList1: File[] = [];

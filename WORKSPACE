@@ -15,42 +15,30 @@ workspace(
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-RULES_NODEJS_VERSION = "1.3.0"
-RULES_NODEJS_SHA256 = "b6670f9f43faa66e3009488bbd909bc7bc46a5a9661a33f6bc578068d1837f37"
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = RULES_NODEJS_SHA256,
-    url = "https://github.com/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    sha256 = "2eca5b934dee47b5ff304f502ae187c40ec4e33e12bcbce872a2eeb786e23269",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/1.4.1/rules_nodejs-1.4.1.tar.gz"],
 )
 
-# Rules for compiling sass
-RULES_SASS_VERSION = "1.24.0"
-RULES_SASS_SHA256 = "77e241148f26d5dbb98f96fe0029d8f221c6cb75edbb83e781e08ac7f5322c5f"
+# Add sass rules
 http_archive(
     name = "io_bazel_rules_sass",
-    sha256 = RULES_SASS_SHA256,
-    strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
+    # Patch `rules_sass` to work around a bug that causes error messages to be not
+    # printed in worker mode: https://github.com/bazelbuild/rules_sass/issues/96.
+    # TODO(devversion): remove this patch once the Sass Node entry-point returns a `Promise`.
+    patches = ["//tools/postinstall:sass_worker_async.patch"],
+    sha256 = "c78be58f5e0a29a04686b628cf54faaee0094322ae0ac99da5a8a8afca59a647",
+    strip_prefix = "rules_sass-1.25.0",
     urls = [
-        "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+        "https://github.com/bazelbuild/rules_sass/archive/1.25.0.zip",
     ],
 )
 
-####################################
-# Load and install our dependencies downloaded above.
+load("@build_bazel_rules_nodejs//:index.bzl", "check_bazel_version", "node_repositories", "yarn_install")
 
-load("@build_bazel_rules_nodejs//:index.bzl", "check_bazel_version", "node_repositories",
-    "npm_install")
-check_bazel_version(
-    message = """
-You no longer need to install Bazel on your machine.
-Your project should have a dependency on the @bazel/bazel package which supplies it.
-Try running `yarn bazel` instead.
-    (If you did run that, check that you've got a fresh `yarn install`)
-
-""",
-    minimum_bazel_version = "0.27.0",
-)
+# The minimum bazel version to use with this repo is v2.0.0.
+check_bazel_version("2.0.0")
 
 # Setup the Node repositories. We need a NodeJS version that is more recent than v10.15.0
 # because "selenium-webdriver" which is required for "ng e2e" cannot be installed.
@@ -64,29 +52,59 @@ node_repositories(
     node_version = "12.14.1",
 )
 
-npm_install(
+yarn_install(
     name = "npm",
+    # Redirects Yarn `stdout` output to `stderr`. This ensures that stdout is not accidentally
+    # polluted when Bazel runs Yarn. Workaround until the upstream fix is available:
+    # https://github.com/bazelbuild/bazel/pull/10611.
+    args = ["1>&2"],
+    # We add the postinstall patches file, and ngcc main fields update script here so
+    # that Yarn will rerun whenever one of these files has been modified.
+    data = [
+        "//:tools/postinstall/apply-patches.js",
+        "//:tools/postinstall/update-ngcc-main-fields.js",
+    ],
     package_json = "//:package.json",
-    package_lock_json = "//:package-lock.json",
+    quiet = False,
+    yarn_lock = "//:yarn.lock",
 )
 
+# Install all bazel dependencies of the @ngdeps npm packages
 load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
+
 install_bazel_dependencies()
 
+# Setup TypeScript Bazel workspace
+load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
+
+ts_setup_workspace()
+
+# Setup web testing. We need to setup a browser because the web testing rules for TypeScript need
+# a reference to a registered browser (ideally that's a hermetic version of a browser)
+load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
+
+web_test_repositories()
+
+load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_repositories")
+
+browser_repositories(
+    chromium = True,
+    firefox = True,
+)
+
+# Fetch transitive dependencies which are needed to use the Sass rules.
+load("@io_bazel_rules_sass//:package.bzl", "rules_sass_dependencies")
+
+rules_sass_dependencies()
+
+# Setup the Sass rule repositories.
+load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
+
+sass_repositories()
+
+# TODO: Are these needed?
 load("@npm_bazel_protractor//:package.bzl", "npm_bazel_protractor_dependencies")
 npm_bazel_protractor_dependencies()
 
 load("@npm_bazel_karma//:package.bzl", "npm_bazel_karma_dependencies")
 npm_bazel_karma_dependencies()
-
-load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
-web_test_repositories()
-
-load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_repositories")
-browser_repositories(chromium = True, firefox = True)
-
-load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
-ts_setup_workspace()
-
-load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
-sass_repositories()

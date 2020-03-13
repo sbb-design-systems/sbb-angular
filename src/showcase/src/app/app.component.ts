@@ -8,7 +8,7 @@ import { ROUTER_ANIMATION } from './shared/animations';
 @Component({
   selector: 'sbb-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.css'],
   animations: [ROUTER_ANIMATION]
 })
 export class AppComponent {

@@ -58,7 +58,7 @@ export const SBB_OPTION_PARENT_COMPONENT = new InjectionToken<SbbOptionParentCom
 
 @Component({
   selector: 'sbb-option',
-  styleUrls: ['option.component.scss'],
+  styleUrls: ['option.component.css'],
   templateUrl: 'option.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

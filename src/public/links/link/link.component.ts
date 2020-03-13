@@ -10,7 +10,7 @@ import {
   // tslint:disable-next-line:component-selector
   selector: 'a[sbbLink]',
   templateUrl: './link.component.html',
-  styleUrls: ['./link.component.scss'],
+  styleUrls: ['./link.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -14,7 +14,7 @@ import { RadioButton, RadioGroupDirective } from '@sbb-esta/angular-core/radio-b
 @Component({
   selector: 'sbb-radio-button',
   templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.scss'],
+  styleUrls: ['./radio-button.component.css'],
   inputs: ['tabIndex'],
   providers: [
     {

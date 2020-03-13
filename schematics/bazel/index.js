@@ -54,7 +54,7 @@ function bazel() {
                     }
                 }
             });
-            return imports;
+            return imports.sort();
         }
         function findImports(path, entry) {
             const file = typescript.createSourceFile(core.basename(path), entry.content.toString(), typescript.ScriptTarget.ESNext, true);

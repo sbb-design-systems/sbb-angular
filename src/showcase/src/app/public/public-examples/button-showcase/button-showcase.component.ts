@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'sbb-button-showcase',
   templateUrl: './button-showcase.component.html',
-  styleUrls: ['./button-showcase.component.scss']
+  styleUrls: ['./button-showcase.component.css']
 })
 export class ButtonShowcaseComponent implements OnInit, OnDestroy {
   buttonMode = 'primary';

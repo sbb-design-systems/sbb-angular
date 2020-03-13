@@ -20,11 +20,11 @@ ng_module(
         ":table/table.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/table",
     deps = [
+        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//rxjs",
-        "@npm//@angular/animations",
     ],
 )
 

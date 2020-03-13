@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 @Component({
   selector: 'sbb-textexpand-expanded',
   templateUrl: './textexpand-expanded.component.html',
-  styleUrls: ['./textexpand-expanded.component.scss'],
+  styleUrls: ['./textexpand-expanded.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextexpandExpandedComponent {

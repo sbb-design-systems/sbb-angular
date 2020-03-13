@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'sbb-pagination-showcase',
   templateUrl: './pagination-showcase.component.html',
-  styleUrls: ['./pagination-showcase.component.scss']
+  styleUrls: ['./pagination-showcase.component.css']
 })
 export class PaginationShowcaseComponent {
   constructor(private _route: ActivatedRoute) {}

@@ -15,13 +15,13 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-public/input",
     deps = [
-        "@npm//@angular/core",
-        "@npm//@angular/common",
-        "@npm//@angular/cdk",
-        "@npm//@angular/forms",
         "//src/core/common-behaviors",
         "//src/core/error",
         "//src/core/forms",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
     ],
 )
 

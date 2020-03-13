@@ -19,8 +19,8 @@ ng_module(
     module_name = "@sbb-esta/angular-public/dropdown",
     deps = [
         "@npm//@angular/cdk",
-        "@npm//@angular/core",
         "@npm//@angular/common",
+        "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//rxjs",
     ],
@@ -39,9 +39,9 @@ ng_test_library(
     ),
     deps = [
         ":dropdown",
+        "//src/core/models",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
-        "//src/core/models",
         "@npm//ng-bullet",
     ],
 )

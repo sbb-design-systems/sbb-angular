@@ -20,12 +20,12 @@ ng_module(
         ":tags/tags.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/tag",
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
+        "//src/core/base",
         "//src/public/badge",
         "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
         "@npm//@angular/forms",
-        "//src/core/base",
         "@npm//rxjs",
     ],
 )

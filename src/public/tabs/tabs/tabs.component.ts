@@ -24,7 +24,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss'],
+  styleUrls: ['./tabs.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {

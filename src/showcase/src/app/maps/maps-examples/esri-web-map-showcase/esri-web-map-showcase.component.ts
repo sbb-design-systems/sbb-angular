@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'sbb-esri-web-map-showcase',
   templateUrl: './esri-web-map-showcase.component.html',
-  styleUrls: ['./esri-web-map-showcase.component.scss']
+  styleUrls: ['./esri-web-map-showcase.component.css']
 })
 export class EsriWebMapShowcaseComponent implements OnInit {
   public activeExtent: { xmin: number; xmax: number; ymin: number; ymax: number };

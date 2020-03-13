@@ -15,7 +15,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-usermenu',
   templateUrl: './usermenu.component.html',
-  styleUrls: ['./usermenu.component.scss'],
+  styleUrls: ['./usermenu.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

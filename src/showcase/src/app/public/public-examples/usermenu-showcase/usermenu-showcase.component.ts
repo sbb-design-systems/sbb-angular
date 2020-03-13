@@ -4,7 +4,7 @@ import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 @Component({
   selector: 'sbb-usermenu-showcase',
   templateUrl: './usermenu-showcase.component.html',
-  styleUrls: ['./usermenu-showcase.component.scss']
+  styleUrls: ['./usermenu-showcase.component.css']
 })
 export class UsermenuShowcaseComponent {
   userName1 = 'john_64';

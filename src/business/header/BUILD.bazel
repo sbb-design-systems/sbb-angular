@@ -22,15 +22,15 @@ ng_module(
         ":header-menu-trigger/header-menu-trigger.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/header",
     deps = [
+        "//src/core/breakpoints",
+        "//src/core/common-behaviors",
+        "//src/icons",
+        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/icons",
-        "@npm//@angular/animations",
         "@npm//@angular/router",
-        "//src/core/breakpoints",
         "@npm//rxjs",
-        "//src/core/common-behaviors",
     ],
 )
 

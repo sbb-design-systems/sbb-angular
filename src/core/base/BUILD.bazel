@@ -15,10 +15,10 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-core/base",
     deps = [
-        "@npm//@angular/core",
-        "@npm//@angular/cdk",
-        "@npm//@angular/forms",
         "//src/core/icon-directive",
+        "@npm//@angular/cdk",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
         "@npm//rxjs",
     ],
 )

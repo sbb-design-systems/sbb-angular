@@ -18,7 +18,7 @@ import {
 @Component({
   selector: 'sbb-tooltip',
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss'],
+  styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

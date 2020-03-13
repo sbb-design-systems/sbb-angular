@@ -6,7 +6,7 @@ import { ExampleProvider } from '../../shared/example-provider';
 @Component({
   selector: 'sbb-core',
   templateUrl: './core.component.html',
-  styleUrls: ['./core.component.scss'],
+  styleUrls: ['./core.component.css'],
   providers: [{ provide: ExampleProvider, useExisting: CoreComponent }]
 })
 export class CoreComponent implements ExampleProvider {

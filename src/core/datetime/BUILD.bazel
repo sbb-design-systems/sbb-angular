@@ -16,8 +16,8 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-core/datetime",
     deps = [
-        "@npm//@angular/core",
         "@npm//@angular/common",
+        "@npm//@angular/core",
     ],
 )
 

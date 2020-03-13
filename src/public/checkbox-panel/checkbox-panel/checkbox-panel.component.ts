@@ -15,7 +15,7 @@ import { CheckboxBase } from '@sbb-esta/angular-core/base';
 @Component({
   selector: 'sbb-checkbox-panel',
   templateUrl: './checkbox-panel.component.html',
-  styleUrls: ['./checkbox-panel.component.scss'],
+  styleUrls: ['./checkbox-panel.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

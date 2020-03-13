@@ -27,7 +27,7 @@ export interface JumpMark {
 @Component({
   selector: 'sbb-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
+  styleUrls: ['./notification.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

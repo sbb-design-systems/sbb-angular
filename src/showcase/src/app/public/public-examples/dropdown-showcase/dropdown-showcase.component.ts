@@ -5,7 +5,7 @@ import { DropdownTriggerDirective } from '@sbb-esta/angular-public/dropdown';
 @Component({
   selector: 'sbb-dropdown-showcase',
   templateUrl: './dropdown-showcase.component.html',
-  styleUrls: ['./dropdown-showcase.component.scss']
+  styleUrls: ['./dropdown-showcase.component.css']
 })
 export class DropdownShowcaseComponent {
   @ViewChildren(DropdownTriggerDirective) triggers: QueryList<DropdownTriggerDirective>;

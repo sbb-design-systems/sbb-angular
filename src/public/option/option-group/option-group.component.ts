@@ -6,7 +6,7 @@ let uniqueOptgroupIdCounter = 0;
   selector: 'sbb-option-group',
   exportAs: 'sbbOptgroup',
   templateUrl: './option-group.component.html',
-  styleUrls: ['./option-group.component.scss']
+  styleUrls: ['./option-group.component.css']
 })
 export class OptionGroupComponent {
   @HostBinding('class.sbb-optgroup')

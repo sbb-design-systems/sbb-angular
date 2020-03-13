@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-checkbox-panel-showcase',
   templateUrl: './checkbox-panel-showcase.component.html',
-  styleUrls: ['./checkbox-panel-showcase.component.scss']
+  styleUrls: ['./checkbox-panel-showcase.component.css']
 })
 export class CheckboxPanelShowcaseComponent {
   required2: boolean;

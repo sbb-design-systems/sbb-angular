@@ -49,7 +49,7 @@ let uniqueId = 0;
   selector: 'sbb-expansion-panel',
   exportAs: 'sbbExpansionPanel',
   templateUrl: './expansion-panel.component.html',
-  styleUrls: ['./expansion-panel.component.scss'],
+  styleUrls: ['./expansion-panel.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbExpansionAnimations.bodyExpansion],

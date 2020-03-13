@@ -18,7 +18,7 @@ import { SbbTableDataSource } from './table-data-source';
   selector: 'sbb-table, table[sbbTable]',
   exportAs: 'sbbTable',
   template: CDK_TABLE_TEMPLATE,
-  styleUrls: ['table.component.scss'],
+  styleUrls: ['table.component.css'],
   providers: [{ provide: CdkTable, useExisting: TableComponent }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default

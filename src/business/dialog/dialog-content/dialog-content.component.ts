@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
  */
 @Component({
   selector: `sbb-dialog-content, [sbbDialogContent]`,
-  styleUrls: ['./dialog-content.component.scss'],
+  styleUrls: ['./dialog-content.component.css'],
   encapsulation: ViewEncapsulation.None,
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush

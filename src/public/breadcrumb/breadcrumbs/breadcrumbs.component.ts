@@ -19,7 +19,7 @@ import {
 @Component({
   selector: 'sbb-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss'],
+  styleUrls: ['./breadcrumbs.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

@@ -18,11 +18,11 @@ ng_module(
     assets = [":tabs/tabs.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/tabs",
     deps = [
+        "//src/public/badge",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/public/badge",
         "@npm//rxjs",
-        "@npm//@angular/cdk",
     ],
 )
 
@@ -39,8 +39,8 @@ ng_test_library(
     ),
     deps = [
         ":tabs",
-        "@npm//@angular/platform-browser",
         "//src/core/testing",
+        "@npm//@angular/platform-browser",
         "@npm//ng-bullet",
     ],
 )

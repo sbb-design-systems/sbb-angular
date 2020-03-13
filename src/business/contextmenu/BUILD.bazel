@@ -18,10 +18,10 @@ ng_module(
     assets = [":contextmenu/contextmenu.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/contextmenu",
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
         "//src/business/dropdown",
         "//src/icons",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
     ],
 )
 

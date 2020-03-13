@@ -29,7 +29,7 @@ export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
 @Component({
   selector: 'sbb-tag',
   templateUrl: './tag.component.html',
-  styleUrls: ['./tag.component.scss'],
+  styleUrls: ['./tag.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

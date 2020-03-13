@@ -18,12 +18,12 @@ ng_module(
     assets = [":tooltip/tooltip.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/tooltip",
     deps = [
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
         "//src/core/base",
         "//src/core/icon-directive",
         "//src/icons",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
     ],
 )
 

@@ -8,7 +8,7 @@ import {
 
 @Component({
   selector: 'sbb-pseudo-checkbox',
-  styleUrls: ['./option.component.scss'],
+  styleUrls: ['./option.component.css'],
   templateUrl: './pseudo-checkbox.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

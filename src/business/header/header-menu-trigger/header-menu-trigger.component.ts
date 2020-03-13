@@ -54,7 +54,7 @@ const passiveEventListenerOptions = normalizePassiveListenerOptions({ passive: t
   // tslint:disable-next-line: component-selector
   selector: 'button[sbbHeaderMenu]',
   templateUrl: './header-menu-trigger.component.html',
-  styleUrls: ['./header-menu-trigger.component.scss'],
+  styleUrls: ['./header-menu-trigger.component.css'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'sbbHeaderMenu'
 })

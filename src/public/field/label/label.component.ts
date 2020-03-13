@@ -13,7 +13,7 @@ import { HasFormFieldControl } from '../has-form-field-control';
 @Component({
   selector: 'sbb-label',
   templateUrl: './label.component.html',
-  styleUrls: ['./label.component.scss'],
+  styleUrls: ['./label.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabelComponent {

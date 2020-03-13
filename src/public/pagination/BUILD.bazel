@@ -20,10 +20,10 @@ ng_module(
         ":pagination/pagination.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/pagination",
     deps = [
+        "//src/icons",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
-        "//src/icons",
         "@npm//rxjs",
     ],
 )
@@ -52,11 +52,11 @@ ng_test_library(
     ),
     deps = [
         ":pagination",
+        "//src/core/testing",
+        "//src/public/button",
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
-        "//src/public/button",
         "@npm//ng-bullet",
-        "//src/core/testing",
     ],
 )
 

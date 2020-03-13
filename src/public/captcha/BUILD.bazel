@@ -18,8 +18,8 @@ ng_module(
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "@npm//rxjs",
         "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 

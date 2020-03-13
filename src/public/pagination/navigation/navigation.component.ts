@@ -15,7 +15,7 @@ export type NavigationPageChangeEvent = 'next' | 'previous';
 @Component({
   selector: 'sbb-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+  styleUrls: ['./navigation.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

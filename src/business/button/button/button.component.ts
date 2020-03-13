@@ -14,7 +14,7 @@ import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
   // tslint:disable-next-line:component-selector
   selector: 'button[sbbButton], input[type=submit][sbbButton]',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+  styleUrls: ['./button.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })

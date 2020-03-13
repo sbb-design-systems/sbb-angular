@@ -20,14 +20,14 @@ ng_module(
         ":datepicker-content/datepicker-content.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/datepicker",
     deps = [
-        "@npm//@angular/core",
-        "@npm//@angular/cdk",
-        "@npm//@angular/common",
         "//src/core/datetime",
         "//src/icons",
-        "@npm//rxjs",
-        "@npm//@angular/forms",
         "//src/public/input",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
     ],
 )
 
@@ -55,10 +55,10 @@ ng_test_library(
     ),
     deps = [
         ":datepicker",
-        "@npm//@angular/platform-browser",
         "//src/core/testing",
-        "@npm//ng-bullet",
+        "@npm//@angular/platform-browser",
         "@npm//@angular/platform-browser-dynamic",
+        "@npm//ng-bullet",
     ],
 )
 

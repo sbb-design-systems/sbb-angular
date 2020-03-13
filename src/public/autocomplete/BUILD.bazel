@@ -20,10 +20,10 @@ ng_module(
         ":autocomplete-hint/autocomplete-hint.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/autocomplete",
     deps = [
+        "//src/public/option",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/public/option",
         "@npm//@angular/forms",
         "@npm//rxjs",
     ],
@@ -47,9 +47,9 @@ ng_test_library(
     ),
     deps = [
         ":autocomplete",
-        "@npm//@angular/platform-browser",
         "//src/core/testing",
         "//src/public/field",
+        "@npm//@angular/platform-browser",
     ],
 )
 

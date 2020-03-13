@@ -42,7 +42,7 @@ export function throwDialogContentAlreadyAttachedError() {
 @Component({
   selector: 'sbb-dialog-container',
   templateUrl: 'dialog-container.component.html',
-  styleUrls: ['dialog-container.component.scss'],
+  styleUrls: ['dialog-container.component.css'],
   encapsulation: ViewEncapsulation.None,
   // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
   changeDetection: ChangeDetectionStrategy.Default,

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-radio-button-showcase',
   templateUrl: './radio-button-showcase.component.html',
-  styleUrls: ['./radio-button-showcase.component.scss']
+  styleUrls: ['./radio-button-showcase.component.css']
 })
 export class RadioButtonShowcaseComponent {
   required: boolean;

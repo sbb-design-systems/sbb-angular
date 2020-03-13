@@ -13,7 +13,7 @@ import { ProcessflowStepComponent } from '../processflow-step/processflow-step.c
 @Component({
   selector: 'sbb-processflow',
   templateUrl: './processflow.component.html',
-  styleUrls: ['./processflow.component.scss'],
+  styleUrls: ['./processflow.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

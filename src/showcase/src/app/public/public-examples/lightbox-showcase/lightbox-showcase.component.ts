@@ -264,7 +264,7 @@ export class LightboxShowcaseExample5Component {
 @Component({
   selector: 'sbb-lightbox-showcase',
   templateUrl: 'lightbox-showcase.component.html',
-  styleUrls: ['lightbox-showcase.component.scss'],
+  styleUrls: ['lightbox-showcase.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class LightboxShowcaseComponent {}

@@ -122,7 +122,7 @@ export class DialogShowcaseExample3Component {
 @Component({
   selector: 'sbb-dialog-showcase',
   templateUrl: 'dialog-showcase.component.html',
-  styleUrls: ['dialog-showcase.component.scss'],
+  styleUrls: ['dialog-showcase.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class DialogShowcaseComponent {}

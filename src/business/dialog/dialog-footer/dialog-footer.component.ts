@@ -19,7 +19,7 @@ import { Dialog } from '../dialog/dialog.service';
  */
 @Component({
   selector: `sbb-dialog-footer, [sbbDialogFooter]`,
-  styleUrls: ['./dialog-footer.component.scss'],
+  styleUrls: ['./dialog-footer.component.css'],
   encapsulation: ViewEncapsulation.None,
   template: `
     <ng-content select="button"></ng-content>

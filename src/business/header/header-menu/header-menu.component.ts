@@ -31,7 +31,7 @@ let nextId = 0;
 @Component({
   selector: 'sbb-header-menu',
   templateUrl: './header-menu.component.html',
-  styleUrls: ['./header-menu.component.scss'],
+  styleUrls: ['./header-menu.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'sbbHeaderMenu',
   animations: [

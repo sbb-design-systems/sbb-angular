@@ -14,7 +14,7 @@ import { CheckboxBase } from '@sbb-esta/angular-core/base';
 @Component({
   selector: 'sbb-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
+  styleUrls: ['./checkbox.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

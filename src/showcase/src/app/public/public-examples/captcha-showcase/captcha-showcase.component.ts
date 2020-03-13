@@ -9,7 +9,7 @@ export interface FormModel {
 @Component({
   selector: 'sbb-captcha-showcase',
   templateUrl: './captcha-showcase.component.html',
-  styleUrls: ['./captcha-showcase.component.scss']
+  styleUrls: ['./captcha-showcase.component.css']
 })
 export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
   basicCaptchaResponse: string;

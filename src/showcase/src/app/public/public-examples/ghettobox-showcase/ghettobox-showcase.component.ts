@@ -18,7 +18,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'sbb-ghettobox-showcase',
   templateUrl: './ghettobox-showcase.component.html',
-  styleUrls: ['./ghettobox-showcase.component.scss'],
+  styleUrls: ['./ghettobox-showcase.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GhettoboxShowcaseComponent implements OnDestroy {

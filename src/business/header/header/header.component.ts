@@ -40,7 +40,7 @@ export type SbbHeaderMenuToggleResult = 'open' | 'close';
 @Component({
   selector: 'sbb-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.css'],
   animations: [
     trigger('menu', [
       state(

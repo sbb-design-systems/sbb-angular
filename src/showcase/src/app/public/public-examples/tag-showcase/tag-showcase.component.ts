@@ -60,7 +60,7 @@ const tagItems2: Tag[] = [
 @Component({
   selector: 'sbb-tag-showcase',
   templateUrl: './tag-showcase.component.html',
-  styleUrls: ['./tag-showcase.component.scss'],
+  styleUrls: ['./tag-showcase.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class TagShowcaseComponent implements OnInit, OnDestroy {

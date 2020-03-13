@@ -9,7 +9,7 @@ let nextId = 0;
 @Component({
   selector: 'sbb-autocomplete-hint',
   templateUrl: './autocomplete-hint.component.html',
-  styleUrls: ['./autocomplete-hint.component.scss']
+  styleUrls: ['./autocomplete-hint.component.css']
 })
 export class AutocompleteHintComponent {
   /** Unique ID to be used by autocomplete trigger's "aria-owns" property. */

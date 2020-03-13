@@ -20,10 +20,10 @@ ng_module(
         ":processflow-step/processflow-step.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/processflow",
     deps = [
+        "//src/core/base",
+        "//src/icons",
         "@npm//@angular/common",
         "@npm//@angular/core",
-        "//src/icons",
-        "//src/core/base",
     ],
 )
 

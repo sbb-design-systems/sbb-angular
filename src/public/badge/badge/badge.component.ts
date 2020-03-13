@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
 @Component({
   selector: 'sbb-badge',
   templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.scss'],
+  styleUrls: ['./badge.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BadgeComponent {

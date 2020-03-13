@@ -49,7 +49,7 @@ export interface SbbAutocompleteDefaultOptions {
   selector: 'sbb-autocomplete',
   exportAs: 'sbbAutocomplete',
   templateUrl: 'autocomplete.component.html',
-  styleUrls: ['autocomplete.component.scss'],
+  styleUrls: ['autocomplete.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

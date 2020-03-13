@@ -37,7 +37,7 @@ let counter = 0;
 @Component({
   selector: 'sbb-ghettobox',
   templateUrl: './ghettobox.component.html',
-  styleUrls: ['./ghettobox.component.scss'],
+  styleUrls: ['./ghettobox.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   animations: [GHETTOBOX_ANIMATIONS.addDelete]

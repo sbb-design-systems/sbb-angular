@@ -53,7 +53,7 @@ import { UsermenuShowcaseComponent } from '../public-examples/usermenu-showcase/
 @Component({
   selector: 'sbb-public',
   templateUrl: './public.component.html',
-  styleUrls: ['./public.component.scss'],
+  styleUrls: ['./public.component.css'],
   providers: [{ provide: ExampleProvider, useExisting: PublicComponent }]
 })
 export class PublicComponent implements ExampleProvider {
