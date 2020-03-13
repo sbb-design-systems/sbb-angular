@@ -6,6 +6,7 @@ load(
     "//src/business:config.bzl",
     "BUSINESS_ENTRYPOINTS",
     "BUSINESS_TARGETS",
+    "BUSINESS_MARKDOWN_TARGETS",
     "BUSINESS_TESTING_TARGETS",
 )
 load(
@@ -52,7 +53,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/business/%s:overview" % name for name in BUSINESS_ENTRYPOINTS],
+    srcs = [":overview"] + ["//src/business/%s:overview" % name for name in BUSINESS_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/business package published to npm.

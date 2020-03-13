@@ -6,6 +6,7 @@ load(
     "//src/public:config.bzl",
     "PUBLIC_ENTRYPOINTS",
     "PUBLIC_TARGETS",
+    "PUBLIC_MARKDOWN_TARGETS",
     "PUBLIC_TESTING_TARGETS",
 )
 load(
@@ -52,7 +53,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/public/%s:overview" % name for name in PUBLIC_ENTRYPOINTS],
+    srcs = [":overview"] + ["//src/public/%s:overview" % name for name in PUBLIC_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/public package published to npm.

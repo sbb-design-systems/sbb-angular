@@ -50,7 +50,7 @@ export function bazel(): Rule {
             name: basename(dir.path),
             // tslint:disable-next-line: no-non-null-assertion
             packageName: basename(dir.parent!.path),
-            hasMarkdown: dir.subfiles.includes(fragment(`${basename(dir.path)}.md`)),
+            hasMarkdown: moduleHasMarkdown(dir),
             dependencies,
             testDependencies,
             ...findStylesheets(dir)
@@ -149,22 +149,28 @@ export function bazel(): Rule {
     }
 
     function ngPackage(dir: DirEntry, ngModules: DirEntry[]) {
+      const resolvePath = (m: DirEntry) => relative(dir.path, m.path);
       return mergeWith(
         apply(url('./files/ngPackage'), [
           template({
             ...strings,
             uc: (s: string) => s.toUpperCase(),
             name: basename(dir.path),
-            entryPoints: ngModules.map(m => relative(dir.path, m.path)),
+            entryPoints: ngModules.map(resolvePath),
             hasTypography: dir.subfiles.includes(fragment('typography.scss')),
             hasStyles: dir.subfiles.includes(fragment('_styles.scss')),
             hasSchematics: dir.subdirs.includes(fragment('schematics')),
-            markdownFiles: dir.subfiles.filter(f => f.endsWith('.md'))
+            markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
+            markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
           }),
           move(dir.path),
           overwriteIfExists()
         ])
       );
+    }
+
+    function moduleHasMarkdown(dir: DirEntry) {
+      return dir.subfiles.includes(fragment(`${basename(dir.path)}.md`));
     }
 
     function overwriteIfExists(): Rule {

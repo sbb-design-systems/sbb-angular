@@ -22,3 +22,7 @@ entryPoints = [<% for (let entryPoint of entryPoints) { %>
 
 # List of all testing entry-point targets of the <%= capitalize(name) %> package.
 <%= uc(name) %>_TESTING_TARGETS = ["//src/<%= name %>/%s" % ep for ep in <%= uc(name) %>_TESTING_ENTRYPOINTS]
+
+<%= uc(name) %>_MARKDOWN_TARGETS = [<% for (let markdownModule of markdownModules) { %>
+  "<%= markdownModule %>",<% } %>
+]

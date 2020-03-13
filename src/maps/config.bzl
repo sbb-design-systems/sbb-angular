@@ -28,3 +28,13 @@ MAPS_TARGETS = ["//src/maps"] + \
 
 # List of all testing entry-point targets of the Maps package.
 MAPS_TESTING_TARGETS = ["//src/maps/%s" % ep for ep in MAPS_TESTING_ENTRYPOINTS]
+
+MAPS_MARKDOWN_TARGETS = [
+  "core",
+  "esri-basemap-gallery",
+  "esri-config",
+  "esri-layer-list",
+  "esri-legend",
+  "esri-web-map",
+  "esri-web-scene",
+]

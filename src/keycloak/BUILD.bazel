@@ -5,6 +5,7 @@ load(
     "//src/keycloak:config.bzl",
     "KEYCLOAK_ENTRYPOINTS",
     "KEYCLOAK_TARGETS",
+    "KEYCLOAK_MARKDOWN_TARGETS",
     "KEYCLOAK_TESTING_TARGETS",
 )
 load(
@@ -29,7 +30,7 @@ markdown_to_html(
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/keycloak/%s:overview" % name for name in KEYCLOAK_ENTRYPOINTS],
+    srcs = [":overview"] + ["//src/keycloak/%s:overview" % name for name in KEYCLOAK_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/keycloak package published to npm.

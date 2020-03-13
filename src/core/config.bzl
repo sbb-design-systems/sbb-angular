@@ -33,3 +33,10 @@ CORE_TARGETS = ["//src/core"] + \
 
 # List of all testing entry-point targets of the Core package.
 CORE_TESTING_TARGETS = ["//src/core/%s" % ep for ep in CORE_TESTING_ENTRYPOINTS]
+
+CORE_MARKDOWN_TARGETS = [
+  "breakpoints",
+  "datetime",
+  "oauth",
+  "scrolling",
+]

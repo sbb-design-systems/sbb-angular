@@ -33,7 +33,7 @@ function bazel() {
                     name: core.basename(dir.path),
                     // tslint:disable-next-line: no-non-null-assertion
                     packageName: core.basename(dir.parent.path),
-                    hasMarkdown: dir.subfiles.includes(core.fragment(`${core.basename(dir.path)}.md`)),
+                    hasMarkdown: moduleHasMarkdown(dir),
                     dependencies,
                     testDependencies,
                     ...findStylesheets(dir)
@@ -119,20 +119,25 @@ function bazel() {
             return !core.relative(modulePath, path).startsWith('..');
         }
         function ngPackage(dir, ngModules) {
+            const resolvePath = (m) => core.relative(dir.path, m.path);
             return schematics.mergeWith(schematics.apply(schematics.url('./files/ngPackage'), [
                 schematics.template({
                     ...core.strings,
                     uc: (s) => s.toUpperCase(),
                     name: core.basename(dir.path),
-                    entryPoints: ngModules.map(m => core.relative(dir.path, m.path)),
+                    entryPoints: ngModules.map(resolvePath),
                     hasTypography: dir.subfiles.includes(core.fragment('typography.scss')),
                     hasStyles: dir.subfiles.includes(core.fragment('_styles.scss')),
                     hasSchematics: dir.subdirs.includes(core.fragment('schematics')),
-                    markdownFiles: dir.subfiles.filter(f => f.endsWith('.md'))
+                    markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
+                    markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
                 }),
                 schematics.move(dir.path),
                 overwriteIfExists()
             ]));
+        }
+        function moduleHasMarkdown(dir) {
+            return dir.subfiles.includes(core.fragment(`${core.basename(dir.path)}.md`));
         }
         function overwriteIfExists() {
             return schematics.forEach(fileEntry => {

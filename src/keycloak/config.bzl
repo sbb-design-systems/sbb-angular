@@ -21,3 +21,6 @@ KEYCLOAK_TARGETS = ["//src/keycloak"] + \
 
 # List of all testing entry-point targets of the Keycloak package.
 KEYCLOAK_TESTING_TARGETS = ["//src/keycloak/%s" % ep for ep in KEYCLOAK_TESTING_ENTRYPOINTS]
+
+KEYCLOAK_MARKDOWN_TARGETS = [
+]

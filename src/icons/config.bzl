@@ -48,3 +48,6 @@ ICONS_TARGETS = ["//src/icons"] + \
 
 # List of all testing entry-point targets of the Icons package.
 ICONS_TESTING_TARGETS = ["//src/icons/%s" % ep for ep in ICONS_TESTING_ENTRYPOINTS]
+
+ICONS_MARKDOWN_TARGETS = [
+]

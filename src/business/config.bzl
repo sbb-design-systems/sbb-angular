@@ -31,3 +31,16 @@ BUSINESS_TARGETS = ["//src/business"] + \
 
 # List of all testing entry-point targets of the Business package.
 BUSINESS_TESTING_TARGETS = ["//src/business/%s" % ep for ep in BUSINESS_TESTING_ENTRYPOINTS]
+
+BUSINESS_MARKDOWN_TARGETS = [
+  "button",
+  "checkbox",
+  "chip",
+  "contextmenu",
+  "dialog",
+  "header",
+  "notification",
+  "processflow",
+  "table",
+  "tooltip",
+]

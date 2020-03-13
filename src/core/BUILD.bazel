@@ -5,6 +5,7 @@ load(
     "//src/core:config.bzl",
     "CORE_ENTRYPOINTS",
     "CORE_TARGETS",
+    "CORE_MARKDOWN_TARGETS",
     "CORE_TESTING_TARGETS",
 )
 load(
@@ -23,14 +24,13 @@ ts_library(
 markdown_to_html(
     name = "overview",
     srcs = [
-        ":README.md",
         ":getting-started.md",
     ],
 )
 
 filegroup(
     name = "overviews",
-    srcs = [":overview"] + ["//src/core/%s:overview" % name for name in CORE_ENTRYPOINTS],
+    srcs = [":overview"] + ["//src/core/%s:overview" % name for name in CORE_MARKDOWN_TARGETS],
 )
 
 # Creates the @sbb-esta/core package published to npm.
