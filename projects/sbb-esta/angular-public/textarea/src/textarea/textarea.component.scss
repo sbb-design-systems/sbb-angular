@@ -8,6 +8,7 @@
     padding: 2px; // TODO (Breaking Change): Remove padding here and remove padding of sbbTextarea to make use of generic textarea padding. Breaking Change: If a consumer has defined a min-height on sbbTextarea the height will be smaller because of changed paddings and effects on min-height: inherit.
     min-height: inherit;
     resize: none;
+    overflow: hidden;
   }
 
   &.focused {
