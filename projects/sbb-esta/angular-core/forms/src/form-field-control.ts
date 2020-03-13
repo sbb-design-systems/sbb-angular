@@ -35,4 +35,7 @@ export abstract class FormFieldControl<TValue> {
   readonly autofilled?: boolean;
   /** Sets the list of element IDs that currently describe this control. */
   abstract setDescribedByIds(ids: string[]): void;
+
+  /** callback is called when a click event occurs on the label. */
+  abstract onContainerClick?(event: Event): void;
 }

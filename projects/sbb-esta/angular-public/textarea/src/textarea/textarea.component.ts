@@ -2,6 +2,7 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -24,8 +25,8 @@ import {
   mixinErrorState
 } from '@sbb-esta/angular-core';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
+import { auditTime, first, takeUntil } from 'rxjs/operators';
 
 let nextId = 0;
 
@@ -57,9 +58,12 @@ export class TextareaComponent extends SbbTextareaMixinBase
     CanUpdateErrorState,
     ControlValueAccessor,
     DoCheck,
+    AfterViewInit,
     OnDestroy {
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
+
+  private _destroyed = new Subject<void>();
 
   /** The value of the textarea. */
   @Input()
@@ -138,10 +142,10 @@ export class TextareaComponent extends SbbTextareaMixinBase
     return this._id;
   }
   set id(value: string) {
-    this._id = value || this.inputId;
+    this._id = value;
     this.stateChanges.next();
   }
-  private _id: string;
+  private _id = `sbb-textarea-id-${++nextId}`;
 
   /** Whether the textarea is focused. */
   get focused(): boolean {
@@ -161,6 +165,12 @@ export class TextareaComponent extends SbbTextareaMixinBase
   }
   /** The aria-describedby attribute on the select for improved a11y. */
   private _ariaDescribedby: string;
+
+  /**
+   * Needs to be -1 so the `focus` event still fires.
+   * @docs-private
+   */
+  @HostBinding('attr.tabindex') _tabIndexAttr = -1;
 
   /** Placeholder value for the textarea. */
   @Input() placeholder = '';
@@ -187,12 +197,12 @@ export class TextareaComponent extends SbbTextareaMixinBase
     private _changeDetector: ChangeDetectorRef,
     private _ngZone: NgZone,
     private _focusMonitor: FocusMonitor,
-    private _element: ElementRef,
+    elementRef: ElementRef,
     defaultErrorStateMatcher: ErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective
   ) {
-    super(_element, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+    super(elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
@@ -201,27 +211,18 @@ export class TextareaComponent extends SbbTextareaMixinBase
     }
   }
 
-  @HostListener('click', ['$event.target'])
-  _focusTextarea(target: ElementRef) {
-    if (target === this._element.nativeElement) {
-      this._focusMonitor.focusVia(this._textarea.nativeElement, 'program');
-    }
-  }
-
   /**
-   * Adds the focused CSS class to this element
+   * @docs-private
    */
-  onFocus() {
-    this.focusedClass = true;
-    this.stateChanges.next();
-  }
-  /**
-   * Removes the focused CSS class from this element
-   */
-  onBlur() {
-    this.focusedClass = false;
-    this.onTouched();
-    this.stateChanges.next();
+  ngAfterViewInit() {
+    this._ngZone.runOutsideAngular(() => {
+      fromEvent(window, 'resize')
+        .pipe(auditTime(16), takeUntil(this._destroyed))
+        .subscribe(() => {
+          this.autosize.reset();
+          this.autosize.resizeToFitContent(true);
+        });
+    });
   }
 
   /**
@@ -239,6 +240,52 @@ export class TextareaComponent extends SbbTextareaMixinBase
    */
   triggerResize() {
     this._ngZone.onStable.pipe(first()).subscribe(() => this.autosize.resizeToFitContent());
+  }
+
+  /**
+   * forward focus if user clicks anywhere on sbb-textarea
+   * @docs-private
+   */
+  @HostListener('click', ['$event.target'])
+  _focusTextarea(target: ElementRef) {
+    if (target === this._elementRef.nativeElement) {
+      this._forwardFocusToTextarea();
+    }
+  }
+
+  /**
+   * forward focus if user clicks on an associated label
+   * @docs-private
+   */
+  onContainerClick(event: Event) {
+    this._forwardFocusToTextarea();
+  }
+
+  /**
+   * Note: under normal conditions focus shouldn't land on this element, however it may be
+   * programmatically set, for example inside of a focus trap, in this case we want to forward
+   * the focus to the native element.
+   * @docs-private
+   */
+  @HostListener('focus')
+  _forwardFocusToTextarea() {
+    this._textarea.nativeElement.focus();
+  }
+
+  /**
+   * Adds the focused CSS class to this element
+   */
+  onFocus() {
+    this.focusedClass = true;
+    this.stateChanges.next();
+  }
+  /**
+   * Removes the focused CSS class from this element
+   */
+  onBlur() {
+    this.focusedClass = false;
+    this.onTouched();
+    this.stateChanges.next();
   }
 
   writeValue(newValue: any) {
@@ -288,5 +335,7 @@ export class TextareaComponent extends SbbTextareaMixinBase
    */
   ngOnDestroy() {
     this.stateChanges.complete();
+    this._destroyed.next();
+    this._destroyed.complete();
   }
 }

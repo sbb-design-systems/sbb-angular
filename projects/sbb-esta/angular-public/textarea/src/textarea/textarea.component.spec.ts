@@ -1,9 +1,10 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { clearElement, dispatchMouseEvent, typeInElement } from '@sbb-esta/angular-core/testing';
+import { FieldModule } from '@sbb-esta/angular-public';
 import { configureTestSuite } from 'ng-bullet';
 
 import { TextareaComponent } from './textarea.component';
@@ -28,6 +29,25 @@ class TextareaTestComponent {
   minlength: number;
   maxlength: number;
   textArea1: string;
+}
+
+@Component({
+  selector: 'sbb-textarea-sbb-field',
+  template: `
+    <form [formGroup]="form">
+      <sbb-field label="Textarea">
+        <sbb-textarea formControlName="textarea" [maxlength]="200" [minlength]="20"></sbb-textarea>
+        <sbb-form-error *ngIf="form.get('textarea').errors?.minlength"
+          >A length of 20 chars is required!</sbb-form-error
+        >
+      </sbb-field>
+    </form>
+  `
+})
+class TextareaSbbFieldTestComponent {
+  form: FormGroup = new FormGroup({
+    textarea: new FormControl('SBB')
+  });
 }
 
 describe('TextareaComponent', () => {
@@ -191,5 +211,39 @@ describe('TextareaComponent digits counter', () => {
     fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
     expect(counterDiv).toBeNull();
+  });
+});
+
+describe('TextareaComponent in sbb-field behaviour', () => {
+  let component: TextareaSbbFieldTestComponent;
+  let fixture: ComponentFixture<TextareaSbbFieldTestComponent>;
+  let sbbTextareaComponent: DebugElement;
+  let textarea: HTMLTextAreaElement;
+
+  configureTestSuite(() => {
+    TestBed.configureTestingModule({
+      imports: [TextFieldModule, ReactiveFormsModule, FormsModule, FieldModule],
+      declarations: [TextareaSbbFieldTestComponent, TextareaComponent]
+    });
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TextareaSbbFieldTestComponent);
+    component = fixture.componentInstance;
+    sbbTextareaComponent = fixture.debugElement.query(By.directive(TextareaComponent));
+    textarea = fixture.debugElement.query(By.css('textarea')).nativeElement;
+    fixture.detectChanges();
+  });
+
+  it('should forward focus when clicking sbb-field label', async () => {
+    const label = fixture.debugElement.query(By.css('label'));
+    spyOn(textarea, 'focus');
+
+    expect(textarea.focus).not.toHaveBeenCalled();
+    dispatchMouseEvent(label.nativeElement, 'click');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(textarea.focus).toHaveBeenCalled();
   });
 });
