@@ -79,6 +79,11 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 
 ts_setup_workspace()
 
+# Fetch transitive dependencies which are needed to use the karma rules.
+load("@npm_bazel_karma//:package.bzl", "npm_bazel_karma_dependencies")
+
+npm_bazel_karma_dependencies()
+
 # Setup web testing. We need to setup a browser because the web testing rules for TypeScript need
 # a reference to a registered browser (ideally that's a hermetic version of a browser)
 load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
@@ -102,9 +107,6 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
 
 sass_repositories()
 
-# TODO: Are these needed?
 load("@npm_bazel_protractor//:package.bzl", "npm_bazel_protractor_dependencies")
 npm_bazel_protractor_dependencies()
 
-load("@npm_bazel_karma//:package.bzl", "npm_bazel_karma_dependencies")
-npm_bazel_karma_dependencies()

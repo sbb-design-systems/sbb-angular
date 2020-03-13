@@ -48,7 +48,6 @@ ng_test_library(
     deps = [
         ":processflow",
         "//src/core/testing",
-        "@npm//ng-bullet",
     ],
 )
 

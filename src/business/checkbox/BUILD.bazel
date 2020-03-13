@@ -42,7 +42,6 @@ ng_test_library(
         ":checkbox",
         "//src/core/testing",
         "@npm//@angular/platform-browser",
-        "@npm//ng-bullet",
     ],
 )
 

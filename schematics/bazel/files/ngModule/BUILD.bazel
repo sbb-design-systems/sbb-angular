@@ -3,9 +3,9 @@ package(default_visibility = ["//visibility:public"])
 load(
     "//tools:defaults.bzl",<% if (hasMarkdown) { %>
     "markdown_to_html",<% } %>
-    "ng_module",
+    "ng_module",<% if (hasTests) { %>
     "ng_test_library",
-    "ng_web_test_suite",<% if (stylesheets.length) { %>
+    "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %>
 )
 

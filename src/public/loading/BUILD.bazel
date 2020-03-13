@@ -36,7 +36,6 @@ ng_test_library(
     ),
     deps = [
         ":loading",
-        "@npm//ng-bullet",
     ],
 )
 

@@ -39,7 +39,6 @@ ng_test_library(
     deps = [
         ":contextmenu",
         "@npm//@angular/platform-browser",
-        "@npm//ng-bullet",
     ],
 )
 

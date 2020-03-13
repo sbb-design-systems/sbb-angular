@@ -43,7 +43,6 @@ ng_test_library(
     deps = [
         ":tooltip",
         "@npm//@angular/platform-browser",
-        "@npm//ng-bullet",
     ],
 )
 

@@ -44,7 +44,6 @@ ng_test_library(
     deps = [
         ":ghettobox",
         "@npm//@angular/platform-browser",
-        "@npm//ng-bullet",
     ],
 )
 

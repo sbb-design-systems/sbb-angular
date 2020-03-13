@@ -4,8 +4,6 @@ load(
     "//tools:defaults.bzl",
     "markdown_to_html",
     "ng_module",
-    "ng_test_library",
-    "ng_web_test_suite",
 )
 
 ng_module(

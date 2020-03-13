@@ -40,7 +40,6 @@ ng_test_library(
         ":button",
         "//src/icons",
         "@npm//@angular/platform-browser",
-        "@npm//ng-bullet",
     ],
 )
 
