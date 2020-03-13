@@ -121,9 +121,9 @@ describe('TextareaComponent behaviour', () => {
     component.disabled = true;
     fixture.detectChanges();
     expect(innerComponent.attributes['ng-reflect-disabled']).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeTruthy();
     expect(
-      getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.disabled')).borderTopColor
     ).toBe('rgb(210, 210, 210)');
   });
 
@@ -276,14 +276,14 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   });
 
   it('should be disabled', () => {
-    expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeFalsy();
+    expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeFalsy();
 
     component.form.get('textarea').disable();
 
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector(':disabled')).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeTruthy();
     expect(
-      getComputedStyle(fixture.debugElement.nativeElement.querySelector(':disabled')).borderTopColor
+      getComputedStyle(fixture.debugElement.nativeElement.querySelector('.disabled')).borderTopColor
     ).toBe('rgb(210, 210, 210)');
   });
 
