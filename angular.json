@@ -444,5 +444,8 @@
       }
     }
   },
-  "defaultProject": "angular-showcase"
+  "defaultProject": "angular-showcase",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
