@@ -57,22 +57,6 @@ sass_binary(
     src = "dialog-header/dialog-header.component.scss",
 )
 
-ng_test_library(
-    name = "unit_test_sources",
-    srcs = glob(
-        ["**/*.spec.ts"],
-        exclude = ["**/*.e2e.spec.ts"],
-    ),
-    deps = [
-        ":dialog",
-    ],
-)
-
-ng_web_test_suite(
-    name = "unit_tests",
-    deps = [":unit_test_sources"],
-)
-
 markdown_to_html(
     name = "overview",
     srcs = [":dialog.md"],

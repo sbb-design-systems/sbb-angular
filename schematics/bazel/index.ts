@@ -53,6 +53,7 @@ export function bazel(): Rule {
             hasMarkdown: moduleHasMarkdown(dir),
             dependencies,
             testDependencies,
+            hasTests: moduleHasTests(dir),
             ...findStylesheets(dir)
           }),
           move(dir.path),
@@ -146,6 +147,16 @@ export function bazel(): Rule {
 
     function isInModule(path: Path, modulePath: Path): boolean {
       return !relative(modulePath, path).startsWith('..');
+    }
+
+    function moduleHasTests(dir: DirEntry) {
+      let hasTests = false;
+      dir.visit(path => {
+        if (path.endsWith('.spec.ts')) {
+          hasTests = true;
+        }
+      });
+      return hasTests;
     }
 
     function ngPackage(dir: DirEntry, ngModules: DirEntry[]) {

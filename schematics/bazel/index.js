@@ -36,6 +36,7 @@ function bazel() {
                     hasMarkdown: moduleHasMarkdown(dir),
                     dependencies,
                     testDependencies,
+                    hasTests: moduleHasTests(dir),
                     ...findStylesheets(dir)
                 }),
                 schematics.move(dir.path),
@@ -117,6 +118,15 @@ function bazel() {
         }
         function isInModule(path, modulePath) {
             return !core.relative(modulePath, path).startsWith('..');
+        }
+        function moduleHasTests(dir) {
+            let hasTests = false;
+            dir.visit(path => {
+                if (path.endsWith('.spec.ts')) {
+                    hasTests = true;
+                }
+            });
+            return hasTests;
         }
         function ngPackage(dir, ngModules) {
             const resolvePath = (m) => core.relative(dir.path, m.path);
