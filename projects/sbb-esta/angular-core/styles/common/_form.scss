@@ -151,3 +151,18 @@
     }
   }
 }
+
+@mixin textareaBase() {
+  width: 100%;
+  white-space: pre-wrap;
+
+  &:disabled {
+    opacity: 1;
+  }
+}
+
+@mixin textarea() {
+  @include inputfields;
+  @include disabledinputfields;
+  @include textareaBase();
+}

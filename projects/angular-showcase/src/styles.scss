@@ -33,6 +33,7 @@ sbb-icons,
     @include sbbParagraph();
     @include lists;
     @include sbbInputFields();
+    @include sbbTextarea();
     @include sbbSelect();
     @include sbbFieldset();
     @include sbbTimeInputField();
@@ -50,6 +51,7 @@ sbb-business,
     @include sbbParagraph();
     @include lists;
     @include sbbInputFields();
+    @include sbbTextarea();
     @include sbbSelect();
     @include sbbFieldset();
     @include sbbTimeInputField();

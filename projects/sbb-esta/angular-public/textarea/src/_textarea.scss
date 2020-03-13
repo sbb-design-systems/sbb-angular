@@ -40,20 +40,3 @@
 
   font-family: $fontSbbRoman;
 }
-
-@mixin textareaBase() {
-  outline: 0px;
-  border: none;
-  width: 100%;
-  resize: none;
-  overflow: hidden;
-  color: $sbbColorGrey;
-  min-height: inherit;
-  white-space: pre-wrap;
-
-  &:disabled {
-    background-color: $sbbColorMilk;
-    border-color: $sbbColorAluminum;
-    opacity: 1;
-  }
-}
