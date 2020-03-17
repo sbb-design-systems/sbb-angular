@@ -179,10 +179,6 @@ export class SelectComponent extends SbbSelectMixinBase
    * Role of select field
    */
   @HostBinding('attr.role') role = 'listbox';
-  /**
-   * Value of the scrollbar on top
-   */
-  perfectScrollbarScrollTop = 0;
 
   @Input()
   get tabIndex(): number {

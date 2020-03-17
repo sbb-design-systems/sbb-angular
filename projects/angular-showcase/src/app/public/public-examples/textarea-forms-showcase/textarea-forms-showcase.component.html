@@ -1,0 +1,32 @@
+<sbb-textarea
+  [(ngModel)]="textarea"
+  [minlength]="minlength"
+  [maxlength]="maxlength"
+  [required]="required"
+  [readonly]="readonly"
+  [disabled]="disabled"
+></sbb-textarea>
+
+<h4>Model</h4>
+<pre>{{ textarea | json }}</pre>
+
+<h4 class="sbbsc-block">Properties</h4>
+<div class="sbbsc-block">
+  <sbb-field label="Min Length">
+    <input sbbInput type="number" [(ngModel)]="minlength" />
+  </sbb-field>
+</div>
+<div class="sbbsc-block">
+  <sbb-field label="Max Length">
+    <input sbbInput type="number" [(ngModel)]="maxlength" />
+  </sbb-field>
+</div>
+<div class="sbbsc-block">
+  <sbb-checkbox value="required" [(ngModel)]="required">Required</sbb-checkbox>
+</div>
+<div class="sbbsc-block">
+  <sbb-checkbox value="disabled" [(ngModel)]="disabled">Disabled</sbb-checkbox>
+</div>
+<div class="sbbsc-block">
+  <sbb-checkbox value="disabled" [(ngModel)]="readonly">Readonly</sbb-checkbox>
+</div>

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AutocompleteModule } from '@sbb-esta/angular-business';
+import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { ChipModule } from '@sbb-esta/angular-business/chip';
@@ -18,6 +18,7 @@ import { RadioButtonModule } from '@sbb-esta/angular-business/radio-button';
 import { SelectModule } from '@sbb-esta/angular-business/select';
 import { TableModule } from '@sbb-esta/angular-business/table';
 import { TabsModule } from '@sbb-esta/angular-business/tabs';
+import { TextareaModule } from '@sbb-esta/angular-business/textarea';
 import { TooltipModule } from '@sbb-esta/angular-business/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-business/usermenu';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
@@ -56,6 +57,9 @@ import { SimpleTableComponent } from './table-showcase/simple-table/simple-table
 import { SortableTableComponent } from './table-showcase/sortable-table/sortable-table.component';
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
+import { TextareaFormsShowcaseComponent } from './textarea-forms-showcase/textarea-forms-showcase.component';
+import { TextareaNativeShowcaseComponent } from './textarea-native-showcase/textarea-native-showcase.component';
+import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from './textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
 import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
@@ -95,7 +99,10 @@ const exampleComponents = [
   AutocompleteFormsShowcaseComponent,
   AutocompleteHintShowcaseComponent,
   AutocompleteOptionGroupShowcaseComponent,
-  AutocompleteReactiveFormsShowcaseComponent
+  AutocompleteReactiveFormsShowcaseComponent,
+  TextareaFormsShowcaseComponent,
+  TextareaReactiveFormsWithSbbFieldShowcaseComponent,
+  TextareaNativeShowcaseComponent
 ];
 
 @NgModule({
@@ -128,7 +135,8 @@ const exampleComponents = [
     TableModule,
     SelectModule,
     OptionModule,
-    AutocompleteModule
+    AutocompleteModule,
+    TextareaModule
   ]
 })
 export class BusinessExamplesModule {}

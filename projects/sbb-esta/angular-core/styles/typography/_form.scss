@@ -121,3 +121,9 @@
     @include fieldset;
   }
 }
+
+@mixin sbbTextarea() {
+  textarea {
+    @include textarea();
+  }
+}

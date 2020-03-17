@@ -85,7 +85,9 @@ import { TableShowcaseComponent } from './table-showcase/table-showcase.componen
 import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
-import { TextareaShowcaseComponent } from './textarea-showcase/textarea-showcase.component';
+import { TextareaFormsShowcaseComponent } from './textarea-forms-showcase/textarea-forms-showcase.component';
+import { TextareaNativeShowcaseComponent } from './textarea-native-showcase/textarea-native-showcase.component';
+import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from './textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
@@ -137,7 +139,9 @@ const exampleComponents = [
   SelectReactiveFormsComponent,
   TableShowcaseComponent,
   TabsShowcaseComponent,
-  TextareaShowcaseComponent,
+  TextareaFormsShowcaseComponent,
+  TextareaReactiveFormsWithSbbFieldShowcaseComponent,
+  TextareaNativeShowcaseComponent,
   TextexpandShowcaseComponent,
   TimeInputShowcaseComponent,
   ToggleShowcaseComponent,
