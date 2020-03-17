@@ -3,7 +3,7 @@ import { RadioButton } from './radio-button';
 export interface RadioGroup {
   name: string;
   value: any;
-  selected: RadioButton;
+  selected: RadioButton | null;
   disabled: boolean;
   required: boolean;
   _controlValueAccessorChangeFn: (value: any) => void;
