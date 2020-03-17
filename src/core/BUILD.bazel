@@ -11,14 +11,20 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
+    "ng_module",
     "ng_package",
     "ts_library"
 )
 
-ts_library(
+# Root "@sbb-esta/core" entry-point.
+ng_module(
     name = "core",
-    srcs = ["index.ts"],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     module_name = "@sbb-esta/core",
+    deps = ["//src/core/%s" % p for p in CORE_ENTRYPOINTS],
 )
 
 markdown_to_html(
@@ -43,7 +49,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    entry_point = ":index.ts",
+    entry_point = ":public-api.ts",
     entry_point_name = "core",
     tags = ["release-package"],
     deps = CORE_TARGETS + CORE_TESTING_TARGETS,

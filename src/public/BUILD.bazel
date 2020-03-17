@@ -12,14 +12,20 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
+    "ng_module",
     "ng_package",
     "ts_library"
 )
 
-ts_library(
+# Root "@sbb-esta/public" entry-point.
+ng_module(
     name = "public",
-    srcs = ["index.ts"],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     module_name = "@sbb-esta/public",
+    deps = ["//src/public/%s" % p for p in PUBLIC_ENTRYPOINTS],
 )
 
 sass_binary(
@@ -66,7 +72,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    entry_point = ":index.ts",
+    entry_point = ":public-api.ts",
     entry_point_name = "public",
     nested_packages = ["//src/public/schematics:npm_package"],
     tags = ["release-package"],

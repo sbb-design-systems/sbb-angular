@@ -11,14 +11,20 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
+    "ng_module",
     "ng_package",
     "ts_library"
 )
 
-ts_library(
+# Root "@sbb-esta/keycloak" entry-point.
+ng_module(
     name = "keycloak",
-    srcs = ["index.ts"],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     module_name = "@sbb-esta/keycloak",
+    deps = ["//src/keycloak/%s" % p for p in KEYCLOAK_ENTRYPOINTS],
 )
 
 markdown_to_html(
@@ -43,7 +49,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    entry_point = ":index.ts",
+    entry_point = ":public-api.ts",
     entry_point_name = "keycloak",
     tags = ["release-package"],
     deps = KEYCLOAK_TARGETS + KEYCLOAK_TESTING_TARGETS,

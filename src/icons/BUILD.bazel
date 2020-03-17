@@ -11,20 +11,25 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
+    "ng_module",
     "ng_package",
     "ts_library"
 )
 
-ts_library(
+# Root "@sbb-esta/icons" entry-point.
+ng_module(
     name = "icons",
-    srcs = ["index.ts"],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     module_name = "@sbb-esta/icons",
+    deps = ["//src/icons/%s" % p for p in ICONS_ENTRYPOINTS],
 )
 
 markdown_to_html(
     name = "overview",
     srcs = [
-        ":README.md",
         ":getting-started.md",
         ":schematics.md",
     ],
@@ -45,7 +50,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    entry_point = ":index.ts",
+    entry_point = ":public-api.ts",
     entry_point_name = "icons",
     nested_packages = ["//src/icons/schematics:npm_package"],
     tags = ["release-package"],

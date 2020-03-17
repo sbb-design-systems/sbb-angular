@@ -12,14 +12,20 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
+    "ng_module",
     "ng_package",
     "ts_library"
 )
 
-ts_library(
+# Root "@sbb-esta/business" entry-point.
+ng_module(
     name = "business",
-    srcs = ["index.ts"],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     module_name = "@sbb-esta/business",
+    deps = ["//src/business/%s" % p for p in BUSINESS_ENTRYPOINTS],
 )
 
 sass_binary(
@@ -45,7 +51,6 @@ scss_bundle(
 markdown_to_html(
     name = "overview",
     srcs = [
-        ":README.md",
         ":getting-started.md",
         ":typography.md",
     ],
@@ -66,7 +71,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    entry_point = ":index.ts",
+    entry_point = ":public-api.ts",
     entry_point_name = "business",
     nested_packages = ["//src/business/schematics:npm_package"],
     tags = ["release-package"],

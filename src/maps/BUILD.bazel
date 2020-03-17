@@ -11,20 +11,25 @@ load(
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
+    "ng_module",
     "ng_package",
     "ts_library"
 )
 
-ts_library(
+# Root "@sbb-esta/maps" entry-point.
+ng_module(
     name = "maps",
-    srcs = ["index.ts"],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
     module_name = "@sbb-esta/maps",
+    deps = ["//src/maps/%s" % p for p in MAPS_ENTRYPOINTS],
 )
 
 markdown_to_html(
     name = "overview",
     srcs = [
-        ":README.md",
         ":accessing-map-data.md",
         ":getting-started.md",
         ":layer-filtering.md",
@@ -49,7 +54,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    entry_point = ":index.ts",
+    entry_point = ":public-api.ts",
     entry_point_name = "maps",
     tags = ["release-package"],
     deps = MAPS_TARGETS + MAPS_TESTING_TARGETS,
