@@ -52,11 +52,11 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   getMonthName(date: Date) {
-    return this._datePipe.transform(date, 'LLLL');
+    return this._datePipe.transform(date, 'LLLL')!;
   }
 
   getMonthNames(style: 'long' | 'short' | 'narrow'): string[] {
-    let format;
+    let format: string;
     switch (style) {
       case 'long':
         format = 'LLLL';
@@ -68,15 +68,15 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         format = 'LLL';
         break;
     }
-    return range(12, i => this._datePipe.transform(new Date(2017, i, 1), format));
+    return range(12, i => this._datePipe.transform(new Date(2017, i, 1), format)!);
   }
 
   getDateNames(): string[] {
-    return range(31, i => this._datePipe.transform(new Date(2017, 0, i + 1), 'd'));
+    return range(31, i => this._datePipe.transform(new Date(2017, 0, i + 1), 'd')!);
   }
 
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
-    let format;
+    let format: string;
     switch (style) {
       case 'long':
         format = 'EEEE';
@@ -88,11 +88,11 @@ export class NativeDateAdapter extends DateAdapter<Date> {
         format = 'EEE';
         break;
     }
-    return range(7, i => this._datePipe.transform(new Date(2017, 0, i + 1), format));
+    return range(7, i => this._datePipe.transform(new Date(2017, 0, i + 1), format)!);
   }
 
   getYearName(date: Date): string {
-    return this._datePipe.transform(date, 'yyyy');
+    return this._datePipe.transform(date, 'yyyy')!;
   }
 
   getFirstDayOfWeek(): number {
@@ -150,7 +150,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
       throw Error('NativeDateAdapter: Cannot format invalid date.');
     }
 
-    return this._titleCasePipe.transform(this._datePipe.transform(date, displayFormat));
+    return this._titleCasePipe.transform(this._datePipe.transform(date, displayFormat)!);
   }
 
   addCalendarYears(date: Date, years: number): Date {
@@ -176,7 +176,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   toIso8601(date: Date): string {
-    return this._datePipe.transform(date, 'yyyy-MM-dd');
+    return this._datePipe.transform(date, 'yyyy-MM-dd')!;
   }
 
   /**
