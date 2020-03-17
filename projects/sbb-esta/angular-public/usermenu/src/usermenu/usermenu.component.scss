@@ -69,6 +69,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
       align-items: center;
       margin-left: 3px;
       margin-top: 3px;
+      width: 100%;
 
       @include publicOnly() {
         @include mq($from: desktop4k) {
@@ -83,7 +84,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
       }
 
       &-user-icon {
-        flex-basis: 32px;
+        flex: 0 0 32px;
         width: 118px;
 
         @include publicOnly() {
