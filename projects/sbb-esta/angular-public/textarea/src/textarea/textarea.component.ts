@@ -212,6 +212,7 @@ export class TextareaComponent extends SbbTextareaMixinBase
   }
 
   /**
+   * resize the textarea when the browser window size changes. It only works properly by calling reset() first.
    * @docs-private
    */
   ngAfterViewInit() {
@@ -226,6 +227,9 @@ export class TextareaComponent extends SbbTextareaMixinBase
   }
 
   /**
+   * Trigger resize on every check because it's possible that the textarea becomes visible after first rendering.
+   * Without triggering resize, the textarea would not be correctly adjusted when it becomes visible only after first rendering.
+   * This issue is due to the fact, that before being visible, autosize is deactivated.
    * @docs-private
    */
   ngDoCheck() {
@@ -254,7 +258,8 @@ export class TextareaComponent extends SbbTextareaMixinBase
   }
 
   /**
-   * forward focus if user clicks on an associated label
+   * Forward focus if a user clicks on an associated label.
+   * Implemented as part of FormFieldControl.
    * @docs-private
    */
   onContainerClick(event: Event) {
