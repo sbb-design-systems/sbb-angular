@@ -66,9 +66,9 @@ ng_package(
     srcs = [
         "package.json",
     ],
-    data = [
-        ":styles_bundle",
-        ":typography",
+    data = [<% if (hasStyles) { %>
+        ":styles_bundle",<% } %><% if (hasTypography) { %>
+        ":typography",<% } %>
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "<%= name %>",<% if (hasSchematics) { %>

@@ -51,8 +51,6 @@ ng_package(
         "package.json",
     ],
     data = [
-        ":styles_bundle",
-        ":typography",
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "maps",

@@ -9,7 +9,7 @@
 # The name of the workspace should match the npm package where we publish, so that these
 # imports also make sense when referencing the published package.
 workspace(
-    name = "project",
+    name = "sbb_angular",
     managed_directories = {"@npm": ["node_modules"]},
 )
 

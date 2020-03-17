@@ -42,7 +42,7 @@ searchAndReplace(
 // that tsickle is available for esm5 output re-compilations.
 searchAndReplace(
   '@npm//@bazel/typescript/bin:tsc_wrapped',
-  '@angular_material//tools:tsc_wrapped_with_tsickle',
+  '@sbb_angular//tools:tsc_wrapped_with_tsickle',
   'node_modules/@angular/bazel/src/esm5.bzl'
 );
 
