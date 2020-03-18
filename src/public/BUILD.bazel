@@ -72,6 +72,7 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
+    readme_md = "README.md"
     entry_point = ":public-api.ts",
     entry_point_name = "public",
     nested_packages = ["//src/public/schematics:npm_package"],

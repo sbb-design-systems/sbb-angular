@@ -136,9 +136,10 @@ function bazel() {
                     uc: (s) => s.toUpperCase(),
                     name: core.basename(dir.path),
                     entryPoints: ngModules.map(resolvePath),
-                    hasTypography: dir.subfiles.includes(core.fragment('typography.scss')),
-                    hasStyles: dir.subfiles.includes(core.fragment('_styles.scss')),
+                    hasReadme: dir.subfiles.includes(core.fragment('README.md')),
                     hasSchematics: dir.subdirs.includes(core.fragment('schematics')),
+                    hasStyles: dir.subfiles.includes(core.fragment('_styles.scss')),
+                    hasTypography: dir.subfiles.includes(core.fragment('typography.scss')),
                     markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
                     markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
                 }),

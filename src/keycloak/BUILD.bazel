@@ -47,6 +47,7 @@ ng_package(
     ],
     data = [
     ],
+    readme_md = "README.md"
     entry_point = ":public-api.ts",
     entry_point_name = "keycloak",
     tags = ["release-package"],

@@ -69,7 +69,8 @@ ng_package(
     data = [<% if (hasStyles) { %>
         ":styles_bundle",<% } %><% if (hasTypography) { %>
         ":typography",<% } %>
-    ],
+    ],<% if (hasReadme) { %>
+    readme_md = "README.md"<% } %>
     entry_point = ":public-api.ts",
     entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
     nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %>
