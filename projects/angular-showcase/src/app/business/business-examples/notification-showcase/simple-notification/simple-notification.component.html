@@ -1,5 +1,5 @@
 <sbb-field mode="long" label="Notification type" class="bottom-margin">
-  <select [(ngModel)]="type">
+  <select [(ngModel)]="type" sbbInput>
     <option *ngFor="let type of types" [value]="type">{{ type }}</option>
   </select>
 </sbb-field>

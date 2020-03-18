@@ -329,11 +329,12 @@
         </sbb-checkbox>
       </div>
       <div class="sbbsc-block">
-        <label>Click an option to open a specific panel of the accordion: </label>
-        <br />
-        <select formControlName="panelMode" id="panelMode">
-          <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
-        </select>
+        <label>Click an option to open a specific panel of the accordion:</label>
+        <sbb-field>
+          <select formControlName="panelMode" id="panelMode" sbbInput>
+            <option *ngFor="let panel of panels" [ngValue]="panel">{{ panel }}</option>
+          </select>
+        </sbb-field>
       </div>
       <br />
       <p>

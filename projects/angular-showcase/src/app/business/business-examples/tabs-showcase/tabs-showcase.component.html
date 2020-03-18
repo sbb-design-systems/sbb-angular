@@ -50,12 +50,13 @@
       >
     </div>
     <div class="col-lg-5">
-      <h4>Properties</h4>
+      <h4 class="sbbsc-block">Properties</h4>
       <div class="sbbsc-block">
-        <label>Set data-set for tabs content / tab pill:</label>&nbsp;
-        <select [(ngModel)]="dataSet" (ngModelChange)="onChangeOfDataSet($event)">
-          <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
-        </select>
+        <sbb-field label="Set data-set for tabs content / tab pill">
+          <select [(ngModel)]="dataSet" (ngModelChange)="onChangeOfDataSet($event)" sbbInput>
+            <option *ngFor="let set of data" [ngValue]="set">{{ set }}</option>
+          </select>
+        </sbb-field>
       </div>
       <div class="sbbsc-block">
         <sbb-checkbox value="disabled" [(ngModel)]="disabled">Set a tab disabled</sbb-checkbox>

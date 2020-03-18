@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-chip-disabled',
-  templateUrl: 'disabled-chip-input.component.html',
-  styleUrls: ['../chip-input.component.scss']
+  templateUrl: 'disabled-chip-input.component.html'
 })
-export class DisabledChipInputComponent implements OnInit {
+export class DisabledChipInputComponent {
   formGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
       chipDisabled: [{ value: ['option-1', 'option-2'], disabled: true }]
     });

@@ -29,34 +29,20 @@
     </div>
     <div class="col-lg-6" [formGroup]="buttonForm">
       <h4 class="sbbsc-block">Properties</h4>
-      <div class="row">
-        <div class="col-2">
-          <div class="sbbsc-block">
-            <label for="buttonMode">Mode</label>
-          </div>
-        </div>
-        <div class="col-10">
-          <div class="sbbsc-block">
-            <select formControlName="mode" id="buttonMode">
-              <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
-            </select>
-          </div>
-        </div>
+      <div class="sbbsc-block">
+        <sbb-field label="Mode" mode="medium">
+          <select formControlName="mode" sbbInput>
+            <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+          </select>
+        </sbb-field>
       </div>
-      <div class="row">
-        <div class="col-2">
-          <div class="sbbsc-block">
-            <label for="buttonIcon">Icon</label>
-          </div>
-        </div>
-        <div class="col-10">
-          <div class="sbbsc-block">
-            <select formControlName="icon" id="buttonIcon">
-              <option [ngValue]="'noIcon'">No Icon</option>
-              <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
-            </select>
-          </div>
-        </div>
+      <div class="sbbsc-block">
+        <sbb-field label="Icon" mode="medium">
+          <select formControlName="icon" sbbInput>
+            <option [ngValue]="'noIcon'">No Icon</option>
+            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+          </select>
+        </sbb-field>
       </div>
       <div class="sbbsc-block">
         <sbb-checkbox value="disabled" formControlName="disabled">Disabled button</sbb-checkbox>

@@ -1,5 +1,4 @@
-<p>Autocomplete chip input:</p>
-<ng-container [formGroup]="formGroup" *ngIf="formGroup">
+<ng-container [formGroup]="formGroup">
   <sbb-field label="Label" mode="long">
     <sbb-chip-input formControlName="chip" [sbbAutocomplete]="auto"></sbb-chip-input>
     <sbb-autocomplete #auto="sbbAutocomplete">
@@ -10,3 +9,5 @@
     >
   </sbb-field>
 </ng-container>
+<h4>Properties</h4>
+<pre>{{ formGroup.get('chip').value | json }}</pre>

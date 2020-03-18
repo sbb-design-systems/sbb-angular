@@ -1,8 +1,7 @@
 <form [formGroup]="form">
   <div>
-    <sbb-field mode="long">
-      <sbb-label>Lieblingsessen</sbb-label>
-      <select placeholder="Lieblingsessen" formControlName="value">
+    <sbb-field mode="long" label="Lieblingsessen">
+      <select placeholder="Lieblingsessen" formControlName="value" sbbInput>
         <option
           *ngFor="let food of ['Beefsteak', 'Pizza', 'Nudeln']; first as isFirst"
           [disabled]="isFirst && form.get('optionDisabled').value"

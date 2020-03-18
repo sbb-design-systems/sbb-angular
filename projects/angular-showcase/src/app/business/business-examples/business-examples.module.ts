@@ -29,7 +29,8 @@ import { AutocompleteOptionGroupShowcaseComponent } from './autocomplete-option-
 import { AutocompleteReactiveFormsShowcaseComponent } from './autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
 import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
-import { SimpleChipInputComponent } from './chip-showcase/simple-chip-input/simple-chip-input.component';
+import { FormsChipInputComponent } from './chip-showcase/forms-chip-input/forms-chip-input.component';
+import { ReactiveFormsChipInputComponent } from './chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
@@ -86,7 +87,8 @@ const exampleComponents = [
   GroupedRowsTableComponent,
   SortableTableComponent,
   GroupedColumnsTableComponent,
-  SimpleChipInputComponent,
+  FormsChipInputComponent,
+  ReactiveFormsChipInputComponent,
   DisabledChipInputComponent,
   AutocompleteChipInputComponent,
   GroupedColumnsTableComponent,

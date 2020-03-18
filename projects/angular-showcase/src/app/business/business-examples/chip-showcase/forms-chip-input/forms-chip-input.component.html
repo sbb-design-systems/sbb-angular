@@ -1,0 +1,8 @@
+<sbb-field label="Label" mode="long">
+  <sbb-chip-input [(ngModel)]="value" [required]="true" #input="ngModel"></sbb-chip-input>
+  <sbb-form-error *ngIf="input.invalid && (input.dirty || input.touched)"
+    >This field is required.</sbb-form-error
+  >
+</sbb-field>
+<h4>Properties</h4>
+<pre>{{ value | json }}</pre>

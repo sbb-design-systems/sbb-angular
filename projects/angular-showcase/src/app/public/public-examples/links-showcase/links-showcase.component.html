@@ -20,33 +20,19 @@
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-      <div class="row">
-        <div class="col-2">
-          <div class="sbbsc-block">
-            <label for="linkMode">Mode</label>
-          </div>
-        </div>
-        <div class="col-10">
-          <div class="sbbsc-block">
-            <select [(ngModel)]="linkMode" id="linkMode">
-              <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
-            </select>
-          </div>
-        </div>
+      <div class="sbbsc-block">
+        <sbb-field label="Mode" mode="medium">
+          <select [(ngModel)]="linkMode" sbbInput>
+            <option *ngFor="let mode of modes" [ngValue]="mode">{{ mode }}</option>
+          </select>
+        </sbb-field>
       </div>
-      <div class="row">
-        <div class="col-2">
-          <div class="sbbsc-block">
-            <label for="linkIcon">Icon</label>
-          </div>
-        </div>
-        <div class="col-10">
-          <div class="sbbsc-block">
-            <select [(ngModel)]="linkIcon" id="linkIcon">
-              <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
-            </select>
-          </div>
-        </div>
+      <div class="sbbsc-block">
+        <sbb-field label="Icon" mode="medium">
+          <select [(ngModel)]="linkIcon" sbbInput>
+            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+          </select>
+        </sbb-field>
       </div>
     </div>
   </div>
@@ -60,10 +46,11 @@
     </div>
     <div class="col-lg-6">
       <h4 class="sbbsc-block">Properties</h4>
-      <label for="socialLinkIcon">Icon</label>&nbsp;
-      <select [(ngModel)]="socialLinkIcon" id="socialLinkIcon">
-        <option *ngFor="let social of socials" [ngValue]="social">{{ social }}</option>
-      </select>
+      <sbb-field label="Icon">
+        <select [(ngModel)]="socialLinkIcon" sbbInput>
+          <option *ngFor="let social of socials" [ngValue]="social">{{ social }}</option>
+        </select>
+      </sbb-field>
     </div>
   </div>
 </div>

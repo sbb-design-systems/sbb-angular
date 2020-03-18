@@ -18,9 +18,8 @@ You can use select component with sbb style using `<sbb-select>` and `<sbb-optio
 You can also use the native `<select>` which is styled with the SBB style guide.
 
 ```html
-<sbb-field mode="long">
-  <sbb-label>Lieblingsessen</sbb-label>
-  <select class="sbb-select" [formControl]="nativeExampleFormControl">
+<sbb-field label="Lieblingsessen">
+  <select [formControl]="nativeExampleFormControl" sbbInput>
     <option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</option>
   </select>
 </sbb-field>
