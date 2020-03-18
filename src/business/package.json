@@ -4,6 +4,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./bundles/angular-business.umd.js",
+  "fesm5": "./fesm5/cdk.js",
+  "fesm2015": "./fesm2015/cdk.js",
+  "esm5": "./esm5/index.js",
+  "esm2015": "./esm2015/index.js",
+  "typings": "./index.d.ts",
+  "module": "./fesm5/cdk.js",
+  "es2015": "./fesm2015/cdk.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"

@@ -16,14 +16,14 @@ load(
     "ts_library"
 )
 
-# Root "@sbb-esta/icons" entry-point.
+# Root "@sbb-esta/angular-icons" entry-point.
 ng_module(
     name = "icons",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/icons",
+    module_name = "@sbb-esta/angular-icons",
     deps = ["//src/icons/%s" % p for p in ICONS_ENTRYPOINTS],
 )
 
@@ -40,7 +40,7 @@ filegroup(
     srcs = [":overview"] + ["//src/icons/%s:overview" % name for name in ICONS_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/icons package published to npm.
+# Creates the @sbb-esta/angular-icons package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [

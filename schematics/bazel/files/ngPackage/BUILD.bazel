@@ -17,14 +17,14 @@ load(
     "ts_library"
 )
 
-# Root "@sbb-esta/<%= name %>" entry-point.
+# Root "@sbb-esta/angular-<%= name %>" entry-point.
 ng_module(
     name = "<%= name %>",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/<%= name %>",
+    module_name = "@sbb-esta/angular-<%= name %>",
     deps = ["//src/<%= name %>/%s" % p for p in <%= uc(name) %>_ENTRYPOINTS],
 )<% if (hasTypography) { %>
 
@@ -60,7 +60,7 @@ filegroup(
     srcs = [":overview"] + ["//src/<%= name %>/%s:overview" % name for name in <%= uc(name) %>_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/<%= name %> package published to npm.
+# Creates the @sbb-esta/angular-<%= name %> package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [

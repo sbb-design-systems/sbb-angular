@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@build_bazel_rules_nodejs//:index.bzl", "pkg_npm")
+load("//:packages.bzl", "VERSION_PLACEHOLDER_REPLACEMENTS")
+load("//tools:defaults.bzl", "jasmine_node_test", "ts_library")
+
+filegroup(
+    name = "schematics_assets",
+    srcs = glob([
+        "ng-generate/*/files/**/*",
+        "**/*.json",
+    ]),
+)
+
+ts_library(
+    name = "schematics",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = [
+            "**/*.spec.ts",
+            "ng-generate/*/files/**/*.ts",
+        ],
+    ),
+    module_name = "@sbb-esta/angular-icons/schematics",
+    tsconfig = ":tsconfig.json",
+    deps = [
+        "@npm//@angular-devkit/core",
+        "@npm//@angular-devkit/schematics",
+        "@npm//@schematics/angular",
+        "@npm//@types/node",
+    ],
+)
+
+# This package is intended to be combined into the main @sbb-esta/angular-icons package as a dep.
+pkg_npm(
+    name = "npm_package",
+    srcs = [":schematics_assets"],
+    substitutions = VERSION_PLACEHOLDER_REPLACEMENTS,
+    deps = [":schematics"],
+)

@@ -1,0 +1,22 @@
+// Configuration for IDEs only.
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "..",
+    "baseUrl": ".",
+    "paths": {
+      "@sbb-esta/angular-business": ["../business"],
+      "@sbb-esta/angular-business/*": ["../business/*"],
+      "@sbb-esta/angular-core": ["../core"],
+      "@sbb-esta/angular-core/*": ["../core/*"],
+      "@sbb-esta/angular-icons": ["../icons"],
+      "@sbb-esta/angular-icons/*": ["../icons/*"],
+      "@sbb-esta/angular-keycloak": ["../keycloak"],
+      "@sbb-esta/angular-keycloak/*": ["../keycloak/*"],
+      "@sbb-esta/angular-maps": ["../maps"],
+      "@sbb-esta/angular-maps/*": ["../maps/*"],
+      "@sbb-esta/angular-public/*": ["./*"],
+    }
+  },
+  "include": ["./**/*.ts"]
+}

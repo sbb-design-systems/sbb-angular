@@ -17,14 +17,14 @@ load(
     "ts_library"
 )
 
-# Root "@sbb-esta/public" entry-point.
+# Root "@sbb-esta/angular-public" entry-point.
 ng_module(
     name = "public",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/public",
+    module_name = "@sbb-esta/angular-public",
     deps = ["//src/public/%s" % p for p in PUBLIC_ENTRYPOINTS],
 )
 
@@ -62,7 +62,7 @@ filegroup(
     srcs = [":overview"] + ["//src/public/%s:overview" % name for name in PUBLIC_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/public package published to npm.
+# Creates the @sbb-esta/angular-public package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [

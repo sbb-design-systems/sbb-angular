@@ -16,14 +16,14 @@ load(
     "ts_library"
 )
 
-# Root "@sbb-esta/core" entry-point.
+# Root "@sbb-esta/angular-core" entry-point.
 ng_module(
     name = "core",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/core",
+    module_name = "@sbb-esta/angular-core",
     deps = ["//src/core/%s" % p for p in CORE_ENTRYPOINTS],
 )
 
@@ -39,7 +39,7 @@ filegroup(
     srcs = [":overview"] + ["//src/core/%s:overview" % name for name in CORE_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/core package published to npm.
+# Creates the @sbb-esta/angular-core package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [

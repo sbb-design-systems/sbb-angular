@@ -17,14 +17,14 @@ load(
     "ts_library"
 )
 
-# Root "@sbb-esta/business" entry-point.
+# Root "@sbb-esta/angular-business" entry-point.
 ng_module(
     name = "business",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/business",
+    module_name = "@sbb-esta/angular-business",
     deps = ["//src/business/%s" % p for p in BUSINESS_ENTRYPOINTS],
 )
 
@@ -61,7 +61,7 @@ filegroup(
     srcs = [":overview"] + ["//src/business/%s:overview" % name for name in BUSINESS_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/business package published to npm.
+# Creates the @sbb-esta/angular-business package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [

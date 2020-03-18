@@ -16,14 +16,14 @@ load(
     "ts_library"
 )
 
-# Root "@sbb-esta/keycloak" entry-point.
+# Root "@sbb-esta/angular-keycloak" entry-point.
 ng_module(
     name = "keycloak",
     srcs = glob(
         ["*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/keycloak",
+    module_name = "@sbb-esta/angular-keycloak",
     deps = ["//src/keycloak/%s" % p for p in KEYCLOAK_ENTRYPOINTS],
 )
 
@@ -39,7 +39,7 @@ filegroup(
     srcs = [":overview"] + ["//src/keycloak/%s:overview" % name for name in KEYCLOAK_MARKDOWN_TARGETS],
 )
 
-# Creates the @sbb-esta/keycloak package published to npm.
+# Creates the @sbb-esta/angular-keycloak package published to npm.
 ng_package(
     name = "npm_package",
     srcs = [

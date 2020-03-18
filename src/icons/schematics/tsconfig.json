@@ -1,9 +1,26 @@
 {
-  "extends": "../../../../schematics/tsconfig.json",
   "compilerOptions": {
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "../../../dist/packages/icons/schematics",
+    "noEmitOnError": false,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "skipDefaultLibCheck": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
     "declaration": true,
-    "rootDir": "."
+    "target": "es6",
+    "types": ["jasmine", "node"],
+    "baseUrl": "."
   },
-  "include": ["**/*"],
-  "exclude": ["*/files/**/*", "*/index.d.ts"]
+  "exclude": ["**/*.spec.ts"],
+  "bazelOptions": {
+    "suppressTsconfigOverrideWarnings": true,
+    // Exclude template files that will be copied by the schematics. Those are not valid TS.
+    "ng-generate/*/files/**/*.ts"
+  }
 }
