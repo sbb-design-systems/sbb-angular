@@ -13,8 +13,8 @@
   [disabled]="disabled"
   [sbbAutocomplete]="autocomplete"
   [sbbAutocompleteConnectedTo]="origin"
-  (focus)="onFocus()"
-  (blur)="onBlur()"
+  (focus)="_onFocus()"
+  (blur)="_onBlur()"
   (keydown.enter)="onEnter($event.target.value)"
   class="sbb-chip-input-textfield"
 />
@@ -24,8 +24,8 @@
     type="text"
     [value]="inputModel"
     [disabled]="disabled"
-    (focus)="onFocus()"
-    (blur)="onBlur()"
+    (focus)="_onFocus()"
+    (blur)="_onBlur()"
     (keydown.enter)="onEnter($event.target.value)"
     class="sbb-chip-input-textfield"
   />

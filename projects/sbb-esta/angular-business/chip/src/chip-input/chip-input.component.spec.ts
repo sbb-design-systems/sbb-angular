@@ -20,7 +20,7 @@ import { ChipComponent } from '../..';
 import { ChipInputComponent } from './chip-input.component';
 
 @Component({
-  selector: 'sbb-test-chip-input',
+  selector: 'sbb-test-reactive-chip-input',
   template: `
     <form [formGroup]="formGroup">
       <sbb-field label="Label" mode="long">
@@ -35,7 +35,7 @@ import { ChipInputComponent } from './chip-input.component';
     </form>
   `
 })
-class ChipInputTestComponent {
+class ChipInputReactiveFormsTestComponent {
   options = ['option-1', 'option-2'];
   formGroup: FormGroup;
 
@@ -47,19 +47,19 @@ class ChipInputTestComponent {
 }
 
 describe('ChipInputComponent', () => {
-  let component: ChipInputTestComponent;
-  let fixture: ComponentFixture<ChipInputTestComponent>;
+  let component: ChipInputReactiveFormsTestComponent;
+  let fixture: ComponentFixture<ChipInputReactiveFormsTestComponent>;
   let inputElement: HTMLInputElement;
 
   configureTestSuite(() => {
     TestBed.configureTestingModule({
-      declarations: [ChipInputComponent, ChipComponent, ChipInputTestComponent],
+      declarations: [ChipInputComponent, ChipComponent, ChipInputReactiveFormsTestComponent],
       imports: [CommonModule, AutocompleteModule, IconCrossModule, ReactiveFormsModule, FieldModule]
     });
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChipInputTestComponent);
+    fixture = TestBed.createComponent(ChipInputReactiveFormsTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     inputElement = fixture.debugElement.query(By.css('input.sbb-chip-input-textfield'))

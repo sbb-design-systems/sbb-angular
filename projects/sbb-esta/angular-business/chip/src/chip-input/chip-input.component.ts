@@ -1,13 +1,13 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DoCheck,
   ElementRef,
   EventEmitter,
   HostBinding,
-  HostListener,
   Input,
   OnChanges,
   OnDestroy,
@@ -64,6 +64,7 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   selector: 'sbb-chip-input',
   templateUrl: './chip-input.component.html',
   styleUrls: ['./chip-input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }]
 })
 export class ChipInputComponent extends SbbChipsMixinBase
@@ -87,6 +88,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
   }
   private _disabled = false;
 
@@ -153,9 +155,16 @@ export class ChipInputComponent extends SbbChipsMixinBase
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  /** Whether the select is focused. */
+  /**
+   * Whether the select is focused.
+   * Note: Setting focused will be removed in the next major release
+   * */
   get focused(): boolean {
     return this._focused;
+  }
+  set focused(focused: boolean) {
+    // TODO remove setter
+    this._focused = focused;
   }
   private _focused = false;
 
@@ -213,7 +222,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
    */
   writeValue(value: string[]): void {
     this.selectionModel.clear();
-    if (value) {
+    if (Array.isArray(value)) {
       value.forEach(v => this.selectionModel.select(v));
     }
     this._value = this.selectionModel.selected;
@@ -334,8 +343,11 @@ export class ChipInputComponent extends SbbChipsMixinBase
     this.stateChanges.complete();
   }
 
-  @HostListener('blur')
-  onBlur() {
+  /**
+   *
+   * @docs-private
+   */
+  _onBlur() {
     this._focused = false;
 
     if (!this.disabled) {
@@ -345,8 +357,11 @@ export class ChipInputComponent extends SbbChipsMixinBase
     }
   }
 
-  @HostListener('focus')
-  onFocus() {
+  /**
+   *
+   * @docs-private
+   */
+  _onFocus() {
     if (!this.disabled) {
       this._focused = true;
       this.stateChanges.next();
