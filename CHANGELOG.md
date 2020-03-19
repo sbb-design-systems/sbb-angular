@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.1.0...9.1.1) (2020-03-19)
+
+
+### Bug Fixes
+
+* **business:** mark chip input as invalid only when touched ([#347](https://github.com/sbb-design-systems/sbb-angular/issues/347)) ([815f277](https://github.com/sbb-design-systems/sbb-angular/commit/815f277f80be77f6d1d1b688f82efd8a9f77e91b))
+* connect select component to sbb-field ([#340](https://github.com/sbb-design-systems/sbb-angular/issues/340)) ([745598c](https://github.com/sbb-design-systems/sbb-angular/commit/745598c2c71535a3c39b9eb0aa046eb0d2b0b273))
+* correct focus of textarea and resizing behaviour ([#344](https://github.com/sbb-design-systems/sbb-angular/issues/344)) ([cfcdd39](https://github.com/sbb-design-systems/sbb-angular/commit/cfcdd3921f9bf99a6264fa362d1ec7e497749564)), closes [#194](https://github.com/sbb-design-systems/sbb-angular/issues/194)
+* enable label click for select and chip in sbb-field ([#346](https://github.com/sbb-design-systems/sbb-angular/issues/346)) ([92b4b2d](https://github.com/sbb-design-systems/sbb-angular/commit/92b4b2d14d31feb2a4b3842869704c03ffb4061a))
+* fix too small width of usermenu in IE11 ([#345](https://github.com/sbb-design-systems/sbb-angular/issues/345)) ([ee3e4db](https://github.com/sbb-design-systems/sbb-angular/commit/ee3e4db9e2dded813ad9890038538463118fcfa4)), closes [#341](https://github.com/sbb-design-systems/sbb-angular/issues/341)
+* **icons:** center sbb logo in app icon ([#338](https://github.com/sbb-design-systems/sbb-angular/issues/338)) ([4a3f5c2](https://github.com/sbb-design-systems/sbb-angular/commit/4a3f5c2576ea3073719a703a3666fd4652812211)), closes [#119](https://github.com/sbb-design-systems/sbb-angular/issues/119)
+* **icons:** fix utilization medium fixed size ([#337](https://github.com/sbb-design-systems/sbb-angular/issues/337)) ([49efc7b](https://github.com/sbb-design-systems/sbb-angular/commit/49efc7ba48c35bef033b29645d04a2f02abf9789)), closes [#254](https://github.com/sbb-design-systems/sbb-angular/issues/254)
+
 ## [9.1.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.0.1...9.1.0) (2020-03-11)
 
 
