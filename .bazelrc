@@ -1,34 +1,47 @@
-# Make TypeScript and Angular compilation fast, by keeping a few copies of the
-# compiler running as daemons, and cache SourceFile AST's to reduce parse time.
-build --strategy=TypeScriptCompile=worker
-build --strategy=AngularTemplateCompile=worker
+###############################
+# Filesystem interactions     #
+###############################
 
-# Don't create bazel-* symlinks in the WORKSPACE directory, except `bazel-out`,
-# which is mandatory.
-# These require .gitignore and may scare users.
-# Also, it's a workaround for https://github.com/bazelbuild/rules_typescript/issues/12
-# which affects the common case of having `tsconfig.json` in the WORKSPACE directory.
-#
-# Instead, the output will appear in `dist/bin`. You'll need to ignore the
-# `bazel-out` directory that is created in the workspace root.
-build --symlink_prefix=dist/
+# Don't create bazel-* symlinks in the WORKSPACE directory.
+# These require .gitignore and may scare users. Also, it's a workaround for
+# https://github.com/bazelbuild/rules_typescript/issues/12 which affects the common case of
+# having `tsconfig.json` in the WORKSPACE directory. Instead, you should run
+# `bazel info output_base` to find out where the outputs went.
+build --symlink_prefix=/
 
-# Turn on --incompatible_strict_action_env which was on by default
-# in Bazel 0.21.0 but turned off again in 0.22.0. Follow
-# https://github.com/bazelbuild/bazel/issues/7026 for more details.
+# Performance: avoid stat'ing input files
+build --watchfs
+
+# Turn off legacy external runfiles
+build --nolegacy_external_runfiles
+run --nolegacy_external_runfiles
+test --nolegacy_external_runfiles
+
 # This flag is needed to so that the bazel cache is not invalidated
 # when running bazel via `yarn bazel`.
-# See https://github.com/angular/angular/issues/27514.
 build --incompatible_strict_action_env
-run --incompatible_strict_action_env
-test --incompatible_strict_action_env
 
-build --incompatible_bzl_disallow_load_after_statement=false
+###############################
+# Output control              #
+###############################
 
+# A more useful default output mode for bazel query
+# Prints eg. "ng_module rule //foo:bar" rather than just "//foo:bar"
+query --output=label_kind
+
+# By default, failing tests don't print any output, it goes to the log file
 test --test_output=errors
 
-# Use the Angular Ivy compiler
-# See https://github.com/angular/angular/blob/master/docs/BAZEL.md#various-flags-used-for-tests
+#################################
+# Release configuration.        #
+# Run with "--config=release"   #
+#################################
+
+# Configures script to do version stamping.
+# See https://docs.bazel.build/versions/master/user-manual.html#flag--workspace_status_command
+build:release --workspace_status_command="node ./tools/bazel-stamp-vars.js"
+build:release --stamp
+
 ################################
 # View Engine / Ivy toggle     #
 ################################
@@ -38,10 +51,21 @@ build:ivy --define=angular_ivy_enabled=True
 # Set Ivy as the default
 build --config=ivy
 
-# Temporary define while angular depends on the legacy rollup_bundle rule.
-# TODO: remove this setting after https://github.com/angular/angular/pull/33201 lands.
-build --define=enable_legacy_rollup_rule=1
+################################
+# --config=debug               #
+################################
 
-# Turn on managed directories feature in Bazel
-# This allows us to avoid installing a second copy of node_modules
-common --experimental_allow_incremental_repository_updates
+# Enable debugging tests with --config=debug
+test:debug --test_arg=--node_options=--inspect-brk --test_output=streamed --test_strategy=exclusive --test_timeout=9999 --nocache_test_results
+
+################################
+# Local Environment Setup      #
+#  Needs to be last statement  #
+################################
+# Load any settings which are specific to the current user. Needs to be *last* statement
+# in this config, as the user configuration should be able to overwrite flags from this file.
+try-import .bazelrc.user
+
+# TODO: check if we can enable these deprecations.
+build --incompatible_new_actions_api=false
+build --incompatible_no_support_tools_in_action_inputs=false
