@@ -25,7 +25,6 @@ import { configureTestSuite } from 'ng-bullet';
 import { ChipComponent } from '../..';
 
 import { ChipInputComponent } from './chip-input.component';
-import compile = WebAssembly.compile;
 
 @Component({
   selector: 'sbb-test-reactive-chip-input',

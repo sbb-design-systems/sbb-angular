@@ -344,7 +344,6 @@ export class ChipInputComponent extends SbbChipsMixinBase
   }
 
   /**
-   *
    * @docs-private
    */
   _onBlur() {
@@ -358,7 +357,6 @@ export class ChipInputComponent extends SbbChipsMixinBase
   }
 
   /**
-   *
    * @docs-private
    */
   _onFocus() {
