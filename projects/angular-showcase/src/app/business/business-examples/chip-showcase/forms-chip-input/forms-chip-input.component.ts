@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './forms-chip-input.component.html'
 })
 export class FormsChipInputComponent {
-  value: string[] = ['option-1'];
+  value: string[] = [];
 }

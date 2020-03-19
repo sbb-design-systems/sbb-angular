@@ -13,7 +13,7 @@ $sbb-chip-border-radius: 2;
   background-color: $sbbColorMilk;
 }
 
-:host(.ng-invalid) {
+:host(.ng-touched.ng-invalid) {
   color: $sbbColorRed125;
   border-color: $sbbColorRed125;
   background-color: $sbbColorMilk;

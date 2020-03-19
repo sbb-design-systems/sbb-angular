@@ -1,6 +1,7 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DoCheck,
@@ -63,6 +64,7 @@ export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = 
   selector: 'sbb-chip-input',
   templateUrl: './chip-input.component.html',
   styleUrls: ['./chip-input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }]
 })
 export class ChipInputComponent extends SbbChipsMixinBase
@@ -86,6 +88,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   }
   set disabled(value: any) {
     this._disabled = coerceBooleanProperty(value);
+    this._changeDetectorRef.markForCheck();
   }
   private _disabled = false;
 
@@ -115,7 +118,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   /** @docs-private */
   @HostBinding('class.sbb-chip-input-active')
   get _isActive() {
-    return !this.disabled && this.focused;
+    return !this.disabled && this._focused;
   }
 
   @ViewChild('chipInputTextfield', { static: false })
@@ -152,7 +155,19 @@ export class ChipInputComponent extends SbbChipsMixinBase
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  focused = false;
+  /**
+   * Whether the select is focused.
+   * Note: Setting focused will be removed in the next major release
+   * */
+  get focused(): boolean {
+    return this._focused;
+  }
+  set focused(focused: boolean) {
+    // TODO remove setter
+    this._focused = focused;
+  }
+  private _focused = false;
+
   inputModel = '';
   origin = new AutocompleteOriginDirective(this._elementRef);
   selectionModel: SelectionModel<string>;
@@ -207,7 +222,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
    */
   writeValue(value: string[]): void {
     this.selectionModel.clear();
-    if (value) {
+    if (Array.isArray(value)) {
       value.forEach(v => this.selectionModel.select(v));
     }
     this._propagateChanges();
@@ -233,6 +248,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
       return;
     } else if (!this.selectionModel.isSelected(option)) {
       this.selectionModel.select(option);
+      this._onTouchedCallback();
       this._propagateChanges();
     }
     this.inputElement.nativeElement.value = '';
@@ -257,6 +273,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   deselectOption(option: string) {
     if (this.selectionModel.isSelected(option)) {
       this.selectionModel.deselect(option);
+      this._onTouchedCallback();
       this._propagateChanges();
     }
   }
@@ -304,7 +321,6 @@ export class ChipInputComponent extends SbbChipsMixinBase
   private _propagateChanges(): void {
     this._value = this.selectionModel.selected;
     this._onChangeCallback(this.selectionModel.selected);
-    this._onTouchedCallback();
     this.valueChange.emit(new SbbChipInputChange(this, this._value));
     this._changeDetectorRef.markForCheck();
   }
@@ -325,5 +341,28 @@ export class ChipInputComponent extends SbbChipsMixinBase
 
   ngOnDestroy() {
     this.stateChanges.complete();
+  }
+
+  /**
+   * @docs-private
+   */
+  _onBlur() {
+    this._focused = false;
+
+    if (!this.disabled) {
+      this._onTouchedCallback();
+      this._changeDetectorRef.markForCheck();
+      this.stateChanges.next();
+    }
+  }
+
+  /**
+   * @docs-private
+   */
+  _onFocus() {
+    if (!this.disabled) {
+      this._focused = true;
+      this.stateChanges.next();
+    }
   }
 }
