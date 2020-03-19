@@ -1,8 +1,15 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  NgModel,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AutocompleteModule, FieldModule, FormErrorDirective } from '@sbb-esta/angular-business';
 import {
@@ -18,6 +25,7 @@ import { configureTestSuite } from 'ng-bullet';
 import { ChipComponent } from '../..';
 
 import { ChipInputComponent } from './chip-input.component';
+import compile = WebAssembly.compile;
 
 @Component({
   selector: 'sbb-test-reactive-chip-input',
@@ -44,6 +52,34 @@ class ChipInputReactiveFormsTestComponent {
       chip: [['option-1'], Validators.required]
     });
   }
+}
+
+@Component({
+  selector: 'sbb-test-forms-chip-input',
+  template: `
+    <sbb-field label="Label">
+      <sbb-chip-input
+        [(ngModel)]="value"
+        [required]="true"
+        [disabled]="disabled"
+        #input="ngModel"
+      ></sbb-chip-input>
+      <sbb-form-error *ngIf="input.invalid && (input.dirty || input.touched)"
+        >This field is required.</sbb-form-error
+      >
+    </sbb-field>
+  `
+})
+class ChipInputFormsTestComponent {
+  value: string[] = [];
+
+  @ViewChild('input')
+  inputModel: NgModel;
+
+  @ViewChild(ChipInputComponent)
+  chipInput: ChipInputComponent;
+
+  disabled = false;
 }
 
 describe('ChipInputComponent', () => {
@@ -150,5 +186,125 @@ describe('ChipInputComponent', () => {
 
       expect(component.formGroup.get('chip').value).toEqual(['option-1', 'option-2']);
     });
+  });
+
+  describe('forms', () => {
+    let component: ChipInputFormsTestComponent;
+    let fixture: ComponentFixture<ChipInputFormsTestComponent>;
+    let inputElement: HTMLInputElement;
+
+    configureTestSuite(() => {
+      TestBed.configureTestingModule({
+        declarations: [ChipInputComponent, ChipComponent, ChipInputFormsTestComponent],
+        imports: [CommonModule, AutocompleteModule, IconCrossModule, FormsModule, FieldModule]
+      });
+    });
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(ChipInputFormsTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      flush();
+      inputElement = fixture.debugElement.query(By.css('input.sbb-chip-input-textfield'))
+        .nativeElement;
+    }));
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should contain one option chip through preselection', fakeAsync(done => {
+      component.value = ['option-1'];
+      fixture.detectChanges();
+      flush();
+      fixture.detectChanges();
+
+      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      expect(chipComponents.length).toBe(1);
+    }));
+
+    it('should contain two option chips', fakeAsync(() => {
+      component.value = ['option-1', 'option-2'];
+      fixture.detectChanges();
+      flush();
+      fixture.detectChanges();
+
+      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      expect(chipComponents.length).toBe(2);
+    }));
+
+    it('should hide form error if invalid but untouched', () => {
+      const errorText = fixture.debugElement.query(By.directive(FormErrorDirective));
+      expect(component.inputModel.invalid).toBe(true);
+      expect(errorText).toBeFalsy();
+    });
+
+    it('should display form error when input was touched', () => {
+      inputElement.focus();
+
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeFalsy();
+      dispatchFakeEvent(inputElement, 'blur');
+
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeTruthy();
+    });
+
+    it('should disable chip input and chips', () => {
+      component.disabled = true;
+      const chipInputComponent = fixture.debugElement.query(By.directive(ChipInputComponent));
+      const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
+      fixture.detectChanges();
+
+      chipComponents.forEach(chipComponent =>
+        expect(chipComponent.classes['sbb-chip-disabled']).toBe(true)
+      );
+      expect(chipInputComponent.classes['sbb-chip-input-disabled']).toBe(true);
+    });
+
+    it('should forward focus when clicking sbb-field label', () => {
+      const label = fixture.debugElement.query(By.css('label'));
+      spyOn(inputElement, 'focus');
+
+      expect(inputElement.focus).not.toHaveBeenCalled();
+      dispatchMouseEvent(label.nativeElement, 'click');
+      fixture.detectChanges();
+
+      expect(inputElement.focus).toHaveBeenCalled();
+    });
+
+    it('should correctly update chip value by using keyboard', fakeAsync(() => {
+      component.value = ['option-1'];
+      fixture.detectChanges();
+      flush();
+
+      expect(component.value).toEqual(['option-1']);
+      expect(component.inputModel.value).toEqual(['option-1']);
+      expect(component.chipInput.value).toEqual(['option-1']);
+
+      inputElement.focus();
+      typeInElement(inputElement, 'option-2');
+      dispatchEvent(inputElement, createKeyboardEvent('keydown', ENTER, 'Enter', inputElement));
+
+      fixture.detectChanges();
+      expect(component.value).toEqual(['option-1', 'option-2']);
+      expect(component.inputModel.value).toEqual(['option-1', 'option-2']);
+      expect(component.chipInput.value).toEqual(['option-1', 'option-2']);
+    }));
+
+    it('should correctly set value using interface of ChipInputComponent', fakeAsync(() => {
+      expect(component.value).toEqual([]);
+      expect(component.inputModel.value).toEqual([]);
+      expect(component.chipInput.value).toEqual([]);
+
+      component.chipInput.value = ['option-1'];
+
+      fixture.detectChanges();
+      flush();
+      fixture.detectChanges();
+      expect(component.value).toEqual(['option-1']);
+      expect(component.inputModel.value).toEqual(['option-1']);
+      expect(component.chipInput.value).toEqual(['option-1']);
+    }));
   });
 });

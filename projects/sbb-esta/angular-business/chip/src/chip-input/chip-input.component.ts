@@ -225,8 +225,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
     if (Array.isArray(value)) {
       value.forEach(v => this.selectionModel.select(v));
     }
-    this._value = this.selectionModel.selected;
-    this._changeDetectorRef.markForCheck();
+    this._propagateChanges();
   }
 
   /**
@@ -249,6 +248,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
       return;
     } else if (!this.selectionModel.isSelected(option)) {
       this.selectionModel.select(option);
+      this._onTouchedCallback();
       this._propagateChanges();
     }
     this.inputElement.nativeElement.value = '';
@@ -273,6 +273,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   deselectOption(option: string) {
     if (this.selectionModel.isSelected(option)) {
       this.selectionModel.deselect(option);
+      this._onTouchedCallback();
       this._propagateChanges();
     }
   }
@@ -320,7 +321,6 @@ export class ChipInputComponent extends SbbChipsMixinBase
   private _propagateChanges(): void {
     this._value = this.selectionModel.selected;
     this._onChangeCallback(this.selectionModel.selected);
-    this._onTouchedCallback();
     this.valueChange.emit(new SbbChipInputChange(this, this._value));
     this._changeDetectorRef.markForCheck();
   }
