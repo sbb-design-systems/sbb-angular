@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sbb-chip-autocomplete',
-  templateUrl: 'autocomplete-chip-input.component.html'
+  templateUrl: './autocomplete-chip-input.component.html'
 })
 export class AutocompleteChipInputComponent {
   formGroup: FormGroup;

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sbb-chip-disabled',
-  templateUrl: 'disabled-chip-input.component.html'
+  templateUrl: './disabled-chip-input.component.html'
 })
 export class DisabledChipInputComponent {
   formGroup: FormGroup;

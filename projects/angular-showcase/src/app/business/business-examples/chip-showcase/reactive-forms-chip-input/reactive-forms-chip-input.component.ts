@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sbb-reactive-forms-chip',
-  templateUrl: 'reactive-forms-chip-input.component.html'
+  templateUrl: './reactive-forms-chip-input.component.html'
 })
 export class ReactiveFormsChipInputComponent {
   formGroup: FormGroup;
