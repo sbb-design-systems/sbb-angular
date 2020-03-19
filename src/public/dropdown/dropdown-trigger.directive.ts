@@ -171,12 +171,12 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   /** Attribute that refers to the expansion of the dropdown panel. */
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
     return this.dropdownDisabled ? null : this.panelOpen.toString();
   }
 
   /** Attribute whose value is associated to dropdown id. */
-  @HostBinding('attr.aria-owns') get ariaOwns(): string {
+  @HostBinding('attr.aria-owns') get ariaOwns(): string | null {
     return this.dropdownDisabled || !this.panelOpen ? null : this.dropdown.id;
   }
 
@@ -270,7 +270,7 @@ export class DropdownTriggerDirective implements OnDestroy {
     protected _viewContainerRef: ViewContainerRef,
     protected _zone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) protected _document: any,
     protected _viewportRuler?: ViewportRuler
   ) {}
@@ -387,12 +387,10 @@ export class DropdownTriggerDirective implements OnDestroy {
     ).pipe(
       filter(event => {
         const clickTarget = event.target as HTMLElement;
-        const formField = null;
 
         return (
           this._overlayAttached &&
           clickTarget !== this._elementRef.nativeElement &&
-          (!formField || !formField.contains(clickTarget)) &&
           !this._elementRef.nativeElement.contains(clickTarget) &&
           !!this._overlayRef &&
           !this._overlayRef.overlayElement.contains(clickTarget)

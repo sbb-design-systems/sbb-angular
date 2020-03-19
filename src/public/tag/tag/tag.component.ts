@@ -72,7 +72,7 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
    * Amount of result found.
    */
   @Input()
-  amount: number;
+  amount?: number;
 
   /**
    * A subject on tag checking.

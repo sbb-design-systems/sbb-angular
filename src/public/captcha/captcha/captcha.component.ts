@@ -47,25 +47,25 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
    * SiteKey of the user.
    * It is optional.
    */
-  @Input() siteKey: string;
+  @Input() siteKey?: string;
 
   /**
    * The color theme of the widget.
    * It is optional.
    */
-  @Input() theme: ReCaptchaV2.Theme;
+  @Input() theme?: ReCaptchaV2.Theme;
 
   /**
    * The type of the widget.
    * It is optional.
    */
-  @Input() type: ReCaptchaV2.Type;
+  @Input() type?: ReCaptchaV2.Type;
 
   /**
    * The size of the widget.
    * It is optional.
    */
-  @Input() size: ReCaptchaV2.Size;
+  @Input() size?: ReCaptchaV2.Size;
 
   /**
    * The tabindex of the widget and challenge.
@@ -77,10 +77,11 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
    * The badge of the widget.
    * It is optional.
    */
-  @Input() badge: ReCaptchaV2.Badge;
+  @Input() badge?: ReCaptchaV2.Badge;
 
   /**
    * Event generated on captcha checkbox.
+   * TODO: Change to void.
    */
   @Output() resolved = new EventEmitter<string>();
 
@@ -178,7 +179,7 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
         // Only emit an event in case if something would actually change.
         // That way we do not trigger "touching" of the control if someone does a "reset"
         // on a non-resolved captcha.
-        this.resolved.emit(null);
+        this.resolved.emit('');
       }
 
       this._grecaptchaReset();
@@ -187,7 +188,7 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy, ControlValueA
 
   /** @internal */
   private _expired() {
-    this.resolved.emit(null);
+    this.resolved.emit('');
   }
 
   /** @internal */
