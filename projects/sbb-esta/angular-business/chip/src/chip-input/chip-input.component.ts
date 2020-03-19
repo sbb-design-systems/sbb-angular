@@ -157,7 +157,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   get focused(): boolean {
     return this._focused;
   }
-  _focused = false;
+  private _focused = false;
 
   inputModel = '';
   origin = new AutocompleteOriginDirective(this._elementRef);
