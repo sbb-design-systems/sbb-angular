@@ -85,13 +85,27 @@ describe('ChipInputComponent', () => {
     expect(chipComponents.length).toBe(2);
   });
 
-  it('should show error status when invalid', () => {
+  it('should hide form error if invalid but untouched', () => {
     component.formGroup.get('chip').setValue([]);
     fixture.detectChanges();
 
     const errorText = fixture.debugElement.query(By.directive(FormErrorDirective));
     expect(component.formGroup.get('chip').invalid).toBe(true);
-    expect(errorText).toBeTruthy();
+    expect(errorText).toBeFalsy();
+  });
+
+  it('should display form error when input was touched', () => {
+    component.formGroup.get('chip').setValue([]);
+    fixture.detectChanges();
+
+    inputElement.focus();
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeFalsy();
+    dispatchFakeEvent(inputElement, 'blur');
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeTruthy();
   });
 
   it('should disable chip input and chips', () => {
@@ -127,20 +141,5 @@ describe('ChipInputComponent', () => {
     fixture.detectChanges();
 
     expect(component.formGroup.get('chip').value).toEqual(['option-1', 'option-2']);
-  });
-
-  it('should display form error if field is required when blurring', () => {
-    pending(); // TODO implement correct behaviour in chip input component
-    component.formGroup.get('chip').setValue([]);
-    fixture.detectChanges();
-
-    inputElement.focus();
-
-    fixture.detectChanges();
-    expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeFalsy();
-    dispatchFakeEvent(inputElement, 'blur');
-
-    fixture.detectChanges();
-    expect(fixture.debugElement.query(By.directive(FormErrorDirective))).toBeTruthy();
   });
 });

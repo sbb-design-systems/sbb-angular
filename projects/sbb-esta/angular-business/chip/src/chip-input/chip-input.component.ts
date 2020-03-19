@@ -7,6 +7,7 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
+  HostListener,
   Input,
   OnChanges,
   OnDestroy,
@@ -115,7 +116,7 @@ export class ChipInputComponent extends SbbChipsMixinBase
   /** @docs-private */
   @HostBinding('class.sbb-chip-input-active')
   get _isActive() {
-    return !this.disabled && this.focused;
+    return !this.disabled && this._focused;
   }
 
   @ViewChild('chipInputTextfield', { static: false })
@@ -152,7 +153,12 @@ export class ChipInputComponent extends SbbChipsMixinBase
    */
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  focused = false;
+  /** Whether the select is focused. */
+  get focused(): boolean {
+    return this._focused;
+  }
+  _focused = false;
+
   inputModel = '';
   origin = new AutocompleteOriginDirective(this._elementRef);
   selectionModel: SelectionModel<string>;
@@ -210,7 +216,8 @@ export class ChipInputComponent extends SbbChipsMixinBase
     if (value) {
       value.forEach(v => this.selectionModel.select(v));
     }
-    this._propagateChanges();
+    this._value = this.selectionModel.selected;
+    this._changeDetectorRef.markForCheck();
   }
 
   /**
@@ -325,5 +332,24 @@ export class ChipInputComponent extends SbbChipsMixinBase
 
   ngOnDestroy() {
     this.stateChanges.complete();
+  }
+
+  @HostListener('blur')
+  onBlur() {
+    this._focused = false;
+
+    if (!this.disabled) {
+      this._onTouchedCallback();
+      this._changeDetectorRef.markForCheck();
+      this.stateChanges.next();
+    }
+  }
+
+  @HostListener('focus')
+  onFocus() {
+    if (!this.disabled) {
+      this._focused = true;
+      this.stateChanges.next();
+    }
   }
 }
