@@ -19,7 +19,7 @@
     "strictBindCallApply": true,
     "target": "es2015",
     "lib": ["es5", "es2015", "dom"],
-    "types": ["jasmine"],
+    "types": ["arc-gis-js", "grecaptcha", "jasmine"],
     "baseUrl": ".",
     "paths": {
       "@sbb-esta/angular-public": ["src/public"],

@@ -33,11 +33,17 @@ ng_module(
 sass_binary(
     name = "breadcrumb_breadcrumb_component_scss",
     src = "breadcrumb/breadcrumb.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "breadcrumbs_breadcrumbs_component_scss",
     src = "breadcrumbs/breadcrumbs.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

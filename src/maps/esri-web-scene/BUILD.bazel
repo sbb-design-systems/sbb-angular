@@ -19,6 +19,7 @@ ng_module(
         "//src/maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 

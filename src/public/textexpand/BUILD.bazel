@@ -29,20 +29,19 @@ ng_module(
 sass_binary(
     name = "textexpand_textexpand_component_scss",
     src = "textexpand/textexpand.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "textexpand_collapsed_textexpand_collapsed_component_scss",
     src = "textexpand-collapsed/textexpand-collapsed.component.scss",
-    deps = [
-    ],
 )
 
 sass_binary(
     name = "textexpand_expanded_textexpand_expanded_component_scss",
     src = "textexpand-expanded/textexpand-expanded.component.scss",
-    deps = [
-    ],
 )
 
 ng_test_library(

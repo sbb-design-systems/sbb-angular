@@ -34,11 +34,17 @@ ng_module(
 sass_binary(
     name = "chip_chip_component_scss",
     src = "chip/chip.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "chip_input_chip_input_component_scss",
     src = "chip-input/chip-input.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

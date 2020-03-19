@@ -37,7 +37,7 @@ export class AuthService {
    * Is true if the user is authenticated, false otherwise.
    */
   authenticated(): boolean {
-    return this.keycloak.authenticated;
+    return !!this.keycloak.authenticated;
   }
 
   /**
@@ -53,7 +53,7 @@ export class AuthService {
    * Returns the current token.
    */
   getToken(): string {
-    return this.keycloak.token;
+    return this.keycloak.token || '';
   }
 
   /**

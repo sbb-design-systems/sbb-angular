@@ -1,6 +1,5 @@
 package(default_visibility = ["//visibility:public"])
 
-
 load(
     "//src/maps:config.bzl",
     "MAPS_ENTRYPOINTS",

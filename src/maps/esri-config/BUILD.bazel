@@ -17,6 +17,7 @@ ng_module(
     module_name = "@sbb-esta/angular-maps/esri-config",
     deps = [
         "@npm//@angular/core",
+        "@npm//@types/arcgis-js-api",
         "@npm//esri-loader",
     ],
 )

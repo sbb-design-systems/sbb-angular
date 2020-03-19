@@ -28,6 +28,9 @@ ng_module(
 sass_binary(
     name = "usermenu_usermenu_component_scss",
     src = "usermenu/usermenu.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

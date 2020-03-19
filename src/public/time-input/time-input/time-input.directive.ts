@@ -74,6 +74,8 @@ export class TimeInputDirective {
       return value.match(REGEX_GROUPS_WO_COLON);
     } else if (value) {
       return value.match(REGEX_GROUPS_WITH_COLON);
+    } else {
+      return null;
     }
   }
 

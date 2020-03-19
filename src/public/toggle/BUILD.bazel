@@ -33,11 +33,17 @@ ng_module(
 sass_binary(
     name = "toggle_toggle_component_scss",
     src = "toggle/toggle.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "toggle_option_toggle_option_component_scss",
     src = "toggle-option/toggle-option.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

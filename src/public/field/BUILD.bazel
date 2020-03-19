@@ -29,11 +29,17 @@ ng_module(
 sass_binary(
     name = "field_field_component_scss",
     src = "field/field.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "label_label_component_scss",
     src = "label/label.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 markdown_to_html(

@@ -30,6 +30,9 @@ ng_module(
 sass_binary(
     name = "checkbox_panel_checkbox_panel_component_scss",
     src = "checkbox-panel/checkbox-panel.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

@@ -32,11 +32,17 @@ ng_module(
 sass_binary(
     name = "autocomplete_autocomplete_component_scss",
     src = "autocomplete/autocomplete.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "autocomplete_hint_autocomplete_hint_component_scss",
     src = "autocomplete-hint/autocomplete-hint.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

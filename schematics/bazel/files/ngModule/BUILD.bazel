@@ -6,7 +6,8 @@ load(
     "ng_module",<% if (hasTests) { %>
     "ng_test_library",
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
-    "sass_binary",<% } %>
+    "sass_binary",<% } %><% if (hasSassLibrary) { %>
+    "sass_library",<% } %>
 )
 
 ng_module(
@@ -18,7 +19,8 @@ ng_module(
     assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
         ":<%= stylesheet %>",<% } %>] + glob(["**/*.html"]),<% } %>
-    module_name = "<%= moduleName %>",
+    module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
+    tsconfig = "<%= customTsConfig %>",<% } %>
     deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],
@@ -32,7 +34,7 @@ sass_library(
 
 sass_binary(
     name = "<%= stylesheet.name %>",
-    src = "<%= stylesheet.path %>",<% if (!stylesheet.dependencies.length) { %>
+    src = "<%= stylesheet.path %>",<% if (stylesheet.dependencies.length) { %>
     deps = [<% for (let dependency of stylesheet.dependencies) { %>
         "<%= dependency %>",<% } %>
     ],<% } %>

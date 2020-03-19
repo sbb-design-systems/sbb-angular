@@ -21,14 +21,13 @@ ng_module(
         "//src/maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 
 sass_binary(
     name = "esri_legend_esri_legend_component_scss",
     src = "esri-legend/esri-legend.component.scss",
-    deps = [
-    ],
 )
 
 ng_test_library(

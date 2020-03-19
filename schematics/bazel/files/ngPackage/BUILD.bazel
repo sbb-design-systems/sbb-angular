@@ -1,6 +1,6 @@
 package(default_visibility = ["//visibility:public"])
-
-<% if (hasStyles) { %>
+<% if (customTsConfig) { %>
+load("@npm_bazel_typescript//:index.bzl", "ts_config")<% } %><% if (hasStyles) { %>
 load("@npm//scss-bundle:index.bzl", "scss_bundle")<% } %>
 load(
     "//src/<%= name %>:config.bzl",
@@ -13,7 +13,10 @@ load(
     "//tools:defaults.bzl",
     "markdown_to_html",
     "ng_module",
-    "ng_package",
+    "ng_package",<% if (hasTests) { %>
+    "ng_test_library",
+    "ng_web_test_suite",<% } %><% if (hasTypography) { %>
+    "sass_binary",<% } %>
     "ts_library"
 )
 
@@ -21,12 +24,21 @@ load(
 ng_module(
     name = "<%= name %>",
     srcs = glob(
-        ["*.ts"],
+        ["*.ts"<% if (hasSrcFiles) { %>, "src/**/*.ts"<% } %>],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-<%= name %>",
-    deps = ["//src/<%= name %>/%s" % p for p in <%= uc(name) %>_ENTRYPOINTS],
-)<% if (hasTypography) { %>
+    module_name = "@sbb-esta/angular-<%= name %>",<% if (customTsConfig) { %>
+    tsconfig = "<%= customTsConfig %>",<% } %>
+    deps = ["//src/<%= name %>/%s" % p for p in <%= uc(name) %>_ENTRYPOINTS]<% if (dependencies.length) { %> + [<% for (let dependency of dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ]<% } %>,
+)<% if (customTsConfig) { %>
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig-build.json",
+    deps = ["//src:bazel-tsconfig-build.json"],
+)<% } %><% if (hasTypography) { %>
 
 sass_binary(
     name = "typography",
@@ -46,6 +58,23 @@ scss_bundle(
         # loaded by the CLI. It expects the config to be in the execroot.
         "//:scss-bundle.config.json",
     ],
+)<% } %><% if (hasTests) { %>
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["src/**/*.spec.ts"],
+        exclude = ["src/**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":<%= name %>",<% for (let dependency of testDependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
 )<% } %>
 
 markdown_to_html(
@@ -62,15 +91,15 @@ filegroup(
 
 # Creates the @sbb-esta/angular-<%= name %> package published to npm.
 ng_package(
-    name = "npm_package",
+    name = "npm_package",<% if (hasReadme) { %>
+    readme_md = "README.md",<% } %>
     srcs = [
         "package.json",
     ],
     data = [<% if (hasStyles) { %>
         ":styles_bundle",<% } %><% if (hasTypography) { %>
         ":typography",<% } %>
-    ],<% if (hasReadme) { %>
-    readme_md = "README.md"<% } %>
+    ],
     entry_point = ":public-api.ts",
     entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
     nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %>

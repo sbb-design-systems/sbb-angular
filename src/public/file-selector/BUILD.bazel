@@ -28,6 +28,9 @@ ng_module(
 sass_binary(
     name = "file_selector_file_selector_component_scss",
     src = "file-selector/file-selector.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

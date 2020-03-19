@@ -26,6 +26,9 @@ ng_module(
 sass_binary(
     name = "loading_loading_component_scss",
     src = "loading/loading.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

@@ -25,6 +25,9 @@ ng_module(
 sass_binary(
     name = "table_table_component_scss",
     src = "table/table.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 markdown_to_html(

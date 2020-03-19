@@ -21,7 +21,7 @@ import {
 } from '@sbb-esta/angular-core/testing';
 import { IconCrossModule } from '@sbb-esta/angular-icons';
 
-import { ChipComponent } from '../..';
+import { ChipComponent } from '../chip/chip.component';
 
 import { ChipInputComponent } from './chip-input.component';
 

@@ -1,6 +1,5 @@
 package(default_visibility = ["//visibility:public"])
 
-
 load(
     "//src/icons:config.bzl",
     "ICONS_ENTRYPOINTS",
@@ -20,11 +19,14 @@ load(
 ng_module(
     name = "icons",
     srcs = glob(
-        ["*.ts"],
+        ["*.ts", "src/**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-icons",
-    deps = ["//src/icons/%s" % p for p in ICONS_ENTRYPOINTS],
+    deps = ["//src/icons/%s" % p for p in ICONS_ENTRYPOINTS] + [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
 )
 
 markdown_to_html(

@@ -5,6 +5,7 @@ load(
     "markdown_to_html",
     "ng_module",
     "sass_binary",
+    "sass_library",
 )
 
 ng_module(
@@ -41,21 +42,33 @@ sass_library(
 sass_binary(
     name = "app_chooser_section_app_chooser_section_component_scss",
     src = "app-chooser-section/app-chooser-section.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "header_header_component_scss",
     src = "header/header.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "header_menu_header_menu_component_scss",
     src = "header-menu/header-menu.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "header_menu_trigger_header_menu_trigger_component_scss",
     src = "header-menu-trigger/header-menu-trigger.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
 )
 
 markdown_to_html(

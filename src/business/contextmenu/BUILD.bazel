@@ -28,6 +28,9 @@ ng_module(
 sass_binary(
     name = "contextmenu_contextmenu_component_scss",
     src = "contextmenu/contextmenu.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

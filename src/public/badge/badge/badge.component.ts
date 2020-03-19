@@ -20,5 +20,5 @@ export class BadgeComponent {
 
   @Input('aria-label')
   @HostBinding('attr.aria-label')
-  ariaLabel: string = null;
+  ariaLabel: string | null = null;
 }

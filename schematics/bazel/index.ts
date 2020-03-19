@@ -1,12 +1,12 @@
 import {
   basename,
+  dirname,
   fragment,
   join,
   Path,
   relative,
-  strings,
-  dirname,
-  split
+  split,
+  strings
 } from '@angular-devkit/core';
 import {
   apply,
@@ -25,10 +25,10 @@ import {
 import { findNodes } from '@schematics/angular/utility/ast-utils';
 import {
   createSourceFile,
+  ExportDeclaration,
   ImportDeclaration,
   ScriptTarget,
-  SyntaxKind,
-  ExportDeclaration
+  SyntaxKind
 } from 'typescript';
 
 export function bazel(): Rule {
@@ -56,11 +56,14 @@ export function bazel(): Rule {
     function ngModule(dir: DirEntry) {
       const packageName = split(dir.path)[2];
       const moduleName = relative(srcDir.dir(packageName).path, dir.path);
-      const dependencies = aggregateModuleImports(dir);
-      const testDependencies = aggregateModuleImports(dir, false).filter(
-        i => !dependencies.includes(i)
-      );
-
+      const { dependencies, testDependencies, hasTests } = resolveModuleTsInfo(dir);
+      if (dir.path.includes('src/maps')) {
+        dependencies.push('@npm//@types/arcgis-js-api');
+        dependencies.sort();
+      } else if (dir.path.includes('captcha')) {
+        dependencies.push('@npm//@types/grecaptcha');
+        dependencies.sort();
+      }
       return mergeWith(
         apply(url('./files/ngModule'), [
           template({
@@ -69,13 +72,57 @@ export function bazel(): Rule {
             hasMarkdown: moduleHasMarkdown(dir),
             dependencies,
             testDependencies,
-            hasTests: moduleHasTests(dir),
+            hasTests,
+            customTsConfig: '',
             ...findStylesheets(dir)
           }),
           move(dir.path),
           overwriteIfExists()
         ])
       );
+    }
+
+    function ngPackage(dir: DirEntry, ngModules: DirEntry[]) {
+      const resolvePath = (m: DirEntry) => relative(dir.path, m.path);
+      const hasSrcFiles = dir.subdirs.includes(fragment('src'));
+      const { dependencies, testDependencies, hasTests } = hasSrcFiles
+        ? resolveModuleTsInfo(dir.dir(fragment('src')))
+        : { dependencies: [], testDependencies: [], hasTests: false };
+      return mergeWith(
+        apply(url('./files/ngPackage'), [
+          template({
+            ...strings,
+            uc: (s: string) => s.toUpperCase(),
+            name: basename(dir.path),
+            entryPoints: ngModules.map(resolvePath),
+            dependencies,
+            testDependencies,
+            hasTests,
+            customTsConfig: '',
+            hasReadme: dir.subfiles.includes(fragment('README.md')),
+            hasSchematics: dir.subdirs.includes(fragment('schematics')),
+            hasSrcFiles,
+            hasStyles: dir.subfiles.includes(fragment('_styles.scss')),
+            hasTypography: dir.subfiles.includes(fragment('typography.scss')),
+            markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
+            markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
+          }),
+          move(dir.path),
+          overwriteIfExists()
+        ])
+      );
+    }
+
+    function resolveModuleTsInfo(dir: DirEntry) {
+      const dependencies = aggregateModuleImports(dir);
+      const testDependencies = aggregateModuleImports(dir, false).filter(
+        i => !dependencies.includes(i)
+      );
+      return {
+        dependencies,
+        testDependencies,
+        hasTests: moduleHasTests(dir)
+      };
     }
 
     function aggregateModuleImports(dir: DirEntry, excludeTests = true) {
@@ -95,18 +142,6 @@ export function bazel(): Rule {
         }
       });
       return imports.sort();
-    }
-
-    function isInSameModule(dir: DirEntry, path: Path) {
-      const directoryParts = split(dirname(relative(dir.path, path)));
-      for (const part of directoryParts) {
-        dir = dir.dir(part);
-        if (dir.subfiles.includes(fragment('public-api.ts'))) {
-          return false;
-        }
-      }
-
-      return true;
     }
 
     function findImportsAndReexports(path: Path, entry: Readonly<FileEntry>) {
@@ -169,7 +204,7 @@ export function bazel(): Rule {
           if (i.includes('/core/styles/common')) {
             return '//src/core/styles:common_scss_lib';
           } else if (isInModule(join(entry.path, i), dir.path)) {
-            return `//${dir.path}:${basename(dir.path)}_scss_lib`;
+            return `:${basename(dir.path)}_scss_lib`;
           } else {
             context.logger.warn(`${entry.path}: Could not resolve stylesheet import '${i}'`);
             return '';
@@ -185,33 +220,23 @@ export function bazel(): Rule {
     function moduleHasTests(dir: DirEntry) {
       let hasTests = false;
       dir.visit(path => {
-        if (path.endsWith('.spec.ts')) {
+        if (isInSameModule(dir, path) && path.endsWith('.spec.ts')) {
           hasTests = true;
         }
       });
       return hasTests;
     }
 
-    function ngPackage(dir: DirEntry, ngModules: DirEntry[]) {
-      const resolvePath = (m: DirEntry) => relative(dir.path, m.path);
-      return mergeWith(
-        apply(url('./files/ngPackage'), [
-          template({
-            ...strings,
-            uc: (s: string) => s.toUpperCase(),
-            name: basename(dir.path),
-            entryPoints: ngModules.map(resolvePath),
-            hasReadme: dir.subfiles.includes(fragment('README.md')),
-            hasSchematics: dir.subdirs.includes(fragment('schematics')),
-            hasStyles: dir.subfiles.includes(fragment('_styles.scss')),
-            hasTypography: dir.subfiles.includes(fragment('typography.scss')),
-            markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
-            markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
-          }),
-          move(dir.path),
-          overwriteIfExists()
-        ])
-      );
+    function isInSameModule(dir: DirEntry, path: Path) {
+      const directoryParts = split(dirname(relative(dir.path, path)));
+      for (const part of directoryParts) {
+        dir = dir.dir(part);
+        if (dir.subfiles.includes(fragment('public-api.ts'))) {
+          return false;
+        }
+      }
+
+      return true;
     }
 
     function moduleHasMarkdown(dir: DirEntry) {

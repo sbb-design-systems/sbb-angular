@@ -29,6 +29,9 @@ ng_module(
 sass_binary(
     name = "radio_button_radio_button_component_scss",
     src = "radio-button/radio-button.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

@@ -1,6 +1,5 @@
 package(default_visibility = ["//visibility:public"])
 
-
 load(
     "//src/core:config.bzl",
     "CORE_ENTRYPOINTS",

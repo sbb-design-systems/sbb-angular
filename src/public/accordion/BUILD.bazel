@@ -7,6 +7,7 @@ load(
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
+    "sass_library",
 )
 
 ng_module(
@@ -38,11 +39,17 @@ sass_library(
 sass_binary(
     name = "expansion_panel_expansion_panel_component_scss",
     src = "expansion-panel/expansion-panel.component.scss",
+    deps = [
+        ":accordion_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "expansion_panel_header_expansion_panel_header_component_scss",
     src = "expansion-panel-header/expansion-panel-header.component.scss",
+    deps = [
+        ":accordion_scss_lib",
+    ],
 )
 
 ng_test_library(

@@ -35,6 +35,9 @@ ng_module(
 sass_binary(
     name = "search_search_component_scss",
     src = "search/search.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

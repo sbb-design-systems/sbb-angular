@@ -30,8 +30,6 @@ ng_module(
 sass_binary(
     name = "tooltip_tooltip_component_scss",
     src = "tooltip/tooltip.component.scss",
-    deps = [
-    ],
 )
 
 ng_test_library(

@@ -33,11 +33,17 @@ ng_module(
 sass_binary(
     name = "tag_tag_component_scss",
     src = "tag/tag.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "tags_tags_component_scss",
     src = "tags/tags.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

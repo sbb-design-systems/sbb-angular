@@ -29,6 +29,9 @@ ng_module(
 sass_binary(
     name = "dropdown_dropdown_component_scss",
     src = "dropdown/dropdown.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

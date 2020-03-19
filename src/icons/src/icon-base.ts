@@ -34,10 +34,15 @@ export abstract class IconBase {
    */
   @Input()
   @HostBinding('style.width')
-  get width() {
+  get width(): string | undefined {
     return this._resolveDimension(this._inputWidth, this._dimension.width);
   }
-  set width(value: string) {
+  set width(value: string | undefined) {
+    if (value === undefined) {
+      this._inputWidth = undefined;
+      return;
+    }
+
     this._inputWidth = this._coerceDimensionValue(value);
     if (!this._inputHeight && !value.endsWith('%')) {
       this._inputHeight = this._resolveInput(value, v => v / this._dimension.ratio);
@@ -48,10 +53,14 @@ export abstract class IconBase {
    */
   @Input()
   @HostBinding('style.height')
-  get height() {
+  get height(): string | undefined {
     return this._resolveDimension(this._inputHeight, this._dimension.height);
   }
-  set height(value: string) {
+  set height(value: string | undefined) {
+    if (value === undefined) {
+      this._inputHeight = undefined;
+      return;
+    }
     this._inputHeight = this._coerceDimensionValue(value);
     if (!this._inputWidth && !value.endsWith('%')) {
       this._inputWidth = this._resolveInput(value, v => v * this._dimension.ratio);
@@ -66,8 +75,8 @@ export abstract class IconBase {
   }
   /** @docs-private */
   @HostBinding('class.sbb-icon-component') sbbIconComponent = true;
-  private _inputWidth: string;
-  private _inputHeight: string;
+  private _inputWidth: string | undefined;
+  private _inputHeight: string | undefined;
 
   constructor(private readonly _dimension: IconDimension) {}
 
@@ -75,7 +84,7 @@ export abstract class IconBase {
     return !this.size.endsWith('grow');
   }
 
-  private _resolveDimension(growSize: string, fixedSize: string) {
+  private _resolveDimension(growSize: string | undefined, fixedSize: string) {
     if (this.size === 'fixed') {
       return fixedSize;
     } else if (this.size === 'small') {

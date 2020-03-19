@@ -7,6 +7,7 @@ load(
     "ng_test_library",
     "ng_web_test_suite",
     "sass_binary",
+    "sass_library",
 )
 
 ng_module(
@@ -37,11 +38,17 @@ sass_library(
 sass_binary(
     name = "navigation_navigation_component_scss",
     src = "navigation/navigation.component.scss",
+    deps = [
+        ":pagination_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "pagination_pagination_component_scss",
     src = "pagination/pagination.component.scss",
+    deps = [
+        ":pagination_scss_lib",
+    ],
 )
 
 ng_test_library(

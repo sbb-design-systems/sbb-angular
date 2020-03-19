@@ -18,6 +18,7 @@ ng_module(
     deps = [
         "//src/maps/esri-config",
         "@npm//@angular/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 

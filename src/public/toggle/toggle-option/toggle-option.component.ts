@@ -86,13 +86,13 @@ export class ToggleOptionComponent extends RadioButton implements AfterViewInit 
    */
   @HostBinding('class.sbb-toggle-option-has-icon')
   @Input()
-  set icon(icon: TemplateRef<any>) {
+  set icon(icon: TemplateRef<any> | null) {
     this._icon = icon;
   }
-  get icon(): TemplateRef<any> {
+  get icon(): TemplateRef<any> | null {
     return this._contentIcon || this._icon;
   }
-  private _icon?: TemplateRef<any>;
+  private _icon: TemplateRef<any> | null = null;
 
   /**
    * icon placed in template

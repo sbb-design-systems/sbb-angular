@@ -33,6 +33,9 @@ ng_module(
 sass_binary(
     name = "ghettobox_ghettobox_component_scss",
     src = "ghettobox/ghettobox.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(

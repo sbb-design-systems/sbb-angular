@@ -28,8 +28,15 @@ function bazel() {
         function ngModule(dir) {
             const packageName = core.split(dir.path)[2];
             const moduleName = core.relative(srcDir.dir(packageName).path, dir.path);
-            const dependencies = aggregateModuleImports(dir);
-            const testDependencies = aggregateModuleImports(dir, false).filter(i => !dependencies.includes(i));
+            const { dependencies, testDependencies, hasTests } = resolveModuleTsInfo(dir);
+            if (dir.path.includes('src/maps')) {
+                dependencies.push('@npm//@types/arcgis-js-api');
+                dependencies.sort();
+            }
+            else if (dir.path.includes('captcha')) {
+                dependencies.push('@npm//@types/grecaptcha');
+                dependencies.sort();
+            }
             return schematics.mergeWith(schematics.apply(schematics.url('./files/ngModule'), [
                 schematics.template({
                     name: core.basename(dir.path),
@@ -37,12 +44,50 @@ function bazel() {
                     hasMarkdown: moduleHasMarkdown(dir),
                     dependencies,
                     testDependencies,
-                    hasTests: moduleHasTests(dir),
+                    hasTests,
+                    customTsConfig: '',
                     ...findStylesheets(dir)
                 }),
                 schematics.move(dir.path),
                 overwriteIfExists()
             ]));
+        }
+        function ngPackage(dir, ngModules) {
+            const resolvePath = (m) => core.relative(dir.path, m.path);
+            const hasSrcFiles = dir.subdirs.includes(core.fragment('src'));
+            const { dependencies, testDependencies, hasTests } = hasSrcFiles
+                ? resolveModuleTsInfo(dir.dir(core.fragment('src')))
+                : { dependencies: [], testDependencies: [], hasTests: false };
+            return schematics.mergeWith(schematics.apply(schematics.url('./files/ngPackage'), [
+                schematics.template({
+                    ...core.strings,
+                    uc: (s) => s.toUpperCase(),
+                    name: core.basename(dir.path),
+                    entryPoints: ngModules.map(resolvePath),
+                    dependencies,
+                    testDependencies,
+                    hasTests,
+                    customTsConfig: '',
+                    hasReadme: dir.subfiles.includes(core.fragment('README.md')),
+                    hasSchematics: dir.subdirs.includes(core.fragment('schematics')),
+                    hasSrcFiles,
+                    hasStyles: dir.subfiles.includes(core.fragment('_styles.scss')),
+                    hasTypography: dir.subfiles.includes(core.fragment('typography.scss')),
+                    markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
+                    markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
+                }),
+                schematics.move(dir.path),
+                overwriteIfExists()
+            ]));
+        }
+        function resolveModuleTsInfo(dir) {
+            const dependencies = aggregateModuleImports(dir);
+            const testDependencies = aggregateModuleImports(dir, false).filter(i => !dependencies.includes(i));
+            return {
+                dependencies,
+                testDependencies,
+                hasTests: moduleHasTests(dir)
+            };
         }
         function aggregateModuleImports(dir, excludeTests = true) {
             const imports = [];
@@ -59,16 +104,6 @@ function bazel() {
                 }
             });
             return imports.sort();
-        }
-        function isInSameModule(dir, path) {
-            const directoryParts = core.split(core.dirname(core.relative(dir.path, path)));
-            for (const part of directoryParts) {
-                dir = dir.dir(part);
-                if (dir.subfiles.includes(core.fragment('public-api.ts'))) {
-                    return false;
-                }
-            }
-            return true;
         }
         function findImportsAndReexports(path, entry) {
             const file = typescript.createSourceFile(core.basename(path), entry.content.toString(), typescript.ScriptTarget.ESNext, true);
@@ -123,7 +158,7 @@ function bazel() {
                     return '//src/core/styles:common_scss_lib';
                 }
                 else if (isInModule(core.join(entry.path, i), dir.path)) {
-                    return `//${dir.path}:${core.basename(dir.path)}_scss_lib`;
+                    return `:${core.basename(dir.path)}_scss_lib`;
                 }
                 else {
                     context.logger.warn(`${entry.path}: Could not resolve stylesheet import '${i}'`);
@@ -138,30 +173,21 @@ function bazel() {
         function moduleHasTests(dir) {
             let hasTests = false;
             dir.visit(path => {
-                if (path.endsWith('.spec.ts')) {
+                if (isInSameModule(dir, path) && path.endsWith('.spec.ts')) {
                     hasTests = true;
                 }
             });
             return hasTests;
         }
-        function ngPackage(dir, ngModules) {
-            const resolvePath = (m) => core.relative(dir.path, m.path);
-            return schematics.mergeWith(schematics.apply(schematics.url('./files/ngPackage'), [
-                schematics.template({
-                    ...core.strings,
-                    uc: (s) => s.toUpperCase(),
-                    name: core.basename(dir.path),
-                    entryPoints: ngModules.map(resolvePath),
-                    hasReadme: dir.subfiles.includes(core.fragment('README.md')),
-                    hasSchematics: dir.subdirs.includes(core.fragment('schematics')),
-                    hasStyles: dir.subfiles.includes(core.fragment('_styles.scss')),
-                    hasTypography: dir.subfiles.includes(core.fragment('typography.scss')),
-                    markdownFiles: dir.subfiles.filter(f => f.endsWith('.md')),
-                    markdownModules: ngModules.filter(m => moduleHasMarkdown(m)).map(resolvePath)
-                }),
-                schematics.move(dir.path),
-                overwriteIfExists()
-            ]));
+        function isInSameModule(dir, path) {
+            const directoryParts = core.split(core.dirname(core.relative(dir.path, path)));
+            for (const part of directoryParts) {
+                dir = dir.dir(part);
+                if (dir.subfiles.includes(core.fragment('public-api.ts'))) {
+                    return false;
+                }
+            }
+            return true;
         }
         function moduleHasMarkdown(dir) {
             return dir.subfiles.includes(core.fragment(`${core.basename(dir.path)}.md`));

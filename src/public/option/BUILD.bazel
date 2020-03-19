@@ -28,13 +28,14 @@ ng_module(
 sass_binary(
     name = "option_option_component_scss",
     src = "option/option.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "option_group_option_group_component_scss",
     src = "option-group/option-group.component.scss",
-    deps = [
-    ],
 )
 
 filegroup(

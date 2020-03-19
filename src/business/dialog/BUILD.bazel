@@ -5,6 +5,7 @@ load(
     "markdown_to_html",
     "ng_module",
     "sass_binary",
+    "sass_library",
 )
 
 ng_module(
@@ -38,21 +39,33 @@ sass_library(
 sass_binary(
     name = "dialog_container_dialog_container_component_scss",
     src = "dialog-container/dialog-container.component.scss",
+    deps = [
+        ":dialog_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "dialog_content_dialog_content_component_scss",
     src = "dialog-content/dialog-content.component.scss",
+    deps = [
+        ":dialog_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "dialog_footer_dialog_footer_component_scss",
     src = "dialog-footer/dialog-footer.component.scss",
+    deps = [
+        ":dialog_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "dialog_header_dialog_header_component_scss",
     src = "dialog-header/dialog-header.component.scss",
+    deps = [
+        ":dialog_scss_lib",
+    ],
 )
 
 markdown_to_html(

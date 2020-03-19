@@ -1,6 +1,5 @@
 package(default_visibility = ["//visibility:public"])
 
-
 load("@npm//scss-bundle:index.bzl", "scss_bundle")
 load(
     "//src/business:config.bzl",
@@ -14,6 +13,7 @@ load(
     "markdown_to_html",
     "ng_module",
     "ng_package",
+    "sass_binary",
     "ts_library"
 )
 

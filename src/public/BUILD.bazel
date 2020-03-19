@@ -1,6 +1,5 @@
 package(default_visibility = ["//visibility:public"])
 
-
 load("@npm//scss-bundle:index.bzl", "scss_bundle")
 load(
     "//src/public:config.bzl",
@@ -14,6 +13,7 @@ load(
     "markdown_to_html",
     "ng_module",
     "ng_package",
+    "sass_binary",
     "ts_library"
 )
 
@@ -65,6 +65,7 @@ filegroup(
 # Creates the @sbb-esta/angular-public package published to npm.
 ng_package(
     name = "npm_package",
+    readme_md = "README.md",
     srcs = [
         "package.json",
     ],
@@ -72,7 +73,6 @@ ng_package(
         ":styles_bundle",
         ":typography",
     ],
-    readme_md = "README.md"
     entry_point = ":public-api.ts",
     entry_point_name = "public",
     nested_packages = ["//src/public/schematics:npm_package"],

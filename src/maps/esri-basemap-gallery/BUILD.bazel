@@ -19,14 +19,13 @@ ng_module(
         "//src/maps/core",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@types/arcgis-js-api",
     ],
 )
 
 sass_binary(
     name = "esri_basemap_gallery_esri_basemap_gallery_component_scss",
     src = "esri-basemap-gallery/esri-basemap-gallery.component.scss",
-    deps = [
-    ],
 )
 
 markdown_to_html(

@@ -30,13 +30,14 @@ ng_module(
 sass_binary(
     name = "processflow_processflow_component_scss",
     src = "processflow/processflow.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 sass_binary(
     name = "processflow_step_processflow_step_component_scss",
     src = "processflow-step/processflow-step.component.scss",
-    deps = [
-    ],
 )
 
 ng_test_library(

@@ -34,6 +34,9 @@ ng_module(
 sass_binary(
     name = "select_select_component_scss",
     src = "select/select.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )
 
 ng_test_library(
