@@ -13,7 +13,9 @@ ng_module(
     ),
     module_name = "@sbb-esta/angular-experimental/fpl",
     deps = [
-        "@npm//@angular/core",
+        "//src/icons/experimental/fpl/him-cus",
+        "//src/icons/experimental/fpl/timetable-attributes",
+        "//src/icons/experimental/fpl/timetable-products",
     ],
 )
 

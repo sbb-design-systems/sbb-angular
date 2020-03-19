@@ -1,4 +1,13 @@
-import { basename, fragment, join, Path, relative, strings } from '@angular-devkit/core';
+import {
+  basename,
+  fragment,
+  join,
+  Path,
+  relative,
+  strings,
+  dirname,
+  split
+} from '@angular-devkit/core';
 import {
   apply,
   chain,
@@ -14,7 +23,13 @@ import {
   url
 } from '@angular-devkit/schematics';
 import { findNodes } from '@schematics/angular/utility/ast-utils';
-import { createSourceFile, ImportDeclaration, ScriptTarget, SyntaxKind } from 'typescript';
+import {
+  createSourceFile,
+  ImportDeclaration,
+  ScriptTarget,
+  SyntaxKind,
+  ExportDeclaration
+} from 'typescript';
 
 export function bazel(): Rule {
   return async (tree: Tree, context: SchematicContext) => {
@@ -65,9 +80,14 @@ export function bazel(): Rule {
     function aggregateModuleImports(dir: DirEntry, excludeTests = true) {
       const imports: string[] = [];
       dir.visit((path, entry) => {
-        if (path.endsWith('.ts') && (!excludeTests || !path.endsWith('.spec.ts')) && entry) {
-          for (const importPath of findImports(path, entry).map(convertToDependency)) {
-            if (importPath && !imports.includes(importPath)) {
+        if (
+          path.endsWith('.ts') &&
+          (!excludeTests || !path.endsWith('.spec.ts')) &&
+          isInSameModule(dir, path) &&
+          entry
+        ) {
+          for (const importPath of findImportsAndReexports(path, entry).map(convertToDependency)) {
+            if (importPath && !imports.includes(importPath) && importPath !== `/${dir.path}`) {
               imports.push(importPath);
             }
           }
@@ -76,19 +96,31 @@ export function bazel(): Rule {
       return imports.sort();
     }
 
-    function findImports(path: Path, entry: Readonly<FileEntry>) {
+    function isInSameModule(dir: DirEntry, path: Path) {
+      const directoryParts = split(dirname(relative(dir.path, path)));
+      for (const part of directoryParts) {
+        dir = dir.dir(part);
+        if (dir.subfiles.includes(fragment('public-api.ts'))) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function findImportsAndReexports(path: Path, entry: Readonly<FileEntry>) {
       const file = createSourceFile(
         basename(path),
         entry.content.toString(),
         ScriptTarget.ESNext,
         true
       );
-      return findNodes(
-        file,
-        SyntaxKind.ImportDeclaration,
-        undefined,
-        true
-      ).map((n: ImportDeclaration) => n.moduleSpecifier.getText().replace(/['"]/g, ''));
+      return findNodes(file, SyntaxKind.ImportDeclaration, undefined, true)
+        .concat(findNodes(file, SyntaxKind.ExportDeclaration, undefined, true))
+        .map(
+          (n: ImportDeclaration | ExportDeclaration) =>
+            n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? ''
+        );
     }
 
     function convertToDependency(importPath: string) {
@@ -98,7 +130,7 @@ export function bazel(): Rule {
         return '';
       } else {
         const index = importPath.startsWith('@') ? 2 : 1;
-        return `@npm//${importPath.split('/', index).join('/')}`
+        return `@npm//${importPath.split('/', index).join('/')}`;
       }
     }
 

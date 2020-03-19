@@ -46,9 +46,12 @@ function bazel() {
         function aggregateModuleImports(dir, excludeTests = true) {
             const imports = [];
             dir.visit((path, entry) => {
-                if (path.endsWith('.ts') && (!excludeTests || !path.endsWith('.spec.ts')) && entry) {
-                    for (const importPath of findImports(path, entry).map(convertToDependency)) {
-                        if (importPath && !imports.includes(importPath)) {
+                if (path.endsWith('.ts') &&
+                    (!excludeTests || !path.endsWith('.spec.ts')) &&
+                    isInSameModule(dir, path) &&
+                    entry) {
+                    for (const importPath of findImportsAndReexports(path, entry).map(convertToDependency)) {
+                        if (importPath && !imports.includes(importPath) && importPath !== `/${dir.path}`) {
                             imports.push(importPath);
                         }
                     }
@@ -56,9 +59,21 @@ function bazel() {
             });
             return imports.sort();
         }
-        function findImports(path, entry) {
+        function isInSameModule(dir, path) {
+            const directoryParts = core.split(core.dirname(core.relative(dir.path, path)));
+            for (const part of directoryParts) {
+                dir = dir.dir(part);
+                if (dir.subfiles.includes(core.fragment('public-api.ts'))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        function findImportsAndReexports(path, entry) {
             const file = typescript.createSourceFile(core.basename(path), entry.content.toString(), typescript.ScriptTarget.ESNext, true);
-            return astUtils.findNodes(file, typescript.SyntaxKind.ImportDeclaration, undefined, true).map((n) => n.moduleSpecifier.getText().replace(/['"]/g, ''));
+            return astUtils.findNodes(file, typescript.SyntaxKind.ImportDeclaration, undefined, true)
+                .concat(astUtils.findNodes(file, typescript.SyntaxKind.ExportDeclaration, undefined, true))
+                .map((n) => { var _a, _b; return (_b = (_a = n.moduleSpecifier) === null || _a === void 0 ? void 0 : _a.getText().replace(/['"]/g, '')) !== null && _b !== void 0 ? _b : ''; });
         }
         function convertToDependency(importPath) {
             if (importPath.startsWith('@sbb-esta/')) {
