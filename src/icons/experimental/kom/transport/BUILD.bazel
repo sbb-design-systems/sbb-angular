@@ -11,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-kom/transport",
+    module_name = "@sbb-esta/angular-icons/experimental/kom/transport",
     deps = [
         "@npm//@angular/core",
     ],

@@ -11,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-fpl/timetable-attributes",
+    module_name = "@sbb-esta/angular-icons/experimental/fpl/timetable-attributes",
     deps = [
         "@npm//@angular/core",
     ],

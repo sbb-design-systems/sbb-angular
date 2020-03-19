@@ -26,13 +26,14 @@ function bazel() {
                 .reduce((current, next) => current.concat(next), modules);
         }
         function ngModule(dir) {
+            const packageName = core.split(dir.path)[2];
+            const moduleName = core.relative(srcDir.dir(packageName).path, dir.path);
             const dependencies = aggregateModuleImports(dir);
             const testDependencies = aggregateModuleImports(dir, false).filter(i => !dependencies.includes(i));
             return schematics.mergeWith(schematics.apply(schematics.url('./files/ngModule'), [
                 schematics.template({
                     name: core.basename(dir.path),
-                    // tslint:disable-next-line: no-non-null-assertion
-                    packageName: core.basename(dir.parent.path),
+                    moduleName: `@sbb-esta/angular-${packageName}/${moduleName}`,
                     hasMarkdown: moduleHasMarkdown(dir),
                     dependencies,
                     testDependencies,

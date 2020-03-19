@@ -11,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-experimental/_meta",
+    module_name = "@sbb-esta/angular-icons/experimental/_meta",
     deps = [
         "//src/icons/experimental",
         "@npm//@angular/core",

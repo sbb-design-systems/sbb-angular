@@ -11,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-kom/career",
+    module_name = "@sbb-esta/angular-icons/experimental/kom/career",
     deps = [
         "@npm//@angular/core",
     ],

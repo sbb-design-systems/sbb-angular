@@ -54,6 +54,8 @@ export function bazel(): Rule {
     }
 
     function ngModule(dir: DirEntry) {
+      const packageName = split(dir.path)[2];
+      const moduleName = relative(srcDir.dir(packageName).path, dir.path);
       const dependencies = aggregateModuleImports(dir);
       const testDependencies = aggregateModuleImports(dir, false).filter(
         i => !dependencies.includes(i)
@@ -63,8 +65,7 @@ export function bazel(): Rule {
         apply(url('./files/ngModule'), [
           template({
             name: basename(dir.path),
-            // tslint:disable-next-line: no-non-null-assertion
-            packageName: basename(dir.parent!.path),
+            moduleName: `@sbb-esta/angular-${packageName}/${moduleName}`,
             hasMarkdown: moduleHasMarkdown(dir),
             dependencies,
             testDependencies,

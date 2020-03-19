@@ -11,7 +11,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    module_name = "@sbb-esta/angular-fpl/him-cus",
+    module_name = "@sbb-esta/angular-icons/experimental/fpl/him-cus",
     deps = [
         "@npm//@angular/core",
     ],

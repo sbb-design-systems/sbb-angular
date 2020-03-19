@@ -18,7 +18,7 @@ ng_module(
     assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
         ":<%= stylesheet %>",<% } %>] + glob(["**/*.html"]),<% } %>
-    module_name = "@sbb-esta/angular-<%= packageName %>/<%= name %>",
+    module_name = "<%= moduleName %>",
     deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],
