@@ -20,6 +20,8 @@ $selectTriggerPaddingRight: 44;
 }
 
 sbb-select.sbb-select {
+  outline: 0;
+
   .sbb-select-trigger {
     @include inputfields;
     position: relative;

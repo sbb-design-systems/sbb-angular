@@ -8,7 +8,7 @@ import { configureTestSuite } from 'ng-bullet';
 import { ChipComponent } from './chip.component';
 
 @Component({
-  selector: 'sbb-test-chip-input',
+  selector: 'sbb-test-chip',
   template: `
     <sbb-chip [disabled]="disabled" [label]="label" (dismissed)="dismissed($event)"></sbb-chip>
   `

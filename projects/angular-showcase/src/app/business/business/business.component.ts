@@ -8,7 +8,8 @@ import { AutocompleteOptionGroupShowcaseComponent } from '../business-examples/a
 import { AutocompleteReactiveFormsShowcaseComponent } from '../business-examples/autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
 import { AutocompleteChipInputComponent } from '../business-examples/chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
-import { SimpleChipInputComponent } from '../business-examples/chip-showcase/simple-chip-input/simple-chip-input.component';
+import { FormsChipInputComponent } from '../business-examples/chip-showcase/forms-chip-input/forms-chip-input.component';
+import { ReactiveFormsChipInputComponent } from '../business-examples/chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { ClosableNotificationComponent } from '../business-examples/notification-showcase/closable-notification/closable-notification.component';
 import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';
@@ -117,7 +118,8 @@ export class BusinessComponent implements ExampleProvider {
       'sortable-table': new ComponentPortal(SortableTableComponent)
     },
     chip: {
-      'simple-chip-input': new ComponentPortal(SimpleChipInputComponent),
+      'forms-chip-input': new ComponentPortal(FormsChipInputComponent),
+      'reactive-forms-chip-input': new ComponentPortal(ReactiveFormsChipInputComponent),
       'disabled-chip-input': new ComponentPortal(DisabledChipInputComponent),
       'autocomplete-chip-input': new ComponentPortal(AutocompleteChipInputComponent)
     },

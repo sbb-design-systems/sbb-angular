@@ -180,6 +180,7 @@ export class SelectComponent extends SbbSelectMixinBase
    */
   @HostBinding('attr.role') role = 'listbox';
 
+  @HostBinding('attr.tabindex')
   @Input()
   get tabIndex(): number {
     return this.disabled ? -1 : this._tabIndex;
@@ -228,8 +229,6 @@ export class SelectComponent extends SbbSelectMixinBase
   /** Emits when the state of the option changes and any parents have to be notified. */
   readonly stateChanges = new Subject<void>();
 
-  /** A name for this control that can be used by `sbb-field`. */
-  controlType = 'sbb-select';
   /**
    * Css class of select component.
    */
@@ -866,6 +865,16 @@ export class SelectComponent extends SbbSelectMixinBase
     this._ariaDescribedby = ids.join(' ');
   }
 
+  /**
+   * Forward focus if a user clicks on an associated label.
+   * Implemented as part of FormFieldControl.
+   * @docs-private
+   */
+  onContainerClick(event: Event) {
+    this.focus();
+    this.openSelect();
+  }
+
   /** Focuses the select element. */
   focus(): void {
     this._elementRef.nativeElement.focus();
@@ -876,6 +885,7 @@ export class SelectComponent extends SbbSelectMixinBase
     // has changed after it was checked" errors from Angular.
     Promise.resolve().then(() => {
       this._setSelectionByValue(this.ngControl ? this.ngControl.value : this._value);
+      this.stateChanges.next();
     });
   }
 
@@ -900,6 +910,10 @@ export class SelectComponent extends SbbSelectMixinBase
       // mode, because we don't know what option the user interacted with last.
       if (correspondingOption) {
         this.keyManager.setActiveItem(correspondingOption);
+      } else if (!this.panelOpen) {
+        // Otherwise reset the highlighted option. Note that we only want to do this while
+        // closed, because doing it while open can shift the user's focus unnecessarily.
+        this.keyManager.setActiveItem(-1);
       }
     }
 

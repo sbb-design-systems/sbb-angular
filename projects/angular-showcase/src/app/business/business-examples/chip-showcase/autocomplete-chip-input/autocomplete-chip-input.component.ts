@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sbb-chip-autocomplete',
-  templateUrl: 'autocomplete-chip-input.component.html',
-  styleUrls: ['../chip-input.component.scss']
+  templateUrl: './autocomplete-chip-input.component.html'
 })
-export class AutocompleteChipInputComponent implements OnInit {
+export class AutocompleteChipInputComponent {
   formGroup: FormGroup;
   options = [
     'option-1',
@@ -17,11 +16,7 @@ export class AutocompleteChipInputComponent implements OnInit {
     'something else'
   ];
 
-  value: string[] = [];
-
-  constructor(private _formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._formBuilder.group({
       chip: [['option-1'], Validators.required]
     });

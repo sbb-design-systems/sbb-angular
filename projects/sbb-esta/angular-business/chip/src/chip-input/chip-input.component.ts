@@ -3,21 +3,31 @@ import { SelectionModel } from '@angular/cdk/collections';
 import {
   ChangeDetectorRef,
   Component,
+  DoCheck,
   ElementRef,
   EventEmitter,
   HostBinding,
   Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Optional,
   Output,
   Self,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   AutocompleteComponent,
   AutocompleteOriginDirective
 } from '@sbb-esta/angular-business/autocomplete';
+import {
+  CanUpdateErrorState,
+  CanUpdateErrorStateCtor,
+  ErrorStateMatcher,
+  mixinErrorState
+} from '@sbb-esta/angular-core';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { Subject } from 'rxjs';
 
@@ -33,12 +43,37 @@ export class SbbChipInputChange {
   ) {}
 }
 
+// Boilerplate for applying mixins to SelectComponent.
+/** @docs-private */
+export class SbbChipsBase {
+  constructor(
+    public _elementRef: ElementRef,
+    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _parentForm: NgForm,
+    public _parentFormGroup: FormGroupDirective,
+    public ngControl: NgControl
+  ) {}
+}
+
+export const SbbChipsMixinBase: CanUpdateErrorStateCtor & typeof SbbChipsBase = mixinErrorState(
+  SbbChipsBase
+);
+
 @Component({
   selector: 'sbb-chip-input',
   templateUrl: './chip-input.component.html',
-  styleUrls: ['./chip-input.component.scss']
+  styleUrls: ['./chip-input.component.scss'],
+  providers: [{ provide: FormFieldControl, useExisting: ChipInputComponent }]
 })
-export class ChipInputComponent implements FormFieldControl<any>, OnInit {
+export class ChipInputComponent extends SbbChipsMixinBase
+  implements
+    FormFieldControl<any>,
+    OnInit,
+    DoCheck,
+    OnDestroy,
+    OnChanges,
+    CanUpdateErrorState,
+    ControlValueAccessor {
   /** Optional autocomplete Component */
   @Input('sbbAutocomplete')
   autocomplete: AutocompleteComponent;
@@ -118,7 +153,6 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
   @Output() readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   focused = false;
-  errorState: boolean;
   inputModel = '';
   origin = new AutocompleteOriginDirective(this._elementRef);
   selectionModel: SelectionModel<string>;
@@ -140,9 +174,14 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
 
   constructor(
     @Self() @Optional() public ngControl: NgControl,
-    private _elementRef: ElementRef,
-    private _changeDetectorRef: ChangeDetectorRef
+    private _changeDetectorRef: ChangeDetectorRef,
+    elementRef: ElementRef,
+    defaultErrorStateMatcher: ErrorStateMatcher,
+    @Optional() parentForm: NgForm,
+    @Optional() parentFormGroup: FormGroupDirective
   ) {
+    super(elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
+
     this.selectionModel = new SelectionModel<string>(true);
     if (this.ngControl) {
       // Note: we provide the value accessor through here, instead of
@@ -252,6 +291,15 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
     this._ariaDescribedby = ids.join(' ');
   }
 
+  /**
+   * Forward focus if a user clicks on an associated label.
+   * Implemented as part of FormFieldControl.
+   * @docs-private
+   */
+  onContainerClick(event: Event): void {
+    this.inputElement.nativeElement.focus();
+  }
+
   /** Emits change event to set the model value. */
   private _propagateChanges(): void {
     this._value = this.selectionModel.selected;
@@ -259,5 +307,23 @@ export class ChipInputComponent implements FormFieldControl<any>, OnInit {
     this._onTouchedCallback();
     this.valueChange.emit(new SbbChipInputChange(this, this._value));
     this._changeDetectorRef.markForCheck();
+  }
+
+  ngDoCheck() {
+    if (this.ngControl) {
+      this.updateErrorState();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // Updating the disabled state is handled by `mixinDisabled`, but we need to additionally let
+    // the parent form field know to run change detection when the disabled state changes.
+    if (changes.disabled) {
+      this.stateChanges.next();
+    }
+  }
+
+  ngOnDestroy() {
+    this.stateChanges.complete();
   }
 }

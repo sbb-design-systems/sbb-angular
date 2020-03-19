@@ -44,7 +44,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   dispatchEvent,
   dispatchFakeEvent,
-  dispatchKeyboardEvent
+  dispatchKeyboardEvent,
+  dispatchMouseEvent
 } from '@sbb-esta/angular-core/testing';
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { FieldModule } from '@sbb-esta/angular-public/field';
@@ -60,7 +61,7 @@ import { SelectComponent } from './select.component';
   selector: 'sbb-basic-select',
   template: `
     <div [style.height.px]="heightAbove"></div>
-    <sbb-field>
+    <sbb-field label="Label">
       <sbb-select
         placeholder="Food"
         [formControl]="control"
@@ -1543,13 +1544,11 @@ describe('SelectComponent', () => {
     describe('selection logic', () => {
       let fixture: ComponentFixture<BasicSelectComponent>;
       let trigger: HTMLElement;
-      let formField: HTMLElement;
 
       beforeEach(() => {
         fixture = TestBed.createComponent(BasicSelectComponent);
         fixture.detectChanges();
         trigger = fixture.debugElement.query(By.css('.sbb-select-trigger')).nativeElement;
-        formField = fixture.debugElement.query(By.css('sbb-field')).nativeElement;
       });
 
       it('should select an option when it is clicked', () => {
@@ -3146,5 +3145,32 @@ describe('SelectComponent', () => {
       expect(options.some(option => option.selected)).toBe(false);
       expect(testInstance.control.value).toEqual([]);
     }));
+  });
+
+  describe('sbb-field integration', () => {
+    beforeEach(async(() => configureSbbSelectTestingModule([BasicSelectComponent])));
+
+    let fixture: ComponentFixture<BasicSelectComponent>;
+    let selectComponent: SelectComponent;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(BasicSelectComponent);
+      fixture.detectChanges();
+      selectComponent = fixture.componentInstance.select;
+    });
+
+    it('should forward focus and open panel when clicking sbb-field label', () => {
+      const label = fixture.debugElement.query(By.css('label'));
+
+      spyOn(selectComponent, 'focus');
+      expect(selectComponent.focus).not.toHaveBeenCalled();
+      expect(selectComponent.panelOpen).toBeFalse();
+
+      dispatchMouseEvent(label.nativeElement, 'click');
+      fixture.detectChanges();
+
+      expect(selectComponent.panelOpen).toBeTrue();
+      expect(selectComponent.focus).toHaveBeenCalled();
+    });
   });
 });
