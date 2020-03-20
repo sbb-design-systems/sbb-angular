@@ -54,7 +54,7 @@ export type TooltipPosition = 'left' | 'right' | 'above' | 'below' | 'before' | 
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
- * See `SbbTooltip.touchGestures` for more information.
+ * See `SbbTooltip._touchGestures` for more information.
  */
 export type TooltipTouchGestures = 'auto' | 'on' | 'off';
 
@@ -215,7 +215,7 @@ export class SbbTooltip implements OnDestroy, OnInit {
       }
 
       if (_defaultOptions.touchGestures) {
-        this.touchGestures = _defaultOptions.touchGestures;
+        this._touchGestures = _defaultOptions.touchGestures;
       }
     }
 
@@ -272,7 +272,7 @@ export class SbbTooltip implements OnDestroy, OnInit {
    * - `off` - Disables touch gestures. Note that this will prevent the tooltip from
    *   showing on touch devices.
    */
-  @Input('sbbTooltipTouchGestures') touchGestures: TooltipTouchGestures = 'auto';
+  private readonly _touchGestures: TooltipTouchGestures = 'auto';
   private _message = '';
 
   /** Manually-bound passive event listeners. */
@@ -566,7 +566,7 @@ export class SbbTooltip implements OnDestroy, OnInit {
       this._passiveListeners
         .set('mouseenter', () => this.show())
         .set('mouseleave', () => this.hide());
-    } else if (this.touchGestures !== 'off') {
+    } else if (this._touchGestures !== 'off') {
       this._disableNativeGesturesIfNecessary();
       const touchendListener = () => {
         clearTimeout(this._touchstartTimeout);
@@ -593,7 +593,7 @@ export class SbbTooltip implements OnDestroy, OnInit {
   private _disableNativeGesturesIfNecessary() {
     const element = this._elementRef.nativeElement;
     const style = element.style;
-    const gestures = this.touchGestures;
+    const gestures = this._touchGestures;
 
     if (gestures !== 'off') {
       // If gestures are set to `auto`, we don't disable text selection on inputs and

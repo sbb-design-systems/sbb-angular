@@ -931,21 +931,6 @@ describe('SbbTooltip', () => {
       assertTooltipInstance(fixture.componentInstance.tooltip, true);
     }));
 
-    it('should be able to disable opening on touch', fakeAsync(() => {
-      const fixture = TestBed.createComponent(BasicTooltipDemoComponent);
-      fixture.componentInstance.touchGestures = 'off';
-      fixture.detectChanges();
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-
-      dispatchFakeEvent(button, 'touchstart');
-      fixture.detectChanges();
-      tick(500); // Finish the delay.
-      fixture.detectChanges();
-      tick(500); // Finish the animation.
-
-      assertTooltipInstance(fixture.componentInstance.tooltip, false);
-    }));
-
     it('should not prevent the default action on touchstart', () => {
       const fixture = TestBed.createComponent(BasicTooltipDemoComponent);
       fixture.detectChanges();
@@ -1012,15 +997,6 @@ describe('SbbTooltip', () => {
       expect(styles.touchAction || (styles as any).webkitUserDrag).toBe('none');
     });
 
-    it('should allow native touch interactions if touch gestures are turned off', () => {
-      const fixture = TestBed.createComponent(BasicTooltipDemoComponent);
-      fixture.componentInstance.touchGestures = 'off';
-      fixture.detectChanges();
-
-      const styles = fixture.nativeElement.querySelector('button').style;
-      expect(styles.touchAction || (styles as any).webkitUserDrag).toBeFalsy();
-    });
-
     it('should allow text selection on inputs when gestures are set to auto', () => {
       const fixture = TestBed.createComponent(TooltipOnTextFieldsComponent);
       fixture.detectChanges();
@@ -1039,45 +1015,11 @@ describe('SbbTooltip', () => {
       expect((textareaStyle as any).MozUserSelect).toBeFalsy();
     });
 
-    it('should disable text selection on inputs when gestures are set to on', () => {
-      const fixture = TestBed.createComponent(TooltipOnTextFieldsComponent);
-      fixture.componentInstance.touchGestures = 'on';
-      fixture.detectChanges();
-
-      const inputStyle = fixture.componentInstance.input.nativeElement.style;
-      const inputUserSelect =
-        inputStyle.userSelect ||
-        inputStyle.webkitUserSelect ||
-        inputStyle.msUserSelect ||
-        (inputStyle as any).MozUserSelect;
-      const textareaStyle = fixture.componentInstance.textarea.nativeElement.style;
-      const textareaUserSelect =
-        textareaStyle.userSelect ||
-        textareaStyle.webkitUserSelect ||
-        textareaStyle.msUserSelect ||
-        (textareaStyle as any).MozUserSelect;
-
-      expect(inputUserSelect).toBe('none');
-      expect(textareaUserSelect).toBe('none');
-    });
-
     it('should allow native dragging on draggable elements when gestures are set to auto', () => {
       const fixture = TestBed.createComponent(TooltipOnDraggableElementComponent);
       fixture.detectChanges();
 
       expect(fixture.componentInstance.button.nativeElement.style.webkitUserDrag).toBeFalsy();
-    });
-
-    it('should disable native dragging on draggable elements when gestures are set to on', () => {
-      const fixture = TestBed.createComponent(TooltipOnDraggableElementComponent);
-      fixture.componentInstance.touchGestures = 'on';
-      fixture.detectChanges();
-
-      const styles = fixture.componentInstance.button.nativeElement.style;
-
-      if ('webkitUserDrag' in styles) {
-        expect(styles.webkitUserDrag).toBe('none');
-      }
     });
 
     it('should not open on `mouseenter` on iOS', () => {
@@ -1117,7 +1059,6 @@ describe('SbbTooltip', () => {
       [sbbTooltip]="message"
       [sbbTooltipPosition]="position"
       [sbbTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
-      [sbbTooltipTouchGestures]="touchGestures"
     >
       Button
     </button>
@@ -1128,7 +1069,6 @@ class BasicTooltipDemoComponent {
   message: any = initialTooltipMessage;
   showButton: boolean = true;
   showTooltipClass = false;
-  touchGestures: TooltipTouchGestures = 'auto';
   @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
@@ -1205,34 +1145,23 @@ class DataBoundAriaLabelTooltipComponent {
 
 @Component({
   template: `
-    <input #input sbbTooltip="Something" [sbbTooltipTouchGestures]="touchGestures" />
+    <input #input sbbTooltip="Something" />
 
-    <textarea
-      #textarea
-      sbbTooltip="Another thing"
-      [sbbTooltipTouchGestures]="touchGestures"
-    ></textarea>
+    <textarea #textarea sbbTooltip="Another thing"></textarea>
   `
 })
 class TooltipOnTextFieldsComponent {
   @ViewChild('input') input: ElementRef<HTMLInputElement>;
   @ViewChild('textarea') textarea: ElementRef<HTMLTextAreaElement>;
-  touchGestures: TooltipTouchGestures = 'auto';
 }
 
 @Component({
   template: `
-    <button
-      #button
-      draggable="true"
-      sbbTooltip="Drag me"
-      [sbbTooltipTouchGestures]="touchGestures"
-    ></button>
+    <button #button draggable="true" sbbTooltip="Drag me"></button>
   `
 })
 class TooltipOnDraggableElementComponent {
   @ViewChild('button') button: ElementRef;
-  touchGestures: TooltipTouchGestures = 'auto';
 }
 
 @Component({
