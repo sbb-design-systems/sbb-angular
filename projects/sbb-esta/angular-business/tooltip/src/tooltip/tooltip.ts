@@ -244,9 +244,9 @@ export class SbbTooltip implements OnDestroy, OnInit {
   static ngAcceptInputType_showDelay: NumberInput;
 
   _overlayRef: OverlayRef | null;
-  _tooltipInstance: TooltipWrapperComponent | null;
+  _tooltipInstance: TooltipContainerComponent | null;
 
-  private _portal: ComponentPortal<TooltipWrapperComponent>;
+  private _portal: ComponentPortal<TooltipContainerComponent>;
   private _position: TooltipPosition = 'below';
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
@@ -335,7 +335,7 @@ export class SbbTooltip implements OnDestroy, OnInit {
 
     this._detach();
     this._portal =
-      this._portal || new ComponentPortal(TooltipWrapperComponent, this._viewContainerRef);
+      this._portal || new ComponentPortal(TooltipContainerComponent, this._viewContainerRef);
     this._tooltipInstance = overlayRef.attach(this._portal).instance;
     this._tooltipInstance
       .afterHidden()
@@ -620,14 +620,14 @@ export class SbbTooltip implements OnDestroy, OnInit {
  * @docs-private
  */
 @Component({
-  selector: 'sbb-tooltip-component',
-  templateUrl: 'tooltip.html',
-  styleUrls: ['tooltip.scss'],
+  selector: 'sbb-tooltip-container',
+  templateUrl: './tooltip-container.html',
+  styleUrls: ['./tooltip-container.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbTooltipAnimations.tooltipState]
 })
-export class TooltipWrapperComponent implements OnDestroy {
+export class TooltipContainerComponent implements OnDestroy {
   /**
    * @docs-private
    */

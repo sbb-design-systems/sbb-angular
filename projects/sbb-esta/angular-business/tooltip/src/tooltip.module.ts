@@ -6,11 +6,11 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCrossModule, IconQuestionMarkModule } from '@sbb-esta/angular-icons';
 
-import { SbbTooltip, TooltipWrapperComponent } from './tooltip/tooltip';
+import { SbbTooltip, TooltipContainerComponent } from './tooltip/tooltip';
 import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
-  declarations: [TooltipComponent, SbbTooltip, TooltipWrapperComponent],
+  declarations: [TooltipComponent, SbbTooltip, TooltipContainerComponent],
   imports: [
     CommonModule,
     PortalModule,
@@ -20,7 +20,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     IconDirectiveModule
   ],
   providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
-  exports: [TooltipComponent, IconDirectiveModule, SbbTooltip, TooltipWrapperComponent],
-  entryComponents: [TooltipWrapperComponent]
+  exports: [TooltipComponent, IconDirectiveModule, SbbTooltip, TooltipContainerComponent],
+  entryComponents: [TooltipContainerComponent]
 })
 export class TooltipModule {}
