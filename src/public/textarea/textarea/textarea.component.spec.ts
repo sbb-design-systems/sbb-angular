@@ -1,6 +1,6 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
@@ -9,8 +9,7 @@ import {
   dispatchMouseEvent,
   typeInElement
 } from '@sbb-esta/angular-core/testing';
-import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-public';
-import { configureTestSuite } from 'ng-bullet';
+import { FieldModule } from '@sbb-esta/angular-public/field';
 
 import { TextareaComponent } from './textarea.component';
 
@@ -237,12 +236,12 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   let sbbTextareaComponent: DebugElement;
   let textarea: HTMLTextAreaElement;
 
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule, ReactiveFormsModule, FormsModule, FieldModule],
       declarations: [TextareaSbbFieldTestComponent, TextareaComponent]
-    });
-  });
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TextareaSbbFieldTestComponent);

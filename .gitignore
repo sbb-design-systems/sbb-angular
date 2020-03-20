@@ -51,20 +51,3 @@ Thumbs.db
 # Markdown
 src/showcase/src/assets/docs
 src/showcase/src/assets/examples
-
-# Copied modules
-src/business/accordion
-src/business/autocomplete
-src/business/badge
-src/business/datepicker
-src/business/dropdown
-src/business/field
-src/business/input
-src/business/pagination
-src/business/option
-src/business/radio-button
-src/business/select
-src/business/tabs
-src/business/textarea
-src/business/time-input
-src/business/usermenu

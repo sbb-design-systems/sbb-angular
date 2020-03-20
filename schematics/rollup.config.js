@@ -1,9 +1,9 @@
 import ts from '@wessberg/rollup-plugin-ts';
-import { existsSync, readdirSync } from 'fs';
+import { existsSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
 export default readdirSync(__dirname, { withFileTypes: true })
-  .filter(d => d.isDirectory() && existsSync(join(__dirname, d.name, 'index.ts')))
+  .filter(isBuildable)
   .map(d => ({
     input: join(__dirname, d.name, 'index.ts'),
     output: {
@@ -41,3 +41,12 @@ export default readdirSync(__dirname, { withFileTypes: true })
       })
     ]
   }));
+
+function isBuildable(d) {
+  if (!d.isDirectory()) {
+    return false;
+  }
+  const indexTs = join(__dirname, d.name, 'index.ts');
+  const indexJs = join(__dirname, d.name, 'index.js');
+  return existsSync(indexTs) && (!existsSync(indexJs) || statSync(indexTs).mtimeMs > statSync(indexJs).mtimeMs);
+}

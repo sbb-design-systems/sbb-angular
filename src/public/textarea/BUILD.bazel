@@ -53,9 +53,8 @@ ng_test_library(
     deps = [
         ":textarea",
         "//src/core/testing",
-        "//src/public",
+        "//src/public/field",
         "@npm//@angular/platform-browser",
-        "@npm//ng-bullet",
     ],
 )
 
