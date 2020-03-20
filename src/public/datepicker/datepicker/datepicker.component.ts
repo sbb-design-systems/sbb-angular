@@ -82,7 +82,10 @@ export class DatepickerComponent<D> implements OnDestroy {
   }
   private _startAt: D | null;
 
-  /** The view that the calendar should start in. */
+  /**
+   * The view that the calendar should start in.
+   * @deprecated We only support month view.
+   */
   @Input() startView = 'month';
 
   /** Whether the datepicker pop-up should be disabled. */
@@ -253,7 +256,7 @@ export class DatepickerComponent<D> implements OnDestroy {
     private _ngZone: NgZone,
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy,
+    @Inject(SBB_DATEPICKER_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() private _dateAdapter: DateAdapter<D>,
     @Optional() @Inject(DOCUMENT) private _document: any,
     @Inject(LOCALE_ID) public locale: string
@@ -328,8 +331,8 @@ export class DatepickerComponent<D> implements OnDestroy {
         bufferCount(3, 1),
         filter(
           ([o, s, c]) =>
-            this.slave &&
-            this.datepickerInput.value &&
+            !!this.slave &&
+            !!this.datepickerInput.value &&
             o === 'opened' &&
             s === 'selected' &&
             c === 'closed' &&
@@ -340,12 +343,12 @@ export class DatepickerComponent<D> implements OnDestroy {
               ) > 0)
         ),
         tap(() => {
-          if (this.slave.datepickerInput.value) {
-            this.slave.datepickerInput.value = null;
+          if (this.slave!.datepickerInput.value) {
+            this.slave!.datepickerInput.value = null;
           }
         })
       )
-      .subscribe(() => this.slave.openDatepicker());
+      .subscribe(() => this.slave!.openDatepicker());
   }
 
   /**

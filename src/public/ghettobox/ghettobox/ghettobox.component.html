@@ -7,12 +7,12 @@
     *ngIf="routerLink; else content"
     class="sbb-ghettobox-link"
     [routerLink]="routerLink"
-    [queryParams]="link.queryParams"
-    [fragment]="link.fragment"
-    [preserveFragment]="link.preserveFragment"
-    [skipLocationChange]="link.skipLocationChange"
-    [replaceUrl]="link.replaceUrl"
-    [queryParamsHandling]="link.queryParamsHandling"
+    [queryParams]="link.queryParams || {}"
+    [fragment]="link.fragment || ''"
+    [preserveFragment]="!!link.preserveFragment"
+    [skipLocationChange]="!!link.skipLocationChange"
+    [replaceUrl]="!!link.replaceUrl"
+    [queryParamsHandling]="link.queryParamsHandling || ''"
     [state]="link.state"
   >
     <ng-container *ngTemplateOutlet="content"></ng-container>

@@ -1,4 +1,6 @@
 /*
  * Public API Surface of angular-icons
  */
-export * from './src/index';
+export * from './src/icon-base';
+export * from './src/meta-information';
+export * from './src/root';

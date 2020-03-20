@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { GhettoboxContainerService } from '../ghettobox-container/ghettobox-container.service';
 
@@ -14,7 +15,7 @@ export class GhettoboxService {
   /**
    * Observable you can subscribe to know if sbb-ghettobox-container has been loaded
    */
-  readonly containerReady = this._ghettoboxContainerService.containerReady;
+  readonly containerReady: Subject<void> = this._ghettoboxContainerService.containerReady;
 
   /**
    * Get the List of attached ghettoboxes within a container

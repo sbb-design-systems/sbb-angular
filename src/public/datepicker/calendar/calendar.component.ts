@@ -186,7 +186,10 @@ export class CalendarComponent<D>
   }
   private _startAt: D | null;
 
-  /** Whether the calendar should be started in month or year view. */
+  /**
+   * Whether the calendar should be started in month or year view.
+   * @deprecated We only support month view.
+   */
   @Input() startView: CalendarView = 'month';
 
   /** The currently selected date. */
@@ -316,8 +319,8 @@ export class CalendarComponent<D>
   }
 
   /** Handles date selection in the month view. */
-  dateSelected(date: D): void {
-    if (!this._dateAdapter.sameDate(date, this.selected)) {
+  dateSelected(date: D | null): void {
+    if (date && !this._dateAdapter.sameDate(date, this.selected)) {
       this.selectedChange.emit(date);
     }
   }

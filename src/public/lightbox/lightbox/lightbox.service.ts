@@ -90,8 +90,8 @@ export class Lightbox implements OnDestroy {
     private _overlay: Overlay,
     private _injector: Injector,
     @Optional() private _location: Location,
-    @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions,
-    @Inject(LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy,
+    @Optional() @Inject(LIGHTBOX_DEFAULT_OPTIONS) private _defaultOptions: any,
+    @Inject(LIGHTBOX_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() @SkipSelf() private _parentLightbox: Lightbox
   ) {}
 
@@ -122,19 +122,19 @@ export class Lightbox implements OnDestroy {
     config?: LightboxConfig<D>
   ): LightboxRef<T, R> {
     config = { ...(this._defaultOptions || new LightboxConfig()), ...config };
-    if (config.id && this.getLightboxById(config.id)) {
+    if (config!.id && this.getLightboxById(config!.id)) {
       throw Error(
-        `lightbox with id "${config.id}" exists already. The lightbox id must be unique.`
+        `lightbox with id "${config!.id}" exists already. The lightbox id must be unique.`
       );
     }
 
-    const overlayRef = this._createOverlay(config);
-    const lightboxContainer = this._attachLightboxContainer(overlayRef, config);
+    const overlayRef = this._createOverlay(config!);
+    const lightboxContainer = this._attachLightboxContainer(overlayRef, config!);
     const lightboxRef = this._attachLightboxContent<T, R>(
       componentOrTemplateRef,
       lightboxContainer,
       overlayRef,
-      config
+      config!
     );
 
     this.openLightboxes.push(lightboxRef);
@@ -244,7 +244,7 @@ export class Lightbox implements OnDestroy {
 
     if (componentOrTemplateRef instanceof TemplateRef) {
       lightboxContainer.attachTemplatePortal(
-        new TemplatePortal<T>(componentOrTemplateRef, null, <any>{
+        new TemplatePortal<T>(componentOrTemplateRef, null!, <any>{
           $implicit: config.data,
           lightboxRef
         })

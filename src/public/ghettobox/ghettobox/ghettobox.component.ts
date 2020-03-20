@@ -55,10 +55,10 @@ export class GhettoboxComponent {
   get routerLink() {
     return (
       this._routerLink ||
-      (this.ghettobox && this.ghettobox.link ? this.ghettobox.link.routerLink : undefined)
+      (this.ghettobox && this.ghettobox.link ? this.ghettobox.link.routerLink : '')
     );
   }
-  private _routerLink: any[] | string;
+  private _routerLink: any[] | string = '';
 
   /**
    * Retrive the routerLink from the proper source
@@ -97,7 +97,7 @@ export class GhettoboxComponent {
 
   @HostBinding('class.sbb-ghettobox-outer-wrapper') ghettoboxClass = true;
 
-  @HostBinding('attr.role') role = 'alert';
+  @HostBinding('attr.role') role: string | null = 'alert';
 
   @HostBinding('attr.aria-hidden') ariaHidden: 'false' | 'true';
 
@@ -180,7 +180,7 @@ export class GhettoboxComponent {
   /** @docs-private */
   private _deletedPhase() {
     this.visible = false;
-    this.role = undefined;
+    this.role = null;
     this.ariaHidden = 'true';
     this._changeDetector.markForCheck();
     this.afterDelete.emit({

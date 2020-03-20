@@ -226,7 +226,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     private _viewContainerRef: ViewContainerRef,
     private _zone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) private _document: any,
     private _animationBuilder: AnimationBuilder,
     private _viewportRuler?: ViewportRuler
@@ -318,12 +318,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /** @docs-private */
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
   /** @docs-private */
-  @HostBinding('attr.aria-owns') get ariaOwns(): string {
+  @HostBinding('attr.aria-owns') get ariaOwns(): string | null {
     return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
   }
 
@@ -359,7 +359,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
 
   /** @docs-private */
   @HostBinding('attr.aria-autocomplete')
-  get ariaAutocomplete(): string {
+  get ariaAutocomplete(): string | null {
     return this._autocompleteDisabled ? null : 'list';
   }
 
@@ -569,7 +569,7 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
   }
 
   /** @docs-private */
-  handleInput(event: KeyboardEvent): void {
+  handleInput(event: Event): void {
     const target = event.target as HTMLInputElement;
     let value: number | string | null = target.value;
 
@@ -862,12 +862,12 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
     this._hideSearch = false;
     if (this.autocomplete) {
       this._attachOverlay();
-      this._openAnimation(this._overlayRef.overlayElement);
+      this._openAnimation(this._overlayRef!.overlayElement);
     }
     this._openAnimation(this.searchbox.nativeElement).onDone(() => {
       this.input.nativeElement.focus();
       if (this._overlayRef !== undefined) {
-        this._overlayRef.updatePosition();
+        this._overlayRef!.updatePosition();
       }
     });
   }

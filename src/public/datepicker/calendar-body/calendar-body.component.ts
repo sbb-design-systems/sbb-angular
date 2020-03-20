@@ -22,6 +22,7 @@ export class CalendarCell {
   constructor(
     public value: number,
     public displayValue: string,
+    public ariaLabel: string,
     public enabled: boolean,
     public rangeBackground?: string | null
   ) {}
@@ -75,6 +76,9 @@ export class CalendarBodyComponent {
   /** Emits when a new value is selected. */
   @Output() readonly selectedValueChange: EventEmitter<number> = new EventEmitter<number>();
 
+  /**
+   * @deprecated No longer used.
+   */
   a11yFormat: string;
 
   constructor(

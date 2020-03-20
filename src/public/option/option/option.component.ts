@@ -258,7 +258,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     for (let i = 0; i < childNodes.length; i++) {
       const childNode = childNodes[i];
       // Text nodes are nodeType 3
-      if (childNode.nodeType === 3 && matcher.test(childNode.textContent)) {
+      if (childNode.nodeType === 3 && matcher.test(childNode.textContent || '')) {
         nodes.push(childNode);
       } else if (childNode.childNodes.length) {
         nodes.push(...this._findAllTextNodesWithMatch(matcher, childNode));
@@ -278,8 +278,8 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     const nodes: Node[] = [];
     const doc: Document = this._document;
     matcher.lastIndex = 0;
-    let text = node.textContent;
-    let match: RegExpMatchArray;
+    let text = node.textContent || '';
+    let match: RegExpMatchArray | null;
     do {
       match = text.match(matcher);
       if (!match) {
@@ -296,7 +296,7 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
       text = text.substring(match[0].length);
     } while (match);
 
-    const parent = node.parentNode;
+    const parent = node.parentNode!;
     nodes.forEach(n => parent.insertBefore(n, node));
     parent.removeChild(node);
   }

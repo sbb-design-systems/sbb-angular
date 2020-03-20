@@ -127,7 +127,7 @@ export class MonthViewComponent<D> implements AfterContentInit {
   /** The names of the weekdays. */
   weekdays: { long: string; narrow: string }[];
 
-  dateRange: DateRange<D> = null;
+  dateRange: DateRange<D> | null = null;
 
   constructor(
     @Optional() public dateAdapter: DateAdapter<D>,
@@ -300,14 +300,15 @@ export class MonthViewComponent<D> implements AfterContentInit {
         i + 1
       );
       const enabled = this._shouldEnableDate(date);
+      const ariaLabel = this.dateAdapter.format(date, this._dateFormats.dateA11yLabel);
       const rangeBackground = this._shouldApplyRangeBackground(date);
       this.weeks[this.weeks.length - 1].push(
-        new CalendarCell(i + 1, dateNames[i], enabled, rangeBackground)
+        new CalendarCell(i + 1, dateNames[i], ariaLabel, enabled, rangeBackground)
       );
     }
   }
 
-  private _shouldApplyRangeBackground(date): string | null {
+  private _shouldApplyRangeBackground(date: D): string | null {
     if (
       this.dateRange &&
       this.dateRange.start &&
@@ -326,9 +327,9 @@ export class MonthViewComponent<D> implements AfterContentInit {
   }
 
   private _isRangeLimit(date: D) {
-    if (this.dateAdapter.compareDate(date, this.dateRange.start) === 0) {
+    if (this.dateAdapter.compareDate(date, this.dateRange!.start) === 0) {
       return 'begin';
-    } else if (this.dateAdapter.compareDate(date, this.dateRange.end) === 0) {
+    } else if (this.dateAdapter.compareDate(date, this.dateRange!.end) === 0) {
       return 'end';
     } else {
       return null;

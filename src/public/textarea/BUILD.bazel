@@ -19,6 +19,9 @@ ng_module(
     assets = [":textarea/textarea.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/textarea",
     deps = [
+        "//src/core/common-behaviors",
+        "//src/core/error",
+        "//src/core/forms",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -50,7 +53,9 @@ ng_test_library(
     deps = [
         ":textarea",
         "//src/core/testing",
+        "//src/public",
         "@npm//@angular/platform-browser",
+        "@npm//ng-bullet",
     ],
 )
 

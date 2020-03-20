@@ -105,7 +105,7 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
       this.accept = options.accept;
       this.capture = options.capture;
       this.multiple = options.multiple;
-      this.multipleMode = options.multipleMode;
+      this.multipleMode = options.multipleMode || this.multipleMode;
     }
   }
 
@@ -124,9 +124,19 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
    * Applies changes on the list of files uploaded.
    * @param files Files uploaded.
    */
-  fileChange(files: FileList) {
-    const arrayFiles: File[] = Array.from(files);
-    this.applyChanges(arrayFiles);
+  fileChange(files: FileList | Event) {
+    if (!files) {
+      return;
+    }
+    if (files instanceof FileList) {
+      this.applyChanges(Array.from(files));
+      return;
+    }
+
+    const target: HTMLInputElement | null = files.target as any;
+    if (target && target.files) {
+      this.applyChanges(Array.from(target.files));
+    }
   }
 
   /**

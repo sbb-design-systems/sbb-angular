@@ -268,10 +268,10 @@ export class SelectComponent extends SbbSelectMixinBase
     // `aria-labelledby` value by setting the ariaLabel to the placeholder.
     return this._ariaLabelledby ? null : this._ariaLabel || this.placeholder;
   }
-  set ariaLabel(value: string) {
+  set ariaLabel(value: string | null) {
     this._ariaLabel = value;
   }
-  private _ariaLabel: string;
+  private _ariaLabel: string | null = null;
 
   /** Returns the aria-labelledby of the select component. */
   @Input('attr.aria-labelledby')
@@ -289,10 +289,10 @@ export class SelectComponent extends SbbSelectMixinBase
 
     return null;
   }
-  set ariaLabelledby(value: string) {
+  set ariaLabelledby(value: string | null) {
     this._ariaLabelledby = value;
   }
-  private _ariaLabelledby: string;
+  private _ariaLabelledby: string | null = null;
 
   /** Value of the select control. */
   @Input()
@@ -546,7 +546,7 @@ export class SelectComponent extends SbbSelectMixinBase
     public _elementRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
     private _ngZone: NgZone,
-    @Inject(SBB_SELECT_SCROLL_STRATEGY) private _scrollStrategyFactory,
+    @Inject(SBB_SELECT_SCROLL_STRATEGY) private _scrollStrategyFactory: any,
     defaultErrorStateMatcher: ErrorStateMatcher,
     @Optional() parentForm: NgForm,
     @Optional() parentFormGroup: FormGroupDirective,
@@ -639,7 +639,7 @@ export class SelectComponent extends SbbSelectMixinBase
     // Note: The computed font-size will be a string pixel value (e.g. "16px").
     // `parseInt` ignores the trailing 'px' and converts this to a number.
     // tslint:disable-next-line:radix
-    this.triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement)['font-size']);
+    this.triggerFontSize = parseInt(getComputedStyle(this.trigger.nativeElement).fontSize || '0');
     this.rotateIcon = true;
     this._panelOpen = true;
     this.keyManager.withHorizontalOrientation(null);

@@ -25,7 +25,9 @@ ng_module(
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-public",
-    deps = ["//src/public/%s" % p for p in PUBLIC_ENTRYPOINTS],
+    deps = ["//src/public/%s" % p for p in PUBLIC_ENTRYPOINTS] + [
+        "//src/core",
+    ],
 )
 
 sass_binary(

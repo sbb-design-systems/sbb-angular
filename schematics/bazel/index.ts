@@ -88,6 +88,9 @@ export function bazel(): Rule {
       const { dependencies, testDependencies, hasTests } = hasSrcFiles
         ? resolveModuleTsInfo(dir.dir(fragment('src')))
         : { dependencies: [], testDependencies: [], hasTests: false };
+      if (dir.path.includes('src/public')) {
+        dependencies.push('//src/core');
+      }
       return mergeWith(
         apply(url('./files/ngPackage'), [
           template({

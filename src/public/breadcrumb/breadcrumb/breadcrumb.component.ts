@@ -106,7 +106,7 @@ export class BreadcrumbComponent extends DropdownTriggerDirective implements Aft
     protected _viewContainerRef: ViewContainerRef,
     protected _zone: NgZone,
     protected _changeDetectorRef: ChangeDetectorRef,
-    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy,
+    @Inject(DROPDOWN_SCROLL_STRATEGY) protected _scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) protected _document: any,
     protected _viewportRuler?: ViewportRuler
   ) {

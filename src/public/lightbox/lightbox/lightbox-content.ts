@@ -52,7 +52,7 @@ export class LightboxCloseDirective implements OnInit {
       // views cannot be given a custom injector. Instead, we look up the lightboxRef by
       // ID. This must occur in `onInit`, as the ID binding for the lightbox container won't
       // be resolved at constructor time.
-      this.lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
+      this.lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes)!;
     }
   }
 
@@ -100,7 +100,7 @@ export class LightboxHeaderComponent implements OnInit {
 
   ngOnInit() {
     if (!this._lightboxRef) {
-      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes)!;
     }
 
     if (this._lightboxRef) {
@@ -109,7 +109,7 @@ export class LightboxHeaderComponent implements OnInit {
 
         if (container) {
           container.hasHeader = true;
-          this.isCloseDisabled = container.config.disableClose;
+          this.isCloseDisabled = !!container.config.disableClose;
           this._changeDetectorRef.markForCheck();
         }
       });
@@ -118,7 +118,7 @@ export class LightboxHeaderComponent implements OnInit {
 
   emitManualCloseAction() {
     if (this._lightboxRef) {
-      this._lightboxRef.manualCloseAction.next(null);
+      this._lightboxRef.manualCloseAction.next();
     }
   }
 }
@@ -143,7 +143,7 @@ export class LightboxTitleDirective implements OnInit {
 
   ngOnInit() {
     if (!this._lightboxRef) {
-      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes)!;
     }
 
     if (this._lightboxRef) {
@@ -212,7 +212,7 @@ export class LightboxFooterComponent implements OnInit {
 
   ngOnInit() {
     if (!this._lightboxRef) {
-      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes);
+      this._lightboxRef = getClosestLightbox(this._elementRef, this._lightbox.openLightboxes)!;
     }
 
     if (this._lightboxRef) {
@@ -239,5 +239,5 @@ function getClosestLightbox(element: ElementRef<HTMLElement>, openLightboxes: Li
     parent = parent.parentElement;
   }
 
-  return parent ? openLightboxes.find(lightbox => lightbox.id === parent.id) : null;
+  return parent ? openLightboxes.find(lightbox => lightbox.id === parent!.id) : null;
 }

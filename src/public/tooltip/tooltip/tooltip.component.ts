@@ -26,7 +26,7 @@ export class TooltipComponent extends TooltipBase {
   constructor(
     overlay: Overlay,
     tooltipRegistry: TooltipRegistryService,
-    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy,
+    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Inject(DOCUMENT) document: any,
     zone: NgZone,
     changeDetectorRef: ChangeDetectorRef

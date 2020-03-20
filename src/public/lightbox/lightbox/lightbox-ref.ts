@@ -14,7 +14,7 @@ let uniqueId = 0;
  */
 export class LightboxRef<T, R = any> {
   /** The instance of component opened into the lightbox. */
-  componentInstance: T;
+  componentInstance: T | null;
 
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined = this.containerInstance.config.disableClose;
@@ -83,8 +83,8 @@ export class LightboxRef<T, R = any> {
 
     _overlayRef
       .keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE && this.disableClose))
-      .subscribe(() => this.manualCloseAction.next(null));
+      .pipe(filter(event => event.keyCode === ESCAPE && !!this.disableClose))
+      .subscribe(() => this.manualCloseAction.next());
 
     if (location) {
       // Close the lightbox when the user goes forwards/backwards in history or when the location

@@ -165,11 +165,11 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     );
   });
 
-  @HostBinding('attr.aria-expanded') get ariaExpanded(): string {
+  @HostBinding('attr.aria-expanded') get ariaExpanded(): string | null {
     return this.autocompleteDisabled ? null : this.panelOpen.toString();
   }
 
-  @HostBinding('attr.aria-owns') get ariaOwns(): string {
+  @HostBinding('attr.aria-owns') get ariaOwns(): string | null {
     return this.autocompleteDisabled || !this.panelOpen ? null : this.autocomplete.id;
   }
 
@@ -205,7 +205,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
   }
 
   @HostBinding('attr.aria-autocomplete')
-  get ariaAutocomplete(): string {
+  get ariaAutocomplete(): string | null {
     return this._autocompleteDisabled ? null : 'list';
   }
 
@@ -215,7 +215,7 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     private _viewContainerRef: ViewContainerRef,
     private _zone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy,
+    @Inject(SBB_AUTOCOMPLETE_SCROLL_STRATEGY) private _scrollStrategy: any,
     private _viewportRuler: ViewportRuler,
     @Optional() @Inject(DOCUMENT) document: any
   ) {
@@ -324,12 +324,10 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     ).pipe(
       filter(event => {
         const clickTarget = event.target as HTMLElement;
-        const formField = null;
 
         return (
           this._overlayAttached &&
           clickTarget !== this._elementRef.nativeElement &&
-          (!formField || !formField.contains(clickTarget)) &&
           !!this._overlayRef &&
           !this._overlayRef.overlayElement.contains(clickTarget)
         );

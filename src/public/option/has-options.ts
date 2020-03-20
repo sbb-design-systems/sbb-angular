@@ -34,7 +34,7 @@ export class MediaQueryResizableComponent {
       } else {
         return mediaQuery.min <= windowWidth;
       }
-    }).em;
+    })!.em;
     if (!em) {
       return 1;
     }

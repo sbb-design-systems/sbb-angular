@@ -18,7 +18,7 @@ export class GhettoboxContainerService {
    */
   readonly containerReady = new Subject<void>();
 
-  private _containerInstance: GhettoboxContainerComponent;
+  private _containerInstance: GhettoboxContainerComponent | null;
   private _attachedGhettoboxes: GhettoboxRef[] = [];
 
   /**
@@ -54,21 +54,25 @@ export class GhettoboxContainerService {
    * Used by the container to clear its reference in GhettoboxService on container destroy
    */
   clearContainer() {
-    this._containerInstance = undefined;
+    this._containerInstance = null;
   }
 
   /**
    * Creates a new ComponentPortal of GhettoboxComponent and attach it to the cdkPortalOutlet
    */
   createGhettobox(ghettobox: Ghettobox): GhettoboxRef {
-    return this._containerInstance.createGhettobox(ghettobox);
+    this.checkIfContainerIsPresent();
+    return this._containerInstance!.createGhettobox(ghettobox);
   }
 
   /**
    * Deletes a Ghettobox by ID
    */
   deleteById(ghettoboxId: string) {
-    this._delete(this._getGhettoboxById(ghettoboxId));
+    const ghettobox = this._getGhettoboxById(ghettoboxId);
+    if (ghettobox) {
+      this._delete(ghettobox);
+    }
   }
 
   /**
@@ -93,7 +97,7 @@ export class GhettoboxContainerService {
 
   /** @docs-private */
   deleteFromAttachedGhettoboxesCollection(ghettoboxId: string): void {
-    const index = this._attachedGhettoboxes.indexOf(this._getGhettoboxById(ghettoboxId));
+    const index = this._attachedGhettoboxes.findIndex(g => g.id === ghettoboxId);
     if (index !== -1) {
       this._attachedGhettoboxes.splice(index, 1);
     }
@@ -109,7 +113,7 @@ export class GhettoboxContainerService {
   }
 
   /** @docs-private */
-  private _getGhettoboxById(ghettoboxId: string): GhettoboxRef {
+  private _getGhettoboxById(ghettoboxId: string): GhettoboxRef | undefined {
     return this._attachedGhettoboxes.find(g => g.id === ghettoboxId);
   }
 

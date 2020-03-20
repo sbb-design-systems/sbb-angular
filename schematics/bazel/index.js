@@ -58,6 +58,9 @@ function bazel() {
             const { dependencies, testDependencies, hasTests } = hasSrcFiles
                 ? resolveModuleTsInfo(dir.dir(core.fragment('src')))
                 : { dependencies: [], testDependencies: [], hasTests: false };
+            if (dir.path.includes('src/public')) {
+                dependencies.push('//src/core');
+            }
             return schematics.mergeWith(schematics.apply(schematics.url('./files/ngPackage'), [
                 schematics.template({
                     ...core.strings,

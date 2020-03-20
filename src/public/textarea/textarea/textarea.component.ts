@@ -21,9 +21,9 @@ import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@an
 import {
   CanUpdateErrorState,
   CanUpdateErrorStateCtor,
-  ErrorStateMatcher,
   mixinErrorState
-} from '@sbb-esta/angular-core';
+} from '@sbb-esta/angular-core/common-behaviors';
+import { ErrorStateMatcher } from '@sbb-esta/angular-core/error';
 import { FormFieldControl } from '@sbb-esta/angular-core/forms';
 import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
 import { auditTime, first, takeUntil } from 'rxjs/operators';

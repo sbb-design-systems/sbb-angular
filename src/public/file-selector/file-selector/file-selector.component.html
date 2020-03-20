@@ -9,7 +9,7 @@
       [attr.capture]="capture"
       [attr.multiple]="multiple"
       [disabled]="disabled"
-      (change)="fileChange($event.target.files)"
+      (change)="fileChange($event)"
       (blur)="onTouched()"
     />
     <span class="sbb-file-selector-button" [class.sbb-file-selector-disabled]="disabled">

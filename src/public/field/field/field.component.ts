@@ -84,7 +84,7 @@ export class FieldComponent implements AfterContentInit, OnDestroy {
     const control = this._control;
 
     // Subscribe to changes in the child control state in order to update the form field UI.
-    control.stateChanges.pipe(startWith<void>(null)).subscribe(() => {
+    control.stateChanges.pipe(startWith<void>(null as any)).subscribe(() => {
       this._syncDescribedByIds();
       this._changeDetectorRef.markForCheck();
     });

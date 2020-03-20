@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   DATE_PIPE_DATE_FORMATS,
@@ -64,7 +64,7 @@ class CalendarBodyWithDisabledCellsComponent {
 }
 
 function createCell(value: number) {
-  return new CalendarCell(value, `${value}`, true);
+  return new CalendarCell(value, `${value}`, `${value}`, true);
 }
 
 describe('SbbCalendarBody', () => {

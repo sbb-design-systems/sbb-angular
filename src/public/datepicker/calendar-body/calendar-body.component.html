@@ -26,7 +26,7 @@
     [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
     [class.sbb-calendar-body-selected]="selectedValue === item.value"
     [class.sbb-calendar-body-today]="todayValue === item.value"
-    [attr.aria-label]="item.date | date: a11yFormat"
+    [attr.aria-label]="item.ariaLabel"
     [attr.aria-disabled]="!item.enabled || null"
     [attr.aria-selected]="selectedValue === item.value"
     (click)="cellClicked(item)"
