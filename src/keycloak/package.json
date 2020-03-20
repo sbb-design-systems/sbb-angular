@@ -1,9 +1,14 @@
 {
   "name": "@sbb-esta/angular-keycloak",
   "version": "0.0.0-PLACEHOLDER",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "./bundles/keycloak.umd.js",
+  "fesm5": "./fesm5/keycloak.js",
+  "fesm2015": "./fesm2015/keycloak.js",
+  "esm5": "./esm5/index.js",
+  "esm2015": "./esm2015/index.js",
+  "typings": "./index.d.ts",
+  "module": "./fesm5/keycloak.js",
+  "es2015": "./fesm2015/keycloak.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
@@ -14,8 +19,8 @@
   },
   "homepage": "https://angular.app.sbb.ch/latest",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
+    "@angular/common": "0.0.0-NG",
+    "@angular/core": "0.0.0-NG",
     "keycloak-js": "^4.8.3"
   },
   "ng-update": {
@@ -28,5 +33,9 @@
       "@sbb-esta/angular-public"
     ],
     "packageGroupName": "@sbb-esta/angular-core"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,9 +1,14 @@
 {
   "name": "@sbb-esta/angular-core",
   "version": "0.0.0-PLACEHOLDER",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "./bundles/core.umd.js",
+  "fesm5": "./fesm5/core.js",
+  "fesm2015": "./fesm2015/core.js",
+  "esm5": "./esm5/index.js",
+  "esm2015": "./esm2015/index.js",
+  "typings": "./index.d.ts",
+  "module": "./fesm5/core.js",
+  "es2015": "./fesm2015/core.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
@@ -14,9 +19,9 @@
   },
   "homepage": "https://angular.app.sbb.ch/latest",
   "peerDependencies": {
-    "@angular/cdk": "^9.0.0",
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/cdk": "0.0.0-NG",
+    "@angular/common": "0.0.0-NG",
+    "@angular/core": "0.0.0-NG"
   },
   "ng-update": {
     "packageGroup": [

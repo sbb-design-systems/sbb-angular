@@ -1,9 +1,14 @@
 {
   "name": "@sbb-esta/angular-public",
   "version": "0.0.0-PLACEHOLDER",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "./bundles/public.umd.js",
+  "fesm5": "./fesm5/public.js",
+  "fesm2015": "./fesm2015/public.js",
+  "esm5": "./esm5/index.js",
+  "esm2015": "./esm2015/index.js",
+  "typings": "./index.d.ts",
+  "module": "./fesm5/public.js",
+  "es2015": "./fesm2015/public.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sbb-design-systems/sbb-angular.git"
@@ -14,11 +19,11 @@
   },
   "homepage": "https://angular.app.sbb.ch/latest",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@angular/cdk": "^9.0.0",
-    "@angular/forms": "^9.0.0",
-    "@angular/router": "^9.0.0",
+    "@angular/cdk": "0.0.0-NG",
+    "@angular/common": "0.0.0-NG",
+    "@angular/core": "0.0.0-NG",
+    "@angular/forms": "0.0.0-NG",
+    "@angular/router": "0.0.0-NG",
     "@sbb-esta/angular-core": "0.0.0-PLACEHOLDER",
     "@sbb-esta/angular-icons": "0.0.0-PLACEHOLDER"
   },
@@ -37,5 +42,9 @@
     ],
     "packageGroupName": "@sbb-esta/angular-core",
     "migrations": "./schematics/migration.json"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
