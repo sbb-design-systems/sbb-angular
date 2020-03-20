@@ -1,30 +1,30 @@
-$mat-tooltip-horizontal-padding: 8px;
-$mat-tooltip-max-width: 250px;
-$mat-tooltip-margin: 14px;
+$sbb-tooltip-horizontal-padding: 8px;
+$sbb-tooltip-max-width: 250px;
+$sbb-tooltip-margin: 14px;
 
-$mat-tooltip-handset-horizontal-padding: 16px;
-$mat-tooltip-handset-margin: 24px;
+$sbb-tooltip-handset-horizontal-padding: 16px;
+$sbb-tooltip-handset-margin: 24px;
 
-.mat-tooltip-panel {
+.sbb-tooltip-panel {
   // The overlay reference updates the pointer-events style property directly on the HTMLElement
   // depending on the state of the overlay. For tooltips the overlay panel should never enable
   // pointer events. To overwrite the inline CSS from the overlay reference `!important` is needed.
   pointer-events: none !important;
 }
 
-.mat-tooltip {
+.sbb-tooltip {
   color: white;
   border-radius: 4px;
-  margin: $mat-tooltip-margin;
-  max-width: $mat-tooltip-max-width;
-  padding-left: $mat-tooltip-horizontal-padding;
-  padding-right: $mat-tooltip-horizontal-padding;
+  margin: $sbb-tooltip-margin;
+  max-width: $sbb-tooltip-max-width;
+  padding-left: $sbb-tooltip-horizontal-padding;
+  padding-right: $sbb-tooltip-horizontal-padding;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.mat-tooltip-handset {
-  margin: $mat-tooltip-handset-margin;
-  padding-left: $mat-tooltip-handset-horizontal-padding;
-  padding-right: $mat-tooltip-handset-horizontal-padding;
+.sbb-tooltip-handset {
+  margin: $sbb-tooltip-handset-margin;
+  padding-left: $sbb-tooltip-handset-horizontal-padding;
+  padding-right: $sbb-tooltip-handset-horizontal-padding;
 }

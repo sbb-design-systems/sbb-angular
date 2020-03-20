@@ -16,11 +16,11 @@ import {
 } from '@angular/animations';
 
 /**
- * Animations used by MatTooltip.
+ * Animations used by SbbTooltip.
  * @docs-private
  */
 // tslint:disable-next-line:naming-convention
-export const matTooltipAnimations: {
+export const sbbTooltipAnimations: {
   readonly tooltipState: AnimationTriggerMetadata;
 } = {
   /** Animation that transitions a tooltip in and out. */

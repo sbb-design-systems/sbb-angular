@@ -36,9 +36,8 @@ import {
 import { TooltipModule } from '../tooltip.module';
 
 import {
-  MAT_TOOLTIP_DEFAULT_OPTIONS,
-  MatTooltip,
-  SCROLL_THROTTLE_MS,
+  SBB_TOOLTIP_DEFAULT_OPTIONS,
+  SbbTooltip,
   TOOLTIP_PANEL_CLASS,
   TooltipTouchGestures
 } from './tooltip';
@@ -47,7 +46,7 @@ import {
 
 const initialTooltipMessage = 'initial tooltip message';
 
-describe('MatTooltip', () => {
+describe('SbbTooltip', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   let dir: { value: Direction };
@@ -100,14 +99,14 @@ describe('MatTooltip', () => {
     let fixture: ComponentFixture<BasicTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
     let buttonElement: HTMLButtonElement;
-    let tooltipDirective: MatTooltip;
+    let tooltipDirective: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BasicTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
       buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
-      tooltipDirective = buttonDebugElement.injector.get<MatTooltip>(MatTooltip);
+      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should show and hide the tooltip', fakeAsync(() => {
@@ -123,7 +122,7 @@ describe('MatTooltip', () => {
       tick(500);
 
       // Make sure tooltip is shown to the user and animation has finished
-      const tooltipElement = overlayContainerElement.querySelector('.mat-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
       expect(tooltipElement.style.transform).toBe('scale(1)');
 
@@ -185,7 +184,7 @@ describe('MatTooltip', () => {
           declarations: [BasicTooltipDemoComponent],
           providers: [
             {
-              provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
+              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
               useValue: { showDelay: 1337, hideDelay: 7331 }
             }
           ]
@@ -196,7 +195,7 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
       tooltipDirective = fixture.debugElement
         .query(By.css('button'))!
-        .injector.get<MatTooltip>(MatTooltip);
+        .injector.get<SbbTooltip>(SbbTooltip);
 
       tooltipDirective.show();
       fixture.detectChanges();
@@ -222,7 +221,7 @@ describe('MatTooltip', () => {
           declarations: [TooltipDemoWithoutPositionBindingComponent],
           providers: [
             {
-              provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
+              provide: SBB_TOOLTIP_DEFAULT_OPTIONS,
               useValue: { position: 'right' }
             }
           ]
@@ -233,7 +232,7 @@ describe('MatTooltip', () => {
       newFixture.detectChanges();
       tooltipDirective = newFixture.debugElement
         .query(By.css('button'))!
-        .injector.get<MatTooltip>(MatTooltip);
+        .injector.get<SbbTooltip>(SbbTooltip);
 
       tooltipDirective.show();
       newFixture.detectChanges();
@@ -426,14 +425,14 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
 
       // Make sure classes aren't prematurely added
-      let tooltipElement = overlayContainerElement.querySelector('.mat-tooltip') as HTMLElement;
+      let tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
       expect(tooltipElement.classList).not.toContain(
         'custom-one',
-        'Expected to not have the class before enabling matTooltipClass'
+        'Expected to not have the class before enabling sbbTooltipClass'
       );
       expect(tooltipElement.classList).not.toContain(
         'custom-two',
-        'Expected to not have the class before enabling matTooltipClass'
+        'Expected to not have the class before enabling sbbTooltipClass'
       );
 
       // Enable the classes via ngClass syntax
@@ -441,14 +440,14 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
 
       // Make sure classes are correctly added
-      tooltipElement = overlayContainerElement.querySelector('.mat-tooltip') as HTMLElement;
+      tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
       expect(tooltipElement.classList).toContain(
         'custom-one',
-        'Expected to have the class after enabling matTooltipClass'
+        'Expected to have the class after enabling sbbTooltipClass'
       );
       expect(tooltipElement.classList).toContain(
         'custom-two',
-        'Expected to have the class after enabling matTooltipClass'
+        'Expected to have the class after enabling sbbTooltipClass'
       );
     }));
 
@@ -711,7 +710,7 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlayContainerElement.querySelector('.mat-tooltip')).toBeNull();
+      expect(overlayContainerElement.querySelector('.sbb-tooltip')).toBeNull();
     }));
 
     it('should not show the tooltip on mouse focus', fakeAsync(() => {
@@ -723,7 +722,7 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlayContainerElement.querySelector('.mat-tooltip')).toBeNull();
+      expect(overlayContainerElement.querySelector('.sbb-tooltip')).toBeNull();
     }));
 
     it('should not show the tooltip on touch focus', fakeAsync(() => {
@@ -735,7 +734,7 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlayContainerElement.querySelector('.mat-tooltip')).toBeNull();
+      expect(overlayContainerElement.querySelector('.sbb-tooltip')).toBeNull();
     }));
 
     it('should not hide the tooltip when calling `show` twice in a row', fakeAsync(() => {
@@ -761,12 +760,12 @@ describe('MatTooltip', () => {
 
   describe('fallback positions', () => {
     let fixture: ComponentFixture<BasicTooltipDemoComponent>;
-    let tooltip: MatTooltip;
+    let tooltip: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BasicTooltipDemoComponent);
       fixture.detectChanges();
-      tooltip = fixture.debugElement.query(By.css('button'))!.injector.get<MatTooltip>(MatTooltip);
+      tooltip = fixture.debugElement.query(By.css('button'))!.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should set a fallback origin position by inverting the main origin position', () => {
@@ -809,13 +808,13 @@ describe('MatTooltip', () => {
   describe('scrollable usage', () => {
     let fixture: ComponentFixture<ScrollableTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
-    let tooltipDirective: MatTooltip;
+    let tooltipDirective: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(ScrollableTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
-      tooltipDirective = buttonDebugElement.injector.get<MatTooltip>(MatTooltip);
+      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should hide tooltip if clipped after changing positions', fakeAsync(() => {
@@ -830,23 +829,6 @@ describe('MatTooltip', () => {
       expect(tooltipDirective._isTooltipVisible()).toBe(
         true,
         'Expected tooltip to be initially visible'
-      );
-
-      // Scroll the page but tick just before the default throttle should update.
-      fixture.componentInstance.scrollDown();
-      tick(SCROLL_THROTTLE_MS - 1);
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        true,
-        'Expected tooltip to be visible when scrolling, before throttle limit'
-      );
-
-      // Finish ticking to the throttle's limit and check that the scroll event notified the
-      // tooltip and it was hidden.
-      tick(100);
-      fixture.detectChanges();
-      expect(tooltipDirective._isTooltipVisible()).toBe(
-        false,
-        'Expected tooltip hidden when scrolled out of view, after throttle limit'
       );
     }));
 
@@ -874,14 +856,14 @@ describe('MatTooltip', () => {
     let fixture: ComponentFixture<OnPushTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
     let buttonElement: HTMLButtonElement;
-    let tooltipDirective: MatTooltip;
+    let tooltipDirective: SbbTooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(OnPushTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
       buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
-      tooltipDirective = buttonDebugElement.injector.get<MatTooltip>(MatTooltip);
+      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
     });
 
     it('should show and hide the tooltip', fakeAsync(() => {
@@ -897,7 +879,7 @@ describe('MatTooltip', () => {
       tick(500);
 
       // Make sure tooltip is shown to the user and animation has finished
-      const tooltipElement = overlayContainerElement.querySelector('.mat-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
       expect(tooltipElement.style.transform).toBe('scale(1)');
 
@@ -921,7 +903,7 @@ describe('MatTooltip', () => {
       fixture.detectChanges();
       tick(0);
 
-      const tooltipElement = overlayContainerElement.querySelector('.mat-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
       expect(tooltipElement.textContent).toContain('initial tooltip message');
     }));
   });
@@ -1132,10 +1114,10 @@ describe('MatTooltip', () => {
     <button
       #button
       *ngIf="showButton"
-      [matTooltip]="message"
-      [matTooltipPosition]="position"
-      [matTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
-      [matTooltipTouchGestures]="touchGestures"
+      [sbbTooltip]="message"
+      [sbbTooltipPosition]="position"
+      [sbbTooltipClass]="{ 'custom-one': showTooltipClass, 'custom-two': showTooltipClass }"
+      [sbbTooltipTouchGestures]="touchGestures"
     >
       Button
     </button>
@@ -1147,7 +1129,7 @@ class BasicTooltipDemoComponent {
   showButton: boolean = true;
   showTooltipClass = false;
   touchGestures: TooltipTouchGestures = 'auto';
-  @ViewChild(MatTooltip) tooltip: MatTooltip;
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
@@ -1162,8 +1144,8 @@ class BasicTooltipDemoComponent {
       <button
         *ngIf="showButton"
         style="margin-bottom: 600px"
-        [matTooltip]="message"
-        [matTooltipPosition]="position"
+        [sbbTooltip]="message"
+        [sbbTooltipPosition]="position"
       >
         Button
       </button>
@@ -1191,7 +1173,7 @@ class ScrollableTooltipDemoComponent {
 @Component({
   selector: 'sbb-app',
   template: `
-    <button [matTooltip]="message" [matTooltipPosition]="position">
+    <button [sbbTooltip]="message" [sbbTooltipPosition]="position">
       Button
     </button>
   `,
@@ -1205,7 +1187,7 @@ class OnPushTooltipDemoComponent {
 @Component({
   selector: 'sbb-app',
   template: `
-    <button *ngFor="let tooltip of tooltips" [matTooltip]="tooltip">Button {{ tooltip }}</button>
+    <button *ngFor="let tooltip of tooltips" [sbbTooltip]="tooltip">Button {{ tooltip }}</button>
   `
 })
 class DynamicTooltipsDemoComponent {
@@ -1214,7 +1196,7 @@ class DynamicTooltipsDemoComponent {
 
 @Component({
   template: `
-    <button [matTooltip]="message" [attr.aria-label]="message">Click me</button>
+    <button [sbbTooltip]="message" [attr.aria-label]="message">Click me</button>
   `
 })
 class DataBoundAriaLabelTooltipComponent {
@@ -1223,12 +1205,12 @@ class DataBoundAriaLabelTooltipComponent {
 
 @Component({
   template: `
-    <input #input matTooltip="Something" [matTooltipTouchGestures]="touchGestures" />
+    <input #input sbbTooltip="Something" [sbbTooltipTouchGestures]="touchGestures" />
 
     <textarea
       #textarea
-      matTooltip="Another thing"
-      [matTooltipTouchGestures]="touchGestures"
+      sbbTooltip="Another thing"
+      [sbbTooltipTouchGestures]="touchGestures"
     ></textarea>
   `
 })
@@ -1243,8 +1225,8 @@ class TooltipOnTextFieldsComponent {
     <button
       #button
       draggable="true"
-      matTooltip="Drag me"
-      [matTooltipTouchGestures]="touchGestures"
+      sbbTooltip="Drag me"
+      [sbbTooltipTouchGestures]="touchGestures"
     ></button>
   `
 })
@@ -1256,17 +1238,17 @@ class TooltipOnDraggableElementComponent {
 @Component({
   selector: 'sbb-app',
   template: `
-    <button #button [matTooltip]="message">Button</button>
+    <button #button [sbbTooltip]="message">Button</button>
   `
 })
 class TooltipDemoWithoutPositionBindingComponent {
   message: any = initialTooltipMessage;
-  @ViewChild(MatTooltip) tooltip: MatTooltip;
+  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */
-function assertTooltipInstance(tooltip: MatTooltip, shouldExist: boolean): void {
+function assertTooltipInstance(tooltip: SbbTooltip, shouldExist: boolean): void {
   // Note that we have to cast this to a boolean, because Jasmine will go into an infinite loop
   // if it tries to stringify the `_tooltipInstance` when an assertion fails. The infinite loop
   // happens due to the `_tooltipInstance` having a circular structure.

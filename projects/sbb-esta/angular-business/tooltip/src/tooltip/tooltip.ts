@@ -43,28 +43,26 @@ import {
   ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core';
+import { SBB_TOOLTIP_SCROLL_STRATEGY } from '@sbb-esta/angular-core/base';
 import { Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
-import { matTooltipAnimations } from './tooltip-animations';
+import { sbbTooltipAnimations } from './tooltip-animations';
 
 /** Possible positions for a tooltip. */
 export type TooltipPosition = 'left' | 'right' | 'above' | 'below' | 'before' | 'after';
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
- * See `MatTooltip.touchGestures` for more information.
+ * See `SbbTooltip.touchGestures` for more information.
  */
 export type TooltipTouchGestures = 'auto' | 'on' | 'off';
 
 /** Possible visibility states of a tooltip. */
 export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
 
-/** Time in ms to throttle repositioning after scroll events. */
-export const SCROLL_THROTTLE_MS = 20;
-
 /** CSS class that will be attached to the overlay panel. */
-export const TOOLTIP_PANEL_CLASS = 'mat-tooltip-panel';
+export const TOOLTIP_PANEL_CLASS = 'sbb-tooltip-panel';
 
 /** Options used to bind passive event listeners. */
 const passiveListenerOptions = normalizePassiveListenerOptions({ passive: true });
@@ -79,30 +77,12 @@ const LONGPRESS_DELAY = 500;
  * Creates an error to be thrown if the user supplied an invalid tooltip position.
  * @docs-private
  */
-export function getMatTooltipInvalidPositionError(position: string) {
+export function getSbbTooltipInvalidPositionError(position: string) {
   return Error(`Tooltip position "${position}" is invalid.`);
 }
 
-/** Injection token that determines the scroll handling while a tooltip is visible. */
-export const MAT_TOOLTIP_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>(
-  'mat-tooltip-scroll-strategy'
-);
-
-/** @docs-private */
-// tslint:disable-next-line:naming-convention
-export function MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.reposition({ scrollThrottle: SCROLL_THROTTLE_MS });
-}
-
-/** @docs-private */
-export const MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER = {
-  provide: MAT_TOOLTIP_SCROLL_STRATEGY,
-  deps: [Overlay],
-  useFactory: MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY
-};
-
-/** Default `matTooltip` options that can be overridden. */
-export interface MatTooltipDefaultOptions {
+/** Default `sbbTooltip` options that can be overridden. */
+export interface SbbTooltipDefaultOptions {
   showDelay: number;
   hideDelay: number;
   touchendHideDelay: number;
@@ -110,18 +90,18 @@ export interface MatTooltipDefaultOptions {
   position?: TooltipPosition;
 }
 
-/** Injection token to be used to override the default options for `matTooltip`. */
-export const MAT_TOOLTIP_DEFAULT_OPTIONS = new InjectionToken<MatTooltipDefaultOptions>(
-  'mat-tooltip-default-options',
+/** Injection token to be used to override the default options for `sbbTooltip`. */
+export const SBB_TOOLTIP_DEFAULT_OPTIONS = new InjectionToken<SbbTooltipDefaultOptions>(
+  'sbb-tooltip-default-options',
   {
     providedIn: 'root',
-    factory: MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY
+    factory: SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY
   }
 );
 
 /** @docs-private */
 // tslint:disable-next-line:naming-convention
-export function MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): MatTooltipDefaultOptions {
+export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions {
   return {
     showDelay: 0,
     hideDelay: 0,
@@ -130,18 +110,16 @@ export function MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): MatTooltipDefaultOptions 
 }
 
 /**
- * Directive that attaches a material design tooltip to the host element. Animates the showing and
+ * Directive that attaches a tooltip to the host element. Animates the showing and
  * hiding of a tooltip provided position (defaults to below the element).
- *
- * https://material.io/design/components/tooltips.html
  */
 @Directive({
-  selector: '[matTooltip]',
-  exportAs: 'matTooltip'
+  selector: '[sbbTooltip]',
+  exportAs: 'sbbTooltip'
 })
-export class MatTooltip implements OnDestroy, OnInit {
+export class SbbTooltip implements OnDestroy, OnInit {
   /** Allows the user to define the position of the tooltip relative to the parent element */
-  @Input('matTooltipPosition')
+  @Input('sbbTooltipPosition')
   get position(): TooltipPosition {
     return this._position;
   }
@@ -162,7 +140,7 @@ export class MatTooltip implements OnDestroy, OnInit {
   }
 
   /** Disables the display of the tooltip. */
-  @Input('matTooltipDisabled')
+  @Input('sbbTooltipDisabled')
   get disabled(): boolean {
     return this._disabled;
   }
@@ -176,7 +154,7 @@ export class MatTooltip implements OnDestroy, OnInit {
   }
 
   /** The message to be displayed in the tooltip */
-  @Input('matTooltip')
+  @Input('sbbTooltip')
   get message() {
     return this._message;
   }
@@ -203,7 +181,7 @@ export class MatTooltip implements OnDestroy, OnInit {
   }
 
   /** Classes to be passed to the tooltip. Supports the same syntax as `ngClass`. */
-  @Input('matTooltipClass')
+  @Input('sbbTooltipClass')
   get tooltipClass() {
     return this._tooltipClass;
   }
@@ -225,9 +203,9 @@ export class MatTooltip implements OnDestroy, OnInit {
     private _focusMonitor: FocusMonitor,
     @Optional() private _dir: Directionality,
     @Optional()
-    @Inject(MAT_TOOLTIP_DEFAULT_OPTIONS)
-    private _defaultOptions: MatTooltipDefaultOptions,
-    @Inject(MAT_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any
+    @Inject(SBB_TOOLTIP_DEFAULT_OPTIONS)
+    private _defaultOptions: SbbTooltipDefaultOptions,
+    @Inject(SBB_TOOLTIP_SCROLL_STRATEGY) scrollStrategy: any
   ) {
     this._scrollStrategy = scrollStrategy;
 
@@ -275,15 +253,15 @@ export class MatTooltip implements OnDestroy, OnInit {
   private _scrollStrategy: () => ScrollStrategy;
 
   /** The default delay in ms before showing the tooltip after show is called */
-  @Input('matTooltipShowDelay') showDelay: number = this._defaultOptions.showDelay;
+  @Input('sbbTooltipShowDelay') showDelay: number = this._defaultOptions.showDelay;
 
   /** The default delay in ms before hiding the tooltip after hide is called */
-  @Input('matTooltipHideDelay') hideDelay: number = this._defaultOptions.hideDelay;
+  @Input('sbbTooltipHideDelay') hideDelay: number = this._defaultOptions.hideDelay;
 
   /**
    * How touch gestures should be handled by the tooltip. On touch devices the tooltip directive
    * uses a long press gesture to show and hide, however it can conflict with the native browser
-   * gestures. To work around the conflict, Angular Material disables native gestures on the
+   * gestures. To work around the conflict, Sbb Angular disables native gestures on the
    * trigger, but that might not be desirable on particular elements (e.g. inputs and draggable
    * elements). The different values for this option configure the touch event handling as follows:
    * - `auto` - Enables touch gestures for all elements, but tries to avoid conflicts with native
@@ -294,7 +272,7 @@ export class MatTooltip implements OnDestroy, OnInit {
    * - `off` - Disables touch gestures. Note that this will prevent the tooltip from
    *   showing on touch devices.
    */
-  @Input('matTooltipTouchGestures') touchGestures: TooltipTouchGestures = 'auto';
+  @Input('sbbTooltipTouchGestures') touchGestures: TooltipTouchGestures = 'auto';
   private _message = '';
 
   /** Manually-bound passive event listeners. */
@@ -411,7 +389,7 @@ export class MatTooltip implements OnDestroy, OnInit {
     const strategy = this._overlay
       .position()
       .flexibleConnectedTo(this._elementRef)
-      .withTransformOriginOn('.mat-tooltip')
+      .withTransformOriginOn('.sbb-tooltip')
       .withFlexibleDimensions(false)
       .withViewportMargin(8)
       .withScrollableContainers(scrollableAncestors);
@@ -491,7 +469,7 @@ export class MatTooltip implements OnDestroy, OnInit {
     ) {
       originPosition = { originX: 'end', originY: 'center' };
     } else {
-      throw getMatTooltipInvalidPositionError(position);
+      throw getSbbTooltipInvalidPositionError(position);
     }
 
     const { x, y } = this._invertPosition(originPosition.originX, originPosition.originY);
@@ -525,7 +503,7 @@ export class MatTooltip implements OnDestroy, OnInit {
     ) {
       overlayPosition = { overlayX: 'start', overlayY: 'center' };
     } else {
-      throw getMatTooltipInvalidPositionError(position);
+      throw getSbbTooltipInvalidPositionError(position);
     }
 
     const { x, y } = this._invertPosition(overlayPosition.overlayX, overlayPosition.overlayY);
@@ -642,12 +620,12 @@ export class MatTooltip implements OnDestroy, OnInit {
  * @docs-private
  */
 @Component({
-  selector: 'mat-tooltip-component',
+  selector: 'sbb-tooltip-component',
   templateUrl: 'tooltip.html',
   styleUrls: ['tooltip.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [matTooltipAnimations.tooltipState]
+  animations: [sbbTooltipAnimations.tooltipState]
 })
 export class TooltipWrapperComponent implements OnDestroy {
   /**
@@ -769,9 +747,7 @@ export class TooltipWrapperComponent implements OnDestroy {
   }
 
   /**
-   * Interactions on the HTML body should close the tooltip immediately as defined in the
-   * material design spec.
-   * https://material.io/design/components/tooltips.html#behavior
+   * Interactions on the HTML body should close the tooltip immediately
    */
   @HostListener('body:click')
   _handleBodyInteraction(): void {

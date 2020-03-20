@@ -1,7 +1,7 @@
 <div
-  class="mat-tooltip"
+  class="sbb-tooltip"
   [ngClass]="tooltipClass"
-  [class.mat-tooltip-handset]="(_isHandset | async)?.matches"
+  [class.sbb-tooltip-handset]="(_isHandset | async)?.matches"
   [@state]="_visibility"
   (@state.start)="_animationStart()"
   (@state.done)="_animationDone($event)"
