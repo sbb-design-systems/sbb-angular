@@ -10,6 +10,7 @@ function public2business(_options) {
             'accordion',
             'autocomplete',
             'badge',
+            'breadcrumb',
             'datepicker',
             'dropdown',
             'field',

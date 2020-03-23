@@ -7,6 +7,7 @@ export function public2business(_options: any): Rule {
       'accordion',
       'autocomplete',
       'badge',
+      'breadcrumb',
       'datepicker',
       'dropdown',
       'field',

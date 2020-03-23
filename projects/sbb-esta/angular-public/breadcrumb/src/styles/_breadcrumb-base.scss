@@ -1,3 +1,4 @@
+@import '../../../../angular-core/styles/common/variants';
 @import '../../../../angular-core/styles/common/functions';
 @import '../../../../angular-core/styles/common/mediaqueries';
 @import '../../../../angular-core/styles/common/mixins';
@@ -9,18 +10,21 @@
   flex-wrap: wrap;
   min-height: toPx($breadcrumbHeight);
 
-  @include mq($from: desktop4k) {
-    min-height: toPx($breadcrumbHeight * $scalingFactor4k);
-  }
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      min-height: toPx($breadcrumbHeight * $scalingFactor4k);
+    }
 
-  @include mq($from: desktop5k) {
-    min-height: toPx($breadcrumbHeight * $scalingFactor5k);
+    @include mq($from: desktop5k) {
+      min-height: toPx($breadcrumbHeight * $scalingFactor5k);
+    }
   }
 
   &-expanded {
     .sbb-breadcrumb {
       display: flex;
     }
+
     .sbb-breadcrumb-dots {
       display: none;
     }
@@ -30,14 +34,18 @@
 .sbb-breadcrumb-panel {
   min-width: 132px;
   transform: translateX(-30px);
-  @include mq($from: desktop4k) {
-    min-width: toPx(132 * $scalingFactor4k);
-    transform: translateX(toPx(-30 * $scalingFactor4k));
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      min-width: toPx(132 * $scalingFactor4k);
+      transform: translateX(toPx(-30 * $scalingFactor4k));
+    }
+    @include mq($from: desktop5k) {
+      min-width: toPx(132 * $scalingFactor5k);
+      transform: translateX(toPx(-30 * $scalingFactor5k));
+    }
   }
-  @include mq($from: desktop5k) {
-    min-width: toPx(132 * $scalingFactor5k);
-    transform: translateX(toPx(-30 * $scalingFactor5k));
-  }
+
   .sbb-dropdown-panel {
     a {
       font-size: 13px;
@@ -52,15 +60,17 @@
         color: $sbbColorRed125;
       }
 
-      @include mq($from: desktop4k) {
-        font-size: toPx(13 * $scalingFactor4k);
-        padding-left: toPx(30 * $scalingFactor4k);
-        padding-right: toPx(30 * $scalingFactor4k);
-      }
-      @include mq($from: desktop5k) {
-        font-size: toPx(13 * $scalingFactor5k);
-        padding-left: toPx(30 * $scalingFactor5k);
-        padding-right: toPx(30 * $scalingFactor5k);
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          font-size: toPx(13 * $scalingFactor4k);
+          padding-left: toPx(30 * $scalingFactor4k);
+          padding-right: toPx(30 * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          font-size: toPx(13 * $scalingFactor5k);
+          padding-left: toPx(30 * $scalingFactor5k);
+          padding-right: toPx(30 * $scalingFactor5k);
+        }
       }
     }
   }
@@ -75,21 +85,35 @@
     display: flex;
   }
 
+  &:first-of-type a {
+    height: toPx($breadcrumbLabelHeight);
+  }
+
+  &:last-of-type a {
+    color: $sbbColorBlack;
+  }
+
   @include mq($from: tabletPortrait) {
     display: flex;
   }
 
   padding-left: 0;
-  height: toPx($breadcrumbHeight);
-  margin-right: toPx($breadcrumbArrowMarginsDT);
 
-  @include mq($from: desktop4k) {
-    margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
-    height: toPx($breadcrumbHeight * $scalingFactor4k);
+  @if $sbbBusiness {
+    margin-right: toPx($breadcrumbArrowMarginsBusinessDT);
+  } @else {
+    margin-right: toPx($breadcrumbArrowMarginsDT);
   }
-  @include mq($from: desktop5k) {
-    margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
-    height: toPx($breadcrumbHeight * $scalingFactor5k);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+      height: toPx($breadcrumbHeight * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+      height: toPx($breadcrumbHeight * $scalingFactor5k);
+    }
   }
 
   .sbb-breadcrumb-trigger {
@@ -99,6 +123,7 @@
     color: $sbbColorGrey;
     position: relative;
     height: 100%;
+
     &:hover,
     &:focus {
       color: $sbbColorRed125;
@@ -122,35 +147,43 @@
       position: relative;
       transition: transform 0.225s cubic-bezier(0.4, 0, 0.2, 1);
 
-      @include mq($from: desktop4k) {
-        border-width: toPx(1 * $scalingFactor4k);
-        height: toPx(16 * $scalingFactor4k);
-        width: toPx(16 * $scalingFactor4k);
-        margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
+      @include publicOnly() {
+        @include mq($from: desktop4k) {
+          border-width: toPx(1 * $scalingFactor4k);
+          height: toPx(16 * $scalingFactor4k);
+          width: toPx(16 * $scalingFactor4k);
+          margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor4k);
+        }
+        @include mq($from: desktop5k) {
+          border-width: toPx(1 * $scalingFactor5k);
+          height: toPx(16 * $scalingFactor5k);
+          width: toPx(16 * $scalingFactor5k);
+          margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
+        }
       }
-      @include mq($from: desktop5k) {
-        border-width: toPx(1 * $scalingFactor5k);
-        height: toPx(16 * $scalingFactor5k);
-        width: toPx(16 * $scalingFactor5k);
-        margin-left: toPx($breadcrumbDropdownTriggerIconMarginLeft * $scalingFactor5k);
-      }
+
       &-visible {
         display: block;
+
         > .sbb-icon-component {
           @include absoluteCenterXY;
           padding: 0;
           width: toPx($breadcrumbArrowWidth);
           height: toPx($breadcrumbArrowHeight);
-          @include mq($from: desktop4k) {
-            width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
-            height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
-          }
-          @include mq($from: desktop5k) {
-            width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
-            height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+
+          @include publicOnly() {
+            @include mq($from: desktop4k) {
+              width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+              height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+            }
+            @include mq($from: desktop5k) {
+              width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+              height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+            }
           }
         }
       }
+
       &-active {
         transform: rotate(-180deg);
       }
@@ -177,17 +210,20 @@
         min-width: 132px;
         transform: translateX(-30px);
         width: calc(100% + 60px);
-        @include mq($from: desktop4k) {
-          min-width: toPx(132 * $scalingFactor4k);
-          transform: translateX(#{toPx(-30 * $scalingFactor4k)});
-          width: calc(100% + #{toPx(60 * $scalingFactor4k)});
-          border-width: toPx(2 * $scalingFactor4k);
-        }
-        @include mq($from: desktop5k) {
-          min-width: toPx(132 * $scalingFactor5k);
-          transform: translateX(#{toPx(-30 * $scalingFactor5k)});
-          width: calc(100% + #{toPx(60 * $scalingFactor5k)});
-          border-width: toPx(2 * $scalingFactor5k);
+
+        @include publicOnly() {
+          @include mq($from: desktop4k) {
+            min-width: toPx(132 * $scalingFactor4k);
+            transform: translateX(#{toPx(-30 * $scalingFactor4k)});
+            width: calc(100% + #{toPx(60 * $scalingFactor4k)});
+            border-width: toPx(2 * $scalingFactor4k);
+          }
+          @include mq($from: desktop5k) {
+            min-width: toPx(132 * $scalingFactor5k);
+            transform: translateX(#{toPx(-30 * $scalingFactor5k)});
+            width: calc(100% + #{toPx(60 * $scalingFactor5k)});
+            border-width: toPx(2 * $scalingFactor5k);
+          }
         }
       }
     }
@@ -199,24 +235,31 @@
     height: toPx($breadcrumbArrowHeight);
     line-height: toPx($breadcrumbArrowLineHeight);
 
-    margin-right: toPx($breadcrumbArrowMarginsDT);
-
-    @include mq($from: desktop4k) {
-      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
-      width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
-      height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+    @if $sbbBusiness {
+      margin-right: toPx($breadcrumbArrowMarginsBusinessDT);
+    } @else {
+      margin-right: toPx($breadcrumbArrowMarginsDT);
     }
 
-    @include mq($from: desktop5k) {
-      margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
-      width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
-      height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+        width: toPx($breadcrumbArrowWidth * $scalingFactor4k);
+        height: toPx($breadcrumbArrowHeight * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-right: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+        width: toPx($breadcrumbArrowWidth * $scalingFactor5k);
+        height: toPx($breadcrumbArrowHeight * $scalingFactor5k);
+      }
     }
   }
   a,
   button {
     @include svgIconColor($sbbColorGrey);
     color: $sbbColorGrey;
+
     &:hover,
     &:focus {
       @include svgIconColor($sbbColorRed125);
@@ -227,18 +270,20 @@
   button,
   .sbb-breadcrumb-label {
     @include breadcrumbButton;
-    height: toPx(24);
     min-width: toPx(24);
 
-    @include mq($from: desktop4k) {
-      height: toPx(24 * $scalingFactor4k);
-      min-width: toPx(24 * $scalingFactor4k);
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        height: toPx($breadcrumbLabelHeight * $scalingFactor4k);
+        min-width: toPx($breadcrumbLabelHeight * $scalingFactor4k);
+      }
+
+      @include mq($from: desktop5k) {
+        height: toPx($breadcrumbLabelHeight * $scalingFactor5k);
+        min-width: toPx($breadcrumbLabelHeight * $scalingFactor5k);
+      }
     }
 
-    @include mq($from: desktop5k) {
-      height: toPx(24 * $scalingFactor5k);
-      min-width: toPx(24 * $scalingFactor5k);
-    }
     > .sbb-icon-component {
       &:hover,
       &:focus {
@@ -248,6 +293,7 @@
     }
   }
 }
+
 @mixin breadcrumbButton {
   @include buttonResetFrameless();
   display: block;
@@ -258,19 +304,24 @@
   cursor: pointer;
   font-size: toPx($breadcrumbStepButtonFontSizeDT);
   line-height: toPx($breadcrumbStepButtonLineHeightDT);
-  @include mq($from: desktop4k) {
-    font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor4k);
-    line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor4k);
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor4k);
+      line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor5k);
+      line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor5k);
+    }
   }
-  @include mq($from: desktop5k) {
-    font-size: toPx($breadcrumbStepButtonFontSizeDT * $scalingFactor5k);
-    line-height: toPx($breadcrumbStepButtonLineHeightDT * $scalingFactor5k);
-  }
+
   &:hover,
   &:focus {
     color: $sbbColorRed125;
   }
 }
+
 .sbb-breadcrumb-dots {
   margin-left: toPx($breadcrumbArrowMarginsDT);
   display: flex;
@@ -279,10 +330,12 @@
     display: none;
   }
 
-  @include mq($from: desktop4k) {
-    margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
-  }
-  @include mq($from: desktop5k) {
-    margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor4k);
+    }
+    @include mq($from: desktop5k) {
+      margin-left: toPx($breadcrumbArrowMarginsDT * $scalingFactor5k);
+    }
   }
 }
