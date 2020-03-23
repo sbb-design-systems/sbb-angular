@@ -1,4 +1,4 @@
-package(default_visibility = ["//visibility:public"])
+package(default_visibility = ["//:__subpackages__"])
 
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm//history-server:index.bzl", "history_server")
@@ -7,40 +7,32 @@ load("@npm_angular_bazel//:index.bzl", "ng_module")
 load("@npm_bazel_karma//:index.bzl", "karma_web_test_suite")
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
-load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
-load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary", "sass_binary")
+load("@npm_bazel_typescript//:index.bzl", "ts_config", "ts_devserver", "ts_library")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 
-sass_binary(
-  name = "global_stylesheet",
-  src = glob(["styles.css", "styles.scss"])[0],
-  output_name = "global_stylesheet.css",
+ts_config(
+    name = "tsconfig-test",
+    src = "tsconfig-test.json",
+    deps = [":tsconfig.json"],
 )
 
-multi_sass_binary(
+# Run the sass compiler to output "styles.css"
+sass_binary(
     name = "styles",
-    srcs = glob(
-      include = ["**/*.scss"],
-      exclude = ["styles.scss"],
-    ),
+    src = "styles.scss",
+    output_name = "global_stylesheet.css",
 )
 
 ng_module(
-    name = "src",
+    name = "showcase",
     srcs = glob(
-        include = ["**/*.ts"],
-        exclude = [
-            "**/*.spec.ts",
-            "main.ts",
-            "test.ts",
-            "initialize_testbed.ts",
-        ],
+        include = ["*.ts"],
+        exclude = ["main.ts"],
     ),
-    assets = glob([
-      "**/*.css",
-      "**/*.html",
-    ]) + ([":styles"] if len(glob(["**/*.scss"])) else []),
+    tsconfig = ":tsconfig.json",
     generate_ve_shims = True,
     deps = [
+        "//src/showcase/app",
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
@@ -54,7 +46,7 @@ rollup_bundle(
     config_file = "rollup.config.js",
     entry_point = ":main.prod.ts",
     deps = [
-        "//src",
+        "//src/showcase",
         "@npm//rollup-plugin-commonjs",
         "@npm//rollup-plugin-node-resolve",
     ],
@@ -89,13 +81,12 @@ html_insert_assets(
 
 pkg_web(
     name = "prodapp",
-    additional_root_paths = ["src/_"],
+    additional_root_paths = ["src/showcase/_"],
     srcs = [
         "@npm//:node_modules/zone.js/dist/zone.min.js",
         ":bundle.min",
         ":global_stylesheet",
         ":asset_injected_index_html",
-        "favicon.ico",
     ],
 )
 
@@ -106,18 +97,13 @@ history_server(
         "--port",
         "4200",
     ],
-    templated_args = ["src/prodapp"],
+    templated_args = ["src/showcase/prodapp"],
 )
 
-filegroup(
-    name = "rxjs_umd_modules",
-    srcs = [
-        # do not sort
-        "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
-        ":rxjs_shims.js",
-    ],
-)
-
+# This devserver is written in Go and is super-fast.
+# It doesn't run any bundler or code splitter. Instead, it concatenates
+# named UMD and named AMD JavaScript code on-the-fly in-memory.
+# This scales really well for massive codebases.
 ts_devserver(
     name = "devserver",
     additional_root_paths = ["project/src/_"],
@@ -126,61 +112,12 @@ ts_devserver(
     serving_path = "/bundle.min.js",
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
-        ":rxjs_umd_modules",
+        "//tools/rxjs:rxjs_umd_modules",
     ],
     static_files = [
         "@npm//:node_modules/zone.js/dist/zone.min.js",
         ":global_stylesheet",
         ":asset_injected_index_html",
-        "favicon.ico",
     ],
-    deps = [":src"],
-)
-
-ts_library(
-    name = "test_lib",
-    testonly = 1,
-    srcs = glob(["**/*.spec.ts"]),
-    deps = [
-        ":src",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
-        "@npm//@types",
-    ],
-)
-
-ts_library(
-    name = "initialize_testbed",
-    testonly = 1,
-    srcs = [
-        "initialize_testbed.ts",
-    ],
-    deps = [
-        "@npm//@angular/core",
-        "@npm//@angular/platform-browser-dynamic",
-        "@npm//@types",
-    ],
-)
-
-karma_web_test_suite(
-    name = "test",
-    srcs = [
-        "@npm//:node_modules/tslib/tslib.js",
-    ],
-    runtime_deps = [
-        ":initialize_testbed",
-    ],
-    # do not sort
-    bootstrap = [
-        "@npm//:node_modules/zone.js/dist/zone-testing-bundle.js",
-        "@npm//:node_modules/reflect-metadata/Reflect.js",
-    ],
-    browsers = [
-        "@io_bazel_rules_webtesting//browsers:chromium-local",
-    ],
-    tags = ["native"],
-    deps = [
-        ":rxjs_umd_modules",
-        ":test_lib",
-    ],
+    deps = [":showcase"],
 )

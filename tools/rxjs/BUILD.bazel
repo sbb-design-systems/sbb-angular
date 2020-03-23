@@ -3,7 +3,8 @@ package(default_visibility = ["//visibility:public"])
 filegroup(
     name = "rxjs_umd_modules",
     srcs = [
-        ":rxjs_shims.js",
+        # do not sort
         "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
+        ":rxjs_shims.js",
     ],
 )
