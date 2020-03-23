@@ -22,9 +22,10 @@ import {
   TooltipRegistryService
 } from '@sbb-esta/angular-core/base';
 
+// TODO: Find solution for template and style
 @Component({
   selector: 'sbb-tooltip',
-  templateUrl: '../../../../angular-public/tooltip/src/tooltip/tooltip.component.html',
+  templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

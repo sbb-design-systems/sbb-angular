@@ -1,0 +1,184 @@
+$sbbBusiness: true;
+@import '../../../core/styles/common';
+
+$processflowArrowWidth: 24;
+$processflowArrowHeight: 24;
+$processflowArrowLineHeight: 21;
+$processflowArrowMarginsMP: 12;
+$processflowArrowMarginsTP: 16;
+$processflowArrowMarginsDT: 24;
+
+$processflowArrowMargins4K: 36;
+$processflowArrowWidth4K: 36;
+$processflowArrowHeight4K: 36;
+
+$processflowArrowMargins5K: 48;
+$processflowArrowWidth5K: 48;
+$processflowArrowHeight5K: 48;
+
+$processflowStepButtonFontSizeMP: 21;
+$processflowStepButtonLineHeightMP: 21;
+$processflowStepButtonPaddingBottomMP: 11;
+
+$processflowStepButtonFontSizeTP: 21;
+$processflowStepButtonLineHeightTP: 21;
+$processflowStepButtonPaddingBottomTP: 14;
+
+$processflowStepButtonFontSizeDT: 21;
+$processflowStepButtonLineHeightDT: 21;
+$processflowStepButtonPaddingBottomDT: 22;
+
+$processflowStepButtonFontSize4K: 32;
+$processflowStepButtonLineHeight4K: 34;
+$processflowStepButtonPaddingBottom4K: 32;
+
+$processflowStepButtonFontSize5K: 42;
+$processflowStepButtonLineHeight5K: 45;
+$processflowStepButtonPaddingBottom5K: 42;
+
+.sbb-processflow {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow-x: hidden;
+
+  .sbb-processflow-header {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    overflow-x: auto;
+  }
+  .sbb-processflow-step {
+    display: flex;
+    &::before {
+      content: '';
+    }
+    &-arrow {
+      @include svgIconColor($sbbColorGrey);
+      width: toPx($processflowArrowWidth);
+      height: toPx($processflowArrowHeight);
+      line-height: toPx($processflowArrowLineHeight);
+      margin-bottom: auto;
+
+      @include mq($from: mobilePortrait) {
+        margin-left: toPx($processflowArrowMarginsMP);
+        margin-right: toPx($processflowArrowMarginsMP);
+      }
+
+      @include mq($from: tabletPortrait) {
+        margin-left: toPx($processflowArrowMarginsTP);
+        margin-right: toPx($processflowArrowMarginsTP);
+      }
+
+      @include mq($from: desktop) {
+        margin-left: toPx($processflowArrowMarginsDT);
+        margin-right: toPx($processflowArrowMarginsDT);
+      }
+
+      @include mq($from: desktop4k) {
+        margin-left: toPx($processflowArrowMargins4K);
+        margin-right: toPx($processflowArrowMargins4K);
+        width: toPx($processflowArrowWidth4K);
+        height: toPx($processflowArrowHeight4K);
+      }
+
+      @include mq($from: desktop5k) {
+        margin-left: toPx(processflowArrowMargins5K);
+        margin-right: toPx(processflowArrowMargins5K);
+        width: toPx($processflowArrowWidth5K);
+        height: toPx($processflowArrowHeight5K);
+      }
+    }
+    button {
+      @include buttonResetFrameless();
+      display: block;
+      white-space: nowrap;
+      font-family: $fontSbbLight;
+      text-decoration: none;
+      position: relative;
+
+      @include mq($from: mobilePortrait) {
+        font-size: toPx($processflowStepButtonFontSizeMP);
+        line-height: toPx($processflowStepButtonLineHeightMP);
+        padding-bottom: toPx($processflowStepButtonPaddingBottomMP);
+      }
+
+      @include mq($from: tabletPortrait) {
+        font-size: toPx($processflowStepButtonFontSizeTP);
+        line-height: toPx($processflowStepButtonLineHeightTP);
+        padding-bottom: toPx($processflowStepButtonPaddingBottomTP);
+      }
+
+      @include mq($from: desktop) {
+        font-size: toPx($processflowStepButtonFontSizeDT);
+        line-height: toPx($processflowStepButtonLineHeightDT);
+        padding-bottom: toPx($processflowStepButtonPaddingBottomDT);
+      }
+
+      @include mq($from: desktop4k) {
+        font-size: toPx($processflowStepButtonFontSize4K);
+        line-height: toPx($processflowStepButtonLineHeight4K);
+        padding-bottom: toPx($processflowStepButtonPaddingBottom4K);
+      }
+
+      @include mq($from: desktop5k) {
+        font-size: toPx($processflowStepButtonFontSize5K);
+        line-height: toPx($processflowStepButtonLineHeight5K);
+        padding-bottom: toPx($processflowStepButtonPaddingBottom5K);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 0;
+        left: 50%;
+        height: 1px;
+        border-bottom: 1px solid currentColor;
+        transition: width 0.3s, left 0.3s;
+      }
+
+      &.sbb-active::after,
+      &:not(.sbb-active):focus::after,
+      &:not(.sbb-active):hover::after {
+        left: 0;
+        width: 100%;
+      }
+
+      &:not(.sbb-active):focus,
+      &:not(.sbb-active):hover {
+        color: $sbbColorRed125;
+
+        &::after {
+          border-bottom-color: $sbbColorRed125;
+        }
+      }
+
+      &[disabled] {
+        color: $sbbColorStorm;
+
+        &:hover,
+        &:focus {
+          color: $sbbColorStorm;
+          cursor: default;
+
+          &::after {
+            width: 0;
+          }
+        }
+      }
+
+      &.sbb-active:hover,
+      &.sbb-active:focus {
+        color: currentColor;
+        cursor: default;
+
+        &::after {
+          border-bottom-color: currentColor;
+        }
+      }
+    }
+  }
+}

@@ -64,7 +64,7 @@ export class DialogFooterComponent implements OnInit {
       this._dialogRef = this._dialogHelperService.getClosestDialog(
         this._elementRef,
         this._dialog.openDialogs
-      );
+      )!;
     }
 
     if (this._dialogRef) {

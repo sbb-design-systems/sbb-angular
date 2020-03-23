@@ -55,7 +55,7 @@ export class DialogHeaderComponent implements OnInit {
       this._dialogRef = this._dialogHelperService.getClosestDialog(
         this._elementRef,
         this._dialog.openDialogs
-      );
+      )!;
     }
 
     if (this._dialogRef) {
@@ -64,7 +64,7 @@ export class DialogHeaderComponent implements OnInit {
 
         if (container) {
           container.hasHeader = true;
-          this.isCloseDisabled = container.config.disableClose;
+          this.isCloseDisabled = !!container.config.disableClose;
           this._changeDetectorRef.markForCheck();
         }
       });
@@ -73,7 +73,7 @@ export class DialogHeaderComponent implements OnInit {
 
   emitManualCloseAction() {
     if (this._dialogRef) {
-      this._dialogRef.manualCloseAction.next(null);
+      this._dialogRef.manualCloseAction.next(null!);
     }
   }
 }

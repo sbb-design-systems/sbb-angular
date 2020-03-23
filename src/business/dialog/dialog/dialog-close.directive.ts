@@ -51,7 +51,7 @@ export class DialogCloseDirective implements OnInit {
       this.dialogRef = this._dialogHelperService.getClosestDialog(
         this._elementRef,
         this._dialog.openDialogs
-      );
+      )!;
     }
   }
 

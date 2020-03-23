@@ -21,7 +21,8 @@ import {
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import {
   AutocompleteComponent,
-  AutocompleteOriginDirective
+  AutocompleteOriginDirective,
+  SbbAutocompleteSelectedEvent
 } from '@sbb-esta/angular-business/autocomplete';
 import {
   CanUpdateErrorState,
@@ -210,7 +211,9 @@ export class ChipInputComponent extends SbbChipsMixinBase
 
   ngOnInit(): void {
     if (this.autocomplete) {
-      this.autocomplete.optionSelected.subscribe(event => this.onSelect(event.option.value));
+      this.autocomplete.optionSelected.subscribe((event: SbbAutocompleteSelectedEvent) =>
+        this.onSelect(event.option.value)
+      );
     }
   }
 

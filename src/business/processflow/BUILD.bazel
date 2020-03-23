@@ -6,6 +6,7 @@ load(
     "ng_module",
     "ng_test_library",
     "ng_web_test_suite",
+    "sass_binary",
 )
 
 ng_module(
@@ -14,6 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
+    assets = [":processflow/processflow.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/processflow",
     deps = [
         "//src/core/base",
@@ -21,6 +23,14 @@ ng_module(
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+    ],
+)
+
+sass_binary(
+    name = "processflow_processflow_component_scss",
+    src = "processflow/processflow.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
     ],
 )
 

@@ -15,10 +15,11 @@ import { ProcessflowBase, ProcessflowStep } from '@sbb-esta/angular-core/base';
 
 import { ProcessflowStepComponent } from '../processflow-step/processflow-step.component';
 
+// TODO: Find solution for template and style
 @Component({
   selector: 'sbb-processflow',
-  templateUrl: '../../../../angular-public/processflow/src/processflow/processflow.component.html',
-  styleUrls: ['../../../../angular-public/processflow/src/processflow/processflow.component.css'],
+  templateUrl: './processflow.component.html',
+  styleUrls: ['./processflow.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

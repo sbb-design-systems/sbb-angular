@@ -15,9 +15,7 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [
-        ":processflow/processflow.component.css",
-        ":processflow-step/processflow-step.component.css",] + glob(["**/*.html"]),
+    assets = [":processflow/processflow.component.css"] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/processflow",
     deps = [
         "//src/core/base",
@@ -33,11 +31,6 @@ sass_binary(
     deps = [
         "//src/core/styles:common_scss_lib",
     ],
-)
-
-sass_binary(
-    name = "processflow_step_processflow_step_component_scss",
-    src = "processflow-step/processflow-step.component.scss",
 )
 
 ng_test_library(

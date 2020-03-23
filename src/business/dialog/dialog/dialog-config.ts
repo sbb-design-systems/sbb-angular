@@ -43,11 +43,11 @@ export class DialogConfig<D = any> {
   /** Whether the user can use escape or clicking on the backdrop to close the modal. */
   disableClose? = false;
 
-  /** Width of the Dialog overlay. */
-  width?;
+  /** Width of the dialog. */
+  width?: string = '';
 
-  /** Height of the Dialog overlay. */
-  height?;
+  /** Height of the dialog. */
+  height?: string = '';
 
   /** Min-width of the Dialog. If a number is provided, assumes pixel units. */
   minWidth?: number | string;

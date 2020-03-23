@@ -141,10 +141,10 @@ export class NotificationComponent {
    *  but the user can use his own icon using the NotificationIconDirective.
    */
   @Input()
-  set icon(notificationIcon: TemplateRef<any>) {
+  set icon(notificationIcon: TemplateRef<any> | null) {
     this._icon = notificationIcon;
   }
-  get icon() {
+  get icon(): TemplateRef<any> | null {
     if (this._contentIcon) {
       return this._contentIcon;
     } else if (this._icon) {
@@ -162,7 +162,7 @@ export class NotificationComponent {
         return null;
     }
   }
-  private _icon: TemplateRef<any>;
+  private _icon: TemplateRef<any> | null;
 
   /**
    * icon placed in template

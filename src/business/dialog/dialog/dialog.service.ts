@@ -87,8 +87,8 @@ export class Dialog implements OnDestroy {
     private _overlay: Overlay,
     private _injector: Injector,
     @Optional() private _location: Location,
-    @Optional() @Inject(DIALOG_DEFAULT_OPTIONS) private _defaultOptions,
-    @Inject(DIALOG_SCROLL_STRATEGY) private _scrollStrategy,
+    @Optional() @Inject(DIALOG_DEFAULT_OPTIONS) private _defaultOptions: any,
+    @Inject(DIALOG_SCROLL_STRATEGY) private _scrollStrategy: any,
     @Optional() @SkipSelf() private _parentDialog: Dialog
   ) {}
 
@@ -119,17 +119,17 @@ export class Dialog implements OnDestroy {
     config?: DialogConfig<D>
   ): DialogRef<T, R> {
     config = { ...(this._defaultOptions || new DialogConfig()), ...config };
-    if (config.id && this.getDialogById(config.id)) {
-      throw Error(`dialog with id "${config.id}" exists already. The dialog id must be unique.`);
+    if (config!.id && this.getDialogById(config!.id)) {
+      throw Error(`dialog with id "${config!.id}" exists already. The dialog id must be unique.`);
     }
 
-    const overlayRef = this._createOverlay(config);
-    const dialogContainer = this._attachDialogContainer(overlayRef, config);
+    const overlayRef = this._createOverlay(config!);
+    const dialogContainer = this._attachDialogContainer(overlayRef, config!);
     const dialogRef = this._attachDialogContent<T, R>(
       componentOrTemplateRef,
       dialogContainer,
       overlayRef,
-      config
+      config!
     );
 
     this.openDialogs.push(dialogRef);
@@ -240,7 +240,7 @@ export class Dialog implements OnDestroy {
 
     if (componentOrTemplateRef instanceof TemplateRef) {
       dialogContainer.attachTemplatePortal(
-        new TemplatePortal<T>(componentOrTemplateRef, null, <any>{
+        new TemplatePortal<T>(componentOrTemplateRef, null!, <any>{
           $implicit: config.data,
           dialogRef
         })

@@ -1,0 +1,24 @@
+<button
+  (click)="onClick($event)"
+  #triggerButton
+  class="sbb-tooltip-trigger"
+  [class.sbb-tooltip-trigger-active]="overlayAttached"
+  [attr.aria-describedby]="contentId"
+  tabindex="0"
+  type="button"
+>
+  <ng-container *ngTemplateOutlet="icon"></ng-container>
+</button>
+<ng-template cdkPortal #tooltipTemplate="cdkPortal">
+  <div class="sbb-tooltip-content-body" [attr.id]="contentId">
+    <ng-content></ng-content>
+  </div>
+  <div class="sbb-tooltip-shadow"></div>
+  <button type="button" class="sbb-tooltip-icon" (click)="onClick($event)">
+    <sbb-icon-cross></sbb-icon-cross>
+  </button>
+</ng-template>
+
+<ng-template #defaultIcon>
+  <sbb-icon-question-mark></sbb-icon-question-mark>
+</ng-template>

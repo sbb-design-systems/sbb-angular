@@ -16,6 +16,6 @@ export class DialogHelperService {
       parent = parent.parentElement;
     }
 
-    return parent ? openDialogs.find(dialog => dialog.id === parent.id) : null;
+    return parent ? openDialogs.find(dialog => dialog.id === parent!.id) : null;
   }
 }

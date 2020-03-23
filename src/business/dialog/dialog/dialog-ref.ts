@@ -16,7 +16,7 @@ let uniqueId = 0;
  */
 export class DialogRef<T, R = any> {
   /** The instance of component opened into the dialog. */
-  componentInstance: T;
+  componentInstance: T | null;
 
   /** Whether the user is allowed to close the dialog. */
   disableClose: boolean | undefined = this.containerInstance.config.disableClose;
@@ -85,8 +85,8 @@ export class DialogRef<T, R = any> {
 
     _overlayRef
       .keydownEvents()
-      .pipe(filter(event => event.keyCode === ESCAPE && this.disableClose))
-      .subscribe(() => this.manualCloseAction.next(null));
+      .pipe(filter(event => event.keyCode === ESCAPE && !!this.disableClose))
+      .subscribe(() => this.manualCloseAction.next(null!));
 
     if (location) {
       // Close the dialog when the user goes forwards/backwards in history or when the location

@@ -30,7 +30,7 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   private readonly _data: BehaviorSubject<T[]>;
 
   /** Stream that emits when a new groups array is set on the data source. */
-  private readonly _groups: BehaviorSubject<string[][]>;
+  private readonly _groups: BehaviorSubject<string[][] | null>;
 
   /** Stream emitting render data to the table (depends on ordered data changes). */
   private readonly _renderData = new BehaviorSubject<T[]>([]);
@@ -56,7 +56,7 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   filteredData: T[];
 
   /** Array of data that should be rendered by the table, where each object represents one row. */
-  get data() {
+  get data(): T[] {
     return this._data.value;
   }
 
@@ -65,11 +65,11 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   }
 
   /** Array of data that should be rendered by the table, where each group represents one borderless column. */
-  get groups() {
+  get groups(): string[][] | null {
     return this._groups.value;
   }
 
-  set groups(groups: string[][]) {
+  set groups(groups: string[][] | null) {
     this._groups.next(groups);
   }
 
@@ -222,7 +222,7 @@ export class SbbTableDataSource<T> extends DataSource<T> {
   constructor(initialData: T[] = [], groups?: string[][]) {
     super();
     this._data = new BehaviorSubject<T[]>(initialData);
-    this._groups = new BehaviorSubject<string[][]>(groups);
+    this._groups = new BehaviorSubject<string[][] | null>(groups || null);
     this._updateChangeSubscription();
   }
 
