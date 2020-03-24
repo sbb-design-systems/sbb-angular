@@ -83,7 +83,7 @@ export class EsriLoaderService {
 
     esriConfig.request.interceptors.push({
       before: params => {
-        if (originsWithCredentialsRequired.some(o => params.url.includes(o))) {
+        if (originsWithCredentialsRequired.some(o => params.url.indexOf(o) !== -1)) {
           params.requestOptions.withCredentials = true;
         }
       },
