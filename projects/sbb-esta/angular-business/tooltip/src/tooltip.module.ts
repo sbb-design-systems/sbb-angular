@@ -6,7 +6,8 @@ import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { IconCrossModule, IconQuestionMarkModule } from '@sbb-esta/angular-icons';
 
-import { SbbTooltip, TooltipContainerComponent } from './tooltip/tooltip';
+import { SbbTooltip } from './tooltip/tooltip';
+import { TooltipContainerComponent } from './tooltip/tooltip-container.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
