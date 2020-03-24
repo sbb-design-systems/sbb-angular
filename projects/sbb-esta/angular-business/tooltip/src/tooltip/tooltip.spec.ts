@@ -631,17 +631,22 @@ describe('SbbTooltip', () => {
 
       expect(overlayRef.detach).not.toHaveBeenCalled();
     }));
-  });
 
-  describe('fallback positions', () => {
-    let fixture: ComponentFixture<BasicTooltipDemoComponent>;
-    let tooltip: SbbTooltip;
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(BasicTooltipDemoComponent);
+    it('should apply css class content below or above to container component', fakeAsync(() => {
+      tooltipDirective.show();
+      tick(0);
+      expect(tooltipDirective._isTooltipVisible()).toBe(true);
       fixture.detectChanges();
-      tooltip = fixture.debugElement.query(By.css('button'))!.injector.get<SbbTooltip>(SbbTooltip);
-    });
+      flush();
+      fixture.detectChanges();
+      const tooltipContainerComponent = fixture.debugElement.query(By.css('.sbb-tooltip-content'))
+        .nativeElement;
+      expect(tooltipContainerComponent).toBeTruthy();
+      expect(
+        tooltipContainerComponent.classList.contains('sbb-tooltip-content-below') ||
+          tooltipContainerComponent.classList.contains('sbb-tooltip-content-above')
+      ).toBeTruthy();
+    }));
   });
 
   describe('scrollable usage', () => {

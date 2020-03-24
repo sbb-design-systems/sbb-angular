@@ -25,9 +25,6 @@ import { take, takeUntil } from 'rxjs/operators';
 
 import { TooltipContainerComponent } from './tooltip-container.component';
 
-/** Possible positions for a tooltip. */
-export type TooltipPosition = 'left' | 'right' | 'above' | 'below' | 'before' | 'after';
-
 /**
  * Options for how the tooltip trigger should handle touch gestures.
  * See `SbbTooltip._touchGestures` for more information.
@@ -81,11 +78,6 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
   exportAs: 'sbbTooltip'
 })
 export class SbbTooltip implements OnDestroy, OnInit {
-  /** Allows the user to define the position of the tooltip relative to the parent element */
-  get position(): TooltipPosition {
-    return this._position;
-  }
-
   /** Disables the display of the tooltip. */
   @Input('sbbTooltipDisabled')
   get disabled(): boolean {
@@ -177,7 +169,6 @@ export class SbbTooltip implements OnDestroy, OnInit {
   _tooltipInstance: TooltipContainerComponent | null;
 
   private _portal: ComponentPortal<TooltipContainerComponent>;
-  private _position: TooltipPosition = 'below';
   private _disabled: boolean = false;
   private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
   private readonly _scrollStrategy: () => ScrollStrategy;
