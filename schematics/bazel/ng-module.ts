@@ -38,14 +38,15 @@ export class NgModule {
 
   protected _templateUrl = './files/ngModule';
   protected _markdownFiles: FileEntry[] = [];
+  protected _tsFiles: FileEntry[] = [];
+  protected _htmlFiles: FileEntry[] = [];
 
-  private _tsFiles: FileEntry[] = [];
   private _specFiles: FileEntry[] = [];
   private _scssFiles: FileEntry[] = [];
   private _scssLibaryFiles: FileEntry[] = [];
   private _modules: NgModule[] = [];
 
-  constructor(private _dir: DirEntry, private _tree: Tree, private _context: SchematicContext) {
+  constructor(private _dir: DirEntry, protected _tree: Tree, protected _context: SchematicContext) {
     this.path = this._dir.path;
     this._findFiles(this._dir);
     this.name = basename(this.path);
@@ -59,6 +60,12 @@ export class NgModule {
     this.hasSassLibrary = !!this._scssLibaryFiles.length;
     this.sassBinaries = this._findSassBinaries();
     this.stylesheets = this.sassBinaries.map(s => s.path.replace('.scss', '.css'));
+  }
+
+  ngModules(): NgModule[] {
+    return this._modules.reduce((current, next) => current.concat(next.ngModules()), [
+      this
+    ] as NgModule[]);
   }
 
   render(): Rule[] {
@@ -83,21 +90,19 @@ export class NgModule {
     return this;
   }
 
-  protected _ngModules(): NgModule[] {
-    return this._modules.reduce((current, next) => current.concat(next._ngModules()), [
-      this
-    ] as NgModule[]);
-  }
-
   protected _isModuleDir(dir: DirEntry) {
     return dir.subfiles.includes(fragment('public-api.ts'));
+  }
+
+  protected _createSubModule(dir: DirEntry) {
+    return new NgModule(dir, this._tree, this._context);
   }
 
   private _findFiles(dir: DirEntry, skipModuleCheck = true) {
     if (['schematics', 'styles'].some(d => basename(dir.path) === d)) {
       return;
     } else if (!skipModuleCheck && this._isModuleDir(dir)) {
-      this._modules.push(new NgModule(dir, this._tree, this._context));
+      this._modules.push(this._createSubModule(dir));
       return;
     }
 
@@ -108,6 +113,8 @@ export class NgModule {
         this._tsFiles.push(dir.file(file)!);
       } else if (file.endsWith('.md')) {
         this._markdownFiles.push(dir.file(file)!);
+      } else if (file.endsWith('.html')) {
+        this._htmlFiles.push(dir.file(file)!);
       } else if (file.endsWith('.scss') && file.startsWith('_')) {
         this._scssLibaryFiles.push(dir.file(file)!);
       } else if (file.endsWith('.scss')) {

@@ -1,0 +1,55 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "features",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":core-component-viewer/core-component-viewer/core-component-viewer.component.css",
+        ":core-component-viewer/core-example-viewer/core-example-viewer.component.css",
+        ":public-component-viewer/public-example-viewer/public-example-viewer.component.css",] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-showcase/app/features",
+    deps = [
+        "//src/business/tabs",
+        "//src/public/tabs",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "core_component_viewer_core_component_viewer_core_component_viewer_component_scss",
+    src = "core-component-viewer/core-component-viewer/core-component-viewer.component.scss",
+)
+
+sass_binary(
+    name = "core_component_viewer_core_example_viewer_core_example_viewer_component_scss",
+    src = "core-component-viewer/core-example-viewer/core-example-viewer.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "public_component_viewer_public_example_viewer_public_example_viewer_component_scss",
+    src = "public-component-viewer/public-example-viewer/public-example-viewer.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

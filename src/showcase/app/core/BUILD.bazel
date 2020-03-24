@@ -1,0 +1,33 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "core",
+    srcs = [
+        "core-routing.module.ts",
+        "core.module.ts",
+        "core/core.component.ts",
+    ],
+    assets = [
+        ":core/core.component.css",
+        "core/core.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/tabs",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "core_core_component_scss",
+    src = "core/core.component.scss",
+)

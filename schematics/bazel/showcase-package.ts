@@ -1,13 +1,15 @@
+import { fragment } from '@angular-devkit/core';
 import { DirEntry, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 
-import { NgModule } from './ng-module';
 import { ShowcaseModule } from './showcase-module';
 
 export class ShowcasePackage {
-  private _appModule: NgModule;
+  private _appModule: ShowcaseModule;
 
-  constructor(dir: DirEntry, tree: Tree, context: SchematicContext) {
-    this._appModule = new ShowcaseModule(dir, tree, context);
+  constructor(private _dir: DirEntry, private _tree: Tree, context: SchematicContext) {
+    this._appModule = new ShowcaseModule(this._dir.dir(fragment('app')), this._tree, context);
+    this._appModule.dependencies.push(...this._appModule.ngModules().map(m => `/${m.path}`));
+    this._appModule.dependencies.sort();
   }
 
   render(): Rule[] {

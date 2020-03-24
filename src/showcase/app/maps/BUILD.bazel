@@ -1,0 +1,33 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "maps",
+    srcs = [
+        "maps-routing.module.ts",
+        "maps.module.ts",
+        "maps/maps.component.ts",
+    ],
+    assets = [
+        ":maps/maps.component.css",
+        "maps/maps.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "maps_maps_component_scss",
+    src = "maps/maps.component.scss",
+)

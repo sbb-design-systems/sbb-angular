@@ -1,0 +1,33 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "introduction",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [":introduction.component.css"] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-showcase/app/introduction",
+    deps = [
+        "@npm//@angular/core",
+    ],
+)
+
+sass_binary(
+    name = "introduction_component_scss",
+    src = "introduction.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

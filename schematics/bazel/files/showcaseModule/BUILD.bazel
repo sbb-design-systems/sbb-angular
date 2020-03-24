@@ -1,18 +1,23 @@
 package(default_visibility = ["//visibility:__subpackages__"])
 
-load("@npm_angular_bazel//:index.bzl", "ng_module")
+load(
+    "//tools:defaults.bzl",
+    "ng_module",<% if (hasTests) { %>
+    "ng_test_library",
+    "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
+    "sass_binary",<% } %>
+)
 
 ng_module(
     name = "<%= name %>",
-    srcs = glob(
-        ["*.ts"],
-        exclude = ["*.spec.ts"],
-    ),<% if (stylesheets.length === 1) { %>
-    assets = [":<%= stylesheets[0] %>"] + glob(["*.html"]),<% } %><% if (stylesheets.length > 1) { %>
+    srcs = [<% for (let src of tsFiles) { %>
+        "<%= src %>",<% } %>
+    ],<% if (stylesheets.length || htmlFiles.length) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
-        ":<%= stylesheet %>",<% } %>] + glob(["*.html"]),<% } %>
-    module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
-    tsconfig = "<%= customTsConfig %>",<% } %>
+        ":<%= stylesheet %>",<% } %><% for (let file of htmlFiles) { %>
+        "<%= file %>",<% } %>
+    ],<% } %>
+    tsconfig = "<%= customTsConfig %>",
     deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],
@@ -41,4 +46,4 @@ ng_test_library(
 ng_web_test_suite(
     name = "unit_tests",
     deps = [":unit_test_sources"],
-)<% } %><% if (hasMarkdown) { %>
+)<% } %>

@@ -1,0 +1,34 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "icons",
+    srcs = [
+        "icons-routing.module.ts",
+        "icons.module.ts",
+        "icons/icons.component.ts",
+    ],
+    assets = [
+        ":icons/icons.component.css",
+        "icons/icons.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "icons_icons_component_scss",
+    src = "icons/icons.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)

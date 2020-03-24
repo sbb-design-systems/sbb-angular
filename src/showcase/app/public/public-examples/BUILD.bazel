@@ -1,0 +1,384 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "public-examples",
+    srcs = [
+        "public-examples.module.ts",
+        "accordion-showcase/accordion-showcase.component.ts",
+        "autocomplete-forms-showcase/autocomplete-forms-showcase.component.ts",
+        "autocomplete-hint-showcase/autocomplete-hint-showcase.component.ts",
+        "autocomplete-option-group-showcase/autocomplete-option-group-showcase.component.ts",
+        "autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component.ts",
+        "badge-showcase/badge-showcase.component.ts",
+        "breadcrumb-showcase/breadcrumb-showcase.component.ts",
+        "button-showcase/button-showcase.component.ts",
+        "captcha-showcase/captcha-showcase.component.ts",
+        "checkbox-panel-showcase/checkbox-panel-showcase.component.ts",
+        "checkbox-showcase/checkbox-showcase.component.ts",
+        "datepicker-showcase/datepicker-showcase.component.ts",
+        "dropdown-showcase/dropdown-showcase.component.ts",
+        "field-showcase/field-showcase.component.ts",
+        "file-selector-showcase/file-selector-showcase.component.ts",
+        "ghettobox-showcase/ghettobox-showcase.component.ts",
+        "lightbox-showcase/lightbox-showcase.component.ts",
+        "links-showcase/links-showcase.component.ts",
+        "loading-showcase/loading-showcase.component.ts",
+        "notification-showcase/notification-showcase.component.ts",
+        "pagination-showcase/pagination-showcase.component.ts",
+        "processflow-showcase/processflow-showcase.component.ts",
+        "radio-button-panel-showcase/radio-button-panel-showcase.component.ts",
+        "radio-button-showcase/radio-button-showcase.component.ts",
+        "search-showcase/search-showcase.component.ts",
+        "select-forms/select-forms.component.ts",
+        "select-multi-selection/select-multi-selection.component.ts",
+        "select-native/select-native.component.ts",
+        "select-option-groups/select-option-groups.component.ts",
+        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.ts",
+        "select-reactive-forms/select-reactive-forms.component.ts",
+        "table-showcase/table-showcase.component.ts",
+        "tabs-showcase/tabs-showcase.component.ts",
+        "tabs-showcase/person/person-list/person-list.component.ts",
+        "tag-showcase/tag-showcase.component.ts",
+        "textarea-forms-showcase/textarea-forms-showcase.component.ts",
+        "textarea-native-showcase/textarea-native-showcase.component.ts",
+        "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.ts",
+        "textexpand-showcase/textexpand-showcase.component.ts",
+        "time-input-showcase/time-input-showcase.component.ts",
+        "toggle-showcase/toggle-showcase.component.ts",
+        "tooltip-showcase/tooltip-showcase.component.ts",
+        "usermenu-showcase/usermenu-showcase.component.ts",
+    ],
+    assets = [
+        ":accordion-showcase/accordion-showcase.component.css",
+        ":badge-showcase/badge-showcase.component.css",
+        ":breadcrumb-showcase/breadcrumb-showcase.component.css",
+        ":button-showcase/button-showcase.component.css",
+        ":captcha-showcase/captcha-showcase.component.css",
+        ":checkbox-panel-showcase/checkbox-panel-showcase.component.css",
+        ":checkbox-showcase/checkbox-showcase.component.css",
+        ":datepicker-showcase/datepicker-showcase.component.css",
+        ":dropdown-showcase/dropdown-showcase.component.css",
+        ":field-showcase/field-showcase.component.css",
+        ":file-selector-showcase/file-selector-showcase.component.css",
+        ":ghettobox-showcase/ghettobox-showcase.component.css",
+        ":lightbox-showcase/lightbox-showcase.component.css",
+        ":links-showcase/links-showcase.component.css",
+        ":loading-showcase/loading-showcase.component.css",
+        ":notification-showcase/notification-showcase.component.css",
+        ":pagination-showcase/pagination-showcase.component.css",
+        ":processflow-showcase/processflow-showcase.component.css",
+        ":radio-button-panel-showcase/radio-button-panel-showcase.component.css",
+        ":radio-button-showcase/radio-button-showcase.component.css",
+        ":search-showcase/search-showcase.component.css",
+        ":select-forms/select-forms.component.css",
+        ":select-multi-selection/select-multi-selection.component.css",
+        ":select-native/select-native.component.css",
+        ":select-option-groups/select-option-groups.component.css",
+        ":select-option-groups-multi-selection/select-option-groups-multi-selection.component.css",
+        ":select-reactive-forms/select-reactive-forms.component.css",
+        ":table-showcase/table-showcase.component.css",
+        ":tabs-showcase/tabs-showcase.component.css",
+        ":tabs-showcase/person/person-list/person-list.component.css",
+        ":tag-showcase/tag-showcase.component.css",
+        ":textarea-forms-showcase/textarea-forms-showcase.component.css",
+        ":textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.css",
+        ":textexpand-showcase/textexpand-showcase.component.css",
+        ":time-input-showcase/time-input-showcase.component.css",
+        ":toggle-showcase/toggle-showcase.component.css",
+        ":tooltip-showcase/tooltip-showcase.component.css",
+        ":usermenu-showcase/usermenu-showcase.component.css",
+        "accordion-showcase/accordion-showcase.component.html",
+        "autocomplete-forms-showcase/autocomplete-forms-showcase.component.html",
+        "autocomplete-hint-showcase/autocomplete-hint-showcase.component.html",
+        "autocomplete-option-group-showcase/autocomplete-option-group-showcase.component.html",
+        "autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component.html",
+        "badge-showcase/badge-showcase.component.html",
+        "breadcrumb-showcase/breadcrumb-showcase.component.html",
+        "button-showcase/button-showcase.component.html",
+        "captcha-showcase/captcha-showcase.component.html",
+        "checkbox-panel-showcase/checkbox-panel-showcase.component.html",
+        "checkbox-showcase/checkbox-showcase.component.html",
+        "datepicker-showcase/datepicker-showcase.component.html",
+        "dropdown-showcase/dropdown-showcase.component.html",
+        "field-showcase/field-showcase.component.html",
+        "file-selector-showcase/file-selector-showcase.component.html",
+        "ghettobox-showcase/ghettobox-showcase.component.html",
+        "lightbox-showcase/lightbox-showcase-content-1.component.html",
+        "lightbox-showcase/lightbox-showcase-content-2.component.html",
+        "lightbox-showcase/lightbox-showcase-content-3.component.html",
+        "lightbox-showcase/lightbox-showcase-content-4.component.html",
+        "lightbox-showcase/lightbox-showcase.component.html",
+        "links-showcase/links-showcase.component.html",
+        "loading-showcase/loading-showcase.component.html",
+        "notification-showcase/notification-showcase.component.html",
+        "pagination-showcase/pagination-showcase.component.html",
+        "processflow-showcase/processflow-showcase.component.html",
+        "radio-button-panel-showcase/radio-button-panel-showcase.component.html",
+        "radio-button-showcase/radio-button-showcase.component.html",
+        "search-showcase/search-showcase.component.html",
+        "select-forms/select-forms.component.html",
+        "select-multi-selection/select-multi-selection.component.html",
+        "select-native/select-native.component.html",
+        "select-option-groups/select-option-groups.component.html",
+        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.html",
+        "select-reactive-forms/select-reactive-forms.component.html",
+        "table-showcase/table-showcase.component.html",
+        "tabs-showcase/tabs-showcase.component.html",
+        "tabs-showcase/person/person-list/person-list.component.html",
+        "tag-showcase/tag-showcase.component.html",
+        "textarea-forms-showcase/textarea-forms-showcase.component.html",
+        "textarea-native-showcase/textarea-native-showcase.component.html",
+        "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.html",
+        "textexpand-showcase/textexpand-showcase.component.html",
+        "time-input-showcase/time-input-showcase.component.html",
+        "toggle-showcase/toggle-showcase.component.html",
+        "tooltip-showcase/tooltip-showcase.component.html",
+        "usermenu-showcase/usermenu-showcase.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/core/base",
+        "//src/core/datetime",
+        "//src/core/models",
+        "//src/core/radio-button",
+        "//src/icons",
+        "//src/public/accordion",
+        "//src/public/autocomplete",
+        "//src/public/badge",
+        "//src/public/breadcrumb",
+        "//src/public/button",
+        "//src/public/captcha",
+        "//src/public/checkbox",
+        "//src/public/checkbox-panel",
+        "//src/public/datepicker",
+        "//src/public/dropdown",
+        "//src/public/field",
+        "//src/public/file-selector",
+        "//src/public/ghettobox",
+        "//src/public/lightbox",
+        "//src/public/links",
+        "//src/public/loading",
+        "//src/public/notification",
+        "//src/public/option",
+        "//src/public/pagination",
+        "//src/public/processflow",
+        "//src/public/radio-button",
+        "//src/public/radio-button-panel",
+        "//src/public/search",
+        "//src/public/select",
+        "//src/public/table",
+        "//src/public/tabs",
+        "//src/public/tag",
+        "//src/public/textarea",
+        "//src/public/textexpand",
+        "//src/public/time-input",
+        "//src/public/toggle",
+        "//src/public/tooltip",
+        "//src/public/usermenu",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+        "@npm//ngx-monaco-editor",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "accordion_showcase_accordion_showcase_component_scss",
+    src = "accordion-showcase/accordion-showcase.component.scss",
+)
+
+sass_binary(
+    name = "badge_showcase_badge_showcase_component_scss",
+    src = "badge-showcase/badge-showcase.component.scss",
+)
+
+sass_binary(
+    name = "breadcrumb_showcase_breadcrumb_showcase_component_scss",
+    src = "breadcrumb-showcase/breadcrumb-showcase.component.scss",
+)
+
+sass_binary(
+    name = "button_showcase_button_showcase_component_scss",
+    src = "button-showcase/button-showcase.component.scss",
+)
+
+sass_binary(
+    name = "captcha_showcase_captcha_showcase_component_scss",
+    src = "captcha-showcase/captcha-showcase.component.scss",
+)
+
+sass_binary(
+    name = "checkbox_panel_showcase_checkbox_panel_showcase_component_scss",
+    src = "checkbox-panel-showcase/checkbox-panel-showcase.component.scss",
+)
+
+sass_binary(
+    name = "checkbox_showcase_checkbox_showcase_component_scss",
+    src = "checkbox-showcase/checkbox-showcase.component.scss",
+)
+
+sass_binary(
+    name = "datepicker_showcase_datepicker_showcase_component_scss",
+    src = "datepicker-showcase/datepicker-showcase.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "dropdown_showcase_dropdown_showcase_component_scss",
+    src = "dropdown-showcase/dropdown-showcase.component.scss",
+)
+
+sass_binary(
+    name = "field_showcase_field_showcase_component_scss",
+    src = "field-showcase/field-showcase.component.scss",
+)
+
+sass_binary(
+    name = "file_selector_showcase_file_selector_showcase_component_scss",
+    src = "file-selector-showcase/file-selector-showcase.component.scss",
+)
+
+sass_binary(
+    name = "ghettobox_showcase_ghettobox_showcase_component_scss",
+    src = "ghettobox-showcase/ghettobox-showcase.component.scss",
+)
+
+sass_binary(
+    name = "lightbox_showcase_lightbox_showcase_component_scss",
+    src = "lightbox-showcase/lightbox-showcase.component.scss",
+)
+
+sass_binary(
+    name = "links_showcase_links_showcase_component_scss",
+    src = "links-showcase/links-showcase.component.scss",
+)
+
+sass_binary(
+    name = "loading_showcase_loading_showcase_component_scss",
+    src = "loading-showcase/loading-showcase.component.scss",
+)
+
+sass_binary(
+    name = "notification_showcase_notification_showcase_component_scss",
+    src = "notification-showcase/notification-showcase.component.scss",
+)
+
+sass_binary(
+    name = "pagination_showcase_pagination_showcase_component_scss",
+    src = "pagination-showcase/pagination-showcase.component.scss",
+)
+
+sass_binary(
+    name = "processflow_showcase_processflow_showcase_component_scss",
+    src = "processflow-showcase/processflow-showcase.component.scss",
+)
+
+sass_binary(
+    name = "radio_button_panel_showcase_radio_button_panel_showcase_component_scss",
+    src = "radio-button-panel-showcase/radio-button-panel-showcase.component.scss",
+)
+
+sass_binary(
+    name = "radio_button_showcase_radio_button_showcase_component_scss",
+    src = "radio-button-showcase/radio-button-showcase.component.scss",
+)
+
+sass_binary(
+    name = "search_showcase_search_showcase_component_scss",
+    src = "search-showcase/search-showcase.component.scss",
+)
+
+sass_binary(
+    name = "select_forms_select_forms_component_scss",
+    src = "select-forms/select-forms.component.scss",
+)
+
+sass_binary(
+    name = "select_multi_selection_select_multi_selection_component_scss",
+    src = "select-multi-selection/select-multi-selection.component.scss",
+)
+
+sass_binary(
+    name = "select_native_select_native_component_scss",
+    src = "select-native/select-native.component.scss",
+)
+
+sass_binary(
+    name = "select_option_groups_select_option_groups_component_scss",
+    src = "select-option-groups/select-option-groups.component.scss",
+)
+
+sass_binary(
+    name = "select_option_groups_multi_selection_select_option_groups_multi_selection_component_scss",
+    src = "select-option-groups-multi-selection/select-option-groups-multi-selection.component.scss",
+)
+
+sass_binary(
+    name = "select_reactive_forms_select_reactive_forms_component_scss",
+    src = "select-reactive-forms/select-reactive-forms.component.scss",
+)
+
+sass_binary(
+    name = "table_showcase_table_showcase_component_scss",
+    src = "table-showcase/table-showcase.component.scss",
+)
+
+sass_binary(
+    name = "tabs_showcase_tabs_showcase_component_scss",
+    src = "tabs-showcase/tabs-showcase.component.scss",
+)
+
+sass_binary(
+    name = "tabs_showcase_person_person_list_person_list_component_scss",
+    src = "tabs-showcase/person/person-list/person-list.component.scss",
+)
+
+sass_binary(
+    name = "tag_showcase_tag_showcase_component_scss",
+    src = "tag-showcase/tag-showcase.component.scss",
+)
+
+sass_binary(
+    name = "textarea_forms_showcase_textarea_forms_showcase_component_scss",
+    src = "textarea-forms-showcase/textarea-forms-showcase.component.scss",
+)
+
+sass_binary(
+    name = "textarea_reactive_forms_with_sbbfield_showcase_textarea_reactive_forms_with_sbb_field_showcase_component_scss",
+    src = "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.scss",
+)
+
+sass_binary(
+    name = "textexpand_showcase_textexpand_showcase_component_scss",
+    src = "textexpand-showcase/textexpand-showcase.component.scss",
+)
+
+sass_binary(
+    name = "time_input_showcase_time_input_showcase_component_scss",
+    src = "time-input-showcase/time-input-showcase.component.scss",
+)
+
+sass_binary(
+    name = "toggle_showcase_toggle_showcase_component_scss",
+    src = "toggle-showcase/toggle-showcase.component.scss",
+)
+
+sass_binary(
+    name = "tooltip_showcase_tooltip_showcase_component_scss",
+    src = "tooltip-showcase/tooltip-showcase.component.scss",
+)
+
+sass_binary(
+    name = "usermenu_showcase_usermenu_showcase_component_scss",
+    src = "usermenu-showcase/usermenu-showcase.component.scss",
+)

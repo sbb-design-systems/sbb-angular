@@ -1,0 +1,31 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "keycloak",
+    srcs = [
+        "keycloak-routing.module.ts",
+        "keycloak.module.ts",
+        "keycloak/keycloak.component.ts",
+    ],
+    assets = [
+        ":keycloak/keycloak.component.css",
+        "keycloak/keycloak.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "keycloak_keycloak_component_scss",
+    src = "keycloak/keycloak.component.scss",
+)

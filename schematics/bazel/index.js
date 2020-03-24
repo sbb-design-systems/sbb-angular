@@ -16,6 +16,7 @@ class NgModule {
         this._templateUrl = './files/ngModule';
         this._markdownFiles = [];
         this._tsFiles = [];
+        this._htmlFiles = [];
         this._specFiles = [];
         this._scssFiles = [];
         this._scssLibaryFiles = [];
@@ -33,6 +34,11 @@ class NgModule {
         this.hasSassLibrary = !!this._scssLibaryFiles.length;
         this.sassBinaries = this._findSassBinaries();
         this.stylesheets = this.sassBinaries.map(s => s.path.replace('.scss', '.css'));
+    }
+    ngModules() {
+        return this._modules.reduce((current, next) => current.concat(next.ngModules()), [
+            this
+        ]);
     }
     render() {
         return this._modules.reduce((current, next) => current.concat(next.render()), [
@@ -52,17 +58,18 @@ class NgModule {
     _templateOptions() {
         return this;
     }
-    _ngModules() {
-        return this._modules.reduce((current, next) => current.concat(next._ngModules()), [
-            this
-        ]);
+    _isModuleDir(dir) {
+        return dir.subfiles.includes(core.fragment('public-api.ts'));
+    }
+    _createSubModule(dir) {
+        return new NgModule(dir, this._tree, this._context);
     }
     _findFiles(dir, skipModuleCheck = true) {
         if (['schematics', 'styles'].some(d => core.basename(dir.path) === d)) {
             return;
         }
-        else if (!skipModuleCheck && dir.subfiles.includes(core.fragment('public-api.ts'))) {
-            this._modules.push(new NgModule(dir, this._tree, this._context));
+        else if (!skipModuleCheck && this._isModuleDir(dir)) {
+            this._modules.push(this._createSubModule(dir));
             return;
         }
         for (const file of dir.subfiles) {
@@ -74,6 +81,9 @@ class NgModule {
             }
             else if (file.endsWith('.md')) {
                 this._markdownFiles.push(dir.file(file));
+            }
+            else if (file.endsWith('.html')) {
+                this._htmlFiles.push(dir.file(file));
             }
             else if (file.endsWith('.scss') && file.startsWith('_')) {
                 this._scssLibaryFiles.push(dir.file(file));
@@ -150,6 +160,9 @@ class NgModule {
             else if (importPath.includes('/node_modules/')) {
                 return this._toNodeDependency(importPath.split('/node_modules/')[1]);
             }
+            else if (importPath.includes('~')) {
+                return this._toNodeDependency(importPath.split('~')[1]);
+            }
             else {
                 this._context.logger.warn(`${entry.path}: Could not resolve stylesheet import '${importPath}'`);
                 return '';
@@ -171,7 +184,7 @@ class NgPackage extends NgModule {
     constructor(dir, tree, context) {
         super(dir, tree, context);
         this._templateUrl = './files/ngPackage';
-        const ngModules = this._ngModules().slice(1);
+        const ngModules = this.ngModules().slice(1);
         this.entryPoints = ngModules.map(m => this._resolvePath(m));
         this.hasReadme = dir.subfiles.includes(core.fragment('README.md'));
         this.hasSchematics = dir.subdirs.includes(core.fragment('schematics'));
@@ -194,13 +207,48 @@ class NgPackage extends NgModule {
     }
 }
 
+class ShowcaseModule extends NgModule {
+    constructor() {
+        super(...arguments);
+        this._templateUrl = './files/showcaseModule';
+        this.customTsConfig = '//src/showcase:tsconfig.json';
+    }
+    _isModuleDir(dir) {
+        return dir.subfiles.some(f => f.endsWith('.module.ts'));
+    }
+    _createSubModule(dir) {
+        return new ShowcaseModule(dir, this._tree, this._context);
+    }
+    _templateOptions() {
+        return {
+            ...this,
+            tsFiles: this._tsFiles.map(f => core.relative(this.path, f.path)),
+            htmlFiles: this._htmlFiles.map(f => core.relative(this.path, f.path))
+        };
+    }
+}
+
+class ShowcasePackage {
+    constructor(_dir, _tree, context) {
+        this._dir = _dir;
+        this._tree = _tree;
+        this._appModule = new ShowcaseModule(this._dir.dir(core.fragment('app')), this._tree, context);
+        this._appModule.dependencies.push(...this._appModule.ngModules().map(m => `/${m.path}`));
+        this._appModule.dependencies.sort();
+    }
+    render() {
+        return this._appModule.render();
+    }
+}
+
 function bazel() {
     return (tree, context) => {
         const srcDir = tree.getDir('src');
         return schematics.chain(srcDir.subdirs
-            .filter(d => !d.startsWith('showcase'))
             .map(d => srcDir.dir(d))
-            .map(packageDir => new NgPackage(packageDir, tree, context))
+            .map(packageDir => packageDir.path.endsWith('showcase')
+            ? new ShowcasePackage(packageDir, tree, context)
+            : new NgPackage(packageDir, tree, context))
             .reduce((current, next) => current.concat(next.render()), []));
     };
 }

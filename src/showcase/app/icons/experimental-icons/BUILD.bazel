@@ -1,0 +1,41 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "experimental-icons",
+    srcs = [
+        "experimental-icons-routing.module.ts",
+        "experimental-icons.module.ts",
+        "experimental-icon-search/experimental-icon-search.component.ts",
+    ],
+    assets = [
+        ":experimental-icon-search/experimental-icon-search.component.css",
+        "experimental-icon-search/experimental-icon-search.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/tooltip",
+        "//src/icons/experimental/_meta",
+        "//src/public/checkbox-panel",
+        "//src/public/search",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "experimental_icon_search_experimental_icon_search_component_scss",
+    src = "experimental-icon-search/experimental-icon-search.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)

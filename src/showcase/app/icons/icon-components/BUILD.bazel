@@ -1,0 +1,47 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "icon-components",
+    srcs = [
+        "icon-components-routing.module.ts",
+        "icon-components.module.ts",
+        "icon-search/icon-search.component.ts",
+        "icon-viewer/icon-viewer.component.ts",
+    ],
+    assets = [
+        ":icon-search/icon-search.component.css",
+        ":icon-viewer/icon-viewer.component.css",
+        "icon-search/icon-search.component.html",
+        "icon-viewer/icon-viewer.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons",
+        "//src/public/search",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "icon_search_icon_search_component_scss",
+    src = "icon-search/icon-search.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "icon_viewer_icon_viewer_component_scss",
+    src = "icon-viewer/icon-viewer.component.scss",
+)

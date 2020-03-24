@@ -1,0 +1,54 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "shared",
+    srcs = [
+        "animations.ts",
+        "component-viewer-base.ts",
+        "example-provider.ts",
+        "html-loader.service.ts",
+        "loader-builder.ts",
+        "shared.module.ts",
+        "api-viewer/api-viewer.component.ts",
+        "markdown-viewer/markdown-viewer.component.ts",
+        "submenu/submenu.component.ts",
+    ],
+    assets = [
+        ":api-viewer/api-viewer.component.css",
+        ":markdown-viewer/markdown-viewer.component.css",
+        ":submenu/submenu.component.css",
+        "api-viewer/api-viewer.component.html",
+        "submenu/submenu.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/tabs",
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "api_viewer_api_viewer_component_scss",
+    src = "api-viewer/api-viewer.component.scss",
+)
+
+sass_binary(
+    name = "markdown_viewer_markdown_viewer_component_scss",
+    src = "markdown-viewer/markdown-viewer.component.scss",
+)
+
+sass_binary(
+    name = "submenu_submenu_component_scss",
+    src = "submenu/submenu.component.scss",
+)

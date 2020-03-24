@@ -1,0 +1,182 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "business-examples",
+    srcs = [
+        "business-examples.module.ts",
+        "autocomplete-forms-showcase/autocomplete-forms-showcase.component.ts",
+        "autocomplete-hint-showcase/autocomplete-hint-showcase.component.ts",
+        "autocomplete-option-group-showcase/autocomplete-option-group-showcase.component.ts",
+        "autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component.ts",
+        "chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component.ts",
+        "chip-showcase/disabled-chip-input/disabled-chip-input.component.ts",
+        "chip-showcase/forms-chip-input/forms-chip-input.component.ts",
+        "chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component.ts",
+        "dialog-showcase/dialog-showcase.component.ts",
+        "notification-showcase/notification-data.ts",
+        "notification-showcase/closable-notification/closable-notification.component.ts",
+        "notification-showcase/custom-icon-notification/custom-icon-notification.component.ts",
+        "notification-showcase/jumpmark-notification/jumpmark-notification.component.ts",
+        "notification-showcase/simple-notification/simple-notification.component.ts",
+        "pagination-showcase/pagination-showcase.component.ts",
+        "select-forms/select-forms.component.ts",
+        "select-multi-selection/select-multi-selection.component.ts",
+        "select-native/select-native.component.ts",
+        "select-option-groups/select-option-groups.component.ts",
+        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.ts",
+        "select-reactive-forms/select-reactive-forms.component.ts",
+        "simple-contextmenu/simple-contextmenu.component.ts",
+        "skippable-processflow/skippable-processflow.component.ts",
+        "table-showcase/table-showcase-data.ts",
+        "table-showcase/grouped-columns-table/grouped-columns-table.component.ts",
+        "table-showcase/grouped-rows-table/grouped-rows-table.component.ts",
+        "table-showcase/simple-table/simple-table.component.ts",
+        "table-showcase/sortable-table/sortable-table.component.ts",
+        "tabs-showcase/tabs-showcase.component.ts",
+        "tabs-showcase/person/person-list/person-list.component.ts",
+        "textarea-forms-showcase/textarea-forms-showcase.component.ts",
+        "textarea-native-showcase/textarea-native-showcase.component.ts",
+        "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.ts",
+        "tooltip-showcase/tooltip-showcase.component.ts",
+        "usermenu-showcase/usermenu-showcase.component.ts",
+    ],
+    assets = [
+        ":dialog-showcase/dialog-showcase.component.css",
+        ":notification-showcase/closable-notification/closable-notification.component.css",
+        ":notification-showcase/simple-notification/simple-notification.component.css",
+        ":simple-contextmenu/simple-contextmenu.component.css",
+        ":skippable-processflow/skippable-processflow.component.css",
+        ":tabs-showcase/tabs-showcase.component.css",
+        ":tabs-showcase/person/person-list/person-list.component.css",
+        ":textarea-forms-showcase/textarea-forms-showcase.component.css",
+        ":textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.css",
+        ":tooltip-showcase/tooltip-showcase.component.css",
+        ":usermenu-showcase/usermenu-showcase.component.css",
+        "autocomplete-forms-showcase/autocomplete-forms-showcase.component.html",
+        "autocomplete-hint-showcase/autocomplete-hint-showcase.component.html",
+        "autocomplete-option-group-showcase/autocomplete-option-group-showcase.component.html",
+        "autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component.html",
+        "chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component.html",
+        "chip-showcase/disabled-chip-input/disabled-chip-input.component.html",
+        "chip-showcase/forms-chip-input/forms-chip-input.component.html",
+        "chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component.html",
+        "dialog-showcase/dialog-showcase-content-1.component.html",
+        "dialog-showcase/dialog-showcase-content-2.component.html",
+        "dialog-showcase/dialog-showcase-content-3.component.html",
+        "dialog-showcase/dialog-showcase.component.html",
+        "notification-showcase/closable-notification/closable-notification.component.html",
+        "notification-showcase/custom-icon-notification/custom-icon-notification.component.html",
+        "notification-showcase/jumpmark-notification/jumpmark-notification.component.html",
+        "notification-showcase/simple-notification/simple-notification.component.html",
+        "pagination-showcase/pagination-showcase.component.html",
+        "select-forms/select-forms.component.html",
+        "select-multi-selection/select-multi-selection.component.html",
+        "select-native/select-native.component.html",
+        "select-option-groups/select-option-groups.component.html",
+        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.html",
+        "select-reactive-forms/select-reactive-forms.component.html",
+        "simple-contextmenu/simple-contextmenu.component.html",
+        "skippable-processflow/skippable-processflow.component.html",
+        "table-showcase/grouped-columns-table/grouped-columns-table.component.html",
+        "table-showcase/grouped-rows-table/grouped-rows-table.component.html",
+        "table-showcase/simple-table/simple-table.component.html",
+        "table-showcase/sortable-table/sortable-table.component.html",
+        "tabs-showcase/tabs-showcase.component.html",
+        "tabs-showcase/person/person-list/person-list.component.html",
+        "textarea-forms-showcase/textarea-forms-showcase.component.html",
+        "textarea-native-showcase/textarea-native-showcase.component.html",
+        "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.html",
+        "tooltip-showcase/tooltip-showcase.component.html",
+        "usermenu-showcase/usermenu-showcase.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/autocomplete",
+        "//src/business/button",
+        "//src/business/checkbox",
+        "//src/business/chip",
+        "//src/business/contextmenu",
+        "//src/business/dialog",
+        "//src/business/field",
+        "//src/business/header",
+        "//src/business/notification",
+        "//src/business/option",
+        "//src/business/pagination",
+        "//src/business/processflow",
+        "//src/business/radio-button",
+        "//src/business/select",
+        "//src/business/table",
+        "//src/business/tabs",
+        "//src/business/textarea",
+        "//src/business/tooltip",
+        "//src/business/usermenu",
+        "//src/core/models",
+        "//src/icons",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "dialog_showcase_dialog_showcase_component_scss",
+    src = "dialog-showcase/dialog-showcase.component.scss",
+)
+
+sass_binary(
+    name = "notification_showcase_closable_notification_closable_notification_component_scss",
+    src = "notification-showcase/closable-notification/closable-notification.component.scss",
+)
+
+sass_binary(
+    name = "notification_showcase_simple_notification_simple_notification_component_scss",
+    src = "notification-showcase/simple-notification/simple-notification.component.scss",
+)
+
+sass_binary(
+    name = "simple_contextmenu_simple_contextmenu_component_scss",
+    src = "simple-contextmenu/simple-contextmenu.component.scss",
+)
+
+sass_binary(
+    name = "skippable_processflow_skippable_processflow_component_scss",
+    src = "skippable-processflow/skippable-processflow.component.scss",
+)
+
+sass_binary(
+    name = "tabs_showcase_tabs_showcase_component_scss",
+    src = "tabs-showcase/tabs-showcase.component.scss",
+)
+
+sass_binary(
+    name = "tabs_showcase_person_person_list_person_list_component_scss",
+    src = "tabs-showcase/person/person-list/person-list.component.scss",
+)
+
+sass_binary(
+    name = "textarea_forms_showcase_textarea_forms_showcase_component_scss",
+    src = "textarea-forms-showcase/textarea-forms-showcase.component.scss",
+)
+
+sass_binary(
+    name = "textarea_reactive_forms_with_sbbfield_showcase_textarea_reactive_forms_with_sbb_field_showcase_component_scss",
+    src = "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.scss",
+)
+
+sass_binary(
+    name = "tooltip_showcase_tooltip_showcase_component_scss",
+    src = "tooltip-showcase/tooltip-showcase.component.scss",
+)
+
+sass_binary(
+    name = "usermenu_showcase_usermenu_showcase_component_scss",
+    src = "usermenu-showcase/usermenu-showcase.component.scss",
+)

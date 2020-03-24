@@ -1,0 +1,66 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "maps-examples",
+    srcs = [
+        "maps-examples.module.ts",
+        "esri-basemap-gallery-showcase/esri-basemap-gallery-showcase.component.ts",
+        "esri-layer-list-showcase/esri-layer-list-showcase.component.ts",
+        "esri-legend-showcase/esri-legend-showcase.component.ts",
+        "esri-web-map-showcase/esri-web-map-showcase.component.ts",
+        "esri-web-scene-showcase/esri-web-scene-showcase.component.ts",
+    ],
+    assets = [
+        ":esri-basemap-gallery-showcase/esri-basemap-gallery-showcase.component.css",
+        ":esri-layer-list-showcase/esri-layer-list-showcase.component.css",
+        ":esri-legend-showcase/esri-legend-showcase.component.css",
+        ":esri-web-map-showcase/esri-web-map-showcase.component.css",
+        ":esri-web-scene-showcase/esri-web-scene-showcase.component.css",
+        "esri-basemap-gallery-showcase/esri-basemap-gallery-showcase.component.html",
+        "esri-layer-list-showcase/esri-layer-list-showcase.component.html",
+        "esri-legend-showcase/esri-legend-showcase.component.html",
+        "esri-web-map-showcase/esri-web-map-showcase.component.html",
+        "esri-web-scene-showcase/esri-web-scene-showcase.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps/esri-basemap-gallery",
+        "//src/maps/esri-layer-list",
+        "//src/maps/esri-legend",
+        "//src/maps/esri-web-map",
+        "//src/maps/esri-web-scene",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+sass_binary(
+    name = "esri_basemap_gallery_showcase_esri_basemap_gallery_showcase_component_scss",
+    src = "esri-basemap-gallery-showcase/esri-basemap-gallery-showcase.component.scss",
+)
+
+sass_binary(
+    name = "esri_layer_list_showcase_esri_layer_list_showcase_component_scss",
+    src = "esri-layer-list-showcase/esri-layer-list-showcase.component.scss",
+)
+
+sass_binary(
+    name = "esri_legend_showcase_esri_legend_showcase_component_scss",
+    src = "esri-legend-showcase/esri-legend-showcase.component.scss",
+)
+
+sass_binary(
+    name = "esri_web_map_showcase_esri_web_map_showcase_component_scss",
+    src = "esri-web-map-showcase/esri-web-map-showcase.component.scss",
+)
+
+sass_binary(
+    name = "esri_web_scene_showcase_esri_web_scene_showcase_component_scss",
+    src = "esri-web-scene-showcase/esri-web-scene-showcase.component.scss",
+)
