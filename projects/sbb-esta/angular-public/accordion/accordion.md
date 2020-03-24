@@ -77,11 +77,11 @@ Expansion panels can be disabled using the disabled attribute. A disabled expans
 
 ### Multi Expansion Panels
 
-Multiple expansion panels can be used into an accordion. The multi="true" input allows the expansions state
-to be set independently of each other. When multi="false" (default value) only one panel can be expanded at a given time:
+Multiple expansion panels can be used into an accordion. The multi="true" (default value) input allows the expansions
+state to be set independently of each other. When multi="false" only one panel can be expanded at a given time:
 
 ```html
-<sbb-accordion [multi]="true">
+<sbb-accordion [multi]="false">
   <sbb-expansion-panel>
     <sbb-expansion-panel-header>
       Header 1
