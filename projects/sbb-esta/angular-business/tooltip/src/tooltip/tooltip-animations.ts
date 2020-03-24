@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import {
   animate,
   AnimationTriggerMetadata,
@@ -33,7 +26,7 @@ export const sbbTooltipAnimations: {
         '200ms cubic-bezier(0, 0, 0.2, 1)',
         keyframes([
           style({ opacity: 0, transform: 'scale(0)', offset: 0 }),
-          style({ opacity: 0.5, transform: 'scale(0.99)', offset: 0.5 }),
+          style({ opacity: 0.5, transform: 'scale(0.8)', offset: 0.5 }),
           style({ opacity: 1, transform: 'scale(1)', offset: 1 })
         ])
       )
