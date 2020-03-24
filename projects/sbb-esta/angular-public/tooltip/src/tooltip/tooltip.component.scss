@@ -184,7 +184,6 @@ sbb-tooltip {
 .sbb-tooltip-content {
   color: $sbbColorGrey;
   letter-spacing: 0;
-  line-height: 1;
   font-size: $sizeFontBase;
   border-radius: toPx($tooltipBorderRadius) toPx($tooltipBorderRadius) toPx($tooltipBorderRadius) 0
     0 0 toPx($tooltipBorderRadius);
