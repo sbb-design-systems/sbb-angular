@@ -1,10 +1,3 @@
-$sbb-tooltip-horizontal-padding: 8px;
-$sbb-tooltip-max-width: 250px;
-$sbb-tooltip-margin: 14px;
-
-$sbb-tooltip-handset-horizontal-padding: 16px;
-$sbb-tooltip-handset-margin: 24px;
-
 .sbb-tooltip-panel {
   // The overlay reference updates the pointer-events style property directly on the HTMLElement
   // depending on the state of the overlay. For tooltips the overlay panel should never enable
@@ -13,19 +6,9 @@ $sbb-tooltip-handset-margin: 24px;
 }
 
 .sbb-tooltip {
-  color: white;
-  border-radius: 4px;
-  margin: $sbb-tooltip-margin;
-  max-width: $sbb-tooltip-max-width;
-  padding-left: $sbb-tooltip-horizontal-padding;
-  padding-right: $sbb-tooltip-horizontal-padding;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background-color: black;
-}
-
-.sbb-tooltip-handset {
-  margin: $sbb-tooltip-handset-margin;
-  padding-left: $sbb-tooltip-handset-horizontal-padding;
-  padding-right: $sbb-tooltip-handset-horizontal-padding;
+  padding: 8px;
+  position: relative;
+  max-width: 460px;
+  width: auto;
+  min-height: 0;
 }
