@@ -46,7 +46,12 @@ function isBuildable(d) {
   if (!d.isDirectory()) {
     return false;
   }
-  const indexTs = join(__dirname, d.name, 'index.ts');
-  const indexJs = join(__dirname, d.name, 'index.js');
-  return existsSync(indexTs) && (!existsSync(indexJs) || statSync(indexTs).mtimeMs > statSync(indexJs).mtimeMs);
+  const dir = join(__dirname, d.name);
+  const indexTs = join(dir, 'index.ts');
+  const indexJs = join(dir, 'index.js');
+  const lastModified = readdirSync(dir, { withFileTypes: true })
+    .filter(d => d.isFile() && d.name.endsWith('.ts'))
+    .map(d => statSync(join(dir, d.name)).mtimeMs)
+    .reduce((x, y) => Math.max(x, y), 0);
+  return existsSync(indexTs) && (!existsSync(indexJs) || lastModified > statSync(indexJs).mtimeMs);
 }

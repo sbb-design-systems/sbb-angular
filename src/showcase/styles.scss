@@ -1,6 +1,6 @@
 @import '~@angular/cdk/a11y';
 @import '~@angular/cdk/overlay';
-@import '../../sbb-esta/angular-core/styles/main';
+@import '../core/styles/main';
 
 html,
 body {
@@ -21,7 +21,7 @@ sbb-maps,
 sbb-core,
 sbb-icons,
 .cdk-overlay-container {
-  @import '../../sbb-esta/angular-public/styles';
+  @import '../public/styles';
   sbb-markdown-viewer,
   sbb-public-component-viewer,
   sbb-api-viewer,
@@ -43,7 +43,7 @@ sbb-icons,
 
 sbb-business,
 .cdk-overlay-container {
-  @import '../../sbb-esta/angular-business/styles';
+  @import '../business/styles';
   sbb-markdown-viewer,
   sbb-business-component-viewer,
   sbb-dialog-container {

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sbb-textarea-forms-showcase',
   templateUrl: './textarea-forms-showcase.component.html',
-  styleUrls: ['./textarea-forms-showcase.component.scss']
+  styleUrls: ['./textarea-forms-showcase.component.css']
 })
 export class TextareaFormsShowcaseComponent {
   textarea = 'SBB';

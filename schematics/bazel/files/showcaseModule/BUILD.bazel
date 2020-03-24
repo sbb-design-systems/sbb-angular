@@ -1,0 +1,44 @@
+package(default_visibility = ["//visibility:__subpackages__"])
+
+load("@npm_angular_bazel//:index.bzl", "ng_module")
+
+ng_module(
+    name = "<%= name %>",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["*.spec.ts"],
+    ),<% if (stylesheets.length === 1) { %>
+    assets = [":<%= stylesheets[0] %>"] + glob(["*.html"]),<% } %><% if (stylesheets.length > 1) { %>
+    assets = [<% for (let stylesheet of stylesheets) { %>
+        ":<%= stylesheet %>",<% } %>] + glob(["*.html"]),<% } %>
+    module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
+    tsconfig = "<%= customTsConfig %>",<% } %>
+    deps = [<% for (let dependency of dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)<% for (let stylesheet of sassBinaries) { %>
+
+sass_binary(
+    name = "<%= stylesheet.name %>",
+    src = "<%= stylesheet.path %>",<% if (stylesheet.dependencies.length) { %>
+    deps = [<% for (let dependency of stylesheet.dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],<% } %>
+)<% } %><% if (hasTests) { %>
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":<%= name %>",<% for (let dependency of testDependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)<% } %><% if (hasMarkdown) { %>

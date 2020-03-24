@@ -2,11 +2,10 @@ entryPoints = [
   "experimental",
   "experimental/_meta",
   "experimental/fpl",
-  "experimental/kom",
-  "experimental/social-media",
   "experimental/fpl/him-cus",
   "experimental/fpl/timetable-attributes",
   "experimental/fpl/timetable-products",
+  "experimental/kom",
   "experimental/kom/arrow",
   "experimental/kom/audio",
   "experimental/kom/basic",
@@ -26,6 +25,7 @@ entryPoints = [
   "experimental/kom/transport",
   "experimental/kom/user",
   "experimental/kom/weather",
+  "experimental/social-media",
 ]
 
 # List of all non-testing entry-points of the Icons package.
