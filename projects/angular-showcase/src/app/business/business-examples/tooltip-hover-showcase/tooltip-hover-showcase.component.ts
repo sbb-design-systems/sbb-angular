@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './tooltip-hover-showcase.component.html'
 })
 export class TooltipHoverShowcaseComponent {
-  hoverCloseDelay = 0;
-  hoverOpenDelay = 0;
+  hoverHideDelay = 0;
+  hoverShowDelay = 0;
 
   onOpen($event) {
     console.log('opened', $event);

@@ -41,7 +41,7 @@ a delay in milliseconds for opening and closing the tooltip. The tooltip will st
 open on click, as a fallback for mobile.
 
 ```html
-<sbb-tooltip trigger="hover" [hoverOpenDelay]="200" [hoverCloseDelay]="200">
+<sbb-tooltip trigger="hover" [hoverShowDelay]="200" [hoverHideDelay]="200">
   {{ tooltipContent }}
 </sbb-tooltip>
 ```

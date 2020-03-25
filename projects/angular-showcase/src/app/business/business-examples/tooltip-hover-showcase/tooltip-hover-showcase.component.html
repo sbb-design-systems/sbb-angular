@@ -1,21 +1,21 @@
 <h4>Tooltip Component Usage</h4>
-<sbb-tooltip trigger="hover" [hoverOpenDelay]="hoverOpenDelay" [hoverCloseDelay]="hoverCloseDelay">
+<sbb-tooltip trigger="hover" [hoverShowDelay]="hoverShowDelay" [hoverHideDelay]="hoverHideDelay">
   <p>This tooltip was shown on hover.</p>
 </sbb-tooltip>
 
 <h4 class="sbbsc-block">Tooltip Directive Usage</h4>
 <span
   sbbTooltip="This tooltip can be placed on every element."
-  [sbbTooltipShowDelay]="hoverOpenDelay"
-  [sbbTooltipHideDelay]="hoverCloseDelay"
+  [sbbTooltipShowDelay]="hoverShowDelay"
+  [sbbTooltipHideDelay]="hoverHideDelay"
   >I'm a tooltip bound to a text.</span
 >
 
 <h4 class="sbbsc-block">Configuration</h4>
 <sbb-field label="Open tooltip delay in milliseconds" mode="medium">
-  <input sbbInput type="number" [(ngModel)]="hoverOpenDelay" />
+  <input sbbInput type="number" [(ngModel)]="hoverShowDelay" />
 </sbb-field>
 <div class="sbbsc-block"></div>
 <sbb-field label="Close tooltip delay in milliseconds" mode="medium">
-  <input sbbInput type="number" [(ngModel)]="hoverCloseDelay" />
+  <input sbbInput type="number" [(ngModel)]="hoverHideDelay" />
 </sbb-field>
