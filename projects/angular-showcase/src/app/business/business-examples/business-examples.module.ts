@@ -61,13 +61,19 @@ import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TextareaFormsShowcaseComponent } from './textarea-forms-showcase/textarea-forms-showcase.component';
 import { TextareaNativeShowcaseComponent } from './textarea-native-showcase/textarea-native-showcase.component';
 import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from './textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
-import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
+import { TooltipCustomContentShowcaseComponent } from './tooltip-custom-content-showcase/tooltip-custom-content-showcase.component';
+import { TooltipCustomIconShowcaseComponent } from './tooltip-custom-icon-showcase/tooltip-custom-icon-showcase.component';
+import { TooltipHoverShowcaseComponent } from './tooltip-hover-showcase/tooltip-hover-showcase.component';
+import { TooltipSimpleShowcaseComponent } from './tooltip-simple-showcase/tooltip-simple-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
 const exampleComponents = [
   SimpleContextmenuComponent,
   SkippableProcessflowComponent,
-  TooltipShowcaseComponent,
+  TooltipHoverShowcaseComponent,
+  TooltipCustomContentShowcaseComponent,
+  TooltipCustomIconShowcaseComponent,
+  TooltipSimpleShowcaseComponent,
   UsermenuShowcaseComponent,
   PersonListComponent,
   TabsShowcaseComponent,
