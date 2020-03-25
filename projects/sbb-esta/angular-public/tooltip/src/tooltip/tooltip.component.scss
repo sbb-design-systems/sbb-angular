@@ -80,7 +80,7 @@ sbb-tooltip {
 }
 
 .sbb-tooltip-content-above {
-  margin-bottom: pxToEm($tooltipIconsSize / 2 + $tooltipShadowSize + 4);
+  margin-bottom: pxToEm($tooltipShadowBorderWidth + $tooltipShadowSize + $tooltipBorderWidth);
 
   .sbb-tooltip-shadow {
     width: calc(100% + #{toPx(2 * $tooltipBorderWidth)});
@@ -148,7 +148,7 @@ sbb-tooltip {
 
 .sbb-tooltip-content-below {
   box-shadow: 0 pxToEm($tooltipShadowSize) 0 0 $tooltipBoxShadowColor;
-  margin-top: pxToEm($tooltipIconsSize / 2);
+  margin-top: pxToEm($tooltipShadowBorderWidth - $tooltipBorderWidth);
   &::after,
   &::before {
     bottom: 100%;
