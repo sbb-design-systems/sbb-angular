@@ -9,9 +9,7 @@
 $tooltipBorderRadius: 2;
 $tooltipBorderWidth: 2;
 $tooltipIconsBorderWidth: 1;
-$tooltipWidth: 460;
-$tooltipWidthMP: 351;
-$tooltipMinWidth: 72;
+$tooltipMaxWidth: 460;
 $tooltipIconsSize: 24;
 $tooltipContentPadding: 24;
 $tooltipBoxShadowColor: rgba(102, 102, 102, 0.15);
@@ -40,7 +38,7 @@ $tooltipBeforeArrowWidth: 13;
   cursor: pointer;
   display: block;
   border-color: $sbbColorGrey;
-  border-width: pxToEm(1);
+  border-width: pxToEm($tooltipIconsBorderWidth);
   border-style: solid;
   border-radius: 50%;
   background-color: $sbbColorWhite;
@@ -149,7 +147,7 @@ sbb-tooltip {
 }
 
 .sbb-tooltip-content-below {
-  box-shadow: 0 pxToEm($tooltipShadowSize) 0 0 rgba(102, 102, 102, 0.15);
+  box-shadow: 0 pxToEm($tooltipShadowSize) 0 0 $tooltipBoxShadowColor;
   margin-top: pxToEm($tooltipIconsSize / 2);
   &::after,
   &::before {
@@ -195,8 +193,7 @@ sbb-tooltip {
   border-radius: toPx($tooltipBorderRadius);
   text-align: left;
   border: toPx($tooltipBorderWidth) solid $sbbColorGrey;
-  width: toPx($tooltipWidth);
-  min-height: toPx($tooltipMinWidth);
+  max-width: toPx($tooltipMaxWidth);
   display: block;
   background: $sbbColorWhite;
 
@@ -204,65 +201,37 @@ sbb-tooltip {
     padding-top: toPx($tooltipContentPadding);
     padding-left: toPx($tooltipContentPadding);
     padding-bottom: toPx($tooltipContentPadding);
-    width: toPx($tooltipWidth - $tooltipMinWidth);
-  }
-
-  &.sbb-tooltip-trigger-hover {
-    width: auto;
-    max-width: toPx($tooltipWidth);
-    min-height: 0;
-
-    .sbb-tooltip-icon {
-      display: none;
-    }
-
-    .sbb-tooltip-content-body {
-      width: auto;
-      padding-right: toPx($tooltipContentPadding);
-    }
-
-    @include mq($from: mobilePortrait, $to: tabletPortrait) {
-      .sbb-tooltip-content-body {
-        width: toPx($tooltipWidthMP - $tooltipContentPadding);
-      }
-    }
-  }
-
-  @include mq($from: mobilePortrait, $to: tabletPortrait) {
-    width: toPx($tooltipWidthMP);
-    .sbb-tooltip-content-body {
-      width: toPx($tooltipWidthMP - $tooltipMinWidth);
-    }
+    padding-right: toPx($tooltipContentPadding + $tooltipIconsSize + $tooltipContentPadding);
   }
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
       font-size: $sizeFontBase * $scalingFactor4k;
       border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $sbbColorGrey;
-      width: toPx($tooltipWidth * $scalingFactor4k);
-      min-height: toPx($tooltipMinWidth * $scalingFactor4k);
-      display: block;
-      background-color: $sbbColorWhite;
+      max-width: toPx($tooltipMaxWidth * $scalingFactor4k);
       .sbb-tooltip-content-body {
         padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
         padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
         padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
-        width: toPx(($tooltipWidth - $tooltipMinWidth) * $scalingFactor4k);
+        padding-right: toPx(
+          $tooltipContentPadding * $scalingFactor4k + $tooltipIconsSize + $tooltipContentPadding *
+            $scalingFactor4k
+        );
       }
     }
 
     @include mq($from: desktop5k) {
       font-size: $sizeFontBase * $scalingFactor5k;
       border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $sbbColorGrey;
-      width: toPx($tooltipWidth * $scalingFactor5k);
-      min-height: toPx($tooltipMinWidth * $scalingFactor5k);
-      display: block;
-      background-color: $sbbColorWhite;
+      max-width: toPx($tooltipMaxWidth * $scalingFactor5k);
       .sbb-tooltip-content-body {
         padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
         padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
         padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
-        width: toPx(($tooltipWidth - $tooltipMinWidth) * $scalingFactor5k);
+        padding-right: toPx(
+          $tooltipContentPadding * $scalingFactor5k + $tooltipIconsSize + $tooltipContentPadding *
+            $scalingFactor5k
+        );
       }
     }
   }
@@ -280,6 +249,16 @@ sbb-tooltip {
       &:focus {
         border-color: transparent;
       }
+    }
+  }
+
+  &.sbb-tooltip-trigger-hover {
+    .sbb-tooltip-icon {
+      display: none;
+    }
+
+    .sbb-tooltip-content-body {
+      padding-right: toPx($tooltipContentPadding);
     }
   }
 }
