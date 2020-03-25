@@ -20,6 +20,9 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/public/tabs",
+        "//src/showcase/app/public/public-examples",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",

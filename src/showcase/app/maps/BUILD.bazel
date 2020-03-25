@@ -20,6 +20,9 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/maps",
+        "//src/showcase/app/maps/maps-examples",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",

@@ -14,28 +14,22 @@ ng_module(
         "app-routing.module.ts",
         "app.component.ts",
         "app.module.ts",
-        "features/core-component-viewer/core-example-viewer/core-example-viewer.component.ts",
         "introduction/introduction.component.ts",
     ],
     assets = [
         ":app.component.css",
-        ":features/core-component-viewer/core-component-viewer/core-component-viewer.component.css",
-        ":features/core-component-viewer/core-example-viewer/core-example-viewer.component.css",
         ":introduction/introduction.component.css",
         "app.component.html",
-        "features/core-component-viewer/core-component-viewer/core-component-viewer.component.html",
-        "features/core-component-viewer/core-example-viewer/core-example-viewer.component.html",
         "introduction/introduction.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//:package.json",
         "//src/business/header",
         "//src/showcase/app",
         "//src/showcase/app/business",
         "//src/showcase/app/business/business-examples",
         "//src/showcase/app/core",
-        "//src/showcase/app/features/business-component-viewer",
-        "//src/showcase/app/features/public-component-viewer",
         "//src/showcase/app/icons",
         "//src/showcase/app/icons/experimental-icons",
         "//src/showcase/app/icons/icon-components",
@@ -45,6 +39,8 @@ ng_module(
         "//src/showcase/app/public",
         "//src/showcase/app/public/public-examples",
         "//src/showcase/app/shared",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -52,26 +48,12 @@ ng_module(
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
         "@npm//ngx-monaco-editor",
-        "@npm//rxjs",
     ],
 )
 
 sass_binary(
     name = "app_component_scss",
     src = "app.component.scss",
-)
-
-sass_binary(
-    name = "features_core_component_viewer_core_component_viewer_core_component_viewer_component_scss",
-    src = "features/core-component-viewer/core-component-viewer/core-component-viewer.component.scss",
-)
-
-sass_binary(
-    name = "features_core_component_viewer_core_example_viewer_core_example_viewer_component_scss",
-    src = "features/core-component-viewer/core-example-viewer/core-example-viewer.component.scss",
-    deps = [
-        "//src/core/styles:common_scss_lib",
-    ],
 )
 
 sass_binary(

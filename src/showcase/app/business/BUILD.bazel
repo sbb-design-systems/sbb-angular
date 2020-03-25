@@ -12,14 +12,23 @@ ng_module(
         "business-routing.module.ts",
         "business.module.ts",
         "business/business.component.ts",
+        "business-component-viewer/business-component-viewer.component.ts",
+        "business-example-viewer/business-example-viewer.component.ts",
     ],
     assets = [
         ":business/business.component.css",
+        ":business-component-viewer/business-component-viewer.component.css",
+        ":business-example-viewer/business-example-viewer.component.css",
         "business/business.component.html",
+        "business-component-viewer/business-component-viewer.component.html",
+        "business-example-viewer/business-example-viewer.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/tabs",
+        "//src/showcase/app/business/business-examples",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -30,4 +39,17 @@ ng_module(
 sass_binary(
     name = "business_business_component_scss",
     src = "business/business.component.scss",
+)
+
+sass_binary(
+    name = "business_component_viewer_business_component_viewer_component_scss",
+    src = "business-component-viewer/business-component-viewer.component.scss",
+)
+
+sass_binary(
+    name = "business_example_viewer_business_example_viewer_component_scss",
+    src = "business-example-viewer/business-example-viewer.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
 )

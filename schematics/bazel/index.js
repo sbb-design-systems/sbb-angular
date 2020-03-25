@@ -64,6 +64,17 @@ class NgModule {
     _createSubModule(dir) {
         return new NgModule(dir, this._tree, this._context);
     }
+    _resolveTsImport(importPath, _fileEntry) {
+        if (importPath.startsWith('@sbb-esta/')) {
+            return importPath.replace('@sbb-esta/angular-', '//src/');
+        }
+        else if (importPath.startsWith('.')) {
+            return '';
+        }
+        else {
+            return this._toNodeDependency(importPath);
+        }
+    }
     _findFiles(dir, skipModuleCheck = true) {
         if (['schematics', 'styles'].some(d => core.basename(dir.path) === d)) {
             return;
@@ -118,17 +129,7 @@ class NgModule {
         return astUtils.findNodes(file, typescript.SyntaxKind.ImportDeclaration, undefined, true)
             .concat(astUtils.findNodes(file, typescript.SyntaxKind.ExportDeclaration, undefined, true))
             .map((n) => { var _a, _b; return (_b = (_a = n.moduleSpecifier) === null || _a === void 0 ? void 0 : _a.getText().replace(/['"]/g, '')) !== null && _b !== void 0 ? _b : ''; })
-            .map(importPath => {
-            if (importPath.startsWith('@sbb-esta/')) {
-                return importPath.replace('@sbb-esta/angular-', '//src/');
-            }
-            else if (importPath.startsWith('.')) {
-                return '';
-            }
-            else {
-                return this._toNodeDependency(importPath);
-            }
-        })
+            .map(i => this._resolveTsImport(i, fileEntry))
             .filter(i => !!i);
     }
     _findSassBinaries() {
@@ -218,6 +219,28 @@ class ShowcaseModule extends NgModule {
     }
     _createSubModule(dir) {
         return new ShowcaseModule(dir, this._tree, this._context);
+    }
+    _resolveTsImport(importPath, fileEntry) {
+        const path = super._resolveTsImport(importPath, fileEntry);
+        if (path !== '') {
+            return path;
+        }
+        else if (importPath.endsWith('/package.json')) {
+            return '//:package.json';
+        }
+        const joinedPath = core.dirname(core.join(core.dirname(fileEntry.path), importPath));
+        const importDir = this._tree.getDir(joinedPath);
+        if (!importPath) {
+            throw new schematics.SchematicsException(`Can't find '${importPath}' from '${fileEntry.path}'`);
+        }
+        let moduleDir = importDir;
+        while (!this._isModuleDir(moduleDir)) {
+            moduleDir = moduleDir.parent;
+        }
+        if (moduleDir.path !== this.path) {
+            return `/${moduleDir.path}`;
+        }
+        return '';
     }
     _templateOptions() {
         return {

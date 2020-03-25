@@ -98,6 +98,16 @@ export class NgModule {
     return new NgModule(dir, this._tree, this._context);
   }
 
+  protected _resolveTsImport(importPath: string, _fileEntry: FileEntry) {
+    if (importPath.startsWith('@sbb-esta/')) {
+      return importPath.replace('@sbb-esta/angular-', '//src/');
+    } else if (importPath.startsWith('.')) {
+      return '';
+    } else {
+      return this._toNodeDependency(importPath);
+    }
+  }
+
   private _findFiles(dir: DirEntry, skipModuleCheck = true) {
     if (['schematics', 'styles'].some(d => basename(dir.path) === d)) {
       return;
@@ -159,15 +169,7 @@ export class NgModule {
         (n: ImportDeclaration | ExportDeclaration) =>
           n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? ''
       )
-      .map(importPath => {
-        if (importPath.startsWith('@sbb-esta/')) {
-          return importPath.replace('@sbb-esta/angular-', '//src/');
-        } else if (importPath.startsWith('.')) {
-          return '';
-        } else {
-          return this._toNodeDependency(importPath);
-        }
-      })
+      .map(i => this._resolveTsImport(i, fileEntry))
       .filter(i => !!i);
   }
 
