@@ -23,7 +23,7 @@ sbb-icons,
 .cdk-overlay-container {
   @import '../public/styles';
   sbb-markdown-viewer,
-  sbb-public-component-viewer,
+  sbb-component-viewer,
   sbb-api-viewer,
   sbb-icon-search,
   sbb-icon-viewer,
@@ -59,7 +59,7 @@ sbb-business,
 }
 
 sbb-markdown-viewer,
-sbb-public-component-viewer {
+sbb-component-viewer {
   pre {
     background-color: #efefef;
     padding: 1rem 3rem;
@@ -67,7 +67,7 @@ sbb-public-component-viewer {
   }
 }
 
-sbb-public-component-viewer sbb-example-viewer pre {
+sbb-component-viewer sbb-example-viewer pre {
   margin: 1rem -24px;
 }
 
@@ -78,7 +78,7 @@ sbb-business-component-viewer {
     margin: 1rem -16px;
   }
 
-  sbb-example-viewer pre {
+  sbb-business-example-viewer pre {
     margin: 1rem -16px;
   }
 }

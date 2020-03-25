@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PublicComponentViewerModule } from '../features/public-component-viewer/public-component-viewer.module';
-import { PublicComponentViewerComponent } from '../features/public-component-viewer/public-component-viewer/public-component-viewer.component';
 import { ApiViewerComponent } from '../shared/api-viewer/api-viewer.component';
+import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { CoreComponent } from './core/core.component';
@@ -26,12 +25,12 @@ const routes: Routes = [
       },
       {
         path: 'components/:id',
-        component: PublicComponentViewerComponent,
+        component: ComponentViewerComponent,
         data: { library: 'angular-core' }
       },
       {
         path: 'components/:id/:section',
-        component: PublicComponentViewerComponent,
+        component: ComponentViewerComponent,
         data: { library: 'angular-core' }
       },
       {
@@ -44,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), PublicComponentViewerModule],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class CoreRoutingModule {}

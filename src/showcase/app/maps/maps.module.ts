@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { EsriConfigModule } from '@sbb-esta/angular-maps';
 
+import { ComponentViewerModule } from '../shared/component-viewer/component-viewer.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { MapsExamplesModule } from './maps-examples/maps-examples.module';
@@ -14,10 +15,11 @@ import { MapsComponent } from './maps/maps.component';
   imports: [
     EsriConfigModule.forRoot({ portalUrl: 'https://www.arcgis.com' }),
     CommonModule,
-    MapsRoutingModule,
     PortalModule,
+    SharedModule,
+    ComponentViewerModule,
     MapsExamplesModule,
-    SharedModule
+    MapsRoutingModule
   ]
 })
 export class MapsModule {}

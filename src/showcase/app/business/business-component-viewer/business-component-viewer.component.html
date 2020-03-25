@@ -1,0 +1,15 @@
+<sbb-tabs>
+  <sbb-tab label="Overview">
+    <div [innerHtml]="overview | async"></div>
+  </sbb-tab>
+  <sbb-tab label="API">
+    <div [innerHtml]="api | async"></div>
+  </sbb-tab>
+  <sbb-tab *ngIf="example | async as examplePortals" label="Examples">
+    <sbb-business-example-viewer
+      *ngFor="let entry of examplePortals"
+      [name]="entry.name"
+      [example]="entry.portal"
+    ></sbb-business-example-viewer>
+  </sbb-tab>
+</sbb-tabs>

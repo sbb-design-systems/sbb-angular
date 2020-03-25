@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BusinessComponentViewerModule } from '../features/business-component-viewer/business-component-viewer.module';
-import { BusinessComponentViewerComponent } from '../features/business-component-viewer/business-component-viewer/business-component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
+import { BusinessComponentViewerComponent } from './business-component-viewer/business-component-viewer.component';
 import { BusinessComponent } from './business/business.component';
 
 const routes: Routes = [
@@ -38,7 +37,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), BusinessComponentViewerModule],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class BusinessRoutingModule {}

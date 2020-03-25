@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PublicComponentViewerModule } from '../features/public-component-viewer/public-component-viewer.module';
-import { PublicComponentViewerComponent } from '../features/public-component-viewer/public-component-viewer/public-component-viewer.component';
+import { ComponentViewerComponent } from '../shared/component-viewer/component-viewer/component-viewer.component';
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 
 import { MapsComponent } from './maps/maps.component';
@@ -25,12 +24,12 @@ const routes: Routes = [
       },
       {
         path: 'components/:id',
-        component: PublicComponentViewerComponent,
+        component: ComponentViewerComponent,
         data: { library: 'angular-maps' }
       },
       {
         path: 'components/:id/:section',
-        component: PublicComponentViewerComponent,
+        component: ComponentViewerComponent,
         data: { library: 'angular-maps' }
       },
       {
@@ -43,7 +42,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), PublicComponentViewerModule],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class MapsRoutingModule {}

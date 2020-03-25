@@ -1,0 +1,29 @@
+<div>
+  <h3>{{ label }}</h3>
+  <button type="button" (click)="showSource = !showSource">
+    <svg
+      focusable="false"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 0h24v24H0V0z" fill="none"></path>
+      <path
+        d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<sbb-tabs [hidden]="!showSource">
+  <sbb-tab label="HTML">
+    <pre><code [innerHtml]="html | async"></code></pre>
+  </sbb-tab>
+  <sbb-tab label="TS">
+    <pre><code [innerHtml]="ts | async"></code></pre>
+  </sbb-tab>
+  <sbb-tab label="SCSS" *ngIf="scss | async as scssHtml">
+    <pre><code [innerHtml]="scssHtml"></code></pre>
+  </sbb-tab>
+</sbb-tabs>
+<ng-template [cdkPortalOutlet]="example"></ng-template>

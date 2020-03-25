@@ -1,13 +1,17 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Directive, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { HtmlLoader } from '../../../shared/html-loader.service';
 
-@Directive()
-export class CoreExampleViewerComponent implements OnInit {
+@Component({
+  selector: 'sbb-example-viewer',
+  templateUrl: './example-viewer.component.html',
+  styleUrls: ['./example-viewer.component.css']
+})
+export class ExampleViewerComponent implements OnInit {
   @Input() example: ComponentPortal<any>;
   @Input() name: string;
   html: Observable<string>;
