@@ -91,7 +91,9 @@ import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from './textarea-r
 import { TextexpandShowcaseComponent } from './textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from './time-input-showcase/time-input-showcase.component';
 import { ToggleShowcaseComponent } from './toggle-showcase/toggle-showcase.component';
-import { TooltipShowcaseComponent } from './tooltip-showcase/tooltip-showcase.component';
+import { TooltipCustomContentShowcaseComponent } from './tooltip-custom-content-showcase/tooltip-custom-content-showcase.component';
+import { TooltipCustomIconShowcaseComponent } from './tooltip-custom-icon-showcase/tooltip-custom-icon-showcase.component';
+import { TooltipSimpleShowcaseComponent } from './tooltip-simple-showcase/tooltip-simple-showcase.component';
 import { UsermenuShowcaseComponent } from './usermenu-showcase/usermenu-showcase.component';
 
 const exampleComponents = [
@@ -145,7 +147,9 @@ const exampleComponents = [
   TextexpandShowcaseComponent,
   TimeInputShowcaseComponent,
   ToggleShowcaseComponent,
-  TooltipShowcaseComponent,
+  TooltipSimpleShowcaseComponent,
+  TooltipCustomContentShowcaseComponent,
+  TooltipCustomIconShowcaseComponent,
   TagShowcaseComponent,
   UsermenuShowcaseComponent
 ];

@@ -1,0 +1,11 @@
+<sbb-tooltip #t (opened)="onOpen($event)" (closed)="onClose($event)">
+  <p>This is a tooltip with a button inside.</p>
+  <button mode="secondary" sbbButton (click)="t.close(true)">
+    Close tooltip
+  </button>
+</sbb-tooltip>
+<div class="sbbsc-block"></div>
+<sbb-tooltip (opened)="onOpen($event)" (closed)="onClose($event)">
+  <p>This is another tooltip with a custom link</p>
+  <a href="#" sbbLink>I'm a link</a>
+</sbb-tooltip>
