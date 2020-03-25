@@ -34,8 +34,6 @@ class TooltipHoverTrueTestComponent {
 })
 class TooltipHoverTrueAndDelaySettingsTestComponent {
   @ViewChild('t1', { static: true }) t1: TooltipComponent;
-  closeDelay = 2000;
-  openDelay = 2000;
 }
 
 describe('TooltipComponent', () => {

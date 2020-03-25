@@ -112,13 +112,17 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
   ngOnInit() {
     // The mouse events shouldn't be bound on mobile devices, because they can prevent the
     // first tap from firing its click event or can cause the tooltip to open for clicks.
-    if (this.trigger === 'hover' && !this._platform.IOS && !this._platform.ANDROID) {
-      this._manualListeners
-        .set('mouseenter', () => this.onMouseEnter())
-        .set('mouseleave', () => this.onMouseLeave());
-      this._manualListeners.forEach((listener, event) =>
-        this._elementRef.nativeElement.addEventListener(event, listener)
-      );
+    if (this.trigger === 'hover') {
+      this._panelClass.push('sbb-tooltip-trigger-hover');
+
+      if (!this._platform.IOS && !this._platform.ANDROID) {
+        this._manualListeners
+          .set('mouseenter', () => this.onMouseEnter())
+          .set('mouseleave', () => this.onMouseLeave());
+        this._manualListeners.forEach((listener, event) =>
+          this._elementRef.nativeElement.addEventListener(event, listener)
+        );
+      }
     }
   }
 

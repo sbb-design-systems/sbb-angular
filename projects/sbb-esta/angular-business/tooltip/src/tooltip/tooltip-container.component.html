@@ -1,5 +1,5 @@
 <div
-  class="sbb-tooltip sbb-tooltip-content"
+  class="sbb-tooltip-content sbb-tooltip-trigger-hover"
   [ngClass]="tooltipClass"
   [class.sbb-tooltip-content-below]="
     connectionPositionPair && connectionPositionPair.originY === 'bottom'
@@ -17,5 +17,8 @@
   (@state.start)="_animationStart()"
   (@state.done)="_animationDone($event)"
 >
-  {{ message }}
+  <div class="sbb-tooltip-content-body">
+    {{ message }}
+  </div>
+  <div class="sbb-tooltip-shadow"></div>
 </div>

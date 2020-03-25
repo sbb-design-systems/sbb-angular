@@ -4,11 +4,3 @@
   // pointer events. To overwrite the inline CSS from the overlay reference `!important` is needed.
   pointer-events: none !important;
 }
-
-.sbb-tooltip {
-  padding: 8px;
-  position: relative;
-  max-width: 460px;
-  width: auto;
-  min-height: 0;
-}
