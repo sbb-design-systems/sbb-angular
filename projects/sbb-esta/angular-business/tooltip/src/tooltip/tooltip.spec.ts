@@ -117,7 +117,9 @@ describe('SbbTooltip', () => {
       tick(500);
 
       // Make sure tooltip is shown to the user and animation has finished
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-content'
+      ) as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
       expect(tooltipElement.style.transform).toBe('scale(1)');
 
@@ -348,7 +350,9 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
 
       // Make sure classes aren't prematurely added
-      let tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      let tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-content'
+      ) as HTMLElement;
       expect(tooltipElement.classList).not.toContain(
         'custom-one',
         'Expected to not have the class before enabling sbbTooltipClass'
@@ -363,7 +367,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
 
       // Make sure classes are correctly added
-      tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip-content') as HTMLElement;
       expect(tooltipElement.classList).toContain(
         'custom-one',
         'Expected to have the class after enabling sbbTooltipClass'
@@ -585,7 +589,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlayContainerElement.querySelector('.sbb-tooltip')).toBeNull();
+      expect(overlayContainerElement.querySelector('.sbb-tooltip-content')).toBeNull();
     }));
 
     it('should not show the tooltip on mouse focus', fakeAsync(() => {
@@ -597,7 +601,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlayContainerElement.querySelector('.sbb-tooltip')).toBeNull();
+      expect(overlayContainerElement.querySelector('.sbb-tooltip-content')).toBeNull();
     }));
 
     it('should not show the tooltip on touch focus', fakeAsync(() => {
@@ -609,7 +613,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(500);
 
-      expect(overlayContainerElement.querySelector('.sbb-tooltip')).toBeNull();
+      expect(overlayContainerElement.querySelector('.sbb-tooltip-content')).toBeNull();
     }));
 
     it('should not hide the tooltip when calling `show` twice in a row', fakeAsync(() => {
@@ -723,7 +727,9 @@ describe('SbbTooltip', () => {
       tick(500);
 
       // Make sure tooltip is shown to the user and animation has finished
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-content'
+      ) as HTMLElement;
       expect(tooltipElement instanceof HTMLElement).toBe(true);
       expect(tooltipElement.style.transform).toBe('scale(1)');
 
@@ -747,7 +753,9 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tick(0);
 
-      const tooltipElement = overlayContainerElement.querySelector('.sbb-tooltip') as HTMLElement;
+      const tooltipElement = overlayContainerElement.querySelector(
+        '.sbb-tooltip-content'
+      ) as HTMLElement;
       expect(tooltipElement.textContent).toContain('initial tooltip message');
     }));
   });
