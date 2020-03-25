@@ -36,12 +36,29 @@ The overlay is either displayed above or below the icon, depending on space avai
 
 ### Hover
 
-You can set the tooltip to trigger on `hover`. With hover mode it is possible to define
-a delay in milliseconds for opening and closing the tooltip. The tooltip will still
+With hover mode it is possible to define a delay in milliseconds for opening and closing the tooltip. The tooltip will still
 open on click, as a fallback for mobile.
+
+#### Component Usage
+
+Set the trigger of sbb-tooltip to `hover`.
 
 ```html
 <sbb-tooltip trigger="hover" [hoverShowDelay]="200" [hoverHideDelay]="200">
   {{ tooltipContent }}
 </sbb-tooltip>
+```
+
+#### Directive Usage
+
+With the sbbTooltip directive you can bind a tooltip to any element. With this usage it's only possible to use text content. If you like to disable the tooltip behaviour use `[sbbTooltipDisabled]`.
+
+```html
+<span
+  sbbTooltip="Tooltip text"
+  [sbbTooltipShowDelay]="200"
+  [sbbTooltipHideDelay]="200"
+  sbbTooltipClass="customClass"
+  >I'm a tooltip bound to a text.</span
+>
 ```
