@@ -7,8 +7,14 @@ export class ShowcasePackage {
   private _appModule: ShowcaseModule;
 
   constructor(private _dir: DirEntry, private _tree: Tree, context: SchematicContext) {
-    this._appModule = new ShowcaseModule(this._dir.dir(fragment('app')), this._tree, context);
-    this._appModule.dependencies.push(...this._appModule.ngModules().map(m => `/${m.path}`));
+    const appDir = this._dir.dir(fragment('app'));
+    this._appModule = new ShowcaseModule(appDir, this._tree, context);
+    this._appModule.dependencies.push(
+      ...this._appModule
+        .ngModules()
+        .filter(m => m.path !== appDir.path)
+        .map(m => `/${m.path}`)
+    );
     this._appModule.dependencies.sort();
   }
 

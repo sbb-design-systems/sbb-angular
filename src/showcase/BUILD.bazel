@@ -1,4 +1,4 @@
-package(default_visibility = ["//:__subpackages__"])
+package(default_visibility = ["//visibility:public"])
 
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm//history-server:index.bzl", "history_server")

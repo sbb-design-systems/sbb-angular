@@ -255,8 +255,12 @@ class ShowcasePackage {
     constructor(_dir, _tree, context) {
         this._dir = _dir;
         this._tree = _tree;
-        this._appModule = new ShowcaseModule(this._dir.dir(core.fragment('app')), this._tree, context);
-        this._appModule.dependencies.push(...this._appModule.ngModules().map(m => `/${m.path}`));
+        const appDir = this._dir.dir(core.fragment('app'));
+        this._appModule = new ShowcaseModule(appDir, this._tree, context);
+        this._appModule.dependencies.push(...this._appModule
+            .ngModules()
+            .filter(m => m.path !== appDir.path)
+            .map(m => `/${m.path}`));
         this._appModule.dependencies.sort();
     }
     render() {

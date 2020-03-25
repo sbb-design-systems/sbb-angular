@@ -1,10 +1,8 @@
-package(default_visibility = ["//visibility:__subpackages__"])
+package(default_visibility = ["//visibility:public"])
 
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "ng_test_library",
-    "ng_web_test_suite",
     "sass_binary",
 )
 
@@ -26,7 +24,6 @@ ng_module(
     deps = [
         "//:package.json",
         "//src/business/header",
-        "//src/showcase/app",
         "//src/showcase/app/business",
         "//src/showcase/app/business/business-examples",
         "//src/showcase/app/core",
@@ -62,20 +59,4 @@ sass_binary(
     deps = [
         "//src/core/styles:common_scss_lib",
     ],
-)
-
-ng_test_library(
-    name = "unit_test_sources",
-    srcs = glob(
-        ["**/*.spec.ts"],
-        exclude = ["**/*.e2e.spec.ts"],
-    ),
-    deps = [
-        ":app",
-    ],
-)
-
-ng_web_test_suite(
-    name = "unit_tests",
-    deps = [":unit_test_sources"],
 )
