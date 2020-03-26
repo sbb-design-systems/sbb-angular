@@ -17,7 +17,6 @@ ng_module(
         ":keycloak/keycloak.component.css",
         "keycloak/keycloak.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/showcase/app/shared",
         "@npm//@angular/common",

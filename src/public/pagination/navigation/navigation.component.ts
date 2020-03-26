@@ -26,11 +26,11 @@ export class NavigationComponent implements OnChanges {
 
   /** The next page descriptor. */
   @Input()
-  nextPage: string;
+  nextPage: string | null = null;
 
   /** The previous page descriptor. */
   @Input()
-  previousPage: string;
+  previousPage: string | null = null;
 
   /**
    * This event can be used by parent components to handle events on page change.

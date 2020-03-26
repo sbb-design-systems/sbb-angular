@@ -17,7 +17,6 @@ ng_module(
         ":<%= stylesheet %>",<% } %><% for (let file of htmlFiles) { %>
         "<%= file %>",<% } %>
     ],<% } %>
-    tsconfig = "<%= customTsConfig %>",
     deps = [<% for (let dependency of dependencies) { %>
         "<%= dependency %>",<% } %>
     ],

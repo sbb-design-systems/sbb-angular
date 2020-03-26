@@ -12,6 +12,10 @@ sass_library(
 
 sass_library(
     name = "core_scss_lib",
-    srcs = ["_main.scss"] + glob(["typography/_*.scss"]),
+    srcs = [
+        "_main.scss",
+        "@npm//:node_modules/@angular/cdk/_a11y.scss",
+        "@npm//:node_modules/@angular/cdk/_overlay.scss",
+    ] + glob(["typography/_*.scss"]),
     deps = [":common_scss_lib"]
 )

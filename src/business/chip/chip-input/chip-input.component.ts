@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   ChangeDetectionStrategy,
@@ -368,4 +368,9 @@ export class ChipInputComponent extends SbbChipsMixinBase
       this.stateChanges.next();
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+  // tslint:enable: member-ordering
 }

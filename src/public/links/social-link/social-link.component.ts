@@ -28,4 +28,18 @@ export class SocialLinkComponent {
     | 'twitter'
     | 'xing'
     | 'youtube';
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_icon:
+    | 'facebook'
+    | 'instagram'
+    | 'linkedin'
+    | 'pinterest'
+    | 'twitter'
+    | 'xing'
+    | 'youtube'
+    | string
+    | null
+    | undefined;
+  // tslint:enable: member-ordering
 }

@@ -94,7 +94,7 @@ export class SearchShowcaseComponent implements OnInit {
         .subscribe(results => {
           const searchResults = results;
           console.log(searchResults);
-          this.searchResults = searchResults.records.map(record => {
+          this.searchResults = searchResults.records.map((record: any) => {
             return {
               id: record.fields.filename.id,
               station: record.fields.bahnhof

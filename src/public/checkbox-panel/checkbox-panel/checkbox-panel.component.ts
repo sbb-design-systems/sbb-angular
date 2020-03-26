@@ -10,7 +10,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxBase } from '@sbb-esta/angular-core/base';
+import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base';
+
+export interface CheckboxPanelChange extends SbbCheckboxChange<CheckboxPanelComponent> {}
 
 @Component({
   selector: 'sbb-checkbox-panel',
@@ -26,7 +28,7 @@ import { CheckboxBase } from '@sbb-esta/angular-core/base';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class CheckboxPanelComponent extends CheckboxBase {
+export class CheckboxPanelComponent extends CheckboxBase<CheckboxPanelChange> {
   /**
    * Label of a multiple checkbox panel.
    */

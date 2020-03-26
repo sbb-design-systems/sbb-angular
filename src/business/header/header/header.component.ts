@@ -1,6 +1,6 @@
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import { FocusMonitor, FocusOrigin, FocusTrap, FocusTrapFactory } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, ESCAPE, hasModifierKey, SPACE } from '@angular/cdk/keycodes';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkPortal, CdkPortalOutlet } from '@angular/cdk/portal';
@@ -386,4 +386,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this._focusTrap.enabled = this.opened;
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_opened: BooleanInput;
+  // tslint:enable: member-ordering
 }

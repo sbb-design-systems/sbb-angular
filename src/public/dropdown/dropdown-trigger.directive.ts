@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   DOWN_ARROW,
   END,
@@ -625,4 +625,8 @@ export class DropdownTriggerDirective implements OnDestroy {
     const element = this._elementRef.nativeElement;
     return !element.readOnly && !element.disabled && !this.dropdownDisabled;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_dropdownDisabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

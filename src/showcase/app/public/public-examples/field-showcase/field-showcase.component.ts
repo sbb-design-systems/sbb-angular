@@ -26,7 +26,7 @@ export class FieldShowcaseComponent implements OnInit {
 
   toggleDisabled(sbbCheckboxChange: SbbCheckboxChange) {
     Object.keys(this.form.controls)
-      .map(n => this.form.get(n))
+      .map(n => this.form.get(n)!)
       .forEach(c => (sbbCheckboxChange.checked ? c.disable() : c.enable()));
   }
 

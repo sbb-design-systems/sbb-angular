@@ -20,7 +20,9 @@ ts_config(
 sass_binary(
     name = "styles",
     src = "styles.scss",
+    include_paths = ["external/npm/node_modules"],
     output_name = "global_stylesheet.css",
+    deps = ["//src/core/styles:core_scss_lib"],
 )
 
 ng_module(
@@ -29,7 +31,7 @@ ng_module(
         include = ["*.ts"],
         exclude = ["main.ts"],
     ),
-    tsconfig = ":tsconfig.json",
+    # tsconfig = ":tsconfig.json",
     generate_ve_shims = True,
     deps = [
         "//src/showcase/app",
@@ -85,7 +87,7 @@ pkg_web(
     srcs = [
         "@npm//:node_modules/zone.js/dist/zone.min.js",
         ":bundle.min",
-        ":global_stylesheet",
+        ":global_stylesheet.css",
         ":asset_injected_index_html",
     ],
 )
@@ -116,8 +118,12 @@ ts_devserver(
     ],
     static_files = [
         "@npm//:node_modules/zone.js/dist/zone.min.js",
-        ":global_stylesheet",
+        ":global_stylesheet.css",
         ":asset_injected_index_html",
     ],
     deps = [":showcase"],
 )
+
+exports_files([
+    "tsconfig.json",
+])

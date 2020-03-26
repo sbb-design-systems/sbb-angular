@@ -13,7 +13,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxBase } from '@sbb-esta/angular-core/base';
+import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base';
+
+export interface CheckboxChange extends SbbCheckboxChange<CheckboxComponent> {}
 
 @Component({
   selector: 'sbb-checkbox',
@@ -29,7 +31,7 @@ import { CheckboxBase } from '@sbb-esta/angular-core/base';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent extends CheckboxBase {
+export class CheckboxComponent extends CheckboxBase<CheckboxChange> {
   /** @docs-private */
   get ariaChecked(): String {
     return this.checked ? 'true' : this.indeterminate ? 'mixed' : 'false';

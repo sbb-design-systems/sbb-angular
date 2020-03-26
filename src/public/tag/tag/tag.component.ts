@@ -1,4 +1,5 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import {
   Attribute,
   ChangeDetectionStrategy,
@@ -17,7 +18,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CheckboxBase, SbbCheckboxChange as TagChange } from '@sbb-esta/angular-core/base';
+import { CheckboxBase, SbbCheckboxChange } from '@sbb-esta/angular-core/base';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -25,6 +26,8 @@ import { first } from 'rxjs/operators';
  * Injection token used to provide the parent component to TagComponent.
  */
 export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
+
+export interface TagChange extends SbbCheckboxChange<TagComponent> {}
 
 @Component({
   selector: 'sbb-tag',
@@ -40,7 +43,7 @@ export const TAGS_CONTAINER = new InjectionToken<any>('SBB_TAG_CONTAINER');
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
+export class TagComponent extends CheckboxBase<TagChange> implements OnInit, OnDestroy {
   /** @docs-private  */
   @HostBinding('class.sbb-tag')
   sbbTagClass = true;
@@ -72,7 +75,13 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
    * Amount of result found.
    */
   @Input()
-  amount: number;
+  get amount(): number {
+    return this._amount;
+  }
+  set amount(value: number) {
+    this._amount = coerceNumberProperty(value);
+  }
+  private _amount: number;
 
   /**
    * A subject on tag checking.
@@ -118,4 +127,7 @@ export class TagComponent extends CheckboxBase implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.tagChecking$.complete();
   }
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_amount: NumberInput;
+  // tslint:enable: member-ordering
 }

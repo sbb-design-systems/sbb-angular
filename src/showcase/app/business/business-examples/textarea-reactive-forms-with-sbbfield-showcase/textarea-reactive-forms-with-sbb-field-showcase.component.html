@@ -6,15 +6,15 @@
       [minlength]="20"
       placeholder="Placeholder Text"
     ></sbb-textarea>
-    <sbb-form-error *ngIf="form.get('textarea').errors?.minlength"
+    <sbb-form-error *ngIf="form.get('textarea')?.errors?.minlength"
       >A length of 20 chars is required!</sbb-form-error
     >
-    <sbb-form-error *ngIf="form.get('textarea').errors?.required"
+    <sbb-form-error *ngIf="form.get('textarea')?.errors?.required"
       >Content is required!</sbb-form-error
     >
   </sbb-field>
   <h4>Properties</h4>
   <p>minlength: 20<br />maxlength: 200</p>
   <h4>Value</h4>
-  <pre>{{ form.get('textarea').value | json }}</pre>
+  <pre>{{ form.get('textarea')?.value | json }}</pre>
 </form>

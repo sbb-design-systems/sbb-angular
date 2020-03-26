@@ -12,6 +12,7 @@ import {
   Output
 } from '@angular/core';
 import { CanDisableCtor, mixinDisabled } from '@sbb-esta/angular-core/common-behaviors';
+import { BooleanInput } from '@angular/cdk/coercion';
 
 // Boilerplate for applying mixins to HeaderMenuItemDirective.
 /** @docs-private */
@@ -112,4 +113,8 @@ export class HeaderMenuItemDirective extends _HeaderMenuItemBase
 
     return output.trim();
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

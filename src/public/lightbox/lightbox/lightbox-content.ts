@@ -191,7 +191,7 @@ export class LightboxFooterComponent implements OnInit {
   /** Alignment to left position.  */
   @HostBinding('class.sbb-lightbox-footer-align-start')
   get alignmentStartClass() {
-    return this.alignment === 'left';
+    return !this.alignmentCenterClass && !this.alignmentEndClass;
   }
   /** Alignment to center position.  */
   @HostBinding('class.sbb-lightbox-footer-align-center')
@@ -225,6 +225,10 @@ export class LightboxFooterComponent implements OnInit {
       });
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_alignment: 'left' | 'center' | 'right' | string | null | undefined;
+  // tslint:enable: member-ordering
 }
 
 /**

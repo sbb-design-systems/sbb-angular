@@ -13,9 +13,9 @@
   </div>
   <div>
     <h4>Properties</h4>
-    <pre>{{ form.get('value').value | json }}</pre>
+    <pre>{{ form.get('value')?.value | json }}</pre>
     <sbb-checkbox
-      (change)="$event.checked ? form.get('value').disable() : form.get('value').enable()"
+      (change)="$event.checked ? form.get('value')?.disable() : form.get('value')?.enable()"
       >disabled</sbb-checkbox
     >
   </div>

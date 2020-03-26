@@ -51,4 +51,15 @@ export class ButtonComponent extends BaseButton {
   get _framelessClass() {
     return this.mode === 'frameless';
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_mode:
+    | 'primary'
+    | 'secondary'
+    | 'ghost'
+    | 'frameless'
+    | string
+    | null
+    | undefined;
+  // tslint:enable: member-ordering
 }

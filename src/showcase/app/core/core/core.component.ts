@@ -18,8 +18,8 @@ export class CoreComponent implements ExampleProvider {
   };
 
   resolveExample<TComponent = any>(
-    component: string
-  ): { [name: string]: ComponentPortal<TComponent> } {
-    return undefined;
+    _component: string
+  ): { [name: string]: ComponentPortal<TComponent> } | null {
+    return null;
   }
 }

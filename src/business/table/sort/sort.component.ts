@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Directive,
   EventEmitter,
@@ -66,7 +66,6 @@ export class SbbSortDirective implements OnChanges, OnDestroy {
   get disableClear(): boolean {
     return this._disableClear;
   }
-
   set disableClear(v: boolean) {
     this._disableClear = coerceBooleanProperty(v);
   }
@@ -151,6 +150,10 @@ export class SbbSortDirective implements OnChanges, OnDestroy {
   ngOnDestroy() {
     this._stateChanges.complete();
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disableClear: BooleanInput;
+  // tslint:enable: member-ordering
 }
 
 /** Returns the sort direction cycle to use given the provided parameters of order and clear. */

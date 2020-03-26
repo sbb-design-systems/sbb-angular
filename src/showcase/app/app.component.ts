@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { dependencies, version } from '../../../../package.json';
+import { dependencies, version } from '../../../package.json';
 
 import { ROUTER_ANIMATION } from './shared/animations';
 

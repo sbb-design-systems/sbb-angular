@@ -57,4 +57,16 @@ export class ButtonComponent extends BaseButton {
   get _iconClass() {
     return this.mode === 'icon';
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_mode:
+    | 'primary'
+    | 'secondary'
+    | 'ghost'
+    | 'alternative'
+    | 'icon'
+    | string
+    | null
+    | undefined;
+  // tslint:enable: member-ordering
 }

@@ -23,7 +23,6 @@ ng_module(
         "business-component-viewer/business-component-viewer.component.html",
         "business-example-viewer/business-example-viewer.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/tabs",
         "//src/showcase/app/business/business-examples",

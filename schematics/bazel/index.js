@@ -226,7 +226,7 @@ class ShowcaseModule extends NgModule {
             return path;
         }
         else if (importPath.endsWith('/package.json')) {
-            return '//:package.json';
+            return '';
         }
         const joinedPath = core.dirname(core.join(core.dirname(fileEntry.path), importPath));
         const importDir = this._tree.getDir(joinedPath);

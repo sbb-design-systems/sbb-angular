@@ -17,8 +17,9 @@ ng_module(
         ":icons/icons.component.css",
         "icons/icons.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/showcase/app/icons/experimental-icons",
+        "//src/showcase/app/icons/icon-components",
         "//src/showcase/app/shared",
         "@npm//@angular/common",
         "@npm//@angular/core",

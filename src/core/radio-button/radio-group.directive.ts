@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectorRef,
@@ -246,4 +246,9 @@ export class RadioGroupDirective implements AfterContentInit, ControlValueAccess
       });
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+  // tslint:enable: member-ordering
 }

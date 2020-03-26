@@ -12,7 +12,7 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
   tabs: { openTabByIndex(index: number): void };
   overview: Observable<string>;
   api: Observable<string>;
-  example: Observable<Array<{ name: string; portal: ComponentPortal<any> }>>;
+  example: Observable<Array<{ name: string; portal: ComponentPortal<any> }> | null>;
   private _destroyed = new Subject<void>();
 
   constructor(

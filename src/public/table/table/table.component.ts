@@ -113,4 +113,15 @@ export class TableComponent implements OnChanges, OnDestroy {
     this._scrollListener.next();
     this._scrollListener.complete();
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_tableAlignment:
+    | 'none'
+    | 'left'
+    | 'center'
+    | 'right'
+    | string
+    | null
+    | undefined;
+  // tslint:enable: member-ordering
 }

@@ -17,7 +17,6 @@ ng_module(
         ":experimental-icon-search/experimental-icon-search.component.css",
         "experimental-icon-search/experimental-icon-search.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/tooltip",
         "//src/icons/experimental/_meta",

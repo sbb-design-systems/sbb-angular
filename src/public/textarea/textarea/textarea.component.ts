@@ -1,5 +1,10 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput
+} from '@angular/cdk/coercion';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import {
   AfterViewInit,
@@ -343,4 +348,11 @@ export class TextareaComponent extends SbbTextareaMixinBase
     this._destroyed.next();
     this._destroyed.complete();
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_maxlength: NumberInput;
+  static ngAcceptInputType_minlength: NumberInput;
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_readonly: BooleanInput;
+  // tslint:enable: member-ordering
 }

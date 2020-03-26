@@ -48,7 +48,7 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.onRadioChange = this.accordionForm.get('radioModes').valueChanges.subscribe(value => {
+    this.onRadioChange = this.accordionForm.get('radioModes')!.valueChanges.subscribe(value => {
       switch (value) {
         case 'openAll':
           this.firstAccordion.openAll();
@@ -59,27 +59,27 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.onMultiChange = this.accordionForm.get('multi').valueChanges.subscribe(value => {
+    this.onMultiChange = this.accordionForm.get('multi')!.valueChanges.subscribe(value => {
       this.multi = value;
 
       if (this.multi === true) {
-        this.accordionForm.get('radioModes').enable();
-        this.accordionForm.get('panelMode').disable();
+        this.accordionForm.get('radioModes')!.enable();
+        this.accordionForm.get('panelMode')!.disable();
       } else {
-        this.accordionForm.get('radioModes').disable();
-        this.accordionForm.get('panelMode').enable();
+        this.accordionForm.get('radioModes')!.disable();
+        this.accordionForm.get('panelMode')!.enable();
       }
     });
 
-    this.onDisabledChange = this.accordionForm.get('disabled').valueChanges.subscribe(value => {
+    this.onDisabledChange = this.accordionForm.get('disabled')!.valueChanges.subscribe(value => {
       this.disabled = value;
     });
 
-    this.onHideToggle = this.accordionForm.get('hideToggle').valueChanges.subscribe(value => {
+    this.onHideToggle = this.accordionForm.get('hideToggle')!.valueChanges.subscribe(value => {
       this.hideToggle = value;
     });
 
-    this.onModeChange = this.accordionForm.get('panelMode').valueChanges.subscribe(value => {
+    this.onModeChange = this.accordionForm.get('panelMode')!.valueChanges.subscribe(value => {
       this.panelMode = value;
     });
   }
@@ -100,13 +100,13 @@ export class AccordionShowcaseComponent implements OnInit, OnDestroy {
     console.log(args);
   }
 
-  logAndPreventOpeningPanel(evt, message) {
+  logAndPreventOpeningPanel(evt: any, message: any) {
     console.log(message);
     evt.preventDefault();
     evt.stopPropagation();
   }
 
-  logAndPreventOpeningPanelKeyDown(evt: KeyboardEvent, message) {
+  logAndPreventOpeningPanelKeyDown(evt: KeyboardEvent, message: any) {
     if (evt.keyCode === 13 || evt.keyCode === 32) {
       console.log(message);
       evt.preventDefault();

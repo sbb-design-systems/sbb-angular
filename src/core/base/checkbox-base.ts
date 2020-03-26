@@ -1,5 +1,5 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Attribute,
   ChangeDetectorRef,
@@ -26,7 +26,7 @@ export class SbbCheckboxChange<TCheckbox extends CheckboxBase = CheckboxBase> {
 }
 
 @Directive()
-export abstract class CheckboxBase implements ControlValueAccessor {
+export abstract class CheckboxBase<TChange extends SbbCheckboxChange = SbbCheckboxChange<any>> implements ControlValueAccessor {
   /** A unique id for the checkbox input. If none is supplied, it will be auto-generated. */
   @Input() @HostBinding() id: string;
   /**
@@ -91,7 +91,7 @@ export abstract class CheckboxBase implements ControlValueAccessor {
   /** @docs-private */
   @HostBinding('attr.tabindex') _tabIndex = null;
   /** Event emitted when the checkbox's `checked` value changes. */
-  @Output() readonly change = new EventEmitter<SbbCheckboxChange<this>>();
+  @Output() readonly change = new EventEmitter<TChange>();
   /** @docs-private */
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
   /**
@@ -198,8 +198,13 @@ export abstract class CheckboxBase implements ControlValueAccessor {
   }
 
   protected _emitChangeEvent() {
-    const event = new SbbCheckboxChange<this>(this, this.checked);
+    const event = new SbbCheckboxChange<any>(this, this.checked);
     this._onChange(this.checked);
-    this.change.emit(event);
+    this.change.emit(event as TChange);
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+  // tslint:enable: member-ordering
 }

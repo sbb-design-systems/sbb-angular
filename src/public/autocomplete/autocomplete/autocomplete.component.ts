@@ -1,5 +1,5 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -181,4 +181,8 @@ export class AutocompleteComponent implements AfterContentInit, HasOptions {
     const event = new SbbAutocompleteSelectedEvent(this, option);
     this.optionSelected.emit(event);
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_autoActiveFirstOption: BooleanInput;
+  // tslint:enable: member-ordering
 }

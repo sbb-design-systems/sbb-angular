@@ -17,7 +17,6 @@ ng_module(
         ":maps/maps.component.css",
         "maps/maps.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/maps",
         "//src/showcase/app/maps/maps-examples",

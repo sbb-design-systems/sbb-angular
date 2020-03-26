@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -78,7 +78,6 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
   get disableClear(): boolean {
     return this._disableClear;
   }
-
   set disableClear(v) {
     this._disableClear = coerceBooleanProperty(v);
   }
@@ -271,4 +270,8 @@ export class SbbSortHeaderComponent implements SbbSortable, OnDestroy, OnInit {
 
     return this._sort.direction === 'asc' ? 'ascending' : 'descending';
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disableClear: BooleanInput;
+  // tslint:enable: member-ordering
 }

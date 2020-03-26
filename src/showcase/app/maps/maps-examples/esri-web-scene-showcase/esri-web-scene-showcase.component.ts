@@ -21,7 +21,7 @@ export class EsriWebSceneShowcaseComponent implements OnInit {
     this.sceneView = sv;
   }
 
-  mapClicked(clickResult: { clickedPoint: __esri.Point; clickedGraphic: __esri.Graphic }) {
+  mapClicked(clickResult: { clickedPoint: __esri.Point; clickedGraphics: __esri.Graphic[] }) {
     const { x, y, z } = clickResult.clickedPoint;
     this.clickedPoint = { x: x, y: y, z: z };
   }

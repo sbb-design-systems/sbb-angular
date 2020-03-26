@@ -20,7 +20,7 @@ export class EsriWebMapShowcaseComponent implements OnInit {
     this.mapView = mv;
   }
 
-  mapClicked(clickResult: { clickedPoint: __esri.Point; clickedGraphic: __esri.Graphic }) {
+  mapClicked(clickResult: { clickedPoint: __esri.Point; clickedGraphics: __esri.Graphic[] }) {
     this.clickedPoint = { x: clickResult.clickedPoint.x, y: clickResult.clickedPoint.y };
   }
 }

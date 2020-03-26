@@ -104,6 +104,13 @@
         "format": "UPPER_CASE"
       },
       {
+        "_description": "exclicitly disable the format check for ngAcceptInputType_",
+        "type": "property",
+        "filter": "^ngAcceptInputType_",
+        "modifiers": ["static"],
+        "format": null
+      },
+      {
         "_description": "enforce PascalCase for classes, interfaces, enums, etc. Remember, there are still no underscores allowed",
         "type": "type",
         "format": "PascalCase"

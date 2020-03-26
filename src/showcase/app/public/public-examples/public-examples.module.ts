@@ -85,7 +85,7 @@ import { SelectOptionGroupsMultiSelectionComponent } from './select-option-group
 import { SelectOptionGroupsComponent } from './select-option-groups/select-option-groups.component';
 import { SelectReactiveFormsComponent } from './select-reactive-forms/select-reactive-forms.component';
 import { TableShowcaseComponent } from './table-showcase/table-showcase.component';
-import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { PersonListComponent } from './tabs-showcase/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TagShowcaseComponent } from './tag-showcase/tag-showcase.component';
 import { TextareaFormsShowcaseComponent } from './textarea-forms-showcase/textarea-forms-showcase.component';

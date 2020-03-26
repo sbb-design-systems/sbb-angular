@@ -1,6 +1,6 @@
 import { AnimationEvent } from '@angular/animations';
 import { CdkAccordionItem } from '@angular/cdk/accordion';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { DOCUMENT } from '@angular/common';
@@ -195,4 +195,8 @@ export class ExpansionPanelComponent extends CdkAccordionItem
 
     return false;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_hideToggle: BooleanInput;
+  // tslint:enable: member-ordering
 }

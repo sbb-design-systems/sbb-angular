@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -205,4 +205,8 @@ export class NotificationComponent {
     this.ariaHidden = 'true';
     this.dismissed.emit(false);
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_readonly: BooleanInput;
+  // tslint:enable: member-ordering
 }

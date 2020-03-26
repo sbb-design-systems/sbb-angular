@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   Overlay,
@@ -532,4 +532,10 @@ export class DatepickerComponent<D> implements OnDestroy {
   private _getValidDateOrNull(obj: any): D | null {
     return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_arrows: BooleanInput;
+  static ngAcceptInputType_toggle: BooleanInput;
+  // tslint:enable: member-ordering
 }

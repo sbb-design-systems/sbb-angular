@@ -15,11 +15,11 @@
               placeholder="Name"
               spellcheck="false"
             />
-            <sbb-form-error *ngIf="form.get('name1').errors?.required"
+            <sbb-form-error *ngIf="form.get('name1')?.errors?.required"
               >Name is required!</sbb-form-error
             >
           </sbb-field>
-          <p>Model: {{ form.get('name1').value | json }}</p>
+          <p>Model: {{ form.get('name1')?.value | json }}</p>
         </div>
         <div>
           <h4 class="sbbsc-block">
@@ -37,14 +37,14 @@
               required
               minlength="3"
             />
-            <sbb-form-error *ngIf="form.get('name2').errors?.required"
+            <sbb-form-error *ngIf="form.get('name2')?.errors?.required"
               >Name is required!</sbb-form-error
             >
-            <sbb-form-error *ngIf="form.get('name2').errors?.minlength"
+            <sbb-form-error *ngIf="form.get('name2')?.errors?.minlength"
               >Name must contain at least 3 characters!
             </sbb-form-error>
           </sbb-field>
-          <p>Model: {{ form.get('name2').value | json }}</p>
+          <p>Model: {{ form.get('name2')?.value | json }}</p>
         </div>
         <div>
           <h4 class="sbbsc-block">Field with select</h4>
@@ -55,11 +55,11 @@
               <option>Zwei</option>
               <option>Drei</option>
             </select>
-            <sbb-form-error *ngIf="form.get('select1').errors?.required"
+            <sbb-form-error *ngIf="form.get('select1')?.errors?.required"
               >Number is required!</sbb-form-error
             >
           </sbb-field>
-          <p>Model: {{ form.get('select1').value | json }}</p>
+          <p>Model: {{ form.get('select1')?.value | json }}</p>
         </div>
         <div>
           <h4 class="sbbsc-block">Field with sbb-select</h4>
@@ -70,12 +70,12 @@
               >
             </sbb-select>
             <sbb-form-error
-              *ngIf="form.get('select2').touched && form.get('select2').errors?.required"
+              *ngIf="form.get('select2')?.touched && form.get('select2')?.errors?.required"
             >
               Variant is required!</sbb-form-error
             >
           </sbb-field>
-          <p>Model: {{ form.get('select2').value | json }}</p>
+          <p>Model: {{ form.get('select2')?.value | json }}</p>
         </div>
         <div>
           <h4 class="sbbsc-block">Field with sbb-datepicker</h4>
@@ -83,11 +83,11 @@
             <sbb-datepicker arrows>
               <input sbbInput sbbDateInput formControlName="date" type="text" />
             </sbb-datepicker>
-            <sbb-form-error *ngIf="form.get('date').touched && form.get('date').errors?.required">
+            <sbb-form-error *ngIf="form.get('date')?.touched && form.get('date')?.errors?.required">
               Date is required!</sbb-form-error
             >
           </sbb-field>
-          <p>Model: {{ form.get('date').value | json }}</p>
+          <p>Model: {{ form.get('date')?.value | json }}</p>
         </div>
       </form>
     </div>

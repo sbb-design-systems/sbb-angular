@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
@@ -686,4 +686,8 @@ export class AutocompleteTriggerDirective implements ControlValueAccessor, OnDes
     const element = this._elementRef.nativeElement;
     return !element.readOnly && !element.disabled && !this.autocompleteDisabled;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_autocompleteDisabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

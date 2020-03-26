@@ -26,7 +26,6 @@ ng_module(
         "api-viewer/api-viewer.component.html",
         "submenu/submenu.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/public/tabs",
         "@npm//@angular/animations",

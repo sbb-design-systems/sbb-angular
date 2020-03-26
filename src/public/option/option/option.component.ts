@@ -1,5 +1,5 @@
 import { Highlightable } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { DOCUMENT } from '@angular/common';
 import {
@@ -300,6 +300,10 @@ export class OptionComponent implements AfterViewChecked, OnDestroy, Highlightab
     nodes.forEach(n => parent.insertBefore(n, node));
     parent.removeChild(node);
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }
 
 /**

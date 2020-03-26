@@ -13,7 +13,7 @@ export class GroupedRowsTableComponent {
     ['orderDate', 'arrivalDate', 'lifecycleEnd']
   ]);
 
-  isGroup(index, item): boolean {
+  isGroup(_index: number, item: { isGroupBy: boolean }): boolean {
     return item.isGroupBy;
   }
 }

@@ -1,5 +1,5 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, BooleanInput } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
@@ -1094,4 +1094,11 @@ export class SelectComponent extends SbbSelectMixinBase
   private _getItemHeight(): number {
     return this.triggerFontSize * SELECT_ITEM_HEIGHT_EM;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_multiple: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+  static ngAcceptInputType_disableOptionCentering: BooleanInput;
+  // tslint:enable: member-ordering
 }

@@ -64,7 +64,7 @@ import { GroupedColumnsTableComponent } from './table-showcase/grouped-columns-t
 import { GroupedRowsTableComponent } from './table-showcase/grouped-rows-table/grouped-rows-table.component';
 import { SimpleTableComponent } from './table-showcase/simple-table/simple-table.component';
 import { SortableTableComponent } from './table-showcase/sortable-table/sortable-table.component';
-import { PersonListComponent } from './tabs-showcase/person/person-list/person-list.component';
+import { PersonListComponent } from './tabs-showcase/person-list/person-list.component';
 import { TabsShowcaseComponent } from './tabs-showcase/tabs-showcase.component';
 import { TextareaFormsShowcaseComponent } from './textarea-forms-showcase/textarea-forms-showcase.component';
 import { TextareaNativeShowcaseComponent } from './textarea-native-showcase/textarea-native-showcase.component';

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
 @Component({
   selector: 'sbb-usermenu-showcase',
@@ -12,17 +11,17 @@ export class UsermenuShowcaseComponent {
   userName3 = 'walter_14';
 
   user1 = {
-    userName: null,
+    userName: '',
     displayName: 'John Scott'
   };
 
   user2 = {
-    userName: null,
+    userName: '',
     displayName: 'Max Muster'
   };
 
   user3 = {
-    userName: null,
+    userName: '',
     displayName: 'Walter Scotti'
   };
 
@@ -32,7 +31,7 @@ export class UsermenuShowcaseComponent {
     { page: 3, text: 'Eintrag 3' }
   ];
 
-  linkGenerator(page: string): LinkGeneratorResult {
+  linkGenerator(page: string) {
     return {
       queryParams: { page: page },
       routerLink: ['.']

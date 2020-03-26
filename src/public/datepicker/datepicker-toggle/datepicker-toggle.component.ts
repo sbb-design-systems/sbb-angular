@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   Attribute,
@@ -101,4 +101,8 @@ export class DatepickerToggleComponent<D> implements OnDestroy, OnChanges, After
       this._changeDetectorRef.markForCheck()
     );
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

@@ -39,7 +39,7 @@ ng_module(
         "table-showcase/simple-table/simple-table.component.ts",
         "table-showcase/sortable-table/sortable-table.component.ts",
         "tabs-showcase/tabs-showcase.component.ts",
-        "tabs-showcase/person/person-list/person-list.component.ts",
+        "tabs-showcase/person-list/person-list.component.ts",
         "textarea-forms-showcase/textarea-forms-showcase.component.ts",
         "textarea-native-showcase/textarea-native-showcase.component.ts",
         "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.ts",
@@ -53,7 +53,7 @@ ng_module(
         ":simple-contextmenu/simple-contextmenu.component.css",
         ":skippable-processflow/skippable-processflow.component.css",
         ":tabs-showcase/tabs-showcase.component.css",
-        ":tabs-showcase/person/person-list/person-list.component.css",
+        ":tabs-showcase/person-list/person-list.component.css",
         ":textarea-forms-showcase/textarea-forms-showcase.component.css",
         ":textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.css",
         ":tooltip-showcase/tooltip-showcase.component.css",
@@ -88,14 +88,13 @@ ng_module(
         "table-showcase/simple-table/simple-table.component.html",
         "table-showcase/sortable-table/sortable-table.component.html",
         "tabs-showcase/tabs-showcase.component.html",
-        "tabs-showcase/person/person-list/person-list.component.html",
+        "tabs-showcase/person-list/person-list.component.html",
         "textarea-forms-showcase/textarea-forms-showcase.component.html",
         "textarea-native-showcase/textarea-native-showcase.component.html",
         "textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.html",
         "tooltip-showcase/tooltip-showcase.component.html",
         "usermenu-showcase/usermenu-showcase.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/autocomplete",
         "//src/business/button",
@@ -116,7 +115,6 @@ ng_module(
         "//src/business/textarea",
         "//src/business/tooltip",
         "//src/business/usermenu",
-        "//src/core/models",
         "//src/icons",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -157,8 +155,8 @@ sass_binary(
 )
 
 sass_binary(
-    name = "tabs_showcase_person_person_list_person_list_component_scss",
-    src = "tabs-showcase/person/person-list/person-list.component.scss",
+    name = "tabs_showcase_person_list_person_list_component_scss",
+    src = "tabs-showcase/person-list/person-list.component.scss",
 )
 
 sass_binary(

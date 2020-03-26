@@ -1,5 +1,5 @@
 import { animate, AnimationBuilder, style } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   FlexibleConnectedPositionStrategy,
@@ -871,4 +871,8 @@ export class SearchComponent implements ControlValueAccessor, OnDestroy, AfterVi
       }
     });
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_autocompleteDisabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

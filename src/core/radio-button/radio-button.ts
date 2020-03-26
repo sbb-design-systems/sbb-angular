@@ -1,5 +1,5 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   AfterViewInit,
@@ -268,4 +268,10 @@ export abstract class RadioButton extends _RadioButtonMixinBase
   private _emitChangeEvent(): void {
     this.change.emit(new RadioChange(this, this.value));
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_checked: BooleanInput;
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+  // tslint:enable: member-ordering
 }

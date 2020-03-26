@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsComponent } from '@sbb-esta/angular-business/tabs';
 
+export interface Person {
+  id?: number;
+  name: string;
+  surname: string;
+}
+
 @Component({
   selector: 'sbb-tabs-showcase',
   templateUrl: './tabs-showcase.component.html',
@@ -15,11 +21,11 @@ export class TabsShowcaseComponent implements OnInit {
   dataSet = '1';
   data = ['1', '50', '550'];
 
-  personInitialLoad = { id: 1, name: 'Max', surname: 'Muster' };
+  personInitialLoad: Person = { id: 1, name: 'Max', surname: 'Muster' };
 
-  person = [];
+  person: Person[] = [];
 
-  personList = [
+  personList: Person[] = [
     { name: 'Peter', surname: 'Hahn' },
     { name: 'Andreas', surname: 'Hofstetter' },
     { name: 'Paul', surname: 'Walker' },
@@ -72,7 +78,7 @@ export class TabsShowcaseComponent implements OnInit {
     }
   }
 
-  onChangeOfDataSet(event) {
+  onChangeOfDataSet(event: string) {
     this.person = [];
     if (event.startsWith('1')) {
       this.person.push(this.personInitialLoad);

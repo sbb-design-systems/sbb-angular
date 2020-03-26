@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
@@ -331,4 +331,10 @@ export class InputDirective extends SbbNativeInputBase
   private _isTextarea() {
     return this._elementRef.nativeElement.nodeName.toLowerCase() === 'textarea';
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_required: BooleanInput;
+  static ngAcceptInputType_readonly: BooleanInput;
+  // tslint:enable: member-ordering
 }

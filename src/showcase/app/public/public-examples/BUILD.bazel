@@ -43,7 +43,7 @@ ng_module(
         "select-reactive-forms/select-reactive-forms.component.ts",
         "table-showcase/table-showcase.component.ts",
         "tabs-showcase/tabs-showcase.component.ts",
-        "tabs-showcase/person/person-list/person-list.component.ts",
+        "tabs-showcase/person-list/person-list.component.ts",
         "tag-showcase/tag-showcase.component.ts",
         "textarea-forms-showcase/textarea-forms-showcase.component.ts",
         "textarea-native-showcase/textarea-native-showcase.component.ts",
@@ -84,7 +84,7 @@ ng_module(
         ":select-reactive-forms/select-reactive-forms.component.css",
         ":table-showcase/table-showcase.component.css",
         ":tabs-showcase/tabs-showcase.component.css",
-        ":tabs-showcase/person/person-list/person-list.component.css",
+        ":tabs-showcase/person-list/person-list.component.css",
         ":tag-showcase/tag-showcase.component.css",
         ":textarea-forms-showcase/textarea-forms-showcase.component.css",
         ":textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component.css",
@@ -130,7 +130,7 @@ ng_module(
         "select-reactive-forms/select-reactive-forms.component.html",
         "table-showcase/table-showcase.component.html",
         "tabs-showcase/tabs-showcase.component.html",
-        "tabs-showcase/person/person-list/person-list.component.html",
+        "tabs-showcase/person-list/person-list.component.html",
         "tag-showcase/tag-showcase.component.html",
         "textarea-forms-showcase/textarea-forms-showcase.component.html",
         "textarea-native-showcase/textarea-native-showcase.component.html",
@@ -141,7 +141,6 @@ ng_module(
         "tooltip-showcase/tooltip-showcase.component.html",
         "usermenu-showcase/usermenu-showcase.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/core/base",
         "//src/core/datetime",
@@ -339,8 +338,8 @@ sass_binary(
 )
 
 sass_binary(
-    name = "tabs_showcase_person_person_list_person_list_component_scss",
-    src = "tabs-showcase/person/person-list/person-list.component.scss",
+    name = "tabs_showcase_person_list_person_list_component_scss",
+    src = "tabs-showcase/person-list/person-list.component.scss",
 )
 
 sass_binary(

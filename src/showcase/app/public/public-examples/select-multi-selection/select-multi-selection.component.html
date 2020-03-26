@@ -5,7 +5,7 @@
       <sbb-select placeholder="Lieblingsessen" formControlName="value" multiple>
         <sbb-option
           *ngFor="let food of ['Beefsteak', 'Pizza', 'Nudeln']; first as isFirst"
-          [disabled]="isFirst && form.get('optionDisabled').value"
+          [disabled]="isFirst && form.get('optionDisabled')?.value"
           [value]="food"
         >
           {{ food }}
@@ -15,9 +15,9 @@
   </div>
   <div>
     <h4>Properties</h4>
-    <pre>{{ form.get('value').value | json }}</pre>
+    <pre>{{ form.get('value')?.value | json }}</pre>
     <sbb-checkbox
-      (change)="$event.checked ? form.get('value').disable() : form.get('value').enable()"
+      (change)="$event.checked ? form.get('value')?.disable() : form.get('value')?.enable()"
       >disabled</sbb-checkbox
     >
     <sbb-checkbox formControlName="optionDisabled">first option disabled</sbb-checkbox>

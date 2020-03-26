@@ -19,6 +19,7 @@ ng_module(
     module_name = "@sbb-esta/angular-public/file-selector",
     deps = [
         "//src/icons",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

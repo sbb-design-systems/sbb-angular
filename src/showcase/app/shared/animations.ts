@@ -1,6 +1,7 @@
 import {
   animate,
   animateChild,
+  AnimationTriggerMetadata,
   group,
   keyframes,
   query,
@@ -9,16 +10,16 @@ import {
   trigger
 } from '@angular/animations';
 
-export const FADE_ANIMATION = trigger('fadeAnimation', [
+export const FADE_ANIMATION: AnimationTriggerMetadata = trigger('fadeAnimation', [
   transition(':enter', [style({ opacity: 0 }), animate(400, style({ opacity: 1 }))]),
   transition(':leave', [style({ opacity: 1 }), animate(400, style({ opacity: 0 }))])
 ]);
 
-export const FADE_POSITION_ANIMATION = trigger('fadePositionAnimation', [
+export const FADE_POSITION_ANIMATION: AnimationTriggerMetadata = trigger('fadePositionAnimation', [
   transition('* => *', [style({ opacity: 0 }), animate(400, style({ opacity: 1 })), animateChild()])
 ]);
 
-export const SLIDE_ANIMATION = trigger('slideAnimation', [
+export const SLIDE_ANIMATION: AnimationTriggerMetadata = trigger('slideAnimation', [
   transition(':enter', [
     style({ opacity: 0, transform: 'translateX(50%)' }),
     animate(
@@ -45,7 +46,7 @@ export const SLIDE_ANIMATION = trigger('slideAnimation', [
   ])
 ]);
 
-export const ROUTER_ANIMATION = trigger('animRoutes', [
+export const ROUTER_ANIMATION: AnimationTriggerMetadata = trigger('animRoutes', [
   transition('* <=> *', [
     group([
       query(

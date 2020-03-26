@@ -17,7 +17,6 @@ ng_module(
         ":public/public.component.css",
         "public/public.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/public/tabs",
         "//src/showcase/app/public/public-examples",

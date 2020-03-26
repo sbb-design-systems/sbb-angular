@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { HtmlLoader } from '../html-loader.service';
 
@@ -11,7 +12,7 @@ import { HtmlLoader } from '../html-loader.service';
 export class ApiViewerComponent {
   constructor(private _htmlLoader: HtmlLoader, private _route: ActivatedRoute) {}
 
-  content = this._htmlLoader
+  content: Observable<string> = this._htmlLoader
     .with(this._route)
     .fromApiDocumentation()
     .observe();

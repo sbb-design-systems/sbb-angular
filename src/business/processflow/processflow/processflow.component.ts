@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -91,4 +91,8 @@ export class ProcessflowComponent extends ProcessflowBase<ProcessflowStepCompone
       this.changeStep(activeStepIndex - 1);
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_skippable: BooleanInput;
+  // tslint:enable: member-ordering
 }

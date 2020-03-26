@@ -45,16 +45,18 @@ export class FileSelectorShowcaseComponent implements OnInit, OnDestroy {
   }
 
   beautifyFileList(filesList: File[]) {
-    if (filesList) {
-      return filesList.map(f => {
-        return {
-          name: f.name,
-          size: f.size,
-          type: f.type,
-          lastModified: f.lastModified
-        };
-      });
+    if (!filesList) {
+      return undefined;
     }
+
+    return filesList.map(f => {
+      return {
+        name: f.name,
+        size: f.size,
+        type: f.type,
+        lastModified: f.lastModified
+      };
+    });
   }
 
   setDisabled(sbbCheckboxChange: SbbCheckboxChange) {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavigationPageChangeEvent, PageChangeEvent } from '@sbb-esta/angular-business/pagination';
 
 @Component({
   selector: 'sbb-pagination-showcase',
@@ -18,21 +19,21 @@ export class PaginationShowcaseComponent {
   hasPrevious = this.pages[1];
   hasNext = this.pages[2];
 
-  get previousPage(): string {
+  get previousPage(): string | null {
     return this.hasPrevious ? this.hasPrevious.title : null;
   }
 
-  get nextPage(): string {
+  get nextPage(): string | null {
     return this.hasNext ? this.hasNext.title : null;
   }
 
   newPage = { title: '' };
 
-  onPageChange($event) {
+  onPageChange($event: PageChangeEvent) {
     console.log($event);
   }
 
-  onPageChangeNavigation($event) {
+  onPageChangeNavigation($event: NavigationPageChangeEvent) {
     if ($event === 'next') {
       this.hasPrevious = this.hasNext;
       this.hasNext = this.pages[this.hasNext.index + 1];

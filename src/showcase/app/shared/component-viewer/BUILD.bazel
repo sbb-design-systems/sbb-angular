@@ -19,7 +19,6 @@ ng_module(
         "component-viewer/component-viewer.component.html",
         "example-viewer/example-viewer.component.html",
     ],
-    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/public/tabs",
         "//src/showcase/app/shared",

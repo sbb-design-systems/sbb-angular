@@ -14,7 +14,13 @@ export class ExperimentalIconSearchComponent {
   form: FormGroup;
 
   icons: Observable<
-    { attributeSelector: string; elementSelector: string; portal: ComponentPortal<any> }[]
+    {
+      attributeSelector: string;
+      elementSelector: string;
+      module: string;
+      import: string;
+      portal: ComponentPortal<any>;
+    }[]
   >;
 
   constructor(formBuilder: FormBuilder) {

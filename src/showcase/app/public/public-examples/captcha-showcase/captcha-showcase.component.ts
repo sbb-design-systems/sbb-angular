@@ -30,7 +30,7 @@ export class CaptchaShowcaseComponent implements OnInit, OnDestroy {
       captcha: this.captcha
     });
 
-    this.captchaSubscription = this.formCaptcha.get('captcha').valueChanges.subscribe(value => {
+    this.captchaSubscription = this.formCaptcha.get('captcha')!.valueChanges.subscribe(value => {
       this.formModelReactive.captcha = value;
     });
   }

@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -61,7 +62,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   set disabled(value: boolean) {
-    this._disabled = value;
+    this._disabled = coerceBooleanProperty(value);
 
     if (!!value) {
       this.disableChange.emit(this.id);
@@ -118,4 +119,8 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
     this.removeChange.emit(this.id);
     this._stateChanges.complete();
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

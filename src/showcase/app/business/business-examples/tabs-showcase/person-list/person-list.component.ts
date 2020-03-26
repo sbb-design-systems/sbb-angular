@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./person-list.component.css']
 })
 export class PersonListComponent {
-  @Input() person;
+  @Input() person: any;
 }

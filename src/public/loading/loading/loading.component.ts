@@ -49,4 +49,17 @@ export class LoadingComponent {
   get _fullboxClass() {
     return this.mode === 'fullbox';
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_mode:
+    | 'tiny'
+    | 'small'
+    | 'medium'
+    | 'big'
+    | 'fullscreen'
+    | 'fullbox'
+    | string
+    | null
+    | undefined;
+  // tslint:enable: member-ordering
 }

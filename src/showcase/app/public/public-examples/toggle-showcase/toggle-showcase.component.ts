@@ -19,7 +19,7 @@ export class ToggleShowcaseComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.form.get('test').valueChanges.subscribe(val => {
+    this.form.get('test')!.valueChanges.subscribe(val => {
       this.modelReactive = val;
     });
   }

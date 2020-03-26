@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -47,7 +48,14 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   /**
    * Mode on file selector component to chose more files to upload.
    */
-  @Input() multiple?: boolean;
+  @Input()
+  get multiple() {
+    return this._multiple;
+  }
+  set multiple(value: any) {
+    this._multiple = coerceBooleanProperty(value);
+  }
+  private _multiple = false;
 
   /**
    * Set if the component should add files on top of the already selected ones or keep default input file behaviour.
@@ -57,7 +65,14 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
   /**
    * Mode to disable the choice of files to upload.
    */
-  @Input() disabled?: boolean;
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(value: any) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled = false;
 
   /**
    * Identifier of a sbb-file-selector component.
@@ -113,9 +128,11 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
     this.filesList = value;
     this._changeDetector.detectChanges();
   }
+
   registerOnChange(fn: any) {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any) {
     this.onTouched = fn;
   }
@@ -194,4 +211,11 @@ export class FileSelectorComponent implements ControlValueAccessor, FileSelector
       file1.lastModified === file2.lastModified
     );
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_capture: 'user' | 'environment' | string | null | undefined;
+  static ngAcceptInputType_multipleMode: 'default' | 'persistent' | string | null | undefined;
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_multiple: BooleanInput;
+  // tslint:enable: member-ordering
 }

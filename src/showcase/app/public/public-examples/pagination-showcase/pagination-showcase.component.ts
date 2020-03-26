@@ -19,20 +19,20 @@ export class PaginationShowcaseComponent {
   hasPrevious = this.pages[1];
   hasNext = this.pages[2];
 
-  get previousPage(): string {
+  get previousPage(): string | null {
     return this.hasPrevious ? this.hasPrevious.title : null;
   }
-  get nextPage(): string {
+  get nextPage(): string | null {
     return this.hasNext ? this.hasNext.title : null;
   }
 
   newPage = { title: '' };
 
-  onPageChange($event) {
+  onPageChange($event: any) {
     console.log($event);
   }
 
-  onPageChangeNavigation($event) {
+  onPageChangeNavigation($event: any) {
     if ($event === 'next') {
       this.hasPrevious = this.hasNext;
       this.hasNext = this.pages[this.hasNext.index + 1];

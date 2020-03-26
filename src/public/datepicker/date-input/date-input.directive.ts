@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DOWN_ARROW } from '@angular/cdk/keycodes';
 import {
   Directive,
@@ -381,4 +381,8 @@ export class DateInputDirective<D> implements ControlValueAccessor, Validator, O
   private _getValidDateOrNull(obj: any): D | null {
     return this.dateAdapter.isDateInstance(obj) && this.dateAdapter.isValid(obj) ? obj : null;
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

@@ -1,4 +1,4 @@
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { Overlay } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
@@ -170,4 +170,9 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
       clearTimeout(this._referenceActiveTimeout);
     }
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_hoverOpenDelay: NumberInput;
+  static ngAcceptInputType_hoverCloseDelay: NumberInput;
+  // tslint:enable: member-ordering
 }

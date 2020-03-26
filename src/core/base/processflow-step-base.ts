@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ChangeDetectorRef, Directive, Input } from '@angular/core';
 
 export class ProcessflowStep {
@@ -44,4 +44,9 @@ export abstract class ProcessflowStepBase {
   }
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_active: BooleanInput;
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

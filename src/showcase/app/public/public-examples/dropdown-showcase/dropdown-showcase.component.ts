@@ -1,5 +1,4 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
-import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { DropdownTriggerDirective } from '@sbb-esta/angular-public/dropdown';
 
 @Component({
@@ -16,7 +15,7 @@ export class DropdownShowcaseComponent {
     { page: 3, text: 'Test 3' }
   ];
 
-  linkGenerator(page: string): LinkGeneratorResult {
+  linkGenerator(page: string) {
     return {
       queryParams: { page: page },
       routerLink: ['.']

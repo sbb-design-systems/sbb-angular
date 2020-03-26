@@ -43,4 +43,9 @@ export class LinkComponent {
   get _formClass() {
     return this.mode === 'form';
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_mode: 'normal' | 'stretch' | 'form' | string | null | undefined;
+  static ngAcceptInputType_icon: 'arrow' | 'download' | string | null | undefined;
+  // tslint:enable: member-ordering
 }

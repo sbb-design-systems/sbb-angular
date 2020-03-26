@@ -20,7 +20,7 @@ export class ShowcaseModule extends NgModule {
     if (path !== '') {
       return path;
     } else if (importPath.endsWith('/package.json')) {
-      return '//:package.json';
+      return '';
     }
 
     const joinedPath = dirname(join(dirname(fileEntry.path), importPath));

@@ -4,10 +4,10 @@
     <sbb-autocomplete #auto="sbbAutocomplete">
       <sbb-option *ngFor="let option of options" [value]="option">{{ option }}</sbb-option>
     </sbb-autocomplete>
-    <sbb-form-error *ngIf="formGroup.get('chip').errors?.required"
+    <sbb-form-error *ngIf="formGroup.get('chip')?.errors?.required"
       >This field is required.</sbb-form-error
     >
   </sbb-field>
 </ng-container>
 <h4>Properties</h4>
-<pre>{{ formGroup.get('chip').value | json }}</pre>
+<pre>{{ formGroup.get('chip')?.value | json }}</pre>

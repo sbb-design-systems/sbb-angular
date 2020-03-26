@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 @Component({
@@ -41,4 +41,8 @@ export class ChipComponent {
     this.ariaHidden = 'true';
     this.dismissed.emit(this);
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_disabled: BooleanInput;
+  // tslint:enable: member-ordering
 }

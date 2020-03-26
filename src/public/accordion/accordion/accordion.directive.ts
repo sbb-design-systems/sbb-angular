@@ -1,6 +1,6 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { CdkAccordion } from '@angular/cdk/accordion';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { END, HOME } from '@angular/cdk/keycodes';
 import {
   AfterContentInit,
@@ -80,4 +80,8 @@ export class AccordionDirective extends CdkAccordion implements IAccordionBase, 
   handleHeaderFocus(header: ExpansionPanelHeaderComponent) {
     this._keyManager.updateActiveItem(header);
   }
+
+  // tslint:disable: member-ordering
+  static ngAcceptInputType_hideToggle: BooleanInput;
+  // tslint:enable: member-ordering
 }
