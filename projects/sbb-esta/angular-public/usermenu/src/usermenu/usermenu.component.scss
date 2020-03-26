@@ -142,6 +142,7 @@ $borderActive5K: solid toPx(4 * $scalingFactor5k) $sbbColorGrey;
         width: toPx(24);
         height: toPx(24);
         position: relative;
+        pointer-events: none;
 
         @include mq($from: mobilePortrait, $to: tabletPortrait) {
           display: none;
