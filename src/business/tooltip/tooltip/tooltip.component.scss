@@ -1,2 +1,249 @@
 $sbbBusiness: true;
-@import '../../../public/tooltip/tooltip/tooltip.component.scss';
+// TDOD: Fix redundancy
+
+@import '../../../core/styles/common';
+
+$tooltipBorderRadius: 2;
+$tooltipBorderWidth: 2;
+$tooltipIconsBorderWidth: 1;
+$tooltipWidth: 460;
+$tooltipWidthMP: 351;
+$tooltipMinWidth: 72;
+$tooltipIconsSize: 24;
+$tooltipContentPadding: 24;
+$tooltipContentBelowMarginTop: 16;
+$tooltipBoxShadowColor: rgba(102, 102, 102, 0.15);
+$tooltipShadowSize: 8;
+$tooltipContentArrowSize: 20;
+$tooltipShadowBorderWidth: 14;
+$tooltipArrowRightPosition: calc(100% - #{pxToEm(15.5)});
+$tooltipArrowLeftPosition: pxToEm(15.5);
+
+@mixin tooltipIcon {
+  @include buttonResetFrameless();
+  @include svgIconColor($sbbColorGrey);
+  width: toPx($tooltipIconsSize);
+  height: toPx($tooltipIconsSize);
+  cursor: pointer;
+  display: block;
+  border-color: $sbbColorGrey;
+  border-width: pxToEm(1);
+  border-style: solid;
+  border-radius: 50%;
+  background-color: $sbbColorWhite;
+  text-decoration: none;
+  outline: 0;
+  line-height: 1;
+
+  &-active,
+  &:hover,
+  &:focus {
+    @include svgIconColor($sbbColorRed);
+    border-color: $sbbColorRed;
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      width: toPx($tooltipIconsSize * $scalingFactor4k);
+      height: toPx($tooltipIconsSize * $scalingFactor4k);
+    }
+
+    @include mq($from: desktop5k) {
+      width: toPx($tooltipIconsSize * $scalingFactor5k);
+      height: toPx($tooltipIconsSize * $scalingFactor5k);
+    }
+  }
+
+  > * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+sbb-tooltip {
+  .sbb-tooltip-trigger {
+    @include tooltipIcon();
+    margin: auto;
+    display: block;
+  }
+}
+
+.sbb-tooltip-content-above {
+  margin-bottom: pxToEm(24);
+  background: $sbbColorWhite;
+  border: pxToEm($tooltipBorderWidth) solid $sbbColorGrey;
+
+  .sbb-tooltip-shadow {
+    width: calc(100% + 4px);
+    background-color: $tooltipBoxShadowColor;
+    height: pxToEm($tooltipShadowSize);
+    bottom: pxToEm(-$tooltipShadowSize);
+    position: absolute;
+    box-sizing: border-box;
+    margin-left: pxToEm(-2);
+    margin-right: pxToEm(2);
+
+    @include publicOnly() {
+      @include mq($from: desktop4k) {
+        width: calc(100% + 6px);
+      }
+
+      @include mq($from: desktop5k) {
+        width: calc(100% + 8px);
+      }
+    }
+  }
+  .sbb-tooltip-shadow::after {
+    top: 100%;
+    left: 50%;
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: pxToEm($tooltipShadowBorderWidth) solid transparent;
+    border-right: pxToEm($tooltipShadowBorderWidth) solid transparent;
+    border-top: pxToEm($tooltipShadowBorderWidth) solid $tooltipBoxShadowColor;
+    transform: translateX(-50%);
+  }
+  &.sbb-tooltip-content-left .sbb-tooltip-shadow::after {
+    left: $tooltipArrowRightPosition;
+  }
+  &.sbb-tooltip-content-right .sbb-tooltip-shadow::after {
+    left: $tooltipArrowLeftPosition;
+  }
+
+  &::after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: ' ';
+    height: pxToEm($tooltipContentArrowSize);
+    width: pxToEm($tooltipContentArrowSize);
+    position: absolute;
+    pointer-events: none;
+    transform: rotate(45deg) translate(pxToEm(-14));
+    background-color: $sbbColorWhite;
+    border-color: $sbbColorGrey;
+    border-width: pxToEm($tooltipBorderWidth);
+    border-top-color: $sbbColorWhite;
+    border-left-color: $sbbColorWhite;
+  }
+  &.sbb-tooltip-content-left::after {
+    left: $tooltipArrowRightPosition;
+  }
+  &.sbb-tooltip-content-right::after {
+    left: $tooltipArrowLeftPosition;
+  }
+}
+
+.sbb-tooltip-content-below {
+  box-shadow: 0 pxToEm(8) 0 0 rgba(102, 102, 102, 0.15);
+  margin-top: pxToEm(12);
+  background: $sbbColorWhite;
+  border: pxToEm(2) solid $sbbColorGrey;
+  &::after,
+  &::before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  &::after {
+    border-color: transparent;
+    border-bottom-color: $sbbColorWhite;
+    border-width: pxToEm(10);
+    margin-left: pxToEm(-10);
+  }
+  &::before {
+    border-color: transparent;
+    border-bottom-color: $sbbColorGrey;
+    border-width: pxToEm(13);
+    margin-left: pxToEm(-13);
+  }
+  &.sbb-tooltip-content-left {
+    &::after,
+    &::before {
+      left: $tooltipArrowRightPosition;
+    }
+  }
+  &.sbb-tooltip-content-right {
+    &::after,
+    &::before {
+      left: $tooltipArrowLeftPosition;
+    }
+  }
+}
+
+.sbb-tooltip-content {
+  color: $sbbColorGrey;
+  letter-spacing: 0;
+  line-height: 1;
+  font-size: $sizeFontBase;
+  border-radius: toPx($tooltipBorderRadius) toPx($tooltipBorderRadius) toPx($tooltipBorderRadius) 0
+    0 0 toPx($tooltipBorderRadius);
+  text-align: left;
+  border: toPx($tooltipBorderWidth) solid $sbbColorGrey;
+  width: toPx($tooltipWidth);
+  min-height: toPx($tooltipMinWidth);
+  display: block;
+  background-color: $sbbColorWhite;
+
+  .sbb-tooltip-content-body {
+    padding-top: toPx($tooltipContentPadding);
+    padding-left: toPx($tooltipContentPadding);
+    padding-bottom: toPx($tooltipContentPadding);
+    width: toPx($tooltipWidth - $tooltipMinWidth);
+  }
+
+  @include mq($from: mobilePortrait, $to: tabletPortrait) {
+    width: toPx($tooltipWidthMP);
+    .sbb-tooltip-content-body {
+      width: toPx($tooltipWidthMP - $tooltipMinWidth);
+    }
+  }
+
+  @include publicOnly() {
+    @include mq($from: desktop4k) {
+      font-size: $sizeFontBase * $scalingFactor4k;
+      border: toPx($tooltipBorderWidth * $scalingFactor4k) solid $sbbColorGrey;
+      width: toPx($tooltipWidth * $scalingFactor4k);
+      min-height: toPx($tooltipMinWidth * $scalingFactor4k);
+      display: block;
+      background-color: $sbbColorWhite;
+      .sbb-tooltip-content-body {
+        padding-top: toPx($tooltipContentPadding * $scalingFactor4k);
+        padding-left: toPx($tooltipContentPadding * $scalingFactor4k);
+        padding-bottom: toPx($tooltipContentPadding * $scalingFactor4k);
+        width: toPx(($tooltipWidth - $tooltipMinWidth) * $scalingFactor4k);
+      }
+    }
+
+    @include mq($from: desktop5k) {
+      font-size: $sizeFontBase * $scalingFactor5k;
+      border: toPx($tooltipBorderWidth * $scalingFactor5k) solid $sbbColorGrey;
+      width: toPx($tooltipWidth * $scalingFactor5k);
+      min-height: toPx($tooltipMinWidth * $scalingFactor5k);
+      display: block;
+      background-color: $sbbColorWhite;
+      .sbb-tooltip-content-body {
+        padding-top: toPx($tooltipContentPadding * $scalingFactor5k);
+        padding-left: toPx($tooltipContentPadding * $scalingFactor5k);
+        padding-bottom: toPx($tooltipContentPadding * $scalingFactor5k);
+        width: toPx(($tooltipWidth - $tooltipMinWidth) * $scalingFactor5k);
+      }
+    }
+  }
+
+  .sbb-tooltip-icon {
+    @include tooltipIcon();
+    float: right;
+    position: absolute;
+    top: toPx($tooltipIconsSize);
+    right: toPx($tooltipIconsSize);
+  }
+}
+

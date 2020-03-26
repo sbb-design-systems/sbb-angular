@@ -11,7 +11,6 @@ import { IconViewerComponent } from './icon-viewer/icon-viewer.component';
 
 @NgModule({
   declarations: [IconSearchComponent, IconViewerComponent],
-  entryComponents: [...ICON_COMPONENT_LIST],
   imports: [
     CommonModule,
     ReactiveFormsModule,

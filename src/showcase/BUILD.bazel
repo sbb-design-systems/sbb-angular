@@ -34,6 +34,11 @@ ng_module(
     # tsconfig = ":tsconfig.json",
     generate_ve_shims = True,
     deps = [
+        "//src/business",
+        "//src/core",
+        "//src/icons",
+        "//src/maps",
+        "//src/public",
         "//src/showcase/app",
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",

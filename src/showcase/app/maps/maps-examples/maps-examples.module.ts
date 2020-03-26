@@ -21,7 +21,6 @@ const showcaseComponents = [
 ];
 @NgModule({
   declarations: showcaseComponents,
-  entryComponents: showcaseComponents,
   exports: showcaseComponents,
   imports: [
     CommonModule,

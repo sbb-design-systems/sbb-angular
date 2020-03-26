@@ -12,7 +12,6 @@ import { ExperimentalIconsRoutingModule } from './experimental-icons-routing.mod
 
 @NgModule({
   declarations: [ExperimentalIconSearchComponent],
-  entryComponents: [...ICON_CLASS_LIST],
   imports: [
     CommonModule,
     ReactiveFormsModule,
