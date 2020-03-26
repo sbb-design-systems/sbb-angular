@@ -21,30 +21,20 @@ sass_binary(
     name = "styles",
     src = "styles.scss",
     include_paths = ["external/npm/node_modules"],
-    output_name = "global_stylesheet.css",
     deps = ["//src/core/styles:core_scss_lib"],
 )
 
 ng_module(
     name = "showcase",
-    srcs = glob(
-        include = ["*.ts"],
-        exclude = ["main.ts"],
-    ),
-    # tsconfig = ":tsconfig.json",
+    srcs = [
+        "main.dev.ts",
+        "main.prod.ts",
+    ],
     generate_ve_shims = True,
     deps = [
-        "//src/business",
-        "//src/core",
-        "//src/icons",
-        "//src/maps",
-        "//src/public",
         "//src/showcase/app",
         "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
-        "@npm//@angular/router",
-        "@npm//@types",
-        "@npm//rxjs",
+        "@npm//@angular/platform-browser"
     ],
 )
 
@@ -75,13 +65,13 @@ html_insert_assets(
         "--roots",
         "$(RULEDIR)",
         "--assets",
-        "$(execpath :global_stylesheet.css)",
+        "$(execpath :styles.css)",
         "$(execpath @npm//:node_modules/zone.js/dist/zone.min.js)",
         "bundle.min.js",
     ],
     data = [
         ":index.html",
-        ":global_stylesheet.css",
+        ":styles.css",
         "@npm//:node_modules/zone.js/dist/zone.min.js",
     ],
 )
@@ -92,7 +82,7 @@ pkg_web(
     srcs = [
         "@npm//:node_modules/zone.js/dist/zone.min.js",
         ":bundle.min",
-        ":global_stylesheet.css",
+        ":styles.css",
         ":asset_injected_index_html",
     ],
 )
@@ -123,10 +113,11 @@ ts_devserver(
     ],
     static_files = [
         "@npm//:node_modules/zone.js/dist/zone.min.js",
-        ":global_stylesheet.css",
+        ":styles.css",
+        "//src/showcase/assets",
         ":asset_injected_index_html",
     ],
-    deps = [":showcase"],
+    deps = ["//src/showcase"],
 )
 
 exports_files([
