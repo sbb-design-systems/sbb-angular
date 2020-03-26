@@ -9,7 +9,7 @@ import {
   dispatchMouseEvent,
   typeInElement
 } from '@sbb-esta/angular-core/testing';
-import { FieldModule } from '@sbb-esta/angular-public/field';
+import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-public/field';
 
 import { TextareaComponent } from './textarea.component';
 
@@ -62,9 +62,11 @@ describe('TextareaComponent', () => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule],
       declarations: [TextareaComponent]
-    }).overrideComponent(TextareaComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .overrideComponent(TextareaComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -197,9 +199,11 @@ describe('TextareaComponent digits counter', () => {
     TestBed.configureTestingModule({
       imports: [TextFieldModule],
       declarations: [TextareaComponent]
-    }).overrideComponent(TextareaComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .overrideComponent(TextareaComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -223,7 +227,7 @@ describe('TextareaComponent digits counter', () => {
   });
 
   it('should disappear', () => {
-    component.maxlength = null;
+    component.maxlength = null!;
     fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
     expect(counterDiv).toBeNull();
@@ -277,7 +281,7 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   it('should be disabled', () => {
     expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeFalsy();
 
-    component.form.get('textarea').disable();
+    component.form.get('textarea')!.disable();
 
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('.disabled')).toBeTruthy();
@@ -287,11 +291,11 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
   });
 
   it('should correctly update value', () => {
-    expect(component.form.get('textarea').value).toBe('SBB');
+    expect(component.form.get('textarea')!.value).toBe('SBB');
 
     typeInElement(textarea, ' is cool');
 
     fixture.detectChanges();
-    expect(component.form.get('textarea').value).toBe('SBB is cool');
+    expect(component.form.get('textarea')!.value).toBe('SBB is cool');
   });
 });

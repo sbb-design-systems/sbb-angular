@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
@@ -74,39 +74,39 @@ describe('ProcessflowComponent user interaction', () => {
   });
 
   it('should go to the next step', () => {
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
     component.processflow.nextStep();
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 2');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 2');
   });
 
   it('should go to the previous step', () => {
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
     component.processflow.nextStep();
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 2');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 2');
     component.processflow.prevStep();
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
   });
 
   it('should disable the next step when going backwards', () => {
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
     component.processflow.nextStep();
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 2');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 2');
     component.processflow.prevStep();
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
     expect(component.processflow.steps.toArray()[1].disabled).toBeTruthy();
   });
 
   it('should not be possible to click on next steps', () => {
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
     const steps = document.querySelectorAll('.sbb-processflow-step button');
     dispatchMouseEvent(steps[1], 'click');
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
   });
 
   it('should be possible to click on previous steps', () => {
@@ -116,7 +116,7 @@ describe('ProcessflowComponent user interaction', () => {
     const steps = document.querySelectorAll('.sbb-processflow-step button');
     dispatchMouseEvent(steps[0], 'click');
     fixture.detectChanges();
-    expect(component.processflow.getActiveStep().title).toBe('Schritt 1');
+    expect(component.processflow.getActiveStep()!.title).toBe('Schritt 1');
   });
 
   it('should disable next steps when clicking on previous steps', () => {

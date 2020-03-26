@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
@@ -8,76 +8,76 @@ import { FileSelectorModule } from '../file-selector.module';
 
 import { FileSelectorComponent } from './file-selector.component';
 
-const testFileList: File[] = [
+const testFileList: Partial<File>[] = [
   {
     name: 'SampleAudio.mp3',
     size: 725240,
     type: 'audio/mp3',
     lastModified: 1550064416609,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleDOC.doc',
     size: 204288,
     type: 'application/msword',
     lastModified: 1550064627491,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleFLV.flv',
     size: 2097492,
     type: '',
     lastModified: 1550067468737,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleJPGImage.jpg',
     size: 206993,
     type: 'image/jpeg',
     lastModified: 1550064740940,
-    slice: null
+    slice: null!
   },
   {
     name: 'SamplePDF.pdf',
     size: 3028,
     type: 'application/pdf',
     lastModified: 1549979672772,
-    slice: null
+    slice: null!
   },
   {
     name: 'SamplePNGImage.png',
     size: 207071,
     type: 'image/png',
     lastModified: 1550064744946,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleSVGImage.svg',
     size: 53475,
     type: 'image/svg+xml',
     lastModified: 1550064751755,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleVideo.mp4',
     size: 5253880,
     type: 'video/mp4',
     lastModified: 1550064537437,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleXLS.xls',
     size: 38912,
     type: 'application/vnd.ms-excel',
     lastModified: 1550064593002,
-    slice: null
+    slice: null!
   },
   {
     name: 'SampleZIP.zip',
     size: 10503575,
     type: 'application/x-zip-compressed',
     lastModified: 1550064649868,
-    slice: null
+    slice: null!
   }
 ];
 

@@ -1,11 +1,11 @@
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 
-import { AccordionModule, ExpansionPanelComponent } from '../public_api';
+import { AccordionModule, ExpansionPanelComponent } from '../public-api';
 
 // tslint:disable:i18n
 @Component({
@@ -108,7 +108,7 @@ class PanelWithTwoWayBindingComponent {
 }
 
 describe('ExpansionPanelComponent', () => {
-  let originalTimeout;
+  let originalTimeout: number;
 
   beforeEach(function() {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;

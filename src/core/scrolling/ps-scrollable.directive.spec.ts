@@ -16,10 +16,10 @@ describe('PsDirectiveScrollable', () => {
   it('should emit on inner scroll', () => {
     const directive = new PsDirectiveScrollable(
       perfectScrollbarMock as any,
-      new ElementRef(null),
+      new ElementRef<HTMLElement>(null!),
       scrollDispatcherMock as any,
-      null,
-      null
+      null!,
+      null!
     );
     let counter = 0;
     directive.elementScrolled().subscribe(() => ++counter);
@@ -43,10 +43,10 @@ describe('PsComponentScrollable', () => {
   it('should emit on inner scroll', () => {
     const directive = new PsComponentScrollable(
       perfectScrollbarMock as any,
-      new ElementRef(null),
+      new ElementRef<HTMLElement>(null!),
       scrollDispatcherMock as any,
-      null,
-      null
+      null!,
+      null!
     );
     let counter = 0;
     directive.elementScrolled().subscribe(() => ++counter);

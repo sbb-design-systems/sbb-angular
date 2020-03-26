@@ -1,7 +1,7 @@
 import { DOWN_ARROW, ENTER, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
@@ -11,7 +11,7 @@ import { dispatchFakeEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core
 import { createKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { AutocompleteModule } from '@sbb-esta/angular-public/autocomplete';
 
-import { SearchComponent } from '../public_api';
+import { SearchComponent } from '../public-api';
 import { SearchModule } from '../search.module';
 
 @Component({
@@ -59,7 +59,7 @@ export class SimpleSearchAutocompleteComponent {
   ];
   filteredOptions = this.options.slice(0);
 
-  search($event) {
+  search($event: any) {
     this.lastSearch = $event;
   }
 }
@@ -114,7 +114,7 @@ export class SimpleSearchAutocompleteHeaderComponent {
   ];
   filteredOptions = this.options.slice(0);
 
-  search($event) {
+  search($event: any) {
     this.lastSearch = $event;
   }
 }
@@ -286,8 +286,8 @@ describe('SearchComponent', () => {
         TestBed.configureTestingModule({
           imports: [SearchModule, BrowserAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchHeaderComponent]
-        });
-      });
+        }).compileComponents();
+      }));
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SimpleSearchHeaderComponent);
@@ -330,8 +330,8 @@ describe('SearchComponent', () => {
         TestBed.configureTestingModule({
           imports: [SearchModule, NoopAnimationsModule, AutocompleteModule, OverlayModule],
           declarations: [SimpleSearchAutocompleteHeaderComponent]
-        });
-      });
+        }).compileComponents();
+      }));
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SimpleSearchAutocompleteHeaderComponent);

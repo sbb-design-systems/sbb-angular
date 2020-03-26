@@ -37,12 +37,12 @@ describe('AuthService', () => {
     }
 
     resolveAfterwards(value?: any) {
-      setTimeout(() => this._resolve(value), 10);
+      setTimeout(() => this._resolve!(value), 10);
       return this;
     }
 
     rejectAfterwards(value?: any) {
-      setTimeout(() => this._reject(value), 10);
+      setTimeout(() => this._reject!(value), 10);
       return this;
     }
   }

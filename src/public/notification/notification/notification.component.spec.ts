@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
@@ -16,7 +16,7 @@ import createSpy = jasmine.createSpy;
 export class NotificationMockComponent {
   message = 'Suchen';
   type = NotificationType.SUCCESS;
-  jumpMarks = [];
+  jumpMarks: any[] = [];
 }
 
 describe('NotificationComponent', () => {

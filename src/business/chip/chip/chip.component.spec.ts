@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCrossComponent, IconCrossModule } from '@sbb-esta/angular-icons';
 
@@ -16,7 +16,7 @@ class ChipTestComponent {
   disabled = false;
   label = 'Label';
 
-  dismissed(event) {}
+  dismissed(_event: any) {}
 }
 
 describe('ChipComponent', () => {

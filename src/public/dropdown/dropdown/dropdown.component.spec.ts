@@ -12,7 +12,7 @@ import {
   DropdownItemDirective,
   DropdownOriginDirective,
   DropdownTriggerDirective
-} from '../public_api';
+} from '../public-api';
 
 import { DropdownComponent } from './dropdown.component';
 
@@ -104,7 +104,7 @@ describe('DropdownComponent', () => {
 describe('DropdownComponent test', () => {
   let component: DropdownTestComponent;
   let fixture: ComponentFixture<DropdownTestComponent>;
-  let location: Location = null;
+  let location: Location = null!;
   let router: Router;
 
   beforeEach(async(() => {
@@ -158,7 +158,7 @@ describe('DropdownComponent test', () => {
 
   describe('clicking on the second option', () => {
     it('should change location to have page 2 query parameter', async(() => {
-      fixture.ngZone.run(async () => {
+      fixture.ngZone!.run(async () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
         fixture.detectChanges();
@@ -176,7 +176,7 @@ describe('DropdownComponent test', () => {
     }));
 
     it('should apply sbb-selected class on the 2nd option', async(() => {
-      fixture.ngZone.run(async () => {
+      fixture.ngZone!.run(async () => {
         const trigger = fixture.debugElement.query(By.css('[sbbButton]'));
         trigger.nativeElement.click();
         fixture.detectChanges();

@@ -1,6 +1,6 @@
 import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchEvent, dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
@@ -10,7 +10,7 @@ import {
   AccordionModule,
   ExpansionPanelComponent,
   ExpansionPanelHeaderComponent
-} from '../public_api';
+} from '../public-api';
 
 // tslint:disable:i18n
 @Component({

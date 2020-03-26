@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ɵRadioButtonModule } from '@sbb-esta/angular-core/radio-button';
@@ -33,9 +33,11 @@ describe('RadioButtonComponent', () => {
     TestBed.configureTestingModule({
       imports: [CommonModule],
       declarations: [RadioButtonComponent]
-    }).overrideComponent(RadioButtonComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .overrideComponent(RadioButtonComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -62,9 +64,11 @@ describe('RadioButtonComponent using mock component', () => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, ɵRadioButtonModule],
       declarations: [RadioButtonComponent, ModelRadioButtonTestComponent]
-    }).overrideComponent(RadioButtonComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .overrideComponent(RadioButtonComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

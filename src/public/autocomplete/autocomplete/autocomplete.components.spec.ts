@@ -657,7 +657,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel').classList).toContain(
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList).toContain(
         'sbb-autocomplete-visible',
         'Expected panel to be visible.'
       );
@@ -669,7 +669,7 @@ describe('AutocompleteComponent', () => {
 
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
 
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel').classList).toContain(
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList).toContain(
         'sbb-autocomplete-hidden',
         'Expected panel to be hidden.'
       );
@@ -687,7 +687,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')).toBeTruthy();
-      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel').classList).toContain(
+      expect(overlayContainerElement.querySelector('.sbb-autocomplete-panel')!.classList).toContain(
         'sbb-autocomplete-visible',
         'Expected panel to be visible.'
       );
@@ -1057,10 +1057,9 @@ describe('AutocompleteComponent', () => {
       componentInstance.trigger.handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id).toBe(
-        true,
-        'Expected first option to be active.'
-      );
+      expect(
+        componentInstance.trigger.activeOption!.id === componentInstance.options.first.id
+      ).toBe(true, 'Expected first option to be active.');
       expect(optionEls[0].classList).toContain('sbb-active');
       expect(optionEls[1].classList).not.toContain('sbb-active');
 
@@ -1068,7 +1067,7 @@ describe('AutocompleteComponent', () => {
       fixture.detectChanges();
 
       expect(
-        componentInstance.trigger.activeOption.id === componentInstance.options.toArray()[1].id
+        componentInstance.trigger.activeOption!.id === componentInstance.options.toArray()[1].id
       ).toBe(true, 'Expected second option to be active.');
       expect(optionEls[0].classList).not.toContain('sbb-active');
       expect(optionEls[1].classList).toContain('sbb-active');
@@ -1088,7 +1087,7 @@ describe('AutocompleteComponent', () => {
       componentInstance.trigger.handleKeydown(upArrowEvent);
       fixture.detectChanges();
 
-      expect(componentInstance.trigger.activeOption.id === componentInstance.options.last.id).toBe(
+      expect(componentInstance.trigger.activeOption!.id === componentInstance.options.last.id).toBe(
         true,
         'Expected last option to be active.'
       );
@@ -1098,10 +1097,9 @@ describe('AutocompleteComponent', () => {
       componentInstance.trigger.handleKeydown(downArrowEvent);
       fixture.detectChanges();
 
-      expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id).toBe(
-        true,
-        'Expected first option to be active.'
-      );
+      expect(
+        componentInstance.trigger.activeOption!.id === componentInstance.options.first.id
+      ).toBe(true, 'Expected first option to be active.');
       expect(optionEls[0].classList).toContain('sbb-active');
     });
 
@@ -1118,10 +1116,9 @@ describe('AutocompleteComponent', () => {
         HTMLElement
       >;
 
-      expect(componentInstance.trigger.activeOption.id === componentInstance.options.first.id).toBe(
-        true,
-        'Expected first option to be active.'
-      );
+      expect(
+        componentInstance.trigger.activeOption!.id === componentInstance.options.first.id
+      ).toBe(true, 'Expected first option to be active.');
       expect(optionEls[0].classList).toContain('sbb-active');
       expect(optionEls[1].classList).not.toContain('sbb-active');
     });

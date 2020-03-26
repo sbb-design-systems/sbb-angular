@@ -1,6 +1,6 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { Component, NgZone } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   DEC,
@@ -13,7 +13,7 @@ import {
   NOV
 } from '@sbb-esta/angular-core/testing';
 
-import { CalendarComponent, DatepickerModule } from '../public_api';
+import { CalendarComponent, DatepickerModule } from '../public-api';
 
 @Component({
   template: `

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
@@ -50,7 +50,7 @@ class UsermenuTestComponent {
   userName1 = 'john_64';
 
   user1 = {
-    userName: null,
+    userName: '',
     displayName: 'John Scott'
   };
 
@@ -108,7 +108,7 @@ class UsermenuTest2Component {
   userName2 = 'max_98';
 
   user2 = {
-    userName: null,
+    userName: '',
     displayName: 'Max Muster'
   };
 
@@ -160,7 +160,7 @@ class UsermenuTest3Component {
   userName3 = 'walter_14';
 
   user3 = {
-    userName: null,
+    userName: '',
     displayName: 'Walter Scotti'
   };
 

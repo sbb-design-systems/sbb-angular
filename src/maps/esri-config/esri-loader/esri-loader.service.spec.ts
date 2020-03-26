@@ -28,7 +28,7 @@ describe('EsriLoaderService', () => {
   function createEsriLoaderSpy(esriConfigMock: EsriConfigMock) {
     const spy = spyOn(esriLoader, 'loadModules');
     spy.and.returnValue(Promise.resolve([esriConfigMock]));
-    spyOn(esriLoader, 'loadCss').and.returnValue(null);
+    spyOn(esriLoader, 'loadCss').and.returnValue(null!);
   }
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -9,7 +9,7 @@ import { ButtonModule } from '@sbb-esta/angular-public/button';
 
 import { PaginationModule } from '../pagination.module';
 
-import { NavigationComponent } from './navigation.component';
+import { NavigationComponent, NavigationPageChangeEvent } from './navigation.component';
 
 @Component({
   selector: 'sbb-navigation-test',
@@ -38,14 +38,14 @@ export class NavigationTestComponent {
   hasPrevious = this.pages[1];
   hasNext = this.pages[2];
 
-  get previousPage(): string {
+  get previousPage(): string | null {
     return this.hasPrevious ? this.hasPrevious.title : null;
   }
-  get nextPage(): string {
+  get nextPage(): string | null {
     return this.hasNext ? this.hasNext.title : null;
   }
 
-  onPageChangeNavigation($event) {
+  onPageChangeNavigation($event: NavigationPageChangeEvent) {
     if ($event === 'next') {
       this.hasPrevious = this.hasNext;
       this.hasNext = this.pages[this.hasNext.index + 1];

@@ -10,7 +10,7 @@ import {
   UP_ARROW
 } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   DATE_PIPE_DATE_FORMATS,
@@ -88,7 +88,7 @@ describe('MonthViewComponent', () => {
     it('shows selected date if in same month', () => {
       // tslint:disable-next-line:no-non-null-assertion
       const selectedEl = monthViewNativeElement.querySelector('.sbb-calendar-body-selected')!;
-      expect(selectedEl.textContent.trim()).toBe('10');
+      expect(selectedEl.textContent!.trim()).toBe('10');
     });
 
     it('does not show selected date if in different month', () => {
@@ -106,7 +106,7 @@ describe('MonthViewComponent', () => {
 
       // tslint:disable-next-line:no-non-null-assertion
       const selectedEl = monthViewNativeElement.querySelector('.sbb-calendar-body-selected')!;
-      expect(selectedEl.textContent.trim()).toBe('31');
+      expect(selectedEl.textContent!.trim()).toBe('31');
     });
 
     it('should mark active date', () => {

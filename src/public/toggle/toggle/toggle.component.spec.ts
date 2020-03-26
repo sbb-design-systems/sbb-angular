@@ -65,7 +65,7 @@ class ToggleReactiveTestComponent implements OnInit {
   ]);
 
   ngOnInit() {
-    this.form.get('test').valueChanges.subscribe(val => {
+    this.form.get('test')!.valueChanges.subscribe(val => {
       this.modelReactive = val;
     });
   }
@@ -120,7 +120,7 @@ class ToggleReactiveDefaultValueTestComponent implements OnInit {
   ]);
 
   ngOnInit() {
-    this.form.get('test').valueChanges.subscribe(val => (this.modelReactive = val));
+    this.form.get('test')!.valueChanges.subscribe(val => (this.modelReactive = val));
   }
 }
 

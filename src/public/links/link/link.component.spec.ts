@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, SimpleChange } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
@@ -13,9 +13,11 @@ describe('LinkComponent', () => {
     TestBed.configureTestingModule({
       imports: [IconCollectionModule],
       declarations: [LinkComponent]
-    }).overrideComponent(LinkComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .overrideComponent(LinkComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {

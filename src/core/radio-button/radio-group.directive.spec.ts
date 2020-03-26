@@ -13,7 +13,7 @@ import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular
 import { By } from '@angular/platform-browser';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
 
-import { RadioButton, RadioChange, RadioGroupDirective, ɵRadioButtonModule } from './public_api';
+import { RadioButton, RadioChange, RadioGroupDirective, ɵRadioButtonModule } from './public-api';
 
 // tslint:disable: no-non-null-assertion
 

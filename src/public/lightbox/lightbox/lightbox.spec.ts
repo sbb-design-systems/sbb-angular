@@ -28,7 +28,7 @@ import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../public_api';
+import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../public-api';
 
 import { LightboxContainerComponent } from './lightbox-container.component';
 
@@ -243,12 +243,12 @@ describe('Lightbox', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(lightboxRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
-    expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
+    expect(lightboxRef.componentInstance!.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
     const lightboxContainerElement = overlayContainerElement.querySelector(
       'sbb-lightbox-container'
-    );
+    )!;
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
   });
 
@@ -272,7 +272,7 @@ describe('Lightbox', () => {
 
     const lightboxContainerElement = overlayContainerElement.querySelector(
       'sbb-lightbox-container'
-    );
+    )!;
     expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
 
     lightboxRef.close();
@@ -302,9 +302,9 @@ describe('Lightbox', () => {
 
     viewContainerFixture.detectChanges();
 
-    const lightboxInjector = lightboxRef.componentInstance.lightboxInjector;
+    const lightboxInjector = lightboxRef.componentInstance!.lightboxInjector;
 
-    expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
+    expect(lightboxRef.componentInstance!.lightboxRef).toBe(lightboxRef);
     expect(
       lightboxInjector.get<DirectiveWithViewContainerDirective>(DirectiveWithViewContainerDirective)
     ).toBeTruthy(
@@ -319,13 +319,13 @@ describe('Lightbox', () => {
 
     expect(overlayContainerElement.textContent).toContain('Pizza');
     expect(lightboxRef.componentInstance instanceof PizzaMsgComponent).toBe(true);
-    expect(lightboxRef.componentInstance.lightboxRef).toBe(lightboxRef);
+    expect(lightboxRef.componentInstance!.lightboxRef).toBe(lightboxRef);
 
     viewContainerFixture.detectChanges();
     const lightboxContainerElement = overlayContainerElement.querySelector(
       'sbb-lightbox-container'
     );
-    expect(lightboxContainerElement.getAttribute('role')).toBe('dialog');
+    expect(lightboxContainerElement!.getAttribute('role')).toBe('dialog');
   });
 
   it('should apply the configured role to the lightbox element', () => {
@@ -336,7 +336,7 @@ describe('Lightbox', () => {
     const lightboxContainerElement = overlayContainerElement.querySelector(
       'sbb-lightbox-container'
     );
-    expect(lightboxContainerElement.getAttribute('role')).toBe('alertdialog');
+    expect(lightboxContainerElement!.getAttribute('role')).toBe('alertdialog');
   });
 
   it('should apply the specified `aria-describedby`', () => {
@@ -349,7 +349,7 @@ describe('Lightbox', () => {
     const lightboxContainerElement = overlayContainerElement.querySelector(
       'sbb-lightbox-container'
     );
-    expect(lightboxContainerElement.getAttribute('aria-describedby')).toBe('description-element');
+    expect(lightboxContainerElement!.getAttribute('aria-describedby')).toBe('description-element');
   });
 
   it('should close a lightbox and get back a result', fakeAsync(() => {
@@ -473,7 +473,7 @@ describe('Lightbox', () => {
   }));
 
   it('should notify the observers if a lightbox has been opened', done => {
-    let lightboxRef;
+    let lightboxRef: LightboxRef<any>;
 
     lightbox.afterOpen.pipe(delay(0)).subscribe(ref => {
       expect(lightboxRef).toBe(ref);
@@ -619,7 +619,7 @@ describe('Lightbox', () => {
       };
 
       const instance = lightbox.openLightbox(LightboxWithInjectedDataComponent, config)
-        .componentInstance;
+        .componentInstance!;
 
       expect(instance.data.stringParam).toBe(config.data.stringParam);
       expect(instance.data.dateParam).toBe(config.data.dateParam);
@@ -628,7 +628,7 @@ describe('Lightbox', () => {
     it('should default to null if no data is passed', () => {
       expect(() => {
         const lightboxRef = lightbox.openLightbox(LightboxWithInjectedDataComponent);
-        expect(lightboxRef.componentInstance.data).toBeNull();
+        expect(lightboxRef.componentInstance!.data).toBeNull();
       }).not.toThrow();
     });
   });
@@ -697,7 +697,7 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.tagName).toBe(
+      expect(document.activeElement!.tagName).toBe(
         'INPUT',
         'Expected first tabbable element (input) in the lightbox to be focused.'
       );
@@ -712,7 +712,7 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.tagName).not.toBe('INPUT');
+      expect(document.activeElement!.tagName).not.toBe('INPUT');
     }));
 
     it('should re-focus trigger element when lightbox closes', fakeAsync(() => {
@@ -730,13 +730,13 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.id).not.toBe(
+      expect(document.activeElement!.id).not.toBe(
         'lightbox-trigger',
         'Expected the focus to change when lightbox was opened.'
       );
 
       lightboxRef.close();
-      expect(document.activeElement.id).not.toBe(
+      expect(document.activeElement!.id).not.toBe(
         'lightbox-trigger',
         'Expcted the focus not to have changed before the animation finishes.'
       );
@@ -745,7 +745,7 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       tick(500);
 
-      expect(document.activeElement.id).toBe(
+      expect(document.activeElement!.id).toBe(
         'lightbox-trigger',
         'Expected that the trigger was refocused after the lightbox is closed.'
       );
@@ -779,7 +779,7 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.id).toBe(
+      expect(document.activeElement!.id).toBe(
         'input-to-be-focused',
         'Expected that the trigger was refocused after the lightbox is closed.'
       );
@@ -794,7 +794,7 @@ describe('Lightbox', () => {
       viewContainerFixture.detectChanges();
       flushMicrotasks();
 
-      expect(document.activeElement.tagName).toBe(
+      expect(document.activeElement!.tagName).toBe(
         'SBB-LIGHTBOX-CONTAINER',
         'Expected lightbox container to be focused.'
       );
@@ -844,7 +844,7 @@ describe('Lightbox', () => {
       }));
 
       it('should override the "type" attribute of the close button', () => {
-        const button = overlayContainerElement.querySelector('button[sbbLightboxClose]');
+        const button = overlayContainerElement.querySelector('button[sbbLightboxClose]')!;
 
         expect(button.getAttribute('type')).toBe('button');
       });
@@ -861,8 +861,8 @@ describe('Lightbox', () => {
       }));
 
       it('should set the aria-labelledby attribute to the id of the title', fakeAsync(() => {
-        const title = overlayContainerElement.querySelector('[sbbLightboxTitle]');
-        const container = overlayContainerElement.querySelector('sbb-lightbox-container');
+        const title = overlayContainerElement.querySelector('[sbbLightboxTitle]')!;
+        const container = overlayContainerElement.querySelector('sbb-lightbox-container')!;
 
         flush();
         viewContainerFixture.detectChanges();
@@ -884,7 +884,7 @@ describe('Lightbox', () => {
       });
       viewContainerFixture.detectChanges();
 
-      const container = overlayContainerElement.querySelector('sbb-lightbox-container');
+      const container = overlayContainerElement.querySelector('sbb-lightbox-container')!;
       expect(container.getAttribute('aria-label')).toBe('Hello there');
     });
 
@@ -897,7 +897,7 @@ describe('Lightbox', () => {
       tick();
       viewContainerFixture.detectChanges();
 
-      const container = overlayContainerElement.querySelector('sbb-lightbox-container');
+      const container = overlayContainerElement.querySelector('sbb-lightbox-container')!;
       expect(container.hasAttribute('aria-labelledby')).toBe(false);
     }));
   });
@@ -954,7 +954,7 @@ describe('Lightbox with a parent Lightbox', () => {
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent.trim()).toBe(
+    expect(overlayContainerElement.textContent!.trim()).toBe(
       '',
       'Expected closeAll on child Lightbox to close lightbox opened by parent'
     );
@@ -973,7 +973,7 @@ describe('Lightbox with a parent Lightbox', () => {
     fixture.detectChanges();
     flush();
 
-    expect(overlayContainerElement.textContent.trim()).toBe(
+    expect(overlayContainerElement.textContent!.trim()).toBe(
       '',
       'Expected closeAll on parent Lightbox to close lightbox opened by child'
     );
