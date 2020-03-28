@@ -27,7 +27,7 @@ import { TooltipContainerComponent } from './tooltip-container.component';
 
 /**
  * Options for how the tooltip trigger should handle touch gestures.
- * See `SbbTooltip._touchGestures` for more information.
+ * See `Tooltip._touchGestures` for more information.
  */
 export type TooltipTouchGestures = 'auto' | 'on' | 'off';
 
@@ -77,7 +77,7 @@ export function SBB_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): SbbTooltipDefaultOptions 
   selector: '[sbbTooltip]',
   exportAs: 'sbbTooltip'
 })
-export class SbbTooltip implements OnDestroy, OnInit {
+export class Tooltip implements OnDestroy, OnInit {
   /** Disables the display of the tooltip. */
   @Input('sbbTooltipDisabled')
   get disabled(): boolean {

@@ -9,7 +9,7 @@ import {
 } from '@angular/animations';
 
 /**
- * Animations used by SbbTooltip.
+ * Animations used by Tooltip.
  * @docs-private
  */
 // tslint:disable-next-line:naming-convention

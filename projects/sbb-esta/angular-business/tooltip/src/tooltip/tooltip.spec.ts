@@ -35,13 +35,13 @@ import {
 
 import { TooltipModule } from '../tooltip.module';
 
-import { SBB_TOOLTIP_DEFAULT_OPTIONS, SbbTooltip, TOOLTIP_PANEL_CLASS } from './tooltip';
+import { SBB_TOOLTIP_DEFAULT_OPTIONS, Tooltip, TOOLTIP_PANEL_CLASS } from './tooltip';
 
 // tslint:disable: no-non-null-assertion
 
 const initialTooltipMessage = 'initial tooltip message';
 
-describe('SbbTooltip', () => {
+describe('Tooltip', () => {
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
   let dir: { value: Direction };
@@ -94,14 +94,14 @@ describe('SbbTooltip', () => {
     let fixture: ComponentFixture<BasicTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
     let buttonElement: HTMLButtonElement;
-    let tooltipDirective: SbbTooltip;
+    let tooltipDirective: Tooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(BasicTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
       buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
-      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
+      tooltipDirective = buttonDebugElement.injector.get<Tooltip>(Tooltip);
     });
 
     it('should show and hide the tooltip', fakeAsync(() => {
@@ -192,7 +192,7 @@ describe('SbbTooltip', () => {
       fixture.detectChanges();
       tooltipDirective = fixture.debugElement
         .query(By.css('button'))!
-        .injector.get<SbbTooltip>(SbbTooltip);
+        .injector.get<Tooltip>(Tooltip);
 
       tooltipDirective.show();
       fixture.detectChanges();
@@ -656,13 +656,13 @@ describe('SbbTooltip', () => {
   describe('scrollable usage', () => {
     let fixture: ComponentFixture<ScrollableTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
-    let tooltipDirective: SbbTooltip;
+    let tooltipDirective: Tooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(ScrollableTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
-      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
+      tooltipDirective = buttonDebugElement.injector.get<Tooltip>(Tooltip);
     });
 
     it('should hide tooltip if clipped after changing positions', fakeAsync(() => {
@@ -704,14 +704,14 @@ describe('SbbTooltip', () => {
     let fixture: ComponentFixture<OnPushTooltipDemoComponent>;
     let buttonDebugElement: DebugElement;
     let buttonElement: HTMLButtonElement;
-    let tooltipDirective: SbbTooltip;
+    let tooltipDirective: Tooltip;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(OnPushTooltipDemoComponent);
       fixture.detectChanges();
       buttonDebugElement = fixture.debugElement.query(By.css('button'))!;
       buttonElement = <HTMLButtonElement>buttonDebugElement.nativeElement;
-      tooltipDirective = buttonDebugElement.injector.get<SbbTooltip>(SbbTooltip);
+      tooltipDirective = buttonDebugElement.injector.get<Tooltip>(Tooltip);
     });
 
     it('should show and hide the tooltip', fakeAsync(() => {
@@ -919,7 +919,7 @@ class BasicTooltipDemoComponent {
   message: any = initialTooltipMessage;
   showButton: boolean = true;
   showTooltipClass = false;
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild(Tooltip) tooltip: Tooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
@@ -1015,12 +1015,12 @@ class TooltipOnDraggableElementComponent {
 })
 class TooltipDemoWithoutPositionBindingComponent {
   message: any = initialTooltipMessage;
-  @ViewChild(SbbTooltip) tooltip: SbbTooltip;
+  @ViewChild(Tooltip) tooltip: Tooltip;
   @ViewChild('button') button: ElementRef<HTMLButtonElement>;
 }
 
 /** Asserts whether a tooltip directive has a tooltip instance. */
-function assertTooltipInstance(tooltip: SbbTooltip, shouldExist: boolean): void {
+function assertTooltipInstance(tooltip: Tooltip, shouldExist: boolean): void {
   // Note that we have to cast this to a boolean, because Jasmine will go into an infinite loop
   // if it tries to stringify the `_tooltipInstance` when an assertion fails. The infinite loop
   // happens due to the `_tooltipInstance` having a circular structure.
