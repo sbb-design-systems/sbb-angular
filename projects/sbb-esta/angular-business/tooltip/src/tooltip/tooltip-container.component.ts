@@ -44,8 +44,8 @@ export class TooltipContainerComponent implements OnDestroy {
     return this._visibility === 'visible' ? 1 : null;
   }
 
-  /** current connectionPositionPair of overlayRef */
-  connectionPositionPair: ConnectionPositionPair;
+  /** Current connectionPositionPair of overlayRef */
+  _connectionPositionPair: ConnectionPositionPair;
 
   /** Message to display in the tooltip */
   message: string;

@@ -359,7 +359,7 @@ export class Tooltip implements OnDestroy, OnInit {
 
     strategy.positionChanges.pipe(takeUntil(this._destroyed)).subscribe(change => {
       if (this._tooltipInstance) {
-        this._tooltipInstance.connectionPositionPair = change.connectionPair;
+        this._tooltipInstance._connectionPositionPair = change.connectionPair;
         this._tooltipInstance._markForCheck();
       }
       if (
