@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SbbTooltipChangeEvent } from '@sbb-esta/angular-core/base';
 
 @Component({
   selector: 'sbb-tooltip-simple-showcase',
@@ -7,11 +8,11 @@ import { Component } from '@angular/core';
 export class TooltipSimpleShowcaseComponent {
   tooltipContent = 'Tooltip text content';
 
-  onOpen($event) {
+  onOpen($event: SbbTooltipChangeEvent) {
     console.log('opened', $event);
   }
 
-  onClose($event) {
+  onClose($event: SbbTooltipChangeEvent) {
     console.log('closed', $event);
   }
 }
