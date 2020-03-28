@@ -1,18 +1,10 @@
 <div
   class="sbb-tooltip-content sbb-tooltip-trigger-hover"
   [ngClass]="tooltipClass"
-  [class.sbb-tooltip-content-below]="
-    connectionPositionPair && connectionPositionPair.originY === 'bottom'
-  "
-  [class.sbb-tooltip-content-above]="
-    connectionPositionPair && connectionPositionPair.originY === 'top'
-  "
-  [class.sbb-tooltip-content-left]="
-    connectionPositionPair && connectionPositionPair.originX === 'end'
-  "
-  [class.sbb-tooltip-content-right]="
-    connectionPositionPair && connectionPositionPair.originX === 'start'
-  "
+  [class.sbb-tooltip-content-below]="connectionPositionPair?.originY === 'bottom'"
+  [class.sbb-tooltip-content-above]="connectionPositionPair?.originY === 'top'"
+  [class.sbb-tooltip-content-left]="connectionPositionPair?.originX === 'end'"
+  [class.sbb-tooltip-content-right]="connectionPositionPair?.originX === 'start'"
   [@state]="_visibility"
   (@state.start)="_animationStart()"
   (@state.done)="_animationDone($event)"
