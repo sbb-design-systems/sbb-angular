@@ -12,7 +12,13 @@ export default readdirSync(__dirname, { withFileTypes: true })
       file: join(dist, d.name, 'index.js'),
       format: 'cjs'
     },
-    external: ['@angular-devkit/schematics', '@angular-devkit/schematics/tasks'],
+    external: [
+      '@angular-devkit/schematics',
+      '@angular-devkit/schematics/tasks',
+      '@schematics/angular/utility/config',
+      '@schematics/angular/utility/validation',
+      '@schematics/angular/utility/dependencies'
+    ],
     plugins: [
       ts({
         browserslist: false,
@@ -22,6 +28,7 @@ export default readdirSync(__dirname, { withFileTypes: true })
         absolute: true,
         targets: [
           { src: 'migration.json', dest: dist, cwd: __dirname },
+          { src: 'collection.json', dest: dist, cwd: __dirname },
           { src: 'files', dest: join(dist, d.name), cwd: join(__dirname, d.name) },
           { src: '*.json', dest: join(dist, d.name), cwd: join(__dirname, d.name) }
         ]
