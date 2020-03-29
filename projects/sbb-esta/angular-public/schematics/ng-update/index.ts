@@ -1,7 +1,7 @@
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
-import { addDefaultDependency, getPackageVersionFromPackageJson } from '../package-config';
+import { addDefaultDependency, getPackageVersionFromPackageJson } from '../helpers';
 
 export function updateToV9(): Rule {
   return (host: Tree, context: SchematicContext) => {

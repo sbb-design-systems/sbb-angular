@@ -1,14 +1,20 @@
+import { parseJsonAst } from '@angular-devkit/core';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getPackageJsonDependency } from '@schematics/angular/utility/dependencies';
+import {
+  appendPropertyInAstObject,
+  appendValueInAstArray,
+  findPropertyInAstObject
+} from '@schematics/angular/utility/json-utils';
 import { validateProjectName } from '@schematics/angular/utility/validation';
 
 import {
   addDefaultDependency,
-  getPackageVersionFromPackageJson,
-  readJsonFile
-} from '../package-config';
+  findPropertyInDeepAstObject,
+  getPackageVersionFromPackageJson
+} from '../helpers';
 
 import { Schema } from './schema';
 
@@ -68,20 +74,70 @@ const addTypographyToAngularJson = (
   context: SchematicContext
 ): Tree => {
   const angularJsonPath = 'angular.json';
-  const angularJson = readJsonFile(tree, angularJsonPath);
 
-  if (
-    angularJson.projects[projectName].architect.build.options.styles.includes(TYPOGRAPHY_CSS_PATH)
-  ) {
+  addTypographyToStylesNode('build', projectName, angularJsonPath, tree, context);
+  addTypographyToStylesNode('test', projectName, angularJsonPath, tree, context);
+
+  context.logger.info(`✅️ Added typography css entry to ${angularJsonPath}`);
+
+  return tree;
+};
+
+const addTypographyToStylesNode = (
+  buildOrTest: 'build' | 'test',
+  projectName: string,
+  angularJsonPath: string,
+  tree: Tree,
+  context: SchematicContext
+): Tree => {
+  const angularConfigContent = tree.read(angularJsonPath);
+  if (!angularConfigContent) {
+    throw new SchematicsException(`Invalid path: ${angularJsonPath}.`);
+  }
+
+  const angularJsonAst = parseJsonAst(angularConfigContent.toString('utf-8'));
+  if (angularJsonAst.kind !== 'object') {
+    throw new SchematicsException(`Invalid ${angularJsonPath} content.`);
+  }
+
+  const optionsAstNode = findPropertyInDeepAstObject(angularJsonAst, [
+    'projects',
+    projectName,
+    'architect',
+    buildOrTest,
+    'options'
+  ]);
+
+  if (!optionsAstNode) {
+    throw new SchematicsException(`Invalid ${angularJsonPath} content.`);
+  }
+
+  const stylesAstNode = findPropertyInAstObject(optionsAstNode, 'styles');
+
+  if (!stylesAstNode) {
+    const recorderAddStylesProperty = tree.beginUpdate(angularJsonPath);
+    appendPropertyInAstObject(
+      recorderAddStylesProperty,
+      optionsAstNode,
+      'styles',
+      [TYPOGRAPHY_CSS_PATH],
+      12
+    );
+    tree.commitUpdate(recorderAddStylesProperty);
+    return tree;
+  }
+
+  if (stylesAstNode.kind !== 'array') {
+    throw new SchematicsException(`Invalid ${angularJsonPath} content.`);
+  }
+
+  if (stylesAstNode.value.includes(TYPOGRAPHY_CSS_PATH)) {
     context.logger.info('Typography is already set up');
     return tree;
   }
 
-  angularJson.projects[projectName].architect.build.options.styles.push(TYPOGRAPHY_CSS_PATH);
-  angularJson.projects[projectName].architect.test.options.styles.push(TYPOGRAPHY_CSS_PATH);
-  tree.overwrite(angularJsonPath, JSON.stringify(angularJson, null, 2));
-
-  context.logger.info(`✅️ Added typography css entry to ${angularJsonPath}`);
-
+  const recorder = tree.beginUpdate(angularJsonPath);
+  appendValueInAstArray(recorder, stylesAstNode, TYPOGRAPHY_CSS_PATH, 14);
+  tree.commitUpdate(recorder);
   return tree;
 };

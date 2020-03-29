@@ -2,7 +2,7 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
-import { addDefaultDependency, readJsonFile } from '../package-config';
+import { addDefaultDependency, readJsonFile } from '../helpers';
 
 import { TYPOGRAPHY_CSS_PATH } from './index';
 
@@ -103,7 +103,19 @@ describe('ngAdd', () => {
     await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
 
     expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
     ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
+  });
+
+  it('should add styles node in angular.json if no styles node exists', async () => {
+    const angularJson = readJsonFile(tree, '/angular.json');
+    delete angularJson.projects.dummy.architect.build.options.styles;
+    tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
+
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
+    ).toEqual([TYPOGRAPHY_CSS_PATH]);
   });
 });

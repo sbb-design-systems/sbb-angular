@@ -13,11 +13,13 @@ export default readdirSync(__dirname, { withFileTypes: true })
       format: 'cjs'
     },
     external: [
+      '@angular-devkit/core',
       '@angular-devkit/schematics',
       '@angular-devkit/schematics/tasks',
       '@schematics/angular/utility/config',
-      '@schematics/angular/utility/validation',
-      '@schematics/angular/utility/dependencies'
+      '@schematics/angular/utility/dependencies',
+      '@schematics/angular/utility/json-utils',
+      '@schematics/angular/utility/validation'
     ],
     plugins: [
       ts({
