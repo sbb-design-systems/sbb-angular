@@ -85,12 +85,14 @@
     display: flex;
   }
 
-  &:first-of-type a {
-    height: toPx($breadcrumbLabelHeight);
-  }
+  @if $sbbBusiness {
+    &:first-of-type a {
+      height: toPx($breadcrumbLabelHeight);
+    }
 
-  &:last-of-type a {
-    color: $sbbColorBlack;
+    &:last-of-type a {
+      color: $sbbColorBlack;
+    }
   }
 
   @include mq($from: tabletPortrait) {
@@ -98,12 +100,7 @@
   }
 
   padding-left: 0;
-
-  @if $sbbBusiness {
-    margin-right: toPx($breadcrumbArrowMarginsBusinessDT);
-  } @else {
-    margin-right: toPx($breadcrumbArrowMarginsDT);
-  }
+  margin-right: toPx($breadcrumbArrowMarginsDT);
 
   @include publicOnly() {
     @include mq($from: desktop4k) {
@@ -234,12 +231,7 @@
     width: toPx($breadcrumbArrowWidth);
     height: toPx($breadcrumbArrowHeight);
     line-height: toPx($breadcrumbArrowLineHeight);
-
-    @if $sbbBusiness {
-      margin-right: toPx($breadcrumbArrowMarginsBusinessDT);
-    } @else {
-      margin-right: toPx($breadcrumbArrowMarginsDT);
-    }
+    margin-right: toPx($breadcrumbArrowMarginsDT);
 
     @include publicOnly() {
       @include mq($from: desktop4k) {
