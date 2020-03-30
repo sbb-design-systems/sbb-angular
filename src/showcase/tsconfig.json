@@ -1,9 +1,20 @@
-// Configuration for IDEs only.
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "..",
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "outDir": "../dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "types": ["arc-gis-js", "grecaptcha"],
     "paths": {
       "@sbb-esta/angular-business": ["../business"],
       "@sbb-esta/angular-business/*": ["../business/*"],
@@ -18,6 +29,5 @@
       "@sbb-esta/angular-public": ["../public"],
       "@sbb-esta/angular-public/*": ["../public/*"]
     }
-  },
-  "include": ["./**/*.ts"]
+  }
 }

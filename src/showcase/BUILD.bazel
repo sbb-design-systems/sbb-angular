@@ -1,6 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm_angular_bazel//:index.bzl", "ng_module")
@@ -9,6 +10,8 @@ load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
 load("@npm_bazel_typescript//:index.bzl", "ts_config", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools/highlight-files:index.bzl", "highlight_files")
+load("//tools/differential-loading-merge:index.bzl", "differential_loading_merge")
 
 ts_config(
     name = "tsconfig-test",
@@ -26,36 +29,51 @@ sass_binary(
 
 ng_module(
     name = "showcase",
-    srcs = [
-        "main.dev.ts",
-        "main.prod.ts",
-    ],
+    srcs = glob(
+        include = ["*.ts"],
+        exclude = [
+            "**/*.spec.ts",
+            "main.ts",
+        ],
+    ),
     generate_ve_shims = True,
+    tsconfig = ':tsconfig.json',
     deps = [
         "//src/showcase/app",
         "@npm//@angular/core",
-        "@npm//@angular/platform-browser"
+        "@npm//@angular/localize",
+        "@npm//@angular/platform-browser",
+        "@npm//core-js",
     ],
 )
 
-rollup_bundle(
-    name = "bundle",
-    config_file = "rollup.config.js",
-    entry_point = ":main.prod.ts",
-    deps = [
-        "//src/showcase",
-        "@npm//rollup-plugin-commonjs",
-        "@npm//rollup-plugin-node-resolve",
-    ],
+ALL_EXAMPLES = [
+    "//src/showcase/app/business/business-examples",
+    "//src/showcase/app/maps/maps-examples",
+    "//src/showcase/app/public/public-examples",
+]
+
+filegroup(
+    name = "example-source-files",
+    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
 )
 
-terser_minified(
-    name = "bundle.min",
-    src = ":bundle",
+highlight_files(
+    name = "highlighted-source-files",
+    srcs = [":example-source-files"],
+    tags = ["docs-package"],
 )
 
+_ASSETS = [
+    ":styles.css",
+    "@npm//:node_modules/zone.js/dist/zone.min.js",
+    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.min.js",
+]
+
+# Insert script tags into index.html
+# Supports differential loading by providing a.js and a.es2015.js
 html_insert_assets(
-    name = "asset_injected_index_html",
+    name = "index_html_dev",
     outs = ["_/index.html"],
     args = [
         "--html",
@@ -65,25 +83,133 @@ html_insert_assets(
         "--roots",
         "$(RULEDIR)",
         "--assets",
-        "$(execpath :styles.css)",
-        "$(execpath @npm//:node_modules/zone.js/dist/zone.min.js)",
-        "bundle.min.js",
+    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        "./_/ts_scripts.js",
+    ],
+    data = [":index.html"] + _ASSETS,
+)
+
+# This devserver is written in Go and is super-fast.
+# It doesn't run any bundler or code splitter. Instead, it concatenates
+# named UMD and named AMD JavaScript code on-the-fly in-memory.
+# This scales really well for massive codebases.
+ts_devserver(
+    name = "devserver",
+    additional_root_paths = ["sbb_angular/src/showcase/_"],
+    port = 4200,
+    entry_module = "sbb_angular/src/showcase/main.dev",
+    scripts = [
+        "@npm//:node_modules/tslib/tslib.js",
+        "//tools/rxjs:rxjs_umd_modules",
+    ],
+    static_files = _ASSETS + [
+        ":index_html_dev",
+        "//src/showcase/assets",
+    ],
+    deps = [
+        "//src/showcase",
+        "//src/showcase/assets",
+    ],
+)
+
+rollup_bundle(
+    name = "bundle-es2015",
+    config_file = "rollup.config.js",
+    entry_points = {
+        ":main.prod.ts": "index",
+    },
+    args = [
+        "--entryFileNames=[name].mjs",
+        "--chunkFileNames=[name]-[hash].mjs",
+    ],
+    output_dir = True,
+    deps = [
+        "//src/showcase",
+        "@npm//rollup-plugin-commonjs",
+        "@npm//rollup-plugin-node-resolve",
+    ],
+)
+
+babel(
+    name = "bundle-es5",
+    args = [
+        "$(execpath :bundle-es2015)",
+        "--no-babelrc",
+        "--source-maps",
+        "--presets=@babel/preset-env",
+        "--out-dir",
+        "$(@D)",
     ],
     data = [
-        ":index.html",
-        ":styles.css",
-        "@npm//:node_modules/zone.js/dist/zone.min.js",
+        ":bundle-es2015",
+        "@npm//@babel/preset-env",
+    ],
+    output_dir = True,
+)
+
+terser_minified(
+    name = "bundle-es2015.min",
+    src = ":bundle-es2015",
+)
+
+terser_minified(
+    name = "bundle-es5.min",
+    src = ":bundle-es5",
+)
+
+# Merge the differential loading bundles into the same directory and rename the files
+# from a.js to a-es2015.js and a-es5.js.
+differential_loading_merge(
+    name = "bundle",
+    srcs = [
+        "//src/showcase:bundle-es2015.min",
+        "//src/showcase:bundle-es5.min",
+    ],
+)
+
+# Insert script tags into index.html
+# Supports differential loading by providing a.js and a.es2015.js
+html_insert_assets(
+    name = "index_html_prod",
+    # we can't output "src/showcase/index.html" since that collides with the devmode file.
+    # pkg_web rule will re-root paths that start with _{name} by default
+    # so we output "_prodapp/src/index.html" so that it is mapped to
+    # `index.html` in the web package.
+    outs = ["_prodapp/src/index.html"],
+    args = [
+        "--html",
+        "$(execpath :index.prod.html)",
+        "--out",
+        "$@",
+        "--roots",
+        "$(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        "bundle/index.js",
+        "bundle/index.mjs",
+    ],
+    data = _ASSETS + [
+        ":index.prod.html",
+        ":bundle",
     ],
 )
 
 pkg_web(
     name = "prodapp",
-    additional_root_paths = ["src/showcase/_"],
-    srcs = [
-        "@npm//:node_modules/zone.js/dist/zone.min.js",
-        ":bundle.min",
-        ":styles.css",
-        ":asset_injected_index_html",
+    srcs = _ASSETS + [
+        ":bundle",
+        ":index_html_prod",
+        "//src/showcase/assets",
+        # Include polyfills that will be requested by old browsers
+        "@npm//:node_modules/systemjs/dist/system.js",
+        "@npm//:node_modules/core-js/client/core.min.js",
+    ],
+    # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
+    # so we must serve them at that path, by stripping a prefix
+    additional_root_paths = [
+        "src/showcase/_prodapp/src",
+        "npm/node_modules/core-js/client",
+        "npm/node_modules/systemjs/dist",
     ],
 )
 
@@ -94,30 +220,10 @@ history_server(
         "--port",
         "4200",
     ],
-    templated_args = ["src/showcase/prodapp"],
-)
-
-# This devserver is written in Go and is super-fast.
-# It doesn't run any bundler or code splitter. Instead, it concatenates
-# named UMD and named AMD JavaScript code on-the-fly in-memory.
-# This scales really well for massive codebases.
-ts_devserver(
-    name = "devserver",
-    additional_root_paths = ["project/src/_"],
-    port = 4200,
-    entry_module = "project/src/main.dev",
-    serving_path = "/bundle.min.js",
-    scripts = [
-        "@npm//:node_modules/tslib/tslib.js",
-        "//tools/rxjs:rxjs_umd_modules",
+    templated_args = [
+        "-a",
+        "$(rlocation sbb_angular/src/showcase/prodapp)",
     ],
-    static_files = [
-        "@npm//:node_modules/zone.js/dist/zone.min.js",
-        ":styles.css",
-        "//src/showcase/assets",
-        ":asset_injected_index_html",
-    ],
-    deps = ["//src/showcase"],
 )
 
 exports_files([

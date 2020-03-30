@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: IconsComponent,
-    data: { library: 'angular-icons' },
+    data: { library: 'icons' },
     children: [
       {
         path: '',
@@ -19,7 +19,7 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-icons' }
+        data: { library: 'icons' }
       },
       {
         path: 'search',

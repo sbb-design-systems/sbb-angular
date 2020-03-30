@@ -141,6 +141,7 @@ ng_module(
         "tooltip-showcase/tooltip-showcase.component.html",
         "usermenu-showcase/usermenu-showcase.component.html",
     ],
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/core/base",
         "//src/core/datetime",
@@ -184,9 +185,17 @@ ng_module(
         "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//@angular/router",
-        "@npm//ngx-monaco-editor",
         "@npm//rxjs",
     ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
 )
 
 sass_binary(

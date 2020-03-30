@@ -14,16 +14,21 @@ export class LoaderBuilder {
   }
 
   fromDocumentation() {
-    return this.from((library, id) => `assets/docs/${library}/${id}.html`);
+    return this.from((library, id) => `assets/docs-content/overviews/${library}/${id}.html`);
+  }
+
+  fromModuleDocumentation() {
+    return this.from((library, id) => `assets/docs-content/overviews/${library}/${id}/${id}.html`);
   }
 
   fromApiDocumentation() {
-    return this.from((library, id) => `assets/docs/api/${library}-${id}.html`);
+    return this.from((library, id) => `assets/docs-content/api-docs/${library}-${id}.html`);
   }
 
   fromExamples(example: string, type: 'html' | 'ts' | 'scss') {
     return this.from(
-      library => `assets/docs/${library}/examples/${example}.component.${type}.html`
+      library =>
+        `assets/docs-content/examples-highlighted/app/${library}/${library}-examples/${example}/${example}.component-${type}.html`
     );
   }
 

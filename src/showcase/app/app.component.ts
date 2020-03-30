@@ -1,9 +1,12 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { dependencies, version } from '../../../package.json';
-
 import { ROUTER_ANIMATION } from './shared/animations';
+
+const { dependencies, version } = {
+  version: '0.0.0-PLACEHOLDER',
+  dependencies: { '@angular/core': '^0.0.0-NG' }
+};
 
 @Component({
   selector: 'sbb-root',

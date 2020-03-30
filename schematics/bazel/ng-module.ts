@@ -18,7 +18,8 @@ import {
   ExportDeclaration,
   ImportDeclaration,
   ScriptTarget,
-  SyntaxKind
+  SyntaxKind,
+  CallExpression
 } from 'typescript';
 
 import { SassBinary } from './sass-binary';
@@ -163,11 +164,18 @@ export class NgModule {
       ScriptTarget.ESNext,
       true
     );
-    return findNodes(file, SyntaxKind.ImportDeclaration, undefined, true)
-      .concat(findNodes(file, SyntaxKind.ExportDeclaration, undefined, true))
+    return [
+      ...findNodes(file, SyntaxKind.ImportDeclaration, undefined, true),
+      ...findNodes(file, SyntaxKind.ExportDeclaration, undefined, true)
+    ]
       .map(
         (n: ImportDeclaration | ExportDeclaration) =>
           n.moduleSpecifier?.getText().replace(/['"]/g, '') ?? ''
+      )
+      .concat(
+        findNodes(file, SyntaxKind.ImportKeyword, undefined, true)
+          .filter(n => n.getFullText().match(/ import/))
+          .map(n => (n.parent as CallExpression).arguments[0].getText().replace(/['"]/g, ''))
       )
       .map(i => this._resolveTsImport(i, fileEntry))
       .filter(i => !!i);

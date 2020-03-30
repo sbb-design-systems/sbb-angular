@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: MapsComponent,
-    data: { library: 'angular-maps' },
+    data: { library: 'maps' },
     children: [
       {
         path: '',
@@ -20,22 +20,22 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-maps' }
+        data: { library: 'maps' }
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'angular-maps' }
+        data: { library: 'maps' }
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'angular-maps' }
+        data: { library: 'maps' }
       },
       {
         path: 'advanced/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-maps' }
+        data: { library: 'maps' }
       }
     ]
   }

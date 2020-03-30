@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: '',
     component: KeycloakComponent,
-    data: { library: 'angular-keycloak', id: 'README' },
+    data: { library: 'keycloak', id: 'README' },
     children: [
       {
         path: '',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-keycloak', id: 'README' }
+        data: { library: 'keycloak', id: 'README' }
       }
     ]
   }

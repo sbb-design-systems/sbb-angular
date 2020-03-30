@@ -20,6 +20,7 @@ ng_module(
         "icon-search/icon-search.component.html",
         "icon-viewer/icon-viewer.component.html",
     ],
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/icons",
         "//src/public/search",

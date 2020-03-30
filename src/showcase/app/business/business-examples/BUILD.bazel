@@ -95,6 +95,7 @@ ng_module(
         "tooltip-showcase/tooltip-showcase.component.html",
         "usermenu-showcase/usermenu-showcase.component.html",
     ],
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/autocomplete",
         "//src/business/button",
@@ -122,6 +123,15 @@ ng_module(
         "@npm//@angular/router",
         "@npm//rxjs",
     ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
 )
 
 sass_binary(

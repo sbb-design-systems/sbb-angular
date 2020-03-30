@@ -31,7 +31,7 @@ export class ComponentViewerBase implements OnInit, AfterViewInit, OnDestroy {
     );
     this.overview = this._htmlLoader
       .with(this._route)
-      .fromDocumentation()
+      .fromModuleDocumentation()
       .observe();
     this.api = this._htmlLoader
       .with(this._route)

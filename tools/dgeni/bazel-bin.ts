@@ -3,6 +3,7 @@ import { ReadTypeScriptModules } from 'dgeni-packages/typescript/processors/read
 import { TsParser } from 'dgeni-packages/typescript/services/TsParser';
 import { readFileSync } from 'fs';
 import { join, relative } from 'path';
+
 import { apiDocsPackage } from './docs-package';
 import { EntryPointGrouper } from './processors/entry-point-grouper';
 
@@ -79,7 +80,7 @@ if (require.main === module) {
         const entryPointIndexPath = `${entryPointPath}/index.ts`;
 
         entryPointGrouper.entryPoints.push(entryPointPath);
-        tsParser.options.paths![`@angular/${entryPointPath}`] = [entryPointIndexPath];
+        tsParser.options.paths![`@sbb-esta/angular-${entryPointPath}`] = [entryPointIndexPath];
         readTypeScriptModules.sourceFiles.push(entryPointIndexPath);
       });
     }

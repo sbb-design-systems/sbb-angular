@@ -1,6 +1,11 @@
 package(default_visibility = ["//visibility:public"])
 
 load("@npm_bazel_typescript//:index.bzl", "ts_config")
+load("//src/business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TESTING_ENTRYPOINTS")
+load("//src/core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
+load("//src/maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
+load("//src/public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
+load("//tools/dgeni:index.bzl", "dgeni_api_docs")
 
 exports_files([
     "bazel-tsconfig-build.json",
@@ -13,3 +18,37 @@ ts_config(
     src = "bazel-tsconfig-test.json",
     deps = ["bazel-tsconfig-build.json"],
 )
+
+businessApiEntryPoints = BUSINESS_ENTRYPOINTS + BUSINESS_TESTING_ENTRYPOINTS
+coreApiEntryPoints = CORE_ENTRYPOINTS + CORE_TESTING_ENTRYPOINTS
+mapsApiEntryPoints = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
+publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
+
+# List that contains all source files that need to be processed by Dgeni.
+apiSourceFiles = ["//src/business/%s:source-files" % name for name in businessApiEntryPoints] + \
+                 ["//src/core/%s:source-files" % name for name in coreApiEntryPoints] + \
+                 ["//src/maps/%s:source-files" % name for name in mapsApiEntryPoints] + \
+                 ["//src/public/%s:source-files" % name for name in publicApiEntryPoints]
+
+dgeni_api_docs(
+    name = "api-docs",
+    srcs = apiSourceFiles + [
+        # Add all Angular packages to the sources because some Material exports use
+        # Angular exports and these should not cause any warnings when Dgeni uses the
+        # type checker to parse our TypeScript sources.
+        "@npm//@angular/cdk",
+        "@npm//@angular/core",
+        "@npm//@angular/common",
+        "@npm//@angular/forms",
+        "@npm//@angular/animations",
+        "@npm//@angular/platform-browser",
+    ],
+    entry_points = {
+        "business": businessApiEntryPoints,
+        "core": coreApiEntryPoints,
+        "maps": mapsApiEntryPoints,
+        "public": publicApiEntryPoints,
+    },
+    tags = ["docs-package"],
+)
+

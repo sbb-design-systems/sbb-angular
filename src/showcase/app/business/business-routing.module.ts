@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: BusinessComponent,
-    data: { library: 'angular-business' },
+    data: { library: 'business' },
     children: [
       {
         path: '',
@@ -20,17 +20,17 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-business' }
+        data: { library: 'business' }
       },
       {
         path: 'components/:id',
         component: BusinessComponentViewerComponent,
-        data: { library: 'angular-business' }
+        data: { library: 'business' }
       },
       {
         path: 'components/:id/:section',
         component: BusinessComponentViewerComponent,
-        data: { library: 'angular-business' }
+        data: { library: 'business' }
       }
     ]
   }

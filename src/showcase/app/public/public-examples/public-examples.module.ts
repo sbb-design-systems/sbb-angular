@@ -36,7 +36,6 @@ import { TimeInputModule } from '@sbb-esta/angular-public/time-input';
 import { ToggleModule } from '@sbb-esta/angular-public/toggle';
 import { TooltipModule } from '@sbb-esta/angular-public/tooltip';
 import { UserMenuModule } from '@sbb-esta/angular-public/usermenu';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AccordionShowcaseComponent } from './accordion-showcase/accordion-showcase.component';
 import { AutocompleteFormsShowcaseComponent } from './autocomplete-forms-showcase/autocomplete-forms-showcase.component';
@@ -168,7 +167,6 @@ const exampleComponents = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    MonacoEditorModule.forRoot(),
     IconCollectionModule,
     AccordionModule,
     AutocompleteModule,

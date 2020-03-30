@@ -28,6 +28,7 @@ ng_module(
         "esri-web-map-showcase/esri-web-map-showcase.component.html",
         "esri-web-scene-showcase/esri-web-scene-showcase.component.html",
     ],
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/maps/esri-basemap-gallery",
         "//src/maps/esri-layer-list",
@@ -37,6 +38,15 @@ ng_module(
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
 )
 
 sass_binary(

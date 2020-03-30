@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: CoreComponent,
-    data: { library: 'angular-core' },
+    data: { library: 'core' },
     children: [
       {
         path: '',
@@ -21,22 +21,22 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-core' }
+        data: { library: 'core' }
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'angular-core' }
+        data: { library: 'core' }
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'angular-core' }
+        data: { library: 'core' }
       },
       {
         path: 'api/:id',
         component: ApiViewerComponent,
-        data: { library: 'angular-core' }
+        data: { library: 'core' }
       }
     ]
   }

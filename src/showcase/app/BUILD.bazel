@@ -21,9 +21,7 @@ ng_module(
         "app.component.html",
         "introduction/introduction.component.html",
     ],
-    data = [
-        "//:package.json",
-    ],
+    tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/header",
         "//src/showcase/app/business",
@@ -39,7 +37,6 @@ ng_module(
         "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
-        "@npm//ngx-monaco-editor",
     ],
 )
 

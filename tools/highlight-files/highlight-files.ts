@@ -5,6 +5,7 @@
 
 import { readFileSync, writeFileSync } from 'fs';
 import { extname, join } from 'path';
+
 import { highlightCodeBlock } from './highlight-code-block';
 
 /**

@@ -2,6 +2,7 @@ import { Package } from 'dgeni';
 import { ReadTypeScriptModules } from 'dgeni-packages/typescript/processors/readTypeScriptModules';
 import { Host } from 'dgeni-packages/typescript/services/ts-host/host';
 import { TypeFormatFlags } from 'typescript';
+
 import { HighlightNunjucksExtension } from './nunjucks-tags/highlight';
 import { patchLogService } from './patch-log-service';
 import { AsyncFunctionsProcessor } from './processors/async-functions';
@@ -94,7 +95,9 @@ apiDocsPackage.config(function(parseTagsProcessor: any) {
 
 apiDocsPackage.config(function(checkAnchorLinksProcessor: any) {
   // This ensures that Dgeni will fail if we generate links that don't follow this format.
-  checkAnchorLinksProcessor.ignoredLinks.push(/(components|cdk)\/[\w-]+\/api#\w+/);
+  checkAnchorLinksProcessor.ignoredLinks.push(
+    /(components|cdk|business|core|maps|public)\/[\w-]+\/api#\w+/
+  );
 });
 
 // Configure the processor for understanding TypeScript.

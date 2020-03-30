@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "svg-registry": {
       "description": "Generate an svg registry, from which icon modules can be generated.",

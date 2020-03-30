@@ -1,4 +1,6 @@
-package(default_visibility = ["//:__subpackages__"])
+package(default_visibility = ["//visibility:public"])
+
+load("//tools/package-docs-content:index.bzl", "package_docs_content")
 
 filegroup(
     name = "assets",
@@ -8,5 +10,29 @@ filegroup(
         "**/*.jpg",
         "**/*.ico",
         "**/*.html",
-    ]),
+    ]) + [":docs-content"],
+    data = [":docs-content"],
+)
+
+package_docs_content(
+    name = "docs-content",
+    srcs = {
+        # Package the overviews into the docs content
+        "//src/business:overviews": "overviews/business",
+        "//src/core:overviews": "overviews/core",
+        "//src/maps:overviews": "overviews/maps",
+        "//src/public:overviews": "overviews/public",
+
+        # Package the API docs into the docs-content
+        "//src:api-docs": "",
+
+        # In order to be able to run examples in StackBlitz, we also want to package the
+        # plain source files into the docs-content.
+        "//src/showcase:example-source-files": "examples-source",
+
+        # For the live-examples in our docs, we want to package the highlighted files
+        # into the docs content. These will be used to show the source code for examples.
+        "//src/showcase:highlighted-source-files": "examples-highlighted",
+    },
+    tags = ["docs-package"],
 )

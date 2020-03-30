@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: PublicComponent,
-    data: { library: 'angular-public' },
+    data: { library: 'public' },
     children: [
       {
         path: '',
@@ -20,17 +20,17 @@ const routes: Routes = [
       {
         path: 'introduction/:id',
         component: MarkdownViewerComponent,
-        data: { library: 'angular-public' }
+        data: { library: 'public' }
       },
       {
         path: 'components/:id',
         component: ComponentViewerComponent,
-        data: { library: 'angular-public' }
+        data: { library: 'public' }
       },
       {
         path: 'components/:id/:section',
         component: ComponentViewerComponent,
-        data: { library: 'angular-public' }
+        data: { library: 'public' }
       }
     ]
   }
