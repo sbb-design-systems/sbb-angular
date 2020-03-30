@@ -4,7 +4,7 @@ $breadcrumbArrowWidth: 16;
 $breadcrumbArrowHeight: 16;
 $breadcrumbArrowLineHeight: 20;
 $breadcrumbArrowMarginsDT: 16;
-@if $sbbBusiness {
+@include businessOnly() {
   $breadcrumbArrowMarginsDT: 4;
 }
 
