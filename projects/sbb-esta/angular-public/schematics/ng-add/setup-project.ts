@@ -48,7 +48,7 @@ function addTypographyToStylesNode(
     !workspace.projects[projectName].architect![buildOrTest] ||
     !workspace.projects[projectName].architect![buildOrTest]!.options
   ) {
-    context.logger.info('Cannot add typography. Please add it manually to angular.json');
+    context.logger.error('Cannot add typography. Please add it manually to angular.json');
     return tree;
   }
 
@@ -100,10 +100,8 @@ function addAnimationsModule(options: Schema) {
       // is already configured, we would cause unexpected behavior and runtime exceptions.
       if (hasNgModuleImport(host, appModulePath, NOOP_ANIMATIONS_MODULE_NAME)) {
         context.logger.error(
-          `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
-            `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`
+          `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported. Please manually set up browser animations.`
         );
-        context.logger.info(`Please manually set up browser animations.`);
         return;
       }
 
@@ -115,9 +113,16 @@ function addAnimationsModule(options: Schema) {
       );
 
       context.logger.info(`✅️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to angular.json`);
-    } else if (!hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
-      // Do not add the NoopAnimationsModule module if the project already explicitly uses
-      // the BrowserAnimationsModule.
+    } else {
+      if (hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
+        // Do not add the NoopAnimationsModule module if the project already explicitly uses
+        // the BrowserAnimationsModule.
+        context.logger.error(
+          `Could not set up "${NOOP_ANIMATIONS_MODULE_NAME}" because "${BROWSER_ANIMATIONS_MODULE_NAME}" is already imported. Please manually set up browser animations.`
+        );
+        return;
+      }
+
       addModuleImportToRootModule(
         host,
         NOOP_ANIMATIONS_MODULE_NAME,
