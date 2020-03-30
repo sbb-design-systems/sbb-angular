@@ -4,12 +4,12 @@ import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema
 
 import { addDefaultDependency, readJsonFile, readStringFile } from '../utils';
 
+import { Schema } from './schema';
 import {
   BROWSER_ANIMATIONS_MODULE_NAME,
   NOOP_ANIMATIONS_MODULE_NAME,
   TYPOGRAPHY_CSS_PATH
-} from './index';
-import { Schema } from './schema';
+} from './setup-project';
 
 /** Path to the schematic collection that includes the migrations. */
 // tslint:disable-next-line: naming-convention
@@ -52,7 +52,10 @@ describe('ngAdd', () => {
       '0.0.0'
     );
 
-    await expectAsync(runner.runSchematicAsync('ng-add', {}, tree).toPromise()).toBeRejected();
+    expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
+      false,
+      'Expected the setup-project schematic not to be scheduled.'
+    );
   });
 
   it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons, @angular/cdk and @angular/animations to "package.json" file', async () => {
@@ -76,7 +79,7 @@ describe('ngAdd', () => {
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
-    expect(runner.tasks.some(t => t.name === 'node-package')).toBe(true);
+    expect(runner.tasks.some(task => task.name === 'node-package')).toBe(true);
     expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
       true,
       'Expected the setup-project schematic to be scheduled.'
@@ -98,7 +101,7 @@ describe('ngAdd', () => {
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
-    expect(runner.tasks.some(t => t.name === 'node-package')).toBe(true);
+    expect(runner.tasks.some(task => task.name === 'node-package')).toBe(true);
     expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
       true,
       'Expected the setup-project schematic to be scheduled.'
