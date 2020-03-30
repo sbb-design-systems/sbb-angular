@@ -2,7 +2,7 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
-import { addDefaultDependency, readJsonFile, readStringFile } from '../helpers';
+import { addDefaultDependency, readJsonFile, readStringFile } from '../utils';
 
 import {
   BROWSER_ANIMATIONS_MODULE_NAME,
@@ -45,7 +45,17 @@ describe('ngAdd', () => {
       .toPromise();
   });
 
-  it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons, @angular/cdk and @angular/animations to "package.json" file, should add typography to angular.json, should configure animationsModule', async () => {
+  it('should cancel installation if business package is already installed', async () => {
+    addDefaultDependency('@sbb-esta/angular-business', '0.0.0', tree);
+
+    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-business']).toBe(
+      '0.0.0'
+    );
+
+    await expectAsync(runner.runSchematicAsync('ng-add', {}, tree).toPromise()).toBeRejected();
+  });
+
+  it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons, @angular/cdk and @angular/animations to "package.json" file', async () => {
     ['@sbb-esta/angular-core', '@sbb-esta/angular-icons', '@angular/cdk'].forEach(dependencyName =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
     );
@@ -64,21 +74,13 @@ describe('ngAdd', () => {
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
 
-    expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
-    ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
-
-    expect(
-      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
-    ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
-
-    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
-      BROWSER_ANIMATIONS_MODULE_NAME
-    );
-
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
     expect(runner.tasks.some(t => t.name === 'node-package')).toBe(true);
+    expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
+      true,
+      'Expected the setup-project schematic to be scheduled.'
+    );
   });
 
   it('should do nothing if @sbb-esta/angular-core is in "package.json" file already', async () => {
@@ -97,21 +99,31 @@ describe('ngAdd', () => {
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
     expect(runner.tasks.some(t => t.name === 'node-package')).toBe(true);
-  });
-
-  it('should cancel installation if business package is already installed', async () => {
-    addDefaultDependency('@sbb-esta/angular-business', '0.0.0', tree);
-
-    expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-business']).toBe(
-      '0.0.0'
+    expect(runner.tasks.some(task => task.name === 'run-schematic')).toBe(
+      true,
+      'Expected the setup-project schematic to be scheduled.'
     );
-
-    await expectAsync(runner.runSchematicAsync('ng-add', {}, tree).toPromise()).toBeRejected();
   });
 
-  it('should not add typography if entry already exists', async () => {
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+  it('should add typography to angular.json and configure animationsModule', async () => {
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
+    ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
+
+    expect(
+      readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
+    ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
+
+    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
+      BROWSER_ANIMATIONS_MODULE_NAME
+    );
+  });
+
+  it('should not add typography a second time if entry already exists', async () => {
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -123,7 +135,7 @@ describe('ngAdd', () => {
     delete angularJson.projects.dummy.architect.build.options.styles;
     tree.overwrite('/angular.json', JSON.stringify(angularJson, null, 2));
 
-    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
 
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
@@ -131,7 +143,9 @@ describe('ngAdd', () => {
   });
 
   it('should add NoopAnimationsModule', async () => {
-    await runner.runSchematicAsync('ng-add', { animations: false } as Schema, tree).toPromise();
+    await runner
+      .runSchematicAsync('ng-add-setup-project', { animations: false } as Schema, tree)
+      .toPromise();
 
     expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
       NOOP_ANIMATIONS_MODULE_NAME

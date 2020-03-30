@@ -2,7 +2,7 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
-import { addDefaultDependency, readJsonFile } from '../helpers';
+import { addDefaultDependency, readJsonFile } from '../utils';
 
 /** Path to the schematic collection that includes the migrations. */
 // tslint:disable-next-line: naming-convention
