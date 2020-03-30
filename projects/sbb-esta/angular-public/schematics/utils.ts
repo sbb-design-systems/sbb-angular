@@ -1,4 +1,3 @@
-import { JsonAstObject } from '@angular-devkit/core';
 import { SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import {
   addPackageJsonDependency,
@@ -6,7 +5,6 @@ import {
   NodeDependencyType
 } from '@schematics/angular/utility/dependencies';
 import { getPackageJsonDependency } from '@schematics/angular/utility/dependencies';
-import { findPropertyInAstObject } from '@schematics/angular/utility/json-utils';
 
 /** Gets the version of the specified package by looking at the package.json in the given tree. */
 export function getPackageVersionFromPackageJson(tree: Tree, name: string): string | null {
@@ -53,21 +51,4 @@ export function addDefaultDependency(
     context.logger.info(`✅️ Added ${name} dependency`);
   }
   return host;
-}
-
-/** Deeply find AstObject */
-export function findPropertyInDeepAstObject(
-  node: JsonAstObject,
-  propertyNames: string[]
-): JsonAstObject {
-  propertyNames.forEach((property: string) => {
-    const astNode = findPropertyInAstObject(node, property);
-    if (!astNode || astNode.kind !== 'object') {
-      throw new SchematicsException(`Invalid ${property} content.`);
-    }
-
-    node = astNode;
-  });
-
-  return node;
 }

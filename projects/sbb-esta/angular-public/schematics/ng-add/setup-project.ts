@@ -1,11 +1,4 @@
-import { parseJsonAst } from '@angular-devkit/core';
-import {
-  chain,
-  Rule,
-  SchematicContext,
-  SchematicsException,
-  Tree
-} from '@angular-devkit/schematics';
+import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import {
   addModuleImportToRootModule,
   getAppModulePath,
@@ -13,15 +6,7 @@ import {
   getProjectMainFile,
   hasNgModuleImport
 } from '@angular/cdk/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
-import {
-  appendPropertyInAstObject,
-  appendValueInAstArray,
-  findPropertyInAstObject
-} from '@schematics/angular/utility/json-utils';
-import { validateProjectName } from '@schematics/angular/utility/validation';
-
-import { findPropertyInDeepAstObject } from '../utils';
+import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/config';
 
 import { Schema } from './schema';
 
@@ -39,83 +24,60 @@ export default function(options: Schema): Rule {
 
 function addTypographyToAngularJson(options: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
-    const angularJsonPath = 'angular.json';
-    const projectName = extractAndValidateProjectName(options, host);
-
-    addTypographyToStylesNode('build', projectName, angularJsonPath, host, context);
-    addTypographyToStylesNode('test', projectName, angularJsonPath, host, context);
-
+    addTypographyToStylesNode('build', options, host, context);
+    addTypographyToStylesNode('test', options, host, context);
     return host;
   };
 }
 
-function extractAndValidateProjectName(options: Schema, tree: Tree): string {
-  const name = options.name || getWorkspace(tree).defaultProject;
-  if (!name) {
-    throw new SchematicsException('Please specify a project using "--name project-name"');
-  }
-  validateProjectName(name);
-  return name;
-}
-
 function addTypographyToStylesNode(
   buildOrTest: 'build' | 'test',
-  projectName: string,
-  angularJsonPath: string,
+  options: Schema,
   tree: Tree,
   context: SchematicContext
 ): Tree {
-  const angularConfigContent = tree.read(angularJsonPath);
-  if (!angularConfigContent) {
-    throw new SchematicsException(`Invalid path: ${angularJsonPath}.`);
-  }
+  const workspace = getWorkspace(tree);
+  const projectName = options.name || workspace.defaultProject;
 
-  const angularJsonAst = parseJsonAst(angularConfigContent.toString('utf-8'));
-  if (angularJsonAst.kind !== 'object') {
-    throw new SchematicsException(`Invalid ${angularJsonPath} content.`);
-  }
-
-  const optionsAstNode = findPropertyInDeepAstObject(angularJsonAst, [
-    'projects',
-    projectName,
-    'architect',
-    buildOrTest,
-    'options'
-  ]);
-
-  if (!optionsAstNode) {
-    throw new SchematicsException(`Invalid ${angularJsonPath} content.`);
-  }
-
-  const stylesAstNode = findPropertyInAstObject(optionsAstNode, 'styles');
-
-  if (!stylesAstNode) {
-    const recorderAddStylesProperty = tree.beginUpdate(angularJsonPath);
-    appendPropertyInAstObject(
-      recorderAddStylesProperty,
-      optionsAstNode,
-      'styles',
-      [TYPOGRAPHY_CSS_PATH],
-      12
-    );
-    tree.commitUpdate(recorderAddStylesProperty);
+  if (
+    !projectName ||
+    !workspace ||
+    !workspace.projects ||
+    !workspace.projects[projectName] ||
+    !workspace.projects[projectName].architect ||
+    !workspace.projects[projectName].architect![buildOrTest] ||
+    !workspace.projects[projectName].architect![buildOrTest]!.options
+  ) {
+    context.logger.info('Cannot add typography. Please add it manually to angular.json');
     return tree;
   }
 
-  if (stylesAstNode.kind !== 'array') {
-    throw new SchematicsException(`Invalid ${angularJsonPath} content.`);
+  if (!(workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles) {
+    (workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles = [
+      TYPOGRAPHY_CSS_PATH
+    ];
+
+    updateWorkspace(workspace)(tree, context);
+    context.logger.info(`✅️ Added typography css entry to angular.json (${buildOrTest})`);
+    return tree;
   }
 
-  if (stylesAstNode.value.includes(TYPOGRAPHY_CSS_PATH)) {
+  if (
+    (workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles.includes(
+      TYPOGRAPHY_CSS_PATH
+    )
+  ) {
     context.logger.info(`Typography is already set up (${buildOrTest})`);
     return tree;
   }
 
-  const recorder = tree.beginUpdate(angularJsonPath);
-  appendValueInAstArray(recorder, stylesAstNode, TYPOGRAPHY_CSS_PATH, 14);
-  tree.commitUpdate(recorder);
+  (workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles.push(
+    TYPOGRAPHY_CSS_PATH
+  );
 
-  context.logger.info(`✅️ Added typography css entry to ${angularJsonPath} (${buildOrTest})`);
+  updateWorkspace(workspace)(tree, context);
+
+  context.logger.info(`✅️ Added typography css entry to angular.json (${buildOrTest})`);
 
   return tree;
 }
