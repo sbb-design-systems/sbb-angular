@@ -85,7 +85,7 @@
     display: flex;
   }
 
-  @if $sbbBusiness {
+  @include businessOnly() {
     &:first-of-type a {
       height: toPx($breadcrumbLabelHeight);
     }
