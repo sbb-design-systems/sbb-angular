@@ -105,6 +105,13 @@ describe('ngAdd', () => {
     );
   });
 
+  it('should not abort when running ng add two times', async () => {
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add', {}, tree).toPromise();
+    await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
+  });
+
   it('should add typography to angular.json and configure animationsModule', async () => {
     await runner.runSchematicAsync('ng-add-setup-project', {}, tree).toPromise();
 

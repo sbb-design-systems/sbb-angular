@@ -45,8 +45,6 @@ function addTypographyToAngularJson(options: Schema): Rule {
     addTypographyToStylesNode('build', projectName, angularJsonPath, host, context);
     addTypographyToStylesNode('test', projectName, angularJsonPath, host, context);
 
-    context.logger.info(`✅️ Added typography css entry to ${angularJsonPath}`);
-
     return host;
   };
 }
@@ -109,13 +107,16 @@ function addTypographyToStylesNode(
   }
 
   if (stylesAstNode.value.includes(TYPOGRAPHY_CSS_PATH)) {
-    context.logger.info('Typography is already set up');
+    context.logger.info(`Typography is already set up (${buildOrTest})`);
     return tree;
   }
 
   const recorder = tree.beginUpdate(angularJsonPath);
   appendValueInAstArray(recorder, stylesAstNode, TYPOGRAPHY_CSS_PATH, 14);
   tree.commitUpdate(recorder);
+
+  context.logger.info(`✅️ Added typography css entry to ${angularJsonPath} (${buildOrTest})`);
+
   return tree;
 }
 
@@ -150,6 +151,8 @@ function addAnimationsModule(options: Schema) {
         '@angular/platform-browser/animations',
         project
       );
+
+      context.logger.info(`✅️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to angular.json`);
     } else if (!hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
       // Do not add the NoopAnimationsModule module if the project already explicitly uses
       // the BrowserAnimationsModule.
@@ -159,6 +162,7 @@ function addAnimationsModule(options: Schema) {
         '@angular/platform-browser/animations',
         project
       );
+      context.logger.info(`✅️ Added ${NOOP_ANIMATIONS_MODULE_NAME} to angular.json`);
     }
 
     return host;
