@@ -22,7 +22,21 @@ You can create now your project as described in the official [Angular CLI docume
 
 ## Step 1: Install the library
 
-Just after you created your own Angular project, in order to include the library, you have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-core`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
+### Automatic installation
+
+Just after you created your own Angular project, in order to include the library, you have to run ng add which will take care of the installation and configuration.
+
+```sh
+ng add @sbb-esta/angular-public
+```
+
+### Manual installation
+
+ⓘ Please skip manual installation if you use ng add (see automatic installation).
+
+#### Step 1.1
+
+You have to install the `@sbb-esta/angular-public`, `@sbb-esta/angular-core`, `@sbb-esta/angular-icons` and `@angular/cdk` dependencies:
 
 ```sh
 npm install --save @sbb-esta/angular-public @sbb-esta/angular-core @sbb-esta/angular-icons @angular/cdk
@@ -33,6 +47,27 @@ or, if using yarn:
 ```sh
 yarn add @sbb-esta/angular-public @sbb-esta/angular-core @sbb-esta/angular-icons @angular/cdk
 ```
+
+#### Step 1.2: Include typography CSS
+
+Including typography is required to apply all SBB styles to your application. That is doable by editing the `styles.(s)css`:
+
+```css
+@import '../node_modules/@sbb-esta/angular-public/typography.css';
+```
+
+or editing your `angular.json`:
+
+```json
+  ...
+  "styles": [
+    "src/styles.scss",
+    "node_modules/@sbb-esta/angular-public/typography.css"
+  ],
+  ...
+```
+
+If you need more details about what the typography offers to you, you can get to [typography](./typography).
 
 ## Step 2: Configure animations
 
@@ -62,28 +97,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 export class TrainChooChooAppModule { }
 ```
 
-## Step 3: Include typography CSS
-
-Including typography is required to apply all SBB styles to your application. That is doable by editing the `styles.(s)css`:
-
-```css
-@import '../node_modules/@sbb-esta/angular-public/typography.css';
-```
-
-or editing your `angular.json`:
-
-```json
-  ...
-  "styles": [
-    "src/styles.scss",
-    "node_modules/@sbb-esta/angular-public/typography.css"
-  ],
-  ...
-```
-
-If you need more details about what the typography offers to you, you can get to [typography](./typography).
-
-## Step 4: Import the component modules
+## Step 3: Import the component modules
 
 Import the NgModule for each component you want to use:
 
@@ -114,7 +128,7 @@ export class SbbModule {}
 
 Whichever approach you use, be sure to import the modules after Angular's BrowserModule, as the import order matters for NgModules.
 
-## Step 5: i18n
+## Step 4: i18n
 
 This library uses [Angular i18n](https://angular.io/guide/i18n). All translatables have an id with the pattern "sbb*Component*".
 Run `ng xi18n` in your project (after using components of this library in your code) to generate the list of translatables.
@@ -124,7 +138,7 @@ Run `ng xi18n` in your project (after using components of this library in your c
 The datepicker uses the CLDR data [provided by Angular](https://angular.io/guide/i18n#setting-up-the-locale-of-your-app).
 This means it uses the locale data configured via the `i18nLocale` entry in your angular.json `build` options or configurations.
 
-## Step 6 (Optional): Use mixins and functions from the library
+## Step 5 (Optional): Use mixins and functions from the library
 
 If you need to reuse some mixins from the library, you have to configure your own Angular application in
 SCSS mode and import `_styles.scss` from the library into your `styles.scss`:
