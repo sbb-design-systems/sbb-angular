@@ -69,7 +69,7 @@ or editing your `angular.json`:
 
 If you need more details about what the typography offers to you, you can get to [typography](./typography).
 
-## Step 2: Configure animations
+#### Step 1.3: Configure animations
 
 Once the "@sbb-esta/angular-public" package is installed, you have to configure your application to enable animations support:
 
@@ -97,7 +97,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 export class TrainChooChooAppModule { }
 ```
 
-## Step 3: Import the component modules
+## Step 2: Import the component modules
 
 Import the NgModule for each component you want to use:
 
@@ -128,7 +128,7 @@ export class SbbModule {}
 
 Whichever approach you use, be sure to import the modules after Angular's BrowserModule, as the import order matters for NgModules.
 
-## Step 4: i18n
+## Step 3: i18n
 
 This library uses [Angular i18n](https://angular.io/guide/i18n). All translatables have an id with the pattern "sbb*Component*".
 Run `ng xi18n` in your project (after using components of this library in your code) to generate the list of translatables.
@@ -138,7 +138,7 @@ Run `ng xi18n` in your project (after using components of this library in your c
 The datepicker uses the CLDR data [provided by Angular](https://angular.io/guide/i18n#setting-up-the-locale-of-your-app).
 This means it uses the locale data configured via the `i18nLocale` entry in your angular.json `build` options or configurations.
 
-## Step 5 (Optional): Use mixins and functions from the library
+## Step 4 (Optional): Use mixins and functions from the library
 
 If you need to reuse some mixins from the library, you have to configure your own Angular application in
 SCSS mode and import `_styles.scss` from the library into your `styles.scss`:

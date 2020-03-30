@@ -10,6 +10,12 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "animations": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether Angular browser animations should be set up.",
+      "x-prompt": "Set up browser animations for sbb angular?"
     }
   },
   "required": []

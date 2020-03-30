@@ -16,6 +16,7 @@ export default readdirSync(__dirname, { withFileTypes: true })
       '@angular-devkit/core',
       '@angular-devkit/schematics',
       '@angular-devkit/schematics/tasks',
+      '@angular/cdk/schematics',
       '@schematics/angular/utility/config',
       '@schematics/angular/utility/dependencies',
       '@schematics/angular/utility/json-utils',

@@ -1,6 +1,19 @@
 import { parseJsonAst } from '@angular-devkit/core';
-import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
+import {
+  chain,
+  Rule,
+  SchematicContext,
+  SchematicsException,
+  Tree
+} from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import {
+  addModuleImportToRootModule,
+  getAppModulePath,
+  getProjectFromWorkspace,
+  getProjectMainFile,
+  hasNgModuleImport
+} from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getPackageJsonDependency } from '@schematics/angular/utility/dependencies';
 import {
@@ -20,6 +33,12 @@ import { Schema } from './schema';
 
 export const TYPOGRAPHY_CSS_PATH = 'node_modules/@sbb-esta/angular-public/typography.css';
 
+/** Name of the Angular module that enables Angular browser animations. */
+export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
+
+/** Name of the module that switches Angular animations to a noop implementation. */
+export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
+
 export function ngAdd(options: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
     assertBusinessNotInstalled(host);
@@ -28,8 +47,7 @@ export function ngAdd(options: Schema): Rule {
 
     addDependencies(host, context);
     addTypographyToAngularJson(host, name, context);
-
-    return host;
+    return chain([addAnimationsModule(options)]);
   };
 }
 
@@ -60,6 +78,12 @@ const addDependencies = (tree: Tree, context: SchematicContext): Tree => {
   addDefaultDependency(
     '@angular/cdk',
     require('../../package.json').peerDependencies['@angular/cdk'],
+    tree,
+    context
+  );
+  addDefaultDependency(
+    '@angular/animations',
+    getPackageJsonDependency(tree, '@angular/core')!.version,
     tree,
     context
   );
@@ -141,3 +165,49 @@ const addTypographyToStylesNode = (
   tree.commitUpdate(recorder);
   return tree;
 };
+
+/**
+ * Adds an animation module to the root module of the specified project. In case the "animations"
+ * option is set to false, we still add the `NoopAnimationsModule` because otherwise various
+ * components of Angular Material will throw an exception.
+ */
+function addAnimationsModule(options: Schema) {
+  return (host: Tree, context: SchematicContext) => {
+    const workspace = getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, options.name);
+    const appModulePath = getAppModulePath(host, getProjectMainFile(project));
+
+    if (options.animations) {
+      // In case the project explicitly uses the NoopAnimationsModule, we should print a warning
+      // message that makes the user aware of the fact that we won't automatically set up
+      // animations. If we would add the BrowserAnimationsModule while the NoopAnimationsModule
+      // is already configured, we would cause unexpected behavior and runtime exceptions.
+      if (hasNgModuleImport(host, appModulePath, NOOP_ANIMATIONS_MODULE_NAME)) {
+        context.logger.error(
+          `Could not set up "${BROWSER_ANIMATIONS_MODULE_NAME}" ` +
+            `because "${NOOP_ANIMATIONS_MODULE_NAME}" is already imported.`
+        );
+        context.logger.info(`Please manually set up browser animations.`);
+        return;
+      }
+
+      addModuleImportToRootModule(
+        host,
+        BROWSER_ANIMATIONS_MODULE_NAME,
+        '@angular/platform-browser/animations',
+        project
+      );
+    } else if (!hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
+      // Do not add the NoopAnimationsModule module if the project already explicitly uses
+      // the BrowserAnimationsModule.
+      addModuleImportToRootModule(
+        host,
+        NOOP_ANIMATIONS_MODULE_NAME,
+        '@angular/platform-browser/animations',
+        project
+      );
+    }
+
+    return host;
+  };
+}

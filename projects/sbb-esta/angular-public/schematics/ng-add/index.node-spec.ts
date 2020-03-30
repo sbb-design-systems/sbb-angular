@@ -2,9 +2,14 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
 
-import { addDefaultDependency, readJsonFile } from '../helpers';
+import { addDefaultDependency, readJsonFile, readStringFile } from '../helpers';
 
-import { TYPOGRAPHY_CSS_PATH } from './index';
+import {
+  BROWSER_ANIMATIONS_MODULE_NAME,
+  NOOP_ANIMATIONS_MODULE_NAME,
+  TYPOGRAPHY_CSS_PATH
+} from './index';
+import { Schema } from './schema';
 
 /** Path to the schematic collection that includes the migrations. */
 // tslint:disable-next-line: naming-convention
@@ -40,7 +45,7 @@ describe('ngAdd', () => {
       .toPromise();
   });
 
-  it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons and @angular/cdk to "package.json" file, should add typography to angular.json', async () => {
+  it('should add @sbb-esta/angular-core, @sbb-esta/angular-icons, @angular/cdk and @angular/animations to "package.json" file, should add typography to angular.json, should configure animationsModule', async () => {
     ['@sbb-esta/angular-core', '@sbb-esta/angular-icons', '@angular/cdk'].forEach(dependencyName =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBeUndefined()
     );
@@ -57,6 +62,8 @@ describe('ngAdd', () => {
       require('../../package.json').peerDependencies['@angular/cdk']
     );
 
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
+
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
     ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
@@ -64,6 +71,10 @@ describe('ngAdd', () => {
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.test.options.styles
     ).toEqual(['projects/dummy/src/styles.css', TYPOGRAPHY_CSS_PATH]);
+
+    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
+      BROWSER_ANIMATIONS_MODULE_NAME
+    );
 
     // expect that there is a "node-package" install task. The task is
     // needed to update the lock file.
@@ -117,5 +128,13 @@ describe('ngAdd', () => {
     expect(
       readJsonFile(tree, '/angular.json').projects.dummy.architect.build.options.styles
     ).toEqual([TYPOGRAPHY_CSS_PATH]);
+  });
+
+  it('should add NoopAnimationsModule', async () => {
+    await runner.runSchematicAsync('ng-add', { animations: false } as Schema, tree).toPromise();
+
+    expect(readStringFile(tree, '/projects/dummy/src/app/app.module.ts')).toContain(
+      NOOP_ANIMATIONS_MODULE_NAME
+    );
   });
 });
