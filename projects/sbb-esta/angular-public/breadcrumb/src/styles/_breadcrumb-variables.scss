@@ -1,4 +1,5 @@
 @import '../../../../angular-core/styles/common/variants';
+@import '../../../../angular-core/styles/common/colors';
 
 $breadcrumbHeight: 48;
 $breadcrumbLabelHeight: 24;
@@ -15,5 +16,5 @@ $breadcrumbStepButtonLineHeightDT: 20;
 
 $breadcrumbDropdownTriggerIconMarginLeft: 10.5;
 
-$breadcrumbTriggerBorderActive: solid 2px #666;
+$breadcrumbTriggerBorderActive: solid 2px $sbbColorGranite;
 $breadcrumbTriggerBorder: solid 2px white;
