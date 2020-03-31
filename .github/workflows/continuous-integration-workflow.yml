@@ -50,10 +50,10 @@ jobs:
     - name: "Build: Migrate public to business components"
       run: yarn -s build:business:public2business
     - name: "Build: Bazel"
-      run: bazel build src/... --build_tag_filters=-docs-package,-release-package
+      run: bazelisk build src/... --build_tag_filters=-docs-package,-release-package
 
     - name: "Test: Run local tests"
-      run: bazel test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
+      run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
 
     - name: "Lint: Run tslint"
       run: yarn tslint
