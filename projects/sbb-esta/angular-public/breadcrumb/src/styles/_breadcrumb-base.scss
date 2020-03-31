@@ -3,6 +3,7 @@
 @import '../../../../angular-core/styles/common/mediaqueries';
 @import '../../../../angular-core/styles/common/mixins';
 @import '../../../../angular-core/styles/common/button';
+@import './breadcrumb-variables';
 
 @mixin breadcrumbBase {
   display: flex;
@@ -85,11 +86,11 @@
     display: flex;
   }
 
-  @include businessOnly() {
-    &:first-of-type a {
-      height: toPx($breadcrumbLabelHeight);
-    }
+  &:first-of-type a {
+    height: toPx($breadcrumbLabelHeight);
+  }
 
+  @include businessOnly() {
     &:last-of-type a {
       color: $sbbColorBlack;
     }
@@ -100,6 +101,7 @@
   }
 
   padding-left: 0;
+  height: toPx($breadcrumbHeight);
   margin-right: toPx($breadcrumbArrowMarginsDT);
 
   @include publicOnly() {
