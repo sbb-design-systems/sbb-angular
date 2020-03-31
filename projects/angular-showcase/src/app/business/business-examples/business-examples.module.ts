@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
+import { BreadcrumbModule } from '@sbb-esta/angular-business/breadcrumb';
 import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { ChipModule } from '@sbb-esta/angular-business/chip';
@@ -27,6 +28,7 @@ import { AutocompleteFormsShowcaseComponent } from './autocomplete-forms-showcas
 import { AutocompleteHintShowcaseComponent } from './autocomplete-hint-showcase/autocomplete-hint-showcase.component';
 import { AutocompleteOptionGroupShowcaseComponent } from './autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
 import { AutocompleteReactiveFormsShowcaseComponent } from './autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
+import { BreadcrumbShowcaseComponent } from './breadcrumb-showcase/breadcrumb-showcase.component';
 import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from './chip-showcase/forms-chip-input/forms-chip-input.component';
@@ -104,7 +106,8 @@ const exampleComponents = [
   AutocompleteReactiveFormsShowcaseComponent,
   TextareaFormsShowcaseComponent,
   TextareaReactiveFormsWithSbbFieldShowcaseComponent,
-  TextareaNativeShowcaseComponent
+  TextareaNativeShowcaseComponent,
+  BreadcrumbShowcaseComponent
 ];
 
 @NgModule({
@@ -138,7 +141,8 @@ const exampleComponents = [
     SelectModule,
     OptionModule,
     AutocompleteModule,
-    TextareaModule
+    TextareaModule,
+    BreadcrumbModule
   ]
 })
 export class BusinessExamplesModule {}

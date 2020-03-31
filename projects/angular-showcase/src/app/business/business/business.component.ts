@@ -6,6 +6,7 @@ import { AutocompleteFormsShowcaseComponent } from '../business-examples/autocom
 import { AutocompleteHintShowcaseComponent } from '../business-examples/autocomplete-hint-showcase/autocomplete-hint-showcase.component';
 import { AutocompleteOptionGroupShowcaseComponent } from '../business-examples/autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
 import { AutocompleteReactiveFormsShowcaseComponent } from '../business-examples/autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
+import { BreadcrumbShowcaseComponent } from '../business-examples/breadcrumb-showcase/breadcrumb-showcase.component';
 import { AutocompleteChipInputComponent } from '../business-examples/chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from '../business-examples/chip-showcase/forms-chip-input/forms-chip-input.component';
@@ -58,6 +59,7 @@ export class BusinessComponent implements ExampleProvider {
   };
   layoutComponents = {
     accordion: 'Accordion',
+    breadcrumb: 'Breadcrumb',
     pagination: 'Pagination',
     notification: 'Notification',
     processflow: 'Processflow',
@@ -83,6 +85,9 @@ export class BusinessComponent implements ExampleProvider {
       'autocomplete-option-group-showcase': new ComponentPortal(
         AutocompleteOptionGroupShowcaseComponent
       )
+    },
+    breadcrumb: {
+      'breadcrumb-showcase': new ComponentPortal(BreadcrumbShowcaseComponent)
     },
     processflow: {
       'skippable-processflow': new ComponentPortal(SkippableProcessflowComponent)
