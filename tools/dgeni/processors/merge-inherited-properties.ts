@@ -3,6 +3,7 @@ import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExp
 import { ClassLikeExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassLikeExportDoc';
 import { MemberDoc } from 'dgeni-packages/typescript/api-doc-types/MemberDoc';
 import * as ts from 'typescript';
+
 import { getInheritedDocsOfClass } from '../common/class-inheritance';
 
 /**

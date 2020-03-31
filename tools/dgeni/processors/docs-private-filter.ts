@@ -1,6 +1,7 @@
 import { DocCollection, Processor } from 'dgeni';
 import { BaseApiDoc } from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
 import { ClassExportDoc } from 'dgeni-packages/typescript/api-doc-types/ClassExportDoc';
+
 import { getDocsPublicTag, isPublicDoc } from '../common/private-docs';
 
 /**

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FILE_TYPES, FileTypeCategory } from './file-selector-base';
+import { FileTypeCategory, FILE_TYPES } from './file-selector-base';
 
 @Injectable({
   providedIn: 'root'

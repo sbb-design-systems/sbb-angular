@@ -1,8 +1,8 @@
+import { ApiDoc } from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
 import {
   ParameterContainer,
   ParamTag
 } from 'dgeni-packages/typescript/api-doc-types/ParameterContainer';
-import { ApiDoc } from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
 
 export interface NormalizedFunctionParameters {
   params?: FunctionParameterInfo[];

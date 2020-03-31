@@ -36,15 +36,14 @@ if (require.main === module) {
         inputFilePath: join(sourceDir, f),
         outputPath: join(targetDir, f)
       }))
-      .forEach(({ inputFilePath, outputPath }) =>
-        // Change require('./a.mjs') to require('./a.js') in es5 files
-        writeFileSync(
-          outputPath,
-          readFileSync(inputFilePath, 'utf8').replace(
-            /require\("([\w\W]+?)\.mjs"\)/g,
-            (_, m) => `require("${m}.js")`
-          )
-        )
-      );
+      .forEach(({ inputFilePath, outputPath }) => {
+        let content = readFileSync(inputFilePath, 'utf8');
+        if (inputFilePath.endsWith('.js')) {
+          // Change './a.mjs' to './a.js' in es5 files
+          content = content.replace(/\.mjs(["'])/g, (_, m) => `.js${m}`);
+        }
+
+        writeFileSync(outputPath, content, 'utf8');
+      });
   });
 }

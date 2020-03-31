@@ -8,6 +8,7 @@ import {
   StringLiteral,
   SyntaxKind
 } from 'typescript';
+
 import { CategorizedClassDoc } from './dgeni-definitions';
 
 /**

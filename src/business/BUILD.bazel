@@ -39,13 +39,15 @@ scss_bundle(
     name = "styles_bundle",
     outs = ["_styles.scss"],
     args = [
-        "--entryFile=$(location //src/business:_styles.scss)",
+        "--entryFile=$(location :_style_bundle.scss)",
         "--outFile=$(location :_styles.scss)",
     ],
     data = [
+        ":_style_bundle.scss",
         # Config file is required by "scss-bundle" and will be automatically
         # loaded by the CLI. It expects the config to be in the execroot.
         "//:scss-bundle.config.json",
+        "//src/core/styles:core_scss_lib",
     ],
 )
 

@@ -1,4 +1,4 @@
-import { CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
+import { CdkTable, CDK_TABLE_TEMPLATE } from '@angular/cdk/table';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,

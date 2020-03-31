@@ -28,7 +28,7 @@ import { dispatchKeyboardEvent } from '@sbb-esta/angular-core/testing';
 import { Subject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { Lightbox, LIGHTBOX_DATA, LightboxModule, LightboxRef } from '../public-api';
+import { Lightbox, LightboxModule, LightboxRef, LIGHTBOX_DATA } from '../public-api';
 
 import { LightboxContainerComponent } from './lightbox-container.component';
 

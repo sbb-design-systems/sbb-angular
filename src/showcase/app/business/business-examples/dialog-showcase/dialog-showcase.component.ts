@@ -1,5 +1,5 @@
 import { Component, Inject, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Dialog, DIALOG_DATA, DialogRef } from '@sbb-esta/angular-business/dialog';
+import { Dialog, DialogRef, DIALOG_DATA } from '@sbb-esta/angular-business/dialog';
 
 export interface DialogData {
   animal: string;

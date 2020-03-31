@@ -37,10 +37,10 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconDirective } from '@sbb-esta/angular-core/icon-directive';
 import {
-  AUTOCOMPLETE_OPTION_HEIGHT,
-  AUTOCOMPLETE_PANEL_HEIGHT,
   AutocompleteComponent,
   AutocompleteOriginDirective,
+  AUTOCOMPLETE_OPTION_HEIGHT,
+  AUTOCOMPLETE_PANEL_HEIGHT,
   getSbbAutocompleteMissingPanelError,
   SBB_AUTOCOMPLETE_SCROLL_STRATEGY
 } from '@sbb-esta/angular-public/autocomplete';

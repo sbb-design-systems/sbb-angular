@@ -8,10 +8,10 @@ import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 
 import { DropdownModule } from '../dropdown.module';
 import {
-  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER,
   DropdownItemDirective,
   DropdownOriginDirective,
-  DropdownTriggerDirective
+  DropdownTriggerDirective,
+  DROPDOWN_SCROLL_STRATEGY_FACTORY_PROVIDER
 } from '../public-api';
 
 import { DropdownComponent } from './dropdown.component';

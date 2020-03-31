@@ -1,5 +1,5 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { coerceBooleanProperty, BooleanInput } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   A,
@@ -61,8 +61,8 @@ import {
   HasOptions,
   OptionComponent,
   OptionGroupComponent,
-  SBB_OPTION_PARENT_COMPONENT,
-  SBBOptionSelectionChange
+  SBBOptionSelectionChange,
+  SBB_OPTION_PARENT_COMPONENT
 } from '@sbb-esta/angular-public/option';
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, first, map, startWith, switchMap, takeUntil } from 'rxjs/operators';

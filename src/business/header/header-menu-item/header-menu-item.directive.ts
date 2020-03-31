@@ -1,4 +1,5 @@
 import { FocusableOption, FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
+import { BooleanInput } from '@angular/cdk/coercion';
 import { DOCUMENT } from '@angular/common';
 import {
   Directive,
@@ -12,7 +13,6 @@ import {
   Output
 } from '@angular/core';
 import { CanDisableCtor, mixinDisabled } from '@sbb-esta/angular-core/common-behaviors';
-import { BooleanInput } from '@angular/cdk/coercion';
 
 // Boilerplate for applying mixins to HeaderMenuItemDirective.
 /** @docs-private */

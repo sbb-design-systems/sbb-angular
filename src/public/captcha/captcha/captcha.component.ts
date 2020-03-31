@@ -18,7 +18,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { CaptchaLoaderService } from './captcha-loader.service';
-import { RECAPTCHA_SETTINGS, RecaptchaSettings } from './captcha-settings';
+import { RecaptchaSettings, RECAPTCHA_SETTINGS } from './captcha-settings';
 
 let nextId = 0;
 

@@ -34,7 +34,7 @@ patchTestBedToDestroyFixturesAfterEveryTest(testBed);
  */
 function patchTestBedToDestroyFixturesAfterEveryTest(testBedInstance: TestBed) {
   // Original resetTestingModule function of the TestBed.
-  const _resetTestingModule = testBedInstance.resetTestingModule;
+  const resetTestingModule = testBedInstance.resetTestingModule;
 
   // Monkey-patch the resetTestingModule to destroy fixtures outside of a try/catch block.
   // With https://github.com/angular/angular/commit/2c5a67134198a090a24f6671dcdb7b102fea6eba
@@ -47,7 +47,7 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBedInstance: TestBed) {
     } finally {
       this._activeFixtures = [];
       // Regardless of errors or not, run the original reset testing module function.
-      _resetTestingModule.call(this);
+      resetTestingModule.call(this);
     }
   };
 

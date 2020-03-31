@@ -4,8 +4,8 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  DATE_PIPE_DATE_FORMATS,
   DateAdapter,
+  DATE_PIPE_DATE_FORMATS,
   NativeDateAdapter,
   SBB_DATE_FORMATS
 } from '@sbb-esta/angular-core/datetime';

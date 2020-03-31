@@ -262,11 +262,6 @@ class ShowcasePackage {
         this._tree = _tree;
         const appDir = this._dir.dir(core.fragment('app'));
         this._appModule = new ShowcaseModule(appDir, this._tree, context);
-        this._appModule.dependencies.push(...this._appModule
-            .ngModules()
-            .filter(m => m.path !== appDir.path)
-            .map(m => `/${m.path}`));
-        this._appModule.dependencies.sort();
     }
     render() {
         return this._appModule.render();

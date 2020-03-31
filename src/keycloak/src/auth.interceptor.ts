@@ -1,10 +1,10 @@
 import {
-  HTTP_INTERCEPTORS,
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
+  HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { ClassProvider, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';

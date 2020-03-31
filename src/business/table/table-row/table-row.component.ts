@@ -3,13 +3,13 @@
  * Captures the header row's template and other header properties such as the columns to display.
  */
 import {
-  CDK_ROW_TEMPLATE,
   CdkFooterRow,
   CdkFooterRowDef,
   CdkHeaderRow,
   CdkHeaderRowDef,
   CdkRow,
-  CdkRowDef
+  CdkRowDef,
+  CDK_ROW_TEMPLATE
 } from '@angular/cdk/table';
 import {
   ChangeDetectionStrategy,

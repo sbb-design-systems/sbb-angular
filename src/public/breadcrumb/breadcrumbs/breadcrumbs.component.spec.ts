@@ -13,7 +13,7 @@ import {
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { BreadcrumbModule } from '../breadcrumb.module';
-import { BREADCRUMB_LEVEL_OFFSET, BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent, BREADCRUMB_LEVEL_OFFSET } from '../breadcrumb/breadcrumb.component';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 

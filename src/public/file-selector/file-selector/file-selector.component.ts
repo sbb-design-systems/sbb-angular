@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { FILE_SELECTOR_OPTIONS, FileSelectorOptions, FileTypeCategory } from './file-selector-base';
+import { FileSelectorOptions, FileTypeCategory, FILE_SELECTOR_OPTIONS } from './file-selector-base';
 import { FileSelectorTypesService } from './file-selector-types.service';
 
 let counter = 0;

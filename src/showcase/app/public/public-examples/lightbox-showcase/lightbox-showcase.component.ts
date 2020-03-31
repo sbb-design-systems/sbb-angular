@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { Lightbox, LIGHTBOX_DATA, LightboxRef } from '@sbb-esta/angular-public/lightbox';
+import { Lightbox, LightboxRef, LIGHTBOX_DATA } from '@sbb-esta/angular-public/lightbox';
 
 export interface LightboxData {
   animal: string;

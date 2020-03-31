@@ -89,7 +89,9 @@ export class EsriWebSceneComponent implements OnInit {
   /** Merges input esri.SceneViewProperties with default SceneViewProperties */
   private _mergeSceneViewProperties(): __esri.SceneViewProperties {
     let svProperties = {} as __esri.SceneViewProperties;
-    if (this.sceneViewProperties) svProperties = this.sceneViewProperties;
+    if (this.sceneViewProperties) {
+      svProperties = this.sceneViewProperties;
+    }
 
     svProperties.map = this.webScene;
     svProperties.container = this._elementRef.nativeElement;

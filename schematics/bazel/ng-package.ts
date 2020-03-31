@@ -8,7 +8,7 @@ export class NgPackage extends NgModule {
   hasReadme: boolean;
   hasSchematics: boolean;
   hasSrcFiles: boolean;
-  hasStyles: boolean;
+  hasStyleBundle: boolean;
   hasTypography: boolean;
   markdownFiles: string[];
   markdownModules: string[];
@@ -22,7 +22,7 @@ export class NgPackage extends NgModule {
     this.hasReadme = dir.subfiles.includes(fragment('README.md'));
     this.hasSchematics = dir.subdirs.includes(fragment('schematics'));
     this.hasSrcFiles = dir.subdirs.includes(fragment('src'));
-    this.hasStyles = dir.subfiles.includes(fragment('_styles.scss'));
+    this.hasStyleBundle = dir.subfiles.includes(fragment('_style_bundle.scss'));
     this.hasTypography = dir.subfiles.includes(fragment('typography.scss'));
     this.markdownFiles = this._markdownFiles.map(f => basename(f.path));
     this.markdownModules = ngModules.filter(m => m.hasMarkdown).map(m => this._resolvePath(m));

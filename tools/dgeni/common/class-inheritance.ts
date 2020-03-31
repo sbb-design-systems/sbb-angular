@@ -12,7 +12,7 @@ export function getInheritedDocsOfClass(
 ): ClassLikeExportDoc[] {
   const result: ClassLikeExportDoc[] = [];
   const typeChecker = doc.typeChecker;
-  for (let info of doc.extendsClauses) {
+  for (const info of doc.extendsClauses) {
     if (info.doc) {
       result.push(info.doc, ...getInheritedDocsOfClass(info.doc, exportSymbolsToDocsMap));
     } else if (info.type) {
@@ -41,7 +41,7 @@ function getClassLikeDocsFromType(
   baseDoc: ClassLikeExportDoc,
   exportSymbolsToDocsMap: Map<ts.Symbol, ClassLikeExportDoc>
 ): ClassLikeExportDoc[] {
-  let aliasSymbol: ts.Symbol | undefined = undefined;
+  let aliasSymbol: ts.Symbol | undefined;
   let symbol: ts.Symbol = type.symbol;
   const typeChecker = baseDoc.typeChecker;
 

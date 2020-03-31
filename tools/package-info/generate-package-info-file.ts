@@ -2,8 +2,8 @@
  * Script that will genrate .
  */
 
-import {readFileSync, writeFileSync} from 'fs';
-import {join} from 'path';
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 if (require.main === module) {
   // The script expects the bazel-bin path as first argument. All remaining arguments will be

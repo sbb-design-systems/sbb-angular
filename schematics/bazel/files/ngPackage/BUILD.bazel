@@ -1,6 +1,6 @@
 package(default_visibility = ["//visibility:public"])
 <% if (customTsConfig) { %>
-load("@npm_bazel_typescript//:index.bzl", "ts_config")<% } %><% if (hasStyles) { %>
+load("@npm_bazel_typescript//:index.bzl", "ts_config")<% } %><% if (hasStyleBundle) { %>
 load("@npm//scss-bundle:index.bzl", "scss_bundle")<% } %>
 load(
     "//src/<%= name %>:config.bzl",
@@ -45,19 +45,21 @@ sass_binary(
     src = "typography.scss",
     include_paths = ["external/npm/node_modules"],
     deps = ["//src/core/styles:core_scss_lib"],
-)<% } %><% if (hasStyles) { %>
+)<% } %><% if (hasStyleBundle) { %>
 
 scss_bundle(
     name = "styles_bundle",
     outs = ["_styles.scss"],
     args = [
-        "--entryFile=$(location //src/<%= name %>:_styles.scss)",
+        "--entryFile=$(location :_style_bundle.scss)",
         "--outFile=$(location :_styles.scss)",
     ],
     data = [
+        ":_style_bundle.scss",
         # Config file is required by "scss-bundle" and will be automatically
         # loaded by the CLI. It expects the config to be in the execroot.
         "//:scss-bundle.config.json",
+        "//src/core/styles:core_scss_lib",
     ],
 )<% } %><% if (hasTests) { %>
 
@@ -97,7 +99,7 @@ ng_package(
     srcs = [
         "package.json",
     ],
-    data = [<% if (hasStyles) { %>
+    data = [<% if (hasStyleBundle) { %>
         ":styles_bundle",<% } %><% if (hasTypography) { %>
         ":typography",<% } %>
     ],

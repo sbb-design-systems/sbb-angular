@@ -13,8 +13,8 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  DATE_PIPE_DATE_FORMATS,
   DateAdapter,
+  DATE_PIPE_DATE_FORMATS,
   NativeDateAdapter,
   SBB_DATE_FORMATS
 } from '@sbb-esta/angular-core/datetime';

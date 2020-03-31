@@ -29,5 +29,10 @@
       "@sbb-esta/angular-public": ["../public"],
       "@sbb-esta/angular-public/*": ["../public/*"]
     }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

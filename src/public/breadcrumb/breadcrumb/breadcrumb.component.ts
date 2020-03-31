@@ -26,10 +26,10 @@ import {
   SCALING_FACTOR_5K
 } from '@sbb-esta/angular-core/breakpoints';
 import {
-  DROPDOWN_SCROLL_STRATEGY,
   DropdownComponent,
   DropdownOriginDirective,
-  DropdownTriggerDirective
+  DropdownTriggerDirective,
+  DROPDOWN_SCROLL_STRATEGY
 } from '@sbb-esta/angular-public/dropdown';
 
 /**

@@ -24,10 +24,12 @@ ts_library(
     module_name = "@sbb-esta/angular-icons/schematics",
     tsconfig = ":tsconfig.json",
     deps = [
+        "@npm//@angular/cdk",
         "@npm//@angular-devkit/core",
         "@npm//@angular-devkit/schematics",
         "@npm//@schematics/angular",
         "@npm//@types/node",
+        "@npm//svgo",
     ],
 )
 

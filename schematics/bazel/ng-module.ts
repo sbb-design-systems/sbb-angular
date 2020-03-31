@@ -14,12 +14,12 @@ import {
 } from '@angular-devkit/schematics';
 import { findNodes } from '@schematics/angular/utility/ast-utils';
 import {
+  CallExpression,
   createSourceFile,
   ExportDeclaration,
   ImportDeclaration,
   ScriptTarget,
-  SyntaxKind,
-  CallExpression
+  SyntaxKind
 } from 'typescript';
 
 import { SassBinary } from './sass-binary';

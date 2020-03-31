@@ -5,6 +5,7 @@ import { FunctionExportDoc } from 'dgeni-packages/typescript/api-doc-types/Funct
 import { InterfaceExportDoc } from 'dgeni-packages/typescript/api-doc-types/InterfaceExportDoc';
 import { TypeAliasExportDoc } from 'dgeni-packages/typescript/api-doc-types/TypeAliasExportDoc';
 import * as path from 'path';
+
 import { computeApiDocumentUrl } from '../common/compute-api-url';
 import { isDeprecatedDoc, isPrimaryExportDoc } from '../common/decorators';
 import { CategorizedClassDoc } from '../common/dgeni-definitions';
@@ -180,7 +181,7 @@ export class EntryPointGrouper implements Processor {
     // only deprecated doc, the last deprecated doc is used. We don't want to always
     // skip deprecated docs as they could be still needed for documentation of a
     // deprecated entry-point.
-    for (let doc of docs) {
+    for (const doc of docs) {
       if (!isDeprecatedDoc(doc)) {
         return doc;
       }
@@ -225,7 +226,7 @@ export class EntryPointGrouper implements Processor {
   /** Finds the matching entry-point of the given file path. */
   private _findMatchingEntryPoint(relativeFilePath: string): string | null {
     let foundEntryPoint: string | null = null;
-    for (let entryPoint of this.entryPoints) {
+    for (const entryPoint of this.entryPoints) {
       if (!relativeFilePath.startsWith(entryPoint)) {
         continue;
       }

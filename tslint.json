@@ -1,6 +1,9 @@
 {
   "extends": ["tslint-plugin-prettier", "tslint-config-prettier"],
   "rulesDirectory": ["node_modules/codelyzer", "node_modules/tslint-consistent-codestyle/rules"],
+  "linterOptions": {
+    "exclude": ["tools/dgeni/**/*.ts"]
+  },
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
