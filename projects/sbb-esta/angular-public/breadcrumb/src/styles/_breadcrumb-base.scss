@@ -133,7 +133,7 @@
     }
 
     &-icon {
-      @include svgIconColor($sbbColorGrey);
+      @include svgIconColor($sbbColorGranite);
       width: toPx(16);
       height: toPx(16);
       line-height: toPx($breadcrumbArrowLineHeight);
@@ -229,7 +229,7 @@
   }
 
   &-arrow {
-    @include svgIconColor($sbbColorGrey);
+    @include svgIconColor($sbbColorGranite);
     width: toPx($breadcrumbArrowWidth);
     height: toPx($breadcrumbArrowHeight);
     line-height: toPx($breadcrumbArrowLineHeight);
@@ -251,8 +251,8 @@
   }
   a,
   button {
-    @include svgIconColor($sbbColorGrey);
-    color: $sbbColorGrey;
+    @include svgIconColor($sbbColorGranite);
+    color: $sbbColorGranite;
 
     &:hover,
     &:focus {
