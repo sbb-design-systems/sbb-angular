@@ -27,15 +27,13 @@ class TooltipHoverTrueTestComponent {
 @Component({
   selector: 'sbb-true-hover-configuration-and-delay-settings-tooltip-test',
   template: `
-    <sbb-tooltip #t1 trigger="hover" hoverCloseDelay="2000" hoverOpenDelay="2000">
+    <sbb-tooltip #t1 trigger="hover" hoverHideDelay="2000" hoverShowDelay="2000">
       <p>Dies ist ein Tooltip mit einer Schaltfläche im Inneren.</p>
     </sbb-tooltip>
   `
 })
 class TooltipHoverTrueAndDelaySettingsTestComponent {
   @ViewChild('t1', { static: true }) t1: TooltipComponent;
-  closeDelay = 2000;
-  openDelay = 2000;
 }
 
 describe('TooltipComponent', () => {

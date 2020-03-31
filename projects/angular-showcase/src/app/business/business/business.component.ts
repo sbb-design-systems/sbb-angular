@@ -33,7 +33,10 @@ import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-s
 import { TextareaFormsShowcaseComponent } from '../business-examples/textarea-forms-showcase/textarea-forms-showcase.component';
 import { TextareaNativeShowcaseComponent } from '../business-examples/textarea-native-showcase/textarea-native-showcase.component';
 import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../business-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
-import { TooltipShowcaseComponent } from '../business-examples/tooltip-showcase/tooltip-showcase.component';
+import { TooltipCustomContentShowcaseComponent } from '../business-examples/tooltip-custom-content-showcase/tooltip-custom-content-showcase.component';
+import { TooltipCustomIconShowcaseComponent } from '../business-examples/tooltip-custom-icon-showcase/tooltip-custom-icon-showcase.component';
+import { TooltipHoverShowcaseComponent } from '../business-examples/tooltip-hover-showcase/tooltip-hover-showcase.component';
+import { TooltipSimpleShowcaseComponent } from '../business-examples/tooltip-simple-showcase/tooltip-simple-showcase.component';
 import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
 
 @Component({
@@ -96,7 +99,10 @@ export class BusinessComponent implements ExampleProvider {
       'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
     },
     tooltip: {
-      'tooltip-showcase': new ComponentPortal(TooltipShowcaseComponent)
+      'tooltip-simple-showcase': new ComponentPortal(TooltipSimpleShowcaseComponent),
+      'tooltip-custom-content-showcase': new ComponentPortal(TooltipCustomContentShowcaseComponent),
+      'tooltip-custom-icon-showcase': new ComponentPortal(TooltipCustomIconShowcaseComponent),
+      'tooltip-hover-showcase': new ComponentPortal(TooltipHoverShowcaseComponent)
     },
     usermenu: {
       'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)

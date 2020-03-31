@@ -9,6 +9,7 @@ import {
   ElementRef,
   Inject,
   Input,
+  isDevMode,
   NgZone,
   OnDestroy,
   OnInit,
@@ -33,29 +34,60 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
    * The trigger event, on which the tooltip opens.
    */
   @Input() trigger: 'click' | 'hover' = 'click';
+
   /**
    * Customizations for delay open
+   * @deprecated Use hoverShowDelay
    */
   @Input()
   get hoverOpenDelay(): number {
-    return this._hoverOpenDelay;
+    return this.hoverShowDelay;
   }
   set hoverOpenDelay(value: number) {
-    this._hoverOpenDelay = coerceNumberProperty(value, 0);
+    if (isDevMode()) {
+      console.warn('use hoverShowDelay instead of hoverOpenDelay in sbb-tooltip component');
+    }
+    this.hoverShowDelay = value;
   }
-  private _hoverOpenDelay: number;
+
+  /**
+   * Customizations for show delay
+   */
+  @Input()
+  get hoverShowDelay(): number {
+    return this._hoverShowDelay;
+  }
+  set hoverShowDelay(value: number) {
+    this._hoverShowDelay = coerceNumberProperty(value, 0);
+  }
+  private _hoverShowDelay: number;
 
   /**
    * Customizations for delay close
+   * @deprecated Use hoverHideDelay
    */
   @Input()
   get hoverCloseDelay(): number {
-    return this._hoverCloseDelay;
+    return this.hoverHideDelay;
   }
   set hoverCloseDelay(value: number) {
-    this._hoverCloseDelay = coerceNumberProperty(value, 0);
+    if (isDevMode()) {
+      console.warn('use hoverHideDelay instead of hoverCloseDelay in sbb-tooltip component');
+    }
+    this.hoverHideDelay = value;
   }
-  private _hoverCloseDelay: number;
+
+  /**
+   * Customizations for hide delay
+   */
+  @Input()
+  get hoverHideDelay(): number {
+    return this._hoverHideDelay;
+  }
+  set hoverHideDelay(value: number) {
+    this._hoverHideDelay = coerceNumberProperty(value, 0);
+  }
+  private _hoverHideDelay: number;
 
   /**
    * References for timeout used for delay open/close
@@ -80,13 +112,17 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
   ngOnInit() {
     // The mouse events shouldn't be bound on mobile devices, because they can prevent the
     // first tap from firing its click event or can cause the tooltip to open for clicks.
-    if (this.trigger === 'hover' && !this._platform.IOS && !this._platform.ANDROID) {
-      this._manualListeners
-        .set('mouseenter', () => this.onMouseEnter())
-        .set('mouseleave', () => this.onMouseLeave());
-      this._manualListeners.forEach((listener, event) =>
-        this._elementRef.nativeElement.addEventListener(event, listener)
-      );
+    if (this.trigger === 'hover') {
+      this._panelClass.push('sbb-tooltip-trigger-hover');
+
+      if (!this._platform.IOS && !this._platform.ANDROID) {
+        this._manualListeners
+          .set('mouseenter', () => this.onMouseEnter())
+          .set('mouseleave', () => this.onMouseLeave());
+        this._manualListeners.forEach((listener, event) =>
+          this._elementRef.nativeElement.addEventListener(event, listener)
+        );
+      }
     }
   }
 
@@ -109,7 +145,7 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
     this._referenceActiveTimeout = window.setTimeout(() => {
       this.openTooltip(true);
       this._changeDetectorRef.markForCheck();
-    }, this.hoverOpenDelay);
+    }, this.hoverShowDelay);
   }
 
   /**
@@ -121,7 +157,7 @@ export class TooltipComponent extends TooltipBase implements OnInit, OnDestroy {
     this._referenceActiveTimeout = window.setTimeout(() => {
       this.close(true);
       this._changeDetectorRef.markForCheck();
-    }, this.hoverCloseDelay);
+    }, this.hoverHideDelay);
   }
 
   /**

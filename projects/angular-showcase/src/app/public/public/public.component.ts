@@ -42,7 +42,9 @@ import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../public-ex
 import { TextexpandShowcaseComponent } from '../public-examples/textexpand-showcase/textexpand-showcase.component';
 import { TimeInputShowcaseComponent } from '../public-examples/time-input-showcase/time-input-showcase.component';
 import { ToggleShowcaseComponent } from '../public-examples/toggle-showcase/toggle-showcase.component';
-import { TooltipShowcaseComponent } from '../public-examples/tooltip-showcase/tooltip-showcase.component';
+import { TooltipCustomContentShowcaseComponent } from '../public-examples/tooltip-custom-content-showcase/tooltip-custom-content-showcase.component';
+import { TooltipCustomIconShowcaseComponent } from '../public-examples/tooltip-custom-icon-showcase/tooltip-custom-icon-showcase.component';
+import { TooltipSimpleShowcaseComponent } from '../public-examples/tooltip-simple-showcase/tooltip-simple-showcase.component';
 import { UsermenuShowcaseComponent } from '../public-examples/usermenu-showcase/usermenu-showcase.component';
 
 @Component({
@@ -154,7 +156,11 @@ export class PublicComponent implements ExampleProvider {
     loading: { 'loading-showcase': new ComponentPortal(LoadingShowcaseComponent) },
     dropdown: { 'dropdown-showcase': new ComponentPortal(DropdownShowcaseComponent) },
     lightbox: { 'lightbox-showcase': new ComponentPortal(LightboxShowcaseComponent) },
-    tooltip: { 'tooltip-showcase': new ComponentPortal(TooltipShowcaseComponent) }
+    tooltip: {
+      'tooltip-simple-showcase': new ComponentPortal(TooltipSimpleShowcaseComponent),
+      'tooltip-custom-content-showcase': new ComponentPortal(TooltipCustomContentShowcaseComponent),
+      'tooltip-custom-icon-showcase': new ComponentPortal(TooltipCustomIconShowcaseComponent)
+    }
   };
 
   resolveExample<TComponent = any>(

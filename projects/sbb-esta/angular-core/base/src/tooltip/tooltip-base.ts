@@ -159,6 +159,8 @@ export abstract class TooltipBase implements OnDestroy {
   private readonly _scrollStrategy: () => ScrollStrategy;
   private _closingActionsSubscription: Subscription;
 
+  protected _panelClass = ['sbb-tooltip-content'];
+
   constructor(
     protected _overlay: Overlay,
     protected _tooltipRegistry: TooltipRegistryService,
@@ -338,7 +340,7 @@ export abstract class TooltipBase implements OnDestroy {
       positionStrategy: this._createTooltipPositionStrategy(),
       hasBackdrop: false,
       scrollStrategy: this._scrollStrategy(),
-      panelClass: 'sbb-tooltip-content'
+      panelClass: this._panelClass
     });
 
     this.tooltipRef = this._overlay.create(overlayConfig);
