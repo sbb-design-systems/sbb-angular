@@ -7085,12 +7085,12 @@ neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-ngx-perfect-scrollbar@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-9.0.0.tgz#361c75010d2a560dd8aaadb799bdf04db5a1824b"
-  integrity sha512-jiFrOLONf/w2PjSKkEjQeTnMdlMVcQgjzIrYcsor1HWTmE+95J2sZAd/WF4zoutbpIqfU8VQQoAp8HOa7U1c/g==
+ngx-perfect-scrollbar@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-8.0.0.tgz#19c1bbf9b1a36d89b00a68f7834e39427d29182f"
+  integrity sha512-IXoFbULQnxyJj0gdCcKCLE/6OW9HCP9KARzMCKS1kNxTuzG4DghjM2AaCBRM5/sFwdbn6rqOKMCINtHA8W8YCA==
   dependencies:
-    perfect-scrollbar "1.5.0"
+    perfect-scrollbar "^1.4.0"
     resize-observer-polyfill "^1.5.0"
 
 nice-try@^1.0.4:
@@ -7778,7 +7778,7 @@ pause-stream@0.0.11:
   dependencies:
     through "~2.3"
 
-perfect-scrollbar@1.5.0:
+perfect-scrollbar@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.5.0.tgz#821d224ed8ff61990c23f26db63048cdc75b6b83"
   integrity sha512-NrNHJn5mUGupSiheBTy6x+6SXCFbLlm8fVZh9moIzw/LgqElN5q4ncR4pbCBCYuCJ8Kcl9mYM0NgDxvW+b4LxA==

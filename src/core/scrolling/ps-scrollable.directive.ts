@@ -1,8 +1,10 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/overlay';
 import { Directive, ElementRef, NgZone, OnDestroy, Optional, Self } from '@angular/core';
-import { PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { merge, Observable } from 'rxjs';
+
+import { PerfectScrollbarComponent } from './perfect-scrollbar.component';
+import { PerfectScrollbarDirective } from './perfect-scrollbar.directive';
 
 /**
  * Registers the scroll detection for the perfect scrollbar directive,
