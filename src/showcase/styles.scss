@@ -21,7 +21,7 @@ sbb-maps,
 sbb-core,
 sbb-icons,
 .cdk-overlay-container {
-  @import '../public/styles';
+  @import '../public/style_bundle';
   sbb-markdown-viewer,
   sbb-component-viewer,
   sbb-api-viewer,
@@ -43,7 +43,7 @@ sbb-icons,
 
 sbb-business,
 .cdk-overlay-container {
-  @import '../business/styles';
+  @import '../business/style_bundle';
   sbb-markdown-viewer,
   sbb-business-component-viewer,
   sbb-dialog-container {
