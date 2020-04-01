@@ -13,12 +13,6 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//tools/highlight-files:index.bzl", "highlight_files")
 load("//tools/differential-loading-merge:index.bzl", "differential_loading_merge")
 
-ts_config(
-    name = "tsconfig-test",
-    src = "tsconfig-test.json",
-    deps = [":tsconfig.json"],
-)
-
 # Run the sass compiler to output "styles.css"
 sass_binary(
     name = "styles",

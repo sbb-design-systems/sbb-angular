@@ -1,7 +1,7 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import {
   FormBuilder,
   FormGroup,
@@ -11,7 +11,8 @@ import {
   Validators
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AutocompleteModule, FieldModule, FormErrorDirective } from '@sbb-esta/angular-business';
+import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
+import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-business/field';
 import {
   createKeyboardEvent,
   dispatchEvent,
@@ -86,7 +87,7 @@ describe('ChipInputComponent', () => {
     let fixture: ComponentFixture<ChipInputReactiveFormsTestComponent>;
     let inputElement: HTMLInputElement;
 
-    configureTestSuite(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [ChipInputComponent, ChipComponent, ChipInputReactiveFormsTestComponent],
         imports: [
@@ -96,8 +97,8 @@ describe('ChipInputComponent', () => {
           ReactiveFormsModule,
           FieldModule
         ]
-      });
-    });
+      }).compileComponents();
+    }));
 
     beforeEach(() => {
       fixture = TestBed.createComponent(ChipInputReactiveFormsTestComponent);
@@ -120,7 +121,7 @@ describe('ChipInputComponent', () => {
     });
 
     it('should contain two option chips using setValue', () => {
-      component.formGroup.get('chip').setValue(['option-1', 'option-2']);
+      component.formGroup.get('chip')!.setValue(['option-1', 'option-2']);
       fixture.detectChanges();
 
       const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
@@ -128,16 +129,16 @@ describe('ChipInputComponent', () => {
     });
 
     it('should hide form error if invalid but untouched', () => {
-      component.formGroup.get('chip').setValue([]);
+      component.formGroup.get('chip')!.setValue([]);
       fixture.detectChanges();
 
       const errorText = fixture.debugElement.query(By.directive(FormErrorDirective));
-      expect(component.formGroup.get('chip').invalid).toBe(true);
+      expect(component.formGroup.get('chip')!.invalid).toBe(true);
       expect(errorText).toBeFalsy();
     });
 
     it('should display form error when input was touched', () => {
-      component.formGroup.get('chip').setValue([]);
+      component.formGroup.get('chip')!.setValue([]);
       fixture.detectChanges();
 
       inputElement.focus();
@@ -151,7 +152,7 @@ describe('ChipInputComponent', () => {
     });
 
     it('should disable chip input and chips', () => {
-      component.formGroup.get('chip').disable();
+      component.formGroup.get('chip')!.disable();
       const chipInputComponent = fixture.debugElement.query(By.directive(ChipInputComponent));
       const chipComponents = fixture.debugElement.queryAll(By.directive(ChipComponent));
       fixture.detectChanges();
@@ -174,7 +175,7 @@ describe('ChipInputComponent', () => {
     });
 
     it('should correctly update chip value by using keyboard', () => {
-      expect(component.formGroup.get('chip').value).toEqual(['option-1']);
+      expect(component.formGroup.get('chip')!.value).toEqual(['option-1']);
 
       inputElement.focus();
       typeInElement(inputElement, 'option-2');
@@ -182,7 +183,7 @@ describe('ChipInputComponent', () => {
 
       fixture.detectChanges();
 
-      expect(component.formGroup.get('chip').value).toEqual(['option-1', 'option-2']);
+      expect(component.formGroup.get('chip')!.value).toEqual(['option-1', 'option-2']);
     });
   });
 
@@ -191,12 +192,12 @@ describe('ChipInputComponent', () => {
     let fixture: ComponentFixture<ChipInputFormsTestComponent>;
     let inputElement: HTMLInputElement;
 
-    configureTestSuite(() => {
+    beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [ChipInputComponent, ChipComponent, ChipInputFormsTestComponent],
         imports: [CommonModule, AutocompleteModule, IconCrossModule, FormsModule, FieldModule]
-      });
-    });
+      }).compileComponents();
+    }));
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(ChipInputFormsTestComponent);
@@ -211,7 +212,7 @@ describe('ChipInputComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should contain one option chip through preselection', fakeAsync(done => {
+    it('should contain one option chip through preselection', fakeAsync(() => {
       component.value = ['option-1'];
       fixture.detectChanges();
       flush();

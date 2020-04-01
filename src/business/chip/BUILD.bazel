@@ -57,7 +57,8 @@ ng_test_library(
     ),
     deps = [
         ":chip",
-        "//src/business",
+        "//src/business/autocomplete",
+        "//src/business/field",
         "//src/core/testing",
         "//src/icons",
         "@npm//@angular/cdk",

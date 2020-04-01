@@ -181,7 +181,7 @@ describe('Breadcrumb behaviour Test', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: 'home' } });
+      await router.navigate(['.'], { queryParams: { level: 'home' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -211,7 +211,7 @@ describe('Breadcrumb behaviour Test', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: '1' } });
+      await router.navigate(['.'], { queryParams: { level: '1' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -237,7 +237,7 @@ describe('Breadcrumb behaviour Test', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: '2' } });
+      await router.navigate(['.'], { queryParams: { level: '2' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -314,7 +314,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: 'home' } });
+      await router.navigate(['.'], { queryParams: { level: 'home' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -344,7 +344,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
+      await router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -384,7 +384,7 @@ describe('Breadcrumb behaviour Test 2', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: '1', sub: '2' } });
+      await router.navigate(['.'], { queryParams: { level: '1', sub: '2' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -452,7 +452,7 @@ describe('Breadcrumb behaviour Test 3', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: 'home' } });
+      await router.navigate(['.'], { queryParams: { level: 'home' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();
@@ -482,7 +482,7 @@ describe('Breadcrumb behaviour Test 3', () => {
       fixtureTest.detectChanges();
       location = TestBed.inject(Location);
 
-      router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
+      await router.navigate(['.'], { queryParams: { level: '1', sub: '1' } });
       fixtureTest.detectChanges();
 
       await fixtureTest.whenStable();

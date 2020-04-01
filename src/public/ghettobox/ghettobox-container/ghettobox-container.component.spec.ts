@@ -8,7 +8,7 @@ import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { IconCollectionModule } from '@sbb-esta/angular-icons';
 
 import { Ghettobox } from '../ghettobox/ghettobox-ref';
-import { GhettoboxComponent } from '../ghettobox/ghettobox.component';
+import { GhettoboxComponent, GhettoboxDeletedEvent } from '../ghettobox/ghettobox.component';
 import { GhettoboxService } from '../ghettobox/ghettobox.service';
 
 import { GhettoboxContainerComponent } from './ghettobox-container.component';
@@ -212,7 +212,9 @@ describe('GhettoboxContainerComponent', () => {
     const attachedGhettoboxesCopy = ghettoboxService.attachedGhettoboxes.slice();
 
     ghettoboxService.attachedGhettoboxes.forEach(g => {
-      g.componentInstance.afterDelete.subscribe(gs => expect(gs.ghettoboxState).toBe('deleted'));
+      g.componentInstance.afterDelete.subscribe((gs: GhettoboxDeletedEvent) =>
+        expect(gs.ghettoboxState).toBe('deleted')
+      );
       expect(g.componentInstance.visible).toBe(true);
     });
 
