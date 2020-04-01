@@ -156,7 +156,7 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
 
 def karma_web_test_suite(name, **kwargs):
     web_test_args = {}
-    kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + getAngularUmdTargets() + kwargs.get("srcs", [])
+    kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
     kwargs["deps"] = ["//tools/rxjs:rxjs_umd_modules"] + kwargs.get("deps", [])
 
     for opt_name in kwargs.keys():
@@ -238,6 +238,7 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **k
             "@io_bazel_rules_webtesting//browsers:chromium-local",
             "@io_bazel_rules_webtesting//browsers:firefox-local",
         ],
+        # do not sort
         bootstrap = [
             "@npm//:node_modules/zone.js/dist/zone-testing-bundle.js",
             "@npm//:node_modules/reflect-metadata/Reflect.js",

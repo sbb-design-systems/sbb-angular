@@ -43,6 +43,7 @@ ng_test_library(
     deps = [
         ":tabs",
         "//src/core/testing",
+        "//src/public/badge",
         "@npm//@angular/platform-browser",
     ],
 )

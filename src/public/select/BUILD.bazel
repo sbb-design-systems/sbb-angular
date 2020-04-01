@@ -49,7 +49,11 @@ ng_test_library(
         ":select",
         "//src/core/testing",
         "//src/public/field",
+        "//src/public/option",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
+        "@npm//rxjs",
     ],
 )
 

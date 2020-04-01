@@ -43,6 +43,10 @@ ng_test_library(
     ),
     deps = [
         ":tooltip",
+        "//src/core/base",
+        "//src/icons",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
 )

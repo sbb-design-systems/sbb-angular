@@ -43,6 +43,7 @@ ng_test_library(
     deps = [
         ":processflow",
         "//src/core/testing",
+        "//src/icons",
     ],
 )
 

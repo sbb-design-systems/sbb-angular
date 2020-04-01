@@ -42,6 +42,9 @@ ng_test_library(
     ),
     deps = [
         ":radio-button",
+        "//src/core/radio-button",
+        "@npm//@angular/common",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
     ],
 )

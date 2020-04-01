@@ -41,6 +41,9 @@ ng_test_library(
     ),
     deps = [
         ":contextmenu",
+        "//src/business/dropdown",
+        "//src/icons",
+        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
     ],
 )

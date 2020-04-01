@@ -44,7 +44,10 @@ ng_test_library(
     deps = [
         ":lightbox",
         "//src/core/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
         "@npm//@angular/platform-browser",
+        "@npm//rxjs",
     ],
 )
 

@@ -54,6 +54,8 @@ ng_test_library(
         ":textarea",
         "//src/core/testing",
         "//src/public/field",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
     ],
 )

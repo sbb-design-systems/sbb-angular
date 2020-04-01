@@ -43,6 +43,7 @@ ng_test_library(
     deps = [
         ":file-selector",
         "//src/core/testing",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
     ],
 )

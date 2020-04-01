@@ -49,6 +49,8 @@ ng_test_library(
     deps = [
         ":search",
         "//src/core/testing",
+        "//src/public/autocomplete",
+        "@npm//@angular/cdk",
         "@npm//@angular/platform-browser",
     ],
 )

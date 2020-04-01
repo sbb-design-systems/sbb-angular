@@ -31,6 +31,7 @@ ng_test_library(
     ),
     deps = [
         ":scrolling",
+        "@npm//rxjs",
     ],
 )
 

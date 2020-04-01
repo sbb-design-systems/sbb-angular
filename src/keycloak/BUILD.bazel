@@ -41,6 +41,9 @@ ng_test_library(
     ),
     deps = [
         ":keycloak",
+        "@npm//@angular/common",
+        "@npm//keycloak-js",
+        "@npm//rxjs",
     ],
 )
 

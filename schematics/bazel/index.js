@@ -121,7 +121,7 @@ class NgModule {
         return this._specFiles
             .reduce((current, f) => current.concat(this._findImportsAndReexports(f)), [])
             .filter((v, i, a) => a.indexOf(v) === i)
-            .filter(i => !this.dependencies.includes(i))
+            .filter(i => i !== '@npm//@angular/core')
             .sort();
     }
     _findImportsAndReexports(fileEntry) {
@@ -195,7 +195,7 @@ class NgPackage extends NgModule {
         this.hasReadme = dir.subfiles.includes(core.fragment('README.md'));
         this.hasSchematics = dir.subdirs.includes(core.fragment('schematics'));
         this.hasSrcFiles = dir.subdirs.includes(core.fragment('src'));
-        this.hasStyles = dir.subfiles.includes(core.fragment('_styles.scss'));
+        this.hasStyleBundle = dir.subfiles.includes(core.fragment('_style_bundle.scss'));
         this.hasTypography = dir.subfiles.includes(core.fragment('typography.scss'));
         this.markdownFiles = this._markdownFiles.map(f => core.basename(f.path));
         this.markdownModules = ngModules.filter(m => m.hasMarkdown).map(m => this._resolvePath(m));

@@ -38,6 +38,7 @@ ng_test_library(
     ),
     deps = [
         ":esri-legend",
+        "//src/maps/core",
     ],
 )
 

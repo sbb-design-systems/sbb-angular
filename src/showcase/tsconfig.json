@@ -14,7 +14,7 @@
       "es2018",
       "dom"
     ],
-    "types": ["arc-gis-js", "grecaptcha"],
+    "types": ["arcgis-js-api", "grecaptcha"],
     "paths": {
       "@sbb-esta/angular-business": ["../business"],
       "@sbb-esta/angular-business/*": ["../business/*"],

@@ -50,6 +50,7 @@ ng_test_library(
     ),
     deps = [
         ":links",
+        "//src/icons",
         "@npm//@angular/platform-browser",
     ],
 )

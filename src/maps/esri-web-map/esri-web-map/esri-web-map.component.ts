@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="arcgis-js-api" />
+
 import {
   ChangeDetectionStrategy,
   Component,

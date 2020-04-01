@@ -59,6 +59,10 @@ ng_test_library(
         ":chip",
         "//src/business",
         "//src/core/testing",
+        "//src/icons",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
     ],
 )

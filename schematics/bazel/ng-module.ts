@@ -153,7 +153,7 @@ export class NgModule {
     return this._specFiles
       .reduce((current, f) => current.concat(this._findImportsAndReexports(f)), [] as string[])
       .filter((v, i, a) => a.indexOf(v) === i)
-      .filter(i => !this.dependencies.includes(i))
+      .filter(i => i !== '@npm//@angular/core')
       .sort();
   }
 

@@ -53,7 +53,8 @@ ng_test_library(
 )
 
 ng_web_test_suite(
-    name = "unit_tests",
+    name = "unit_tests",<% if (testDependencies.includes('@npm//esri-loader')) { %>
+    srcs = ["@npm//:node_modules/esri-loader/dist/umd/esri-loader.js"],<% } %>
     deps = [":unit_test_sources"],
 )<% } %><% if (hasMarkdown) { %>
 

@@ -62,7 +62,10 @@ ng_test_library(
     ),
     deps = [
         ":datepicker",
+        "//src/core/datetime",
         "//src/core/testing",
+        "@npm//@angular/cdk",
+        "@npm//@angular/forms",
         "@npm//@angular/platform-browser",
         "@npm//@angular/platform-browser-dynamic",
     ],

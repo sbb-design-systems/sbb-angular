@@ -1,3 +1,6 @@
+// Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1265
+/// <reference types="arcgis-js-api" />
+
 import { TestBed } from '@angular/core/testing';
 import * as esriLoader from 'esri-loader';
 
@@ -15,9 +18,9 @@ describe('EsriLoaderService', () => {
     originsWithCredentialsRequired: ['o1', 'o2']
   };
 
-  class EsriConfigMock {
+  class EsriConfigMock implements Partial<__esri.config> {
     portalUrl: string;
-    request = {
+    request: __esri.configRequest = {
       trustedServers: [],
       interceptors: []
     };
@@ -51,7 +54,7 @@ describe('EsriLoaderService', () => {
 
     expect(esriConfigMock.portalUrl).toEqual(EsriConfigConsts.arcgisPortalUrl);
     expect(esriConfigMock.request.trustedServers).toEqual(EsriConfigConsts.trustedServers);
-    expect(esriConfigMock.request.interceptors.length).toBeGreaterThan(0);
+    expect(esriConfigMock.request.interceptors!.length).toBeGreaterThan(0);
     expect(esriLoader.loadCss).toHaveBeenCalledWith(EsriConfigConsts.cssUrl);
     expect(webMap).toBeDefined();
   });
@@ -68,11 +71,11 @@ describe('EsriLoaderService', () => {
     let webMap: __esri.WebMapConstructor;
     [webMap] = await loaderService.load<__esri.WebMapConstructor>(['esri/WebMap']);
 
-    expect(esriConfigMock.portalUrl).toEqual(esriCustomConf.portalUrl);
+    expect(esriConfigMock.portalUrl).toEqual(esriCustomConf.portalUrl!);
     expect(esriConfigMock.request.trustedServers).toEqual(
-      EsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers)
+      EsriConfigConsts.trustedServers.concat(esriCustomConf.trustedServers!)
     );
-    expect(esriConfigMock.request.interceptors.length).toBeGreaterThan(0);
+    expect(esriConfigMock.request.interceptors!.length).toBeGreaterThan(0);
     expect(esriLoader.loadCss).toHaveBeenCalledWith(esriCustomConf.cssUrl);
     expect(webMap).toBeDefined();
   });
