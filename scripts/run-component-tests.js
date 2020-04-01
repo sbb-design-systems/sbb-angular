@@ -35,18 +35,23 @@ const packagesDir = path.join(projectDir, 'src/');
 const orderedGuessPackages = ['public', 'business', 'maps', 'core', 'keycloak'];
 
 /** Map of common typos in target names. The key is the typo, the value is the correct form. */
-const commonTypos = new Map([
-]);
+const commonTypos = new Map([]);
 
 // ShellJS should exit if any command fails.
 shelljs.set('-e');
 shelljs.cd(projectDir);
 
 // Extracts the supported command line options.
-const {_: components, local, firefox, watch} = minimist(args, {
+const { _: components, local, firefox, watch } = minimist(args, {
   boolean: ['local', 'firefox', 'watch'],
-  default: {watch: true},
+  default: { watch: true }
 });
+
+// TODO: Firefox currently disabled due to missing windows support. Check if available with next version.
+if (firefox) {
+  console.error(chalk.red('Firefox currently unsupported on windows.'));
+  process.exit(1);
+}
 
 // Whether tests for all components should be run.
 const all = components.length === 1 && components[0] === 'all';
@@ -54,30 +59,38 @@ const all = components.length === 1 && components[0] === 'all';
 // We can only run a single target with "--local". Running multiple targets within the
 // same Karma server is not possible since each test target runs isolated from the others.
 if (local && (components.length > 1 || all)) {
-  console.error(chalk.red(
+  console.error(
+    chalk.red(
       'Unable to run multiple components tests in local mode. ' +
-      'Only one component at a time can be run with "--local"'));
+        'Only one component at a time can be run with "--local"'
+    )
+  );
   process.exit(1);
 }
 
 const bazelBinary = `yarn -s ${watch ? 'ibazel' : 'bazel'}`;
-const testTargetName =
-    `unit_tests_${local ? 'local' : firefox ? 'firefox-local' : 'chromium-local'}`;
+const testTargetName = `unit_tests_${
+  local ? 'local' : firefox ? 'firefox-local' : 'chromium-local'
+}`;
 
 // If `all` has been specified as component, we run tests for all components
 // in the repository. The `--firefox` flag can be still specified.
 if (all) {
   shelljs.exec(
-      `${bazelBinary} test //src/... --test_tag_filters=-e2e,-browser:${testTargetName} ` +
-      `--build_tag_filters=-browser:${testTargetName} --build_tests_only`);
+    `${bazelBinary} test //src/... --test_tag_filters=-e2e,-browser:${testTargetName} ` +
+      `--build_tag_filters=-browser:${testTargetName} --build_tests_only`
+  );
   return;
 }
 
 // Exit if no component has been specified.
 if (!components.length) {
-  console.error(chalk.red(
+  console.error(
+    chalk.red(
       'No component specified. Please either specify individual components, or pass "all" ' +
-      'in order to run tests for all components.'));
+        'in order to run tests for all components.'
+    )
+  );
   console.info(chalk.yellow('Below are a few examples of how the script can be run:'));
   console.info(chalk.yellow(` - yarn test all`));
   console.info(chalk.yellow(` - yarn test public/button business/contextmenu`));
@@ -87,8 +100,8 @@ if (!components.length) {
 
 const bazelAction = local ? 'run' : 'test';
 const testLabels = components
-    .map(t => correctTypos(t))
-    .map(t => `${getBazelPackageOfComponentName(t)}:${testTargetName}`);
+  .map(t => correctTypos(t))
+  .map(t => `${getBazelPackageOfComponentName(t)}:${testTargetName}`);
 
 // Runs Bazel for the determined test labels.
 shelljs.exec(`${bazelBinary} ${bazelAction} ${testLabels.join(' ')}`);
@@ -100,8 +113,8 @@ shelljs.exec(`${bazelBinary} ${bazelAction} ${testLabels.join(' ')}`);
 function getBazelPackageOfComponentName(name) {
   // Before guessing any Bazel package, we test if the name contains the
   // package name already. If so, we just use that for Bazel package.
-  const targetName = convertPathToBazelLabel(name) ||
-                     convertPathToBazelLabel(path.join(packagesDir, name));
+  const targetName =
+    convertPathToBazelLabel(name) || convertPathToBazelLabel(path.join(packagesDir, name));
   if (targetName !== null) {
     return targetName;
   }
@@ -114,8 +127,12 @@ function getBazelPackageOfComponentName(name) {
       return guessTargetName;
     }
   }
-  console.error(chalk.red(`Could not find test target for specified component: ` +
-    `${chalk.yellow(name)}. Looked in packages: ${orderedGuessPackages.join(', ')}`));
+  console.error(
+    chalk.red(
+      `Could not find test target for specified component: ` +
+        `${chalk.yellow(name)}. Looked in packages: ${orderedGuessPackages.join(', ')}`
+    )
+  );
   process.exit(1);
 }
 

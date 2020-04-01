@@ -236,7 +236,8 @@ def ng_web_test_suite(deps = [], static_css = [], bootstrap = [], tags = [], **k
             # Note: when changing the browser names here, also update the "yarn test"
             # script to reflect the new browser names.
             "@io_bazel_rules_webtesting//browsers:chromium-local",
-            "@io_bazel_rules_webtesting//browsers:firefox-local",
+            # TODO: Firefox currently disabled due to missing windows support. Check if available with next version.
+            # "@io_bazel_rules_webtesting//browsers:firefox-local",
         ],
         # do not sort
         bootstrap = [
