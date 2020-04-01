@@ -62,7 +62,6 @@ yarn_install(
     # that Yarn will rerun whenever one of these files has been modified.
     data = [
         "//:tools/postinstall/apply-patches.js",
-        "//:tools/postinstall/update-ngcc-main-fields.js",
     ],
     package_json = "//:package.json",
     quiet = False,
@@ -94,7 +93,8 @@ load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_re
 
 browser_repositories(
     chromium = True,
-    firefox = True,
+    # TODO: Currently disabled due to missing windows support. Check if available with next version.
+    # firefox = True,
 )
 
 # Fetch transitive dependencies which are needed to use the Sass rules.
