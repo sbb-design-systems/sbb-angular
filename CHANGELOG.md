@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.2.0...9.3.0) (2020-04-02)
+
+
+### Features
+
+* ng-add support ([#358](https://github.com/sbb-design-systems/sbb-angular/issues/358)) ([ca8e83f](https://github.com/sbb-design-systems/sbb-angular/commit/ca8e83f8fabf71e8a1ac2e9122dbc6beeec815df))
+
 ## [9.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.1.1...9.2.0) (2020-04-02)
 
 
