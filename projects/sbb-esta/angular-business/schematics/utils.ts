@@ -48,7 +48,7 @@ export function addDefaultDependency(
   };
   addPackageJsonDependency(host, nodeDependency);
   if (context) {
-    context.logger.info(`✅️ Added ${name} dependency`);
+    context.logger.info(`✔️ Added ${name} dependency`);
   }
   return host;
 }

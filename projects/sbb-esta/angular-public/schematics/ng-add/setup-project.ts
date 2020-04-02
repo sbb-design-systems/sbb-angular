@@ -19,7 +19,7 @@ export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
 export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
 
 // noinspection JSUnusedGlobalSymbols
-export default function(options: Schema): Rule {
+export function setUp(options: Schema): Rule {
   return chain([addAnimationsModule(options), addTypographyToAngularJson(options)]);
 }
 
@@ -61,7 +61,7 @@ function addTypographyToStylesNodeOfAngularJson(
     optionsNode.styles = [TYPOGRAPHY_CSS_PATH];
 
     updateWorkspace(workspace)(tree, context);
-    context.logger.info(`✅️ Added typography css entry to angular.json (${buildOrTest})`);
+    context.logger.info(`✔️ Added typography css entry to angular.json (${buildOrTest})`);
     return tree;
   }
 
@@ -74,7 +74,7 @@ function addTypographyToStylesNodeOfAngularJson(
 
   updateWorkspace(workspace)(tree, context);
 
-  context.logger.info(`✅️ Added typography css entry to angular.json (${buildOrTest})`);
+  context.logger.info(`✔️ Added typography css entry to angular.json (${buildOrTest})`);
 
   return tree;
 }
@@ -109,7 +109,7 @@ function addAnimationsModule(options: Schema) {
         project
       );
 
-      context.logger.info(`✅️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to angular.json`);
+      context.logger.info(`✔️ Added ${BROWSER_ANIMATIONS_MODULE_NAME} to angular.json`);
     } else {
       if (hasNgModuleImport(host, appModulePath, BROWSER_ANIMATIONS_MODULE_NAME)) {
         // Do not add the NoopAnimationsModule module if the project already explicitly uses
@@ -126,7 +126,7 @@ function addAnimationsModule(options: Schema) {
         '@angular/platform-browser/animations',
         project
       );
-      context.logger.info(`✅️ Added ${NOOP_ANIMATIONS_MODULE_NAME} to angular.json`);
+      context.logger.info(`✔️ Added ${NOOP_ANIMATIONS_MODULE_NAME} to angular.json`);
     }
 
     return host;

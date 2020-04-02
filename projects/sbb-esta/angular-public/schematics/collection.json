@@ -10,7 +10,7 @@
     "ng-add-setup-project": {
       "description": "Sets up the specified project after the ng-add dependencies have been installed.",
       "private": true,
-      "factory": "./ng-add/setup-project",
+      "factory": "./ng-add/setup-project#setUp",
       "schema": "./ng-add/schema.json"
     }
   }
