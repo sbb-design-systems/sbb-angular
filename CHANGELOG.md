@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.2.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.1.1...9.2.0) (2020-04-02)
+
+
+### Features
+
+* **business:** apply breadcrumb business styling ([#353](https://github.com/sbb-design-systems/sbb-angular/issues/353)) ([2aa839d](https://github.com/sbb-design-systems/sbb-angular/commit/2aa839dee122502f3b20ff4495146f6d36ca61bc)), closes [#78](https://github.com/sbb-design-systems/sbb-angular/issues/78)
+* **business:** enable any element as a tooltip trigger and provide tooltip styling ([#356](https://github.com/sbb-design-systems/sbb-angular/issues/356)) ([b79eca8](https://github.com/sbb-design-systems/sbb-angular/commit/b79eca82a8374b03ad4865f96c34ab380a3ccde9)), closes [#200](https://github.com/sbb-design-systems/sbb-angular/issues/200) [#90](https://github.com/sbb-design-systems/sbb-angular/issues/90) [#225](https://github.com/sbb-design-systems/sbb-angular/issues/225)
+
+
+### Bug Fixes
+
+* enable click on arrow in usermenu panel ([#357](https://github.com/sbb-design-systems/sbb-angular/issues/357)) ([36c198c](https://github.com/sbb-design-systems/sbb-angular/commit/36c198cfac6aadcb1c5ccdad1474bf332954d6c7)), closes [#349](https://github.com/sbb-design-systems/sbb-angular/issues/349)
+* **maps:** remove usage of includes() ([#355](https://github.com/sbb-design-systems/sbb-angular/issues/355)) ([057dcef](https://github.com/sbb-design-systems/sbb-angular/commit/057dcef6fe26fe2028e0cef8daec7ec4d619bc4e))
+
 ### [9.1.1](https://github.com/sbb-design-systems/sbb-angular/compare/9.1.0...9.1.1) (2020-03-19)
 
 
