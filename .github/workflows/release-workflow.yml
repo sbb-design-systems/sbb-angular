@@ -77,7 +77,7 @@ jobs:
     - name: Build @sbb-esta/angular-public
       if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
       run: npm run build:public
-      
+
     - name: Restore @sbb-esta/angular-maps from cache
       uses: actions/cache@v1
       id: sbb_esta_angular_maps_cache
@@ -89,8 +89,8 @@ jobs:
           ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.scss') }}"
     - name: Build @sbb-esta/angular-maps
       if: steps.sbb_esta_angular_maps_cache.outputs.cache-hit != 'true'
-      run: npm run build:angular-maps
-      
+      run: npm run build:maps
+
     - name: Restore @sbb-esta/angular-business from cache
       uses: actions/cache@v1
       id: sbb_esta_angular_business_cache
