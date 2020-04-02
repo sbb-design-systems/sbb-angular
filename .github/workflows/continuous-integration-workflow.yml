@@ -49,8 +49,20 @@ jobs:
 
     - name: "Build: Migrate public to business components"
       run: yarn -s build:business:public2business
-    - name: "Build: Bazel"
-      run: bazelisk build src/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Core"
+      run: bazelisk build src/core/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Keycloak"
+      run: bazelisk build src/keycloak/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Icons"
+      run: bazelisk build src/icons/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Maps"
+      run: bazelisk build src/maps/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Business"
+      run: bazelisk build src/business/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Public"
+      run: bazelisk build src/public/... --build_tag_filters=-docs-package,-release-package
+    - name: "Build: Bazel Showcase"
+      run: bazelisk build src/showcase/... --build_tag_filters=-docs-package,-release-package
 
     - name: "Test: Run local tests"
       run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only

@@ -111,6 +111,7 @@
   },
   "defaultProject": "angular-showcase",
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "analytics": false
   }
 }

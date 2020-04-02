@@ -2,7 +2,7 @@
 /// <reference types="arcgis-js-api" />
 
 import { Inject, Injectable, Optional } from '@angular/core';
-import { loadCss, loadModules } from 'esri-loader';
+import * as esriLoader from 'esri-loader';
 
 import { ESRI_CONFIG_TOKEN } from '../esri-config/esri-config.token';
 import { EsriConfiguration } from '../esri-config/esri-configuration';
@@ -55,16 +55,16 @@ export class EsriLoaderService {
     }
 
     await this._configuration;
-    return await loadModules(esriModules, { url });
+    return await esriLoader.loadModules(esriModules, { url });
   }
 
   /** @docs-private */
   private async _configure(url: string) {
     const cssUrl =
       this._config && this._config.cssUrl ? this._config.cssUrl : EsriConfigConsts.cssUrl;
-    loadCss(cssUrl);
+    esriLoader.loadCss(cssUrl);
 
-    const configModule = await loadModules(['esri/config'], { url });
+    const configModule = await esriLoader.loadModules(['esri/config'], { url });
     const esriConfig = configModule[0] as __esri.config;
 
     esriConfig.portalUrl = EsriConfigConsts.arcgisPortalUrl;

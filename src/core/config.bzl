@@ -9,7 +9,6 @@ entryPoints = [
   "models",
   "oauth",
   "radio-button",
-  "scrolling",
   "testing",
 ]
 
@@ -38,5 +37,4 @@ CORE_MARKDOWN_TARGETS = [
   "breakpoints",
   "datetime",
   "oauth",
-  "scrolling",
 ]
