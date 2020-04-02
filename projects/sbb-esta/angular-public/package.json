@@ -25,6 +25,7 @@
   "dependencies": {
     "@types/grecaptcha": "^2.0.36"
   },
+  "schematics": "./schematics/collection.json",
   "ng-update": {
     "packageGroup": [
       "@sbb-esta/angular-business",

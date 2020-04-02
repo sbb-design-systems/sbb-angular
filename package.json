@@ -37,7 +37,7 @@
     "build:svg-icons": "schematics .:svg-icons --project @sbb-esta/angular-icons --targetDir experimental --debug false",
     "build:svg-registry": "schematics .:svg-registry --stripNumberIdInCollection --stripNumberIds --stripSbbInName --debug false",
     "release": "standard-version --tag-prefix=\"\"",
-    "test:public:schematics": "jasmine --config=jasmine.json"
+    "test:schematics": "jasmine --config=jasmine.json"
   },
   "repository": {
     "type": "git",

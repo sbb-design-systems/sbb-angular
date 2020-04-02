@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "ng-add-sbb-esta-public",
+  "title": "@sbb-esta/angular-public ng-add schematic",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "animations": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether Angular browser animations should be set up.",
+      "x-prompt": "Set up browser animations for sbb angular?"
+    }
+  },
+  "required": []
+}

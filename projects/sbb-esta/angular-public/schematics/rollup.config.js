@@ -12,7 +12,16 @@ export default readdirSync(__dirname, { withFileTypes: true })
       file: join(dist, d.name, 'index.js'),
       format: 'cjs'
     },
-    external: ['@angular-devkit/schematics', '@angular-devkit/schematics/tasks'],
+    external: [
+      '@angular-devkit/core',
+      '@angular-devkit/schematics',
+      '@angular-devkit/schematics/tasks',
+      '@angular/cdk/schematics',
+      '@schematics/angular/utility/config',
+      '@schematics/angular/utility/dependencies',
+      '@schematics/angular/utility/json-utils',
+      '@schematics/angular/utility/validation'
+    ],
     plugins: [
       ts({
         browserslist: false,
@@ -22,9 +31,33 @@ export default readdirSync(__dirname, { withFileTypes: true })
         absolute: true,
         targets: [
           { src: 'migration.json', dest: dist, cwd: __dirname },
+          { src: 'collection.json', dest: dist, cwd: __dirname },
           { src: 'files', dest: join(dist, d.name), cwd: join(__dirname, d.name) },
           { src: '*.json', dest: join(dist, d.name), cwd: join(__dirname, d.name) }
         ]
       })
     ]
-  }));
+  }))
+  .concat({
+    input: join(__dirname, 'ng-add/setup-project.ts'),
+    output: {
+      file: join(dist, 'ng-add/setup-project.js'),
+      format: 'cjs'
+    },
+    external: [
+      '@angular-devkit/core',
+      '@angular-devkit/schematics',
+      '@angular-devkit/schematics/tasks',
+      '@angular/cdk/schematics',
+      '@schematics/angular/utility/config',
+      '@schematics/angular/utility/dependencies',
+      '@schematics/angular/utility/json-utils',
+      '@schematics/angular/utility/validation'
+    ],
+    plugins: [
+      ts({
+        browserslist: false,
+        tsconfig: join(__dirname, './tsconfig.json')
+      })
+    ]
+  });

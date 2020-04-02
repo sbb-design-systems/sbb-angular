@@ -1,7 +1,8 @@
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
-import { addPackageToPackageJson } from '@angular/cdk/schematics/ng-add/package-config';
 import { Schema as ApplicationOptions, Style } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOptions } from '@schematics/angular/workspace/schema';
+
+import { addDefaultDependency, readJsonFile } from '../utils';
 
 /** Path to the schematic collection that includes the migrations. */
 // tslint:disable-next-line: naming-convention
@@ -40,14 +41,14 @@ describe('updateToV9', () => {
   describe('@sbb-esta/angular-core not installed', () => {
     it('should add @sbb-esta/angular-core to "package.json" file', async () => {
       expect(
-        JSON.parse(tree.readContent('/package.json')).dependencies['@sbb-esta/angular-core']
+        readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']
       ).toBeUndefined();
 
       await runner.runSchematicAsync('migration-v9', {}, tree).toPromise();
 
-      expect(
-        JSON.parse(tree.readContent('/package.json')).dependencies['@sbb-esta/angular-core']
-      ).toBe(require('../../package.json').version);
+      expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
+        require('../../package.json').version
+      );
 
       // expect that there is a "node-package" install task. The task is
       // needed to update the lock file.
@@ -55,17 +56,17 @@ describe('updateToV9', () => {
     });
 
     it('should do nothing if @sbb-esta/angular-core is in "package.json" file', async () => {
-      addPackageToPackageJson(tree, '@sbb-esta/angular-core', '0.0.0');
+      addDefaultDependency('@sbb-esta/angular-core', '0.0.0', tree);
 
-      expect(
-        JSON.parse(tree.readContent('/package.json')).dependencies['@sbb-esta/angular-core']
-      ).toBe('0.0.0');
+      expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
+        '0.0.0'
+      );
 
       await runner.runSchematicAsync('migration-v9', {}, tree).toPromise();
 
-      expect(
-        JSON.parse(tree.readContent('/package.json')).dependencies['@sbb-esta/angular-core']
-      ).toBe('0.0.0');
+      expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
+        '0.0.0'
+      );
 
       // expect that there is a "node-package" install task. The task is
       // needed to update the lock file.
