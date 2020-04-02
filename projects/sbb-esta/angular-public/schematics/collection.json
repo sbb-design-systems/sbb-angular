@@ -2,7 +2,7 @@
   "$schema": "../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "ng-add": {
-      "description": "add @sbb-esta/angular-public to project",
+      "description": "Add @sbb-esta/angular-public to project",
       "factory": "./ng-add/index#ngAdd",
       "schema": "./ng-add/schema.json",
       "aliases": ["install"]

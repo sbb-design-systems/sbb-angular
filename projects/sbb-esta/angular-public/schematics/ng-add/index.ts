@@ -15,7 +15,7 @@ export function ngAdd(options: Schema): Rule {
       return;
     }
 
-    // Since the Angular Material schematics depend on the schematic utility functions from the
+    // Since the Angular SBB schematics depend on the schematic utility functions from the
     // CDK, we need to install the CDK before loading the schematic files that import from the CDK.
     const installTaskId = context.addTask(new NodePackageInstallTask());
 

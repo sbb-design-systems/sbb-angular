@@ -18,19 +18,20 @@ export const BROWSER_ANIMATIONS_MODULE_NAME = 'BrowserAnimationsModule';
 /** Name of the module that switches Angular animations to a noop implementation. */
 export const NOOP_ANIMATIONS_MODULE_NAME = 'NoopAnimationsModule';
 
+// noinspection JSUnusedGlobalSymbols
 export default function(options: Schema): Rule {
   return chain([addAnimationsModule(options), addTypographyToAngularJson(options)]);
 }
 
 function addTypographyToAngularJson(options: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
-    addTypographyToStylesNode('build', options, host, context);
-    addTypographyToStylesNode('test', options, host, context);
+    addTypographyToStylesNodeOfAngularJson('build', options, host, context);
+    addTypographyToStylesNodeOfAngularJson('test', options, host, context);
     return host;
   };
 }
 
-function addTypographyToStylesNode(
+function addTypographyToStylesNodeOfAngularJson(
   buildOrTest: 'build' | 'test',
   options: Schema,
   tree: Tree,
@@ -48,32 +49,28 @@ function addTypographyToStylesNode(
     !workspace.projects[projectName].architect![buildOrTest] ||
     !workspace.projects[projectName].architect![buildOrTest]!.options
   ) {
-    context.logger.error('Cannot add typography. Please add it manually to angular.json');
+    context.logger.error(
+      `Unable to add the typography. Please add an import to ${TYPOGRAPHY_CSS_PATH} to your project.`
+    );
     return tree;
   }
 
-  if (!(workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles) {
-    (workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles = [
-      TYPOGRAPHY_CSS_PATH
-    ];
+  const optionsNode = workspace.projects[projectName].architect![buildOrTest]!.options! as any;
+
+  if (!optionsNode.styles) {
+    optionsNode.styles = [TYPOGRAPHY_CSS_PATH];
 
     updateWorkspace(workspace)(tree, context);
     context.logger.info(`✅️ Added typography css entry to angular.json (${buildOrTest})`);
     return tree;
   }
 
-  if (
-    (workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles.includes(
-      TYPOGRAPHY_CSS_PATH
-    )
-  ) {
+  if (optionsNode.styles.includes(TYPOGRAPHY_CSS_PATH)) {
     context.logger.info(`Typography is already set up (${buildOrTest})`);
     return tree;
   }
 
-  (workspace.projects[projectName].architect![buildOrTest]!.options! as any).styles.push(
-    TYPOGRAPHY_CSS_PATH
-  );
+  optionsNode.styles.push(TYPOGRAPHY_CSS_PATH);
 
   updateWorkspace(workspace)(tree, context);
 
