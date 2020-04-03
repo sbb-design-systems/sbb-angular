@@ -1,6 +1,12 @@
 <sbb-field label="Datepicker">
   <sbb-datepicker arrows>
-    <input type="text" sbbDateInput [formControl]="dateWithFilter" [dateFilter]="filterDates" />
+    <input
+      type="text"
+      sbbDateInput
+      sbbInput
+      [formControl]="dateWithFilter"
+      [dateFilter]="filterDates"
+    />
   </sbb-datepicker>
 </sbb-field>
 
