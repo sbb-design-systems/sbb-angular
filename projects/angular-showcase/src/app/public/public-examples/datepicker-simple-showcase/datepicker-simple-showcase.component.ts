@@ -3,11 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { DateAdapter } from '@sbb-esta/angular-core/datetime';
 
 @Component({
-  selector: 'sbb-datepicker-showcase',
-  templateUrl: './datepicker-showcase.component.html',
-  styleUrls: ['./datepicker-showcase.component.scss']
+  selector: 'sbb-simple-datepicker-showcase',
+  templateUrl: './datepicker-simple-showcase.component.html',
+  styleUrls: ['./datepicker-simple-showcase.component.scss']
 })
-export class DatepickerShowcaseComponent {
+export class DatepickerSimpleShowcaseComponent {
   today = new Date();
 
   minDate: Date;
