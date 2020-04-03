@@ -11,6 +11,7 @@ import { AutocompleteChipInputComponent } from '../business-examples/chip-showca
 import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from '../business-examples/chip-showcase/forms-chip-input/forms-chip-input.component';
 import { ReactiveFormsChipInputComponent } from '../business-examples/chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
+import { DatepickerBusinessDateAdapterShowcaseComponent } from '../business-examples/datepicker-business-date-adapter-showcase/datepicker-business-date-adapter-showcase.component';
 import { DatepickerDateFilterShowcaseComponent } from '../business-examples/datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
 import { DatepickerMasterSlaveShowcaseComponent } from '../business-examples/datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
 import { DatepickerSimpleReactiveShowcaseComponent } from '../business-examples/datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
@@ -165,6 +166,9 @@ export class BusinessComponent implements ExampleProvider {
       'datepicker-date-filter-showcase': new ComponentPortal(DatepickerDateFilterShowcaseComponent),
       'datepicker-standalone-forms-showcase': new ComponentPortal(
         DatepickerStandaloneFormsShowcaseComponent
+      ),
+      'datepicker-businessDateAdapter-showcase': new ComponentPortal(
+        DatepickerBusinessDateAdapterShowcaseComponent
       )
     }
   };

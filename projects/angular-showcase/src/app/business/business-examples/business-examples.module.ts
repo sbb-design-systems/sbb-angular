@@ -34,6 +34,7 @@ import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chi
 import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from './chip-showcase/forms-chip-input/forms-chip-input.component';
 import { ReactiveFormsChipInputComponent } from './chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
+import { DatepickerBusinessDateAdapterShowcaseComponent } from './datepicker-business-date-adapter-showcase/datepicker-business-date-adapter-showcase.component';
 import { DatepickerDateFilterShowcaseComponent } from './datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
 import { DatepickerMasterSlaveShowcaseComponent } from './datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
 import { DatepickerSimpleReactiveShowcaseComponent } from './datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
@@ -122,7 +123,8 @@ const exampleComponents = [
   DatepickerSimpleReactiveShowcaseComponent,
   DatepickerMasterSlaveShowcaseComponent,
   DatepickerDateFilterShowcaseComponent,
-  DatepickerStandaloneFormsShowcaseComponent
+  DatepickerStandaloneFormsShowcaseComponent,
+  DatepickerBusinessDateAdapterShowcaseComponent
 ];
 
 @NgModule({
