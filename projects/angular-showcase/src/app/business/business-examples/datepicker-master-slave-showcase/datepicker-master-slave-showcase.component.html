@@ -1,0 +1,18 @@
+<form [formGroup]="twoDatepickersForm">
+  <sbb-field label="Datepicker" mode="medium" class="sbbsc-block" style="display: block">
+    <sbb-datepicker [slave]="datepickerTheSecond" arrows>
+      <input type="text" sbbDateInput formControlName="firstDatepicker" />
+    </sbb-datepicker>
+  </sbb-field>
+  <sbb-field label="Datepicker" mode="medium">
+    <sbb-datepicker #datepickerTheSecond arrows>
+      <input type="text" sbbDateInput formControlName="secondDatepicker" />
+    </sbb-datepicker>
+  </sbb-field>
+</form>
+<h4 class="sbbsc-block">Properties</h4>
+<pre>datepicker 1 errors: {{ twoDatepickersForm.get('firstDatepicker').errors | json }}</pre>
+<pre>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker').errors | json }}</pre>
+
+<pre>form validity: {{ twoDatepickersForm.valid | json }}</pre>
+<pre>form model: {{ twoDatepickersForm.value | json }}</pre>

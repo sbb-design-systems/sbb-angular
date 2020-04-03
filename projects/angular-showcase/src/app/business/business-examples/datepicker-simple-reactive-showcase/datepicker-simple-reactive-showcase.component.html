@@ -1,0 +1,43 @@
+<form [formGroup]="formGroup">
+  <sbb-field label="Datepicker" mode="long">
+    <sbb-datepicker
+      [arrows]="arrows"
+      [toggle]="toggle"
+      (closed)="closedEvent()"
+      (opened)="openedEvent()"
+    >
+      <input
+        type="text"
+        sbbDateInput
+        formControlName="date"
+        [min]="minDate"
+        [max]="maxDate"
+        (dateChange)="dateChangeEvent($event)"
+        (dateInput)="dateInputEvent($event)"
+      />
+    </sbb-datepicker>
+  </sbb-field>
+</form>
+<h4 class="sbbsc-block">Properties</h4>
+<p>
+  <sbb-checkbox [(ngModel)]="arrows">Arrows</sbb-checkbox>
+  <sbb-checkbox [(ngModel)]="toggle">Toggle</sbb-checkbox>
+  <sbb-checkbox [(ngModel)]="disabled" (change)="onDisabled()">Disabled</sbb-checkbox>
+</p>
+
+<sbb-field mode="medium" class="sbbsc-block" style="display: block;">
+  <sbb-label for="minDate">Min Date</sbb-label>
+  <sbb-datepicker arrows>
+    <input type="text" sbbDateInput [(ngModel)]="minDate" />
+  </sbb-datepicker>
+</sbb-field>
+<sbb-field mode="medium">
+  <sbb-label for="maxDate">Max Date</sbb-label>
+  <sbb-datepicker arrows>
+    <input type="text" sbbDateInput [(ngModel)]="maxDate" />
+  </sbb-datepicker>
+</sbb-field>
+
+<pre>model: {{ formGroup.get('date').value | json }}</pre>
+<pre>form control validity: {{ formGroup.get('date').valid }}</pre>
+<pre>form control errors: {{ formGroup.get('date').errors | json }}</pre>

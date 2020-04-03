@@ -11,6 +11,10 @@ import { AutocompleteChipInputComponent } from '../business-examples/chip-showca
 import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from '../business-examples/chip-showcase/forms-chip-input/forms-chip-input.component';
 import { ReactiveFormsChipInputComponent } from '../business-examples/chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
+import { DatepickerDateFilterShowcaseComponent } from '../business-examples/datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
+import { DatepickerMasterSlaveShowcaseComponent } from '../business-examples/datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
+import { DatepickerSimpleReactiveShowcaseComponent } from '../business-examples/datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
+import { DatepickerStandaloneFormsShowcaseComponent } from '../business-examples/datepicker-standalone-forms-showcase/datepicker-standalone-forms-showcase.component';
 import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
 import { ClosableNotificationComponent } from '../business-examples/notification-showcase/closable-notification/closable-notification.component';
 import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';
@@ -150,6 +154,18 @@ export class BusinessComponent implements ExampleProvider {
         TextareaReactiveFormsWithSbbFieldShowcaseComponent
       ),
       'textarea-native': new ComponentPortal(TextareaNativeShowcaseComponent)
+    },
+    datepicker: {
+      'datepicker-simple-reactive-showcase': new ComponentPortal(
+        DatepickerSimpleReactiveShowcaseComponent
+      ),
+      'datepicker-master-slave-showcase': new ComponentPortal(
+        DatepickerMasterSlaveShowcaseComponent
+      ),
+      'datepicker-date-filter-showcase': new ComponentPortal(DatepickerDateFilterShowcaseComponent),
+      'datepicker-standalone-forms-showcase': new ComponentPortal(
+        DatepickerStandaloneFormsShowcaseComponent
+      )
     }
   };
 

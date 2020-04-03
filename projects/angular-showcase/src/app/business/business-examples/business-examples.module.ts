@@ -8,6 +8,7 @@ import { ButtonModule } from '@sbb-esta/angular-business/button';
 import { CheckboxModule } from '@sbb-esta/angular-business/checkbox';
 import { ChipModule } from '@sbb-esta/angular-business/chip';
 import { ContextmenuModule } from '@sbb-esta/angular-business/contextmenu';
+import { DatepickerModule } from '@sbb-esta/angular-business/datepicker';
 import { DialogModule } from '@sbb-esta/angular-business/dialog';
 import { FieldModule } from '@sbb-esta/angular-business/field';
 import { HeaderModule } from '@sbb-esta/angular-business/header';
@@ -33,6 +34,10 @@ import { AutocompleteChipInputComponent } from './chip-showcase/autocomplete-chi
 import { DisabledChipInputComponent } from './chip-showcase/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from './chip-showcase/forms-chip-input/forms-chip-input.component';
 import { ReactiveFormsChipInputComponent } from './chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
+import { DatepickerDateFilterShowcaseComponent } from './datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
+import { DatepickerMasterSlaveShowcaseComponent } from './datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
+import { DatepickerSimpleReactiveShowcaseComponent } from './datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
+import { DatepickerStandaloneFormsShowcaseComponent } from './datepicker-standalone-forms-showcase/datepicker-standalone-forms-showcase.component';
 import {
   DialogShowcaseComponent,
   DialogShowcaseExample2Component,
@@ -113,7 +118,11 @@ const exampleComponents = [
   TextareaFormsShowcaseComponent,
   TextareaReactiveFormsWithSbbFieldShowcaseComponent,
   TextareaNativeShowcaseComponent,
-  BreadcrumbShowcaseComponent
+  BreadcrumbShowcaseComponent,
+  DatepickerSimpleReactiveShowcaseComponent,
+  DatepickerMasterSlaveShowcaseComponent,
+  DatepickerDateFilterShowcaseComponent,
+  DatepickerStandaloneFormsShowcaseComponent
 ];
 
 @NgModule({
@@ -148,7 +157,8 @@ const exampleComponents = [
     OptionModule,
     AutocompleteModule,
     TextareaModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    DatepickerModule
   ]
 })
 export class BusinessExamplesModule {}
