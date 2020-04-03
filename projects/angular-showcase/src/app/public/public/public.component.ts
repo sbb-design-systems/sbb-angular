@@ -13,6 +13,7 @@ import { ButtonShowcaseComponent } from '../public-examples/button-showcase/butt
 import { CaptchaShowcaseComponent } from '../public-examples/captcha-showcase/captcha-showcase.component';
 import { CheckboxPanelShowcaseComponent } from '../public-examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { CheckboxShowcaseComponent } from '../public-examples/checkbox-showcase/checkbox-showcase.component';
+import { DatepickerMasterSlaveShowcaseComponent } from '../public-examples/datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
 import { DatepickerSimpleReactiveShowcaseComponent } from '../public-examples/datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
 import { DropdownShowcaseComponent } from '../public-examples/dropdown-showcase/dropdown-showcase.component';
 import { FieldShowcaseComponent } from '../public-examples/field-showcase/field-showcase.component';
@@ -113,6 +114,9 @@ export class PublicComponent implements ExampleProvider {
     datepicker: {
       'datepicker-simple-reactive-showcase': new ComponentPortal(
         DatepickerSimpleReactiveShowcaseComponent
+      ),
+      'datepicker-master-slave-showcase': new ComponentPortal(
+        DatepickerMasterSlaveShowcaseComponent
       )
     },
     field: { 'field-showcase': new ComponentPortal(FieldShowcaseComponent) },

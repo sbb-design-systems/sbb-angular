@@ -49,6 +49,7 @@ import { ButtonShowcaseComponent } from './button-showcase/button-showcase.compo
 import { CaptchaShowcaseComponent } from './captcha-showcase/captcha-showcase.component';
 import { CheckboxPanelShowcaseComponent } from './checkbox-panel-showcase/checkbox-panel-showcase.component';
 import { CheckboxShowcaseComponent } from './checkbox-showcase/checkbox-showcase.component';
+import { DatepickerMasterSlaveShowcaseComponent } from './datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
 import { DatepickerSimpleReactiveShowcaseComponent } from './datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
 import { DropdownShowcaseComponent } from './dropdown-showcase/dropdown-showcase.component';
 import { FieldShowcaseComponent } from './field-showcase/field-showcase.component';
@@ -109,6 +110,7 @@ const exampleComponents = [
   CheckboxPanelShowcaseComponent,
   CheckboxShowcaseComponent,
   DatepickerSimpleReactiveShowcaseComponent,
+  DatepickerMasterSlaveShowcaseComponent,
   DropdownShowcaseComponent,
   FieldShowcaseComponent,
   FileSelectorShowcaseComponent,
