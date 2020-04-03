@@ -89,10 +89,10 @@ jobs:
     - run: bazelisk build src/public/tag/... --build_tag_filters=-docs-package,-release-package
     - run: bazelisk build src/public/textarea/... --build_tag_filters=-docs-package,-release-package
     - run: bazelisk build src/public/textexpand/... --build_tag_filters=-docs-package,-release-package
-    - run: bazelisk build src/public/time-input/... --build_tag_filters=-docs-package,-release-package
-    - run: bazelisk build src/public/toggle/... --build_tag_filters=-docs-package,-release-package
     - run: bazelisk build src/public/tooltip/... --build_tag_filters=-docs-package,-release-package
     - run: bazelisk build src/public/usermenu/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/time-input/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/toggle/... --build_tag_filters=-docs-package,-release-package
     - name: "Build: Bazel Public"
       run: bazelisk build src/public/... --build_tag_filters=-docs-package,-release-package
 
