@@ -15,4 +15,9 @@
 <pre>datepicker 2 errors: {{ twoDatepickersForm.get('secondDatepicker').errors | json }}</pre>
 
 <pre>form validity: {{ twoDatepickersForm.valid | json }}</pre>
-<pre>form model: {{ twoDatepickersForm.value | json }}</pre>
+<pre>
+firstDatepicker model: {{ twoDatepickersForm.get('firstDatepicker').value | date: 'mediumDate' }}
+secondDatepicker model: {{
+    twoDatepickersForm.get('secondDatepicker').value | date: 'mediumDate'
+  }}</pre
+>
