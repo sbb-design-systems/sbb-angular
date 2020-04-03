@@ -16,6 +16,7 @@ import { CheckboxShowcaseComponent } from '../public-examples/checkbox-showcase/
 import { DatepickerDateFilterShowcaseComponent } from '../public-examples/datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
 import { DatepickerMasterSlaveShowcaseComponent } from '../public-examples/datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
 import { DatepickerSimpleReactiveShowcaseComponent } from '../public-examples/datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
+import { DatepickerStandaloneFormsShowcaseComponent } from '../public-examples/datepicker-standalone-forms-showcase/datepicker-standalone-forms-showcase.component';
 import { DropdownShowcaseComponent } from '../public-examples/dropdown-showcase/dropdown-showcase.component';
 import { FieldShowcaseComponent } from '../public-examples/field-showcase/field-showcase.component';
 import { FileSelectorShowcaseComponent } from '../public-examples/file-selector-showcase/file-selector-showcase.component';
@@ -119,7 +120,10 @@ export class PublicComponent implements ExampleProvider {
       'datepicker-master-slave-showcase': new ComponentPortal(
         DatepickerMasterSlaveShowcaseComponent
       ),
-      'datepicker-date-filter-showcase': new ComponentPortal(DatepickerDateFilterShowcaseComponent)
+      'datepicker-date-filter-showcase': new ComponentPortal(DatepickerDateFilterShowcaseComponent),
+      'datepicker-standalone-forms-showcase': new ComponentPortal(
+        DatepickerStandaloneFormsShowcaseComponent
+      )
     },
     field: { 'field-showcase': new ComponentPortal(FieldShowcaseComponent) },
     'file-selector': {
