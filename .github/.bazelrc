@@ -15,5 +15,5 @@ build --repository_cache=/home/runner/bazel_repository_cache
 # fit in GitHub Actions. https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources
 # Note that we use less than the available RAM as bazel only estimates memory for actions
 # and we don't want to accidentally run out of memory.
-build --local_ram_resources=6144
+build --local_ram_resources=5120
 build --local_cpu_resources=2
