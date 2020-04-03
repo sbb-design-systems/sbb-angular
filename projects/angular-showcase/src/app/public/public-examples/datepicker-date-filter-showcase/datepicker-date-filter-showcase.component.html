@@ -1,0 +1,10 @@
+<sbb-field label="Datepicker">
+  <sbb-datepicker arrows>
+    <input type="text" sbbDateInput [formControl]="dateWithFilter" [dateFilter]="filterDates" />
+  </sbb-datepicker>
+</sbb-field>
+
+<h4 class="sbbsc-block">Properties</h4>
+<pre>model: {{ dateWithFilter.value | json }}</pre>
+<pre>form control validity: {{ dateWithFilter.valid }}</pre>
+<pre>form control errors: {{ dateWithFilter.errors | json }}</pre>
