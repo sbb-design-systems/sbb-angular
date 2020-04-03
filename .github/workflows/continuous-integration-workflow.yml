@@ -10,7 +10,7 @@ jobs:
       with:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
-      run: cp ./.github/bazel.rc ~/
+      run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -59,8 +59,43 @@ jobs:
       run: bazelisk build src/maps/... --build_tag_filters=-docs-package,-release-package
     - name: "Build: Bazel Business"
       run: bazelisk build src/business/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/accordion/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/autocomplete/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/badge/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/breadcrumb/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/button/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/captcha/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/checkbox/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/checkbox-panel/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/datepicker/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/dropdown/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/field/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/file-selector/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/ghettobox/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/input/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/lightbox/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/links/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/loading/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/notification/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/option/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/pagination/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/processflow/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/radio-button/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/radio-button-panel/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/search/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/select/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/table/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/tabs/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/tag/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/textarea/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/textexpand/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/time-input/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/toggle/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/tooltip/... --build_tag_filters=-docs-package,-release-package
+    - run: bazelisk build src/public/usermenu/... --build_tag_filters=-docs-package,-release-package
     - name: "Build: Bazel Public"
       run: bazelisk build src/public/... --build_tag_filters=-docs-package,-release-package
+
     - name: "Build: Bazel Showcase"
       run: bazelisk build src/showcase/... --build_tag_filters=-docs-package,-release-package
 

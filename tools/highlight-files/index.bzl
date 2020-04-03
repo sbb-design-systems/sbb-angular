@@ -27,7 +27,7 @@ def _highlight_files(ctx):
     # there is an argument limit and we need to handle a large amount of input files. Bazel
     # switches between parameter file and normal argument passing based on the operating system.
     # Read more here: https://docs.bazel.build/versions/master/skylark/lib/Args.html#use_param_file
-    args.use_param_file(param_file_arg = "--param-file=%s")
+    args.use_param_file(param_file_arg = "--param-file=%s", use_always=True)
 
     # Add the bazel bin directory to the command arguments. The script needs to know about
     # the output directory because the input files are not in the same location as the bazel

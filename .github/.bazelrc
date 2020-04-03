@@ -1,4 +1,4 @@
-# Bazel configuration that will be copied to /etc/bazel.bazelrc in GitHub Actions containers.
+# Bazel configuration that will be copied to ~/.bazelrc in GitHub Actions containers.
 # This allows us adding specific configuration flags for builds within GitHub Actions.
 # See more: https://docs.bazel.build/versions/master/user-manual.html#where-are-the-bazelrc-files
 

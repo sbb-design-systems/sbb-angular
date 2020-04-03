@@ -13,7 +13,7 @@ jobs:
       with:
         fetch-depth: 1
     - name: Copy bazel.rc to user home
-      run: cp ./.github/bazel.rc ~/
+      run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
         node-version: 12

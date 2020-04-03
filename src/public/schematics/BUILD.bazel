@@ -43,15 +43,6 @@ pkg_npm(
 )
 
 ### Testing rules
-
-jasmine_node_test(
-    name = "unit_tests",
-    srcs = [":unit_test_sources"],
-    data = [
-        ":schematics_assets",
-    ],
-)
-
 ts_library(
     name = "unit_test_sources",
     testonly = True,
@@ -71,5 +62,13 @@ ts_library(
         "@npm//@schematics/angular",
         "@npm//@types/jasmine",
         "@npm//@types/node",
+    ],
+)
+
+jasmine_node_test(
+    name = "unit_tests",
+    srcs = [":unit_test_sources"],
+    data = [
+        ":schematics_assets",
     ],
 )

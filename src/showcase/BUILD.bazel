@@ -88,7 +88,10 @@ html_insert_assets(
 # This scales really well for massive codebases.
 ts_devserver(
     name = "devserver",
-    additional_root_paths = ["sbb_angular/src/showcase/_"],
+    additional_root_paths = [
+        "sbb_angular/src/showcase/_",
+        "npm/node_modules/core-js/client",
+    ],
     port = 4200,
     entry_module = "sbb_angular/src/showcase/main.dev",
     scripts = [
@@ -96,6 +99,7 @@ ts_devserver(
         "//tools/rxjs:rxjs_umd_modules",
     ],
     static_files = _ASSETS + [
+        "@npm//:node_modules/core-js/client/core.min.js",
         ":index_html_dev",
         "//src/showcase/assets",
     ],
