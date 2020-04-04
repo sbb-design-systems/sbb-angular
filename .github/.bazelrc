@@ -17,3 +17,6 @@ build --repository_cache=/home/runner/bazel_repository_cache
 # and we don't want to accidentally run out of memory.
 build --local_ram_resources=5120
 build --local_cpu_resources=2
+
+# Debug for Bug Report in bazelbuild/rules_nodejs
+build --define=VERBOSE_LOGS=1
