@@ -1,6 +1,6 @@
 import { BusinessDateAdapter } from './business-date-adapter';
 
-describe('Business Date Adapter', () => {
+describe('BusinessDateAdapter', () => {
   let businessDateAdapter: BusinessDateAdapter;
   beforeEach(() => {
     businessDateAdapter = new BusinessDateAdapter('de-ch', 50);
