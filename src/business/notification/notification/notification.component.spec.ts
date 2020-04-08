@@ -64,7 +64,14 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, IconCollectionModule],
+        imports: [
+          CommonModule,
+          FormsModule,
+          IconCrossModule,
+          IconTickModule,
+          IconSignExclamationPointModule,
+          IconCircleInformationModule
+        ],
         declarations: [NotificationComponent, NotificationMockComponent]
       }).compileComponents();
     }));

@@ -258,41 +258,28 @@ export class SelectComponent extends SbbSelectMixinBase
   }
   private _disabled = false;
 
-  /**
-   * Returns the aria-label of the select component.
-   */
-  @Input('attr.aria-label')
+  /** Aria label of the select. If not specified, the placeholder will be used as label. */
+  @Input('aria-label') ariaLabel: string = '';
+
   @HostBinding('attr.aria-label')
-  get ariaLabel(): string | null {
+  get _ariaLabel(): string | null {
     // If an ariaLabelledby value has been set by the consumer, the select should not overwrite the
     // `aria-labelledby` value by setting the ariaLabel to the placeholder.
-    return this._ariaLabelledby ? null : this._ariaLabel || this.placeholder;
+    return this.ariaLabelledby ? null : this.ariaLabel || this.placeholder;
   }
-  set ariaLabel(value: string | null) {
-    this._ariaLabel = value;
-  }
-  private _ariaLabel: string | null = null;
+
+  /** Input that can be used to specify the `aria-labelledby` attribute. */
+  @Input('aria-labelledby') ariaLabelledby: string;
 
   /** Returns the aria-labelledby of the select component. */
-  @Input('attr.aria-labelledby')
   @HostBinding('attr.aria-labelledby')
-  get ariaLabelledby(): string | null {
-    if (this._ariaLabelledby) {
-      return this._ariaLabelledby;
-    }
-
-    // Note: we use `_getAriaLabel` here, because we want to check whether there's a
-    // computed label. `this.ariaLabel` is only the user-specified label.
-    if (this.ariaLabel) {
-      return null;
+  get _ariaLabelledby(): string | null {
+    if (this.ariaLabelledby) {
+      return this.ariaLabelledby;
     }
 
     return null;
   }
-  set ariaLabelledby(value: string | null) {
-    this._ariaLabelledby = value;
-  }
-  private _ariaLabelledby: string | null = null;
 
   /** Value of the select control. */
   @Input()

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconsRoutingModule } from '@sbb-esta/angular-icons-routing.module';
-import { IconsComponent } from '@sbb-esta/angular-icons/icons.component';
 
 import { SharedModule } from '../shared/shared.module';
+
+import { IconsRoutingModule } from './icons-routing.module';
+import { IconsComponent } from './icons/icons.component';
 
 @NgModule({
   declarations: [IconsComponent],

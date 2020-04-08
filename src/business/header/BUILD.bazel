@@ -23,7 +23,8 @@ ng_module(
     deps = [
         "//src/core/breakpoints",
         "//src/core/common-behaviors",
-        "//src/icons",
+        "//src/icons/arrow",
+        "//src/icons/navigation",
         "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

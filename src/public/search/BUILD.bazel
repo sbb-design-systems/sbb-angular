@@ -19,7 +19,7 @@ ng_module(
     module_name = "@sbb-esta/angular-public/search",
     deps = [
         "//src/core/icon-directive",
-        "//src/icons",
+        "//src/icons/basic",
         "//src/public/autocomplete",
         "//src/public/button",
         "//src/public/option",

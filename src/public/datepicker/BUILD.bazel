@@ -22,7 +22,8 @@ ng_module(
     module_name = "@sbb-esta/angular-public/datepicker",
     deps = [
         "//src/core/datetime",
-        "//src/icons",
+        "//src/icons/arrow",
+        "//src/icons/basic",
         "//src/public/input",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

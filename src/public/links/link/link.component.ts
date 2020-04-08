@@ -27,6 +27,11 @@ export class LinkComponent {
   @Input() icon: 'arrow' | 'download' = 'arrow';
 
   /** @docs-private */
+  get _initialIconVisible() {
+    return this.mode !== 'stretch';
+  }
+
+  /** @docs-private */
   @HostBinding('class.sbb-link-normal')
   get _normalClass() {
     return this.mode === 'normal';

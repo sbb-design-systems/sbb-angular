@@ -1,47 +1,34 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconDownloadModule } from '@sbb-esta/angular-icons/basic';
-import {
-  IconFacebookModule,
-  IconInstagramModule,
-  IconLinkedinModule,
-  IconPinterestModule,
-  IconTwitterModule,
-  IconXingModule,
-  IconYoutubeModule
-} from '@sbb-esta/angular-icons/social-media';
+
+import { LinksModule } from '../links.module';
 
 import { SocialLinkComponent } from './social-link.component';
 
+@Component({
+  selector: 'sbb-test-social-link',
+  template: `
+    <a sbbSocialLink [mode]="mode" [icon]="icon">test</a>
+  `
+})
+class TestSocialLinkComponent {
+  icon: 'facebook' | 'instagram' | 'linkedin' | 'pinterest' | 'twitter' | 'xing' | 'youtube';
+}
+
 describe('SocialLinkComponent', () => {
-  let component: SocialLinkComponent;
-  let fixture: ComponentFixture<SocialLinkComponent>;
+  let component: TestSocialLinkComponent;
+  let fixture: ComponentFixture<TestSocialLinkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SocialLinkComponent],
-      imports: [
-        IconArrowRightModule,
-        IconDownloadModule,
-        IconFacebookModule,
-        IconInstagramModule,
-        IconPinterestModule,
-        IconTwitterModule,
-        IconYoutubeModule,
-        IconXingModule,
-        IconLinkedinModule
-      ]
-    })
-      .overrideComponent(SocialLinkComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+      declarations: [TestSocialLinkComponent],
+      imports: [LinksModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SocialLinkComponent);
+    fixture = TestBed.createComponent(TestSocialLinkComponent);
 
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -55,7 +42,7 @@ describe('SocialLinkComponent', () => {
     component.icon = 'facebook';
     fixture.detectChanges();
 
-    const elementStyle = getComputedStyle(fixture.debugElement.nativeElement);
+    const elementStyle = getComputedStyle(fixture.debugElement.query(By.css('a')).nativeElement);
 
     // #66666 == rgb(102,102,102)
     expect(elementStyle.getPropertyValue('background-color')).toBe('rgb(102, 102, 102)');

@@ -65,14 +65,7 @@ describe('TooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IconQuestionMarkModule,
-        IconCrossModule,
-        ,
-        CommonModule,
-        PortalModule,
-        OverlayModule
-      ],
+      imports: [IconQuestionMarkModule, IconCrossModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
     }).compileComponents();

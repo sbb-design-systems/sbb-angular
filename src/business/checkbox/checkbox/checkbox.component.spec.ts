@@ -62,7 +62,7 @@ describe('CheckboxComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, IconCollectionModule],
+      imports: [CommonModule, FormsModule, IconTickModule],
       declarations: [CheckboxComponent, ModelCheckboxTestComponent]
     }).compileComponents();
   }));

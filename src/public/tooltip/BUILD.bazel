@@ -20,7 +20,8 @@ ng_module(
     deps = [
         "//src/core/base",
         "//src/core/icon-directive",
-        "//src/icons",
+        "//src/icons/navigation",
+        "//src/icons/status",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -44,7 +45,8 @@ ng_test_library(
     deps = [
         ":tooltip",
         "//src/core/base",
-        "//src/icons",
+        "//src/icons/navigation",
+        "//src/icons/status",
         "//src/public/button",
         "//src/public/field",
         "@npm//@angular/cdk",

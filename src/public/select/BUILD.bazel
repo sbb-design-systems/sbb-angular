@@ -21,7 +21,7 @@ ng_module(
         "//src/core/common-behaviors",
         "//src/core/error",
         "//src/core/forms",
-        "//src/icons",
+        "//src/icons/arrow",
         "//src/public/option",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

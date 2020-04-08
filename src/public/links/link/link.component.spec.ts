@@ -1,47 +1,33 @@
-import { ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
-import { IconDownloadModule } from '@sbb-esta/angular-icons/basic';
-import {
-  IconFacebookModule,
-  IconInstagramModule,
-  IconLinkedinModule,
-  IconPinterestModule,
-  IconTwitterModule,
-  IconXingModule,
-  IconYoutubeModule
-} from '@sbb-esta/angular-icons/social-media';
 
-import { LinkComponent } from './link.component';
+import { LinksModule } from '../links.module';
+
+@Component({
+  selector: 'sbb-test-link',
+  template: `
+    <a sbbLink [mode]="mode" [icon]="icon">test</a>
+  `
+})
+class TestLinkComponent {
+  mode: 'normal' | 'stretch' | 'form' = 'normal';
+  icon: 'arrow' | 'download' = 'arrow';
+}
 
 describe('LinkComponent', () => {
-  let component: LinkComponent;
-  let fixture: ComponentFixture<LinkComponent>;
+  let component: TestLinkComponent;
+  let fixture: ComponentFixture<TestLinkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IconArrowRightModule,
-        IconDownloadModule,
-        IconFacebookModule,
-        IconInstagramModule,
-        IconPinterestModule,
-        IconTwitterModule,
-        IconYoutubeModule,
-        IconXingModule,
-        IconLinkedinModule
-      ],
-      declarations: [LinkComponent]
-    })
-      .overrideComponent(LinkComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+      declarations: [TestLinkComponent],
+      imports: [LinksModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LinkComponent);
+    fixture = TestBed.createComponent(TestLinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -91,7 +77,7 @@ describe('LinkComponent', () => {
     component.mode = 'form';
     fixture.detectChanges();
 
-    const elementStyle = getComputedStyle(fixture.debugElement.nativeElement);
+    const elementStyle = getComputedStyle(fixture.debugElement.query(By.css('a')).nativeElement);
 
     // #666666 == rgb(102,102,102)
     expect(elementStyle.getPropertyValue('color')).toBe('rgb(102, 102, 102)');

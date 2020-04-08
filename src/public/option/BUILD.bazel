@@ -17,7 +17,7 @@ ng_module(
         ":option-group/option-group.component.css",] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/option",
     deps = [
-        "//src/icons",
+        "//src/icons/status",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
