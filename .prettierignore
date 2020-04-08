@@ -4,12 +4,10 @@ dist
 angular.json
 .github/*
 .vscode/*
-projects/**/schematics/*/index.js
-projects/**/schematics/*/files
+src/**/schematics/*/*/index.js
+src/**/schematics/*/*/files
 schematics/*/index.js
 schematics/*/files
-projects/angular-showcase/src/assets/**/*
-projects/angular-showcase/src/docs/**/*
 coverage
 **/svg-icons/**/icon-*.module.ts
 **/*.svg
