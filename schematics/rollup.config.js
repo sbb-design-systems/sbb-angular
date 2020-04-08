@@ -26,7 +26,6 @@ export default readdirSync(__dirname, { withFileTypes: true })
       'dgeni-packages/typescript/api-doc-types/PropertyMemberDoc',
       'fs',
       'highlight.js',
-      'html-minifier',
       'marked',
       'path',
       'rxjs',
