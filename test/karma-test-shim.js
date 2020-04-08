@@ -6,7 +6,7 @@ Error.stackTraceLimit = Infinity;
 // take longer in some situations (e.g Saucelabs and Browserstack tunnels)
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
-__karma__.loaded = function () {};
+__karma__.loaded = function() {};
 
 var specFiles = Object.keys(window.__karma__.files).filter(isMaterialSpecFile);
 
@@ -21,13 +21,14 @@ configureTestBed()
     __karma__.error(error);
   });
 
-
 /** Runs the Angular Material specs in Karma. */
 function runMaterialSpecs() {
   // By importing all spec files, Karma will run the tests directly.
-  return Promise.all(specFiles.map(function(fileName) {
-    return System.import(fileName);
-  }));
+  return Promise.all(
+    specFiles.map(function(fileName) {
+      return System.import(fileName);
+    })
+  );
 }
 
 /** Whether the specified file is part of Angular Material. */
@@ -41,7 +42,7 @@ function configureTestBed() {
     System.import('@angular/core'),
     System.import('@angular/core/testing'),
     System.import('@angular/platform-browser-dynamic/testing')
-  ]).then(function (providers) {
+  ]).then(function(providers) {
     var core = providers[0];
     var testing = providers[1];
     var testingBrowser = providers[2];
@@ -79,7 +80,9 @@ function patchTestBedToDestroyFixturesAfterEveryTest(testBed) {
   // errors when destroying components are no longer causing Jasmine to fail.
   testBed.resetTestingModule = function() {
     try {
-      this._activeFixtures.forEach(function (fixture) { fixture.destroy(); });
+      this._activeFixtures.forEach(function(fixture) {
+        fixture.destroy();
+      });
     } finally {
       this._activeFixtures = [];
       // Regardless of errors or not, run the original reset testing module function.

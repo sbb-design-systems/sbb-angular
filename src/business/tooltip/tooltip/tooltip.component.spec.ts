@@ -5,7 +5,8 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
+import { IconQuestionMarkModule } from '@sbb-esta/angular-icons/status';
 
 import { TooltipModule } from '../tooltip.module';
 
@@ -41,7 +42,7 @@ describe('TooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule],
+      imports: [IconQuestionMarkModule, IconCrossModule, CommonModule, PortalModule, OverlayModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
     }).compileComponents();
@@ -68,7 +69,7 @@ describe('Tooltip using hover configuration with default delay', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule, TooltipModule],
+      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipHoverTrueTestComponent]
     }).compileComponents();
@@ -109,7 +110,7 @@ describe('Tooltip using hover configuration and delay settings for open and clos
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule, TooltipModule],
+      imports: [CommonModule, PortalModule, OverlayModule, TooltipModule],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipHoverTrueAndDelaySettingsTestComponent]
     }).compileComponents();

@@ -6,9 +6,9 @@
  * distribution folder within the project.
  */
 
-const {execSync} = require('child_process');
-const {join} = require('path');
-const {chmod, cp, mkdir, rm, set, test} = require('shelljs');
+const { execSync } = require('child_process');
+const { join } = require('path');
+const { chmod, cp, mkdir, rm, set, test } = require('shelljs');
 
 // ShellJS should exit if a command fails.
 set('-e');
@@ -24,8 +24,8 @@ const bazelCmd = process.env.BAZEL_COMMAND || `yarn -s bazel`;
 
 /** Command that queries Bazel for all release package targets. */
 const queryPackagesCmd =
-    `${bazelCmd} query --output=label "attr('tags', '\\[.*${releaseTargetTag}.*\\]', //src/...) ` +
-    `intersect kind('.*_package', //src/...)"`;
+  `${bazelCmd} query --output=label "attr('tags', '\\[.*${releaseTargetTag}.*\\]', //src/...) ` +
+  `intersect kind('.*_package', //src/...)"`;
 
 // Export the methods for building the release packages. These
 // can be consumed by the release tool.
@@ -73,7 +73,11 @@ function buildReleasePackages(useIvy, distPath) {
 
   // Build with "--config=release" so that Bazel runs the workspace stamping script. The
   // stamping script ensures that the version placeholder is populated in the release output.
-  exec(`${bazelCmd} build --config=release --config=${useIvy ? 'ivy' : 'view-engine'} ${targets.join(' ')}`);
+  exec(
+    `${bazelCmd} build --config=release --config=${useIvy ? 'ivy' : 'view-engine'} ${targets.join(
+      ' '
+    )}`
+  );
 
   // Delete the distribution directory so that the output is guaranteed to be clean. Re-create
   // the empty directory so that we can copy the release packages into it later.
@@ -98,8 +102,10 @@ function getPackageNamesOfTargets(targets) {
   return targets.map(targetName => {
     const matches = targetName.match(/\/\/src\/(.*):npm_package/);
     if (matches === null) {
-      throw Error(`Found Bazel target with "${releaseTargetTag}" tag, but could not ` +
-        `determine release output name: ${targetName}`);
+      throw Error(
+        `Found Bazel target with "${releaseTargetTag}" tag, but could not ` +
+          `determine release output name: ${targetName}`
+      );
     }
     return matches[1];
   });
@@ -114,7 +120,7 @@ function getPackageNamesOfTargets(targets) {
 function exec(command, captureStdout) {
   const stdout = execSync(command, {
     cwd: projectDir,
-    stdio: ['inherit', captureStdout ? 'pipe' : 'inherit', 'inherit'],
+    stdio: ['inherit', captureStdout ? 'pipe' : 'inherit', 'inherit']
   });
 
   if (captureStdout) {

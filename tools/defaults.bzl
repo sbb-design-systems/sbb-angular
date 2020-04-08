@@ -157,7 +157,7 @@ def ng_e2e_test_library(deps = [], tsconfig = None, **kwargs):
 def karma_web_test_suite(name, **kwargs):
     web_test_args = {}
     kwargs["srcs"] = ["@npm//:node_modules/tslib/tslib.js"] + kwargs.get("srcs", [])
-    kwargs["deps"] = ["//tools/rxjs:rxjs_umd_modules"] + kwargs.get("deps", [])
+    kwargs["deps"] = ["//tools/rxjs:rxjs_umd_modules", "//tools/esri-loader:esri_loader_umd_module"] + kwargs.get("deps", [])
 
     for opt_name in kwargs.keys():
         # Filter out options which are specific to "karma_web_test" targets. We cannot

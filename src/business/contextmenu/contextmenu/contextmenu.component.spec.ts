@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DropdownModule } from '@sbb-esta/angular-business/dropdown';
-import { IconContextMenuModule } from '@sbb-esta/angular-icons';
+import { IconContextMenuModule } from '@sbb-esta/angular-icons/navigation';
 
 import { ContextmenuComponent } from './contextmenu.component';
 

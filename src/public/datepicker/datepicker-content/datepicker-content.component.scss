@@ -96,15 +96,15 @@
       border: $datePickerCalendarBorder;
       border-radius: $datePickerCalendarBorderRadius;
       box-shadow: $datePickerCalendarBoxShadow;
-    
+
       @include mq($from: tabletPortrait) {
         width: $datePickerCalendarWidth;
         height: $datePickerCalendarHeight;
       }
-    
+
       &-content {
         padding: $datePickerCalendarTableContentPaddingMobile;
-    
+
         @include mq($from: tabletPortrait) {
           padding: $datePickerCalendarTableContentPadding;
         }
@@ -112,18 +112,18 @@
 
       &-header {
         border-bottom: 1px solid $sbbColorPlatinum;
-    
+
         @include publicOnly() {
           @include mq($from: desktop4k) {
             border-bottom-width: toPx(1 * $scalingFactor4k);
           }
-    
+
           @include mq($from: desktop5k) {
             border-bottom-width: toPx(1 * $scalingFactor5k);
           }
         }
       }
-      
+
       &-controls {
         display: flex;
         height: $datePickerCalendarHeaderHeight;
@@ -203,7 +203,7 @@
           float: right;
         }
       }
-      
+
       &-table {
         width: 100%;
         border-spacing: 0;
@@ -307,7 +307,7 @@
           &.sbb-calendar-body-disabled {
             color: $datePickerCalendarDisabledTextCellColor;
             cursor: default;
-          
+
             &:not(.empty)::after {
               content: '';
               width: pxToEm($datePickerDisabledCellWidth);
@@ -318,7 +318,7 @@
               display: block;
               position: absolute;
               transform: rotate(-45deg);
-          
+
               @include publicOnly() {
                 @include mq($from: tabletPortrait) {
                   top: pxToEm(27);
@@ -345,17 +345,17 @@
     .sbb-datepicker-popup-arrow {
       @include datePickerToggleArrow(calendarTop);
     }
-  
+
     &.sbb-datepicker-with-arrows {
       .sbb-datepicker-popup-arrow {
         left: pxToEm($datePickerToggleWithArrowsWrapperArrowLeftOffset);
       }
     }
-  
+
     .sbb-datepicker-content {
       top: auto;
       bottom: pxToEm($datePickerContentTop);
-  
+
       .sbb-calendar {
         box-shadow: $datePickerRevertCalendarBoxShadow;
       }

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconTickModule } from '@sbb-esta/angular-icons/status';
 
 import { CheckboxComponent } from './checkbox.component';
 
@@ -30,13 +30,9 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, IconCollectionModule],
+      imports: [CommonModule, IconTickModule],
       declarations: [CheckboxComponent]
-    })
-      .overrideComponent(CheckboxComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -60,13 +56,9 @@ describe('CheckboxComponent using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, IconCollectionModule],
+      imports: [CommonModule, FormsModule, IconTickModule],
       declarations: [CheckboxComponent, ModelCheckboxTestComponent]
-    })
-      .overrideComponent(CheckboxComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -70,11 +70,11 @@ $tagPadding: pxToEm(7) pxToEm(8) pxToEm(7) pxToEm(16);
     .sbb-tag-content {
       background-color: $tagActiveBgcolor;
       border-color: $tagActiveColor;
-  
+
       .sbb-tag-label {
         color: $tagActiveColor;
       }
-  
+
       .sbb-tag-amount {
         background-color: $tagBadgeActiveColor;
       }

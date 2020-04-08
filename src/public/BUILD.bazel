@@ -56,8 +56,8 @@ scss_bundle(
 markdown_to_html(
     name = "overview",
     srcs = [
-        ":README.md",
         ":getting-started.md",
+        ":README.md",
         ":typography.md",
     ],
 )

@@ -122,7 +122,7 @@ $searchInputWidthMobile: 273;
     @include mq($from: desktop4k) {
       font-size: toPx($sizeFontBase * $scalingFactor4k);
     }
-  
+
     @include mq($from: desktop5k) {
       font-size: toPx($sizeFontBase * $scalingFactor5k);
     }
@@ -148,7 +148,7 @@ $searchInputWidthMobile: 273;
         width: toPx($searchIconWidthHeight * $scalingFactor4k);
         height: toPx($searchIconWidthHeight * $scalingFactor4k);
       }
-  
+
       @include mq($from: desktop5k) {
         width: toPx($searchIconWidthHeight * $scalingFactor5k);
         height: toPx($searchIconWidthHeight * $scalingFactor5k);

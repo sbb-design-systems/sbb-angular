@@ -16,17 +16,17 @@
 
   .sbb-textexpand-button {
     @include buttonResetFrameless();
-  
+
     color: inherit;
     letter-spacing: inherit;
     line-height: inherit;
     font-size: inherit;
-  
+
     &:focus,
     &:hover {
       color: $sbbColorRed;
     }
-  
+
     &-label {
       text-decoration: underline;
     }

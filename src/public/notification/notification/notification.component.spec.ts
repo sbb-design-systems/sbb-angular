@@ -3,10 +3,14 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import {
+  IconCircleInformationModule,
+  IconSignExclamationPointModule
+} from '@sbb-esta/angular-icons/basic';
+import createSpy = jasmine.createSpy;
+import { IconTickModule } from '@sbb-esta/angular-icons/status';
 
 import { NotificationComponent, NotificationType } from './notification.component';
-import createSpy = jasmine.createSpy;
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -26,7 +30,12 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [IconCollectionModule, CommonModule],
+        imports: [
+          IconTickModule,
+          IconSignExclamationPointModule,
+          IconCircleInformationModule,
+          CommonModule
+        ],
         declarations: [NotificationComponent]
       }).compileComponents();
     }));
@@ -48,7 +57,13 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, IconCollectionModule],
+        imports: [
+          CommonModule,
+          FormsModule,
+          IconTickModule,
+          IconSignExclamationPointModule,
+          IconCircleInformationModule
+        ],
         declarations: [NotificationComponent, NotificationMockComponent]
       }).compileComponents();
     }));

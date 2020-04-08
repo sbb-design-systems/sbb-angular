@@ -23,7 +23,7 @@ module.exports = config => {
   Object.defineProperty(overwrites, 'autoWatch', {
     get: () => true,
     set: () => {},
-    enumerable: true,
+    enumerable: true
   });
 
   // When not running with ibazel, do not set up the `@bazel/karma` watcher. This one
@@ -32,6 +32,8 @@ module.exports = config => {
   if (process.env['IBAZEL_NOTIFY_CHANGES'] !== 'y') {
     delete bazelKarma['watcher'];
   }
+
+  overwrites.browserNoActivityTimeout = 60000;
 
   config.set(overwrites);
 };

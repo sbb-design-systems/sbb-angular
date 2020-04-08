@@ -28,6 +28,7 @@ ROLLUP_GLOBALS = {
 
     # Third-party libraries.
     "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
+    "esri-loader": "esriLoader",
     "protractor": "protractor",
     "rxjs": "rxjs",
     "rxjs/operators": "rxjs.operators",

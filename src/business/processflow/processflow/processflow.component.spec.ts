@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { dispatchMouseEvent } from '@sbb-esta/angular-core/testing';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconChevronRightModule } from '@sbb-esta/angular-icons/arrow';
 
 import { ProcessflowModule } from '../processflow.module';
 
@@ -13,7 +13,7 @@ describe('ProcessflowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule],
+      imports: [IconChevronRightModule],
       declarations: [ProcessflowComponent]
     }).compileComponents();
   }));

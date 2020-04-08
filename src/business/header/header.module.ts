@@ -5,10 +5,9 @@ import { NgModule } from '@angular/core';
 import {
   IconChevronSmallDownModule,
   IconChevronSmallLeftModule,
-  IconChevronSmallUpModule,
-  IconCrossModule,
-  IconHamburgerMenuModule
-} from '@sbb-esta/angular-icons';
+  IconChevronSmallUpModule
+} from '@sbb-esta/angular-icons/arrow';
+import { IconCrossModule, IconHamburgerMenuModule } from '@sbb-esta/angular-icons/navigation';
 
 import { AppChooserSectionComponent } from './app-chooser-section/app-chooser-section.component';
 import { HeaderMenuItemDirective } from './header-menu-item/header-menu-item.directive';

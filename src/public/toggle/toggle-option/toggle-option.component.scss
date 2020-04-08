@@ -31,7 +31,6 @@ $toggleOptionContentBg: $sbbColorWhite;
   color: inherit;
 }
 
-
 .sbb-toggle {
   .sbb-toggle-option {
     flex: 1;
@@ -45,12 +44,12 @@ $toggleOptionContentBg: $sbbColorWhite;
       line-height: 1.5;
       border: pxToEm(1) solid transparent;
       min-height: $toggleOptionButtonMinHeight;
-    
+
       &-inner {
         display: table;
         margin: auto;
       }
-    
+
       &:hover {
         cursor: pointer;
       }
@@ -98,7 +97,7 @@ $toggleOptionContentBg: $sbbColorWhite;
       z-index: 2;
       border: pxToEm(1) solid $sbbColorBlack;
       border-top-color: transparent;
-    
+
       &::before,
       &::after {
         content: '';
@@ -106,13 +105,13 @@ $toggleOptionContentBg: $sbbColorWhite;
         height: 0;
         top: pxToEm(-1);
       }
-    
+
       &::before {
         width: 50%;
         border-bottom: pxToEm(1) solid $sbbColorSilver;
         left: 0;
       }
-    
+
       &::after {
         width: calc(50% + #{pxToEm(1)});
         border-bottom: pxToEm(1) solid $sbbColorBlack;
@@ -125,17 +124,17 @@ $toggleOptionContentBg: $sbbColorWhite;
         background-color: $toggleOptionButtonBgSelected;
         border-color: $toggleOptionButtonBorderSelected;
         color: $toggleOptionButtonColorSelected;
-    
+
         &-icon {
           @include svgIconColor($toggleOptionButtonColorSelected);
         }
-    
+
         &-info-text {
           opacity: 0;
           max-height: 0;
         }
       }
-    
+
       .sbb-toggle-option-content {
         padding: pxToEm($toggleOptionContentPadding);
         max-height: pxToEm(600);
@@ -157,12 +156,12 @@ $toggleOptionContentBg: $sbbColorWhite;
     &:last-of-type {
       .sbb-toggle-option-content {
         float: right;
-      
+
         &::before {
           left: auto;
           right: 0;
         }
-      
+
         &::after {
           right: auto;
           left: 0;

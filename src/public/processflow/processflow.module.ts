@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconChevronRightModule } from '@sbb-esta/angular-icons';
+import { IconChevronRightModule } from '@sbb-esta/angular-icons/arrow';
 
 import { ProcessflowStepComponent } from './processflow-step/processflow-step.component';
 import { ProcessflowComponent } from './processflow/processflow.component';

@@ -1,7 +1,7 @@
 import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconArrowRightModule } from '@sbb-esta/angular-icons';
+import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
 
 import { ButtonComponent } from './button.component';
 

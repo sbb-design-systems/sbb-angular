@@ -3,11 +3,16 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
-
-import { NotificationComponent, NotificationType } from './notification.component';
+import {
+  IconCircleInformationModule,
+  IconSignExclamationPointModule
+} from '@sbb-esta/angular-icons/basic';
 import createSpy = jasmine.createSpy;
 import Spy = jasmine.Spy;
+import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
+import { IconTickModule } from '@sbb-esta/angular-icons/status';
+
+import { NotificationComponent, NotificationType } from './notification.component';
 
 @Component({
   selector: 'sbb-notification-mock',
@@ -31,7 +36,13 @@ describe('NotificationComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [IconCollectionModule, CommonModule],
+        imports: [
+          CommonModule,
+          IconCrossModule,
+          IconTickModule,
+          IconSignExclamationPointModule,
+          IconCircleInformationModule
+        ],
         declarations: [NotificationComponent]
       }).compileComponents();
     }));

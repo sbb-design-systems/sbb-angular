@@ -10,31 +10,31 @@
  * TODO(devversion): rename this to "browserstack" and "saucelabs".
  */
 const browserConfig = {
-  'ChromeHeadlessCI':  { unitTest: {target: 'local', }},
-  'FirefoxHeadless':   { unitTest: {target: 'local', }},
-  'ChromeBeta':        { unitTest: {target: null, }},
-  'FirefoxBeta':       { unitTest: {target: null, }},
-  'ChromeDev':         { unitTest: {target: null, }},
-  'FirefoxDev':        { unitTest: {target: null, }},
-  'IE9':               { unitTest: {target: null, }},
-  'IE10':              { unitTest: {target: null, }},
-  'IE11':              { unitTest: {target: null, }},
-  'Edge':              { unitTest: {target: 'saucelabs', }},
-  'Android4.1':        { unitTest: {target: null, }},
-  'Android4.2':        { unitTest: {target: null, }},
-  'Android4.3':        { unitTest: {target: null, }},
-  'Android4.4':        { unitTest: {target: null, }},
-  'Android5':          { unitTest: {target: null, }},
-  'Safari7':           { unitTest: {target: null, }},
-  'Safari8':           { unitTest: {target: null, }},
-  'Safari9':           { unitTest: {target: null, }},
-  'Safari10':          { unitTest: {target: 'browserstack', }},
-  'iOS7':              { unitTest: {target: null, }},
-  'iOS8':              { unitTest: {target: null, }},
-  'iOS9':              { unitTest: {target: null, }},
-  'iOS10':             { unitTest: {target: null, }},
-  'iOS11':             { unitTest: {target: 'saucelabs', }},
-  'WindowsPhone':      { unitTest: {target: null, }}
+  ChromeHeadlessCI: { unitTest: { target: 'local' } },
+  FirefoxHeadless: { unitTest: { target: 'local' } },
+  ChromeBeta: { unitTest: { target: null } },
+  FirefoxBeta: { unitTest: { target: null } },
+  ChromeDev: { unitTest: { target: null } },
+  FirefoxDev: { unitTest: { target: null } },
+  IE9: { unitTest: { target: null } },
+  IE10: { unitTest: { target: null } },
+  IE11: { unitTest: { target: null } },
+  Edge: { unitTest: { target: 'saucelabs' } },
+  'Android4.1': { unitTest: { target: null } },
+  'Android4.2': { unitTest: { target: null } },
+  'Android4.3': { unitTest: { target: null } },
+  'Android4.4': { unitTest: { target: null } },
+  Android5: { unitTest: { target: null } },
+  Safari7: { unitTest: { target: null } },
+  Safari8: { unitTest: { target: null } },
+  Safari9: { unitTest: { target: null } },
+  Safari10: { unitTest: { target: 'browserstack' } },
+  iOS7: { unitTest: { target: null } },
+  iOS8: { unitTest: { target: null } },
+  iOS9: { unitTest: { target: null } },
+  iOS10: { unitTest: { target: null } },
+  iOS11: { unitTest: { target: 'saucelabs' } },
+  WindowsPhone: { unitTest: { target: null } }
 };
 
 /** Exports all available custom Karma browsers. */
@@ -42,9 +42,9 @@ exports.customLaunchers = require('./karma-browsers.json');
 
 /** Exports a map of configured browsers, which should run in the given platform. */
 exports.platformMap = {
-  'saucelabs': buildConfiguration('unitTest', 'saucelabs'),
-  'browserstack': buildConfiguration('unitTest', 'browserstack'),
-  'local': buildConfiguration('unitTest', 'local'),
+  saucelabs: buildConfiguration('unitTest', 'saucelabs'),
+  browserstack: buildConfiguration('unitTest', 'browserstack'),
+  local: buildConfiguration('unitTest', 'local')
 };
 
 /** Build a list of configuration (custom launcher names). */

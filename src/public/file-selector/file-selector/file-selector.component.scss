@@ -3,11 +3,11 @@
 .sbb-file-selector {
   &-button {
     @include buttons;
-  
+
     &:not(.sbb-file-selector-disabled) {
       @include secondaryButton;
       @include arrowbuttons;
-  
+
       .sbb-svgsprite-icon {
         @include svgIconColor($buttonSecondaryColor);
       }
@@ -21,7 +21,7 @@
   &-label {
     display: inline-block;
     overflow: hidden;
-  
+
     &:hover {
       cursor: pointer;
     }
@@ -31,37 +31,37 @@
     list-style: none;
     padding: 0;
     margin: 0;
-  
+
     @include mq($from: desktop4k) {
       font-size: toEm(1 * $scalingFactor4k);
     }
-  
+
     @include mq($from: desktop5k) {
       font-size: toEm(1 * $scalingFactor5k);
     }
-  
+
     li {
       margin-bottom: pxToEm(17);
       padding-left: 0;
     }
-  
+
     &-type-icon,
     &-remove-icon {
       display: inline-block;
       vertical-align: middle;
     }
-  
+
     &-type-icon {
       width: pxToEm(24);
       height: pxToEm(24);
       margin-right: 0.5em;
       margin-bottom: pxToEm(2);
     }
-  
+
     &-desc {
       text-decoration: underline;
     }
-  
+
     &-remove-icon {
       @include buttonResetFrameless();
       @include svgIconColor($sbbColorAnthracite);
@@ -72,14 +72,14 @@
       margin-left: pxToEm(8);
       border: pxToEm(1) solid $sbbColorStorm;
       border-radius: 50%;
-  
+
       svg {
         @include absoluteCenterXY();
         width: pxToEm(24);
         height: pxToEm(24);
       }
     }
-  
+
     &-file-ext {
       text-transform: uppercase;
     }

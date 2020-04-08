@@ -6,11 +6,11 @@ sbb-field {
   &.sbb-input-field {
     &-short {
       width: 33.333%;
-    
+
       @include mq($from: mobileLandscape) {
         width: 25%;
       }
-    
+
       @include mq($from: desktop) {
         width: 16.66666%;
       }
@@ -18,7 +18,7 @@ sbb-field {
 
     &-medium {
       width: 100%;
-    
+
       @include mq($from: tabletPortrait) {
         width: 50%;
       }

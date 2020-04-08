@@ -1,0 +1,3 @@
+export * from './icon-building-tree.module';
+export * from './icon-city.module';
+export * from './icon-collection-building.module';

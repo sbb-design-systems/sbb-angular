@@ -39,7 +39,7 @@ sbb-dialog-container {
   &.sbb-dialog-with-footer {
     .sbb-dialog-content {
       max-height: calc(100vh - #{pxToEm($dialog-footer-height-mobile)});
-  
+
       @include mq($from: tabletPortrait) {
         max-height: calc(100vh - #{pxToEm($dialog-footer-height-tablet)});
       }
@@ -49,7 +49,7 @@ sbb-dialog-container {
   &.sbb-dialog-with-header.sbb-dialog-with-footer {
     .sbb-dialog-content {
       max-height: calc(100vh - #{pxToEm($dialog-header-height + $dialog-footer-height-mobile)});
-  
+
       @include mq($from: tabletPortrait) {
         max-height: calc(100vh - #{pxToEm($dialog-header-height + $dialog-footer-height-tablet)});
       }

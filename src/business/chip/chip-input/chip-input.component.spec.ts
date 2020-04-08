@@ -20,7 +20,7 @@ import {
   dispatchMouseEvent,
   typeInElement
 } from '@sbb-esta/angular-core/testing';
-import { IconCrossModule } from '@sbb-esta/angular-icons';
+import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { ChipComponent } from '../chip/chip.component';
 

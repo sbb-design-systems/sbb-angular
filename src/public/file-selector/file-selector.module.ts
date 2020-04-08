@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { IconTrashModule, IconUploadModule } from '@sbb-esta/angular-icons/basic';
 import {
   IconDocumentImageModule,
   IconDocumentPdfModule,
@@ -7,10 +8,8 @@ import {
   IconDocumentStandardModule,
   IconDocumentTextModule,
   IconDocumentVideoModule,
-  IconDocumentZipModule,
-  IconTrashModule,
-  IconUploadModule
-} from '@sbb-esta/angular-icons';
+  IconDocumentZipModule
+} from '@sbb-esta/angular-icons/document';
 
 import { FileSelectorComponent } from './file-selector/file-selector.component';
 import {

@@ -46,9 +46,9 @@ describe('updateToV9', () => {
 
       await runner.runSchematicAsync('migration-v9', {}, tree).toPromise();
 
-      expect(readJsonFile(tree, '/package.json').dependencies['@sbb-esta/angular-core']).toBe(
-        require('../../package.json').version
-      );
+      expect(
+        JSON.parse(tree.readContent('/package.json')).dependencies['@sbb-esta/angular-core']
+      ).toBe(`~0.0.0-PLACEHOLDER`);
 
       // expect that there is a "node-package" install task. The task is
       // needed to update the lock file.

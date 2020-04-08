@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import {
   IconCircleInformationModule,
-  IconSignExclamationPointModule,
-  IconTickModule
-} from '@sbb-esta/angular-icons';
+  IconSignExclamationPointModule
+} from '@sbb-esta/angular-icons/basic';
+import { IconTickModule } from '@sbb-esta/angular-icons/status';
 
 import { NotificationComponent } from './notification/notification.component';
 

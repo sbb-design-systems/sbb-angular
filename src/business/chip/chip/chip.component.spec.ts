@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconCrossComponent, IconCrossModule } from '@sbb-esta/angular-icons';
+import { IconCrossComponent, IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { ChipComponent } from './chip.component';
 
@@ -47,7 +47,7 @@ describe('ChipComponent', () => {
     expect(chips.length).toBe(1);
     expect(crossIcon).toBeDefined();
     expect(label.nativeElement.innerHTML).toBe(component.label);
-    expect(chips[0].classes['sbb-chip-disabled']).toBe(false);
+    expect(chips[0].classes['sbb-chip-disabled']).toBeFalsy();
     expect(chips[0].classes['sbb-chip-active']).toBe(true);
   });
 
@@ -59,7 +59,7 @@ describe('ChipComponent', () => {
     const crossIcon = fixture.debugElement.query(By.directive(IconCrossComponent));
     expect(crossIcon).toBeNull();
     expect(chips[0].classes['sbb-chip-disabled']).toBe(true);
-    expect(chips[0].classes['sbb-chip-active']).toBe(false);
+    expect(chips[0].classes['sbb-chip-active']).toBeFalsy();
   });
 
   it('should emit dismissed event when dismissed button is pressed', () => {

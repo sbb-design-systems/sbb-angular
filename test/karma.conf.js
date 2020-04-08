@@ -1,8 +1,7 @@
 const path = require('path');
-const {customLaunchers, platformMap} = require('./browser-providers');
+const { customLaunchers, platformMap } = require('./browser-providers');
 
 module.exports = config => {
-  console.error('CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLINNNNNNNNNNNNNNGGGGGGGGGGGGGGG');
   config.set({
     basePath: path.join(__dirname, '..'),
     frameworks: ['jasmine', '@angular-devkit/build-angular'],

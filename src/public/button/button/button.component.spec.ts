@@ -1,10 +1,7 @@
 import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  IconArrowRightComponent as TestIconComponent,
-  IconCollectionModule
-} from '@sbb-esta/angular-icons';
+import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
 
 import { ButtonComponent } from './button.component';
 
@@ -16,8 +13,7 @@ import { ButtonComponent } from './button.component';
       Bezeichnung
     </button>
     <ng-template #icon><sbb-icon-arrow-right></sbb-icon-arrow-right></ng-template>
-  `,
-  entryComponents: [TestIconComponent]
+  `
 })
 export class ButtonTemplateTestComponent {
   mode: string;
@@ -32,7 +28,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule],
+      imports: [IconArrowRightModule],
       declarations: [ButtonComponent, ButtonTemplateTestComponent]
     }).compileComponents();
   }));

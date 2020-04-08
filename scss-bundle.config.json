@@ -3,8 +3,6 @@
   "*2": "The config is used in the src/public:styles_bundle and src/business:styles_bundle target",
   "bundlerOptions": {
     "logLevel": "error",
-    "dedupeGlobs": [
-      "./src/**/*.scss"
-    ]
+    "dedupeGlobs": ["./src/**/*.scss"]
   }
 }

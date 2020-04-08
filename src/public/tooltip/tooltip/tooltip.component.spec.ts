@@ -5,7 +5,8 @@ import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@sbb-esta/angular-core/base';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
+import { IconQuestionMarkModule } from '@sbb-esta/angular-icons/status';
 import { ButtonModule } from '@sbb-esta/angular-public/button';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 
@@ -64,7 +65,14 @@ describe('TooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule, CommonModule, PortalModule, OverlayModule],
+      imports: [
+        IconQuestionMarkModule,
+        IconCrossModule,
+        ,
+        CommonModule,
+        PortalModule,
+        OverlayModule
+      ],
       providers: [SBB_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER],
       declarations: [TooltipComponent]
     }).compileComponents();

@@ -36,18 +36,8 @@
       "@sbb-esta/angular-maps/*": ["src/maps/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "e2e/**/*.ts",
-    "schematics/**/*.ts",
-    "test/**/*.ts",
-    "tools/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules/",
-    "schematics/*/files/**/*",
-    "src/icons/schematics/*/files/**/*"
-  ],
+  "include": ["src/**/*.ts", "e2e/**/*.ts", "schematics/**/*.ts", "test/**/*.ts", "tools/**/*.ts"],
+  "exclude": ["node_modules/", "schematics/*/files/**/*", "src/icons/schematics/*/files/**/*"],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
   }

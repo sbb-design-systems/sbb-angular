@@ -112,6 +112,12 @@ searchAndReplace(
   `$1 + [m for dep in ctx.attr.deps if hasattr(dep, "angular") for m in dep.angular.metadata],`,
   'node_modules/@angular/bazel/src/ng_module.bzl'
 );
+// Replace umd modules in esri-loader package.json with esm modules
+searchAndReplace(
+  `define(['exports'], factory)`,
+  `define('esri-loader', ['exports'], factory)`,
+  'node_modules/esri-loader/dist/umd/esri-loader.js'
+);
 
 // Workaround for: https://github.com/bazelbuild/rules_nodejs/issues/1208.
 applyPatch(path.join(__dirname, './manifest_externs_hermeticity.patch'));

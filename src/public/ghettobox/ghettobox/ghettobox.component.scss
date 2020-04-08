@@ -31,13 +31,13 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
       justify-content: center;
       margin: 0 auto;
       padding: $ghettobox-wrapper-padding;
-    
+
       @include mq($from: desktop) {
         padding: $ghettobox-wrapper-padding-desktop;
         margin-left: 5.5%;
         margin-right: 5.5%;
       }
-    
+
       @include mq($from: desktopLarge) {
         margin-left: 8.5%;
         margin-right: 8.5%;
@@ -56,7 +56,7 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
           background-color: $ghettobox-icon-bg;
           border-radius: $ghettobox-icon-radius;
           line-height: 1;
-        
+
           .sbb-icon-component {
             @include absoluteCenterXY();
             display: block;
@@ -69,14 +69,14 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
           @include svgIconColor($ghettobox-color);
           flex: 0 1 auto;
           padding: 0 $ghettobox-icon-size 0 pxToEm(12);
-        
+
           @include mq($from: desktop) {
             padding: 0 pxToEm(24);
           }
-        
+
           a {
             color: $ghettobox-color;
-        
+
             &[sbbGhettoboxLink] {
               text-decoration: none;
             }
@@ -95,7 +95,7 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
           top: $ghettobox-wrapper-padding;
           right: pxToEm(12);
           line-height: 1;
-        
+
           @include mq($from: desktop) {
             top: $ghettobox-wrapper-padding-desktop-y;
           }
@@ -109,11 +109,11 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
           height: $ghettobox-icon-size;
           border: pxToEm(1) solid $ghettobox-color;
           border-radius: 50%;
-        
+
           &:hover {
             cursor: pointer;
           }
-        
+
           .sbb-icon-component {
             @include absoluteCenterXY();
             display: block;
@@ -129,7 +129,7 @@ $ghettobox-link-transition: background-color 0.3s cubic-bezier(0.785, 0.135, 0.1
       transition: $ghettobox-link-transition;
       text-decoration: none;
       color: $sbbColorWhite;
-    
+
       &:hover,
       &:focus {
         background-color: $sbbColorBlack;

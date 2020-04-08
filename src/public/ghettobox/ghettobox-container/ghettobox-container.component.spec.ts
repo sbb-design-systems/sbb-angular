@@ -5,7 +5,9 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
+import { IconHimInfoModule } from '@sbb-esta/angular-icons/him-cus';
+import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { Ghettobox } from '../ghettobox/ghettobox-ref';
 import { GhettoboxComponent, GhettoboxDeletedEvent } from '../ghettobox/ghettobox.component';
@@ -49,7 +51,14 @@ describe('GhettoboxContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, IconCollectionModule, NoopAnimationsModule, PortalModule],
+      imports: [
+        RouterTestingModule,
+        IconCrossModule,
+        IconArrowRightModule,
+        IconHimInfoModule,
+        NoopAnimationsModule,
+        PortalModule
+      ],
       declarations: [
         GhettoboxContainerComponent,
         GhettoboxContainerTestComponent,

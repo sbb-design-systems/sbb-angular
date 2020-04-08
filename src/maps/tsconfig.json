@@ -15,7 +15,7 @@
       "@sbb-esta/angular-keycloak/*": ["../keycloak/*"],
       "@sbb-esta/angular-maps/*": ["./*"],
       "@sbb-esta/angular-public": ["../public"],
-      "@sbb-esta/angular-public/*": ["../public/*"],
+      "@sbb-esta/angular-public/*": ["../public/*"]
     }
   },
   "include": ["./**/*.ts"]

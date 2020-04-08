@@ -5,7 +5,8 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LinkGeneratorResult } from '@sbb-esta/angular-core/models';
 import { dispatchFakeEvent } from '@sbb-esta/angular-core/testing';
-import { IconChevronSmallDownModule, IconUserModule } from '@sbb-esta/angular-icons';
+import { IconChevronSmallDownModule } from '@sbb-esta/angular-icons/arrow';
+import { IconUserModule } from '@sbb-esta/angular-icons/user';
 import { DropdownComponent, DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { UserMenuModule } from '../usermenu.module';

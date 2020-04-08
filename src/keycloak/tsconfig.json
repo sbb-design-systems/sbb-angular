@@ -15,7 +15,7 @@
       "@sbb-esta/angular-maps": ["../maps"],
       "@sbb-esta/angular-maps/*": ["../maps/*"],
       "@sbb-esta/angular-public": ["../public"],
-      "@sbb-esta/angular-public/*": ["../public/*"],
+      "@sbb-esta/angular-public/*": ["../public/*"]
     }
   },
   "include": ["./**/*.ts"]

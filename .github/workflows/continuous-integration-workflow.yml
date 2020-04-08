@@ -48,7 +48,7 @@ jobs:
           ${{ runner.os }}-bazel-
 
     - name: "Build: Migrate public to business components"
-      run: yarn -s build:business:public2business
+      run: yarn -s build:public2business
     - name: "Build: Bazel Core"
       run: bazelisk build src/core/... --build_tag_filters=-docs-package,-release-package
     - name: "Build: Bazel Keycloak"

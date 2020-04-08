@@ -5,7 +5,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { By } from '@angular/platform-browser';
 import { IconDirectiveModule } from '@sbb-esta/angular-core/icon-directive';
 import { RadioChange } from '@sbb-esta/angular-core/radio-button';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconArrowRightModule, IconArrowsRightLeftModule } from '@sbb-esta/angular-icons/arrow';
 import { DatepickerModule } from '@sbb-esta/angular-public/datepicker';
 import { FieldModule } from '@sbb-esta/angular-public/field';
 import { Observable, of } from 'rxjs';
@@ -199,7 +199,8 @@ describe('ToggleComponent case reactive using mock component', () => {
       imports: [
         ToggleModule,
         CommonModule,
-        IconCollectionModule,
+        IconArrowRightModule,
+        IconArrowsRightLeftModule,
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
@@ -297,7 +298,8 @@ describe('ToggleComponent case reactive with default value using mock component'
       imports: [
         ToggleModule,
         CommonModule,
-        IconCollectionModule,
+        IconArrowRightModule,
+        IconArrowsRightLeftModule,
         DatepickerModule,
         FieldModule,
         ReactiveFormsModule,
@@ -341,7 +343,9 @@ describe('ToggleComponent case template driven using mock component', () => {
       imports: [
         ToggleModule,
         CommonModule,
-        IconCollectionModule,
+
+        IconArrowRightModule,
+        IconArrowsRightLeftModule,
         DatepickerModule,
         FieldModule,
         FormsModule
@@ -402,7 +406,7 @@ describe('ToggleComponent simple case using mock component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule, CommonModule, IconCollectionModule],
+      imports: [ToggleModule, CommonModule],
       declarations: [ToggleSimpleCaseTestComponent]
     }).compileComponents();
   }));

@@ -1,7 +1,17 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import { IconArrowRightModule } from '@sbb-esta/angular-icons/arrow';
+import { IconDownloadModule } from '@sbb-esta/angular-icons/basic';
+import {
+  IconFacebookModule,
+  IconInstagramModule,
+  IconLinkedinModule,
+  IconPinterestModule,
+  IconTwitterModule,
+  IconXingModule,
+  IconYoutubeModule
+} from '@sbb-esta/angular-icons/social-media';
 
 import { SocialLinkComponent } from './social-link.component';
 
@@ -12,7 +22,17 @@ describe('SocialLinkComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SocialLinkComponent],
-      imports: [IconCollectionModule]
+      imports: [
+        IconArrowRightModule,
+        IconDownloadModule,
+        IconFacebookModule,
+        IconInstagramModule,
+        IconPinterestModule,
+        IconTwitterModule,
+        IconYoutubeModule,
+        IconXingModule,
+        IconLinkedinModule
+      ]
     })
       .overrideComponent(SocialLinkComponent, {
         set: { changeDetection: ChangeDetectionStrategy.Default }

@@ -4,12 +4,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { createMouseEvent, dispatchEvent } from '@sbb-esta/angular-core/testing';
+import {
+  createMouseEvent,
+  dispatchEvent,
+  dispatchMouseEvent
+} from '@sbb-esta/angular-core/testing';
 import {
   IconChevronRightModule,
-  IconChevronSmallDownCircleModule,
-  IconHouseModule
-} from '@sbb-esta/angular-icons';
+  IconChevronSmallDownCircleModule
+} from '@sbb-esta/angular-icons/arrow';
+import { IconHouseModule } from '@sbb-esta/angular-icons/navigation';
 import { DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
 import { BreadcrumbModule } from '../breadcrumb.module';
@@ -353,24 +357,27 @@ describe('Breadcrumb behaviour Test 2', () => {
       )[1];
 
       const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
-        .nativeElement;
-      dropdownTrigger.click();
+        .nativeElement as HTMLButtonElement;
+      dispatchMouseEvent(dropdownTrigger, 'click');
       fixtureTest.detectChanges();
-
       await fixtureTest.whenStable();
 
       const subLink1 = fixtureTest.debugElement.queryAll(
         By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
       )[0].nativeElement;
-      dispatchEvent(subLink1, createMouseEvent('click'));
+      dispatchMouseEvent(subLink1, 'click');
       fixtureTest.detectChanges();
       await fixtureTest.whenStable();
       expect(location.path()).toContain('?level=1&sub=1');
 
+      dispatchMouseEvent(dropdownTrigger, 'click');
+      fixtureTest.detectChanges();
+      await fixtureTest.whenStable();
+
       const subLink2 = fixtureTest.debugElement.queryAll(
         By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
       )[1].nativeElement;
-      dispatchEvent(subLink2, createMouseEvent('click'));
+      dispatchMouseEvent(subLink2, 'click');
       await fixtureTest.whenStable();
       fixtureTest.detectChanges();
       expect(location.path()).toContain('?level=1&sub=1b');
@@ -394,9 +401,8 @@ describe('Breadcrumb behaviour Test 2', () => {
 
       const dropdownTrigger = breadcrumbLevel2.query(By.css('.sbb-breadcrumb-trigger'))
         .nativeElement;
-      dropdownTrigger.click();
+      dispatchMouseEvent(dropdownTrigger, 'click');
       fixtureTest.detectChanges();
-
       await fixtureTest.whenStable();
 
       const subLink1 = fixtureTest.debugElement.queryAll(
@@ -407,6 +413,10 @@ describe('Breadcrumb behaviour Test 2', () => {
       await fixtureTest.whenStable();
 
       expect(location.path()).toContain('?level=1&sub=2');
+
+      dispatchMouseEvent(dropdownTrigger, 'click');
+      fixtureTest.detectChanges();
+      await fixtureTest.whenStable();
 
       const subLink2 = fixtureTest.debugElement.queryAll(
         By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')
@@ -492,9 +502,8 @@ describe('Breadcrumb behaviour Test 3', () => {
 
       const dropdownTrigger = breadcrumbLevel1.query(By.css('.sbb-breadcrumb-trigger'))
         .nativeElement;
-      dropdownTrigger.click();
+      dispatchMouseEvent(dropdownTrigger, 'click');
       fixtureTest.detectChanges();
-
       await fixtureTest.whenStable();
 
       const subLink1 = fixtureTest.debugElement.queryAll(
@@ -504,6 +513,10 @@ describe('Breadcrumb behaviour Test 3', () => {
       fixtureTest.detectChanges();
       await fixtureTest.whenStable();
       expect(location.path()).toContain('?level=1&sub=1');
+
+      dispatchMouseEvent(dropdownTrigger, 'click');
+      fixtureTest.detectChanges();
+      await fixtureTest.whenStable();
 
       const subLink2 = fixtureTest.debugElement.queryAll(
         By.css('.sbb-dropdown-panel.sbb-dropdown-visible > a')

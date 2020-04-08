@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AutocompleteModule } from '@sbb-esta/angular-business/autocomplete';
-import { IconCrossModule } from '@sbb-esta/angular-icons';
+import { IconCrossModule } from '@sbb-esta/angular-icons/navigation';
 
 import { ChipInputComponent } from './chip-input/chip-input.component';
 import { ChipComponent } from './chip/chip.component';

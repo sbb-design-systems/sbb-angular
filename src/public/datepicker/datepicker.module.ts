@@ -10,10 +10,10 @@ import {
   SBB_DATE_FORMATS
 } from '@sbb-esta/angular-core/datetime';
 import {
-  IconCalendarModule,
   IconChevronSmallLeftModule,
   IconChevronSmallRightModule
-} from '@sbb-esta/angular-icons';
+} from '@sbb-esta/angular-icons/arrow';
+import { IconCalendarModule } from '@sbb-esta/angular-icons/basic';
 
 import { CalendarBodyComponent } from './calendar-body/calendar-body.component';
 import { CalendarComponent, CalendarHeaderComponent } from './calendar/calendar.component';

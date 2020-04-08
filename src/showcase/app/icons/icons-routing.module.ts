@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IconsComponent } from '@sbb-esta/angular-icons/icons.component';
 
 import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
-
-import { IconsComponent } from './icons/icons.component';
 
 const routes: Routes = [
   {

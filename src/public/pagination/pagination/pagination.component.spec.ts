@@ -5,7 +5,10 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { dispatchEvent } from '@sbb-esta/angular-core/testing';
 import { createMouseEvent } from '@sbb-esta/angular-core/testing';
-import { IconCollectionModule } from '@sbb-esta/angular-icons';
+import {
+  IconChevronSmallLeftModule,
+  IconChevronSmallRightModule
+} from '@sbb-esta/angular-icons/arrow';
 
 import { PaginationModule } from '../pagination.module';
 
@@ -38,7 +41,12 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [IconCollectionModule, CommonModule, RouterTestingModule],
+      imports: [
+        IconChevronSmallLeftModule,
+        IconChevronSmallRightModule,
+        CommonModule,
+        RouterTestingModule
+      ],
       declarations: [PaginationComponent]
     }).compileComponents();
   }));
