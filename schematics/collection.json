@@ -5,13 +5,9 @@
       "description": "Bazelify",
       "factory": "./bazel/index#bazel"
     },
-    "documentation": {
-      "description": "Generate documentation for the showcase.",
-      "factory": "./documentation/index#documentation"
-    },
-    "example-migration": {
-      "description": "Mirate examples",
-      "factory": "./example-migration/index#exampleMigration"
+    "normalize-examples": {
+      "description": "Normalize examples",
+      "factory": "./normalize-examples/index#normalizeExamples"
     },
     "public2business": {
       "description": "Copy public components to business",
