@@ -2,53 +2,48 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { AccordionShowcaseComponent } from '../public-examples/accordion-showcase/accordion-showcase.component';
-import { AutocompleteFormsShowcaseComponent } from '../public-examples/autocomplete-forms-showcase/autocomplete-forms-showcase.component';
-import { AutocompleteHintShowcaseComponent } from '../public-examples/autocomplete-hint-showcase/autocomplete-hint-showcase.component';
-import { AutocompleteOptionGroupShowcaseComponent } from '../public-examples/autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
-import { AutocompleteReactiveFormsShowcaseComponent } from '../public-examples/autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
-import { BadgeShowcaseComponent } from '../public-examples/badge-showcase/badge-showcase.component';
-import { BreadcrumbShowcaseComponent } from '../public-examples/breadcrumb-showcase/breadcrumb-showcase.component';
-import { ButtonShowcaseComponent } from '../public-examples/button-showcase/button-showcase.component';
-import { CaptchaShowcaseComponent } from '../public-examples/captcha-showcase/captcha-showcase.component';
-import { CheckboxPanelShowcaseComponent } from '../public-examples/checkbox-panel-showcase/checkbox-panel-showcase.component';
-import { CheckboxShowcaseComponent } from '../public-examples/checkbox-showcase/checkbox-showcase.component';
-import { DatepickerDateFilterShowcaseComponent } from '../public-examples/datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
-import { DatepickerMasterSlaveShowcaseComponent } from '../public-examples/datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
-import { DatepickerSimpleReactiveShowcaseComponent } from '../public-examples/datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
-import { DatepickerStandaloneFormsShowcaseComponent } from '../public-examples/datepicker-standalone-forms-showcase/datepicker-standalone-forms-showcase.component';
-import { DropdownShowcaseComponent } from '../public-examples/dropdown-showcase/dropdown-showcase.component';
-import { FieldShowcaseComponent } from '../public-examples/field-showcase/field-showcase.component';
-import { FileSelectorShowcaseComponent } from '../public-examples/file-selector-showcase/file-selector-showcase.component';
-import { GhettoboxShowcaseComponent } from '../public-examples/ghettobox-showcase/ghettobox-showcase.component';
-import { LightboxShowcaseComponent } from '../public-examples/lightbox-showcase/lightbox-showcase.component';
-import { LinksShowcaseComponent } from '../public-examples/links-showcase/links-showcase.component';
-import { LoadingShowcaseComponent } from '../public-examples/loading-showcase/loading-showcase.component';
-import { NotificationShowcaseComponent } from '../public-examples/notification-showcase/notification-showcase.component';
-import { PaginationShowcaseComponent } from '../public-examples/pagination-showcase/pagination-showcase.component';
-import { ProcessflowShowcaseComponent } from '../public-examples/processflow-showcase/processflow-showcase.component';
-import { RadioButtonPanelShowcaseComponent } from '../public-examples/radio-button-panel-showcase/radio-button-panel-showcase.component';
-import { RadioButtonShowcaseComponent } from '../public-examples/radio-button-showcase/radio-button-showcase.component';
-import { SearchShowcaseComponent } from '../public-examples/search-showcase/search-showcase.component';
-import { SelectFormsComponent } from '../public-examples/select-forms/select-forms.component';
-import { SelectMultiSelectionComponent } from '../public-examples/select-multi-selection/select-multi-selection.component';
-import { SelectNativeComponent } from '../public-examples/select-native/select-native.component';
-import { SelectOptionGroupsMultiSelectionComponent } from '../public-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
-import { SelectOptionGroupsComponent } from '../public-examples/select-option-groups/select-option-groups.component';
-import { SelectReactiveFormsComponent } from '../public-examples/select-reactive-forms/select-reactive-forms.component';
-import { TableShowcaseComponent } from '../public-examples/table-showcase/table-showcase.component';
-import { TabsShowcaseComponent } from '../public-examples/tabs-showcase/tabs-showcase.component';
-import { TagShowcaseComponent } from '../public-examples/tag-showcase/tag-showcase.component';
-import { TextareaFormsShowcaseComponent } from '../public-examples/textarea-forms-showcase/textarea-forms-showcase.component';
-import { TextareaNativeShowcaseComponent } from '../public-examples/textarea-native-showcase/textarea-native-showcase.component';
-import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../public-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
-import { TextexpandShowcaseComponent } from '../public-examples/textexpand-showcase/textexpand-showcase.component';
-import { TimeInputShowcaseComponent } from '../public-examples/time-input-showcase/time-input-showcase.component';
-import { ToggleShowcaseComponent } from '../public-examples/toggle-showcase/toggle-showcase.component';
-import { TooltipCustomContentShowcaseComponent } from '../public-examples/tooltip-custom-content-showcase/tooltip-custom-content-showcase.component';
-import { TooltipCustomIconShowcaseComponent } from '../public-examples/tooltip-custom-icon-showcase/tooltip-custom-icon-showcase.component';
-import { TooltipSimpleShowcaseComponent } from '../public-examples/tooltip-simple-showcase/tooltip-simple-showcase.component';
-import { UsermenuShowcaseComponent } from '../public-examples/usermenu-showcase/usermenu-showcase.component';
+import { AccordionExampleComponent } from '../public-examples/accordion-examples/accordion-example/accordion-example.component';
+import { AutocompleteFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
+import { AutocompleteHintExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
+import { AutocompleteOptionGroupExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
+import { AutocompleteReactiveFormsExampleComponent } from '../public-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
+import { BadgeExampleComponent } from '../public-examples/badge-examples/badge-example/badge-example.component';
+import { BreadcrumbExampleComponent } from '../public-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
+import { ButtonExampleComponent } from '../public-examples/button-examples/button-example/button-example.component';
+import { CaptchaExampleComponent } from '../public-examples/captcha-examples/captcha-example/captcha-example.component';
+import { CheckboxExampleComponent } from '../public-examples/checkbox-examples/checkbox-example/checkbox-example.component';
+import { CheckboxPanelExampleComponent } from '../public-examples/checkbox-panel-examples/checkbox-panel-example/checkbox-panel-example.component';
+import { DatepickerExampleComponent } from '../public-examples/datepicker-examples/datepicker-example/datepicker-example.component';
+import { DropdownExampleComponent } from '../public-examples/dropdown-examples/dropdown-example/dropdown-example.component';
+import { FieldExampleComponent } from '../public-examples/field-examples/field-example/field-example.component';
+import { FileSelectorExampleComponent } from '../public-examples/file-selector-examples/file-selector-example/file-selector-example.component';
+import { GhettoboxExampleComponent } from '../public-examples/ghettobox-examples/ghettobox-example/ghettobox-example.component';
+import { LightboxExampleComponent } from '../public-examples/lightbox-examples/lightbox-example/lightbox-example.component';
+import { LinksExampleComponent } from '../public-examples/links-examples/links-example/links-example.component';
+import { LoadingExampleComponent } from '../public-examples/loading-examples/loading-example/loading-example.component';
+import { NotificationExampleComponent } from '../public-examples/notification-examples/notification-example/notification-example.component';
+import { PaginationExampleComponent } from '../public-examples/pagination-examples/pagination-example/pagination-example.component';
+import { ProcessflowExampleComponent } from '../public-examples/processflow-examples/processflow-example/processflow-example.component';
+import { RadioButtonExampleComponent } from '../public-examples/radio-button-examples/radio-button-example/radio-button-example.component';
+import { RadioButtonPanelExampleComponent } from '../public-examples/radio-button-panel-examples/radio-button-panel-example/radio-button-panel-example.component';
+import { SearchExampleComponent } from '../public-examples/search-examples/search-example/search-example.component';
+import { SelectFormsComponent } from '../public-examples/select-examples/select-forms/select-forms.component';
+import { SelectMultiSelectionComponent } from '../public-examples/select-examples/select-multi-selection/select-multi-selection.component';
+import { SelectNativeComponent } from '../public-examples/select-examples/select-native/select-native.component';
+import { SelectOptionGroupsMultiSelectionComponent } from '../public-examples/select-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
+import { SelectOptionGroupsComponent } from '../public-examples/select-examples/select-option-groups/select-option-groups.component';
+import { SelectReactiveFormsComponent } from '../public-examples/select-examples/select-reactive-forms/select-reactive-forms.component';
+import { TableExampleComponent } from '../public-examples/table-examples/table-example/table-example.component';
+import { TabsExampleComponent } from '../public-examples/tabs-examples/tabs-example/tabs-example.component';
+import { TagExampleComponent } from '../public-examples/tag-examples/tag-example/tag-example.component';
+import { TextareaFormsExampleComponent } from '../public-examples/textarea-examples/textarea-forms-example/textarea-forms-example.component';
+import { TextareaNativeExampleComponent } from '../public-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
+import { TextareaReactiveFormsWithSbbFieldExampleComponent } from '../public-examples/textarea-examples/textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component';
+import { TextexpandExampleComponent } from '../public-examples/textexpand-examples/textexpand-example/textexpand-example.component';
+import { TimeInputExampleComponent } from '../public-examples/time-input-examples/time-input-example/time-input-example.component';
+import { ToggleExampleComponent } from '../public-examples/toggle-examples/toggle-example/toggle-example.component';
+import { TooltipExampleComponent } from '../public-examples/tooltip-examples/tooltip-example/tooltip-example.component';
+import { UsermenuExampleComponent } from '../public-examples/usermenu-examples/usermenu-example/usermenu-example.component';
 
 @Component({
   selector: 'sbb-public',
@@ -99,41 +94,30 @@ export class PublicComponent implements ExampleProvider {
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     autocomplete: {
-      'autocomplete-reactive-forms-showcase': new ComponentPortal(
-        AutocompleteReactiveFormsShowcaseComponent
+      'autocomplete-reactive-forms-example': new ComponentPortal(
+        AutocompleteReactiveFormsExampleComponent
       ),
-      'autocomplete-forms-showcase': new ComponentPortal(AutocompleteFormsShowcaseComponent),
-      'autocomplete-hint-showcase': new ComponentPortal(AutocompleteHintShowcaseComponent),
-      'autocomplete-option-group-showcase': new ComponentPortal(
-        AutocompleteOptionGroupShowcaseComponent
+      'autocomplete-forms-example': new ComponentPortal(AutocompleteFormsExampleComponent),
+      'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
+      'autocomplete-option-group-example': new ComponentPortal(
+        AutocompleteOptionGroupExampleComponent
       )
     },
-    captcha: { 'captcha-showcase': new ComponentPortal(CaptchaShowcaseComponent) },
-    checkbox: { 'checkbox-showcase': new ComponentPortal(CheckboxShowcaseComponent) },
+    captcha: { 'captcha-example': new ComponentPortal(CaptchaExampleComponent) },
+    checkbox: { 'checkbox-example': new ComponentPortal(CheckboxExampleComponent) },
     'checkbox-panel': {
-      'checkbox-panel-showcase': new ComponentPortal(CheckboxPanelShowcaseComponent)
+      'checkbox-panel-example': new ComponentPortal(CheckboxPanelExampleComponent)
     },
-    datepicker: {
-      'datepicker-simple-reactive-showcase': new ComponentPortal(
-        DatepickerSimpleReactiveShowcaseComponent
-      ),
-      'datepicker-master-slave-showcase': new ComponentPortal(
-        DatepickerMasterSlaveShowcaseComponent
-      ),
-      'datepicker-date-filter-showcase': new ComponentPortal(DatepickerDateFilterShowcaseComponent),
-      'datepicker-standalone-forms-showcase': new ComponentPortal(
-        DatepickerStandaloneFormsShowcaseComponent
-      )
-    },
-    field: { 'field-showcase': new ComponentPortal(FieldShowcaseComponent) },
+    datepicker: { 'datepicker-example': new ComponentPortal(DatepickerExampleComponent) },
+    field: { 'field-example': new ComponentPortal(FieldExampleComponent) },
     'file-selector': {
-      'file-selector-showcase': new ComponentPortal(FileSelectorShowcaseComponent)
+      'file-selector-example': new ComponentPortal(FileSelectorExampleComponent)
     },
-    'radio-button': { 'radio-button-showcase': new ComponentPortal(RadioButtonShowcaseComponent) },
+    'radio-button': { 'radio-button-example': new ComponentPortal(RadioButtonExampleComponent) },
     'radio-button-panel': {
-      'radio-button-panel-showcase': new ComponentPortal(RadioButtonPanelShowcaseComponent)
+      'radio-button-panel-example': new ComponentPortal(RadioButtonPanelExampleComponent)
     },
-    search: { 'search-showcase': new ComponentPortal(SearchShowcaseComponent) },
+    search: { 'search-example': new ComponentPortal(SearchExampleComponent) },
     select: {
       'select-reactive-forms': new ComponentPortal(SelectReactiveFormsComponent),
       'select-forms': new ComponentPortal(SelectFormsComponent),
@@ -144,37 +128,33 @@ export class PublicComponent implements ExampleProvider {
         SelectOptionGroupsMultiSelectionComponent
       )
     },
-    tag: { 'tag-showcase': new ComponentPortal(TagShowcaseComponent) },
+    tag: { 'tag-example': new ComponentPortal(TagExampleComponent) },
     textarea: {
-      'textarea-forms-showcase': new ComponentPortal(TextareaFormsShowcaseComponent),
-      'textarea-reactive-forms-with-sbb-field-showcase': new ComponentPortal(
-        TextareaReactiveFormsWithSbbFieldShowcaseComponent
+      'textarea-forms-example': new ComponentPortal(TextareaFormsExampleComponent),
+      'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
+        TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native': new ComponentPortal(TextareaNativeShowcaseComponent)
+      'textarea-native': new ComponentPortal(TextareaNativeExampleComponent)
     },
-    'time-input': { 'time-input-showcase': new ComponentPortal(TimeInputShowcaseComponent) },
-    toggle: { 'toggle-showcase': new ComponentPortal(ToggleShowcaseComponent) },
-    accordion: { 'accordion-showcase': new ComponentPortal(AccordionShowcaseComponent) },
-    breadcrumb: { 'breadcrumb-showcase': new ComponentPortal(BreadcrumbShowcaseComponent) },
-    ghettobox: { 'ghettobox-showcase': new ComponentPortal(GhettoboxShowcaseComponent) },
-    notification: { 'notification-showcase': new ComponentPortal(NotificationShowcaseComponent) },
-    pagination: { 'pagination-showcase': new ComponentPortal(PaginationShowcaseComponent) },
-    processflow: { 'processflow-showcase': new ComponentPortal(ProcessflowShowcaseComponent) },
-    table: { 'table-showcase': new ComponentPortal(TableShowcaseComponent) },
-    tabs: { 'tabs-showcase': new ComponentPortal(TabsShowcaseComponent) },
-    textexpand: { 'textexpand-showcase': new ComponentPortal(TextexpandShowcaseComponent) },
-    usermenu: { 'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent) },
-    badge: { 'badge-showcase': new ComponentPortal(BadgeShowcaseComponent) },
-    button: { 'button-showcase': new ComponentPortal(ButtonShowcaseComponent) },
-    links: { 'links-showcase': new ComponentPortal(LinksShowcaseComponent) },
-    loading: { 'loading-showcase': new ComponentPortal(LoadingShowcaseComponent) },
-    dropdown: { 'dropdown-showcase': new ComponentPortal(DropdownShowcaseComponent) },
-    lightbox: { 'lightbox-showcase': new ComponentPortal(LightboxShowcaseComponent) },
-    tooltip: {
-      'tooltip-simple-showcase': new ComponentPortal(TooltipSimpleShowcaseComponent),
-      'tooltip-custom-content-showcase': new ComponentPortal(TooltipCustomContentShowcaseComponent),
-      'tooltip-custom-icon-showcase': new ComponentPortal(TooltipCustomIconShowcaseComponent)
-    }
+    'time-input': { 'time-input-example': new ComponentPortal(TimeInputExampleComponent) },
+    toggle: { 'toggle-example': new ComponentPortal(ToggleExampleComponent) },
+    accordion: { 'accordion-example': new ComponentPortal(AccordionExampleComponent) },
+    breadcrumb: { 'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent) },
+    ghettobox: { 'ghettobox-example': new ComponentPortal(GhettoboxExampleComponent) },
+    notification: { 'notification-example': new ComponentPortal(NotificationExampleComponent) },
+    pagination: { 'pagination-example': new ComponentPortal(PaginationExampleComponent) },
+    processflow: { 'processflow-example': new ComponentPortal(ProcessflowExampleComponent) },
+    table: { 'table-example': new ComponentPortal(TableExampleComponent) },
+    tabs: { 'tabs-example': new ComponentPortal(TabsExampleComponent) },
+    textexpand: { 'textexpand-example': new ComponentPortal(TextexpandExampleComponent) },
+    usermenu: { 'usermenu-example': new ComponentPortal(UsermenuExampleComponent) },
+    badge: { 'badge-example': new ComponentPortal(BadgeExampleComponent) },
+    button: { 'button-example': new ComponentPortal(ButtonExampleComponent) },
+    links: { 'links-example': new ComponentPortal(LinksExampleComponent) },
+    loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
+    dropdown: { 'dropdown-example': new ComponentPortal(DropdownExampleComponent) },
+    lightbox: { 'lightbox-example': new ComponentPortal(LightboxExampleComponent) },
+    tooltip: { 'tooltip-example': new ComponentPortal(TooltipExampleComponent) }
   };
 
   resolveExample<TComponent = any>(

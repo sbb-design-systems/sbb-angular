@@ -27,8 +27,8 @@ export class LoaderBuilder {
 
   fromExamples(example: string, type: 'html' | 'ts' | 'scss') {
     return this.from(
-      library =>
-        `assets/docs-content/examples-highlighted/app/${library}/${library}-examples/${example}/${example}.component-${type}.html`
+      (library, id) =>
+        `assets/docs-content/examples-highlighted/app/${library}/${library}-examples/${id}-examples/${example}/${example}.component-${type}.html`
     );
   }
 

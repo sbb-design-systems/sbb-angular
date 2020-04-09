@@ -1,0 +1,42 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "tooltip-examples",
+    srcs = [
+        "tooltip-examples.module.ts",
+        "tooltip-example/tooltip-example.component.ts",
+    ],
+    assets = [
+        ":tooltip-example/tooltip-example.component.css",
+        "tooltip-example/tooltip-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/field",
+        "//src/business/tooltip",
+        "//src/icons/navigation",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "tooltip_example_tooltip_example_component_scss",
+    src = "tooltip-example/tooltip-example.component.scss",
+)

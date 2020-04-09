@@ -11,4 +11,4 @@ import { UserMenuComponent } from './usermenu/usermenu.component';
   imports: [CommonModule, DropdownModule, IconChevronSmallDownModule, IconUserModule],
   exports: [UserMenuComponent, DropdownModule]
 })
-export class UserMenuModule {}
+export class UsermenuModule {}

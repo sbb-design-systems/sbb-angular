@@ -22,4 +22,4 @@ import { NotificationComponent } from './notification/notification.component';
   declarations: [NotificationComponent],
   exports: [NotificationComponent, IconDirectiveModule]
 })
-export class NotificationsModule {}
+export class NotificationModule {}

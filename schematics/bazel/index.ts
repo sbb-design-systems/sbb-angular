@@ -3,11 +3,12 @@ import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics'
 import { NgPackage } from './ng-package';
 import { ShowcasePackage } from './showcase-package';
 
-export function bazel(): Rule {
+export function bazel(options: { filter: string }): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const srcDir = tree.getDir('src');
     return chain(
       srcDir.subdirs
+        .filter(d => !options.filter || d === options.filter)
         .map(d => srcDir.dir(d))
         .map(packageDir =>
           packageDir.path.endsWith('showcase')

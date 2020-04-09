@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "esri-layer-list-examples",
+    srcs = [
+        "esri-layer-list-examples.module.ts",
+        "esri-layer-list-example/esri-layer-list-example.component.ts",
+    ],
+    assets = [
+        ":esri-layer-list-example/esri-layer-list-example.component.css",
+        "esri-layer-list-example/esri-layer-list-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps/esri-layer-list",
+        "//src/maps/esri-web-scene",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "esri_layer_list_example_esri_layer_list_example_component_scss",
+    src = "esri-layer-list-example/esri-layer-list-example.component.scss",
+)

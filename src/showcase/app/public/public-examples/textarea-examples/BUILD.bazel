@@ -1,0 +1,52 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "textarea-examples",
+    srcs = [
+        "textarea-examples.module.ts",
+        "textarea-forms-example/textarea-forms-example.component.ts",
+        "textarea-native-example/textarea-native-example.component.ts",
+        "textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.ts",
+    ],
+    assets = [
+        ":textarea-forms-example/textarea-forms-example.component.css",
+        ":textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.css",
+        "textarea-forms-example/textarea-forms-example.component.html",
+        "textarea-native-example/textarea-native-example.component.html",
+        "textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/checkbox",
+        "//src/public/field",
+        "//src/public/textarea",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "textarea_forms_example_textarea_forms_example_component_scss",
+    src = "textarea-forms-example/textarea-forms-example.component.scss",
+)
+
+sass_binary(
+    name = "textarea_reactive_forms_with_sbbfield_example_textarea_reactive_forms_with_sbb_field_example_component_scss",
+    src = "textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component.scss",
+)

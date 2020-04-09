@@ -1,0 +1,56 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "notification-examples",
+    srcs = [
+        "notification-data.ts",
+        "notification-examples.module.ts",
+        "closable-notification/closable-notification.component.ts",
+        "custom-icon-notification/custom-icon-notification.component.ts",
+        "jumpmark-notification/jumpmark-notification.component.ts",
+        "simple-notification/simple-notification.component.ts",
+    ],
+    assets = [
+        ":closable-notification/closable-notification.component.css",
+        ":simple-notification/simple-notification.component.css",
+        "closable-notification/closable-notification.component.html",
+        "custom-icon-notification/custom-icon-notification.component.html",
+        "jumpmark-notification/jumpmark-notification.component.html",
+        "simple-notification/simple-notification.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/field",
+        "//src/business/notification",
+        "//src/icons/community",
+        "//src/icons/timetable",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "closable_notification_closable_notification_component_scss",
+    src = "closable-notification/closable-notification.component.scss",
+)
+
+sass_binary(
+    name = "simple_notification_simple_notification_component_scss",
+    src = "simple-notification/simple-notification.component.scss",
+)

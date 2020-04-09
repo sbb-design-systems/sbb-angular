@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { SbbTableDataSource, Sort } from '@sbb-esta/angular-business/table';
 
-import { TABLE_SHOWCASE_DATA } from '../table-showcase-data';
+import { TABLE_EXAMPLE_DATA } from '../table-example-data';
 
 @Component({
-  selector: 'sbb-table-sort-showcase',
+  selector: 'sbb-table-sort-example',
   templateUrl: './sortable-table.component.html'
 })
 export class SortableTableComponent {
   displayedColumns: string[] = ['letter', 'number', 'word', 'date'];
-  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_SHOWCASE_DATA.slice());
+  dataSource: SbbTableDataSource<any> = new SbbTableDataSource(TABLE_EXAMPLE_DATA.slice());
 
   sortData(sort: Sort) {
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
-      this.dataSource.data = TABLE_SHOWCASE_DATA;
+      this.dataSource.data = TABLE_EXAMPLE_DATA;
       return;
     }
 

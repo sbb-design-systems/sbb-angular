@@ -1,0 +1,41 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "links-examples",
+    srcs = [
+        "links-examples.module.ts",
+        "links-example/links-example.component.ts",
+    ],
+    assets = [
+        ":links-example/links-example.component.css",
+        "links-example/links-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/field",
+        "//src/public/links",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "links_example_links_example_component_scss",
+    src = "links-example/links-example.component.scss",
+)

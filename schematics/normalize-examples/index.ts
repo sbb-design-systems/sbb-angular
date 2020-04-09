@@ -39,6 +39,37 @@ export function normalizeExamples(): Rule {
     function normalizeExampleModules(dir: DirEntry) {
       // const moduleName = basename(dir.parent!.path);
       dir.subdirs.map(d => dir.dir(d)).forEach(d => normalizeExampleModule(d));
+
+      const dirName = basename(dir.path);
+      const moduleName = `${strings.classify(dirName)}Module`;
+      const moduleImports = dir.subdirs
+        .sort()
+        .map(d => `import { ${strings.classify(d)}Module } from './${d}/${d}.module';`)
+        .join('\n');
+      const moduleList = dir.subdirs.map(d => `${strings.classify(d)}Module`).join(',\n  ');
+      const content = `import { NgModule } from '@angular/core';
+
+${moduleImports}
+
+const EXAMPLES = [
+  ${moduleList}
+];
+
+@NgModule({
+  imports: EXAMPLES,
+  exports: EXAMPLES
+})
+export class ${moduleName} {}
+`;
+      const formattedContent = prettier.format(content, {
+        parser: 'typescript',
+        ...require('../../package.json').prettier
+      });
+
+      const moduleFile = dir.file(fragment(`${dirName}.module.ts`))!;
+      if (moduleFile.content.toString() !== formattedContent) {
+        tree.overwrite(moduleFile.path, formattedContent);
+      }
     }
 
     function normalizeExampleModule(dir: DirEntry) {
@@ -65,6 +96,13 @@ export function normalizeExamples(): Rule {
     function renderModuleContent(dir: DirEntry) {
       const { exampleComponents, imports } = findExampleComponentsAndImports(dir);
       const dirName = basename(dir.path);
+      const angularModules = detectUsedAngularModules(dir);
+      const formImport = angularModules.forms
+        ? `import { FormsModule, ReactiveFormsModule } from '@angular/forms';`
+        : '';
+      const routerImport = angularModules.router
+        ? `import { RouterModule } from '@angular/router';`
+        : '';
       const moduleName = `${strings.classify(dirName)}Module`;
       const moduleImports = imports
         .map(i => `import { ${i.moduleName} } from '${i.path}';`)
@@ -75,10 +113,16 @@ export function normalizeExamples(): Rule {
       const componentsList = exampleComponents
         .reduce((current, next) => current.concat(next.components), [] as string[])
         .join(',\n  ');
-      const moduleList = imports.map(i => i.moduleName).join(',\n    ');
+      let moduleList = imports.map(i => i.moduleName).join(',\n    ');
+      if (angularModules.forms) {
+        moduleList = `FormsModule,\n  ReactiveFormsModule,\n  ${moduleList}`;
+      }
+      if (angularModules.router) {
+        moduleList = `RouterModule,\n  ${moduleList}`;
+      }
 
       const content = `import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';${formImport}${routerImport}
 ${moduleImports}
 
 ${componentImports}
@@ -103,13 +147,16 @@ export class ${moduleName} {}
       });
 
       const moduleFile = dir.file(fragment(`${dirName}.module.ts`))!;
-      tree.overwrite(moduleFile.path, formattedContent);
+      if (moduleFile.content.toString() !== formattedContent) {
+        tree.overwrite(moduleFile.path, formattedContent);
+      }
     }
 
     function findExampleComponentsAndImports(dir: DirEntry) {
       const packageName = split(dir.path)[4];
       const exampleComponents: ExampleComponents[] = [];
-      const imports: Imports[] = [resolveImport(packageName, basename(dir.path))];
+      const moduleName = basename(dir.path).split('-examples')[0];
+      const imports: Imports[] = [resolveImport(packageName, moduleName)];
       dir.visit((path, entry) => {
         if (!entry) {
           return;
@@ -123,10 +170,10 @@ export class ${moduleName} {}
 
       return {
         exampleComponents: exampleComponents
-          .filter((v, i, a) => a.indexOf(v) === i)
+          .filter((v, i, a) => a.findIndex(vi => JSON.stringify(vi) === JSON.stringify(v)) === i)
           .sort((a, b) => a.path.localeCompare(b.path)),
         imports: imports
-          .filter((v, i, a) => a.indexOf(v) === i)
+          .filter((v, i, a) => a.findIndex(vi => JSON.stringify(vi) === JSON.stringify(v)) === i)
           .sort((a, b) => a.path.localeCompare(b.path))
       };
     }
@@ -137,7 +184,9 @@ export class ${moduleName} {}
         .match(/export class \w+Component/g)
         ?.map(m => m.substring(13))
         .sort();
-      return components ? [{ path: `./${relative(dir.path, entry.path)}`, components }] : [];
+      return components
+        ? [{ path: `./${relative(dir.path, entry.path).replace(/\.ts$/, '')}`, components }]
+        : [];
     }
 
     function findTypeScriptImports(entry: Readonly<FileEntry>): Imports[] {
@@ -146,6 +195,11 @@ export class ${moduleName} {}
         content
           .match(/@sbb-esta\/angular-\w+\/[^']+/g)
           ?.filter((v, i, a) => a.indexOf(v) === i)
+          .filter(i =>
+            ['base', 'models', 'datetime', 'angular-core/radio-button'].every(
+              m => !i.endsWith(`/${m}`)
+            )
+          )
           .map(i => ({ path: i, moduleName: `${strings.classify(i.split('/')[2])}Module` })) ?? []
       );
     }
@@ -178,6 +232,27 @@ export class ${moduleName} {}
         path: `@sbb-esta/angular-${packageName}/${moduleName}`,
         moduleName: `${strings.classify(moduleName)}Module`
       };
+    }
+
+    function detectUsedAngularModules(dir: DirEntry) {
+      const modules = {
+        forms: false,
+        router: false
+      };
+      dir.visit((path, entry) => {
+        if (path.endsWith('html') && entry) {
+          const content = entry.content.toString();
+          if (content.match(/(ngModel|formGroup|formControl)/)) {
+            modules.forms = true;
+          }
+
+          if (content.includes('routerLink')) {
+            modules.router = true;
+          }
+        }
+      });
+
+      return modules;
     }
   };
 }

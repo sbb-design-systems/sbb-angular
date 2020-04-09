@@ -1,0 +1,42 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "breadcrumb-examples",
+    srcs = [
+        "breadcrumb-examples.module.ts",
+        "breadcrumb-example/breadcrumb-example.component.ts",
+    ],
+    assets = [
+        ":breadcrumb-example/breadcrumb-example.component.css",
+        "breadcrumb-example/breadcrumb-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/navigation",
+        "//src/public/breadcrumb",
+        "//src/public/dropdown",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "breadcrumb_example_breadcrumb_example_component_scss",
+    src = "breadcrumb-example/breadcrumb-example.component.scss",
+)

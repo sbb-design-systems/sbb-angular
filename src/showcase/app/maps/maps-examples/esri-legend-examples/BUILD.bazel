@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "esri-legend-examples",
+    srcs = [
+        "esri-legend-examples.module.ts",
+        "esri-legend-example/esri-legend-example.component.ts",
+    ],
+    assets = [
+        ":esri-legend-example/esri-legend-example.component.css",
+        "esri-legend-example/esri-legend-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps/esri-legend",
+        "//src/maps/esri-web-scene",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "esri_legend_example_esri_legend_example_component_scss",
+    src = "esri-legend-example/esri-legend-example.component.scss",
+)

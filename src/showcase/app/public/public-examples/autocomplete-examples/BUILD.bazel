@@ -1,0 +1,41 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+ng_module(
+    name = "autocomplete-examples",
+    srcs = [
+        "autocomplete-examples.module.ts",
+        "autocomplete-forms-example/autocomplete-forms-example.component.ts",
+        "autocomplete-hint-example/autocomplete-hint-example.component.ts",
+        "autocomplete-option-group-example/autocomplete-option-group-example.component.ts",
+        "autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component.ts",
+    ],
+    assets = [
+        "autocomplete-forms-example/autocomplete-forms-example.component.html",
+        "autocomplete-hint-example/autocomplete-hint-example.component.html",
+        "autocomplete-option-group-example/autocomplete-option-group-example.component.html",
+        "autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/autocomplete",
+        "//src/public/field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

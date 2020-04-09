@@ -1,0 +1,42 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "pagination-examples",
+    srcs = [
+        "pagination-examples.module.ts",
+        "pagination-example/pagination-example.component.ts",
+    ],
+    assets = [
+        ":pagination-example/pagination-example.component.css",
+        "pagination-example/pagination-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/field",
+        "//src/public/pagination",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "pagination_example_pagination_example_component_scss",
+    src = "pagination-example/pagination-example.component.scss",
+)

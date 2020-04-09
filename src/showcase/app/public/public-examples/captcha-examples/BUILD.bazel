@@ -1,0 +1,42 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "captcha-examples",
+    srcs = [
+        "captcha-examples.module.ts",
+        "captcha-example/captcha-example.component.ts",
+    ],
+    assets = [
+        ":captcha-example/captcha-example.component.css",
+        "captcha-example/captcha-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/captcha",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@types/grecaptcha",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "captcha_example_captcha_example_component_scss",
+    src = "captcha-example/captcha-example.component.scss",
+)

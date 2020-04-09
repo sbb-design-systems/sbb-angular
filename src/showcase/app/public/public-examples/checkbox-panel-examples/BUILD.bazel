@@ -1,0 +1,42 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "checkbox-panel-examples",
+    srcs = [
+        "checkbox-panel-examples.module.ts",
+        "checkbox-panel-example/checkbox-panel-example.component.ts",
+    ],
+    assets = [
+        ":checkbox-panel-example/checkbox-panel-example.component.css",
+        "checkbox-panel-example/checkbox-panel-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/basic",
+        "//src/public/checkbox",
+        "//src/public/checkbox-panel",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "checkbox_panel_example_checkbox_panel_example_component_scss",
+    src = "checkbox-panel-example/checkbox-panel-example.component.scss",
+)

@@ -1,0 +1,39 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "processflow-examples",
+    srcs = [
+        "processflow-examples.module.ts",
+        "processflow-example/processflow-example.component.ts",
+    ],
+    assets = [
+        ":processflow-example/processflow-example.component.css",
+        "processflow-example/processflow-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/processflow",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "processflow_example_processflow_example_component_scss",
+    src = "processflow-example/processflow-example.component.scss",
+)

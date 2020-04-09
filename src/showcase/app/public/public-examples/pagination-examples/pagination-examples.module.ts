@@ -1,8 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FieldModule } from '@sbb-esta/angular-public/field';
+import { PaginationModule } from '@sbb-esta/angular-public/pagination';
+
+import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
+
+const EXAMPLES = [PaginationExampleComponent];
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FieldModule, PaginationModule],
+  declarations: EXAMPLES,
+  exports: EXAMPLES
 })
 export class PaginationExamplesModule {}

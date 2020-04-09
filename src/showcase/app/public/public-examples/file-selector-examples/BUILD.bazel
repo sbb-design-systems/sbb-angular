@@ -1,0 +1,43 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "file-selector-examples",
+    srcs = [
+        "file-selector-examples.module.ts",
+        "file-selector-example/file-selector-example.component.ts",
+    ],
+    assets = [
+        ":file-selector-example/file-selector-example.component.css",
+        "file-selector-example/file-selector-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/core/base",
+        "//src/public/checkbox",
+        "//src/public/file-selector",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "file_selector_example_file_selector_example_component_scss",
+    src = "file-selector-example/file-selector-example.component.scss",
+)

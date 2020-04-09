@@ -2,11 +2,11 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { EsriBasemapGalleryShowcaseComponent } from '../maps-examples/esri-basemap-gallery-showcase/esri-basemap-gallery-showcase.component';
-import { EsriLayerListShowcaseComponent } from '../maps-examples/esri-layer-list-showcase/esri-layer-list-showcase.component';
-import { EsriLegendShowcaseComponent } from '../maps-examples/esri-legend-showcase/esri-legend-showcase.component';
-import { EsriWebMapShowcaseComponent } from '../maps-examples/esri-web-map-showcase/esri-web-map-showcase.component';
-import { EsriWebSceneShowcaseComponent } from '../maps-examples/esri-web-scene-showcase/esri-web-scene-showcase.component';
+import { EsriBasemapGalleryExampleComponent } from '../maps-examples/esri-basemap-gallery-examples/esri-basemap-gallery-example/esri-basemap-gallery-example.component';
+import { EsriLayerListExampleComponent } from '../maps-examples/esri-layer-list-examples/esri-layer-list-example/esri-layer-list-example.component';
+import { EsriLegendExampleComponent } from '../maps-examples/esri-legend-examples/esri-legend-example/esri-legend-example.component';
+import { EsriWebMapExampleComponent } from '../maps-examples/esri-web-map-examples/esri-web-map-example/esri-web-map-example.component';
+import { EsriWebSceneExampleComponent } from '../maps-examples/esri-web-scene-examples/esri-web-scene-example/esri-web-scene-example.component';
 
 @Component({
   selector: 'sbb-maps',
@@ -26,18 +26,18 @@ export class MapsComponent implements ExampleProvider {
   };
 
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
-    'esri-web-map': { 'esri-web-map-showcase': new ComponentPortal(EsriWebMapShowcaseComponent) },
+    'esri-web-map': { 'esri-web-map-example': new ComponentPortal(EsriWebMapExampleComponent) },
     'esri-web-scene': {
-      'esri-web-scene-showcase': new ComponentPortal(EsriWebSceneShowcaseComponent)
+      'esri-web-scene-example': new ComponentPortal(EsriWebSceneExampleComponent)
     },
     'esri-basemap-gallery': {
-      'esri-basemap-gallery-showcase': new ComponentPortal(EsriBasemapGalleryShowcaseComponent)
+      'esri-basemap-gallery-example': new ComponentPortal(EsriBasemapGalleryExampleComponent)
     },
     'esri-legend': {
-      'esri-legend-showcase': new ComponentPortal(EsriLegendShowcaseComponent)
+      'esri-legend-example': new ComponentPortal(EsriLegendExampleComponent)
     },
     'esri-layer-list': {
-      'esri-layer-list-showcase': new ComponentPortal(EsriLayerListShowcaseComponent)
+      'esri-layer-list-example': new ComponentPortal(EsriLayerListExampleComponent)
     }
   };
 

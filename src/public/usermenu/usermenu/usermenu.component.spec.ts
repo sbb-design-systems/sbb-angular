@@ -9,7 +9,7 @@ import { IconChevronSmallDownModule } from '@sbb-esta/angular-icons/arrow';
 import { IconUserModule } from '@sbb-esta/angular-icons/user';
 import { DropdownComponent, DropdownModule } from '@sbb-esta/angular-public/dropdown';
 
-import { UserMenuModule } from '../usermenu.module';
+import { UsermenuModule } from '../usermenu.module';
 
 import { UserMenuComponent } from './usermenu.component';
 
@@ -225,7 +225,7 @@ describe('Usermenu test case: user with custom image using mock component', () =
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        UserMenuModule,
+        UsermenuModule,
         CommonModule,
         DropdownModule,
         IconChevronSmallDownModule,
@@ -384,7 +384,7 @@ describe('Usermenu test case: usermenu without user image but with initial lette
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        UserMenuModule,
+        UsermenuModule,
         CommonModule,
         DropdownModule,
         IconChevronSmallDownModule,
@@ -510,7 +510,7 @@ describe('Usermenu test case: usermenu only with userName using mock component',
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        UserMenuModule,
+        UsermenuModule,
         CommonModule,
         DropdownModule,
         IconChevronSmallDownModule,

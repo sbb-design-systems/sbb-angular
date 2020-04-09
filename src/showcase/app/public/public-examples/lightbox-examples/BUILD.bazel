@@ -1,0 +1,48 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "lightbox-examples",
+    srcs = [
+        "lightbox-examples.module.ts",
+        "lightbox-example/lightbox-example.component.ts",
+    ],
+    assets = [
+        ":lightbox-example/lightbox-example.component.css",
+        "lightbox-example/lightbox-example-content-1.component.html",
+        "lightbox-example/lightbox-example-content-2.component.html",
+        "lightbox-example/lightbox-example-content-3.component.html",
+        "lightbox-example/lightbox-example-content-4.component.html",
+        "lightbox-example/lightbox-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/arrow",
+        "//src/icons/navigation",
+        "//src/public/field",
+        "//src/public/lightbox",
+        "//src/public/radio-button",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "lightbox_example_lightbox_example_component_scss",
+    src = "lightbox-example/lightbox-example.component.scss",
+)

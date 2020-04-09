@@ -1,0 +1,41 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "dropdown-examples",
+    srcs = [
+        "dropdown-examples.module.ts",
+        "dropdown-example/dropdown-example.component.ts",
+    ],
+    assets = [
+        ":dropdown-example/dropdown-example.component.css",
+        "dropdown-example/dropdown-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/user",
+        "//src/public/dropdown",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "dropdown_example_dropdown_example_component_scss",
+    src = "dropdown-example/dropdown-example.component.scss",
+)

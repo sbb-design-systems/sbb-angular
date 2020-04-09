@@ -1,0 +1,46 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "datepicker-examples",
+    srcs = [
+        "datepicker-examples.module.ts",
+        "datepicker-example/datepicker-example.component.ts",
+    ],
+    assets = [
+        ":datepicker-example/datepicker-example.component.css",
+        "datepicker-example/datepicker-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/core/datetime",
+        "//src/public/checkbox",
+        "//src/public/datepicker",
+        "//src/public/field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "datepicker_example_datepicker_example_component_scss",
+    src = "datepicker-example/datepicker-example.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)

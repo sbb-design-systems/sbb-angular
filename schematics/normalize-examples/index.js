@@ -29,6 +29,35 @@ function normalizeExamples() {
         function normalizeExampleModules(dir) {
             // const moduleName = basename(dir.parent!.path);
             dir.subdirs.map(d => dir.dir(d)).forEach(d => normalizeExampleModule(d));
+            const dirName = core.basename(dir.path);
+            const moduleName = `${core.strings.classify(dirName)}Module`;
+            const moduleImports = dir.subdirs
+                .sort()
+                .map(d => `import { ${core.strings.classify(d)}Module } from './${d}/${d}.module';`)
+                .join('\n');
+            const moduleList = dir.subdirs.map(d => `${core.strings.classify(d)}Module`).join(',\n  ');
+            const content = `import { NgModule } from '@angular/core';
+
+${moduleImports}
+
+const EXAMPLES = [
+  ${moduleList}
+];
+
+@NgModule({
+  imports: EXAMPLES,
+  exports: EXAMPLES
+})
+export class ${moduleName} {}
+`;
+            const formattedContent = prettier.format(content, {
+                parser: 'typescript',
+                ...require('../../package.json').prettier
+            });
+            const moduleFile = dir.file(core.fragment(`${dirName}.module.ts`));
+            if (moduleFile.content.toString() !== formattedContent) {
+                tree.overwrite(moduleFile.path, formattedContent);
+            }
         }
         function normalizeExampleModule(dir) {
             renameShowcaseToExample(dir);
@@ -52,6 +81,13 @@ function normalizeExamples() {
         function renderModuleContent(dir) {
             const { exampleComponents, imports } = findExampleComponentsAndImports(dir);
             const dirName = core.basename(dir.path);
+            const angularModules = detectUsedAngularModules(dir);
+            const formImport = angularModules.forms
+                ? `import { FormsModule, ReactiveFormsModule } from '@angular/forms';`
+                : '';
+            const routerImport = angularModules.router
+                ? `import { RouterModule } from '@angular/router';`
+                : '';
             const moduleName = `${core.strings.classify(dirName)}Module`;
             const moduleImports = imports
                 .map(i => `import { ${i.moduleName} } from '${i.path}';`)
@@ -62,9 +98,15 @@ function normalizeExamples() {
             const componentsList = exampleComponents
                 .reduce((current, next) => current.concat(next.components), [])
                 .join(',\n  ');
-            const moduleList = imports.map(i => i.moduleName).join(',\n    ');
+            let moduleList = imports.map(i => i.moduleName).join(',\n    ');
+            if (angularModules.forms) {
+                moduleList = `FormsModule,\n  ReactiveFormsModule,\n  ${moduleList}`;
+            }
+            if (angularModules.router) {
+                moduleList = `RouterModule,\n  ${moduleList}`;
+            }
             const content = `import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';${formImport}${routerImport}
 ${moduleImports}
 
 ${componentImports}
@@ -88,12 +130,15 @@ export class ${moduleName} {}
                 ...require('../../package.json').prettier
             });
             const moduleFile = dir.file(core.fragment(`${dirName}.module.ts`));
-            tree.overwrite(moduleFile.path, formattedContent);
+            if (moduleFile.content.toString() !== formattedContent) {
+                tree.overwrite(moduleFile.path, formattedContent);
+            }
         }
         function findExampleComponentsAndImports(dir) {
             const packageName = core.split(dir.path)[4];
             const exampleComponents = [];
-            const imports = [resolveImport(packageName, core.basename(dir.path))];
+            const moduleName = core.basename(dir.path).split('-examples')[0];
+            const imports = [resolveImport(packageName, moduleName)];
             dir.visit((path, entry) => {
                 if (!entry) {
                     return;
@@ -108,10 +153,10 @@ export class ${moduleName} {}
             });
             return {
                 exampleComponents: exampleComponents
-                    .filter((v, i, a) => a.indexOf(v) === i)
+                    .filter((v, i, a) => a.findIndex(vi => JSON.stringify(vi) === JSON.stringify(v)) === i)
                     .sort((a, b) => a.path.localeCompare(b.path)),
                 imports: imports
-                    .filter((v, i, a) => a.indexOf(v) === i)
+                    .filter((v, i, a) => a.findIndex(vi => JSON.stringify(vi) === JSON.stringify(v)) === i)
                     .sort((a, b) => a.path.localeCompare(b.path))
             };
         }
@@ -120,13 +165,15 @@ export class ${moduleName} {}
             const content = entry.content.toString();
             const components = (_a = content
                 .match(/export class \w+Component/g)) === null || _a === void 0 ? void 0 : _a.map(m => m.substring(13)).sort();
-            return components ? [{ path: `./${core.relative(dir.path, entry.path)}`, components }] : [];
+            return components
+                ? [{ path: `./${core.relative(dir.path, entry.path).replace(/\.ts$/, '')}`, components }]
+                : [];
         }
         function findTypeScriptImports(entry) {
             var _a, _b;
             const content = entry.content.toString();
             return ((_b = (_a = content
-                .match(/@sbb-esta\/angular-\w+\/[^']+/g)) === null || _a === void 0 ? void 0 : _a.filter((v, i, a) => a.indexOf(v) === i).map(i => ({ path: i, moduleName: `${core.strings.classify(i.split('/')[2])}Module` }))) !== null && _b !== void 0 ? _b : []);
+                .match(/@sbb-esta\/angular-\w+\/[^']+/g)) === null || _a === void 0 ? void 0 : _a.filter((v, i, a) => a.indexOf(v) === i).filter(i => ['base', 'models', 'datetime', 'angular-core/radio-button'].every(m => !i.endsWith(`/${m}`))).map(i => ({ path: i, moduleName: `${core.strings.classify(i.split('/')[2])}Module` }))) !== null && _b !== void 0 ? _b : []);
         }
         function findHtmlTagUsages(entry, packageName) {
             var _a, _b;
@@ -143,6 +190,24 @@ export class ${moduleName} {}
                 path: `@sbb-esta/angular-${packageName}/${moduleName}`,
                 moduleName: `${core.strings.classify(moduleName)}Module`
             };
+        }
+        function detectUsedAngularModules(dir) {
+            const modules = {
+                forms: false,
+                router: false
+            };
+            dir.visit((path, entry) => {
+                if (path.endsWith('html') && entry) {
+                    const content = entry.content.toString();
+                    if (content.match(/(ngModel|formGroup|formControl)/)) {
+                        modules.forms = true;
+                    }
+                    if (content.includes('routerLink')) {
+                        modules.router = true;
+                    }
+                }
+            });
+            return modules;
         }
     };
 }

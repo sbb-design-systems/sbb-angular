@@ -34,11 +34,11 @@ jobs:
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
-    - name: "Bazelisk: Restore dependencies from cache"
+      - name: "Bazelisk: Restore dependencies from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
-        path: "~/.cache/bazelisk"
+        path: "/home/runner/.cache/bazel"
         key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-
@@ -47,7 +47,7 @@ jobs:
       uses: actions/cache@v1
       id: bazel-cache
       with:
-        path: "~/bazel_repository_cache"
+        path: "/home/runner/bazel_repository_cache"
         key: ${{ runner.os }}-bazel-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
         restore-keys: |
           ${{ runner.os }}-bazel-

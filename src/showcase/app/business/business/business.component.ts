@@ -2,47 +2,38 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { ExampleProvider } from '../../shared/example-provider';
-import { AutocompleteFormsShowcaseComponent } from '../business-examples/autocomplete-forms-showcase/autocomplete-forms-showcase.component';
-import { AutocompleteHintShowcaseComponent } from '../business-examples/autocomplete-hint-showcase/autocomplete-hint-showcase.component';
-import { AutocompleteOptionGroupShowcaseComponent } from '../business-examples/autocomplete-option-group-showcase/autocomplete-option-group-showcase.component';
-import { AutocompleteReactiveFormsShowcaseComponent } from '../business-examples/autocomplete-reactive-forms-showcase/autocomplete-reactive-forms-showcase.component';
-import { BreadcrumbShowcaseComponent } from '../business-examples/breadcrumb-showcase/breadcrumb-showcase.component';
-import { AutocompleteChipInputComponent } from '../business-examples/chip-showcase/autocomplete-chip-input/autocomplete-chip-input.component';
-import { DisabledChipInputComponent } from '../business-examples/chip-showcase/disabled-chip-input/disabled-chip-input.component';
-import { FormsChipInputComponent } from '../business-examples/chip-showcase/forms-chip-input/forms-chip-input.component';
-import { ReactiveFormsChipInputComponent } from '../business-examples/chip-showcase/reactive-forms-chip-input/reactive-forms-chip-input.component';
-import { DatepickerBusinessDateAdapterShowcaseComponent } from '../business-examples/datepicker-business-date-adapter-showcase/datepicker-business-date-adapter-showcase.component';
-import { DatepickerDateFilterShowcaseComponent } from '../business-examples/datepicker-date-filter-showcase/datepicker-date-filter-showcase.component';
-import { DatepickerMasterSlaveShowcaseComponent } from '../business-examples/datepicker-master-slave-showcase/datepicker-master-slave-showcase.component';
-import { DatepickerSimpleReactiveShowcaseComponent } from '../business-examples/datepicker-simple-reactive-showcase/datepicker-simple-reactive-showcase.component';
-import { DatepickerStandaloneFormsShowcaseComponent } from '../business-examples/datepicker-standalone-forms-showcase/datepicker-standalone-forms-showcase.component';
-import { DialogShowcaseComponent } from '../business-examples/dialog-showcase/dialog-showcase.component';
-import { ClosableNotificationComponent } from '../business-examples/notification-showcase/closable-notification/closable-notification.component';
-import { CustomIconNotificationComponent } from '../business-examples/notification-showcase/custom-icon-notification/custom-icon-notification.component';
-import { JumpmarkNotificationComponent } from '../business-examples/notification-showcase/jumpmark-notification/jumpmark-notification.component';
-import { SimpleNotificationComponent } from '../business-examples/notification-showcase/simple-notification/simple-notification.component';
-import { PaginationShowcaseComponent } from '../business-examples/pagination-showcase/pagination-showcase.component';
-import { SelectFormsComponent } from '../business-examples/select-forms/select-forms.component';
-import { SelectMultiSelectionComponent } from '../business-examples/select-multi-selection/select-multi-selection.component';
-import { SelectNativeComponent } from '../business-examples/select-native/select-native.component';
-import { SelectOptionGroupsMultiSelectionComponent } from '../business-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
-import { SelectOptionGroupsComponent } from '../business-examples/select-option-groups/select-option-groups.component';
-import { SelectReactiveFormsComponent } from '../business-examples/select-reactive-forms/select-reactive-forms.component';
-import { SimpleContextmenuComponent } from '../business-examples/simple-contextmenu/simple-contextmenu.component';
-import { SkippableProcessflowComponent } from '../business-examples/skippable-processflow/skippable-processflow.component';
-import { GroupedColumnsTableComponent } from '../business-examples/table-showcase/grouped-columns-table/grouped-columns-table.component';
-import { GroupedRowsTableComponent } from '../business-examples/table-showcase/grouped-rows-table/grouped-rows-table.component';
-import { SimpleTableComponent } from '../business-examples/table-showcase/simple-table/simple-table.component';
-import { SortableTableComponent } from '../business-examples/table-showcase/sortable-table/sortable-table.component';
-import { TabsShowcaseComponent } from '../business-examples/tabs-showcase/tabs-showcase.component';
-import { TextareaFormsShowcaseComponent } from '../business-examples/textarea-forms-showcase/textarea-forms-showcase.component';
-import { TextareaNativeShowcaseComponent } from '../business-examples/textarea-native-showcase/textarea-native-showcase.component';
-import { TextareaReactiveFormsWithSbbFieldShowcaseComponent } from '../business-examples/textarea-reactive-forms-with-sbbfield-showcase/textarea-reactive-forms-with-sbb-field-showcase.component';
-import { TooltipCustomContentShowcaseComponent } from '../business-examples/tooltip-custom-content-showcase/tooltip-custom-content-showcase.component';
-import { TooltipCustomIconShowcaseComponent } from '../business-examples/tooltip-custom-icon-showcase/tooltip-custom-icon-showcase.component';
-import { TooltipHoverShowcaseComponent } from '../business-examples/tooltip-hover-showcase/tooltip-hover-showcase.component';
-import { TooltipSimpleShowcaseComponent } from '../business-examples/tooltip-simple-showcase/tooltip-simple-showcase.component';
-import { UsermenuShowcaseComponent } from '../business-examples/usermenu-showcase/usermenu-showcase.component';
+import { AutocompleteFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-forms-example/autocomplete-forms-example.component';
+import { AutocompleteHintExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
+import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
+import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
+import { AutocompleteChipInputComponent } from '../business-examples/chip-examples/autocomplete-chip-input/autocomplete-chip-input.component';
+import { DisabledChipInputComponent } from '../business-examples/chip-examples/disabled-chip-input/disabled-chip-input.component';
+import { FormsChipInputComponent } from '../business-examples/chip-examples/forms-chip-input/forms-chip-input.component';
+import { ReactiveFormsChipInputComponent } from '../business-examples/chip-examples/reactive-forms-chip-input/reactive-forms-chip-input.component';
+import { SimpleContextmenuComponent } from '../business-examples/contextmenu-examples/simple-contextmenu/simple-contextmenu.component';
+import { DialogExampleComponent } from '../business-examples/dialog-examples/dialog-example/dialog-example.component';
+import { ClosableNotificationComponent } from '../business-examples/notification-examples/closable-notification/closable-notification.component';
+import { CustomIconNotificationComponent } from '../business-examples/notification-examples/custom-icon-notification/custom-icon-notification.component';
+import { JumpmarkNotificationComponent } from '../business-examples/notification-examples/jumpmark-notification/jumpmark-notification.component';
+import { SimpleNotificationComponent } from '../business-examples/notification-examples/simple-notification/simple-notification.component';
+import { PaginationExampleComponent } from '../business-examples/pagination-examples/pagination-example/pagination-example.component';
+import { SkippableProcessflowComponent } from '../business-examples/processflow-examples/skippable-processflow/skippable-processflow.component';
+import { SelectFormsComponent } from '../business-examples/select-examples/select-forms/select-forms.component';
+import { SelectMultiSelectionComponent } from '../business-examples/select-examples/select-multi-selection/select-multi-selection.component';
+import { SelectNativeComponent } from '../business-examples/select-examples/select-native/select-native.component';
+import { SelectOptionGroupsMultiSelectionComponent } from '../business-examples/select-examples/select-option-groups-multi-selection/select-option-groups-multi-selection.component';
+import { SelectOptionGroupsComponent } from '../business-examples/select-examples/select-option-groups/select-option-groups.component';
+import { SelectReactiveFormsComponent } from '../business-examples/select-examples/select-reactive-forms/select-reactive-forms.component';
+import { GroupedColumnsTableComponent } from '../business-examples/table-examples/grouped-columns-table/grouped-columns-table.component';
+import { GroupedRowsTableComponent } from '../business-examples/table-examples/grouped-rows-table/grouped-rows-table.component';
+import { SimpleTableComponent } from '../business-examples/table-examples/simple-table/simple-table.component';
+import { SortableTableComponent } from '../business-examples/table-examples/sortable-table/sortable-table.component';
+import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-example/tabs-example.component';
+import { TextareaFormsExampleComponent } from '../business-examples/textarea-examples/textarea-forms-example/textarea-forms-example.component';
+import { TextareaNativeExampleComponent } from '../business-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
+import { TextareaReactiveFormsWithSbbFieldExampleComponent } from '../business-examples/textarea-examples/textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component';
+import { TooltipExampleComponent } from '../business-examples/tooltip-examples/tooltip-example/tooltip-example.component';
+import { UsermenuExampleComponent } from '../business-examples/usermenu-examples/usermenu-example/usermenu-example.component';
 
 @Component({
   selector: 'sbb-business',
@@ -85,13 +76,13 @@ export class BusinessComponent implements ExampleProvider {
   };
   private _examples: { [component: string]: { [name: string]: ComponentPortal<any> } } = {
     autocomplete: {
-      'autocomplete-reactive-forms-showcase': new ComponentPortal(
-        AutocompleteReactiveFormsShowcaseComponent
+      'autocomplete-reactive-forms-example': new ComponentPortal(
+        AutocompleteReactiveFormsExampleComponent
       ),
-      'autocomplete-forms-showcase': new ComponentPortal(AutocompleteFormsShowcaseComponent),
-      'autocomplete-hint-showcase': new ComponentPortal(AutocompleteHintShowcaseComponent),
-      'autocomplete-option-group-showcase': new ComponentPortal(
-        AutocompleteOptionGroupShowcaseComponent
+      'autocomplete-forms-example': new ComponentPortal(AutocompleteFormsExampleComponent),
+      'autocomplete-hint-example': new ComponentPortal(AutocompleteHintExampleComponent),
+      'autocomplete-option-group-example': new ComponentPortal(
+        AutocompleteOptionGroupExampleComponent
       )
     },
     breadcrumb: {
@@ -104,22 +95,19 @@ export class BusinessComponent implements ExampleProvider {
       'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
     },
     tooltip: {
-      'tooltip-simple-showcase': new ComponentPortal(TooltipSimpleShowcaseComponent),
-      'tooltip-custom-content-showcase': new ComponentPortal(TooltipCustomContentShowcaseComponent),
-      'tooltip-custom-icon-showcase': new ComponentPortal(TooltipCustomIconShowcaseComponent),
-      'tooltip-hover-showcase': new ComponentPortal(TooltipHoverShowcaseComponent)
+      'tooltip-example': new ComponentPortal(TooltipExampleComponent)
     },
     usermenu: {
-      'usermenu-showcase': new ComponentPortal(UsermenuShowcaseComponent)
+      'usermenu-example': new ComponentPortal(UsermenuExampleComponent)
     },
     tabs: {
-      'tabs-showcase': new ComponentPortal(TabsShowcaseComponent)
+      'tabs-example': new ComponentPortal(TabsExampleComponent)
     },
     dialog: {
-      'dialog-showcase': new ComponentPortal(DialogShowcaseComponent)
+      'dialog-example': new ComponentPortal(DialogExampleComponent)
     },
     pagination: {
-      'pagination-showcase': new ComponentPortal(PaginationShowcaseComponent)
+      'pagination-example': new ComponentPortal(PaginationExampleComponent)
     },
     notification: {
       'simple-notification': new ComponentPortal(SimpleNotificationComponent),
@@ -150,26 +138,11 @@ export class BusinessComponent implements ExampleProvider {
       )
     },
     textarea: {
-      'textarea-forms-showcase': new ComponentPortal(TextareaFormsShowcaseComponent),
-      'textarea-reactive-forms-with-sbb-field-showcase': new ComponentPortal(
-        TextareaReactiveFormsWithSbbFieldShowcaseComponent
+      'textarea-forms-example': new ComponentPortal(TextareaFormsExampleComponent),
+      'textarea-reactive-forms-with-sbb-field-example': new ComponentPortal(
+        TextareaReactiveFormsWithSbbFieldExampleComponent
       ),
-      'textarea-native': new ComponentPortal(TextareaNativeShowcaseComponent)
-    },
-    datepicker: {
-      'datepicker-simple-reactive-showcase': new ComponentPortal(
-        DatepickerSimpleReactiveShowcaseComponent
-      ),
-      'datepicker-master-slave-showcase': new ComponentPortal(
-        DatepickerMasterSlaveShowcaseComponent
-      ),
-      'datepicker-date-filter-showcase': new ComponentPortal(DatepickerDateFilterShowcaseComponent),
-      'datepicker-standalone-forms-showcase': new ComponentPortal(
-        DatepickerStandaloneFormsShowcaseComponent
-      ),
-      'datepicker-businessDateAdapter-showcase': new ComponentPortal(
-        DatepickerBusinessDateAdapterShowcaseComponent
-      )
+      'textarea-native': new ComponentPortal(TextareaNativeExampleComponent)
     }
   };
 

@@ -268,10 +268,11 @@ class ShowcasePackage {
     }
 }
 
-function bazel() {
+function bazel(options) {
     return (tree, context) => {
         const srcDir = tree.getDir('src');
         return schematics.chain(srcDir.subdirs
+            .filter(d => !options.filter || d === options.filter)
             .map(d => srcDir.dir(d))
             .map(packageDir => packageDir.path.endsWith('showcase')
             ? new ShowcasePackage(packageDir, tree, context)

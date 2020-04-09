@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "loading-examples",
+    srcs = [
+        "loading-examples.module.ts",
+        "loading-example/loading-example.component.ts",
+    ],
+    assets = [
+        ":loading-example/loading-example.component.css",
+        "loading-example/loading-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/arrow",
+        "//src/public/loading",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "loading_example_loading_example_component_scss",
+    src = "loading-example/loading-example.component.scss",
+)

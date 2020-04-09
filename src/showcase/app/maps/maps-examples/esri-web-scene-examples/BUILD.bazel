@@ -1,0 +1,39 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+ng_module(
+    name = "esri-web-scene-examples",
+    srcs = [
+        "esri-web-scene-examples.module.ts",
+        "esri-web-scene-example/esri-web-scene-example.component.ts",
+    ],
+    assets = [
+        ":esri-web-scene-example/esri-web-scene-example.component.css",
+        "esri-web-scene-example/esri-web-scene-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps/esri-web-scene",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "esri_web_scene_example_esri_web_scene_example_component_scss",
+    src = "esri-web-scene-example/esri-web-scene-example.component.scss",
+)

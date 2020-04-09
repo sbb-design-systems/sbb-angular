@@ -1,0 +1,41 @@
+package(default_visibility = ["//visibility:public"])
+
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+ng_module(
+    name = "chip-examples",
+    srcs = [
+        "chip-examples.module.ts",
+        "autocomplete-chip-input/autocomplete-chip-input.component.ts",
+        "disabled-chip-input/disabled-chip-input.component.ts",
+        "forms-chip-input/forms-chip-input.component.ts",
+        "reactive-forms-chip-input/reactive-forms-chip-input.component.ts",
+    ],
+    assets = [
+        "autocomplete-chip-input/autocomplete-chip-input.component.html",
+        "disabled-chip-input/disabled-chip-input.component.html",
+        "forms-chip-input/forms-chip-input.component.html",
+        "reactive-forms-chip-input/reactive-forms-chip-input.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/autocomplete",
+        "//src/business/chip",
+        "//src/business/field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
