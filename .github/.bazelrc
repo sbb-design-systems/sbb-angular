@@ -9,15 +9,3 @@ common --announce_rc
 # Save downloaded repositories in a location that can be cached by GitHub Actions. This helps us
 # speeding up the analysis time significantly with Bazel managed node dependencies on the CI.
 build --repository_cache=/home/runner/bazel_repository_cache
-
-# Workaround https://github.com/bazelbuild/bazel/issues/3645. Bazel doesn't calculate the
-# memory ceiling correctly when running under Docker. Limit Bazel to consuming resources that
-# fit in GitHub Actions. https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources
-# Note that we use less than the available RAM as bazel only estimates memory for actions
-# and we don't want to accidentally run out of memory.
-# TODO: temporarily disabled to test effect
-#build --local_ram_resources=5120
-#build --local_cpu_resources=2
-
-# Debug for Bug Report in bazelbuild/rules_nodejs
-#build --define=VERBOSE_LOGS=1

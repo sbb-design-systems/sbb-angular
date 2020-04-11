@@ -2,8 +2,8 @@ diff --git node_modules/@bazel/typescript/internal/build_defs.bzl node_modules/@
 index 7fef44c..4e25ed7 100644
 --- node_modules/@bazel/typescript/internal/build_defs.bzl
 +++ node_modules/@bazel/typescript/internal/build_defs.bzl
-@@ -93,25 +93,23 @@ def _filter_ts_inputs(all_inputs):
-         if f.path.endswith(".js") or f.path.endswith(".ts") or f.path.endswith(".json")
+@@ -102,25 +102,23 @@ def _filter_ts_inputs(all_inputs):
+         if f.extension in ["js", "jsx", "ts", "tsx", "json"]
      ]
 
 +def _filter_compile_outputs(all_outputs):
@@ -29,7 +29,7 @@ index 7fef44c..4e25ed7 100644
 -    for externs_file in externs_files:
 -        ctx.actions.write(output = externs_file, content = "")
 +    compile_outputs = _filter_compile_outputs(outputs)
-
+ 
      # A ts_library that has only .d.ts inputs will have no outputs,
      # therefore there are no actions to execute
 -    if not action_outputs:
@@ -39,16 +39,25 @@ index 7fef44c..4e25ed7 100644
          return None
 
      action_inputs.extend(_filter_ts_inputs(ctx.files.node_modules))
-@@ -146,7 +142,7 @@ def _compile_action(ctx, inputs, outputs, tsconfig_file, node_opts, description
-         progress_message = "Compiling TypeScript (%s) %s" % (description, ctx.label),
-         mnemonic = mnemonic,
-         inputs = action_inputs,
--        outputs = action_outputs,
-+        outputs = outputs,
-         # Use the built-in shell environment
-         # Allow for users who set a custom shell that can locate standard binaries like tr and uname
-         # See https://github.com/NixOS/nixpkgs/issues/43955#issuecomment-407546331
-@@ -163,7 +159,7 @@ def _compile_action(ctx, inputs, outputs, tsconfig_file, node_opts, description
+@@ -156,7 +154,7 @@
+             progress_message = "Compiling TypeScript (%s) %s" % (description, ctx.label),
+             mnemonic = "TypeScriptCompile",
+             inputs = action_inputs,
+-            outputs = action_outputs,
++            outputs = outputs,
+             # Use the built-in shell environment
+             # Allow for users who set a custom shell that can locate standard binaries like tr and uname
+             # See https://github.com/NixOS/nixpkgs/issues/43955#issuecomment-407546331
+@@ -179,7 +177,7 @@
+             progress_message = "Compiling TypeScript (%s) %s" % (description, ctx.label),
+             mnemonic = "tsc",
+             inputs = action_inputs,
+-            outputs = action_outputs,
++            outputs = outputs,
+             # Use the built-in shell environment
+             # Allow for users who set a custom shell that can locate standard binaries like tr and uname
+             # See https://github.com/NixOS/nixpkgs/issues/43955#issuecomment-407546331
+@@ -194,7 +192,7 @@
          label = ctx.label,
          tsconfig = tsconfig_file,
          inputs = action_inputs,
