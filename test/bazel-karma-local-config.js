@@ -33,7 +33,5 @@ module.exports = config => {
     delete bazelKarma['watcher'];
   }
 
-  overwrites.browserNoActivityTimeout = 60000;
-
   config.set(overwrites);
 };

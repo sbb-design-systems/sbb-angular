@@ -1,5 +1,5 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -10,6 +10,8 @@ import {
   typeInElement
 } from '@sbb-esta/angular-core/testing';
 import { FieldModule, FormErrorDirective } from '@sbb-esta/angular-public/field';
+
+import { TextareaModule } from '../textarea.module';
 
 import { TextareaComponent } from './textarea.component';
 
@@ -60,13 +62,8 @@ describe('TextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextFieldModule],
-      declarations: [TextareaComponent]
-    })
-      .overrideComponent(TextareaComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+      imports: [TextareaModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -87,8 +84,8 @@ describe('TextareaComponent behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextFieldModule, FormsModule],
-      declarations: [TextareaTestComponent, TextareaComponent]
+      imports: [TextareaModule, FormsModule],
+      declarations: [TextareaTestComponent]
     }).compileComponents();
   }));
 
@@ -197,13 +194,8 @@ describe('TextareaComponent digits counter', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextFieldModule],
-      declarations: [TextareaComponent]
-    })
-      .overrideComponent(TextareaComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default }
-      })
-      .compileComponents();
+      imports: [TextareaModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -211,10 +203,10 @@ describe('TextareaComponent digits counter', () => {
     component = fixture.componentInstance;
     component.maxlength = 20;
     component.value = 'SBB';
-    fixture.detectChanges();
   });
 
   it('should appear on the bottom right', () => {
+    fixture.detectChanges();
     const counterDiv = fixture.debugElement.query(By.css('div'));
     expect(counterDiv).toBeTruthy();
   });
@@ -242,8 +234,8 @@ describe('TextareaComponent reactive forms in sbb-field behaviour', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TextFieldModule, ReactiveFormsModule, FormsModule, FieldModule],
-      declarations: [TextareaSbbFieldTestComponent, TextareaComponent]
+      imports: [TextareaModule, ReactiveFormsModule, FormsModule, FieldModule],
+      declarations: [TextareaSbbFieldTestComponent]
     }).compileComponents();
   }));
 

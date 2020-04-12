@@ -43,15 +43,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-bazelisk-
 
-    - name: "Bazel: Restore artifacts from cache"
-      uses: actions/cache@v1
-      id: bazel-cache
-      with:
-        path: "/home/runner/bazel_repository_cache"
-        key: ${{ runner.os }}-bazel-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
-        restore-keys: |
-          ${{ runner.os }}-bazel-
-
     - name: "Build: Packages"
       run: yarn -s build
 
