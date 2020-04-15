@@ -206,8 +206,7 @@ terser_minified(
     tags = ["prod-showcase"],
 )
 
-# Merge the differential loading bundles into the same directory and rename the files
-# from a.js to a-es2015.js and a-es5.js.
+# Merge the differential loading bundles into the same directory.
 differential_loading_merge(
     name = "bundle",
     srcs = [
@@ -218,7 +217,7 @@ differential_loading_merge(
 )
 
 # Insert script tags into index.html
-# Supports differential loading by providing a.js and a.es2015.js
+# Supports differential loading by providing a.js and a.mjs
 html_insert_assets(
     name = "index_html_prod",
     # we can't output "src/showcase/index.html" since that collides with the devmode file.

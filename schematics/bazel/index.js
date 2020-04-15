@@ -46,11 +46,13 @@ class NgModule {
                 schematics.template(this._templateOptions()),
                 schematics.move(this.path),
                 schematics.forEach(fileEntry => {
-                    if (this._tree.exists(fileEntry.path)) {
-                        this._tree.overwrite(fileEntry.path, fileEntry.content);
-                        return null;
+                    if (!this._tree.exists(fileEntry.path)) {
+                        return fileEntry;
                     }
-                    return fileEntry;
+                    else if (this._tree.read(fileEntry.path).toString() !== fileEntry.content.toString()) {
+                        this._tree.overwrite(fileEntry.path, fileEntry.content);
+                    }
+                    return null;
                 })
             ]))
         ]);
@@ -229,9 +231,6 @@ class ShowcaseModule extends NgModule {
         const path = super._resolveTsImport(importPath, fileEntry);
         if (path !== '') {
             return path;
-        }
-        else if (importPath.endsWith('/package.json')) {
-            return '';
         }
         const joinedPath = core.dirname(core.join(core.dirname(fileEntry.path), importPath));
         const importDir = this._tree.getDir(joinedPath);

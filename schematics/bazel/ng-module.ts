@@ -76,11 +76,14 @@ export class NgModule {
           template(this._templateOptions()),
           move(this.path),
           forEach(fileEntry => {
-            if (this._tree.exists(fileEntry.path)) {
+            if (!this._tree.exists(fileEntry.path)) {
+              return fileEntry;
+            } else if (
+              this._tree.read(fileEntry.path)!.toString() !== fileEntry.content.toString()
+            ) {
               this._tree.overwrite(fileEntry.path, fileEntry.content);
-              return null;
             }
-            return fileEntry;
+            return null;
           })
         ])
       )

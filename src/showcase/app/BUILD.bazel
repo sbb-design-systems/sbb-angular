@@ -6,13 +6,26 @@ load(
     "sass_binary",
 )
 
+genrule(
+    name = "package-info",
+    srcs = ["//:package.json"],
+    outs = ["versions.ts"],
+    cmd = """
+      # Run the bazel entry-point for generating the package info.
+      ./$(execpath //tools/package-info:bazel-bin) \
+          "$(execpath versions.ts)"
+    """,
+    output_to_bindir = True,
+    tools = ["//tools/package-info:bazel-bin"],
+)
+
 ng_module(
     name = "app",
     srcs = [
+        ":versions.ts",
         "app-routing.module.ts",
         "app.component.ts",
         "app.module.ts",
-        "typings.d.ts",
         "introduction/introduction.component.ts",
     ],
     assets = [

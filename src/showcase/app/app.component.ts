@@ -2,11 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ROUTER_ANIMATION } from './shared/animations';
-
-const { dependencies, version } = {
-  version: '0.0.0-PLACEHOLDER',
-  dependencies: { '@angular/core': '^0.0.0-NG' }
-};
+import { angularVersion, libraryVersion } from './versions';
 
 @Component({
   selector: 'sbb-root',
@@ -16,8 +12,8 @@ const { dependencies, version } = {
 })
 export class AppComponent {
   @HostBinding('class.menu-push') showMenu = false;
-  angularVersion = dependencies['@angular/core'].replace('^', '');
-  showcaseVersion = version;
+  angularVersion = angularVersion;
+  showcaseVersion = libraryVersion;
 
   constructor(router: Router) {
     router.events.subscribe(() => (this.showMenu = false));

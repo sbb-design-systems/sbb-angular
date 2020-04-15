@@ -19,7 +19,16 @@ To build sbb-angular in release mode, run `yarn build`. The output can be found 
 To bring up a local server, run `yarn start`. This will automatically watch for changes
 and rebuild. The browser should refresh automatically when changes are made.
 
-### Running tests
+## Bazel
+
+[Bazel](https://www.bazel.build/) is a build system. It allows incremental builds by caching build artifacts. To install bazel globally, we recommend
+installing it with `yarn global add @bazel/bazel`, after following the steps above.
+
+- [Bazel Concepts](https://docs.bazel.build/versions/master/build-ref.html)
+- [Bazel CLI](https://docs.bazel.build/versions/master/command-line-reference.html)
+- [Bazel JavaScript Rules](https://bazelbuild.github.io/rules_nodejs/index.html)
+
+## Running tests
 
 To run unit tests, run `yarn test <target>`. The `target` can be either a short name (e.g. `yarn test button`) or an explicit path `yarn test src/business/contextmenu`.
 To run lint, run `yarn lint`.

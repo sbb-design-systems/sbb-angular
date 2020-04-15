@@ -19,8 +19,6 @@ export class ShowcaseModule extends NgModule {
     const path = super._resolveTsImport(importPath, fileEntry);
     if (path !== '') {
       return path;
-    } else if (importPath.endsWith('/package.json')) {
-      return '';
     }
 
     const joinedPath = dirname(join(dirname(fileEntry.path), importPath));
