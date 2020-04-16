@@ -233,7 +233,7 @@ export class NativeDateAdapter extends DateAdapter<Date> {
   }
 
   /** Creates a date but allows the month and date to overflow. */
-  private _createDateWithOverflow(year: number, month: number, date: number) {
+  protected _createDateWithOverflow(year: number, month: number, date: number) {
     const result = new Date(year, month, date);
 
     // We need to correct for the fact that JS native Date treats years in range [0, 99] as

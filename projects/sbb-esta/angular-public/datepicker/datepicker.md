@@ -122,3 +122,8 @@ have 2000 added to it, years from pivot year + 1 to 100 (exclusive) will have 19
 | 08.12.50 | 08.12.1950 |
 | 08.12.00 | 08.12.2000 |
 | 08.12.18 | 08.12.2018 |
+
+### Date Adapter
+
+For business applications we optionally provide an alternative date adapter (e.g. for parsing a manually entered date string).
+See [Datetime documentation](../../core/components/datetime) for more information.

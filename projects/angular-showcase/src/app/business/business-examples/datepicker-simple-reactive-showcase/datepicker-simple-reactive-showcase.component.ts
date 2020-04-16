@@ -1,25 +1,17 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SbbDateInputEvent } from '@sbb-esta/angular-business';
 import { DateAdapter } from '@sbb-esta/angular-core/datetime';
 
 @Component({
-  selector: 'sbb-datepicker-showcase',
-  templateUrl: './datepicker-showcase.component.html',
-  styleUrls: ['./datepicker-showcase.component.scss']
+  selector: 'sbb-datepicker-simple-reactive-showcase',
+  templateUrl: './datepicker-simple-reactive-showcase.component.html'
 })
-export class DatepickerShowcaseComponent {
-  today = new Date();
+export class DatepickerSimpleReactiveShowcaseComponent {
+  formGroup = new FormGroup({ date: new FormControl(new Date()) });
 
   minDate: Date;
   maxDate: Date;
-
-  laData = new FormControl(this.today);
-  twoDatepickersForm = new FormGroup({
-    firstDatepicker: new FormControl(),
-    secondDatepicker: new FormControl()
-  });
-  dateWithFilter = new FormControl();
-  standaloneDate = new FormControl();
 
   toggle = true;
   arrows = false;
@@ -34,9 +26,9 @@ export class DatepickerShowcaseComponent {
     // Wait a tick to ensure this.disabled is updated
     await Promise.resolve();
     if (this.disabled) {
-      this.laData.disable();
+      this.formGroup.get('date').disable();
     } else {
-      this.laData.enable();
+      this.formGroup.get('date').enable();
     }
   }
 
@@ -48,15 +40,11 @@ export class DatepickerShowcaseComponent {
     console.log('OPENED');
   }
 
-  dateChangeEvent($event) {
+  dateChangeEvent($event: SbbDateInputEvent<Date>) {
     console.log('DATE_CHANGED', $event);
   }
 
-  dateInputEvent($event) {
+  dateInputEvent($event: SbbDateInputEvent<Date>) {
     console.log('DATE_INPUT', $event);
   }
-
-  filterDates = (date: Date): boolean => {
-    return date.getDate() === 1;
-  };
 }

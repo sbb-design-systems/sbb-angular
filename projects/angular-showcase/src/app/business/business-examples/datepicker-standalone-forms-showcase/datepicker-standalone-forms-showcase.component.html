@@ -1,0 +1,7 @@
+<sbb-field label="Datepicker">
+  <input type="text" sbbDateInput sbbInput [(ngModel)]="date" [required]="true" #input="ngModel" />
+</sbb-field>
+
+<h4 class="sbbsc-block">Properties</h4>
+<pre>model: {{ date | date: 'mediumDate' }}</pre>
+<pre>form control validity: {{ input.valid }}</pre>
