@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.4.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.3.0...9.4.0) (2020-04-16)
+
+
+### Features
+
+* **business:** provide date parsing of e.g. 01012020 ([#360](https://github.com/sbb-design-systems/sbb-angular/issues/360)) ([c45ec9c](https://github.com/sbb-design-systems/sbb-angular/commit/c45ec9cb89c3ecf4e716fc8015f354338f781e38))
+
 ## [9.3.0](https://github.com/sbb-design-systems/sbb-angular/compare/9.2.0...9.3.0) (2020-04-02)
 
 
