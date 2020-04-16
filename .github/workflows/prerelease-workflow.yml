@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+-*'
+env:
+  BAZEL_COMMAND: bazelisk
 
 jobs:
   build:
@@ -70,3 +72,63 @@ jobs:
       run: yarn publish dist/release/business --tag next || true
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  showcase:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to GitHub Docker Repository
+      uses: azure/docker-login@v1
+      with:
+        login-server: docker.pkg.github.com
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Copy bazel.rc to user home
+      run: cp ./.github/.bazelrc ~/
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-{{ hashFiles('**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Bazelisk: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: bazelisk-cache
+      with:
+        path: "/home/runner/.cache/bazel"
+        key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
+        restore-keys: |
+          ${{ runner.os }}-bazelisk-
+
+    - name: "Bazel: Restore prod artifacts from cache"
+      uses: actions/cache@v1
+      id: bazel-cache
+      with:
+        path: "/home/runner/bazel_repository_cache"
+        key: ${{ runner.os }}-bazel-prod-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bazel-prod-
+
+    - name: "Build: Migrate public to business components"
+      run: yarn -s build:public2business
+    - name: "Build: Showcase"
+      run: yarn -s build:showcase
+    - name: "Build: Docker image"
+      run: docker build -t docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${GITHUB_REF/refs\/tags\//} .
+    - name: "Publish: Docker image"
+      run: docker push docker.pkg.github.com/sbb-design-systems/sbb-angular/showcase:${GITHUB_REF/refs\/tags\//}

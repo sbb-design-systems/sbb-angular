@@ -1,5 +1,7 @@
 name: Continuous Integration
 on: [push, pull_request]
+env:
+  BAZEL_COMMAND: bazelisk
 
 jobs:
   build:
@@ -57,3 +59,63 @@ jobs:
 
     - name: "Lint: Run tslint"
       run: yarn tslint
+
+  showcase:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    env:
+      PR_NUMBER: ${{ github.event.number }}
+    steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Copy bazel.rc to user home
+      run: cp ./.github/.bazelrc ~/
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-{{ hashFiles('**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Bazelisk: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: bazelisk-cache
+      with:
+        path: "/home/runner/.cache/bazel"
+        key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
+        restore-keys: |
+          ${{ runner.os }}-bazelisk-
+
+    - name: "Bazel: Restore prod artifacts from cache"
+      uses: actions/cache@v1
+      id: bazel-cache
+      with:
+        path: "/home/runner/bazel_repository_cache"
+        key: ${{ runner.os }}-bazel-prod-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bazel-prod-
+
+    - name: "Build: Migrate public to business components"
+      run: yarn -s build:public2business
+    - name: "Build: Showcase"
+      run: yarn -s build:showcase
+    - name: "Pack: Showcase"
+      run: yarn pack --cwd ./dist/releases/showcase --filename ./sbb-esta-angular-showcase.tgz
+    - name: "Deploy: Staging"
+      run: |
+        curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
+        -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
+        -F "tarball=@sbb-esta-angular-showcase.tgz"
