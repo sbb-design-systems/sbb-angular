@@ -1,15 +1,15 @@
 entryPoints = [
-  "base",
-  "breakpoints",
-  "common-behaviors",
-  "datetime",
-  "error",
-  "forms",
-  "icon-directive",
-  "models",
-  "oauth",
-  "radio-button",
-  "testing",
+    "base",
+    "breakpoints",
+    "common-behaviors",
+    "datetime",
+    "error",
+    "forms",
+    "icon-directive",
+    "models",
+    "oauth",
+    "radio-button",
+    "testing",
 ]
 
 # List of all non-testing entry-points of the Core package.
@@ -28,13 +28,13 @@ CORE_TESTING_ENTRYPOINTS = [
 
 # List of all non-testing entry-point targets of the Core package.
 CORE_TARGETS = ["//src/core"] + \
-                   ["//src/core/%s" % ep for ep in CORE_ENTRYPOINTS]
+               ["//src/core/%s" % ep for ep in CORE_ENTRYPOINTS]
 
 # List of all testing entry-point targets of the Core package.
 CORE_TESTING_TARGETS = ["//src/core/%s" % ep for ep in CORE_TESTING_ENTRYPOINTS]
 
 CORE_MARKDOWN_TARGETS = [
-  "breakpoints",
-  "datetime",
-  "oauth",
+    "breakpoints",
+    "datetime",
+    "oauth",
 ]

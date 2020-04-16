@@ -19,7 +19,7 @@ def _package_docs_content(ctx):
     # there is an argument limit and we need to handle a large amount of input files. Bazel
     # switches between parameter file and normal argument passing based on the operating system.
     # Read more here: https://docs.bazel.build/versions/master/skylark/lib/Args.html#use_param_file
-    args.use_param_file(param_file_arg = "--param-file=%s", use_always=True)
+    args.use_param_file(param_file_arg = "--param-file=%s", use_always = True)
 
     # Walk through each defined input target and the associated section and compute the
     # output file which will be added to the executable arguments.

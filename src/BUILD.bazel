@@ -1,11 +1,11 @@
-package(default_visibility = ["//visibility:public"])
-
 load("@npm_bazel_typescript//:index.bzl", "ts_config")
 load("//src/business:config.bzl", "BUSINESS_ENTRYPOINTS", "BUSINESS_TESTING_ENTRYPOINTS")
 load("//src/core:config.bzl", "CORE_ENTRYPOINTS", "CORE_TESTING_ENTRYPOINTS")
 load("//src/maps:config.bzl", "MAPS_ENTRYPOINTS", "MAPS_TESTING_ENTRYPOINTS")
 load("//src/public:config.bzl", "PUBLIC_ENTRYPOINTS", "PUBLIC_TESTING_ENTRYPOINTS")
 load("//tools/dgeni:index.bzl", "dgeni_api_docs")
+
+package(default_visibility = ["//visibility:public"])
 
 exports_files([
     "bazel-tsconfig-build.json",
@@ -20,8 +20,11 @@ ts_config(
 )
 
 businessApiEntryPoints = BUSINESS_ENTRYPOINTS + BUSINESS_TESTING_ENTRYPOINTS
+
 coreApiEntryPoints = CORE_ENTRYPOINTS + CORE_TESTING_ENTRYPOINTS
+
 mapsApiEntryPoints = MAPS_ENTRYPOINTS + MAPS_TESTING_ENTRYPOINTS
+
 publicApiEntryPoints = PUBLIC_ENTRYPOINTS + PUBLIC_TESTING_ENTRYPOINTS
 
 # List that contains all source files that need to be processed by Dgeni.
@@ -51,4 +54,3 @@ dgeni_api_docs(
     },
     tags = ["docs-package"],
 )
-

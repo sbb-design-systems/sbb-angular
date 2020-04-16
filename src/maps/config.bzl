@@ -1,11 +1,11 @@
 entryPoints = [
-  "core",
-  "esri-basemap-gallery",
-  "esri-config",
-  "esri-layer-list",
-  "esri-legend",
-  "esri-web-map",
-  "esri-web-scene",
+    "core",
+    "esri-basemap-gallery",
+    "esri-config",
+    "esri-layer-list",
+    "esri-legend",
+    "esri-web-map",
+    "esri-web-scene",
 ]
 
 # List of all non-testing entry-points of the Maps package.
@@ -24,17 +24,17 @@ MAPS_TESTING_ENTRYPOINTS = [
 
 # List of all non-testing entry-point targets of the Maps package.
 MAPS_TARGETS = ["//src/maps"] + \
-                   ["//src/maps/%s" % ep for ep in MAPS_ENTRYPOINTS]
+               ["//src/maps/%s" % ep for ep in MAPS_ENTRYPOINTS]
 
 # List of all testing entry-point targets of the Maps package.
 MAPS_TESTING_TARGETS = ["//src/maps/%s" % ep for ep in MAPS_TESTING_ENTRYPOINTS]
 
 MAPS_MARKDOWN_TARGETS = [
-  "core",
-  "esri-basemap-gallery",
-  "esri-config",
-  "esri-layer-list",
-  "esri-legend",
-  "esri-web-map",
-  "esri-web-scene",
+    "core",
+    "esri-basemap-gallery",
+    "esri-config",
+    "esri-layer-list",
+    "esri-legend",
+    "esri-web-map",
+    "esri-web-scene",
 ]

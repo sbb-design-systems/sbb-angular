@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
@@ -8,6 +6,8 @@ load(
     "ng_web_test_suite",
     "sass_binary",
 )
+
+package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "textexpand",
@@ -18,7 +18,8 @@ ng_module(
     assets = [
         ":textexpand/textexpand.component.css",
         ":textexpand-collapsed/textexpand-collapsed.component.css",
-        ":textexpand-expanded/textexpand-expanded.component.css",] + glob(["**/*.html"]),
+        ":textexpand-expanded/textexpand-expanded.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/textexpand",
     deps = [
         "@npm//@angular/common",

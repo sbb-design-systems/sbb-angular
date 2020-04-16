@@ -249,8 +249,8 @@ class ShowcaseModule extends NgModule {
     _templateOptions() {
         return {
             ...this,
-            tsFiles: this._tsFiles.map(f => core.relative(this.path, f.path)),
-            htmlFiles: this._htmlFiles.map(f => core.relative(this.path, f.path))
+            tsFiles: this._tsFiles.map(f => core.relative(this.path, f.path)).sort(),
+            htmlFiles: this._htmlFiles.map(f => core.relative(this.path, f.path)).sort()
         };
     }
 }
@@ -276,7 +276,8 @@ function bazel(options) {
             .map(packageDir => packageDir.path.endsWith('showcase')
             ? new ShowcasePackage(packageDir, tree, context)
             : new NgPackage(packageDir, tree, context))
-            .reduce((current, next) => current.concat(next.render()), []));
+            .reduce((current, next) => current.concat(next.render()), [])
+            .concat(() => context.logger.info('Please run `yarn format:bazel`, when bazel files have been updated.')));
     };
 }
 

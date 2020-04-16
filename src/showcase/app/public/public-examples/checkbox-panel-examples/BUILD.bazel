@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "checkbox-panel-examples",
     srcs = [
-        "checkbox-panel-examples.module.ts",
         "checkbox-panel-example/checkbox-panel-example.component.ts",
+        "checkbox-panel-examples.module.ts",
     ],
     assets = [
         ":checkbox-panel-example/checkbox-panel-example.component.css",

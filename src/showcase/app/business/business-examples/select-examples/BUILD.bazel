@@ -1,9 +1,9 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
 )
+
+package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "select-examples",
@@ -12,16 +12,16 @@ ng_module(
         "select-forms/select-forms.component.ts",
         "select-multi-selection/select-multi-selection.component.ts",
         "select-native/select-native.component.ts",
-        "select-option-groups/select-option-groups.component.ts",
         "select-option-groups-multi-selection/select-option-groups-multi-selection.component.ts",
+        "select-option-groups/select-option-groups.component.ts",
         "select-reactive-forms/select-reactive-forms.component.ts",
     ],
     assets = [
         "select-forms/select-forms.component.html",
         "select-multi-selection/select-multi-selection.component.html",
         "select-native/select-native.component.html",
-        "select-option-groups/select-option-groups.component.html",
         "select-option-groups-multi-selection/select-option-groups-multi-selection.component.html",
+        "select-option-groups/select-option-groups.component.html",
         "select-reactive-forms/select-reactive-forms.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",

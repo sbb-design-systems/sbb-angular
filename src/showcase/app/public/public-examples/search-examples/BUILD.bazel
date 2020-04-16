@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "search-examples",
     srcs = [
-        "search-examples.module.ts",
         "search-example/search-example.component.ts",
+        "search-examples.module.ts",
     ],
     assets = [
         ":search-example/search-example.component.css",

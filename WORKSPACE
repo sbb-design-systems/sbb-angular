@@ -108,5 +108,5 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
 sass_repositories()
 
 load("@npm_bazel_protractor//:package.bzl", "npm_bazel_protractor_dependencies")
-npm_bazel_protractor_dependencies()
 
+npm_bazel_protractor_dependencies()

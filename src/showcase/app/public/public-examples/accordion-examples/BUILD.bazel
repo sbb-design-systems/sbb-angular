@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "accordion-examples",
     srcs = [
-        "accordion-examples.module.ts",
         "accordion-example/accordion-example.component.ts",
+        "accordion-examples.module.ts",
     ],
     assets = [
         ":accordion-example/accordion-example.component.css",

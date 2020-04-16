@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
@@ -7,6 +5,8 @@ load(
     "sass_binary",
     "sass_library",
 )
+
+package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "header",
@@ -18,7 +18,8 @@ ng_module(
         ":app-chooser-section/app-chooser-section.component.css",
         ":header/header.component.css",
         ":header-menu/header-menu.component.css",
-        ":header-menu-trigger/header-menu-trigger.component.css",] + glob(["**/*.html"]),
+        ":header-menu-trigger/header-menu-trigger.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/header",
     deps = [
         "//src/core/breakpoints",

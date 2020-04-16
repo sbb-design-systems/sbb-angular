@@ -1,10 +1,8 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//src/keycloak:config.bzl",
     "KEYCLOAK_ENTRYPOINTS",
-    "KEYCLOAK_TARGETS",
     "KEYCLOAK_MARKDOWN_TARGETS",
+    "KEYCLOAK_TARGETS",
     "KEYCLOAK_TESTING_TARGETS",
 )
 load(
@@ -14,14 +12,18 @@ load(
     "ng_package",
     "ng_test_library",
     "ng_web_test_suite",
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-keycloak" entry-point.
 ng_module(
     name = "keycloak",
     srcs = glob(
-        ["*.ts", "src/**/*.ts"],
+        [
+            "*.ts",
+            "src/**/*.ts",
+        ],
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-keycloak",
@@ -67,7 +69,6 @@ filegroup(
 # Creates the @sbb-esta/angular-keycloak package published to npm.
 ng_package(
     name = "npm_package",
-    readme_md = "README.md",
     srcs = [
         "package.json",
     ],
@@ -75,6 +76,7 @@ ng_package(
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "keycloak",
+    readme_md = "README.md",
     tags = ["release-package"],
     deps = KEYCLOAK_TARGETS + KEYCLOAK_TESTING_TARGETS,
 )

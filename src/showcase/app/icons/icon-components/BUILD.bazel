@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "icon-components",
     srcs = [
-        "icon-components-routing.module.ts",
         "icon-components.module.ts",
+        "icon-components-routing.module.ts",
         "icon-search/icon-search.component.ts",
         "icon-viewer/icon-viewer.component.ts",
     ],

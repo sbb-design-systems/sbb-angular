@@ -1,15 +1,15 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "pagination-examples",
     srcs = [
-        "pagination-examples.module.ts",
         "pagination-example/pagination-example.component.ts",
+        "pagination-examples.module.ts",
     ],
     assets = [
         "pagination-example/pagination-example.component.html",

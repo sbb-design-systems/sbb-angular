@@ -5,17 +5,17 @@ ts_library(
     name = "e2e_lib",
     testonly = 1,
     srcs = glob(["src/**/*.ts"]),
+    data = [
+        "//:tsconfig.json",
+    ],
     tsconfig = ":tsconfig.e2e.json" if len(glob(["tsconfig.e2e.json"])) else ":tsconfig.json",
     deps = [
-      "@npm//@types/jasmine",
-      "@npm//@types/jasminewd2",
-      "@npm//@types/node",
-      "@npm//jasmine",
-      "@npm//protractor",
-      "@npm//tslib",
-    ],
-    data = [
-      "//:tsconfig.json",
+        "@npm//@types/jasmine",
+        "@npm//@types/jasminewd2",
+        "@npm//@types/node",
+        "@npm//jasmine",
+        "@npm//protractor",
+        "@npm//tslib",
     ],
 )
 

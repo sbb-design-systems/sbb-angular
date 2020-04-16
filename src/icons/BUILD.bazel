@@ -1,10 +1,8 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//src/icons:config.bzl",
     "ICONS_ENTRYPOINTS",
-    "ICONS_TARGETS",
     "ICONS_MARKDOWN_TARGETS",
+    "ICONS_TARGETS",
     "ICONS_TESTING_TARGETS",
 )
 load(
@@ -12,8 +10,9 @@ load(
     "markdown_to_html",
     "ng_module",
     "ng_package",
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-icons" entry-point.
 ng_module(

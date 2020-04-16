@@ -28,7 +28,7 @@ def _differential_loading_merge(ctx):
     )
 
     return [
-        DefaultInfo(files = depset(expected_outputs))
+        DefaultInfo(files = depset(expected_outputs)),
     ]
 
 """

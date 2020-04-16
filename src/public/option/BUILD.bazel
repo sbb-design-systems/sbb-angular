@@ -1,10 +1,10 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
+
+package(default_visibility = ["//visibility:public"])
 
 ng_module(
     name = "option",
@@ -14,7 +14,8 @@ ng_module(
     ),
     assets = [
         ":option/option.component.css",
-        ":option-group/option-group.component.css",] + glob(["**/*.html"]),
+        ":option-group/option-group.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/option",
     deps = [
         "//src/icons/status",

@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "esri-web-map-examples",
     srcs = [
-        "esri-web-map-examples.module.ts",
         "esri-web-map-example/esri-web-map-example.component.ts",
+        "esri-web-map-examples.module.ts",
     ],
     assets = [
         ":esri-web-map-example/esri-web-map-example.component.css",

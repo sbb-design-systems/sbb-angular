@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
@@ -9,6 +7,8 @@ load(
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "toggle",
     srcs = glob(
@@ -17,7 +17,8 @@ ng_module(
     ),
     assets = [
         ":toggle/toggle.component.css",
-        ":toggle-option/toggle-option.component.css",] + glob(["**/*.html"]),
+        ":toggle-option/toggle-option.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/toggle",
     deps = [
         "//src/core/icon-directive",

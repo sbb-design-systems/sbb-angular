@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "time-input-examples",
     srcs = [
-        "time-input-examples.module.ts",
         "time-input-example/time-input-example.component.ts",
+        "time-input-examples.module.ts",
     ],
     assets = [
         ":time-input-example/time-input-example.component.css",

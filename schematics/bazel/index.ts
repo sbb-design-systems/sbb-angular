@@ -16,6 +16,9 @@ export function bazel(options: { filter: string }): Rule {
             : new NgPackage(packageDir, tree, context)
         )
         .reduce((current, next) => current.concat(next.render()), [] as Rule[])
+        .concat(() =>
+          context.logger.info('Please run `yarn format:bazel`, when bazel files have been updated.')
+        )
     );
   };
 }

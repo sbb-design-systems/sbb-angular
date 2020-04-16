@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "ghettobox-examples",
     srcs = [
-        "ghettobox-examples.module.ts",
         "ghettobox-example/ghettobox-example.component.ts",
+        "ghettobox-examples.module.ts",
     ],
     assets = [
         ":ghettobox-example/ghettobox-example.component.css",

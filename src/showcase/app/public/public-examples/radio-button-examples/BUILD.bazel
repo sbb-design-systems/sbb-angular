@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "radio-button-examples",
     srcs = [
-        "radio-button-examples.module.ts",
         "radio-button-example/radio-button-example.component.ts",
+        "radio-button-examples.module.ts",
     ],
     assets = [
         ":radio-button-example/radio-button-example.component.css",

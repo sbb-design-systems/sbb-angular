@@ -1,10 +1,8 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//src/maps:config.bzl",
     "MAPS_ENTRYPOINTS",
-    "MAPS_TARGETS",
     "MAPS_MARKDOWN_TARGETS",
+    "MAPS_TARGETS",
     "MAPS_TESTING_TARGETS",
 )
 load(
@@ -12,8 +10,9 @@ load(
     "markdown_to_html",
     "ng_module",
     "ng_package",
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-maps" entry-point.
 ng_module(

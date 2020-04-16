@@ -15,8 +15,8 @@ ts_library(
 nodejs_binary(
     name = "bazel-bin",
     data = [
-        "//:package.json",
         ":package-info-lib",
+        "//:package.json",
     ],
     entry_point = ":bazel-bin.ts",
 )

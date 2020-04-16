@@ -1,15 +1,15 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "chip-examples",
     srcs = [
-        "chip-examples.module.ts",
         "autocomplete-chip-input/autocomplete-chip-input.component.ts",
+        "chip-examples.module.ts",
         "disabled-chip-input/disabled-chip-input.component.ts",
         "forms-chip-input/forms-chip-input.component.ts",
         "reactive-forms-chip-input/reactive-forms-chip-input.component.ts",

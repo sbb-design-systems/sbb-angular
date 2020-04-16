@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "breadcrumb-examples",
     srcs = [
-        "breadcrumb-examples.module.ts",
         "breadcrumb-example/breadcrumb-example.component.ts",
+        "breadcrumb-examples.module.ts",
     ],
     assets = [
         ":breadcrumb-example/breadcrumb-example.component.css",

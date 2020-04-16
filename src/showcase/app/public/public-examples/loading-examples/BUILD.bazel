@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "loading-examples",
     srcs = [
-        "loading-examples.module.ts",
         "loading-example/loading-example.component.ts",
+        "loading-examples.module.ts",
     ],
     assets = [
         ":loading-example/loading-example.component.css",

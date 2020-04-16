@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "file-selector-examples",
     srcs = [
-        "file-selector-examples.module.ts",
         "file-selector-example/file-selector-example.component.ts",
+        "file-selector-examples.module.ts",
     ],
     assets = [
         ":file-selector-example/file-selector-example.component.css",

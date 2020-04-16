@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "toggle-examples",
     srcs = [
-        "toggle-examples.module.ts",
         "toggle-example/toggle-example.component.ts",
+        "toggle-examples.module.ts",
     ],
     assets = [
         ":toggle-example/toggle-example.component.css",

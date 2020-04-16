@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
@@ -9,6 +7,8 @@ load(
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "breadcrumb",
     srcs = glob(
@@ -17,7 +17,8 @@ ng_module(
     ),
     assets = [
         ":breadcrumb/breadcrumb.component.css",
-        ":breadcrumbs/breadcrumbs.component.css",] + glob(["**/*.html"]),
+        ":breadcrumbs/breadcrumbs.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/breadcrumb",
     deps = [
         "//src/core/breakpoints",

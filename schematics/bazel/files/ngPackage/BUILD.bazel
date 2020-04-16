@@ -1,12 +1,10 @@
-package(default_visibility = ["//visibility:public"])
-<% if (customTsConfig) { %>
-load("@npm_bazel_typescript//:index.bzl", "ts_config")<% } %><% if (hasStyleBundle) { %>
-load("@npm//scss-bundle:index.bzl", "scss_bundle")<% } %>
-load(
+<% if (customTsConfig) { %>load("@npm_bazel_typescript//:index.bzl", "ts_config")
+<% } %><% if (hasStyleBundle) { %>load("@npm//scss-bundle:index.bzl", "scss_bundle")
+<% } %>load(
     "//src/<%= name %>:config.bzl",
     "<%= uc(name) %>_ENTRYPOINTS",
-    "<%= uc(name) %>_TARGETS",
     "<%= uc(name) %>_MARKDOWN_TARGETS",
+    "<%= uc(name) %>_TARGETS",
     "<%= uc(name) %>_TESTING_TARGETS",
 )
 load(
@@ -17,14 +15,19 @@ load(
     "ng_test_library",
     "ng_web_test_suite",<% } %><% if (hasTypography) { %>
     "sass_binary",<% } %>
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-<%= name %>" entry-point.
 ng_module(
     name = "<%= name %>",
-    srcs = glob(
-        ["*.ts"<% if (hasSrcFiles) { %>, "src/**/*.ts"<% } %>],
+    srcs = glob(<% if (hasSrcFiles) { %>
+        [
+            "*.ts",
+            "src/**/*.ts"
+        ],<% } else { %>
+        ["*.ts"],<% } %>
         exclude = ["**/*.spec.ts"],
     ),
     module_name = "@sbb-esta/angular-<%= name %>",<% if (customTsConfig) { %>
@@ -94,8 +97,7 @@ filegroup(
 
 # Creates the @sbb-esta/angular-<%= name %> package published to npm.
 ng_package(
-    name = "npm_package",<% if (hasReadme) { %>
-    readme_md = "README.md",<% } %>
+    name = "npm_package",
     srcs = [
         "package.json",
     ],
@@ -105,7 +107,8 @@ ng_package(
     ],
     entry_point = ":public-api.ts",
     entry_point_name = "<%= name %>",<% if (hasSchematics) { %>
-    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %>
+    nested_packages = ["//src/<%= name %>/schematics:npm_package"],<% } %><% if (hasReadme) { %>
+    readme_md = "README.md",<% } %>
     tags = ["release-package"],
     deps = <%= uc(name) %>_TARGETS + <%= uc(name) %>_TESTING_TARGETS,
 )

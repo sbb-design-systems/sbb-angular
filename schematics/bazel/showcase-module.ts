@@ -42,8 +42,8 @@ export class ShowcaseModule extends NgModule {
   protected _templateOptions() {
     return {
       ...this,
-      tsFiles: this._tsFiles.map(f => relative(this.path, f.path)),
-      htmlFiles: this._htmlFiles.map(f => relative(this.path, f.path))
+      tsFiles: this._tsFiles.map(f => relative(this.path, f.path)).sort(),
+      htmlFiles: this._htmlFiles.map(f => relative(this.path, f.path)).sort()
     };
   }
 }

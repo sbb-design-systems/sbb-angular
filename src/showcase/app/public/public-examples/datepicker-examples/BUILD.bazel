@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "datepicker-examples",
     srcs = [
-        "datepicker-examples.module.ts",
         "datepicker-example/datepicker-example.component.ts",
+        "datepicker-examples.module.ts",
     ],
     assets = [
         ":datepicker-example/datepicker-example.component.css",

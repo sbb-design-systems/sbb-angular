@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "markdown_to_html",
@@ -10,6 +8,8 @@ load(
     "sass_library",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "pagination",
     srcs = glob(
@@ -18,7 +18,8 @@ ng_module(
     ),
     assets = [
         ":navigation/navigation.component.css",
-        ":pagination/pagination.component.css",] + glob(["**/*.html"]),
+        ":pagination/pagination.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-public/pagination",
     deps = [
         "//src/icons/arrow",

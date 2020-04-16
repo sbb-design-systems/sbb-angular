@@ -1,11 +1,9 @@
-package(default_visibility = ["//visibility:public"])
-
 load("@npm//scss-bundle:index.bzl", "scss_bundle")
 load(
     "//src/public:config.bzl",
     "PUBLIC_ENTRYPOINTS",
-    "PUBLIC_TARGETS",
     "PUBLIC_MARKDOWN_TARGETS",
+    "PUBLIC_TARGETS",
     "PUBLIC_TESTING_TARGETS",
 )
 load(
@@ -14,8 +12,9 @@ load(
     "ng_module",
     "ng_package",
     "sass_binary",
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-public" entry-point.
 ng_module(
@@ -56,8 +55,8 @@ scss_bundle(
 markdown_to_html(
     name = "overview",
     srcs = [
-        ":getting-started.md",
         ":README.md",
+        ":getting-started.md",
         ":typography.md",
     ],
 )
@@ -70,7 +69,6 @@ filegroup(
 # Creates the @sbb-esta/angular-public package published to npm.
 ng_package(
     name = "npm_package",
-    readme_md = "README.md",
     srcs = [
         "package.json",
     ],
@@ -81,6 +79,7 @@ ng_package(
     entry_point = ":public-api.ts",
     entry_point_name = "public",
     nested_packages = ["//src/public/schematics:npm_package"],
+    readme_md = "README.md",
     tags = ["release-package"],
     deps = PUBLIC_TARGETS + PUBLIC_TESTING_TARGETS,
 )

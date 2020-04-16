@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "core",
     srcs = [
-        "core-routing.module.ts",
         "core.module.ts",
+        "core-routing.module.ts",
         "core/core.component.ts",
     ],
     assets = [

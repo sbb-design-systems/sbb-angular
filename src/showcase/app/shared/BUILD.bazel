@@ -1,22 +1,22 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "shared",
     srcs = [
         "animations.ts",
+        "api-viewer/api-viewer.component.ts",
         "component-viewer-base.ts",
         "example-provider.ts",
         "html-loader.service.ts",
         "loader-builder.ts",
-        "shared.module.ts",
-        "api-viewer/api-viewer.component.ts",
         "markdown-viewer/markdown-viewer.component.ts",
+        "shared.module.ts",
         "submenu/submenu.component.ts",
     ],
     assets = [

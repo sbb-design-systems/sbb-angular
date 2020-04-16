@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "esri-basemap-gallery-examples",
     srcs = [
-        "esri-basemap-gallery-examples.module.ts",
         "esri-basemap-gallery-example/esri-basemap-gallery-example.component.ts",
+        "esri-basemap-gallery-examples.module.ts",
     ],
     assets = [
         ":esri-basemap-gallery-example/esri-basemap-gallery-example.component.css",

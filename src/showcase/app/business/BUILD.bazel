@@ -1,27 +1,27 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "business",
     srcs = [
-        "business-routing.module.ts",
         "business.module.ts",
-        "business/business.component.ts",
         "business-component-viewer/business-component-viewer.component.ts",
         "business-example-viewer/business-example-viewer.component.ts",
+        "business-routing.module.ts",
+        "business/business.component.ts",
     ],
     assets = [
         ":business/business.component.css",
         ":business-component-viewer/business-component-viewer.component.css",
         ":business-example-viewer/business-example-viewer.component.css",
-        "business/business.component.html",
         "business-component-viewer/business-component-viewer.component.html",
         "business-example-viewer/business-example-viewer.component.html",
+        "business/business.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [

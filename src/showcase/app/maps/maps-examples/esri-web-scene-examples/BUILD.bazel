@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "esri-web-scene-examples",
     srcs = [
-        "esri-web-scene-examples.module.ts",
         "esri-web-scene-example/esri-web-scene-example.component.ts",
+        "esri-web-scene-examples.module.ts",
     ],
     assets = [
         ":esri-web-scene-example/esri-web-scene-example.component.css",

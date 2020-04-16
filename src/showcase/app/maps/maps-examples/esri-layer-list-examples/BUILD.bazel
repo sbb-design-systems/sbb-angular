@@ -1,16 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "esri-layer-list-examples",
     srcs = [
-        "esri-layer-list-examples.module.ts",
         "esri-layer-list-example/esri-layer-list-example.component.ts",
+        "esri-layer-list-examples.module.ts",
     ],
     assets = [
         ":esri-layer-list-example/esri-layer-list-example.component.css",

@@ -1,10 +1,8 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//src/core:config.bzl",
     "CORE_ENTRYPOINTS",
-    "CORE_TARGETS",
     "CORE_MARKDOWN_TARGETS",
+    "CORE_TARGETS",
     "CORE_TESTING_TARGETS",
 )
 load(
@@ -12,8 +10,9 @@ load(
     "markdown_to_html",
     "ng_module",
     "ng_package",
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-core" entry-point.
 ng_module(

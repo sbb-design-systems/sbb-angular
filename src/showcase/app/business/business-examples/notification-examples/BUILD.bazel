@@ -1,19 +1,19 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",
     "sass_binary",
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "notification-examples",
     srcs = [
-        "notification-data.ts",
-        "notification-examples.module.ts",
         "closable-notification/closable-notification.component.ts",
         "custom-icon-notification/custom-icon-notification.component.ts",
         "jumpmark-notification/jumpmark-notification.component.ts",
+        "notification-data.ts",
+        "notification-examples.module.ts",
         "simple-notification/simple-notification.component.ts",
     ],
     assets = [

@@ -1,17 +1,16 @@
-package(default_visibility = ["//visibility:public"])
-
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm_angular_bazel//:index.bzl", "ng_module")
-load("@npm_bazel_karma//:index.bzl", "karma_web_test_suite")
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
-load("@npm_bazel_typescript//:index.bzl", "ts_config", "ts_devserver", "ts_library")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("//tools/highlight-files:index.bzl", "highlight_files")
+load("@npm_bazel_typescript//:index.bzl", "ts_devserver")
 load("//tools/differential-loading-merge:index.bzl", "differential_loading_merge")
+load("//tools/highlight-files:index.bzl", "highlight_files")
+
+package(default_visibility = ["//visibility:public"])
 
 # Run the sass compiler to output "styles.css"
 sass_binary(
@@ -30,7 +29,7 @@ ng_module(
             "main.ts",
         ],
     ),
-    tsconfig = ':tsconfig.json',
+    tsconfig = ":tsconfig.json",
     deps = [
         "//src/showcase/app",
         "@npm//@angular/core",
@@ -139,8 +138,8 @@ ts_devserver(
         "sbb_angular/src/showcase/_",
         "npm/node_modules/core-js/client",
     ],
-    port = 4200,
     entry_module = "sbb_angular/src/showcase/main.dev",
+    port = 4200,
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         "//tools/rxjs:rxjs_umd_modules",
@@ -158,21 +157,21 @@ ts_devserver(
 
 rollup_bundle(
     name = "bundle-es2015",
-    config_file = "rollup.config.js",
-    entry_points = {
-        ":main.prod.ts": "index",
-    },
     args = [
         "--entryFileNames=[name].mjs",
         "--chunkFileNames=[name]-[hash].mjs",
     ],
+    config_file = "rollup.config.js",
+    entry_points = {
+        ":main.prod.ts": "index",
+    },
     output_dir = True,
+    tags = ["prod-showcase"],
     deps = [
         "//src/showcase",
         "@npm//rollup-plugin-commonjs",
         "@npm//rollup-plugin-node-resolve",
     ],
-    tags = ["prod-showcase"],
 )
 
 babel(
@@ -266,16 +265,16 @@ pkg_web(
 
 history_server(
     name = "prodserver",
-    data = [":prodapp"],
     args = [
         "--port",
         "4200",
     ],
+    data = [":prodapp"],
+    tags = ["prod-showcase"],
     templated_args = [
         "-a",
         "$(rlocation sbb_angular/src/showcase/prodapp)",
     ],
-    tags = ["prod-showcase"],
 )
 
 exports_files([

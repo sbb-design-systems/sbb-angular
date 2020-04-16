@@ -1,12 +1,12 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",
     "ng_module",<% if (hasTests) { %>
     "ng_test_library",
     "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
     "sass_binary",<% } %>
-)<% if (name === 'app') { %>
+)
+
+package(default_visibility = ["//visibility:public"])<% if (name === 'app') { %>
 
 genrule(
     name = "package-info",
@@ -23,9 +23,9 @@ genrule(
 
 ng_module(
     name = "<%= name %>",
-    srcs = [<% if (name === 'app') { %>
-        ":versions.ts",<% } %><% for (let src of tsFiles) { %>
-        "<%= src %>",<% } %>
+    srcs = [<% for (let src of tsFiles) { %>
+        "<%= src %>",<% } %><% if (name === 'app') { %>
+        ":versions.ts",<% } %>
     ],<% if (stylesheets.length || htmlFiles.length) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
         ":<%= stylesheet %>",<% } %><% for (let file of htmlFiles) { %>

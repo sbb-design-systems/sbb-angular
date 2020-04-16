@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load(
     "//tools:defaults.bzl",<% if (hasMarkdown) { %>
     "markdown_to_html",<% } %>
@@ -10,6 +8,8 @@ load(
     "sass_library",<% } %>
 )
 
+package(default_visibility = ["//visibility:public"])
+
 ng_module(
     name = "<%= name %>",
     srcs = glob(
@@ -18,7 +18,8 @@ ng_module(
     ),<% if (stylesheets.length === 1) { %>
     assets = [":<%= stylesheets[0] %>"] + glob(["**/*.html"]),<% } %><% if (stylesheets.length > 1) { %>
     assets = [<% for (let stylesheet of stylesheets) { %>
-        ":<%= stylesheet %>",<% } %>] + glob(["**/*.html"]),<% } %>
+        ":<%= stylesheet %>",<% } %>
+    ] + glob(["**/*.html"]),<% } %>
     module_name = "<%= moduleName %>",<% if (customTsConfig) { %>
     tsconfig = "<%= customTsConfig %>",<% } %>
     deps = [<% for (let dependency of dependencies) { %>

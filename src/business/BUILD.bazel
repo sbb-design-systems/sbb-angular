@@ -1,11 +1,9 @@
-package(default_visibility = ["//visibility:public"])
-
 load("@npm//scss-bundle:index.bzl", "scss_bundle")
 load(
     "//src/business:config.bzl",
     "BUSINESS_ENTRYPOINTS",
-    "BUSINESS_TARGETS",
     "BUSINESS_MARKDOWN_TARGETS",
+    "BUSINESS_TARGETS",
     "BUSINESS_TESTING_TARGETS",
 )
 load(
@@ -14,8 +12,9 @@ load(
     "ng_module",
     "ng_package",
     "sass_binary",
-    "ts_library"
 )
+
+package(default_visibility = ["//visibility:public"])
 
 # Root "@sbb-esta/angular-business" entry-point.
 ng_module(
