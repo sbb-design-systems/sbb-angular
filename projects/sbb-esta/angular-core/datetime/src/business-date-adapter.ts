@@ -13,31 +13,17 @@ export class BusinessDateAdapter extends NativeDateAdapter {
   }
 
   protected _parseStringDate(value: string): null | Date {
-    const superDate = super._parseStringDate(value);
-    if (superDate) {
-      return superDate;
-    }
-
-    const dateWithFullYear = this._parseStringDateBusiness(value, 4);
-    if (dateWithFullYear) {
-      return dateWithFullYear;
-    }
-
-    return this._parseStringDateBusiness(value, 2);
+    return super._parseStringDate(value) || this._parseStringDateBusiness(value);
   }
 
-  private _parseStringDateBusiness(value: string, yearLength: 2 | 4): null | Date {
-    const totalLength = 4 + yearLength;
-    const match = new RegExp(`^(\\w+,[ ]?)?(\\d{${totalLength}})$`).exec(value);
+  private _parseStringDateBusiness(value: string): null | Date {
+    const match = /^(\w+,[ ]?)?(\d{2})(\d{2})(\d{2}|\d{4})$/.exec(value);
     if (!match) {
       return null;
     }
+    const year = +match[4];
     return this._normalizeYear(
-      this._createDateWithOverflow(
-        +match[2].substr(4, yearLength),
-        +match[2].substr(2, 2) - 1,
-        +match[2].substr(0, 2)
-      )
+      this._createDateWithOverflow(year < 100 ? 2000 + year : year, +match[3] - 1, +match[2])
     );
   }
 }
