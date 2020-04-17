@@ -31,16 +31,16 @@ function buildShowcase(distPath) {
   const pkgName = 'showcase';
   const bazelBinPath = exec(`${bazelCmd} info bazel-bin`, true);
   const outputPath = join(bazelBinPath, 'src', pkgName, 'prodapp');
-  const targetFolder = join(distPath, pkgName);
 
   exec(`${bazelCmd} build src/${pkgName}:prodapp`);
 
   // Delete the distribution directory so that the output is guaranteed to be clean. Re-create
   // the empty directory so that we can copy the release packages into it later.
-  rm('-rf', targetFolder);
-  mkdir('-p', targetFolder);
+  rm('-rf', distPath);
+  mkdir('-p', distPath);
 
   // Copy the package output into the specified distribution folder.
+  const targetFolder = join(distPath, pkgName);
   console.log(`> Copying package output to "${targetFolder}"`);
   cp('-R', outputPath, targetFolder);
   chmod('-R', 'u+w', targetFolder);

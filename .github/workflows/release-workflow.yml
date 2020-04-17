@@ -47,6 +47,11 @@ jobs:
 
     - name: "Build: Packages"
       run: yarn -s build
+      
+    - uses: actions/upload-artifact@v1
+      with:
+        name: packages
+        path: dist/releases
 
     - name: Publish @sbb-esta/angular-core
       run: yarn publish dist/release/core || true
