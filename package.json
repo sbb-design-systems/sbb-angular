@@ -8,6 +8,7 @@
   },
   "scripts": {
     "postinstall": "node tools/postinstall/apply-patches.js && ngcc && yarn -s build:public2business",
+    "hash": "node ./scripts/hash-files.js",
     "prebuild": "yarn -s build:public2business",
     "build": "node ./scripts/build-packages-dist.js",
     "build:showcase": "node ./scripts/build-showcase-dist.js",
