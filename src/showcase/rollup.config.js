@@ -12,6 +12,7 @@ module.exports = {
         replacement: `${__dirname}/../${pkg}`
       }))
     }),
+    // TODO: Check if this can be removed
     replace({
       patterns: [
         {

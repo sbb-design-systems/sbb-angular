@@ -172,6 +172,8 @@ rollup_bundle(
     tags = ["prod-showcase"],
     deps = [
         "//src/showcase",
+        "@npm//@rollup/plugin-alias",
+        "@npm//@rollup/plugin-replace",
         "@npm//rollup-plugin-commonjs",
         "@npm//rollup-plugin-node-resolve",
     ],
