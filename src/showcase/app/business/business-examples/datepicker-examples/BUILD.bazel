@@ -8,6 +8,7 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "datepicker-examples",
     srcs = [
+        "datepicker-business-date-adapter-example/datepicker-business-date-adapter-example.component.ts",
         "datepicker-date-filter-example/datepicker-date-filter-example.component.ts",
         "datepicker-examples.module.ts",
         "datepicker-master-slave-example/datepicker-master-slave-example.component.ts",
@@ -15,6 +16,7 @@ ng_module(
         "datepicker-standalone-forms-example/datepicker-standalone-forms-example.component.ts",
     ],
     assets = [
+        "datepicker-business-date-adapter-example/datepicker-business-date-adapter-example.component.html",
         "datepicker-date-filter-example/datepicker-date-filter-example.component.html",
         "datepicker-master-slave-example/datepicker-master-slave-example.component.html",
         "datepicker-simple-reactive-example/datepicker-simple-reactive-example.component.html",
@@ -22,10 +24,10 @@ ng_module(
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
+        "//src/business/checkbox",
+        "//src/business/datepicker",
+        "//src/business/field",
         "//src/core/datetime",
-        "//src/public/checkbox",
-        "//src/public/datepicker",
-        "//src/public/field",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

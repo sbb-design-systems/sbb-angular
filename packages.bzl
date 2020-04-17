@@ -2,10 +2,12 @@
 # all in-sync. This map is passed to each ng_package rule to stamp out the appropriate
 # version for the placeholders.
 ANGULAR_PACKAGE_VERSION = "^9.0.0 || ^10.0.0-0"
+CDK_PACKAGE_VERSION = "^9.0.0"
 TSLIB_PACKAGE_VERSION = "^1.10.0"
 
 VERSION_PLACEHOLDER_REPLACEMENTS = {
     "0.0.0-NG": ANGULAR_PACKAGE_VERSION,
+    "0.0.0-CDK": CDK_PACKAGE_VERSION,
     "0.0.0-TSLIB": TSLIB_PACKAGE_VERSION,
 }
 

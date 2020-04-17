@@ -126,4 +126,4 @@ have 2000 added to it, years from pivot year + 1 to 100 (exclusive) will have 19
 ### Date Adapter
 
 For business applications we optionally provide an alternative date adapter (e.g. for parsing a manually entered date string).
-See [Datetime documentation](../../core/components/datetime) for more information.
+See [Datetime documentation](/core/components/datetime) for more information.

@@ -1,7 +1,6 @@
 load(
     "//tools:defaults.bzl",
     "ng_module",
-    "sass_binary",
 )
 
 package(default_visibility = ["//visibility:public"])
@@ -9,17 +8,23 @@ package(default_visibility = ["//visibility:public"])
 ng_module(
     name = "tooltip-examples",
     srcs = [
-        "tooltip-example/tooltip-example.component.ts",
+        "tooltip-custom-content-example/tooltip-custom-content-example.component.ts",
+        "tooltip-custom-icon-example/tooltip-custom-icon-example.component.ts",
         "tooltip-examples.module.ts",
+        "tooltip-hover-example/tooltip-hover-example.component.ts",
+        "tooltip-simple-example/tooltip-simple-example.component.ts",
     ],
     assets = [
-        ":tooltip-example/tooltip-example.component.css",
-        "tooltip-example/tooltip-example.component.html",
+        "tooltip-custom-content-example/tooltip-custom-content-example.component.html",
+        "tooltip-custom-icon-example/tooltip-custom-icon-example.component.html",
+        "tooltip-hover-example/tooltip-hover-example.component.html",
+        "tooltip-simple-example/tooltip-simple-example.component.html",
     ],
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/business/field",
         "//src/business/tooltip",
+        "//src/core/base",
         "//src/icons/navigation",
         "@npm//@angular/common",
         "@npm//@angular/core",
@@ -34,9 +39,4 @@ filegroup(
         "**/*.scss",
         "**/*.ts",
     ]),
-)
-
-sass_binary(
-    name = "tooltip_example_tooltip_example_component_scss",
-    src = "tooltip-example/tooltip-example.component.scss",
 )

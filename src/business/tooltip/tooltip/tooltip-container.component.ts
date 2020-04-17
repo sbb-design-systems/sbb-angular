@@ -23,7 +23,7 @@ export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
 @Component({
   selector: 'sbb-tooltip-container',
   templateUrl: './tooltip-container.component.html',
-  styleUrls: ['./tooltip-container.component.scss'],
+  styleUrls: ['./tooltip-container.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [sbbTooltipAnimations.tooltipState]
@@ -40,7 +40,7 @@ export class TooltipContainerComponent implements OnDestroy {
    * @docs-private
    */
   @HostBinding('style.zoom')
-  get styleZoom(): number {
+  get styleZoom(): number | null {
     return this._visibility === 'visible' ? 1 : null;
   }
 

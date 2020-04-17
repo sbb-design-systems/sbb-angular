@@ -27,17 +27,11 @@ export function ngAdd(options: Schema): Rule {
 const addDependencies = (): Rule => {
   return (tree: Tree, context: SchematicContext) => {
     const sbbAngularVersionRange =
-      getPackageVersionFromPackageJson(tree, '@sbb-esta/angular-business') ||
-      require('../../package.json').version;
+      getPackageVersionFromPackageJson(tree, '@sbb-esta/angular-business') || `~0.0.0-PLACEHOLDER`;
 
     addDefaultDependency('@sbb-esta/angular-core', sbbAngularVersionRange, tree, context);
     addDefaultDependency('@sbb-esta/angular-icons', sbbAngularVersionRange, tree, context);
-    addDefaultDependency(
-      '@angular/cdk',
-      require('../../package.json').peerDependencies['@angular/cdk'],
-      tree,
-      context
-    );
+    addDefaultDependency('@angular/cdk', `0.0.0-CDK`, tree, context);
     addDefaultDependency(
       '@angular/animations',
       getPackageJsonDependency(tree, '@angular/core')!.version,

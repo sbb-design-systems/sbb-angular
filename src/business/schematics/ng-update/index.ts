@@ -7,7 +7,7 @@ export function updateToV9(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const sbbAngularVersionRange =
       getPackageVersionFromPackageJson(host, '@sbb-esta/angular-business') || `~0.0.0-PLACEHOLDER`;
-    addPackageToPackageJson(host, '@sbb-esta/angular-core', sbbAngularVersionRange);
+    addDefaultDependency('@sbb-esta/angular-core', sbbAngularVersionRange, host, context);
     context.addTask(new NodePackageInstallTask());
     return host;
   };

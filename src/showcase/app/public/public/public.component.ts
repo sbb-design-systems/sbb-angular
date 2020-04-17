@@ -13,7 +13,10 @@ import { ButtonExampleComponent } from '../public-examples/button-examples/butto
 import { CaptchaExampleComponent } from '../public-examples/captcha-examples/captcha-example/captcha-example.component';
 import { CheckboxExampleComponent } from '../public-examples/checkbox-examples/checkbox-example/checkbox-example.component';
 import { CheckboxPanelExampleComponent } from '../public-examples/checkbox-panel-examples/checkbox-panel-example/checkbox-panel-example.component';
-import { DatepickerExampleComponent } from '../public-examples/datepicker-examples/datepicker-example/datepicker-example.component';
+import { DatepickerDateFilterExampleComponent } from '../public-examples/datepicker-examples/datepicker-date-filter-example/datepicker-date-filter-example.component';
+import { DatepickerMasterSlaveExampleComponent } from '../public-examples/datepicker-examples/datepicker-master-slave-example/datepicker-master-slave-example.component';
+import { DatepickerSimpleReactiveExampleComponent } from '../public-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
+import { DatepickerStandaloneFormsExampleComponent } from '../public-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DropdownExampleComponent } from '../public-examples/dropdown-examples/dropdown-example/dropdown-example.component';
 import { FieldExampleComponent } from '../public-examples/field-examples/field-example/field-example.component';
 import { FileSelectorExampleComponent } from '../public-examples/file-selector-examples/file-selector-example/file-selector-example.component';
@@ -42,7 +45,9 @@ import { TextareaReactiveFormsWithSbbFieldExampleComponent } from '../public-exa
 import { TextexpandExampleComponent } from '../public-examples/textexpand-examples/textexpand-example/textexpand-example.component';
 import { TimeInputExampleComponent } from '../public-examples/time-input-examples/time-input-example/time-input-example.component';
 import { ToggleExampleComponent } from '../public-examples/toggle-examples/toggle-example/toggle-example.component';
-import { TooltipExampleComponent } from '../public-examples/tooltip-examples/tooltip-example/tooltip-example.component';
+import { TooltipCustomContentExampleComponent } from '../public-examples/tooltip-examples/tooltip-custom-content-example/tooltip-custom-content-example.component';
+import { TooltipCustomIconExampleComponent } from '../public-examples/tooltip-examples/tooltip-custom-icon-example/tooltip-custom-icon-example.component';
+import { TooltipSimpleExampleComponent } from '../public-examples/tooltip-examples/tooltip-simple-example/tooltip-simple-example.component';
 import { UsermenuExampleComponent } from '../public-examples/usermenu-examples/usermenu-example/usermenu-example.component';
 
 @Component({
@@ -108,7 +113,16 @@ export class PublicComponent implements ExampleProvider {
     'checkbox-panel': {
       'checkbox-panel-example': new ComponentPortal(CheckboxPanelExampleComponent)
     },
-    datepicker: { 'datepicker-example': new ComponentPortal(DatepickerExampleComponent) },
+    datepicker: {
+      'datepicker-simple-reactive-example': new ComponentPortal(
+        DatepickerSimpleReactiveExampleComponent
+      ),
+      'datepicker-master-slave-example': new ComponentPortal(DatepickerMasterSlaveExampleComponent),
+      'datepicker-date-filter-example': new ComponentPortal(DatepickerDateFilterExampleComponent),
+      'datepicker-standalone-forms-example': new ComponentPortal(
+        DatepickerStandaloneFormsExampleComponent
+      )
+    },
     field: { 'field-example': new ComponentPortal(FieldExampleComponent) },
     'file-selector': {
       'file-selector-example': new ComponentPortal(FileSelectorExampleComponent)
@@ -154,7 +168,11 @@ export class PublicComponent implements ExampleProvider {
     loading: { 'loading-example': new ComponentPortal(LoadingExampleComponent) },
     dropdown: { 'dropdown-example': new ComponentPortal(DropdownExampleComponent) },
     lightbox: { 'lightbox-example': new ComponentPortal(LightboxExampleComponent) },
-    tooltip: { 'tooltip-example': new ComponentPortal(TooltipExampleComponent) }
+    tooltip: {
+      'tooltip-simple-example': new ComponentPortal(TooltipSimpleExampleComponent),
+      'tooltip-custom-content-example': new ComponentPortal(TooltipCustomContentExampleComponent),
+      'tooltip-custom-icon-example': new ComponentPortal(TooltipCustomIconExampleComponent)
+    }
   };
 
   resolveExample<TComponent = any>(

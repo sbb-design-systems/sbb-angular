@@ -22,7 +22,7 @@ describe('BusinessDateAdapter', () => {
     ];
 
     params.forEach(param =>
-      expect(businessDateAdapter.parse(param.input).getTime()).toBe(
+      expect(businessDateAdapter.parse(param.input)!.getTime()).toBe(
         new Date(param.expectedYear, param.expectedMonth - 1, param.expectedDay).getTime()
       )
     );

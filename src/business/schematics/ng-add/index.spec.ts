@@ -67,13 +67,11 @@ describe('ngAdd', () => {
 
     ['@sbb-esta/angular-core', '@sbb-esta/angular-icons'].forEach(dependencyName =>
       expect(readJsonFile(tree, '/package.json').dependencies[dependencyName]).toBe(
-        require('../../package.json').version
+        `~0.0.0-PLACEHOLDER`
       )
     );
 
-    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(
-      require('../../package.json').peerDependencies['@angular/cdk']
-    );
+    expect(readJsonFile(tree, '/package.json').dependencies['@angular/cdk']).toBe(`0.0.0-CDK`);
 
     expect(readJsonFile(tree, '/package.json').dependencies['@angular/animations']).toBeDefined();
 

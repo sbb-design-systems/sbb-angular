@@ -13,8 +13,10 @@ ng_module(
     tsconfig = "//src/showcase:tsconfig.json",
     deps = [
         "//src/showcase/app/business/business-examples/autocomplete-examples",
+        "//src/showcase/app/business/business-examples/breadcrumb-examples",
         "//src/showcase/app/business/business-examples/chip-examples",
         "//src/showcase/app/business/business-examples/contextmenu-examples",
+        "//src/showcase/app/business/business-examples/datepicker-examples",
         "//src/showcase/app/business/business-examples/dialog-examples",
         "//src/showcase/app/business/business-examples/notification-examples",
         "//src/showcase/app/business/business-examples/pagination-examples",

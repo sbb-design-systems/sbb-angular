@@ -15,17 +15,27 @@ ng_module(
         ["**/*.ts"],
         exclude = ["**/*.spec.ts"],
     ),
-    assets = [":tooltip/tooltip.component.css"] + glob(["**/*.html"]),
+    assets = [
+        ":tooltip/tooltip-container.component.css",
+        ":tooltip/tooltip.component.css",
+    ] + glob(["**/*.html"]),
     module_name = "@sbb-esta/angular-business/tooltip",
     deps = [
         "//src/core/base",
         "//src/core/icon-directive",
         "//src/icons/navigation",
         "//src/icons/status",
+        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//rxjs",
     ],
+)
+
+sass_binary(
+    name = "tooltip_tooltip_container_component_scss",
+    src = "tooltip/tooltip-container.component.scss",
 )
 
 sass_binary(
@@ -45,8 +55,10 @@ ng_test_library(
     deps = [
         ":tooltip",
         "//src/core/base",
+        "//src/core/testing",
         "//src/icons/navigation",
         "//src/icons/status",
+        "@npm//@angular/animations",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/platform-browser",

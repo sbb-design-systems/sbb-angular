@@ -6,11 +6,17 @@ import { AutocompleteFormsExampleComponent } from '../business-examples/autocomp
 import { AutocompleteHintExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-hint-example/autocomplete-hint-example.component';
 import { AutocompleteOptionGroupExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-option-group-example/autocomplete-option-group-example.component';
 import { AutocompleteReactiveFormsExampleComponent } from '../business-examples/autocomplete-examples/autocomplete-reactive-forms-example/autocomplete-reactive-forms-example.component';
+import { BreadcrumbExampleComponent } from '../business-examples/breadcrumb-examples/breadcrumb-example/breadcrumb-example.component';
 import { AutocompleteChipInputComponent } from '../business-examples/chip-examples/autocomplete-chip-input/autocomplete-chip-input.component';
 import { DisabledChipInputComponent } from '../business-examples/chip-examples/disabled-chip-input/disabled-chip-input.component';
 import { FormsChipInputComponent } from '../business-examples/chip-examples/forms-chip-input/forms-chip-input.component';
 import { ReactiveFormsChipInputComponent } from '../business-examples/chip-examples/reactive-forms-chip-input/reactive-forms-chip-input.component';
 import { SimpleContextmenuComponent } from '../business-examples/contextmenu-examples/simple-contextmenu/simple-contextmenu.component';
+import { DatepickerBusinessDateAdapterExampleComponent } from '../business-examples/datepicker-examples/datepicker-business-date-adapter-example/datepicker-business-date-adapter-example.component';
+import { DatepickerDateFilterExampleComponent } from '../business-examples/datepicker-examples/datepicker-date-filter-example/datepicker-date-filter-example.component';
+import { DatepickerMasterSlaveExampleComponent } from '../business-examples/datepicker-examples/datepicker-master-slave-example/datepicker-master-slave-example.component';
+import { DatepickerSimpleReactiveExampleComponent } from '../business-examples/datepicker-examples/datepicker-simple-reactive-example/datepicker-simple-reactive-example.component';
+import { DatepickerStandaloneFormsExampleComponent } from '../business-examples/datepicker-examples/datepicker-standalone-forms-example/datepicker-standalone-forms-example.component';
 import { DialogExampleComponent } from '../business-examples/dialog-examples/dialog-example/dialog-example.component';
 import { ClosableNotificationComponent } from '../business-examples/notification-examples/closable-notification/closable-notification.component';
 import { CustomIconNotificationComponent } from '../business-examples/notification-examples/custom-icon-notification/custom-icon-notification.component';
@@ -32,7 +38,10 @@ import { TabsExampleComponent } from '../business-examples/tabs-examples/tabs-ex
 import { TextareaFormsExampleComponent } from '../business-examples/textarea-examples/textarea-forms-example/textarea-forms-example.component';
 import { TextareaNativeExampleComponent } from '../business-examples/textarea-examples/textarea-native-example/textarea-native-example.component';
 import { TextareaReactiveFormsWithSbbFieldExampleComponent } from '../business-examples/textarea-examples/textarea-reactive-forms-with-sbbfield-example/textarea-reactive-forms-with-sbb-field-example.component';
-import { TooltipExampleComponent } from '../business-examples/tooltip-examples/tooltip-example/tooltip-example.component';
+import { TooltipCustomContentExampleComponent } from '../business-examples/tooltip-examples/tooltip-custom-content-example/tooltip-custom-content-example.component';
+import { TooltipCustomIconExampleComponent } from '../business-examples/tooltip-examples/tooltip-custom-icon-example/tooltip-custom-icon-example.component';
+import { TooltipHoverExampleComponent } from '../business-examples/tooltip-examples/tooltip-hover-example/tooltip-hover-example.component';
+import { TooltipSimpleExampleComponent } from '../business-examples/tooltip-examples/tooltip-simple-example/tooltip-simple-example.component';
 import { UsermenuExampleComponent } from '../business-examples/usermenu-examples/usermenu-example/usermenu-example.component';
 
 @Component({
@@ -86,7 +95,20 @@ export class BusinessComponent implements ExampleProvider {
       )
     },
     breadcrumb: {
-      'breadcrumb-showcase': new ComponentPortal(BreadcrumbShowcaseComponent)
+      'breadcrumb-example': new ComponentPortal(BreadcrumbExampleComponent)
+    },
+    datepicker: {
+      'datepicker-simple-reactive-example': new ComponentPortal(
+        DatepickerSimpleReactiveExampleComponent
+      ),
+      'datepicker-master-slave-example': new ComponentPortal(DatepickerMasterSlaveExampleComponent),
+      'datepicker-date-filter-example': new ComponentPortal(DatepickerDateFilterExampleComponent),
+      'datepicker-standalone-forms-example': new ComponentPortal(
+        DatepickerStandaloneFormsExampleComponent
+      ),
+      'datepicker-business-date-adapter-example': new ComponentPortal(
+        DatepickerBusinessDateAdapterExampleComponent
+      )
     },
     processflow: {
       'skippable-processflow': new ComponentPortal(SkippableProcessflowComponent)
@@ -95,7 +117,10 @@ export class BusinessComponent implements ExampleProvider {
       'simple-contextmenu': new ComponentPortal(SimpleContextmenuComponent)
     },
     tooltip: {
-      'tooltip-example': new ComponentPortal(TooltipExampleComponent)
+      'tooltip-simple-example': new ComponentPortal(TooltipSimpleExampleComponent),
+      'tooltip-custom-content-example': new ComponentPortal(TooltipCustomContentExampleComponent),
+      'tooltip-custom-icon-example': new ComponentPortal(TooltipCustomIconExampleComponent),
+      'tooltip-hover-example': new ComponentPortal(TooltipHoverExampleComponent)
     },
     usermenu: {
       'usermenu-example': new ComponentPortal(UsermenuExampleComponent)

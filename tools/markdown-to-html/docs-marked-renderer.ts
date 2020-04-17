@@ -32,18 +32,6 @@ export class DocsMarkdownRenderer extends Renderer {
     return `<h${level}>${label}</h${level}>`;
   }
 
-  /** Transforms markdown links into the corresponding HTML output. */
-  link(href: string, title: string, text: string) {
-    // We only want to fix up markdown links that are relative and do not refer to guides already.
-    // Otherwise we always map the link to the "guide/" path.
-    // TODO(devversion): remove this logic and just disallow relative paths.
-    if (!href.startsWith('http') && !href.startsWith('#') && !href.includes('guide/')) {
-      return super.link(`guide/${basename(href, extname(href))}`, title, text);
-    }
-
-    return super.link(href, title, text);
-  }
-
   /**
    * Method that will be called whenever inline HTML is processed by marked. In that case,
    * we can easily transform the example comments into real HTML elements. For example:
