@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+  <div>
+    <sbb-field mode="long">
+      <sbb-label>Lebensmittel aus der ganzen Welt</sbb-label>
+      <sbb-select placeholder="Lebensmittel aus der ganzen Welt" formControlName="value" multiple>
+        <sbb-option-group *ngFor="let foodNation of foodFromTheWorld" [label]="foodNation.nation">
+          <sbb-option *ngFor="let food of foodNation.food" [value]="food.value">
+            {{ food.viewValue }}
+          </sbb-option>
+        </sbb-option-group>
+      </sbb-select>
+    </sbb-field>
+  </div>
+  <div>
+    <h4>Properties</h4>
+    <pre>{{ form.get('value')?.value | json }}</pre>
+    <sbb-checkbox
+      (change)="$event.checked ? form.get('value')?.disable() : form.get('value')?.enable()"
+      >disabled</sbb-checkbox
+    >
+  </div>
+</form>

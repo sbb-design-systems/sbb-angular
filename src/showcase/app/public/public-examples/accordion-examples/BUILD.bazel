@@ -1,0 +1,45 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "accordion-examples",
+    srcs = [
+        "accordion-example/accordion-example.component.ts",
+        "accordion-examples.module.ts",
+    ],
+    assets = [
+        ":accordion-example/accordion-example.component.css",
+        "accordion-example/accordion-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/arrow",
+        "//src/public/accordion",
+        "//src/public/checkbox",
+        "//src/public/field",
+        "//src/public/radio-button",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "accordion_example_accordion_example_component_scss",
+    src = "accordion-example/accordion-example.component.scss",
+)

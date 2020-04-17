@@ -78,7 +78,7 @@ All notable changes to this project will be documented in this file. See [standa
 * @sbb-esta/angular-core is now a peer dependency of @sbb-esta/angular-public and @sbb-esta/angular-business. Executing `ng update @sbb-esta/angular-public` or `ng update @sbb-esta/angular-business` will automatically install @sbb-esta/angular-core, otherwise you will need to install the package manually via `npm install --save @sbb-esta/angular-core`.
 * Removing the deprecated support for form control on a radio button. sbb-radio-button and sbb-radio-button-panel should be wrapped in a sbb-radio-group. See an example in the `Use with @angular/forms` section in the [radio button documentation](https://angular.app.sbb.ch/latest/public/components/radio-button#use-with-angularforms)
 * **business:** The header module no longer exports the DropdownModule. If you used sbb-dropdown with the header, you either should switch to using sbb-header-menu where applicable or you need to add DropdownModule to the NgModule imports.
-* Removing the deprecated icons from `@sbb-esta/angular-public`. Please use the icons from @sbb-esta/angular-icons. This also removes the different icon directives (`*sbbButtonIcon`, `*sbbGhettoboxIcon`, `*sbbNotificationIcon`, `*sbbSearchIcon`, `*sbbToggleOptionIcon`, `*sbbTooltipIcon`) and replaces them with `*sbbIcon`.
+* Removing the deprecated icons from `@sbb-esta/angular-public`. Please use the icons from '@sbb-esta/angular-icons. This also removes the different icon directives (`*sbbButtonIcon`, `*sbbGhettoboxIcon`, `*sbbNotificationIcon`, `*sbbSearchIcon`, `*sbbToggleOptionIcon`, `*sbbTooltipIcon`) and replaces them with `*sbbIcon`.
 * Due to various small problems, we are removing internal usage of perfect-scrollbar. We are also deprecating the ScrollingModule. If you want to keep using the ScrollingModule, you will have to install ngx-perfect-scrollbar manually in your project (npm install --save ngx-perfect-scrollbar).
 * Removing various deprecated code parts in checkbox, checkbox panel, dropdown, keycloak config, radio button, radio button panel, tag, textarea, toggle, toggle option. The deprecated highlight pipe has been removed.
 
@@ -586,4 +586,4 @@ Check the documentation for the new specification.
 
 ### Deprecations
 
-* Icons in @sbb-esta/angular-public have been deprecated and will be removed in v8. Use the icons from @sbb-esta/angular-icons instead. For a list of available icons, visit https://angular.app.sbb.ch/latest/icons-list.
+* Icons in @sbb-esta/angular-public have been deprecated and will be removed in v8. Use the icons from '@sbb-esta/angular-icons instead. For a list of available icons, visit https://angular.app.sbb.ch/latest/icons-list.

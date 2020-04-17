@@ -1,0 +1,22 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_library(
+    name = "sources",
+    srcs = glob(["**/*.ts"]),
+    tsconfig = ":tsconfig.json",
+    deps = [
+        "@npm//@types/node",
+    ],
+)
+
+nodejs_binary(
+    name = "highlight-files",
+    data = [
+        ":sources",
+        "@npm//highlight.js",
+    ],
+    entry_point = ":highlight-files.ts",
+)

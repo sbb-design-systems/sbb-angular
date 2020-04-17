@@ -1,0 +1,7 @@
+@import '../../../core/styles/common';
+
+.sbb-checkbox {
+  & > label {
+    @include checkboxBase();
+  }
+}

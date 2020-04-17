@@ -1,0 +1,31 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "maps-examples",
+    srcs = [
+        "maps-examples.module.ts",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
+        "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",
+        "//src/showcase/app/maps/maps-examples/esri-legend-examples",
+        "//src/showcase/app/maps/maps-examples/esri-web-map-examples",
+        "//src/showcase/app/maps/maps-examples/esri-web-scene-examples",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

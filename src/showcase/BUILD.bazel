@@ -1,0 +1,287 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("@npm//@babel/cli:index.bzl", "babel")
+load("@npm//history-server:index.bzl", "history_server")
+load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
+load("@npm_angular_bazel//:index.bzl", "ng_module")
+load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
+load("@npm_bazel_terser//:index.bzl", "terser_minified")
+load("@npm_bazel_typescript//:index.bzl", "ts_devserver")
+load("//tools/differential-loading-merge:index.bzl", "differential_loading_merge")
+load("//tools/highlight-files:index.bzl", "highlight_files")
+
+package(default_visibility = ["//visibility:public"])
+
+# Run the sass compiler to output "styles.css"
+sass_binary(
+    name = "styles",
+    src = "styles.scss",
+    include_paths = ["external/npm/node_modules"],
+    deps = ["//src/core/styles:core_scss_lib"],
+)
+
+ng_module(
+    name = "showcase",
+    srcs = glob(
+        include = ["*.ts"],
+        exclude = [
+            "**/*.spec.ts",
+            "main.ts",
+        ],
+    ),
+    tsconfig = ":tsconfig.json",
+    deps = [
+        "//src/showcase/app",
+        "@npm//@angular/core",
+        "@npm//@angular/localize",
+        "@npm//@angular/platform-browser",
+        "@npm//core-js",
+    ],
+)
+
+ALL_EXAMPLES = [
+    "//src/showcase/app/business/business-examples/autocomplete-examples",
+    "//src/showcase/app/business/business-examples/breadcrumb-examples",
+    "//src/showcase/app/business/business-examples/chip-examples",
+    "//src/showcase/app/business/business-examples/contextmenu-examples",
+    "//src/showcase/app/business/business-examples/datepicker-examples",
+    "//src/showcase/app/business/business-examples/dialog-examples",
+    "//src/showcase/app/business/business-examples/notification-examples",
+    "//src/showcase/app/business/business-examples/pagination-examples",
+    "//src/showcase/app/business/business-examples/processflow-examples",
+    "//src/showcase/app/business/business-examples/select-examples",
+    "//src/showcase/app/business/business-examples/table-examples",
+    "//src/showcase/app/business/business-examples/tabs-examples",
+    "//src/showcase/app/business/business-examples/textarea-examples",
+    "//src/showcase/app/business/business-examples/tooltip-examples",
+    "//src/showcase/app/business/business-examples/usermenu-examples",
+    "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
+    "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",
+    "//src/showcase/app/maps/maps-examples/esri-legend-examples",
+    "//src/showcase/app/maps/maps-examples/esri-web-map-examples",
+    "//src/showcase/app/maps/maps-examples/esri-web-scene-examples",
+    "//src/showcase/app/public/public-examples/accordion-examples",
+    "//src/showcase/app/public/public-examples/autocomplete-examples",
+    "//src/showcase/app/public/public-examples/badge-examples",
+    "//src/showcase/app/public/public-examples/breadcrumb-examples",
+    "//src/showcase/app/public/public-examples/button-examples",
+    "//src/showcase/app/public/public-examples/captcha-examples",
+    "//src/showcase/app/public/public-examples/checkbox-examples",
+    "//src/showcase/app/public/public-examples/checkbox-panel-examples",
+    "//src/showcase/app/public/public-examples/datepicker-examples",
+    "//src/showcase/app/public/public-examples/dropdown-examples",
+    "//src/showcase/app/public/public-examples/field-examples",
+    "//src/showcase/app/public/public-examples/file-selector-examples",
+    "//src/showcase/app/public/public-examples/ghettobox-examples",
+    "//src/showcase/app/public/public-examples/lightbox-examples",
+    "//src/showcase/app/public/public-examples/links-examples",
+    "//src/showcase/app/public/public-examples/loading-examples",
+    "//src/showcase/app/public/public-examples/notification-examples",
+    "//src/showcase/app/public/public-examples/pagination-examples",
+    "//src/showcase/app/public/public-examples/processflow-examples",
+    "//src/showcase/app/public/public-examples/radio-button-examples",
+    "//src/showcase/app/public/public-examples/radio-button-panel-examples",
+    "//src/showcase/app/public/public-examples/search-examples",
+    "//src/showcase/app/public/public-examples/select-examples",
+    "//src/showcase/app/public/public-examples/table-examples",
+    "//src/showcase/app/public/public-examples/tabs-examples",
+    "//src/showcase/app/public/public-examples/tag-examples",
+    "//src/showcase/app/public/public-examples/textarea-examples",
+    "//src/showcase/app/public/public-examples/textexpand-examples",
+    "//src/showcase/app/public/public-examples/time-input-examples",
+    "//src/showcase/app/public/public-examples/toggle-examples",
+    "//src/showcase/app/public/public-examples/tooltip-examples",
+    "//src/showcase/app/public/public-examples/usermenu-examples",
+]
+
+filegroup(
+    name = "example-source-files",
+    srcs = ["%s:source-files" % pkg for pkg in ALL_EXAMPLES],
+)
+
+highlight_files(
+    name = "highlighted-source-files",
+    srcs = [":example-source-files"],
+    tags = ["docs-package"],
+)
+
+_ASSETS = [
+    ":styles.css",
+    "@npm//:node_modules/highlight.js/styles/github.css",
+    "@npm//:node_modules/zone.js/dist/zone.min.js",
+    "@npm//:node_modules/@angular/localize/bundles/localize-init.umd.min.js",
+]
+
+# Insert script tags into index.html
+# Supports differential loading by providing a.js and a.es2015.js
+html_insert_assets(
+    name = "index_html_dev",
+    outs = ["_/index.html"],
+    args = [
+        "--html",
+        "$(execpath :index.html)",
+        "--out",
+        "$@",
+        "--roots",
+        "$(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        "./_/ts_scripts.js",
+    ],
+    data = [":index.html"] + _ASSETS,
+)
+
+# This devserver is written in Go and is super-fast.
+# It doesn't run any bundler or code splitter. Instead, it concatenates
+# named UMD and named AMD JavaScript code on-the-fly in-memory.
+# This scales really well for massive codebases.
+ts_devserver(
+    name = "devserver",
+    additional_root_paths = [
+        "sbb_angular/src/showcase/_",
+        "npm/node_modules/core-js/client",
+    ],
+    entry_module = "sbb_angular/src/showcase/main.dev",
+    port = 4200,
+    scripts = [
+        "@npm//:node_modules/tslib/tslib.js",
+        "//tools/rxjs:rxjs_umd_modules",
+    ],
+    static_files = _ASSETS + [
+        "@npm//:node_modules/core-js/client/core.min.js",
+        ":index_html_dev",
+        "//src/showcase/assets",
+    ],
+    deps = [
+        "//src/showcase",
+        "//src/showcase/assets",
+    ],
+)
+
+rollup_bundle(
+    name = "bundle-es2015",
+    args = [
+        "--entryFileNames=[name].mjs",
+        "--chunkFileNames=[name]-[hash].mjs",
+    ],
+    config_file = "rollup.config.js",
+    entry_points = {
+        ":main.prod.ts": "index",
+    },
+    output_dir = True,
+    tags = ["prod-showcase"],
+    deps = [
+        "//src/showcase",
+        "@npm//@rollup/plugin-alias",
+        "@npm//@rollup/plugin-replace",
+        "@npm//rollup-plugin-commonjs",
+        "@npm//rollup-plugin-node-resolve",
+    ],
+)
+
+babel(
+    name = "bundle-es5",
+    args = [
+        "$(execpath :bundle-es2015)",
+        "--no-babelrc",
+        "--source-maps",
+        "--presets=@babel/preset-env",
+        "--plugins=@babel/plugin-transform-modules-systemjs",
+        "--out-dir",
+        "$(@D)",
+    ],
+    data = [
+        ":bundle-es2015",
+        "@npm//@babel/preset-env",
+    ],
+    output_dir = True,
+    tags = ["prod-showcase"],
+)
+
+terser_minified(
+    name = "bundle-es2015.min",
+    src = ":bundle-es2015",
+    tags = ["prod-showcase"],
+)
+
+terser_minified(
+    name = "bundle-es5.min",
+    src = ":bundle-es5",
+    tags = ["prod-showcase"],
+)
+
+# Merge the differential loading bundles into the same directory.
+differential_loading_merge(
+    name = "bundle",
+    srcs = [
+        "//src/showcase:bundle-es2015.min",
+        "//src/showcase:bundle-es5.min",
+    ],
+    tags = ["prod-showcase"],
+)
+
+# Insert script tags into index.html
+# Supports differential loading by providing a.js and a.mjs
+html_insert_assets(
+    name = "index_html_prod",
+    # we can't output "src/showcase/index.html" since that collides with the devmode file.
+    # pkg_web rule will re-root paths that start with _{name} by default
+    # so we output "_prodapp/src/index.html" so that it is mapped to
+    # `index.html` in the web package.
+    outs = ["_prodapp/src/index.html"],
+    args = [
+        "--html",
+        "$(execpath :index.prod.html)",
+        "--out",
+        "$@",
+        "--roots",
+        "$(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        "bundle/index.js",
+        "bundle/index.mjs",
+    ],
+    data = _ASSETS + [
+        ":index.prod.html",
+        ":bundle",
+    ],
+    tags = ["prod-showcase"],
+)
+
+pkg_web(
+    name = "prodapp",
+    srcs = _ASSETS + [
+        ":bundle",
+        ":index_html_prod",
+        "//src/showcase/assets",
+        # Include polyfills that will be requested by old browsers
+        "@npm//:node_modules/systemjs/dist/system.js",
+        "@npm//:node_modules/core-js/client/core.min.js",
+    ],
+    # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
+    # so we must serve them at that path, by stripping a prefix
+    additional_root_paths = [
+        "src/showcase/_prodapp/src",
+        "npm/node_modules/core-js/client",
+        "npm/node_modules/systemjs/dist",
+    ],
+    tags = ["prod-showcase"],
+)
+
+history_server(
+    name = "prodserver",
+    args = [
+        "--port",
+        "4200",
+    ],
+    data = [":prodapp"],
+    tags = ["prod-showcase"],
+    templated_args = [
+        "-a",
+        "$(rlocation sbb_angular/src/showcase/prodapp)",
+    ],
+)
+
+exports_files([
+    "tsconfig.json",
+])

@@ -1,0 +1,41 @@
+<!-- Create the first row separately so we can include a special spacer cell. -->
+<tr *ngFor="let row of rows; let rowIndex = index" role="row">
+  <!--
+    We mark this cell as aria-hidden so it doesn't get read out as one of the days in the week.
+    The aspect ratio of the table cells is maintained by setting the top and bottom padding as a
+    percentage of the width (a variant of the trick described here:
+    https://www.w3schools.com/howto/howto_css_aspect_ratio.asp).
+  -->
+  <td
+    *ngIf="rowIndex === 0 && firstRowOffset"
+    aria-hidden="true"
+    class="sbb-calendar-body-label"
+    [attr.colspan]="firstRowOffset"
+    [style.paddingTop.%]="(50 * cellAspectRatio) / numCols"
+    [style.paddingBottom.%]="(50 * cellAspectRatio) / numCols"
+  ></td>
+  <td
+    *ngFor="let item of row; let colIndex = index"
+    role="gridcell"
+    class="sbb-calendar-body-cell"
+    [tabindex]="isActiveCell(rowIndex, colIndex) ? 0 : -1"
+    [class.sbb-calendar-body-disabled]="!item.enabled"
+    [class.sbb-calendar-body-active]="isActiveCell(rowIndex, colIndex)"
+    [class.sbb-calendar-body-range-background]="item.rangeBackground === 'range'"
+    [class.sbb-calendar-body-selected-begin]="item.rangeBackground === 'begin'"
+    [class.sbb-calendar-body-selected-end]="item.rangeBackground === 'end'"
+    [class.sbb-calendar-body-selected]="selectedValue === item.value"
+    [class.sbb-calendar-body-today]="todayValue === item.value"
+    [attr.aria-label]="item.ariaLabel"
+    [attr.aria-disabled]="!item.enabled || null"
+    [attr.aria-selected]="selectedValue === item.value"
+    (click)="cellClicked(item)"
+    [style.width.%]="100 / numCols"
+    [style.paddingTop.%]="(50 * cellAspectRatio) / numCols"
+    [style.paddingBottom.%]="(50 * cellAspectRatio) / numCols"
+  >
+    <div class="sbb-calendar-body-cell-content">
+      {{ item.displayValue }}
+    </div>
+  </td>
+</tr>

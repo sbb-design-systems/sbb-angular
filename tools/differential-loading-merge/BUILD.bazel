@@ -1,0 +1,19 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+nodejs_binary(
+    name = "differential-loading-merge",
+    data = [
+        ":sources",
+    ],
+    entry_point = ":differential-loading-merge.ts",
+)
+
+ts_library(
+    name = "sources",
+    srcs = glob(["**/*.ts"]),
+    tsconfig = ":tsconfig.json",
+    deps = ["@npm//@types/node"],
+)

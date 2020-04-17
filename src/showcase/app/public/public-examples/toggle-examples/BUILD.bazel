@@ -1,0 +1,44 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "toggle-examples",
+    srcs = [
+        "toggle-example/toggle-example.component.ts",
+        "toggle-examples.module.ts",
+    ],
+    assets = [
+        ":toggle-example/toggle-example.component.css",
+        "toggle-example/toggle-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/core/radio-button",
+        "//src/icons/arrow",
+        "//src/public/datepicker",
+        "//src/public/field",
+        "//src/public/toggle",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "toggle_example_toggle_example_component_scss",
+    src = "toggle-example/toggle-example.component.scss",
+)

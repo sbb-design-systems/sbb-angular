@@ -1,0 +1,34 @@
+@import '../header';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px;
+
+  > strong {
+    display: block;
+    font-family: $fontSbbLight;
+    font-size: 21px;
+    line-height: 25px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  > ::ng-deep a {
+    font-size: 15px;
+    line-height: 20px;
+    padding: 8px 32px 10px 0;
+    border-top: 1px solid $sbbColorCloud;
+    text-decoration: none;
+    outline: none;
+    @include headerRightArrow();
+
+    &:last-child {
+      border-bottom: 1px solid $sbbColorCloud;
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,46 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "button-examples",
+    srcs = [
+        "button-example/button-example.component.ts",
+        "button-examples.module.ts",
+    ],
+    assets = [
+        ":button-example/button-example.component.css",
+        "button-example/button-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/arrow",
+        "//src/icons/basic",
+        "//src/icons/navigation",
+        "//src/public/button",
+        "//src/public/checkbox",
+        "//src/public/field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "button_example_button_example_component_scss",
+    src = "button-example/button-example.component.scss",
+)

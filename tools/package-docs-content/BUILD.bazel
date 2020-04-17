@@ -1,0 +1,19 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+nodejs_binary(
+    name = "package-docs-content",
+    data = [
+        ":sources",
+    ],
+    entry_point = ":package-docs-content.ts",
+)
+
+ts_library(
+    name = "sources",
+    srcs = glob(["**/*.ts"]),
+    tsconfig = ":tsconfig.json",
+    deps = ["@npm//@types/node"],
+)

@@ -1,0 +1,44 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "field-examples",
+    srcs = [
+        "field-example/field-example.component.ts",
+        "field-examples.module.ts",
+    ],
+    assets = [
+        ":field-example/field-example.component.css",
+        "field-example/field-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/core/base",
+        "//src/public/checkbox",
+        "//src/public/datepicker",
+        "//src/public/field",
+        "//src/public/select",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "field_example_field_example_component_scss",
+    src = "field-example/field-example.component.scss",
+)

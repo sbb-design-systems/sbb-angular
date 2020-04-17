@@ -1,0 +1,41 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "usermenu-examples",
+    srcs = [
+        "usermenu-example/usermenu-example.component.ts",
+        "usermenu-examples.module.ts",
+    ],
+    assets = [
+        ":usermenu-example/usermenu-example.component.css",
+        "usermenu-example/usermenu-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/dropdown",
+        "//src/business/usermenu",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "usermenu_example_usermenu_example_component_scss",
+    src = "usermenu-example/usermenu-example.component.scss",
+)

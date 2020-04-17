@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "angular-showcase": {
-      "root": "projects/angular-showcase/",
-      "sourceRoot": "projects/angular-showcase/src",
+      "root": "src/showcase",
+      "sourceRoot": "src/showcase",
       "projectType": "application",
       "prefix": "sbb",
       "schematics": {
@@ -15,80 +15,27 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/bazel:build",
           "options": {
-            "aot": true,
-            "outputPath": "dist/angular-showcase",
-            "index": "projects/angular-showcase/src/index.html",
-            "main": "projects/angular-showcase/src/main.ts",
-            "polyfills": "projects/angular-showcase/src/polyfills.ts",
-            "tsConfig": "projects/angular-showcase/tsconfig.app.json",
-            "assets": [
-              "projects/angular-showcase/src/assets",
-              {
-                "glob": "**/*",
-                "input": "node_modules/ngx-monaco-editor/assets/monaco",
-                "output": "/assets/monaco"
-              }
-            ],
-            "styles": [
-              "projects/angular-showcase/src/styles.scss",
-              "node_modules/highlight.js/styles/github.css"
-            ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "targetLabel": "//src/showcase:prodapp",
+            "bazelCommand": "build"
           },
           "configurations": {
-            "es5": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "tsConfig": "projects/angular-showcase/tsconfig.app.es5.json"
-            },
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/angular-showcase/src/environments/environment.ts",
-                  "with": "projects/angular-showcase/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ]
+              "targetLabel": "//src/showcase:prodapp"
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/bazel:build",
           "options": {
-            "browserTarget": "angular-showcase:build"
+            "targetLabel": "//src/showcase:devserver",
+            "bazelCommand": "run",
+            "watch": true
           },
           "configurations": {
-            "es5": {
-              "browserTarget": "angular-showcase:build:es5"
-            },
             "production": {
-              "browserTarget": "angular-showcase:build:production"
+              "targetLabel": "//src/showcase:prodserver"
             }
           }
         },
@@ -99,43 +46,18 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/bazel:build",
           "options": {
-            "main": "projects/angular-showcase/src/test.ts",
-            "polyfills": "projects/angular-showcase/src/polyfills.ts",
-            "tsConfig": "projects/angular-showcase/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-showcase/karma.conf.js",
-            "styles": [
-              "projects/angular-showcase/src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "projects/angular-showcase/src/assets"
-            ]
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "preserveSymlinks": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "preserveSymlinks": false
-            }
+            "bazelCommand": "test",
+            "targetLabel": "//src/showcase/app/..."
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/angular-showcase/tsconfig.app.json",
-              "projects/angular-showcase/tsconfig.spec.json"
+              "tsconfig.json",
+              "src/bazel-tsconfig-test.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -144,37 +66,9 @@
         }
       }
     },
-    "angular-showcase-e2e": {
-      "root": "projects/angular-showcase-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/angular-showcase-e2e/protractor.conf.js",
-            "devServerTarget": "angular-showcase:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "angular-showcase:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/angular-showcase-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@sbb-esta/angular-public": {
-      "root": "projects/sbb-esta/angular-public",
-      "sourceRoot": "projects/sbb-esta/angular-public",
+    "library": {
+      "root": ".",
+      "sourceRoot": "src",
       "projectType": "library",
       "prefix": "sbb",
       "schematics": {
@@ -198,22 +92,6 @@
             "main": "projects/sbb-esta/angular-public/test.ts",
             "tsConfig": "projects/sbb-esta/angular-public/tsconfig.spec.json",
             "karmaConfig": "projects/sbb-esta/angular-public/karma.conf.js"
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "progress": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "progress": false
-            }
           }
         },
         "lint": {
@@ -229,298 +107,11 @@
           }
         }
       }
-    },
-    "@sbb-esta/angular-business": {
-      "root": "projects/sbb-esta/angular-business",
-      "sourceRoot": "projects/sbb-esta/angular-business",
-      "projectType": "library",
-      "prefix": "sbb",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/sbb-esta/angular-business/tsconfig.lib.json",
-            "project": "projects/sbb-esta/angular-business/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sbb-esta/angular-business/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-business/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-business/karma.conf.js"
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "progress": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "progress": false
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sbb-esta/angular-business/tsconfig.lib.json",
-              "projects/sbb-esta/angular-business/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@sbb-esta/angular-icons": {
-      "root": "projects/sbb-esta/angular-icons",
-      "sourceRoot": "projects/sbb-esta/angular-icons",
-      "projectType": "library",
-      "prefix": "sbb",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.lib.json",
-            "project": "projects/sbb-esta/angular-icons/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sbb-esta/angular-icons/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-icons/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-icons/karma.conf.js"
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "progress": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "progress": false
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sbb-esta/angular-icons/tsconfig.lib.json",
-              "projects/sbb-esta/angular-icons/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "**/schematics/*/files/**/*"
-            ]
-          }
-        }
-      }
-    },
-    "@sbb-esta/angular-keycloak": {
-      "projectType": "library",
-      "root": "projects/sbb-esta/angular-keycloak",
-      "sourceRoot": "projects/sbb-esta/angular-keycloak",
-      "prefix": "sbb",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
-            "project": "projects/sbb-esta/angular-keycloak/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sbb-esta/angular-keycloak/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-keycloak/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-keycloak/karma.conf.js"
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "progress": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "progress": false
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sbb-esta/angular-keycloak/tsconfig.lib.json",
-              "projects/sbb-esta/angular-keycloak/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@sbb-esta/angular-core": {
-      "projectType": "library",
-      "root": "projects/sbb-esta/angular-core",
-      "sourceRoot": "projects/sbb-esta/angular-core",
-      "prefix": "sbb",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/sbb-esta/angular-core/tsconfig.lib.json",
-            "project": "projects/sbb-esta/angular-core/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sbb-esta/angular-core/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-core/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-core/karma.conf.js"
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "progress": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "progress": false
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sbb-esta/angular-core/tsconfig.lib.json",
-              "projects/sbb-esta/angular-core/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@sbb-esta/angular-maps": {
-      "root": "projects/sbb-esta/angular-maps",
-      "sourceRoot": "projects/sbb-esta/angular-maps",
-      "projectType": "library",
-      "prefix": "sbb",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "changeDetection": "OnPush",
-          "viewEncapsulation": "None"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/sbb-esta/angular-maps/tsconfig.lib.json",
-            "project": "projects/sbb-esta/angular-maps/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/sbb-esta/angular-maps/test.ts",
-            "tsConfig": "projects/sbb-esta/angular-maps/tsconfig.spec.json",
-            "karmaConfig": "projects/sbb-esta/angular-maps/karma.conf.js"
-          },
-          "configurations": {
-            "pr": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless",
-              "sourceMap": false,
-              "progress": false
-            },
-            "ci": {
-              "watch": false,
-              "codeCoverage": true,
-              "browsers": "ChromeHeadless,FirefoxHeadless,BsChrome,BsFirefox",
-              "sourceMap": false,
-              "progress": false
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sbb-esta/angular-maps/tsconfig.lib.json",
-              "projects/sbb-esta/angular-maps/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
-  "defaultProject": "angular-showcase"
+  "defaultProject": "angular-showcase",
+  "cli": {
+    "packageManager": "yarn",
+    "analytics": false
+  }
 }

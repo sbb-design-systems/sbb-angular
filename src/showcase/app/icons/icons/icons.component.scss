@@ -1,0 +1,14 @@
+@import '../../../../core/styles/common';
+
+ul > li > ul > li {
+  width: 15rem;
+}
+
+a {
+  @include ellipsis();
+
+  ::ng-deep .sbb-icon-component {
+    display: inline-block;
+    width: 1rem;
+  }
+}

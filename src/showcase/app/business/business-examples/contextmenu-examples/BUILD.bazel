@@ -1,0 +1,40 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "contextmenu-examples",
+    srcs = [
+        "contextmenu-examples.module.ts",
+        "simple-contextmenu/simple-contextmenu.component.ts",
+    ],
+    assets = [
+        ":simple-contextmenu/simple-contextmenu.component.css",
+        "simple-contextmenu/simple-contextmenu.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/contextmenu",
+        "//src/business/dropdown",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "simple_contextmenu_simple_contextmenu_component_scss",
+    src = "simple-contextmenu/simple-contextmenu.component.scss",
+)

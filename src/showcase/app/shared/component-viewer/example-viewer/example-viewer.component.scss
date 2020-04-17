@@ -1,0 +1,32 @@
+@import '../../../../../core/styles/common';
+
+:host {
+  display: block;
+  padding: 24px;
+  margin-bottom: 1rem;
+  position: relative;
+  border: 1px solid $sbbColorSilver;
+
+  > div {
+    border-bottom: 1px solid $sbbColorSilver;
+    display: flex;
+    padding-bottom: 20px;
+    margin-bottom: 1rem;
+
+    > h3 {
+      flex-grow: 1;
+      margin-top: 0;
+    }
+
+    button {
+      cursor: pointer;
+      flex-grow: 0;
+      @include buttonResetFrameless();
+
+      svg {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}

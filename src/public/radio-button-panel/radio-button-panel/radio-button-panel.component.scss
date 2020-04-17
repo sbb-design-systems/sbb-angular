@@ -1,0 +1,8 @@
+@import '../../../core/styles/common';
+
+sbb-radio-button-panel {
+  @include checkboxRadioButtonPanel;
+  .sbb-checkbox-radio-button-panel-image {
+    @include checkboxRadioButtonPanelImage;
+  }
+}

@@ -1,0 +1,41 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "radio-button-examples",
+    srcs = [
+        "radio-button-example/radio-button-example.component.ts",
+        "radio-button-examples.module.ts",
+    ],
+    assets = [
+        ":radio-button-example/radio-button-example.component.css",
+        "radio-button-example/radio-button-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/checkbox",
+        "//src/public/radio-button",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "radio_button_example_radio_button_example_component_scss",
+    src = "radio-button-example/radio-button-example.component.scss",
+)

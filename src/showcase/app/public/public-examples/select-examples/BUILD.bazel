@@ -1,0 +1,70 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "select-examples",
+    srcs = [
+        "select-examples.module.ts",
+        "select-forms/select-forms.component.ts",
+        "select-multi-selection/select-multi-selection.component.ts",
+        "select-native/select-native.component.ts",
+        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.ts",
+        "select-option-groups/select-option-groups.component.ts",
+        "select-reactive-forms/select-reactive-forms.component.ts",
+    ],
+    assets = [
+        ":select-native/select-native.component.css",
+        ":select-option-groups/select-option-groups.component.css",
+        ":select-option-groups-multi-selection/select-option-groups-multi-selection.component.css",
+        ":select-reactive-forms/select-reactive-forms.component.css",
+        "select-forms/select-forms.component.html",
+        "select-multi-selection/select-multi-selection.component.html",
+        "select-native/select-native.component.html",
+        "select-option-groups-multi-selection/select-option-groups-multi-selection.component.html",
+        "select-option-groups/select-option-groups.component.html",
+        "select-reactive-forms/select-reactive-forms.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/checkbox",
+        "//src/public/field",
+        "//src/public/select",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "select_native_select_native_component_scss",
+    src = "select-native/select-native.component.scss",
+)
+
+sass_binary(
+    name = "select_option_groups_select_option_groups_component_scss",
+    src = "select-option-groups/select-option-groups.component.scss",
+)
+
+sass_binary(
+    name = "select_option_groups_multi_selection_select_option_groups_multi_selection_component_scss",
+    src = "select-option-groups-multi-selection/select-option-groups-multi-selection.component.scss",
+)
+
+sass_binary(
+    name = "select_reactive_forms_select_reactive_forms_component_scss",
+    src = "select-reactive-forms/select-reactive-forms.component.scss",
+)

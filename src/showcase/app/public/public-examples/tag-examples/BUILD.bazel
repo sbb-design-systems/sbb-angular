@@ -1,0 +1,43 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "tag-examples",
+    srcs = [
+        "tag-example/tag-example.component.ts",
+        "tag-examples.module.ts",
+    ],
+    assets = [
+        ":tag-example/tag-example.component.css",
+        "tag-example/tag-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/field",
+        "//src/public/tag",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "tag_example_tag_example_component_scss",
+    src = "tag-example/tag-example.component.scss",
+)

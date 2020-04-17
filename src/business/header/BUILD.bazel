@@ -1,0 +1,84 @@
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "sass_binary",
+    "sass_library",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "header",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":app-chooser-section/app-chooser-section.component.css",
+        ":header/header.component.css",
+        ":header-menu/header-menu.component.css",
+        ":header-menu-trigger/header-menu-trigger.component.css",
+    ] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-business/header",
+    deps = [
+        "//src/core/breakpoints",
+        "//src/core/common-behaviors",
+        "//src/icons/arrow",
+        "//src/icons/navigation",
+        "@npm//@angular/animations",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+        "@npm//rxjs",
+    ],
+)
+
+sass_library(
+    name = "header_scss_lib",
+    srcs = glob(["**/_*.scss"]),
+    deps = ["//src/core/styles:common_scss_lib"],
+)
+
+sass_binary(
+    name = "app_chooser_section_app_chooser_section_component_scss",
+    src = "app-chooser-section/app-chooser-section.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "header_header_component_scss",
+    src = "header/header.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "header_menu_header_menu_component_scss",
+    src = "header-menu/header-menu.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "header_menu_trigger_header_menu_trigger_component_scss",
+    src = "header-menu-trigger/header-menu-trigger.component.scss",
+    deps = [
+        ":header_scss_lib",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [":header.md"],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

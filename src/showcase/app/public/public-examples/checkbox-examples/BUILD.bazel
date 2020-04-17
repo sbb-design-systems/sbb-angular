@@ -1,0 +1,40 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "checkbox-examples",
+    srcs = [
+        "checkbox-example/checkbox-example.component.ts",
+        "checkbox-examples.module.ts",
+    ],
+    assets = [
+        ":checkbox-example/checkbox-example.component.css",
+        "checkbox-example/checkbox-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/checkbox",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "checkbox_example_checkbox_example_component_scss",
+    src = "checkbox-example/checkbox-example.component.scss",
+)

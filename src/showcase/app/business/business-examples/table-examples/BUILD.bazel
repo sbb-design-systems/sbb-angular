@@ -1,0 +1,39 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "table-examples",
+    srcs = [
+        "grouped-columns-table/grouped-columns-table.component.ts",
+        "grouped-rows-table/grouped-rows-table.component.ts",
+        "simple-table/simple-table.component.ts",
+        "sortable-table/sortable-table.component.ts",
+        "table-example-data.ts",
+        "table-examples.module.ts",
+    ],
+    assets = [
+        "grouped-columns-table/grouped-columns-table.component.html",
+        "grouped-rows-table/grouped-rows-table.component.html",
+        "simple-table/simple-table.component.html",
+        "sortable-table/sortable-table.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/table",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

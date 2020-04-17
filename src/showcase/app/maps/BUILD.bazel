@@ -1,0 +1,41 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "maps",
+    srcs = [
+        "maps.module.ts",
+        "maps-routing.module.ts",
+        "maps/maps.component.ts",
+    ],
+    assets = [
+        ":maps/maps.component.css",
+        "maps/maps.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps",
+        "//src/showcase/app/maps/maps-examples",
+        "//src/showcase/app/maps/maps-examples/esri-basemap-gallery-examples",
+        "//src/showcase/app/maps/maps-examples/esri-layer-list-examples",
+        "//src/showcase/app/maps/maps-examples/esri-legend-examples",
+        "//src/showcase/app/maps/maps-examples/esri-web-map-examples",
+        "//src/showcase/app/maps/maps-examples/esri-web-scene-examples",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "maps_maps_component_scss",
+    src = "maps/maps.component.scss",
+)

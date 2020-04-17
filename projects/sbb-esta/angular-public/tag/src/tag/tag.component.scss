@@ -1,9 +1,0 @@
-@import '../tags';
-
-.sbb-tag {
-  @include baseTag();
-
-  &.sbb-tag-active {
-    @include activeTag();
-  }
-}

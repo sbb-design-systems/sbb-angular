@@ -1,0 +1,40 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "esri-basemap-gallery-examples",
+    srcs = [
+        "esri-basemap-gallery-example/esri-basemap-gallery-example.component.ts",
+        "esri-basemap-gallery-examples.module.ts",
+    ],
+    assets = [
+        ":esri-basemap-gallery-example/esri-basemap-gallery-example.component.css",
+        "esri-basemap-gallery-example/esri-basemap-gallery-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/maps/esri-basemap-gallery",
+        "//src/maps/esri-web-scene",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "esri_basemap_gallery_example_esri_basemap_gallery_example_component_scss",
+    src = "esri-basemap-gallery-example/esri-basemap-gallery-example.component.scss",
+)

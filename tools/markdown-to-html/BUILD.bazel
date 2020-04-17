@@ -1,0 +1,25 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_library(
+    name = "transform-markdown",
+    srcs = glob(["**/*.ts"]),
+    tsconfig = ":tsconfig.json",
+    deps = [
+        "//tools/highlight-files:sources",
+        "@npm//@types/marked",
+        "@npm//@types/node",
+    ],
+)
+
+nodejs_binary(
+    name = "markdown-to-html",
+    data = [
+        ":transform-markdown",
+        "@npm//highlight.js",
+        "@npm//marked",
+    ],
+    entry_point = ":transform-markdown.ts",
+)

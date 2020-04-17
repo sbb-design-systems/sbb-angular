@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
+/bazel-out
 /dist
 /tmp
 /out-tsc
@@ -43,29 +44,10 @@ Thumbs.db
 
 # Projects node_modules
 .history/
-yarn.lock
 .js
 .js.map
 .d.ts
 
 # Markdown
-projects/angular-showcase/src/assets/docs
-projects/angular-showcase/src/assets/examples
-
-# Copied modules
-projects/sbb-esta/angular-business/accordion
-projects/sbb-esta/angular-business/autocomplete
-projects/sbb-esta/angular-business/badge
-projects/sbb-esta/angular-business/breadcrumb
-projects/sbb-esta/angular-business/datepicker
-projects/sbb-esta/angular-business/dropdown
-projects/sbb-esta/angular-business/field
-projects/sbb-esta/angular-business/input
-projects/sbb-esta/angular-business/pagination
-projects/sbb-esta/angular-business/option
-projects/sbb-esta/angular-business/radio-button
-projects/sbb-esta/angular-business/select
-projects/sbb-esta/angular-business/tabs
-projects/sbb-esta/angular-business/textarea
-projects/sbb-esta/angular-business/time-input
-projects/sbb-esta/angular-business/usermenu
+src/showcase/src/assets/docs
+src/showcase/src/assets/examples

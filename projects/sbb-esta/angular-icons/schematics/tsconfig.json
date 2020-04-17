@@ -1,9 +1,0 @@
-{
-  "extends": "../../../../schematics/tsconfig.json",
-  "compilerOptions": {
-    "declaration": true,
-    "rootDir": "."
-  },
-  "include": ["**/*"],
-  "exclude": ["*/files/**/*", "*/index.d.ts"]
-}

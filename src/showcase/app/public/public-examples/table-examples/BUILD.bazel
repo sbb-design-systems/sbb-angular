@@ -1,0 +1,43 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "table-examples",
+    srcs = [
+        "table-example/table-example.component.ts",
+        "table-examples.module.ts",
+    ],
+    assets = [
+        ":table-example/table-example.component.css",
+        "table-example/table-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/checkbox",
+        "//src/public/field",
+        "//src/public/radio-button",
+        "//src/public/table",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "table_example_table_example_component_scss",
+    src = "table-example/table-example.component.scss",
+)

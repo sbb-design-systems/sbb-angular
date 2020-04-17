@@ -1,0 +1,74 @@
+@import '../header';
+
+:host {
+  position: relative;
+
+  > span {
+    @include ellipsis();
+    border: transparent solid 1px;
+    display: block;
+    padding-right: 24px;
+    background-color: $sbbColorWhite;
+
+    > sbb-icon-chevron-small-down {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 24px;
+      height: 24px;
+      transform: translateY(-50%) rotate(-90deg);
+
+      ::ng-deep svg path {
+        stroke: currentColor;
+      }
+    }
+  }
+
+  @include mq($from: desktop) {
+    padding: 0;
+
+    > span {
+      display: inline-block;
+      position: relative;
+      padding: 6px 8px;
+      padding-right: 32px;
+      max-width: 100%;
+
+      > sbb-icon-chevron-small-down {
+        right: 8px;
+        transform: translateY(-50%) rotate(0);
+        transition: transform 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      }
+    }
+
+    &[aria-expanded='true'] {
+      overflow: visible;
+
+      > span {
+        border: $sbbColorGranite solid 1px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom: $sbbColorCloud solid 1px;
+        width: 150%;
+        max-width: 150%;
+        z-index: 1000;
+
+        > sbb-icon-chevron-small-down {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+
+      /** IE11 fix */
+      ~ .sbb-header-menu-trigger {
+        z-index: 900;
+      }
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $sbbColorRed125;
+  }
+}

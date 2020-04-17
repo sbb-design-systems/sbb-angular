@@ -1,0 +1,68 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "public",
+    srcs = [
+        "public.module.ts",
+        "public-routing.module.ts",
+        "public/public.component.ts",
+    ],
+    assets = [
+        ":public/public.component.css",
+        "public/public.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/tabs",
+        "//src/showcase/app/public/public-examples",
+        "//src/showcase/app/public/public-examples/accordion-examples",
+        "//src/showcase/app/public/public-examples/autocomplete-examples",
+        "//src/showcase/app/public/public-examples/badge-examples",
+        "//src/showcase/app/public/public-examples/breadcrumb-examples",
+        "//src/showcase/app/public/public-examples/button-examples",
+        "//src/showcase/app/public/public-examples/captcha-examples",
+        "//src/showcase/app/public/public-examples/checkbox-examples",
+        "//src/showcase/app/public/public-examples/checkbox-panel-examples",
+        "//src/showcase/app/public/public-examples/datepicker-examples",
+        "//src/showcase/app/public/public-examples/dropdown-examples",
+        "//src/showcase/app/public/public-examples/field-examples",
+        "//src/showcase/app/public/public-examples/file-selector-examples",
+        "//src/showcase/app/public/public-examples/ghettobox-examples",
+        "//src/showcase/app/public/public-examples/lightbox-examples",
+        "//src/showcase/app/public/public-examples/links-examples",
+        "//src/showcase/app/public/public-examples/loading-examples",
+        "//src/showcase/app/public/public-examples/notification-examples",
+        "//src/showcase/app/public/public-examples/pagination-examples",
+        "//src/showcase/app/public/public-examples/processflow-examples",
+        "//src/showcase/app/public/public-examples/radio-button-examples",
+        "//src/showcase/app/public/public-examples/radio-button-panel-examples",
+        "//src/showcase/app/public/public-examples/search-examples",
+        "//src/showcase/app/public/public-examples/select-examples",
+        "//src/showcase/app/public/public-examples/table-examples",
+        "//src/showcase/app/public/public-examples/tabs-examples",
+        "//src/showcase/app/public/public-examples/tag-examples",
+        "//src/showcase/app/public/public-examples/textarea-examples",
+        "//src/showcase/app/public/public-examples/textexpand-examples",
+        "//src/showcase/app/public/public-examples/time-input-examples",
+        "//src/showcase/app/public/public-examples/toggle-examples",
+        "//src/showcase/app/public/public-examples/tooltip-examples",
+        "//src/showcase/app/public/public-examples/usermenu-examples",
+        "//src/showcase/app/shared",
+        "//src/showcase/app/shared/component-viewer",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
+
+sass_binary(
+    name = "public_public_component_scss",
+    src = "public/public.component.scss",
+)

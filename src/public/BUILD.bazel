@@ -1,0 +1,85 @@
+load("@npm//scss-bundle:index.bzl", "scss_bundle")
+load(
+    "//src/public:config.bzl",
+    "PUBLIC_ENTRYPOINTS",
+    "PUBLIC_MARKDOWN_TARGETS",
+    "PUBLIC_TARGETS",
+    "PUBLIC_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_package",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+# Root "@sbb-esta/angular-public" entry-point.
+ng_module(
+    name = "public",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    module_name = "@sbb-esta/angular-public",
+    deps = ["//src/public/%s" % p for p in PUBLIC_ENTRYPOINTS] + [
+        "//src/core",
+    ],
+)
+
+sass_binary(
+    name = "typography",
+    src = "typography.scss",
+    include_paths = ["external/npm/node_modules"],
+    deps = ["//src/core/styles:core_scss_lib"],
+)
+
+scss_bundle(
+    name = "styles_bundle",
+    outs = ["_styles.scss"],
+    args = [
+        "--entryFile=$(location :_style_bundle.scss)",
+        "--outFile=$(location :_styles.scss)",
+    ],
+    data = [
+        ":_style_bundle.scss",
+        # Config file is required by "scss-bundle" and will be automatically
+        # loaded by the CLI. It expects the config to be in the execroot.
+        "//:scss-bundle.config.json",
+        "//src/core/styles:core_scss_lib",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+        ":README.md",
+        ":getting-started.md",
+        ":typography.md",
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/public/%s:overview" % name for name in PUBLIC_MARKDOWN_TARGETS],
+)
+
+# Creates the @sbb-esta/angular-public package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+        ":styles_bundle",
+        ":typography",
+    ],
+    entry_point = ":public-api.ts",
+    entry_point_name = "public",
+    nested_packages = ["//src/public/schematics:npm_package"],
+    readme_md = "README.md",
+    tags = ["release-package"],
+    deps = PUBLIC_TARGETS + PUBLIC_TESTING_TARGETS,
+)

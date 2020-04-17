@@ -1,0 +1,44 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "dialog-examples",
+    srcs = [
+        "dialog-example/dialog-example.component.ts",
+        "dialog-examples.module.ts",
+    ],
+    assets = [
+        ":dialog-example/dialog-example.component.css",
+        "dialog-example/dialog-example-content-1.component.html",
+        "dialog-example/dialog-example-content-2.component.html",
+        "dialog-example/dialog-example-content-3.component.html",
+        "dialog-example/dialog-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/business/dialog",
+        "//src/business/field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "dialog_example_dialog_example_component_scss",
+    src = "dialog-example/dialog-example.component.scss",
+)

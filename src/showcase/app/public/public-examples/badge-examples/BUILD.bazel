@@ -1,0 +1,41 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "badge-examples",
+    srcs = [
+        "badge-example/badge-example.component.ts",
+        "badge-examples.module.ts",
+    ],
+    assets = [
+        ":badge-example/badge-example.component.css",
+        "badge-example/badge-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/badge",
+        "//src/public/checkbox",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "badge_example_badge_example_component_scss",
+    src = "badge-example/badge-example.component.scss",
+)

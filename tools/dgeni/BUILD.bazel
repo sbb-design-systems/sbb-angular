@@ -1,0 +1,28 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//tools:defaults.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:public"])
+
+nodejs_binary(
+    name = "dgeni",
+    data = [
+        ":sources",
+        "@npm//dgeni",
+        "@npm//dgeni-packages",
+    ],
+    entry_point = ":bazel-bin.ts",
+)
+
+ts_library(
+    name = "sources",
+    srcs = glob(["**/*.ts"]),
+    tsconfig = ":tsconfig.json",
+    deps = [
+        "//tools/highlight-files:sources",
+        "@npm//@types/node",
+        "@npm//dgeni",
+        "@npm//dgeni-packages",
+        "@npm//highlight.js",
+        "@npm//typescript",
+    ],
+)

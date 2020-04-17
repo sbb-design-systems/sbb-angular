@@ -1,0 +1,42 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "datepicker-examples",
+    srcs = [
+        "datepicker-date-filter-example/datepicker-date-filter-example.component.ts",
+        "datepicker-examples.module.ts",
+        "datepicker-master-slave-example/datepicker-master-slave-example.component.ts",
+        "datepicker-simple-reactive-example/datepicker-simple-reactive-example.component.ts",
+        "datepicker-standalone-forms-example/datepicker-standalone-forms-example.component.ts",
+    ],
+    assets = [
+        "datepicker-date-filter-example/datepicker-date-filter-example.component.html",
+        "datepicker-master-slave-example/datepicker-master-slave-example.component.html",
+        "datepicker-simple-reactive-example/datepicker-simple-reactive-example.component.html",
+        "datepicker-standalone-forms-example/datepicker-standalone-forms-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/core/datetime",
+        "//src/public/checkbox",
+        "//src/public/datepicker",
+        "//src/public/field",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)

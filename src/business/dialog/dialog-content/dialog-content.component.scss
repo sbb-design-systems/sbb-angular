@@ -1,0 +1,18 @@
+@import '../dialog';
+
+$dialog-content-x-padding-tablet: 16;
+$dialog-content-x-padding-mobile: 16;
+$dialog-content-x-padding: 16;
+
+.sbb-dialog-content {
+  overflow: auto;
+  padding: pxToEm($dialog-y-padding-mobile) pxToEm($dialog-content-x-padding-mobile);
+
+  @include mq($from: tabletPortrait) {
+    padding: pxToEm($dialog-y-padding) pxToEm($dialog-content-x-padding-tablet);
+  }
+
+  @include mq($from: desktop) {
+    padding: pxToEm($dialog-y-padding) pxToEm($dialog-content-x-padding);
+  }
+}

@@ -1,0 +1,45 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "option",
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    assets = [
+        ":option/option.component.css",
+        ":option-group/option-group.component.css",
+    ] + glob(["**/*.html"]),
+    module_name = "@sbb-esta/angular-public/option",
+    deps = [
+        "//src/icons/status",
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//rxjs",
+    ],
+)
+
+sass_binary(
+    name = "option_option_component_scss",
+    src = "option/option.component.scss",
+    deps = [
+        "//src/core/styles:common_scss_lib",
+    ],
+)
+
+sass_binary(
+    name = "option_group_option_group_component_scss",
+    src = "option-group/option-group.component.scss",
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob(["**/*.ts"]),
+)

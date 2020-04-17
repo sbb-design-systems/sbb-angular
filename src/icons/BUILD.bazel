@@ -1,0 +1,56 @@
+load(
+    "//src/icons:config.bzl",
+    "ICONS_ENTRYPOINTS",
+    "ICONS_MARKDOWN_TARGETS",
+    "ICONS_TARGETS",
+    "ICONS_TESTING_TARGETS",
+)
+load(
+    "//tools:defaults.bzl",
+    "markdown_to_html",
+    "ng_module",
+    "ng_package",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+# Root "@sbb-esta/angular-icons" entry-point.
+ng_module(
+    name = "icons",
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    module_name = "@sbb-esta/angular-icons",
+    deps = ["//src/icons/%s" % p for p in ICONS_ENTRYPOINTS] + [
+        "@npm//@angular/core",
+    ],
+)
+
+markdown_to_html(
+    name = "overview",
+    srcs = [
+        ":getting-started.md",
+        ":schematics.md",
+    ],
+)
+
+filegroup(
+    name = "overviews",
+    srcs = [":overview"] + ["//src/icons/%s:overview" % name for name in ICONS_MARKDOWN_TARGETS],
+)
+
+# Creates the @sbb-esta/angular-icons package published to npm.
+ng_package(
+    name = "npm_package",
+    srcs = [
+        "package.json",
+    ],
+    data = [
+    ],
+    entry_point = ":public-api.ts",
+    entry_point_name = "icons",
+    nested_packages = ["//src/icons/schematics:npm_package"],
+    tags = ["release-package"],
+    deps = ICONS_TARGETS + ICONS_TESTING_TARGETS,
+)

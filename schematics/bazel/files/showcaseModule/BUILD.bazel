@@ -1,0 +1,72 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",<% if (hasTests) { %>
+    "ng_test_library",
+    "ng_web_test_suite",<% } %><% if (stylesheets.length) { %>
+    "sass_binary",<% } %>
+)
+
+package(default_visibility = ["//visibility:public"])<% if (name === 'app') { %>
+
+genrule(
+    name = "package-info",
+    srcs = ["//:package.json"],
+    outs = ["versions.ts"],
+    cmd = """
+      # Run the bazel entry-point for generating the package info.
+      ./$(execpath //tools/package-info:bazel-bin) \
+          "$(execpath versions.ts)"
+    """,
+    output_to_bindir = True,
+    tools = ["//tools/package-info:bazel-bin"],
+)<% } %>
+
+ng_module(
+    name = "<%= name %>",
+    srcs = [<% for (let src of tsFiles) { %>
+        "<%= src %>",<% } %><% if (name === 'app') { %>
+        ":versions.ts",<% } %>
+    ],<% if (stylesheets.length || htmlFiles.length) { %>
+    assets = [<% for (let stylesheet of stylesheets) { %>
+        ":<%= stylesheet %>",<% } %><% for (let file of htmlFiles) { %>
+        "<%= file %>",<% } %>
+    ],<% } %><% if (customTsConfig) { %>
+    tsconfig = "<%= customTsConfig %>",<% } %>
+    deps = [<% for (let dependency of dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)<% if (name.endsWith('examples')) { %>
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)<% } %><% for (let stylesheet of sassBinaries) { %>
+
+sass_binary(
+    name = "<%= stylesheet.name %>",
+    src = "<%= stylesheet.path %>",<% if (stylesheet.dependencies.length) { %>
+    deps = [<% for (let dependency of stylesheet.dependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],<% } %>
+)<% } %><% if (hasTests) { %>
+
+ng_test_library(
+    name = "unit_test_sources",
+    srcs = glob(
+        ["**/*.spec.ts"],
+        exclude = ["**/*.e2e.spec.ts"],
+    ),
+    deps = [
+        ":<%= name %>",<% for (let dependency of testDependencies) { %>
+        "<%= dependency %>",<% } %>
+    ],
+)
+
+ng_web_test_suite(
+    name = "unit_tests",
+    deps = [":unit_test_sources"],
+)<% } %>

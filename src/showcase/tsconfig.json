@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "../dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": ["es2018", "dom"],
+    "types": ["arcgis-js-api", "grecaptcha"],
+    "paths": {
+      "@sbb-esta/angular-business": ["../business"],
+      "@sbb-esta/angular-business/*": ["../business/*"],
+      "@sbb-esta/angular-core": ["../core"],
+      "@sbb-esta/angular-core/*": ["../core/*"],
+      "@sbb-esta/angular-icons": ["../icons"],
+      "@sbb-esta/angular-icons/*": ["../icons/*"],
+      "@sbb-esta/angular-keycloak": ["../keycloak"],
+      "@sbb-esta/angular-keycloak/*": ["../keycloak/*"],
+      "@sbb-esta/angular-maps": ["../maps"],
+      "@sbb-esta/angular-maps/*": ["../maps/*"],
+      "@sbb-esta/angular-public": ["../public"],
+      "@sbb-esta/angular-public/*": ["../public/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "bazelOptions": {
+    // See https://github.com/angular/angular/issues/29107
+    "devmodeTargetOverride": "es5"
+  }
+}

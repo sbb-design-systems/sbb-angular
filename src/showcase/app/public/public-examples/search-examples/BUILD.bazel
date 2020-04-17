@@ -1,0 +1,44 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "search-examples",
+    srcs = [
+        "search-example/search-example.component.ts",
+        "search-examples.module.ts",
+    ],
+    assets = [
+        ":search-example/search-example.component.css",
+        "search-example/search-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/icons/basic",
+        "//src/public/autocomplete",
+        "//src/public/loading",
+        "//src/public/search",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//rxjs",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "search_example_search_example_component_scss",
+    src = "search-example/search-example.component.scss",
+)

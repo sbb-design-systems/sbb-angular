@@ -1,354 +1,121 @@
 name: Continuous Integration
 on: [push, pull_request]
+env:
+  BAZEL_COMMAND: bazelisk
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NODE_OPTIONS: --max_old_space_size=6144
     steps:
     - name: Shallow checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         fetch-depth: 1
+    - name: Copy bazel.rc to user home
+      run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
         node-version: 12
 
-    - name: Restore dependencies from cache
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
+      id: yarn-cache
       with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-{{ hashFiles('**/tools/postinstall/apply-patches.js') }}
         restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install dependencies
-      run: npm ci
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
 
-    - name: Migrate public to business components
-      run: npm run build:business:public2business
-
-    - name: Restore @sbb-esta/angular-core from cache
+    - name: "Bazelisk: Restore dependencies from cache"
       uses: actions/cache@v1
-      id: sbb_esta_angular_core_cache
+      id: bazelisk-cache
       with:
-        path: dist/sbb-esta/angular-core
-        key: "ng-sbb-esta-angular-core-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-core/**/*.scss') }}"
-    - name: Build @sbb-esta/angular-core
-      if: steps.sbb_esta_angular_core_cache.outputs.cache-hit != 'true'
-      run: npm run build:core
-      
-    - name: Restore @sbb-esta/angular-icons from cache
-      uses: actions/cache@v1
-      id: sbb_esta_angular_icons_cache
-      with:
-        path: dist/sbb-esta/angular-icons
-        key: "ng-sbb-esta-angular-icons-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-icons/**/*.ts') }}"
-    - name: Build @sbb-esta/angular-icons
-      if: steps.sbb_esta_angular_icons_cache.outputs.cache-hit != 'true'
-      run: npm run build:icons
-      
-    - name: Restore @sbb-esta/angular-keycloak from cache
-      uses: actions/cache@v1
-      id: sbb_esta_angular_keycloak_cache
-      with:
-        path: dist/sbb-esta/angular-keycloak
-        key: "ng-sbb-esta-angular-keycloak-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-keycloak/**/*.ts') }}"
-    - name: Build @sbb-esta/angular-keycloak
-      if: steps.sbb_esta_angular_keycloak_cache.outputs.cache-hit != 'true'
-      run: npm run build:keycloak
-      
-    - name: Restore @sbb-esta/angular-public from cache
-      uses: actions/cache@v1
-      id: sbb_esta_angular_public_cache
-      with:
-        path: dist/sbb-esta/angular-public
-        key: "ng-sbb-esta-angular-public-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.html') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-public/**/*.scss') }}"
-    - name: Build @sbb-esta/angular-public
-      if: steps.sbb_esta_angular_public_cache.outputs.cache-hit != 'true'
-      run: npm run build:public
-
-    - name: Restore @sbb-esta/angular-maps from cache
-      uses: actions/cache@v1
-      id: sbb_esta_angular_maps_cache
-      with:
-        path: dist/sbb-esta/angular-maps
-        key: "ng-sbb-esta-angular-maps-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.html') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-maps/**/*.scss') }}"
-    - name: Build @sbb-esta/angular-maps
-      if: steps.sbb_esta_angular_maps_cache.outputs.cache-hit != 'true'
-      run: npm run build:maps
-    - name: Restore @sbb-esta/angular-business from cache
-      uses: actions/cache@v1
-      id: sbb_esta_angular_business_cache
-      with:
-        path: dist/sbb-esta/angular-business
-        key: "ng-sbb-esta-angular-business-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.ts') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.html') }}-\
-          ${{ hashFiles('**/projects/sbb-esta/angular-business/**/*.scss') }}"
-    - name: Build @sbb-esta/angular-business
-      if: steps.sbb_esta_angular_business_cache.outputs.cache-hit != 'true'
-      run: npm run build:business
-
-    - name: Store build artifacts
-      uses: actions/upload-artifact@v1
-      with:
-        name: dist-sbb-esta
-        path: dist/sbb-esta
-
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: Restore dependencies from cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        path: "/home/runner/.cache/bazel"
+        key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
         restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install dependencies
-      run: npm ci
+          ${{ runner.os }}-bazelisk-
 
-    - name: Create lint output directory
-      run: mkdir lint
-    - name: Linting @sbb-esta/angular-core
-      run: npx ng lint @sbb-esta/angular-core --format=json > lint/core.json
-    - name: Linting @sbb-esta/angular-icons
-      run: npx ng lint @sbb-esta/angular-icons --format=json > lint/icons.json
-    - name: Linting @sbb-esta/angular-keycloak
-      run: npx ng lint @sbb-esta/angular-keycloak --format=json > lint/keycloak.json
-    - name: Linting @sbb-esta/angular-public
-      run: npx ng lint @sbb-esta/angular-public --format=json > lint/public.json
-    - name: Linting @sbb-esta/angular-maps
-      run: npx ng lint @sbb-esta/angular-maps --format=json > lint/maps.json
-    - name: Linting @sbb-esta/angular-business
-      run: npx ng lint @sbb-esta/angular-business --format=json > lint/business.json
-    - name: Linting @sbb-esta/angular-showcase
-      run: npx ng lint angular-showcase --format=json > lint/showcase.json
-
-    - name: Save lint results
-      uses: actions/upload-artifact@v1
-      with:
-        name: lint-report
-        path: lint
-
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name == 'push'
-    env:
-      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: Restore dependencies from cache
+    - name: "Bazel: Restore artifacts from cache"
       uses: actions/cache@v1
+      id: bazel-cache
       with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        path: "/home/runner/bazel_repository_cache"
+        key: ${{ runner.os }}-bazel-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install dependencies
-      run: npm ci
+          ${{ runner.os }}-bazel-
 
-    - name: Restore build artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: dist-sbb-esta
-        path: dist/sbb-esta
+    - name: "Build: Migrate public to business components"
+      run: yarn -s build:public2business
+    - name: "Build: Bazel"
+      run: bazelisk build src/... --build_tag_filters=-release-package,-prod-showcase
 
-    - name: Testing @sbb-esta/angular-core
-      run: npx ng test @sbb-esta/angular-core -c ci
-    - name: Testing @sbb-esta/angular-keycloak
-      run: npx ng test @sbb-esta/angular-keycloak -c ci
-    - name: Testing @sbb-esta/angular-public
-      run: npx ng test @sbb-esta/angular-public -c ci
-    - name: Testing @sbb-esta/angular-maps
-      run: npx ng test @sbb-esta/angular-maps -c ci
-    - name: Testing @sbb-esta/angular-business
-      run: npx ng test @sbb-esta/angular-business -c ci
+    - name: "Test: Run local tests"
+      run: bazelisk test src/... --build_tag_filters=-e2e --test_tag_filters=-e2e --build_tests_only
 
-    - name: Save test results
-      uses: actions/upload-artifact@v1
-      with:
-        name: coverage-report
-        path: coverage
-
-  test-pr:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name == 'pull_request'
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: Restore dependencies from cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Restore build artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: dist-sbb-esta
-        path: dist/sbb-esta
-
-    - name: Testing @sbb-esta/angular-core PR
-      run: npx ng test @sbb-esta/angular-core -c pr
-    - name: Testing @sbb-esta/angular-keycloak PR
-      run: npx ng test @sbb-esta/angular-keycloak -c pr
-    - name: Testing @sbb-esta/angular-public PR
-      run: npx ng test @sbb-esta/angular-public -c pr
-    - name: Testing @sbb-esta/angular-maps PR
-      run: npx ng test @sbb-esta/angular-maps -c pr
-    - name: Testing @sbb-esta/angular-business PR
-      run: npx ng test @sbb-esta/angular-business -c pr
-
-    - name: Save test results
-      uses: actions/upload-artifact@v1
-      with:
-        name: coverage-report
-        path: coverage
-
-  sonar:
-    runs-on: ubuntu-latest
-    needs: [lint, test]
-    if: github.event_name == 'push'
-    steps:
-    - name: Full checkout
-      uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: Restore dependencies from cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Prepare sonar configuration
-      run: node scripts/sonar.js
-    - name: Restore lint artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: lint-report
-        path: lint
-    - name: Restore test artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: coverage-report
-        path: coverage
-    - name: Adapt lcov paths
-      run: find ./coverage -name lcov.info -type f -exec sed -i -e "s|SF:$GITHUB_WORKSPACE|SF:/github/workspace|g" {} \;
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v1.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: "Lint: Run tslint"
+      run: yarn tslint
 
   showcase:
     runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Shallow checkout
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
-    - name: Restore dependencies from cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Restore build artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: dist-sbb-esta
-        path: dist/sbb-esta
-
-    - name: Build showcase
-      run: npm run build:showcase
-    - name: Copy showcase package.json
-      run: cp projects/angular-showcase/package.json dist/angular-showcase
-      
-    - name: Save showcase artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: showcase
-        path: dist/angular-showcase
-  
-  deploy-staging:
-    runs-on: ubuntu-latest
-    needs: showcase
     if: github.event_name == 'pull_request'
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
+    - name: Shallow checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Copy bazel.rc to user home
+      run: cp ./.github/.bazelrc ~/
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: Restore showcase artifact
-      uses: actions/download-artifact@v1
+
+    - name: "Yarn: Get cache directory path"
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: yarn-cache
       with:
-        name: showcase
-        path: dist/angular-showcase
-    - name: Assign showcase version
-      run: sed -i "s/0.0.0-PLACEHOLDER/0.0.0-$PR_NUMBER/g" dist/angular-showcase/package.json
-    - name: Pack showcase
-      run: |
-        cd dist/angular-showcase
-        npm pack
-    - name: Deploy to staging
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-{{ hashFiles('**/tools/postinstall/apply-patches.js') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: "Yarn: Install dependencies"
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: "Bazelisk: Restore dependencies from cache"
+      uses: actions/cache@v1
+      id: bazelisk-cache
+      with:
+        path: "/home/runner/.cache/bazel"
+        key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
+        restore-keys: |
+          ${{ runner.os }}-bazelisk-
+
+    - name: "Bazel: Restore prod artifacts from cache"
+      uses: actions/cache@v1
+      id: bazel-cache
+      with:
+        path: "/home/runner/bazel_repository_cache"
+        key: ${{ runner.os }}-bazel-prod-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bazel-prod-
+
+    - name: "Build: Migrate public to business components"
+      run: yarn -s build:public2business
+    - name: "Build: Showcase"
+      run: yarn -s build:showcase
+    - name: "Pack: Showcase"
+      run: yarn pack --cwd ./dist/releases/showcase --filename ./sbb-esta-angular-showcase.tgz
+    - name: "Deploy: Staging"
       run: |
         curl --url https://angular-staging.app.sbb.ch/$PR_NUMBER \
         -X POST --user sbb:ezUxDHgb6rAHTDU0HLHJ \
-        -F "tarball=@dist/angular-showcase/sbb-esta-angular-showcase-0.0.0-$PR_NUMBER.tgz"
+        -F "tarball=@sbb-esta-angular-showcase.tgz"

@@ -36,6 +36,11 @@ class IconCollectionModule {
 }
 
 class IconModule {
+    constructor(files) {
+        this._files = files.sort((a, b) => b.size.localeCompare(a.size));
+        this.name = this._files[0].name;
+        this.modules = this._files[0].modules.slice();
+    }
     get sizes() {
         return this._files
             .map(f => f.size)
@@ -44,11 +49,6 @@ class IconModule {
     }
     get meta() {
         return this._files.map(f => f.filepath);
-    }
-    constructor(files) {
-        this._files = files.sort((a, b) => b.size.localeCompare(a.size));
-        this.name = this._files[0].name;
-        this.modules = this._files[0].modules.slice();
     }
     apply(directory) {
         const iconBaseImport = () => `${'../'.repeat(this.modules.length)}icon-base`;

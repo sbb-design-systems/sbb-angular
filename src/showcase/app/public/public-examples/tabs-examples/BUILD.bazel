@@ -1,0 +1,50 @@
+load(
+    "//tools:defaults.bzl",
+    "ng_module",
+    "sass_binary",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "tabs-examples",
+    srcs = [
+        "tabs-example/person-list/person-list.component.ts",
+        "tabs-example/tabs-example.component.ts",
+        "tabs-examples.module.ts",
+    ],
+    assets = [
+        ":tabs-example/tabs-example.component.css",
+        ":tabs-example/person-list/person-list.component.css",
+        "tabs-example/person-list/person-list.component.html",
+        "tabs-example/tabs-example.component.html",
+    ],
+    tsconfig = "//src/showcase:tsconfig.json",
+    deps = [
+        "//src/public/checkbox",
+        "//src/public/field",
+        "//src/public/tabs",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+    ],
+)
+
+filegroup(
+    name = "source-files",
+    srcs = glob([
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts",
+    ]),
+)
+
+sass_binary(
+    name = "tabs_example_tabs_example_component_scss",
+    src = "tabs-example/tabs-example.component.scss",
+)
+
+sass_binary(
+    name = "tabs_example_person_list_person_list_component_scss",
+    src = "tabs-example/person-list/person-list.component.scss",
+)
