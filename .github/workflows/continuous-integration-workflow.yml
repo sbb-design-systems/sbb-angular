@@ -96,9 +96,9 @@ jobs:
       id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
+        key: ${{ runner.os }}-yarn-showcase-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-showcase-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 

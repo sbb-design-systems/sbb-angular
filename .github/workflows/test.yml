@@ -19,34 +19,8 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         scope: sbb-esta
 
-    - name: "Yarn: Get cache directory path"
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: "Yarn: Create hash key"
-      id: yarn-cache-key-name
-      run: echo "::set-output name=yarn_cache_key::$(yarn hash yarn.lock tools/postinstall/apply-patches.js)"
-    - name: "Yarn: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
-
-    - name: "Bazelisk: Create hash key"
-      id: bazelisk-cache-key-name
-      run: echo "::set-output name=bazelisk_cache_key::$(yarn hash WORKSPACE .bazelversion)"
-    - name: "Bazelisk: Restore dependencies from cache"
-      uses: actions/cache@v1
-      id: bazelisk-cache
-      with:
-        path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}
-        restore-keys: |
-          ${{ runner.os }}-bazelisk-
   
     - name: "Build: Packages"
       run: yarn -s build
@@ -78,34 +52,43 @@ jobs:
     - name: "Yarn: Get cache directory path"
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: "Yarn: Create hash key"
+      id: yarn-cache-key-name
+      run: echo "::set-output name=yarn_cache_key::$(yarn hash yarn.lock tools/postinstall/apply-patches.js)"
     - name: "Yarn: Restore dependencies from cache"
       uses: actions/cache@v1
       id: yarn-cache
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-{{ hashFiles('**/tools/postinstall/apply-patches.js') }}
+        key: ${{ runner.os }}-yarn-showcase-${{ steps.yarn-cache-key-name.outputs.yarn_cache_key }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-showcase-
     - name: "Yarn: Install dependencies"
       run: yarn install --frozen-lockfile --non-interactive
 
+    - name: "Bazelisk: Create hash key"
+      id: bazelisk-cache-key-name
+      run: echo "::set-output name=bazelisk_cache_key::$(yarn hash WORKSPACE .bazelversion)"
     - name: "Bazelisk: Restore dependencies from cache"
       uses: actions/cache@v1
       id: bazelisk-cache
       with:
         path: "/home/runner/.cache/bazel"
-        key: ${{ runner.os }}-bazelisk-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}
+        key: ${{ runner.os }}-bazelisk-${{ steps.bazelisk-cache-key-name.outputs.bazelisk_cache_key }}
         restore-keys: |
           ${{ runner.os }}-bazelisk-
 
-    - name: "Bazel: Restore prod artifacts from cache"
+    - name: "Bazel: Create hash key"
+      id: bazel-cache-key-name
+      run: echo "::set-output name=bazel_cache_key::$(yarn hash WORKSPACE .bazelversion yarn.lock)"
+    - name: "Bazel: Restore artifacts from cache"
       uses: actions/cache@v1
       id: bazel-cache
       with:
         path: "/home/runner/bazel_repository_cache"
-        key: ${{ runner.os }}-bazel-prod-${{ hashFiles('**/WORKSPACE') }}-{{ hashFiles('**/.bazelversion') }}-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-bazel-prod-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-bazel-prod-
+          ${{ runner.os }}-bazel-prod-${{ steps.bazel-cache-key-name.outputs.bazel_cache_key }}-
 
     - name: "Build: Migrate public to business components"
       run: yarn -s build:public2business
